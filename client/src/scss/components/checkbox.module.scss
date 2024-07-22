@@ -1,5 +1,5 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/variables";
 
 .checkbox {
   display: block;
@@ -63,7 +63,7 @@
     background-color: #ccc;
   }
 
-  &.v2{
+  &.v2 {
     .checkmark {
       width: 16px;
       height: 16px;

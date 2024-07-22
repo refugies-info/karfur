@@ -18,7 +18,7 @@ interface ColoredButtonProps {
 }
 
 const ColoredButton = styled(RSButton)<ColoredButtonProps>`
-  :hover,
+  &:hover,
   &.${styles.open} {
     background: ${(props) => props.$background} !important;
     border-color: ${(props) => props.$border};

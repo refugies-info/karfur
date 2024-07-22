@@ -3,12 +3,12 @@
 @import "./variables";
 
 // Vendors
-@import "~bootstrap/scss/bootstrap";
-@import "~flag-icons/css/flag-icons.min.css";
-@import "~rc-time-picker/assets/index.css";
-@import "~react-notifications/src/notifications.scss";
-@import "~react-loading-skeleton/dist/skeleton.css";
-@import "~remixicon/fonts/remixicon.css"; // TODO : remove but deal with callout first
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/flag-icons/css/flag-icons.min.css";
+@import "../../../node_modules/rc-time-picker/assets/index.css";
+@import "../../../node_modules/react-notifications/src/notifications.scss";
+@import "../../../node_modules/react-loading-skeleton/dist/skeleton.css";
+@import "../../../node_modules/remixicon/fonts/remixicon.css"; // TODO : remove but deal with callout first
 
 // Main styles
 @import "./rtl";

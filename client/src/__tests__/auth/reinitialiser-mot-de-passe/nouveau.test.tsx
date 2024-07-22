@@ -1,10 +1,9 @@
-import { wrapWithProvidersAndRender } from "../../../../jest/lib/wrapWithProvidersAndRender";
-import pageComponent from "pages/auth/reinitialiser-mot-de-passe/nouveau";
-import mockRouter from "next-router-mock";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { act, ReactTestRenderer } from "react-test-renderer";
-import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
 import "jest-styled-components";
+import mockRouter from "next-router-mock";
+import pageComponent from "pages/auth/reinitialiser-mot-de-passe/nouveau";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../jest/lib/wrapWithProvidersAndRender";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -14,20 +13,14 @@ describe("auth/reinitialiser-mot-de-passe/nouveau", () => {
     setupGoogleMock();
   });
 
-  let component: ReactTestRenderer;
-
-  it("renders page", () => {
-    act(() => {
-      mockRouter.push("/auth/reinitialiser-mot-de-passe/nouveau?token=aaa");
+  it("renders page", async () => {
+    await mockRouter.push("/auth/reinitialiser-mot-de-passe/nouveau?token=aaa");
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: pageComponent,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: pageComponent,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

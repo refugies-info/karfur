@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
-import { getServerSideSitemap, getServerSideSitemapIndex } from "next-sitemap";
 import { extractIndexFromUrl } from "lib/sitemap/extractIndexFromUrl";
 import { getAllUrls } from "lib/sitemap/getAllUrls";
+import { GetServerSideProps } from "next";
+import { getServerSideSitemapIndexLegacy, getServerSideSitemapLegacy } from "next-sitemap";
 
 const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 const TYPES = ["dispositifs", "demarches", "structures", "pages"];
@@ -16,9 +16,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   // /sitemap-index/sitemap-index-LN
   if (index.length === 1) {
-    return getServerSideSitemapIndex(
+    return getServerSideSitemapIndexLegacy(
       ctx,
-      TYPES.map((type) => `${SITE_URL}/sitemap-index/sitemap-index-${locale}/sitemap-index-${type}.xml`)
+      TYPES.map((type) => `${SITE_URL}/sitemap-index/sitemap-index-${locale}/sitemap-index-${type}.xml`),
     );
   }
 
@@ -32,10 +32,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const urls = await getAllUrls(type, locale);
     const fields = urls.map((url) => ({
       loc: url,
-      lastmod: new Date().toISOString()
+      lastmod: new Date().toISOString(),
     }));
 
-    return getServerSideSitemap(ctx, fields);
+    return getServerSideSitemapLegacy(ctx, fields);
   }
 
   // 404 wrong path

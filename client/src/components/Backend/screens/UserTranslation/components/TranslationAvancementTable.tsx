@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { colors } from "colors";
-import { Table } from "reactstrap";
-import { TypeContenu } from "../../UserContributions/components/SubComponents";
-import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
-import { ProgressWithValue, TradStatus } from "./SubComponents";
-import moment from "moment";
-import "moment/locale/fr";
-import Swal from "sweetalert2";
-import API from "utils/API";
-import FButton from "components/UI/FButton/FButton";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
-import { useDispatch } from "react-redux";
-import { sortData } from "./functions";
-import styles from "scss/components/adminTable.module.scss";
 import {
   GetDispositifsWithTranslationAvancementResponse,
   GetUserInfoResponse,
   Languages,
 } from "@refugies-info/api-types";
-import { handleApiError } from "lib/handleApiErrors";
-import { useRouter } from "next/router";
+import { colors } from "colors";
+import FButton from "components/UI/FButton/FButton";
 import { useLanguages } from "hooks";
+import { handleApiError } from "lib/handleApiErrors";
+import moment from "moment";
+import "moment/locale/fr";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Table } from "reactstrap";
+import styles from "scss/components/adminTable.module.scss";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import styled from "styled-components";
+import Swal from "sweetalert2";
+import API from "utils/API";
+import { TabHeader, Title } from "../../Admin/sharedComponents/SubComponents";
+import { TypeContenu } from "../../UserContributions/components/SubComponents";
+import { sortData } from "./functions";
+import { ProgressWithValue, TradStatus } from "./SubComponents";
 
 moment.locale("fr");
 
@@ -171,7 +171,7 @@ export const TranslationAvancementTable = (props: Props) => {
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
                     <button
-                      data-test-id={`test-line-${element._id}`}
+                      data-testid={`test-line-${element._id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         goToTranslation(element);
@@ -215,7 +215,7 @@ export const TranslationAvancementTable = (props: Props) => {
                       type="error"
                       name="trash-2"
                       onClick={(event: any) => deleteTrad(event, element)}
-                      data-test-id="test-trash"
+                      data-testid="test-trash"
                     />
                   </td>
                 )}

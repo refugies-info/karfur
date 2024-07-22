@@ -1,5 +1,134 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckCode should not render the component if the email is not provided 1`] = `null`;
+exports[`CheckCode should not render the component if the email is not provided 1`] = `<DocumentFragment />`;
 
-exports[`CheckCode should render the component with the correct title and subtitle 1`] = `null`;
+exports[`CheckCode should render the component with the correct title and subtitle 1`] = `
+<DocumentFragment>
+  <div
+    class="container half"
+  >
+    <button
+      class="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+      id="fr-button-:r0:"
+    >
+      Retour
+    </button>
+    <div
+      class="title"
+    >
+      <h1>
+        Vérifions votre identité !
+      </h1>
+      <p
+        class="subtitle"
+      >
+        Un code temporaire à 6 chiffres vous a été envoyé à test@example.com. 
+        <a
+          class="text-decoration-underline"
+          href="/auth"
+        >
+          Ce n'est pas vous ?
+        </a>
+      </p>
+    </div>
+    <form>
+      <div
+        class="fr-input-group mb-0"
+      >
+        <label
+          class="fr-label"
+          for="input-:r1:"
+        >
+          Code d'authentification
+        </label>
+        <input
+          aria-describedby="input-:r1:-desc-error"
+          class="fr-input"
+          id="input-:r1:"
+          name="code"
+          type="text"
+          value=""
+        />
+      </div>
+      <button
+        class="fr-btn fr-icon-check-line fr-btn--icon-right button mt mb-4"
+        id="fr-button-:r2:"
+        type="submit"
+      >
+        Valider
+      </button>
+      <button
+        class="fr-btn fr-btn--tertiary fr-icon-mail-line fr-btn--icon-right button"
+        id="fr-button-:r3:"
+      >
+        Renvoyer le code
+      </button>
+    </form>
+    <div
+      class="small mx text-center"
+    >
+      L'adresse mail n'est plus valable ? 
+      <button
+        class="link"
+      >
+        Contactez-nous
+      </button>
+    </div>
+    <div
+      class="mb-4 row"
+    >
+      <div
+        class="col"
+      >
+        <a
+          class="fr-btn fr-btn--tertiary button"
+          href="https://mail.google.com/mail/u/0/"
+          id="fr-button-:r4:"
+        >
+          <img
+            alt=""
+            class="me-2"
+            data-nimg="1"
+            decoding="async"
+            height="24"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=48&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=48&q=75 2x"
+            style="color: transparent;"
+            width="24"
+          />
+          Ouvrir Gmail
+        </a>
+      </div>
+      <div
+        class="col"
+      >
+        <a
+          class="fr-btn fr-btn--tertiary button"
+          href="https://outlook.live.com/mail/0/"
+          id="fr-button-:r5:"
+        >
+          <img
+            alt=""
+            class="me-2"
+            data-nimg="1"
+            decoding="async"
+            height="24"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=48&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=48&q=75 2x"
+            style="color: transparent;"
+            width="24"
+          />
+          Ouvrir Outlook
+        </a>
+      </div>
+    </div>
+    <p
+      class="small mt-6 text-center"
+    >
+      Pensez à vérifiez votre courrier indésirable !
+    </p>
+  </div>
+</DocumentFragment>
+`;

@@ -19,6 +19,7 @@ import {
   KEY_ESCAPE_COMMAND,
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
+  TextNode,
 } from "lexical";
 import { cls } from "lib/classname";
 import { sanitizeUrl } from "lib/sanitizeUrl";
@@ -188,7 +189,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
     editor.update(() => {
       const node = $getSelection();
       const childTextNode = node?.getNodes()?.[0];
-      if (childTextNode) childTextNode.setTextContent(linkText);
+      if (childTextNode instanceof TextNode) childTextNode.setTextContent(linkText);
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: sanitizeUrl(linkUrl), rel: "noreferrer", target: "_blank" });
       setIsModalOpen(false);
       setIsFloatingVisible(false);

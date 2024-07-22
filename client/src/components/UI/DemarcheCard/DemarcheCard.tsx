@@ -25,7 +25,7 @@ type DemarcheLinkProps = {
   $border: string;
 };
 const DemarcheLink = styled(Link)<DemarcheLinkProps>`
-  :hover,
+  &:hover,
   .${commonStyles.favorite}:hover + & {
     background-color: ${(props) => props.$background} !important;
     border-color: ${(props) => props.$border} !important;

@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon";
+import styled from "styled-components";
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{ state: string }>`
   background: ${(props: { state: string }) =>
     props.state === "selected" ? colors.focus : props.state === "current" ? colors.grey2 : colors.white};
   border-width: 1px;
@@ -45,7 +44,7 @@ export const Role = (props: Props) => (
   <MainContainer
     onClick={() => props.onRoleSelect(props.role)}
     state={props.state}
-    data-test-id={"test-role-" + props.role}
+    data-testid={"test-role-" + props.role}
   >
     <Row>
       <Title>{getTitle(props.role)}</Title>

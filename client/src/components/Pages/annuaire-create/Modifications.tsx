@@ -7,7 +7,7 @@ interface Props {
   hasModifications: boolean;
 }
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{hasModifications: boolean}>`
   width: 360px;
   background: ${(props: {hasModifications: boolean}) => (props.hasModifications ? "#ffe2b8" : "#BDF0C7")};
   border-radius: 12px;

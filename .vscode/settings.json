@@ -1,4 +1,7 @@
 {
+  "alias-tool.mappings": {
+    "~scss": "${workspace}/client/src/scss",
+  },
   "scss.lint.unknownAtRules": "ignore",
   "eslint.workingDirectories": [
     "./client",

@@ -1,14 +1,13 @@
-import { Table } from "reactstrap";
-import React from "react";
-import Image from "next/image";
-import { EditButtonWithoutNavigation, DeleteButton } from "../../Admin/sharedComponents/SubComponents";
 import marioProfile from "assets/mario-profile.jpg";
-import styled from "styled-components";
 import { colors } from "colors";
+import Image from "next/image";
+import { Table } from "reactstrap";
+import styled from "styled-components";
+import { DeleteButton, EditButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
 // import "./MembresTable.scss";
+import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 moment.locale("fr");
 const RowContainer = styled.div`
@@ -17,14 +16,14 @@ const RowContainer = styled.div`
   align-items: center;
 `;
 
-const UserName = styled.div`
+const UserName = styled.div<{ isUser: boolean }>`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
 `;
 
-const RoleContainer = styled.div`
+const RoleContainer = styled.div<{ isUser: boolean }>`
   background: ${colors.white};
   border-radius: 8px;
   padding: 8px;
@@ -35,7 +34,7 @@ const RoleContainer = styled.div`
   width: fit-content;
 `;
 
-const DateContainer = styled.div`
+const DateContainer = styled.div<{ isUser: boolean }>`
   color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   max-width: 190px;
 `;
@@ -101,14 +100,14 @@ export const MembresTable = (props: Props) => (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <EditButtonWithoutNavigation
-                    data-test-id={"test_see_" + element.userId}
+                    testId={"edit-member-" + element.userId}
                     onClick={() => {
                       props.setSelectedUser(element);
                       props.toggleEditMemberModal();
                     }}
                   />
                   <DeleteButton
-                    data-test-id={"test_delete_" + element.userId}
+                    testId={`delete-button-${element.userId}`}
                     disabled={false}
                     onClick={() => props.deleteUserFromStructure(element.userId)}
                   />

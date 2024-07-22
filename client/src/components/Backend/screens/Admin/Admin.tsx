@@ -20,7 +20,7 @@ import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
 import { getInitialTab, setSavedQuery, TabQuery } from "lib/getAdminUrlParams";
 
-const OngletText = styled.span`
+const OngletText = styled.span<{ isActive: boolean }>`
   color: ${(props: { isActive: boolean }) => (props.isActive ? colors.bleuCharte : colors.gray90)};
   font-weight: ${(props: { isActive: boolean }) => (props.isActive ? "bold" : "normal")};
 `;

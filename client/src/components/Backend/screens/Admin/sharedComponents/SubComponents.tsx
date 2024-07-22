@@ -1,15 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { limitNbCaracters } from "lib";
-import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { colors } from "colors";
-import moment from "moment";
-import styles from "../Admin.module.scss";
 import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { useUser } from "hooks";
+import { limitNbCaracters } from "lib";
+import moment from "moment";
+import styled from "styled-components";
+import styles from "../Admin.module.scss";
+import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
 
-const Container = styled.div`
+const Container = styled.div<{ isDarkBackground: boolean }>`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -101,7 +100,7 @@ interface StyledStatusContainer {
   textColor?: string;
   color: string;
 }
-export const StyledStatusContainer = styled.div`
+export const StyledStatusContainer = styled.div<StyledStatusContainer>`
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -175,7 +174,7 @@ interface ButtonContainerProps {
   disabled?: boolean;
   hoverColor?: string;
 }
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.div<ButtonContainerProps>`
   width: 40px;
   height: 40px;
   background-color: ${colors.gray70};
@@ -195,7 +194,7 @@ export const ValidateButton = (props: { onClick: () => void; disabled: boolean }
     onClick={props.onClick}
     disabled={props.disabled}
     hoverColor={colors.validationHover}
-    data-test-id="validate-button"
+    data-testid="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="checkmark-outline" fill={colors.white} size={20} />
@@ -213,20 +212,20 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
-export const EditButtonWithoutNavigation = (props: { onClick: () => void }) => (
-  <ButtonContainer hoverColor={colors.gray90} onClick={props.onClick}>
+export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId?: string }) => (
+  <ButtonContainer hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="edit" fill={colors.white} size={20} />
     </div>
   </ButtonContainer>
 );
 
-export const DeleteButton = (props: { onClick: (event: any) => void; disabled: boolean }) => (
+export const DeleteButton = (props: { onClick: (event: any) => void; disabled: boolean; testId?: string }) => (
   <ButtonContainer
     onClick={props.disabled ? undefined : props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
-    data-test-id="delete-button"
+    data-testid={props.testId}
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash" fill={colors.white} size={20} />
@@ -234,7 +233,7 @@ export const DeleteButton = (props: { onClick: (event: any) => void; disabled: b
   </ButtonContainer>
 );
 
-const FilterButtonContainer = styled.div`
+const FilterButtonContainer = styled.div<{ isSelected: boolean }>`
   background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.gray90 : colors.white)};
   color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};
   border-radius: 12px;
@@ -253,7 +252,7 @@ export const FilterButton = (props: { onClick: () => void; text: string; isSelec
   </FilterButtonContainer>
 );
 
-const StyledTabHeader = styled.div`
+const StyledTabHeader = styled.div<{ order: number }>`
   display: flex;
   flex-direction: row;
   font-weight: bold;

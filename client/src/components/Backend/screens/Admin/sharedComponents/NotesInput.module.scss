@@ -1,7 +1,7 @@
-@import "src/scss/variables";
-@import "src/scss/colors";
+@import "~scss/variables";
+@import "~scss/colors";
 
-.input{
+.input {
   border-radius: $radius;
   font-size: 12px;
   padding: 16px;

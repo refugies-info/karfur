@@ -1,5 +1,5 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/variables";
 
 .label_details {
   font-weight: normal;
@@ -23,7 +23,7 @@
   border-radius: $radius;
   color: white;
   background: $dark;
-  border:none;
+  border: none;
   font-weight: bold;
   height: 50px;
   text-align: center;

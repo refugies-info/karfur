@@ -108,7 +108,7 @@ const Dashboard = (props: Props) => {
       }
       Promise.all(promises).finally(() => setLoaded(true));
     }
-  }, [loaded, props.visible]);
+  }, [loaded, props.visible, themes]);
 
   const toggleNoGeolocModal = () => setShowNoGeolocModal(!showNoGeolocModal);
 

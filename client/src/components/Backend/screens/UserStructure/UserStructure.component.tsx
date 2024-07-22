@@ -56,7 +56,7 @@ export const UserStructureComponent = (props: Props) => {
       );
     }
     window.scrollTo(0, 0);
-  }, [dispatch]);
+  }, [dispatch, userStructure]);
 
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE));

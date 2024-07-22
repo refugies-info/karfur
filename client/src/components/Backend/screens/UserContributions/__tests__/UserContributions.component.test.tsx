@@ -1,14 +1,15 @@
 // @ts-nocheck
-import UserContributions from "../UserContributions";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import Swal from "sweetalert2";
 import { colors } from "colors";
-import { act } from "react-test-renderer";
+import "jest-styled-components";
 import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import "jest-styled-components";
-import Router from "next/router";
+import Swal from "sweetalert2";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import UserContributions from "../UserContributions";
+
 jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -32,31 +33,25 @@ describe("userContributions", () => {
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
 
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
-        },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
+      },
     });
 
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 contributions", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserContributions,
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const userContributions = [
@@ -134,39 +129,33 @@ describe("userContributions", () => {
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          userContributions,
-          userStructure,
-          user: userState,
-        },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        userContributions,
+        userStructure,
+        user: userState,
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when clicks", async () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          userContributions,
-          userStructure,
-          user: userState,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        userContributions,
+        userStructure,
+        user: userState,
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
@@ -175,28 +164,24 @@ describe("userContributions", () => {
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
   });
 
-  it("should render correctly when click on delete", () => {
+  it("should render correctly when click on delete", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          userContributions: [userContributions[0]],
-          user: userState,
-        },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        userContributions: [userContributions[0]],
+        user: userState,
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    act(() =>
-      component.root.findByProps({ "data-test-id": "test_delete_id1" }).props.onClick({ stopPropagation: () => {} }),
-    );
-    expect(component.toJSON()).toMatchSnapshot();
+    await user.click(screen.getByTestId("delete-button-id1"));
+    expect(asFragment()).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Button, Col } from "reactstrap";
-import useRTL from "hooks/useRTL";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import useRTL from "hooks/useRTL";
 import { cls } from "lib/classname";
+import { useEffect, useRef, useState } from "react";
+import { Button, Col } from "reactstrap";
 import TestimonyAuthor from "./TestimonyAuthor";
 import styles from "./TestimonySlider.module.scss";
 
@@ -36,11 +36,13 @@ const TestimonySlider = (props: Props) => {
   useEffect(() => {
     if (!slider.current) return;
     const pageWidth = slider.current.clientWidth;
-    slider.current.scroll({
-      left: page * pageWidth * (isRTL ? -1 : 1),
-      top: 0,
-      behavior: "smooth"
-    });
+    // Be permissive with the scroll behavior during testing
+    slider.current.scroll &&
+      slider.current.scroll({
+        left: page * pageWidth * (isRTL ? -1 : 1),
+        top: 0,
+        behavior: "smooth",
+      });
   }, [page, isRTL]);
 
   return (

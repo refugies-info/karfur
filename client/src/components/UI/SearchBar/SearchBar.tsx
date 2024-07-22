@@ -60,7 +60,6 @@ interface Props {
  */
 const SearchBar = (props: Props) => {
   const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [isLoadingResults, setIsLoadingResults] = useState(false);
 
   const onChange = (_: any, { newValue }: { newValue: string }) => {
@@ -85,6 +84,8 @@ const SearchBar = (props: Props) => {
       return (child.username && regex.test(removeAccents(child.username))) || regex.test(removeAccents(child.email));
     });
   };
+
+  const [suggestions, setSuggestions] = useState<ReturnType<typeof getSuggestions>>([]);
 
   const onSuggestionsFetchRequested = debounce(({ value }) => {
     setSuggestions(getSuggestions(value));
@@ -171,7 +172,7 @@ const SearchBar = (props: Props) => {
       <Autosuggest
         shouldRenderSuggestions={(value) => value.length >= 0}
         highlightFirstSuggestion
-        suggestions={suggestions}
+        suggestions={suggestions as GetActiveUsersResponse[]}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         getSuggestionValue={(s) => getSuggestionValue(s)}
         renderSuggestion={renderSuggestion}
@@ -179,6 +180,7 @@ const SearchBar = (props: Props) => {
         onSuggestionSelected={onSuggestionSelected}
         onSuggestionsClearRequested={() => setSuggestions([])}
         focusInputOnSuggestionClick
+        multiSection={false}
       />
       {isNoResult && props.structures && !isLoadingResults && (
         <NoResultContainer>

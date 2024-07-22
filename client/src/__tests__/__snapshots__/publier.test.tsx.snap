@@ -1,1905 +1,2138 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`publier renders publier 1`] = `
-<div
-  className="main"
->
+<DocumentFragment>
   <div
-    className="section bg_blue mb-4"
+    class="main"
   >
     <div
-      className="container container"
+      class="section bg_blue mb-4"
     >
       <div
-        className="hero row"
+        class="container container"
       >
         <div
-          className="hero_title col-sm-12 col-lg-6"
-        >
-          <h1
-            className="text-white"
-          >
-            Publish.title
-          </h1>
-          <p
-            className="subtitle"
-          >
-            Publish.subtitle
-          </p>
-          <div
-            className="container"
-          >
-            <a
-              className="btn"
-              href="/undefined#why"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
-              title="Suivant"
-            >
-              <span
-                className="icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "24px",
-                      "lineHeight": "24px",
-                    }
-                  }
-                />
-              </span>
-            </a>
-          </div>
-        </div>
-        <div
-          className="col-sm-12 col-lg-6"
-        >
-          <img
-            alt=""
-            data-nimg="1"
-            decoding="async"
-            height={40}
-            loading="lazy"
-            onError={[Function]}
-            onLoad={[Function]}
-            src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-            srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-            style={
-              {
-                "color": "transparent",
-                "height": "auto",
-                "maxWidth": "100%",
-              }
-            }
-            width={40}
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="container shadow"
-  >
-    <div
-      className="inner container"
-    >
-      <div>
-        <a
-          className="btn green"
-          href="/undefined#why"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-        >
-          Publish.navbarItem1
-        </a>
-        <a
-          className="btn purple"
-          href="/undefined#required"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-        >
-          Publish.navbarItem2
-        </a>
-        <a
-          className="btn orange"
-          href="/undefined#steps"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-        >
-          Publish.navbarItem3
-        </a>
-        <a
-          className="btn red"
-          href="/undefined#faq"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-        >
-          Publish.navbarItem4
-        </a>
-      </div>
-      <a
-        className="btn blue"
-        href="/undefined#register"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
-      >
-        <span
-          className="icon"
-        >
-          <i
-            dangerouslySetInnerHTML={
-              {
-                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-plus-circle-outline" fill="#fff"><g data-name="Layer 2"><g data-name="plus-circle"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"/></g></g></svg>",
-              }
-            }
-            style={
-              {
-                "height": "20px",
-                "lineHeight": "20px",
-              }
-            }
-          />
-        </span>
-        Publish.navbarItem5
-      </a>
-    </div>
-  </div>
-  <div
-    className="scrollspy_section"
-  >
-    <span
-      className="anchor"
-      id="why"
-    />
-    <div
-      className="section"
-    >
-      <div
-        className="container container"
-      >
-        <h2
-          className="title2"
-        >
-          Publish.whyTitle
-        </h2>
-        <div
-          className="row"
+          class="hero row"
         >
           <div
-            className="infos with_images col"
+            class="hero_title col-sm-12 col-lg-6"
           >
-            <div
-              className="container"
+            <h1
+              class="text-white"
             >
-              <button
-                className="btn open btn btn-secondary"
-                onClick={[Function]}
-                type="button"
+              Publish.title
+            </h1>
+            <p
+              class="subtitle"
+            >
+              Publish.subtitle
+            </p>
+            <div
+              class="container"
+            >
+              <a
+                class="btn"
+                href="/undefined#why"
+                title="Suivant"
               >
-                Publish.whyAccordionTitle1
                 <span
-                  className="icon icon"
+                  class="icon"
                 >
                   <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
-                  />
+                    style="height: 24px; line-height: 24px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-downward-outline"
+                      fill="#0421b1"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
                 </span>
-              </button>
-              <div
-                className="collapse show"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.whyAccordionText1",
-                    }
-                  }
-                />
-              </div>
-            </div>
-            <div
-              className="container video2"
-            >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.whyAccordionTitle2
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
-                  />
-                </span>
-              </button>
-              <div
-                className="collapse"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.whyAccordionText2",
-                    }
-                  }
-                />
-              </div>
-            </div>
-            <div
-              className="container"
-            >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.whyAccordionTitle3
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
-                  />
-                </span>
-              </button>
-              <div
-                className="collapse"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.whyAccordionText3",
-                    }
-                  }
-                />
-              </div>
-            </div>
-            <div
-              className="container"
-            >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.whyAccordionTitle4
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
-                  />
-                </span>
-              </button>
-              <div
-                className="collapse"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.whyAccordionText4",
-                    }
-                  }
-                />
-              </div>
+              </a>
             </div>
           </div>
           <div
-            className="media center col"
+            class="col-sm-12 col-lg-6"
           >
             <img
               alt=""
-              className="image"
               data-nimg="1"
               decoding="async"
-              height={40}
+              height="40"
               loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
               src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={40}
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent; max-width: 100%; height: auto;"
+              width="40"
             />
           </div>
         </div>
       </div>
     </div>
     <div
-      className="section bg_green"
+      class="container shadow"
     >
       <div
-        className="container container"
+        class="inner container"
       >
-        <div
-          className="container"
-        >
-          <button
-            className="btn next btn btn-secondary"
-            onClick={[Function]}
-            type="button"
+        <div>
+          <a
+            class="btn green"
+            href="/undefined#why"
           >
-            <span
-              className="icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="#055e5a"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
-                  }
-                }
-              />
-            </span>
-          </button>
-          <div
-            className="slider"
+            Publish.navbarItem1
+          </a>
+          <a
+            class="btn purple"
+            href="/undefined#required"
           >
-            <div
-              className="testimony col"
-            >
-              <p>
-                Publish.testimony1
-              </p>
-              <div
-                className="container"
-              >
-                <div
-                  className="image"
-                >
-                  <img
-                    alt="Vincent Le Lann"
-                    data-nimg="1"
-                    decoding="async"
-                    height={64}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={64}
-                  />
-                </div>
-                <div
-                  className="infos"
-                >
-                  <div
-                    className="name"
-                  >
-                    Vincent Le Lann
-                  </div>
-                  <div>
-                    Compagnons du Tour de France à Nantes
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="testimony col"
-            >
-              <p>
-                Publish.testimony2
-              </p>
-              <div
-                className="container"
-              >
-                <div
-                  className="image"
-                >
-                  <img
-                    alt="Rémi Crouzel"
-                    data-nimg="1"
-                    decoding="async"
-                    height={64}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={64}
-                  />
-                </div>
-                <div
-                  className="infos"
-                >
-                  <div
-                    className="name"
-                  >
-                    Rémi Crouzel
-                  </div>
-                  <div>
-                    Mission Locale de Dijon & Conseiller IPeRACTIFS21
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="testimony col"
-            >
-              <p>
-                Publish.testimony3
-              </p>
-              <div
-                className="container"
-              >
-                <div
-                  className="image"
-                >
-                  <img
-                    alt="Paola Salazar"
-                    data-nimg="1"
-                    decoding="async"
-                    height={64}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={64}
-                  />
-                </div>
-                <div
-                  className="infos"
-                >
-                  <div
-                    className="name"
-                  >
-                    Paola Salazar
-                  </div>
-                  <div>
-                    Directrice adjointe UniR
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            Publish.navbarItem2
+          </a>
+          <a
+            class="btn orange"
+            href="/undefined#steps"
+          >
+            Publish.navbarItem3
+          </a>
+          <a
+            class="btn red"
+            href="/undefined#faq"
+          >
+            Publish.navbarItem4
+          </a>
         </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="section bg_grey scrollspy_section"
-  >
-    <span
-      className="anchor"
-      id="required"
-    />
-    <div
-      className="container container"
-    >
-      <h2
-        className="title2 center"
-      >
-        Publish.requiredTitle
-      </h2>
-      <div
-        className="row"
-      >
-        <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-        >
-          <div
-            className="container"
-          >
-            <div>
-              <div
-                className="header"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height={56}
-                  loading="lazy"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                  style={
-                    {
-                      "color": "transparent",
-                      "objectFit": "contain",
-                    }
-                  }
-                  width={56}
-                />
-              </div>
-              <h3
-                className="title"
-              >
-                Publish.requiredSubtitle1
-              </h3>
-              <div
-                className="text"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Publish.requiredText1
-                </p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p
-                  className="example example_ko"
-                >
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="colorKo"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "20px",
-                          "lineHeight": "20px",
-                        }
-                      }
-                    />
-                  </span>
-                  Publish.requiredTextExample1Ko
-                </p>
-                <p
-                  className="example example_ok"
-                >
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="colorOk"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "20px",
-                          "lineHeight": "20px",
-                        }
-                      }
-                    />
-                  </span>
-                  Publish.requiredTextExample1Ok
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-        >
-          <div
-            className="container"
-          >
-            <div>
-              <div
-                className="header"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height={56}
-                  loading="lazy"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                  style={
-                    {
-                      "color": "transparent",
-                      "objectFit": "contain",
-                    }
-                  }
-                  width={56}
-                />
-              </div>
-              <h3
-                className="title"
-              >
-                Publish.requiredSubtitle2
-              </h3>
-              <div
-                className="text"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Publish.requiredText2
-                </p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p
-                  className="example example_ko"
-                >
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="colorKo"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "20px",
-                          "lineHeight": "20px",
-                        }
-                      }
-                    />
-                  </span>
-                  Publish.requiredTextExample2Ko
-                </p>
-                <p
-                  className="example example_ok"
-                >
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="colorOk"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "20px",
-                          "lineHeight": "20px",
-                        }
-                      }
-                    />
-                  </span>
-                  Publish.requiredTextExample2Ok
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-        >
-          <div
-            className="container"
-          >
-            <div>
-              <div
-                className="header"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height={56}
-                  loading="lazy"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                  style={
-                    {
-                      "color": "transparent",
-                      "objectFit": "contain",
-                    }
-                  }
-                  width={56}
-                />
-              </div>
-              <h3
-                className="title"
-              >
-                Publish.requiredSubtitle3
-              </h3>
-              <div
-                className="text"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Publish.requiredText3
-                </p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p
-                  className="example example_ko"
-                >
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="colorKo"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "20px",
-                          "lineHeight": "20px",
-                        }
-                      }
-                    />
-                  </span>
-                  Publish.requiredTextExample3Ko
-                </p>
-                <p
-                  className="example example_ok"
-                >
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="colorOk"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "20px",
-                          "lineHeight": "20px",
-                        }
-                      }
-                    />
-                  </span>
-                  Publish.requiredTextExample3Ok
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="link"
-      >
         <a
-          className="link color_purple"
-          href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-          rel="noopener noreferrer"
-          target="_blank"
+          class="btn blue"
+          href="/undefined#register"
         >
-          <span>
-            Publish.requiredCTA
-          </span>
           <span
-            className="icon icon"
+            class="icon"
           >
             <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
-                }
-              }
-            />
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-plus-circle-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="plus-circle"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                    />
+                    <path
+                      d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
           </span>
+          Publish.navbarItem5
         </a>
       </div>
     </div>
-  </div>
-  <div
-    className="scrollspy_section"
-  >
-    <span
-      className="anchor"
-      id="steps"
-    />
     <div
-      className="section"
-    >
-      <div
-        className="container container"
-      >
-        <h2
-          className="title2"
-        >
-          Publish.stepsTitle
-        </h2>
-        <div
-          className="warning_mobile"
-        >
-          <span
-            className="icon"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-alert-circle-outline" fill="black"><g data-name="Layer 2"><g data-name="alert-circle"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="16" r="1"/><path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
-                }
-              }
-            />
-          </span>
-          <p>
-            Publish.stepsWarningMobile
-          </p>
-        </div>
-        <div
-          className="row orange"
-        >
-          <div
-            className="content"
-          >
-            <div
-              className="step"
-            >
-              <span>
-                1
-              </span>
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "Publish.stepsSubtitle1",
-                }
-              }
-            />
-            <p
-              className="text"
-            >
-              Publish.stepsText1
-            </p>
-            <a
-              className="link color_orange"
-              href="/undefined#register"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
-              rel="noopener noreferrer"
-            >
-              <span>
-                Publish.stepsCTA1
-              </span>
-              <span
-                className="icon icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "24px",
-                      "lineHeight": "24px",
-                    }
-                  }
-                />
-              </span>
-            </a>
-          </div>
-          <div
-            className="media"
-          >
-            <video
-              className="video autoplay-video"
-              height={320}
-              loop={true}
-              muted={true}
-              playsInline=""
-              style={{}}
-            >
-              <source
-                src="/video/publier-video-step1.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-        <div
-          className="row orange"
-        >
-          <div
-            className="content"
-          >
-            <div
-              className="step"
-            >
-              <span>
-                2
-              </span>
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "Publish.stepsSubtitle2",
-                }
-              }
-            />
-            <p
-              className="text"
-            >
-              Publish.stepsText2a
-            </p>
-            <p
-              className="text"
-            >
-              Publish.stepsText2b
-            </p>
-            <a
-              className="link color_orange"
-              href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <span>
-                Publish.stepsCTA2
-              </span>
-              <span
-                className="icon icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "24px",
-                      "lineHeight": "24px",
-                    }
-                  }
-                />
-              </span>
-            </a>
-          </div>
-          <div
-            className="media"
-          >
-            <video
-              className="video autoplay-video"
-              height={320}
-              loop={true}
-              muted={true}
-              playsInline=""
-              style={{}}
-            >
-              <source
-                src="/video/publier-video-step2.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-        <div
-          className="row orange"
-        >
-          <div
-            className="content"
-          >
-            <div
-              className="step"
-            >
-              <span>
-                3
-              </span>
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "Publish.stepsSubtitle3",
-                }
-              }
-            />
-            <p
-              className="text"
-            >
-              Publish.stepsText3
-            </p>
-          </div>
-          <div
-            className="media"
-          >
-            <video
-              className="video autoplay-video"
-              height={320}
-              loop={true}
-              muted={true}
-              playsInline=""
-              style={{}}
-              width={340}
-            >
-              <source
-                src="/video/publier-video-step3.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-        <div
-          className="row orange has_btn_step"
-        >
-          <div
-            className="content"
-          >
-            <div
-              className="step"
-            >
-              <span>
-                4
-              </span>
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "Publish.stepsSubtitle4",
-                }
-              }
-            />
-            <p
-              className="text"
-            >
-              Publish.stepsText4a
-            </p>
-            <p
-              className="text"
-            >
-              Publish.stepsText4b
-            </p>
-            <div
-              className="btn_step"
-            >
-              Publish.stepsButton
-            </div>
-          </div>
-          <div
-            className="media"
-          >
-            <img
-              alt=""
-              data-nimg="1"
-              decoding="async"
-              height={550}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                  "objectFit": "contain",
-                }
-              }
-              width={550}
-            />
-          </div>
-        </div>
-        <div
-          className="row orange"
-        >
-          <div
-            className="content"
-          >
-            <div
-              className="step"
-            >
-              <span>
-                5
-              </span>
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "Publish.stepsSubtitle5",
-                }
-              }
-            />
-            <p
-              className="text"
-            >
-              Publish.stepsText5a
-            </p>
-            <p
-              className="text"
-            >
-              Publish.stepsText5b
-            </p>
-          </div>
-          <div
-            className="media"
-          >
-            <img
-              alt=""
-              data-nimg="1"
-              decoding="async"
-              height={415}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                  "objectFit": "contain",
-                }
-              }
-              width={550}
-            />
-          </div>
-        </div>
-        <div
-          className="row orange dotted"
-        >
-          <div
-            className="content"
-          >
-            <div
-              className="step"
-            >
-              <span>
-                6
-              </span>
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "Publish.stepsSubtitle6",
-                }
-              }
-            />
-            <p
-              className="text"
-            >
-              Publish.stepsText6a
-            </p>
-            <p
-              className="text"
-            >
-              Publish.stepsText6b
-            </p>
-          </div>
-          <div
-            className="media"
-          >
-            <img
-              alt=""
-              data-nimg="1"
-              decoding="async"
-              height={550}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                  "objectFit": "contain",
-                }
-              }
-              width={550}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="scrollspy_section"
-  >
-    <div
-      className="section bg_grey"
-    >
-      <div
-        className="container container"
-      >
-        <h2
-          className="title2 center mb-0"
-        >
-          StaticPages.helpTitle
-        </h2>
-        <p
-          className="subtitle center"
-        >
-          Publish.helpSubtitle
-        </p>
-        <div
-          className="top_space row"
-        >
-          <div
-            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-          >
-            <div
-              className="container"
-            >
-              <div>
-                <div
-                  className="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={56}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                        "objectFit": "contain",
-                      }
-                    }
-                    width={56}
-                  />
-                </div>
-                <h3
-                  className="title"
-                >
-                  Publish.helpTileTitle1
-                </h3>
-                <div
-                  className="text"
-                >
-                  <p>
-                    Publish.helpTileText1
-                  </p>
-                </div>
-              </div>
-              <div>
-                <a
-                  className="link color_red"
-                  href="https://airtable.com/shrrkFuyeG0BpKKT7"
-                  onClick={[Function]}
-                  onMouseEnter={[Function]}
-                  onTouchStart={[Function]}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span>
-                    Publish.helpTileCTA1
-                  </span>
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "24px",
-                          "lineHeight": "24px",
-                        }
-                      }
-                    />
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-          >
-            <div
-              className="container"
-            >
-              <div>
-                <div
-                  className="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={56}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                        "objectFit": "contain",
-                      }
-                    }
-                    width={56}
-                  />
-                </div>
-                <h3
-                  className="title"
-                >
-                  Publish.helpTileTitle2
-                </h3>
-                <div
-                  className="text"
-                >
-                  <p>
-                    Publish.helpTileText2
-                  </p>
-                </div>
-              </div>
-              <div>
-                <a
-                  className="link color_red"
-                  href="https://help.refugies.info/fr/"
-                  onClick={[Function]}
-                  onMouseEnter={[Function]}
-                  onTouchStart={[Function]}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span>
-                    Publish.helpTileCTA2
-                  </span>
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "24px",
-                          "lineHeight": "24px",
-                        }
-                      }
-                    />
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-          >
-            <div
-              className="container"
-            >
-              <div>
-                <div
-                  className="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={56}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                        "objectFit": "contain",
-                      }
-                    }
-                    width={56}
-                  />
-                </div>
-                <h3
-                  className="title"
-                >
-                  StaticPages.helpTileTitle3
-                </h3>
-                <div
-                  className="text"
-                >
-                  <p>
-                    StaticPages.helpTileText3
-                  </p>
-                </div>
-              </div>
-              <div>
-                <button
-                  className="link color_red"
-                  onClick={[Function]}
-                >
-                  <span>
-                    StaticPages.helpTileCTA3
-                  </span>
-                  <span
-                    className="icon icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                        }
-                      }
-                      style={
-                        {
-                          "height": "24px",
-                          "lineHeight": "24px",
-                        }
-                      }
-                    />
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="section bg_red"
-    >
-      <div
-        className="container text-center container"
-      >
-        <h2
-          className="title2 text-center text-white"
-        >
-          Publish.figuresTitle
-        </h2>
-        <div
-          className="row"
-        >
-          <div
-            className="col-sm-12 col-lg-4"
-          >
-            <div
-              className="figure"
-            >
-              <div>
-                0
-              </div>
-            </div>
-            <p
-              className="label"
-            >
-              Publish.figuresSubtitle1
-            </p>
-          </div>
-          <div
-            className="col-sm-12 col-lg-4"
-          >
-            <div
-              className="figure"
-            >
-              <div>
-                0
-              </div>
-            </div>
-            <p
-              className="label"
-            >
-              Publish.figuresSubtitle2
-            </p>
-          </div>
-          <div
-            className="col-sm-12 col-lg-4"
-          >
-            <div
-              className="figure"
-            >
-              <div>
-                0
-              </div>
-            </div>
-            <p
-              className="label"
-            >
-              Publish.figuresSubtitle3
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="section"
+      class="scrollspy_section"
     >
       <span
-        className="anchor"
-        id="faq"
+        class="anchor"
+        id="why"
       />
       <div
-        className="container faq container"
+        class="section"
       >
-        <h2
-          className="title2 text-center"
-        >
-          StaticPages.faqTitle
-        </h2>
         <div
-          className="row"
+          class="container container"
         >
+          <h2
+            class="title2"
+          >
+            Publish.whyTitle
+          </h2>
           <div
-            className="infos col"
+            class="row"
           >
             <div
-              className="container"
+              class="infos with_images col"
             >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.faqAccordionTitle1
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
-                  />
-                </span>
-              </button>
               <div
-                className="collapse"
-                style={{}}
+                class="container"
               >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.faqAccordionText1",
-                    }
-                  }
-                />
+                <button
+                  class="btn open btn btn-secondary"
+                  type="button"
+                >
+                  Publish.whyAccordionTitle1
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse show"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.whyAccordionText1
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container video2"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.whyAccordionTitle2
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.whyAccordionText2
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.whyAccordionTitle3
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.whyAccordionText3
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.whyAccordionTitle4
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.whyAccordionText4
+                  </p>
+                </div>
               </div>
             </div>
             <div
-              className="container"
+              class="media center col"
             >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
+              <img
+                alt=""
+                class="image"
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="section bg_green"
+      >
+        <div
+          class="container container"
+        >
+          <div
+            class="container"
+          >
+            <button
+              class="btn next btn btn-secondary"
+              type="button"
+            >
+              <span
+                class="icon"
               >
-                Publish.faqAccordionTitle2
-                <span
-                  className="icon icon"
+                <i
+                  style="height: 24px; line-height: 24px;"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
-                  />
-                </span>
-              </button>
+                  <svg
+                    class="eva eva-arrow-forward-outline"
+                    fill="#055e5a"
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="arrow-forward"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          transform="rotate(-90 12 12)"
+                          width="24"
+                        />
+                        <path
+                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+            </button>
+            <div
+              class="slider"
+            >
               <div
-                className="collapse"
-                style={{}}
+                class="testimony col"
               >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.faqAccordionText2",
-                    }
-                  }
-                />
+                <p>
+                  Publish.testimony1
+                </p>
+                <div
+                  class="container"
+                >
+                  <div
+                    class="image"
+                  >
+                    <img
+                      alt="Vincent Le Lann"
+                      data-nimg="1"
+                      decoding="async"
+                      height="64"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent;"
+                      width="64"
+                    />
+                  </div>
+                  <div
+                    class="infos"
+                  >
+                    <div
+                      class="name"
+                    >
+                      Vincent Le Lann
+                    </div>
+                    <div>
+                      Compagnons du Tour de France à Nantes
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="testimony col"
+              >
+                <p>
+                  Publish.testimony2
+                </p>
+                <div
+                  class="container"
+                >
+                  <div
+                    class="image"
+                  >
+                    <img
+                      alt="Rémi Crouzel"
+                      data-nimg="1"
+                      decoding="async"
+                      height="64"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent;"
+                      width="64"
+                    />
+                  </div>
+                  <div
+                    class="infos"
+                  >
+                    <div
+                      class="name"
+                    >
+                      Rémi Crouzel
+                    </div>
+                    <div>
+                      Mission Locale de Dijon & Conseiller IPeRACTIFS21
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="testimony col"
+              >
+                <p>
+                  Publish.testimony3
+                </p>
+                <div
+                  class="container"
+                >
+                  <div
+                    class="image"
+                  >
+                    <img
+                      alt="Paola Salazar"
+                      data-nimg="1"
+                      decoding="async"
+                      height="64"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent;"
+                      width="64"
+                    />
+                  </div>
+                  <div
+                    class="infos"
+                  >
+                    <div
+                      class="name"
+                    >
+                      Paola Salazar
+                    </div>
+                    <div>
+                      Directrice adjointe UniR
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="section bg_grey scrollspy_section"
+    >
+      <span
+        class="anchor"
+        id="required"
+      />
+      <div
+        class="container container"
+      >
+        <h2
+          class="title2 center"
+        >
+          Publish.requiredTitle
+        </h2>
+        <div
+          class="row"
+        >
+          <div
+            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+          >
             <div
-              className="container"
+              class="container"
             >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.faqAccordionTitle3
-                <span
-                  className="icon icon"
+              <div>
+                <div
+                  class="header"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="56"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="56"
                   />
-                </span>
-              </button>
-              <div
-                className="collapse"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.faqAccordionText3",
-                    }
-                  }
-                />
+                </div>
+                <h3
+                  class="title"
+                >
+                  Publish.requiredSubtitle1
+                </h3>
+                <div
+                  class="text"
+                >
+                  <p
+                    class="mb-0"
+                  >
+                    Publish.requiredText1
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p
+                    class="example example_ko"
+                  >
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 20px; line-height: 20px;"
+                      >
+                        <svg
+                          class="eva eva-close-outline"
+                          fill="colorKo"
+                          height="20px"
+                          viewBox="0 0 24 24"
+                          width="20px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="close"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(180 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                    Publish.requiredTextExample1Ko
+                  </p>
+                  <p
+                    class="example example_ok"
+                  >
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 20px; line-height: 20px;"
+                      >
+                        <svg
+                          class="eva eva-checkmark-outline"
+                          fill="colorOk"
+                          height="20px"
+                          viewBox="0 0 24 24"
+                          width="20px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="checkmark"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                width="24"
+                              />
+                              <path
+                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                    Publish.requiredTextExample1Ok
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
+          <div
+            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+          >
             <div
-              className="container"
+              class="container"
             >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.faqAccordionTitle4
-                <span
-                  className="icon icon"
+              <div>
+                <div
+                  class="header"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="56"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="56"
                   />
-                </span>
-              </button>
-              <div
-                className="collapse"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.faqAccordionText4",
-                    }
-                  }
-                />
+                </div>
+                <h3
+                  class="title"
+                >
+                  Publish.requiredSubtitle2
+                </h3>
+                <div
+                  class="text"
+                >
+                  <p
+                    class="mb-0"
+                  >
+                    Publish.requiredText2
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p
+                    class="example example_ko"
+                  >
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 20px; line-height: 20px;"
+                      >
+                        <svg
+                          class="eva eva-close-outline"
+                          fill="colorKo"
+                          height="20px"
+                          viewBox="0 0 24 24"
+                          width="20px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="close"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(180 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                    Publish.requiredTextExample2Ko
+                  </p>
+                  <p
+                    class="example example_ok"
+                  >
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 20px; line-height: 20px;"
+                      >
+                        <svg
+                          class="eva eva-checkmark-outline"
+                          fill="colorOk"
+                          height="20px"
+                          viewBox="0 0 24 24"
+                          width="20px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="checkmark"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                width="24"
+                              />
+                              <path
+                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                    Publish.requiredTextExample2Ok
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
+          <div
+            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+          >
             <div
-              className="container"
+              class="container"
             >
-              <button
-                className="btn btn btn-secondary"
-                onClick={[Function]}
-                type="button"
-              >
-                Publish.faqAccordionTitle5
-                <span
-                  className="icon icon"
+              <div>
+                <div
+                  class="header"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "32px",
-                        "lineHeight": "32px",
-                      }
-                    }
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="56"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="56"
                   />
-                </span>
-              </button>
-              <div
-                className="collapse"
-                style={{}}
-              >
-                <p
-                  className="text"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "Publish.faqAccordionText5",
-                    }
-                  }
-                />
+                </div>
+                <h3
+                  class="title"
+                >
+                  Publish.requiredSubtitle3
+                </h3>
+                <div
+                  class="text"
+                >
+                  <p
+                    class="mb-0"
+                  >
+                    Publish.requiredText3
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p
+                    class="example example_ko"
+                  >
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 20px; line-height: 20px;"
+                      >
+                        <svg
+                          class="eva eva-close-outline"
+                          fill="colorKo"
+                          height="20px"
+                          viewBox="0 0 24 24"
+                          width="20px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="close"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(180 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                    Publish.requiredTextExample3Ko
+                  </p>
+                  <p
+                    class="example example_ok"
+                  >
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 20px; line-height: 20px;"
+                      >
+                        <svg
+                          class="eva eva-checkmark-outline"
+                          fill="colorOk"
+                          height="20px"
+                          viewBox="0 0 24 24"
+                          width="20px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="checkmark"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                width="24"
+                              />
+                              <path
+                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                    Publish.requiredTextExample3Ok
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div
-          className="link"
+          class="link"
         >
           <a
-            className="link color_red"
-            href="https://help.refugies.info/fr/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
+            class="link color_purple"
+            href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
             rel="noopener noreferrer"
             target="_blank"
           >
             <span>
-              Publish.faqCTA
+              Publish.requiredCTA
             </span>
             <span
-              className="icon icon"
+              class="icon icon"
             >
               <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
-                  }
-                }
-              />
+                style="height: 24px; line-height: 24px;"
+              >
+                <svg
+                  class="eva eva-arrow-forward-outline"
+                  fill="purple"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="arrow-forward"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(-90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
             </span>
           </a>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="section bg_grey"
-  >
-    <span
-      className="anchor"
-      id="register"
-    />
     <div
-      className="register container"
+      class="scrollspy_section"
     >
-      <h2
-        className="title2 mb-0"
+      <span
+        class="anchor"
+        id="steps"
+      />
+      <div
+        class="section"
       >
-        StaticPages.registerTitle
-      </h2>
-      <p
-        className="subtitle mb-14"
+        <div
+          class="container container"
+        >
+          <h2
+            class="title2"
+          >
+            Publish.stepsTitle
+          </h2>
+          <div
+            class="warning_mobile"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                style="height: 24px; line-height: 24px;"
+              >
+                <svg
+                  class="eva eva-alert-circle-outline"
+                  fill="black"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="alert-circle"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <path
+                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                      />
+                      <circle
+                        cx="12"
+                        cy="16"
+                        r="1"
+                      />
+                      <path
+                        d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            <p>
+              Publish.stepsWarningMobile
+            </p>
+          </div>
+          <div
+            class="row orange"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="step"
+              >
+                <span>
+                  1
+                </span>
+              </div>
+              <h3
+                class="title"
+              >
+                Publish.stepsSubtitle1
+              </h3>
+              <p
+                class="text"
+              >
+                Publish.stepsText1
+              </p>
+              <a
+                class="link color_orange"
+                href="/undefined#register"
+                rel="noopener noreferrer"
+              >
+                <span>
+                  Publish.stepsCTA1
+                </span>
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 24px; line-height: 24px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-forward-outline"
+                      fill="orange"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-forward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            transform="rotate(-90 12 12)"
+                            width="24"
+                          />
+                          <path
+                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </a>
+            </div>
+            <div
+              class="media"
+            >
+              <video
+                class="video autoplay-video"
+                height="320"
+                loop=""
+              >
+                <source
+                  src="/video/publier-video-step1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <div
+            class="row orange"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="step"
+              >
+                <span>
+                  2
+                </span>
+              </div>
+              <h3
+                class="title"
+              >
+                Publish.stepsSubtitle2
+              </h3>
+              <p
+                class="text"
+              >
+                Publish.stepsText2a
+              </p>
+              <p
+                class="text"
+              >
+                Publish.stepsText2b
+              </p>
+              <a
+                class="link color_orange"
+                href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span>
+                  Publish.stepsCTA2
+                </span>
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 24px; line-height: 24px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-forward-outline"
+                      fill="orange"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-forward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            transform="rotate(-90 12 12)"
+                            width="24"
+                          />
+                          <path
+                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </a>
+            </div>
+            <div
+              class="media"
+            >
+              <video
+                class="video autoplay-video"
+                height="320"
+                loop=""
+              >
+                <source
+                  src="/video/publier-video-step2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <div
+            class="row orange"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="step"
+              >
+                <span>
+                  3
+                </span>
+              </div>
+              <h3
+                class="title"
+              >
+                Publish.stepsSubtitle3
+              </h3>
+              <p
+                class="text"
+              >
+                Publish.stepsText3
+              </p>
+            </div>
+            <div
+              class="media"
+            >
+              <video
+                class="video autoplay-video"
+                height="320"
+                loop=""
+                width="340"
+              >
+                <source
+                  src="/video/publier-video-step3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <div
+            class="row orange has_btn_step"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="step"
+              >
+                <span>
+                  4
+                </span>
+              </div>
+              <h3
+                class="title"
+              >
+                Publish.stepsSubtitle4
+              </h3>
+              <p
+                class="text"
+              >
+                Publish.stepsText4a
+              </p>
+              <p
+                class="text"
+              >
+                Publish.stepsText4b
+              </p>
+              <div
+                class="btn_step"
+              >
+                Publish.stepsButton
+              </div>
+            </div>
+            <div
+              class="media"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="550"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="550"
+              />
+            </div>
+          </div>
+          <div
+            class="row orange"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="step"
+              >
+                <span>
+                  5
+                </span>
+              </div>
+              <h3
+                class="title"
+              >
+                Publish.stepsSubtitle5
+              </h3>
+              <p
+                class="text"
+              >
+                Publish.stepsText5a
+              </p>
+              <p
+                class="text"
+              >
+                Publish.stepsText5b
+              </p>
+            </div>
+            <div
+              class="media"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="415"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="550"
+              />
+            </div>
+          </div>
+          <div
+            class="row orange dotted"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="step"
+              >
+                <span>
+                  6
+                </span>
+              </div>
+              <h3
+                class="title"
+              >
+                Publish.stepsSubtitle6
+              </h3>
+              <p
+                class="text"
+              >
+                Publish.stepsText6a
+              </p>
+              <p
+                class="text"
+              >
+                Publish.stepsText6b
+              </p>
+            </div>
+            <div
+              class="media"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="550"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="550"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="scrollspy_section"
+    >
+      <div
+        class="section bg_grey"
       >
-        Publish.registerSubtitle
-      </p>
-      <button
-        className="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-        id="fr-button-:r0:"
-        onClick={[Function]}
-        style={{}}
+        <div
+          class="container container"
+        >
+          <h2
+            class="title2 center mb-0"
+          >
+            StaticPages.helpTitle
+          </h2>
+          <p
+            class="subtitle center"
+          >
+            Publish.helpSubtitle
+          </p>
+          <div
+            class="top_space row"
+          >
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Publish.helpTileTitle1
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      Publish.helpTileText1
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <a
+                    class="link color_red"
+                    href="https://airtable.com/shrrkFuyeG0BpKKT7"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      Publish.helpTileCTA1
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Publish.helpTileTitle2
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      Publish.helpTileText2
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <a
+                    class="link color_red"
+                    href="https://help.refugies.info/fr/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      Publish.helpTileCTA2
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    StaticPages.helpTileTitle3
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      StaticPages.helpTileText3
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="link color_red"
+                  >
+                    <span>
+                      StaticPages.helpTileCTA3
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="section bg_red"
       >
-        login_or_signup
-      </button>
+        <div
+          class="container text-center container"
+        >
+          <h2
+            class="title2 text-center text-white"
+          >
+            Publish.figuresTitle
+          </h2>
+          <div
+            class="row"
+          >
+            <div
+              class="col-sm-12 col-lg-4"
+            >
+              <div
+                class="figure"
+              >
+                <div>
+                  0
+                </div>
+              </div>
+              <p
+                class="label"
+              >
+                Publish.figuresSubtitle1
+              </p>
+            </div>
+            <div
+              class="col-sm-12 col-lg-4"
+            >
+              <div
+                class="figure"
+              >
+                <div>
+                  0
+                </div>
+              </div>
+              <p
+                class="label"
+              >
+                Publish.figuresSubtitle2
+              </p>
+            </div>
+            <div
+              class="col-sm-12 col-lg-4"
+            >
+              <div
+                class="figure"
+              >
+                <div>
+                  0
+                </div>
+              </div>
+              <p
+                class="label"
+              >
+                Publish.figuresSubtitle3
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="section"
+      >
+        <span
+          class="anchor"
+          id="faq"
+        />
+        <div
+          class="container faq container"
+        >
+          <h2
+            class="title2 text-center"
+          >
+            StaticPages.faqTitle
+          </h2>
+          <div
+            class="row"
+          >
+            <div
+              class="infos col"
+            >
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.faqAccordionTitle1
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.faqAccordionText1
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.faqAccordionTitle2
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.faqAccordionText2
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.faqAccordionTitle3
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.faqAccordionText3
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.faqAccordionTitle4
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.faqAccordionText4
+                  </p>
+                </div>
+              </div>
+              <div
+                class="container"
+              >
+                <button
+                  class="btn btn btn-secondary"
+                  type="button"
+                >
+                  Publish.faqAccordionTitle5
+                  <span
+                    class="icon icon"
+                  >
+                    <i
+                      style="height: 32px; line-height: 32px;"
+                    >
+                      <svg
+                        class="eva eva-arrow-ios-downward-outline"
+                        fill="black"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        width="32px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          data-name="Layer 2"
+                        >
+                          <g
+                            data-name="arrow-ios-downward"
+                          >
+                            <rect
+                              height="24"
+                              opacity="0"
+                              width="24"
+                            />
+                            <path
+                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                  </span>
+                </button>
+                <div
+                  class="collapse"
+                >
+                  <p
+                    class="text"
+                  >
+                    Publish.faqAccordionText5
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="link"
+          >
+            <a
+              class="link color_red"
+              href="https://help.refugies.info/fr/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span>
+                Publish.faqCTA
+              </span>
+              <span
+                class="icon icon"
+              >
+                <i
+                  style="height: 24px; line-height: 24px;"
+                >
+                  <svg
+                    class="eva eva-arrow-forward-outline"
+                    fill="red"
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="arrow-forward"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          transform="rotate(-90 12 12)"
+                          width="24"
+                        />
+                        <path
+                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="section bg_grey"
+    >
+      <span
+        class="anchor"
+        id="register"
+      />
+      <div
+        class="register container"
+      >
+        <h2
+          class="title2 mb-0"
+        >
+          StaticPages.registerTitle
+        </h2>
+        <p
+          class="subtitle mb-14"
+        >
+          Publish.registerSubtitle
+        </p>
+        <button
+          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
+          id="fr-button-:r0:"
+        >
+          login_or_signup
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

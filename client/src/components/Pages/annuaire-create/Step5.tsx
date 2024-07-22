@@ -58,7 +58,7 @@ const Title = styled.div`
   margin-bottom: 16px;
 `;
 
-const RemainingCaracters = styled.div`
+const RemainingCaracters = styled.div<{ caractersRemaining: boolean }>`
   margin-top: 8px;
   align-self: flex-end;
   color: ${(props: { caractersRemaining: boolean }) => (props.caractersRemaining ? "#4CAF50" : "red")};

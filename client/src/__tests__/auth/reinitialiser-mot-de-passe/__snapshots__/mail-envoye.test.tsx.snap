@@ -1,49 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`auth/reinitialiser-mot-de-passe/mail-envoye renders page 1`] = `
-<div
-  className="container half"
->
-  <button
-    className="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
-    id="fr-button-:r0:"
-    onClick={[Function]}
-    style={{}}
-  >
-    Retour
-  </button>
+<DocumentFragment>
   <div
-    className="title"
+    class="container half"
   >
-    <h1>
-      Un lien a été envoyé
-    </h1>
-    <p
-      className="subtitle"
+    <button
+      class="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+      id="fr-button-:r0:"
     >
-      Nous venons de vous envoyer un mail pour réinitialiser votre mot de passe à l’adresse suivante : 
-      test@example.com
-      .
-      <br />
-      <br />
-      Si vous ne recevez pas de mail d’ici quelques minutes, pensez à vérifier vos courriers indésirables ou vos spams.
-    </p>
+      Retour
+    </button>
+    <div
+      class="title"
+    >
+      <h1>
+        Un lien a été envoyé
+      </h1>
+      <p
+        class="subtitle"
+      >
+        Nous venons de vous envoyer un mail pour réinitialiser votre mot de passe à l’adresse suivante : test@example.com.
+        <br />
+        <br />
+        Si vous ne recevez pas de mail d’ici quelques minutes, pensez à vérifier vos courriers indésirables ou vos spams.
+      </p>
+    </div>
+    <button
+      class="fr-btn fr-icon-mail-line fr-btn--icon-right button mb-4"
+      id="fr-button-:r1:"
+    >
+      Renvoyer le lien de réinitialisation
+    </button>
+    <button
+      class="fr-btn fr-btn--tertiary button"
+      id="fr-button-:r2:"
+    >
+      Contacter le chat
+    </button>
   </div>
-  <button
-    className="fr-btn fr-icon-mail-line fr-btn--icon-right button mb-4"
-    id="fr-button-:r1:"
-    onClick={[Function]}
-    style={{}}
-  >
-    Renvoyer le lien de réinitialisation
-  </button>
-  <button
-    className="fr-btn fr-btn--tertiary button"
-    id="fr-button-:r2:"
-    onClick={[Function]}
-    style={{}}
-  >
-    Contacter le chat
-  </button>
-</div>
+</DocumentFragment>
 `;
