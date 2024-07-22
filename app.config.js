@@ -1,8 +1,8 @@
 import deepLinks from "./androidDeepLinks";
 
-const version = "2.0.10";
+const version = "2.0.11";
 const displayVersionNumber = "2024.07.2";
-const androidVersionCode = 32;
+const androidVersionCode = 33;
 
 export default {
   name: "Réfugiés.info",
@@ -122,7 +122,7 @@ export default {
           android: {
             compileSdkVersion: 34,
             targetSdkVersion: 34,
-            buildToolsVersion: "34.0.0"
+            buildToolsVersion: "34.0.0",
           },
           ios: {
             useFrameworks: "static",
