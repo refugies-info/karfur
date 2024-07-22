@@ -1,15 +1,17 @@
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import { UserStructureComponent } from "../UserStructure.component";
-import "jest-styled-components";
-import { act, ReactTestRenderer } from "react-test-renderer";
+import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
+import { colors } from "colors";
+import "jest-styled-components";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
-import { colors } from "colors";
-import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import { UserStructureComponent } from "../UserStructure.component";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 // need to mock react strap because issue with modal
@@ -35,48 +37,39 @@ describe("UserStructure", () => {
 
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
-          userStructure: {
-            _id: "structureId",
-            createur: "",
-            nom: "",
-            adminPercentageProgressionStatus: "",
-            membres: [],
-            dispositifsAssocies: [],
-          },
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
+        userStructure: {
+          _id: "structureId",
+          createur: "",
+          nom: "",
+          adminPercentageProgressionStatus: "",
+          membres: [],
+          dispositifsAssocies: [],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
       shouldRedirect: false,
     });
-
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when no structure", () => {
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-        },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+      },
     });
     expect(fetchUserStructureActionCreator).not.toHaveBeenCalled();
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const structure: GetStructureResponse = {
@@ -110,177 +103,152 @@ describe("UserStructure", () => {
   };
   it("should render correctly when structure with membres when user is respo", () => {
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: structure,
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        userStructure: structure,
+        user: {
+          userId: "id2",
           user: {
-            userId: "id2",
-            user: {
-              _id: "id2",
-              contributions: [],
-              email: "",
-              phone: "",
-              roles: [],
-              selectedLanguages: [],
-              status: UserStatus.ACTIVE,
-              username: "membre2",
-              structures: [],
-              sso: false,
-            },
-            admin: false,
-            traducteur: false,
-            expertTrad: false,
-            contributeur: false,
-            caregiver: false,
-            hasStructure: false,
-            rolesInStructure: [StructureMemberRole.ADMIN],
+            _id: "id2",
+            contributions: [],
+            email: "",
+            phone: "",
+            roles: [],
+            selectedLanguages: [],
+            status: UserStatus.ACTIVE,
+            username: "membre2",
+            structures: [],
+            sso: false,
           },
+          admin: false,
+          traducteur: false,
+          expertTrad: false,
+          contributeur: false,
+          caregiver: false,
+          hasStructure: false,
+          rolesInStructure: [StructureMemberRole.ADMIN],
         },
-      });
+      },
     });
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when structure with membres when user is redacteur", () => {
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: structure,
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        userStructure: structure,
+        user: {
+          userId: "id1",
           user: {
-            userId: "id1",
-            user: {
-              _id: "id1",
-              contributions: [],
-              email: "",
-              phone: "",
-              roles: [],
-              selectedLanguages: [],
-              status: UserStatus.ACTIVE,
-              username: "membre1",
-              structures: [],
-              sso: false,
-            },
-            admin: false,
-            traducteur: false,
-            expertTrad: false,
-            contributeur: false,
-            caregiver: false,
-            hasStructure: false,
-            rolesInStructure: [StructureMemberRole.ADMIN],
+            _id: "id1",
+            contributions: [],
+            email: "",
+            phone: "",
+            roles: [],
+            selectedLanguages: [],
+            status: UserStatus.ACTIVE,
+            username: "membre1",
+            structures: [],
+            sso: false,
           },
+          admin: false,
+          traducteur: false,
+          expertTrad: false,
+          contributeur: false,
+          caregiver: false,
+          hasStructure: false,
+          rolesInStructure: [StructureMemberRole.ADMIN],
         },
-      });
+      },
     });
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it("should render correctly when add member modal is open", () => {
+  it("should render correctly when add member modal is open", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: structure,
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        userStructure: structure,
+        user: {
+          userId: "id2",
           user: {
-            userId: "id2",
-            user: {
-              _id: "id2",
-              contributions: [],
-              email: "",
-              phone: "",
-              roles: [],
-              selectedLanguages: [],
-              status: UserStatus.ACTIVE,
-              username: "membre2",
-              structures: [],
-              sso: false,
-            },
-            admin: false,
-            traducteur: false,
-            expertTrad: false,
-            contributeur: false,
-            caregiver: false,
-            hasStructure: false,
-            rolesInStructure: [StructureMemberRole.ADMIN],
+            _id: "id2",
+            contributions: [],
+            email: "",
+            phone: "",
+            roles: [],
+            selectedLanguages: [],
+            status: UserStatus.ACTIVE,
+            username: "membre2",
+            structures: [],
+            sso: false,
           },
+          admin: false,
+          traducteur: false,
+          expertTrad: false,
+          contributeur: false,
+          caregiver: false,
+          hasStructure: false,
+          rolesInStructure: [StructureMemberRole.ADMIN],
         },
-      });
+      },
     });
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-add-member" }).props.onClick();
-    });
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
+    await user.click(screen.getByTestId("test-add-member"));
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it("should render correctly when edit member modal is open, select respo and validate", () => {
+  it("should render correctly when edit member modal is open, select respo and validate", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: structure,
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        userStructure: structure,
+        user: {
+          userId: "id2",
           user: {
-            userId: "id2",
-            user: {
-              _id: "id2",
-              contributions: [],
-              email: "",
-              phone: "",
-              roles: [],
-              selectedLanguages: [],
-              status: UserStatus.ACTIVE,
-              username: "membre2",
-              structures: [],
-              sso: false,
-            },
-            admin: false,
-            traducteur: false,
-            expertTrad: false,
-            contributeur: false,
-            caregiver: false,
-            hasStructure: false,
-            rolesInStructure: [StructureMemberRole.ADMIN],
+            _id: "id2",
+            contributions: [],
+            email: "",
+            phone: "",
+            roles: [],
+            selectedLanguages: [],
+            status: UserStatus.ACTIVE,
+            username: "membre2",
+            structures: [],
+            sso: false,
           },
+          admin: false,
+          traducteur: false,
+          expertTrad: false,
+          contributeur: false,
+          caregiver: false,
+          hasStructure: false,
+          rolesInStructure: [StructureMemberRole.ADMIN],
         },
-      });
+      },
     });
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test_see_id1" }).props.onClick();
-    });
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-role-Responsable" }).props.onClick();
-    });
-    //@ts-ignore
-    expect(component.toJSON()).toMatchSnapshot();
+    await user.click(screen.getByTestId("edit-member-id1"));
+    expect(asFragment()).toMatchSnapshot();
 
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-validate-edit" }).props.onClick();
-    });
+    await user.click(screen.getByTestId("test-role-Responsable"));
+    expect(asFragment()).toMatchSnapshot();
+
+    await user.click(screen.getByTestId("test-validate-edit"));
+
     expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
       membres: {
         structureId: "structureId",
@@ -292,49 +260,42 @@ describe("UserStructure", () => {
   });
 
   it("should delete user ", async () => {
-    const promise = Promise.resolve();
-
-    //@ts-ignore
-    Swal.fire.mockResolvedValueOnce({ value: true });
+    const user = userEvent.setup();
+    Swal.fire = jest.fn().mockResolvedValueOnce({ value: true });
 
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: structure,
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserStructureComponent,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        userStructure: structure,
+        user: {
+          userId: "id2",
           user: {
-            userId: "id2",
-            user: {
-              _id: "id2",
-              contributions: [],
-              email: "",
-              phone: "",
-              roles: [],
-              selectedLanguages: [],
-              status: UserStatus.ACTIVE,
-              username: "membre2",
-              structures: [],
-              sso: false,
-            },
-            admin: false,
-            traducteur: false,
-            expertTrad: false,
-            contributeur: false,
-            caregiver: false,
-            hasStructure: false,
-            rolesInStructure: [StructureMemberRole.ADMIN],
+            _id: "id2",
+            contributions: [],
+            email: "",
+            phone: "",
+            roles: [],
+            selectedLanguages: [],
+            status: UserStatus.ACTIVE,
+            username: "membre2",
+            structures: [],
+            sso: false,
           },
+          admin: false,
+          traducteur: false,
+          expertTrad: false,
+          contributeur: false,
+          caregiver: false,
+          hasStructure: false,
+          rolesInStructure: [StructureMemberRole.ADMIN],
         },
-      });
+      },
     });
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test_delete_id1" }).props.onClick();
-    });
+
+    await user.click(screen.getByTestId("delete-button-id1"));
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "Vous êtes sur le point d'enlever un membre de votre structure.",
@@ -345,6 +306,5 @@ describe("UserStructure", () => {
       confirmButtonText: "Oui, l'enlever",
       cancelButtonText: "Annuler",
     });
-    await act(() => promise);
   });
 });

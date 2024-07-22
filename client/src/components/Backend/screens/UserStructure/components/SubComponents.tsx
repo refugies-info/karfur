@@ -32,7 +32,7 @@ export const StructurePictureContainer = styled.div`
   height: fit-content;
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{marginTop?: string}>`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;

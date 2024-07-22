@@ -31,7 +31,7 @@ const SubTitle = styled.div`
   margin: 45px 50px 15px 50px;
 `;
 
-const LangueItemContainer = styled.div`
+const LangueItemContainer = styled.div<{ isSelected: boolean }>`
   background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.validation : colors.gray20)};
   border-radius: 12px;
   display: flex;
@@ -54,7 +54,7 @@ const LanguesContainer = styled.div`
   margin: 0px 45px 0px 45px;
 `;
 
-const CheckBoxContainer = styled.div`
+const CheckBoxContainer = styled.div<{ isSelected: boolean }>`
   background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.validationDefault : colors.white)};
   border: ${(props: { isSelected: boolean }) =>
     props.isSelected ? `1px solid ${colors.validationDefault}` : `1px solid ${colors.gray50}`};

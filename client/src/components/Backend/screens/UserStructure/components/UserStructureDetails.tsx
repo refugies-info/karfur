@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
-import Image from "next/image";
-import TitleWithNumber from "components/Backend/TitleWithNumber";
-import { Picture, StructureMemberRole } from "@refugies-info/api-types";
+import { GetStructureResponse, Id, Picture, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
 import placeholder from "assets/no_results_alt.svg";
-import styled from "styled-components";
+import TitleWithNumber from "components/Backend/TitleWithNumber";
 import FButton from "components/UI/FButton/FButton";
-import { MembresTable } from "./MembresTable";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { getPath } from "routes";
+import styled from "styled-components";
 import AddMemberModal from "./AddMemberModal";
 import EditMemberModal from "./EditMemberModal";
+import { MembresTable } from "./MembresTable";
+import { MainContainer, StructureContainer, StructurePictureContainer } from "./SubComponents";
 import styles from "./UserStructureDetails.module.scss";
-import Link from "next/link";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
-import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -114,7 +113,7 @@ export const UserStructureDetails = (props: Props) => {
                 type="dark"
                 name="person-add-outline"
                 onClick={toggleAddMemberModal}
-                data-test-id="test-add-member"
+                data-testid="test-add-member"
               >
                 Ajouter un membre
               </FButton>

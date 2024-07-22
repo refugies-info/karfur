@@ -1,5 +1,5 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/variables";
 
 .container {
   font-size: 12px;
@@ -28,7 +28,7 @@
     }
   }
 
-  &> *:nth-child(2) {
+  & > *:nth-child(2) {
     overflow-wrap: anywhere;
   }
 }

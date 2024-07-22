@@ -1,10 +1,9 @@
-import { wrapWithProvidersAndRender } from "../../../jest/lib/wrapWithProvidersAndRender";
-import codeConnexion from "../../pages/auth/code-connexion";
+import "jest-styled-components";
 import mockRouter from "next-router-mock";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { act, ReactTestRenderer } from "react-test-renderer";
+import { wrapWithProvidersAndRenderForTesting } from "../../../jest/lib/wrapWithProvidersAndRender";
+import codeConnexion from "../../pages/auth/code-connexion";
 import { setupGoogleMock } from "../../__mocks__/react-google-autocomplete";
-import "jest-styled-components";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -14,35 +13,27 @@ describe("auth/connexion", () => {
     setupGoogleMock();
   });
 
-  let component: ReactTestRenderer;
-
   it("renders null if no email", () => {
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: codeConnexion,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: codeConnexion,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
-  it("renders code-connexion if email", () => {
+  it("renders code-connexion if email", async () => {
     const url = "http://refugies.info/auth/code-connexion?email=test@example.com";
     Object.defineProperty(window, "location", {
       value: new URL(url),
     });
-    act(() => {
-      mockRouter.push("/auth/code-connexion?email=test@example.com");
+    await mockRouter.push("/auth/code-connexion?email=test@example.com");
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: codeConnexion,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: codeConnexion,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

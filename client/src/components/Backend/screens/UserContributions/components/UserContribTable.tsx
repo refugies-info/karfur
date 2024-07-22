@@ -1,11 +1,10 @@
-import React from "react";
-import { Table } from "reactstrap";
-import Link from "next/link";
-import { FormattedUserContribution } from "../types";
-import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
-import { Title, DeleteButton, SeeButton } from "../../Admin/sharedComponents/SubComponents";
-import styles from "scss/components/adminTable.module.scss";
 import { Id } from "@refugies-info/api-types";
+import Link from "next/link";
+import { Table } from "reactstrap";
+import styles from "scss/components/adminTable.module.scss";
+import { DeleteButton, SeeButton, Title } from "../../Admin/sharedComponents/SubComponents";
+import { FormattedUserContribution } from "../types";
+import { ContribStyledStatus, Responsabilite, StatutHeader, TypeContenu } from "./SubComponents";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
 interface Props {
@@ -43,7 +42,7 @@ export const UserContribTable = (props: Props) => (
         const burl = "/" + (element.typeContenu || "dispositif") + "/" + element._id;
 
         return (
-          <tr key={key} className={styles.line} data-test-id={`test_${element._id}`}>
+          <tr key={key} className={styles.line} data-testid={`test_${element._id}`}>
             <td className={styles.first + " align-middle"}>
               <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
             </td>
@@ -105,7 +104,7 @@ export const UserContribTable = (props: Props) => (
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <SeeButton burl={burl} />
                 <DeleteButton
-                  data-test-id={"test_delete_" + element._id}
+                  testId={`delete-button-${element._id}`}
                   onClick={(event: any) => props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)}
                   disabled={!element.isAuthorizedToDelete}
                 />

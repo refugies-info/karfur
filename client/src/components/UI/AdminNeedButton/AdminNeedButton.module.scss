@@ -1,6 +1,6 @@
-@import "src/scss/colors";
-@import "src/scss/mixins/responsive";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/mixins/responsive";
+@import "~scss/variables";
 
 .btn {
   font-weight: bold;
@@ -50,8 +50,8 @@
   }
 }
 
-
-.text, .subtitle {
+.text,
+.subtitle {
   line-height: 16px;
 }
 .subtitle {

@@ -1,15 +1,15 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/variables";
 
 .btn {
-  display:flex;
+  display: flex;
   width: 100%;
   justify-content: center;
   text-align: center;
   margin: auto;
   padding: 20px;
   border-radius: $radius;
-  align-items:center;
+  align-items: center;
   background-color: $gray60;
   font-size: $text-normal;
   color: white;

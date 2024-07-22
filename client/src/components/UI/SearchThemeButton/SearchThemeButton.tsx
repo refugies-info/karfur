@@ -16,7 +16,7 @@ type ThemeButtonProps = {
 const ThemeButton = styled.button<ThemeButtonProps>`
   background: ${(props) => `linear-gradient(90deg, ${props.$color100} 22%, ${props.$color80} 100%)`};
 
-  :hover {
+  &:hover {
     background: ${(props) => props.$color30};
     box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
     color: ${(props) => props.$color100} !important;
@@ -26,7 +26,7 @@ const ThemeButton = styled.button<ThemeButtonProps>`
 const ThemeLink = styled(Link)<ThemeButtonProps>`
   background: ${(props) => `linear-gradient(90deg, ${props.$color100} 22%, ${props.$color80} 100%)`} !important;
 
-  :hover {
+  &:hover {
     background: ${(props) => props.$color30} !important;
     box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
     color: ${(props) => props.$color100} !important;

@@ -1,10 +1,10 @@
-@import "src/scss/colors";
-@import "src/scss/mixins/responsive";
-@import "src/scss/mixins/rtl";
-@import "src/scss/mixins/unit";
-@import "src/scss/mixins/text";
-@import "src/scss/mixins/btn";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/mixins/responsive";
+@import "~scss/mixins/rtl";
+@import "~scss/mixins/unit";
+@import "~scss/mixins/text";
+@import "~scss/mixins/btn";
+@import "~scss/variables";
 
 // DESKTOP
 .dropdown {

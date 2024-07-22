@@ -1,62 +1,62 @@
-import React, { useEffect, useState } from "react";
-import { Table, Spinner } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { colors } from "colors";
+import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
+import CustomSearchBar from "components/UI/CustomSeachBar";
+import FButton from "components/UI/FButton/FButton";
+import useRouterLocale from "hooks/useRouterLocale";
 import moment from "moment";
 import "moment/locale/fr";
-import Swal from "sweetalert2";
 import { useRouter } from "next/router";
-import useRouterLocale from "hooks/useRouterLocale";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Spinner, Table } from "reactstrap";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
 } from "services/AllDispositifs/allDispositifs.actions";
-import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
-import { prepareDeleteContrib } from "../Needs/lib";
-import { table_contenu, correspondingStatus } from "./data";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import Swal from "sweetalert2";
 import API from "utils/API";
+import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
+import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
+import { prepareDeleteContrib } from "../Needs/lib";
 import {
-  StyledSort,
-  StyledTitle,
-  StyledHeader,
   Content,
   FigureContainer,
+  StyledHeader,
   StyledHeaderInner,
+  StyledSort,
+  StyledTitle,
 } from "../sharedComponents/StyledAdmin";
-import { colors } from "colors";
-import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import {
-  TypeContenu,
-  Title,
-  Structure,
-  StyledStatus,
-  ValidateButton,
-  SeeButton,
+  ColoredRound,
   DeleteButton,
   FilterButton,
+  SeeButton,
+  Structure,
+  StyledStatus,
   TabHeader,
-  ColoredRound,
+  Title,
+  TypeContenu,
+  ValidateButton,
 } from "../sharedComponents/SubComponents";
-import CustomSearchBar from "components/UI/CustomSeachBar";
-import FButton from "components/UI/FButton/FButton";
-import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
-import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
-import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
-import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
+import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
+import { correspondingStatus, table_contenu } from "./data";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
-import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 
-import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
+import { DispositifStatus, GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
+import { removeAccents } from "lib";
+import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
+import { handleApiError } from "lib/handleApiErrors";
+import { statusCompare } from "lib/statusCompare";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./AdminContenu.module.scss";
-import { statusCompare } from "lib/statusCompare";
-import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
-import { removeAccents } from "lib";
-import { DispositifStatus, GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
-import { handleApiError } from "lib/handleApiErrors";
+import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 
 moment.locale("fr");
 
@@ -464,6 +464,7 @@ export const AdminContenu = () => {
                           prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, element._id)
                         }
                         disabled={element.status === "Supprimé"}
+                        testId={`delete-button-${element._id}`}
                       />
                     </div>
                   </td>

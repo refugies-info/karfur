@@ -6,11 +6,11 @@ import { addToQueryActionCreator } from "services/SearchResults/searchResults.ac
 import { logger } from "../../logger";
 import API from "../../utils/API";
 import { finishLoading, LoadingStatusKey, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { searchQuerySelector } from "../SearchResults/searchResults.selector"
+import { searchQuerySelector } from "../SearchResults/searchResults.selector";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { fetchUserActionCreator, saveUserActionCreator, setUserActionCreator } from "./user.actions";
 import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
-import { userSelector } from "./user.selectors"
+import { userSelector } from "./user.selectors";
 
 export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): SagaIterator {
   try {
@@ -67,7 +67,7 @@ export function* saveUser(action: ReturnType<typeof saveUserActionCreator>): Sag
     yield put(finishLoading(LoadingStatusKey.SAVE_USER));
   } catch (error) {
     logger.error("[saveUser] saga error", { error });
-    if ((<AxiosError>error).response?.data?.code === "WRONG_CODE") {
+    if ((<AxiosError<{ code?: string }, unknown>>error).response?.data?.code === "WRONG_CODE") {
       yield put(setError(LoadingStatusKey.SAVE_USER, "WRONG_CODE"));
     } else {
       yield put(setUserActionCreator(null));

@@ -1,16 +1,15 @@
 // @ts-nocheck
+import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import { act } from "react-test-renderer";
 import "jest-styled-components";
-import UserNotifications from "../UserNotifications";
-import {
-  fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
-} from "services/UserStructure/userStructure.actions";
-import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
-import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import Router from "next/router";
+import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import UserNotifications from "../UserNotifications";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 jest.mock("services/UserStructure/userStructure.actions", () => {
@@ -41,42 +40,36 @@ describe("UserNotifications", () => {
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
-          user: { user: { structures: ["structureId"] } },
-        },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
+        user: { user: { structures: ["structureId"] } },
+      },
     });
 
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
       shouldRedirect: false,
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 notif", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: true,
-            dispositifsAssocies: [],
-          },
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: true,
+          dispositifsAssocies: [],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -86,7 +79,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const notifNewContent = {
@@ -127,21 +120,18 @@ describe("UserNotifications", () => {
 
   it("should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction ", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: false,
-            dispositifsAssocies: [notifNewContent, notifReactionRead, notifReactionNotRead],
-          },
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: false,
+          dispositifsAssocies: [notifNewContent, notifReactionRead, notifReactionNotRead],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -151,26 +141,24 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it("should link to dispositif when click on new content notif", () => {
+  it("should link to dispositif when click on new content notif", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: false,
-            dispositifsAssocies: [notifNewContent],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: false,
+          dispositifsAssocies: [notifNewContent],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -180,29 +168,25 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root
-      .findByProps({ "data-test-id": "test-notif-new content" })
-      .props.onClick({ stopPropagation: jest.fn() });
+    await user.click(component.getByTestId("test-notif-new content"));
     expect(Router).toMatchObject({ asPath: "/dispositif/id" });
   });
 
-  it("should link to dispositif when click on annuaire notif", () => {
+  it("should link to dispositif when click on annuaire notif", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: false,
-            dispositifsAssocies: [],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: false,
+          dispositifsAssocies: [],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -212,27 +196,24 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root.findByProps({ "data-test-id": "test-notif-annuaire" }).props.onClick({ stopPropagation: jest.fn() });
+    await user.click(component.getByTestId("test-notif-annuaire"));
     expect(Router).toMatchObject({ asPath: "/directory-create" });
   });
 
   it("should delete notif reaction", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: true,
-            dispositifsAssocies: [notifReactionRead],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: true,
+          dispositifsAssocies: [notifReactionRead],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -242,9 +223,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root
-      .findByProps({ "data-test-id": "test-delete-reaction" })
-      .props.onClick({ stopPropagation: jest.fn() });
+    screen.getByTestId("test-delete-reaction").click({ stopPropagation: jest.fn() });
     expect(updateDispositifReactionActionCreator).toHaveBeenLastCalledWith({
       suggestion: {
         dispositifId: "id2",

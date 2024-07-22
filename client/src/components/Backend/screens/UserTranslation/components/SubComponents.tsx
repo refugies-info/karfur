@@ -12,7 +12,7 @@ interface Props {
   hasMultipleLanguages: boolean;
 }
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{ hasMultipleLanguages: boolean }>`
   display: flex;
   flex-direction: row;
   margin-right: 16px;
@@ -24,7 +24,7 @@ interface TitleProps {
   hasMultipleLanguages: boolean;
   isSelected: boolean;
 }
-const Title = styled.div`
+const Title = styled.div<TitleProps>`
   font-weight: bold;
   font-size: ${(props: TitleProps) => (props.isSelected ? "28px" : "16px")};
   line-height: ${(props: TitleProps) => (props.isSelected ? "35px" : "20px")};
@@ -96,7 +96,7 @@ interface TradStatusProps {
   status: TraductionsStatus;
 }
 
-const TradStatusContainer = styled.div`
+const TradStatusContainer = styled.div<{ backgroundColor: string }>`
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
@@ -132,7 +132,7 @@ interface FilterButtonContainerProps {
   isSelected: boolean;
   color: string;
 }
-const FilterButtonContainer = styled.button`
+const FilterButtonContainer = styled.button<FilterButtonContainerProps>`
   color: ${(props: FilterButtonContainerProps) => (props.isSelected ? colors.white : props.color)};
   background-color: ${(props: FilterButtonContainerProps) => (props.isSelected ? props.color : colors.white)};
 

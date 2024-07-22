@@ -1,5 +1,5 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/variables";
 
 .modal_content {
   background: $gray40 !important;
@@ -10,7 +10,6 @@
   padding: 40px;
   border-radius: $radius;
   margin-top: 40px;
-
 }
 .code_title {
   font-size: 18px;

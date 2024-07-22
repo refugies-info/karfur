@@ -1,15 +1,12 @@
-import { UserProfile } from "../UserProfile";
-import { act, ReactTestRenderer } from "react-test-renderer";
-import {
-  wrapWithProvidersAndRender,
-  wrapWithProvidersAndRenderForTesting,
-} from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import "@testing-library/jest-dom";
+import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { testUser } from "__fixtures__/user";
-import { fireEvent, RenderResult, waitFor } from "@testing-library/react";
-import "jest-styled-components";
 import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
-import "@testing-library/jest-dom";
+import "jest-styled-components";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import { UserProfile } from "../UserProfile";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("components/UI/Tooltip", () => jest.fn().mockReturnValue(<></>));
@@ -40,45 +37,39 @@ describe("UserProfile", () => {
 
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-    component = wrapWithProvidersAndRender({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
       reduxState: {
         ...initialMockStore,
         loadingStatus: { FETCH_USER: { isLoading: true } },
       },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly", () => {
     window.scrollTo = jest.fn();
-    let component: ReactTestRenderer;
-    component = wrapWithProvidersAndRender({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
       reduxState: {
         ...initialMockStore,
         user: { ...initialMockStore.user, user: { ...testUser } },
       },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when editing profile", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component: RenderResult;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: { ...initialMockStore.user, user: { ...testUser } },
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserProfile,
+      reduxState: {
+        ...initialMockStore,
+        user: { ...initialMockStore.user, user: { ...testUser } },
+      },
     });
-    act(() => {
-      fireEvent.click(component.getByText("Modifier mes informations personnelles"));
-    });
+    await user.click(component.getByText("Modifier mes informations personnelles"));
     await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());
@@ -88,20 +79,16 @@ describe("UserProfile", () => {
   });
 
   it("should render correctly when editing profile without password", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component: RenderResult;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: { ...initialMockStore.user, user: { ...testUser, sso: true } },
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserProfile,
+      reduxState: {
+        ...initialMockStore,
+        user: { ...initialMockStore.user, user: { ...testUser, sso: true } },
+      },
     });
-    act(() => {
-      fireEvent.click(component.getByText("Modifier mes informations personnelles"));
-    });
+    await user.click(component.getByText("Modifier mes informations personnelles"));
     await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());

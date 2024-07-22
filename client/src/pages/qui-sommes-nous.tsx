@@ -35,7 +35,7 @@ const HeaderTextContainer = styled.div`
   margin-bottom: 4px;
 `;
 
-const NavBarContainer = styled.div`
+const NavBarContainer = styled.div<{ isToolbarVisible: boolean }>`
   position: sticky;
   position: -webkit-sticky;
   top: 75px;
@@ -49,7 +49,7 @@ const NavBarContainer = styled.div`
   top: ${(props: { isToolbarVisible: boolean }) => (!props.isToolbarVisible ? "0px !important" : "0px !important")};
 `;
 
-const NavBarText = styled.div`
+const NavBarText = styled.div<{ isVisibleSection: boolean }>`
   padding: 22px;
   height: 100%;
   &:hover {

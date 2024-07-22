@@ -1,17 +1,18 @@
 //@ts-nocheck
-import UserFavorites from "../UserFavorites";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import {
-  updateUserFavoritesActionCreator,
-  fetchUserFavoritesActionCreator,
-} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import { act } from "react-test-renderer";
-import routerMock from "next/router";
 import mockAxios from "jest-mock-axios";
+import routerMock from "next/router";
+import {
+  fetchUserFavoritesActionCreator,
+  updateUserFavoritesActionCreator,
+} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import UserFavorites from "../UserFavorites";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
+import { screen } from "@testing-library/dom";
 import "jest-styled-components";
 
 jest.mock("services/UserFavoritesInLocale/UserFavoritesInLocale.actions", () => {
@@ -30,35 +31,29 @@ describe("UserFavorites", () => {
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserFavorites,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
+      },
+      compProps: { t: (_: string, element2: string) => element2 },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 favorites", () => {
     window.scrollTo = jest.fn();
 
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
 
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const fav1 = {
@@ -128,30 +123,25 @@ describe("UserFavorites", () => {
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
-      });
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer", () => {
+  it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    component.root.findByProps({ "data-test-id": "test-delete-button" }).props.onClick();
+    await user.click(component.getByTestId("remove-all-favorites-button"));
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",
@@ -159,21 +149,19 @@ describe("UserFavorites", () => {
     });
   });
 
-  it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", () => {
+  it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", async () => {
+    const user = userEvent.setup();
     routerMock.locale = "en";
     window.scrollTo = jest.fn();
 
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("en");
-    component.root.findByProps({ "data-test-id": "test-delete-button" }).props.onClick();
+    await user.click(screen.getByTestId("remove-all-favorites-button"));
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",

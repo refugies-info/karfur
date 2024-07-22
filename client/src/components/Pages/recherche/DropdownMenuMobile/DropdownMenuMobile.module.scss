@@ -1,9 +1,9 @@
-@import "src/scss/colors";
-@import "src/scss/mixins/responsive";
-@import "src/scss/mixins/unit";
-@import "src/scss/mixins/text";
-@import "src/scss/mixins/rtl";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/mixins/responsive";
+@import "~scss/mixins/unit";
+@import "~scss/mixins/text";
+@import "~scss/mixins/rtl";
+@import "~scss/variables";
 
 .container {
   background: $white;
@@ -51,7 +51,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  box-shadow: 0 -16px 16px 0 #0000000D;
+  box-shadow: 0 -16px 16px 0 #0000000d;
   background: $white;
   z-index: 3;
 

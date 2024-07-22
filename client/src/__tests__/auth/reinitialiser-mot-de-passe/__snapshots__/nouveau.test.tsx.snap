@@ -1,124 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`auth/reinitialiser-mot-de-passe/nouveau renders page 1`] = `
-<div
-  className="container half"
->
-  <button
-    className="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
-    id="fr-button-:r0:"
-    onClick={[Function]}
-    style={{}}
-  >
-    Retour
-  </button>
+<DocumentFragment>
   <div
-    className="title"
+    class="container half"
   >
-    <h1>
-      Nouveau mot de passe
-    </h1>
-    <p
-      className="subtitle"
-    >
-      Veuillez choisir votre nouveau mot de passe
-    </p>
-  </div>
-  <form
-    onSubmit={[Function]}
-  >
-    <div
-      className="fr-password mb-0"
-      id="password-input-:r1:"
-    >
-      <label
-        className="fr-label"
-        htmlFor="password-:r2:"
-      >
-        Mot de passe
-      </label>
-      <div
-        className="fr-input-wrap"
-      >
-        <input
-          aria-describedby="password-:r2:-messages-group"
-          autoFocus={true}
-          className="fr-password__input fr-input"
-          disabled={false}
-          id="password-:r2:"
-          name="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-      <div
-        aria-live="assertive"
-        className="fr-messages-group"
-        id="password-:r2:-messages-group"
-      >
-        <p
-          className="fr-message fr-message--info"
-          id="password-:r2:-message-group-0"
-        >
-          Register.criteria_special
-        </p>
-        <p
-          className="fr-message fr-message--info"
-          id="password-:r2:-message-group-1"
-        >
-          Register.criteria_number
-        </p>
-        <p
-          className="fr-message fr-message--info"
-          id="password-:r2:-message-group-2"
-        >
-          Register.criteria_minlength
-        </p>
-      </div>
-      <div
-        className="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm"
-      >
-        <input
-          aria-label="Afficher le mot de passe"
-          id="password-:r2:-toggle-show"
-          type="checkbox"
-        />
-        <label
-          className="fr-password__checkbox fr-label"
-          htmlFor="password-:r2:-toggle-show"
-        >
-          Afficher
-        </label>
-      </div>
-    </div>
-    <div
-      className="fr-input-group mb-0 hidden"
-    >
-      <label
-        className="fr-label"
-        htmlFor="input-:r3:"
-      >
-        Code d'authentification
-      </label>
-      <input
-        aria-describedby="input-:r3:-desc-error"
-        autoFocus={true}
-        className="fr-input"
-        id="input-:r3:"
-        name="code"
-        type="text"
-      />
-    </div>
     <button
-      className="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt"
-      disabled={true}
-      id="fr-button-:r4:"
-      style={{}}
-      type="submit"
+      class="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+      id="fr-button-:r0:"
     >
-      Changer le mot de passe
+      Retour
     </button>
-  </form>
-</div>
+    <div
+      class="title"
+    >
+      <h1>
+        Nouveau mot de passe
+      </h1>
+      <p
+        class="subtitle"
+      >
+        Veuillez choisir votre nouveau mot de passe
+      </p>
+    </div>
+    <form>
+      <div
+        class="fr-password mb-0"
+        id="password-input-:r1:"
+      >
+        <label
+          class="fr-label"
+          for="password-:r2:"
+        >
+          Mot de passe
+        </label>
+        <div
+          class="fr-input-wrap"
+        >
+          <input
+            aria-describedby="password-:r2:-messages-group"
+            class="fr-password__input fr-input"
+            id="password-:r2:"
+            name="password"
+            type="password"
+            value=""
+          />
+        </div>
+        <div
+          aria-live="assertive"
+          class="fr-messages-group"
+          id="password-:r2:-messages-group"
+        >
+          <p
+            class="fr-message fr-message--info"
+            id="password-:r2:-message-group-0"
+          >
+            Register.criteria_special
+          </p>
+          <p
+            class="fr-message fr-message--info"
+            id="password-:r2:-message-group-1"
+          >
+            Register.criteria_number
+          </p>
+          <p
+            class="fr-message fr-message--info"
+            id="password-:r2:-message-group-2"
+          >
+            Register.criteria_minlength
+          </p>
+        </div>
+        <div
+          class="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm"
+        >
+          <input
+            aria-label="Afficher le mot de passe"
+            id="password-:r2:-toggle-show"
+            type="checkbox"
+          />
+          <label
+            class="fr-password__checkbox fr-label"
+            for="password-:r2:-toggle-show"
+          >
+            Afficher
+          </label>
+        </div>
+      </div>
+      <div
+        class="fr-input-group mb-0 hidden"
+      >
+        <label
+          class="fr-label"
+          for="input-:r3:"
+        >
+          Code d'authentification
+        </label>
+        <input
+          aria-describedby="input-:r3:-desc-error"
+          class="fr-input"
+          id="input-:r3:"
+          name="code"
+          type="text"
+        />
+      </div>
+      <button
+        class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt"
+        disabled=""
+        id="fr-button-:r4:"
+        type="submit"
+      >
+        Changer le mot de passe
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
 `;

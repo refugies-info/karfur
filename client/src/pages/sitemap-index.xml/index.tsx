@@ -1,13 +1,13 @@
-import { getServerSideSitemapIndex } from "next-sitemap";
 import { GetServerSideProps } from "next";
+import { getServerSideSitemapIndexLegacy } from "next-sitemap";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const siteUrl = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
   const locales = (ctx.locales || []).filter((ln) => ln !== "default");
 
-  return getServerSideSitemapIndex(
+  return getServerSideSitemapIndexLegacy(
     ctx,
-    locales.map((ln) => `${siteUrl}/sitemap-index/sitemap-index-${ln}.xml`)
+    locales.map((ln) => `${siteUrl}/sitemap-index/sitemap-index-${ln}.xml`),
   );
 };
 
