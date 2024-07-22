@@ -1,17 +1,14 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useScrollDirection } from "hooks/useScrollDirection";
 import useWindowSize from "hooks/useWindowSize";
-import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import SearchHeaderMobile from "./SearchHeader.mobile";
-import SearchHeaderDesktop from "./SearchHeader.desktop";
 import ResultsFilter from "../ResultsFilter";
+import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
 const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
@@ -59,7 +56,6 @@ const SearchHeader = (props: Props) => {
   // LOCATION
   const [locationSearch, setLocationSearch] = useState("");
   const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
-
   const onChangeDepartmentInput = useCallback(
     (e: any) => {
       setLocationSearch(e.target.value);
@@ -71,63 +67,15 @@ const SearchHeader = (props: Props) => {
     addToQuery({ departments: [], sort: "date" });
   }, [setLocationSearch, addToQuery]);
 
-  // AGE
-  const ageOptions = useMemo(() => {
-    // @ts-ignore
-    return ageFilters.map((filter) => ({ ...filter, value: t(filter.value) as string }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const selectAgeOption = useCallback(
-    (selected: AgeOptions[]) => addToQuery({ age: selected as AgeOptions[] }),
-    [addToQuery],
-  );
-
-  // FRENCH LEVEL
-  const frenchLevelOptions = useMemo(() => {
-    // @ts-ignore
-    return frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) as string }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const selectFrenchLevelOption = useCallback(
-    (selected: FrenchOptions[]) => addToQuery({ frenchLevel: selected as FrenchOptions[] }),
-    [addToQuery],
-  );
-
-  // LANGUAGE
-  const languages = useSelector(allLanguesSelector);
-  const languagesOptions = useMemo(() => {
-    return languages.map((ln) => ({
-      key: ln.i18nCode,
-      value: (
-        <>
-          <span
-            className={cls(!isMobile && styles.flag, `fi fi-${ln.langueCode}`)}
-            title={ln.langueCode}
-            id={ln.langueCode}
-          />
-          {ln.langueFr}
-        </>
-      ),
-    }));
-  }, [languages, isMobile]);
-  const selectLanguageOption = useCallback(
-    (selected: string[]) => addToQuery({ language: selected as string[] }),
-    [addToQuery],
-  );
-
   // SCROLL
   const [scrolled, setScrolled] = useState(true);
-  const [placeholderHeight, setPlaceholderHeight] = useState(0);
-  const [scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
+  const [_scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
     if (!isMobile) {
-      const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
+      const newScrolled = !!overScrollLimit;
       setScrolled(newScrolled);
-      if (newScrolled) {
-        setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
-      }
     }
-  }, [scrollDirection, overScrollLimit, isMobile]);
+  }, [overScrollLimit, isMobile]);
 
   const filterProps = {
     locationSearch,
@@ -140,26 +88,22 @@ const SearchHeader = (props: Props) => {
     onChangeDepartmentInput,
     onChangeThemeInput,
     onChangeSearchInput,
-    ageOptions,
-    frenchLevelOptions,
-    languagesOptions,
-    selectAgeOption,
-    selectFrenchLevelOption,
-    selectLanguageOption,
   };
 
   return (
     <>
-      {scrolled && <div className={styles.placeholder} style={{ height: placeholderHeight }}></div>}
-      <div ref={headerRef} className={cls(scrolled && `${styles.scrolled} scrolled`)}>
-        {!isMobile ? (
-          <SearchHeaderDesktop nbResults={props.nbResults} {...filterProps} />
-        ) : (
-          <SearchHeaderMobile nbResults={props.nbResults} {...filterProps} />
-        )}
+      {scrolled ? (
+        <div className={cls(styles.scrolled, styles.container)}>
+          <Filters {...filterProps} isSmall />
+        </div>
+      ) : (
+        <div ref={headerRef} className={styles.container}>
+          {/* TODO: design big search */}
+          <Filters {...filterProps} />
+        </div>
+      )}
 
-        <ResultsFilter />
-      </div>
+      <ResultsFilter />
     </>
   );
 };

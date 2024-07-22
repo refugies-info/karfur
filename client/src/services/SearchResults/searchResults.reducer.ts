@@ -1,5 +1,5 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
 import { createReducer } from "typesafe-actions";
 import { SearchResultsActions } from "./searchResults.actions";
 
@@ -22,6 +22,8 @@ export type SearchQuery = {
   needs: Id[];
   age: AgeOptions[];
   frenchLevel: FrenchOptions[];
+  public: PublicOptions[];
+  status: StatusOptions[];
   language: string[];
   sort: SortOptions;
   type: TypeOptions;
@@ -47,6 +49,8 @@ const initialSearchResultsState: SearchResultsState = {
     age: [],
     frenchLevel: [],
     language: [],
+    public: [],
+    status: [],
     sort: "date",
     type: "all",
   },

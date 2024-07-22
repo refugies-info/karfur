@@ -33,6 +33,8 @@ describe("recherche", () => {
             age: [],
             frenchLevel: [],
             language: [],
+            public: [],
+            status: [],
             sort: "date",
             type: "all",
           },

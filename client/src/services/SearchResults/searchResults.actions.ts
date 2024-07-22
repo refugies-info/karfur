@@ -12,6 +12,8 @@ export const resetQueryActionCreator = () => action(ADD_TO_QUERY, {
   age: [],
   frenchLevel: [],
   language: [],
+  public: [],
+  status: [],
   sort: "date",
   type: "all"
 });

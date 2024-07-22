@@ -66,6 +66,8 @@ const initialMockSearchReults: SearchResultsState = {
     age: [],
     frenchLevel: [],
     language: [],
+    public: [],
+    status: [],
     sort: "date",
     type: "all"
   },

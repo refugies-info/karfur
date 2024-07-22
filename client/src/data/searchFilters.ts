@@ -1,7 +1,11 @@
+import type { publicType, publicStatusType } from "@refugies-info/api-types";
+
 export type AgeOptions = "-18" | "18-25" | "+25";
 export type FrenchOptions = "a" | "b" | "c";
 export type SortOptions = "date" | "view" | "theme" | "location";
 export type TypeOptions = "dispositif" | "demarche" | "all";
+export type PublicOptions = publicType;
+export type StatusOptions = publicStatusType;
 
 export type AgeFilters = {
   key: AgeOptions;
@@ -22,6 +26,14 @@ export type TypeFilters = {
   key: TypeOptions;
   value: string;
   backwardCompatibility: string;
+}[];
+export type PublicFilters = {
+  key: PublicOptions;
+  value: string;
+}[];
+export type StatusFilters = {
+  key: StatusOptions;
+  value: string;
 }[];
 
 export const ageFilters: AgeFilters = [
@@ -44,4 +56,19 @@ export const filterType: TypeFilters = [
   { key: "all", value: "Filters.typeAll", backwardCompatibility: "" },
   { key: "dispositif", value: "Filters.typeDispositif", backwardCompatibility: "dispositifs" },
   { key: "demarche", value: "Filters.typeDemarche", backwardCompatibility: "demarches" },
+];
+export const publicOptions: PublicFilters = [
+  { key: "family", value: "Infocards.family" },
+  { key: "women", value: "Infocards.women" },
+  { key: "youths", value: "Infocards.youths" },
+  { key: "senior", value: "Infocards.senior" },
+  { key: "gender", value: "Infocards.gender" },
+];
+export const statusOptions: StatusFilters = [
+  { key: "asile", value: "Infocards.asile" },
+  { key: "refugie", value: "Infocards.refugie" },
+  { key: "subsidiaire", value: "Infocards.subsidiaire" },
+  { key: "temporaire", value: "Infocards.temporaire" },
+  { key: "apatride", value: "Infocards.apatride" },
+  { key: "french", value: "Infocards.french" },
 ];

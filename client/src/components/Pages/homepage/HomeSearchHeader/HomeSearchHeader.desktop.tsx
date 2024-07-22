@@ -154,7 +154,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               setActive={setThemeActive}
               onChange={onChangeThemeInput}
               inputValue={themeSearch}
-              value={themeDisplayedValue}
+              value={themeDisplayedValue.join(", ")}
               placeholder={t("Recherche.all", "Tous")}
               resetFilter={resetTheme}
               onHomepage={true}

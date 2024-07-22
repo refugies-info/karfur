@@ -5,33 +5,23 @@
 @import "~scss/mixins/text";
 @import "~scss/variables";
 
-.container {
-  margin-bottom: u(8);
-
-  label {
-    font-weight: bold;
-    margin-bottom: u(1);
-    @include text("normal");
-  }
+.menu {
+  box-shadow: 0 0 40px 0 #00000040;
+  padding: u(4);
+  border-radius: $radius;
+  margin-top: u(11);
 }
 
 .item {
   padding: u(3) u(2);
-  border-radius: u(2);
-  margin-bottom: u(2);
-  margin-right: u(2);
-  border: 1px solid $bleuCharte;
-  color: $bleuCharte;
-  background: $white;
+  border-radius: u(2) !important;
+  margin-bottom: u(1);
+  border: none;
   @include text("normal");
-
-  @include rtl() {
-    margin-left: u(2);
-    margin-right: 0;
-  }
 
   &:hover {
     background: $gray40b;
+    color: $dark;
   }
   &:focus {
     outline: none;
@@ -53,6 +43,17 @@
   &.selected {
     background: $bleuCharte !important;
     color: $white !important;
-    border-color: $bleuCharte !important;
   }
+}
+
+.backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
 }
