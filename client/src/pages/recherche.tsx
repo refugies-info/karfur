@@ -111,15 +111,10 @@ const Recherche = () => {
     setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
   }, [query.departments, dispositifs]);
 
-  const nbResults =
-    filteredResult.dispositifs.length +
-    filteredResult.demarches.length +
-    filteredResult.dispositifsSecondaryTheme.length;
-
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
-      <SearchHeader nbResults={nbResults} />
+      <SearchHeader nbResults={dispositifs.length} />
 
       <Container className={styles.container_inner}>
         <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
