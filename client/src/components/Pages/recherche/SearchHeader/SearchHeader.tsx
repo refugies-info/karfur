@@ -145,11 +145,11 @@ const SearchHeader = (props: Props) => {
   return (
     <>
       {scrolled ? (
-        <div className={styles.scrolled}>
-          <Filters {...filterProps} />
+        <div className={cls(styles.scrolled, styles.container)}>
+          <Filters {...filterProps} isSmall />
         </div>
       ) : (
-        <div ref={headerRef}>
+        <div ref={headerRef} className={styles.container}>
           {/* TODO: design big search */}
           <Filters {...filterProps} />
         </div>

@@ -9,6 +9,7 @@ import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
 import Filter from "./Filter";
 import { FilterOptions } from "./Filter/Filter";
+import styles from "./Filters.module.scss";
 
 interface Props {
   locationSearch: string;
@@ -26,6 +27,7 @@ interface Props {
   selectAgeOption: (selected: AgeOptions[]) => void;
   selectFrenchLevelOption: (selected: FrenchOptions[]) => void;
   selectLanguageOption: (selected: string[]) => void;
+  isSmall?: boolean;
 }
 
 const Filters = (props: Props) => {
@@ -99,8 +101,20 @@ const Filters = (props: Props) => {
   }, [query.language, languages]);
 
   return (
-    <div className="py-4 bg-white">
-      <Container className="d-flex gap-3 ">
+    <div className="py-4">
+      <Container className="d-flex align-items-center gap-3">
+        {props.isSmall && (
+          <div className={styles.search}>
+            <i className="fr-icon-search-line" />
+            <input
+              type="text"
+              className="fr-input"
+              placeholder={t("Recherche.keyword", "Mot-clé")}
+              onChange={onChangeSearchInput}
+              value={query.search}
+            />
+          </div>
+        )}
         <Filter
           label={t("Dispositif.Département", "Département")}
           value={query.departments}

@@ -11,6 +11,10 @@ $scrollLimit: 100px;
   scrollLimit: $scrollLimit;
 }
 
+.container {
+  background: var(--background-action-low-blue-france);
+}
+
 .scrolled {
   @include media-min("desktop-up") {
     position: fixed;
