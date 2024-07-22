@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Container } from "reactstrap";
-import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
+import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
 import Filter from "./Filter";
-import { FilterOptions } from "./Filter/Filter";
 import styles from "./Filters.module.scss";
 
 interface Props {
@@ -21,18 +20,11 @@ interface Props {
   onChangeDepartmentInput: (e: any) => void;
   onChangeThemeInput: (e: any) => void;
   onChangeSearchInput: (e: any) => void;
-  ageOptions: FilterOptions;
-  frenchLevelOptions: FilterOptions;
-  languagesOptions: FilterOptions;
-  selectAgeOption: (selected: AgeOptions[]) => void;
-  selectFrenchLevelOption: (selected: FrenchOptions[]) => void;
-  selectLanguageOption: (selected: string[]) => void;
   isSmall?: boolean;
 }
 
 const Filters = (props: Props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
   const {
     locationSearch,
@@ -44,12 +36,6 @@ const Filters = (props: Props) => {
     onChangeThemeInput,
     resetSearch,
     onChangeSearchInput,
-    ageOptions,
-    selectAgeOption,
-    frenchLevelOptions,
-    selectFrenchLevelOption,
-    languagesOptions,
-    selectLanguageOption,
   } = props;
 
   const query = useSelector(searchQuerySelector);
@@ -57,48 +43,14 @@ const Filters = (props: Props) => {
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
 
-  // AGE
-  const [ageDisplayedValue, setAgeDisplayedValue] = useState<string[]>([]);
-  useEffect(() => {
-    const values = query.age
-      .map((age) => {
-        const val = ageFilters.find((a) => a.key === age)?.value;
-        //@ts-ignore
-        if (val) return t(val);
-        return null;
-      })
-      .filter((v) => v !== null) as string[];
-    setAgeDisplayedValue(values);
-  }, [query.age, t]);
-
-  // FRENCH LEVEL
-  const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState<string[]>([]);
-  useEffect(() => {
-    const values = query.frenchLevel
-      .map((frenchLevel) => {
-        const val = frenchLevelFilter.find((a) => a.key === frenchLevel)?.value;
-        //@ts-ignore
-        if (val) return t(val);
-        return null;
-      })
-      .filter((v) => v !== null) as string[];
-    setFrenchLevelDisplayedValue(values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.frenchLevel]);
-
   // LANGUAGE
   const languages = useSelector(allLanguesSelector);
-  const [languageDisplayedValue, setLanguageDisplayedValue] = useState<string[]>([]);
-  useEffect(() => {
-    const values = query.language
-      .map((ln) => {
-        const val = languages.find((a) => a.i18nCode === ln)?.langueFr;
-        return val || null;
-      })
-      .filter((v) => v !== null) as string[];
-    setLanguageDisplayedValue(values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.language, languages]);
+  const languagesOptions = useMemo(() => {
+    return languages.map((ln) => ({
+      key: ln.i18nCode,
+      value: ln.langueFr,
+    }));
+  }, [languages]);
 
   return (
     <div className="py-4">
@@ -117,8 +69,8 @@ const Filters = (props: Props) => {
         )}
         <Filter
           label={t("Dispositif.Département", "Département")}
-          value={query.departments}
           dropdownMenu={{
+            value: query.departments,
             reset: resetDepartment,
             menu: <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />,
           }}
@@ -126,43 +78,60 @@ const Filters = (props: Props) => {
         />
         <Filter
           label={t("Recherche.themes", "Thèmes")}
-          value={themeDisplayedValue}
           dropdownMenu={{
+            value: themeDisplayedValue,
             reset: resetTheme,
             menu: <ThemeDropdown search={themeSearch} mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
           }}
           gaType="themes"
         />
         <Filter
-          label={t("Recherche.filterAge", "Tranche d'âge")}
-          value={ageDisplayedValue}
+          label={"Statut"}
           dropdownMenu={{
+            filterKey: "age",
             selected: query.age,
-            //@ts-ignore
-            selectItem: selectAgeOption,
-            options: ageOptions,
+            options: statusOptions,
+            translateOptions: true,
           }}
           gaType="age"
         />
         <Filter
-          label={t("Recherche.filterFrenchLevel", "Niveau de français")}
-          value={frenchLevelDisplayedValue}
+          label={"Public visé"}
           dropdownMenu={{
+            filterKey: "public",
+            selected: query.public,
+            options: publicOptions,
+            translateOptions: true,
+          }}
+          gaType="public"
+        />
+        <Filter
+          label={t("Recherche.filterAge", "Tranche d'âge")}
+          dropdownMenu={{
+            filterKey: "status",
+            selected: query.status,
+            options: ageFilters,
+            translateOptions: true,
+          }}
+          gaType="status"
+        />
+        <Filter
+          label={t("Recherche.filterFrenchLevel", "Niveau de français")}
+          dropdownMenu={{
+            filterKey: "frenchLevel",
             selected: query.frenchLevel,
-            //@ts-ignore
-            selectItem: selectFrenchLevelOption,
-            options: frenchLevelOptions,
+            options: frenchLevelFilter,
+            translateOptions: true,
           }}
           gaType="frenchLevel"
         />
         <Filter
           label={t("Recherche.filterLanguage", "Fiches traduites en")}
-          value={languageDisplayedValue}
           dropdownMenu={{
+            filterKey: "language",
             selected: query.language,
-            //@ts-ignore
-            selectItem: selectLanguageOption,
             options: languagesOptions,
+            translateOptions: false,
           }}
           gaType="language"
         />

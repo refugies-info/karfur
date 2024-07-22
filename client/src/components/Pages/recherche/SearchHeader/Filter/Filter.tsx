@@ -1,36 +1,44 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Dropdown, DropdownItem, DropdownMenu } from "reactstrap";
+import { useTranslation } from "next-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import Checkbox from "components/UI/Checkbox";
 import DropdownButton from "./DropdownButton";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import styles from "./Filter.module.scss";
 
 export type Selected = AgeOptions | FrenchOptions | string;
-export type FilterOptions = { key: Selected; value: string | React.ReactNode }[];
+export type FilterOptions = { key: Selected; value: string }[];
 
 type OptionsDropdown = {
+  filterKey: keyof SearchQuery;
   options: FilterOptions;
   selected: Selected[];
-  selectItem: (option: string[]) => void;
+  translateOptions?: boolean;
 };
 
 type MenuDropdown = {
   menu: React.ReactNode;
+  value: string[];
   reset: () => void;
 };
 
 interface Props {
   label: string;
-  value: string[];
   gaType: string;
   dropdownMenu: OptionsDropdown | MenuDropdown;
 }
 
 const Filter = (props: Props) => {
+  const { t } = useTranslation();
   const { gaType } = props;
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const optionsDropdown: OptionsDropdown | null = !!(props.dropdownMenu as OptionsDropdown).options
     ? (props.dropdownMenu as OptionsDropdown)
@@ -46,19 +54,26 @@ const Filter = (props: Props) => {
     });
   }, [gaType]);
 
+  const addToQuery = useCallback(
+    (query: Partial<SearchQuery>) => {
+      dispatch(addToQueryActionCreator(query));
+    },
+    [dispatch],
+  );
+
   const onSelectItem = (key: string) => {
     if (!optionsDropdown) return;
     const newSelected = optionsDropdown.selected.includes(key)
       ? [...optionsDropdown.selected].filter((opt) => opt !== key)
       : [...optionsDropdown.selected, key];
 
-    optionsDropdown.selectItem(newSelected);
+    addToQuery({ [optionsDropdown.filterKey]: newSelected });
     Event("USE_SEARCH", "click filter", gaType);
   };
 
   const resetOptions = () => {
     if (menuDropdown) menuDropdown.reset();
-    else if (optionsDropdown) optionsDropdown.selectItem([]);
+    else if (optionsDropdown) addToQuery({ [optionsDropdown.filterKey]: [] });
   };
 
   useEffect(() => {
@@ -70,15 +85,29 @@ const Filter = (props: Props) => {
     };
   }, []);
 
+  const query = useSelector(searchQuerySelector);
+  const value = useMemo(() => {
+    if (menuDropdown) return menuDropdown.value;
+    // get value from filters with key and translate it
+    if (optionsDropdown) {
+      const querySelected = query[optionsDropdown.filterKey];
+      if (Array.isArray(querySelected)) {
+        return querySelected
+          .map((selected) => {
+            const val = optionsDropdown.options.find((a) => a.key === selected)?.value;
+            //@ts-ignore
+            if (val) return t(val);
+            return null;
+          })
+          .filter((v) => v !== null) as string[];
+      }
+    }
+    return [];
+  }, [menuDropdown, optionsDropdown, query, t]);
+
   return (
     <Dropdown isOpen={open} direction="down" toggle={toggleDropdown}>
-      <DropdownButton
-        label={props.label}
-        value={props.value}
-        onClick={toggleDropdown}
-        onClear={resetOptions}
-        isOpen={open}
-      />
+      <DropdownButton label={props.label} value={value} onClick={toggleDropdown} onClear={resetOptions} isOpen={open} />
       <DropdownMenu className={styles.menu} flip={false}>
         {optionsDropdown
           ? optionsDropdown.options.map((option, i) => {
@@ -91,7 +120,10 @@ const Filter = (props: Props) => {
                   toggle={false}
                 >
                   <Checkbox checked={isSelected} color={isSelected ? "white" : "black"}>
-                    {option.value}
+                    {optionsDropdown.translateOptions
+                      ? //@ts-ignore
+                        t(option.value)
+                      : option.value}
                   </Checkbox>
                 </DropdownItem>
               );
