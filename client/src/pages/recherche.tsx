@@ -22,7 +22,7 @@ import { cls } from "lib/classname";
 import { queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
 import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
-import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions, SortOptions, TypeOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { getDepartmentsNotDeployed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
@@ -38,6 +38,8 @@ export type UrlSearchQuery = {
   themes?: string | Id[];
   age?: string | AgeOptions[];
   frenchLevel?: string | FrenchOptions[];
+  public?: string | PublicOptions[];
+  status?: string | StatusOptions[];
   language?: string | string[];
   sort?: string | SortOptions;
   type?: string | TypeOptions;
