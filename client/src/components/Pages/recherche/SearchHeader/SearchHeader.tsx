@@ -11,6 +11,7 @@ import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
+import ResultsFilter from "../ResultsFilter";
 
 const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
 
@@ -154,6 +155,8 @@ const SearchHeader = (props: Props) => {
           <Filters {...filterProps} />
         </div>
       )}
+
+      <ResultsFilter />
     </>
   );
 };
