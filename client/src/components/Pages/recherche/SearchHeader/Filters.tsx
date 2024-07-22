@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Container } from "reactstrap";
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
+import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import ThemeDropdown from "../ThemeDropdown";
@@ -53,20 +54,18 @@ const Filters = (props: Props) => {
   }, [languages]);
 
   return (
-    <div className="py-4">
-      <Container className="d-flex align-items-center gap-3">
-        {props.isSmall && (
-          <div className={styles.search}>
-            <i className="fr-icon-search-line" />
-            <input
-              type="text"
-              className="fr-input"
-              placeholder={t("Recherche.keyword", "Mot-clé")}
-              onChange={onChangeSearchInput}
-              value={query.search}
-            />
-          </div>
-        )}
+    <Container className={cls(styles.container, props.isSmall && styles.small)}>
+      <div className={styles.search}>
+        <i className="fr-icon-search-line" />
+        <input
+          type="text"
+          className="fr-input"
+          placeholder={t("Recherche.keyword", "Mot-clé")}
+          onChange={onChangeSearchInput}
+          value={query.search}
+        />
+      </div>
+      <div className="d-flex align-items-center gap-3">
         <Filter
           label={t("Dispositif.Département", "Département")}
           dropdownMenu={{
@@ -135,8 +134,8 @@ const Filters = (props: Props) => {
           }}
           gaType="language"
         />
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

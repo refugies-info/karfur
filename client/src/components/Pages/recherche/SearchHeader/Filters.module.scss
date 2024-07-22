@@ -1,8 +1,28 @@
 @import "~scss/mixins/unit";
 
+.container {
+  display: flex;
+  gap: u(3);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &.small {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    .search {
+      width: 200px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .search {
-  width: 200px;
   position: relative;
+  width: 720px;
+  margin-bottom: u(10);
 
   i {
     position: absolute;

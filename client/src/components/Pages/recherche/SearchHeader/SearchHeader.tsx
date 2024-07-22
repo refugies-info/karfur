@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Container } from "reactstrap";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useScrollDirection } from "hooks/useScrollDirection";
@@ -11,7 +12,7 @@ import ResultsFilter from "../ResultsFilter";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
-const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
+const SCROLL_LIMIT = 500;
 
 interface Props {
   nbResults: number;
@@ -21,7 +22,6 @@ const SearchHeader = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
-  const headerRef = useRef<HTMLDivElement | null>(null);
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -72,8 +72,7 @@ const SearchHeader = (props: Props) => {
   const [_scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
     if (!isMobile) {
-      const newScrolled = !!overScrollLimit;
-      setScrolled(newScrolled);
+      setScrolled(!!overScrollLimit);
     }
   }, [overScrollLimit, isMobile]);
 
@@ -92,16 +91,17 @@ const SearchHeader = (props: Props) => {
 
   return (
     <>
-      {scrolled ? (
-        <div className={cls(styles.scrolled, styles.container)}>
-          <Filters {...filterProps} isSmall />
+      <div className={styles.title}>
+        <Container>
+          <h1>{t("Recherche.title")}</h1>
+          <p>{t("Recherche.subtitle", { count: props.nbResults })}</p>
+        </Container>
+      </div>
+      <div className={styles.filters}>
+        <div className={cls(styles.stickybar, scrolled && styles.scrolled)}>
+          <Filters {...filterProps} isSmall={scrolled} />
         </div>
-      ) : (
-        <div ref={headerRef} className={styles.container}>
-          {/* TODO: design big search */}
-          <Filters {...filterProps} />
-        </div>
-      )}
+      </div>
 
       <ResultsFilter />
     </>
