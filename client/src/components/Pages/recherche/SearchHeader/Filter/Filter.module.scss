@@ -54,6 +54,15 @@
 
 .checkbox {
   flex: 1 0 0;
+  align-items: start;
+}
+
+.countContainer {
+  display: flex;
+  padding-top: 4px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .count {

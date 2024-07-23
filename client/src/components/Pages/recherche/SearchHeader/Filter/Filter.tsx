@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Dropdown, DropdownItem, DropdownMenu } from "reactstrap";
-import { useTranslation } from "next-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import Checkbox from "components/UI/Checkbox";
+import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
-import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import Checkbox from "components/UI/Checkbox";
-import DropdownButton from "./DropdownButton";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { useTranslation } from "next-i18next";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Dropdown, DropdownItem, DropdownMenu } from "reactstrap";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import DropdownButton from "./DropdownButton";
 import styles from "./Filter.module.scss";
 
 export type Selected = AgeOptions | FrenchOptions | string;
@@ -125,7 +125,9 @@ const Filter = (props: Props) => {
                         t(option.value)
                       : option.value}
                   </Checkbox>
-                  <div className={styles.count}>112</div>
+                  <div className={styles.countContainer}>
+                    <div className={styles.count}>112</div>
+                  </div>
                 </DropdownItem>
               );
             })
