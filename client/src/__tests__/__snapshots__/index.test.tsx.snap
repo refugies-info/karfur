@@ -1258,14 +1258,14 @@ exports[`homepage renders homepage 1`] = `
                             class="icon"
                           >
                             <i
-                              style="height: 20px; line-height: 20px;"
+                              style="height: 24px; line-height: 24px;"
                             >
                               <svg
                                 class="eva eva-square-outline"
-                                fill="#443023"
-                                height="20px"
+                                fill="#000091"
+                                height="24px"
                                 viewBox="0 0 24 24"
-                                width="20px"
+                                width="24px"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
                                 <g
