@@ -15,6 +15,10 @@
 }
 
 .item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
   padding: u(2) u(2);
   border: none;
   @include text("normal");
@@ -46,6 +50,22 @@
     background: $bleuCharte !important;
     color: $white !important;
   }
+}
+
+.checkbox {
+  flex: 1 0 0;
+}
+
+.count {
+  color: var(--tokens-light-text-mention-grey, #666);
+  text-align: right;
+
+  /* 2.Corps de texte/XS - Texte mention/Desktop & Mobile - Regular */
+  font-family: Marianne;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
 }
 
 .backdrop {
