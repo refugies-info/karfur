@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { fr } from "@codegouvfr/react-dsfr";
+import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
+import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import styles from "./Checkbox.module.scss";
@@ -14,6 +16,8 @@ interface Props {
 }
 
 const Checkbox = (props: Props) => {
+  const { isDark } = useIsDark();
+  const theme = fr.colors.getHex({ isDark });
   return (
     <div className={cls(styles.checkbox, props.className)}>
       <input
@@ -24,7 +28,10 @@ const Checkbox = (props: Props) => {
         tabIndex={props.tabIndex}
       />
       <span className={styles.check}>
-        <EVAIcon name={props.checked ? "checkmark-square-2" : "square-outline"} fill={props.checked ? "#0421b1" : "#000091"} />
+        <EVAIcon
+          name={props.checked ? "checkmark-square-2" : "square-outline"}
+          fill={props.checked ? colors.bleuCharte : theme.decisions.text.actionHigh.blueFrance.default}
+        />
       </span>
       <label htmlFor={props.id}>{props.children}</label>
     </div>
