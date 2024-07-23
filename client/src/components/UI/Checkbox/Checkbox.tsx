@@ -24,7 +24,7 @@ const Checkbox = (props: Props) => {
         tabIndex={props.tabIndex}
       />
       <span className={styles.check}>
-        <EVAIcon name={props.checked ? "checkmark-square-2" : "square-outline"} fill={props.color || "black"} />
+        <EVAIcon name={props.checked ? "checkmark-square-2" : "square-outline"} fill={props.checked ? "#0421b1" : "#000091"} />
       </span>
       <label htmlFor={props.id}>{props.children}</label>
     </div>

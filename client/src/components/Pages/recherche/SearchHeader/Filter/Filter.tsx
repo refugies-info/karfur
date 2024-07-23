@@ -116,10 +116,10 @@ const Filter = (props: Props) => {
                 <DropdownItem
                   key={i}
                   onClick={() => onSelectItem(option.key)}
-                  className={cls(styles.item, isSelected && styles.selected)}
+                  className={styles.item}
                   toggle={false}
                 >
-                  <Checkbox className={styles.checkbox} checked={isSelected} color={isSelected ? "white" : "#000091"}>
+                  <Checkbox className={styles.checkbox} checked={isSelected}>
                     {optionsDropdown.translateOptions
                       ? //@ts-ignore
                         t(option.value)
