@@ -31,6 +31,7 @@ const Checkbox = (props: Props) => {
         <EVAIcon
           name={props.checked ? "checkmark-square-2" : "square-outline"}
           fill={props.checked ? colors.bleuCharte : theme.decisions.text.actionHigh.blueFrance.default}
+          size="large"
         />
       </span>
       <label htmlFor={props.id}>{props.children}</label>
