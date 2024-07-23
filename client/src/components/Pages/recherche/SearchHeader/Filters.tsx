@@ -46,14 +46,19 @@ const Filters = (props: Props) => {
 
   // LANGUAGE
   const languages = useSelector(allLanguesSelector);
+  const getTranslatedLanguage = useMemo(() => {
+    return (langueFr: string) => t(`Languages.${langueFr}`, langueFr) as string;
+  }, [t]);
   const languagesOptions = useMemo(() => {
     // Sort languages by langueFr
-    const sorted = languages.sort((a, b) => a.langueFr.localeCompare(b.langueFr));
+    const sorted = languages.sort((a, b) =>
+      getTranslatedLanguage(a.langueFr).localeCompare(getTranslatedLanguage(b.langueFr)),
+    );
     return sorted.map((ln) => ({
       key: ln.i18nCode,
-      value: ln.langueFr,
+      value: getTranslatedLanguage(ln.langueFr),
     }));
-  }, [languages]);
+  }, [languages, getTranslatedLanguage]);
 
   return (
     <Container className={cls(styles.container, props.isSmall && styles.small)}>
