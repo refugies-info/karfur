@@ -23,7 +23,6 @@ import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import { Event } from "lib/tracking";
 
 interface Props {
-  search: string;
   mobile: boolean;
   isOpen: boolean;
 }
@@ -56,6 +55,8 @@ const ThemeDropdown = (props: Props) => {
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
+
+  const [search, setSearch] = useState(""); // TODO: use this when search restored in component
 
   const onClickTheme = useCallback(
     (themeId: Id) => {
@@ -129,15 +130,15 @@ const ThemeDropdown = (props: Props) => {
   }, [props.isOpen]);
 
   const displayedNeeds = useMemo(() => {
-    if (props.search) {
+    if (search) {
       return needs
-        .filter((need) => (need[locale]?.text || "").includes(props.search))
+        .filter((need) => (need[locale]?.text || "").includes(search))
         .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
     }
     return needs
       .filter((need) => need.theme._id === themeSelected)
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
-  }, [themeSelected, needs, props.search, locale]);
+  }, [themeSelected, needs, search, locale]);
 
   const isThemeDisabled = (themeId: Id) => {
     const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
@@ -146,7 +147,7 @@ const ThemeDropdown = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <div className={cls(styles.themes, props.search && styles.hidden)}>
+      <div className={cls(styles.themes, search && styles.hidden)}>
         {sortedThemes.map((theme, i) => (
           <div key={i}>
             <ThemeButton
@@ -161,7 +162,7 @@ const ThemeDropdown = (props: Props) => {
             {props.mobile && (
               <Collapse isOpen={themeSelected === theme._id}>
                 <NeedsList
-                  search={props.search}
+                  search={search}
                   displayedNeeds={displayedNeeds}
                   themeSelected={themeSelected}
                   nbDispositifsByNeed={nbDispositifsByNeed}
@@ -172,9 +173,9 @@ const ThemeDropdown = (props: Props) => {
           </div>
         ))}
       </div>
-      {(!props.mobile || props.search) && (
+      {(!props.mobile || search) && (
         <NeedsList
-          search={props.search}
+          search={search}
           displayedNeeds={displayedNeeds}
           themeSelected={themeSelected}
           nbDispositifsByNeed={nbDispositifsByNeed}

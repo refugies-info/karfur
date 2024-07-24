@@ -141,7 +141,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
-            <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
+            <LocationDropdown />
           </DropdownMenu>
         </Dropdown>
 
@@ -161,7 +161,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu} persist={themesOpen || inputFocused.theme}>
-            <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
+            <ThemeDropdown mobile={false} isOpen={themesOpen || inputFocused.theme} />
           </DropdownMenu>
         </Dropdown>
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useTranslation } from "next-i18next";
@@ -15,15 +15,22 @@ import { getPlaceName } from "./functions";
 
 interface Props {
   mobile?: boolean;
-  locationSearch: string;
-  resetLocationSearch: () => void;
 }
 
 const LocationDropdown = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const { locationSearch, resetLocationSearch } = props;
+
+  const [locationSearch, setLocationSearch] = useState("");
+  const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
+  // TODO: use when creating a searchbar in component
+  const onChangeDepartmentInput = useCallback(
+    (e: any) => {
+      setLocationSearch(e.target.value);
+    },
+    [setLocationSearch],
+  );
 
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,

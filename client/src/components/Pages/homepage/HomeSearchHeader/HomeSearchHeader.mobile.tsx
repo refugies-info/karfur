@@ -124,11 +124,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
                   )}
                 </div>
               </div>
-              <LocationDropdown
-                locationSearch={locationSearch}
-                resetLocationSearch={resetLocationSearch}
-                mobile={true}
-              />
+              <LocationDropdown mobile={true} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -178,7 +174,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
                   )}
                 </div>
               </div>
-              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen} />
+              <ThemeDropdown mobile={true} isOpen={themesOpen} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>

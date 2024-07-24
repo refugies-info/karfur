@@ -1,48 +1,46 @@
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useMemo, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Container } from "reactstrap";
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 
 interface Props {
-  locationSearch: string;
-  themeSearch: string;
-  resetDepartment: () => void;
-  resetTheme: () => void;
-  resetSearch: () => void;
-  resetLocationSearch: () => void;
-  onChangeDepartmentInput: (e: any) => void;
-  onChangeThemeInput: (e: any) => void;
-  onChangeSearchInput: (e: any) => void;
   isSmall?: boolean;
 }
 
 const Filters = (props: Props) => {
   const { t } = useTranslation();
-
-  const {
-    locationSearch,
-    themeSearch,
-    resetLocationSearch,
-    resetDepartment,
-    onChangeDepartmentInput,
-    resetTheme,
-    onChangeThemeInput,
-    resetSearch,
-    onChangeSearchInput,
-  } = props;
-
+  const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+
+  // KEYWORD
+  const onChangeSearchInput = useCallback(
+    (e: any) => {
+      dispatch(addToQueryActionCreator({ search: e.target.value }));
+      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+    },
+    [dispatch],
+  );
 
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
+  const resetTheme = useCallback(() => {
+    addToQueryActionCreator({ needs: [], themes: [] });
+  }, []);
+
+  // LOCATION
+  const resetDepartment = useCallback(() => {
+    addToQueryActionCreator({ departments: [], sort: "date" });
+  }, []);
 
   // LANGUAGE
   const languages = useSelector(allLanguesSelector);
@@ -71,7 +69,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: query.departments,
             reset: resetDepartment,
-            menu: <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />,
+            menu: <LocationDropdown />,
           }}
           gaType="department"
         />
@@ -80,7 +78,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
-            menu: <ThemeDropdown search={themeSearch} mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
+            menu: <ThemeDropdown mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
           }}
           gaType="themes"
         />
