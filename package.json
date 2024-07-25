@@ -15,35 +15,40 @@
   ],
   "scripts": {
     "clean:branches": "npx git-removed-branches --prune --force",
-    "build": "yarn workspaces run build",
-    "build:api-types": "yarn workspace @refugies-info/api-types build",
-    "build:client": "yarn build:api-types && yarn workspace @refugies-info/client build",
-    "build:server": "yarn build:api-types && yarn workspace @refugies-info/server build",
-    "dev:client": "yarn workspace @refugies-info/client dev",
-    "dev:server": "yarn workspace @refugies-info/server dev",
+    "build": "yarn turbo build",
+    "build:api-types": "yarn turbo build --filter=@refugies-info/api-types",
+    "build:client": "yarn turbo build --filter=@refugies-info/client",
+    "build:server": "yarn turbo build --filter=@refugies-info/server",
+    "check-types": "yarn turbo check-types",
+    "check-types:client": "yarn turbo check-types --filter=@refugies-info/client",
+    "check-types:server": "yarn turbo check-types --filter=@refugies-info/server",
+    "dev": "yarn turbo dev",
+    "dev:client": "yarn turbo dev --filter=@refugies-info/client",
+    "dev:server": "yarn turbo dev --filter=@refugies-info/server",
+    "start": "yarn turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",
-    "test": "yarn workspaces run test",
-    "test:client": "yarn workspace @refugies-info/client test",
-    "test:server": "yarn workspace @refugies-info/server test",
-    "test:lint:client": "yarn workspace @refugies-info/client test:lint",
-    "test:lint:server": "yarn workspace @refugies-info/server test:lint",
-    "test:types:client": "yarn workspace @refugies-info/client test:types ",
-    "test:types:server": "yarn workspace @refugies-info/server test:types",
-    "test:unit:client": "yarn workspace @refugies-info/client test:unit",
-    "test:unit:server": "yarn workspace @refugies-info/server test:unit"
+    "test": "yarn turbo test",
+    "test:client": "yarn turbo test --filter=@refugies-info/client",
+    "test:server": "yarn turbo test --filter=@refugies-info/server",
+    "lint": "yarn turbo lint",
+    "lint:client": "yarn turbo lint --filter=@refugies-info/client",
+    "lint:server": "yarn turbo lint --filter=@refugies-info/server"
   },
   "dependencies": {},
   "engines": {
     "node": "20.13.1",
     "yarn": "1.22.22"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "turbo": "^2.0.9"
+  },
   "jest": {
     "setupFilesAfterEnv": [
       "./client/src/setupTests.js"
     ]
   },
+  "packageManager": "yarn@1.2.22",
   "volta": {
     "node": "20.13.1",
     "yarn": "1.22.22"

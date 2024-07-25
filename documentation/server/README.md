@@ -183,17 +183,14 @@ Follow the [technical standards](general.md) to keep the codebase clean.
 > yarn start
 
 # to transpile ts code
-> yarn tsc
+> yarn build
 
 # - starts the unit test runner
 > yarn test
 
-# launch unit tests
-> yarn test:unit
-
 # launch linter tests
-> yarn test:lint
+> yarn lint
 
 # launch test types
-> yarn test:types
+> yarn check-types
 ```

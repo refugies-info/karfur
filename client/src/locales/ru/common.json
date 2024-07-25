@@ -670,5 +670,15 @@
     "Vendredi": "Пятница",
     "Samedi": "Суббота",
     "Dimanche": "Воскресенье"
+  },
+  "Languages": {
+    "Anglais": "Английский",
+    "Arabe": "Арабский",
+    "Français": "Французский",
+    "Pachto": "Пушту",
+    "Persan/Dari": "Персидский/Дари",
+    "Russe": "Русский",
+    "Tigrinya": "Тигринья",
+    "Ukrainien": "Украинский"
   }
 }

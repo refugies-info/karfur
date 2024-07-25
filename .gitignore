@@ -37,3 +37,6 @@ yarn-error.log*
 /client/public/fonts/CircularStd
 /client/src/scss/fonts/CircularStd
 /client/tsconfig.tsbuildinfo
+
+# turbo
+.turbo

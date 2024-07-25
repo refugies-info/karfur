@@ -663,5 +663,15 @@
     "Vendredi": "ዓርቢ",
     "Samedi": "ቀዳም",
     "Dimanche": "ሰንበት"
+  },
+  "Languages": {
+    "Anglais": "እንግሊዝኛ",
+    "Arabe": "ዓረብኛ",
+    "Français": "ፈረንሳይቲ",
+    "Pachto": "ፓሽቶ",
+    "Persan/Dari": "ፐርሲያኛ/ዳሪ",
+    "Russe": "ራሽኛ",
+    "Tigrinya": "ትግርኛ",
+    "Ukrainien": "ዩክሬንኛ"
   }
 }

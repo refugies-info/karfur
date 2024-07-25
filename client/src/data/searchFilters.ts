@@ -61,14 +61,14 @@ export const publicOptions: PublicFilters = [
   { key: "family", value: "Infocards.family" },
   { key: "women", value: "Infocards.women" },
   { key: "youths", value: "Infocards.youths" },
-  { key: "senior", value: "Infocards.senior" },
   { key: "gender", value: "Infocards.gender" },
+  { key: "senior", value: "Infocards.senior" },
 ];
 export const statusOptions: StatusFilters = [
   { key: "asile", value: "Infocards.asile" },
   { key: "refugie", value: "Infocards.refugie" },
   { key: "subsidiaire", value: "Infocards.subsidiaire" },
-  { key: "temporaire", value: "Infocards.temporaire" },
   { key: "apatride", value: "Infocards.apatride" },
+  { key: "temporaire", value: "Infocards.temporaire" },
   { key: "french", value: "Infocards.french" },
 ];

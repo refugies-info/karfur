@@ -676,5 +676,15 @@
     "Vendredi": "جمعه",
     "Samedi": "شنبه",
     "Dimanche": "یکشنبه"
+  },
+  "Languages": {
+    "Anglais": "انگلیسی",
+    "Arabe": "عربی",
+    "Français": "فرانسوی",
+    "Pachto": "پشتو",
+    "Persan/Dari": "فارسی/دری",
+    "Russe": "روسی",
+    "Tigrinya": "تیگرینیایی",
+    "Ukrainien": "اوکراینی"
   }
 }

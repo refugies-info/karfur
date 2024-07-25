@@ -120,13 +120,13 @@ Here are some more specific guides:
 > yarn test
 
 # launch only the unit tests. use the -- -u parameter to update snapshots
-> yarn test:unit
+> yarn test
 
 # launch only the types tests
-> yarn test:types
+> yarn check-types
 
 # launch only the lint tests
-> yarn test:lint
+> yarn lint
 
 # generates test coverage report (jest) (pending bug fix)
 > yarn test-with-coverage
