@@ -10,6 +10,7 @@
   "scripts": {
     "gen:tsoa": "tsoa spec-and-routes",
     "build": "yarn gen:tsoa && tsc",
+    "check-types": "tsc --noEmit",
     "dev": "yarn build && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "start": "node dist/src/server.js",
     "test": "npm run test:lint && npm run test:types && npm run test:unit",

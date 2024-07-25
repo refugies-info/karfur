@@ -74,6 +74,7 @@
     "dev": "next dev",
     "start": "next start",
     "build": "NEXT_SHARP_PATH=../node_modules/.bin/sharp next build",
+    "check-types": "tsc --noEmit",
     "test": "npm run test:lint && npm run test:types && npm run test:unit",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "test:types": "tsc --noEmit",
