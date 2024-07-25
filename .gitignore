@@ -39,4 +39,4 @@ yarn-error.log*
 /client/tsconfig.tsbuildinfo
 
 # turbo
-+ .turbo
+.turbo
