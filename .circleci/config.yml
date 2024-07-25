@@ -24,4 +24,4 @@ jobs:
           command: yarn install --frozen-lockfile
       - run:
           name: Lint, Check Types and Test
-          command: turbo lint check-types test
+          command: yarn turbo lint check-types test

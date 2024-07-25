@@ -8,7 +8,7 @@
       "name": "Next.js: debug server-side",
       "type": "node-terminal",
       "request": "launch",
-      "command": "turbo dev --filter=@refugies-info/server --filter=@refugies-info/client",
+      "command": "yarn turbo dev --filter=@refugies-info/server --filter=@refugies-info/client",
       "cwd": "${workspaceFolder}/client"
     },
     {
@@ -21,7 +21,7 @@
       "name": "Next.js: debug full stack",
       "type": "node-terminal",
       "request": "launch",
-      "command": "turbo dev --filter=@refugies-info/server --filter=@refugies-info/client",
+      "command": "yarn turbo dev --filter=@refugies-info/server --filter=@refugies-info/client",
       "cwd": "${workspaceFolder}/client",
       "serverReadyAction": {
         "pattern": "- Local:.+(https?://.+)",
