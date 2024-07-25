@@ -61,15 +61,8 @@
 }
 
 .count {
-  color: var(--tokens-light-text-mention-grey, #666);
-  text-align: right;
-
-  /* 2.Corps de texte/XS - Texte mention/Desktop & Mobile - Regular */
-  font-family: Marianne;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 166.667% */
+  @include dsfr-text("very-small");
+  color: $lightTextMentionGrey;
 }
 
 .backdrop {
