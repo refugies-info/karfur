@@ -712,5 +712,15 @@
     "Vendredi": "Vendredi",
     "Samedi": "Samedi",
     "Dimanche": "Dimanche"
+  },
+  "Languages": {
+    "Anglais": "Anglais",
+    "Arabe": "Arabe",
+    "Français": "Français",
+    "Pachto": "Pachto",
+    "Persan/Dari": "Persan/Dari",
+    "Russe": "Russe",
+    "Tigrinya": "Tigrinya",
+    "Ukrainien": "Ukrainien"
   }
 }

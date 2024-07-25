@@ -1,13 +1,13 @@
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { Container } from "reactstrap";
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { Container } from "reactstrap";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
-import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
+import ThemeDropdown from "../ThemeDropdown";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 
@@ -46,12 +46,19 @@ const Filters = (props: Props) => {
 
   // LANGUAGE
   const languages = useSelector(allLanguesSelector);
+  const getTranslatedLanguage = useMemo(() => {
+    return (langueFr: string) => t(`Languages.${langueFr}`, langueFr) as string;
+  }, [t]);
   const languagesOptions = useMemo(() => {
-    return languages.map((ln) => ({
+    // Sort languages by langueFr
+    const sorted = languages.sort((a, b) =>
+      getTranslatedLanguage(a.langueFr).localeCompare(getTranslatedLanguage(b.langueFr)),
+    );
+    return sorted.map((ln) => ({
       key: ln.i18nCode,
-      value: ln.langueFr,
+      value: getTranslatedLanguage(ln.langueFr),
     }));
-  }, [languages]);
+  }, [languages, getTranslatedLanguage]);
 
   return (
     <Container className={cls(styles.container, props.isSmall && styles.small)}>

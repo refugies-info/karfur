@@ -989,14 +989,14 @@ exports[`recherche renders search results 1`] = `
                             class="icon"
                           >
                             <i
-                              style="height: 20px; line-height: 20px;"
+                              style="height: 24px; line-height: 24px;"
                             >
                               <svg
                                 class="eva eva-checkmark-square-2"
-                                fill="#3D2884"
-                                height="20px"
+                                fill="#0421b1"
+                                height="24px"
                                 viewBox="0 0 24 24"
-                                width="20px"
+                                width="24px"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
                                 <g
@@ -1110,7 +1110,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1122,14 +1122,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1156,6 +1156,15 @@ exports[`recherche renders search results 1`] = `
                       Infocards.asile
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1164,7 +1173,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1176,14 +1185,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1210,6 +1219,15 @@ exports[`recherche renders search results 1`] = `
                       Infocards.refugie
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1218,7 +1236,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1230,14 +1248,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1264,59 +1282,14 @@ exports[`recherche renders search results 1`] = `
                       Infocards.subsidiaire
                     </label>
                   </div>
-                </button>
-                <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
-                  type="button"
-                >
                   <div
-                    class="checkbox"
+                    class="countContainer"
                   >
-                    <input
-                      type="checkbox"
-                    />
-                    <span
-                      class="check"
+                    <div
+                      class="count"
                     >
-                      <span
-                        class="icon"
-                      >
-                        <i
-                          style="height: 20px; line-height: 20px;"
-                        >
-                          <svg
-                            class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
-                            viewBox="0 0 24 24"
-                            width="20px"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              data-name="Layer 2"
-                            >
-                              <g
-                                data-name="square"
-                              >
-                                <rect
-                                  height="24"
-                                  opacity="0"
-                                  width="24"
-                                />
-                                <path
-                                  d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"
-                                />
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                      </span>
-                    </span>
-                    <label>
-                      Infocards.temporaire
-                    </label>
+                      112
+                    </div>
                   </div>
                 </button>
                 <button
@@ -1326,7 +1299,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1338,14 +1311,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1372,6 +1345,15 @@ exports[`recherche renders search results 1`] = `
                       Infocards.apatride
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1380,7 +1362,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1392,14 +1374,77 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              data-name="Layer 2"
+                            >
+                              <g
+                                data-name="square"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  width="24"
+                                />
+                                <path
+                                  d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+                        </i>
+                      </span>
+                    </span>
+                    <label>
+                      Infocards.temporaire
+                    </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
+                </button>
+                <button
+                  class="item dropdown-item"
+                  role="menuitem"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="checkbox checkbox"
+                  >
+                    <input
+                      type="checkbox"
+                    />
+                    <span
+                      class="check"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <i
+                          style="height: 24px; line-height: 24px;"
+                        >
+                          <svg
+                            class="eva eva-square-outline"
+                            fill="#000091"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1425,6 +1470,15 @@ exports[`recherche renders search results 1`] = `
                     <label>
                       Infocards.french
                     </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
                   </div>
                 </button>
               </div>
@@ -1458,7 +1512,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1470,14 +1524,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1504,6 +1558,15 @@ exports[`recherche renders search results 1`] = `
                       Infocards.family
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1512,7 +1575,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1524,14 +1587,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1558,6 +1621,15 @@ exports[`recherche renders search results 1`] = `
                       Infocards.women
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1566,7 +1638,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1578,14 +1650,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1612,6 +1684,15 @@ exports[`recherche renders search results 1`] = `
                       Infocards.youths
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1620,7 +1701,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1632,14 +1713,77 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              data-name="Layer 2"
+                            >
+                              <g
+                                data-name="square"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  width="24"
+                                />
+                                <path
+                                  d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+                        </i>
+                      </span>
+                    </span>
+                    <label>
+                      Infocards.gender
+                    </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
+                </button>
+                <button
+                  class="item dropdown-item"
+                  role="menuitem"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="checkbox checkbox"
+                  >
+                    <input
+                      type="checkbox"
+                    />
+                    <span
+                      class="check"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <i
+                          style="height: 24px; line-height: 24px;"
+                        >
+                          <svg
+                            class="eva eva-square-outline"
+                            fill="#000091"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1666,59 +1810,14 @@ exports[`recherche renders search results 1`] = `
                       Infocards.senior
                     </label>
                   </div>
-                </button>
-                <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
-                  type="button"
-                >
                   <div
-                    class="checkbox"
+                    class="countContainer"
                   >
-                    <input
-                      type="checkbox"
-                    />
-                    <span
-                      class="check"
+                    <div
+                      class="count"
                     >
-                      <span
-                        class="icon"
-                      >
-                        <i
-                          style="height: 20px; line-height: 20px;"
-                        >
-                          <svg
-                            class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
-                            viewBox="0 0 24 24"
-                            width="20px"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              data-name="Layer 2"
-                            >
-                              <g
-                                data-name="square"
-                              >
-                                <rect
-                                  height="24"
-                                  opacity="0"
-                                  width="24"
-                                />
-                                <path
-                                  d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"
-                                />
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                      </span>
-                    </span>
-                    <label>
-                      Infocards.gender
-                    </label>
+                      112
+                    </div>
                   </div>
                 </button>
               </div>
@@ -1752,7 +1851,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1764,14 +1863,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1798,6 +1897,15 @@ exports[`recherche renders search results 1`] = `
                       Filters.age-18
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1806,7 +1914,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1818,14 +1926,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1852,6 +1960,15 @@ exports[`recherche renders search results 1`] = `
                       Filters.age18-25
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1860,7 +1977,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1872,14 +1989,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1905,6 +2022,15 @@ exports[`recherche renders search results 1`] = `
                     <label>
                       Filters.age+25
                     </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
                   </div>
                 </button>
               </div>
@@ -1938,7 +2064,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -1950,14 +2076,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -1984,6 +2110,15 @@ exports[`recherche renders search results 1`] = `
                       Filters.frenchLevelA
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -1992,7 +2127,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -2004,14 +2139,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -2038,6 +2173,15 @@ exports[`recherche renders search results 1`] = `
                       Filters.frenchLevelB
                     </label>
                   </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
+                  </div>
                 </button>
                 <button
                   class="item dropdown-item"
@@ -2046,7 +2190,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -2058,14 +2202,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -2091,6 +2235,15 @@ exports[`recherche renders search results 1`] = `
                     <label>
                       Filters.frenchLevelC
                     </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
                   </div>
                 </button>
               </div>
@@ -2124,7 +2277,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -2136,14 +2289,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -2167,8 +2320,17 @@ exports[`recherche renders search results 1`] = `
                       </span>
                     </span>
                     <label>
-                      Français
+                      Languages.Anglais
                     </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
                   </div>
                 </button>
                 <button
@@ -2178,7 +2340,7 @@ exports[`recherche renders search results 1`] = `
                   type="button"
                 >
                   <div
-                    class="checkbox"
+                    class="checkbox checkbox"
                   >
                     <input
                       type="checkbox"
@@ -2190,14 +2352,14 @@ exports[`recherche renders search results 1`] = `
                         class="icon"
                       >
                         <i
-                          style="height: 20px; line-height: 20px;"
+                          style="height: 24px; line-height: 24px;"
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="black"
-                            height="20px"
+                            fill="#000091"
+                            height="24px"
                             viewBox="0 0 24 24"
-                            width="20px"
+                            width="24px"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
@@ -2221,8 +2383,17 @@ exports[`recherche renders search results 1`] = `
                       </span>
                     </span>
                     <label>
-                      Anglais
+                      Languages.Français
                     </label>
+                  </div>
+                  <div
+                    class="countContainer"
+                  >
+                    <div
+                      class="count"
+                    >
+                      112
+                    </div>
                   </div>
                 </button>
               </div>
