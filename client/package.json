@@ -69,20 +69,18 @@
     "uuid": "^10.0.0"
   },
   "scripts": {
-    "predev": "only-include-used-icons",
-    "prebuild": "only-include-used-icons",
-    "dev": "next dev",
-    "start": "next start",
     "build": "NEXT_SHARP_PATH=../node_modules/.bin/sharp next build",
     "check-types": "tsc --noEmit",
-    "test": "npm run test:lint && npm run test:types && npm run test:unit",
-    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
-    "test:types": "tsc --noEmit",
-    "test:unit": "jest --runInBand",
-    "test:lint": "next lint",
-    "fix:lint": "next lint --fix",
+    "dev": "next dev",
+    "lint:fix": "next lint --fix",
+    "lint": "next lint",
+    "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
-    "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''"
+    "prebuild": "only-include-used-icons",
+    "predev": "only-include-used-icons",
+    "start": "next start",
+    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
+    "test": "jest --runInBand"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
