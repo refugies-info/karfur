@@ -5,6 +5,42 @@
       "dependsOn": [
         "^build"
       ],
+      "env": [
+        "accountSid",
+        "AIRTABLE_BASE_TRAD",
+        "AIRTABLE_BASE_USERS",
+        "AIRTABLE_TOKEN",
+        "ALGOLIA_API_KEY",
+        "ALGOLIA_INDEX",
+        "API_KEY",
+        "API_SECRET",
+        "authToken",
+        "CLOUD_NAME",
+        "CRON_TOKEN",
+        "EXPO_ACCESS_TOKEN",
+        "FRONT_SITE_URL",
+        "GCLOUD_CLIENT_EMAIL",
+        "GCLOUD_CLIENT_ID",
+        "GCLOUD_CLIENT_X509",
+        "GCLOUD_PKEY",
+        "GCLOUD_PRIVATE_KEY_ID",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
+        "MICROSOFT_CLIENT_ID",
+        "MICROSOFT_CLIENT_SECRET",
+        "MINIMUM_APP_VERSION",
+        "MONGODB_URI",
+        "NEXT_PUBLIC_*",
+        "NODE_ENV",
+        "PORT",
+        "POSTMAN_SECRET",
+        "REACT_APP_SITE_SECRET",
+        "SECRET",
+        "SENDGRID_API_KEY",
+        "SENDINBLUE_API_KEY",
+        "SLACK_WEBHOOK_URL",
+        "TTS_KEY_1"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env"
@@ -28,6 +64,8 @@
       ]
     },
     "start": {
+      "persistent": true,
+      "cache": false,
       "dependsOn": [
         "^start"
       ],
@@ -37,6 +75,7 @@
       ]
     },
     "test": {
+      "cache": false,
       "dependsOn": [
         "^test"
       ]
