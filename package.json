@@ -38,7 +38,9 @@
     "node": "20.13.1",
     "yarn": "1.22.22"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "turbo": "^2.0.9"
+  },
   "jest": {
     "setupFilesAfterEnv": [
       "./client/src/setupTests.js"
