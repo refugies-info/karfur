@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "check-types": "tsc --noEmit",
     "test": "echo 'No tests to run'",
     "prepublishOnly": "tsc"
   },
