@@ -23,11 +23,5 @@ jobs:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
       - run:
-          name: Lint
-          command: yarn lint
-      - run:
-          name: Check types
-          command: yarn check-types
-      - run:
-          name: Run unit tests
-          command: yarn test
+          name: Lint, Check Types and Test
+          command: turbo lint check-types test
