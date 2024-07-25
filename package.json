@@ -23,6 +23,8 @@
     "check-types:client": "turbo check-types --filter=@refugies-info/client",
     "check-types:server": "turbo check-types --filter=@refugies-info/server",
     "dev": "turbo dev",
+    "dev:client": "turbo dev --filter=@refugies-info/client",
+    "dev:server": "turbo dev --filter=@refugies-info/server",
     "start": "turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",
