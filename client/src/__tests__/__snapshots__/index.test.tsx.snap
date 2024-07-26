@@ -1484,7 +1484,7 @@ exports[`homepage renders homepage 1`] = `
             >
               <svg
                 class="eva eva-arrow-downward-outline"
-                fill="#0421b1"
+                fill="bleuCharte"
                 height="24px"
                 viewBox="0 0 24 24"
                 width="24px"
@@ -9396,7 +9396,7 @@ exports[`homepage renders homepage 1`] = `
                         >
                           <svg
                             class="eva eva-email-outline"
-                            fill="#5E5E5E"
+                            fill="gray80"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"

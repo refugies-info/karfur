@@ -13,7 +13,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c3 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -22,7 +22,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c1 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -72,21 +72,21 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c18 {
-  background: #2d9cdb;
+  background: focus;
   border-radius: 12px;
   padding: 16px;
   margin-top: 15px;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: white;
   margin-bottom: 15px;
 }
 
 .c12 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -97,13 +97,13 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c12:hover {
-  background-color: #212121;
+  background-color: gray90;
 }
 
 .c13 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -114,7 +114,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c13:hover {
-  background-color: #f44336;
+  background-color: error;
 }
 
 .c8 {
@@ -127,45 +127,45 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
 }
 
 .c14 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
 }
 
 .c10 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
   width: fit-content;
 }
 
 .c15 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
   width: fit-content;
 }
 
 .c11 {
-  color: #0421b1;
+  color: bleuCharte;
   max-width: 190px;
 }
 
 .c16 {
-  color: #212121;
+  color: gray90;
   max-width: 190px;
 }
 
@@ -405,7 +405,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <div
                       class="c12"
                       data-testid="edit-member-id2"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -418,7 +418,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -448,7 +448,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <div
                       class="c13"
                       data-testid="delete-button-id2"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -461,7 +461,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -553,7 +553,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <div
                       class="c12"
                       data-testid="edit-member-id1"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -566,7 +566,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -596,7 +596,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <div
                       class="c13"
                       data-testid="delete-button-id1"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -609,7 +609,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -678,7 +678,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 >
                   <svg
                     class="eva eva-search-outline"
-                    fill="#212121"
+                    fill="gray90"
                     height="20px"
                     viewBox="0 0 24 24"
                     width="20px"
@@ -808,7 +808,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c3 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -817,7 +817,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c1 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -854,29 +854,29 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c20 {
-  background: #E0E0E0;
+  background: grey2;
   border-width: 1px;
   border-style: solid;
-  border-color: #212121;
+  border-color: gray90;
   box-sizing: border-box;
   border-radius: 12px;
   padding: 16px;
   margin: 4px 0px 4px 0px;
   cursor: pointer;
-  color: #212121;
+  color: gray90;
 }
 
 .c23 {
-  background: #ffffff;
+  background: white;
   border-width: 1px;
   border-style: solid;
-  border-color: #212121;
+  border-color: gray90;
   box-sizing: border-box;
   border-radius: 12px;
   padding: 16px;
   margin: 4px 0px 4px 0px;
   cursor: pointer;
-  color: #212121;
+  color: gray90;
 }
 
 .c22 {
@@ -923,7 +923,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 .c12 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -934,13 +934,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c12:hover {
-  background-color: #212121;
+  background-color: gray90;
 }
 
 .c13 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -951,7 +951,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c13:hover {
-  background-color: #f44336;
+  background-color: error;
 }
 
 .c8 {
@@ -964,45 +964,45 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
 }
 
 .c14 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
 }
 
 .c10 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
   width: fit-content;
 }
 
 .c15 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
   width: fit-content;
 }
 
 .c11 {
-  color: #0421b1;
+  color: bleuCharte;
   max-width: 190px;
 }
 
 .c16 {
-  color: #212121;
+  color: gray90;
   max-width: 190px;
 }
 
@@ -1242,7 +1242,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c12"
                       data-testid="edit-member-id2"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1255,7 +1255,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1285,7 +1285,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c13"
                       data-testid="delete-button-id2"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1298,7 +1298,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1390,7 +1390,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c12"
                       data-testid="edit-member-id1"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1403,7 +1403,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1433,7 +1433,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c13"
                       data-testid="delete-button-id1"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1446,7 +1446,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1529,7 +1529,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <svg
                   class="eva eva-radio-button-on"
-                  fill="#212121"
+                  fill="gray90"
                   height="20px"
                   viewBox="0 0 24 24"
                   width="20px"
@@ -1588,7 +1588,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <svg
                   class="eva eva-radio-button-off"
-                  fill="#212121"
+                  fill="gray90"
                   height="20px"
                   viewBox="0 0 24 24"
                   width="20px"
@@ -1733,7 +1733,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c3 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -1742,7 +1742,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c1 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -1779,29 +1779,29 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c20 {
-  background: #ffffff;
+  background: white;
   border-width: 1px;
   border-style: solid;
-  border-color: #212121;
+  border-color: gray90;
   box-sizing: border-box;
   border-radius: 12px;
   padding: 16px;
   margin: 4px 0px 4px 0px;
   cursor: pointer;
-  color: #212121;
+  color: gray90;
 }
 
 .c23 {
-  background: #2d9cdb;
+  background: focus;
   border-width: 1px;
   border-style: solid;
-  border-color: #2d9cdb;
+  border-color: focus;
   box-sizing: border-box;
   border-radius: 12px;
   padding: 16px;
   margin: 4px 0px 4px 0px;
   cursor: pointer;
-  color: #ffffff;
+  color: white;
 }
 
 .c22 {
@@ -1848,7 +1848,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 .c12 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -1859,13 +1859,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c12:hover {
-  background-color: #212121;
+  background-color: gray90;
 }
 
 .c13 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -1876,7 +1876,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c13:hover {
-  background-color: #f44336;
+  background-color: error;
 }
 
 .c8 {
@@ -1889,45 +1889,45 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
 }
 
 .c14 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
 }
 
 .c10 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
   width: fit-content;
 }
 
 .c15 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
   width: fit-content;
 }
 
 .c11 {
-  color: #0421b1;
+  color: bleuCharte;
   max-width: 190px;
 }
 
 .c16 {
-  color: #212121;
+  color: gray90;
   max-width: 190px;
 }
 
@@ -2167,7 +2167,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c12"
                       data-testid="edit-member-id2"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -2180,7 +2180,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -2210,7 +2210,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c13"
                       data-testid="delete-button-id2"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -2223,7 +2223,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -2315,7 +2315,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c12"
                       data-testid="edit-member-id1"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -2328,7 +2328,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -2358,7 +2358,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <div
                       class="c13"
                       data-testid="delete-button-id1"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -2371,7 +2371,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -2454,7 +2454,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <svg
                   class="eva eva-radio-button-off"
-                  fill="#212121"
+                  fill="gray90"
                   height="20px"
                   viewBox="0 0 24 24"
                   width="20px"
@@ -2510,7 +2510,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <svg
                   class="eva eva-radio-button-on"
-                  fill="#ffffff"
+                  fill="white"
                   height="20px"
                   viewBox="0 0 24 24"
                   width="20px"
@@ -2657,7 +2657,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
 }
 
 .c2 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -2666,7 +2666,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
 }
 
 .c1 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -2720,7 +2720,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 160px; height: 20px; --base-color: #ffffff;"
+            style="width: 160px; height: 20px; --base-color: white;"
           >
             ‌
           </span>
@@ -2753,7 +2753,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 700px; height: 50px; --base-color: #ffffff;"
+            style="width: 700px; height: 50px; --base-color: white;"
           >
             ‌
           </span>
@@ -2765,7 +2765,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 700px; height: 50px; --base-color: #ffffff;"
+            style="width: 700px; height: 50px; --base-color: white;"
           >
             ‌
           </span>
@@ -2777,7 +2777,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 700px; height: 50px; --base-color: #ffffff;"
+            style="width: 700px; height: 50px; --base-color: white;"
           >
             ‌
           </span>
@@ -2803,7 +2803,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: #f44336;
+  color: error;
   margin-top: 60px;
 }
 
@@ -2836,7 +2836,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c3 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -2845,7 +2845,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c1 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -2891,45 +2891,45 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
 }
 
 .c12 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
 }
 
 .c10 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
   width: fit-content;
 }
 
 .c13 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
   width: fit-content;
 }
 
 .c11 {
-  color: #0421b1;
+  color: bleuCharte;
   max-width: 190px;
 }
 
 .c14 {
-  color: #212121;
+  color: gray90;
   max-width: 190px;
 }
 
@@ -3190,7 +3190,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c3 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -3199,7 +3199,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c1 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -3238,7 +3238,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 .c12 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -3249,13 +3249,13 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c12:hover {
-  background-color: #212121;
+  background-color: gray90;
 }
 
 .c13 {
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -3266,7 +3266,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c13:hover {
-  background-color: #f44336;
+  background-color: error;
 }
 
 .c8 {
@@ -3279,45 +3279,45 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
 }
 
 .c14 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
 }
 
 .c10 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: bleuCharte;
   width: fit-content;
 }
 
 .c15 {
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: gray90;
   width: fit-content;
 }
 
 .c11 {
-  color: #0421b1;
+  color: bleuCharte;
   max-width: 190px;
 }
 
 .c16 {
-  color: #212121;
+  color: gray90;
   max-width: 190px;
 }
 
@@ -3557,7 +3557,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c12"
                       data-testid="edit-member-id2"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -3570,7 +3570,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -3600,7 +3600,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c13"
                       data-testid="delete-button-id2"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -3613,7 +3613,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -3705,7 +3705,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c12"
                       data-testid="edit-member-id1"
-                      hovercolor="#212121"
+                      hovercolor="gray90"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -3718,7 +3718,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-edit"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -3748,7 +3748,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c13"
                       data-testid="delete-button-id1"
-                      hovercolor="#f44336"
+                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -3761,7 +3761,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="#ffffff"
+                              fill="white"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
