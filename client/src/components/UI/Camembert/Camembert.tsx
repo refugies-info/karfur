@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import styles from "./Camembert.module.scss";
 
 interface Props {
@@ -13,9 +13,7 @@ const Camembert = (props: Props) => {
       <div
         className={styles.progress}
         style={{
-          background: `conic-gradient(${styles.var(
-            --background - active - blue - france - active,
-          )} ${degrees}deg, white ${degrees}deg, white 360deg)`,
+          background: `conic-gradient(${styles.lightPrimaryBlueFranceSun} ${degrees}deg, white ${degrees}deg, white 360deg)`,
         }}
       ></div>
     </div>
