@@ -53,8 +53,8 @@
   }
 
   &.selected {
-    background: var(--background-alt-blue-france);
-    border-color: var(--background-alt-blue-france);
+    background: var(--background-action-low-blue-france);
+    border-color: var(--background-action-low-blue-france);
     color: var(--background-action-high-blue-france);
 
     .subtext {
@@ -62,7 +62,7 @@
     }
 
     &:hover {
-      background: var(--background-alt-blue-france) !important;
+      background: var(--background-action-low-blue-france) !important;
       border-color: var(--background-action-high-blue-france) !important;
     }
   }

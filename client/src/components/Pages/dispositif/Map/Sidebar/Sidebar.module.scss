@@ -84,7 +84,7 @@
 
   &:hover,
   &.active {
-    background: var(--background-alt-blue-france) !important;
+    background: var(--background-action-low-blue-france) !important;
     color: var(--background-action-high-blue-france);
 
     @include media-max("lg-limit") {
