@@ -28,5 +28,5 @@
   position: absolute;
   bottom: u(12);
   @include l-ltr(u(6));
-  color: $lightTextDisabledGrey;
+  color: $var(--text-disabled-grey);
 }

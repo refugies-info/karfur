@@ -46,10 +46,10 @@ $btnSize: u(8);
       box-shadow: inset 0 0 0 1px #e5e5e5;
 
       span i svg {
-        fill: $lightTextDisabledGrey;
+        fill: $var(--text-disabled-grey);
       }
       &::before {
-        background-color: $lightTextDisabledGrey !important;
+        background-color: $var(--text-disabled-grey) !important;
       }
 
       &:hover {

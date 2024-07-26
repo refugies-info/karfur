@@ -15,7 +15,7 @@
   border-radius: 50%;
   background: $gray40;
   @include dsfr-text("small");
-  color: $lightTextDisabledGrey;
+  color: $var(--text-disabled-grey);
   margin-right: u(2);
   display: flex;
   align-items: center;

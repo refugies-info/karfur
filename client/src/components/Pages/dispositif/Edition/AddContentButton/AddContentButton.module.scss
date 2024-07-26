@@ -9,7 +9,7 @@
   &:global(.fr-btn) {
     background-color: white;
     box-shadow: 0 2px 6px 0 #00001229;
-    color: $lightTextDisabledGrey;
+    color: $var(--text-disabled-grey);
     width: 100%;
     padding: u(4);
     border-radius: u(2);
