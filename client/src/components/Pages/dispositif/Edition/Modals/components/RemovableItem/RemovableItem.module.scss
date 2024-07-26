@@ -16,7 +16,7 @@
     background: $var(--background-action-low-blue-france-hover) !important;
   }
   &:active {
-    background: $lightPrimaryBlueFranceActive !important;
+    background: $var(--background-action-low-blue-france-active) !important;
   }
 }
 
