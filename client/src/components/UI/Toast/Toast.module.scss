@@ -32,7 +32,7 @@
   padding: 0 !important;
   display: flex;
   align-items: center;
-  color: $lightTextDefaultSuccess;
+  color: $var(--text-default-success);
   @include dsfr-text("normal");
 }
 

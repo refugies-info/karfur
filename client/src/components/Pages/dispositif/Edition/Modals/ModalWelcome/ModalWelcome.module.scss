@@ -24,6 +24,6 @@
 }
 
 .success {
-  color: $lightTextDefaultSuccess;
+  color: $var(--text-default-success);
   font-weight: bold;
 }

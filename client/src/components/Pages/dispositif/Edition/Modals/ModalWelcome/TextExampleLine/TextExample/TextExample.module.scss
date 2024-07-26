@@ -35,7 +35,7 @@
   transform: translateX(-50%);
 
   .success & {
-    background: $lightTextDefaultSuccess;
+    background: $var(--text-default-success);
   }
   .error & {
     background: $var(--text-default-error);
