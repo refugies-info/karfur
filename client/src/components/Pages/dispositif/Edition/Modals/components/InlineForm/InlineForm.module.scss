@@ -11,7 +11,7 @@
   width: fit-content;
 
   &.border {
-    border: 1px solid $lightBorderDefaultGrey;
+    border: 1px solid $var(--border-default-grey);
     padding: u(4);
     border-radius: u(2);
   }
@@ -28,7 +28,7 @@
       @include baseInput();
       background: $var(--background-alt-raised-grey);
       color: $lightTextTitleGrey;
-      border: 1px solid $lightBorderDefaultGrey;
+      border: 1px solid $var(--border-default-grey);
       padding: u(2) u(1);
       max-width: 72px;
       min-width: 25px;

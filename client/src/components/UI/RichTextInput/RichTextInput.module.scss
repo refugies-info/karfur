@@ -6,7 +6,7 @@
 @import "~scss/variables";
 
 .container {
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid $var(--border-default-grey);
   position: relative;
   background: white;
   border-radius: u(2);

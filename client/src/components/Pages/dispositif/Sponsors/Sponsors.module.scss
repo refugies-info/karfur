@@ -47,7 +47,7 @@
   }
 
   &.edit {
-    border: 1px solid $lightBorderDefaultGrey;
+    border: 1px solid $var(--border-default-grey);
   }
 
   &.link:hover {

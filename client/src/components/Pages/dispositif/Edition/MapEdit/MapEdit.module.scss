@@ -17,7 +17,7 @@
   height: 620px;
   position: relative;
   border-radius: u(2);
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid $var(--border-default-grey);
   overflow: hidden;
   margin-bottom: u(14);
   @include zoom-controls();

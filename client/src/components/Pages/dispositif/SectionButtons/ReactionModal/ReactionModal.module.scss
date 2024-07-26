@@ -11,7 +11,7 @@
 .textarea {
   @include baseInput();
   background: $gray30;
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid $var(--border-default-grey);
   min-height: 240px;
 
   &:hover {

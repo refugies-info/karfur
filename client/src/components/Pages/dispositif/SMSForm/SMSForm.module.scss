@@ -6,7 +6,7 @@
 
 .container {
   margin-top: u(10);
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid $var(--border-default-grey);
   padding: u(4);
   border-radius: u(2);
 }

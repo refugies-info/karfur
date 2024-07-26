@@ -26,6 +26,6 @@
 .divider {
   width: 1px;
   height: 24px;
-  background: $lightBorderDefaultGrey;
+  background: $var(--border-default-grey);
   display: block;
 }

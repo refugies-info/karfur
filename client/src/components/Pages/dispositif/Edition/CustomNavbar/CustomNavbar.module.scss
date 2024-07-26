@@ -9,8 +9,8 @@
 
 .container {
   background-color: white;
-  border-top: 1px solid $lightBorderDefaultGrey;
-  border-bottom: 1px solid $lightBorderDefaultGrey;
+  border-top: 1px solid $var(--border-default-grey);
+  border-bottom: 1px solid $var(--border-default-grey);
   position: sticky;
   top: 0;
   box-shadow: 0 12px 32px -8px #0000241f;

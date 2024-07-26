@@ -45,10 +45,10 @@
   overflow-y: scroll;
 
   &:first-child {
-    border-right: 1px solid $lightBorderDefaultGrey;
+    border-right: 1px solid $var(--border-default-grey);
   }
   &:last-child {
-    border-left: 1px solid $lightBorderDefaultGrey;
+    border-left: 1px solid $var(--border-default-grey);
   }
 }
 

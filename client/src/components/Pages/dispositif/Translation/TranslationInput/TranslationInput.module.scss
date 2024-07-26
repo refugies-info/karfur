@@ -17,7 +17,7 @@
 
 .view {
   padding: u(4);
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid $var(--border-default-grey);
   background: $var(--background-alt-raised-grey);
   border-radius: u(2);
   margin-bottom: u(4);
@@ -83,7 +83,7 @@
 
   .footer {
     padding: u(4);
-    border-top: 1px solid $lightBorderDefaultGrey;
+    border-top: 1px solid $var(--border-default-grey);
     background: $var(--background-contrast-grey);
     border-radius: 0 0 u(2) u(2);
     display: flex;

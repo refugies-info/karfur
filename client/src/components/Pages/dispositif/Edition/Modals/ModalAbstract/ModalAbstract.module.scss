@@ -14,7 +14,7 @@
   height: 100%;
   padding-bottom: u(12);
   background: $gray30;
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid $var(--border-default-grey);
   max-width: 230px;
 
   &:hover {

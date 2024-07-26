@@ -53,7 +53,7 @@ $btnSize: u(8);
       }
 
       &:hover {
-        background: $lightBorderDefaultGrey;
+        background: $var(--border-default-grey);
         box-shadow: none;
         span i svg {
           fill: $lightTextMentionGrey;

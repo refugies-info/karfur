@@ -54,7 +54,7 @@
   }
 
   &.placeholder {
-    border: 1px solid $lightBorderDefaultGrey;
+    border: 1px solid $var(--border-default-grey);
     background: $var(--background-alt-raised-grey);
     border-radius: u(2);
     width: 100%;
@@ -137,7 +137,7 @@
 
 .card {
   &.demo {
-    border: 1px solid $lightBorderDefaultGrey;
+    border: 1px solid $var(--border-default-grey);
     box-shadow: none !important;
     cursor: default !important;
   }

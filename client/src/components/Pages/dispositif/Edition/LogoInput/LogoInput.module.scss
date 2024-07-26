@@ -7,7 +7,7 @@
 .container {
   height: 120px;
   background: $var(--background-alt-raised-grey);
-  border: 1px dashed $lightBorderDefaultGrey;
+  border: 1px dashed $var(--border-default-grey);
   display: flex;
   align-items: center;
   justify-content: center;
