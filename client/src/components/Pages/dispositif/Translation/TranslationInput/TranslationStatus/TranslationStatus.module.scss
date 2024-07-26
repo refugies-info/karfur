@@ -23,7 +23,7 @@
     }
   }
   &.warning {
-    background: $lightBackgroundContrastWarning;
+    background: $var(--background-contrast-warning);
     color: var(--text-default-warning);
     svg {
       fill: var(--text-default-warning);

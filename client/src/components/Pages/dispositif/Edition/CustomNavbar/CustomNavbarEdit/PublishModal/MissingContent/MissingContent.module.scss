@@ -5,7 +5,7 @@
 
 .missing {
   padding: u(8);
-  background: $lightBackgroundContrastWarning;
+  background: $var(--background-contrast-warning);
   border-radius: u(2);
   margin-top: u(6);
   margin-bottom: u(8);
