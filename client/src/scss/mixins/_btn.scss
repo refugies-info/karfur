@@ -34,7 +34,7 @@
       background: #ffe8e5 !important;
     }
   } @else if ($status == "info") {
-    background: $lightBackgroundAltRaisedGrey;
+    background: var(--background-alt-raised-grey);
     border-color: $lightBorderDefaultGrey;
     &:hover {
       background: var(--background-contrast-grey) !important;
