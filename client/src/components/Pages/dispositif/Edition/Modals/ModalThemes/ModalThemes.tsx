@@ -1,13 +1,13 @@
-import { CreateDispositifRequest } from "@refugies-info/api-types";
-import BaseModal from "components/UI/BaseModal";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { useCallback, useMemo, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useFormContext } from "react-hook-form";
+import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import BaseModal from "components/UI/BaseModal";
 import { SimpleFooter } from "../components";
-import styles from "./ModalThemes.module.scss";
 import ThemeSelectButton from "./ThemeSelectButton";
+import styles from "./ModalThemes.module.scss";
 
 interface Props {
   show: boolean;
@@ -106,7 +106,7 @@ const ModalThemes = (props: Props) => {
 
         {remainingSelect > 0 && (
           <p className={styles.help}>
-            <EVAIcon name="info" size={16} fill={styles.var(--background - flat - info)} className="me-2" />
+            <EVAIcon name="info" size={16} fill={styles.lightBorderPlainInfo} className="me-2" />
             {remainingSelect} thèmes restants maximum
           </p>
         )}

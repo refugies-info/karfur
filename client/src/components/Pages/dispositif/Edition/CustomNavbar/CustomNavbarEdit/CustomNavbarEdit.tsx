@@ -1,26 +1,26 @@
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useWatch } from "react-hook-form";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
-import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
-import { useLocale, useUser } from "hooks";
-import { useContentType } from "hooks/dispositif";
+import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { Event } from "lib/tracking";
-import { useRouter } from "next/router";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useWatch } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import Swal from "sweetalert2";
-import API from "utils/API";
+import { useContentType } from "hooks/dispositif";
+import { useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
-import styles from "../CustomNavbar.module.scss";
-import SaveErrorModal from "../SaveErrorModal";
-import StepBar from "../StepBar";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import Button from "components/UI/Button";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { calculateProgressEdit, getText, getTotalSteps } from "./functions";
-import PublishModal from "./PublishModal";
+import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
+import PublishModal from "./PublishModal";
+import StepBar from "../StepBar";
+import SaveErrorModal from "../SaveErrorModal";
+import styles from "../CustomNavbar.module.scss";
 import useAutosave from "./useAutosave";
 
 interface Props {
@@ -118,7 +118,7 @@ const CustomNavbarEdit = (props: Props) => {
         <div className={styles.warning}>
           <div className={cls("fr-container", styles.inner)}>
             <span>
-              <EVAIcon name="info" size={24} fill={styles.var(--background - flat - info)} className="me-4" />
+              <EVAIcon name="info" size={24} fill={styles.lightBorderPlainInfo} className="me-4" />
               L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de rédiger dans une autre
               langue.
             </span>
@@ -128,7 +128,7 @@ const CustomNavbarEdit = (props: Props) => {
                 setShowLanguageWarning(false);
               }}
             >
-              <EVAIcon name="close-outline" size={16} fill={styles.var(--background - flat - info)} />
+              <EVAIcon name="close-outline" size={16} fill={styles.lightBorderPlainInfo} />
             </button>
           </div>
         </div>

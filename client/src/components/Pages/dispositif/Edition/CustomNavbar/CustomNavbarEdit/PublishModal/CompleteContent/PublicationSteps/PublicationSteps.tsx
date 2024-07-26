@@ -1,7 +1,7 @@
-import Badge from "components/UI/Badge";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 import React from "react";
+import { cls } from "lib/classname";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Badge from "components/UI/Badge";
 import styles from "./PublicationSteps.module.scss";
 
 type Item = {
@@ -23,7 +23,7 @@ const PublicationSteps = (props: Props) => {
           <EVAIcon
             name={item.done ? "checkmark-circle-2" : "radio-button-off"}
             size={24}
-            fill={styles.var(--background - flat - info)}
+            fill={styles.lightBorderPlainInfo}
             className={cls("me-2", styles.icon)}
           />
           <div>
