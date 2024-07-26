@@ -9,7 +9,7 @@
     margin-bottom: u(2);
 
     &.playing {
-      background: $lightPrimaryBlueFranceSun !important;
+      background: $var(--background-active-blue-france-active) !important;
     }
   }
 

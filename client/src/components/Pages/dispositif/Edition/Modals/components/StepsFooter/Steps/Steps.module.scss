@@ -22,7 +22,7 @@
   justify-content: center;
 
   &.current {
-    background: $lightPrimaryBlueFranceSun;
+    background: $var(--background-active-blue-france-active);
     color: white;
   }
   &.done {

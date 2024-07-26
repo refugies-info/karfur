@@ -1,10 +1,10 @@
-import React, { useContext, useMemo } from "react";
-import { cls } from "lib/classname";
-import isUndefined from "lodash/isUndefined";
-import PageContext from "utils/pageContext";
-import { useUniqueId } from "hooks";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Tooltip from "components/UI/Tooltip";
+import { useUniqueId } from "hooks";
+import { cls } from "lib/classname";
+import isUndefined from "lodash/isUndefined";
+import React, { useContext, useMemo } from "react";
+import PageContext from "utils/pageContext";
 import styles from "./BaseCard.module.scss";
 
 type BaseCardStatus = "done" | "error";
@@ -90,7 +90,7 @@ const BaseCard = ({ id, title, items, color, onClick }: Props) => {
               <>
                 <EVAIcon
                   name="checkmark-circle-2"
-                  fill={styles.lightPrimaryBlueFranceSun}
+                  fill={styles.var(--background - active - blue - france - active)}
                   className={cls(styles.status, styles.done)}
                 />
                 <EVAIcon

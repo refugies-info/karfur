@@ -45,9 +45,9 @@
   }
   &.info {
     background: var(--background-alt-blue-france);
-    color: $lightPrimaryBlueFranceSun;
+    color: $var(--background-active-blue-france-active);
     svg {
-      fill: $lightPrimaryBlueFranceSun;
+      fill: $var(--background-active-blue-france-active);
     }
   }
 }
