@@ -44,7 +44,7 @@
     }
   }
   &.info {
-    background: $lightBackgroundActionLowBlueFrance;
+    background: var(--background-alt-blue-france);
     color: $lightPrimaryBlueFranceSun;
     svg {
       fill: $lightPrimaryBlueFranceSun;

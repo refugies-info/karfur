@@ -30,7 +30,7 @@
     &.translation {
       left: inherit;
       right: u(10);
-      background: $lightBackgroundActionLowBlueFrance;
+      background: var(--background-alt-blue-france);
       border-color: $lightBorderDefaultBlueFrance;
       color: $lightBorderDefaultBlueFrance;
       & > span {

@@ -84,7 +84,7 @@
 
   &:hover,
   &.active {
-    background: $lightBackgroundActionLowBlueFrance !important;
+    background: var(--background-alt-blue-france) !important;
     color: $lightTextActionHighBlueFrance;
 
     @include media-max("lg-limit") {

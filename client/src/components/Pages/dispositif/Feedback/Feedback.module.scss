@@ -6,7 +6,7 @@
 @import "~scss/mixins/responsive";
 
 .container {
-  background: $lightBackgroundActionLowBlueFrance;
+  background: var(--background-alt-blue-france);
   color: $lightTextTitleGrey;
   padding: u(8) u(4) u(8) 256px;
   border-radius: u(3);
