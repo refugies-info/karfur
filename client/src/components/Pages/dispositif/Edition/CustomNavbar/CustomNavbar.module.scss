@@ -26,7 +26,7 @@
 .warning {
   padding: u(2) 0;
   background: $var(--background-contrast-info);
-  color: $lightBorderPlainInfo;
+  color: $var(--background-flat-info);
   font-weight: bold;
 }
 

@@ -7,7 +7,7 @@
   background: $var(--background-contrast-info);
   border-radius: u(2);
   padding: u(8);
-  color: $lightBorderPlainInfo;
+  color: $var(--background-flat-info);
   margin-top: u(6);
   margin-bottom: u(8);
 }
@@ -21,7 +21,7 @@
     content: "";
     height: 100%;
     width: 2px;
-    background: $lightBorderPlainInfo;
+    background: $var(--background-flat-info);
     position: absolute;
     left: 11px;
     top: 6px;

@@ -26,7 +26,7 @@
 
 .sidebar {
   width: 204px;
-  color: $lightBorderPlainInfo;
+  color: $var(--background-flat-info);
   background-color: $var(--background-contrast-info);
   padding: u(6);
   border-radius: u(2) 0 0 u(2);
