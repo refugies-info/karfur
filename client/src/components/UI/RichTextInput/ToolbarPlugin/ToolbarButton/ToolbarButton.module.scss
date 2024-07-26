@@ -33,14 +33,14 @@
   }
 
   &.selected {
-    background-color: $lightBackgroundActionLowBlueFrance;
+    background-color: var(--background-action-low-blue-france);
 
     &.text_btn {
       color: var(--background-action-high-blue-france);
     }
 
     &:hover {
-      background-color: darken($lightBackgroundActionLowBlueFrance, 5%);
+      background-color: color-mix(in srgb, var(--background-action-low-blue-france) 95%, black) !important;
     }
   }
 
