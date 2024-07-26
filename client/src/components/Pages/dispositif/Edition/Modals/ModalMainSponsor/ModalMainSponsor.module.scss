@@ -5,7 +5,7 @@
 
 .container {
   p {
-    color: $lightTextDefaultGrey;
+    color: $var(--text-default-grey);
     margin-bottom: u(6);
   }
 }
