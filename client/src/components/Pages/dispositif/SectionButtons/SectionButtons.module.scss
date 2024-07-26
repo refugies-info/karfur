@@ -56,10 +56,10 @@ $btnSize: u(8);
         background: $var(--border-default-grey);
         box-shadow: none;
         span i svg {
-          fill: $lightTextMentionGrey;
+          fill: var(--text-mention-grey);
         }
         &::before {
-          background-color: $lightTextMentionGrey !important;
+          background-color: var(--text-mention-grey) !important;
         }
       }
     }

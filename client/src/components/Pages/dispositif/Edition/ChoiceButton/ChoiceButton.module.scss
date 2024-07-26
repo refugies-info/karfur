@@ -45,7 +45,7 @@
   .subtext {
     display: block;
     @include dsfr-text("very-small");
-    color: $lightTextMentionGrey;
+    color: var(--text-mention-grey);
   }
 
   &:hover {

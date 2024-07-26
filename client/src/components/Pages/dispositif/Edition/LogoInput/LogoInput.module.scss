@@ -35,7 +35,7 @@
 
 .help {
   @include dsfr-text("very-small");
-  color: $lightTextMentionGrey;
+  color: var(--text-mention-grey);
   margin-top: u(2);
 }
 

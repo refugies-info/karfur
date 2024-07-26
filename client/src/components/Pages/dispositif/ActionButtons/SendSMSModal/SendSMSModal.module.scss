@@ -7,7 +7,7 @@
 
 .form {
   .text {
-    color: $lightTextMentionGrey;
+    color: var(--text-mention-grey);
     margin-bottom: u(8);
   }
   .input {

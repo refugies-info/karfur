@@ -23,7 +23,7 @@
 
 .label {
   @include dsfr-text("small");
-  color: $lightTextMentionGrey;
+  color: var(--text-mention-grey);
   margin-bottom: 0;
   margin-left: u(2);
 }
