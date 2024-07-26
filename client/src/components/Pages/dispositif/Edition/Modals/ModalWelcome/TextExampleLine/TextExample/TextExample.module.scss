@@ -15,7 +15,7 @@
   align-items: center;
 
   &.success {
-    background: $lightBackgroundContrastSuccess;
+    background: $var(--background-contrast-success);
   }
   &.error {
     background: $var(--background-contrast-error);
