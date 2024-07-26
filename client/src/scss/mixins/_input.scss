@@ -24,7 +24,7 @@
 
   &:hover,
   &:active {
-    background: $lightBackgroundContrastGrey !important;
+    background: var(--background-contrast-grey) !important;
   }
   &:focus {
     background: $lightBackgroundAltRaisedGrey !important;

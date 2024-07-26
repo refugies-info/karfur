@@ -37,7 +37,7 @@
     background: $lightBackgroundAltRaisedGrey;
     border-color: $lightBorderDefaultGrey;
     &:hover {
-      background: $lightBackgroundContrastGrey !important;
+      background: var(--background-contrast-grey) !important;
     }
   }
 }

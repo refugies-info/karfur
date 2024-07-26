@@ -46,7 +46,7 @@
   }
 
   &.callout--important {
-    background: $lightBackgroundContrastGrey;
+    background: var(--background-contrast-grey);
     position: relative;
     border-radius: u(2);
     overflow: hidden;
