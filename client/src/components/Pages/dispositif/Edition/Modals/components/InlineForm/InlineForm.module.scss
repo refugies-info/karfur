@@ -26,7 +26,7 @@
 
     & > input {
       @include baseInput();
-      background: $lightBackgroundElevationAlt;
+      background: $var(--background-alt-raised-grey);
       color: $lightTextTitleGrey;
       border: 1px solid $lightBorderDefaultGrey;
       padding: u(2) u(1);
@@ -39,7 +39,7 @@
         background: $var(--background-contrast-grey) !important;
       }
       &:focus {
-        background: $lightBackgroundElevationAlt !important;
+        background: $var(--background-alt-raised-grey) !important;
         border-color: $darkBackgroundAltGrey;
         color: $darkBackgroundAltGrey;
       }

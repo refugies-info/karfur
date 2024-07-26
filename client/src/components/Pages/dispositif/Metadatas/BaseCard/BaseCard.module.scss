@@ -6,7 +6,7 @@
 @import "~scss/mixins/responsive";
 
 .card {
-  background: $lightBackgroundElevationAlt;
+  background: $var(--background-alt-raised-grey);
   border: 1px solid $lightBorderDefaultGrey;
   padding: u(4);
   margin-bottom: u(6);

@@ -19,7 +19,7 @@ $btnSize: u(8);
   }
 
   &.open {
-    background: $lightBackgroundElevationAlt;
+    background: $var(--background-alt-raised-grey);
     z-index: 1;
     padding-bottom: u(5);
   }

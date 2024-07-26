@@ -20,7 +20,7 @@
 }
 
 .input {
-  background: $lightBackgroundElevationAlt;
+  background: $var(--background-alt-raised-grey);
   border-radius: u(2);
   display: flex;
   justify-content: space-between;
@@ -47,7 +47,7 @@
     width: 100%;
     justify-content: center;
     border-radius: u(2);
-    background: $lightBackgroundElevationAlt !important;
+    background: $var(--background-alt-raised-grey) !important;
     text-align: left;
 
     @include rtl() {

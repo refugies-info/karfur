@@ -6,7 +6,7 @@
 
 .container {
   height: 120px;
-  background: $lightBackgroundElevationAlt;
+  background: $var(--background-alt-raised-grey);
   border: 1px dashed $lightBorderDefaultGrey;
   display: flex;
   align-items: center;

@@ -11,7 +11,7 @@
     margin-bottom: u(8);
   }
   .input {
-    background: $lightBackgroundElevationAlt;
+    background: $var(--background-alt-raised-grey);
     border-radius: u(2);
     margin-bottom: u(6);
     padding: u(3);
@@ -31,7 +31,7 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: u(6);
-    background-color: $lightBackgroundElevationAlt;
+    background-color: $var(--background-alt-raised-grey);
     color: $gray90;
 
     .icon {

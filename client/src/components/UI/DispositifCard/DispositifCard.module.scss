@@ -55,7 +55,7 @@
 
   &.placeholder {
     border: 1px solid $lightBorderDefaultGrey;
-    background: $lightBackgroundElevationAlt;
+    background: $var(--background-alt-raised-grey);
     border-radius: u(2);
     width: 100%;
   }

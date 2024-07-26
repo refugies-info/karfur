@@ -5,7 +5,7 @@
 
 .dropdown {
   .toggle {
-    background: $lightBackgroundElevationAlt;
+    background: $var(--background-alt-raised-grey);
     padding: u(2) u(3);
     color: $darkBackgroundAltGrey;
     border-radius: u(2);
@@ -17,7 +17,7 @@
       background: $var(--background-contrast-grey) !important;
     }
     &:focus {
-      background: $lightBackgroundElevationAlt !important;
+      background: $var(--background-alt-raised-grey) !important;
       border-color: $darkBackgroundAltGrey;
     }
 

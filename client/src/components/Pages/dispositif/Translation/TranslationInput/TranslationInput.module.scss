@@ -18,7 +18,7 @@
 .view {
   padding: u(4);
   border: 1px solid $lightBorderDefaultGrey;
-  background: $lightBackgroundElevationAlt;
+  background: $var(--background-alt-raised-grey);
   border-radius: u(2);
   margin-bottom: u(4);
 

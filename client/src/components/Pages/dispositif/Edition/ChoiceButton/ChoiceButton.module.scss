@@ -49,7 +49,7 @@
   }
 
   &:hover {
-    background: $lightBackgroundElevationAlt;
+    background: $var(--background-alt-raised-grey);
   }
 
   &.selected {

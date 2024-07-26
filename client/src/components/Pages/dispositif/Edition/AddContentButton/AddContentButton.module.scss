@@ -25,7 +25,7 @@
       background-color: $var(--background-contrast-grey) !important;
     }
     &:active {
-      background: $lightBackgroundElevationAlt;
+      background: $var(--background-alt-raised-grey);
     }
 
     .icon {
