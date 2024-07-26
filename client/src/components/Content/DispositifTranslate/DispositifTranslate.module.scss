@@ -31,10 +31,10 @@
       left: inherit;
       right: u(10);
       background: var(--background-alt-blue-france);
-      border-color: $lightBorderDefaultBlueFrance;
-      color: $lightBorderDefaultBlueFrance;
+      border-color: $var(--border-default-blue-france);
+      color: $var(--border-default-blue-france);
       & > span {
-        outline-color: $lightBorderDefaultBlueFrance;
+        outline-color: $var(--border-default-blue-france);
       }
     }
   }

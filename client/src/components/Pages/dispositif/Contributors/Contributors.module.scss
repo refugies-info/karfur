@@ -25,7 +25,7 @@
       background: $darkBackgroundActionHighBlueFrance;
 
       &:hover {
-        background: $lightBorderDefaultBlueFrance !important;
+        background: $var(--border-default-blue-france) !important;
       }
     }
   }
