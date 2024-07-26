@@ -76,7 +76,7 @@
 
     .error {
       @include dsfr-text("very-small");
-      color: $lightTextDefaultError;
+      color: $var(--text-default-error);
       padding: 0 u(4);
     }
   }

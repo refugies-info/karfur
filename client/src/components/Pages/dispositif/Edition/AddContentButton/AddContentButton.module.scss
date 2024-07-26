@@ -112,11 +112,11 @@
     }
 
     &.has_error {
-      border-color: $lightTextDefaultError;
-      color: $lightTextDefaultError;
+      border-color: $var(--text-default-error);
+      color: $var(--text-default-error);
 
       & > span svg {
-        fill: $lightTextDefaultError;
+        fill: $var(--text-default-error);
       }
     }
 

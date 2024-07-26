@@ -19,7 +19,7 @@
 }
 
 .error {
-  color: $lightTextDefaultError;
+  color: $var(--text-default-error);
   font-weight: bold;
 }
 

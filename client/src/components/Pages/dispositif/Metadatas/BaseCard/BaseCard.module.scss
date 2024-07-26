@@ -37,11 +37,11 @@
   }
 
   &.error {
-    border-color: $lightTextDefaultError;
+    border-color: $var(--text-default-error);
     box-shadow: 0 2px 6px 0 #00001229;
 
     .title {
-      color: $lightTextDefaultError !important;
+      color: $var(--text-default-error) !important;
     }
   }
 
@@ -112,7 +112,7 @@
     border-radius: u(2);
 
     .content {
-      color: $lightTextDefaultError;
+      color: $var(--text-default-error);
     }
   }
 }

@@ -70,7 +70,7 @@ $btnSize: u(8);
     }
 
     &.close {
-      background-color: $lightTextDefaultError;
+      background-color: $var(--text-default-error);
       color: $white;
 
       &:hover {

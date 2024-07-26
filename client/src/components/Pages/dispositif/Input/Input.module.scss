@@ -14,7 +14,7 @@
     color: $lightTextDefaultSuccess;
   }
   &.error label {
-    color: $lightTextDefaultError;
+    color: $var(--text-default-error);
   }
 
   &:hover {
@@ -71,7 +71,7 @@
     border-color: $lightTextDefaultSuccess;
   }
   .error & {
-    border-color: $lightTextDefaultError;
+    border-color: $var(--text-default-error);
   }
 
   .valid &,
@@ -84,7 +84,7 @@
   @include dsfr-text("very-small");
   display: inline-block;
   margin-top: u(2);
-  color: $lightTextDefaultError;
+  color: $var(--text-default-error);
 }
 
 .empty_btn {

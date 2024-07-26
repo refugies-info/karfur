@@ -20,7 +20,7 @@
     border: 1px solid transparent;
 
     &.input_error {
-      border-color: $lightTextDefaultError;
+      border-color: $var(--text-default-error);
     }
   }
 
@@ -52,7 +52,7 @@
   }
 
   .error {
-    color: $lightTextDefaultError;
+    color: $var(--text-default-error);
     margin-top: u(4);
     display: flex;
     align-items: center;

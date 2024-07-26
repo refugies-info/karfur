@@ -38,6 +38,6 @@
     background: $lightTextDefaultSuccess;
   }
   .error & {
-    background: $lightTextDefaultError;
+    background: $var(--text-default-error);
   }
 }
