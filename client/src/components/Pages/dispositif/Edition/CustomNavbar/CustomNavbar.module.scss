@@ -33,7 +33,7 @@
 .help {
   @include dsfr-text("small");
   margin-bottom: 0;
-  color: $lightTextActionHighBlueFrance;
+  color: $var(--background-action-high-blue-france);
   margin-left: u(4);
 }
 
@@ -52,7 +52,7 @@
   align-items: center;
   margin-left: 80px;
   @include dsfr-text("small");
-  color: $lightTextActionHighBlueFrance;
+  color: $var(--background-action-high-blue-france);
 
   p {
     margin-bottom: 0;

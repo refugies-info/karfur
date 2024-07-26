@@ -14,7 +14,7 @@
   .title {
     @include dsfr-text("small");
     margin-bottom: u(3);
-    color: $lightTextActionHighBlueFrance;
+    color: $var(--background-action-high-blue-france);
   }
   .info {
     @include dsfr-text("very-small");

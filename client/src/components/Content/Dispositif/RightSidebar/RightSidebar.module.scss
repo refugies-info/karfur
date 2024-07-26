@@ -17,7 +17,7 @@
     & > button {
       width: 100%;
       justify-content: center;
-      color: $lightTextActionHighBlueFrance;
+      color: $var(--background-action-high-blue-france);
       border: 1px solid $var(--border-default-grey);
       border-radius: u(2);
     }

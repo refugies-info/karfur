@@ -12,7 +12,7 @@
 }
 
 .inner {
-  background-color: $lightTextActionHighBlueFrance;
+  background-color: $var(--background-action-high-blue-france);
   box-shadow: 0 6px 18px 0 #00001229;
   border-radius: u(2);
   padding: u(2) 0;

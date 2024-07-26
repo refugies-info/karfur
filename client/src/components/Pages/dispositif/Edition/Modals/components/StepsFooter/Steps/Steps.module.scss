@@ -26,7 +26,7 @@
     color: white;
   }
   &.done {
-    background: $lightTextActionHighBlueFrance;
+    background: $var(--background-action-high-blue-france);
     color: white;
   }
 }

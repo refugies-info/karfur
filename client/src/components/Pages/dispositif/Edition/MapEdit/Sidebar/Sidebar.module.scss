@@ -35,9 +35,9 @@
   &:hover,
   &.active {
     background: var(--background-alt-blue-france) !important;
-    color: $lightTextActionHighBlueFrance;
+    color: $var(--background-action-high-blue-france);
     svg {
-      fill: $lightTextActionHighBlueFrance;
+      fill: $var(--background-action-high-blue-france);
     }
   }
 

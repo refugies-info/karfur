@@ -21,7 +21,7 @@
   justify-content: center;
 
   &.validated {
-    background-color: $lightTextActionHighBlueFrance;
+    background-color: $var(--background-action-high-blue-france);
     color: white;
 
     svg {
@@ -30,7 +30,7 @@
 
     &:hover {
       svg {
-        fill: $lightTextActionHighBlueFrance;
+        fill: $var(--background-action-high-blue-france);
       }
     }
   }

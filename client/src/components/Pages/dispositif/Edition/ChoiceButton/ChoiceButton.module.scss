@@ -55,15 +55,15 @@
   &.selected {
     background: var(--background-alt-blue-france);
     border-color: var(--background-alt-blue-france);
-    color: $lightTextActionHighBlueFrance;
+    color: $var(--background-action-high-blue-france);
 
     .subtext {
-      color: $lightTextActionHighBlueFrance;
+      color: $var(--background-action-high-blue-france);
     }
 
     &:hover {
       background: var(--background-alt-blue-france) !important;
-      border-color: $lightTextActionHighBlueFrance !important;
+      border-color: $var(--background-action-high-blue-france) !important;
     }
   }
 }
