@@ -84,14 +84,14 @@
   .footer {
     padding: u(4);
     border-top: 1px solid $lightBorderDefaultGrey;
-    background: $lightBackgroundContrastGrey;
+    background: $var(--background-contrast-grey);
     border-radius: 0 0 u(2) u(2);
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     &.default {
-      background: $lightBackgroundContrastGrey;
+      background: $var(--background-contrast-grey);
     }
     &.pending {
       background: var(--background-alt-yellow-tournesol);

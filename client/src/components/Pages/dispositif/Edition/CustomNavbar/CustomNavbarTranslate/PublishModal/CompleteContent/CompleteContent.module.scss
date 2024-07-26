@@ -4,7 +4,7 @@
 @import "~scss/mixins/rtl";
 
 .done {
-  background: $lightBackgroundContrastInfo;
+  background: $var(--background-contrast-info);
   border-radius: u(2);
   padding: u(4);
   display: flex;

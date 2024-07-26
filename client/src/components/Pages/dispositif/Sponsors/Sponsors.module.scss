@@ -51,7 +51,7 @@
   }
 
   &.link:hover {
-    background: $lightBackgroundContrastGrey !important;
+    background: $var(--background-contrast-grey) !important;
   }
 }
 

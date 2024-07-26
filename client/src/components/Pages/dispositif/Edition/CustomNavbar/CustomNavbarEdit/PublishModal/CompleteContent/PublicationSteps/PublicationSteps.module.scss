@@ -4,7 +4,7 @@
 @import "~scss/mixins/text";
 
 .container {
-  background: $lightBackgroundContrastInfo;
+  background: $var(--background-contrast-info);
   border-radius: u(2);
   padding: u(8);
   color: $lightBorderPlainInfo;
@@ -45,7 +45,7 @@
   z-index: 1;
 
   // trick to avoid border going over icons
-  background: $lightBackgroundContrastInfo;
+  background: $var(--background-contrast-info);
   height: 20px;
 }
 

@@ -37,7 +37,7 @@
     border-radius: u(1);
 
     &:hover {
-      background: $lightBackgroundContrastGrey;
+      background: $var(--background-contrast-grey);
     }
   }
 }

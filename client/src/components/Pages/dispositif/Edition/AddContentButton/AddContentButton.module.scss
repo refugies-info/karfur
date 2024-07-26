@@ -22,7 +22,7 @@
     &:hover {
       border-color: $lightBorderDefaultGrey;
       box-shadow: none;
-      background-color: $lightBackgroundContrastGrey !important;
+      background-color: $var(--background-contrast-grey) !important;
     }
     &:active {
       background: $lightBackgroundElevationAlt;
@@ -81,7 +81,7 @@
       }
 
       &:hover {
-        background-color: $lightBackgroundContrastGrey;
+        background-color: $var(--background-contrast-grey);
 
         .icons {
           .edit {

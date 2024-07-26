@@ -5,7 +5,7 @@
 
 .container {
   width: 100%;
-  background-color: $lightBackgroundContrastGrey;
+  background-color: $var(--background-contrast-grey);
 }
 
 .banner {
@@ -21,7 +21,7 @@
     text-transform: uppercase;
     font-weight: bold;
     @include dsfr-text("very-small");
-    background: $lightBackgroundContrastGrey;
+    background: $var(--background-contrast-grey);
     border: 1px solid white;
     display: flex;
     align-items: center;

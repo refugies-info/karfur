@@ -7,7 +7,7 @@
 
 .card {
   display: none;
-  background: $lightBackgroundContrastGrey;
+  background: $var(--background-contrast-grey);
   border: 1px solid $lightBorderDefaultGrey;
   padding: u(4);
   margin-bottom: u(6);

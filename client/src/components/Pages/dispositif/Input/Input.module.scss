@@ -19,7 +19,7 @@
 
   &:hover {
     .input {
-      background: $lightBackgroundContrastGrey;
+      background: $var(--background-contrast-grey);
     }
   }
 }

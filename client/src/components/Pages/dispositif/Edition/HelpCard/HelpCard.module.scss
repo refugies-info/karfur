@@ -6,7 +6,7 @@
 
 .container {
   width: 240px;
-  background-color: $lightBackgroundContrastInfo;
+  background-color: $var(--background-contrast-info);
   border: 1px solid $lightBorderPlainInfo;
   color: $lightBorderPlainInfo;
   padding: u(4);

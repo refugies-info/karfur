@@ -15,7 +15,7 @@
   min-height: 240px;
 
   &:hover {
-    background: $lightBackgroundContrastGrey;
+    background: $var(--background-contrast-grey);
   }
   &:focus {
     background: $gray30;
