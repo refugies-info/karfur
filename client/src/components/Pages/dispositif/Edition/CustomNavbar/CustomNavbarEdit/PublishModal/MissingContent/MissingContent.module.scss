@@ -21,7 +21,7 @@
   justify-content: space-between;
   font-weight: bold;
   margin-bottom: u(2);
-  color: $lightTextDefaultWarning;
+  color: $var(--text-default-warning);
   width: 100%;
 
   & > span {
