@@ -11,14 +11,14 @@
   border: 1px solid var(--border-default-grey);
 
   &:focus {
-    border-color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
   }
 }
 
 @mixin styledInput() {
   @include baseInput();
   background: var(--background-alt-raised-grey);
-  color: $lightTextTitleGrey;
+  color: var(--text-title-grey);
   border: 1px solid var(--border-default-grey);
   padding: u(2) u(4);
 

@@ -36,14 +36,13 @@ $vertFonce: #219653;
 $white: #ffffff;
 $yellow: #ffeb3b;
 
-// Adhoc DSFR colors
+// Adhoc DSFR colors (should be removed as the site moves to DSFR)
 $darkBackgroundActionHighBlueFrance: #8585f6;
 $darkBackgroundAltBlueFrance: #1b1b35;
 $darkBackgroundAltGrey: #1e1e1e;
 $darkBackgroundContrastGrey: #242424;
 $darkBackgroundElevationContrast: #2f2f2f;
 $darkBorderPlainError: #ff5655;
-$lightTextTitleGrey: #161616;
 
 :export {
   // RI colors
@@ -83,5 +82,4 @@ $lightTextTitleGrey: #161616;
   darkBackgroundContrastGrey: $darkBackgroundContrastGrey;
   darkBackgroundElevationContrast: $darkBackgroundElevationContrast;
   darkBorderPlainError: $darkBorderPlainError;
-  lightTextTitleGrey: $lightTextTitleGrey;
 }
