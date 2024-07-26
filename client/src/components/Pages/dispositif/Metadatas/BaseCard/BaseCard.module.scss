@@ -108,7 +108,7 @@
   }
 
   &.missing {
-    background: $lightBackgroundContrastError;
+    background: $var(--background-contrast-error);
     border-radius: u(2);
 
     .content {

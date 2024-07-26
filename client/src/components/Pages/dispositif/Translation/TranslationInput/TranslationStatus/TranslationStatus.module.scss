@@ -16,7 +16,7 @@
   align-items: center;
 
   &.error {
-    background: $lightBackgroundContrastError;
+    background: $var(--background-contrast-error);
     color: var(--text-default-error);
     svg {
       fill: var(--text-default-error);

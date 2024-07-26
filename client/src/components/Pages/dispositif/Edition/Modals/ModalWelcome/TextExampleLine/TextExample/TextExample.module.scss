@@ -18,7 +18,7 @@
     background: $lightBackgroundContrastSuccess;
   }
   &.error {
-    background: $lightBackgroundContrastError;
+    background: $var(--background-contrast-error);
   }
 }
 
