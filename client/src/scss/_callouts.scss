@@ -15,7 +15,7 @@
   &.callout--info {
     @include pl-ltr(u(8));
     @include ml-ltr(u(8));
-    $border: 4px solid $lightBorderDefaultBlueFrance;
+    $border: 4px solid var(--border-default-blue-france);
 
     @include media-max("lg-limit") {
       @include pl-ltr(u(4));
@@ -37,7 +37,7 @@
       margin-bottom: u(2);
       @include dsfr-text("h6");
       font-weight: bold;
-      color: $lightBorderDefaultBlueFrance;
+      color: var(--border-default-blue-france);
 
       @include media-max("lg-limit") {
         @include dsfr-text("large");
@@ -81,7 +81,7 @@
       top: 0;
       bottom: 0;
       @include l-ltr(0);
-      background: $lightBorderDefaultBlueFrance;
+      background: var(--border-default-blue-france);
     }
   }
 }
