@@ -12,7 +12,7 @@
   border-radius: u(2);
 
   &.focus {
-    border-color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
   }
 }
 

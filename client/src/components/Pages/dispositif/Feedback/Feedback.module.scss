@@ -7,7 +7,7 @@
 
 .container {
   background: var(--background-alt-blue-france);
-  color: $lightTextTitleGrey;
+  color: var(--text-title-grey);
   padding: u(8) u(4) u(8) 256px;
   border-radius: u(3);
   overflow: hidden;

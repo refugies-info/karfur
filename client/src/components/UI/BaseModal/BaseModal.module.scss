@@ -58,7 +58,7 @@
   .title {
     @include dsfr-text("h4");
     font-weight: bold;
-    color: $lightTextTitleGrey;
+    color: var(--text-title-grey);
   }
 
   .close {

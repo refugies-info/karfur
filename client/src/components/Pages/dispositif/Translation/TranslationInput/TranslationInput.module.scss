@@ -62,7 +62,7 @@
   margin-bottom: u(4);
 
   .input {
-    border: 1px solid $lightTextTitleGrey;
+    border: 1px solid var(--text-title-grey);
     border-radius: u(2);
 
     .text {

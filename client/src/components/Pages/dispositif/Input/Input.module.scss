@@ -8,7 +8,7 @@
 .container {
   label {
     margin-bottom: u(2);
-    color: $lightTextTitleGrey;
+    color: var(--text-title-grey);
   }
   &.valid label {
     color: var(--text-default-success);
@@ -45,7 +45,7 @@
 
   .input:focus + & {
     svg {
-      fill: $lightTextTitleGrey;
+      fill: var(--text-title-grey);
     }
   }
 }
@@ -59,8 +59,8 @@
   width: 100%;
 
   &:focus {
-    border-color: $lightTextTitleGrey;
-    color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
+    color: var(--text-title-grey);
   }
 
   .with_icon & {

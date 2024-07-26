@@ -27,7 +27,7 @@
     & > input {
       @include baseInput();
       background: var(--background-alt-raised-grey);
-      color: $lightTextTitleGrey;
+      color: var(--text-title-grey);
       border: 1px solid var(--border-default-grey);
       padding: u(2) u(1);
       max-width: 72px;

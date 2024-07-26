@@ -19,6 +19,6 @@
   }
   &:focus {
     background: $gray30;
-    border-color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
   }
 }
