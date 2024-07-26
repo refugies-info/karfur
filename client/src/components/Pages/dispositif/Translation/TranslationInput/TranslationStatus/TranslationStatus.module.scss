@@ -16,14 +16,14 @@
   align-items: center;
 
   &.error {
-    background: $var(--background-contrast-error);
+    background: var(--background-contrast-error);
     color: var(--text-default-error);
     svg {
       fill: var(--text-default-error);
     }
   }
   &.warning {
-    background: $var(--background-contrast-warning);
+    background: var(--background-contrast-warning);
     color: var(--text-default-warning);
     svg {
       fill: var(--text-default-warning);
@@ -45,9 +45,9 @@
   }
   &.info {
     background: var(--background-alt-blue-france);
-    color: $var(--background-active-blue-france-active);
+    color: var(--background-active-blue-france-active);
     svg {
-      fill: $var(--background-active-blue-france-active);
+      fill: var(--background-active-blue-france-active);
     }
   }
 }

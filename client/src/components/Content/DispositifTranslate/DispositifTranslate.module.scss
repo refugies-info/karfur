@@ -5,7 +5,7 @@
 
 .container {
   width: 100%;
-  background-color: $var(--background-contrast-grey);
+  background-color: var(--background-contrast-grey);
 }
 
 .banner {
@@ -21,7 +21,7 @@
     text-transform: uppercase;
     font-weight: bold;
     @include dsfr-text("very-small");
-    background: $var(--background-contrast-grey);
+    background: var(--background-contrast-grey);
     border: 1px solid white;
     display: flex;
     align-items: center;
@@ -31,10 +31,10 @@
       left: inherit;
       right: u(10);
       background: var(--background-alt-blue-france);
-      border-color: $var(--border-default-blue-france);
-      color: $var(--border-default-blue-france);
+      border-color: var(--border-default-blue-france);
+      color: var(--border-default-blue-france);
       & > span {
-        outline-color: $var(--border-default-blue-france);
+        outline-color: var(--border-default-blue-france);
       }
     }
   }
@@ -45,10 +45,10 @@
   overflow-y: scroll;
 
   &:first-child {
-    border-right: 1px solid $var(--border-default-grey);
+    border-right: 1px solid var(--border-default-grey);
   }
   &:last-child {
-    border-left: 1px solid $var(--border-default-grey);
+    border-left: 1px solid var(--border-default-grey);
   }
 }
 

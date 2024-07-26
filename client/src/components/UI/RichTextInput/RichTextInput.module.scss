@@ -6,7 +6,7 @@
 @import "~scss/variables";
 
 .container {
-  border: 1px solid $var(--border-default-grey);
+  border: 1px solid var(--border-default-grey);
   position: relative;
   background: white;
   border-radius: u(2);
@@ -28,5 +28,5 @@
   position: absolute;
   bottom: u(12);
   @include l-ltr(u(6));
-  color: $var(--text-disabled-grey);
+  color: var(--text-disabled-grey);
 }

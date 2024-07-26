@@ -16,7 +16,7 @@
     border-radius: 30px;
     margin-right: 2px;
     &.done {
-      background: $var(--background-active-blue-france-active);
+      background: var(--background-active-blue-france-active);
     }
   }
 }

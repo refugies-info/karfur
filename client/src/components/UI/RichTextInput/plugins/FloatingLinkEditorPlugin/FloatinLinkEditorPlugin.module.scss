@@ -16,7 +16,7 @@
   }
 
   .text {
-    color: $var(--background-action-high-blue-france);
+    color: var(--background-action-high-blue-france);
     font-weight: bold;
     margin-bottom: u(2);
   }
@@ -51,7 +51,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    background: $var(--background-alt-raised-grey);
+    background: var(--background-alt-raised-grey);
     border-radius: u(2);
     padding: u(2) u(3);
 

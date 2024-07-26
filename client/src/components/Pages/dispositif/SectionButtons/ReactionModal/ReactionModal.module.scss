@@ -11,11 +11,11 @@
 .textarea {
   @include baseInput();
   background: $gray30;
-  border: 1px solid $var(--border-default-grey);
+  border: 1px solid var(--border-default-grey);
   min-height: 240px;
 
   &:hover {
-    background: $var(--background-contrast-grey);
+    background: var(--background-contrast-grey);
   }
   &:focus {
     background: $gray30;

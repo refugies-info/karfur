@@ -9,7 +9,7 @@
   &:global(.fr-btn) {
     background-color: white;
     box-shadow: 0 2px 6px 0 #00001229;
-    color: $var(--text-disabled-grey);
+    color: var(--text-disabled-grey);
     width: 100%;
     padding: u(4);
     border-radius: u(2);
@@ -20,12 +20,12 @@
     justify-content: space-between;
 
     &:hover {
-      border-color: $var(--border-default-grey);
+      border-color: var(--border-default-grey);
       box-shadow: none;
-      background-color: $var(--background-contrast-grey) !important;
+      background-color: var(--background-contrast-grey) !important;
     }
     &:active {
-      background: $var(--background-alt-raised-grey);
+      background: var(--background-alt-raised-grey);
     }
 
     .icon {
@@ -50,7 +50,7 @@
       background: transparent;
       box-shadow: none;
       color: $lightTextTitleGrey;
-      border: 1px solid $var(--border-default-grey);
+      border: 1px solid var(--border-default-grey);
       padding-right: u(10);
       align-items: flex-start;
 
@@ -72,16 +72,16 @@
           padding: u(2);
           border-radius: u(2);
           margin-top: u(2);
-          border: 1px solid $var(--border-default-grey);
+          border: 1px solid var(--border-default-grey);
 
           &:hover:not(.disabled) {
-            background: $var(--border-default-grey);
+            background: var(--border-default-grey);
           }
         }
       }
 
       &:hover {
-        background-color: $var(--background-contrast-grey);
+        background-color: var(--background-contrast-grey);
 
         .icons {
           .edit {
@@ -112,11 +112,11 @@
     }
 
     &.has_error {
-      border-color: $var(--text-default-error);
-      color: $var(--text-default-error);
+      border-color: var(--text-default-error);
+      color: var(--text-default-error);
 
       & > span svg {
-        fill: $var(--text-default-error);
+        fill: var(--text-default-error);
       }
     }
 

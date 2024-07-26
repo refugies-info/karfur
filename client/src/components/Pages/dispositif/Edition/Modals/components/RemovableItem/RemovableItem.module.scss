@@ -7,16 +7,16 @@
   padding: u(2) u(3);
   background-color: var(--background-alt-blue-france);
   border-radius: u(2);
-  color: $var(--background-action-high-blue-france);
+  color: var(--background-action-high-blue-france);
   margin-right: u(1);
   margin-bottom: u(1);
   text-align: left;
 
   &:hover {
-    background: $var(--background-action-low-blue-france-hover) !important;
+    background: var(--background-action-low-blue-france-hover) !important;
   }
   &:active {
-    background: $var(--background-action-low-blue-france-active) !important;
+    background: var(--background-action-low-blue-france-active) !important;
   }
 }
 

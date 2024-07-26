@@ -6,15 +6,15 @@
 @import "~scss/mixins/responsive";
 
 .card {
-  background: $var(--background-alt-raised-grey);
-  border: 1px solid $var(--border-default-grey);
+  background: var(--background-alt-raised-grey);
+  border: 1px solid var(--border-default-grey);
   padding: u(4);
   margin-bottom: u(6);
   border-radius: u(2);
   position: relative;
 
   @include media-max("lg-limit") {
-    background: $var(--background-contrast-grey);
+    background: var(--background-contrast-grey);
   }
 
   &.btn {
@@ -22,7 +22,7 @@
     width: 100%;
 
     &:hover {
-      background: $var(--background-contrast-grey) !important;
+      background: var(--background-contrast-grey) !important;
     }
   }
 
@@ -37,11 +37,11 @@
   }
 
   &.error {
-    border-color: $var(--text-default-error);
+    border-color: var(--text-default-error);
     box-shadow: 0 2px 6px 0 #00001229;
 
     .title {
-      color: $var(--text-default-error) !important;
+      color: var(--text-default-error) !important;
     }
   }
 
@@ -108,11 +108,11 @@
   }
 
   &.missing {
-    background: $var(--background-contrast-error);
+    background: var(--background-contrast-error);
     border-radius: u(2);
 
     .content {
-      color: $var(--text-default-error);
+      color: var(--text-default-error);
     }
   }
 }

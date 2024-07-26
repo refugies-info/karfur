@@ -14,11 +14,11 @@
   height: 100%;
   padding-bottom: u(12);
   background: $gray30;
-  border: 1px solid $var(--border-default-grey);
+  border: 1px solid var(--border-default-grey);
   max-width: 230px;
 
   &:hover {
-    background: $var(--background-contrast-grey);
+    background: var(--background-contrast-grey);
   }
   &:focus {
     background: $gray30;
@@ -33,7 +33,7 @@
   left: u(4);
   right: u(4);
   margin-bottom: 0;
-  color: $var(--text-default-error);
+  color: var(--text-default-error);
 }
 
 .arrow {

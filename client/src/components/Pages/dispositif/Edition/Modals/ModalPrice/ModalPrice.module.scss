@@ -5,7 +5,7 @@
 @import "~scss/mixins/input";
 
 .form {
-  border: 1px solid $var(--border-default-grey);
+  border: 1px solid var(--border-default-grey);
   padding: u(4);
   border-radius: u(2);
   margin-bottom: u(8);

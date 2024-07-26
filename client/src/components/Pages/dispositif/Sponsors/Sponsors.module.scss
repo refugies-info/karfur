@@ -47,11 +47,11 @@
   }
 
   &.edit {
-    border: 1px solid $var(--border-default-grey);
+    border: 1px solid var(--border-default-grey);
   }
 
   &.link:hover {
-    background: $var(--background-contrast-grey) !important;
+    background: var(--background-contrast-grey) !important;
   }
 }
 

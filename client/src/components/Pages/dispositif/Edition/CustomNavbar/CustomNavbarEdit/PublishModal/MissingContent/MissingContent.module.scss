@@ -5,7 +5,7 @@
 
 .missing {
   padding: u(8);
-  background: $var(--background-contrast-warning);
+  background: var(--background-contrast-warning);
   border-radius: u(2);
   margin-top: u(6);
   margin-bottom: u(8);
@@ -21,7 +21,7 @@
   justify-content: space-between;
   font-weight: bold;
   margin-bottom: u(2);
-  color: $var(--text-default-warning);
+  color: var(--text-default-warning);
   width: 100%;
 
   & > span {

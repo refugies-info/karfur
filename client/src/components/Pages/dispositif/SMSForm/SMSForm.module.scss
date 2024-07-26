@@ -6,7 +6,7 @@
 
 .container {
   margin-top: u(10);
-  border: 1px solid $var(--border-default-grey);
+  border: 1px solid var(--border-default-grey);
   padding: u(4);
   border-radius: u(2);
 }
@@ -20,7 +20,7 @@
 }
 
 .input {
-  background: $var(--background-alt-raised-grey);
+  background: var(--background-alt-raised-grey);
   border-radius: u(2);
   display: flex;
   justify-content: space-between;
@@ -47,7 +47,7 @@
     width: 100%;
     justify-content: center;
     border-radius: u(2);
-    background: $var(--background-alt-raised-grey) !important;
+    background: var(--background-alt-raised-grey) !important;
     text-align: left;
 
     @include rtl() {

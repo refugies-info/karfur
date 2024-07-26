@@ -11,7 +11,7 @@
     margin-bottom: u(8);
   }
   .input {
-    background: $var(--background-alt-raised-grey);
+    background: var(--background-alt-raised-grey);
     border-radius: u(2);
     margin-bottom: u(6);
     padding: u(3);
@@ -20,7 +20,7 @@
     border: 1px solid transparent;
 
     &.input_error {
-      border-color: $var(--text-default-error);
+      border-color: var(--text-default-error);
     }
   }
 
@@ -31,7 +31,7 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: u(6);
-    background-color: $var(--background-alt-raised-grey);
+    background-color: var(--background-alt-raised-grey);
     color: $gray90;
 
     .icon {
@@ -52,7 +52,7 @@
   }
 
   .error {
-    color: $var(--text-default-error);
+    color: var(--text-default-error);
     margin-top: u(4);
     display: flex;
     align-items: center;

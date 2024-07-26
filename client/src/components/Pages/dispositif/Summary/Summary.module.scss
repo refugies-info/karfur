@@ -7,8 +7,8 @@
 
 .card {
   display: none;
-  background: $var(--background-contrast-grey);
-  border: 1px solid $var(--border-default-grey);
+  background: var(--background-contrast-grey);
+  border: 1px solid var(--border-default-grey);
   padding: u(4);
   margin-bottom: u(6);
   margin-top: u(6);

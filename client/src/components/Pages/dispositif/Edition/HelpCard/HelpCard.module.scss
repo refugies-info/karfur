@@ -6,9 +6,9 @@
 
 .container {
   width: 240px;
-  background-color: $var(--background-contrast-info);
-  border: 1px solid $var(--background-flat-info);
-  color: $var(--background-flat-info);
+  background-color: var(--background-contrast-info);
+  border: 1px solid var(--background-flat-info);
+  color: var(--background-flat-info);
   padding: u(4);
   border-radius: u(2);
 }

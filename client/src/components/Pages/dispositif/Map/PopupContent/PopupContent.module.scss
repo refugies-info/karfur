@@ -14,7 +14,7 @@
   .title {
     @include dsfr-text("small");
     margin-bottom: u(3);
-    color: $var(--background-action-high-blue-france);
+    color: var(--background-action-high-blue-france);
   }
   .info {
     @include dsfr-text("very-small");
@@ -37,7 +37,7 @@
     border-radius: u(1);
 
     &:hover {
-      background: $var(--background-contrast-grey);
+      background: var(--background-contrast-grey);
     }
   }
 }

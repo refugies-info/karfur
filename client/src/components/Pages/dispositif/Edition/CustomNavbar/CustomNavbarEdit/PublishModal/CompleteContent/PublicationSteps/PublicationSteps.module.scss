@@ -4,10 +4,10 @@
 @import "~scss/mixins/text";
 
 .container {
-  background: $var(--background-contrast-info);
+  background: var(--background-contrast-info);
   border-radius: u(2);
   padding: u(8);
-  color: $var(--background-flat-info);
+  color: var(--background-flat-info);
   margin-top: u(6);
   margin-bottom: u(8);
 }
@@ -21,7 +21,7 @@
     content: "";
     height: 100%;
     width: 2px;
-    background: $var(--background-flat-info);
+    background: var(--background-flat-info);
     position: absolute;
     left: 11px;
     top: 6px;
@@ -45,7 +45,7 @@
   z-index: 1;
 
   // trick to avoid border going over icons
-  background: $var(--background-contrast-info);
+  background: var(--background-contrast-info);
   height: 20px;
 }
 

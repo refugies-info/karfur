@@ -15,10 +15,10 @@
   align-items: center;
 
   &.success {
-    background: $var(--background-contrast-success);
+    background: var(--background-contrast-success);
   }
   &.error {
-    background: $var(--background-contrast-error);
+    background: var(--background-contrast-error);
   }
 }
 
@@ -35,9 +35,9 @@
   transform: translateX(-50%);
 
   .success & {
-    background: $var(--text-default-success);
+    background: var(--text-default-success);
   }
   .error & {
-    background: $var(--text-default-error);
+    background: var(--text-default-error);
   }
 }

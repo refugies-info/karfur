@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background: $var(--background-alt-raised-grey);
+  background: var(--background-alt-raised-grey);
   border-radius: u(2);
   padding: u(2) u(3);
 
@@ -44,12 +44,12 @@
   padding: u(2) u(3);
   background-color: var(--background-alt-blue-france);
   border-radius: u(2);
-  color: $var(--background-action-high-blue-france);
+  color: var(--background-action-high-blue-france);
   margin-right: u(1);
   margin-bottom: u(1);
   text-align: left;
 
   &:hover {
-    background: $var(--background-action-low-blue-france-hover) !important;
+    background: var(--background-action-low-blue-france-hover) !important;
   }
 }

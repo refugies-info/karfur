@@ -5,19 +5,19 @@
 
 .dropdown {
   .toggle {
-    background: $var(--background-alt-raised-grey);
+    background: var(--background-alt-raised-grey);
     padding: u(2) u(3);
     color: $darkBackgroundAltGrey;
     border-radius: u(2);
     white-space: nowrap;
-    border: 1px solid $var(--border-default-grey);
+    border: 1px solid var(--border-default-grey);
 
     &:hover,
     &:active {
-      background: $var(--background-contrast-grey) !important;
+      background: var(--background-contrast-grey) !important;
     }
     &:focus {
-      background: $var(--background-alt-raised-grey) !important;
+      background: var(--background-alt-raised-grey) !important;
       border-color: $darkBackgroundAltGrey;
     }
 

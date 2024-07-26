@@ -11,15 +11,15 @@
     color: $lightTextTitleGrey;
   }
   &.valid label {
-    color: $var(--text-default-success);
+    color: var(--text-default-success);
   }
   &.error label {
-    color: $var(--text-default-error);
+    color: var(--text-default-error);
   }
 
   &:hover {
     .input {
-      background: $var(--background-contrast-grey);
+      background: var(--background-contrast-grey);
     }
   }
 }
@@ -51,9 +51,9 @@
 }
 
 .input {
-  border: 1px solid $var(--border-default-grey);
+  border: 1px solid var(--border-default-grey);
   outline: none !important;
-  background: $var(--background-alt-raised-grey);
+  background: var(--background-alt-raised-grey);
   border-radius: u(2);
   padding: u(2) u(4);
   width: 100%;
@@ -68,10 +68,10 @@
   }
 
   .valid & {
-    border-color: $var(--text-default-success);
+    border-color: var(--text-default-success);
   }
   .error & {
-    border-color: $var(--text-default-error);
+    border-color: var(--text-default-error);
   }
 
   .valid &,
@@ -84,7 +84,7 @@
   @include dsfr-text("very-small");
   display: inline-block;
   margin-top: u(2);
-  color: $var(--text-default-error);
+  color: var(--text-default-error);
 }
 
 .empty_btn {

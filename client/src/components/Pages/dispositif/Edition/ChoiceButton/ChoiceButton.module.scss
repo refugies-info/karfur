@@ -17,7 +17,7 @@
 
   &.has_image,
   &.lg {
-    border: 1px solid $var(--border-default-grey);
+    border: 1px solid var(--border-default-grey);
     padding-right: u(6);
     padding-left: u(6);
   }
@@ -49,21 +49,21 @@
   }
 
   &:hover {
-    background: $var(--background-alt-raised-grey);
+    background: var(--background-alt-raised-grey);
   }
 
   &.selected {
     background: var(--background-alt-blue-france);
     border-color: var(--background-alt-blue-france);
-    color: $var(--background-action-high-blue-france);
+    color: var(--background-action-high-blue-france);
 
     .subtext {
-      color: $var(--background-action-high-blue-france);
+      color: var(--background-action-high-blue-france);
     }
 
     &:hover {
       background: var(--background-alt-blue-france) !important;
-      border-color: $var(--background-action-high-blue-france) !important;
+      border-color: var(--background-action-high-blue-france) !important;
     }
   }
 }

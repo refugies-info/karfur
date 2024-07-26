@@ -11,7 +11,7 @@
   width: fit-content;
 
   &.border {
-    border: 1px solid $var(--border-default-grey);
+    border: 1px solid var(--border-default-grey);
     padding: u(4);
     border-radius: u(2);
   }
@@ -26,9 +26,9 @@
 
     & > input {
       @include baseInput();
-      background: $var(--background-alt-raised-grey);
+      background: var(--background-alt-raised-grey);
       color: $lightTextTitleGrey;
-      border: 1px solid $var(--border-default-grey);
+      border: 1px solid var(--border-default-grey);
       padding: u(2) u(1);
       max-width: 72px;
       min-width: 25px;
@@ -36,10 +36,10 @@
 
       &:hover,
       &:active {
-        background: $var(--background-contrast-grey) !important;
+        background: var(--background-contrast-grey) !important;
       }
       &:focus {
-        background: $var(--background-alt-raised-grey) !important;
+        background: var(--background-alt-raised-grey) !important;
         border-color: $darkBackgroundAltGrey;
         color: $darkBackgroundAltGrey;
       }
