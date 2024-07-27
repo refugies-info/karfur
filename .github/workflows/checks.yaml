@@ -7,7 +7,6 @@ on:
       - master-backend
       - staging-frontend
       - staging-backend
-      - dev
   workflow_dispatch:
 
 jobs:

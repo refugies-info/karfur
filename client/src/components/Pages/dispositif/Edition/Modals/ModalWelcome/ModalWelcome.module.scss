@@ -19,11 +19,11 @@
 }
 
 .error {
-  color: $lightTextDefaultError;
+  color: var(--text-default-error);
   font-weight: bold;
 }
 
 .success {
-  color: $lightTextDefaultSuccess;
+  color: var(--text-default-success);
   font-weight: bold;
 }

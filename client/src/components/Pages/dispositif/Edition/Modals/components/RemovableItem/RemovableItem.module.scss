@@ -5,18 +5,18 @@
 
 .btn {
   padding: u(2) u(3);
-  background-color: $lightBackgroundActionLowBlueFrance;
+  background-color: var(--background-action-low-blue-france);
   border-radius: u(2);
-  color: $lightTextActionHighBlueFrance;
+  color: var(--background-action-high-blue-france);
   margin-right: u(1);
   margin-bottom: u(1);
   text-align: left;
 
   &:hover {
-    background: $lightPrimaryBlueFrance !important;
+    background: var(--background-action-low-blue-france-hover) !important;
   }
   &:active {
-    background: $lightPrimaryBlueFranceActive !important;
+    background: var(--background-action-low-blue-france-active) !important;
   }
 }
 

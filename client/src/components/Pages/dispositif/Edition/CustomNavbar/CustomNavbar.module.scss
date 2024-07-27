@@ -9,8 +9,8 @@
 
 .container {
   background-color: white;
-  border-top: 1px solid $lightBorderDefaultGrey;
-  border-bottom: 1px solid $lightBorderDefaultGrey;
+  border-top: 1px solid var(--border-default-grey);
+  border-bottom: 1px solid var(--border-default-grey);
   position: sticky;
   top: 0;
   box-shadow: 0 12px 32px -8px #0000241f;
@@ -25,15 +25,15 @@
 }
 .warning {
   padding: u(2) 0;
-  background: $lightBackgroundContrastInfo;
-  color: $lightBorderPlainInfo;
+  background: var(--background-contrast-info);
+  color: var(--background-flat-info);
   font-weight: bold;
 }
 
 .help {
   @include dsfr-text("small");
   margin-bottom: 0;
-  color: $lightTextActionHighBlueFrance;
+  color: var(--background-action-high-blue-france);
   margin-left: u(4);
 }
 
@@ -52,7 +52,7 @@
   align-items: center;
   margin-left: 80px;
   @include dsfr-text("small");
-  color: $lightTextActionHighBlueFrance;
+  color: var(--background-action-high-blue-france);
 
   p {
     margin-bottom: 0;
@@ -61,7 +61,7 @@
 }
 
 .save {
-  background: $lightBackgroundElevationAlt;
+  background: var(--background-alt-raised-grey);
   border-radius: u(1);
   padding: 0 u(1);
   color: $darkBackgroundElevationContrast;

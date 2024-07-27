@@ -15,18 +15,18 @@
   border-radius: 50%;
   background: $gray40;
   @include dsfr-text("small");
-  color: $lightTextDisabledGrey;
+  color: var(--text-disabled-grey);
   margin-right: u(2);
   display: flex;
   align-items: center;
   justify-content: center;
 
   &.current {
-    background: $lightPrimaryBlueFranceSun;
+    background: var(--background-active-blue-france-active);
     color: white;
   }
   &.done {
-    background: $lightTextActionHighBlueFrance;
+    background: var(--background-action-high-blue-france);
     color: white;
   }
 }

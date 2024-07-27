@@ -14,15 +14,15 @@
   height: 100%;
   padding-bottom: u(12);
   background: $gray30;
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid var(--border-default-grey);
   max-width: 230px;
 
   &:hover {
-    background: $lightBackgroundContrastGrey;
+    background: var(--background-contrast-grey);
   }
   &:focus {
     background: $gray30;
-    border-color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
   }
 }
 
@@ -33,7 +33,7 @@
   left: u(4);
   right: u(4);
   margin-bottom: 0;
-  color: $lightTextDefaultError;
+  color: var(--text-default-error);
 }
 
 .arrow {

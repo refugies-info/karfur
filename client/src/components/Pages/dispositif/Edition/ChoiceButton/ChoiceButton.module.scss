@@ -17,7 +17,7 @@
 
   &.has_image,
   &.lg {
-    border: 1px solid $lightBorderDefaultGrey;
+    border: 1px solid var(--border-default-grey);
     padding-right: u(6);
     padding-left: u(6);
   }
@@ -45,25 +45,25 @@
   .subtext {
     display: block;
     @include dsfr-text("very-small");
-    color: $lightTextMentionGrey;
+    color: var(--text-mention-grey);
   }
 
   &:hover {
-    background: $lightBackgroundElevationAlt;
+    background: var(--background-alt-raised-grey);
   }
 
   &.selected {
-    background: $lightBackgroundActionLowBlueFrance;
-    border-color: $lightBackgroundActionLowBlueFrance;
-    color: $lightTextActionHighBlueFrance;
+    background: var(--background-action-low-blue-france);
+    border-color: var(--background-action-low-blue-france);
+    color: var(--background-action-high-blue-france);
 
     .subtext {
-      color: $lightTextActionHighBlueFrance;
+      color: var(--background-action-high-blue-france);
     }
 
     &:hover {
-      background: $lightBackgroundActionLowBlueFrance !important;
-      border-color: $lightTextActionHighBlueFrance !important;
+      background: var(--background-action-low-blue-france) !important;
+      border-color: var(--background-action-high-blue-france) !important;
     }
   }
 }

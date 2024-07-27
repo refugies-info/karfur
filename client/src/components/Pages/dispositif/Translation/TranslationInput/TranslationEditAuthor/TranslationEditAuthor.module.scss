@@ -24,7 +24,7 @@
 
   &.default {
     font-weight: normal;
-    color: $lightTextMentionGrey;
+    color: var(--text-mention-grey);
   }
   &.pending {
     color: var(--text-action-high-yellow-tournesol);

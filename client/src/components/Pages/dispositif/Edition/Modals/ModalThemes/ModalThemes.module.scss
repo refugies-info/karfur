@@ -6,5 +6,5 @@
 
 .help {
   @include dsfr-text("very-small");
-  color: $lightBorderPlainInfo;
+  color: var(--background-flat-info);
 }
