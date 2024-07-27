@@ -8,18 +8,18 @@
 .container {
   label {
     margin-bottom: u(2);
-    color: $lightTextTitleGrey;
+    color: var(--text-title-grey);
   }
   &.valid label {
-    color: $lightTextDefaultSuccess;
+    color: var(--text-default-success);
   }
   &.error label {
-    color: $lightTextDefaultError;
+    color: var(--text-default-error);
   }
 
   &:hover {
     .input {
-      background: $lightBackgroundContrastGrey;
+      background: var(--background-contrast-grey);
     }
   }
 }
@@ -45,22 +45,22 @@
 
   .input:focus + & {
     svg {
-      fill: $lightTextTitleGrey;
+      fill: var(--text-title-grey);
     }
   }
 }
 
 .input {
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid var(--border-default-grey);
   outline: none !important;
-  background: $lightBackgroundElevationAlt;
+  background: var(--background-alt-raised-grey);
   border-radius: u(2);
   padding: u(2) u(4);
   width: 100%;
 
   &:focus {
-    border-color: $lightTextTitleGrey;
-    color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
+    color: var(--text-title-grey);
   }
 
   .with_icon & {
@@ -68,10 +68,10 @@
   }
 
   .valid & {
-    border-color: $lightTextDefaultSuccess;
+    border-color: var(--text-default-success);
   }
   .error & {
-    border-color: $lightTextDefaultError;
+    border-color: var(--text-default-error);
   }
 
   .valid &,
@@ -84,7 +84,7 @@
   @include dsfr-text("very-small");
   display: inline-block;
   margin-top: u(2);
-  color: $lightTextDefaultError;
+  color: var(--text-default-error);
 }
 
 .empty_btn {

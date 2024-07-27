@@ -15,7 +15,7 @@
 
 .item {
   padding: u(4);
-  background: $lightBackgroundContrastGrey;
+  background: var(--background-contrast-grey);
 }
 
 .button_inner {
@@ -33,7 +33,7 @@
     justify-content: center;
 
     &:hover {
-      background: $lightBackgroundContrastGrey;
+      background: var(--background-contrast-grey);
     }
   }
 }

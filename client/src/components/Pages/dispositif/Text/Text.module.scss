@@ -5,7 +5,7 @@
 @import "~scss/mixins/links";
 
 .highlighted {
-  background: $lightBackgroundActionLowBlueFrance;
+  background: var(--background-action-low-blue-france);
   border-radius: u(2);
   margin: u(-4);
   padding: u(4);

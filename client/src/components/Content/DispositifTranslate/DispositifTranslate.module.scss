@@ -5,7 +5,7 @@
 
 .container {
   width: 100%;
-  background-color: $lightBackgroundContrastGrey;
+  background-color: var(--background-contrast-grey);
 }
 
 .banner {
@@ -21,7 +21,7 @@
     text-transform: uppercase;
     font-weight: bold;
     @include dsfr-text("very-small");
-    background: $lightBackgroundContrastGrey;
+    background: var(--background-contrast-grey);
     border: 1px solid white;
     display: flex;
     align-items: center;
@@ -30,11 +30,11 @@
     &.translation {
       left: inherit;
       right: u(10);
-      background: $lightBackgroundActionLowBlueFrance;
-      border-color: $lightBorderDefaultBlueFrance;
-      color: $lightBorderDefaultBlueFrance;
+      background: var(--background-action-low-blue-france);
+      border-color: var(--border-default-blue-france);
+      color: var(--border-default-blue-france);
       & > span {
-        outline-color: $lightBorderDefaultBlueFrance;
+        outline-color: var(--border-default-blue-france);
       }
     }
   }
@@ -45,10 +45,10 @@
   overflow-y: scroll;
 
   &:first-child {
-    border-right: 1px solid $lightBorderDefaultGrey;
+    border-right: 1px solid var(--border-default-grey);
   }
   &:last-child {
-    border-left: 1px solid $lightBorderDefaultGrey;
+    border-left: 1px solid var(--border-default-grey);
   }
 }
 

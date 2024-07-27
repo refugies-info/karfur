@@ -3,7 +3,7 @@
 exports[`UserNotifications should render correctly when 0 notif 1`] = `
 <DocumentFragment>
   .c0 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -20,7 +20,7 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 }
 
 .c1 {
-  color: #5e5e5e;
+  color: darkGrey;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -89,7 +89,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 }
 
 .c0 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -157,7 +157,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
 <DocumentFragment>
   .c4 {
-  background: #2d9cdb;
+  background: focus;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -168,15 +168,15 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: #2d9cdb;
+  border-color: focus;
 }
 
 .c4:hover {
-  border-color: #212121;
+  border-color: gray90;
 }
 
 .c9 {
-  background: #ffffff;
+  background: white;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -187,11 +187,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: #ffffff;
+  border-color: white;
 }
 
 .c9:hover {
-  border-color: #212121;
+  border-color: gray90;
 }
 
 .c5 {
@@ -204,7 +204,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: #ffffff;
+  color: white;
   margin-left: 20px;
 }
 
@@ -212,12 +212,12 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: #212121;
+  color: gray90;
   margin-left: 20px;
 }
 
 .c8 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
@@ -230,7 +230,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: white;
   margin-right: 8px;
   margin-left: 8px;
 }
@@ -261,7 +261,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 }
 
 .c0 {
-  background: #edebeb;
+  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -310,7 +310,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell"
-                fill="#ffffff"
+                fill="white"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -440,7 +440,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell"
-                fill="#ffffff"
+                fill="white"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -539,7 +539,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell"
-                fill="#ffffff"
+                fill="white"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -676,7 +676,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell-outline"
-                fill="#212121"
+                fill="gray90"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"

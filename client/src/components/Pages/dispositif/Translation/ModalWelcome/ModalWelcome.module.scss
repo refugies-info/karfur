@@ -31,7 +31,7 @@
 .expert {
   display: inline-block;
   border-radius: 50%;
-  border: 1px solid $lightTextDefaultGrey;
+  border: 1px solid var(--text-default-grey);
   width: 160px;
   height: 160px;
   overflow: hidden;

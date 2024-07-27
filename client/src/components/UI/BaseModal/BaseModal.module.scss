@@ -26,8 +26,8 @@
 
 .sidebar {
   width: 204px;
-  color: $lightBorderPlainInfo;
-  background-color: $lightBackgroundContrastInfo;
+  color: var(--background-flat-info);
+  background-color: var(--background-contrast-info);
   padding: u(6);
   border-radius: u(2) 0 0 u(2);
   flex-shrink: 0;
@@ -58,7 +58,7 @@
   .title {
     @include dsfr-text("h4");
     font-weight: bold;
-    color: $lightTextTitleGrey;
+    color: var(--text-title-grey);
   }
 
   .close {

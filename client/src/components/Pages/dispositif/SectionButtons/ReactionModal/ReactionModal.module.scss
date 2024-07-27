@@ -11,14 +11,14 @@
 .textarea {
   @include baseInput();
   background: $gray30;
-  border: 1px solid $lightBorderDefaultGrey;
+  border: 1px solid var(--border-default-grey);
   min-height: 240px;
 
   &:hover {
-    background: $lightBackgroundContrastGrey;
+    background: var(--background-contrast-grey);
   }
   &:focus {
     background: $gray30;
-    border-color: $lightTextTitleGrey;
+    border-color: var(--text-title-grey);
   }
 }

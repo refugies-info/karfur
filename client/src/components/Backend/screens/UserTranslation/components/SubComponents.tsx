@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
+import { colors } from "colors";
 import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
-import { colors } from "colors";
+import styled from "styled-components";
 import styles from "./SubComponents.module.scss";
-import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
 
 interface Props {
   language: GetLanguagesResponse;
@@ -138,7 +137,7 @@ const FilterButtonContainer = styled.button<FilterButtonContainerProps>`
 
   &:hover {
     background-color: ${(props: FilterButtonContainerProps) =>
-      props.isSelected ? styles.lightTextMentionGrey : "inherit"} !important;
+      props.isSelected ? "var(--text-mention-grey)" : "inherit"} !important;
   }
 `;
 

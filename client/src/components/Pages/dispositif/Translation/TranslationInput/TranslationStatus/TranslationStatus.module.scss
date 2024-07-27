@@ -16,14 +16,14 @@
   align-items: center;
 
   &.error {
-    background: $lightBackgroundContrastError;
+    background: var(--background-contrast-error);
     color: var(--text-default-error);
     svg {
       fill: var(--text-default-error);
     }
   }
   &.warning {
-    background: $lightBackgroundContrastWarning;
+    background: var(--background-contrast-warning);
     color: var(--text-default-warning);
     svg {
       fill: var(--text-default-warning);
@@ -44,10 +44,10 @@
     }
   }
   &.info {
-    background: $lightBackgroundActionLowBlueFrance;
-    color: $lightPrimaryBlueFranceSun;
+    background: var(--background-action-low-blue-france);
+    color: var(--background-active-blue-france-active);
     svg {
-      fill: $lightPrimaryBlueFranceSun;
+      fill: var(--background-active-blue-france-active);
     }
   }
 }

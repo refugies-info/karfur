@@ -453,12 +453,12 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@codegouvfr/react-dsfr@^1.9.25":
-  version "1.9.25"
-  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-1.9.25.tgz#5288370d0a58721a3edf62e1e8232131ca02bc76"
-  integrity sha512-ikZNn2bT7KEtN5DBHkOIH7z5OubJTI6g069mh5CnlpZx19gIMMEYtJ/V2y+WbDmNlARZwxmuPbzfXeoBRY117g==
+"@codegouvfr/react-dsfr@^1.10.11":
+  version "1.10.11"
+  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-1.10.11.tgz#d0021b41478f6419faee1af187ae974ef92cca8e"
+  integrity sha512-ZkVu6r9KnOJEtBzBZ/iIx6jkB6vxDEK//4+EHI8OYsfJGGDy8+v3RvSpAF/5Sj6RyjYexA7WKTQpt+VDMamOTA==
   dependencies:
-    tsafe "^1.6.3"
+    tsafe "^1.7.2"
     yargs-parser "^21.1.1"
 
 "@colors/colors@1.6.0", "@colors/colors@^1.6.0":
@@ -9085,7 +9085,7 @@ ts-node@^10.9.2:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-tsafe@^1.6.3:
+tsafe@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.7.2.tgz#0f63d414876287ad01b135f832722f93e22da374"
   integrity sha512-dAPfQLhCfCRre5qs+Z5Q2a7s2CV7RxffZUmvj7puGaePYjECzWREJFd3w4XSFe/T5tbxgowfItA/JSSZ6Ma3dA==
