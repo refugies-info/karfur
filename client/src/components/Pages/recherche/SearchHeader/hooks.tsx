@@ -22,7 +22,7 @@ export const useStatusOptions = () => {
 
   const counts = useMemo(() => {
     return _(docs)
-      .flatMap((doc) => doc.metadatas.publicStatus || [])
+      .flatMap((doc) => doc.metadatas?.publicStatus || [])
       .countBy()
       .value();
   }, [docs]);
@@ -42,7 +42,7 @@ export const usePublicOptions = () => {
 
   const counts = useMemo(() => {
     return _(docs)
-      .flatMap((doc) => doc.metadatas.public || [])
+      .flatMap((doc) => doc.metadatas?.public || [])
       .countBy()
       .value();
   }, [docs]);
