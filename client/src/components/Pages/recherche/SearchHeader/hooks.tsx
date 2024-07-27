@@ -1,4 +1,5 @@
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
+import _ from "lodash";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -12,18 +13,28 @@ const useFilteredDocs = () => {
     return [...demarches, ...dispositifs];
   }, [demarches, dispositifs]);
 };
-
+/**
+ * Group docs by public status type and count them.
+ * @returns
+ */
 export const useStatusOptions = () => {
   const docs = useFilteredDocs();
+
+  const counts = useMemo(() => {
+    return _(docs)
+      .flatMap((doc) => doc.metadatas.publicStatus || [])
+      .countBy()
+      .value();
+  }, [docs]);
 
   return useMemo(() => {
     return statusOptions.map((option) => {
       return {
         ...option,
-        count: 112,
+        count: counts[option.key] || 0,
       };
     });
-  }, []);
+  }, [counts]);
 };
 
 export const usePublicOptions = () => {
