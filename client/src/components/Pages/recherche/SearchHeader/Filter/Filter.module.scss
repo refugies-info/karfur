@@ -62,7 +62,7 @@
 
 .count {
   @include dsfr-text("very-small");
-  color: $lightTextMentionGrey;
+  color: var(--text-mention-grey);
 }
 
 .backdrop {

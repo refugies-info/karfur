@@ -33,7 +33,7 @@
     background: white;
     width: 200px;
     height: 100%;
-    border-right: 1px solid $lightBorderDefaultGrey;
+    border-right: 1px solid var(--border-default-grey);
     padding: u(2);
     overflow-y: scroll;
 
@@ -59,7 +59,7 @@
     @include dsfr-text("small");
     box-shadow: 0 6px 18px 0 #00001229;
     background-color: white;
-    color: $lightTextActionHighBlueFrance;
+    color: var(--background-action-high-blue-france);
 
     @include media-max("lg-limit") {
       display: none;
@@ -84,15 +84,15 @@
 
   &:hover,
   &.active {
-    background: $lightBackgroundActionLowBlueFrance !important;
-    color: $lightTextActionHighBlueFrance;
+    background: var(--background-action-low-blue-france) !important;
+    color: var(--background-action-high-blue-france);
 
     @include media-max("lg-limit") {
-      border-color: $lightTextActionHighBlueFrance;
+      border-color: var(--background-action-high-blue-france);
     }
 
     svg {
-      fill: $lightTextActionHighBlueFrance;
+      fill: var(--background-action-high-blue-france);
     }
   }
 
@@ -116,7 +116,7 @@
   margin: u(1) 0;
   width: 100%;
   height: 1px;
-  background: $lightBorderDefaultGrey;
+  background: var(--border-default-grey);
   @include media-max("lg-limit") {
     display: none;
   }

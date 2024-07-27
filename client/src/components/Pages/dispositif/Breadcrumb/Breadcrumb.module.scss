@@ -22,7 +22,7 @@
 
 .link {
   @include dsfr-text("very-small");
-  color: $lightTextMentionGrey !important;
+  color: var(--text-mention-grey) !important;
   text-decoration: underline !important;
 }
 

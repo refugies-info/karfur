@@ -21,6 +21,6 @@
   border: none !important;
 
   &:hover {
-    background-color: $lightBackgroundElevationAlt;
+    background-color: var(--background-alt-raised-grey);
   }
 }

@@ -19,7 +19,7 @@ $btnSize: u(8);
   }
 
   &.open {
-    background: $lightBackgroundElevationAlt;
+    background: var(--background-alt-raised-grey);
     z-index: 1;
     padding-bottom: u(5);
   }
@@ -46,20 +46,20 @@ $btnSize: u(8);
       box-shadow: inset 0 0 0 1px #e5e5e5;
 
       span i svg {
-        fill: $lightTextDisabledGrey;
+        fill: var(--text-disabled-grey);
       }
       &::before {
-        background-color: $lightTextDisabledGrey !important;
+        background-color: var(--text-disabled-grey) !important;
       }
 
       &:hover {
-        background: $lightBorderDefaultGrey;
+        background: var(--border-default-grey);
         box-shadow: none;
         span i svg {
-          fill: $lightTextMentionGrey;
+          fill: var(--text-mention-grey);
         }
         &::before {
-          background-color: $lightTextMentionGrey !important;
+          background-color: var(--text-mention-grey) !important;
         }
       }
     }
@@ -70,7 +70,7 @@ $btnSize: u(8);
     }
 
     &.close {
-      background-color: $lightTextDefaultError;
+      background-color: var(--text-default-error);
       color: $white;
 
       &:hover {
