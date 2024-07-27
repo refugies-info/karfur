@@ -5,8 +5,16 @@ import { useSelector } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchResultsSelector } from "services/SearchResults/searchResults.selector";
 
+const useFilteredDocs = () => {
+  const { demarches, dispositifs } = useSelector(searchResultsSelector);
+
+  return useMemo(() => {
+    return [...demarches, ...dispositifs];
+  }, [demarches, dispositifs]);
+};
+
 export const useStatusOptions = () => {
-  const filteredResult = useSelector(searchResultsSelector);
+  const docs = useFilteredDocs();
 
   return useMemo(() => {
     return statusOptions.map((option) => {
@@ -19,7 +27,7 @@ export const useStatusOptions = () => {
 };
 
 export const usePublicOptions = () => {
-  const filteredResult = useSelector(searchResultsSelector);
+  const docs = useFilteredDocs();
 
   return useMemo(() => {
     return publicOptions.map((option) => {
@@ -32,7 +40,7 @@ export const usePublicOptions = () => {
 };
 
 export const useAgeOptions = () => {
-  const filteredResult = useSelector(searchResultsSelector);
+  const docs = useFilteredDocs();
 
   return useMemo(() => {
     return ageFilters.map((option) => {
@@ -45,7 +53,7 @@ export const useAgeOptions = () => {
 };
 
 export const useFrenchLevelOptions = () => {
-  const filteredResult = useSelector(searchResultsSelector);
+  const docs = useFilteredDocs();
 
   return useMemo(() => {
     return frenchLevelFilter.map((option) => {
@@ -58,7 +66,7 @@ export const useFrenchLevelOptions = () => {
 };
 
 export const useLanguagesOptions = () => {
-  const filteredResult = useSelector(searchResultsSelector);
+  const docs = useFilteredDocs();
 
   const { t } = useTranslation();
 
