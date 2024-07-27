@@ -60,14 +60,48 @@ export const usePublicOptions = () => {
 export const useAgeOptions = () => {
   const docs = useFilteredDocs();
 
+  const counts = useMemo(() => {
+    return _(docs)
+      .map((doc) => {
+        switch (doc.metadatas?.age?.type) {
+          case "lessThan":
+            return Array.isArray(doc.metadatas?.age?.ages) && doc.metadatas?.age?.ages.length > 0
+              ? [0, doc.metadatas?.age?.ages[0]]
+              : null;
+          case "moreThan":
+            return Array.isArray(doc.metadatas?.age?.ages) && doc.metadatas?.age?.ages.length > 0
+              ? [doc.metadatas?.age?.ages[0], Number.MAX_SAFE_INTEGER]
+              : null;
+          case "between":
+            return Array.isArray(doc.metadatas?.age?.ages) && doc.metadatas?.age?.ages.length > 1
+              ? [doc.metadatas?.age?.ages[0], doc.metadatas?.age?.ages[1]]
+              : null;
+          default:
+            return [0, Number.MAX_SAFE_INTEGER];
+        }
+      })
+      .filter((age) => age !== null)
+      .map(([min, max]) => {
+        if (min < 18 && max < 18) {
+          return "-18";
+        }
+        if (min >= 18 && max <= 25) {
+          return "18-25";
+        }
+        return "+25";
+      })
+      .countBy()
+      .value();
+  }, [docs]);
+
   return useMemo(() => {
     return ageFilters.map((option) => {
       return {
         ...option,
-        count: 110,
+        count: counts[option.key] || 0,
       };
     });
-  }, []);
+  }, [counts]);
 };
 
 export const useFrenchLevelOptions = () => {
