@@ -13,7 +13,7 @@ import DropdownButton from "./DropdownButton";
 import styles from "./Filter.module.scss";
 
 export type Selected = AgeOptions | FrenchOptions | string;
-export type FilterOptions = { key: Selected; value: string }[];
+export type FilterOptions = { key: Selected; value: string; count: number }[];
 
 type OptionsDropdown = {
   filterKey: keyof SearchQuery;
@@ -126,7 +126,7 @@ const Filter = (props: Props) => {
                       : option.value}
                   </Checkbox>
                   <div className={styles.countContainer}>
-                    <div className={styles.count}>112</div>
+                    <div className={styles.count}>{option.count ?? ""}</div>
                   </div>
                 </DropdownItem>
               );

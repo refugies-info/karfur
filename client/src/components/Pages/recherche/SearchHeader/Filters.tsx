@@ -60,6 +60,51 @@ const Filters = (props: Props) => {
     }));
   }, [languages, getTranslatedLanguage]);
 
+  const statusOptionsWithCount = useMemo(() => {
+    return statusOptions.map((option) => {
+      return {
+        ...option,
+        count: 112,
+      };
+    });
+  }, []);
+
+  const publicOptionsWithCount = useMemo(() => {
+    return publicOptions.map((option) => {
+      return {
+        ...option,
+        count: 111,
+      };
+    });
+  }, []);
+
+  const ageFiltersWithCount = useMemo(() => {
+    return ageFilters.map((filter) => {
+      return {
+        ...filter,
+        count: 110,
+      };
+    });
+  }, []);
+
+  const frenchLevelFilterWithCount = useMemo(() => {
+    return frenchLevelFilter.map((filter) => {
+      return {
+        ...filter,
+        count: 109,
+      };
+    });
+  }, []);
+
+  const languagesOptionsWithCount = useMemo(() => {
+    return languagesOptions.map((option) => {
+      return {
+        ...option,
+        count: 108,
+      };
+    });
+  }, [languagesOptions]);
+
   return (
     <Container className={cls(styles.container, props.isSmall && styles.small)}>
       <div className={styles.search}>
@@ -96,7 +141,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "age",
             selected: query.age,
-            options: statusOptions,
+            options: statusOptionsWithCount,
             translateOptions: true,
           }}
           gaType="age"
@@ -106,7 +151,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "public",
             selected: query.public,
-            options: publicOptions,
+            options: publicOptionsWithCount,
             translateOptions: true,
           }}
           gaType="public"
@@ -116,7 +161,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "status",
             selected: query.status,
-            options: ageFilters,
+            options: ageFiltersWithCount,
             translateOptions: true,
           }}
           gaType="status"
@@ -126,7 +171,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "frenchLevel",
             selected: query.frenchLevel,
-            options: frenchLevelFilter,
+            options: frenchLevelFilterWithCount,
             translateOptions: true,
           }}
           gaType="frenchLevel"
@@ -136,7 +181,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "language",
             selected: query.language,
-            options: languagesOptions,
+            options: languagesOptionsWithCount,
             translateOptions: false,
           }}
           gaType="language"
