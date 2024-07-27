@@ -40,14 +40,21 @@ export const useStatusOptions = () => {
 export const usePublicOptions = () => {
   const docs = useFilteredDocs();
 
+  const counts = useMemo(() => {
+    return _(docs)
+      .flatMap((doc) => doc.metadatas.public || [])
+      .countBy()
+      .value();
+  }, [docs]);
+
   return useMemo(() => {
     return publicOptions.map((option) => {
       return {
         ...option,
-        count: 111,
+        count: counts[option.key] || 0,
       };
     });
-  }, []);
+  }, [counts]);
 };
 
 export const useAgeOptions = () => {
