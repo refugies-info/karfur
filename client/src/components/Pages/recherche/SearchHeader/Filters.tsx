@@ -82,8 +82,8 @@ const Filters = (props: Props) => {
         <Filter
           label={"Statut"}
           dropdownMenu={{
-            filterKey: "age",
-            selected: query.age,
+            filterKey: "status",
+            selected: query.status,
             options: statusOptions,
             translateOptions: true,
           }}
@@ -102,8 +102,8 @@ const Filters = (props: Props) => {
         <Filter
           label={t("Recherche.filterAge", "Tranche d'âge")}
           dropdownMenu={{
-            filterKey: "status",
-            selected: query.status,
+            filterKey: "age",
+            selected: query.age,
             options: ageOptions,
             translateOptions: true,
           }}
