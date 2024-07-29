@@ -71,7 +71,7 @@
   "scripts": {
     "build": "NEXT_SHARP_PATH=../node_modules/.bin/sharp next build",
     "check-types": "tsc --noEmit",
-    "dev": "next dev",
+    "dev": "wait-on http://localhost:8000/health && next dev",
     "lint:fix": "next lint --fix",
     "lint": "next lint",
     "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
@@ -135,7 +135,8 @@
     "sharp": "^0.33.4",
     "ts-jest": "29.2.2",
     "typescript": "^5.5.3",
-    "typescript-plugin-css-modules": "^5.1.0"
+    "typescript-plugin-css-modules": "^5.1.0",
+    "wait-on": "^7.2.0"
   },
   "volta": {
     "node": "20.13.1",
