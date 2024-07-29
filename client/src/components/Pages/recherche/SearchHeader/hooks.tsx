@@ -171,12 +171,19 @@ export const useLanguagesOptions = () => {
     }));
   }, [languages, getTranslatedLanguage]);
 
+  const counts = useMemo(() => {
+    return _(docs)
+      .flatMap((doc) => doc.availableLanguages || [])
+      .countBy()
+      .value();
+  }, [docs]);
+
   return useMemo(() => {
     return languagesOptions.map((option) => {
       return {
         ...option,
-        count: 108,
+        count: counts[option.key] || 0,
       };
     });
-  }, [languagesOptions]);
+  }, [languagesOptions, counts]);
 };
