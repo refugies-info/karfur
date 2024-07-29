@@ -1,6 +1,5 @@
 import Checkbox from "components/UI/Checkbox";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -112,14 +111,16 @@ const Filter = (props: Props) => {
         {optionsDropdown
           ? optionsDropdown.options.map((option, i) => {
               const isSelected = optionsDropdown.selected.includes(option.key);
+              const isDisabled = option.count === 0;
               return (
                 <DropdownItem
                   key={i}
                   onClick={() => onSelectItem(option.key)}
                   className={styles.item}
                   toggle={false}
+                  disabled={isDisabled}
                 >
-                  <Checkbox className={styles.checkbox} checked={isSelected}>
+                  <Checkbox className={styles.checkbox} checked={isSelected} disabled={isDisabled}>
                     {optionsDropdown.translateOptions
                       ? //@ts-ignore
                         t(option.value)
