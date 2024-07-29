@@ -80,7 +80,7 @@ export const useAgeOptions = () => {
             return [0, Number.MAX_SAFE_INTEGER];
         }
       })
-      .filter((age) => age !== null)
+      .filter((x) => x !== null)
       .map(([min, max]) => {
         if (min < 18 && max < 18) {
           return "-18";
@@ -107,14 +107,47 @@ export const useAgeOptions = () => {
 export const useFrenchLevelOptions = () => {
   const docs = useFilteredDocs();
 
+  const counts = useMemo(() => {
+    return _(docs)
+      .map((doc) => {
+        return doc.metadatas?.frenchLevel || [];
+      })
+      .map((frenchLevel) => {
+        return _(frenchLevel)
+          .map((level) => {
+            switch (level) {
+              case "alpha":
+              case "A1":
+              case "A2":
+                return "a";
+              case "B1":
+              case "B2":
+                return "b";
+              case "C1":
+              case "C2":
+                return "c";
+              default:
+                return null;
+            }
+          })
+          .filter((x) => x !== null)
+          .uniq()
+          .value();
+      })
+      .map((x) => (x.length === 0 ? ["a", "b", "c"] : x))
+      .flatten()
+      .countBy()
+      .value();
+  }, [docs]);
+
   return useMemo(() => {
     return frenchLevelFilter.map((option) => {
       return {
         ...option,
-        count: 109,
+        count: counts[option.key] || 0,
       };
     });
-  }, []);
+  }, [counts]);
 };
 
 export const useLanguagesOptions = () => {
