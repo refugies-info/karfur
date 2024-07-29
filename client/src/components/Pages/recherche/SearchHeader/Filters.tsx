@@ -25,17 +25,7 @@ interface Props {
 const Filters = (props: Props) => {
   const { t } = useTranslation();
 
-  const {
-    locationSearch,
-    themeSearch,
-    resetLocationSearch,
-    resetDepartment,
-    onChangeDepartmentInput,
-    resetTheme,
-    onChangeThemeInput,
-    resetSearch,
-    onChangeSearchInput,
-  } = props;
+  const { locationSearch, onChangeSearchInput, resetDepartment, resetLocationSearch, resetTheme, themeSearch } = props;
 
   const query = useSelector(searchQuerySelector);
 
