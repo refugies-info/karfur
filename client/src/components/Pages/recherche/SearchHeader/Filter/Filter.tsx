@@ -105,7 +105,7 @@ const Filter = (props: Props) => {
   }, [menuDropdown, optionsDropdown, query, t]);
 
   return (
-    <DropdownMenu.Root open={open} onOpenChange={toggleDropdown}>
+    <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleDropdown}>
       <DropdownMenu.Trigger asChild>
         <DropdownButton
           label={props.label}
@@ -116,7 +116,7 @@ const Filter = (props: Props) => {
         />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className={styles.menu}>
+        <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
           {optionsDropdown
             ? optionsDropdown.options.map((option, i) => {
                 const isSelected = optionsDropdown.selected.includes(option.key);
