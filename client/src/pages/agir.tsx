@@ -318,6 +318,14 @@ const Agir = () => {
                           iconId="fr-icon-arrow-right-line"
                           iconPosition="right"
                           className="mt-6"
+                          linkProps={{
+                            href: operatorData.dispositifId
+                              ? {
+                                  pathname: getPath("/dispositif/[id]", "fr"),
+                                  query: { id: operatorData.dispositifId },
+                                }
+                              : "#",
+                          }}
                         >
                           Découvrir la fiche
                         </Button>
