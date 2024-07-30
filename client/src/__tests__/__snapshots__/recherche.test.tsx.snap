@@ -993,7 +993,7 @@ exports[`recherche renders search results 1`] = `
                             >
                               <svg
                                 class="eva eva-checkmark-square-2"
-                                fill="bleuCharte"
+                                fill="#000091"
                                 height="24px"
                                 viewBox="0 0 24 24"
                                 width="24px"
@@ -1104,9 +1104,9 @@ exports[`recherche renders search results 1`] = `
                 tabindex="-1"
               >
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1126,7 +1126,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1162,14 +1162,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1189,7 +1189,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1225,14 +1225,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1252,7 +1252,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1288,14 +1288,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1315,7 +1315,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1351,14 +1351,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1378,7 +1378,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1414,14 +1414,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1441,7 +1441,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1477,7 +1477,7 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
@@ -1506,9 +1506,9 @@ exports[`recherche renders search results 1`] = `
                 tabindex="-1"
               >
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1528,7 +1528,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1564,14 +1564,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1591,7 +1591,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1627,14 +1627,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1654,7 +1654,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1690,14 +1690,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1717,7 +1717,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1753,14 +1753,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1780,7 +1780,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1816,7 +1816,7 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
@@ -1845,9 +1845,9 @@ exports[`recherche renders search results 1`] = `
                 tabindex="-1"
               >
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1867,7 +1867,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1903,14 +1903,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1930,7 +1930,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -1966,14 +1966,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -1993,7 +1993,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -2029,7 +2029,7 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
@@ -2058,9 +2058,9 @@ exports[`recherche renders search results 1`] = `
                 tabindex="-1"
               >
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -2080,7 +2080,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -2116,14 +2116,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -2143,7 +2143,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -2179,14 +2179,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -2206,7 +2206,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -2242,7 +2242,7 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
@@ -2271,9 +2271,9 @@ exports[`recherche renders search results 1`] = `
                 tabindex="-1"
               >
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -2293,7 +2293,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -2320,7 +2320,7 @@ exports[`recherche renders search results 1`] = `
                       </span>
                     </span>
                     <label>
-                      Languages.Anglais
+                      Anglais
                     </label>
                   </div>
                   <div
@@ -2329,14 +2329,14 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>
                 <button
-                  class="item dropdown-item"
-                  role="menuitem"
-                  tabindex="0"
+                  class="item disabled dropdown-item"
+                  disabled=""
+                  tabindex="-1"
                   type="button"
                 >
                   <div
@@ -2356,7 +2356,7 @@ exports[`recherche renders search results 1`] = `
                         >
                           <svg
                             class="eva eva-square-outline"
-                            fill="#000091"
+                            fill="#929292"
                             height="24px"
                             viewBox="0 0 24 24"
                             width="24px"
@@ -2383,7 +2383,7 @@ exports[`recherche renders search results 1`] = `
                       </span>
                     </span>
                     <label>
-                      Languages.Français
+                      Français
                     </label>
                   </div>
                   <div
@@ -2392,7 +2392,7 @@ exports[`recherche renders search results 1`] = `
                     <div
                       class="count"
                     >
-                      112
+                      0
                     </div>
                   </div>
                 </button>

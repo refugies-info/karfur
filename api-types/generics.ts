@@ -204,7 +204,7 @@ export interface SimpleDispositif {
   theme?: Id;
   secondaryThemes?: Id[];
   needs: Id[];
-  metadatas: Metadatas;
+  metadatas?: Metadatas;
   created_at?: Date;
   publishedAt?: Date;
   lastModificationDate?: Date;
