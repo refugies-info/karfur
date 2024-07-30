@@ -1,24 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
+import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
+import LocationDropdown from "components/Pages/recherche/LocationDropdown";
+import SearchInput from "components/Pages/recherche/SearchInput";
+import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import qs from "query-string";
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { getPath } from "routes";
+import commonStyles from "scss/components/searchHeader.module.scss";
+import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import {
   inputFocusedSelector,
   searchQuerySelector,
   themesDisplayedValueSelector,
 } from "services/SearchResults/searchResults.selector";
-import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
-import { cls } from "lib/classname";
-import SearchInput from "components/Pages/recherche/SearchInput";
-import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
-import qs from "query-string";
 import styles from "./HomeSearchHeader.mobile.module.scss";
-import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
   // filterProps
@@ -124,11 +125,17 @@ const HomeSearchHeaderMobile = (props: Props) => {
                   )}
                 </div>
               </div>
-              <LocationDropdown
-                locationSearch={locationSearch}
-                resetLocationSearch={resetLocationSearch}
-                mobile={true}
-              />
+              <RadixDropdownMenu.Root>
+                <RadixDropdownMenu.Portal>
+                  <RadixDropdownMenu.Content>
+                    <LocationDropdown
+                      locationSearch={locationSearch}
+                      resetLocationSearch={resetLocationSearch}
+                      mobile={true}
+                    />
+                  </RadixDropdownMenu.Content>
+                </RadixDropdownMenu.Portal>
+              </RadixDropdownMenu.Root>
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
