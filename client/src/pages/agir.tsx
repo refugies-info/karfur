@@ -60,7 +60,10 @@ const Agir = () => {
 
   return (
     <div className="w-100">
-      <SEO title="Agir" />
+      <SEO
+        title="AGIR pour le logement et l’emploi des personnes réfugiées"
+        description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
+      />
       <div className={styles.hero}>
         <Container>
           <Row className={styles.row}>
