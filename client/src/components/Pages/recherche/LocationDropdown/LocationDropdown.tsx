@@ -119,26 +119,29 @@ const LocationDropdown = (props: Props) => {
           </DropdownMenu.Item>
         ))}
 
-        <Button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.btn}>
-          <span className={styles.icon}>
-            <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
-          </span>
-          {t("Recherche.positionButton", "Position actuelle")}
-        </Button>
+        <DropdownMenu.Item>
+          <Button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.btn}>
+            <span className={styles.icon}>
+              <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
+            </span>
+            {t("Recherche.positionButton", "Position actuelle")}
+          </Button>
+        </DropdownMenu.Item>
       </div>
 
       {placePredictions.slice(0, 5).map((p, i) => (
-        <Button
-          key={i}
-          onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
-          onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
-          className={styles.btn}
-        >
-          <span className={styles.icon}>
-            <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
-          </span>
-          {getPlaceName(p)}
-        </Button>
+        <DropdownMenu.Item key={i}>
+          <Button
+            onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
+            onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
+            className={styles.btn}
+          >
+            <span className={styles.icon}>
+              <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
+            </span>
+            {getPlaceName(p)}
+          </Button>
+        </DropdownMenu.Item>
       ))}
     </>
   );

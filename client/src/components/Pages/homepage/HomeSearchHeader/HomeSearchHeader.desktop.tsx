@@ -1,23 +1,24 @@
-import React, { KeyboardEvent, useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import qs from "query-string";
-import { useRouter } from "next/router";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import LocationDropdown from "components/Pages/recherche/LocationDropdown";
+import SearchInput from "components/Pages/recherche/SearchInput";
+import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import qs from "query-string";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "reactstrap";
+import { getPath } from "routes";
+import commonStyles from "scss/components/searchHeader.module.scss";
+import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import {
   inputFocusedSelector,
   searchQuerySelector,
   themesDisplayedValueSelector,
 } from "services/SearchResults/searchResults.selector";
-import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import SearchInput from "components/Pages/recherche/SearchInput";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
-import { getPath } from "routes";
 import styles from "./HomeSearchHeader.desktop.module.scss";
-import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
   // filterProps
@@ -119,12 +120,8 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <Dropdown
-          isOpen={locationOpen || inputFocused.location}
-          toggle={toggleLocation}
-          className={commonStyles.dropdown}
-        >
-          <DropdownToggle>
+        <DropdownMenu.Root open={locationOpen || inputFocused.location} onOpenChange={toggleLocation}>
+          <DropdownMenu.Trigger>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
               icon="pin-outline"
@@ -139,14 +136,16 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               resetFilter={resetDepartment}
               onHomepage={true}
             />
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
-            <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
-          </DropdownMenu>
-        </Dropdown>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
+              <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
 
-        <Dropdown isOpen={themesOpen || inputFocused.theme} toggle={toggleThemes} className={commonStyles.dropdown}>
-          <DropdownToggle>
+        <DropdownMenu.Root open={themesOpen || inputFocused.theme} onOpenChange={toggleThemes}>
+          <DropdownMenu.Trigger>
             <SearchInput
               label={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
@@ -159,11 +158,13 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               resetFilter={resetTheme}
               onHomepage={true}
             />
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu} persist={themesOpen || inputFocused.theme}>
-            <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
-          </DropdownMenu>
-        </Dropdown>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
+              <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
 
         <div className={cls(commonStyles.dropdown, inputFocused.search && "show")}>
           <Button onClick={openSearch}>
