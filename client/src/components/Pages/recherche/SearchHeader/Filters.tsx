@@ -1,11 +1,9 @@
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationDropdown from "../LocationDropdown";

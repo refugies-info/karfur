@@ -71,11 +71,6 @@ const initialMockSearchReults: SearchResultsState = {
     sort: "date",
     type: "all"
   },
-  inputFocused: {
-    search: false,
-    location: false,
-    theme: false
-  }
 };
 
 export const initialMockStore = {

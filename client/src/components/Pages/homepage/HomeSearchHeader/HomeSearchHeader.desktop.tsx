@@ -1,16 +1,11 @@
-import React, { KeyboardEvent, useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import qs from "query-string";
 import { useRouter } from "next/router";
 import { cls } from "lib/classname";
-import {
-  inputFocusedSelector,
-  searchQuerySelector,
-  themesDisplayedValueSelector,
-} from "services/SearchResults/searchResults.selector";
-import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
+import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import SearchInput from "components/Pages/recherche/SearchInput";
 import LocationDropdown from "components/Pages/recherche/LocationDropdown";
@@ -20,61 +15,32 @@ import styles from "./HomeSearchHeader.desktop.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
-  // filterProps
-  locationSearch: string;
-  themeSearch: string;
   resetDepartment: () => void;
   resetTheme: () => void;
   resetSearch: () => void;
-  resetLocationSearch: () => void;
-  onChangeDepartmentInput: (e: any) => void;
-  onChangeThemeInput: (e: any) => void;
   onChangeSearchInput: (e: any) => void;
 }
 
 const HomeSearchHeaderDesktop = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const dispatch = useDispatch();
 
-  const {
-    locationSearch,
-    themeSearch,
-    resetLocationSearch,
-    resetDepartment,
-    onChangeDepartmentInput,
-    resetTheme,
-    onChangeThemeInput,
-    resetSearch,
-    onChangeSearchInput,
-  } = props;
+  const { resetDepartment, resetTheme, resetSearch, onChangeSearchInput } = props;
 
   const query = useSelector(searchQuerySelector);
-  const inputFocused = useSelector(inputFocusedSelector);
 
   // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
   const toggleLocation = useCallback(() => setLocationOpen((o) => !o), []);
-  const setLocationActive = useCallback(
-    (active: boolean) => dispatch(setInputFocusedActionCreator("location", active)),
-    [dispatch],
-  );
 
   // THEME
   const [themesOpen, setThemesOpen] = useState(false);
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
   const toggleThemes = useCallback(() => setThemesOpen((o) => !o), []);
-  const setThemeActive = useCallback(
-    (active: boolean) => dispatch(setInputFocusedActionCreator("theme", active)),
-    [dispatch],
-  );
 
   // SEARCH
-  const openSearch = useCallback(() => dispatch(setInputFocusedActionCreator("search", true)), [dispatch]);
-  const setSearchActive = useCallback(
-    (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
-    [dispatch],
-  );
+  const [searchActive, setSearchActive] = useState(false);
+  const openSearch = useCallback(() => setSearchActive(true), []);
 
   const submitForm = useCallback(() => {
     router.push({
@@ -87,14 +53,11 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   useEffect(() => {
     const handleKey = (e: any) => {
       if (e.key === "Escape") {
-        if (inputFocused.location) setLocationActive(false);
         if (locationOpen) toggleLocation();
-        if (inputFocused.theme) setThemeActive(false);
         if (themesOpen) toggleThemes();
-        if (inputFocused.search) setSearchActive(false);
       }
       if (e.key === "Enter") {
-        if (inputFocused.location || inputFocused.theme || inputFocused.search || locationOpen || themesOpen) {
+        if (locationOpen || themesOpen) {
           submitForm();
         }
       }
@@ -104,40 +67,24 @@ const HomeSearchHeaderDesktop = (props: Props) => {
     return () => {
       document.removeEventListener("keyup", handleKey);
     };
-  }, [
-    inputFocused,
-    setLocationActive,
-    setThemeActive,
-    setSearchActive,
-    toggleLocation,
-    toggleThemes,
-    locationOpen,
-    themesOpen,
-    submitForm,
-  ]);
+  }, [toggleLocation, toggleThemes, locationOpen, themesOpen, submitForm]);
 
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <Dropdown
-          isOpen={locationOpen || inputFocused.location}
-          toggle={toggleLocation}
-          className={commonStyles.dropdown}
-        >
+        <Dropdown isOpen={locationOpen} toggle={toggleLocation} className={commonStyles.dropdown}>
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
               icon="pin-outline"
-              active={locationOpen || inputFocused.location}
-              setActive={setLocationActive}
-              onChange={onChangeDepartmentInput}
-              inputValue={locationSearch}
-              inputPlaceholder={t("Recherche.department")}
-              loading={false}
+              active={locationOpen}
               value={query.departments.join(", ")}
               placeholder={t("Recherche.all", "Tous")}
               resetFilter={resetDepartment}
               onHomepage={true}
+              inputValue=""
+              setActive={() => {}}
+              noInput
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
@@ -145,32 +92,32 @@ const HomeSearchHeaderDesktop = (props: Props) => {
           </DropdownMenu>
         </Dropdown>
 
-        <Dropdown isOpen={themesOpen || inputFocused.theme} toggle={toggleThemes} className={commonStyles.dropdown}>
+        <Dropdown isOpen={themesOpen} toggle={toggleThemes} className={commonStyles.dropdown}>
           <DropdownToggle>
             <SearchInput
               label={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
-              active={inputFocused.theme || themesOpen}
-              setActive={setThemeActive}
-              onChange={onChangeThemeInput}
-              inputValue={themeSearch}
+              active={themesOpen}
               value={themeDisplayedValue.join(", ")}
               placeholder={t("Recherche.all", "Tous")}
               resetFilter={resetTheme}
               onHomepage={true}
+              inputValue=""
+              setActive={() => {}}
+              noInput
             />
           </DropdownToggle>
-          <DropdownMenu className={styles.menu} persist={themesOpen || inputFocused.theme}>
-            <ThemeDropdown mobile={false} isOpen={themesOpen || inputFocused.theme} />
+          <DropdownMenu className={styles.menu} persist={themesOpen}>
+            <ThemeDropdown mobile={false} isOpen={themesOpen} />
           </DropdownMenu>
         </Dropdown>
 
-        <div className={cls(commonStyles.dropdown, inputFocused.search && "show")}>
+        <div className={cls(commonStyles.dropdown, searchActive && "show")}>
           <Button onClick={openSearch}>
             <SearchInput
               label={t("Recherche.keyword", "Mot-clé")}
               icon="search-outline"
-              active={inputFocused.search}
+              active={searchActive}
               setActive={setSearchActive}
               onChange={onChangeSearchInput}
               inputValue={query.search}
