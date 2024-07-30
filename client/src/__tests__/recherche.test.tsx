@@ -38,11 +38,6 @@ describe("recherche", () => {
             sort: "date",
             type: "all",
           },
-          inputFocused: {
-            search: false,
-            location: false,
-            theme: false,
-          },
         },
       },
     });
