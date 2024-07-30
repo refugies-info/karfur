@@ -40,7 +40,7 @@ const filterAgeValues = {
 
 export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
-  const audienceAge = dispositif.metadatas.age;
+  const audienceAge = dispositif.metadatas?.age;
   if (!audienceAge || !audienceAge.ages[0] || !audienceAge.ages[1]) return true;
   for (const age of ageFilters) {
     if (audienceAge.ages[0] <= filterAgeValues[age][0] &&
@@ -60,7 +60,7 @@ const filterFrenchLevelValues = {
 
 export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
-  const frenchLevels = dispositif.metadatas.frenchLevel;
+  const frenchLevels = dispositif.metadatas?.frenchLevel;
   if (!frenchLevels || frenchLevels.length === 0) return true;
 
   if (frenchLevelFilters.includes("c")) {
@@ -89,4 +89,3 @@ export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFil
   }
   return false;
 };
-

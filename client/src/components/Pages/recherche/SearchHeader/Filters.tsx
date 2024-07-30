@@ -1,17 +1,18 @@
-import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
 import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "reactstrap";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { useSelector } from "react-redux";
+import { Container } from "reactstrap";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationDropdown from "../LocationDropdown";
 import ThemeDropdown from "../ThemeDropdown";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
+import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 
 interface Props {
   isSmall?: boolean;
@@ -42,21 +43,11 @@ const Filters = (props: Props) => {
     addToQueryActionCreator({ departments: [], sort: "date" });
   }, []);
 
-  // LANGUAGE
-  const languages = useSelector(allLanguesSelector);
-  const getTranslatedLanguage = useMemo(() => {
-    return (langueFr: string) => t(`Languages.${langueFr}`, langueFr) as string;
-  }, [t]);
-  const languagesOptions = useMemo(() => {
-    // Sort languages by langueFr
-    const sorted = languages.sort((a, b) =>
-      getTranslatedLanguage(a.langueFr).localeCompare(getTranslatedLanguage(b.langueFr)),
-    );
-    return sorted.map((ln) => ({
-      key: ln.i18nCode,
-      value: getTranslatedLanguage(ln.langueFr),
-    }));
-  }, [languages, getTranslatedLanguage]);
+  const statusOptions = useStatusOptions();
+  const publicOptions = usePublicOptions();
+  const ageOptions = useAgeOptions();
+  const frenchLevelOptions = useFrenchLevelOptions();
+  const languageOptions = useLanguagesOptions();
 
   return (
     <Container className={cls(styles.container, props.isSmall && styles.small)}>
@@ -92,8 +83,8 @@ const Filters = (props: Props) => {
         <Filter
           label={"Statut"}
           dropdownMenu={{
-            filterKey: "age",
-            selected: query.age,
+            filterKey: "status",
+            selected: query.status,
             options: statusOptions,
             translateOptions: true,
           }}
@@ -112,9 +103,9 @@ const Filters = (props: Props) => {
         <Filter
           label={t("Recherche.filterAge", "Tranche d'âge")}
           dropdownMenu={{
-            filterKey: "status",
-            selected: query.status,
-            options: ageFilters,
+            filterKey: "age",
+            selected: query.age,
+            options: ageOptions,
             translateOptions: true,
           }}
           gaType="status"
@@ -124,7 +115,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "frenchLevel",
             selected: query.frenchLevel,
-            options: frenchLevelFilter,
+            options: frenchLevelOptions,
             translateOptions: true,
           }}
           gaType="frenchLevel"
@@ -134,7 +125,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             filterKey: "language",
             selected: query.language,
-            options: languagesOptions,
+            options: languageOptions,
             translateOptions: false,
           }}
           gaType="language"

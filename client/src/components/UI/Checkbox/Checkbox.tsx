@@ -1,6 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
-import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import styles from "./Checkbox.module.scss";
@@ -8,6 +7,7 @@ import styles from "./Checkbox.module.scss";
 interface Props {
   children: any;
   checked: boolean;
+  disabled?: boolean;
   color?: string;
   onChange?: () => void;
   className?: string;
@@ -30,7 +30,11 @@ const Checkbox = (props: Props) => {
       <span className={styles.check}>
         <EVAIcon
           name={props.checked ? "checkmark-square-2" : "square-outline"}
-          fill={props.checked ? colors.bleuCharte : theme.decisions.text.actionHigh.blueFrance.default}
+          fill={
+            props.disabled
+              ? theme.decisions.text.disabled.grey.default
+              : theme.decisions.text.actionHigh.blueFrance.default
+          }
           size="large"
         />
       </span>
