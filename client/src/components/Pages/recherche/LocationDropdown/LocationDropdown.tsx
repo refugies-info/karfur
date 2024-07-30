@@ -1,17 +1,18 @@
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import axios from "axios";
-import { useTranslation } from "next-i18next";
-import { Button } from "reactstrap";
-import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import styles from "./LocationDropdown.module.scss";
 import { Event } from "lib/tracking";
+import { useTranslation } from "next-i18next";
+import { useCallback, useEffect } from "react";
+import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "reactstrap";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { getPlaceName } from "./functions";
+import styles from "./LocationDropdown.module.scss";
 
 interface Props {
   mobile?: boolean;
@@ -101,20 +102,21 @@ const LocationDropdown = (props: Props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <div className={cls(styles.header, placePredictions.length === 0 && styles.no_results)}>
         {query.departments.map((dep, i) => (
-          <Button
-            key={i}
-            className={styles.selected}
-            onClick={() => removeDepartement(dep)}
-            onKeyDown={(e) => onEnterOrSpace(e, () => removeDepartement(dep))}
-          >
-            {dep}
-            <span className={styles.icon}>
-              <EVAIcon name="close-outline" fill="white" size={!props.mobile ? 18 : 24} />
-            </span>
-          </Button>
+          <DropdownMenu.Item key={i}>
+            <Button
+              className={styles.selected}
+              onClick={() => removeDepartement(dep)}
+              onKeyDown={(e) => onEnterOrSpace(e, () => removeDepartement(dep))}
+            >
+              {dep}
+              <span className={styles.icon}>
+                <EVAIcon name="close-outline" fill="white" size={!props.mobile ? 18 : 24} />
+              </span>
+            </Button>
+          </DropdownMenu.Item>
         ))}
 
         <Button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.btn}>
@@ -138,7 +140,7 @@ const LocationDropdown = (props: Props) => {
           {getPlaceName(p)}
         </Button>
       ))}
-    </div>
+    </>
   );
 };
 

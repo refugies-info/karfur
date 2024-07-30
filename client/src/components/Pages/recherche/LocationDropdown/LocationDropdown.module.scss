@@ -6,24 +6,6 @@
 @import "~scss/mixins/btn";
 @import "~scss/variables";
 
-.container {
-  background: $white;
-  border-radius: $radius;
-  width: 380px;
-  box-shadow: 0 0 40px 0 #00000040;
-  overflow: hidden;
-  z-index: 3;
-  padding: u(4);
-  margin-top: u(1);
-  position: relative;
-
-  @include isMobile() {
-    width: 100%;
-    box-shadow: none;
-    margin: 0;
-  }
-}
-
 .header {
   padding-bottom: u(4);
   margin-bottom: u(4);
