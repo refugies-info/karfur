@@ -126,7 +126,7 @@ const LocationDropdown = (props: Props) => {
             <span className={styles.icon}>
               <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
             </span>
-            {t("Recherche.positionButton", "Position actuelle")}
+            {t("Recherche.positionButton", "Utiliser ma position")}
           </Button>
         </DropdownMenu.Item>
       </div>
