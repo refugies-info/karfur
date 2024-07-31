@@ -7,14 +7,12 @@ import useWindowSize from "hooks/useWindowSize";
 import {
   searchQuerySelector,
   searchResultsSelector,
-  themesDisplayedSelector
+  themesDisplayedSelector,
 } from "services/SearchResults/searchResults.selector";
 import { resetQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import FButton from "components/UI/FButton";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
-import DemarcheCardTitle from "../DemarcheCardTitle";
-import DispositifCardTitle from "../DispositifCardTitle";
 import NotDeployedBanner from "../NotDeployedBanner";
 import SeeMoreButton from "../SeeMoreButton";
 import noResultsImage from "assets/no_results_alt.svg";
@@ -106,17 +104,13 @@ const SearchResults = (props: Props) => {
               styles.demarches,
               query.type !== "demarche" && styles.horizontal_scroll,
               query.type === "dispositif" && styles.hidden,
-              !hideDemarches && styles.all_visible
+              !hideDemarches && styles.all_visible,
             )}
           >
-            <DemarcheCardTitle
-              count={filteredResult.demarches.length}
-              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
-            />
             {demarches.map((d) =>
               typeof d === "string" ? null : ( // d can be a string if it comes from generateLightResults
                 <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
-              )
+              ),
             )}
           </div>
           {!isMobile && query.type !== "dispositif" && filteredResult.demarches.length >= MAX_SHOWN_DEMARCHES && (
@@ -137,13 +131,9 @@ const SearchResults = (props: Props) => {
               styles.results,
               styles.dispositifs,
               query.type === "demarche" && styles.hidden,
-              !hideDispositifs && styles.all_visible
+              !hideDispositifs && styles.all_visible,
             )}
           >
-            <DispositifCardTitle
-              count={filteredResult.dispositifs.length}
-              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
-            />
             {dispositifs.map((d) =>
               typeof d === "string" ? null : (
                 <DispositifCard
@@ -152,7 +142,7 @@ const SearchResults = (props: Props) => {
                   selectedDepartment={selectedDepartment}
                   targetBlank
                 />
-              )
+              ),
             )}
           </div>
           {!isMobile && query.type !== "demarche" && filteredResult.dispositifs.length >= MAX_SHOWN_DISPOSITIFS && (
@@ -173,16 +163,11 @@ const SearchResults = (props: Props) => {
               styles.results,
               styles.dispositifs,
               query.type === "demarche" && styles.hidden,
-              !hideSecondaryDispositifs && styles.all_visible
+              !hideSecondaryDispositifs && styles.all_visible,
             )}
           >
-            <DispositifCardTitle
-              count={filteredResult.dispositifsSecondaryTheme.length}
-              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
-              themes={themesSelected}
-            />
             {secondaryDispositifs.map((d) =>
-              typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
+              typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />,
             )}
           </div>
           {!isMobile &&

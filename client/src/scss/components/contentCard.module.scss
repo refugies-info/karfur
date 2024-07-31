@@ -8,98 +8,15 @@
 .wrapper {
   position: relative;
   display: flex;
-}
+  width: 282px;
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  background: $white;
-  box-shadow: 0 4px 18px 0 #0000001a;
-  padding: u(4);
-  border-radius: $radius;
-  border: 1px solid transparent;
-  cursor: pointer;
-
-  // typeContenu
-  &.demarche {
-    width: 208px;
-    font-size: 0.95rem;
-
-    @include isMobile() {
-      width: 100%;
-      min-width: 60vw;
-    }
-
-    &.content {
-      padding-top: u(8);
-    }
+  :global(.fr-card__content) {
+    position: relative;
   }
-  &.dispositif {
-    width: 260px;
-    max-width: 100%;
-    font-size: 0.95rem;
-
-    @include isMobile() {
-      width: 100%;
-      min-width: 300px;
-    }
-
-    &.title {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  }
-
-  // title / content
-  &.title {
-    background: radial-gradient(150% 150% at 50% 50%, #0421b1 0%, #1b62d8 100%);
-    cursor: default;
-    box-shadow: none;
-  }
-
-  em {
-    background-color: $bgfocus;
-    font-style: normal;
-  }
-
-  &.title {
-    @include isMobile() {
-      display: none !important;
-    }
-  }
-}
-
-.icon {
-  width: u(12);
-  height: u(12);
-  background-color: $white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text {
-  @include text("h4");
-  margin-top: u(6);
-  margin-bottom: u(6);
-  color: $white;
-}
-
-.badge {
-  padding: u(1) u(2);
-  background: $white;
-  color: $bleuCharte;
-  @include text("h5");
-  border-radius: 4px;
-  display: inline-block;
 }
 
 // hover
-.wrapper:hover .card:not(.demo) {
+.wrapper:hover :not(.demo) {
   border-color: $dark;
   background-color: $gray30;
   box-shadow: none;
@@ -109,20 +26,36 @@
 }
 
 /* Favorite button */
-.wrapper {
-  .favorite {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    display: none;
-    z-index: 5;
 
-    @include rtl() {
-      right: inherit;
-      left: 12px;
-    }
+.favorite {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 5;
+
+  @include rtl() {
+    right: inherit;
+    left: 12px;
   }
-  &:hover:not(.demo) .favorite {
-    display: block;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: u(2);
+  @include dsfr-text("very-small");
+  color: var(--text-mention-grey);
+
+  & > i::before {
+    --icon-size: 16px !important;
   }
+}
+
+.sponsor {
+  position: absolute;
+  border: 1px solid var(--border-default-grey);
+  background: white;
+  top: u(-6);
+  right: 2rem; // same padding as dsfr card
+  z-index: 2;
 }

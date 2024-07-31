@@ -64,7 +64,3 @@ export const getTheme = (id: Id | undefined, allThemes: GetThemeResponse[]) => {
   if (!id) return defaultTheme;
   return allThemes.find(theme => theme._id === id) || defaultTheme;
 }
-
-export const getThemes = (ids: Id[], allThemes: GetThemeResponse[]) => {
-  return ids.map(id => allThemes.find(theme => theme._id === id) || defaultTheme);
-}
