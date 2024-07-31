@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useTranslation } from "next-i18next";
+import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import useWindowSize from "hooks/useWindowSize";
+import { checkIfEllipsis } from "lib/checkIfEllipsis";
 import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
-import { checkIfEllipsis } from "lib/checkIfEllipsis";
-import useWindowSize from "hooks/useWindowSize";
-import { colors } from "colors";
+import { useTranslation } from "next-i18next";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./SearchInput.module.scss";
 
 interface Props {
@@ -18,7 +18,6 @@ interface Props {
   active: boolean;
   setActive: (active: boolean) => void;
   onChange?: (e: any) => void;
-  loading?: boolean;
   focusout?: boolean;
   resetFilter?: () => void;
   smallIcon?: boolean;
@@ -137,6 +136,7 @@ const SearchInput = (props: Props) => {
           placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
           className={cls(styles.input, (!active || props.noInput) && styles.hidden)}
           onChange={props.onChange}
+          readOnly={!props.onChange}
           value={props.inputValue}
         />
         {active && !props.noInput ? (

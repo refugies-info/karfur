@@ -5,7 +5,7 @@ import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "reactstrap";
@@ -16,15 +16,22 @@ import styles from "./LocationDropdown.module.scss";
 
 interface Props {
   mobile?: boolean;
-  locationSearch: string;
-  resetLocationSearch: () => void;
 }
 
 const LocationDropdown = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const { locationSearch, resetLocationSearch } = props;
+
+  const [locationSearch, setLocationSearch] = useState("");
+  const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
+  // TODO: use when creating a searchbar in component
+  const onChangeDepartmentInput = useCallback(
+    (e: any) => {
+      setLocationSearch(e.target.value);
+    },
+    [setLocationSearch],
+  );
 
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,

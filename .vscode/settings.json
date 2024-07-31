@@ -57,5 +57,6 @@
   "githubPullRequests.pullBranch": "never",
   "githubIssues.issueBranchTitle": "feat/#${issueNumber}-${sanitizedIssueTitle}",
   "javascript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

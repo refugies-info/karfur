@@ -1,29 +1,28 @@
-import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
-import { Collapse } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
-import debounce from "lodash/debounce";
-import { themesSelector } from "services/Themes/themes.selectors";
-import { needsSelector } from "services/Needs/needs.selectors";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
-import { languei18nSelector } from "services/Langue/langue.selectors";
-import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
-import { cls } from "lib/classname";
-import { sortThemes } from "lib/sortThemes";
-import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
-import useLocale from "hooks/useLocale";
-import NeedsList from "./NeedsList";
-import { getInitialTheme } from "./functions";
-import styles from "./ThemeDropdown.module.scss";
-import ThemeButton from "./ThemeButton";
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import useLocale from "hooks/useLocale";
+import { cls } from "lib/classname";
+import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
+import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
+import debounce from "lodash/debounce";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Collapse } from "reactstrap";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { languei18nSelector } from "services/Langue/langue.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { needsSelector } from "services/Needs/needs.selectors";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { getInitialTheme } from "./functions";
+import NeedsList from "./NeedsList";
+import ThemeButton from "./ThemeButton";
+import styles from "./ThemeDropdown.module.scss";
 
 interface Props {
-  search: string;
   mobile: boolean;
   isOpen: boolean;
 }
@@ -56,6 +55,8 @@ const ThemeDropdown = (props: Props) => {
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
+
+  const [search, setSearch] = useState(""); // TODO: use this when search restored in component
 
   const onClickTheme = useCallback(
     (themeId: Id) => {
@@ -129,15 +130,15 @@ const ThemeDropdown = (props: Props) => {
   }, [props.isOpen]);
 
   const displayedNeeds = useMemo(() => {
-    if (props.search) {
+    if (search) {
       return needs
-        .filter((need) => (need[locale]?.text || "").includes(props.search))
+        .filter((need) => (need[locale]?.text || "").includes(search))
         .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
     }
     return needs
       .filter((need) => need.theme._id === themeSelected)
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
-  }, [themeSelected, needs, props.search, locale]);
+  }, [themeSelected, needs, search, locale]);
 
   const isThemeDisabled = (themeId: Id) => {
     const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
@@ -146,7 +147,7 @@ const ThemeDropdown = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <div className={cls(styles.themes, props.search && styles.hidden)}>
+      <div className={cls(styles.themes, search && styles.hidden)}>
         {sortedThemes.map((theme, i) => (
           <div key={i}>
             <ThemeButton
@@ -161,7 +162,7 @@ const ThemeDropdown = (props: Props) => {
             {props.mobile && (
               <Collapse isOpen={themeSelected === theme._id}>
                 <NeedsList
-                  search={props.search}
+                  search={search}
                   displayedNeeds={displayedNeeds}
                   themeSelected={themeSelected}
                   nbDispositifsByNeed={nbDispositifsByNeed}
@@ -172,9 +173,9 @@ const ThemeDropdown = (props: Props) => {
           </div>
         ))}
       </div>
-      {(!props.mobile || props.search) && (
+      {(!props.mobile || search) && (
         <NeedsList
-          search={props.search}
+          search={search}
           displayedNeeds={displayedNeeds}
           themeSelected={themeSelected}
           nbDispositifsByNeed={nbDispositifsByNeed}
