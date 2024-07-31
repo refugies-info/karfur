@@ -1,5 +1,6 @@
 import { cls } from "lib/classname";
 import { useEffect, useState } from "react";
+import Tooltip from "../Tooltip";
 import styles from "./MapFrance.module.scss";
 
 interface Props {
@@ -20,6 +21,7 @@ const normalizeColors = (colors: Record<string, string[]>) => {
 
 const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
   const [activeDep, setActiveDep] = useState("");
+  const [tooltipId, setTooltipId] = useState("");
   const [colorsPerDep, setColorsPerDep] = useState<Record<string, string>>(normalizeColors(colors));
 
   useEffect(() => {
@@ -35,6 +37,8 @@ const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
     return {
       id: `dpt-${dep}`,
       onClick: () => (isSelectable ? setActiveDep((d) => (d === dep ? "" : dep)) : {}),
+      onMouseEnter: () => setTooltipId(!isSelectable ? `dpt-${dep}` : ""),
+      onMouseLeave: () => setTooltipId(""),
       fill: colorsPerDep[dep] || undefined,
       className: cls(styles.dep, isSelectable && styles.selectable, dep === activeDep && styles.selected),
     };
@@ -42,6 +46,12 @@ const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
 
   return (
     <div>
+      {tooltipId && (
+        <Tooltip target={tooltipId} placement="top" isOpen={true}>
+          Ce territoire n'a pas encore d'opérateur AGIR notifié
+        </Tooltip>
+      )}
+
       <svg width="578px" height="544px" viewBox="0 0 578 544" style={{ maxWidth: "100%" }}>
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           <g id="par-commune">
@@ -93,7 +103,7 @@ const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
                 </tspan>
               </text>
             </g>
-            <g id="carte" transform="translate(12.000000, 2.000000)" fill="#e3e3fe" stroke="#ffffff" strokeWidth="0.4">
+            <g id="carte" transform="translate(12.000000, 2.000000)" fill="#ADADF9" stroke="#E3E3FD" strokeWidth="0.4">
               <path
                 d="M194.995,496.96 L192.664,497.005 L191.817,497.42 L190.852,498.163 L190.674,498.326 L190.006,498.326 L188.595,498.86 L187.987,499.39 L186.042,499.672 L185.864,500.696 L185.329,502.834 C185.329,502.834 184.585,503.331 184.364,503.413 C184.143,503.495 182.909,504.155 182.909,504.155 L182.686,506.426 L183.22,507.78 L184.675,509.503 L185.373,510.29 L185.937,510.171 L185.596,510.334 L185.64,513.423 L187.095,515.235 L188.595,516.631 L191.238,518.193 L191.416,518.089 L191.208,518.237 L194.341,520.123 L196.761,521 L199.359,521.445 L201.438,522.186 L202.759,522.439 C202.759,522.439 204.796,522.024 205.061,522.024 C205.326,522.024 207.436,521.608 207.436,521.608 L209.604,520.91 L211.059,519.589 L210.925,517.243 L211.193,515.772 L211.772,514.941 L212.737,513.664 L213.227,512.06 L213.093,510.498 L212.069,509.919 L210.747,509.315 L210.139,509.271 L209.159,507.875 C208.938,507.71 207.747,506.388 207.659,506.185 C207.571,505.981 206.783,504.207 206.783,504.207 L206.516,501.445 L205.016,500.005 L203.249,499.026 C203.249,499.026 201.836,498.207 201.571,498.166 C201.306,498.125 198.971,497.631 198.795,497.631 C198.618,497.631 196.894,497.753 196.85,497.794 L196.627,497.705 L194.995,496.96 Z"
                 {...getDepProps("974")}
