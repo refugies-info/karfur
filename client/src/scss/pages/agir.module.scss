@@ -158,6 +158,36 @@
   }
 }
 
+.operator {
+  border: 1px solid var(--border-default-grey);
+
+  .head {
+    background: var(--text-action-high-blue-france);
+    color: white;
+    padding: u(3) u(4);
+    margin: -1px; // goes over border
+    @include dsfr-text("chapo");
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    & > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-action-high-blue-france);
+      background: white;
+      border-radius: 50%;
+      margin-right: u(3);
+      width: u(10);
+      height: u(10);
+    }
+  }
+  .content {
+    padding: u(6);
+  }
+}
+
 .next {
   border-top: 1px solid var(--border-default-grey);
 
