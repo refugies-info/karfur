@@ -19,6 +19,7 @@ type OptionsDropdown = {
   options: FilterOptions;
   selected: Selected[];
   translateOptions?: boolean;
+  width: string;
 };
 
 type MenuDropdown = {
@@ -126,6 +127,7 @@ const Filter = (props: Props) => {
                     key={i}
                     onClick={() => onSelectItem(option.key)}
                     className={styles.item}
+                    style={{ width: optionsDropdown.width }}
                     disabled={isDisabled}
                   >
                     <Checkbox className={styles.checkbox} checked={isSelected} disabled={isDisabled}>

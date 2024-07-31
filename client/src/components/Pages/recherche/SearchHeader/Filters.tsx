@@ -85,6 +85,7 @@ const Filters = (props: Props) => {
             selected: query.status,
             options: statusOptions,
             translateOptions: true,
+            width: "272px",
           }}
           gaType="age"
         />
@@ -95,6 +96,7 @@ const Filters = (props: Props) => {
             selected: query.public,
             options: publicOptions,
             translateOptions: true,
+            width: "272px",
           }}
           gaType="public"
         />
@@ -105,6 +107,7 @@ const Filters = (props: Props) => {
             selected: query.age,
             options: ageOptions,
             translateOptions: true,
+            width: "272px",
           }}
           gaType="status"
         />
@@ -115,6 +118,7 @@ const Filters = (props: Props) => {
             selected: query.frenchLevel,
             options: frenchLevelOptions,
             translateOptions: true,
+            width: "272px",
           }}
           gaType="frenchLevel"
         />
@@ -125,6 +129,7 @@ const Filters = (props: Props) => {
             selected: query.language,
             options: languageOptions,
             translateOptions: false,
+            width: "288px",
           }}
           gaType="language"
         />
