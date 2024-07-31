@@ -3,6 +3,7 @@ import axios from "axios";
 import Checkbox from "components/UI/Checkbox";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
+import { getDepartmentCodeFromName } from "lib/departments";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
@@ -115,7 +116,7 @@ const LocationDropdown = (props: Props) => {
         {query.departments.map((dep, i) => (
           <DropdownMenu.Item key={i}>
             <Checkbox className={styles.checkbox} checked={true}>
-              {dep}
+              {dep} {getDepartmentCodeFromName(dep)}
             </Checkbox>
           </DropdownMenu.Item>
         ))}
