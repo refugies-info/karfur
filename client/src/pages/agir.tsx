@@ -60,7 +60,10 @@ const Agir = () => {
 
   return (
     <div className="w-100">
-      <SEO title="Agir" />
+      <SEO
+        title="AGIR pour le logement et l’emploi des personnes réfugiées"
+        description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
+      />
       <div className={styles.hero}>
         <Container>
           <Row className={styles.row}>
@@ -187,7 +190,7 @@ const Agir = () => {
                 <h3 className="mb-4">L’accompagnement social</h3>
 
                 <p>
-                  Droit au séjour, obtention de documents de voyage, reconstitution de l’état-civil auprès de l’OFPRA,
+                  Droit au séjour, obtention de documents de voyage, reconstitution de l’état civil auprès de l’OFPRA,
                   accès à la réunification familiale
                 </p>
                 <p>
@@ -290,18 +293,50 @@ const Agir = () => {
                   selectable={Object.keys(operatorsPerDepartment)}
                 />
               </Col>
-              <Col lg="4">
+              <Col lg="4" className="d-flex align-items-center">
                 {activeDep && (
-                  <>
-                    <div className="fw-bold mb-1">{getDepartmentFromNumber(activeDep)}</div>
+                  <div className={styles.operator}>
+                    <div className={styles.head}>
+                      <span>{activeDep}</span>
+                      {getDepartmentFromNumber(activeDep).split(" - ")[1]}
+                    </div>
                     {operatorData && (
-                      <div>
-                        {operatorData.operator}
-                        <br />
-                        {operatorData.email}
+                      <div className={styles.content}>
+                        <div>
+                          <i className="ri-building-line me-2"></i> {operatorData.operator}
+                        </div>
+                        {operatorData.email && (
+                          <div className="mt-4">
+                            <i className="ri-mail-line me-2"></i> {operatorData.email}
+                          </div>
+                        )}
+                        {operatorData.phone && (
+                          <div className="mt-4">
+                            <i className="ri-phone-line me-2"></i> {operatorData.phone}
+                          </div>
+                        )}
+                        {operatorData.dispositifId && (
+                          <Button
+                            size="small"
+                            priority="tertiary"
+                            iconId="fr-icon-arrow-right-line"
+                            iconPosition="right"
+                            className="mt-6"
+                            linkProps={{
+                              href: {
+                                pathname: getPath("/dispositif/[id]", "fr"),
+                                query: { id: operatorData.dispositifId },
+                              },
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                            }}
+                          >
+                            Découvrir la fiche
+                          </Button>
+                        )}
                       </div>
                     )}
-                  </>
+                  </div>
                 )}
               </Col>
             </Row>
@@ -323,7 +358,7 @@ const Agir = () => {
                   background
                   border
                   title="Je découvre +100 fiches pratiques"
-                  desc="Sur la CAF, le RSA, France Travail, l’ANEF, la carte vitale, le permis de conduire..."
+                  desc="Sur la CAF, le RSA, France Travail, l’ANEF, la carte Vitale, le permis de conduire..."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluDemarche.src}
@@ -374,7 +409,7 @@ const Agir = () => {
                   background
                   border
                   title="Je participe à un webinaire gratuit"
-                  desc="Comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
+                  desc="Découvrez comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluWebinaire.src}
