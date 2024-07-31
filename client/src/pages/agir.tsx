@@ -315,23 +315,25 @@ const Agir = () => {
                             <i className="ri-phone-line me-2"></i> {operatorData.phone}
                           </div>
                         )}
-                        <Button
-                          size="small"
-                          priority="tertiary"
-                          iconId="fr-icon-arrow-right-line"
-                          iconPosition="right"
-                          className="mt-6"
-                          linkProps={{
-                            href: operatorData.dispositifId
-                              ? {
-                                  pathname: getPath("/dispositif/[id]", "fr"),
-                                  query: { id: operatorData.dispositifId },
-                                }
-                              : "#",
-                          }}
-                        >
-                          Découvrir la fiche
-                        </Button>
+                        {operatorData.dispositifId && (
+                          <Button
+                            size="small"
+                            priority="tertiary"
+                            iconId="fr-icon-arrow-right-line"
+                            iconPosition="right"
+                            className="mt-6"
+                            linkProps={{
+                              href: {
+                                pathname: getPath("/dispositif/[id]", "fr"),
+                                query: { id: operatorData.dispositifId },
+                              },
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                            }}
+                          >
+                            Découvrir la fiche
+                          </Button>
+                        )}
                       </div>
                     )}
                   </div>
