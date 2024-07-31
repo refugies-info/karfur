@@ -511,7 +511,8 @@ exports[`homepage renders homepage 1`] = `
                     <input
                       class="input hidden"
                       id="Dispositif.Département"
-                      placeholder="Recherche.department"
+                      placeholder="Rechercher2"
+                      readonly=""
                       type="text"
                       value=""
                     />
@@ -682,6 +683,7 @@ exports[`homepage renders homepage 1`] = `
                       class="input hidden"
                       id="Recherche.themes"
                       placeholder="Rechercher2"
+                      readonly=""
                       type="text"
                       value=""
                     />

@@ -3,12 +3,6 @@ import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, T
 import { createReducer } from "typesafe-actions";
 import { SearchResultsActions } from "./searchResults.actions";
 
-export type InputFocused = {
-  search: boolean;
-  location: boolean;
-  theme: boolean;
-};
-
 export type Results = {
   dispositifs: GetDispositifsResponse[];
   demarches: GetDispositifsResponse[];
@@ -32,7 +26,6 @@ export type SearchQuery = {
 export interface SearchResultsState {
   results: Results;
   query: SearchQuery;
-  inputFocused: InputFocused;
 }
 
 const initialSearchResultsState: SearchResultsState = {
@@ -54,11 +47,6 @@ const initialSearchResultsState: SearchResultsState = {
     sort: "date",
     type: "all",
   },
-  inputFocused: {
-    search: false,
-    location: false,
-    theme: false,
-  }
 };
 
 export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(initialSearchResultsState, {
@@ -66,6 +54,4 @@ export const searchResultsReducer = createReducer<SearchResultsState, SearchResu
     ({ ...state, results: action.payload }),
   ADD_TO_QUERY: (state, action) =>
     ({ ...state, query: { ...state.query, ...action.payload } }),
-  SET_INPUT_FOCUSED: (state, action) =>
-    ({ ...state, inputFocused: { ...state.inputFocused, [action.payload.key]: action.payload.value } })
 });

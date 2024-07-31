@@ -1,14 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import {
-  inputFocusedSelector,
-  searchQuerySelector,
-  themesDisplayedValueSelector,
-} from "services/SearchResults/searchResults.selector";
-import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
+import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import { cls } from "lib/classname";
 import SearchInput from "components/Pages/recherche/SearchInput";
 import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
@@ -21,45 +16,22 @@ import styles from "./HomeSearchHeader.mobile.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
-  // filterProps
-  locationSearch: string;
-  resetLocationSearch: () => void;
-  themeSearch: string;
-  resetThemeSearch: () => void;
   resetDepartment: () => void;
   resetTheme: () => void;
   resetSearch: () => void;
-  onChangeDepartmentInput: (e: any) => void;
-  onChangeThemeInput: (e: any) => void;
   onChangeSearchInput: (e: any) => void;
 }
 
 const HomeSearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const router = useRouter();
 
-  const {
-    locationSearch,
-    resetLocationSearch,
-    themeSearch,
-    resetThemeSearch,
-    resetDepartment,
-    onChangeDepartmentInput,
-    resetTheme,
-    onChangeThemeInput,
-    resetSearch,
-    onChangeSearchInput,
-  } = props;
+  const { resetDepartment, resetTheme, resetSearch, onChangeSearchInput } = props;
 
   const query = useSelector(searchQuerySelector);
-  const inputFocused = useSelector(inputFocusedSelector);
 
   // SEARCH
-  const setSearchActive = useCallback(
-    (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
-    [dispatch],
-  );
+  const [searchActive, setSearchActive] = useState(false);
 
   // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
@@ -84,9 +56,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
               icon={query.departments.length > 0 ? "pin" : "pin-outline"}
               active={locationOpen}
               setActive={() => {}}
-              onChange={onChangeDepartmentInput}
-              inputValue={locationSearch}
-              loading={false}
+              inputValue=""
               value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
               smallIcon={true}
@@ -103,32 +73,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
               reset={resetDepartment}
               showFooter={query.departments.length > 0}
             >
-              <div className={commonStyles.content}>
-                <div className={commonStyles.input}>
-                  <EVAIcon name="search-outline" fill="dark" size={20} />
-                  <input
-                    type="text"
-                    placeholder={t("Dispositif.Département", "Département")}
-                    onChange={onChangeDepartmentInput}
-                    value={locationSearch}
-                    autoFocus
-                  />
-                  {locationSearch && (
-                    <EVAIcon
-                      name="close-outline"
-                      fill="dark"
-                      size={20}
-                      className={commonStyles.empty}
-                      onClick={resetLocationSearch}
-                    />
-                  )}
-                </div>
-              </div>
-              <LocationDropdown
-                locationSearch={locationSearch}
-                resetLocationSearch={resetLocationSearch}
-                mobile={true}
-              />
+              <LocationDropdown mobile={true} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -140,8 +85,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
               icon="list-outline"
               active={themesOpen}
               setActive={() => {}}
-              onChange={onChangeThemeInput}
-              inputValue={themeSearch}
+              inputValue=""
               value={themeDisplayedValue.join(", ")}
               placeholder={t("Recherche.themes", "Thèmes")}
               smallIcon={true}
@@ -158,27 +102,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
               reset={resetTheme}
               showFooter={query.themes.length > 0 || query.needs.length > 0}
             >
-              <div className={commonStyles.content}>
-                <div className={commonStyles.input}>
-                  <EVAIcon name="search-outline" fill="dark" size={20} />
-                  <input
-                    type="text"
-                    placeholder={t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
-                    onChange={onChangeThemeInput}
-                    value={themeSearch}
-                  />
-                  {themeSearch && (
-                    <EVAIcon
-                      name="close-outline"
-                      fill="dark"
-                      size={20}
-                      className={commonStyles.empty}
-                      onClick={resetThemeSearch}
-                    />
-                  )}
-                </div>
-              </div>
-              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen} />
+              <ThemeDropdown mobile={true} isOpen={themesOpen} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -189,7 +113,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
           <SearchInput
             label={t("Recherche.keyword", "Mot-clé")}
             icon="search-outline"
-            active={inputFocused.search}
+            active={searchActive}
             setActive={setSearchActive}
             onChange={onChangeSearchInput}
             inputValue={query.search}

@@ -1,6 +1,9 @@
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
-import { useSelector } from "react-redux";
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { Container } from "reactstrap";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationDropdown from "../LocationDropdown";
@@ -10,27 +13,33 @@ import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 
 interface Props {
-  locationSearch: string;
-  themeSearch: string;
-  resetDepartment: () => void;
-  resetTheme: () => void;
-  resetSearch: () => void;
-  resetLocationSearch: () => void;
-  onChangeDepartmentInput: (e: any) => void;
-  onChangeThemeInput: (e: any) => void;
-  onChangeSearchInput: (e: any) => void;
   isSmall?: boolean;
 }
 
 const Filters = (props: Props) => {
   const { t } = useTranslation();
-
-  const { locationSearch, onChangeSearchInput, resetDepartment, resetLocationSearch, resetTheme, themeSearch } = props;
-
+  const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+
+  // KEYWORD
+  const onChangeSearchInput = useCallback(
+    (e: any) => {
+      dispatch(addToQueryActionCreator({ search: e.target.value }));
+      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+    },
+    [dispatch],
+  );
 
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
+  const resetTheme = useCallback(() => {
+    addToQueryActionCreator({ needs: [], themes: [] });
+  }, []);
+
+  // LOCATION
+  const resetDepartment = useCallback(() => {
+    addToQueryActionCreator({ departments: [], sort: "date" });
+  }, []);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -56,7 +65,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: query.departments,
             reset: resetDepartment,
-            menu: <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />,
+            menu: <LocationDropdown />,
           }}
           gaType="department"
         />
@@ -65,7 +74,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
-            menu: <ThemeDropdown search={themeSearch} mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
+            menu: <ThemeDropdown mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
           }}
           gaType="themes"
         />
