@@ -1,5 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import axios from "axios";
+import Checkbox from "components/UI/Checkbox";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
@@ -113,16 +114,9 @@ const LocationDropdown = (props: Props) => {
       <div className={cls(styles.header, placePredictions.length === 0 && styles.no_results)}>
         {query.departments.map((dep, i) => (
           <DropdownMenu.Item key={i}>
-            <Button
-              className={styles.selected}
-              onClick={() => removeDepartement(dep)}
-              onKeyDown={(e) => onEnterOrSpace(e, () => removeDepartement(dep))}
-            >
+            <Checkbox className={styles.checkbox} checked={true}>
               {dep}
-              <span className={styles.icon}>
-                <EVAIcon name="close-outline" fill="white" size={!props.mobile ? 18 : 24} />
-              </span>
-            </Button>
+            </Checkbox>
           </DropdownMenu.Item>
         ))}
 
