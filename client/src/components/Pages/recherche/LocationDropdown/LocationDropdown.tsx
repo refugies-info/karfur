@@ -114,14 +114,14 @@ const LocationDropdown = (props: Props) => {
     <>
       <div className={cls(styles.header, placePredictions.length === 0 && styles.no_results)}>
         {query.departments.map((dep, i) => (
-          <DropdownMenu.Item key={i}>
+          <DropdownMenu.Item key={i} className={styles.item}>
             <Checkbox className={styles.checkbox} checked={true}>
               {dep} {getDepartmentCodeFromName(dep)}
             </Checkbox>
           </DropdownMenu.Item>
         ))}
 
-        <DropdownMenu.Item>
+        <DropdownMenu.Item className={styles.item}>
           <Button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.btn}>
             <span className={styles.icon}>
               <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
@@ -132,7 +132,7 @@ const LocationDropdown = (props: Props) => {
       </div>
 
       {placePredictions.slice(0, 5).map((p, i) => (
-        <DropdownMenu.Item key={i}>
+        <DropdownMenu.Item key={i} className={styles.item}>
           <Button
             onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
             onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
