@@ -22,6 +22,7 @@ import ActeursIlluDispositif from "assets/agir/acteurs-illu-dispositifs.png";
 import ActeursIlluRecenser from "assets/agir/acteurs-illu-recenser.png";
 import ActeursIlluWebinaire from "assets/agir/acteurs-illu-webinaire.png";
 import styles from "scss/pages/agir.module.scss";
+import { isValidEmail } from "../lib/validateFields"
 
 type Section = "program" | "operators" | "next";
 const MAP_COLORS = {
@@ -305,7 +306,7 @@ const Agir = () => {
                         <div>
                           <i className="ri-building-line me-2"></i> {operatorData.operator}
                         </div>
-                        {operatorData.email && (
+                        {operatorData.email && isValidEmail(operatorData.email) && (
                           <div className="mt-4">
                             <i className="ri-mail-line me-2"></i> {operatorData.email}
                           </div>
