@@ -99,7 +99,7 @@ const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
               </text>
               <text id="Paris et proche banlieue" fill="#000000" fontSize="7" fontWeight="normal">
                 <tspan x="7.1025" y="74.7178">
-                  Paris petit couronne
+                  Paris petite couronne
                 </tspan>
               </text>
             </g>

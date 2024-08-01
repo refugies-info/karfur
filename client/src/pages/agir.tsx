@@ -1,26 +1,27 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Col, Container, Row } from "reactstrap";
-import Image from "next/image";
-import { useInView } from "react-intersection-observer";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { Card } from "@codegouvfr/react-dsfr/Card";
-import { operatorsPerDepartment } from "data/agirOperators";
-import { getDepartmentFromNumber } from "lib/departments";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { cls } from "lib/classname";
-import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
-import { getPath } from "routes";
-import SEO from "components/Seo";
-import MapFrance from "components/UI/MapFrance";
-import AgirLogos from "assets/agir/agir-logos.png";
-import IlluAccompagnement from "assets/agir/illu-accompagnement-social.svg";
-import IlluLogement from "assets/agir/illu-logement.svg";
-import IlluEmploi from "assets/agir/illu-emploi.svg";
+import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import ActeursIlluDemarche from "assets/agir/acteurs-illu-demarche.png";
 import ActeursIlluDispositif from "assets/agir/acteurs-illu-dispositifs.png";
 import ActeursIlluRecenser from "assets/agir/acteurs-illu-recenser.png";
 import ActeursIlluWebinaire from "assets/agir/acteurs-illu-webinaire.png";
+import AgirLogos from "assets/agir/agir-logos.png";
+import IlluAccompagnement from "assets/agir/illu-accompagnement-social.svg";
+import IlluEmploi from "assets/agir/illu-emploi.svg";
+import IlluLogement from "assets/agir/illu-logement.svg";
+import SEO from "components/Seo";
+import MapFrance from "components/UI/MapFrance";
+import { operatorsPerDepartment } from "data/agirOperators";
+import { cls } from "lib/classname";
+import { getDepartmentFromNumber } from "lib/departments";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
+import { isValidEmail } from "lib/validateFields";
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Col, Container, Row } from "reactstrap";
+import { getPath } from "routes";
 import styles from "scss/pages/agir.module.scss";
 
 type Section = "program" | "operators" | "next";
@@ -305,7 +306,7 @@ const Agir = () => {
                         <div>
                           <i className="ri-building-line me-2"></i> {operatorData.operator}
                         </div>
-                        {operatorData.email && (
+                        {operatorData.email && isValidEmail(operatorData.email) && (
                           <div className="mt-4">
                             <i className="ri-mail-line me-2"></i> {operatorData.email}
                           </div>
