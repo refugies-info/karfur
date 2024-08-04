@@ -25,9 +25,6 @@ import { getPath } from "routes";
 import styles from "scss/pages/agir.module.scss";
 
 type Section = "program" | "operators" | "next";
-const MAP_COLORS = {
-  "#313278": Object.keys(operatorsPerDepartment),
-};
 
 const Agir = () => {
   const [activeDep, setActiveDep] = useState("");
@@ -288,11 +285,7 @@ const Agir = () => {
             </p>
             <Row>
               <Col lg="8">
-                <MapFrance
-                  onSelectDep={(dep) => setActiveDep(dep)}
-                  colors={MAP_COLORS}
-                  selectable={Object.keys(operatorsPerDepartment)}
-                />
+                <MapFrance onSelectDep={(dep) => setActiveDep(dep)} />
               </Col>
               <Col lg="4" className="d-flex align-items-center">
                 {activeDep && (
