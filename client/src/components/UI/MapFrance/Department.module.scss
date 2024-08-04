@@ -13,3 +13,16 @@
     display: none;
   }
 }
+
+.dep {
+  &:hover {
+    fill: #2323ff;
+  }
+  &.selectable {
+    cursor: pointer;
+  }
+
+  &.selected {
+    fill: #1212ff;
+  }
+}
