@@ -21,14 +21,22 @@ const MAP_COLORS = normalizeColors({
   "#313278": selectableDepartments,
 });
 
-interface Props {
+type Props = {
   dep: string;
-  points?: string;
-  d?: string;
-  fillRule?: SVGAttributes<SVGElement>["fillRule"];
-}
+} & (
+  | {
+      d?: string;
+      points?: never;
+      fillRule?: never;
+    }
+  | {
+      d?: never;
+      points?: string;
+      fillRule?: SVGAttributes<SVGElement>["fillRule"];
+    }
+);
 
-const Department: React.FC<React.PropsWithChildren<Props>> = ({ dep, d, points }) => {
+const Department: React.FC<Props> = ({ dep, d, points }) => {
   const { selectedDepartment, setSelectedDepartment } = useContext(MapContext);
 
   const isSelectable = useMemo(() => selectableDepartments.includes(dep), [dep]);
