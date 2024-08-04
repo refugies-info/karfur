@@ -1,8 +1,9 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { operatorsPerDepartment } from "data/agirOperators";
 import { cls } from "lib/classname";
-import React, { SVGAttributes, useMemo, useState } from "react";
+import React, { SVGAttributes, useContext, useMemo } from "react";
 import styles from "./Department.module.scss";
+import { MapContext } from "./MapContext";
 
 const selectableDepartments = Object.keys(operatorsPerDepartment);
 
@@ -28,18 +29,22 @@ interface Props {
 }
 
 const Department: React.FC<React.PropsWithChildren<Props>> = ({ dep, d, points }) => {
-  const [activeDep, setActiveDep] = useState("");
+  const { selectedDepartment, setSelectedDepartment } = useContext(MapContext);
 
   const isSelectable = useMemo(() => selectableDepartments.includes(dep), [dep]);
 
   const props = useMemo(() => {
     return {
       id: `dpt-${dep}`,
-      onClick: () => (isSelectable ? setActiveDep((d) => (d === dep ? "" : dep)) : {}),
+      onClick: () => {
+        if (isSelectable && setSelectedDepartment) {
+          setSelectedDepartment(dep);
+        }
+      },
       fill: MAP_COLORS[dep] || undefined,
-      className: cls(styles.dep, isSelectable && styles.selectable, dep === activeDep && styles.selected),
+      className: cls(styles.dep, isSelectable && styles.selectable, dep === selectedDepartment && styles.selected),
     };
-  }, [isSelectable, dep, activeDep]);
+  }, [isSelectable, dep, selectedDepartment, setSelectedDepartment]);
 
   const mapElement = points ? (
     <polygon points={points} {...props}></polygon>

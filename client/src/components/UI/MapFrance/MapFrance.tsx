@@ -1,11 +1,7 @@
 import React from "react";
 import Department from "./Department";
 
-interface Props {
-  onSelectDep: (dep: string) => void;
-}
-
-const MapFrance: React.FC<Props> = ({ onSelectDep }) => {
+const MapFrance: React.FC = () => {
   return (
     <svg width="578px" height="544px" viewBox="0 0 578 544" style={{ maxWidth: "100%" }}>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

@@ -11,6 +11,7 @@ import IlluEmploi from "assets/agir/illu-emploi.svg";
 import IlluLogement from "assets/agir/illu-logement.svg";
 import SEO from "components/Seo";
 import MapFrance from "components/UI/MapFrance";
+import { MapContext } from "components/UI/MapFrance/MapContext";
 import { operatorsPerDepartment } from "data/agirOperators";
 import { cls } from "lib/classname";
 import { getDepartmentFromNumber } from "lib/departments";
@@ -27,8 +28,8 @@ import styles from "scss/pages/agir.module.scss";
 type Section = "program" | "operators" | "next";
 
 const Agir = () => {
-  const [activeDep, setActiveDep] = useState("");
-  const operatorData = useMemo(() => operatorsPerDepartment[activeDep], [activeDep]);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const operatorData = useMemo(() => operatorsPerDepartment[selectedDepartment], [selectedDepartment]);
 
   const [activeView, setActiveView] = useState<Section | null>(null);
   const [refProgram, inViewProgram] = useInView({ threshold: 0 });
@@ -285,14 +286,16 @@ const Agir = () => {
             </p>
             <Row>
               <Col lg="8">
-                <MapFrance onSelectDep={(dep) => setActiveDep(dep)} />
+                <MapContext.Provider value={{ selectedDepartment, setSelectedDepartment }}>
+                  <MapFrance />
+                </MapContext.Provider>
               </Col>
               <Col lg="4" className="d-flex align-items-center">
-                {activeDep && (
+                {selectedDepartment && (
                   <div className={styles.operator}>
                     <div className={styles.head}>
-                      <span>{activeDep}</span>
-                      {getDepartmentFromNumber(activeDep).split(" - ")[1]}
+                      <span>{selectedDepartment}</span>
+                      {getDepartmentFromNumber(selectedDepartment).split(" - ")[1]}
                     </div>
                     {operatorData && (
                       <div className={styles.content}>
