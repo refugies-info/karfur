@@ -1,10 +1,11 @@
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { render } from "@testing-library/react";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import { RootState } from "services/rootReducer";
-import { initialMockStore } from "__fixtures__/reduxStore";
 
 interface WrapWithProvidersAndRenderParams<Props> {
   Component: React.FunctionComponent<any>;
@@ -28,11 +29,13 @@ export function wrapWithProvidersAndRenderForTesting<T>({
   const store = mockStore(reduxState);
 
   const componentWithRedux = (
-    <Router>
-      <Provider store={store}>
-        <Component {...compProps} />
-      </Provider>
-    </Router>
+    <TooltipProvider>
+      <Router>
+        <Provider store={store}>
+          <Component {...compProps} />
+        </Provider>
+      </Router>
+    </TooltipProvider>
   );
 
   return render(componentWithRedux);

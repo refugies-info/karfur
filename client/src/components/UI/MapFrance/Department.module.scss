@@ -1,0 +1,28 @@
+@import "~scss/colors";
+@import "~scss/mixins/unit";
+@import "~scss/mixins/text";
+
+.tooltip {
+  @include dsfr-text("very-small");
+  color: var(--text-inverted-blue-france);
+  background-color: $darkBackgroundAltBlueFrance;
+  padding: 2px 4px;
+  border-radius: 4px;
+
+  @media print {
+    display: none;
+  }
+}
+
+.dep {
+  &:hover {
+    fill: #2323ff;
+  }
+  &.selectable {
+    cursor: pointer;
+  }
+
+  &.selected {
+    fill: #1212ff;
+  }
+}
