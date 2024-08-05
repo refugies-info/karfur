@@ -1,36 +1,35 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Col, Container, Row } from "reactstrap";
-import Image from "next/image";
-import { useInView } from "react-intersection-observer";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { Card } from "@codegouvfr/react-dsfr/Card";
-import { operatorsPerDepartment } from "data/agirOperators";
-import { getDepartmentFromNumber } from "lib/departments";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { cls } from "lib/classname";
-import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
-import { getPath } from "routes";
-import SEO from "components/Seo";
-import MapFrance from "components/UI/MapFrance";
-import AgirLogos from "assets/agir/agir-logos.png";
-import IlluAccompagnement from "assets/agir/illu-accompagnement-social.svg";
-import IlluLogement from "assets/agir/illu-logement.svg";
-import IlluEmploi from "assets/agir/illu-emploi.svg";
+import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import ActeursIlluDemarche from "assets/agir/acteurs-illu-demarche.png";
 import ActeursIlluDispositif from "assets/agir/acteurs-illu-dispositifs.png";
 import ActeursIlluRecenser from "assets/agir/acteurs-illu-recenser.png";
 import ActeursIlluWebinaire from "assets/agir/acteurs-illu-webinaire.png";
+import AgirLogos from "assets/agir/agir-logos.png";
+import IlluAccompagnement from "assets/agir/illu-accompagnement-social.svg";
+import IlluEmploi from "assets/agir/illu-emploi.svg";
+import IlluLogement from "assets/agir/illu-logement.svg";
+import SEO from "components/Seo";
+import MapFrance from "components/UI/MapFrance";
+import { MapContext } from "components/UI/MapFrance/MapContext";
+import { operatorsPerDepartment } from "data/agirOperators";
+import { cls } from "lib/classname";
+import { getDepartmentFromNumber } from "lib/departments";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
+import { isValidEmail } from "lib/validateFields";
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Col, Container, Row } from "reactstrap";
+import { getPath } from "routes";
 import styles from "scss/pages/agir.module.scss";
 
 type Section = "program" | "operators" | "next";
-const MAP_COLORS = {
-  "#313278": Object.keys(operatorsPerDepartment),
-};
 
 const Agir = () => {
-  const [activeDep, setActiveDep] = useState("");
-  const operatorData = useMemo(() => operatorsPerDepartment[activeDep], [activeDep]);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const operatorData = useMemo(() => operatorsPerDepartment[selectedDepartment], [selectedDepartment]);
 
   const [activeView, setActiveView] = useState<Section | null>(null);
   const [refProgram, inViewProgram] = useInView({ threshold: 0 });
@@ -60,7 +59,10 @@ const Agir = () => {
 
   return (
     <div className="w-100">
-      <SEO title="Agir" />
+      <SEO
+        title="AGIR pour le logement et l’emploi des personnes réfugiées"
+        description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
+      />
       <div className={styles.hero}>
         <Container>
           <Row className={styles.row}>
@@ -187,7 +189,7 @@ const Agir = () => {
                 <h3 className="mb-4">L’accompagnement social</h3>
 
                 <p>
-                  Droit au séjour, obtention de documents de voyage, reconstitution de l’état-civil auprès de l’OFPRA,
+                  Droit au séjour, obtention de documents de voyage, reconstitution de l’état civil auprès de l’OFPRA,
                   accès à la réunification familiale
                 </p>
                 <p>
@@ -284,24 +286,54 @@ const Agir = () => {
             </p>
             <Row>
               <Col lg="8">
-                <MapFrance
-                  onSelectDep={(dep) => setActiveDep(dep)}
-                  colors={MAP_COLORS}
-                  selectable={Object.keys(operatorsPerDepartment)}
-                />
+                <MapContext.Provider value={{ selectedDepartment, setSelectedDepartment }}>
+                  <MapFrance />
+                </MapContext.Provider>
               </Col>
-              <Col lg="4">
-                {activeDep && (
-                  <>
-                    <div className="fw-bold mb-1">{getDepartmentFromNumber(activeDep)}</div>
+              <Col lg="4" className="d-flex align-items-center">
+                {selectedDepartment && (
+                  <div className={styles.operator}>
+                    <div className={styles.head}>
+                      <span>{selectedDepartment}</span>
+                      {getDepartmentFromNumber(selectedDepartment).split(" - ")[1]}
+                    </div>
                     {operatorData && (
-                      <div>
-                        {operatorData.operator}
-                        <br />
-                        {operatorData.email}
+                      <div className={styles.content}>
+                        <div>
+                          <i className="ri-building-line me-2"></i> {operatorData.operator}
+                        </div>
+                        {operatorData.email && isValidEmail(operatorData.email) && (
+                          <div className="mt-4">
+                            <i className="ri-mail-line me-2"></i> {operatorData.email}
+                          </div>
+                        )}
+                        {operatorData.phone && (
+                          <div className="mt-4">
+                            <i className="ri-phone-line me-2"></i> {operatorData.phone}
+                          </div>
+                        )}
+                        {operatorData.dispositifId && (
+                          <Button
+                            size="small"
+                            priority="tertiary"
+                            iconId="fr-icon-arrow-right-line"
+                            iconPosition="right"
+                            className="mt-6"
+                            linkProps={{
+                              href: {
+                                pathname: getPath("/dispositif/[id]", "fr"),
+                                query: { id: operatorData.dispositifId },
+                              },
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                            }}
+                          >
+                            Découvrir la fiche
+                          </Button>
+                        )}
                       </div>
                     )}
-                  </>
+                  </div>
                 )}
               </Col>
             </Row>
@@ -323,7 +355,7 @@ const Agir = () => {
                   background
                   border
                   title="Je découvre +100 fiches pratiques"
-                  desc="Sur la CAF, le RSA, France Travail, l’ANEF, la carte vitale, le permis de conduire..."
+                  desc="Sur la CAF, le RSA, France Travail, l’ANEF, la carte Vitale, le permis de conduire..."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluDemarche.src}
@@ -374,7 +406,7 @@ const Agir = () => {
                   background
                   border
                   title="Je participe à un webinaire gratuit"
-                  desc="Comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
+                  desc="Découvrez comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluWebinaire.src}
