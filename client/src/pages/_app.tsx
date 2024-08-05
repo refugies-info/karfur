@@ -110,7 +110,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
 
   return (
     <div>
-      <TooltipProvider>
+      <TooltipProvider delayDuration={250}>
         {options.cookiesModule && <ConsentBannerAndConsentManagement />}
         <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
