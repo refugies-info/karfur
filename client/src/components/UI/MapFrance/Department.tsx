@@ -1,7 +1,7 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { operatorsPerDepartment } from "data/agirOperators";
 import { cls } from "lib/classname";
-import React, { SVGAttributes, useContext, useMemo, useState } from "react";
+import React, { MouseEventHandler, SVGAttributes, useContext, useMemo, useState } from "react";
 import styles from "./Department.module.scss";
 import { MapContext } from "./MapContext";
 
@@ -41,43 +41,32 @@ const Department: React.FC<Props> = ({ dep, d, points }) => {
 
   const isSelectable = useMemo(() => selectableDepartments.includes(dep), [dep]);
 
-  const props = useMemo(() => {
-    return {
-      id: `dpt-${dep}`,
-      onClick: () => {
-        if (isSelectable && setSelectedDepartment) {
-          setSelectedDepartment(dep);
-        }
-      },
-      fill: MAP_COLORS[dep] || undefined,
-      className: cls(styles.dep, isSelectable && styles.selectable, dep === selectedDepartment && styles.selected),
-    };
-  }, [isSelectable, dep, selectedDepartment, setSelectedDepartment]);
-
   // Manage open state so that the tooltip can be opened
   // when clicking on a map element without flashing
   const [open, setOpen] = useState(false);
 
+  const props = useMemo(() => {
+    const onClick: MouseEventHandler<SVGPolygonElement> = (e) => {
+      if (isSelectable && setSelectedDepartment) {
+        setSelectedDepartment(dep);
+      } else if (!isSelectable) {
+        e.preventDefault();
+        setOpen(true);
+      }
+    };
+    return {
+      id: `dpt-${dep}`,
+      onClick,
+      onMouseOut: () => setOpen(false),
+      fill: MAP_COLORS[dep] || undefined,
+      className: cls(styles.dep, isSelectable && styles.selectable, dep === selectedDepartment && styles.selected),
+    };
+  }, [isSelectable, dep, selectedDepartment, setSelectedDepartment, setOpen]);
+
   const mapElement = points ? (
-    <polygon
-      points={points}
-      {...props}
-      onClick={(e) => {
-        e.preventDefault();
-        setOpen(true);
-      }}
-      onMouseOut={(e) => setOpen(false)}
-    ></polygon>
+    <polygon points={points} {...props}></polygon>
   ) : d ? (
-    <path
-      d={d}
-      {...props}
-      onClick={(e) => {
-        e.preventDefault();
-        setOpen(true);
-      }}
-      onMouseOut={() => setOpen(false)}
-    ></path>
+    <path d={d} {...props}></path>
   ) : null;
 
   return isSelectable ? (
