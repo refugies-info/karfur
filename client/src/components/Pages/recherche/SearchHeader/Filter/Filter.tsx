@@ -1,6 +1,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Checkbox from "components/UI/Checkbox";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -19,13 +20,14 @@ type OptionsDropdown = {
   options: FilterOptions;
   selected: Selected[];
   translateOptions?: boolean;
-  width: string;
+  menuItemStyles?: string;
 };
 
 type MenuDropdown = {
   menu: React.ReactNode;
   value: string[];
   reset: () => void;
+  menuItemStyles?: never;
 };
 
 interface Props {
@@ -126,8 +128,7 @@ const Filter = (props: Props) => {
                   <DropdownMenu.Item
                     key={i}
                     onClick={() => onSelectItem(option.key)}
-                    className={styles.item}
-                    style={{ width: optionsDropdown.width }}
+                    className={cls(styles.item, optionsDropdown.menuItemStyles)}
                     disabled={isDisabled}
                   >
                     <Checkbox className={styles.checkbox} checked={isSelected} disabled={isDisabled}>
