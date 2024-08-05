@@ -10,7 +10,6 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "reactstrap";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { getPlaceName } from "./functions";
@@ -121,19 +120,21 @@ const LocationDropdown = (props: Props) => {
           </DropdownMenu.Item>
         ))}
 
-        <DropdownMenu.Item className={styles.item}>
-          <Button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.btn}>
-            <span className={styles.icon}>
-              <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
-            </span>
+        <DropdownMenu.Item className={styles.locationItem}>
+          <button
+            onClick={getLocation}
+            onKeyDown={(e) => onEnterOrSpace(e, getLocation)}
+            className={styles.locationButton}
+          >
+            <i className={cls("fr-icon-arrow-right-line", styles.locationIcon)} />
             {t("Recherche.positionButton", "Utiliser ma position")}
-          </Button>
+          </button>
         </DropdownMenu.Item>
       </div>
 
       {placePredictions.slice(0, 5).map((p, i) => (
         <DropdownMenu.Item key={i} className={styles.item}>
-          <Button
+          <button
             onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
             onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
             className={styles.btn}
@@ -142,7 +143,7 @@ const LocationDropdown = (props: Props) => {
               <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
             </span>
             {getPlaceName(p)}
-          </Button>
+          </button>
         </DropdownMenu.Item>
       ))}
     </>
