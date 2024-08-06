@@ -22,6 +22,7 @@
 .icon {
   width: 24px;
   height: 24px;
+  color: var(--background-active-blue-france);
 }
 
 .input {
