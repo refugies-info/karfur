@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import utilityStyles from "~css/utilities.module.css";
 import styles from "./LocationMenuItem.module.css";
 
 const LocationMenuItem: React.FC = () => {
@@ -34,7 +35,7 @@ const LocationMenuItem: React.FC = () => {
   };
 
   return (
-    <DropdownMenu.Item className={styles.item}>
+    <DropdownMenu.Item className={cls(styles.item, utilityStyles.noSelect)}>
       <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
         <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
         <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
