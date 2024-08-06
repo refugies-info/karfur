@@ -126,7 +126,7 @@ const LocationDropdown = (props: Props) => {
             onKeyDown={(e) => onEnterOrSpace(e, getLocation)}
             className={styles.locationButton}
           >
-            <i className={cls("fr-icon-arrow-right-line", styles.locationIcon)} />
+            <i className={cls("fr-icon-send-plane-fill", styles.locationIcon)} />
             {t("Recherche.positionButton", "Utiliser ma position")}
           </button>
         </DropdownMenu.Item>
