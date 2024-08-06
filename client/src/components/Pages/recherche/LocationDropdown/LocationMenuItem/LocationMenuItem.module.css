@@ -1,12 +1,3 @@
-.container {
-  /* Layout */
-  display: flex;
-  width: 320px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-
 .item {
   /* Layout */
   display: flex;

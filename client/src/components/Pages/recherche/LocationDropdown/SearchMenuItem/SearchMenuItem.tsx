@@ -11,7 +11,7 @@ interface Props {
 const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   const { t } = useTranslation();
   return (
-    <DropdownMenu.DropdownMenuItem className={styles.container} onClick={(e) => e.preventDefault()}>
+    <DropdownMenu.DropdownMenuItem className={styles.item} onClick={(e) => e.preventDefault()}>
       <div className={styles.zone}>
         <i className={cls("fr-icon-search-line", styles.icon)} />
         <input type="text" className={styles.input} placeholder={t("Rechercher", "Rechercher")} onChange={onChange} />

@@ -83,7 +83,7 @@ const LocationDropdown = (props: Props) => {
       ))}
 
       <LocationMenuItem />
-      <Separator />
+      {placePredictions.length > 0 && <Separator />}
 
       {placePredictions.slice(0, 5).map((p, i) => (
         <DropdownMenu.Item key={i} className={styles.item}>
