@@ -1,7 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import Checkbox from "components/UI/Checkbox";
+import DepartmentMenuItem from "components/Pages/recherche/LocationDropdown/DepartmentMenuItem/DepartmentMenuItem";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { getDepartmentCodeFromName } from "lib/departments";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { Event } from "lib/tracking";
 import { useCallback, useEffect, useState } from "react";
@@ -72,32 +71,13 @@ const LocationDropdown = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationSearch]);
 
-  const removeDepartement = useCallback(
-    (dep: string) => {
-      const newDepartments = query.departments.filter((d) => d !== dep);
-      dispatch(
-        addToQueryActionCreator({
-          departments: newDepartments,
-          sort: newDepartments.length === 0 ? "date" : "location",
-        }),
-      );
-    },
-    [dispatch, query.departments],
-  );
-
   return (
     <div className={styles.container}>
-      <>
-        {query.departments.map((dep, i) => (
-          <DropdownMenu.Item key={i} className={styles.selectedLocationItem}>
-            <Checkbox className={styles.checkbox} checked={true}>
-              {dep} {getDepartmentCodeFromName(dep)}
-            </Checkbox>
-          </DropdownMenu.Item>
-        ))}
+      {query.departments.map((dep, i) => (
+        <DepartmentMenuItem key={i} dep={dep} />
+      ))}
 
-        <LocationMenuItem />
-      </>
+      <LocationMenuItem />
 
       {placePredictions.slice(0, 5).map((p, i) => (
         <DropdownMenu.Item key={i} className={styles.item}>
