@@ -5,7 +5,9 @@
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+}
 
+.item:hover {
   /* Style */
   background: var(--background-alt-blue-france);
 }
