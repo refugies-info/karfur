@@ -42,7 +42,7 @@ const LocationDropdown = (props: Props) => {
     (id: string, name: string) => {
       Event("USE_SEARCH", "choose location option", name);
       Event("USE_SEARCH", "click filter", "location");
-      placesService?.getDetails({ placeId: id }, (placeDetails) => {
+      placesService?.getDetails({ placeId: id, fields: ["address_components"] }, (placeDetails) => {
         const departement = (placeDetails?.address_components || []).find((comp) =>
           comp.types.includes("administrative_area_level_2"),
         );
@@ -67,7 +67,6 @@ const LocationDropdown = (props: Props) => {
     if (locationSearch) {
       getPlacePredictions({ input: locationSearch });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationSearch]);
 
   return (
@@ -80,24 +79,13 @@ const LocationDropdown = (props: Props) => {
       ))}
 
       <LocationMenuItem />
-      {placePredictions.length > 0 && <Separator />}
+      {locationSearch !== "" && placePredictions.length > 0 && <Separator />}
 
       <div className={styles.places}>
-        {placePredictions.slice(0, 5).map((p, i) => (
-          <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />
-          // <DropdownMenu.Item key={i} className={styles.item}>
-          //   <button
-          //     onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
-          //     onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
-          //     className={styles.btn}
-          //   >
-          //     <span className={styles.icon}>
-          //       <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
-          //     </span>
-          //     {getPlaceName(p)}
-          //   </button>
-          // </DropdownMenu.Item>
-        ))}
+        {locationSearch !== "" &&
+          placePredictions
+            .slice(0, 5)
+            .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
       </div>
     </div>
   );
