@@ -80,8 +80,6 @@
     "lint": "next lint",
     "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
-    "prebuild": "react-dsfr update-icons",
-    "predev": "react-dsfr update-icons",
     "start": "next start",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "test": "jest --runInBand"
