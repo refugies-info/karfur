@@ -6,3 +6,7 @@
   gap: 8px;
   align-self: stretch;
 }
+
+.item:hover {
+  background: var(--background-alt-grey);
+}

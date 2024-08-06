@@ -7,6 +7,10 @@
   align-self: stretch;
 }
 
+.item:hover {
+  background: var(--background-alt-grey);
+}
+
 .button {
   /* Override the default button styles */
   padding-block: 0px;
