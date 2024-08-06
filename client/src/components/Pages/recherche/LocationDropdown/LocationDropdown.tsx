@@ -1,12 +1,9 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import axios from "axios";
 import Checkbox from "components/UI/Checkbox";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 import { getDepartmentCodeFromName } from "lib/departments";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { Event } from "lib/tracking";
-import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,13 +11,13 @@ import { addToQueryActionCreator } from "services/SearchResults/searchResults.ac
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { getPlaceName } from "./functions";
 import styles from "./LocationDropdown.module.css";
+import LocationMenuItem from "./LocationMenuItem";
 
 interface Props {
   mobile?: boolean;
 }
 
 const LocationDropdown = (props: Props) => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
 
@@ -88,27 +85,6 @@ const LocationDropdown = (props: Props) => {
     [dispatch, query.departments],
   );
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((res) => {
-        axios
-          .get(
-            `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
-          )
-          .then((response) => {
-            if (response.data[0]?.departement?.nom) {
-              dispatch(
-                addToQueryActionCreator({
-                  departments: [response.data[0].departement.nom],
-                  sort: "location",
-                }),
-              );
-            }
-          });
-      });
-    }
-  };
-
   return (
     <div className={styles.container}>
       <>
@@ -120,12 +96,7 @@ const LocationDropdown = (props: Props) => {
           </DropdownMenu.Item>
         ))}
 
-        <DropdownMenu.Item className={styles.locationItem}>
-          <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
-            <i className={cls("fr-icon-send-plane-fill", styles.locationIcon)} />
-            <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
-          </button>
-        </DropdownMenu.Item>
+        <LocationMenuItem />
       </>
 
       {placePredictions.slice(0, 5).map((p, i) => (
