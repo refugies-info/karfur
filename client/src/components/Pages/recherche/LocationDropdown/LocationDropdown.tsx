@@ -23,7 +23,7 @@ const LocationDropdown = (props: Props) => {
 
   const [locationSearch, setLocationSearch] = useState("");
   const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
-  // TODO: use when creating a searchbar in component
+
   const onChangeDepartmentInput = useCallback(
     (e: any) => {
       setLocationSearch(e.target.value);
@@ -74,7 +74,7 @@ const LocationDropdown = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <SearchMenuItem />
+      <SearchMenuItem onChange={onChangeDepartmentInput} />
 
       {query.departments.map((dep, i) => (
         <DepartmentMenuItem key={i} dep={dep} />
