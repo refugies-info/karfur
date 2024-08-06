@@ -12,6 +12,7 @@ import { getPlaceName } from "./functions";
 import styles from "./LocationDropdown.module.css";
 import LocationMenuItem from "./LocationMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
+import Separator from "./Separator";
 
 interface Props {
   mobile?: boolean;
@@ -75,12 +76,14 @@ const LocationDropdown = (props: Props) => {
   return (
     <div className={styles.container}>
       <SearchMenuItem onChange={onChangeDepartmentInput} />
+      <Separator />
 
       {query.departments.map((dep, i) => (
         <DepartmentMenuItem key={i} dep={dep} />
       ))}
 
       <LocationMenuItem />
+      <Separator />
 
       {placePredictions.slice(0, 5).map((p, i) => (
         <DropdownMenu.Item key={i} className={styles.item}>

@@ -1,0 +1,8 @@
+.separator {
+  /* Layout */
+  width: 304px;
+  height: 1px;
+
+  /* Style */
+  background: var(--border-default-grey);
+}
