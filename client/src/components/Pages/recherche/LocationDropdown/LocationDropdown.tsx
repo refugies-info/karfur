@@ -11,6 +11,7 @@ import { searchQuerySelector } from "services/SearchResults/searchResults.select
 import { getPlaceName } from "./functions";
 import styles from "./LocationDropdown.module.css";
 import LocationMenuItem from "./LocationMenuItem";
+import SearchMenuItem from "./SearchMenuItem";
 
 interface Props {
   mobile?: boolean;
@@ -73,6 +74,8 @@ const LocationDropdown = (props: Props) => {
 
   return (
     <div className={styles.container}>
+      <SearchMenuItem />
+
       {query.departments.map((dep, i) => (
         <DepartmentMenuItem key={i} dep={dep} />
       ))}

@@ -1,3 +1,1 @@
-import DepartmentMenuItem from "./DepartmentMenuItem";
-
-export default DepartmentMenuItem;
+export { default } from "./DepartmentMenuItem";
