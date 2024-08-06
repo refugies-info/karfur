@@ -1,16 +1,13 @@
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import DepartmentMenuItem from "components/Pages/recherche/LocationDropdown/DepartmentMenuItem/DepartmentMenuItem";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { Event } from "lib/tracking";
 import { useCallback, useEffect, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { getPlaceName } from "./functions";
 import styles from "./LocationDropdown.module.css";
 import LocationMenuItem from "./LocationMenuItem";
+import PlaceMenuItem from "./PlaceMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
 import Separator from "./Separator";
 
@@ -85,20 +82,23 @@ const LocationDropdown = (props: Props) => {
       <LocationMenuItem />
       {placePredictions.length > 0 && <Separator />}
 
-      {placePredictions.slice(0, 5).map((p, i) => (
-        <DropdownMenu.Item key={i} className={styles.item}>
-          <button
-            onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
-            onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
-            className={styles.btn}
-          >
-            <span className={styles.icon}>
-              <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
-            </span>
-            {getPlaceName(p)}
-          </button>
-        </DropdownMenu.Item>
-      ))}
+      <div className={styles.places}>
+        {placePredictions.slice(0, 5).map((p, i) => (
+          <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />
+          // <DropdownMenu.Item key={i} className={styles.item}>
+          //   <button
+          //     onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
+          //     onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
+          //     className={styles.btn}
+          //   >
+          //     <span className={styles.icon}>
+          //       <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
+          //     </span>
+          //     {getPlaceName(p)}
+          //   </button>
+          // </DropdownMenu.Item>
+        ))}
+      </div>
     </div>
   );
 };

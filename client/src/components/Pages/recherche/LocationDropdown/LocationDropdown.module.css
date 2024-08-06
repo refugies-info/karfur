@@ -7,11 +7,10 @@
   gap: 8px;
 }
 
-.selectedLocationItem {
+.places {
   /* Layout */
   display: flex;
-  padding: 8px 8px 8px 10px;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   align-self: stretch;
 }
