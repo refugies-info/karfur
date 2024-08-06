@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { getPlaceName } from "./functions";
-import styles from "./LocationDropdown.module.scss";
+import styles from "./LocationDropdown.module.css";
 
 interface Props {
   mobile?: boolean;
@@ -110,10 +110,10 @@ const LocationDropdown = (props: Props) => {
   };
 
   return (
-    <>
-      <div className={cls(styles.header, placePredictions.length === 0 && styles.no_results)}>
+    <div className={styles.container}>
+      <>
         {query.departments.map((dep, i) => (
-          <DropdownMenu.Item key={i} className={styles.item}>
+          <DropdownMenu.Item key={i} className={styles.selectedLocationItem}>
             <Checkbox className={styles.checkbox} checked={true}>
               {dep} {getDepartmentCodeFromName(dep)}
             </Checkbox>
@@ -121,16 +121,12 @@ const LocationDropdown = (props: Props) => {
         ))}
 
         <DropdownMenu.Item className={styles.locationItem}>
-          <button
-            onClick={getLocation}
-            onKeyDown={(e) => onEnterOrSpace(e, getLocation)}
-            className={styles.locationButton}
-          >
+          <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
             <i className={cls("fr-icon-send-plane-fill", styles.locationIcon)} />
-            {t("Recherche.positionButton", "Utiliser ma position")}
+            <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
           </button>
         </DropdownMenu.Item>
-      </div>
+      </>
 
       {placePredictions.slice(0, 5).map((p, i) => (
         <DropdownMenu.Item key={i} className={styles.item}>
@@ -146,7 +142,7 @@ const LocationDropdown = (props: Props) => {
           </button>
         </DropdownMenu.Item>
       ))}
-    </>
+    </div>
   );
 };
 
