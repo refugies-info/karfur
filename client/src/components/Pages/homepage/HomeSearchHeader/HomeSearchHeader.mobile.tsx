@@ -1,7 +1,6 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
 import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import SearchInput from "components/Pages/recherche/SearchInput";
 import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
@@ -14,6 +13,7 @@ import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { getPath } from "routes";
 import commonStyles from "scss/components/searchHeader.module.scss";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
+import SearchInput from "../SearchInput";
 import styles from "./HomeSearchHeader.mobile.module.scss";
 
 interface Props {
