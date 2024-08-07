@@ -1,7 +1,9 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import LocationDropdown from "components/Pages/recherche/LocationDropdown";
 import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
-import React, { useState } from "react";
+import EVAIcon from "components/UI/EVAIcon";
+import { cls } from "lib/classname";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
@@ -19,22 +21,35 @@ const SearchDropdown: React.FC<Props> = ({ mode, reset }) => {
   const query = useSelector(searchQuerySelector);
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
 
+  const iconColor = useMemo(() => {
+    return open ? "white" : "black";
+  }, [open]);
+
   return (
     <DropdownMenu.Root open={open} onOpenChange={() => setOpen((o) => !o)}>
       <DropdownMenu.Trigger>
         {mode === "department" && (
-          <SearchInput
-            label={t("Dispositif.Département", "Département")}
-            icon="pin-outline"
-            active={open}
-            value={query.departments.join(", ")}
-            placeholder={t("Recherche.all", "Tous")}
-            resetFilter={reset}
-            onHomepage={true}
-            inputValue=""
-            setActive={() => {}}
-            noInput
-          />
+          <div className={styles.container}>
+            <div className={cls(styles.iconContainer, open && styles.iconContainerActive)}>
+              <EVAIcon name="pin-outline" fill={iconColor} />
+            </div>
+            <div className={styles.content}>
+                <span className={styles.label}>{t("Dispositif.Département", "Département")}</span>
+                <span className={styles.value}>{t("Recherche.all", "Tous")}</span>
+              </div>
+          </div>
+          // <SearchInput
+          //   label={t("Dispositif.Département", "Département")}
+          //   icon="pin-outline"
+          //   active={open}
+          //   value={query.departments.join(", ")}
+          //   placeholder={t("Recherche.all", "Tous")}
+          //   resetFilter={reset}
+          //   onHomepage={true}
+          //   inputValue=""
+          //   setActive={() => {}}
+          //   noInput
+          // />
         )}
         {mode === "theme" && (
           <SearchInput
