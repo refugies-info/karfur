@@ -1,5 +1,6 @@
 import DepartmentMenuItem from "components/Pages/recherche/LocationDropdown/DepartmentMenuItem/DepartmentMenuItem";
 import { Event } from "lib/tracking";
+import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,9 +24,9 @@ const LocationDropdown = (props: Props) => {
   const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
 
   const onChangeDepartmentInput = useCallback(
-    (e: any) => {
+    debounce((e: any) => {
       setLocationSearch(e.target.value);
-    },
+    }),
     [setLocationSearch],
   );
 
