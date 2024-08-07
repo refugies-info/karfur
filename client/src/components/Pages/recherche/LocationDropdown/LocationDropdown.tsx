@@ -6,6 +6,7 @@ import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlace
 import { useDispatch, useSelector } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
 import styles from "./LocationDropdown.module.css";
 import LocationMenuItem from "./LocationMenuItem";
 import PlaceMenuItem from "./PlaceMenuItem";
@@ -80,7 +81,7 @@ const LocationDropdown = (props: Props) => {
       ))}
 
       <LocationMenuItem />
-      {locationSearch !== "" && placePredictions.length > 0 && <Separator />}
+      {placePredictions.length > 0 && <Separator />}
 
       <div className={styles.places}>
         {locationSearch !== "" &&
@@ -88,6 +89,21 @@ const LocationDropdown = (props: Props) => {
             .slice(0, 5)
             .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
       </div>
+
+      {locationSearch === "" && (
+        <div className={styles.places}>
+          <CommonPlaceMenuItem placeName="Paris" deptNo="75" />
+          <CommonPlaceMenuItem placeName="Lyon" deptNo="69" />
+          <CommonPlaceMenuItem placeName="Strasbourg" deptNo="67" />
+          <CommonPlaceMenuItem placeName="Nantes" deptNo="44" />
+          <CommonPlaceMenuItem placeName="Dijon" deptNo="21" />
+          <CommonPlaceMenuItem placeName="Bordeaux" deptNo="33" />
+          <CommonPlaceMenuItem placeName="Grenoble" deptNo="38" />
+          <CommonPlaceMenuItem placeName="Toulouse" deptNo="34" />
+          <CommonPlaceMenuItem placeName="Rennes" deptNo="35" />
+          <CommonPlaceMenuItem placeName="Marseille" deptNo="13" />
+        </div>
+      )}
     </div>
   );
 };

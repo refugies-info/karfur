@@ -1,4 +1,3 @@
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Checkbox from "components/UI/Checkbox";
 import { cls } from "lib/classname";
 import { getDepartmentCodeFromName } from "lib/departments";

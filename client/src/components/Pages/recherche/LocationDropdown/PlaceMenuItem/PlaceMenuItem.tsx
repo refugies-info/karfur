@@ -1,4 +1,4 @@
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import CheckboxIcon from "components/UI/CheckboxIcon";
 import { cls } from "lib/classname";
 import { getDepartmentCodeFromName } from "lib/departments";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
@@ -6,7 +6,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import utilityStyles from "~css/utilities.module.css";
 import { getPlaceName } from "../functions";
-import CheckboxIcon from "./CheckboxIcon";
 import styles from "./PlaceMenuItem.module.css";
 
 interface Props {
@@ -46,10 +45,7 @@ const PlaceMenuItem: React.FC<Props> = ({ p, onSelectPrediction }) => {
   const placeName = useMemo(() => getPlaceName(p), [p]);
 
   return (
-    <div
-      className={cls(styles.item, utilityStyles.noSelect)}
-      onClick={(e) => e.preventDefault()}
-    >
+    <div className={cls(styles.item, utilityStyles.noSelect)} onClick={(e) => e.preventDefault()}>
       <button
         className={styles.button}
         onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
