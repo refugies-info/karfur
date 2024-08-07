@@ -1,6 +1,3 @@
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";
@@ -12,6 +9,7 @@ import { Button } from "reactstrap";
 import { getPath } from "routes";
 import commonStyles from "scss/components/searchHeader.module.scss";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
+import SearchDropdown from "../SearchDropdown";
 import SearchInput from "../SearchInput";
 import styles from "./HomeSearchHeader.desktop.module.scss";
 
@@ -73,49 +71,9 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <DropdownMenu.Root open={locationOpen} onOpenChange={toggleLocation}>
-          <DropdownMenu.Trigger>
-            <SearchInput
-              label={t("Dispositif.Département", "Département")}
-              icon="pin-outline"
-              active={locationOpen}
-              value={query.departments.join(", ")}
-              placeholder={t("Recherche.all", "Tous")}
-              resetFilter={resetDepartment}
-              onHomepage={true}
-              inputValue=""
-              setActive={() => {}}
-              noInput
-            />
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
-              <LocationDropdown />
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
+        <SearchDropdown mode="department" reset={resetDepartment}></SearchDropdown>
 
-        <DropdownMenu.Root open={themesOpen} onOpenChange={toggleThemes}>
-          <DropdownMenu.Trigger>
-            <SearchInput
-              label={t("Recherche.themes", "Thèmes")}
-              icon="list-outline"
-              active={themesOpen}
-              value={themeDisplayedValue.join(", ")}
-              placeholder={t("Recherche.all", "Tous")}
-              resetFilter={resetTheme}
-              onHomepage={true}
-              inputValue=""
-              setActive={() => {}}
-              noInput
-            />
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
-              <ThemeDropdown mobile={false} isOpen={themesOpen} />
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
+        <SearchDropdown mode="theme" reset={resetTheme}></SearchDropdown>
 
         <div className={cls(commonStyles.dropdown, searchActive && "show")}>
           <Button onClick={openSearch}>
