@@ -31,7 +31,7 @@ interface Props {
   mobile?: boolean;
 }
 
-const LocationDropdown = (props: Props) => {
+const LocationDropdown: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
 
