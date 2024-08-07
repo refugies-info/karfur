@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
         <input
           type="text"
           ref={ref}
+          dir={i18n.dir()}
           className={styles.input}
           placeholder={t("Rechercher", "Rechercher")}
           onChange={onChange}

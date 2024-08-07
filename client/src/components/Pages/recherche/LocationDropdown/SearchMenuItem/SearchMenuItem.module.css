@@ -41,6 +41,10 @@
   line-height: 24px; /* 150% */
 }
 
+.input[dir="rtl"] {
+  text-align: right;
+}
+
 .input:not(:placeholder-shown) {
   color: var(---text-title-grey);
 
