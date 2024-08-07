@@ -40,6 +40,7 @@ const LocationDropdown = (props: Props) => {
       language: "fr",
     },
   });
+
   const onSelectPrediction = useCallback(
     (id: string, name: string) => {
       Event("USE_SEARCH", "choose location option", name);
@@ -65,6 +66,19 @@ const LocationDropdown = (props: Props) => {
     [placesService, resetLocationSearch, query.departments, dispatch],
   );
 
+  const onSelectCommonPlace = useCallback(
+    (depName: string) => {
+      const oldDeps = query.departments;
+      dispatch(
+        addToQueryActionCreator({
+          departments: [...new Set(depName ? [...oldDeps, depName] : [...oldDeps])],
+          sort: "location",
+        }),
+      );
+    },
+    [query.departments, dispatch],
+  );
+
   useEffect(() => {
     if (locationSearch) {
       getPlacePredictions({ input: locationSearch });
@@ -81,29 +95,28 @@ const LocationDropdown = (props: Props) => {
       ))}
 
       <LocationMenuItem />
-      {placePredictions.length > 0 && <Separator />}
 
       <div className={styles.places}>
+        {(locationSearch === "" || placePredictions.length > 0) && <Separator />}
         {locationSearch !== "" &&
           placePredictions
             .slice(0, 5)
             .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
+        {locationSearch === "" && (
+          <>
+            <CommonPlaceMenuItem placeName="Paris" deptNo="75" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Lyon" deptNo="69" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Strasbourg" deptNo="67" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Nantes" deptNo="44" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Dijon" deptNo="21" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Bordeaux" deptNo="33" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Grenoble" deptNo="38" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Toulouse" deptNo="34" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Rennes" deptNo="35" onSelectCommonPlace={onSelectCommonPlace} />
+            <CommonPlaceMenuItem placeName="Marseille" deptNo="13" onSelectCommonPlace={onSelectCommonPlace} />
+          </>
+        )}
       </div>
-
-      {locationSearch === "" && (
-        <div className={styles.places}>
-          <CommonPlaceMenuItem placeName="Paris" deptNo="75" />
-          <CommonPlaceMenuItem placeName="Lyon" deptNo="69" />
-          <CommonPlaceMenuItem placeName="Strasbourg" deptNo="67" />
-          <CommonPlaceMenuItem placeName="Nantes" deptNo="44" />
-          <CommonPlaceMenuItem placeName="Dijon" deptNo="21" />
-          <CommonPlaceMenuItem placeName="Bordeaux" deptNo="33" />
-          <CommonPlaceMenuItem placeName="Grenoble" deptNo="38" />
-          <CommonPlaceMenuItem placeName="Toulouse" deptNo="34" />
-          <CommonPlaceMenuItem placeName="Rennes" deptNo="35" />
-          <CommonPlaceMenuItem placeName="Marseille" deptNo="13" />
-        </div>
-      )}
     </div>
   );
 };

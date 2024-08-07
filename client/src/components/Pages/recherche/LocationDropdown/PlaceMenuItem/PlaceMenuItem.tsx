@@ -48,7 +48,7 @@ const PlaceMenuItem: React.FC<Props> = ({ p, onSelectPrediction }) => {
     <div className={cls(styles.item, utilityStyles.noSelect)} onClick={(e) => e.preventDefault()}>
       <button
         className={styles.button}
-        onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
+        onClick={() => onSelectPrediction(p.place_id, placeName)}
         onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, placeName))}
       >
         <CheckboxIcon />
