@@ -35,6 +35,10 @@
     box-shadow: inset 0 -2px 0 0 var(--background-active-blue-france);
     background: white;
     padding-inline-start: u(12);
+
+    &:not(:placeholder-shown) {
+      color: var(--text-title-grey);
+    }
   }
 }
 
