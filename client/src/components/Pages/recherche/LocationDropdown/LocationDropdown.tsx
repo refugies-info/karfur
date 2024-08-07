@@ -1,7 +1,8 @@
 import DepartmentMenuItem from "components/Pages/recherche/LocationDropdown/DepartmentMenuItem/DepartmentMenuItem";
+import { getDepartmentCodeFromName } from "lib/departments";
 import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
@@ -12,6 +13,19 @@ import LocationMenuItem from "./LocationMenuItem";
 import PlaceMenuItem from "./PlaceMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
 import Separator from "./Separator";
+
+const commonPlaces = [
+  { placeName: "Paris", deptNo: "75" },
+  { placeName: "Lyon", deptNo: "69" },
+  { placeName: "Strasbourg", deptNo: "67" },
+  { placeName: "Nantes", deptNo: "44" },
+  { placeName: "Dijon", deptNo: "21" },
+  { placeName: "Bordeaux", deptNo: "33" },
+  { placeName: "Grenoble", deptNo: "38" },
+  { placeName: "Toulouse", deptNo: "34" },
+  { placeName: "Rennes", deptNo: "35" },
+  { placeName: "Marseille", deptNo: "13" },
+];
 
 interface Props {
   mobile?: boolean;
@@ -85,13 +99,17 @@ const LocationDropdown = (props: Props) => {
     }
   }, [locationSearch]);
 
+  const queryDepartmentCodes = useMemo(() => {
+    return query.departments.map((dep) => getDepartmentCodeFromName(dep));
+  }, [query.departments]);
+
   return (
     <div className={styles.container}>
       <SearchMenuItem onChange={onChangeDepartmentInput} />
       <Separator />
 
-      {query.departments.map((dep, i) => (
-        <DepartmentMenuItem key={i} dep={dep} />
+      {query.departments.map((depName, i) => (
+        <DepartmentMenuItem key={i} dep={depName} />
       ))}
 
       <LocationMenuItem />
@@ -102,20 +120,17 @@ const LocationDropdown = (props: Props) => {
           placePredictions
             .slice(0, 5)
             .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
-        {locationSearch === "" && (
-          <>
-            <CommonPlaceMenuItem placeName="Paris" deptNo="75" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Lyon" deptNo="69" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Strasbourg" deptNo="67" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Nantes" deptNo="44" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Dijon" deptNo="21" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Bordeaux" deptNo="33" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Grenoble" deptNo="38" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Toulouse" deptNo="34" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Rennes" deptNo="35" onSelectCommonPlace={onSelectCommonPlace} />
-            <CommonPlaceMenuItem placeName="Marseille" deptNo="13" onSelectCommonPlace={onSelectCommonPlace} />
-          </>
-        )}
+        {locationSearch === "" &&
+          commonPlaces
+            .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
+            .map(({ deptNo, placeName }) => (
+              <CommonPlaceMenuItem
+                key={deptNo}
+                placeName={placeName}
+                deptNo={deptNo}
+                onSelectCommonPlace={onSelectCommonPlace}
+              />
+            ))}
       </div>
     </div>
   );
