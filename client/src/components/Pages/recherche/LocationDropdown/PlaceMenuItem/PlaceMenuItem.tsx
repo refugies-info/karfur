@@ -46,7 +46,7 @@ const PlaceMenuItem: React.FC<Props> = ({ p, onSelectPrediction }) => {
   const placeName = useMemo(() => getPlaceName(p), [p]);
 
   return (
-    <DropdownMenu.DropdownMenuItem
+    <div
       className={cls(styles.item, utilityStyles.noSelect)}
       onClick={(e) => e.preventDefault()}
     >
@@ -60,7 +60,7 @@ const PlaceMenuItem: React.FC<Props> = ({ p, onSelectPrediction }) => {
       <span>
         {placeName} {deptNo}
       </span>
-    </DropdownMenu.DropdownMenuItem>
+    </div>
   );
 };
 

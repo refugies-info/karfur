@@ -28,11 +28,11 @@ const DepartmentMenuItem: React.FC<Props> = ({ dep }) => {
   }, [dispatch, query.departments, dep]);
 
   return (
-    <DropdownMenu.Item className={cls(styles.item, utilityStyles.noSelect)} onClick={(e) => e.preventDefault()}>
+    <div className={cls(styles.item, utilityStyles.noSelect)} onClick={(e) => e.preventDefault()}>
       <Checkbox checked={true} onChange={removeDepartement}>
         {dep} {getDepartmentCodeFromName(dep)}
       </Checkbox>
-    </DropdownMenu.Item>
+    </div>
   );
 };
 

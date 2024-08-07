@@ -35,12 +35,12 @@ const LocationMenuItem: React.FC = () => {
   };
 
   return (
-    <DropdownMenu.Item className={cls(styles.item, utilityStyles.noSelect)}>
+    <div className={cls(styles.item, utilityStyles.noSelect)}>
       <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
         <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
         <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
       </button>
-    </DropdownMenu.Item>
+    </div>
   );
 };
 

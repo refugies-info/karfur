@@ -20,7 +20,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   }, []);
 
   return (
-    <DropdownMenu.DropdownMenuItem
+    <div
       className={cls(styles.item, utilityStyles.noSelect)}
       onClick={(e) => e.preventDefault()}
     >
@@ -35,7 +35,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
           onChange={onChange}
         />
       </div>
-    </DropdownMenu.DropdownMenuItem>
+    </div>
   );
 };
 
