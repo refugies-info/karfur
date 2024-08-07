@@ -12,6 +12,7 @@ import { getTheme } from "lib/getTheme";
 import { themesSelector } from "services/Themes/themes.selectors";
 import FavoriteButton from "components/UI/FavoriteButton";
 import defaultStructureImage from "assets/recherche/default-structure-image.svg";
+import TempDispositifIllu from "assets/recherche/temp-illu-dispositif.png";
 import styles from "scss/components/contentCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { getReadableText } from "lib/getReadableText";
@@ -35,6 +36,7 @@ const DispositifCard = (props: Props) => {
 
   const commitment = props.dispositif.metadatas?.commitment;
   const price = props.dispositif.metadatas?.price;
+  const isOnline = props.dispositif.metadatas?.location === "online";
 
   const getDepartement = () => {
     const location = props.dispositif.metadatas?.location;
@@ -46,7 +48,9 @@ const DispositifCard = (props: Props) => {
     if (props.selectedDepartment) return props.selectedDepartment;
     if (Array.isArray(location) && location.length > 1)
       return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
-    return location[0];
+
+    const splittedLocation = location[0].split(" - ");
+    return `${splittedLocation[1]} ${splittedLocation[0]}`;
   };
 
   return (
@@ -67,11 +71,12 @@ const DispositifCard = (props: Props) => {
           title: getReadableText(props.dispositif.titreInformatif || ""),
         }}
         size="medium"
-        imageAlt="texte alternatif de l’image"
-        imageUrl="https://www.systeme-de-design.gouv.fr/img/placeholder.16x9.png"
+        imageAlt=""
+        imageUrl={TempDispositifIllu.src}
         badge={
-          <Badge>
-            <span>{getDepartement()}</span>
+          <Badge small className={isOnline ? styles.badge_online : styles.badge_department}>
+            {isOnline && <i className="ri-at-line me-1"></i>}
+            {getDepartement()}
           </Badge>
         }
         start={
@@ -101,18 +106,18 @@ const DispositifCard = (props: Props) => {
         titleAs="h3"
         desc={<span dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}></span>}
         end={
-          <div className="d-flex col-gap-3 row-gap-1 flex-wrap">
+          <div className="d-flex gap-3">
             {price !== undefined && (
               <div className={styles.info}>
                 <i className="fr-icon-money-euro-circle-line" />
-                <div className="ms-2">{getPriceText(price, t)}</div>
+                <span>{getPriceText(price, t)}</span>
               </div>
             )}
 
             {commitment && (
               <div className={styles.info}>
                 <i className="fr-icon-time-line" />
-                <div className={cls("ms-2")}>{getCommitmentText(commitment, t)}</div>
+                <span>{getCommitmentText(commitment, t)}</span>
               </div>
             )}
           </div>

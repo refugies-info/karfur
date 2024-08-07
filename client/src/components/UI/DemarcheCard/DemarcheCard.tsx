@@ -10,12 +10,14 @@ import { getTheme } from "lib/getTheme";
 import { cls } from "lib/classname";
 import FavoriteButton from "components/UI/FavoriteButton";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
+import TempDemarcheIllu from "assets/recherche/temp-illu-demarche.png";
 import styles from "scss/components/contentCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { getReadableText } from "lib/getReadableText";
 import Card from "@codegouvfr/react-dsfr/Card";
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { NewThemeBadge } from "../NewThemeBadge";
+import { getRelativeTimeString } from "lib/getRelativeDate";
 
 interface Props {
   demarche: GetDispositifsResponse;
@@ -46,9 +48,9 @@ const DemarcheCard = (props: Props) => {
         }}
         size="medium"
         imageAlt="texte alternatif de l’image"
-        imageUrl="https://www.systeme-de-design.gouv.fr/img/placeholder.16x9.png"
+        imageUrl={TempDemarcheIllu.src}
         badge={
-          <Badge>
+          <Badge small className={styles.badge_demarche}>
             <span>Démarche</span>
           </Badge>
         }
@@ -63,22 +65,25 @@ const DemarcheCard = (props: Props) => {
                 <NewThemeBadge theme={props.demarche.secondaryThemes?.length || 0} />
               )}
             </div>
-            <div className={cls(styles.info, "mb-3")}>
-              <i className="fr-icon-building-line" />
-              <span dangerouslySetInnerHTML={{ __html: props.demarche?.titreMarque || "" }} />
-            </div>
+            {/* TODO: update code below when operator capability is added to the demarche */}
+            {props.demarche?.titreMarque && (
+              <div className={cls(styles.info, "mb-3")}>
+                <i className="fr-icon-building-line" />
+                <span dangerouslySetInnerHTML={{ __html: props.demarche?.titreMarque || "" }} />
+              </div>
+            )}
           </>
         }
         title={<span dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}></span>}
         titleAs="h3"
         desc={<span dangerouslySetInnerHTML={{ __html: props.demarche.abstract || "" }}></span>}
         end={
-          <div className="d-flex col-gap-3 row-gap-1 flex-wrap">
+          props.demarche.lastModificationDate ? (
             <div className={styles.info}>
               <i className="fr-icon-time-line" />
-              Mise à jour il y a
+              Mise à jour {getRelativeTimeString(new Date(props.demarche.lastModificationDate), router.locale || "fr")}
             </div>
-          </div>
+          ) : null
         }
       />
 
