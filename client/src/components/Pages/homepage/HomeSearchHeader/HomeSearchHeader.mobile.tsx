@@ -1,7 +1,7 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
 import LocationMenu from "components/Pages/recherche/LocationMenu";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
+import ThemeDropdown from "components/Pages/recherche/ThemeMenu";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";

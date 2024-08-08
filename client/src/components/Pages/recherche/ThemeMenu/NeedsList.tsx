@@ -1,21 +1,21 @@
-import React, { memo } from "react";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { themesSelector } from "services/Themes/themes.selectors";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { needsSelector } from "services/Needs/needs.selectors";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import useLocale from "hooks/useLocale";
+import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import Checkbox from "components/UI/Checkbox";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
-import Checkbox from "components/UI/Checkbox";
-import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
+import useLocale from "hooks/useLocale";
 import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
+import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { Event } from "lib/tracking";
-import styles from "./ThemeDropdown.module.scss";
-import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { needsSelector } from "services/Needs/needs.selectors";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { themesSelector } from "services/Themes/themes.selectors";
+import styled from "styled-components";
+import styles from "./ThemeMenu.module.scss";
 
 type ButtonNeedProps = {
   color100: string;

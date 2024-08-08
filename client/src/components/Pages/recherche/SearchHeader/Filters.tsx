@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
-import ThemeDropdown from "../ThemeDropdown";
+import ThemeDropdown from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";

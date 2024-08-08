@@ -20,7 +20,7 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
 import NeedsList from "./NeedsList";
 import ThemeButton from "./ThemeButton";
-import styles from "./ThemeDropdown.module.scss";
+import styles from "./ThemeMenu.module.scss";
 
 interface Props {
   mobile: boolean;
@@ -39,7 +39,7 @@ const debouncedQuery = debounce(
   500,
 );
 
-const ThemeDropdown = (props: Props) => {
+const ThemeMenu = (props: Props) => {
   const locale = useLocale();
   const dispatch = useDispatch();
 
@@ -186,4 +186,4 @@ const ThemeDropdown = (props: Props) => {
   );
 };
 
-export default memo(ThemeDropdown);
+export default memo(ThemeMenu);
