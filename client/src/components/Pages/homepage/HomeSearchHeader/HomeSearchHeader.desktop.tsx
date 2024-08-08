@@ -1,3 +1,5 @@
+import LocationDropdown from "components/Pages/recherche/LocationDropdown";
+import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";
@@ -71,9 +73,23 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <SearchDropdown mode="department" resetFilter={resetDepartment}></SearchDropdown>
+        <SearchDropdown
+          icon="pin-outline"
+          label={t("Dispositif.Département", "Département")}
+          values={query.departments}
+          resetFilter={resetDepartment}
+        >
+          <LocationDropdown />
+        </SearchDropdown>
 
-        <SearchDropdown mode="theme" resetFilter={resetTheme}></SearchDropdown>
+        <SearchDropdown
+          icon="list-outline"
+          label={t("Recherche.themes", "Thèmes")}
+          values={themeDisplayedValue}
+          resetFilter={resetTheme}
+        >
+          <ThemeDropdown mobile={false} isOpen={true} />
+        </SearchDropdown>
 
         <div className={cls(commonStyles.dropdown, searchActive && "show")}>
           <Button onClick={openSearch}>

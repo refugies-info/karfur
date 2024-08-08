@@ -1,57 +1,28 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import React, { useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import SearchButton from "./SearchButton";
 import styles from "./SearchDropdown.module.css";
 
 interface Props {
-  mode: "department" | "theme";
+  icon: string;
+  label: string;
+  values: string[];
   resetFilter: () => void;
 }
 
-const SearchDropdown: React.FC<Props> = ({ mode, resetFilter }) => {
-  const { t } = useTranslation();
+const SearchDropdown: React.FC<React.PropsWithChildren<Props>> = ({ icon, label, values, children, resetFilter }) => {
   const [open, setOpen] = useState(false);
-  const query = useSelector(searchQuerySelector);
-  const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
 
-  const onClickCross = useCallback(
-    () => {
-      resetFilter();
-    },
-    [resetFilter],
-  );
+  const onClickCross = useCallback(() => {
+    resetFilter();
+  }, [resetFilter]);
 
   return (
     <DropdownMenu.Root open={open} onOpenChange={() => setOpen((o) => !o)}>
-      {mode === "department" ? (
-        <SearchButton
-          open={open}
-          icon="pin-outline"
-          label={t("Dispositif.Département", "Département")}
-          values={query.departments}
-          onClickCross={onClickCross}
-        />
-      ) : mode === "theme" ? (
-        <SearchButton
-          open={open}
-          icon="list-outline"
-          label={t("Recherche.themes", "Thèmes")}
-          values={themeDisplayedValue}
-          onClickCross={onClickCross}
-        />
-      ) : null}
+      <SearchButton open={open} icon={icon} label={label} values={values} onClickCross={onClickCross} />
       <DropdownMenu.Portal>
         <DropdownMenu.Content className={styles.menu} avoidCollisions>
-          {mode === "department" ? (
-            <LocationDropdown />
-          ) : mode === "theme" ? (
-            <ThemeDropdown mobile={false} isOpen={open} />
-          ) : null}
+          {children}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
