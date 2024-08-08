@@ -36,9 +36,11 @@ const SearchButton: React.FC<Props> = ({ icon, label, open, values }) => {
               <span className={cls(styles.values, values.length > 0 && styles.bold)}>
                 {values.length > 0 ? values.join(", ") : t("Recherche.all", "Tous")}
               </span>
-              <div className={styles.closeButton} role="button" tabIndex={0}>
-                <EVAIcon name="close-outline" fill="dark" size={20} />
-              </div>
+              {values.length > 0 && (
+                <div className={styles.closeButton} role="button" tabIndex={0}>
+                  <EVAIcon name="close-outline" fill="dark" size={20} className={styles.closeButtonIcon} />
+                </div>
+              )}
             </div>
           </div>
         </div>
