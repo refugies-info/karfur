@@ -1,5 +1,6 @@
 .container {
   /* Layout */
+  display: flex;
   width: 33%;
   padding: 8px;
   position: relative;
@@ -29,6 +30,8 @@
   padding: 16px;
   gap: 16px;
   height: 100%;
+  overflow: hidden;
+  width: 100%;
 
   /* Style */
   border-radius: 12px;
@@ -47,8 +50,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: 4px;
-  flex: 1 0 0;
   overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  flex-grow: 0;
 }
 
 .iconContainer {
@@ -60,6 +65,8 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
 
   /* Style */
   border-radius: 100px;
@@ -90,6 +97,15 @@
   text-transform: uppercase;
 }
 
+.valuesContainer {
+  /* Layout */
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-between;
+}
+
 .values {
   /* Typography */
   color: var(--gray-100, #212121);
@@ -102,10 +118,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
 }
 
 .bold {
   /* Typography */
   font-weight: 700;
+}
+
+.closeButton {
+  display: flex;
 }
