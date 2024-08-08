@@ -15,14 +15,18 @@ interface Props {
 const SearchButton: React.FC<Props> = ({ icon, label, open, values }) => {
   const { t } = useTranslation();
 
+  const active = useMemo(() => {
+    return open || values.length > 0;
+  }, [open, values]);
+
   const iconColor = useMemo(() => {
-    return open ? "white" : "black";
-  }, [open]);
+    return active ? "white" : "black";
+  }, [active]);
 
   return (
     <DropdownMenu.Trigger asChild>
       <div className={styles.container}>
-        <div className={cls(styles.iconContainer, open && styles.iconContainerActive)}>
+        <div className={cls(styles.iconContainer, active && styles.iconContainerActive)}>
           <EVAIcon name={icon} fill={iconColor} />
         </div>
         <div className={styles.content}>
