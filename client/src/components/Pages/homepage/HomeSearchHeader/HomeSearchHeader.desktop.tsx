@@ -71,9 +71,9 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <SearchDropdown mode="department" reset={resetDepartment}></SearchDropdown>
+        <SearchDropdown mode="department" resetFilter={resetDepartment}></SearchDropdown>
 
-        <SearchDropdown mode="theme" reset={resetTheme}></SearchDropdown>
+        <SearchDropdown mode="theme" resetFilter={resetTheme}></SearchDropdown>
 
         <div className={cls(commonStyles.dropdown, searchActive && "show")}>
           <Button onClick={openSearch}>
