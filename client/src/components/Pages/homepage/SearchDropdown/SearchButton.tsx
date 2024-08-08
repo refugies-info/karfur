@@ -26,12 +26,14 @@ const SearchButton: React.FC<Props> = ({ icon, label, open, values }) => {
   return (
     <DropdownMenu.Trigger asChild>
       <div className={styles.container}>
-        <div className={cls(styles.iconContainer, active && styles.iconContainerActive)}>
-          <EVAIcon name={icon} fill={iconColor} />
-        </div>
-        <div className={styles.content}>
-          <span className={styles.label}>{label}</span>
-          <span className={styles.values}>{values.length > 0 ? values.join(", ") : t("Recherche.all", "Tous")}</span>
+        <div className={styles.zone}>
+          <div className={cls(styles.iconContainer, active && styles.iconContainerActive)}>
+            <EVAIcon name={icon} fill={iconColor} />
+          </div>
+          <div className={styles.content}>
+            <span className={styles.label}>{label}</span>
+            <span className={styles.values}>{values.length > 0 ? values.join(", ") : t("Recherche.all", "Tous")}</span>
+          </div>
         </div>
       </div>
     </DropdownMenu.Trigger>
