@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./Separator.module.css";
 
 const Separator: React.FC = () => {
