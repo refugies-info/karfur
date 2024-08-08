@@ -5,7 +5,7 @@ import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import React, { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import utilityStyles from "~css/utilities.module.css";
-import { getPlaceName } from "../functions";
+import { getPlaceName } from "./functions";
 import styles from "./PlaceMenuItem.module.css";
 
 interface Props {
