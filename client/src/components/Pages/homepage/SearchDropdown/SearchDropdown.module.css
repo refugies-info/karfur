@@ -1,14 +1,30 @@
 .container {
   /* Layout */
   display: flex;
+  width: 33%;
   padding: 16px;
   align-items: center;
   gap: 16px;
   flex: 1 0 0;
+  position: relative;
 
   /* Style */
   border-radius: 12px;
   background: var(--background-default-grey);
+}
+
+.container::after {
+  content: "";
+  height: 80%;
+  width: 1px;
+  background-color: #c6c6c6;
+  position: absolute;
+  top: 10%;
+  right: 0;
+}
+
+.container:last-child::after {
+  display: none;
 }
 
 .iconContainer {

@@ -27,22 +27,44 @@ const SearchDropdown: React.FC<Props> = ({ mode, reset }) => {
 
   return (
     <DropdownMenu.Root open={open} onOpenChange={() => setOpen((o) => !o)}>
-      <DropdownMenu.Trigger>
-        {mode === "department" && (
+      <DropdownMenu.Trigger asChild>
+        {mode === "department" ? (
           <div className={styles.container}>
             <div className={cls(styles.iconContainer, open && styles.iconContainerActive)}>
               <EVAIcon name="pin-outline" fill={iconColor} />
             </div>
             <div className={styles.content}>
-                <span className={styles.label}>{t("Dispositif.Département", "Département")}</span>
-                <span className={styles.value}>{t("Recherche.all", "Tous")}</span>
-              </div>
+              <span className={styles.label}>{t("Dispositif.Département", "Département")}</span>
+              <span className={styles.value}>{t("Recherche.all", "Tous")}</span>
+            </div>
+          </div>
+        ) : // <SearchInput
+        //   label={t("Dispositif.Département", "Département")}
+        //   icon="pin-outline"
+        //   active={open}
+        //   value={query.departments.join(", ")}
+        //   placeholder={t("Recherche.all", "Tous")}
+        //   resetFilter={reset}
+        //   onHomepage={true}
+        //   inputValue=""
+        //   setActive={() => {}}
+        //   noInput
+        // />
+        mode === "theme" ? (
+          <div className={styles.container}>
+            <div className={cls(styles.iconContainer, open && styles.iconContainerActive)}>
+              <EVAIcon name="pin-outline" fill={iconColor} />
+            </div>
+            <div className={styles.content}>
+              <span className={styles.label}>{t("Recherche.themes", "Thèmes")}</span>
+              <span className={styles.value}>{t("Recherche.all", "Tous")}</span>
+            </div>
           </div>
           // <SearchInput
-          //   label={t("Dispositif.Département", "Département")}
-          //   icon="pin-outline"
+          //   label={t("Recherche.themes", "Thèmes")}
+          //   icon="list-outline"
           //   active={open}
-          //   value={query.departments.join(", ")}
+          //   value={themeDisplayedValue.join(", ")}
           //   placeholder={t("Recherche.all", "Tous")}
           //   resetFilter={reset}
           //   onHomepage={true}
@@ -50,21 +72,7 @@ const SearchDropdown: React.FC<Props> = ({ mode, reset }) => {
           //   setActive={() => {}}
           //   noInput
           // />
-        )}
-        {mode === "theme" && (
-          <SearchInput
-            label={t("Recherche.themes", "Thèmes")}
-            icon="list-outline"
-            active={open}
-            value={themeDisplayedValue.join(", ")}
-            placeholder={t("Recherche.all", "Tous")}
-            resetFilter={reset}
-            onHomepage={true}
-            inputValue=""
-            setActive={() => {}}
-            noInput
-          />
-        )}
+        ) : null}
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content className={styles.menu} avoidCollisions>
