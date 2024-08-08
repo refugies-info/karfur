@@ -104,3 +104,8 @@
   text-overflow: ellipsis;
   max-width: 100%;
 }
+
+.bold {
+  /* Typography */
+  font-weight: 700;
+}
