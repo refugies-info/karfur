@@ -31,7 +31,7 @@ const SearchButton: React.FC<Props> = ({ icon, label, open, values }) => {
         </div>
         <div className={styles.content}>
           <span className={styles.label}>{label}</span>
-          <span className={styles.value}>{values.length > 0 ? values.join(", ") : t("Recherche.all", "Tous")}</span>
+          <span className={styles.values}>{values.length > 0 ? values.join(", ") : t("Recherche.all", "Tous")}</span>
         </div>
       </div>
     </DropdownMenu.Trigger>

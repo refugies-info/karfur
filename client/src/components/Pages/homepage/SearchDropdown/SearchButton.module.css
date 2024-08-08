@@ -65,6 +65,7 @@
   align-items: flex-start;
   gap: 4px;
   flex: 1 0 0;
+  overflow: hidden;
 }
 
 .label {
@@ -77,11 +78,17 @@
   text-transform: uppercase;
 }
 
-.value {
+.values {
   /* Typography */
   color: var(--gray-100, #212121);
   font-size: 16px;
   font-style: normal;
   font-weight: 450;
   line-height: normal;
+
+  /* Prevent text wrapping and show ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
