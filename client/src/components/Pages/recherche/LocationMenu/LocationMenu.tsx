@@ -1,4 +1,3 @@
-import DepartmentMenuItem from "components/Pages/recherche/LocationDropdown/DepartmentMenuItem/DepartmentMenuItem";
 import { getDepartmentCodeFromName } from "lib/departments";
 import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
@@ -8,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
-import styles from "./LocationDropdown.module.css";
+import DepartmentMenuItem from "./DepartmentMenuItem";
+import styles from "./LocationMenu.module.css";
 import LocationMenuItem from "./LocationMenuItem";
 import PlaceMenuItem from "./PlaceMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
@@ -31,7 +31,7 @@ interface Props {
   mobile?: boolean;
 }
 
-const LocationDropdown: React.FC<Props> = () => {
+const LocationMenu: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
 
@@ -136,4 +136,4 @@ const LocationDropdown: React.FC<Props> = () => {
   );
 };
 
-export default LocationDropdown;
+export default LocationMenu;

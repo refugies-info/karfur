@@ -1,6 +1,6 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
+import LocationMenu from "components/Pages/recherche/LocationMenu";
 import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
@@ -84,7 +84,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
               <RadixDropdownMenu.Root>
                 <RadixDropdownMenu.Portal>
                   <RadixDropdownMenu.Content>
-                    <LocationDropdown mobile={true} />
+                    <LocationMenu mobile={true} />
                   </RadixDropdownMenu.Content>
                 </RadixDropdownMenu.Portal>
               </RadixDropdownMenu.Root>
