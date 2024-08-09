@@ -1,11 +1,3 @@
-import { deleteDraftDispositif, getDispositifById, getDispositifByIdWithMainSponsor, getDraftDispositifById, updateDispositifInDB } from "./dispositif.repository";
-import { updateLanguagesAvancement } from "../langues/langues.service";
-import logger from "../../logger";
-import { cloneDeep, isEmpty, omit, unset, set } from "lodash";
-import { TraductionsType } from "../../typegoose/Traductions";
-import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
-import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
-import { Dispositif, DispositifId, ObjectId, Structure, Traductions, TraductionsModel, User, UserId } from "../../typegoose";
 import {
   ContentType,
   CreateDispositifRequest,
@@ -18,13 +10,36 @@ import {
   StructureStatus,
   UpdateDispositifRequest,
 } from "@refugies-info/api-types";
-import { createStructureInDB } from "../structure/structure.repository";
-import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthorizations";
-import { log } from "./log";
-import { TranslationContent } from "../../typegoose/Dispositif";
-import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
+import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
 import { sendSlackNotif } from "../../connectors/slack/sendSlackNotif";
+import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthorizations";
+import logger from "../../logger";
+import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
+import {
+  Dispositif,
+  DispositifId,
+  ObjectId,
+  Structure,
+  Traductions,
+  TraductionsModel,
+  User,
+  UserId,
+} from "../../typegoose";
+import { TranslationContent } from "../../typegoose/Dispositif";
+import { TraductionsType } from "../../typegoose/Traductions";
+import { updateLanguagesAvancement } from "../langues/langues.service";
+import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
+import { createStructureInDB } from "../structure/structure.repository";
+import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 import { getUserByIdWithStructures } from "../users/users.repository";
+import {
+  deleteDraftDispositif,
+  getDispositifById,
+  getDispositifByIdWithMainSponsor,
+  getDraftDispositifById,
+  updateDispositifInDB,
+} from "./dispositif.repository";
+import { log } from "./log";
 
 const url = process.env.FRONT_SITE_URL;
 
@@ -32,17 +47,24 @@ export enum NotifType {
   PUBLISHED = "PUBLISHED",
   DELETED = "DELETED",
   UPDATED = "UPDATED",
+  UPDATED_AND_PUBLISHED = "UPDATED_AND_PUBLISHED",
 }
 export const notifyChange = async (notifType: NotifType, dispositifId: Id, userId: Id) => {
   try {
-    const dispositif = await getDispositifById(dispositifId.toString(), { translations: 1, typeContenu: 1, theme: 1, secondaryThemes: 1 }, "theme secondaryThemes");
+    const dispositif = await getDispositifById(
+      dispositifId.toString(),
+      { translations: 1, typeContenu: 1, theme: 1, secondaryThemes: 1 },
+      "theme secondaryThemes",
+    );
     const user = await getUserByIdWithStructures(userId, { username: 1, structures: 1 });
     if (!dispositif) {
       logger.error("[notifyChange] dispositif not found", { dispositifId });
       return null;
     }
     const theme = (dispositif.getTheme()?.name?.fr || "").toLowerCase();
-    const contentTitle = `${dispositif.typeContenu === ContentType.DISPOSITIF ? dispositif.translations.fr.content.titreMarque + " - " : ""} ${dispositif.translations.fr.content.titreInformatif}`;
+    const contentTitle = `${
+      dispositif.typeContenu === ContentType.DISPOSITIF ? dispositif.translations.fr.content.titreMarque + " - " : ""
+    } ${dispositif.translations.fr.content.titreInformatif}`;
     const structure = user.structures[0]?.nom ? ` de la structure _${user.structures[0]?.nom}_` : "";
     const type = dispositif.typeContenu === ContentType.DEMARCHE ? "démarche" : "dispositif";
 
@@ -61,30 +83,32 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
         title = ":arrows_counterclockwise: Fiche mise à jour !";
         text = `La fiche ${type} *${contentTitle}* a été modifiée par _${user.username}_${structure}. À vérifier ?`;
         break;
+      case NotifType.UPDATED_AND_PUBLISHED:
+        title = ":arrows_counterclockwise: :new: Fiche mise à jour et publiée !";
+        text = `Le brouillon de travail de la fiche ${type} *${contentTitle}* a été validé et publié par _${user.username}_${structure}. À vérifier ?`;
     }
     return sendSlackNotif(title, text, `${url}/fr/${dispositif.typeContenu}/${dispositifId}`);
   } catch (e) {
     logger.error("[notifyChange] error", e);
   }
   return null;
-}
-
+};
 
 export const deleteLineBreaks = (htmlContent: string) => {
   const regexp = /<p dir=(\\|)"(ltr|rtl)(\\|)"><br><\/p>|(<p><br><\/p>)/g;
   return htmlContent.replace(regexp, "");
-}
+};
 
 export const deleteLineBreaksInInfosections = (sections: InfoSections): InfoSections => {
   const newSections: InfoSections = {};
   for (const [key, section] of Object.entries(sections)) {
     newSections[key] = {
       title: section.title,
-      text: deleteLineBreaks(section.text)
-    }
+      text: deleteLineBreaks(section.text),
+    };
   }
   return newSections;
-}
+};
 
 const deleteLineBreaksInDispositif = async (dispositif: Dispositif) => {
   const newDispositif = cloneDeep(dispositif.translations);
@@ -92,17 +116,25 @@ const deleteLineBreaksInDispositif = async (dispositif: Dispositif) => {
   set(newDispositif, "fr.content.how", deleteLineBreaksInInfosections(newDispositif.fr.content.how));
 
   if (dispositif.typeContenu === ContentType.DISPOSITIF) {
-    set(newDispositif, "fr.content.why", deleteLineBreaksInInfosections((newDispositif.fr.content as DispositifContent).why));
+    set(
+      newDispositif,
+      "fr.content.why",
+      deleteLineBreaksInInfosections((newDispositif.fr.content as DispositifContent).why),
+    );
   } else {
-    set(newDispositif, "fr.content.next", deleteLineBreaksInInfosections((newDispositif.fr.content as DemarcheContent).next));
+    set(
+      newDispositif,
+      "fr.content.next",
+      deleteLineBreaksInInfosections((newDispositif.fr.content as DemarcheContent).next),
+    );
   }
   await updateDispositifInDB(dispositif._id, { translations: newDispositif });
-}
+};
 
 const rebuildTranslations = async (
   dispositif: Dispositif,
   translationContent: TranslationContent,
-  keepTranslations: boolean
+  keepTranslations: boolean,
 ): Promise<Dispositif["translations"]> => {
   const translations = dispositif.translations;
   /**
@@ -210,37 +242,38 @@ const rebuildTranslations = async (
 export const saveAndOverwriteDraft = async (
   id: DispositifId,
   newDispositif: Partial<Dispositif>,
-  keepTranslations?: boolean
-): Promise<{ updatedDispositif: Dispositif, hasDraftVersion: boolean }> => {
+  keepTranslations?: boolean,
+): Promise<{ updatedDispositif: Dispositif; hasDraftVersion: boolean }> => {
   const dispositifToSave = cloneDeep(newDispositif);
   const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, translations: 1 });
 
   let draftDispositif = null;
   if (oldDispositif.hasDraftVersion) {
-    draftDispositif = await getDraftDispositifById(
-      id,
-      {
-        status: 1,
-        creatorId: 1,
-        theme: 1,
-        secondaryThemes: 1,
-        map: 1,
-        sponsors: 1,
-        mainSponsor: 1,
-        translations: 1,
-        typeContenu: 1,
-        metadatas: 1,
-        hasDraftVersion: 1,
-        lastModificationDate: 1,
-        lastModificationAuthor: 1,
-        needs: 1,
-        publishedAt: 1
-      }
-    );
+    draftDispositif = await getDraftDispositifById(id, {
+      status: 1,
+      creatorId: 1,
+      theme: 1,
+      secondaryThemes: 1,
+      map: 1,
+      sponsors: 1,
+      mainSponsor: 1,
+      translations: 1,
+      typeContenu: 1,
+      metadatas: 1,
+      hasDraftVersion: 1,
+      lastModificationDate: 1,
+      lastModificationAuthor: 1,
+      needs: 1,
+      publishedAt: 1,
+    });
   }
 
   if (draftDispositif) {
-    const newTranslations = await rebuildTranslations(oldDispositif, draftDispositif.translations.fr, keepTranslations || false);
+    const newTranslations = await rebuildTranslations(
+      oldDispositif,
+      draftDispositif.translations.fr,
+      keepTranslations || false,
+    );
     dispositifToSave.translations = newTranslations;
     dispositifToSave.mainSponsor = draftDispositif.mainSponsor;
     dispositifToSave.theme = draftDispositif.theme;
@@ -257,24 +290,20 @@ export const saveAndOverwriteDraft = async (
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
   if (draftDispositif) await deleteDraftDispositif(id);
   return { updatedDispositif, hasDraftVersion: !!draftDispositif };
-}
+};
 
 export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
-  const oldDispositif = await getDispositifById(
-    dispositifId,
-    {
-      status: 1,
-      creatorId: 1,
-      theme: 1,
-      mainSponsor: 1,
-      translations: 1,
-      typeContenu: 1,
-      metadatas: 1,
-      hasDraftVersion: 1,
-      publishedAt: 1
-    }
-  );
-
+  const oldDispositif = await getDispositifById(dispositifId, {
+    status: 1,
+    creatorId: 1,
+    theme: 1,
+    mainSponsor: 1,
+    translations: 1,
+    typeContenu: 1,
+    metadatas: 1,
+    hasDraftVersion: 1,
+    publishedAt: 1,
+  });
 
   const newDispositif: Partial<Dispositif> = {
     status: DispositifStatus.ACTIVE,
@@ -285,7 +314,11 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     newDispositif.publishedAt = new Date();
     newDispositif.publishedAtAuthor = new ObjectId(userId);
   }
-  const { updatedDispositif, hasDraftVersion } = await saveAndOverwriteDraft(dispositifId, newDispositif, keepTranslations);
+  const { updatedDispositif, hasDraftVersion } = await saveAndOverwriteDraft(
+    dispositifId,
+    newDispositif,
+    keepTranslations,
+  );
 
   try {
     await deleteLineBreaksInDispositif(updatedDispositif);
@@ -304,8 +337,8 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     try {
       await Promise.all([
         notifyChange(NotifType.PUBLISHED, dispositifId, userId),
-        sendNotificationsForDispositif(dispositifId, "fr")
-      ])
+        sendNotificationsForDispositif(dispositifId, "fr"),
+      ]);
     } catch (error) {
       logger.error("[publishDispositif] error while sending notifications", error);
     }
@@ -316,6 +349,12 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
       logger.error("[publishDispositif] error while sending email", {
         error: error.message,
       });
+    }
+  } else {
+    try {
+      await notifyChange(NotifType.UPDATED_AND_PUBLISHED, dispositifId, userId);
+    } catch (error) {
+      logger.error("[publishDispositif] error while sending notifications", error);
     }
   }
 };
@@ -342,9 +381,13 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
     ) {
       await notifyChange(NotifType.DELETED, id, user._id);
     }
-  }
+  };
   await notifyChangeIf(id, user, dispositif);
-  await updateDispositifInDB(id, { status: DispositifStatus.DELETED, deletionDate: new Date(), hasDraftVersion: false });
+  await updateDispositifInDB(id, {
+    status: DispositifStatus.DELETED,
+    deletionDate: new Date(),
+    hasDraftVersion: false,
+  });
 };
 
 export const buildNewDispositif = async (
@@ -382,8 +425,6 @@ export const buildNewDispositif = async (
 
   return editedDispositif;
 };
-
-
 
 const isAccordionOk = (content: InfoSections | undefined, max: number): boolean => {
   if (!content) return false;
