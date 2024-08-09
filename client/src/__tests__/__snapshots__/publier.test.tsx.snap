@@ -919,6 +919,256 @@ exports[`publier renders publier 1`] = `
           <p>
             Publish.stepsWarningMobile
           </p>
+          <div
+            class="top_space row"
+          >
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Publish.helpTileTitle1
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      Publish.helpTileText1
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <a
+                    class="link color_red"
+                    href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      Publish.helpTileCTA1
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Publish.helpTileTitle2
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      Publish.helpTileText2
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <a
+                    class="link color_red"
+                    href="https://help.refugies.info/fr/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      Publish.helpTileCTA2
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    StaticPages.helpTileTitle3
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      StaticPages.helpTileText3
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="link color_red"
+                  >
+                    <span>
+                      StaticPages.helpTileCTA3
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           className="row orange"
