@@ -4,5 +4,5 @@ import { PREFS } from "./data";
 
 export const consentsToEmail = (userId: UserId, templateName: TemplateName) => {
   const id = userId.toString();
-  return PREFS[id] && PREFS[id][templateName];
+  return PREFS[id]?.[templateName] ?? true;
 };
