@@ -72,6 +72,7 @@ export const exportUsers = async (): Response => {
   logger.info("[exportUsers] received");
   const neededFields = {
     username: 1,
+    firstName: 1,
     picture: 1,
     status: 1,
     created_at: 1,
