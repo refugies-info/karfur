@@ -8,6 +8,8 @@ import { airtableUserBase } from "../../../connectors/airtable/airtable";
 interface UserToExport {
   fields: {
     "Pseudonyme": string;
+    "Prenom": string;
+    "Departement": string;
     "Email": string;
     "Date de création": string;
     "Date de dernière visite": string;
@@ -50,6 +52,8 @@ const formatUser = (user: Awaited<ReturnType<typeof getAllUsersForAdminFromDB>>[
   return {
     fields: {
       "Pseudonyme": user.username,
+      "Prenom": user.firstName,
+      "Departement": user.departments.join(", "),
       "Email": user.email,
       "Date de création": createdAt,
       "Date de dernière visite": last_connected,
@@ -73,6 +77,7 @@ export const exportUsers = async (): Response => {
     created_at: 1,
     roles: 1,
     structures: 1,
+    departments: 1,
     email: 1,
     selectedLanguages: 1,
     contributions: 1,
