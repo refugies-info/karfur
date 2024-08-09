@@ -1,25 +1,24 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { useWatch } from "react-hook-form";
-import { useAsyncFn } from "react-use";
-import Image from "next/image";
-import { useContentType } from "hooks/dispositif";
 import { DispositifStatus } from "@refugies-info/api-types";
-import { userSelector } from "services/User/user.selectors";
-import Button from "components/UI/Button";
-import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";
-import StepBar from "../../../StepBar";
-import PublicationSteps from "./PublicationSteps";
-import BubbleFlags from "./BubbleFlags";
-import { getTotalSteps } from "../../functions";
-import { getTextContent } from "./functions";
-import { Content } from "./data";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import PublishImage from "assets/dispositif/publish-image.svg";
 import YesIcon from "assets/dispositif/yes-icon.svg";
-import NoIcon from "assets/dispositif/no-icon.svg";
-import API from "utils/API";
+import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";
+import Button from "components/UI/Button";
+import { useContentType } from "hooks/dispositif";
+import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
+import { useWatch } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useAsyncFn } from "react-use";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import styles from "./CompleteContent.module.scss";
+import { userSelector } from "services/User/user.selectors";
+import API from "utils/API";
+import StepBar from "../../../StepBar";
+import { getTotalSteps } from "../../functions";
+import BubbleFlags from "./BubbleFlags";
+import { Content } from "./data";
+import { getTextContent } from "./functions";
+import PublicationSteps from "./PublicationSteps";
 
 interface Props {
   status: DispositifStatus | null;
@@ -48,7 +47,7 @@ const CompleteContent = (props: Props) => {
   );
 
   const contentType = useContentType();
-  const totalSteps = useMemo(() => getTotalSteps(contentType), [contentType]);
+  const totalSteps = useMemo(() => getTotalSteps(contentType, user.admin), [contentType, user.admin]);
 
   // when form changes, reset hasChange
   useEffect(() => {
