@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
-import { Event } from "lib/tracking";
 import BaseModal from "components/UI/BaseModal";
+import { Event } from "lib/tracking";
+import { useEffect, useMemo, useState } from "react";
+import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { userSelector } from "services/User/user.selectors";
 import { getMissingStepsEdit, Step } from "../functions";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";
-import styles from "./PublishModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -20,9 +21,10 @@ interface Props {
 
 const PublishModal = (props: Props) => {
   const dispositif = useWatch<DeepPartialSkipArrayKey<CreateDispositifRequest>>();
+  const user = useSelector(userSelector);
   const missingSteps = useMemo(
-    () => getMissingStepsEdit(dispositif, props.typeContenu).filter((c) => c !== null) as Step[],
-    [dispositif, props.typeContenu],
+    () => getMissingStepsEdit(dispositif, props.typeContenu, user.admin).filter((c) => c !== null) as Step[],
+    [dispositif, props.typeContenu, user.admin],
   );
 
   const isComplete = useMemo(() => missingSteps.length === 0, [missingSteps]);

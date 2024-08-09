@@ -1,12 +1,13 @@
-import { useContext, useMemo } from "react";
-import { useContentType } from "hooks/dispositif";
 import { DispositifStatus } from "@refugies-info/api-types";
-import { isStatus } from "lib/dispositif";
-import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
+import { useUser } from "hooks";
+import { useContentType } from "hooks/dispositif";
+import { isStatus } from "lib/dispositif";
+import { useContext, useMemo } from "react";
+import PageContext, { Modals } from "utils/pageContext";
+import MissingSteps from "../../../MissingSteps";
 import StepBar from "../../../StepBar";
 import { getTotalSteps, Step } from "../../functions";
-import MissingSteps from "../../../MissingSteps";
 import { help } from "./data";
 
 interface Props {
@@ -51,7 +52,8 @@ const MissingContent = (props: Props) => {
   };
 
   const contentType = useContentType();
-  const totalSteps = useMemo(() => getTotalSteps(contentType), [contentType]);
+  const { user } = useUser();
+  const totalSteps = useMemo(() => getTotalSteps(contentType, user.admin), [contentType, user.admin]);
 
   return (
     <div>
