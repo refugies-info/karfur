@@ -99,13 +99,14 @@ export const getMissingStepsEdit = (
   ];
 };
 
-export const getTotalSteps = (typeContenu: ContentType) => {
-  return getMissingStepsEdit({}, typeContenu).length;
+export const getTotalSteps = (typeContenu: ContentType, isAdmin: boolean) => {
+  return getMissingStepsEdit({}, typeContenu, isAdmin).length;
 };
 
 export const calculateProgressEdit = (
   dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>,
   typeContenu: ContentType,
+  isAdmin: boolean,
 ) => {
-  return getMissingStepsEdit(dispositif, typeContenu).filter((c) => c === null).length;
+  return getMissingStepsEdit(dispositif, typeContenu, isAdmin).filter((c) => c === null).length;
 };
