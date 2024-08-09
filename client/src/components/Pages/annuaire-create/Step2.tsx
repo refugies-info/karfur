@@ -257,7 +257,7 @@ export const Step2 = (props: Props) => {
         )}
         {websites.length === 0 && !show1WebsiteInput && <AddButton type="site" onClick={toggle1WebSiteInput} />}
       </div>
-      <Title>Lien vers le profil Twitter</Title>
+      <Title>Lien vers le profil X (ex-Twitter)</Title>
       <div
         style={{
           marginBottom: "16px",
