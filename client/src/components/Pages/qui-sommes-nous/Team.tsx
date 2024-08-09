@@ -56,7 +56,7 @@ const MemberCard = (props: MemberProps) => {
                 className="mb-2 mt-2"
                 name="twitter-outline"
               >
-                Twitter
+                X (ex-Twitter)
               </FButton>
             )}
             {props.member.autre && (
