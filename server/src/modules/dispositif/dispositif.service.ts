@@ -350,6 +350,12 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
         error: error.message,
       });
     }
+  } else {
+    try {
+      await notifyChange(NotifType.UPDATED_AND_PUBLISHED, dispositifId, userId);
+    } catch (error) {
+      logger.error("[publishDispositif] error while sending notifications", error);
+    }
   }
 };
 
