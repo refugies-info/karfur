@@ -86,6 +86,7 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
       case NotifType.UPDATED_AND_PUBLISHED:
         title = ":arrows_counterclockwise: :new: Fiche mise à jour et publiée !";
         text = `Le brouillon de travail de la fiche ${type} *${contentTitle}* a été validé et publié par _${user.username}_${structure}. À vérifier ?`;
+        break;
     }
     return sendSlackNotif(title, text, `${url}/fr/${dispositif.typeContenu}/${dispositifId}`);
   } catch (e) {
