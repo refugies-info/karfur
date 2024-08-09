@@ -8,17 +8,17 @@ type NeededFields = { username: number; picture: number } | { roles: 1; structur
 // find one
 export const getUserById = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields);
 
-export const getUserByIdWithStructures = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields).populate<{ structures: { nom: string }[] }>([{ path: "structures", select: "nom" }]);
+export const getUserByIdWithStructures = async (id: Id, neededFields: NeededFields) =>
+  UserModel.findById(id, neededFields).populate<{ structures: { nom: string }[] }>([
+    { path: "structures", select: "nom" },
+  ]);
 
 export const getUserByEmailFromDB = (email: string) => UserModel.findOne({ email });
 
 export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(query);
 
-export const getUserName = async (
-  id: Id,
-) => UserModel.findById(id, { "username": 1, "email": 1 })
-  .then(res => res?.username || res?.email)
-
+export const getUserName = async (id: Id) =>
+  UserModel.findById(id, { username: 1, email: 1 }).then((res) => res?.username || res?.email);
 
 // find many
 export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
@@ -35,7 +35,12 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
     selectedLanguages: { langueCode: string; langueFr: string; _id: LangueId }[];
     roles: Role[];
     structures: (Structure & { _id: Id })[];
-  }>([{ path: "selectedLanguages", select: "_id langueCode langueFr" }, { path: "roles", select: "nom nomPublique" }, { path: "structures" }]);
+  }>([
+    { path: "selectedLanguages", select: "_id langueCode langueFr" },
+    { path: "roles", select: "nom nomPublique" },
+    { path: "structures" },
+    { path: "departments" },
+  ]);
 
 // update
 export const updateUserInDB = async (
