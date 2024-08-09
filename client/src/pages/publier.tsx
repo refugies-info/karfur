@@ -330,7 +330,7 @@ const RecensezVotreAction = (props: Props) => {
                   title={t("Publish.helpTileTitle1")}
                   footer={
                     <InlineLink
-                      link="https://airtable.com/shrrkFuyeG0BpKKT7"
+                      link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
                       text={t("Publish.helpTileCTA1")}
                       color="red"
                     />
