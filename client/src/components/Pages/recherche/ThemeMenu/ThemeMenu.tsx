@@ -19,6 +19,7 @@ import { searchQuerySelector } from "services/SearchResults/searchResults.select
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
 import styles from "./ThemeMenu.module.css";
+import { ThemeMenuContext } from "./ThemeMenuContext";
 import Themes from "./Themes";
 
 interface Props {
@@ -145,13 +146,13 @@ const ThemeMenu = (props: Props) => {
   };
 
   return (
-    <>
+    <ThemeMenuContext.Provider value={1}>
       <SearchButton onChange={() => {}} />
       <Separator />
       <div className={styles.main}>
         <Themes />
       </div>
-    </>
+    </ThemeMenuContext.Provider>
   );
 };
 
