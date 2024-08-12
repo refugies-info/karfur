@@ -15,8 +15,18 @@ const Themes: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {sortedThemes.map(({ _id, short }, i) => (
-        <span key={i} className={cls(styles.item, selectedThemeId === _id && styles.selectedItem)}>
+      {sortedThemes.map(({ _id, colors, short }, i) => (
+        <span
+          key={i}
+          className={cls(styles.item, selectedThemeId === _id && styles.selectedItem)}
+          style={
+            selectedThemeId === _id
+              ? {
+                  backgroundColor: colors.color100,
+                }
+              : undefined
+          }
+        >
           {short[locale] ?? ""}
         </span>
       ))}
