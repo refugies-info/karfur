@@ -18,6 +18,7 @@ import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
+import Needs from "./Needs";
 import styles from "./ThemeMenu.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import Themes from "./Themes";
@@ -151,6 +152,7 @@ const ThemeMenu = (props: Props) => {
       <Separator />
       <div className={styles.main}>
         <Themes />
+        <Needs />
       </div>
     </ThemeMenuContext.Provider>
   );
