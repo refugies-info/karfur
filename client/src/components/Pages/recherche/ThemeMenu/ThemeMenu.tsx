@@ -51,7 +51,7 @@ const ThemeMenu = (props: Props) => {
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
   const languei18nCode = useSelector(languei18nSelector);
 
-  const [themeSelected, setThemeSelected] = useState<Id | null>(initialTheme);
+  const [themeSelected, setThemeSelected] = useState<Id | undefined>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
@@ -146,7 +146,7 @@ const ThemeMenu = (props: Props) => {
   };
 
   return (
-    <ThemeMenuContext.Provider value={1}>
+    <ThemeMenuContext.Provider value={{ selectedThemeId: initialTheme }}>
       <SearchButton onChange={() => {}} />
       <Separator />
       <div className={styles.main}>
