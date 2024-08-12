@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  padding: 8px 8px 8px 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+
+  background: var(--background-contrast-grey);
+}
+
+.zone {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.input {
+  flex: 1 0 0;
+}
+
+.input[dir="rtl"] {
+  text-align: right;
+}
+
+.input:not(:placeholder-shown) {
+  color: var(---text-title-grey);
+
+  /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Regular */
+  font-style: normal;
+}

@@ -1,13 +1,11 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import useLocale from "hooks/useLocale";
-import { cls } from "lib/classname";
 import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Collapse } from "reactstrap";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { languei18nSelector } from "services/Langue/langue.selectors";
@@ -18,9 +16,7 @@ import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
-import NeedsList from "./NeedsList";
-import ThemeButton from "./ThemeButton";
-import styles from "./ThemeMenu.module.scss";
+import SearchButton from "./SearchButton";
 
 interface Props {
   mobile: boolean;
@@ -146,43 +142,9 @@ const ThemeMenu = (props: Props) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={cls(styles.themes, search && styles.hidden)}>
-        {sortedThemes.map((theme, i) => (
-          <div key={i}>
-            <ThemeButton
-              theme={theme}
-              selected={themeSelected === theme._id}
-              disabled={isThemeDisabled(theme._id)}
-              mobile={props.mobile}
-              nbNeeds={nbNeedsSelectedByTheme[theme._id.toString()]}
-              onClick={() => onClickTheme(theme._id)}
-            />
-
-            {props.mobile && (
-              <Collapse isOpen={themeSelected === theme._id}>
-                <NeedsList
-                  search={search}
-                  displayedNeeds={displayedNeeds}
-                  themeSelected={themeSelected}
-                  nbDispositifsByNeed={nbDispositifsByNeed}
-                  nbDispositifsByTheme={nbDispositifsByTheme}
-                />
-              </Collapse>
-            )}
-          </div>
-        ))}
-      </div>
-      {(!props.mobile || search) && (
-        <NeedsList
-          search={search}
-          displayedNeeds={displayedNeeds}
-          themeSelected={themeSelected}
-          nbDispositifsByNeed={nbDispositifsByNeed}
-          nbDispositifsByTheme={nbDispositifsByTheme}
-        />
-      )}
-    </div>
+    <>
+      <SearchButton />
+    </>
   );
 };
 
