@@ -1,4 +1,5 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import SearchButton from "components/UI/SearchButton";
 import Separator from "components/UI/Separator";
 import useLocale from "hooks/useLocale";
 import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
@@ -17,7 +18,6 @@ import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
-import SearchButton from "./SearchButton";
 
 interface Props {
   mobile: boolean;
@@ -144,7 +144,7 @@ const ThemeMenu = (props: Props) => {
 
   return (
     <>
-      <SearchButton />
+      <SearchButton onChange={() => {}} />
       <Separator />
     </>
   );
