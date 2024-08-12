@@ -1,19 +1,20 @@
-import React, { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
-import { cls } from "lib/classname";
-import SearchInput from "components/Pages/recherche/SearchInput";
+import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
-import { getPath } from "routes";
+import LocationMenu from "components/Pages/recherche/LocationMenu";
+import ThemeDropdown from "components/Pages/recherche/ThemeMenu";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import qs from "query-string";
-import styles from "./HomeSearchHeader.mobile.module.scss";
+import { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { getPath } from "routes";
 import commonStyles from "scss/components/searchHeader.module.scss";
+import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
+import SearchInput from "../SearchInput";
+import styles from "./HomeSearchHeader.mobile.module.scss";
 
 interface Props {
   resetDepartment: () => void;
@@ -73,7 +74,20 @@ const HomeSearchHeaderMobile = (props: Props) => {
               reset={resetDepartment}
               showFooter={query.departments.length > 0}
             >
-              <LocationDropdown mobile={true} />
+              <div className={commonStyles.content}>
+                <div className={commonStyles.input}>
+                  <EVAIcon name="search-outline" fill="dark" size={20} />
+                  <input type="text" placeholder={t("Dispositif.Département", "Département")} autoFocus />
+                  <EVAIcon name="close-outline" fill="dark" size={20} className={commonStyles.empty} />
+                </div>
+              </div>
+              <RadixDropdownMenu.Root>
+                <RadixDropdownMenu.Portal>
+                  <RadixDropdownMenu.Content>
+                    <LocationMenu mobile={true} />
+                  </RadixDropdownMenu.Content>
+                </RadixDropdownMenu.Portal>
+              </RadixDropdownMenu.Root>
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>

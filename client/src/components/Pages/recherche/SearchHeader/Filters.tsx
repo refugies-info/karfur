@@ -3,11 +3,11 @@ import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { Container } from "reactstrap";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
-import LocationDropdown from "../LocationDropdown";
-import ThemeDropdown from "../ThemeDropdown";
+import LocationMenu from "../LocationMenu";
+import ThemeDropdown from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
@@ -65,7 +65,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: query.departments,
             reset: resetDepartment,
-            menu: <LocationDropdown />,
+            menu: <LocationMenu />,
           }}
           gaType="department"
         />
@@ -85,6 +85,7 @@ const Filters = (props: Props) => {
             selected: query.status,
             options: statusOptions,
             translateOptions: true,
+            menuItemStyles: cls(styles.menuItem, styles.small),
           }}
           gaType="age"
         />
@@ -95,6 +96,7 @@ const Filters = (props: Props) => {
             selected: query.public,
             options: publicOptions,
             translateOptions: true,
+            menuItemStyles: cls(styles.menuItem, styles.small),
           }}
           gaType="public"
         />
@@ -105,6 +107,7 @@ const Filters = (props: Props) => {
             selected: query.age,
             options: ageOptions,
             translateOptions: true,
+            menuItemStyles: cls(styles.menuItem, styles.small),
           }}
           gaType="status"
         />
@@ -115,6 +118,7 @@ const Filters = (props: Props) => {
             selected: query.frenchLevel,
             options: frenchLevelOptions,
             translateOptions: true,
+            menuItemStyles: cls(styles.menuItem, styles.small),
           }}
           gaType="frenchLevel"
         />
@@ -125,6 +129,7 @@ const Filters = (props: Props) => {
             selected: query.language,
             options: languageOptions,
             translateOptions: false,
+            menuItemStyles: cls(styles.menuItem, styles.medium),
           }}
           gaType="language"
         />

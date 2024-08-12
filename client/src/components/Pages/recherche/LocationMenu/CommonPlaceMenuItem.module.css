@@ -1,0 +1,18 @@
+.item {
+  /* Layout */
+  display: flex;
+  padding: 8px 8px 8px 10px;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.item:hover {
+  background: var(--background-alt-grey);
+}
+
+.button {
+  /* Override the default button styles */
+  padding-block: 0px;
+  padding-inline: 0px;
+}

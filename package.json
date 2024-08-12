@@ -25,6 +25,8 @@
     "dev": "yarn turbo dev",
     "dev:client": "yarn turbo dev --filter=@refugies-info/client",
     "dev:server": "yarn turbo dev --filter=@refugies-info/server",
+    "prebuild": "react-dsfr update-icons --projectDir ./client",
+    "predev": "react-dsfr update-icons --projectDir ./client",
     "start": "yarn turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",

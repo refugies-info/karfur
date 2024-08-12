@@ -1,26 +1,26 @@
-import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
-import { Collapse } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
-import debounce from "lodash/debounce";
-import { themesSelector } from "services/Themes/themes.selectors";
-import { needsSelector } from "services/Needs/needs.selectors";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
-import { languei18nSelector } from "services/Langue/langue.selectors";
-import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
-import { cls } from "lib/classname";
-import { sortThemes } from "lib/sortThemes";
-import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
-import useLocale from "hooks/useLocale";
-import NeedsList from "./NeedsList";
-import { getInitialTheme } from "./functions";
-import styles from "./ThemeDropdown.module.scss";
-import ThemeButton from "./ThemeButton";
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import useLocale from "hooks/useLocale";
+import { cls } from "lib/classname";
+import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
+import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
+import debounce from "lodash/debounce";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Collapse } from "reactstrap";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { languei18nSelector } from "services/Langue/langue.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { needsSelector } from "services/Needs/needs.selectors";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { getInitialTheme } from "./functions";
+import NeedsList from "./NeedsList";
+import ThemeButton from "./ThemeButton";
+import styles from "./ThemeMenu.module.scss";
 
 interface Props {
   mobile: boolean;
@@ -39,7 +39,7 @@ const debouncedQuery = debounce(
   500,
 );
 
-const ThemeDropdown = (props: Props) => {
+const ThemeMenu = (props: Props) => {
   const locale = useLocale();
   const dispatch = useDispatch();
 
@@ -186,4 +186,4 @@ const ThemeDropdown = (props: Props) => {
   );
 };
 
-export default memo(ThemeDropdown);
+export default memo(ThemeMenu);

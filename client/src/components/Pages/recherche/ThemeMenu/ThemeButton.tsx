@@ -1,10 +1,10 @@
-import React, { memo } from "react";
-import styled from "styled-components";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
-import styles from "./ThemeDropdown.module.scss";
-import { GetThemeResponse } from "@refugies-info/api-types";
+import { memo } from "react";
+import styled from "styled-components";
+import styles from "./ThemeMenu.module.scss";
 
 type ButtonThemeProps = {
   color100: string;

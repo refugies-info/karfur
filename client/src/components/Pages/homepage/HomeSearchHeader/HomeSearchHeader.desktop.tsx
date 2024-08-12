@@ -1,18 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import qs from "query-string";
-import { useRouter } from "next/router";
-import { cls } from "lib/classname";
-import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
+import LocationMenu from "components/Pages/recherche/LocationMenu";
+import ThemeDropdown from "components/Pages/recherche/ThemeMenu";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import SearchInput from "components/Pages/recherche/SearchInput";
-import LocationDropdown from "components/Pages/recherche/LocationDropdown";
-import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
+import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import qs from "query-string";
+import { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Button } from "reactstrap";
 import { getPath } from "routes";
-import styles from "./HomeSearchHeader.desktop.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
+import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
+import SearchDropdown from "../SearchDropdown";
+import SearchInput from "../SearchInput";
+import styles from "./HomeSearchHeader.desktop.module.scss";
 
 interface Props {
   resetDepartment: () => void;
@@ -72,45 +73,23 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputs}>
-        <Dropdown isOpen={locationOpen} toggle={toggleLocation} className={commonStyles.dropdown}>
-          <DropdownToggle>
-            <SearchInput
-              label={t("Dispositif.Département", "Département")}
-              icon="pin-outline"
-              active={locationOpen}
-              value={query.departments.join(", ")}
-              placeholder={t("Recherche.all", "Tous")}
-              resetFilter={resetDepartment}
-              onHomepage={true}
-              inputValue=""
-              setActive={() => {}}
-              noInput
-            />
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
-            <LocationDropdown />
-          </DropdownMenu>
-        </Dropdown>
+        <SearchDropdown
+          icon="pin-outline"
+          label={t("Dispositif.Département", "Département")}
+          values={query.departments}
+          resetFilter={resetDepartment}
+        >
+          <LocationMenu />
+        </SearchDropdown>
 
-        <Dropdown isOpen={themesOpen} toggle={toggleThemes} className={commonStyles.dropdown}>
-          <DropdownToggle>
-            <SearchInput
-              label={t("Recherche.themes", "Thèmes")}
-              icon="list-outline"
-              active={themesOpen}
-              value={themeDisplayedValue.join(", ")}
-              placeholder={t("Recherche.all", "Tous")}
-              resetFilter={resetTheme}
-              onHomepage={true}
-              inputValue=""
-              setActive={() => {}}
-              noInput
-            />
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu} persist={themesOpen}>
-            <ThemeDropdown mobile={false} isOpen={themesOpen} />
-          </DropdownMenu>
-        </Dropdown>
+        <SearchDropdown
+          icon="list-outline"
+          label={t("Recherche.themes", "Thèmes")}
+          values={themeDisplayedValue}
+          resetFilter={resetTheme}
+        >
+          <ThemeDropdown mobile={false} isOpen={true} />
+        </SearchDropdown>
 
         <div className={cls(commonStyles.dropdown, searchActive && "show")}>
           <Button onClick={openSearch}>

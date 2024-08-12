@@ -1,13 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import { Container } from "reactstrap";
-import { useDispatch } from "react-redux";
-import { useTranslation } from "next-i18next";
 import { useScrollDirection } from "hooks/useScrollDirection";
 import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { useTranslation } from "next-i18next";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Container } from "reactstrap";
 import ResultsFilter from "../ResultsFilter";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";

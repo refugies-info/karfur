@@ -1,0 +1,140 @@
+.container {
+  /* Layout */
+  display: flex;
+  width: 33%;
+  padding: 8px;
+  position: relative;
+
+  /* Style */
+  background: var(--background-default-grey);
+}
+
+.container::after {
+  content: "";
+  height: 80%;
+  width: 1px;
+  background-color: #c6c6c6;
+  position: absolute;
+  top: 10%;
+  right: 0;
+}
+
+.container:last-child::after {
+  display: none;
+}
+
+.zone {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+  /* Style */
+  border-radius: 12px;
+}
+
+.zone:hover {
+  /* Style */
+  background: #edebeb;
+}
+
+.content {
+  /* Layout */
+  display: flex;
+  height: 47px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  flex-grow: 0;
+}
+
+.iconContainer {
+  /* Layout */
+  display: flex;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  /* Style */
+  border-radius: 100px;
+  background: var(--background-default-grey-hover);
+}
+
+.iconContainerActive {
+  /* Style */
+  background: var(--background-flat-blue-france);
+}
+
+.icon {
+  /* Layout */
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  color: #000091;
+}
+
+.label {
+  /* Typography */
+  color: var(--gray-80, #5e5e5e);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.valuesContainer {
+  /* Layout */
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+.values {
+  /* Typography */
+  color: var(--gray-100, #212121);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 450;
+  line-height: normal;
+
+  /* Prevent text wrapping and show ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bold {
+  /* Typography */
+  font-weight: 700;
+}
+
+.closeButton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  background: var(--background-default-grey-hover);
+}
+
+.closeButtonIcon {
+  transform: translate(0, -2px);
+}
