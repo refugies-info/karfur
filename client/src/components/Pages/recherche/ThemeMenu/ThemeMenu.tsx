@@ -51,7 +51,7 @@ const ThemeMenu = (props: Props) => {
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
   const languei18nCode = useSelector(languei18nSelector);
 
-  const [themeSelected, setThemeSelected] = useState<Id | undefined>(initialTheme);
+  const [selectedThemeId, setSelectedThemeId] = useState<Id | undefined>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
@@ -60,13 +60,13 @@ const ThemeMenu = (props: Props) => {
 
   const onClickTheme = useCallback(
     (themeId: Id) => {
-      setThemeSelected((old) => {
+      setSelectedThemeId((old) => {
         if (old === themeId && props.mobile) return null;
         return themeId;
       });
       Event("USE_SEARCH", "use theme filter", "click theme");
     },
-    [setThemeSelected, props.mobile],
+    [setSelectedThemeId, props.mobile],
   );
 
   // fetch dispositifs if not done already
@@ -124,7 +124,7 @@ const ThemeMenu = (props: Props) => {
   // reset selected theme when popup opens
   useEffect(() => {
     if (props.isOpen) {
-      setThemeSelected(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
+      setSelectedThemeId(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);
@@ -136,9 +136,9 @@ const ThemeMenu = (props: Props) => {
         .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
     }
     return needs
-      .filter((need) => need.theme._id === themeSelected)
+      .filter((need) => need.theme._id === selectedThemeId)
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
-  }, [themeSelected, needs, search, locale]);
+  }, [selectedThemeId, needs, search, locale]);
 
   const isThemeDisabled = (themeId: Id) => {
     const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
@@ -146,7 +146,7 @@ const ThemeMenu = (props: Props) => {
   };
 
   return (
-    <ThemeMenuContext.Provider value={{ selectedThemeId: initialTheme }}>
+    <ThemeMenuContext.Provider value={{ selectedThemeId, setSelectedThemeId }}>
       <SearchButton onChange={() => {}} />
       <Separator />
       <div className={styles.main}>

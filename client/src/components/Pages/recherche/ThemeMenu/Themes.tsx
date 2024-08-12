@@ -1,5 +1,4 @@
 import { useLocale } from "hooks";
-import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -8,7 +7,7 @@ import { ThemeMenuContext } from "./ThemeMenuContext";
 import styles from "./Themes.module.css";
 
 const Themes: React.FC = () => {
-  const { selectedThemeId } = useContext(ThemeMenuContext);
+  const { selectedThemeId, setSelectedThemeId } = useContext(ThemeMenuContext);
   const themes = useSelector(themesSelector);
   const sortedThemes = useMemo(() => themes.sort(sortThemes), [themes]);
   const locale = useLocale();
@@ -16,9 +15,9 @@ const Themes: React.FC = () => {
   return (
     <div className={styles.container}>
       {sortedThemes.map(({ _id, colors, short }, i) => (
-        <span
+        <button
           key={i}
-          className={cls(styles.item, selectedThemeId === _id && styles.selectedItem)}
+          className={styles.item}
           style={
             selectedThemeId === _id
               ? {
@@ -26,9 +25,10 @@ const Themes: React.FC = () => {
                 }
               : undefined
           }
+          onClick={() => setSelectedThemeId(_id)}
         >
           {short[locale] ?? ""}
-        </span>
+        </button>
       ))}
     </div>
   );
