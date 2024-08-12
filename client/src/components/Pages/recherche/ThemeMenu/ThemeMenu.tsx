@@ -1,4 +1,5 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import Separator from "components/UI/Separator";
 import useLocale from "hooks/useLocale";
 import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import { sortThemes } from "lib/sortThemes";
@@ -144,6 +145,7 @@ const ThemeMenu = (props: Props) => {
   return (
     <>
       <SearchButton />
+      <Separator />
     </>
   );
 };

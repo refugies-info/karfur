@@ -1,3 +1,4 @@
+import Separator from "components/UI/Separator";
 import { getDepartmentCodeFromName } from "lib/departments";
 import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
@@ -12,7 +13,6 @@ import styles from "./LocationMenu.module.css";
 import LocationMenuItem from "./LocationMenuItem";
 import PlaceMenuItem from "./PlaceMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
-import Separator from "./Separator";
 
 const commonPlaces = [
   { placeName: "Paris", deptNo: "75" },
