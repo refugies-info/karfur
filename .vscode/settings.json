@@ -58,5 +58,7 @@
   "githubIssues.issueBranchTitle": "feat/#${issueNumber}-${sanitizedIssueTitle}",
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.format.semicolons": "insert",
+  "files.insertFinalNewline": true,
 }
