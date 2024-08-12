@@ -18,6 +18,8 @@ import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
+import styles from "./ThemeMenu.module.css";
+import Themes from "./Themes";
 
 interface Props {
   mobile: boolean;
@@ -146,6 +148,9 @@ const ThemeMenu = (props: Props) => {
     <>
       <SearchButton onChange={() => {}} />
       <Separator />
+      <div className={styles.main}>
+        <Themes />
+      </div>
     </>
   );
 };
