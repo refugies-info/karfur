@@ -60,6 +60,10 @@
   align-items: start;
 }
 
+.label {
+  flex: 1 0 0;
+}
+
 .countContainer {
   display: flex;
   padding-top: 4px;

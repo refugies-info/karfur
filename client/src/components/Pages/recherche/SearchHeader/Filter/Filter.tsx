@@ -131,15 +131,17 @@ const Filter = (props: Props) => {
                     className={cls(styles.item, optionsDropdown.menuItemStyles)}
                     disabled={isDisabled}
                   >
-                    <Checkbox className={styles.checkbox} checked={isSelected} disabled={isDisabled}>
-                      {optionsDropdown.translateOptions
-                        ? //@ts-ignore
-                          t(option.value)
-                        : option.value}
+                    <Checkbox checked={isSelected} disabled={isDisabled}>
+                      <div className={styles.label}>
+                        {optionsDropdown.translateOptions
+                          ? //@ts-ignore
+                            t(option.value)
+                          : option.value}
+                      </div>
+                      <div className={styles.countContainer}>
+                        <div className={styles.count}>{option.count ?? ""}</div>
+                      </div>
                     </Checkbox>
-                    <div className={styles.countContainer}>
-                      <div className={styles.count}>{option.count ?? ""}</div>
-                    </div>
                   </DropdownMenu.Item>
                 );
               })
