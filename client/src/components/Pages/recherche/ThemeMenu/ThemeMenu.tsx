@@ -41,7 +41,6 @@ const debouncedQuery = debounce(
 );
 
 const ThemeMenu = (props: Props) => {
-  const locale = useLocale();
   const dispatch = useDispatch();
 
   const themes = useSelector(themesSelector);
@@ -53,7 +52,6 @@ const ThemeMenu = (props: Props) => {
   const languei18nCode = useSelector(languei18nSelector);
 
   const [selectedThemeId, setSelectedThemeId] = useState<Id | undefined>(initialTheme);
-  const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
 
@@ -78,24 +76,6 @@ const ThemeMenu = (props: Props) => {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
   }, [allDispositifs.length, isDispositifsLoading, hasDispositifsError, dispatch]);
-
-  // count needs selected by theme
-  useEffect(() => {
-    const nbNeedsSelectedByTheme: Record<string, number> = {};
-    for (const needId of query.needs) {
-      const needThemeId = needs.find((n) => n._id === needId)?.theme._id.toString();
-      if (needThemeId) {
-        nbNeedsSelectedByTheme[needThemeId] = (nbNeedsSelectedByTheme[needThemeId] || 0) + 1;
-      }
-    }
-    for (const themeId of query.themes) {
-      const theme = themes.find((t) => t._id === themeId);
-      if (theme) {
-        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
-      }
-    }
-    setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);
-  }, [query.needs, query.themes, themes, needs]);
 
   // count dispositifs by need and theme
   useEffect(() => {

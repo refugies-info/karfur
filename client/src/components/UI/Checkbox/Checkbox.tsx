@@ -6,7 +6,7 @@ import { cls } from "lib/classname";
 
 type Props = {
   onChange?: () => void;
-} & CheckboxProps;
+} & Omit<CheckboxProps, "onCheckedChange">;
 
 const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ checked, children, disabled, onChange }) => {
   return (
@@ -14,7 +14,6 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ checked, children,
       <Root
         className={cls(styles.root, checked === true && styles.checked)}
         checked={checked ?? false}
-        defaultChecked={false}
         onCheckedChange={onChange}
         disabled={disabled}
       >
