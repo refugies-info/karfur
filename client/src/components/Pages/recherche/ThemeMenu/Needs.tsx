@@ -27,9 +27,11 @@ const Needs: React.FC = () => {
     <div className={styles.container}>
       <Need label="Tous" />
       <Separator />
-      {displayedNeeds.map((need, i) => {
-        return <Need key={i} label={need[locale]?.text || ""} />;
-      })}
+      <div className={styles.needs}>
+        {displayedNeeds.map((need, i) => {
+          return <Need key={i} label={need[locale]?.text || ""} />;
+        })}
+      </div>
     </div>
   );
 };

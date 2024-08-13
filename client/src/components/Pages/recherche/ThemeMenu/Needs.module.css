@@ -7,3 +7,10 @@
   gap: 8px;
   align-self: stretch;
 }
+
+.needs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
