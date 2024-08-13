@@ -6,7 +6,7 @@ import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
@@ -130,24 +130,13 @@ const ThemeMenu = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);
 
-  const displayedNeeds = useMemo(() => {
-    if (search) {
-      return needs
-        .filter((need) => (need[locale]?.text || "").includes(search))
-        .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
-    }
-    return needs
-      .filter((need) => need.theme._id === selectedThemeId)
-      .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
-  }, [selectedThemeId, needs, search, locale]);
-
   const isThemeDisabled = (themeId: Id) => {
     const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
     return !nbDispositifs || nbDispositifs === 0;
   };
 
   return (
-    <ThemeMenuContext.Provider value={{ selectedThemeId, setSelectedThemeId }}>
+    <ThemeMenuContext.Provider value={{ search, selectedThemeId, setSelectedThemeId: onClickTheme }}>
       <SearchButton onChange={() => {}} />
       <Separator />
       <div className={styles.main}>
