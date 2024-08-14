@@ -1,10 +1,10 @@
 import { assetsOnServer } from "assets/assetsOnServer";
 
 export type Partner = {
-  name: string
-  date: Date
-  logo: string
-}
+  name: string;
+  date: Date;
+  logo: string;
+};
 export const partners: Partner[] = [
   {
     name: "Coallia",
@@ -160,7 +160,7 @@ export const former_membres = [
     roleShort: "Développeur",
     roleName: "Développeur",
     linkedin: "https://www.linkedin.com/in/soufiane-lamrissi-15b79261/",
-    twitter: "https://twitter.com/Wriri",
+    twitter: "https://x.com/Wriri",
     color: "#EDEBEB",
     borderColor: "#212121",
     textColor: "#212121",
@@ -187,7 +187,7 @@ export const membres = [
   {
     name: "Alain Régnier",
     roleShort: "Mentor",
-    twitter: "https://twitter.com/DIRefugies",
+    twitter: "https://x.com/DIRefugies",
     autre: "https://accueil-integration-refugies.fr/",
     color: "#F7CDD4",
     borderColor: "#B50437",
@@ -205,7 +205,7 @@ export const membres = [
     name: "Hugo Stéphan",
     roleName: "Designer",
     portfolio: "https://hugostephan.com/",
-    twitter: "https://twitter.com/HugoStephan",
+    twitter: "https://x.com/HugoStephan",
     linkedin: "https://linkedin.com/in/hugo-stephan/",
     color: "#FEEBDE",
     borderColor: "#EA6206",
@@ -225,7 +225,7 @@ export const membres = [
     name: "Alice Mugnier",
     roleName: "Responsable éditoriale",
     linkedin: "https://www.linkedin.com/in/alice-mugnier-8a7717130",
-    twitter: "https://twitter.com/Affy_M",
+    twitter: "https://x.com/Affy_M",
     portfolio: "https://acemugnier.wordpress.com/",
     color: "#EDFDF9",
     borderColor: "#187F73",
@@ -242,8 +242,7 @@ export const membres = [
   {
     name: "Margot Gillette",
     roleName: "Designer",
-    linkedin:
-      "https://www.linkedin.com/in/margot-gillette-349a028a/?originalSubdomain=fr",
+    linkedin: "https://www.linkedin.com/in/margot-gillette-349a028a/?originalSubdomain=fr",
     portfolio: "https://www.malt.fr/profile/margotgillette",
     color: "#FFEAF4",
     borderColor: "#A81E63",

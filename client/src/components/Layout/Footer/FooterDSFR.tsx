@@ -192,10 +192,10 @@ const Footer = () => {
             },
             {
               linkProps: {
-                href: "https://twitter.com/refugies_info",
+                href: "https://x.com/refugies_info",
                 target: "_blank",
               },
-              text: "Twitter",
+              text: "X (ex-Twitter)",
             },
           ],
         },

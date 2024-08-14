@@ -39,7 +39,7 @@ Editor preferences are available in the [editor config](https://github.com/entre
 **Hugo Stephan**, designer
 
 - <https://hugostephan.com>
-- <https://twitter.com/hugostephan>
+- <https://x.com/hugostephan>
 
 **Nour Allazkani**, business developer
 
@@ -51,13 +51,13 @@ Editor preferences are available in the [editor config](https://github.com/entre
 
 - <https://github.com/Tony4469>
 - <https://www.linkedin.com/in/soufiane-lamrissi-15b79261/>
-- <https://twitter.com/Wriri>
+- <https://x.com/Wriri>
 
 **Emily Reese**, content designer
 
 - <https://www.linkedin.com/in/eclairereese>
 - <https://github.com/emilyreese>
-- <https://twitter.com/eclairereese>
+- <https://x.com/eclairereese>
 
 **Luca Mazzi** developper
 
