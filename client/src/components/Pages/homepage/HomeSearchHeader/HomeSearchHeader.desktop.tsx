@@ -1,5 +1,5 @@
 import LocationMenu from "components/Pages/recherche/LocationMenu";
-import ThemeDropdown from "components/Pages/recherche/ThemeMenu";
+import ThemeMenu from "components/Pages/recherche/ThemeMenu";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";
@@ -88,7 +88,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
           values={themeDisplayedValue}
           resetFilter={resetTheme}
         >
-          <ThemeDropdown mobile={false} isOpen={true} />
+          <ThemeMenu mobile={false} isOpen={true} />
         </SearchDropdown>
 
         <div className={cls(commonStyles.dropdown, searchActive && "show")}>

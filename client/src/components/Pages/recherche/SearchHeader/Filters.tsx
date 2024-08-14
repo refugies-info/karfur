@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
-import ThemeDropdown from "../ThemeMenu";
+import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
@@ -74,7 +74,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
-            menu: <ThemeDropdown mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
+            menu: <ThemeMenu mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
           }}
           gaType="themes"
         />
