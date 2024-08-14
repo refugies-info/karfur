@@ -1,26 +1,26 @@
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useWatch } from "react-hook-form";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
-import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
-import { useLocale, useUser } from "hooks";
-import { useContentType } from "hooks/dispositif";
+import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { Event } from "lib/tracking";
-import { useRouter } from "next/router";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useWatch } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import Swal from "sweetalert2";
-import API from "utils/API";
+import { useContentType } from "hooks/dispositif";
+import { useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
-import styles from "../CustomNavbar.module.scss";
-import SaveErrorModal from "../SaveErrorModal";
-import StepBar from "../StepBar";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import Button from "components/UI/Button";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { calculateProgressEdit, getText, getTotalSteps } from "./functions";
-import PublishModal from "./PublishModal";
+import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
+import PublishModal from "./PublishModal";
+import StepBar from "../StepBar";
+import SaveErrorModal from "../SaveErrorModal";
+import styles from "../CustomNavbar.module.scss";
 import useAutosave from "./useAutosave";
 
 interface Props {
@@ -31,18 +31,17 @@ const CustomNavbarEdit = (props: Props) => {
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
-  const { user } = useUser();
-  const [progress, setProgress] = useState<number>(calculateProgressEdit(values, props.typeContenu, user.admin));
+  const [progress, setProgress] = useState<number>(calculateProgressEdit(values, props.typeContenu));
 
   const initialLocale = useLocale();
   const [showLanguageWarning, setShowLanguageWarning] = useState(initialLocale !== "fr");
 
   const contentType = useContentType();
-  const totalSteps = useMemo(() => getTotalSteps(contentType, user.admin), [contentType, user.admin]);
+  const totalSteps = useMemo(() => getTotalSteps(contentType), [contentType]);
 
   useEffect(() => {
-    setProgress(calculateProgressEdit(values, props.typeContenu, user.admin));
-  }, [values, props.typeContenu, user.admin]);
+    setProgress(calculateProgressEdit(values, props.typeContenu));
+  }, [values, props.typeContenu]);
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
@@ -57,6 +56,7 @@ const CustomNavbarEdit = (props: Props) => {
   // Quit
   const [showQuitModal, setShowQuitModal] = useState(false);
   const toggleQuitModal = useCallback(() => setShowQuitModal((o) => !o), []);
+  const { user } = useUser();
   const dispositifId = useMemo(() => dispositif?._id, [dispositif]);
   const quit = useCallback(() => {
     if (user.admin) {
