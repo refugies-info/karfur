@@ -5,7 +5,7 @@ import React, { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { needsSelector } from "services/Needs/needs.selectors";
-import Need from "./Need";
+import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 
@@ -32,7 +32,7 @@ const Needs: React.FC = () => {
       <Separator />
       <div className={styles.needs}>
         {displayedNeeds.map((need, i) => {
-          return <Need key={i} need={need} />;
+          return <NeedItem key={i} need={need} />;
         })}
       </div>
     </div>

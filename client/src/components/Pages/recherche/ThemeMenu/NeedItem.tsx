@@ -8,13 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import styles from "./Need.module.css";
+import styles from "./NeedItem.module.css";
 
 interface Props {
   need: GetNeedResponse;
 }
 
-const Need: React.FC<Props> = ({ need }) => {
+const NeedItem: React.FC<Props> = ({ need }) => {
   const locale = useLocale();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -53,4 +53,4 @@ const Need: React.FC<Props> = ({ need }) => {
   );
 };
 
-export default Need;
+export default NeedItem;
