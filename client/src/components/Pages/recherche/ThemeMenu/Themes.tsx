@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { themesSelector } from "services/Themes/themes.selectors";
+import ThemeItem from "./ThemeItem";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import styles from "./Themes.module.css";
 
 const Themes: React.FC = () => {
-  const { selectedThemeId, setSelectedThemeId } = useContext(ThemeMenuContext);
+  const { selectedThemeId } = useContext(ThemeMenuContext);
   const themes = useSelector(themesSelector);
   const sortedThemes = useMemo(() => themes.sort(sortThemes), [themes]);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
@@ -39,34 +40,17 @@ const Themes: React.FC = () => {
   return (
     <div className={styles.container}>
       {sortedThemes.map(({ _id, colors, short }, i) => {
-        const nbNeeds = nbNeedsSelectedByTheme[_id.toString()];
+        const count = nbNeedsSelectedByTheme[_id.toString()];
         const selected = selectedThemeId === _id;
         return (
-          <button
+          <ThemeItem
             key={i}
-            className={styles.item}
-            style={
-              selected
-                ? {
-                    backgroundColor: colors.color100,
-                  }
-                : undefined
-            }
-            onClick={() => setSelectedThemeId(_id)}
-          >
-            {short[locale] ?? ""}
-            {nbNeeds && nbNeeds > 0 && (
-              <span
-                style={{
-                  backgroundColor: !selected ? colors.color100 : "white",
-                  color: !selected ? "white" : colors.color100,
-                }}
-                className={styles.theme_badge}
-              >
-                {nbNeeds || 0}
-              </span>
-            )}
-          </button>
+            color={colors.color100}
+            id={_id.toString()}
+            label={short[locale] ?? ""}
+            needCount={count}
+            selected={selected}
+          />
         );
       })}
     </div>
