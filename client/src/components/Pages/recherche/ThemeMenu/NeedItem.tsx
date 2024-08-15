@@ -1,9 +1,10 @@
 import { GetNeedResponse, Id } from "@refugies-info/api-types";
+import { ThemeMenuContext } from "components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "components/UI/Checkbox";
 import { useLocale } from "hooks";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { Event } from "lib/tracking";
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
@@ -19,6 +20,7 @@ const NeedItem: React.FC<Props> = ({ need }) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const allNeeds = useSelector(needsSelector);
+  const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
 
   const selectNeed = (id: Id) => {
     let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
@@ -47,7 +49,7 @@ const NeedItem: React.FC<Props> = ({ need }) => {
     <Checkbox checked={selected} onChange={() => selectNeed(need._id)}>
       <span className={styles.label}>{need[locale]?.text || ""}</span>
       <div className={styles.countContainer}>
-        <div className={styles.count}>{133}</div>
+        <div className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</div>
       </div>
     </Checkbox>
   );
