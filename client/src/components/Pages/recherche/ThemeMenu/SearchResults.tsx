@@ -1,5 +1,6 @@
 import { GetNeedResponse, GetThemeResponse } from "@refugies-info/api-types";
 import { ThemeMenuContext } from "components/Pages/recherche/ThemeMenu/ThemeMenuContext";
+import Separator from "components/UI/Separator";
 import { useLocale } from "hooks";
 import { sortThemes } from "lib/sortThemes";
 import React, { useContext } from "react";
