@@ -9,6 +9,7 @@ import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { languei18nSelector } from "services/Langue/langue.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
@@ -81,8 +82,39 @@ const ThemeMenu = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);
 
+  const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
+  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
+
+  // count dispositifs by need and theme
+  const languei18nCode = useSelector(languei18nSelector);
+  useEffect(() => {
+    if (props.isOpen) {
+      debouncedQuery(query, allDispositifs, languei18nCode, (dispositifs) => {
+        const newNbDispositifsByNeed: Record<string, number> = {};
+        const newNbDispositifsByTheme: Record<string, number> = {};
+        for (const dispositif of dispositifs) {
+          for (const needId of dispositif.needs || []) {
+            newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
+          }
+
+          const themeId = dispositif.theme;
+          if (!themeId) continue;
+          newNbDispositifsByTheme[themeId.toString()] = (newNbDispositifsByTheme[themeId.toString()] || 0) + 1;
+          for (const theme of dispositif.secondaryThemes || []) {
+            newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
+          }
+        }
+
+        setNbDispositifsByTheme(newNbDispositifsByTheme);
+        setNbDispositifsByNeed(newNbDispositifsByNeed);
+      });
+    }
+  }, [query, allDispositifs, needs, sortedThemes, props.mobile, languei18nCode, props.isOpen]);
+
   return (
-    <ThemeMenuContext.Provider value={{ search, selectedThemeId, setSelectedThemeId: onClickTheme }}>
+    <ThemeMenuContext.Provider
+      value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
+    >
       <SearchButton onChange={(e) => setSearch(e.target.value)} />
       <Separator />
       <div className={styles.main}>
