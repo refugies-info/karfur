@@ -85,14 +85,16 @@ const ThemeMenu = (props: Props) => {
     <ThemeMenuContext.Provider value={{ search, selectedThemeId, setSelectedThemeId: onClickTheme }}>
       <SearchButton onChange={(e) => setSearch(e.target.value)} />
       <Separator />
-      {search ? (
-        <SearchResults />
-      ) : (
-        <div className={styles.main}>
-          <Themes />
-          <Needs />
-        </div>
-      )}
+      <div className={styles.main}>
+        {search ? (
+          <SearchResults />
+        ) : (
+          <>
+            <Themes />
+            <Needs />
+          </>
+        )}
+      </div>
     </ThemeMenuContext.Provider>
   );
 };
