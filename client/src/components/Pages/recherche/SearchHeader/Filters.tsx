@@ -7,10 +7,11 @@ import { Container } from "reactstrap";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
-import ThemeDropdown from "../ThemeMenu";
+import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
+import SearchInput from "./SearchInput";
 
 interface Props {
   isSmall?: boolean;
@@ -49,16 +50,7 @@ const Filters = (props: Props) => {
 
   return (
     <Container className={cls(styles.container, props.isSmall && styles.small)}>
-      <div className={styles.search}>
-        <i className="fr-icon-search-line" />
-        <input
-          type="text"
-          className="fr-input"
-          placeholder={t("Recherche.keyword", "Mot-clé")}
-          onChange={onChangeSearchInput}
-          value={query.search}
-        />
-      </div>
+      <SearchInput onChange={onChangeSearchInput} />
       <div className="d-flex align-items-center gap-3">
         <Filter
           label={t("Dispositif.Département", "Département")}
@@ -74,7 +66,7 @@ const Filters = (props: Props) => {
           dropdownMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
-            menu: <ThemeDropdown mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
+            menu: <ThemeMenu mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
           }}
           gaType="themes"
         />

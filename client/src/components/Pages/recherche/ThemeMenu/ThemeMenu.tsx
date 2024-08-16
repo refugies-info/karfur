@@ -1,13 +1,12 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
-import useLocale from "hooks/useLocale";
-import { cls } from "lib/classname";
+import SearchButton from "components/UI/SearchButton";
+import Separator from "components/UI/Separator";
 import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Collapse } from "reactstrap";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { languei18nSelector } from "services/Langue/langue.selectors";
@@ -18,9 +17,11 @@ import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
-import NeedsList from "./NeedsList";
-import ThemeButton from "./ThemeButton";
-import styles from "./ThemeMenu.module.scss";
+import Needs from "./Needs";
+import SearchResults from "./SearchResults";
+import styles from "./ThemeMenu.module.css";
+import { ThemeMenuContext } from "./ThemeMenuContext";
+import Themes from "./Themes";
 
 interface Props {
   mobile: boolean;
@@ -40,7 +41,6 @@ const debouncedQuery = debounce(
 );
 
 const ThemeMenu = (props: Props) => {
-  const locale = useLocale();
   const dispatch = useDispatch();
 
   const themes = useSelector(themesSelector);
@@ -49,24 +49,20 @@ const ThemeMenu = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const allDispositifs = useSelector(activeDispositifsSelector);
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
-  const languei18nCode = useSelector(languei18nSelector);
 
-  const [themeSelected, setThemeSelected] = useState<Id | null>(initialTheme);
-  const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
-  const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
-  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
+  const [selectedThemeId, setSelectedThemeId] = useState<Id | undefined>(initialTheme);
 
   const [search, setSearch] = useState(""); // TODO: use this when search restored in component
 
   const onClickTheme = useCallback(
     (themeId: Id) => {
-      setThemeSelected((old) => {
+      setSelectedThemeId((old) => {
         if (old === themeId && props.mobile) return null;
         return themeId;
       });
       Event("USE_SEARCH", "use theme filter", "click theme");
     },
-    [setThemeSelected, props.mobile],
+    [setSelectedThemeId, props.mobile],
   );
 
   // fetch dispositifs if not done already
@@ -78,25 +74,19 @@ const ThemeMenu = (props: Props) => {
     }
   }, [allDispositifs.length, isDispositifsLoading, hasDispositifsError, dispatch]);
 
-  // count needs selected by theme
+  // reset selected theme when popup opens
   useEffect(() => {
-    const nbNeedsSelectedByTheme: Record<string, number> = {};
-    for (const needId of query.needs) {
-      const needThemeId = needs.find((n) => n._id === needId)?.theme._id.toString();
-      if (needThemeId) {
-        nbNeedsSelectedByTheme[needThemeId] = (nbNeedsSelectedByTheme[needThemeId] || 0) + 1;
-      }
+    if (props.isOpen) {
+      setSelectedThemeId(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
     }
-    for (const themeId of query.themes) {
-      const theme = themes.find((t) => t._id === themeId);
-      if (theme) {
-        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
-      }
-    }
-    setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);
-  }, [query.needs, query.themes, themes, needs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.isOpen]);
+
+  const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
+  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
 
   // count dispositifs by need and theme
+  const languei18nCode = useSelector(languei18nSelector);
   useEffect(() => {
     if (props.isOpen) {
       debouncedQuery(query, allDispositifs, languei18nCode, (dispositifs) => {
@@ -121,68 +111,23 @@ const ThemeMenu = (props: Props) => {
     }
   }, [query, allDispositifs, needs, sortedThemes, props.mobile, languei18nCode, props.isOpen]);
 
-  // reset selected theme when popup opens
-  useEffect(() => {
-    if (props.isOpen) {
-      setThemeSelected(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.isOpen]);
-
-  const displayedNeeds = useMemo(() => {
-    if (search) {
-      return needs
-        .filter((need) => (need[locale]?.text || "").includes(search))
-        .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
-    }
-    return needs
-      .filter((need) => need.theme._id === themeSelected)
-      .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
-  }, [themeSelected, needs, search, locale]);
-
-  const isThemeDisabled = (themeId: Id) => {
-    const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
-    return !nbDispositifs || nbDispositifs === 0;
-  };
-
   return (
-    <div className={styles.container}>
-      <div className={cls(styles.themes, search && styles.hidden)}>
-        {sortedThemes.map((theme, i) => (
-          <div key={i}>
-            <ThemeButton
-              theme={theme}
-              selected={themeSelected === theme._id}
-              disabled={isThemeDisabled(theme._id)}
-              mobile={props.mobile}
-              nbNeeds={nbNeedsSelectedByTheme[theme._id.toString()]}
-              onClick={() => onClickTheme(theme._id)}
-            />
-
-            {props.mobile && (
-              <Collapse isOpen={themeSelected === theme._id}>
-                <NeedsList
-                  search={search}
-                  displayedNeeds={displayedNeeds}
-                  themeSelected={themeSelected}
-                  nbDispositifsByNeed={nbDispositifsByNeed}
-                  nbDispositifsByTheme={nbDispositifsByTheme}
-                />
-              </Collapse>
-            )}
-          </div>
-        ))}
+    <ThemeMenuContext.Provider
+      value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
+    >
+      <SearchButton onChange={(e) => setSearch(e.target.value)} />
+      <Separator />
+      <div className={styles.main}>
+        {search ? (
+          <SearchResults />
+        ) : (
+          <>
+            <Themes />
+            <Needs />
+          </>
+        )}
       </div>
-      {(!props.mobile || search) && (
-        <NeedsList
-          search={search}
-          displayedNeeds={displayedNeeds}
-          themeSelected={themeSelected}
-          nbDispositifsByNeed={nbDispositifsByNeed}
-          nbDispositifsByTheme={nbDispositifsByTheme}
-        />
-      )}
-    </div>
+    </ThemeMenuContext.Provider>
   );
 };
 

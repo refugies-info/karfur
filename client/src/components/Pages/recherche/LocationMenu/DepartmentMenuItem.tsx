@@ -1,11 +1,9 @@
 import Checkbox from "components/UI/Checkbox";
-import { cls } from "lib/classname";
 import { getDepartmentCodeFromName } from "lib/departments";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import utilityStyles from "~css/utilities.module.css";
 import styles from "./DepartmentMenuItem.module.css";
 
 interface Props {
@@ -27,7 +25,7 @@ const DepartmentMenuItem: React.FC<Props> = ({ dep }) => {
   }, [dispatch, query.departments, dep]);
 
   return (
-    <div className={cls(styles.item, utilityStyles.noSelect)} onClick={(e) => e.preventDefault()}>
+    <div className={styles.item} onClick={(e) => e.preventDefault()}>
       <Checkbox checked={true} onChange={removeDepartement}>
         {dep} {getDepartmentCodeFromName(dep)}
       </Checkbox>

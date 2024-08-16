@@ -1,13 +1,13 @@
 import { cls } from "lib/classname";
-import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef } from "react";
-import styles from "./SearchMenuItem.module.css";
+import { useTranslation } from "react-i18next";
+import styles from "./SearchButton.module.css";
 
 interface Props {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
+const SearchButton: React.FC<Props> = ({ onChange }) => {
   const { t, i18n } = useTranslation();
   const ref = useRef<HTMLInputElement>(null);
 
@@ -16,12 +16,8 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
       ref.current.focus();
     }
   }, []);
-
   return (
-    <div
-      className={styles.item}
-      onClick={(e) => e.preventDefault()}
-    >
+    <div className={styles.container}>
       <div className={styles.zone}>
         <i className={cls("fr-icon-search-line", styles.icon)} />
         <input
@@ -37,4 +33,4 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   );
 };
 
-export default SearchMenuItem;
+export default SearchButton;

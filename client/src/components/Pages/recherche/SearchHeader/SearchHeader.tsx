@@ -3,7 +3,6 @@ import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Container } from "reactstrap";
 import ResultsFilter from "../ResultsFilter";
 import Filters from "./Filters";
@@ -17,7 +16,6 @@ interface Props {
 
 const SearchHeader = (props: Props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
 
   // SCROLL

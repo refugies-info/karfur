@@ -19,7 +19,9 @@ import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesd
 import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
 import { finishLoading, LoadingStatusKey, startLoading } from "services/LoadingStatus/loadingStatus.actions";
 
+import { DirectionProvider } from "@radix-ui/react-direction";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { useRTL } from "hooks";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",
@@ -108,8 +110,10 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isRTL = useRTL();
+
   return (
-    <div>
+    <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
       <TooltipProvider delayDuration={250}>
         {options.cookiesModule && <ConsentBannerAndConsentManagement />}
         <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
@@ -120,20 +124,20 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
-            window.$crisp=[["safe", true]];
-            window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
-            (function(){
-              const d = document;
-              const s = d.createElement("script");
-              s.src = "https://client.crisp.chat/l.js";
-              s.async = 1;
-              d.getElementsByTagName("head")[0].appendChild(s);
-            })();`,
+        window.$crisp=[["safe", true]];
+        window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
+        (function(){
+          const d = document;
+          const s = d.createElement("script");
+          s.src = "https://client.crisp.chat/l.js";
+          s.async = 1;
+          d.getElementsByTagName("head")[0].appendChild(s);
+        })();`,
             }}
           />
         )}
       </TooltipProvider>
-    </div>
+    </DirectionProvider>
   );
 };
 

@@ -1,10 +1,8 @@
-import CheckboxIcon from "components/UI/CheckboxIcon";
-import { cls } from "lib/classname";
+import Checkbox from "components/UI/Checkbox";
 import { getDepartmentCodeFromName } from "lib/departments";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import React, { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import utilityStyles from "~css/utilities.module.css";
 import { getPlaceName } from "./functions";
 import styles from "./PlaceMenuItem.module.css";
 
@@ -45,18 +43,15 @@ const PlaceMenuItem: React.FC<Props> = ({ p, onSelectPrediction }) => {
   const placeName = useMemo(() => getPlaceName(p), [p]);
 
   return (
-    <div className={cls(styles.item, utilityStyles.noSelect)} onClick={(e) => e.preventDefault()}>
-      <button
-        className={styles.button}
-        onClick={() => onSelectPrediction(p.place_id, placeName)}
-        onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, placeName))}
-      >
-        <CheckboxIcon />
-      </button>
+    <Checkbox
+      className={styles.item}
+      onChange={() => onSelectPrediction(p.place_id, placeName)}
+      onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, placeName))}
+    >
       <span>
         {placeName} {deptNo}
       </span>
-    </div>
+    </Checkbox>
   );
 };
 

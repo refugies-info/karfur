@@ -1,7 +1,6 @@
 .item {
   /* Layout */
   display: flex;
-  padding: 8px 8px 8px 10px;
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
