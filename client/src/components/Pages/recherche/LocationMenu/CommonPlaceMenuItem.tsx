@@ -1,4 +1,4 @@
-import CheckboxIcon from "components/UI/CheckboxIcon";
+import Checkbox from "components/UI/Checkbox";
 import { getDepartmentNameFromCode } from "lib/departments";
 import React from "react";
 import styles from "./CommonPlaceMenuItem.module.css";
@@ -12,12 +12,11 @@ interface Props {
 const CommonPlaceMenuItem: React.FC<Props> = ({ deptNo, placeName, onSelectCommonPlace }) => {
   return (
     <div className={styles.item}>
-      <button className={styles.button} onClick={() => onSelectCommonPlace(getDepartmentNameFromCode(deptNo))}>
-        <CheckboxIcon />
-      </button>
-      <span>
-        {placeName} {deptNo}
-      </span>
+      <Checkbox className={styles.item} onChange={() => onSelectCommonPlace(getDepartmentNameFromCode(deptNo))}>
+        <span>
+          {placeName} {deptNo}
+        </span>
+      </Checkbox>
     </div>
   );
 };
