@@ -1,17 +1,17 @@
-import Checkbox from "components/UI/Checkbox";
 import Separator from "components/UI/Separator";
 import { useLocale } from "hooks";
 import React, { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { needsSelector } from "services/Needs/needs.selectors";
+import AllNeedsItem from "./AllNeedsItem";
 import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 
 const Needs: React.FC = () => {
   const locale = useLocale();
-  const { search, selectedThemeId } = useContext(ThemeMenuContext);
+  const { search, selectedThemeId, nbDispositifsByTheme } = useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
   const { t } = useTranslation();
 
@@ -28,7 +28,7 @@ const Needs: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Checkbox>{t("Recherche.all", "Tous")}</Checkbox>
+      <AllNeedsItem />
       <Separator />
       <div className={styles.needs}>
         {displayedNeeds.map((need, i) => {
