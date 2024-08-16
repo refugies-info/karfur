@@ -7,6 +7,12 @@
   gap: 8px;
 }
 
+.departments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .places {
   /* Layout */
   display: flex;

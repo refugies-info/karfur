@@ -110,9 +110,11 @@ const LocationMenu: React.FC<Props> = () => {
       <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
       <Separator />
 
-      {query.departments.map((depName, i) => (
-        <DepartmentMenuItem key={i} dep={depName} />
-      ))}
+      <div className={styles.departments}>
+        {query.departments.map((depName, i) => (
+          <DepartmentMenuItem key={i} dep={depName} />
+        ))}
+      </div>
 
       <LocationMenuItem />
 
