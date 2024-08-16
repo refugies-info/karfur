@@ -1,11 +1,3 @@
-.checkbox {
-  display: flex;
-  padding: 8px 8px 8px 10px;
-  align-items: flex-start;
-  gap: 8px;
-  align-self: stretch;
-}
-
 .label {
   /* Layout */
   flex: 1 0 0;

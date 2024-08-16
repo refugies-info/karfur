@@ -1,7 +1,6 @@
 import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef } from "react";
-import utilityStyles from "~css/utilities.module.css";
 import styles from "./SearchMenuItem.module.css";
 
 interface Props {
@@ -20,7 +19,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
 
   return (
     <div
-      className={cls(styles.item, utilityStyles.noSelect)}
+      className={styles.item}
       onClick={(e) => e.preventDefault()}
     >
       <div className={styles.zone}>
