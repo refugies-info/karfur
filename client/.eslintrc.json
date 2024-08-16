@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "turbo"],
+  "extends": ["next/core-web-vitals", "turbo", "plugin:css-modules/recommended"],
   "env": {
     "node": true,
     "es6": true,
@@ -12,6 +12,9 @@
     },
     "sourceType": "module"
   },
+  "plugins": [
+    "css-modules"
+  ],
   "rules": {
     "no-debugger": "warn",
     "no-else-return": "error",
