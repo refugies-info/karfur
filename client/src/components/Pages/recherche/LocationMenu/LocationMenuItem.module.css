@@ -22,8 +22,8 @@
 
 .button {
   /* Override the default button styles */
-  padding-block: 0px;
-  padding-inline: 0px;
+  padding-block: 0;
+  padding-inline: 0;
 
   /* Layout */
   display: flex;
@@ -36,7 +36,7 @@
   color: var(--background-action-high-blue-france-hover);
 
   /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Medium */
-  font-family: Marianne;
+  font-family: Marianne, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
