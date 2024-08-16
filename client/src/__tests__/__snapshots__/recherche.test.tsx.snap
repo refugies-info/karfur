@@ -29,17 +29,26 @@ exports[`recherche renders search results 1`] = `
           class="container container"
         >
           <div
-            class="search"
+            class="container"
           >
-            <i
-              class="fr-icon-search-line"
-            />
-            <input
-              class="fr-input"
-              placeholder="Recherche.keyword"
-              type="text"
-              value=""
-            />
+            <div
+              class="zone"
+            >
+              <i
+                class="fr-icon-search-line icon"
+              />
+              <input
+                class="input"
+                placeholder="Mot-clé"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="border"
+            >
+               
+            </div>
           </div>
           <div
             class="d-flex align-items-center gap-3"
