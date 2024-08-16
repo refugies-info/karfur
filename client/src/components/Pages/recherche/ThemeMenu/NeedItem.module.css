@@ -11,7 +11,7 @@
   flex: 1 0 0;
 
   /* Typography */
-  color: var(--text-action-high-grey);
+  color: var(--text-title-grey);
 
   /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Regular */
   font-family: Marianne;
