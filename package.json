@@ -67,6 +67,7 @@
     "yarn": "1.22.22"
   },
   "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --fix",
     "*.{css,scss}": "stylelint --fix"
   }
 }
