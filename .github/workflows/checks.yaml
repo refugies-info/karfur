@@ -30,4 +30,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint, Check Types and Test
-        run: yarn turbo lint check-types test
+        run: yarn turbo lint check-types test && yarn lint:style
