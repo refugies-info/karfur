@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "~scss/colors";
 @import "~scss/mixins/responsive";
 @import "~scss/mixins/text";
@@ -42,7 +43,8 @@
   &:hover,
   &:active,
   &:focus {
-    background-color: color.adjust($bleuCharte, $lightness, -5%) !important;
+    /* stylelint-disable-next-line scss/no-global-function-names */
+    background-color: darken($bleuCharte, 5%) !important;
     color: $white;
   }
 }

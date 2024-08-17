@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $breakpoints: (
   "phone-down": 500px,
   "sm-limit": 577px,
