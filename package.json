@@ -41,7 +41,8 @@
     "pr:prod:client": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
-    "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''"
+    "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
+    "prepare": "husky install"
   },
   "dependencies": {},
   "engines": {
@@ -49,6 +50,8 @@
     "yarn": "1.22.22"
   },
   "devDependencies": {
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "stylelint": "^16.8.2",
     "stylelint-config-standard-scss": "^13.1.0",
     "turbo": "^2.0.9"
@@ -62,5 +65,8 @@
   "volta": {
     "node": "20.13.1",
     "yarn": "1.22.22"
+  },
+  "lint-staged": {
+    "*.{css,scss}": "stylelint --fix"
   }
 }
