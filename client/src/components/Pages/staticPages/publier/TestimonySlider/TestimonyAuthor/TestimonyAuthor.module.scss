@@ -13,6 +13,7 @@
 }
 
 $image: 64px;
+
 .image {
   width: $image;
   height: $image;
@@ -21,14 +22,16 @@ $image: 64px;
   margin-right: u(4);
   flex-shrink: 0;
 
-  @include rtl() {
+  @include rtl {
     margin-right: inherit;
     margin-left: u(4);
   }
 }
+
 .infos {
   @include text("normal");
 }
+
 .name {
   font-weight: bold;
   margin-bottom: u(2);

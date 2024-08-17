@@ -16,7 +16,9 @@
   @include dsfr-text("normal");
 
   a[href] {
+    @include dsfr-link;
+
+    /* stylelint-disable-next-line value-keyword-case */
     --underline-img: linear-gradient(0deg, currentColor, currentColor); // force underline
-    @include dsfr-link();
   }
 }

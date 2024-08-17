@@ -6,6 +6,7 @@
 
 .marque {
   @include dsfr-text("small");
+
   color: white;
   text-transform: uppercase;
   border-radius: u(2);
@@ -26,8 +27,9 @@
   display: none;
 
   @include media-max("lg-limit") {
-    display: block;
     @include dsfr-text("h3");
+    
+    display: block;
     font-weight: bold;
     margin-top: u(16);
   }

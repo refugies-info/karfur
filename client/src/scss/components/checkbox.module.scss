@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 @import "~scss/colors";
 @import "~scss/variables";
 
@@ -10,15 +11,6 @@
   font-size: $text-normal;
   user-select: none;
 
-  &.reverse {
-    input:checked ~ .checkmark {
-      background-color: $white;
-    }
-    .checkmark:after {
-      border-color: #4caf51;
-    }
-  }
-
   input {
     position: absolute;
     opacity: 0;
@@ -30,11 +22,12 @@
       background-color: #4caf51;
       border-width: 0;
 
-      &:after {
+      &::after {
         display: block;
       }
     }
   }
+
   .checkmark {
     position: absolute;
     top: 0;
@@ -45,7 +38,7 @@
     border: solid #ccc;
     border-width: 1px;
 
-    &:after {
+    &::after {
       content: "";
       position: absolute;
       display: none;
@@ -63,13 +56,23 @@
     background-color: #ccc;
   }
 
+  &.reverse {
+    input:checked ~ .checkmark {
+      background-color: $white;
+    }
+
+    .checkmark::after {
+      border-color: #4caf51;
+    }
+  }
+
   &.v2 {
     .checkmark {
       width: 16px;
       height: 16px;
       border-radius: 2px;
 
-      &:after {
+      &::after {
         left: 6px;
         top: 3px;
         width: 5px;

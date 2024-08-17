@@ -10,7 +10,8 @@
 }
 
 .radio {
-  @include choiceButton();
+  @include choiceButton;
+  
   flex-direction: column;
   justify-content: center;
   padding: u(4) u(6);

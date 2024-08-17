@@ -51,5 +51,6 @@
 
 .small {
   @include dsfr-text("very-small");
+  
   color: var(--text-mention-grey);
 }

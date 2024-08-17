@@ -4,7 +4,6 @@ import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
-// import styles from "./DemarcheCardTitle.module.scss";
 
 interface Props {
   color?: string;

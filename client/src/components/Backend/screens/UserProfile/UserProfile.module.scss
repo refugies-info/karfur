@@ -16,11 +16,13 @@
 
   h1 {
     @include dsfr-text("h1");
+
     margin-bottom: 0;
   }
 
   h2 {
     @include dsfr-text("h6");
+
     color: var(--text-action-high-blue-france);
     font-weight: bold;
     margin: 0;
@@ -48,6 +50,7 @@
   label {
     @include dsfr-text("small");
   }
+
   .link {
     @include dsfr-text("small");
   }
@@ -66,6 +69,7 @@
 
   .label {
     @include dsfr-text("small");
+    
     color: var(--text-label-grey);
     text-transform: uppercase;
     font-weight: bold;

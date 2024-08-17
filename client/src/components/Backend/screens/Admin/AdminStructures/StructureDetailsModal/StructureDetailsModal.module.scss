@@ -15,6 +15,7 @@ $containerHeight: 435px;
   display: flex;
   flex-direction: column;
 }
+
 .col_2 {
   width: 390px;
   margin: 0 16px;
@@ -30,6 +31,7 @@ $containerHeight: 435px;
     overflow-y: scroll;
   }
 }
+
 .col_3 {
   flex-grow: 1;
   display: flex;

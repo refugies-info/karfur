@@ -37,7 +37,7 @@
     "lint": "yarn turbo lint",
     "lint:client": "yarn turbo lint --filter=@refugies-info/client",
     "lint:server": "yarn turbo lint --filter=@refugies-info/server",
-    "lint:style": "yarn stylelint \"**/*.css\"",
+    "lint:style": "yarn stylelint \"**/*.css\" \"**/*.scss\"",
     "pr:prod:client": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",

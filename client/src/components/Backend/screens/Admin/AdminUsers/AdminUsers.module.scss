@@ -12,7 +12,6 @@
 
 .item_container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   width: 150px;
 }

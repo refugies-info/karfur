@@ -20,13 +20,17 @@ $error: #b01917;
 
   &.prepend {
     @include l-ltr(u(4));
+
     top: u(4);
   }
+
   &.append {
     @include r-ltr(u(4));
+
     top: u(4);
   }
 }
+
 .error svg {
   fill: $error;
 }
@@ -50,6 +54,7 @@ $error: #b01917;
 
 .error_msg {
   @include text("small");
+  
   display: inline-block;
   margin-top: u(4);
   font-weight: bold;

@@ -12,9 +12,9 @@ $drawerLimit: 768px;
 
 /* from... */
 @mixin media-min($_key, $screen: true) {
-  $break: map-get($breakpoints, $_key);
+  $break: map.get($breakpoints, $_key);
 
-  @if ($screen) {
+  @if $screen {
     @media screen and (min-width: $break) {
       & {
         @content;
@@ -31,10 +31,10 @@ $drawerLimit: 768px;
 
 /* to... */
 @mixin media-max($_key, $screen: true, $include: false) {
-  $break: map-get($breakpoints, $_key);
+  $break: map.get($breakpoints, $_key);
   $limit: if($include, 0, 1);
 
-  @if ($screen) {
+  @if $screen {
     @media screen and (max-width: ($break - $limit)) {
       & {
         @content;
@@ -54,11 +54,13 @@ $drawerLimit: 768px;
     @content;
   }
 }
+
 @mixin isTablet() {
   @include media-max("lg-limit") {
     @content;
   }
 }
+
 @mixin isDesktop() {
   @include media-min("md-limit") {
     @content;

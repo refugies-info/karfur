@@ -11,7 +11,7 @@
   border-radius: u(4);
   background: $white;
 
-  @include isTablet() {
+  @include isTablet {
     max-width: 100%;
     height: auto;
   }

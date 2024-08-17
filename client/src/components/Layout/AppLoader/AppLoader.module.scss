@@ -36,8 +36,9 @@
     }
 
     p {
-      color: white;
       @include text("h5");
+      
+      color: white;
       font-weight: bold;
     }
   }

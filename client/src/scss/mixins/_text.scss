@@ -40,10 +40,10 @@ $texts: (
 );
 
 @mixin text($_key) {
-  $sizes: map-get($texts, $_key);
+  $sizes: map.get($texts, $_key);
 
-  font-size: nth($sizes, 1);
-  line-height: nth($sizes, 2);
+  font-size: list.nth($sizes, 1);
+  line-height: list.nth($sizes, 2);
 }
 
 $dsfr-texts: (
@@ -88,33 +88,40 @@ $dsfr-texts: (
     48px,
   ),
 );
-@mixin dsfr-text($_key) {
-  $sizes: map-get($dsfr-texts, $_key);
 
-  font-size: nth($sizes, 1);
-  line-height: nth($sizes, 2);
+@mixin dsfr-text($_key) {
+  $sizes: map.get($dsfr-texts, $_key);
+
+  font-size: list.nth($sizes, 1);
+  line-height: list.nth($sizes, 2);
 }
 
 @mixin content-text() {
   p {
     margin-bottom: u(6);
   }
-  p + ul {
-    margin-top: u(-2);
-  }
+
   ul {
     margin-bottom: u(6);
+
     li {
       padding-bottom: u(2);
     }
+
     ul {
       margin-bottom: 0;
     }
   }
+
+  p + ul {
+    margin-top: u(-2);
+  }
+
   ul li:has(ul),
   ol li:has(ol) {
     list-style: none;
   }
+
   h3 {
     margin-top: u(8);
     margin-bottom: u(6);

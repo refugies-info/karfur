@@ -34,15 +34,18 @@
 
   .title {
     @include dsfr-text("large");
+
     font-weight: bold;
     margin-top: u(2);
     margin-bottom: u(6);
   }
+
   .text {
     &,
     & > p {
       @include dsfr-text("very-small");
     }
+
     p {
       margin-bottom: u(4);
     }
@@ -50,20 +53,22 @@
 }
 
 .content {
-  padding: u(4) u(8) u(8) u(8);
+  padding: u(4) u(8) u(8);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 
   .title {
     @include dsfr-text("h4");
+
     font-weight: bold;
     color: var(--text-title-grey);
   }
 
   .close {
-    padding: u(1) u(3);
     @include dsfr-text("small");
+    
+    padding: u(1) u(3);
     box-shadow: none;
     min-height: 0;
     margin-bottom: u(2);

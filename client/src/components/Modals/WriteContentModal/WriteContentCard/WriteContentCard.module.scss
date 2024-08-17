@@ -6,12 +6,12 @@
 .container {
   max-width: 280px;
   border-radius: $radius;
-  padding: u(6) u(6) u(3) u(6);
+  padding: u(6) u(6) u(3);
   border: 4px solid $white;
   text-align: left;
 
   &.orange {
-    background-image: url(../../../../assets/staticPages/publier/orange_bg.svg);
+    background-image: url("../../../../assets/staticPages/publier/orange_bg.svg");
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -22,7 +22,7 @@
   }
 
   &.red {
-    background-image: url(../../../../assets/staticPages/publier/red_bg.svg);
+    background-image: url("../../../../assets/staticPages/publier/red_bg.svg");
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -42,6 +42,7 @@
 
 .title {
   @include text("h5");
+
   font-weight: bold;
   margin-top: u(4);
   margin-bottom: 0;
@@ -49,6 +50,7 @@
 
 .type {
   @include text("h5");
+
   font-weight: bold;
   color: #fbfbfb;
   background: $dark;
@@ -59,12 +61,14 @@
 
 .text {
   @include text("large");
+
   margin-top: u(4);
 }
 
 .time {
+  @include text("normal");
+  
   display: flex;
   flex-direction: row;
   font-weight: bold;
-  @include text("normal");
 }

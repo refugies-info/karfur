@@ -10,12 +10,15 @@
 
   :global(.tooltip-inner) {
     @include dsfr-text("very-small");
+
     color: var(--text-inverted-blue-france);
     background-color: $darkBackgroundAltBlueFrance;
+
     --bs-tooltip-padding-y: 2px;
     --bs-tooltip-padding-x: 4px;
     --bs-tooltip-border-radius: 4px;
   }
+  
   :global(.arrow) {
     display: none !important;
   }

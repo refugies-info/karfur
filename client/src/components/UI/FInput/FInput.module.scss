@@ -16,9 +16,11 @@ $borderRadius: 12px;
     top: 50%;
     transform: translateY(-50%);
   }
+
   .prepend {
     left: 15px;
   }
+
   .append {
     right: 15px;
     cursor: pointer;
@@ -35,9 +37,11 @@ $borderRadius: 12px;
     &.error {
       border: 0.5px solid $error;
     }
+
     &.new_size {
       height: 52px;
     }
+
     &.has_prepend {
       padding-left: 45px;
 
@@ -45,32 +49,19 @@ $borderRadius: 12px;
         height: 52px;
       }
     }
+
     &:hover {
       background: $gray20;
       border: 0.5px solid $gray90;
     }
-    &:focus::-webkit-input-placeholder {
-      color: $gray70;
-    }
-    &:focus:-moz-placeholder {
-      color: $gray70;
-    }
+
     &:focus {
       box-shadow: none;
       background: $gray10;
     }
   }
 
-  *::-webkit-input-placeholder,
-  *:-ms-input-placeholder,
-  *::-ms-input-placeholder,
-  *::placeholder,
-  *:-moz-placeholder,
-  *::-moz-placeholder {
+  *::placeholder {
     color: $placeholderColor;
-  }
-  *:-moz-placeholder,
-  *::-moz-placeholder {
-    opacity: 1;
   }
 }

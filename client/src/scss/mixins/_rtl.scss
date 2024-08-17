@@ -3,6 +3,7 @@
     @content;
   }
 }
+
 @mixin ltr() {
   [dir="ltr"] & {
     @content;
@@ -11,22 +12,24 @@
 
 /* Position */
 @mixin r-ltr($size) {
-  @include rtl() {
+  @include rtl {
     right: inherit;
     left: $size;
   }
-  @include ltr() {
+
+  @include ltr {
     right: $size;
     left: inherit;
   }
 }
 
 @mixin l-ltr($size) {
-  @include rtl() {
+  @include rtl {
     left: inherit;
     right: $size;
   }
-  @include ltr() {
+
+  @include ltr {
     left: $size;
     right: inherit;
   }
@@ -34,22 +37,24 @@
 
 /* Margins */
 @mixin mr-ltr($size) {
-  @include rtl() {
+  @include rtl {
     margin-right: inherit;
     margin-left: $size;
   }
-  @include ltr() {
+
+  @include ltr {
     margin-right: $size;
     margin-left: inherit;
   }
 }
 
 @mixin ml-ltr($size) {
-  @include rtl() {
+  @include rtl {
     margin-left: inherit;
     margin-right: $size;
   }
-  @include ltr() {
+
+  @include ltr {
     margin-left: $size;
     margin-right: inherit;
   }
@@ -57,21 +62,24 @@
 
 /* Paddings */
 @mixin pr-ltr($size) {
-  @include rtl() {
+  @include rtl {
     padding-right: inherit;
     padding-left: $size;
   }
-  @include ltr() {
+
+  @include ltr {
     padding-right: $size;
     padding-left: inherit;
   }
 }
+
 @mixin pl-ltr($size) {
-  @include rtl() {
+  @include rtl {
     padding-left: inherit;
     padding-right: $size;
   }
-  @include ltr() {
+  
+  @include ltr {
     padding-left: $size;
     padding-right: inherit;
   }

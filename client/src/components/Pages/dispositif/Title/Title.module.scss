@@ -9,6 +9,7 @@
 
   @include media-max("lg-limit") {
     @include dsfr-text("h2");
+    
     margin-top: u(6);
   }
 }

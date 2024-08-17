@@ -25,6 +25,7 @@
 
 .role {
   @include dsfr-text("small");
+  
   margin-top: u(2);
   color: white;
   background: $darkBackgroundContrastGrey;

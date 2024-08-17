@@ -18,6 +18,10 @@
   border: 1px solid transparent;
   min-height: 46px;
 
+  .hoverVisible {
+    display: none;
+  }
+
   &:focus {
     outline: none;
   }
@@ -26,13 +30,10 @@
     .hoverVisible {
       display: inline;
     }
+
     .hoverHidden {
       display: none;
     }
-  }
-
-  .hoverVisible {
-    display: none;
   }
 }
 
@@ -54,6 +55,7 @@
 .subtitle {
   line-height: 16px;
 }
+
 .subtitle {
   font-weight: normal;
 }

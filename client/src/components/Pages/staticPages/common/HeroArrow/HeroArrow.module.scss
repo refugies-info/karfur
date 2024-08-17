@@ -16,7 +16,7 @@
     justify-content: center;
   }
 
-  @include isTablet() {
+  @include isTablet {
     margin-left: inherit;
     justify-content: center;
   }
@@ -39,11 +39,10 @@
 
 @keyframes slide-bottom {
   0% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
+
   100% {
-    -webkit-transform: translateY(30px);
     transform: translateY(30px);
   }
 }

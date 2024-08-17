@@ -7,7 +7,7 @@
 
 .banner {
   height: 400px;
-  background: url(../../../../assets/dispositif/notheme-banner.svg);
+  background: url("../../../../assets/dispositif/notheme-banner.svg");
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -23,11 +23,12 @@
 }
 
 .actions {
+  @include pr-ltr(u(4));
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-top: u(4);
-  @include pr-ltr(u(4));
 
   @include media-max("lg-limit") {
     display: none;

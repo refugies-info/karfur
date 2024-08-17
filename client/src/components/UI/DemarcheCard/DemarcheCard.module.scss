@@ -7,11 +7,11 @@
 
 .title {
   @include text("large");
+
   height: 70px;
   margin-top: u(6);
   margin-bottom: u(4);
   font-weight: bold;
-
   overflow: hidden;
   text-overflow: ellipsis;
   line-clamp: 3;
@@ -24,7 +24,7 @@
   margin-top: u(1);
   margin-right: u(1);
 
-  @include rtl() {
+  @include rtl {
     margin-right: 0;
     margin-left: u(1);
   }
@@ -41,6 +41,7 @@
 
   & > span {
     @include text("very-small");
+
     background-color: $vert2;
     padding: u(1) u(2);
     border-radius: 0 0 u(2) u(2);
@@ -53,9 +54,7 @@
 .themes {
   flex-grow: 1;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  flex-flow: column wrap;
   align-items: flex-start;
-  align-content: flex-start;
-  justify-content: flex-end;
+  place-content: start end;
 }

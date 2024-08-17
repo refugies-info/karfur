@@ -21,8 +21,9 @@
     overflow-y: scroll;
 
     .close {
-      padding: u(1) u(3);
       @include dsfr-text("small");
+
+      padding: u(1) u(3);
       box-shadow: none;
       min-height: 0;
       margin-bottom: u(2);

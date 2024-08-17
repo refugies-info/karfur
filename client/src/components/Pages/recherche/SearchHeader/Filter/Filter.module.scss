@@ -11,24 +11,26 @@
   padding: 8px;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 30;
 
   // Style
   border-top: 1px solid var(--background-open-blue-france);
   background: var(--text-inverted-grey);
 
   /* shadow/light/$shadow-md */
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 18, 0.16);
+  box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
 
-  z-index: 30;
 }
 
 .item {
+  @include text("normal");
+
   display: flex;
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
   border: none;
-  @include text("normal");
+
   // Wrap text
   white-space: normal;
 
@@ -36,6 +38,7 @@
     background: $gray40b;
     color: $dark;
   }
+
   &:focus {
     outline: none;
   }
@@ -48,7 +51,7 @@
   :global(.fi) {
     margin: 0 u(2) 0 0;
 
-    @include rtl() {
+    @include rtl {
       margin: 0 0 0 u(2);
     }
   }
@@ -68,16 +71,14 @@
 
 .count {
   @include dsfr-text("very-small");
+
   color: var(--text-mention-grey);
 }
 
 .backdrop {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgb(0 0 0 / 30%);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   z-index: 10;

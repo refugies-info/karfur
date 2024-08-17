@@ -6,7 +6,7 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "../../../node_modules/flag-icons/css/flag-icons.min.css";
 @import "../../../node_modules/rc-time-picker/assets/index.css";
-@import "../../../node_modules/react-notifications/src/notifications.scss";
+@import "../../../node_modules/react-notifications/src/notifications";
 @import "../../../node_modules/react-loading-skeleton/dist/skeleton.css";
 @import "../../../node_modules/remixicon/fonts/remixicon.css"; // TODO : remove but deal with callout first
 
@@ -18,5 +18,5 @@
 @import "./rich-text";
 
 // TEMP
-@import "../components/UI/SearchBar/SearchBar.scss";
-@import "../components/Modals/Modal.scss";
+@import "../components/UI/SearchBar/SearchBar";
+@import "../components/Modals/Modal";

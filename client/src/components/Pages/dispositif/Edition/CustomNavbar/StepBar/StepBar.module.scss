@@ -15,6 +15,7 @@
     height: 6px;
     border-radius: 30px;
     margin-right: 2px;
+
     &.done {
       background: var(--background-active-blue-france-active);
     }
@@ -23,6 +24,7 @@
 
 .label {
   @include dsfr-text("small");
+  
   color: var(--text-mention-grey);
   margin-bottom: 0;
   margin-left: u(2);

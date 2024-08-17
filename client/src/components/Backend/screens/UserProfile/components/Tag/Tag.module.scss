@@ -6,8 +6,9 @@
 @import "~scss/variables";
 
 .tag {
-  display: inline-block;
   @include dsfr-text("very-small");
+
+  display: inline-block;
   font-weight: bold;
   color: var(--text-action-high-blue-france);
   background: var(--background-action-low-blue-france);

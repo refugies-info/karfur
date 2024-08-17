@@ -13,9 +13,10 @@
   padding-top: u(20);
   padding-bottom: u(20);
 
-  @include isTablet() {
+  @include isTablet {
     padding-top: u(10);
     padding-bottom: u(10);
+
     .row {
       flex-direction: column-reverse;
       text-align: center;
@@ -30,9 +31,10 @@
 
 .title {
   @include dsfr-text("h1");
+
   color: white;
 
-  @include isTablet() {
+  @include isTablet {
     @include dsfr-text("h2");
 
     margin-top: u(16);
@@ -50,13 +52,15 @@
 .h3 {
   @include dsfr-text("h3");
 
-  @include isTablet() {
+  @include isTablet {
     @include dsfr-text("h4");
   }
 }
+
 .h2 {
   @include dsfr-text("h2");
-  @include isTablet() {
+
+  @include isTablet {
     @include dsfr-text("h3");
   }
 }
@@ -70,7 +74,8 @@
   background: white;
   z-index: 2;
 
-  @include isTablet() {
+  @include isTablet {
+    /* stylelint-disable-next-line selector-class-pattern */
     :global(.fr-segmented__elements) {
       flex-wrap: wrap;
     }
@@ -78,6 +83,8 @@
 }
 
 .step {
+  @include dsfr-text("h1");
+
   color: white;
   background-color: var(--text-action-high-blue-france);
   width: u(14);
@@ -86,15 +93,15 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  @include dsfr-text("h1");
   font-weight: bold;
   margin-bottom: u(10);
 }
 
 .list {
-  @include isTablet() {
+  @include isTablet {
     padding-inline-start: u(10);
   }
+
   li {
     list-style-type: none;
     position: relative;
@@ -110,29 +117,33 @@
 }
 
 .card {
-  padding: u(4) u(6) u(6) u(6);
+  padding: u(4) u(6) u(6);
   border: 1px solid var(--border-default-grey);
   height: 100%;
 
   h3 {
     @include dsfr-text("h6");
+
     color: var(--text-action-high-blue-france);
   }
 }
 
 .colored {
+  /* stylelint-disable-next-line selector-class-pattern */
   &:global(.fr-btn--secondary) {
     color: var(--text-inverted-blue-france);
     box-shadow: inset 0 0 0 1px var(--border-open-blue-france) !important;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.2) !important;
+      background-color: rgb(255 255 255 / 20%) !important;
     }
+
     &:active {
-      background-color: rgba(255, 255, 255, 0.4) !important;
+      background-color: rgb(255 255 255 / 40%) !important;
     }
   }
 
+  /* stylelint-disable-next-line selector-class-pattern, no-descending-specificity */
   &:global(:not(.fr-btn--secondary)) {
     background-color: var(--background-contrast-blue-france);
     color: var(--text-action-high-blue-france);
@@ -140,9 +151,11 @@
     &:hover {
       background-color: var(--background-contrast-blue-france-hover) !important;
     }
+
     &:focus {
       background-color: var(--background-contrast-blue-france) !important;
     }
+
     &:active {
       background-color: var(--background-contrast-blue-france-active) !important;
     }
@@ -150,9 +163,12 @@
 }
 
 .cards {
+  /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__title a[href]) {
     color: var(--text-action-high-blue-france) !important;
   }
+
+  /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__title a[href]::after) {
     content: "";
   }
@@ -162,12 +178,12 @@
   border: 1px solid var(--border-default-grey);
 
   .head {
+    @include dsfr-text("chapo");
+
     background: var(--text-action-high-blue-france);
     color: white;
     padding: u(3) u(4);
     margin: -1px; // goes over border
-    @include dsfr-text("chapo");
-    font-weight: bold;
     display: flex;
     align-items: center;
 
@@ -183,6 +199,7 @@
       height: u(10);
     }
   }
+  
   .content {
     padding: u(6);
   }
@@ -191,7 +208,7 @@
 .next {
   border-top: 1px solid var(--border-default-grey);
 
-  @include isTablet() {
+  @include isTablet {
     border: none;
     background-color: var(--background-alt-blue-france);
   }

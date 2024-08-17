@@ -11,13 +11,14 @@
   margin-top: u(6);
   margin-bottom: u(8);
 }
+
 .item {
   padding-bottom: u(6);
   display: flex;
   align-items: baseline;
   position: relative;
 
-  &:after {
+  &::after {
     content: "";
     height: 100%;
     width: 2px;
@@ -27,19 +28,23 @@
     top: 6px;
   }
 
-  &:last-child:after {
+  &:last-child::after {
     content: none;
     display: none;
   }
 }
+
 .title {
   font-weight: bold;
   margin-bottom: 0;
 }
+
 .subtitle {
   @include dsfr-text("very-small");
+
   margin-bottom: 0;
 }
+
 .icon {
   position: relative;
   z-index: 1;

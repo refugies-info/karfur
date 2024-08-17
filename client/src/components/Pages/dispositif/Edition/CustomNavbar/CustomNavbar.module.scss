@@ -23,6 +23,7 @@
     padding: u(2) 0;
   }
 }
+
 .warning {
   padding: u(2) 0;
   background: var(--background-contrast-info);
@@ -32,6 +33,7 @@
 
 .help {
   @include dsfr-text("small");
+
   margin-bottom: 0;
   color: var(--background-action-high-blue-france);
   margin-left: u(4);
@@ -40,18 +42,21 @@
 .steps {
   display: flex;
   align-items: center;
+
   .btn {
     @include iconSize(u(4));
+
     min-height: u(8);
     padding: u(2);
   }
 }
 
 .progress {
+  @include dsfr-text("small");
+
   display: flex;
   align-items: center;
   margin-left: 80px;
-  @include dsfr-text("small");
   color: var(--background-action-high-blue-france);
 
   p {
@@ -61,11 +66,12 @@
 }
 
 .save {
+  @include dsfr-text("small");
+
   background: var(--background-alt-raised-grey);
   border-radius: u(1);
   padding: 0 u(1);
   color: $darkBackgroundElevationContrast;
-  @include dsfr-text("small");
   margin-right: u(8);
   cursor: default;
   display: inline-flex;

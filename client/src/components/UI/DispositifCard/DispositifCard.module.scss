@@ -9,24 +9,25 @@
   display: flex;
   align-items: center;
 
-  @include isMobile() {
+  @include isMobile {
     @include text("normal");
   }
 }
 
 .title {
   @include text("large");
+
   height: 70px;
   margin: u(2) 0;
   font-weight: bold;
-
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;
 
-  @include isMobile() {
+  @include isMobile {
     height: auto;
     flex-grow: 1;
   }
@@ -35,6 +36,7 @@
 .max_lines {
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;
@@ -49,7 +51,7 @@
 .abstract {
   height: 69px;
 
-  @include isMobile() {
+  @include isMobile {
     height: auto;
   }
 
@@ -64,7 +66,7 @@
 .text {
   line-height: 23px;
 
-  @include isMobile() {
+  @include isMobile {
     @include text("normal");
   }
 }
@@ -73,7 +75,7 @@
   height: 36px;
   width: 100%;
 
-  @include isMobile() {
+  @include isMobile {
     height: auto;
   }
 }
@@ -88,7 +90,7 @@
   margin-bottom: u(1);
   margin-right: u(1);
 
-  @include rtl() {
+  @include rtl {
     margin-right: 0;
     margin-left: u(1);
   }
@@ -102,7 +104,7 @@
   align-content: flex-end;
   flex-grow: 1;
 
-  @include isMobile() {
+  @include isMobile {
     height: auto;
   }
 }

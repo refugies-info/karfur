@@ -6,5 +6,6 @@
 
 .help {
   @include dsfr-text("very-small");
+  
   color: var(--background-flat-info);
 }

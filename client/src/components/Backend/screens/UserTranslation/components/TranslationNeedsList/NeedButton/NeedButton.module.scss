@@ -16,9 +16,11 @@
   &.warning {
     @include buttonStatus("warning");
   }
+
   &.success {
     @include buttonStatus("success");
   }
+
   &.info {
     @include buttonStatus("info");
   }
@@ -33,8 +35,10 @@
     font-weight: bold;
     display: block;
   }
+
   .subtitle {
     @include dsfr-text("small");
+    
     display: block;
   }
 }

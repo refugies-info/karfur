@@ -12,7 +12,7 @@
   gap: u(3);
   margin-top: u(16);
 
-  @include isMobile() {
+  @include isMobile {
     margin-top: u(6);
   }
 }

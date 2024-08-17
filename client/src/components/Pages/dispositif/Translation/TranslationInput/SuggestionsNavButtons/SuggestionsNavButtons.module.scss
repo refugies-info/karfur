@@ -7,12 +7,14 @@
 .nav {
   @include iconSize(u(4));
   @include dsfr-text("small");
+
   height: u(8);
   min-height: u(8);
 }
 
 .validate {
   @include iconSize(u(4));
+  
   width: u(8) !important;
   height: u(8);
   min-height: 0 !important;
