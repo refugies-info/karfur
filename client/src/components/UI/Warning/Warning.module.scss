@@ -15,15 +15,18 @@ $breakpoint: "lg-limit";
   &.red {
     background: #f9e8e8;
   }
+
   &.purple {
     background: #efe8f4;
   }
+
   &.orange {
     background: #feebde;
   }
 }
 
 .text {
-  margin-bottom: 0;
   @include text("large");
+  
+  margin-bottom: 0;
 }

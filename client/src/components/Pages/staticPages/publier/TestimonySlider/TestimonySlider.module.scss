@@ -12,7 +12,7 @@
 .slider {
   display: flex;
 
-  @include isTablet() {
+  @include isTablet {
     margin-left: -15px;
     margin-right: -15px;
     flex-wrap: nowrap;
@@ -23,7 +23,7 @@
 .testimony {
   padding: u(8) u(12);
 
-  @include isTablet() {
+  @include isTablet {
     flex-shrink: 0;
     width: 100%;
     max-width: none;
@@ -54,7 +54,7 @@
   &.prev {
     left: 0;
 
-    @include rtl() {
+    @include rtl {
       left: inherit;
       right: 0;
       transform: rotate(180deg);
@@ -65,7 +65,7 @@
   &.next {
     right: 0;
 
-    @include rtl() {
+    @include rtl {
       right: inherit;
       left: 0;
       transform: rotate(180deg);

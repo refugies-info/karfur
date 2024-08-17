@@ -4,21 +4,23 @@
 .visible {
   display: none !important;
 
-  @include isMobile() {
+  @include isMobile {
     display: block !important;
   }
 }
+
 .visible_flex {
   display: none !important;
 
-  @include isMobile() {
+  @include isMobile {
     display: flex !important;
   }
 }
+
 .visible_inline_flex {
   display: none !important;
 
-  @include isMobile() {
+  @include isMobile {
     display: inline-flex !important;
   }
 }
@@ -27,21 +29,23 @@
 .hidden {
   display: block !important;
 
-  @include isMobile() {
+  @include isMobile {
     display: none !important;
   }
 }
+
 .hidden_flex {
   display: flex !important;
 
-  @include isMobile() {
+  @include isMobile {
     display: none !important;
   }
 }
+
 .hidden_inline_flex {
   display: inline-flex !important;
 
-  @include isMobile() {
+  @include isMobile {
     display: none !important;
   }
 }

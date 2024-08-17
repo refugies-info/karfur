@@ -13,8 +13,7 @@
 
 .cards {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   margin-right: u(8);
   margin-left: u(8);

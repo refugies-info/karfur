@@ -17,25 +17,28 @@
 .title {
   display: none;
 
-  @include isMobile() {
+  @include isMobile {
     display: flex;
     align-items: center;
     margin-bottom: u(8);
 
     h2 {
       @include text("h4");
+
       margin-right: u(4);
       margin-bottom: 0;
 
-      @include rtl() {
+      @include rtl {
         margin-right: 0;
         margin-left: u(4);
       }
     }
+
     span {
+      @include text("h5");
+
       padding: u(1) u(2);
       background: $white;
-      @include text("h5");
       font-weight: bold;
       border-radius: u(1);
     }
@@ -56,7 +59,7 @@
   &.demarches {
     gap: u(6);
 
-    @include isMobile() {
+    @include isMobile {
       &.horizontal_scroll {
         flex-wrap: nowrap;
         overflow-x: scroll;
@@ -69,7 +72,7 @@
     }
   }
 
-  @include isDesktop() {
+  @include isDesktop {
     &.all_visible {
       margin-bottom: 220px;
     }
@@ -79,7 +82,7 @@
 .no_results {
   text-align: center;
 
-  @include isMobile() {
+  @include isMobile {
     margin-top: u(10);
   }
 

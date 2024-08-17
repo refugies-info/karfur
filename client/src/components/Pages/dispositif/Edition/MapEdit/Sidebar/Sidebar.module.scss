@@ -36,6 +36,7 @@
   &.active {
     background: var(--background-action-low-blue-france) !important;
     color: var(--background-action-high-blue-france);
+
     svg {
       fill: var(--background-action-high-blue-france);
     }
@@ -43,10 +44,13 @@
 
   .title {
     @include dsfr-text("small");
+
     margin-bottom: 0;
   }
+
   .city {
     @include dsfr-text("very-small");
+    
     margin-bottom: 0;
   }
 }

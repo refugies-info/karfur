@@ -10,7 +10,6 @@
 
 .content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   margin-bottom: 24px;
 }

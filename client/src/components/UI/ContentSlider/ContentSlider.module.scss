@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+@use "sass:color";
 @import "~scss/colors";
 @import "~scss/mixins/responsive";
 @import "~scss/mixins/unit";
@@ -5,11 +7,14 @@
 @import "~scss/mixins/rtl";
 @import "~scss/variables";
 
+/* stylelint-disable-next-line scss/dollar-variable-pattern */
 $fadeWidth_lg: 160px;
+/* stylelint-disable-next-line scss/dollar-variable-pattern */
 $fadeWidth_md: 50px;
 
 .container {
   position: relative;
+
   --gradient-start: #f2f2f200;
   --gradient-end: #f2f2f2;
 }
@@ -26,8 +31,8 @@ $fadeWidth_md: 50px;
   padding-left: $fadeWidth_lg;
   padding-right: $fadeWidth_lg;
 
-  &:after,
-  &:before {
+  &::after,
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -35,11 +40,13 @@ $fadeWidth_md: 50px;
     width: $fadeWidth_lg;
     z-index: 2;
   }
-  &:after {
+
+  &::after {
     right: -$fadeWidth_lg;
     background: linear-gradient(to right, var(--gradient-start) 0%, var(--gradient-end) 60%, var(--gradient-end) 100%);
   }
-  &:before {
+
+  &::before {
     left: -$fadeWidth_lg;
     background: linear-gradient(to left, var(--gradient-start) 0%, var(--gradient-end) 60%, var(--gradient-end) 100%);
   }
@@ -50,14 +57,16 @@ $fadeWidth_md: 50px;
     padding-left: $fadeWidth_md;
     padding-right: $fadeWidth_md;
 
-    &:after,
-    &:before {
+    &::after,
+    &::before {
       width: $fadeWidth_md;
     }
-    &:after {
+
+    &::after {
       right: -$fadeWidth_md;
     }
-    &:before {
+
+    &::before {
       left: -$fadeWidth_md;
     }
   }
@@ -71,15 +80,13 @@ $fadeWidth_md: 50px;
     padding-right: 12px;
     padding-bottom: 12px;
 
-    &:after,
-    &:before {
+    &::after,
+    &::before {
       content: none;
       display: none;
     }
   }
-}
 
-.container {
   .btn {
     position: absolute;
     top: 50%;
@@ -98,13 +105,14 @@ $fadeWidth_md: 50px;
     &:hover,
     &:active,
     &:focus {
+      /* stylelint-disable-next-line scss/no-global-function-names */
       background-color: darken($bleuCharte, 10%) !important;
     }
 
     &.prev {
       left: -32px;
 
-      @include rtl() {
+      @include rtl {
         left: inherit;
         right: -32px;
         transform: rotate(180deg);
@@ -115,7 +123,7 @@ $fadeWidth_md: 50px;
     &.next {
       right: -32px;
 
-      @include rtl() {
+      @include rtl {
         right: inherit;
         left: -32px;
         transform: rotate(180deg);
@@ -127,6 +135,7 @@ $fadeWidth_md: 50px;
       display: none;
     }
   }
+
 }
 
 html body .btn:focus {

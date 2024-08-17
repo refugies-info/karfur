@@ -18,6 +18,7 @@
     margin-left: u(2);
     font-weight: bold;
   }
+
   &:disabled {
     opacity: 0.5;
   }
@@ -28,6 +29,7 @@
       .name {
         color: white;
       }
+
       .theme_icon {
         svg {
           path,
@@ -43,6 +45,7 @@
 
 .badge {
   @include dsfr-text("very-small");
+  
   font-weight: bold;
   padding: 2px u(1);
   border-radius: u(10);

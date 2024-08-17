@@ -5,14 +5,47 @@
 @import "~scss/mixins/rtl";
 @import "~scss/variables";
 
+.input {
+  border: 1px solid var(--border-default-grey);
+  outline: none !important;
+  background: var(--background-alt-raised-grey);
+  border-radius: u(2);
+  padding: u(2) u(4);
+  width: 100%;
+
+  &:focus {
+    border-color: var(--text-title-grey);
+    color: var(--text-title-grey);
+  }
+
+  .with_icon & {
+    @include pl-ltr(44px);
+  }
+
+  .valid & {
+    border-color: var(--text-default-success);
+  }
+
+  .error & {
+    border-color: var(--text-default-error);
+  }
+
+  .valid &,
+  .error & {
+    padding-right: u(11) !important;
+  }
+}
+
 .container {
   label {
     margin-bottom: u(2);
     color: var(--text-title-grey);
   }
+
   &.valid label {
     color: var(--text-default-success);
   }
+
   &.error label {
     color: var(--text-default-error);
   }
@@ -39,6 +72,7 @@
   &.prepend {
     @include l-ltr(u(4));
   }
+
   &.append {
     @include r-ltr(u(4));
   }
@@ -50,38 +84,10 @@
   }
 }
 
-.input {
-  border: 1px solid var(--border-default-grey);
-  outline: none !important;
-  background: var(--background-alt-raised-grey);
-  border-radius: u(2);
-  padding: u(2) u(4);
-  width: 100%;
-
-  &:focus {
-    border-color: var(--text-title-grey);
-    color: var(--text-title-grey);
-  }
-
-  .with_icon & {
-    @include pl-ltr(44px);
-  }
-
-  .valid & {
-    border-color: var(--text-default-success);
-  }
-  .error & {
-    border-color: var(--text-default-error);
-  }
-
-  .valid &,
-  .error & {
-    padding-right: u(11) !important;
-  }
-}
 
 .error_msg {
   @include dsfr-text("very-small");
+  
   display: inline-block;
   margin-top: u(2);
   color: var(--text-default-error);
@@ -101,7 +107,7 @@
   height: u(6);
   border-radius: 50%;
 
-  @include rtl() {
+  @include rtl {
     right: inherit;
     left: 0;
   }

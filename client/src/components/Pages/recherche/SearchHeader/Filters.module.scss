@@ -1,24 +1,5 @@
 @import "~scss/mixins/unit";
 
-.container {
-  display: flex;
-  gap: u(3);
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  &.small {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-
-    .search {
-      width: 200px;
-      flex-shrink: 0;
-      margin-bottom: 0;
-    }
-  }
-}
-
 .search {
   position: relative;
   width: 720px;
@@ -38,6 +19,25 @@
 
     &:not(:placeholder-shown) {
       color: var(--text-title-grey);
+    }
+  }
+}
+
+.container {
+  display: flex;
+  gap: u(3);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &.small {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    .search {
+      width: 200px;
+      flex-shrink: 0;
+      margin-bottom: 0;
     }
   }
 }

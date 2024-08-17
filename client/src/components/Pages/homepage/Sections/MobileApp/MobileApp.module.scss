@@ -23,7 +23,7 @@
   margin-top: u(8);
   z-index: 2;
 
-  @include isTablet() {
+  @include isTablet {
     justify-content: center;
   }
 
@@ -34,7 +34,7 @@
       max-width: 124px;
       height: auto;
 
-      @include isTablet() {
+      @include isTablet {
         max-width: inherit;
         height: auto;
       }
@@ -45,16 +45,17 @@
 .reviews {
   @include ml-ltr(u(4));
 
-  @include isTablet() {
+  @include isTablet {
     position: absolute;
     top: -80px;
     transform: translateX(70%);
 
-    @include rtl() {
+    @include rtl {
       transform: translateX(-70%);
     }
   }
 }
+
 .links {
   background: none;
 }

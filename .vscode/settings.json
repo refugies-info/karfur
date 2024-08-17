@@ -61,4 +61,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.format.semicolons": "insert",
   "files.insertFinalNewline": true,
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ]
 }

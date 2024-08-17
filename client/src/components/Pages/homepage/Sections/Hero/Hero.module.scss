@@ -12,13 +12,13 @@ $searchHeight: 96px;
   position: relative;
   min-height: 470px;
   height: calc(100vh - $navbarHeight);
-  background-image: url(../../../../../assets/homepage/hero/background-image.svg);
+  background-image: url("../../../../../assets/homepage/hero/background-image.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
   padding-top: $paddingTop;
 
-  @include isTablet() {
+  @include isTablet {
     padding-top: u(10);
     height: 90vh;
   }
@@ -26,16 +26,17 @@ $searchHeight: 96px;
   h1 {
     text-align: center;
 
-    @include isTablet() {
+    @include isTablet {
       @include text("h4");
     }
   }
 }
+
 .bottom_img {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom;
-  background-image: url(../../../../../assets/homepage/hero/bottom-back.svg);
+  background-image: url("../../../../../assets/homepage/hero/bottom-back.svg");
   width: 100%;
   height: calc(100vh - $navbarHeight - $paddingTop - $heightTitle - $searchMarginTop - $searchHeight);
   padding-left: 20%;

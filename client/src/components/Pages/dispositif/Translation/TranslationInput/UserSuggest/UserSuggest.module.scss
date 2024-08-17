@@ -6,9 +6,10 @@
 @import "~scss/mixins/responsive";
 
 .container {
+  @include dsfr-text("very-small");
+
   display: flex;
   align-items: center;
-  @include dsfr-text("very-small");
 
   .image {
     width: u(6);

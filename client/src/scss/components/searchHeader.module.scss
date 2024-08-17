@@ -8,8 +8,6 @@
 
 // DESKTOP
 .dropdown {
-  flex-shrink: 0;
-  flex-grow: 1;
   width: 33.3333%;
   padding: u(2);
   flex: 1 1 0;
@@ -24,7 +22,7 @@
     right: 0;
     top: 10%;
 
-    @include rtl() {
+    @include rtl {
       right: auto;
       left: 0;
     }
@@ -35,12 +33,13 @@
   }
 
   & > button {
+    @include focus;
+
     background: transparent !important;
     border: none;
     padding: 0;
     width: 100%;
     position: relative;
-    @include focus();
   }
 
   &:global(.show) > button {
@@ -49,9 +48,11 @@
 }
 
 .submit {
+  @include text("large");
+  @include focus;
+
   margin: u(2);
   font-weight: bold;
-  @include text("large");
   border-radius: $radius;
   min-width: 190px;
   display: flex;
@@ -60,7 +61,6 @@
   background-color: $bleuCharte !important;
   color: $white !important;
   border: 1px solid transparent;
-  @include focus();
 
   @include media-max("xl-limit") {
     min-width: 0;
@@ -71,7 +71,7 @@
     }
   }
 
-  @include isMobile() {
+  @include isMobile {
     width: 100%;
     justify-content: center;
     margin: 0;
@@ -94,7 +94,7 @@
     display: inline-flex;
     align-items: center;
 
-    @include rtl() {
+    @include rtl {
       margin-right: 0;
       margin-left: u(4);
     }
@@ -108,7 +108,7 @@
       margin-right: u(4);
       margin-left: 0;
 
-      @include rtl() {
+      @include rtl {
         margin-right: 0;
         margin-left: u(4);
       }
@@ -142,8 +142,9 @@
 }
 
 .input {
-  position: relative;
   @include text("normal");
+
+  position: relative;
 
   & > span {
     position: absolute;
@@ -155,7 +156,7 @@
     top: u(2);
     left: u(2);
 
-    @include rtl() {
+    @include rtl {
       left: inherit;
       right: u(2);
     }
@@ -168,8 +169,7 @@
     border: 1px solid transparent;
     line-height: u(4);
     outline: none !important;
-    padding-left: u(6);
-    padding: u(3) u(12);
+    padding: u(3) u(12) u(3) u(6);
 
     &::placeholder {
       color: $gray80;
@@ -180,7 +180,7 @@
       background: $white;
     }
 
-    @include rtl() {
+    @include rtl {
       padding-left: 0;
       padding-right: u(6);
     }
@@ -191,7 +191,7 @@
     left: inherit;
     right: u(2);
 
-    @include rtl() {
+    @include rtl {
       right: inherit;
       left: u(2);
     }
@@ -207,7 +207,7 @@
   right: 0;
   top: 0;
 
-  @include rtl() {
+  @include rtl {
     right: auto;
     left: 0;
   }

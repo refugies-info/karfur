@@ -9,12 +9,14 @@
   align-items: center;
   justify-content: center;
 }
+
 .background {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
 }
+
 .flag {
   z-index: 1;
   position: relative;
@@ -25,6 +27,7 @@
     outline-width: 2px;
     border-radius: 5px;
   }
+  
   .md & {
     width: 20px !important;
   }

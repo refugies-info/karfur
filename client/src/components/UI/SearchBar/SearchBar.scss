@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @import "~scss/colors";
 @import "~scss/mixins/responsive";
 @import "~scss/variables";
@@ -13,13 +14,13 @@
     font-size: $text-normal;
     border: 1px solid #aaa;
     border-radius: 4px;
+
     &:hover {
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 7px rgb(0 0 0 / 10%);
     }
-    &:focus::-webkit-input-placeholder {
-      color: transparent;
-    }
-    &:focus:-moz-placeholder {
+
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
+    &:focus::placeholder, &:focus::-webkit-input-placeholder, &:focus::-moz-placeholder {
       color: transparent;
     }
   }
@@ -46,7 +47,7 @@
     z-index: 2;
     border-radius: $radius;
     border: none;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 7px rgb(0 0 0 / 10%);
   }
 
   .react-autosuggest__suggestions-list {
@@ -104,8 +105,10 @@
 
 .search-bar {
   position: relative;
+
   // display: flex;
   flex-wrap: wrap;
+
   @include media-max("phone-down") {
     display: none;
   }
@@ -120,13 +123,13 @@
     font-weight: normal;
     height: 40px;
     width: 100%;
+
     &:hover {
       background-color: $gray20;
     }
-    &:focus::-webkit-input-placeholder {
-      color: transparent;
-    }
-    &:focus:-moz-placeholder {
+
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
+    &:focus::-webkit-input-placeholder, &:focus:-moz-placeholder {
       color: transparent;
     }
 
@@ -136,11 +139,13 @@
       opacity: 1; /* Firefox */
     }
 
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
     &:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
       color: $gray90;
     }
 
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
     &::-ms-input-placeholder {
       /* Microsoft Edge */
       color: $gray90;
@@ -155,37 +160,45 @@
       position: relative;
       top: 0;
     }
+
     .react-autosuggest__suggestions-list {
       background: transparent;
       border-radius: $radius;
     }
+
     .react-autosuggest__suggestion {
       padding: 10px 15px;
       background: $white;
       border-radius: $radius;
       margin-top: 10px;
       border: 2px solid transparent;
+
       &:hover {
         border: 2px solid black;
       }
     }
+
     .name {
       color: $gray70;
     }
+
     .selection-logo {
       max-width: 40px;
       max-height: 40px;
     }
   }
+
   .suggestion-content {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
     & > * {
       margin-left: 0.4rem;
       margin-right: 0.4rem;
     }
   }
+
   .oeil-btn {
     padding: 10px;
     background: $gray20;

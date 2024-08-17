@@ -20,8 +20,9 @@
     }
 
     .icon {
-      position: absolute;
       @include r-ltr(u(3));
+
+      position: absolute;
       top: u(3);
     }
   }
@@ -38,24 +39,28 @@
     margin-bottom: u(2);
 
     .item {
+      @include text("normal");
+
       display: flex;
       align-items: center;
       padding: u(2) u(3);
       border-radius: u(2) !important;
       margin-bottom: u(1);
       border: none;
-      @include text("normal");
 
       &:hover {
         background: $gray40b;
         color: $dark;
       }
+
       &:focus {
         outline: none;
       }
+
       :global(.fi) {
         margin: 0 u(2) 0 0;
-        @include rtl() {
+
+        @include rtl {
           margin: 0 0 0 u(2);
         }
       }
@@ -65,6 +70,7 @@
         color: $white !important;
       }
     }
+    
     .item_locale {
       @include mr-ltr(u(1));
     }

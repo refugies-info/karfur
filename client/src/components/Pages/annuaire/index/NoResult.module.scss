@@ -5,6 +5,7 @@
   margin: auto;
   margin-top: 45px;
 }
+
 .image {
   display: flex;
   flex-direction: column;
@@ -12,11 +13,13 @@
   margin-right: 75px;
 
 }
+
 .buttons {
   display: flex;
   flex-direction: row;
 
 }
+
 .title {
   font-style: normal;
   font-weight: 600;
@@ -25,10 +28,12 @@
   margin-bottom: 24px !important;
 
 }
+
 .content {
   display: flex;
   flex-direction: column;
 }
+
 .text {
   font-style: normal;
   font-weight: normal;

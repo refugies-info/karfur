@@ -13,17 +13,21 @@
 
   .title {
     @include dsfr-text("small");
+
     margin-bottom: u(3);
     color: var(--background-action-high-blue-france);
   }
+
   .info {
     @include dsfr-text("very-small");
+
     margin-bottom: 0;
     padding: u(1);
     display: flex;
     align-items: baseline;
     word-break: break-word;
   }
+  
   .close {
     width: u(8);
     height: u(8);

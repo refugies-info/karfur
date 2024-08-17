@@ -9,6 +9,6 @@
   padding: 5% 25%;
 
   a[href] {
-    @include dsfr-link();
+    @include dsfr-link;
   }
 }

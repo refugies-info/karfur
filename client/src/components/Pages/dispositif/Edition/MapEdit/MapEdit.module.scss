@@ -8,17 +8,19 @@
 
 .add {
   @include dsfr-text("chapo");
+
   font-weight: bold;
   display: flex;
   align-items: center;
 }
 
 .container {
+  @include zoom-controls;
+
   height: 620px;
   position: relative;
   border-radius: u(2);
   border: 1px solid var(--border-default-grey);
   overflow: hidden;
   margin-bottom: u(14);
-  @include zoom-controls();
 }

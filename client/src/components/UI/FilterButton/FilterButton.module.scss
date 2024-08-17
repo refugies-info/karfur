@@ -21,9 +21,11 @@
   &:hover {
     background: $gray10;
   }
+
   &:focus {
     outline: none;
   }
+  
   &.active {
     color: $white;
     background: $gray90;

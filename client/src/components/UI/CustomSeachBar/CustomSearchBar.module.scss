@@ -14,20 +14,23 @@
   width: 18%;
   min-width: 180px;
   height: 52px;
-  color: #000000;
+  color: #000;
   flex-direction: row;
   display: flex;
   align-items: center;
 
   &:hover {
-    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 7px rgb(0 0 0 / 10%);
   }
+
   &:focus {
     outline: none !important;
   }
+
   @include media-min("widescreen-up") {
     width: 240px;
   }
+
   &.no_margin {
     margin-right: 0;
   }
@@ -41,7 +44,7 @@
   font-size: $text-normal;
   font-weight: normal;
   width: 100%;
-  color: #000000;
+  color: #000;
 
   &:focus {
     outline: none !important;

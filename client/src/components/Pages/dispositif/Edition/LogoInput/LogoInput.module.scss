@@ -35,6 +35,7 @@
 
 .help {
   @include dsfr-text("very-small");
+
   color: var(--text-mention-grey);
   margin-top: u(2);
 }
@@ -48,14 +49,11 @@
 
 .uploading {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
   border-radius: $radius;
 }

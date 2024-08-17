@@ -13,6 +13,7 @@
 
 .title {
   @include dsfr-text("h6");
+
   font-weight: bold;
   margin-bottom: u(6);
   display: flex;
@@ -50,7 +51,7 @@
     background: var(--background-alt-raised-grey) !important;
     text-align: left;
 
-    @include rtl() {
+    @include rtl {
       text-align: right;
     }
   }
@@ -69,6 +70,7 @@
 
   p {
     @include dsfr-text("very-small");
+    
     margin-bottom: 0;
   }
 }

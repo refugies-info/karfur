@@ -25,12 +25,14 @@ $green: #055e5a;
 
 .link {
   @include text("large");
+
   font-weight: bold;
   display: inline-flex;
   align-items: center;
   background: transparent;
   border: none;
-  @include focus();
+
+  @include focus;
 
   @include media-max($breakpoint) {
     @include text("normal");
@@ -44,21 +46,27 @@ $green: #055e5a;
   &.color_purple {
     color: $purple;
   }
+
   &.color_red {
     color: $red;
   }
+
   &.color_orange {
     color: $orange;
   }
+
   &.color_blue {
     color: $bleuCharte;
   }
+
   &.color_white {
     color: $white;
   }
+
   &.color_brown {
     color: $brown;
   }
+
   &.color_green {
     color: $green;
   }
@@ -67,7 +75,7 @@ $green: #055e5a;
 .icon {
   margin-left: u(2);
 
-  @include rtl() {
+  @include rtl {
     margin-left: inherit;
     margin-right: u(2);
   }

@@ -4,7 +4,7 @@
 
 .themes {
   h2 {
-    @include isTablet() {
+    @include isTablet {
       @include text("h4");
     }
   }

@@ -7,7 +7,7 @@
 
 .content {
   @include dsfr-text("normal");
-  @include content-text();
+  @include content-text;
 }
 
 .highlighted {

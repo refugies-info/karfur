@@ -24,6 +24,7 @@
       box-shadow: none;
       background-color: var(--background-contrast-grey) !important;
     }
+
     &:active {
       background: var(--background-alt-raised-grey);
     }
@@ -34,14 +35,19 @@
 
     &.md {
       @include dsfr-text("h6");
+
       font-weight: bold;
     }
+
     &.lg {
       @include dsfr-text("chapo");
+
       font-weight: bold;
     }
+
     &.xl {
       @include dsfr-text("h1");
+
       font-weight: bold;
     }
 
@@ -64,11 +70,14 @@
         .ok {
           display: block;
         }
+
         .edit {
           display: none;
         }
+
         .delete {
           @include iconSize(16px);
+
           padding: u(2);
           border-radius: u(2);
           margin-top: u(2);
@@ -87,6 +96,7 @@
           .edit {
             display: block;
           }
+
           .ok {
             display: none;
           }
@@ -95,18 +105,25 @@
 
       .sm {
         @include dsfr-text("normal");
+
         font-weight: normal;
       }
+
       .md {
         @include dsfr-text("h6");
+
         font-weight: bold;
       }
+
       .lg {
         @include dsfr-text("chapo");
+
         font-weight: bold;
       }
+
       .xl {
         @include dsfr-text("h1");
+        
         font-weight: bold;
       }
     }

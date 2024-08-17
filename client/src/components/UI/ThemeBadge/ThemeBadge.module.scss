@@ -12,7 +12,7 @@
   padding: u(1);
   border-radius: u(1);
 
-  @include isMobile() {
+  @include isMobile {
     @include text("normal");
   }
 }
@@ -22,11 +22,12 @@
   position: relative;
   top: 1px;
 
-  @include rtl() {
+  @include rtl {
     margin-right: 0;
     margin-left: u(1);
   }
-  @include isMobile() {
+  
+  @include isMobile {
     :global(.theme-icon) {
       width: 16px !important;
       height: 16px !important;

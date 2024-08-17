@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable scss/at-extend-no-missing-placeholder */
 @import "~scss/mixins/text";
 @import "~scss/colors";
 @import "~scss/variables";
@@ -27,7 +29,7 @@
     }
   }
 
-  @include responsiveMargins();
+  @include responsiveMargins;
 }
 
 @keyframes pulse {
@@ -46,11 +48,8 @@
 
 .mini_loader {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.45);
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  background-color: rgb(0 0 0 / 45%);
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,26 +65,32 @@
     width: 390px;
 
     & > p {
-      margin: 0;
       @include dsfr-text("chapo");
+
+      margin: 0;
     }
   }
+
   .spinner {
+    --bs-spinner-border-width: 3px;
+
     width: u(7);
     height: u(7);
     color: var(--text-disabled-grey);
-    --bs-spinner-border-width: 3px;
   }
 }
 
 .title {
   text-align: center;
+
   @extend .mx;
 
   h1 {
     @include dsfr-text("h2");
+
     margin-bottom: u(4);
   }
+
   .subtitle {
     color: var(--text-mention-grey);
     margin-bottom: 0;
@@ -93,8 +98,10 @@
 
   &.sm {
     text-align: left;
+
     h1 {
       @include dsfr-text("h3");
+      
       margin-bottom: u(6);
     }
   }
@@ -113,6 +120,7 @@
 
 .separator {
   @include dsfr-text("large");
+
   color: var(--text-disabled-grey);
   display: flex;
   align-items: center;
@@ -138,6 +146,7 @@
 
 .small {
   @include dsfr-text("small");
+
   color: var(--text-mention-grey);
 }
 
@@ -147,10 +156,12 @@
   :global(.fr-radio-rich:hover input[type="radio"]:not(:disabled) ~ .fr-radio-rich__img) {
     background-color: var(--background-alt-blue-france);
   }
+
   :global(.fr-radio-rich input[type="radio"]:checked ~ label),
   :global(.fr-radio-rich input[type="radio"]:checked ~ .fr-radio-rich__img) {
     background-color: var(--background-action-low-blue-france);
   }
+
   :global(.fr-radio-rich:hover input[type="radio"]:checked ~ label),
   :global(.fr-radio-rich:hover input[type="radio"]:checked ~ .fr-radio-rich__img) {
     background-color: var(--border-action-low-blue-france);
@@ -159,12 +170,11 @@
   // remove separator
   :global(.fr-radio-rich input[type="radio"] + label) {
     padding-right: 0;
+    background-size: 100% 1px, 0 100%, 100% 1px, 1px 100%, 1.125rem 1.125rem, 1.125rem 1.125rem;
   }
+
   :global(.fr-radio-rich__img) {
     background-size: 100% 1px, 100% 1px, 1px 100%, 0 0;
-  }
-  :global(.fr-radio-rich input[type="radio"] + label) {
-    background-size: 100% 1px, 0 100%, 100% 1px, 1px 100%, 1.125rem 1.125rem, 1.125rem 1.125rem;
   }
 }
 

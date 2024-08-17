@@ -6,6 +6,9 @@
 @import "~scss/mixins/responsive";
 
 .badge {
+  @include dsfr-text("large");
+  @include mr-ltr(u(4));
+
   width: u(8);
   height: u(8);
   display: inline-flex;
@@ -13,15 +16,14 @@
   justify-content: center;
   text-align: center;
   font-weight: bold;
-  @include dsfr-text("large");
   border-radius: 50%;
   color: white;
-  @include mr-ltr(u(4));
   flex-shrink: 0;
   flex-grow: 0;
 
   @include media-max("lg-limit") {
     @include dsfr-text("small");
+    
     width: u(6);
     height: u(6);
   }

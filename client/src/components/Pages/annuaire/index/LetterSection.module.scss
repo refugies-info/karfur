@@ -3,8 +3,7 @@
 
 .letter_container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   font-weight: bold;
   font-size: 100px;
   padding-left: 72px;
@@ -45,10 +44,12 @@
 .list_item {
   position: relative;
 }
+
 .anchor {
   position: absolute;
   top: -250px;
 }
+
 .title {
   $lines: 4;
 
@@ -58,9 +59,9 @@
   margin-bottom: 0;
   max-width: 100%;
   max-height: 28px * $lines;
-
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: $lines;
   -webkit-line-clamp: $lines;
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;

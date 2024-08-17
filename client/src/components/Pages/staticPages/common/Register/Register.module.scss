@@ -12,7 +12,7 @@
     width: 100%;
     justify-content: center;
 
-    @include isTablet() {
+    @include isTablet {
       margin-top: u(10);
     }
   }

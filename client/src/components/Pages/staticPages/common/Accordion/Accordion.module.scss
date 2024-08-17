@@ -9,13 +9,14 @@
   position: relative;
   margin-bottom: u(8);
 
-  @include isTablet() {
+  @include isTablet {
     margin-bottom: u(6);
   }
 }
 
 .btn {
   @include text("h5");
+
   background: $white;
   border-color: $white;
   padding: u(4);
@@ -28,7 +29,7 @@
   border-radius: $radius;
   width: 100%;
 
-  @include isTablet() {
+  @include isTablet {
     @include text("large");
   }
 
@@ -55,12 +56,13 @@
 
 .text {
   @include text("large");
+
   padding-right: u(4);
   padding-left: u(4);
   margin-bottom: 0;
   margin-top: u(4);
 
-  @include isTablet() {
+  @include isTablet {
     @include text("normal");
   }
 
@@ -68,10 +70,11 @@
     margin: u(2) 0;
     padding-left: u(6);
 
-    @include rtl() {
+    @include rtl {
       padding-right: u(6);
       padding-left: 0;
     }
+
     li {
       margin-bottom: u(2);
     }
@@ -90,7 +93,7 @@
 
 .video {
   max-width: 250px;
-  margin: 0 auto u(6) auto;
+  margin: 0 auto u(6);
   text-align: center;
 
   @include isTablet {
@@ -102,7 +105,7 @@
   margin-left: u(4);
   transition: transform 0.2s ease-in-out;
 
-  @include rtl() {
+  @include rtl {
     margin-right: u(4);
     margin-left: inherit;
   }
@@ -120,6 +123,7 @@
   &.center {
     justify-content: center;
   }
+
   &.right {
     justify-content: flex-end;
   }

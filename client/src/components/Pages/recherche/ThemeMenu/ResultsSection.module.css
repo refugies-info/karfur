@@ -8,14 +8,15 @@
 
 .theme {
   display: flex;
-  padding: 0px 10px;
+  padding: 0 10px;
   align-items: flex-start;
   gap: 10px;
 
+  /* Style */
   color: var(--text-title-grey);
 
   /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Bold */
-  font-family: Marianne;
+  font-family: Marianne, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

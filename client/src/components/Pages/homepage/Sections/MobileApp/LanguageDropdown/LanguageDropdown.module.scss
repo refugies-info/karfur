@@ -16,18 +16,20 @@
     height: 48px;
     position: relative;
 
-    @include rtl() {
+    @include rtl {
       padding: u(3) u(3) u(3) u(9);
     }
 
     .icon {
+      @include r-ltr(u(3));
+
       position: absolute;
       right: u(3);
-      @include r-ltr(u(3));
       top: u(3);
     }
   }
 }
+
 .value {
   display: inline-flex;
   align-items: center;
@@ -35,7 +37,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+
   @include text("normal");
+
   margin: 0;
 }
 
@@ -53,18 +57,22 @@
   border-radius: u(2) !important;
   margin-bottom: u(1);
   border: none;
+
   @include text("normal");
 
   &:hover {
     background: $gray40b;
     color: $dark;
   }
+
   &:focus {
     outline: none;
   }
+
   :global(.fi) {
     margin: 0 u(2) 0 0;
-    @include rtl() {
+
+    @include rtl {
       margin: 0 0 0 u(2);
     }
   }
@@ -74,7 +82,9 @@
     color: $white !important;
   }
 }
+
 .item_locale {
-  font-weight: bold;
   @include mr-ltr(u(1));
+
+  font-weight: bold;
 }

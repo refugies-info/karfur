@@ -7,13 +7,15 @@
 @import "~scss/mixins/input";
 
 .input {
-  @include baseInput();
+  @include baseInput;
+
   font-weight: bold;
   height: 82px; // fix for firefox
 }
 
 .marque {
   @include dsfr-text("chapo");
+  
   font-weight: normal;
   display: flex;
   align-items: center;

@@ -15,6 +15,7 @@
     flex: 1;
     margin-top: 112px;
   }
+
   .left {
     position: sticky;
     top: 112px;
@@ -29,8 +30,9 @@
     margin-top: 200px;
     margin-left: 300px;
   }
+
   .header {
-    background-image: url(../../assets/annuaire/annuaire_create.svg);
+    background-image: url("../../assets/annuaire/annuaire_create.svg");
     width: 360px;
     height: 600px;
     border-radius: $radius;
@@ -47,12 +49,9 @@
     font-weight: bold;
     font-size: 40px;
     line-height: 51px;
-    padding-right: 16px;
-    padding-left: 16px;
+    padding: 8px 16px 13px;
     width: fit-content;
     margin-bottom: 13px;
-    padding-bottom: 8px;
-    padding-top: 8px;
   }
 
   .step {

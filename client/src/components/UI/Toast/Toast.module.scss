@@ -23,22 +23,25 @@
   &:global(.show) {
     transform: translate(-50%, 0);
   }
+
   &:global(:not(.show)) {
     display: flex !important;
   }
 }
 
 .body {
+  @include dsfr-text("normal");
+
   padding: 0 !important;
   display: flex;
   align-items: center;
   color: var(--text-default-success);
-  @include dsfr-text("normal");
 }
 
 .close {
+  @include ml-ltr(u(6));
+  
   width: u(6);
   height: u(6);
-  @include ml-ltr(u(6));
   padding: 0;
 }

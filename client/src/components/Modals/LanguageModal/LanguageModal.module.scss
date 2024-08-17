@@ -9,14 +9,15 @@
 
   .close {
     outline: none;
-    @include isMobile() {
+
+    @include isMobile {
       padding: 0 !important;
     }
   }
 
   .modal_content {
     background: $white;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 16px rgb(0 0 0 / 30%);
     border-radius: $radius;
     border: none;
   }
@@ -33,7 +34,8 @@
       opacity: 1;
       top: 20px;
       right: 20px;
-      @include isMobile() {
+
+      @include isMobile {
         color: white;
         background-color: black;
         font-size: 20px;
@@ -80,6 +82,7 @@
       transition: all 0.5s ease;
       background: $gray20;
     }
+
     /*   &.disabled {
     color: $gray50;
     border-color: $gray50;
@@ -91,11 +94,13 @@
       padding: 10px;
       box-shadow: none;
     }
+
     &.active {
       color: $white;
       background-color: $bleuCharte;
       border: 0.5px solid $bleuCharte;
     }
+
     .vertical_center {
       display: flex;
       align-items: center;
@@ -106,11 +111,13 @@
   // Cols
   .ln_col {
     white-space: nowrap;
-    @include isMobile() {
+
+    @include isMobile {
       max-width: 70%;
       flex: 0 0 80%;
     }
   }
+
   .progress_col {
     display: flex;
     align-items: center;
@@ -121,11 +128,13 @@
       height: 10px;
     }
   }
+
   .button_col {
     display: flex;
     padding-right: 15px;
     justify-content: flex-end;
   }
+  
   .icon_col {
     justify-content: center;
     align-items: center;

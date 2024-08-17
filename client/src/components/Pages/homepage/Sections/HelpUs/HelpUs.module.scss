@@ -6,15 +6,17 @@
 .help_text {
   margin-top: u(6);
   margin-bottom: 0;
+
   @include text("large");
 
-  @include isTablet() {
+  @include isTablet {
     margin-top: u(4);
   }
 }
 
 .link {
-  @include focus();
+  @include focus;
+
   display: inline-block;
   height: 100%;
 }

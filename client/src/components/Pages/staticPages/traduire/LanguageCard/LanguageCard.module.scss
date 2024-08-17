@@ -17,7 +17,7 @@
     background: $gray40b !important;
   }
 
-  @include isTablet() {
+  @include isTablet {
     max-width: 180px;
     margin-left: auto;
     margin-right: auto;
@@ -26,6 +26,7 @@
 
 .title {
   @include text("h5");
+
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -45,7 +46,7 @@
   border-radius: u(1);
   margin-left: u(2);
 
-  @include rtl() {
+  @include rtl {
     margin-left: inherit;
     margin-right: u(2);
   }
@@ -54,10 +55,12 @@
     background: rgba(#e8140f, 0.1);
     color: #e8140f;
   }
+
   &.medium {
     background: rgba(#ff9800, 0.1);
     color: #ff9800;
   }
+
   &.weak {
     background: rgba(#008205, 0.1);
     color: #008205;

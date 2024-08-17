@@ -18,7 +18,7 @@
     height: 46px;
     position: relative;
 
-    @include rtl() {
+    @include rtl {
       padding: u(3) u(2) u(3) u(6);
     }
 
@@ -34,7 +34,7 @@
       right: u(1);
       top: 15px;
 
-      @include rtl() {
+      @include rtl {
         right: inherit;
         left: u(1);
       }
@@ -62,16 +62,18 @@
 }
 
 .value {
+  @include text("normal");
+
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  @include text("normal");
 }
 
 /* Override global style */
+/* stylelint-disable-next-line no-descending-specificity */
 html body .dropdown.show > button {
   box-shadow: 0 0 40px 0 #00000040 !important;
 }
@@ -84,16 +86,18 @@ html body .dropdown.show > button {
 }
 
 .item {
+  @include text("normal");
+
   padding: u(3) u(2);
   border-radius: u(2) !important;
   margin-bottom: u(1);
   border: none;
-  @include text("normal");
 
   &:hover {
     background: $gray40b;
     color: $dark;
   }
+
   &:focus {
     outline: none;
   }
@@ -106,7 +110,7 @@ html body .dropdown.show > button {
   :global(.fi) {
     margin: 0 u(2) 0 0;
 
-    @include rtl() {
+    @include rtl {
       margin: 0 0 0 u(2);
     }
   }
