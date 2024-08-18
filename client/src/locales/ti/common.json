@@ -103,6 +103,8 @@
     "filterAge": "በብዕድመ ዝተኸፋፈለ",
     "filterFrenchLevel": "ደረጃ ምልከት ቋንቋ ፈረንሳ",
     "filterLanguage": "ፋይል ናይ ትርጉም",
+    "filterPublic": "ዕላማ ዝገበሩ ተዓዘብቲ",
+    "filterStatus": "ኩነታት",
     "all": "ኩሉ",
     "resetFilters": "ኩሉ መጻረዪ ይደምሰስ",
     "titleResults": "{{count}} ፋይላት ንእትደልይዎ ፈትሹ",

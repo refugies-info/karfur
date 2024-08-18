@@ -106,6 +106,8 @@
     "filterAge": "Âge",
     "filterFrenchLevel": "Niveau de français",
     "filterLanguage": "Traduites en",
+    "filterPublic": "Public visé",
+    "filterStatus": "Statut",
     "all": "Tous",
     "resetFilters": "Effacer tous les filtres",
     "titleResults": "{{count}} fiches pour votre recherche",

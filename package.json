@@ -32,7 +32,7 @@
     "start:server": "yarn workspace @refugies-info/server start",
     "test": "yarn turbo test",
     "test:client": "yarn turbo test --filter=@refugies-info/client",
-    "test:client:update": "yarn workspace @refugies-info/client test -u",
+    "test:client:update-snapshots": "yarn workspace @refugies-info/client test -u",
     "test:server": "yarn turbo test --filter=@refugies-info/server",
     "lint": "yarn turbo lint",
     "lint:client": "yarn turbo lint --filter=@refugies-info/client",

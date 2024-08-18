@@ -103,6 +103,8 @@
     "filterAge": "رده سنی",
     "filterFrenchLevel": "سطح فرانسوی",
     "filterLanguage": "برگه ها ترجمه شده به",
+    "filterPublic": "مخاطب هدف",
+    "filterStatus": "وضعیت",
     "all": "همه",
     "resetFilters": "حذف تمام فیلترها",
     "titleResults": "{{count}} برگه‌ها پیدا شد",

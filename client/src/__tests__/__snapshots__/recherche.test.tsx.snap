@@ -103,7 +103,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r4:"
                 type="button"
               >
-                Statut
+                Recherche.filterStatus
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -120,7 +120,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r6:"
                 type="button"
               >
-                Public visé
+                Recherche.filterPublic
                 <i
                   class="ri-arrow-down-s-line"
                 />

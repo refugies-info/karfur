@@ -34,13 +34,13 @@ const Filters = (props: Props) => {
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
   const resetTheme = useCallback(() => {
-    addToQueryActionCreator({ needs: [], themes: [] });
-  }, []);
+    dispatch(addToQueryActionCreator({ needs: [], themes: [] }));
+  }, [dispatch]);
 
   // LOCATION
   const resetDepartment = useCallback(() => {
-    addToQueryActionCreator({ departments: [], sort: "date" });
-  }, []);
+    dispatch(addToQueryActionCreator({ departments: [], sort: "date" }));
+  }, [dispatch]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -71,7 +71,7 @@ const Filters = (props: Props) => {
           gaType="themes"
         />
         <Filter
-          label={"Statut"}
+          label={t("Recherche.filterStatus", "Statut")}
           dropdownMenu={{
             filterKey: "status",
             selected: query.status,
@@ -82,7 +82,7 @@ const Filters = (props: Props) => {
           gaType="age"
         />
         <Filter
-          label={"Public visé"}
+          label={t("Recherche.filterPublic", "Public visé")}
           dropdownMenu={{
             filterKey: "public",
             selected: query.public,

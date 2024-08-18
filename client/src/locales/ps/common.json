@@ -103,6 +103,8 @@
     "filterAge": "د عمر حد ټاکل",
     "filterFrenchLevel": "د فرانسوي ژبې کچه",
     "filterLanguage": "ژباړل شوي فایلونه په",
+    "filterPublic": "هدف لیدونکي",
+    "filterStatus": "حالت",
     "all": "ټول",
     "resetFilters": "ټول فلټرونه پاک کول",
     "titleResults": "ستاسو د لټون لپاره فایلونه",

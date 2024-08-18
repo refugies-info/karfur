@@ -1,16 +1,24 @@
+import { GetDispositifsResponse, Id, publicStatusType, publicType } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 
-export const filterByThemeOrNeed = (dispositif: GetDispositifsResponse, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {
+export const filterByThemeOrNeed = (
+  dispositif: GetDispositifsResponse,
+  themesSelected: Id[],
+  needs: Id[],
+  withSecondaryTheme: boolean,
+) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;
   if (dispositif.needs) {
-    for (const need of dispositif.needs) { // return true if dispositif has need
+    for (const need of dispositif.needs) {
+      // return true if dispositif has need
       if (needs.includes(need)) return true;
     }
   }
-  if (!withSecondaryTheme) { // or has theme as primary one
+  if (!withSecondaryTheme) {
+    // or has theme as primary one
     if (dispositif.theme && themesSelected.includes(dispositif.theme)) return true;
-  } else { // or has theme as secondary one
+  } else {
+    // or has theme as secondary one
     if (dispositif.secondaryThemes) {
       for (const theme of dispositif.secondaryThemes) {
         if (themesSelected.includes(theme)) return true;
@@ -31,21 +39,18 @@ export const filterByLocations = (dispositif: GetDispositifsResponse, department
   return false;
 };
 
-
 const filterAgeValues = {
   "-18": [0, 18],
   "18-25": [18, 25],
-  "+25": [25, 99]
-}
+  "+25": [25, 99],
+};
 
 export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
   const audienceAge = dispositif.metadatas?.age;
   if (!audienceAge || !audienceAge.ages[0] || !audienceAge.ages[1]) return true;
   for (const age of ageFilters) {
-    if (audienceAge.ages[0] <= filterAgeValues[age][0] &&
-      audienceAge.ages[1] >= filterAgeValues[age][1]
-    ) {
+    if (audienceAge.ages[0] <= filterAgeValues[age][0] && audienceAge.ages[1] >= filterAgeValues[age][1]) {
       return true;
     }
   }
@@ -53,10 +58,10 @@ export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeO
 };
 
 const filterFrenchLevelValues = {
-  "a": ["A1", "A2"],
-  "b": ["A1", "A2", "B1", "B2"],
-  "c": []
-}
+  a: ["A1", "A2"],
+  b: ["A1", "A2", "B1", "B2"],
+  c: [],
+};
 
 export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
@@ -84,6 +89,26 @@ export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFil
   if (languageFilters.length === 0) return true;
   for (const ln of languageFilters) {
     if (dispositif.availableLanguages.includes(ln)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const filterByPublic = (dispositif: GetDispositifsResponse, publicFilters: publicType[]) => {
+  if (publicFilters.length === 0) return true;
+  for (const value of publicFilters) {
+    if (dispositif.metadatas?.public?.includes(value)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const filterByStatus = (dispositif: GetDispositifsResponse, statusFilters: publicStatusType[]) => {
+  if (statusFilters.length === 0) return true;
+  for (const value of statusFilters) {
+    if (dispositif.metadatas?.publicStatus?.includes(value)) {
       return true;
     }
   }
