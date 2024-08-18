@@ -34,13 +34,13 @@ const Filters = (props: Props) => {
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
   const resetTheme = useCallback(() => {
-    addToQueryActionCreator({ needs: [], themes: [] });
-  }, []);
+    dispatch(addToQueryActionCreator({ needs: [], themes: [] }));
+  }, [dispatch]);
 
   // LOCATION
   const resetDepartment = useCallback(() => {
-    addToQueryActionCreator({ departments: [], sort: "date" });
-  }, []);
+    dispatch(addToQueryActionCreator({ departments: [], sort: "date" }));
+  }, [dispatch]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
