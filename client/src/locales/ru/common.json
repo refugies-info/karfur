@@ -103,6 +103,8 @@
     "filterAge": "Возрастная группа",
     "filterFrenchLevel": "Уроверь французского",
     "filterLanguage": "Страницы переведенные на",
+    "filterPublic": "Целевая аудитория",
+    "filterStatus": "Статус",
     "all": "Все",
     "resetFilters": "Удалить все фильтры",
     "titleResults": "Найдено {{count}} страниц(а)",

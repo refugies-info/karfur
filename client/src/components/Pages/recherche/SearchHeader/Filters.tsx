@@ -71,7 +71,7 @@ const Filters = (props: Props) => {
           gaType="themes"
         />
         <Filter
-          label={"Statut"}
+          label={t("Recherche.filterStatus", "Statut")}
           dropdownMenu={{
             filterKey: "status",
             selected: query.status,
@@ -82,7 +82,7 @@ const Filters = (props: Props) => {
           gaType="age"
         />
         <Filter
-          label={"Public visé"}
+          label={t("Recherche.filterPublic", "Public visé")}
           dropdownMenu={{
             filterKey: "public",
             selected: query.public,
