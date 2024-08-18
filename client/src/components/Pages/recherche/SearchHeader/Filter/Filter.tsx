@@ -1,10 +1,11 @@
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Checkbox from "components/UI/Checkbox";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dropdown, DropdownItem, DropdownMenu } from "reactstrap";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
@@ -19,12 +20,14 @@ type OptionsDropdown = {
   options: FilterOptions;
   selected: Selected[];
   translateOptions?: boolean;
+  menuItemStyles?: string;
 };
 
 type MenuDropdown = {
   menu: React.ReactNode;
   value: string[];
   reset: () => void;
+  menuItemStyles?: never;
 };
 
 interface Props {
@@ -105,37 +108,48 @@ const Filter = (props: Props) => {
   }, [menuDropdown, optionsDropdown, query, t]);
 
   return (
-    <Dropdown isOpen={open} direction="down" toggle={toggleDropdown}>
-      <DropdownButton label={props.label} value={value} onClick={toggleDropdown} onClear={resetOptions} isOpen={open} />
-      <DropdownMenu className={styles.menu} flip={false}>
-        {optionsDropdown
-          ? optionsDropdown.options.map((option, i) => {
-              const isSelected = optionsDropdown.selected.includes(option.key);
-              const isDisabled = option.count === 0;
-              return (
-                <DropdownItem
-                  key={i}
-                  onClick={() => onSelectItem(option.key)}
-                  className={styles.item}
-                  toggle={false}
-                  disabled={isDisabled}
-                >
-                  <Checkbox className={styles.checkbox} checked={isSelected} disabled={isDisabled}>
-                    {optionsDropdown.translateOptions
-                      ? //@ts-ignore
-                        t(option.value)
-                      : option.value}
-                  </Checkbox>
-                  <div className={styles.countContainer}>
-                    <div className={styles.count}>{option.count ?? ""}</div>
-                  </div>
-                </DropdownItem>
-              );
-            })
-          : menuDropdown?.menu}
-      </DropdownMenu>
+    <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleDropdown}>
+      <DropdownMenu.Trigger asChild>
+        <DropdownButton
+          label={props.label}
+          value={value}
+          onClick={toggleDropdown}
+          onClear={resetOptions}
+          isOpen={open}
+        />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
+          {optionsDropdown
+            ? optionsDropdown.options.map((option, i) => {
+                const isSelected = optionsDropdown.selected.includes(option.key);
+                const isDisabled = option.count === 0;
+                return (
+                  <DropdownMenu.Item
+                    key={i}
+                    onClick={() => onSelectItem(option.key)}
+                    className={cls(styles.item, optionsDropdown.menuItemStyles)}
+                    disabled={isDisabled}
+                  >
+                    <Checkbox checked={isSelected} disabled={isDisabled}>
+                      <div className={styles.label}>
+                        {optionsDropdown.translateOptions
+                          ? //@ts-ignore
+                            t(option.value)
+                          : option.value}
+                      </div>
+                      <div className={styles.countContainer}>
+                        <div className={styles.count}>{option.count ?? ""}</div>
+                      </div>
+                    </Checkbox>
+                  </DropdownMenu.Item>
+                );
+              })
+            : menuDropdown?.menu}
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
       {open && <div className={styles.backdrop} onClick={toggleDropdown} />}
-    </Dropdown>
+    </DropdownMenu.Root>
   );
 };
 

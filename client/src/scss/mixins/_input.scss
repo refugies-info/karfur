@@ -16,7 +16,8 @@
 }
 
 @mixin styledInput() {
-  @include baseInput();
+  @include baseInput;
+
   background: var(--background-alt-raised-grey);
   color: var(--text-title-grey);
   border: 1px solid var(--border-default-grey);
@@ -26,6 +27,7 @@
   &:active {
     background: var(--background-contrast-grey) !important;
   }
+  
   &:focus {
     background: var(--background-alt-raised-grey) !important;
     border-color: $darkBackgroundAltGrey;

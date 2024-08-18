@@ -14,7 +14,7 @@
   margin-right: u(2);
   display: inline-flex;
 
-  @include rtl() {
+  @include rtl {
     margin-right: 0;
     margin-left: u(2);
   }

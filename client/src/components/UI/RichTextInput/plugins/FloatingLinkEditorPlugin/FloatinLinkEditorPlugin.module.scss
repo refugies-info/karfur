@@ -20,10 +20,12 @@
     font-weight: bold;
     margin-bottom: u(2);
   }
+
   .url {
     color: $darkBackgroundElevationContrast;
     text-decoration: underline;
   }
+
   .buttons {
     display: flex;
     align-items: center;
@@ -32,13 +34,14 @@
 }
 
 .modal {
-  padding: u(4) u(8) u(8) u(8);
+  padding: u(4) u(8) u(8);
   border-radius: u(2);
   box-shadow: 0 2px 6px 0 #00001229;
   min-width: 550px;
 
   .title {
     @include dsfr-text("h4");
+
     font-weight: bold;
     color: var(--text-title-grey);
     margin-bottom: u(6);
@@ -47,6 +50,7 @@
   .label {
     margin-bottom: u(2);
   }
+
   .input {
     display: flex;
     align-items: center;
@@ -70,8 +74,9 @@
 .floating_container,
 .modal {
   .close {
-    padding: u(1) u(3);
     @include dsfr-text("small");
+
+    padding: u(1) u(3);
     box-shadow: none;
     min-height: 0;
     margin-bottom: u(2);

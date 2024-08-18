@@ -1,5 +1,5 @@
 @import "~scss/mixins/responsive";
-@import "~scss/colors.scss";
+@import "~scss/colors";
 @import "~scss/variables";
 
 .search_btn {
@@ -20,6 +20,7 @@
   &:hover {
     color: $gray90;
   }
+
   &:focus {
     outline: none;
     color: $white;
@@ -31,12 +32,15 @@
     color: $white;
     background: $gray90;
   }
+
   &.lighter {
     filter: saturate(80%) opacity(50%) brightness(110%);
   }
+
   &.with_margins {
     margin: 5px;
   }
+
   &.filter {
     background: transparent;
     color: $white;
@@ -50,12 +54,14 @@
     &:hover {
       filter: brightness(80%);
     }
+
     &.active {
       color: black !important;
       font-weight: 600;
       background: $white;
     }
   }
+
   &.color {
     color: $white;
 
@@ -63,17 +69,20 @@
       filter: brightness(80%);
     }
   }
+
   &.in_header {
     color: $gray10;
     font-size: $text-large;
 
-    &:after {
+    &::after {
       margin-left: 13px;
     }
   }
+
   &.extra_padding {
     padding: 12px;
   }
+
   &.search_option {
     outline: none;
     flex-direction: row;
@@ -85,23 +94,27 @@
     padding: 10px;
     margin-right: 0;
 
-    &:not(&.color) {
-      background: black;
-    }
     &:not(:last-child) {
       margin-right: 8px;
     }
+
+    &:not(&.color) {
+      background: black;
+    }
   }
+
   &.no_hover {
     cursor: unset !important;
 
     &:hover {
       filter: none;
     }
+
     &:focus {
       border-color: transparent;
     }
   }
+
   &.small_font {
     font-size: $text-normal;
   }

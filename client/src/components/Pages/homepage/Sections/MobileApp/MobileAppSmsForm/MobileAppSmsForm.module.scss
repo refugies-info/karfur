@@ -8,13 +8,14 @@
 .container {
   margin-top: u(8);
 
-  @include isTablet() {
+  @include isTablet {
     display: none;
   }
 
   label {
     margin-bottom: u(4);
     font-weight: bold;
+
     @include text("h5");
   }
 }
@@ -28,7 +29,7 @@
     height: 64px;
     padding-right: 50%;
 
-    @include rtl() {
+    @include rtl {
       padding-left: 50%;
       padding-right: u(4);
     }
@@ -36,20 +37,23 @@
 }
 
 .options {
+  @include r-ltr(8px);
+
   display: flex;
   align-items: center;
   position: absolute;
-  @include r-ltr(8px);
   top: 8px;
 }
 
 .submit {
-  height: 48px;
   @include ml-ltr(u(2));
+
+  height: 48px;
 }
 
 .instructions {
+  @include text("small");
+
   margin-top: u(4);
   color: $white;
-  @include text("small");
 }

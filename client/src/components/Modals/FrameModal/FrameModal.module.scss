@@ -7,7 +7,7 @@
   .modal_content {
     background: $gray10;
     border: hidden;
-    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 40px rgb(0 0 0 / 25%);
     border-radius: $radius;
     color: $gray90;
     mix-blend-mode: normal; /* Shadow autour */
@@ -19,7 +19,7 @@
     justify-content: space-between;
     padding: 40px;
     background: #fbfbfb;
-    filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 8px 8px rgb(0 0 0 / 15%));
     border-radius: 12px 12px 0 0;
   }
 

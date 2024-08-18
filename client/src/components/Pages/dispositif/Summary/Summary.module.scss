@@ -20,20 +20,23 @@
 
   ol > li::marker {
     @include dsfr-text("small");
+
     font-weight: normal;
   }
 }
 
 .title {
   @include dsfr-text("small");
+
   font-weight: bold;
   margin-bottom: u(4);
   text-transform: uppercase;
 }
 
 .item {
-  padding-bottom: u(4);
   @include dsfr-text("small");
+  
+  padding-bottom: u(4);
   text-decoration: underline;
 
   &:last-child {

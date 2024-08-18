@@ -1,5 +1,28 @@
 @import "~scss/mixins/unit";
 
+.search {
+  position: relative;
+  width: 720px;
+  margin-bottom: u(10);
+
+  i {
+    position: absolute;
+    top: u(2);
+    left: u(3);
+    color: var(--background-active-blue-france);
+  }
+
+  input {
+    box-shadow: inset 0 -2px 0 0 var(--background-active-blue-france);
+    background: white;
+    padding-inline-start: u(12);
+
+    &:not(:placeholder-shown) {
+      color: var(--text-title-grey);
+    }
+  }
+}
+
 .container {
   display: flex;
   gap: u(3);
@@ -19,21 +42,17 @@
   }
 }
 
-.search {
-  position: relative;
-  width: 720px;
-  margin-bottom: u(10);
+.menuItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
 
-  i {
-    position: absolute;
-    top: u(2);
-    left: u(3);
-    color: var(--background-active-blue-france);
+  &.small {
+    width: 272px;
   }
 
-  input {
-    box-shadow: inset 0 -2px 0 0 var(--background-active-blue-france);
-    background: white;
-    padding-inline-start: u(12);
+  &.medium {
+    width: 302px;
   }
 }

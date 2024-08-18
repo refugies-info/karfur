@@ -8,11 +8,14 @@
   @include ml-ltr(u(2));
 
   @include media-min("lg-limit") {
-    display: none;
     @include ml-ltr(0);
+
+    display: none;
   }
+  
   @include media-min("xl-limit") {
-    display: inline-block;
     @include ml-ltr(u(2));
+
+    display: inline-block;
   }
 }

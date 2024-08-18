@@ -22,7 +22,8 @@
     "baseUrl": "src",
     "incremental": true,
     "paths": {
-      "~scss/*": ["scss/*"]
+      "~css/*": ["css/*"],
+      "~scss/*": ["scss/*"],
     }
   },
   "exclude": ["node_modules"],

@@ -12,9 +12,11 @@
   margin-top: u(6);
   margin-bottom: u(6);
 
+  /* stylelint-disable-next-line selector-class-pattern */
   &.callout--info {
     @include pl-ltr(u(8));
     @include ml-ltr(u(8));
+
     $border: 4px solid var(--border-default-blue-france);
 
     @include media-max("lg-limit") {
@@ -22,20 +24,22 @@
       @include ml-ltr(u(2));
     }
 
-    @include rtl() {
+    @include rtl {
       border-right: $border;
       border-left: none;
     }
-    @include ltr() {
+
+    @include ltr {
       border-left: $border;
       border-right: none;
     }
 
     &::before {
+      @include dsfr-text("h6");
+
       content: attr(data-title);
       display: block;
       margin-bottom: u(2);
-      @include dsfr-text("h6");
       font-weight: bold;
       color: var(--border-default-blue-france);
 
@@ -45,23 +49,27 @@
     }
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   &.callout--important {
     background: var(--background-contrast-grey);
     position: relative;
     border-radius: u(2);
     overflow: hidden;
-    @include rtl() {
+
+    @include rtl {
       padding: u(4) u(14) u(4) u(2);
     }
-    @include ltr() {
+
+    @include ltr {
       padding: u(4) u(2) u(4) u(14);
     }
 
     &::before {
+      @include dsfr-text("h6");
+
       content: attr(data-title);
       display: block;
       margin-bottom: u(1);
-      @include dsfr-text("h6");
       font-weight: bold;
 
       @include media-max("lg-limit") {
@@ -70,8 +78,10 @@
     }
 
     &::after {
+      @include l-ltr(0);
+
       content: "\ea20";
-      font-family: "remixicon" !important;
+      font-family: remixicon, sans-serif !important;
       color: white;
       text-align: center;
       font-size: 24px;
@@ -80,7 +90,6 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      @include l-ltr(0);
       background: var(--border-default-blue-france);
     }
   }

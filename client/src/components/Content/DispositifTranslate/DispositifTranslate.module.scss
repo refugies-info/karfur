@@ -8,50 +8,6 @@
   background-color: var(--background-contrast-grey);
 }
 
-.banner {
-  position: relative;
-
-  .version {
-    position: absolute;
-    top: u(4);
-    left: u(10);
-    padding: u(2);
-    z-index: 1;
-    border-radius: u(2);
-    text-transform: uppercase;
-    font-weight: bold;
-    @include dsfr-text("very-small");
-    background: var(--background-contrast-grey);
-    border: 1px solid white;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 6px 18px 0 #00001229;
-
-    &.translation {
-      left: inherit;
-      right: u(10);
-      background: var(--background-action-low-blue-france);
-      border-color: var(--border-default-blue-france);
-      color: var(--border-default-blue-france);
-      & > span {
-        outline-color: var(--border-default-blue-france);
-      }
-    }
-  }
-}
-
-.col {
-  max-height: calc(100vh - 58px);
-  overflow-y: scroll;
-
-  &:first-child {
-    border-right: 1px solid var(--border-default-grey);
-  }
-  &:last-child {
-    border-left: 1px solid var(--border-default-grey);
-  }
-}
-
 .main {
   padding: u(8) u(10);
   z-index: 1;
@@ -68,6 +24,53 @@
     & > div {
       flex-grow: 1;
     }
+  }
+}
+
+.banner {
+  position: relative;
+
+  .version {
+    @include dsfr-text("very-small");
+
+    position: absolute;
+    top: u(4);
+    left: u(10);
+    padding: u(2);
+    z-index: 1;
+    border-radius: u(2);
+    text-transform: uppercase;
+    font-weight: bold;
+    background: var(--background-contrast-grey);
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 6px 18px 0 #00001229;
+
+    &.translation {
+      left: inherit;
+      right: u(10);
+      background: var(--background-action-low-blue-france);
+      border-color: var(--border-default-blue-france);
+      color: var(--border-default-blue-france);
+
+      & > span {
+        outline-color: var(--border-default-blue-france);
+      }
+    }
+  }
+}
+
+.col {
+  max-height: calc(100vh - 58px);
+  overflow-y: scroll;
+
+  &:first-child {
+    border-right: 1px solid var(--border-default-grey);
+  }
+
+  &:last-child {
+    border-left: 1px solid var(--border-default-grey);
   }
 }
 

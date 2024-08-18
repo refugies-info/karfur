@@ -12,12 +12,14 @@
 }
 
 .btn {
+  @include mr-ltr(u(2));
+
   padding: u(2) !important;
   margin-bottom: u(2);
-  @include mr-ltr(u(2));
 
   @include media-max("xl-limit") {
     @include mr-ltr(u(1));
+    
     margin-bottom: u(1);
   }
 

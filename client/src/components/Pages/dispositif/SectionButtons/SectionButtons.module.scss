@@ -10,9 +10,10 @@ $iconSize: u(4);
 $btnSize: u(8);
 
 .container {
+  @include r-ltr(-54px);
+
   position: absolute;
   top: 0;
-  @include r-ltr(-54px);
 
   @media print {
     display: none;
@@ -29,6 +30,8 @@ $btnSize: u(8);
   }
 
   .btn {
+    @include iconSize($iconSize);
+
     width: $btnSize;
     height: $btnSize;
     min-height: $btnSize;
@@ -36,18 +39,19 @@ $btnSize: u(8);
     display: flex;
     align-items: center;
     justify-content: center;
-    @include iconSize($iconSize);
 
     &::before {
       margin: 0 !important;
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     &:global(.fr-btn--tertiary) {
       box-shadow: inset 0 0 0 1px #e5e5e5;
 
       span i svg {
         fill: var(--text-disabled-grey);
       }
+
       &::before {
         background-color: var(--text-disabled-grey) !important;
       }
@@ -55,9 +59,11 @@ $btnSize: u(8);
       &:hover {
         background: var(--border-default-grey);
         box-shadow: none;
+
         span i svg {
           fill: var(--text-mention-grey);
         }
+
         &::before {
           background-color: var(--text-mention-grey) !important;
         }
@@ -66,6 +72,7 @@ $btnSize: u(8);
 
     &.speed {
       @include dsfr-text("very-small");
+      
       font-weight: bold;
     }
 

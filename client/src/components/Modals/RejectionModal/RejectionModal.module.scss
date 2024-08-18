@@ -1,4 +1,4 @@
-@import "~scss/colors.scss";
+@import "~scss/colors";
 @import "~scss/variables";
 
 .modal {
@@ -6,7 +6,7 @@
 
   .modal_content {
     background: $gray20;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 15px rgb(0 0 0 / 25%);
     border-radius: $radius;
     padding: 20px 40px;
     border: none;
@@ -27,10 +27,12 @@
       .img {
         margin: 50px 0;
       }
+
       .red_text {
         color: $rouge;
       }
     }
+    
     .modal_footer {
       border: none;
       padding: 0;

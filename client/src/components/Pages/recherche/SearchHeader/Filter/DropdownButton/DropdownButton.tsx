@@ -1,8 +1,10 @@
-import { useTranslation } from "next-i18next";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
+import React from "react";
 import styles from "./DropdownButton.module.scss";
 
-interface Props {
+interface Props extends DropdownMenu.DropdownMenuTriggerProps {
   label: string;
   value: string[];
   onClick: () => void;
@@ -10,13 +12,18 @@ interface Props {
   onClear: () => void;
 }
 
-export const DropdownButton = ({ label, value, onClick, isOpen, onClear }: Props) => {
+export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(function DropdownButton(
+  { label, value, onClick, isOpen, onClear, ...other },
+  forwardedRef: React.Ref<HTMLButtonElement>,
+) {
   const { t } = useTranslation();
   return (
     <span className={styles.container}>
       <button
         onClick={onClick}
         className={cls(styles.button, isOpen && styles.open, value.length > 0 && styles.values)}
+        ref={forwardedRef}
+        {...other}
       >
         {value[0] || label}
         {value.length > 1 && (
@@ -34,4 +41,4 @@ export const DropdownButton = ({ label, value, onClick, isOpen, onClear }: Props
       )}
     </span>
   );
-};
+});

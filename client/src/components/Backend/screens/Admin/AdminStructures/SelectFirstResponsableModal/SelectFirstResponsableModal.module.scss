@@ -4,7 +4,7 @@
 .modal {
   .modal_content {
     mix-blend-mode: normal; /* Shadow autour */
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 16px rgb(0 0 0 / 30%);
     border-radius: $radius;
     border: none;
     background: $gray20;

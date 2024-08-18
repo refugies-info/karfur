@@ -6,7 +6,7 @@
 .modal {
   .modal_content {
     mix-blend-mode: normal; /* Shadow autour */
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 16px rgb(0 0 0 / 30%);
     border-radius: $radius;
     border: none;
     background: $gray20;
@@ -33,21 +33,24 @@
 }
 
 .title {
+  @include dsfr-text("h2");
+
   font-weight: 600;
   margin-bottom: u(4);
-  @include dsfr-text("h2");
 }
 
 .label {
-  font-weight: bold;
   @include dsfr-text("normal");
-  margin: 0 0 u(2) 0;
+
+  font-weight: bold;
+  margin: 0 0 u(2);
 }
 
 .input {
   margin-bottom: u(2);
   width: 440px;
 }
+
 .row {
   display: flex;
   flex-direction: row;
@@ -63,6 +66,7 @@
     width: 160px;
     max-height: 200px;
   }
+
   .right {
     margin-left: u(8);
     margin-bottom: u(6);

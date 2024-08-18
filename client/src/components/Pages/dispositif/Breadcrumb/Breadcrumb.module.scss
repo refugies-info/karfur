@@ -22,12 +22,14 @@
 
 .link {
   @include dsfr-text("very-small");
+
   color: var(--text-mention-grey) !important;
   text-decoration: underline !important;
 }
 
 .theme {
   @include dsfr-text("very-small");
+  
   color: white !important;
   text-decoration: underline !important;
   padding: u(1) 6px;

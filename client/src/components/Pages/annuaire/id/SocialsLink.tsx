@@ -59,7 +59,7 @@ export const SocialsLink = (props: Props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t("Annuaire.twitter", "Suivre sur Twitter")}
+            {t("Annuaire.twitter", "Suivre sur X (ex-Twitter)")}
           </FButton>
         </div>
       )}

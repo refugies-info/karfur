@@ -1,3 +1,7 @@
+/* stylelint-disable media-feature-range-notation */
+/* stylelint-disable selector-not-notation */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
 // mobile menu button
 .fr-header .fr-header__navbar {
   align-self: center;
@@ -5,6 +9,7 @@
   [dir="ltr"] & {
     padding-right: 1rem;
   }
+
   [dir="rtl"] & {
     padding-left: 1rem;
     margin-left: inherit;
@@ -19,10 +24,12 @@
   .fr-nav__link {
     text-align: right;
   }
+
   [class^="ri-"].icon-left {
     margin-right: 0;
     margin-left: 0.5rem;
   }
+  
   .fr-header
     .fr-btns-group:not(.fr-btns-group--sm):not(.fr-btns-group--lg):not([class^="fr-btns-group--icon-"]):not(
       [class*=" fr-btns-group--icon-"]

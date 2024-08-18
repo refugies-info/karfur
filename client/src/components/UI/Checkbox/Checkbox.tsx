@@ -1,44 +1,27 @@
-import { fr } from "@codegouvfr/react-dsfr";
-import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { CheckboxProps, Indicator, Root } from "@radix-ui/react-checkbox";
+import React from "react";
+import styles from "./Checkbox.module.css";
+import CheckboxIcon from "./CheckboxIcon";
 import { cls } from "lib/classname";
-import styles from "./Checkbox.module.scss";
 
-interface Props {
-  children: any;
-  checked: boolean;
-  disabled?: boolean;
-  color?: string;
+type Props = {
   onChange?: () => void;
-  className?: string;
-  id?: string;
-  tabIndex?: number;
-}
+} & Omit<CheckboxProps, "onCheckedChange">;
 
-const Checkbox = (props: Props) => {
-  const { isDark } = useIsDark();
-  const theme = fr.colors.getHex({ isDark });
+const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ checked, children, disabled, onChange }) => {
   return (
-    <div className={cls(styles.checkbox, props.className)}>
-      <input
-        id={props.id}
-        type="checkbox"
-        defaultChecked={props.checked}
-        onChange={props.onChange}
-        tabIndex={props.tabIndex}
-      />
-      <span className={styles.check}>
-        <EVAIcon
-          name={props.checked ? "checkmark-square-2" : "square-outline"}
-          fill={
-            props.disabled
-              ? theme.decisions.text.disabled.grey.default
-              : theme.decisions.text.actionHigh.blueFrance.default
-          }
-          size="large"
-        />
-      </span>
-      <label htmlFor={props.id}>{props.children}</label>
+    <div className={styles.container}>
+      <Root
+        className={cls(styles.root, checked === true && styles.checked)}
+        checked={checked ?? false}
+        onCheckedChange={onChange}
+        disabled={disabled}
+      >
+        <Indicator className={styles.indicator}>
+          <CheckboxIcon />
+        </Indicator>
+      </Root>
+      <label className={styles.label}>{children}</label>
     </div>
   );
 };

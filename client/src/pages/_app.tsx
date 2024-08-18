@@ -1,24 +1,27 @@
-import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
-import { useEffectOnce } from "react-use";
-import { Provider } from "react-redux";
+import Layout from "components/Layout/Layout";
+import { isContentPage } from "lib/isContentPage";
+import { Event, initGA } from "lib/tracking";
 import type { NextPage } from "next";
+import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import Link from "next/link";
-import Script from "next/script";
-import { appWithTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import Script from "next/script";
+import { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import { useEffectOnce } from "react-use";
+import { isRoute } from "routes";
+import "scss/index.scss";
 import { wrapper } from "services/configureStore";
 import { PageOptions } from "types/interface";
-import Layout from "components/Layout/Layout";
-import "scss/index.scss";
-import { Event, initGA } from "lib/tracking";
-import { isContentPage } from "lib/isContentPage";
-import { isRoute } from "routes";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
-import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
+import { finishLoading, LoadingStatusKey, startLoading } from "services/LoadingStatus/loadingStatus.actions";
+
+import { DirectionProvider } from "@radix-ui/react-direction";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { useRTL } from "hooks";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",
@@ -107,30 +110,34 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div>
-      {options.cookiesModule && <ConsentBannerAndConsentManagement />}
-      <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+  const isRTL = useRTL();
 
-      {options.supportModule && (
-        <Script
-          id="crisp-widget"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.$crisp=[["safe", true]];
-            window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
-            (function(){
-              const d = document;
-              const s = d.createElement("script");
-              s.src = "https://client.crisp.chat/l.js";
-              s.async = 1;
-              d.getElementsByTagName("head")[0].appendChild(s);
-            })();`,
-          }}
-        />
-      )}
-    </div>
+  return (
+    <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
+      <TooltipProvider delayDuration={250}>
+        {options.cookiesModule && <ConsentBannerAndConsentManagement />}
+        <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+
+        {options.supportModule && (
+          <Script
+            id="crisp-widget"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+        window.$crisp=[["safe", true]];
+        window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
+        (function(){
+          const d = document;
+          const s = d.createElement("script");
+          s.src = "https://client.crisp.chat/l.js";
+          s.async = 1;
+          d.getElementsByTagName("head")[0].appendChild(s);
+        })();`,
+            }}
+          />
+        )}
+      </TooltipProvider>
+    </DirectionProvider>
   );
 };
 

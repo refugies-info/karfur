@@ -42,9 +42,11 @@
     text-align: left;
     flex: auto;
   }
+
   .subtext {
-    display: block;
     @include dsfr-text("very-small");
+
+    display: block;
     color: var(--text-mention-grey);
   }
 

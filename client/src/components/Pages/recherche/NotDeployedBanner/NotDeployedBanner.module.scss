@@ -27,12 +27,12 @@
   align-items: center;
 
   .map_icon {
-    @include isMobile() {
+    @include isMobile {
       display: none;
     }
   }
 
-  @include isMobile() {
+  @include isMobile {
     justify-content: space-between;
   }
 }
@@ -56,12 +56,12 @@
   flex-shrink: 0;
   margin-right: u(10);
 
-  @include rtl() {
+  @include rtl {
     margin-right: 0;
     margin-left: u(10);
   }
 
-  @include isMobile() {
+  @include isMobile {
     display: none;
   }
 }
@@ -69,12 +69,12 @@
 .actions {
   padding-left: u(10);
 
-  @include rtl() {
+  @include rtl {
     padding-left: 0;
     padding-right: u(10);
   }
 
-  @include isMobile() {
+  @include isMobile {
     display: none;
   }
 
@@ -90,7 +90,7 @@
   padding: 0;
   margin-left: u(1);
 
-  @include isDesktop() {
+  @include isDesktop {
     display: none;
   }
 }

@@ -7,19 +7,23 @@
 
 .figure {
   @include text("h1");
+
   margin-bottom: u(6);
   font-weight: bold;
 
-  @include isTablet() {
+  @include isTablet {
     margin-bottom: u(4);
   }
 }
+
 .label {
   @include text("h5");
+
   margin-bottom: 0;
 
-  @include isTablet() {
+  @include isTablet {
     @include text("large");
+
     margin-bottom: u(6);
   }
 }

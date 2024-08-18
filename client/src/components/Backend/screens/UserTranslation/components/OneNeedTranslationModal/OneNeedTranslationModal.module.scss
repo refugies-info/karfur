@@ -17,6 +17,7 @@
 
 .label {
   @include dsfr-text("h4");
+
   font-weight: bold;
   margin-bottom: u(4);
 }
@@ -33,7 +34,8 @@
   }
 
   .input {
-    @include styledInput();
+    @include styledInput;
+
     padding-left: 44px;
   }
 
@@ -42,6 +44,7 @@
       padding-left: inherit;
       padding-right: 44px;
     }
+    
     .flag {
       left: inherit;
       right: u(4);

@@ -40,7 +40,9 @@ $breakpoint: "lg-limit";
 
 .title {
   @include text("h5");
+
   margin-top: u(6);
+
   @include media-max($breakpoint) {
     margin-top: u(4);
   }
@@ -48,11 +50,13 @@ $breakpoint: "lg-limit";
 
 .text {
   @include text("large");
+
   margin-top: u(6);
   margin-bottom: u(6);
 
   @include media-max($breakpoint) {
     @include text("normal");
+    
     margin-top: u(4);
     margin-bottom: u(4);
   }

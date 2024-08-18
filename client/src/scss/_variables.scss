@@ -1,3 +1,5 @@
+/* stylelint-disable scss/dollar-variable-pattern */
+@use "sass:map";
 @import "~scss/colors";
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/bootstrap/scss/variables";
@@ -13,13 +15,11 @@ $table-bg: #0000;
 $light: $gray20;
 $dark: $gray90;
 $primary: $bleuCharte;
-
 $custom-colors: (
   "primary": $primary,
   "light-green": $greenValidate,
 );
-
-$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors: map.merge($theme-colors, $custom-colors);
 
 // Grid
 $grid-breakpoints: (
@@ -29,7 +29,6 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
 );
-
 $container-max-widths: (
   sm: 540px,
   md: 720px,
@@ -43,7 +42,6 @@ $h2-font-size: 2.5rem;
 $h3-font-size: 2.5rem;
 $h4-font-size: 1.75rem;
 $h5-font-size: 1.375rem;
-
 $headings-margin-bottom: 0;
 $headings-font-weight: bold;
 $headings-line-height: 1.25;

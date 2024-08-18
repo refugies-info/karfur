@@ -10,6 +10,7 @@
   display: flex;
   width: 282px;
 
+  /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__content) {
     position: relative;
   }
@@ -22,17 +23,18 @@
   right: 12px;
   z-index: 5;
 
-  @include rtl() {
+  @include rtl {
     right: inherit;
     left: 12px;
   }
 }
 
 .info {
+  @include dsfr-text("very-small");
+
   display: flex;
   align-items: center;
   gap: u(2);
-  @include dsfr-text("very-small");
   color: var(--text-mention-grey);
 
   & > i::before {
@@ -54,6 +56,7 @@
   background-color: var(--background-contrast-purple-glycine);
   color: var(--text-action-high-purple-glycine);
 }
+
 .badge_online {
   background-color: var(--background-contrast-info);
   color: var(--text-default-info);
@@ -62,6 +65,7 @@
     --icon-size: 12px !important;
   }
 }
+
 .badge_demarche {
   background-color: var(--background-contrast-yellow-tournesol);
   color: var(--text-action-high-yellow-tournesol);

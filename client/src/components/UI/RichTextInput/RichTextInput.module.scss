@@ -17,16 +17,18 @@
 }
 
 .content {
+  @include content-text;
+
   padding: u(6);
   outline: none !important;
   position: relative;
   z-index: 1;
-  @include content-text();
 }
 
 .placeholder {
+  @include l-ltr(u(6));
+  
   position: absolute;
   bottom: u(12);
-  @include l-ltr(u(6));
   color: var(--text-disabled-grey);
 }

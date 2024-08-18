@@ -18,6 +18,7 @@
   h1 {
     @include dsfr-text("h1");
   }
+
   p {
     @include dsfr-text("chapo");
   }
@@ -49,6 +50,7 @@
   from {
     transform: translateY(-100%);
   }
+  
   to {
     transform: translateY(0);
   }

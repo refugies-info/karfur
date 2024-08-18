@@ -9,7 +9,7 @@
   margin-top: 30px;
   padding-bottom: 80px;
 
-  @include isMobile() {
+  @include isMobile {
     padding-bottom: u(10);
 
     &.no_result {
@@ -30,7 +30,7 @@
   display: flex;
   justify-content: space-between;
 
-  @include isMobile() {
+  @include isMobile {
     padding-left: 15px;
     padding-right: 15px;
     display: flex;
@@ -40,22 +40,23 @@
 }
 
 .types {
-  @include isMobile() {
+  @include isMobile {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    padding: 0 15px u(2) 15px;
+    padding: 0 15px u(2);
     margin: 0 -15px;
   }
 }
 
 .btn {
+  @include text("normal");
+
   background: transparent;
   border-radius: u(2);
   border: none;
   padding: u(3);
   margin-right: u(4);
-  @include text("normal");
 
   &:hover,
   &:focus,
@@ -63,7 +64,7 @@
     background: $gray40b !important;
   }
 
-  @include rtl() {
+  @include rtl {
     margin-right: 0;
     margin-left: u(4);
   }
@@ -74,7 +75,7 @@
     font-weight: bold;
   }
 
-  @include isMobile() {
+  @include isMobile {
     background: $gray40b;
     padding: u(2);
     white-space: nowrap;
@@ -82,13 +83,14 @@
 }
 
 .dropdown {
+  @include text("normal");
+
   background: $white;
   border: none;
   padding: u(3);
   border-radius: u(2);
   box-shadow: 0 u(1) 18px 0 #0000001a;
   height: 45px;
-  @include text("normal");
 
   &:hover,
   &:active,
@@ -99,7 +101,7 @@
   .icon {
     margin-right: u(2);
 
-    @include rtl() {
+    @include rtl {
       margin-right: 0;
       margin-left: u(2);
     }
@@ -109,7 +111,7 @@
     }
   }
 
-  @include isMobile() {
+  @include isMobile {
     margin-top: u(8);
     background: $gray40b;
     box-shadow: none;
@@ -122,23 +124,27 @@
     }
   }
 }
+
 .menu {
   box-shadow: 0 0 40px 0 #00000040;
   padding: u(4);
   border-radius: $radius;
   margin-top: u(2);
 }
+
 .item {
+  @include text("normal");
+
   padding: u(3) u(2);
   border-radius: u(2) !important;
   margin-bottom: u(1);
   border: none;
-  @include text("normal");
 
   &:hover {
     background: $gray40b;
     color: $dark;
   }
+
   &:focus {
     outline: none;
   }
@@ -151,7 +157,7 @@
   i {
     margin: 0 0 0 u(2);
 
-    @include rtl() {
+    @include rtl {
       margin: 0 u(2) 0 0;
     }
   }

@@ -28,10 +28,13 @@
 
   &.new {
     @include buttonStatus("new");
+
     color: var(--text-action-high-yellow-tournesol);
   }
+
   &.error {
     @include buttonStatus("error");
+    
     color: var(--text-default-error);
   }
 }

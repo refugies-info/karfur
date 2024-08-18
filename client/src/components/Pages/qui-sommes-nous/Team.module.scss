@@ -11,9 +11,9 @@
 
 .member_container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
+
 .member_card {
   text-align: center;
   display: flex;
@@ -32,6 +32,7 @@
   border-width: 4px;
   border-style: solid;
 }
+
 .name {
   text-align: center;
   width: fit-content;
@@ -41,12 +42,14 @@
   padding: 4px;
   margin-top: 20px;
 }
+
 .link {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .role {
   text-align: center;
   width: fit-content;
