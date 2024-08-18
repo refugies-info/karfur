@@ -1,23 +1,24 @@
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
-import { Results } from "services/SearchResults/searchResults.reducer";
+import { Results, SearchQuery } from "services/SearchResults/searchResults.reducer";
 import {
-  filterByThemeOrNeed,
-  filterByLocations,
   filterByAge,
   filterByFrenchLevel,
   filterByLanguage,
+  filterByLocations,
+  filterByPublic,
+  filterByStatus,
+  filterByThemeOrNeed,
 } from "./filterContents";
-import { sortDispositifs } from "./sortContents";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { sortDispositifs } from "./sortContents";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
-const indexName = (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") ?
-  process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD :
-  process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
+const indexName =
+  process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
+    ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
+    : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
 const index = searchClient.initIndex(indexName || "");
-
 
 /**
  * Filters a list of dispositifs from a query, for primary theme or secondary themes
@@ -29,27 +30,26 @@ const index = searchClient.initIndex(indexName || "");
 const filterDispositifs = (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
-  secondaryThemes: boolean
+  secondaryThemes: boolean,
 ): GetDispositifsResponse[] => {
   return [...dispositifs]
-    .filter(dispositif => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
-    .filter(dispositif => filterByLocations(dispositif, query.departments))
-    .filter(dispositif => filterByAge(dispositif, query.age))
-    .filter(dispositif => filterByFrenchLevel(dispositif, query.frenchLevel))
-    .filter(dispositif => filterByLanguage(dispositif, query.language))
+    .filter((dispositif) => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
+    .filter((dispositif) => filterByLocations(dispositif, query.departments))
+    .filter((dispositif) => filterByAge(dispositif, query.age))
+    .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
+    .filter((dispositif) => filterByLanguage(dispositif, query.language))
+    .filter((dispositif) => filterByPublic(dispositif, query.public))
+    .filter((dispositif) => filterByStatus(dispositif, query.status))
     .sort((a, b) => sortDispositifs(a, b, query.sort, !!query.search));
-}
+};
 
 let searchCache = "";
 let searchCacheResults: GetDispositifsResponse[] = [];
-const queryOnAlgolia = async (
-  search: string,
-  dispositifs: GetDispositifsResponse[],
-  locale: string
-) => {
+const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsResponse[], locale: string) => {
   let filteredDispositifsByAlgolia: GetDispositifsResponse[] = [...dispositifs];
   if (search) {
-    if (search !== searchCache) { // new search
+    if (search !== searchCache) {
+      // new search
       searchCache = search; // keep search in cache to prevent useless algolia searchs
       let hits: Hit[] = [];
       const queryLanguages: string[] = ["fr"];
@@ -62,29 +62,34 @@ const queryOnAlgolia = async (
           restrictSearchableAttributes: getSearchableAttributes(locale),
           analyticsTags: [`ln_${locale}`],
           queryLanguages,
-          hitsPerPage: 600
+          hitsPerPage: 600,
         })
-        .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
+        .then(({ hits }) => hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult })));
 
-      filteredDispositifsByAlgolia = hits.map(hit => {
-        const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
-        // deep clone object to make sure cards components re-renders
-        const newDispositif: GetDispositifsResponse | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
-        if (newDispositif) {
-          newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
-          newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
-          newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
-          // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
-        }
-        return newDispositif;
-      }).filter(d => !!d) as GetDispositifsResponse[];
+      filteredDispositifsByAlgolia = hits
+        .map((hit) => {
+          const dispositif = dispositifs.find((d) => d._id.toString() === hit.id);
+          // deep clone object to make sure cards components re-renders
+          const newDispositif: GetDispositifsResponse | undefined = dispositif
+            ? JSON.parse(JSON.stringify(dispositif))
+            : undefined;
+          if (newDispositif) {
+            newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
+            newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
+            newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
+            // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
+          }
+          return newDispositif;
+        })
+        .filter((d) => !!d) as GetDispositifsResponse[];
       searchCacheResults = filteredDispositifsByAlgolia;
-    } else { // same search
+    } else {
+      // same search
       filteredDispositifsByAlgolia = [...searchCacheResults];
     }
   }
   return filteredDispositifsByAlgolia;
-}
+};
 
 /**
  * Use the query to filter a list of dispositifs
@@ -92,10 +97,7 @@ const queryOnAlgolia = async (
  * @param dispositifs - list of dispositifs
  * @returns - results
  */
-export const queryDispositifs = (
-  query: SearchQuery,
-  dispositifs: GetDispositifsResponse[],
-): Results => {
+export const queryDispositifs = (query: SearchQuery, dispositifs: GetDispositifsResponse[]): Results => {
   const results = filterDispositifs(query, dispositifs, false);
 
   // dispositifs which have theme in secondary themes
@@ -103,18 +105,18 @@ export const queryDispositifs = (
   let demarchesSecondaryTheme: GetDispositifsResponse[] = [];
   if (query.themes.length > 0) {
     const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
-      .filter(dispositif => !results.map(d => d._id).includes(dispositif._id));
+      .filter((dispositif) => !results.map((d) => d._id).includes(dispositif._id));
     const contentSecondaryTheme = filterDispositifs(query, remainingDispositifs, true);
-    dispositifsSecondaryTheme = contentSecondaryTheme.filter(d => d.typeContenu === "dispositif");
-    demarchesSecondaryTheme = contentSecondaryTheme.filter(d => d.typeContenu === "demarche");
+    dispositifsSecondaryTheme = contentSecondaryTheme.filter((d) => d.typeContenu === "dispositif");
+    demarchesSecondaryTheme = contentSecondaryTheme.filter((d) => d.typeContenu === "demarche");
   }
 
   return {
-    dispositifs: results.filter(d => d.typeContenu === "dispositif"),
-    demarches: [...results.filter(d => d.typeContenu === "demarche"), ...demarchesSecondaryTheme],
+    dispositifs: results.filter((d) => d.typeContenu === "dispositif"),
+    demarches: [...results.filter((d) => d.typeContenu === "demarche"), ...demarchesSecondaryTheme],
     dispositifsSecondaryTheme: dispositifsSecondaryTheme,
-  }
-}
+  };
+};
 
 /**
  * Use Algolia and the query to filter a list of dispositifs
@@ -127,7 +129,7 @@ export const queryDispositifs = (
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
-  locale: string
+  locale: string,
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
   return queryDispositifs(query, filteredDispositifsByAlgolia);
@@ -144,12 +146,12 @@ export const queryDispositifsWithAlgolia = async (
 export const queryDispositifsWithoutThemes = async (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
-  locale: string
+  locale: string,
 ): Promise<GetDispositifsResponse[]> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
   return [...filteredDispositifsByAlgolia]
-    .filter(dispositif => filterByLocations(dispositif, query.departments))
-    .filter(dispositif => filterByAge(dispositif, query.age))
-    .filter(dispositif => filterByFrenchLevel(dispositif, query.frenchLevel))
-    .filter(dispositif => filterByLanguage(dispositif, query.language));
+    .filter((dispositif) => filterByLocations(dispositif, query.departments))
+    .filter((dispositif) => filterByAge(dispositif, query.age))
+    .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
+    .filter((dispositif) => filterByLanguage(dispositif, query.language));
 };
