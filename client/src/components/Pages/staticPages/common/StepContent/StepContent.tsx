@@ -1,10 +1,11 @@
-import React, { ReactElement, useMemo } from "react";
-import Image from "next/image";
+import { useSanitizedContent } from "hooks";
+import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
+import Image from "next/image";
+import { ReactElement, useMemo } from "react";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./StepContent.module.scss";
-import useWindowSize from "hooks/useWindowSize";
 
 interface Props {
   step: number;
@@ -30,8 +31,10 @@ const StepContent = (props: Props) => {
 
   const buttonStep = useMemo(
     () => <div className={cls(styles.btn_step, props.buttonStepEnd && styles.last)}>{props.buttonStep}</div>,
-    [props.buttonStep, props.buttonStepEnd]
+    [props.buttonStep, props.buttonStepEnd],
   );
+
+  const safeTitle = useSanitizedContent(props.title);
 
   return (
     <div
@@ -39,7 +42,7 @@ const StepContent = (props: Props) => {
         styles.row,
         styles[props.color],
         props.dottedLine && styles.dotted,
-        !!props.buttonStep && styles.has_btn_step
+        !!props.buttonStep && styles.has_btn_step,
       )}
     >
       <div className={cls(styles.content)}>
@@ -49,7 +52,7 @@ const StepContent = (props: Props) => {
         <h3
           className={styles.title}
           dangerouslySetInnerHTML={{
-            __html: props.title
+            __html: safeTitle,
           }}
         ></h3>
         {props.texts.map((text, i) => (

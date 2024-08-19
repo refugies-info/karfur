@@ -1,22 +1,23 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useAsyncFn, useNumber } from "react-use";
-import { useWatch } from "react-hook-form";
 import { Languages } from "@refugies-info/api-types";
+import { sanitize } from "dompurify";
 import { useUser } from "hooks";
 import { Suggestion } from "hooks/dispositif";
 import { checkIsRTL } from "hooks/useRTL";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useWatch } from "react-hook-form";
+import { useAsyncFn, useNumber } from "react-use";
 import API from "utils/API";
 import PageContext from "utils/pageContext";
-import TranslationStatus from "./TranslationStatus";
-import UserSuggest from "./UserSuggest";
 import BottomButtons from "./BottomButtons";
-import TranslationEditField from "./TranslationEditField";
+import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
 import SuggestionsNavButtons from "./SuggestionsNavButtons";
 import TranslationEditAuthor from "./TranslationEditAuthor";
-import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
+import TranslationEditField from "./TranslationEditField";
 import styles from "./TranslationInput.module.scss";
+import TranslationStatus from "./TranslationStatus";
+import UserSuggest from "./UserSuggest";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
   return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
@@ -197,7 +198,7 @@ const TranslationInput = (props: Props) => {
           </div>
           <div
             className={styles.value}
-            dangerouslySetInnerHTML={{ __html: display.text }}
+            dangerouslySetInnerHTML={{ __html: sanitize(display.text) }}
             dir={isRTL ? "rtl" : "ltr"}
           />
         </div>
@@ -223,9 +224,15 @@ const TranslationInput = (props: Props) => {
                   onClick={user.expertTrad ? () => clickSuggestionAsExpert(suggestions[index]?.text) : undefined}
                 >
                   {index === max ? (
-                    <div dangerouslySetInnerHTML={{ __html: googleTranslateValue }} dir={isRTL ? "rtl" : "ltr"} />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: sanitize(googleTranslateValue) }}
+                      dir={isRTL ? "rtl" : "ltr"}
+                    />
                   ) : (
-                    <div dangerouslySetInnerHTML={{ __html: suggestions[index]?.text }} dir={isRTL ? "rtl" : "ltr"} />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: sanitize(suggestions[index]?.text) }}
+                      dir={isRTL ? "rtl" : "ltr"}
+                    />
                   )}
                 </div>
               )}

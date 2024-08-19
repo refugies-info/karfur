@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
-import { useTranslation } from "next-i18next";
+import { useSanitizedContent } from "hooks";
 import { cls } from "lib/classname";
 import { getCalloutTranslationKey, translationParsing } from "lib/contentParsing";
+import { useTranslation } from "next-i18next";
+import { useContext } from "react";
 import PageContext from "utils/pageContext";
 import styles from "./Text.module.scss";
 
@@ -25,10 +26,12 @@ const Text = (props: Props) => {
       ])
     : props.children;
 
+  const safeContent = useSanitizedContent(convertedContent);
+
   return props.html ? (
     <div
       data-section={props.id}
-      dangerouslySetInnerHTML={{ __html: convertedContent }}
+      dangerouslySetInnerHTML={{ __html: safeContent }}
       className={cls(styles.content, pageContext.activeSection === props.id && styles.highlighted)}
     />
   ) : (

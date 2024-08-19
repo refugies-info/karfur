@@ -1,4 +1,5 @@
 import { GetLogResponse } from "@refugies-info/api-types";
+import { useSanitizedContent } from "hooks";
 
 const getText = (log: GetLogResponse) => {
   if (!log.dynamicId) return log.text;
@@ -8,7 +9,7 @@ const getText = (log: GetLogResponse) => {
   return log.text.replace("{{dynamic}}", `<strong>${dynamicValue}</strong>`);
 };
 
-export const getLogText = (log: GetLogResponse) => {
-  const text = getText(log);
-  return <div dangerouslySetInnerHTML={{ __html: text }}></div>;
+export const LogText = (log: GetLogResponse) => {
+  const safeText = useSanitizedContent(getText(log));
+  return <div dangerouslySetInnerHTML={{ __html: safeText }}></div>;
 };

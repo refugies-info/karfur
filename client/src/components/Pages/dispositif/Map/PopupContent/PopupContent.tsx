@@ -1,5 +1,5 @@
-import React from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { useSanitizedContent } from "hooks";
 import { Marker } from "../Map";
 import styles from "./PopupContent.module.scss";
 
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const PopupContent = ({ marker, onClose }: Props) => {
+  const safeDescription = useSanitizedContent(marker.description);
   return (
     <div onClick={(e: any) => e.stopPropagation()} className={styles.popup}>
       <div className={styles.close} onClick={onClose}>
@@ -33,12 +34,12 @@ const PopupContent = ({ marker, onClose }: Props) => {
           <span>{marker.phone}</span>
         </p>
       )}
-      {marker.description && (
+      {safeDescription && (
         <p className={styles.info}>
           <EVAIcon name="clock-outline" size={16} fill="dark" className="me-1" />
           <span
             dangerouslySetInnerHTML={{
-              __html: marker.description,
+              __html: safeDescription,
             }}
           ></span>
         </p>

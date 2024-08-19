@@ -1,23 +1,23 @@
-import { memo } from "react";
-import { useSelector } from "react-redux";
+import Badge from "@codegouvfr/react-dsfr/Badge";
+import Card from "@codegouvfr/react-dsfr/Card";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
+import demarcheIcon from "assets/recherche/illu-demarche.svg";
+import TempDemarcheIllu from "assets/recherche/temp-illu-demarche.png";
+import FavoriteButton from "components/UI/FavoriteButton";
+import { useSanitizedContent, useUtmz } from "hooks";
+import { cls } from "lib/classname";
+import { getReadableText } from "lib/getReadableText";
+import { getRelativeTimeString } from "lib/getRelativeDate";
+import { getTheme } from "lib/getTheme";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useUtmz } from "hooks";
-import { themesSelector } from "services/Themes/themes.selectors";
-import { getTheme } from "lib/getTheme";
-import { cls } from "lib/classname";
-import FavoriteButton from "components/UI/FavoriteButton";
-import demarcheIcon from "assets/recherche/illu-demarche.svg";
-import TempDemarcheIllu from "assets/recherche/temp-illu-demarche.png";
 import styles from "scss/components/contentCard.module.scss";
-import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { getReadableText } from "lib/getReadableText";
-import Card from "@codegouvfr/react-dsfr/Card";
-import Badge from "@codegouvfr/react-dsfr/Badge";
+import { themesSelector } from "services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
-import { getRelativeTimeString } from "lib/getRelativeDate";
 
 interface Props {
   demarche: GetDispositifsResponse;
@@ -30,6 +30,10 @@ const DemarcheCard = (props: Props) => {
   const themes = useSelector(themesSelector);
   const theme = getTheme(props.demarche.theme, themes);
   const { params: utmParams } = useUtmz();
+
+  const safeTitreMarque = useSanitizedContent(props.demarche?.titreMarque);
+  const safeTitreInformatif = useSanitizedContent(props.demarche.titreInformatif);
+  const safeAbstract = useSanitizedContent(props.demarche.abstract);
 
   return (
     <div className={styles.wrapper}>
@@ -69,14 +73,14 @@ const DemarcheCard = (props: Props) => {
             {props.demarche?.titreMarque && (
               <div className={cls(styles.info, "mb-3")}>
                 <i className="fr-icon-building-line" />
-                <span dangerouslySetInnerHTML={{ __html: props.demarche?.titreMarque || "" }} />
+                <span dangerouslySetInnerHTML={{ __html: safeTitreMarque }} />
               </div>
             )}
           </>
         }
-        title={<span dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}></span>}
+        title={<span dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
         titleAs="h3"
-        desc={<span dangerouslySetInnerHTML={{ __html: props.demarche.abstract || "" }}></span>}
+        desc={<span dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
         end={
           props.demarche.lastModificationDate ? (
             <div className={styles.info}>

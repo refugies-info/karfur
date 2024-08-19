@@ -1,12 +1,12 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
-import { cls } from "lib/classname";
-import { useUniqueId } from "hooks";
-import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Tooltip from "components/UI/Tooltip";
-import DeleteContentModal from "./DeleteContentModal";
+import { useSanitizedContent, useUniqueId } from "hooks";
+import { cls } from "lib/classname";
+import React, { useCallback, useContext, useMemo, useState } from "react";
+import PageContext from "utils/pageContext";
 import styles from "./AddContentButton.module.scss";
+import DeleteContentModal from "./DeleteContentModal";
 
 interface Props {
   children: string | React.ReactNode;
@@ -41,6 +41,7 @@ const AddContentButton = (props: Props) => {
     () => <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.icon, styles.ok)} />,
     [],
   );
+  const safeContent = useSanitizedContent(typeof props.content === "string" ? props.content : undefined);
   return (
     <Button
       priority="tertiary"
@@ -63,7 +64,7 @@ const AddContentButton = (props: Props) => {
             <span
               className={cls(props.contentSize && styles[props.contentSize])}
               dangerouslySetInnerHTML={{
-                __html: props.content,
+                __html: safeContent,
               }}
             />
           ) : (

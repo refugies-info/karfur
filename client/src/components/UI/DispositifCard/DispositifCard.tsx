@@ -1,23 +1,23 @@
-import React, { memo } from "react";
-import { useSelector } from "react-redux";
+import Badge from "@codegouvfr/react-dsfr/Badge";
+import Card from "@codegouvfr/react-dsfr/Card";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
+import defaultStructureImage from "assets/recherche/default-structure-image.svg";
+import TempDispositifIllu from "assets/recherche/temp-illu-dispositif.png";
+import FavoriteButton from "components/UI/FavoriteButton";
+import { useSanitizedContent, useUtmz } from "hooks";
+import { jsLcfirst, jsUcfirst } from "lib";
+import { cls } from "lib/classname";
+import { getCommitmentText, getPriceText } from "lib/dispositif";
+import { getReadableText } from "lib/getReadableText";
+import { getTheme } from "lib/getTheme";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import { jsUcfirst, jsLcfirst } from "lib";
-import { useUtmz } from "hooks";
-import { cls } from "lib/classname";
-import { getCommitmentText, getPriceText } from "lib/dispositif";
-import { getTheme } from "lib/getTheme";
-import { themesSelector } from "services/Themes/themes.selectors";
-import FavoriteButton from "components/UI/FavoriteButton";
-import defaultStructureImage from "assets/recherche/default-structure-image.svg";
-import TempDispositifIllu from "assets/recherche/temp-illu-dispositif.png";
 import styles from "scss/components/contentCard.module.scss";
-import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { getReadableText } from "lib/getReadableText";
-import Card from "@codegouvfr/react-dsfr/Card";
-import Badge from "@codegouvfr/react-dsfr/Badge";
+import { themesSelector } from "services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
 
 interface Props {
@@ -52,6 +52,10 @@ const DispositifCard = (props: Props) => {
     const splittedLocation = location[0].split(" - ");
     return `${splittedLocation[1]} ${splittedLocation[0]}`;
   };
+
+  const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
+  const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
+  const safeAbstract = useSanitizedContent(props.dispositif.abstract);
 
   return (
     <div className={cls(styles.wrapper)}>
@@ -98,13 +102,13 @@ const DispositifCard = (props: Props) => {
             </div>
             <div className={cls(styles.info, "mb-3")}>
               <i className="fr-icon-building-line" />
-              <span dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque || "" }} />
+              <span dangerouslySetInnerHTML={{ __html: safeTitreMarque }} />
             </div>
           </>
         }
-        title={<span dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif || "" }}></span>}
+        title={<span dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
         titleAs="h3"
-        desc={<span dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}></span>}
+        desc={<span dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
         end={
           <div className="d-flex gap-3">
             {price !== undefined && (
