@@ -348,27 +348,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   margin-bottom: 8px;
 }
 
-.c5:hover,
-.favorite:hover+.c5 {
-  background-color: #DDF2F9!important;
-  border-color: #06508C!important;
-  color: #06508C!important;
-}
-
-.c3 :hover,
-.favorite:hover+.c3 {
-  background-color: #EFE8F4!important;
-  border-color: #3D2884!important;
-  color: #3D2884!important;
-}
-
-.c4 :hover,
-.favorite:hover+.c4 {
-  background-color: #EEE7E5!important;
-  border-color: #443023!important;
-  color: #443023!important;
-}
-
 <div
     class="container"
   >
@@ -441,482 +420,353 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
     >
       <div>
         <div
-          class="wrapper wrapper"
+          class="wrapper"
         >
+          <div
+            class="fr-card fr-enlarge-link"
+            id="fr-card-:r0:"
+          >
+            <div
+              class="fr-card__body"
+            >
+              <div
+                class="fr-card__content"
+              >
+                <h3
+                  class="fr-card__title"
+                >
+                  <a
+                    class=""
+                    href="[object Object]"
+                    title="tinfo1"
+                  >
+                    <span>
+                      tinfo1
+                    </span>
+                  </a>
+                </h3>
+                <p
+                  class="fr-card__desc"
+                >
+                  <span>
+                    abstract1
+                  </span>
+                </p>
+                <div
+                  class="fr-card__start"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(239, 232, 244);"
+                    >
+                      Français
+                    </div>
+                  </div>
+                  <div
+                    class="info mb-3"
+                  >
+                    <i
+                      class="fr-icon-building-line"
+                    />
+                    <span>
+                      titreMarque1
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__end"
+                >
+                  <div
+                    class="d-flex gap-3"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  src="/img.jpg"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
+                    id="fr-badge-:r1:"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
           <button
             class="btn favorite btn btn-secondary"
             title="Dispositif.addToFavorites"
             type="button"
           >
-            <span
-              class="icon_outline icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-star-outline"
-                  fill="dark"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="star"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            <span
-              class="icon_fill icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-star"
-                  fill="dark"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="star"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-          </button>
-          <a
-            class="c3 card dispositif content card"
-            href="/program/id1"
-            title="tinfo1"
-          >
-            <div
-              class="location"
-            >
-              <img
-                alt="Infocards.location"
-                data-nimg="1"
-                decoding="async"
-                height="16"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                style="color: transparent;"
-                width="16"
-              />
-              <span
-                class="ms-1"
-                style="color: rgb(61, 40, 132);"
-              />
-            </div>
-            <h3
-              class="title"
-              style="color: rgb(61, 40, 132);"
-            >
-              tinfo1
-            </h3>
-            <div
-              class="text max_lines abstract"
-              style="color: rgb(61, 40, 132);"
-            >
-              abstract1
-            </div>
-            <div
-              class="infos text my-3"
-              style="color: rgb(61, 40, 132);"
+            <i
+              class="fr-icon-star-line"
             />
-            <div
-              class="themes"
-            >
-              <div
-                class="container badges theme-badge"
-                style="background-color: rgb(239, 232, 244);"
-              >
-                <span
-                  class="icon"
-                >
-                  <span
-                    class="icon theme-icon"
-                    style="width: 12px; height: 12px;"
-                  >
-                    <svg
-                      height="12"
-                      width="12"
-                    />
-                  </span>
-                </span>
-                <span
-                  style="color: rgb(61, 40, 132);"
-                >
-                  Français
-                </span>
-              </div>
-            </div>
-            <div
-              class="sponsor"
-              style="border-color: #3d2884;"
-            >
-              <span
-                class="picture"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height="40"
-                  loading="lazy"
-                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                  srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                  style="color: transparent; object-fit: contain;"
-                  width="40"
-                />
-              </span>
-              <span
-                class="text max_lines ms-2"
-                style="color: rgb(61, 40, 132);"
-              >
-                titreMarque1
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div
-          class="wrapper wrapper"
-        >
-          <button
-            class="btn favorite btn btn-secondary"
-            title="Dispositif.addToFavorites"
-            type="button"
-          >
-            <span
-              class="icon_outline icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-star-outline"
-                  fill="dark"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="star"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            <span
-              class="icon_fill icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-star"
-                  fill="dark"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="star"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
           </button>
-          <a
-            class="c4 card dispositif content card"
-            href="/program/id2"
-            title="tinfo2"
-          >
-            <div
-              class="location"
-            >
-              <img
-                alt="Infocards.location"
-                data-nimg="1"
-                decoding="async"
-                height="16"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                style="color: transparent;"
-                width="16"
-              />
-              <span
-                class="ms-1"
-                style="color: rgb(68, 48, 35);"
-              />
-            </div>
-            <h3
-              class="title"
-              style="color: rgb(68, 48, 35);"
-            >
-              tinfo2
-            </h3>
-            <div
-              class="text max_lines abstract"
-              style="color: rgb(68, 48, 35);"
-            >
-              abstract2
-            </div>
-            <div
-              class="infos text my-3"
-              style="color: rgb(68, 48, 35);"
-            />
-            <div
-              class="themes"
-            >
-              <div
-                class="container badges theme-badge"
-                style="background-color: rgb(238, 231, 229);"
-              >
-                <span
-                  class="icon"
-                >
-                  <span
-                    class="icon theme-icon"
-                    style="width: 12px; height: 12px;"
-                  >
-                    <svg
-                      height="12"
-                      width="12"
-                    />
-                  </span>
-                </span>
-                <span
-                  style="color: rgb(68, 48, 35);"
-                >
-                  Administratif
-                </span>
-              </div>
-            </div>
-            <div
-              class="sponsor"
-              style="border-color: #443023;"
-            >
-              <span
-                class="picture"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height="40"
-                  loading="lazy"
-                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                  srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                  style="color: transparent; object-fit: contain;"
-                  width="40"
-                />
-              </span>
-              <span
-                class="text max_lines ms-2"
-                style="color: rgb(68, 48, 35);"
-              >
-                titreMarque2
-              </span>
-            </div>
-          </a>
         </div>
       </div>
       <div>
         <div
           class="wrapper"
         >
+          <div
+            class="fr-card fr-enlarge-link"
+            id="fr-card-:r2:"
+          >
+            <div
+              class="fr-card__body"
+            >
+              <div
+                class="fr-card__content"
+              >
+                <h3
+                  class="fr-card__title"
+                >
+                  <a
+                    class=""
+                    href="[object Object]"
+                    title="tinfo2"
+                  >
+                    <span>
+                      tinfo2
+                    </span>
+                  </a>
+                </h3>
+                <p
+                  class="fr-card__desc"
+                >
+                  <span>
+                    abstract2
+                  </span>
+                </p>
+                <div
+                  class="fr-card__start"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(238, 231, 229);"
+                    >
+                      Administratif
+                    </div>
+                  </div>
+                  <div
+                    class="info mb-3"
+                  >
+                    <i
+                      class="fr-icon-building-line"
+                    />
+                    <span>
+                      titreMarque2
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__end"
+                >
+                  <div
+                    class="d-flex gap-3"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  src="/img.jpg"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
+                    id="fr-badge-:r3:"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
           <button
             class="btn favorite btn btn-secondary"
             title="Dispositif.addToFavorites"
             type="button"
           >
-            <span
-              class="icon_outline icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-star-outline"
-                  fill="dark"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="star"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            <span
-              class="icon_fill icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-star"
-                  fill="dark"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="star"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
+            <i
+              class="fr-icon-star-line"
+            />
           </button>
-          <a
-            class="c5 card demarche content"
-            href="/procedure/id3"
-            title="tinfo3"
+        </div>
+      </div>
+      <div>
+        <div
+          class="wrapper"
+        >
+          <div
+            class="fr-card fr-enlarge-link"
+            id="fr-card-:r4:"
           >
-            <div>
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height="48"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                style="color: transparent;"
-                width="48"
-              />
-            </div>
-            <h3
-              class="title"
-              style="color: rgb(6, 80, 140);"
-            >
-              tinfo3
-            </h3>
             <div
-              class="themes"
+              class="fr-card__body"
             >
               <div
-                class="container badges theme-badge"
-                style="background-color: rgb(221, 242, 249);"
+                class="fr-card__content"
               >
-                <span
-                  class="icon"
+                <h3
+                  class="fr-card__title"
                 >
-                  <span
-                    class="icon theme-icon"
-                    style="width: 12px; height: 12px;"
+                  <a
+                    class=""
+                    href="[object Object]"
+                    title="tinfo3"
                   >
-                    <svg
-                      height="12"
-                      width="12"
-                    />
-                  </span>
-                </span>
-                <span
-                  style="color: rgb(6, 80, 140);"
+                    <span>
+                      tinfo3
+                    </span>
+                  </a>
+                </h3>
+                <p
+                  class="fr-card__desc"
                 >
-                  Logement
-                </span>
+                  <span>
+                    abstract3
+                  </span>
+                </p>
+                <div
+                  class="fr-card__start"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(221, 242, 249);"
+                    >
+                      Logement
+                    </div>
+                  </div>
+                  <div
+                    class="info mb-3"
+                  >
+                    <i
+                      class="fr-icon-building-line"
+                    />
+                    <span>
+                      titreMarque3
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__end"
+                />
               </div>
             </div>
-          </a>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt="texte alternatif de l’image"
+                  class="fr-responsive-img"
+                  src="/img.jpg"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
+                    id="fr-badge-:r5:"
+                  >
+                    <span>
+                      Démarche
+                    </span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
+          >
+            <i
+              class="fr-icon-star-line"
+            />
+          </button>
         </div>
       </div>
     </div>
