@@ -25,13 +25,17 @@ steps:
         "--build-arg",
         "APP_SITE_URL=${_APP_SITE_URL}",
         "-f",
-        "./client/Dockerfile",
+        "./apps/client/Dockerfile",
         ".",
       ]
 
   # Push the container image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"]
+    args:
+      [
+        "push",
+        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
+      ]
 
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"

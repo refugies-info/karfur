@@ -7,11 +7,9 @@
   "homepage": "https://accueil-integration-refugies.fr",
   "copyright": "Copyright 2019 DiAiR",
   "license": "MIT",
-  "main": "server.js",
   "workspaces": [
-    "api-types",
-    "client",
-    "server"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "clean:branches": "npx git-removed-branches --prune --force",
@@ -25,8 +23,8 @@
     "dev": "yarn turbo dev",
     "dev:client": "yarn turbo dev --filter=@refugies-info/client",
     "dev:server": "yarn turbo dev --filter=@refugies-info/server",
-    "prebuild": "react-dsfr update-icons --projectDir ./client",
-    "predev": "react-dsfr update-icons --projectDir ./client",
+    "prebuild": "react-dsfr update-icons --projectDir ./apps/client",
+    "predev": "react-dsfr update-icons --projectDir ./apps/client",
     "start": "yarn turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",
@@ -58,7 +56,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "./client/src/setupTests.js"
+      "./apps/client/src/setupTests.js"
     ]
   },
   "packageManager": "yarn@1.2.22",

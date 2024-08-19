@@ -70,7 +70,7 @@ TO DO
 Contains :
 
 - for the 6 langages the commong.json files (translation of interface words)
-- the folder **interfaceTranslation** with scripts to convert json to csv and vice versa for experts translation (see [doc](../../client/src/locales/interfaceTranslation/README.md))
+- the folder **interfaceTranslation** with scripts to convert json to csv and vice versa for experts translation (see [doc](../../apps/client/src/locales/interfaceTranslation/README.md))
 
 ## `pages`
 

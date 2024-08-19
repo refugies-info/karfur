@@ -4,12 +4,12 @@ This repository contains 3 projects. Here are the associated documentations:
 
 ## [Server](server/)
 
-Located in `/server`
+Located in `/apps/server`
 Backend app built with Node
 
 ## [Client](client/)
 
-Located in `/client`
+Located in `/apps/client`
 Frontend app built with NextJS
 
 ## [API Types](api-types/)

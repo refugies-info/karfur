@@ -9,7 +9,7 @@
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/client"
+      "webRoot": "${workspaceFolder}/apps/client"
     },
     {
       "name": "Next.js: debug full stack",
@@ -20,7 +20,7 @@
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
         "action": "debugWithChrome",
-        "webRoot": "${workspaceFolder}/client"
+        "webRoot": "${workspaceFolder}/apps/client"
       }
     }
   ]
