@@ -64,5 +64,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      # - name: Setup GCP service account key
+      #   run: echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}'  | base64 --decode > apps/mobile/refugies-info-appkey.json
+
       # - name: Publish update
       #   run: eas update --auto --non-interactive
