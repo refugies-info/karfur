@@ -4,6 +4,8 @@ on:
     branches:
       - staging-mobile
     paths:
+      - yarn.lock
+      - package.json
       - apps/mobile/**
       - packages/api-types/**
 env:
