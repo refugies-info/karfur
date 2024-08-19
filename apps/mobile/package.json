@@ -32,7 +32,7 @@
     "@react-navigation/bottom-tabs": "~6",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/stack": "^6.2.0",
-    "@refugies-info/api-types": "1.0.35",
+    "@refugies-info/api-types": "*",
     "algoliasearch": "^4.14.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "^50.0.0",
