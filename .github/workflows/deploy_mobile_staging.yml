@@ -1,27 +1,26 @@
-name: Deploy PROD
+name: Deploy mMbile Staging
 on:
   push:
     branches:
-      - master-mobile
+      - staging-mobile
     paths:
       - yarn.lock
       - package.json
       - apps/mobile/**
       - packages/api-types/**
-
 env:
-  ALGOLIA_API_KEY: ${{ secrets.PROD_ALGOLIA_API_KEY }}
-  ALGOLIA_INDEX: prod_refugies
-  API_URL: https://api.refugies.info
-  ENV_NAME: PROD
+  ALGOLIA_API_KEY: ${{ secrets.REC_ALGOLIA_API_KEY }}
+  ALGOLIA_INDEX: ${{ secrets.REC_ALGOLIA_INDEX }}
+  API_URL: ${{ secrets.REC_API_URL }}
+  ENV_NAME: DEVELOPMENT
   EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-  GOOGLE_API_KEY: ${{ secrets.PROD_GOOGLE_API_KEY }}
-  SITE_SECRET: ${{ secrets.PROD_SITE_SECRET }}
-  SITE_URL: https://refugies.info
+  GOOGLE_API_KEY: ${{ secrets.REC_GOOGLE_API_KEY }}
+  SITE_SECRET: ${{ secrets.REC_SITE_SECRET }}
+  SITE_URL: ${{ secrets.REC_SITE_URL }}
 
 jobs:
   update:
-    name: EAS Update PROD
+    name: EAS Update
     runs-on: ubuntu-latest
     steps:
       - name: Check for EXPO_TOKEN
@@ -64,5 +63,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      # - name: Publish update
-      #   run: eas update --auto --non-interactive
+      - name: Setup GCP service account key
+        run: echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}'  | base64 --decode > apps/mobile/refugies-info-appkey.json
+
+      - name: Publish update
+        run: eas update --auto --non-interactive
