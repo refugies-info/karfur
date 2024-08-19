@@ -1,9 +1,0 @@
-{
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "i18n-ally.localesPaths": [
-    "src/translations"
-  ],
-  "i18n-ally.displayLanguage": "fr",
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.extract.autoDetect": false
-}

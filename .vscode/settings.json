@@ -14,8 +14,10 @@
     "server"
   ],
   // i18n-ally
+  "i18n-ally.extract.autoDetect": false,
   "i18n-ally.localesPaths": [
-    "client/src/locales"
+    "apps/client/src/locales",
+    "apps/mobile/src/translations"
   ],
   "i18n-ally.ignoreFiles": [
     "**/unused.json"
