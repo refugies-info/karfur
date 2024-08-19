@@ -15,6 +15,8 @@ env:
   API_URL: https://api.refugies.info
   ENV_NAME: PROD
   EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
+  EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
+  EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
   GOOGLE_API_KEY: ${{ secrets.PROD_GOOGLE_API_KEY }}
   SITE_SECRET: ${{ secrets.PROD_SITE_SECRET }}
   SITE_URL: https://refugies.info
