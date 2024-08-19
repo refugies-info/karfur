@@ -12,7 +12,7 @@
     "preset": "jest-expo",
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/src/jest/__mocks__/svgMock.js",
-      "^uuid$": "<rootDir>/node_modules/uuid/dist/index.js"
+      "^uuid$": "<rootDir>/../../node_modules/uuid/dist/index.js"
     },
     "setupFiles": [
       "<rootDir>/setup.jest.js"
