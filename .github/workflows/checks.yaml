@@ -3,8 +3,10 @@ name: Checks
 on:
   pull_request:
     branches-ignore:
+      - master-mobile
       - master-frontend
       - master-backend
+      - staging-mobile
       - staging-frontend
       - staging-backend
   workflow_dispatch:

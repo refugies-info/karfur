@@ -2,8 +2,10 @@ name: Deploy staging
 on:
   push:
     branches:
-      - dev
-
+      - staging-mobile
+    paths:
+      - apps/mobile/**
+      - packages/api-types/**
 env:
   ALGOLIA_API_KEY: ${{ secrets.REC_ALGOLIA_API_KEY }}
   ALGOLIA_INDEX: ${{ secrets.REC_ALGOLIA_INDEX }}
