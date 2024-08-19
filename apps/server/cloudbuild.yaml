@@ -9,7 +9,7 @@ steps:
         "-t",
         "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
         "-f",
-        "./server/Dockerfile",
+        "./apps/server/Dockerfile",
         ".",
       ]
   # Push the container image to Container Registry
