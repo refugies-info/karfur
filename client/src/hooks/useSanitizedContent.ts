@@ -1,7 +1,7 @@
 import { sanitize } from "dompurify";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
-export const useSanitizedContent = (content: string | React.ReactNode) => {
-  const sanitized = useMemo(() => (typeof content === "string" ? sanitize(content) : content), [content]);
+export const useSanitizedContent = (content: string) => {
+  const sanitized = useMemo(() => sanitize(content), [content]);
   return sanitized;
 };
