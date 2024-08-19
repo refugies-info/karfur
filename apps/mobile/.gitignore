@@ -78,3 +78,6 @@ dist/
 
 ios
 android
+
+# GCP
+refugies-info-appkey.json
