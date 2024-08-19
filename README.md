@@ -22,7 +22,7 @@ The website is live and available at [https://refugies.info](https://refugies.in
 
 Please find the documentation [here](documentation/README.md).
 
-You can also visit more specifically the [frontend documentation](documentation/client/README.md) or the [backend documentation](documentation/server/README.md).
+You can also visit more specifically the [frontend documentation](documentation/apps/client/README.md) or the [backend documentation](documentation/apps/server/README.md).
 
 ## Contributing
 

@@ -1,7 +1,7 @@
 # Server documentation
 
 This project is a Node based project, which connects to a MongoDB database.
-The source code is located at `/server`.
+The source code is located at `/apps/server`.
 
 - [Server documentation](#server-documentation)
   - [Tech stack](#tech-stack)
@@ -104,7 +104,7 @@ Make sure you have a mongodb instance launched.
 Open a new terminal tab and launch the server:
 
 ```bash
-> cd karfur/server                # go into app's directory
+> cd karfur/apps/server                # go into app's directory
 > yarn dev                     # serve at localhost:8000
 ```
 

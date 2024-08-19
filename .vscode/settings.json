@@ -1,11 +1,11 @@
 {
   "alias-tool.mappings": {
-    "~scss": "${workspace}/client/src/scss"
+    "~scss": "${workspace}/apps/client/src/scss"
   },
   "scss.lint.unknownAtRules": "ignore",
   "eslint.workingDirectories": [
-    "./client",
-    "./server"
+    "./apps/client",
+    "./apps/server"
   ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "conventionalCommits.scopes": [
