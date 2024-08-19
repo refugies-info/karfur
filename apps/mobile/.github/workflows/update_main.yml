@@ -1,0 +1,62 @@
+name: Deploy PROD
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ALGOLIA_API_KEY: ${{ secrets.PROD_ALGOLIA_API_KEY }}
+  ALGOLIA_INDEX: prod_refugies
+  API_URL: https://api.refugies.info
+  ENV_NAME: PROD
+  GOOGLE_API_KEY: ${{ secrets.PROD_GOOGLE_API_KEY }}
+  SITE_SECRET: ${{ secrets.PROD_SITE_SECRET }}
+  SITE_URL: https://refugies.info
+
+jobs:
+  update:
+    name: EAS Update PROD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: yarn
+
+      - name: Install Yarn
+        run: npm install -g yarn@1.22.22
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Find yarn cache
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      # - name: Publish update
+      #   run: eas update --auto --non-interactive

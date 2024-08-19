@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup snapshot test suite should render without bug 1`] = `
+<View
+  accessibilityRole="radiogroup"
+>
+  <Text>
+    Test
+  </Text>
+</View>
+`;

@@ -1,0 +1,51 @@
+import React from "react";
+import withProps from "./withProps";
+import { render } from "../tests";
+
+describe("withProps test suite", () => {
+  it("should inject props from an object", () => {
+    const Spy = () => "i'm a fake component that spy";
+    const SpyWithProps = withProps({
+      toto: "bla",
+    })(Spy);
+    const tree = render(<SpyWithProps />, false);
+    expect(tree.root.findByType(Spy).props.toto).toBe("bla");
+  });
+
+  it("should inject props even if they are already declared", () => {
+    const Spy = () => "i'm a fake component that spy";
+    const SpyWithProps = withProps({
+      toto: "bla",
+    })(Spy);
+    const tree = render(<SpyWithProps toto="bli" />, false);
+    expect(tree.root.findByType(Spy).props.toto).toBe("bla");
+  });
+
+  it("should not touch unconcerned props", () => {
+    const Spy = () => "i'm a fake component that spy";
+    const SpyWithProps = withProps({
+      toto: "bla",
+    })(Spy);
+    const tree = render(<SpyWithProps titi="bli" />, false);
+    expect(tree.root.findByType(Spy).props.titi).toBe("bli");
+  });
+
+  it("should inject returned props from a props transformer function", () => {
+    const Spy = () => "i'm a fake component that spy";
+    const SpyWithProps = withProps(() => ({
+      toto: "bla",
+    }))(Spy);
+    const tree = render(<SpyWithProps />, false);
+    expect(tree.root.findByType(Spy).props.toto).toBe("bla");
+  });
+
+  it("should give upcoming props to the props transformer function", () => {
+    const Spy = () => "i'm a fake component that spy";
+    const SpyWithProps = withProps(({ titi }) => ({
+      toto: "bla",
+      titi: `${titi}bli`,
+    }))(Spy);
+    const tree = render(<SpyWithProps titi="bli" />, false);
+    expect(tree.root.findByType(Spy).props.titi).toBe("blibli");
+  });
+});
