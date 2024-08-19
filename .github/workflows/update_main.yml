@@ -14,6 +14,7 @@ env:
   ALGOLIA_INDEX: prod_refugies
   API_URL: https://api.refugies.info
   ENV_NAME: PROD
+  EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
   GOOGLE_API_KEY: ${{ secrets.PROD_GOOGLE_API_KEY }}
   SITE_SECRET: ${{ secrets.PROD_SITE_SECRET }}
   SITE_URL: https://refugies.info
