@@ -54,11 +54,6 @@
     "stylelint-config-standard-scss": "^13.1.0",
     "turbo": "^2.0.9"
   },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "./apps/client/src/setupTests.js"
-    ]
-  },
   "packageManager": "yarn@1.2.22",
   "volta": {
     "node": "20.13.1",
