@@ -4,7 +4,8 @@
     "jsx": "react",
     "strict": true,
     "allowJs": false,
-    "typeRoots": ["node_modules/@types", "./src/types"],
+    "typeRoots": ["../../node_modules/@types", "../node_modules/@types", "./node_modules/@types", "./src/types"],
+    "types": ["jest"]
   },
   "exclude": [
     "node_modules",
@@ -15,5 +16,6 @@
     "rn-cli.config.js",
     "src/**/*.test.ts",
     "src/**/*.test.tsx"
-  ]
+  ],
+  "include": ["src"]
 }
