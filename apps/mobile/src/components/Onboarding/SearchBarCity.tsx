@@ -92,6 +92,7 @@ export const SearchBarCity = (props: Props) => {
         <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
+      {/* @ts-ignore (see https://github.com/react-native-modal/react-native-modal/issues/696) */}
       <TextModal
         isVisible={modalOpened}
         onBackdropPress={() => setModalOpened(false)}

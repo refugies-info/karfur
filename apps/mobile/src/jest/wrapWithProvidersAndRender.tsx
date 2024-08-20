@@ -2,7 +2,7 @@ import React from "react";
 import { act, render } from "@testing-library/react-native";
 import { NavigationContext } from "@react-navigation/native";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import {
   initialRootStateFactory,
   rootReducer,
@@ -14,7 +14,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<any>;
   compProps?: Record<string, any>;
-  reduxState?: Partial<RootState>;
+  reduxState?: RootState;
 }
 
 const navContext = {
