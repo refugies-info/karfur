@@ -63,11 +63,8 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
   };
 
   const navigateToContent = async () => {
-    navigation.navigate("Explorer", {
-      screen: "ContentScreen",
-      params: {
-        contentId: data?.contentId,
-      },
+    navigation.navigate("ContentScreen", {
+      contentId: data?.contentId,
     });
     markAsSeen();
   };

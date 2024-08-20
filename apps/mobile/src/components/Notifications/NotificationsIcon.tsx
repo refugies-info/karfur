@@ -72,7 +72,7 @@ const NotificationsIcon = () => {
         name="bell-outline"
         fill={styles.colors.black}
       />
-      {notifications && notifications.unseenCount > 0 && (
+      {accessGranted && notifications && notifications.unseenCount > 0 && (
         <View style={stylesheet.unseenContainer}>
           <Text style={stylesheet.unseenText}>
             {notifications.unseenCount > 9 ? "9" : notifications.unseenCount}
