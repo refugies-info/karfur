@@ -32,6 +32,8 @@ import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
+import { logEventInFirebase } from "../utils/logEvent";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { themesSelector } from "../services/redux/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "../services/redux/Themes/themes.actions";
 import { NotificationResponse } from "expo-notifications";

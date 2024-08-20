@@ -45,7 +45,7 @@ const stylesheet = StyleSheet.create({
     fontSize: styles.fonts.sizes.xs,
     textAlign: "center",
     fontWeight: "500",
-    lineHeight: theme.margin * 2,
+    lineHeight: styles.margin * 2,
   },
 });
 

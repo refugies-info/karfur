@@ -273,55 +273,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             secondaryThemes={selectedContent.secondaryThemes}
           />
 
-          {selectedContent.sponsors && !isEmpty(selectedContent.sponsors) && (
-            <>
-              <Separator fullWidth spacing={SeparatorSpacing.XLarge} />
-              <SectionTitle>
-                <ReadableText>
-                  {t(
-                    "content_screen.in_partnership_with",
-                    "En partenariat avec"
-                  )}
-                </ReadableText>
-              </SectionTitle>
-              <Spacer height={styles.margin * 2} />
-              <Rows>
-                {selectedContent.sponsors.map((sponsor, index) => {
-                  const image = (
-                    (sponsor as Sponsor).logo ||
-                    (sponsor as ContentStructure).picture
-                  )?.secure_url;
-                  return (
-                    <Columns
-                      key={index}
-                      RTLBehaviour
-                      layout="auto 1"
-                      verticalAlign="center"
-                    >
-                      {image && (
-                        <Image
-                          style={{
-                            width: 50,
-                            height: 50,
-                            resizeMode: "contain",
-                          }}
-                          source={{
-                            uri: image,
-                          }}
-                        />
-                      )}
-                      <TextSmallNormal>
-                        <ReadableText>
-                          {(sponsor as Sponsor).name ||
-                            (sponsor as ContentStructure).nom}
-                        </ReadableText>
-                      </TextSmallNormal>
-                    </Columns>
-                  );
-                })}
-              </Rows>
-            </>
-          )}
+          <Sponsors sponsors={selectedContent.sponsors} />
         </Rows>
         <Spacer height={styles.margin * 8} />
 

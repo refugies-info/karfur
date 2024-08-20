@@ -1,29 +1,23 @@
+import { CompositeNavigationProp, useNavigation } from "@react-navigation/native";
 import React, { ComponentType, useMemo } from "react";
-import {
-  CompositeNavigationProp,
-  useNavigation,
-} from "@react-navigation/native";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 
 import { styles } from "../theme";
 
-import { useNotifications, Notification } from "../hooks/useNotifications";
+import { Notification, useNotifications } from "../hooks/useNotifications";
 import { useNotificationsStatus } from "../hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
-import { NotificationCard } from "../components/Notifications/NotificationCard";
-import { EnableNotifications } from "../components/Notifications/EnableNotifications";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { BottomTabParamList, ExplorerParamList } from "../../types";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { Page, Rows } from "../components";
-import { withProps } from "../utils";
-import {
-  HeaderContentProps,
-  HeaderContentTitle,
-} from "../components/layout/Header";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useTheme } from "styled-components/native";
+import { BottomTabParamList, ExplorerParamList } from "../../types";
+import { Page, Rows } from "../components";
+import { HeaderContentProps, HeaderContentTitle } from "../components/layout/Header";
+import { EnableNotifications } from "../components/Notifications/EnableNotifications";
+import { NotificationCard } from "../components/Notifications/NotificationCard";
+import { withProps } from "../utils";
 
 const ICON_SIZE = 24;
 
@@ -66,6 +60,11 @@ const renderCard = (notification: Notification) => (
   <NotificationCard key={notification._id} notification={notification} />
 );
 
+type NotificationsScreenNavigationProp = CompositeNavigationProp<
+  StackNavigationProp<ExplorerParamList, "NotificationsScreen">,
+  BottomTabNavigationProp<BottomTabParamList>
+>;
+
 export const NotificationsScreen = () => {
   const { t } = useTranslationWithRTL();
   const theme = useTheme();
@@ -92,37 +91,21 @@ export const NotificationsScreen = () => {
             activeOpacity={0.8}
             onPress={goToNotificationsSettingsScreen}
           >
-            <Icon
-              name="settings-outline"
-              width={ICON_SIZE}
-              height={ICON_SIZE}
-              fill={theme.colors.black}
-            />
+            <Icon name="settings-outline" width={ICON_SIZE} height={ICON_SIZE} fill={theme.colors.black} />
           </TouchableOpacity>
         ),
       })(HeaderContentTitle) as ComponentType<HeaderContentProps>,
-    [theme]
+    [theme],
   );
 
   return (
-    <Page
-      headerTitle={t("notifications.notifications")}
-      HeaderContent={HeaderContent}
-      loading={isLoading}
-    >
+    <Page headerTitle={t("notifications.notifications")} HeaderContent={HeaderContent} loading={isLoading}>
       {!accessGranted ? (
         <EnableNotifications />
       ) : !notifications?.notifications.length ? (
         <View style={stylesheet.noNotifications}>
-          <Icon
-            name="bell-off-outline"
-            width={60}
-            height={60}
-            fill={styles.colors.darkGrey}
-          />
-          <Text style={stylesheet.noNotificationsTitle}>
-            {t("notifications.noneYet")}
-          </Text>
+          <Icon name="bell-off-outline" width={60} height={60} fill={styles.colors.darkGrey} />
+          <Text style={stylesheet.noNotificationsTitle}>{t("notifications.noneYet")}</Text>
           <Text style={stylesheet.noNotificationsSubtitle}>
             {t("notifications.noneYetSubtitle1")}
             <Text
@@ -138,9 +121,7 @@ export const NotificationsScreen = () => {
           </Text>
         </View>
       ) : (
-        <Rows style={{ paddingBottom: styles.margin * 3 }}>
-          {(notifications?.notifications || []).map(renderCard)}
-        </Rows>
+        <Rows style={{ paddingBottom: styles.margin * 3 }}>{(notifications?.notifications || []).map(renderCard)}</Rows>
       )}
     </Page>
   );
