@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import "@testing-library/react-native/extend-expect";
+
 jest.useFakeTimers();
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 // jest.mock("react-native/Libraries/EventEmitter/NativeEventEmitter.js", () => {
@@ -46,9 +48,7 @@ jest.mock("@react-navigation/core", () => ({
   useRoute: jest.fn(),
   useNavigation: jest.fn().mockImplementation(() => ({
     goBack: jest.fn().mockImplementation(() => () => console.log("Go back")),
-    navigate: jest
-      .fn()
-      .mockImplementation(() => (to) => console.log("Navigation to " + to)),
+    navigate: jest.fn().mockImplementation(() => (to) => console.log("Navigation to " + to)),
   })),
 }));
 
@@ -61,5 +61,5 @@ jest.mock("expo-notifications", () => ({
 }));
 
 jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock")
+  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
 );
