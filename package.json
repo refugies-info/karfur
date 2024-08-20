@@ -12,6 +12,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "patch-package",
     "clean:branches": "npx git-removed-branches --prune --force",
     "build": "yarn turbo build",
     "build:api-types": "yarn turbo build --filter=@refugies-info/api-types",
@@ -50,6 +51,8 @@
   "devDependencies": {
     "husky": ">=6",
     "lint-staged": ">=10",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "stylelint": "^16.8.2",
     "stylelint-config-standard-scss": "^13.1.0",
     "turbo": "^2.0.9"

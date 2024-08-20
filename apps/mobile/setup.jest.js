@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import "@testing-library/react-native/extend-expect";
 
 jest.useFakeTimers();
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
@@ -9,7 +8,20 @@ jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 // });
 // jest.mock("expo-speech", () => {});
 
-jest.mock("react-native-blob-util", () => {});
+jest.mock("react-native-blob-util", () => {
+  return () => ({});
+});
+
+jest.mock("uuid", () => {
+  return () => ({});
+});
+
+jest.mock("@react-native-firebase/app", () => {
+  return () => ({
+    onNotification: jest.fn(),
+    onNotificationDisplayed: jest.fn(),
+  });
+});
 
 jest.mock("@react-native-firebase/analytics", () => {
   return () => ({
