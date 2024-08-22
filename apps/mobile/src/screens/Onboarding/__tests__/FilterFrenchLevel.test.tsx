@@ -1,11 +1,11 @@
-import { FilterFrenchLevel } from "../FilterFrenchLevel";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { act, fireEvent } from "@testing-library/react-native";
-import { saveUserFrenchLevelActionCreator } from "../../../services/redux/User/user.actions";
-import { initialUserState } from "../../../services/redux/User/user.reducer";
 import { useRoute } from "@react-navigation/native";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { fireEvent } from "@testing-library/react-native";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { saveUserFrenchLevelActionCreator } from "../../../services/redux/User/user.actions";
+import { initialUserState } from "../../../services/redux/User/user.reducer";
+import { FilterFrenchLevel } from "../FilterFrenchLevel";
 
 // jest.useFakeTimers();
 
@@ -17,14 +17,10 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
 }));
 
 jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual(
-    "../../../services/redux/User/user.actions"
-  );
+  const actions = jest.requireActual("../../../services/redux/User/user.actions");
 
   return {
-    saveUserFrenchLevelActionCreator: jest.fn(
-      actions.saveUserFrenchLevelActionCreator
-    ),
+    saveUserFrenchLevelActionCreator: jest.fn(actions.saveUserFrenchLevelActionCreator),
   };
 });
 
@@ -80,9 +76,7 @@ describe("Filter french level", () => {
     });
 
     const Button = component.getByTestId("test-next-button");
-    act(() => {
-      fireEvent.press(Button);
-    });
+    fireEvent.press(Button);
     expect(saveUserFrenchLevelActionCreator).toHaveBeenCalledWith({
       frenchLevel: "Je parle bien",
       shouldFetchContents: false,
@@ -98,9 +92,7 @@ describe("Filter french level", () => {
 
     const AgeButton = component.getByTestId("test-filter-french_level_b");
 
-    act(() => {
-      fireEvent.press(AgeButton);
-    });
+    fireEvent.press(AgeButton);
     expect(component).toMatchSnapshot();
   });
 });

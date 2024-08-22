@@ -1,13 +1,10 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ThemeProvider as StyledComponentThemeProvider } from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
-
+import { DefaultTheme, ThemeProvider as StyledComponentThemeProvider } from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { withProps } from "../../utils";
 import styles from "../styles";
 
-const ThemeProvider = withProps((props: any) => {
+const ThemeProvider: React.FC<React.PropsWithChildren<object>> = ({ children, ...props }) => {
   const { isRTL } = useTranslationWithRTL();
   const insets = useSafeAreaInsets();
 
@@ -17,10 +14,16 @@ const ThemeProvider = withProps((props: any) => {
       i18n: { isRTL },
       insets,
     }),
-    [isRTL]
+    [isRTL],
   );
-
-  return { ...props, theme };
-})(StyledComponentThemeProvider);
+  return (
+    <StyledComponentThemeProvider
+      theme={theme as unknown as Parameters<typeof StyledComponentThemeProvider>[number]["theme"]}
+      {...props}
+    >
+      {children}
+    </StyledComponentThemeProvider>
+  );
+};
 
 export default ThemeProvider;

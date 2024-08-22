@@ -1,10 +1,10 @@
+import { useRoute } from "@react-navigation/core";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { fireEvent } from "@testing-library/react-native";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { fireEvent, act } from "@testing-library/react-native";
-import { ProfilScreen } from "../ProfilScreen";
-import { useRoute } from "@react-navigation/core";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
-import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { ProfilScreen } from "../ProfilScreen";
 
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -38,13 +38,9 @@ describe("Profil screen", () => {
       compProps: { navigation },
     });
     expect(component).toMatchSnapshot();
-    const ButtonLangue = component.getByTestId(
-      "test-profil-button-language-button"
-    );
+    const ButtonLangue = component.getByTestId("test-profil-button-language-button");
 
-    act(() => {
-      fireEvent.press(ButtonLangue);
-    });
+    fireEvent.press(ButtonLangue);
     expect(navigation.navigate).toHaveBeenCalledWith("LangueProfilScreen");
   });
 
@@ -59,9 +55,7 @@ describe("Profil screen", () => {
     });
     const ButtonLoc = component.getByTestId("test-profil-button-city");
 
-    act(() => {
-      fireEvent.press(ButtonLoc);
-    });
+    fireEvent.press(ButtonLoc);
     expect(navigation.navigate).toHaveBeenCalledWith("CityProfilScreen");
   });
 
@@ -76,9 +70,7 @@ describe("Profil screen", () => {
     });
     const ButtonAge = component.getByTestId("test-profil-button-age");
 
-    act(() => {
-      fireEvent.press(ButtonAge);
-    });
+    fireEvent.press(ButtonAge);
     expect(navigation.navigate).toHaveBeenCalledWith("AgeProfilScreen");
   });
 
@@ -91,13 +83,9 @@ describe("Profil screen", () => {
       },
       compProps: { navigation },
     });
-    const ButtonFrenchLevel = component.getByTestId(
-      "test-profil-button-french"
-    );
+    const ButtonFrenchLevel = component.getByTestId("test-profil-button-french");
 
-    act(() => {
-      fireEvent.press(ButtonFrenchLevel);
-    });
+    fireEvent.press(ButtonFrenchLevel);
     expect(navigation.navigate).toHaveBeenCalledWith("FrenchLevelProfilScreen");
   });
 

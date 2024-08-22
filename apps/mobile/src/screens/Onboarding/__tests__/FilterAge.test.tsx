@@ -1,10 +1,10 @@
-import { FilterAge } from "../FilterAge";
+import { useRoute } from "@react-navigation/native";
+import { fireEvent } from "@testing-library/react-native";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { act, fireEvent } from "@testing-library/react-native";
 import { saveUserAgeActionCreator } from "../../../services/redux/User/user.actions";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
-import { useRoute } from "@react-navigation/native";
+import { FilterAge } from "../FilterAge";
 
 jest.useFakeTimers();
 
@@ -16,9 +16,7 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
 }));
 
 jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual(
-    "../../../services/redux/User/user.actions"
-  );
+  const actions = jest.requireActual("../../../services/redux/User/user.actions");
 
   return {
     saveUserAgeActionCreator: jest.fn(actions.saveUserAgeActionCreator),
@@ -70,9 +68,7 @@ describe("Filter age", () => {
     });
 
     const Button = component.getByTestId("test-next-button");
-    act(() => {
-      fireEvent.press(Button);
-    });
+    fireEvent.press(Button);
     expect(saveUserAgeActionCreator).toHaveBeenCalledWith({
       age: "0 à 17 ans",
       shouldFetchContents: false,
@@ -88,9 +84,7 @@ describe("Filter age", () => {
 
     const AgeButton = component.getByTestId("test-filter-age_26_100");
 
-    act(() => {
-      fireEvent.press(AgeButton);
-    });
+    fireEvent.press(AgeButton);
     expect(component).toMatchSnapshot();
   });
 });

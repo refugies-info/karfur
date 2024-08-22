@@ -1,4 +1,4 @@
-import React, { ComponentClass, FunctionComponent } from "react";
+import React, { ForwardedRef } from "react";
 
 const getExecuteResult = (execute: any, props: any) => {
   if (typeof execute === "function") {
@@ -8,14 +8,13 @@ const getExecuteResult = (execute: any, props: any) => {
 };
 
 const withProps =
-  (execute: any) =>
-  // (Component: ComponentClass<any, any> | FunctionComponent<any>) => {
-  (Component: any) => {
-    const HOC = (props: any, ref: any) => (
+  <P extends Object, T, C extends React.FunctionComponent>(execute: "function" | unknown) =>
+  (Component: C) => {
+    const Wrapper = React.forwardRef<T, P>((props, ref) => (
       <Component ref={ref} {...props} {...getExecuteResult(execute, props)} />
-    );
-    HOC.displayName = `withProps(${Component.displayName || Component.name})`;
-    return React.forwardRef(HOC);
+    ));
+    Wrapper.displayName = `withProps(${Component.displayName || Component.name})`;
+    return Wrapper;
   };
 
 export default withProps;

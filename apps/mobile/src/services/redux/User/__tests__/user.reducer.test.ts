@@ -1,19 +1,21 @@
-import { userReducer, initialUserState } from "../user.reducer";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
 import {
+  setCurrentLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
   setSelectedLanguageActionCreator,
-  setCurrentLanguageActionCreator,
-  setUserLocationActionCreator,
   setUserAgeActionCreator,
   setUserFrenchLevelActionCreator,
+  setUserLocationActionCreator,
 } from "../user.actions";
+import { initialUserState, userReducer } from "../user.reducer";
 
 describe("[Reducer] user", () => {
   it("set user has seen onboarding ", () => {
     const state = initialUserState;
-    expect(
-      userReducer(state, setHasUserSeenOnboardingActionCreator(true))
-    ).toEqual({ ...initialUserState, hasUserSeenOnboarding: true });
+    expect(userReducer(state, setHasUserSeenOnboardingActionCreator(true))).toEqual({
+      ...initialUserState,
+      hasUserSeenOnboarding: true,
+    });
   });
 
   it("set user selected language", () => {
@@ -34,12 +36,7 @@ describe("[Reducer] user", () => {
 
   it("set user location", () => {
     const state = initialUserState;
-    expect(
-      userReducer(
-        state,
-        setUserLocationActionCreator({ city: "city", dep: "dep" })
-      )
-    ).toEqual({
+    expect(userReducer(state, setUserLocationActionCreator({ city: "city", dep: "dep" }))).toEqual({
       ...initialUserState,
       city: "city",
       department: "dep",
@@ -48,19 +45,17 @@ describe("[Reducer] user", () => {
 
   it("set user cage", () => {
     const state = initialUserState;
-    expect(userReducer(state, setUserAgeActionCreator("age"))).toEqual({
+    expect(userReducer(state, setUserAgeActionCreator("0 à 17 ans"))).toEqual({
       ...initialUserState,
-      age: "age",
+      age: "0 à 17 ans",
     });
   });
 
   it("set user french level", () => {
     const state = initialUserState;
-    expect(
-      userReducer(state, setUserFrenchLevelActionCreator("level"))
-    ).toEqual({
+    expect(userReducer(state, setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle bien"]))).toEqual({
       ...initialUserState,
-      frenchLevel: "level",
+      frenchLevel: MobileFrenchLevel["Je parle bien"],
     });
   });
 });

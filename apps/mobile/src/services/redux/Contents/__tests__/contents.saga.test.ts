@@ -1,34 +1,24 @@
+import { ContentType } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, { fetchContents } from "../contents.saga";
-import {
-  setContentsActionCreator,
-  setNbContentsActionCreator,
-} from "../contents.actions";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { mockedThemesData } from "../../../../jest/__fixtures__/themes";
 import { getContentsForApp, getNbContents } from "../../../../utils/API";
+import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
-  userLocationSelector,
   userFrenchLevelSelector,
+  userLocationSelector,
 } from "../../User/user.selectors";
+import { setContentsActionCreator, setNbContentsActionCreator } from "../contents.actions";
+import latestActionsSaga, { fetchContents } from "../contents.saga";
 import { groupResultsByNeed } from "../functions";
-import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
-import { mockedThemesData } from "../../../../jest/__fixtures__/themes";
 const theme = mockedThemesData[0];
 
 describe("[Saga] contents", () => {
   describe("pilot", () => {
     it("should trigger all the sagas", () => {
-      testSaga(latestActionsSaga)
-        .next()
-        .takeLatest("FETCH_CONTENTS", fetchContents)
-        .next()
-        .isDone();
+      testSaga(latestActionsSaga).next().takeLatest("FETCH_CONTENTS", fetchContents).next().isDone();
     });
   });
 
@@ -50,7 +40,7 @@ describe("[Saga] contents", () => {
           setNbContentsActionCreator({
             nbGlobalContent: null,
             nbLocalizedContent: null,
-          })
+          }),
         )
         .next(null)
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
@@ -113,26 +103,32 @@ describe("[Saga] contents", () => {
             contents: [
               {
                 _id: "idFr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
+                locale: "fr",
                 nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1,
+                nbVuesMobile: 1,
+                needs: [],
+                secondaryThemes: [],
+                sponsorUrl: "sponsorUrl",
+                theme: theme,
+                titreInformatif: "titre",
+                titreMarque: "titreMarque",
+                typeContenu: ContentType.DISPOSITIF,
               },
               {
                 _id: "id1Fr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
+                locale: "fr",
                 nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1,
+                nbVuesMobile: 1,
+                needs: [],
+                secondaryThemes: [],
+                sponsorUrl: "sponsorUrl",
+                theme: theme,
+                titreInformatif: "titre",
+                titreMarque: "titreMarque",
+                typeContenu: ContentType.DISPOSITIF,
               },
             ],
-          })
+          }),
         )
         .next()
         .call(groupResultsByNeed, [
@@ -169,7 +165,7 @@ describe("[Saga] contents", () => {
           setNbContentsActionCreator({
             nbGlobalContent: 42,
             nbLocalizedContent: 42,
-          })
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
@@ -248,26 +244,32 @@ describe("[Saga] contents", () => {
             contents: [
               {
                 _id: "id_ar",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
+                locale: "ar",
                 nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1,
+                nbVuesMobile: 1,
+                needs: [],
+                secondaryThemes: [],
+                sponsorUrl: "sponsorUrl",
+                theme: theme,
+                titreInformatif: "titre",
+                titreMarque: "titreMarque",
+                typeContenu: ContentType.DISPOSITIF,
               },
               {
                 _id: "id1_ar",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
+                locale: "ar",
                 nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1,
+                nbVuesMobile: 1,
+                needs: [],
+                secondaryThemes: [],
+                sponsorUrl: "sponsorUrl",
+                theme: theme,
+                titreInformatif: "titre",
+                titreMarque: "titreMarque",
+                typeContenu: ContentType.DISPOSITIF,
               },
             ],
-          })
+          }),
         )
         .next()
         .put(
@@ -276,26 +278,32 @@ describe("[Saga] contents", () => {
             contents: [
               {
                 _id: "id_fr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
+                locale: "fr",
                 nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1,
+                nbVuesMobile: 1,
+                needs: [],
+                secondaryThemes: [],
+                sponsorUrl: "sponsorUrl",
+                theme: theme,
+                titreInformatif: "titre",
+                titreMarque: "titreMarque",
+                typeContenu: ContentType.DISPOSITIF,
               },
               {
                 _id: "id1_fr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
+                locale: "fr",
+                nbVuesMobile: 1,
+                needs: [],
                 nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1,
+                secondaryThemes: [],
+                sponsorUrl: "sponsorUrl",
+                theme: theme,
+                titreInformatif: "titre",
+                titreMarque: "titreMarque",
+                typeContenu: ContentType.DISPOSITIF,
               },
             ],
-          })
+          }),
         )
         .next()
         .call(groupResultsByNeed, [
@@ -327,7 +335,7 @@ describe("[Saga] contents", () => {
           setNbContentsActionCreator({
             nbGlobalContent: null,
             nbLocalizedContent: null,
-          })
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))

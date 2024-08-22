@@ -1,15 +1,11 @@
-import React from "react";
-import { act, render } from "@testing-library/react-native";
 import { NavigationContext } from "@react-navigation/native";
+import { render } from "@testing-library/react-native";
+import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
-import {
-  initialRootStateFactory,
-  rootReducer,
-  RootState,
-} from "../services/redux/reducers";
+import { initialRootStateFactory, rootReducer, RootState } from "../services/redux/reducers";
 import { ThemeProvider } from "../theme";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<any>;

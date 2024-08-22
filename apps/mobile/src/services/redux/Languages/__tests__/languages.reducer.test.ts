@@ -12,13 +12,15 @@ describe("[Reducer] languages", () => {
             _id: "id1",
             langueFr: "",
             i18nCode: "",
-            avancementTrad: 1
+            avancementTrad: 1,
+            avancement: 1,
           },
           {
             _id: "id2",
             langueFr: "",
             i18nCode: "",
-            avancementTrad: 1
+            avancementTrad: 1,
+            avancement: 1,
           }
         ])
       )

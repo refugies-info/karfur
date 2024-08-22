@@ -1,10 +1,9 @@
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { LanguageChoiceScreen } from "../LanguageChoiceScreen";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { fireEvent, act } from "@testing-library/react-native";
-import { saveSelectedLanguageActionCreator } from "../../../services/redux/User/user.actions";
-import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { useRoute } from "@react-navigation/core";
+import { fireEvent } from "@testing-library/react-native";
+import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { LanguageChoiceScreen } from "../LanguageChoiceScreen";
 
 jest.mock("@react-navigation/core", () => ({
   ...jest.requireActual("@react-navigation/core"),
@@ -19,13 +18,9 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
 }));
 
 jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual(
-    "../../../services/redux/User/user.actions"
-  );
+  const actions = jest.requireActual("../../../services/redux/User/user.actions");
   return {
-    saveSelectedLanguageActionCreator: jest.fn(
-      actions.saveSelectedLanguageActionCreator
-    ),
+    saveSelectedLanguageActionCreator: jest.fn(actions.saveSelectedLanguageActionCreator),
   };
 });
 
@@ -55,9 +50,7 @@ describe("LanguageChoiceScreen", () => {
     });
     expect(component).toMatchSnapshot();
     const Button = component.getByTestId("test-language-button-Anglais");
-    act(() => {
-      fireEvent.press(Button);
-    });
+    fireEvent.press(Button);
     expect(changeLanguage).toHaveBeenCalledTimes(1);
     expect(changeLanguage).toHaveBeenCalledWith("en");
     /* FIXME: not working anymore since we await changeLanguage

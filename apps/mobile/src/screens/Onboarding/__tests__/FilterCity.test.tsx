@@ -1,10 +1,10 @@
-import { FilterCity } from "../FilterCity";
+import { useRoute } from "@react-navigation/native";
+import { fireEvent } from "@testing-library/react-native";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { act, fireEvent } from "@testing-library/react-native";
 import { saveUserLocationActionCreator } from "../../../services/redux/User/user.actions";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
-import { useRoute } from "@react-navigation/native";
+import { FilterCity } from "../FilterCity";
 
 jest.useFakeTimers();
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
@@ -15,17 +15,11 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
 }));
 
 jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual(
-    "../../../services/redux/User/user.actions"
-  );
+  const actions = jest.requireActual("../../../services/redux/User/user.actions");
 
   return {
-    saveUserLocationActionCreator: jest.fn(
-      actions.saveUserLocationActionCreator
-    ),
-    removeUserLocalizedWarningHiddenActionCreator: jest.fn(
-      actions.removeUserLocalizedWarningHiddenActionCreator
-    ),
+    saveUserLocationActionCreator: jest.fn(actions.saveUserLocationActionCreator),
+    removeUserLocalizedWarningHiddenActionCreator: jest.fn(actions.removeUserLocalizedWarningHiddenActionCreator),
   };
 });
 
@@ -75,9 +69,7 @@ describe("Filter city", () => {
     });
 
     const Button = component.getByTestId("test-next-button");
-    act(() => {
-      fireEvent.press(Button);
-    });
+    fireEvent.press(Button);
     expect(saveUserLocationActionCreator).toHaveBeenCalledWith({
       city: "city",
       dep: "dep",

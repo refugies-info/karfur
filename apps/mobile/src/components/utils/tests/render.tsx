@@ -1,16 +1,15 @@
-import React, { ReactNode } from "react";
-import renderer, { act } from "react-test-renderer";
+import { render, RenderOptions } from "@testing-library/react-native";
+import React, { ReactElement } from "react";
 import { ThemeProvider } from "../../../theme";
 
-const render = async (JSX: ReactNode, toJson = true, doAct = false) => {
-  let tree: any = { toJSON: () => undefined };
-  if (doAct) {
-    await act(async () => {
-      tree = renderer.create(<ThemeProvider>{JSX}</ThemeProvider>);
-    });
-  } else {
-    tree = renderer.create(<ThemeProvider>{JSX}</ThemeProvider>);
-  }
-  return toJson ? tree.toJSON() : tree;
+const AllTheProviders: React.FC<React.PropsWithChildren> = ({ children }) => {
+  return <ThemeProvider>{children}</ThemeProvider>;
 };
-export default render;
+
+const customRender = (ui: ReactElement, options?: Omit<RenderOptions, "wrapper">) =>
+  render(ui, { wrapper: AllTheProviders, ...options });
+
+// re-export everything
+export * from "@testing-library/react";
+
+export { customRender as render };

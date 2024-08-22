@@ -36,7 +36,7 @@ interface Props {
   backCallback: () => void;
 }
 
-const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
+const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback }) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
 
