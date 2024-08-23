@@ -13,9 +13,13 @@ import {
 import { setContentsActionCreator, setNbContentsActionCreator } from "../contents.actions";
 import latestActionsSaga, { fetchContents } from "../contents.saga";
 import { groupResultsByNeed } from "../functions";
+import util from "util"
+
 const theme = mockedThemesData[0];
 
 describe("[Saga] contents", () => {
+  util.inspect.defaultOptions.depth = null;
+
   describe("pilot", () => {
     it("should trigger all the sagas", () => {
       testSaga(latestActionsSaga).next().takeLatest("FETCH_CONTENTS", fetchContents).next().isDone();
@@ -196,45 +200,57 @@ describe("[Saga] contents", () => {
           data: [
             {
               _id: "id_ar",
+              locale: "ar",
               titreInformatif: "titre",
+              titreMarque: "titreMarque",
               theme: theme,
+              needs: [],
               secondaryThemes: [],
               typeContenu: "dispositif",
               nbVues: 1,
-              sponsorUrl: null,
-              avancement: 1,
+              nbVuesMobile: 1,
+              sponsorUrl: "sponsorUrl",
             },
             {
               _id: "id1_ar",
+              locale: "ar",
               titreInformatif: "titre",
+              titreMarque: "titreMarque",
               theme: theme,
+              needs: [],
               secondaryThemes: [],
               typeContenu: "dispositif",
               nbVues: 1,
-              sponsorUrl: null,
-              avancement: 1,
+              nbVuesMobile: 1,
+              sponsorUrl: "sponsorUrl",
             },
           ],
           dataFr: [
             {
               _id: "id_fr",
+              locale: "fr",
               titreInformatif: "titre",
+              titreMarque: "titreMarque",
               theme: theme,
+              needs: [],
               secondaryThemes: [],
               typeContenu: "dispositif",
               nbVues: 1,
-              sponsorUrl: null,
-              avancement: 1,
+              nbVuesMobile: 1,
+              sponsorUrl: "sponsorUrl",
             },
             {
               _id: "id1_fr",
+              locale: "fr",
               titreInformatif: "titre",
+              titreMarque: "titreMarque",
               theme: theme,
+              needs: [],
               secondaryThemes: [],
               typeContenu: "dispositif",
               nbVues: 1,
-              sponsorUrl: null,
-              avancement: 1,
+              nbVuesMobile: 1,
+              sponsorUrl: "sponsorUrl",
             },
           ],
         })
@@ -309,23 +325,29 @@ describe("[Saga] contents", () => {
         .call(groupResultsByNeed, [
           {
             _id: "id_fr",
+            locale: "fr",
             titreInformatif: "titre",
+            titreMarque: "titreMarque",
             theme: theme,
+            needs: [],
             secondaryThemes: [],
             typeContenu: "dispositif",
             nbVues: 1,
-            sponsorUrl: null,
-            avancement: 1,
+            nbVuesMobile: 1,
+            sponsorUrl: "sponsorUrl",
           },
           {
             _id: "id1_fr",
+            locale: "fr",
             titreInformatif: "titre",
+            titreMarque: "titreMarque",
             theme: theme,
+            needs: [],
             secondaryThemes: [],
             typeContenu: "dispositif",
             nbVues: 1,
-            sponsorUrl: null,
-            avancement: 1,
+            nbVuesMobile: 1,
+            sponsorUrl: "sponsorUrl",
           },
         ])
         .next({ idFr: [], id1Fr: [] })
