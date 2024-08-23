@@ -6,9 +6,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache",
-    "check-types": "tsc --noEmit",
-    "test": "echo 'No tests to run'",
-    "prepublishOnly": "tsc"
+    "check-types": "tsc",
+    "test": "echo 'No tests to run'"
   },
   "author": "Réfugiés.info",
   "license": "ISC",
