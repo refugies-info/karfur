@@ -1,18 +1,19 @@
-import HTML from "react-native-render-html";
-import * as React from "react";
-import * as Linking from "expo-linking";
 import { useNavigation } from "@react-navigation/native";
+import { sanitize } from "dompurify";
+import * as Linking from "expo-linking";
+import * as React from "react";
 import { Text, View } from "react-native";
-import { styles } from "../../theme";
-import { RTLView } from "../BasicComponents";
-import { TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
+import HTML from "react-native-render-html";
+import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
-import { ReadableText } from "../ReadableText";
-import { Card, Columns, Rows, RowsSpacing, Spacer } from "../layout";
-import { useTheme } from "styled-components/native";
+import { styles } from "../../theme";
+import { RTLView } from "../BasicComponents";
 import { Icon } from "../iconography";
+import { Card, Columns, Rows, RowsSpacing, Spacer } from "../layout";
 import { Link } from "../Profil/Typography";
+import { ReadableText } from "../ReadableText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
 import { Callout } from "../typography";
 
 interface Props {
@@ -22,11 +23,12 @@ interface Props {
 }
 
 const sanitizeForReading = (htmlContent: string) =>
-  htmlContent
-    .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
-    .replaceAll("</ul>", ".</ul> ") // wait after reading list
-    .replaceAll(/&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/gm, "") // remove html character entities
-    .replaceAll(/<[^>]*>?/gm, "");
+  sanitize(
+    htmlContent
+      .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
+      .replaceAll("</ul>", ".</ul> ") // wait after reading list
+      .replaceAll(/&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/gm, ""), // remove html character entities
+  );
 
 export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const theme = useTheme();
@@ -46,11 +48,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
 
   return (
     <View style={{ flexDirection: "row" }}>
-      <ReadableText
-        ref={ref}
-        text={sanitizeForReading(props.htmlContent)}
-        heightOffset={props.fromAccordion}
-      >
+      <ReadableText ref={ref} text={sanitizeForReading(props.htmlContent)} heightOffset={props.fromAccordion}>
         <HTML
           contentWidth={props.windowWidth}
           source={{ html: props.htmlContent }}
@@ -108,11 +106,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
           }}
           renderers={{
             a: (attrs, children, _cssStyles, passProps) => (
-              <Link
-                accessibilityRole="link"
-                onPress={() => handleOpenUrl(attrs.href.toString())}
-                key={passProps.key}
-              >
+              <Link accessibilityRole="link" onPress={() => handleOpenUrl(attrs.href.toString())} key={passProps.key}>
                 {children}
               </Link>
             ),
@@ -164,14 +158,8 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               if (_["data-callout"] === "important") {
                 return (
                   <View key={passProps.key}>
-                    <Spacer
-                      key={passProps.key + "_spacer"}
-                      height={theme.margin * 3}
-                    />
-                    <Card
-                      key={passProps.key}
-                      backgroundColor={theme.colors.lightGrey}
-                    >
+                    <Spacer key={passProps.key + "_spacer"} height={theme.margin * 3} />
+                    <Card key={passProps.key} backgroundColor={theme.colors.lightGrey}>
                       <Columns layout="auto 1">
                         <View
                           style={{
@@ -183,21 +171,13 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         </View>
                         <View style={{ padding: 10 }}>
                           <Rows spacing={RowsSpacing.Text}>
-                            <TextDSFR_MD_Bold>
-                              {t(
-                                "content_screen.callout_important",
-                                "Important"
-                              )}
-                            </TextDSFR_MD_Bold>
+                            <TextDSFR_MD_Bold>{t("content_screen.callout_important", "Important")}</TextDSFR_MD_Bold>
                             {children}
                           </Rows>
                         </View>
                       </Columns>
                     </Card>
-                    <Spacer
-                      key={passProps.key + "_spacer_"}
-                      height={theme.margin * 3}
-                    />
+                    <Spacer key={passProps.key + "_spacer_"} height={theme.margin * 3} />
                   </View>
                 );
               }
