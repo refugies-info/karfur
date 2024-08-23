@@ -3373,7 +3373,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               ]
             }
           >
-            <react-native-svg
+            <SvgMock
               height={24}
               style={
                 {

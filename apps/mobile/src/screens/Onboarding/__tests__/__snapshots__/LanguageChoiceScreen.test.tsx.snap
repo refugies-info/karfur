@@ -193,7 +193,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -496,7 +496,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -799,7 +799,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -1102,7 +1102,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -1405,7 +1405,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -1708,7 +1708,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -2011,7 +2011,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />
@@ -2314,7 +2314,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <react-native-svg
+                    <SvgMock
                       height={15}
                       width={20}
                     />

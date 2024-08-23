@@ -131,7 +131,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
               }
             }
           >
-            <react-native-svg
+            <SvgMock
               height={15}
               width={20}
             />
@@ -422,7 +422,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
               }
             }
           >
-            <react-native-svg
+            <SvgMock
               height={15}
               width={20}
             />
@@ -722,7 +722,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
               }
             }
           >
-            <react-native-svg
+            <SvgMock
               height={15}
               width={20}
             />
@@ -908,7 +908,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
               }
             }
           >
-            <react-native-svg
+            <SvgMock
               height={15}
               width={20}
             />

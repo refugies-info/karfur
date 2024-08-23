@@ -1,10 +1,17 @@
 import { useRoute } from "@react-navigation/core";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
-import { fireEvent } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
+import { legacy_createStore as createStore } from "redux";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { initialRootStateFactory, rootReducer, RootState } from "../../../services/redux/reducers";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
 import { ProfilScreen } from "../ProfilScreen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemeProvider } from "../../../theme";
+import { Provider } from "react-redux";
+import { NavigationContext } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ProfileParamList } from "../../../../types";
 
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -90,20 +97,45 @@ describe("Profil screen", () => {
   });
 
   it("should render correctly when data in store", async () => {
-    const navigation = { navigate: jest.fn() };
-    const component = wrapWithProvidersAndRender({
-      Component: ProfilScreen,
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: {
-          ...initialUserState,
-          age: "0 à 17 ans",
-          frenchLevel: MobileFrenchLevel["Je parle couramment"],
-          city: "Paris",
-        },
+    const navigation = { navigate: jest.fn() } as unknown as StackNavigationProp<ProfileParamList, "ProfilScreen", undefined>;
+    const store = createStore<RootState, any>(rootReducer, {
+      ...initialRootStateFactory(),
+      user: {
+        ...initialUserState,
+        age: "0 à 17 ans",
+        frenchLevel: MobileFrenchLevel["Je parle couramment"],
+        city: "Paris",
       },
-      compProps: { navigation },
     });
-    expect(component).toMatchSnapshot();
+    const navContext = {
+      isFocused: () => true,
+      addListener: jest.fn(() => jest.fn()),
+    };
+    const value = render(
+      <SafeAreaProvider>
+        <NavigationContext.Provider value={navContext as any}>
+          <Provider store={store}>
+            <ThemeProvider>
+              <ProfilScreen navigation={navigation}/>
+            </ThemeProvider>
+          </Provider>
+        </NavigationContext.Provider>
+      </SafeAreaProvider>,
+    );
+
+    // const component = wrapWithProvidersAndRender({
+    //   Component: ProfilScreen,
+    //   reduxState: {
+    //     ...initialRootStateFactory(),
+    //     user: {
+    //       ...initialUserState,
+    //       age: "0 à 17 ans",
+    //       frenchLevel: MobileFrenchLevel["Je parle couramment"],
+    //       city: "Paris",
+    //     },
+    //   },
+    //   compProps: { navigation },
+    // });
+    expect(value).toMatchSnapshot();
   });
 });

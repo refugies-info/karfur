@@ -340,7 +340,6 @@ exports[`ContentScreen should render correctly 1`] = `
           }
         >
           <Image
-            onLayout={[Function]}
             resizeMode="cover"
             source={
               {
@@ -8820,7 +8819,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
           }
         >
           <Image
-            onLayout={[Function]}
             resizeMode="cover"
             source={
               {

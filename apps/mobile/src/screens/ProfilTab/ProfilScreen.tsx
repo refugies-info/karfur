@@ -1,39 +1,37 @@
-import * as React from "react";
-import { TextDSFR_L_Bold, TextDSFR_XS } from "../../components/StyledText";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import styled from "styled-components/native";
-import { styles } from "../../theme";
-import { useDispatch, useSelector } from "react-redux";
-import Constants from "expo-constants";
 import analytics from "@react-native-firebase/analytics";
+import { StackScreenProps } from "@react-navigation/stack";
+import Constants from "expo-constants";
+import * as React from "react";
+import { Linking } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import styled, { useTheme } from "styled-components/native";
+import { ProfileParamList } from "../../../types";
+import { Columns, Flag, Page, Spacer } from "../../components";
+import { ConfirmationModal } from "../../components/ConfirmationModal";
+import { CustomButton } from "../../components/CustomButton";
+import { MascotteSpeaking } from "../../components/Profil/MascotteSpeaking";
+import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
+import { H1 } from "../../components/Profil/Typography";
+import { TextDSFR_L_Bold, TextDSFR_XS } from "../../components/StyledText";
+import { ageFilters, frenchLevelFilters } from "../../data/filtersData";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { firstLetterUpperCase } from "../../libs";
+import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import {
-  removeUserFrenchLevelActionCreator,
   removeUserAgeActionCreator,
+  removeUserFrenchLevelActionCreator,
   removeUserLocationActionCreator,
   resetUserActionCreator,
 } from "../../services/redux/User/user.actions";
-import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
 import {
   selectedI18nCodeSelector,
-  userLocationSelector,
   userAgeSelector,
   userFrenchLevelSelector,
+  userLocationSelector,
 } from "../../services/redux/User/user.selectors";
-import { getSelectedLanguageFromI18nCode } from "../../libs/language";
-import { ProfileParamList } from "../../../types";
-import { StackScreenProps } from "@react-navigation/stack";
-import { ConfirmationModal } from "../../components/ConfirmationModal";
-import { CustomButton } from "../../components/CustomButton";
-import { ageFilters } from "../../data/filtersData";
-import { updateAppUser } from "../../utils/API";
-import { firstLetterUpperCase } from "../../libs";
-import { Columns, Flag, Page, Spacer } from "../../components";
-import { frenchLevelFilters } from "../../data/filtersData";
-import { useTheme } from "styled-components/native";
-import { H1 } from "../../components/Profil/Typography";
+import { styles } from "../../theme";
 import UserProfileIcon from "../../theme/images/profile/user-profile.svg";
-import { MascotteSpeaking } from "../../components/Profil/MascotteSpeaking";
-import { Linking } from "react-native";
+import { updateAppUser } from "../../utils/API";
 
 // TODO: use separator from components
 const Separator = styled.View`
@@ -50,8 +48,7 @@ const ProfilButtonsContainer = styled.View`
 `;
 
 const Section = styled.View<{ darkBackground?: boolean }>`
-  background-color: ${({ theme, darkBackground }) =>
-    darkBackground ? theme.colors.dsfr_backgroundBlue : "white"};
+  background-color: ${({ theme, darkBackground }) => (darkBackground ? theme.colors.dsfr_backgroundBlue : "white")};
   padding-horizontal: ${({ theme }) => theme.margin * 3}px;
   padding-top: ${({ theme }) => theme.margin * 3}px;
 `;
@@ -59,29 +56,23 @@ const SectionTitle = styled(TextDSFR_L_Bold)`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
 `;
 
-export const ProfilScreen = ({
+export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "ProfilScreen">, "route">> = ({
   navigation,
-}: StackScreenProps<ProfileParamList, "ProfilScreen">) => {
+}) => {
   const theme = useTheme();
-  const [isReinitAppModalVisible, setReinitAppModalVisible] =
-    React.useState(false);
+  const [isReinitAppModalVisible, setReinitAppModalVisible] = React.useState(false);
 
-  const toggleReinitAppModal = () =>
-    setReinitAppModalVisible(!isReinitAppModalVisible);
+  const toggleReinitAppModal = () => setReinitAppModalVisible(!isReinitAppModalVisible);
 
-  const { t, isRTL } = useTranslationWithRTL();
+  const { t } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
-  const selectedLanguage = getSelectedLanguageFromI18nCode(
-    selectedLanguageI18nCode
-  );
+  const selectedLanguage = getSelectedLanguageFromI18nCode(selectedLanguageI18nCode);
 
   const selectedLocation = useSelector(userLocationSelector);
   const selectedAge = useSelector(userAgeSelector);
   const selectedFrenchLevel = useSelector(userFrenchLevelSelector);
-  const formattedLevel = frenchLevelFilters.find(
-    (frenchLevelFilter) => frenchLevelFilter.key === selectedFrenchLevel
-  );
+  const formattedLevel = frenchLevelFilters.find((frenchLevelFilter) => frenchLevelFilter.key === selectedFrenchLevel);
 
   const dispatch = useDispatch();
 
@@ -121,10 +112,7 @@ export const ProfilScreen = ({
       <Section darkBackground>
         <Columns RTLBehaviour layout="auto 1" verticalAlign="top">
           <UserProfileIcon width={32} height={32} />
-          <H1
-            style={{ color: theme.colors.dsfr_action }}
-            accessibilityRole="header"
-          >
+          <H1 style={{ color: theme.colors.dsfr_action }} accessibilityRole="header">
             {t("profile_screens.my_profile", "Mes informations")}
           </H1>
         </Columns>
@@ -140,11 +128,7 @@ export const ProfilScreen = ({
         />
         <ProfilDetailButton
           iconName="calendar-outline"
-          label={
-            selectedAgeName
-              ? t("filters." + selectedAgeName, selectedAgeName)
-              : t("profile_screens.age", "age")
-          }
+          label={selectedAgeName ? t("filters." + selectedAgeName, selectedAgeName) : t("profile_screens.age", "age")}
           onPress={() => navigation.navigate("AgeProfilScreen")}
           isEmpty={!selectedAge}
           isBold={!!selectedAge}
@@ -202,10 +186,7 @@ export const ProfilScreen = ({
 
         <ProfilButtonsContainer>
           <SectionTitle accessibilityRole="header">
-            {t(
-              "profile_screens.app_informations",
-              "Informations sur l'application"
-            )}
+            {t("profile_screens.app_informations", "Informations sur l'application")}
           </SectionTitle>
           <ProfilDetailButton
             iconName="question-mark-circle-outline"
@@ -218,10 +199,7 @@ export const ProfilScreen = ({
 
           <ProfilDetailButton
             iconName="lock-outline"
-            label={t(
-              "profile_screens.privacy_policy",
-              "Politique de confidentialité"
-            )}
+            label={t("profile_screens.privacy_policy", "Politique de confidentialité")}
             onPress={() => navigation.navigate("PrivacyPolicyScreen")}
             inList
             iconRight="navigate"
@@ -239,10 +217,7 @@ export const ProfilScreen = ({
 
           <ProfilDetailButton
             iconName="file-text-outline"
-            label={t(
-              "profile_screens.accessibility",
-              "Déclaration d'accessibilité"
-            )}
+            label={t("profile_screens.accessibility", "Déclaration d'accessibilité")}
             onPress={() => navigation.navigate("AccessibilityScreen")}
             inList
             iconRight="navigate"
@@ -276,9 +251,7 @@ export const ProfilScreen = ({
           iconFirst
         />
         <Spacer height={theme.margin * 5} />
-        <TextDSFR_XS
-          style={{ textAlign: "center", color: styles.colors.darkGrey }}
-        >
+        <TextDSFR_XS style={{ textAlign: "center", color: styles.colors.darkGrey }}>
           Version {Constants.expoConfig?.extra?.displayVersionNumber}
         </TextDSFR_XS>
         <Spacer height={theme.margin * 5} />
@@ -286,10 +259,7 @@ export const ProfilScreen = ({
         <ConfirmationModal
           isModalVisible={isReinitAppModalVisible}
           toggleModal={toggleReinitAppModal}
-          text={t(
-            "profile_screens.reinit_app2",
-            "Es-tu sûr de vouloir réinitialiser ton application ?"
-          )}
+          text={t("profile_screens.reinit_app2", "Es-tu sûr de vouloir réinitialiser ton application ?")}
           onValidate={reinitializeApp}
         />
       </Section>

@@ -115,7 +115,7 @@ exports[`RadioButton snapshot test suite should render without bug 1`] = `
     align="xMidYMid"
     bbHeight="24"
     bbWidth="24"
-    fill="#161616"
+    fill="#000091"
     focusable={false}
     height={24}
     meetOrSlice={0}
@@ -141,7 +141,7 @@ exports[`RadioButton snapshot test suite should render without bug 1`] = `
     <RNSVGGroup
       fill={
         {
-          "payload": 4279637526,
+          "payload": 4278190225,
           "type": 0,
         }
       }
@@ -181,7 +181,16 @@ exports[`RadioButton snapshot test suite should render without bug 1`] = `
             y="0"
           />
           <RNSVGPath
-            d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
+            d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+          />
+          <RNSVGPath
+            d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"
             fill={
               {
                 "payload": 4278190080,

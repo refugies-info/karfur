@@ -9,7 +9,6 @@ jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 
 jest.useFakeTimers();
 
-
 // jest.mock("react-native/Libraries/EventEmitter/NativeEventEmitter.js", () => {
 //   const { EventEmitter } = require("events");
 //   return EventEmitter;
@@ -21,6 +20,10 @@ jest.mock("react-native-blob-util", () => {
 });
 
 jest.mock("uuid", () => {
+  return () => ({});
+});
+
+jest.mock("search-insights", () => {
   return () => ({});
 });
 
@@ -72,14 +75,17 @@ jest.mock("@react-navigation/core", () => ({
   })),
 }));
 
-// jest.mock("expo-notifications", () => ({
-//   getPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
-//   requestPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
-//   getExpoPushTokenAsync: jest.fn().mockResolvedValue({ data: "data" }),
-//   setNotificationChannelAsync: jest.fn(),
-//   AndroidImportance: { Max: 7 },
-// }));
+jest.mock("expo-notifications", () => ({
+  getPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
+  requestPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
+  getExpoPushTokenAsync: jest.fn().mockResolvedValue({ data: "data" }),
+  setNotificationChannelAsync: jest.fn(),
+  AndroidImportance: { Max: 7 },
+}));
 
 jest.mock("@react-native-async-storage/async-storage", () =>
   require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
 );
+
+// Mock all SVG imports
+jest.mock("*.svg", () => "SvgMock");
