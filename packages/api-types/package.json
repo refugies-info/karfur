@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "check-types": "tsc --noEmit",
     "test": "echo 'No tests to run'",
     "prepublishOnly": "tsc"
@@ -12,7 +13,10 @@
   "author": "Réfugiés.info",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "eslint": "^8.57.0",
+    "eslint-config-turbo": "^2.0.9",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
   },
   "dependencies": {
     "base64-js": "^1.5.1",
