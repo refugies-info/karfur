@@ -1,6 +1,6 @@
-import React, { useCallback, useMemo, useState } from "react";
 import { Id, Poi } from "@refugies-info/api-types";
-import { Modal, TouchableOpacity } from "react-native";
+import React, { useCallback, useMemo, useState } from "react";
+import { Modal, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import {
@@ -11,15 +11,15 @@ import {
   MiniMap,
   RTLView,
   ReadableText,
-  TextDSFR_XL,
   TextDSFR_MD_Bold,
+  TextDSFR_XL,
 } from "../../../components";
 import { useTranslationWithRTL } from "../../../hooks";
 import { styles } from "../../../theme";
 import { MapGoogle } from "../../../types/interface";
-import { logEventInFirebase } from "../../../utils/logEvent";
+import { PropsOf } from "../../../utils";
 import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
-import { withProps } from "../../../utils";
+import { logEventInFirebase } from "../../../utils/logEvent";
 
 const HeaderText = styled(TextDSFR_XL)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
@@ -39,21 +39,24 @@ const FakeMapButtonText = styled(TextDSFR_MD_Bold)`
   margin-left: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin : 0)}px;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
 `;
-const ModalContainer = withProps(() => {
+const ModalContainer: React.FC<React.PropsWithChildren<PropsOf<typeof View>>> = ({ children, ...other }) => {
   const insets = useSafeAreaInsets();
-  return {
-    paddingTop: insets.top,
-  };
-})(styled.View<{ paddingTop: number }>`
-  display: flex;
-  position: absolute;
-  width: 100%;
-  padding-horizontal: ${({ theme }) => theme.margin * 2}px;
-  padding-top: ${({ paddingTop }) => paddingTop}px;
-  z-index: 2;
-  flex-direction: row;
-  justify-content: space-between;
-`);
+  const Component = styled.View<{ paddingTop: number }>`
+    display: flex;
+    position: absolute;
+    width: 100%;
+    padding-horizontal: ${({ theme }) => theme.margin * 2}px;
+    padding-top: ${({ paddingTop }) => paddingTop}px;
+    z-index: 2;
+    flex-direction: row;
+    justify-content: space-between;
+  `;
+  return (
+    <Component paddingTop={insets.top} {...other}>
+      {children}
+    </Component>
+  );
+};
 
 interface Props {
   markers: Poi[] | null;
@@ -79,7 +82,7 @@ export const MapMarkers = ({ markers, contentId, color }: Props) => {
         place_id: index.toString(),
       })),
     }),
-    [markers]
+    [markers],
   );
 
   const toggleMap = useCallback(() => {
@@ -92,9 +95,7 @@ export const MapMarkers = ({ markers, contentId, color }: Props) => {
   return (
     <>
       <HeaderText key={1} color={color} accessibilityRole="header">
-        <ReadableText>
-          {t("content_screen.where", "Trouver un interlocuteur")}
-        </ReadableText>
+        <ReadableText>{t("content_screen.where", "Trouver un interlocuteur")}</ReadableText>
       </HeaderText>
       <MiniMap map={mapGoogle} markersColor={color}>
         <TouchableOpacity
@@ -110,9 +111,7 @@ export const MapMarkers = ({ markers, contentId, color }: Props) => {
         >
           <FakeMapButton accessible={false}>
             <Icon color={styles.colors.black} name="eye-outline" size={24} />
-            <FakeMapButtonText isRTL={isRTL}>
-              {t("content_screen.see_map_button", "Voir la carte")}
-            </FakeMapButtonText>
+            <FakeMapButtonText isRTL={isRTL}>{t("content_screen.see_map_button", "Voir la carte")}</FakeMapButtonText>
           </FakeMapButton>
         </TouchableOpacity>
       </MiniMap>
@@ -121,9 +120,7 @@ export const MapMarkers = ({ markers, contentId, color }: Props) => {
         <FixSafeAreaView>
           <ModalContainer>
             <IconButton
-              accessibilityLabel={t(
-                "content_screen.back_content_accessibility"
-              )}
+              accessibilityLabel={t("content_screen.back_content_accessibility")}
               iconName="arrow-back-outline"
               onPress={toggleMap}
             />

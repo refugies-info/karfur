@@ -1,14 +1,13 @@
-import React from "react";
-import RadioButton from "./RadioButton";
 import { render } from "../../utils/tests";
+import RadioButton from "./RadioButton";
 
 describe("RadioButton snapshot test suite", () => {
   it("should render without bug", async () => {
-    const test = await render(<RadioButton selected />);
+    const test = render(<RadioButton isSelected />);
     expect(test).toMatchSnapshot();
   });
   it("should render not selected", async () => {
-    const test = await render(<RadioButton selected={false} />);
+    const test = render(<RadioButton isSelected={false} />);
     expect(test).toMatchSnapshot();
   });
 });

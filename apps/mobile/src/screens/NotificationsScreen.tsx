@@ -1,5 +1,5 @@
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/native";
-import React, { ComponentType, useMemo } from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 
@@ -17,7 +17,6 @@ import { Page, Rows } from "../components";
 import { HeaderContentProps, HeaderContentTitle } from "../components/layout/Header";
 import { EnableNotifications } from "../components/Notifications/EnableNotifications";
 import { NotificationCard } from "../components/Notifications/NotificationCard";
-import { withProps } from "../utils";
 
 const ICON_SIZE = 24;
 
@@ -81,11 +80,11 @@ export const NotificationsScreen = () => {
       initial: false,
     });
 
-  const HeaderContent = useMemo(
-    () =>
-      withProps({
-        title: t("notifications.notifications"),
-        headerTooltip: (
+  const HeaderContent = useMemo(() => {
+    const component: React.FC<HeaderContentProps> = (props) => (
+      <HeaderContentTitle
+        title={t("notifications.notifications")}
+        headerTooltip={
           <TouchableOpacity
             style={stylesheet.settingsButton}
             activeOpacity={0.8}
@@ -93,10 +92,13 @@ export const NotificationsScreen = () => {
           >
             <Icon name="settings-outline" width={ICON_SIZE} height={ICON_SIZE} fill={theme.colors.black} />
           </TouchableOpacity>
-        ),
-      })(HeaderContentTitle) as ComponentType<HeaderContentProps>,
-    [theme],
-  );
+        }
+        {...props}
+      />
+    );
+    component.displayName = "HeaderContentTitleWithProps";
+    return component;
+  }, [theme]);
 
   return (
     <Page headerTitle={t("notifications.notifications")} HeaderContent={HeaderContent} loading={isLoading}>

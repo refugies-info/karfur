@@ -1,42 +1,31 @@
-import React, {
-  ComponentType,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { Picture } from "@refugies-info/api-types";
+import React, { ComponentType, ReactNode, useCallback, useEffect, useMemo } from "react";
 import {
   FlatList,
+  FlatListProps,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
   ScrollViewProps,
-  FlatListProps,
   ViewStyle,
 } from "react-native";
-import Animated, {
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import styled, { useTheme } from "styled-components/native";
+import { useStateOnce } from "../../../hooks";
 import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
 import { useVoiceover } from "../../../hooks/useVoiceover";
+import { SkeletonListPage } from "../../feedback";
+import { isDarkColor } from "../../utils";
+import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
 import Header, {
   HeaderContentEmpty,
   HeaderContentProps,
   HeaderContentTitle,
+  HeaderContentTitleProps,
   HeaderProps,
 } from "../Header";
 import ScrollableContent from "../ScrollableContent";
-import { SkeletonListPage } from "../../feedback";
-import { useStateOnce } from "../../../hooks";
-import { withProps } from "../../../utils";
-import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
 import Spacer from "../Spacer";
-import { isDarkColor } from "../../utils";
-import { Picture } from "@refugies-info/api-types";
 import PageHeader from "./PageHeader";
 
 const PageContainer = styled.View<{ backgroundColor: string }>`
@@ -98,7 +87,7 @@ const Page = ({
   const theme = useTheme();
   const [initialHeaderSize, setInitialHeaderSize] = useStateOnce<number>();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation(
-    initialHeaderSize && initialHeaderSize - theme.layout.header.minHeight - 10
+    initialHeaderSize && initialHeaderSize - theme.layout.header.minHeight - 10,
   ); // Voiceover
   const contentScrollview = React.useRef<ScrollView>(null);
   const offset = voiceoverOffset || 200;
@@ -115,12 +104,9 @@ const Page = ({
 
   const onScrollEnd = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      setScroll(
-        event.nativeEvent.contentOffset.y,
-        showSimplifiedHeader ? offset : 0
-      );
+      setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0);
     },
-    [setScroll]
+    [setScroll],
   );
 
   const bgController = useSharedValue(0);
@@ -133,11 +119,7 @@ const Page = ({
     return `${r},${g},${b}`;
   }, [headerBackgroundColor]);
   const animatedBg = useAnimatedStyle(() => ({
-    backgroundColor: interpolateColor(
-      bgController.value,
-      [0, 1],
-      [`rgba(${rgbColor},0)`, headerBackgroundColor]
-    ),
+    backgroundColor: interpolateColor(bgController.value, [0, 1], [`rgba(${rgbColor},0)`, headerBackgroundColor]),
   }));
 
   useEffect(() => {
@@ -146,9 +128,11 @@ const Page = ({
 
   const HeaderContentInternal = useMemo(() => {
     if (title && HeaderContent === HeaderContentEmpty) {
-      return withProps({
-        title,
-      })(HeaderContentTitle) as ComponentType<HeaderContentProps>;
+      const component: React.FC<Omit<HeaderContentTitleProps, "title">> = (props) => (
+        <HeaderContentTitle title={title} {...props} />
+      );
+      component.displayName = "HeaderContentTitleWithTitle";
+      return component;
     }
     return HeaderContent;
   }, [HeaderContent, title]);
@@ -159,16 +143,12 @@ const Page = ({
 
   const onHeaderLayout = useCallback(
     (e: any) => setInitialHeaderSize(e.nativeEvent.layout.height),
-    [setInitialHeaderSize]
+    [setInitialHeaderSize],
   );
 
-  const showHeaderTitle =
-    showSimplifiedHeader || HeaderContentInternal === HeaderContentEmpty;
+  const showHeaderTitle = showSimplifiedHeader || HeaderContentInternal === HeaderContentEmpty;
 
-  const isDarkBackground = useMemo(
-    () => isDarkColor(headerBackgroundColor),
-    [headerBackgroundColor]
-  );
+  const isDarkBackground = useMemo(() => isDarkColor(headerBackgroundColor), [headerBackgroundColor]);
 
   const scrollViewProps: ScrollViewProps | FlatListProps<any> = useMemo(
     () => ({
@@ -185,17 +165,13 @@ const Page = ({
       scrollEventThrottle: 26,
       scrollIndicatorInsets: { right: 1 },
     }),
-    [onScrollEnd, handleScroll, scrollview, contentScrollview]
+    [onScrollEnd, handleScroll, scrollview, contentScrollview],
   );
 
   return (
     <PageContainer backgroundColor={backgroundColor}>
       <FixedContainerForHeader
-        style={
-          HeaderContent === HeaderContentEmpty
-            ? { backgroundColor: headerBackgroundColor }
-            : [animatedBg]
-        }
+        style={HeaderContent === HeaderContentEmpty ? { backgroundColor: headerBackgroundColor } : [animatedBg]}
       >
         <Header
           {...headerProps}

@@ -1,27 +1,25 @@
-import React, { ComponentType, useMemo } from "react";
-import { styles } from "../../theme";
-import { ExplorerParamList } from "../../../types";
+import { StackScreenProps } from "@react-navigation/stack";
+import { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { needsSelector } from "../../services/redux/Needs/needs.selectors";
+import { ExplorerParamList } from "../../../types";
+import { HeaderContentProps, Page } from "../../components";
+import { ErrorScreen } from "../../components/ErrorScreen";
+import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
+import { NeedsSummary } from "../../components/Needs/NeedsSummary";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { registerBackButton } from "../../libs/backButton";
+import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { StackScreenProps } from "@react-navigation/stack";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { ErrorScreen } from "../../components/ErrorScreen";
-import { NeedsSummary } from "../../components/Needs/NeedsSummary";
-import { registerBackButton } from "../../libs/backButton";
-import { Page, SkeletonListPage } from "../../components";
-import { withProps } from "../../utils";
-import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
-import { HeaderContentProps } from "../../components/layout/Header/HeaderContentProps";
-import { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
-import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
+import { needsSelector } from "../../services/redux/Needs/needs.selectors";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { styles } from "../../theme";
 
 const computeNeedsToDisplay = (
   allNeeds: GetNeedResponse[],
   groupedContents: Record<string, string[]>,
-  themeId: string
+  themeId: string,
 ): GetNeedResponse[] => {
   const filteredNeeds = allNeeds.filter((need) => {
     if (
@@ -51,24 +49,14 @@ const computeNeedsToDisplay = (
       return -1;
     });
 };
-export const NeedsScreen = ({
-  navigation,
-  route,
-}: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
+export const NeedsScreen = ({ navigation, route }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
   const { theme, backScreen } = route.params;
   const { t } = useTranslationWithRTL();
 
   // Loading
-  const isLoadingContents = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
-  );
-  const isLoadingNeeds = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
-  );
-  const isLoading = useMemo(
-    () => isLoadingContents || isLoadingNeeds,
-    [isLoadingContents, isLoadingNeeds]
-  );
+  const isLoadingContents = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS));
+  const isLoadingNeeds = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
+  const isLoading = useMemo(() => isLoadingContents || isLoadingNeeds, [isLoadingContents, isLoadingNeeds]);
 
   // Content
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
@@ -76,24 +64,12 @@ export const NeedsScreen = ({
   const groupedContents = useSelector(groupedContentsSelector);
 
   const needsWithText = useMemo(() => {
-    const needsToDisplay = computeNeedsToDisplay(
-      allNeeds,
-      groupedContents,
-      theme._id.toString()
-    );
+    const needsToDisplay = computeNeedsToDisplay(allNeeds, groupedContents, theme._id.toString());
 
     return needsToDisplay.map((need: GetNeedResponse) => {
-      const needTranslation = need[
-        currentLanguageI18nCode as keyof GetNeedResponse
-      ] as NeedTranslation;
-      const needText =
-        currentLanguageI18nCode && needTranslation?.text
-          ? needTranslation.text
-          : need.fr.text;
-      const needSubtitle =
-        currentLanguageI18nCode && needTranslation?.subtitle
-          ? needTranslation.subtitle
-          : undefined;
+      const needTranslation = need[currentLanguageI18nCode as keyof GetNeedResponse] as NeedTranslation;
+      const needText = currentLanguageI18nCode && needTranslation?.text ? needTranslation.text : need.fr.text;
+      const needSubtitle = currentLanguageI18nCode && needTranslation?.subtitle ? needTranslation.subtitle : undefined;
       return { ...need, needText, needSubtitle };
     });
   }, [allNeeds, groupedContents, theme._id, currentLanguageI18nCode]);
@@ -101,26 +77,21 @@ export const NeedsScreen = ({
   // Back button
   React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
+  const Component: React.FC<HeaderContentProps> = (props) => (
+    <HeaderContentTitle title={theme.name[currentLanguageI18nCode || "fr"]} titleIcon={theme.icon} {...props} />
+  );
   if (needsWithText.length === 0 && !isLoading) {
     return (
       <Page
         backScreen={backScreen}
         headerBackgroundColor={theme.colors.color100}
         headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
-        HeaderContent={
-          withProps({
-            title: theme.name[currentLanguageI18nCode || "fr"],
-            titleIcon: theme.icon,
-          })(HeaderContentTitle) as ComponentType<HeaderContentProps>
-        }
+        HeaderContent={Component}
         loading={false}
       >
         <ErrorScreen
           buttonText={t("tab_bar.explorer")}
-          text={t(
-            "needs_screen.no_result",
-            "Nous sommes désolés, nous n'avons pas de fiche ici"
-          )}
+          text={t("needs_screen.no_result", "Nous sommes désolés, nous n'avons pas de fiche ici")}
           onButtonClick={navigation.goBack}
           buttonIcon="compass-outline"
         />
@@ -133,12 +104,7 @@ export const NeedsScreen = ({
       backScreen={backScreen}
       headerBackgroundColor={theme.colors.color100}
       headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
-      HeaderContent={
-        withProps({
-          title: theme.name[currentLanguageI18nCode || "fr"],
-          titleIcon: theme.icon,
-        })(HeaderContentTitle) as ComponentType<HeaderContentProps>
-      }
+      HeaderContent={Component}
       loading={isLoading}
       flatList={{
         data: needsWithText,

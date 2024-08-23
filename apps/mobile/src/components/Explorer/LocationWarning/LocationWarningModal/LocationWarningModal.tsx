@@ -1,26 +1,21 @@
-import * as React from "react";
-import { Pressable, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
+import React from "react";
+import { Pressable, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Modal from "react-native-modal";
-import { StyleSheet } from "react-native";
-import { RTLView } from "../../../BasicComponents";
-import { styles } from "../../../../theme";
-import { SmallButton } from "../../../SmallButton";
-import {
-  TextDSFR_XL,
-  TextDSFR_MD,
-  TextDSFR_MD_Bold,
-} from "../../../StyledText";
-import { FixSafeAreaView } from "../../../FixSafeAreaView";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../../../../hooks/useTranslationWithRTL";
+import { styles } from "../../../../theme";
 import Map from "../../../../theme/images/localizedWarning/france_map.svg";
 import Pin from "../../../../theme/images/localizedWarning/pin_traffic_cone.svg";
-import styled, { useTheme } from "styled-components/native";
-import { withProps } from "../../../../utils";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Columns, ColumnsSpacing } from "../../../layout";
-import { useNavigation } from "@react-navigation/native";
+import { PropsOf } from "../../../../utils";
+import { RTLView } from "../../../BasicComponents";
+import { FixSafeAreaView } from "../../../FixSafeAreaView";
+import { Columns } from "../../../layout";
+import { SmallButton } from "../../../SmallButton";
+import { TextDSFR_MD, TextDSFR_MD_Bold, TextDSFR_XL } from "../../../StyledText";
 
 interface Props {
   isVisible: boolean;
@@ -41,30 +36,23 @@ const stylesheet = StyleSheet.create({
 });
 
 // TODO Put in icons/FloatingCloseButton ?
-const CloseButton = withProps(() => {
+const CloseButton: React.FC<Partial<PropsOf<typeof SmallButton>>> = (props) => {
   const { t } = useTranslationWithRTL();
   const insets = useSafeAreaInsets();
-  return {
-    iconName: "close-outline",
-    label: t("global.close", "Fermer"),
-    top: insets.top,
-  };
-})(styled(SmallButton)<{ top: number }>`
-  position: absolute;
-  top: ${({ top }) => top}px;
-  ${({ theme }) => (theme.i18n.isRTL ? "left: 0" : "right: 0")};
-`);
+  const Button = styled(SmallButton)<{ top: number }>`
+    position: absolute;
+    top: ${({ top }) => top}px;
+    ${({ theme }) => (theme.i18n.isRTL ? "left: 0" : "right: 0")};
+  `;
+
+  return <Button iconName="close-outline" label={t("global.close", "Fermer")} top={insets.top} {...props} />;
+};
 
 // TODO Put in icons/MonitorIcon
-const MonitorIcon = withProps(({ size }: { size: number }) => {
+const MonitorIcon: React.FC<Partial<PropsOf<typeof Icon>> & { size: number }> = ({ size, ...other }) => {
   const theme = useTheme();
-  return {
-    name: "monitor-outline",
-    height: size,
-    width: size,
-    fill: theme.colors.black,
-  };
-})(Icon);
+  return <Icon fill={theme.colors.black} width={size} height={size} name="monitor-outline" {...other} />;
+};
 
 export const LocationWarningModal = (props: Props) => {
   const { t } = useTranslationWithRTL();
@@ -85,19 +73,13 @@ export const LocationWarningModal = (props: Props) => {
         <CloseButton onPress={props.closeModal} />
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
-            <Map
-              width={102}
-              height={104}
-              style={{ marginBottom: styles.margin }}
-            />
+            <Map width={102} height={104} style={{ marginBottom: styles.margin }} />
             <TextDSFR_MD_Bold style={stylesheet.subtitle}>
               {t("explorer_screen.nb_content", {
                 nbContent: props.nbGlobalContent,
               })}
             </TextDSFR_MD_Bold>
-            <TextDSFR_MD_Bold style={stylesheet.subtitle}>
-              {t("explorer_screen.country_content")}
-            </TextDSFR_MD_Bold>
+            <TextDSFR_MD_Bold style={stylesheet.subtitle}>{t("explorer_screen.country_content")}</TextDSFR_MD_Bold>
           </View>
           <Icon
             name="plus-outline"
@@ -106,21 +88,12 @@ export const LocationWarningModal = (props: Props) => {
             fill={styles.colors.darkBlue}
             style={{ marginHorizontal: styles.margin * 2 }}
           />
-          <Pressable
-            accessibilityRole="button"
-            accessible={true}
-            onPress={goTo}
-          >
-            <Pin
-              width={114}
-              height={104}
-              style={{ marginBottom: styles.margin }}
-            />
+          <Pressable accessibilityRole="button" accessible={true} onPress={goTo}>
+            <Pin width={114} height={104} style={{ marginBottom: styles.margin }} />
             <TextDSFR_MD_Bold
               style={{
                 ...stylesheet.subtitle,
-                textDecorationLine:
-                  props.nbLocalizedContent > 0 ? "underline" : "none",
+                textDecorationLine: props.nbLocalizedContent > 0 ? "underline" : "none",
               }}
             >
               {t("explorer_screen.nb_content", {
@@ -136,9 +109,7 @@ export const LocationWarningModal = (props: Props) => {
         </RTLView>
 
         <View style={{ marginTop: styles.margin * 5 }}>
-          <TextDSFR_XL style={stylesheet.centerText}>
-            {t("explorer_screen.development_in_progress")}
-          </TextDSFR_XL>
+          <TextDSFR_XL style={stylesheet.centerText}>{t("explorer_screen.development_in_progress")}</TextDSFR_XL>
           <TextDSFR_MD
             style={{
               marginVertical: styles.margin * 2,
@@ -146,17 +117,9 @@ export const LocationWarningModal = (props: Props) => {
           >
             {t("explorer_screen.adding_new_content")}
           </TextDSFR_MD>
-          <Columns
-            RTLBehaviour
-            layout="auto"
-            horizontalAlign="center"
-            verticalAlign="center"
-          >
+          <Columns RTLBehaviour layout="auto" horizontalAlign="center" verticalAlign="center">
             <MonitorIcon size={24} />
-            <TextDSFR_MD_Bold
-              onPress={() => Linking.openURL("https://www.refugies.info")}
-              accessibilityRole="link"
-            >
+            <TextDSFR_MD_Bold onPress={() => Linking.openURL("https://www.refugies.info")} accessibilityRole="link">
               www.refugies.info
             </TextDSFR_MD_Bold>
           </Columns>
