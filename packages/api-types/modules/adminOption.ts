@@ -2,7 +2,7 @@
  * @url POST /options/{key}
  */
 export interface AdminOptionRequest {
-  value: any;
+  value: unknown;
 }
 
 /**
@@ -10,7 +10,7 @@ export interface AdminOptionRequest {
  */
 export interface GetAdminOptionResponse {
   key: string;
-  value: any;
+  value: unknown;
 }
 
 /**
@@ -18,5 +18,5 @@ export interface GetAdminOptionResponse {
  */
 export interface PostAdminOptionResponse {
   key: string;
-  value: any;
+  value: unknown;
 }

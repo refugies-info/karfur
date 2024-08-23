@@ -1,4 +1,3 @@
-
 /**
  * @url POST /notifications/seen
  */
@@ -22,6 +21,6 @@ export interface GetNotificationResponse {
     uid: string;
     seen: boolean;
     title: string;
-    data: any;
-  }[]
+    data: unknown;
+  }[];
 }
