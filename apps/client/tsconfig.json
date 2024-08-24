@@ -6,7 +6,6 @@
     "baseUrl": "src",
     "lib": ["es6", "dom", "ES2021.String"],
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
     "noImplicitReturns": true,
     "target": "ES2022",
     "plugins": [{ "name": "next" }],
