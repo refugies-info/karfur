@@ -2,7 +2,7 @@
   "name": "@refugies-info/api-types",
   "version": "1.0.51",
   "description": "Types defined in the API to be used by the frontend",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache",
