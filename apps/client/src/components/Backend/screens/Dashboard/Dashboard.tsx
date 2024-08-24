@@ -77,7 +77,7 @@ const Dashboard = (props: Props) => {
           setStatistics(data);
         }),
         API.getAdminOption(ACTIVES_NOTIFICATIONS).then((data) => {
-          const res = data?.value;
+          const res = data?.value as boolean;
           setNotificationsActive(res === null ? true : res);
         }),
       ];
@@ -145,7 +145,7 @@ const Dashboard = (props: Props) => {
     if (!res.value) return;
 
     return API.setAdminOption(ACTIVES_NOTIFICATIONS, { value: !notificationsActive }).then((data) => {
-      const res = data?.value;
+      const res = data?.value as boolean;
       setNotificationsActive(res === null ? true : res);
     });
   };

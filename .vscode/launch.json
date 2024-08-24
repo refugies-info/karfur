@@ -22,6 +22,18 @@
         "action": "debugWithChrome",
         "webRoot": "${workspaceFolder}/apps/client"
       }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test File",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
     }
   ]
 }

@@ -192,5 +192,5 @@ Follow the [technical standards](general.md) to keep the codebase clean.
 > yarn lint
 
 # launch test types
-> yarn check-types
+> yarn check:types
 ```

@@ -2,17 +2,20 @@
   "name": "@refugies-info/api-types",
   "version": "1.0.51",
   "description": "Types defined in the API to be used by the frontend",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "check-types": "tsc --noEmit",
-    "test": "echo 'No tests to run'",
-    "prepublishOnly": "tsc"
+    "lint": "eslint . --ext ts,tsx,js --quiet --cache",
+    "check:types": "tsc",
+    "test": "echo 'No tests to run'"
   },
   "author": "Réfugiés.info",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "eslint": "^8.57.0",
+    "eslint-config-turbo": "^2.0.9",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
   },
   "dependencies": {
     "base64-js": "^1.5.1",
