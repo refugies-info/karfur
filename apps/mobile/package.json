@@ -3,7 +3,7 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "check-types": "tsc --noEmit",
+    "check:types": "tsc --noEmit",
     "test": "yarn node --experimental-vm-modules $(yarn bin jest --runInBand --detectOpenHandles)",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache  --ignore-pattern dist"
   },

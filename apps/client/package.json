@@ -76,7 +76,7 @@
   },
   "scripts": {
     "build": "NEXT_SHARP_PATH=../../node_modules/.bin/sharp next build",
-    "check-types": "tsc --noEmit",
+    "check:types": "tsc --noEmit",
     "dev": "wait-on http://localhost:8000/health && next dev",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

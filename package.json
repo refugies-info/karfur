@@ -19,10 +19,11 @@
     "build:client": "yarn turbo build --filter=@refugies-info/client",
     "build:server": "yarn turbo build --filter=@refugies-info/server",
     "build:mobile": "yarn turbo build --filter=@refugies-info/mobile",
-    "check-types": "yarn turbo check-types",
-    "check-types:client": "yarn turbo check-types --filter=@refugies-info/client",
-    "check-types:server": "yarn turbo check-types --filter=@refugies-info/server",
-    "check-types:mobile": "yarn turbo check-types --filter=@refugies-info/mobile",
+    "check:dependency-version-consistency": "yarn check-dependency-version-consistency .",
+    "check:types": "yarn turbo check:types",
+    "check:types:client": "yarn turbo check:types --filter=@refugies-info/client",
+    "check:types:server": "yarn turbo check:types --filter=@refugies-info/server",
+    "check:types:mobile": "yarn turbo check:types --filter=@refugies-info/mobile",
     "dev": "yarn turbo dev",
     "dev:client": "yarn turbo dev --filter=@refugies-info/client",
     "dev:server": "yarn turbo dev --filter=@refugies-info/server",
@@ -55,6 +56,7 @@
     "yarn": "1.22.22"
   },
   "devDependencies": {
+    "check-dependency-version-consistency": "^4.1.0",
     "husky": ">=6",
     "lint-staged": ">=10",
     "patch-package": "^8.0.0",
