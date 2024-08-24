@@ -50,9 +50,9 @@
         "!.next/cache/**"
       ]
     },
-    "check-types": {
+    "check:types": {
       "dependsOn": [
-        "^check-types"
+        "^check:types"
       ]
     },
     "dev": {

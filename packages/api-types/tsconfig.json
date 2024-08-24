@@ -1,8 +1,11 @@
 {
+  "extends": "@refugies-info/typescript-config/base.json",
   "compilerOptions": {
-    "target": "es2021",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
     "outDir": "./dist",
-  }
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

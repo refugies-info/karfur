@@ -123,7 +123,7 @@ Here are some more specific guides:
 > yarn test
 
 # launch only the types tests
-> yarn check-types
+> yarn check:types
 
 # launch only the lint tests
 > yarn lint

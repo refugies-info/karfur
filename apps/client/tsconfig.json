@@ -1,31 +1,19 @@
 {
+  "extends": "@refugies-info/typescript-config/nextjs.json",
   "compilerOptions": {
-    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["es6", "dom", "ES2021.String"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "ES2022",
-    "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
-    "incremental": true,
+    "lib": ["es6", "dom", "ES2021.String"],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "target": "ES2022",
+    "plugins": [{ "name": "next" }],
     "paths": {
       "~css/*": ["css/*"],
       "~scss/*": ["scss/*"],
     }
   },
-  "exclude": ["node_modules"],
-  "include": ["src"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

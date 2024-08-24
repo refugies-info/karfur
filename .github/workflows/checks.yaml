@@ -3,8 +3,10 @@ name: Checks
 on:
   pull_request:
     branches-ignore:
+      - master-mobile
       - master-frontend
       - master-backend
+      - staging-mobile
       - staging-frontend
       - staging-backend
   workflow_dispatch:
@@ -30,4 +32,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint, Check Types and Test
-        run: yarn turbo lint check-types test && yarn lint:style
+        run: yarn turbo lint check:types test && yarn lint:style
