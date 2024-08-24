@@ -52,6 +52,7 @@
     "winston": "^3.13.1"
   },
   "devDependencies": {
+    "@refugies-info/typescript-config": "*",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.9",
