@@ -1,19 +1,16 @@
 {
+  "extends": "@refugies-info/typescript-config/base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "declaration": true,
-    "removeComments": true,
+    "allowJs": true,
+    "baseUrl": "./",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noImplicitAny": true,
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "target": "es2021",
-    "sourceMap": true,
-    "skipLibCheck": true,
+    "module": "commonjs",
     "outDir": "./dist",
-    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": false,
+    "target": "es2021",
     "types": ["node", "jest"],
     "paths": {
       "tsoa": ["../../node_modules/tsoa/dist"]

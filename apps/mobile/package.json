@@ -21,6 +21,7 @@
     "@react-navigation/native": "^6.0.14",
     "@react-navigation/stack": "^6.2.0",
     "@refugies-info/api-types": "*",
+    "@refugies-info/typescript-config": "*",
     "algoliasearch": "^4.14.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "dompurify": "^3.1.6",

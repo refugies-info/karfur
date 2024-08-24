@@ -15,7 +15,7 @@ import { Notification } from "./Notification";
 import { Role } from "./Role";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
-import { Traductions, TraductionDiff, TraductionId, TraductionsStatus } from "./Traductions";
+import { TraductionDiff, TraductionId, Traductions, TraductionsStatus } from "./Traductions";
 import { User, UserId } from "./User";
 import { Widget, WidgetId } from "./Widget";
 
@@ -27,7 +27,7 @@ export const DispositifModel = getModelForClass(Dispositif, {
   },
   schemaOptions: {
     collection: "dispositifs",
-  }
+  },
 });
 export const DispositifDraftModel = getModelForClass(Dispositif, {
   options: {
@@ -35,7 +35,7 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
   },
   schemaOptions: {
     collection: "dispositifs_draft",
-  }
+  },
 });
 export const ErrorModel = getModelForClass(Error);
 export const ImageModel = getModelForClass(Image);
@@ -56,31 +56,34 @@ export {
   AdminOptions,
   AppUser,
   Dispositif,
-  DispositifId,
   Error,
   Image,
   Indicator,
   Langue,
-  LangueId,
   Log,
-  LogId,
   MailEvent,
   Need,
-  NeedId,
   Notification,
   NotificationsSettings,
   Role,
   Structure,
-  StructureId,
   Theme,
-  ThemeId,
-  TraductionDiff,
-  TraductionId,
   Traductions,
   TraductionsStatus,
   User,
-  UserId,
   Widget,
+};
+
+export type {
+  DispositifId,
+  LangueId,
+  LogId,
+  NeedId,
+  StructureId,
+  ThemeId,
+  TraductionDiff,
+  TraductionId,
+  UserId,
   WidgetId,
 };
 

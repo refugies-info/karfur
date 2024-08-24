@@ -12,6 +12,7 @@
   "author": "Réfugiés.info",
   "license": "ISC",
   "devDependencies": {
+    "@refugies-info/typescript-config": "*",
     "eslint": "^8.57.0",
     "eslint-config-turbo": "^2.0.9",
     "typescript": "^5.5.4",
