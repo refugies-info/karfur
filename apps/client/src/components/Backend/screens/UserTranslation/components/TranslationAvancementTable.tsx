@@ -3,7 +3,6 @@ import {
   GetUserInfoResponse,
   Languages,
 } from "@refugies-info/api-types";
-import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import { useLanguages } from "hooks";
 import { handleApiError } from "lib/handleApiErrors";
@@ -18,6 +17,7 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/Di
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import API from "utils/API";
+import { colors } from "utils/colors";
 import { TabHeader, Title } from "../../Admin/sharedComponents/SubComponents";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { sortData } from "./functions";

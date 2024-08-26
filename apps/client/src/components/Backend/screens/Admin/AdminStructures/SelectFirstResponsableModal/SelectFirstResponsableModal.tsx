@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Modal, Spinner } from "reactstrap";
-import SearchBar from "components/UI/SearchBar/SearchBar";
-import { useDispatch, useSelector } from "react-redux";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
-import FButton from "components/UI/FButton/FButton";
-import API from "utils/API";
-import Swal from "sweetalert2";
-import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
-import { structureSelector } from "services/AllStructures/allStructures.selector";
-import { colors } from "colors";
-import styles from "./SelectFirstResponsableModal.module.scss";
 import { Id, PatchStructureRolesRequest, SimpleUser, StructureMemberRole } from "@refugies-info/api-types";
+import FButton from "components/UI/FButton/FButton";
+import SearchBar from "components/UI/SearchBar/SearchBar";
 import { handleApiError } from "lib/handleApiErrors";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal, Spinner } from "reactstrap";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { structureSelector } from "services/AllStructures/allStructures.selector";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import styled from "styled-components";
+import Swal from "sweetalert2";
+import API from "utils/API";
+import { colors } from "utils/colors";
+import styles from "./SelectFirstResponsableModal.module.scss";
 
 const ModifyLink = styled.div`
   font-weight: bold;

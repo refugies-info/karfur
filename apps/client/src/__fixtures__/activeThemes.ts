@@ -2,6 +2,7 @@ import { Id } from "@refugies-info/api-types";
 
 export const activeThemesMock = [
   {
+    mainColor: "#BFCCFB",
     colors: {
       color100: "#3D2884",
       color80: "#705FA4",
@@ -61,6 +62,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#EAC7B2",
     colors: {
       color100: "#443023",
       color80: "#715F56",
@@ -120,6 +122,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#B6CFFB",
     colors: {
       color100: "#06508C",
       color80: "#1E9ED1",
@@ -179,6 +182,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FCC0B0",
     colors: {
       color100: "#CD5605",
       color80: "#F97319",
@@ -238,6 +242,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#60E0EB",
     colors: {
       color100: "#055E5A",
       color80: "#27A8A5",
@@ -297,6 +302,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FCC0B4",
     colors: {
       color100: "#910940",
       color80: "#D64B71",
@@ -356,6 +362,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#E2CF58",
     colors: {
       color100: "#095411",
       color80: "#26B759",
@@ -415,6 +422,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#95E257",
     colors: {
       color100: "#204F01",
       color80: "#47AA0A",
@@ -474,6 +482,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FFFFFF",
     colors: {
       color100: "#073099",
       color80: "#1C66DD",
@@ -533,6 +542,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FFFFFF",
     colors: {
       color100: "#770649",
       color80: "#D01F67",
@@ -592,6 +602,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FFFFFF",
     colors: {
       color100: "#600566",
       color80: "#9E2DAD",
@@ -651,6 +662,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FCBFB7",
     colors: {
       color100: "#9E180A",
       color80: "#E05A3E",
@@ -710,6 +722,7 @@ export const activeThemesMock = [
     adminComments: ""
   },
   {
+    mainColor: "#FBB8F6",
     colors: {
       color100: "#77057A",
       color80: "#9E2DAD",

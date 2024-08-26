@@ -22,6 +22,7 @@ const defaultTheme: GetThemeResponse = {
     uk: "",
     ti: ""
   },
+  mainColor: "#FFFFFF",
   colors: {
     color100: "#3A3A3A",
     color80: "#27A8A5",

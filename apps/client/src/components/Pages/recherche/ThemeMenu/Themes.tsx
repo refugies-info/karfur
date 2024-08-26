@@ -39,13 +39,13 @@ const Themes: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {sortedThemes.map(({ _id, colors, short }, i) => {
+      {sortedThemes.map(({ _id, mainColor, short }, i) => {
         const count = nbNeedsSelectedByTheme[_id.toString()];
         const selected = selectedThemeId === _id;
         return (
           <ThemeItem
             key={i}
-            color={colors.color100}
+            color={mainColor}
             id={_id.toString()}
             label={short[locale] ?? ""}
             needCount={count}

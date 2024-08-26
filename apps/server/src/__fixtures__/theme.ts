@@ -23,6 +23,7 @@ theme.short = {
   uk: "Працевлаштування",
   ti: "ምትእትታው ሞያ ብውሕልልነት"
 };
+theme.mainColor = "#FFFFFF";
 theme.colors = {
   color100: "#055E5A",
   color80: "#27A8A5",

@@ -1,14 +1,14 @@
-import { colors } from "colors";
-import { ContentStatus, ProgressionStatus } from "types/interface";
 import { DispositifStatus } from "@refugies-info/api-types";
+import { ContentStatus, ProgressionStatus } from "types/interface";
+import { colors } from "utils/colors";
 
 type TableContenu = {
-  title: string
+  title: string;
   headers: {
-    name: string
-    order: string | null
-  }[]
-}
+    name: string;
+    order: string | null;
+  }[];
+};
 export const table_contenu: TableContenu = {
   title: "Contenu",
   headers: [
@@ -67,7 +67,7 @@ export const correspondingStatus: ContentStatus[] = [
     storedStatus: DispositifStatus.ACTIVE,
     displayedStatus: "Publié",
     color: green,
-    order: 5
+    order: 5,
   },
   {
     storedStatus: DispositifStatus.WAITING_STRUCTURE,
@@ -147,7 +147,7 @@ export const publicationData: ProgressionStatus[] = [
     displayedStatus: "Bloqué ⛔️",
     color: lightBlue,
     textColor: colors.gray90,
-  }
+  },
 ];
 
 export const progressionData: ProgressionStatus[] = [

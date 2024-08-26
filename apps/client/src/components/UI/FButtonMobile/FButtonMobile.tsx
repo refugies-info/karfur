@@ -1,9 +1,8 @@
-import React from "react";
-import { useTranslation } from "next-i18next";
-import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import styles from "./FButtonMobile.module.scss";
 import useRTL from "hooks/useRTL";
+import { useTranslation } from "next-i18next";
+import { colors } from "utils/colors";
+import styles from "./FButtonMobile.module.scss";
 
 interface Props {
   name: string;

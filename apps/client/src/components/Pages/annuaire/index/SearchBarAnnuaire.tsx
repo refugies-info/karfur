@@ -1,14 +1,13 @@
-import React, { createRef, useEffect, useState } from "react";
-import { colors } from "colors";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Input } from "reactstrap";
-import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import { structureTypes } from "data/structureTypes";
-import FButton from "components/UI/FButton/FButton";
-import Autocomplete from "react-google-autocomplete";
-import styles from "./SearchBarAnnuaire.module.scss";
-import { cls } from "lib/classname";
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/UI/FButton/FButton";
+import { structureTypes } from "data/structureTypes";
+import { cls } from "lib/classname";
+import { createRef, useEffect, useState } from "react";
+import Autocomplete from "react-google-autocomplete";
+import { Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
+import { colors } from "utils/colors";
+import styles from "./SearchBarAnnuaire.module.scss";
 interface Props {
   t: any;
   filteredStructures: GetActiveStructuresResponse[] | null;

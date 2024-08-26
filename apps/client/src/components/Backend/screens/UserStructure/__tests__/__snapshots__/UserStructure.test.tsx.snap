@@ -2,7 +2,32 @@
 
 exports[`UserStructure should render correctly when add member modal is open 1`] = `
 <DocumentFragment>
-  .c0 {
+  .c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -31,31 +56,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c17 {
@@ -797,7 +797,32 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 1`] = `
 <DocumentFragment>
-  .c0 {
+  .c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -826,31 +851,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c20 {
@@ -1722,7 +1722,32 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
 <DocumentFragment>
-  .c0 {
+  .c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1751,31 +1776,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c20 {
@@ -2646,7 +2646,32 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 
 exports[`UserStructure should render correctly when loading 1`] = `
 <DocumentFragment>
-  .c0 {
+  .c3 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2675,31 +2700,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c3 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c5 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 <div
@@ -2825,7 +2825,32 @@ exports[`UserStructure should render correctly when no structure 1`] = `
 
 exports[`UserStructure should render correctly when structure with membres when user is redacteur 1`] = `
 <DocumentFragment>
-  .c0 {
+  .c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2854,31 +2879,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c8 {
@@ -3179,7 +3179,32 @@ exports[`UserStructure should render correctly when structure with membres when 
 
 exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
 <DocumentFragment>
-  .c0 {
+  .c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -3208,31 +3233,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c12 {

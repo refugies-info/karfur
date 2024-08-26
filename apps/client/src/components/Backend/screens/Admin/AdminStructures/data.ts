@@ -1,6 +1,6 @@
 import { StructureStatus } from "@refugies-info/api-types";
-import { colors } from "colors";
 import { ProgressionStatus, StructureAdminStatus } from "types/interface";
+import { colors } from "utils/colors";
 
 export const headers = [
   { name: "Nom", order: "nom" },
@@ -20,19 +20,19 @@ export const correspondingStatus: StructureAdminStatus[] = [
     displayedStatus: "Actif",
     storedStatus: StructureStatus.ACTIVE,
     color: green,
-    order: 2
+    order: 2,
   },
   {
     displayedStatus: "En attente",
     storedStatus: StructureStatus.WAITING,
     color: orange,
-    order: 1
+    order: 1,
   },
   {
     displayedStatus: "Supprimé",
     storedStatus: StructureStatus.DELETED,
     color: red,
-    order: 3
+    order: 3,
   },
 ];
 
@@ -101,4 +101,3 @@ export const progressionStatus: ProgressionStatus[] = [
     textColor: colors.gray90,
   },
 ];
-

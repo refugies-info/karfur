@@ -25,12 +25,15 @@ export class Theme extends Base {
   @prop()
   public short: Record<string, string>;
 
+  @prop()
+  public mainColor: string;
+
   @prop({ _id: false })
   public colors: ThemeColors;
 
   @prop({
     type: Number,
-    validate: { validator: (v: any) => isInteger(v) && v >= 0, message: "position must be an positive integer" }
+    validate: { validator: (v: any) => isInteger(v) && v >= 0, message: "position must be an positive integer" },
   })
   public position!: number;
 

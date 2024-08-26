@@ -1,17 +1,10 @@
-import React from "react";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
-import { colors } from "colors";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { headers, correspondingStatus } from "../data";
-import {
-  StyledHeader,
-  StyledTitle,
-  Content,
-  FigureContainer,
-  StyledSort,
-} from "../../sharedComponents/StyledAdmin";
+import { colors } from "utils/colors";
+import { Content, FigureContainer, StyledHeader, StyledSort, StyledTitle } from "../../sharedComponents/StyledAdmin";
 import { FilterButton } from "../../sharedComponents/SubComponents";
+import { correspondingStatus, headers } from "../data";
 
 export const LoadingAdminStructures = () => {
   const arrayLines = new Array(12).fill("a");
