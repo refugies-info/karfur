@@ -48,6 +48,7 @@ export interface SimpleTheme {
   _id: Id;
   name: TranslatedText;
   short: TranslatedText;
+  mainColor: string;
   colors: ThemeColors;
   position: number;
   icon: Picture;

@@ -6,6 +6,7 @@ import { Id, Picture, ThemeColors, TranslatedText } from "../generics";
 export interface ThemeRequest {
   name: TranslatedText;
   short: TranslatedText;
+  mainColor: string;
   colors: ThemeColors;
   position: number;
   icon?: Picture;
@@ -24,6 +25,7 @@ export interface GetThemeResponse {
   _id: Id;
   name: TranslatedText;
   short: TranslatedText;
+  mainColor: string;
   colors: ThemeColors;
   position: number;
   icon?: Picture;
@@ -43,6 +45,7 @@ export interface PatchThemeResponse {
   _id: string;
   name: TranslatedText;
   short: TranslatedText;
+  mainColor: string;
   colors: ThemeColors;
   position: number;
   icon: Picture;
@@ -62,6 +65,7 @@ export interface PostThemeResponse {
   _id: string;
   name: TranslatedText;
   short: TranslatedText;
+  mainColor: string;
   colors: ThemeColors;
   position: number;
   icon?: Picture;

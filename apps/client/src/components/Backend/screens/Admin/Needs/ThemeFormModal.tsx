@@ -45,6 +45,7 @@ export const ThemeFormModal = (props: Props) => {
   const [short, setShort] = useState(props.selectedTheme?.short || { fr: "" });
   const [name, setName] = useState(props.selectedTheme?.name || { fr: "" });
   const [emoji, setEmoji] = useState(props.selectedTheme?.notificationEmoji || "");
+  const [mainColor, setMainColor] = useState(props.selectedTheme?.mainColor || "#FFFFFF")
   const [colors, setColors] = useState<GetThemeResponse["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
   const [notes, setNotes] = useState("");
   const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
@@ -100,6 +101,7 @@ export const ThemeFormModal = (props: Props) => {
         short,
         name,
         notificationEmoji: emoji,
+        mainColor,
         colors,
         banner,
         appBanner,
@@ -115,6 +117,7 @@ export const ThemeFormModal = (props: Props) => {
         short,
         name,
         notificationEmoji: emoji,
+        mainColor,
         colors,
         banner,
         appBanner,
