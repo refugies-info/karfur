@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/icons";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/icons";
 
 .delete {
   @include iconSize(u(4));
@@ -31,7 +31,7 @@
   &.pending {
     color: var(--text-action-high-yellow-tournesol);
   }
-  
+
   &.success {
     color: var(--text-default-success);
   }

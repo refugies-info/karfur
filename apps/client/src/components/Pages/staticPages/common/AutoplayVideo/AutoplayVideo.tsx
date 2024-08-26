@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { cls } from "@/lib/classname";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { isIOS } from "react-device-detect";
-import { cls } from "lib/classname";
+import { useInView } from "react-intersection-observer";
 import styles from "./AutoplayVideo.module.scss";
 
 interface Props {
@@ -23,7 +23,7 @@ const AutoplayVideo = (props: Props) => {
       refVideo(node);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [inViewVideo]
+    [inViewVideo],
   );
 
   useEffect(() => {

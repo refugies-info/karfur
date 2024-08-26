@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { Progress } from "@/hooks/dispositif";
+import PageContext from "@/utils/pageContext";
 import { ContentType, GetTraductionsForReview, Languages, TranslationContent } from "@refugies-info/api-types";
-import PageContext from "utils/pageContext";
-import { Progress } from "hooks/dispositif";
-import CustomNavbarTranslate from "./CustomNavbarTranslate";
+import { useContext } from "react";
 import CustomNavbarEdit from "./CustomNavbarEdit";
+import CustomNavbarTranslate from "./CustomNavbarTranslate";
 
 interface Props {
   typeContenu: ContentType;

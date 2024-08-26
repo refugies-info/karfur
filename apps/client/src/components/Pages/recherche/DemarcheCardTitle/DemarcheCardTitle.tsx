@@ -1,9 +1,8 @@
-import React from "react";
-import Image from "next/image";
+import demarcheIcon from "@/assets/recherche/illu-demarche.svg";
+import { cls } from "@/lib/classname";
+import commonStyles from "@/scss/components/contentCard.module.scss";
 import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
-import demarcheIcon from "assets/recherche/illu-demarche.svg";
-import commonStyles from "scss/components/contentCard.module.scss";
+import Image from "next/image";
 
 interface Props {
   color?: string;

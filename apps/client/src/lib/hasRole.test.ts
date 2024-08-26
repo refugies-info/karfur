@@ -1,5 +1,5 @@
+import { testUserWithRoles } from "@/__fixtures__/user";
 import { RoleName } from "@refugies-info/api-types";
-import { testUserWithRoles } from "__fixtures__/user";
 import { hasRole } from "./hasRole";
 
 describe("hasRole", () => {

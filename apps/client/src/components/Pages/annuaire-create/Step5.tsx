@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Input } from "reactstrap";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
 import { GetStructureResponse } from "@refugies-info/api-types";
+import { useState } from "react";
+import { Input } from "reactstrap";
+import styled from "styled-components";
 
 interface Props {
   structure: GetStructureResponse | null;

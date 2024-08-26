@@ -1,7 +1,5 @@
-import React from "react";
-import Button from "components/UI/Button";
-import BaseModal from "components/UI/BaseModal";
-import styles from "./Delete.module.scss";
+import BaseModal from "@/components/UI/BaseModal";
+import Button from "@/components/UI/Button";
 
 interface Props {
   show: boolean;

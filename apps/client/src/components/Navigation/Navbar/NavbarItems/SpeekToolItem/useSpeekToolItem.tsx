@@ -1,12 +1,12 @@
+import { cls } from "@/lib/classname";
+import { toggleTTSActionCreator } from "@/services/Tts/tts.actions";
+import { ttsActiveSelector, ttsLoadingSelector } from "@/services/Tts/tts.selector";
+import { AvailableLanguageI18nCode } from "@/types/interface";
 import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { ttsActiveSelector, ttsLoadingSelector } from "services/Tts/tts.selector";
-import { toggleTTSActionCreator } from "services/Tts/tts.actions";
 import { hasTTSAvailable } from "data/activatedLanguages";
-import { AvailableLanguageI18nCode } from "types/interface";
-import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./SpeekToolItem.module.scss";
 
 const useSpeekToolItem = (): HeaderProps.QuickAccessItem | null => {

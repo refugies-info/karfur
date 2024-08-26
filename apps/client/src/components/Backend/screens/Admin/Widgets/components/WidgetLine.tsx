@@ -1,11 +1,11 @@
+import FButton from "@/components/UI/FButton";
+import isInBrowser from "@/lib/isInBrowser";
+import { deleteWidgetActionCreator } from "@/services/Widgets/widgets.actions";
+import { colors } from "@/utils/colors";
 import { GetWidgetResponse, Id } from "@refugies-info/api-types";
-import FButton from "components/UI/FButton";
-import isInBrowser from "lib/isInBrowser";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { deleteWidgetActionCreator } from "services/Widgets/widgets.actions";
 import Swal from "sweetalert2";
-import { colors } from "utils/colors";
 import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./WidgetLine.module.scss";
 

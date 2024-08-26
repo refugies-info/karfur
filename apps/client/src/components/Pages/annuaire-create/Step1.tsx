@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { Input, Spinner } from "reactstrap";
-import FInput from "components/UI/FInput/FInput";
-import PlaceholderLogo from "assets/Placeholder_logo.png";
-import FButton from "components/UI/FButton/FButton";
-import API from "utils/API";
-import Image from "next/image";
+import PlaceholderLogo from "@/assets/Placeholder_logo.png";
+import FButton from "@/components/UI/FButton/FButton";
+import FInput from "@/components/UI/FInput/FInput";
+import { handleApiDefaultError } from "@/lib/handleApiErrors";
+import API from "@/utils/API";
 import { GetStructureResponse } from "@refugies-info/api-types";
-import { handleApiDefaultError } from "lib/handleApiErrors";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Input, Spinner } from "reactstrap";
+import styled from "styled-components";
 
 const Title = styled.div`
   font-weight: bold;

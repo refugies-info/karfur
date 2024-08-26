@@ -1,8 +1,8 @@
-import { useCallback } from "react";
+import { cls } from "@/lib/classname";
+import isInBrowser from "@/lib/isInBrowser";
+import API from "@/utils/API";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { cls } from "lib/classname";
-import isInBrowser from "lib/isInBrowser";
-import API from "utils/API";
+import { useCallback } from "react";
 import styles from "./ForgotPasswordMailSent.module.scss";
 
 interface Props {

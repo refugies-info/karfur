@@ -1,13 +1,13 @@
-import { getDispositifSectionTitle, titleKeyType } from "lib/getDispositifSectionTitle";
-import React, { useContext, useMemo } from "react";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { getDispositifSectionTitle, titleKeyType } from "@/lib/getDispositifSectionTitle";
+import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
+import { themeSelector } from "@/services/Themes/themes.selectors";
+import PageContext from "@/utils/pageContext";
+import { CreateDispositifRequest } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { CreateDispositifRequest } from "@refugies-info/api-types";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "services/Themes/themes.selectors";
-import PageContext from "utils/pageContext";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./SectionTitle.module.scss";
 
 interface TitleProps {

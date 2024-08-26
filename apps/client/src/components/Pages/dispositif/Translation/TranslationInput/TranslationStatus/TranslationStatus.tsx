@@ -1,6 +1,6 @@
-import { cls } from "lib/classname";
-import { NeedTradStatus } from "components/Backend/screens/UserTranslation/types";
-import EVAIcon from "components/UI/EVAIcon";
+import { NeedTradStatus } from "@/components/Backend/screens/UserTranslation/types";
+import EVAIcon from "@/components/UI/EVAIcon";
+import { cls } from "@/lib/classname";
 import { ExpertTradStatus, getStatusStyle, UserTradStatus } from "../functions";
 import styles from "./TranslationStatus.module.scss";
 

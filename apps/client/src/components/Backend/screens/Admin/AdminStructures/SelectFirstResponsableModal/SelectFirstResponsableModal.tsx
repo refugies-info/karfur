@@ -1,20 +1,20 @@
+import FButton from "@/components/UI/FButton/FButton";
+import SearchBar from "@/components/UI/SearchBar/SearchBar";
+import { handleApiError } from "@/lib/handleApiErrors";
+import { fetchAllStructuresActionsCreator } from "@/services/AllStructures/allStructures.actions";
+import { structureSelector } from "@/services/AllStructures/allStructures.selector";
+import { fetchAllUsersActionsCreator } from "@/services/AllUsers/allUsers.actions";
+import { allActiveUsersSelector } from "@/services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
+import API from "@/utils/API";
+import { colors } from "@/utils/colors";
 import { Id, PatchStructureRolesRequest, SimpleUser, StructureMemberRole } from "@refugies-info/api-types";
-import FButton from "components/UI/FButton/FButton";
-import SearchBar from "components/UI/SearchBar/SearchBar";
-import { handleApiError } from "lib/handleApiErrors";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Spinner } from "reactstrap";
-import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
-import { structureSelector } from "services/AllStructures/allStructures.selector";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
-import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import API from "utils/API";
-import { colors } from "utils/colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
 
 const ModifyLink = styled.div`

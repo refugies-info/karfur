@@ -1,4 +1,4 @@
-import API from "utils/API";
+import API from "@/utils/API";
 import { DispositifStatus, GetDispositifResponse, ViewsType } from "@refugies-info/api-types";
 
 export const updateNbViews = (dispositif: GetDispositifResponse) => {
@@ -6,5 +6,4 @@ export const updateNbViews = (dispositif: GetDispositifResponse) => {
     return API.addDispositifViews(dispositif._id.toString(), { types: [ViewsType.WEB] });
   }
   return null;
-}
-
+};

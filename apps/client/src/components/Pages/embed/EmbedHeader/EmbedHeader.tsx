@@ -1,13 +1,12 @@
-import React from "react";
-import { useTranslation } from "next-i18next";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { getThemeName } from "lib/getThemeName";
-import useRTL from "hooks/useRTL";
-import ThemeIcon from "components/UI/ThemeIcon";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import styles from "./EmbedHeader.module.scss";
+import ThemeIcon from "@/components/UI/ThemeIcon";
+import useRTL from "@/hooks/useRTL";
+import { getThemeName } from "@/lib/getThemeName";
+import { allLanguesSelector } from "@/services/Langue/langue.selectors";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import styles from "./EmbedHeader.module.scss";
 
 interface Props {
   themes: GetThemeResponse[];

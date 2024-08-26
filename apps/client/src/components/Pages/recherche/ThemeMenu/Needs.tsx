@@ -1,9 +1,9 @@
-import Separator from "components/UI/Separator";
-import { useLocale } from "hooks";
+import Separator from "@/components/UI/Separator";
+import { useLocale } from "@/hooks";
+import { needsSelector } from "@/services/Needs/needs.selectors";
 import React, { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { needsSelector } from "services/Needs/needs.selectors";
 import AllNeedsItem from "./AllNeedsItem";
 import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";

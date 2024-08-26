@@ -1,7 +1,7 @@
 /* stylelint-disable selector-class-pattern */
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/variables";
 
 .react-autosuggest__container {
   position: relative;
@@ -20,7 +20,9 @@
     }
 
     /* stylelint-disable-next-line selector-no-vendor-prefix */
-    &:focus::placeholder, &:focus::-webkit-input-placeholder, &:focus::-moz-placeholder {
+    &:focus::placeholder,
+    &:focus::-webkit-input-placeholder,
+    &:focus::-moz-placeholder {
       color: transparent;
     }
   }
@@ -129,7 +131,8 @@
     }
 
     /* stylelint-disable-next-line selector-no-vendor-prefix */
-    &:focus::-webkit-input-placeholder, &:focus:-moz-placeholder {
+    &:focus::-webkit-input-placeholder,
+    &:focus:-moz-placeholder {
       color: transparent;
     }
 

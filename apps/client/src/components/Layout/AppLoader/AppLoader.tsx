@@ -1,10 +1,10 @@
+import loader_logo from "@/assets/loader_logo.png";
+import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
 import Image from "next/image";
-import loader_logo from "assets/loader_logo.png";
 import { ReactNode } from "react";
-import styles from "./AppLoader.module.scss";
 import { useSelector } from "react-redux";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import styles from "./AppLoader.module.scss";
 
 interface AppLoaderProps {
   children: ReactNode;

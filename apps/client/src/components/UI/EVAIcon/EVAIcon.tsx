@@ -1,5 +1,5 @@
+import { cls } from "@/lib/classname";
 import * as eva from "eva-icons";
-import { cls } from "lib/classname";
 import { useEffect, useState } from "react";
 import styles from "./EVAIcon.module.scss";
 

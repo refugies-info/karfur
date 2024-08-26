@@ -1,6 +1,6 @@
+import marioProfile from "@/assets/mario-profile.jpg";
+import FButton from "@/components/UI/FButton/FButton";
 import { Id, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
-import marioProfile from "assets/mario-profile.jpg";
-import FButton from "components/UI/FButton/FButton";
 import Image from "next/image";
 import { useState } from "react";
 import { Modal } from "reactstrap";

@@ -1,8 +1,8 @@
+import { cls } from "@/lib/classname";
 import { CheckboxProps, Indicator, Root } from "@radix-ui/react-checkbox";
 import React from "react";
 import styles from "./Checkbox.module.css";
 import CheckboxIcon from "./CheckboxIcon";
-import { cls } from "lib/classname";
 
 type Props = {
   onChange?: () => void;

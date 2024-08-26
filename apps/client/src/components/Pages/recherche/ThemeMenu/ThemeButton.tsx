@@ -1,7 +1,7 @@
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import TagName from "@/components/UI/TagName";
+import { onEnterOrSpace } from "@/lib/onEnterOrSpace";
 import { GetThemeResponse } from "@refugies-info/api-types";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import TagName from "components/UI/TagName";
-import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { memo } from "react";
 import styled from "styled-components";
 import styles from "./ThemeMenu.module.scss";

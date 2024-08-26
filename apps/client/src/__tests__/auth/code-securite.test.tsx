@@ -1,9 +1,9 @@
+import { initialMockStore } from "@/__fixtures__/reduxStore";
 import "jest-styled-components";
 import mockRouter from "next-router-mock";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../jest/lib/wrapWithProvidersAndRender";
-import codeSecurite from "../../pages/auth/code-securite";
 import { setupGoogleMock } from "../../__mocks__/react-google-autocomplete";
+import codeSecurite from "../../pages/auth/code-securite";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

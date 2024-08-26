@@ -1,3 +1,14 @@
+import FButton from "@/components/UI/FButton/FButton";
+import { useLanguages } from "@/hooks";
+import useRouterLocale from "@/hooks/useRouterLocale";
+import { setAllDispositifsActionsCreator } from "@/services/AllDispositifs/allDispositifs.actions";
+import { allDispositifsSelector, dispositifSelector } from "@/services/AllDispositifs/allDispositifs.selector";
+import { structureSelector } from "@/services/AllStructures/allStructures.selector";
+import { allUsersSelector } from "@/services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
+import API from "@/utils/API";
+import { colors } from "@/utils/colors";
 import {
   AdminCommentsRequest,
   DispositifStatus,
@@ -6,24 +17,13 @@ import {
   Id,
   StructureMemberRole,
 } from "@refugies-info/api-types";
-import FButton from "components/UI/FButton/FButton";
-import { useLanguages } from "hooks";
-import useRouterLocale from "hooks/useRouterLocale";
 import cloneDeep from "lodash/cloneDeep";
 import moment from "moment";
 import "moment/locale/fr";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
-import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
-import { allDispositifsSelector, dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { structureSelector } from "services/AllStructures/allStructures.selector";
-import { allUsersSelector } from "services/AllUsers/allUsers.selector";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import Swal from "sweetalert2";
-import API from "utils/API";
-import { colors } from "utils/colors";
 import { LogList } from "../../Logs/LogList";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { NotesInput } from "../../sharedComponents/NotesInput";

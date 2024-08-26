@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
+@import "@/scss/colors";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/rtl";
 
 .container {
   :global(.tooltip) {
@@ -18,7 +18,7 @@
     --bs-tooltip-padding-x: 4px;
     --bs-tooltip-border-radius: 4px;
   }
-  
+
   :global(.arrow) {
     display: none !important;
   }

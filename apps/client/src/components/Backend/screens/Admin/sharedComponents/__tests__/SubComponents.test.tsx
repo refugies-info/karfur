@@ -1,7 +1,7 @@
 //@ts-nocheck
+import { initialMockStore } from "@/__fixtures__/reduxStore";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import "jest-styled-components";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../../jest/lib/wrapWithProvidersAndRender";
 import {

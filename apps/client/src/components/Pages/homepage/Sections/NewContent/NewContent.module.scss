@@ -1,6 +1,6 @@
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
 
 .sliders {
   overflow: hidden;
@@ -32,7 +32,7 @@
       & > button {
         display: none;
       }
-      
+
       h2 {
         @include text("h5");
       }

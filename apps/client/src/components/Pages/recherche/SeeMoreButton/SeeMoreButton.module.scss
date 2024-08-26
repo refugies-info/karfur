@@ -1,8 +1,8 @@
 @use "sass:color";
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/text";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/text";
+@import "@/scss/variables";
 
 .container {
   position: absolute;

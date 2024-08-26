@@ -1,22 +1,22 @@
-import { FC, useCallback, useState } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
+import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
+import { FC, useCallback, useState } from "react";
 
+import { cls } from "@/lib/classname";
+import styles from "./RichTextInput.module.scss";
 import ToolbarPlugin from "./ToolbarPlugin";
 import nodes from "./nodes";
 import LexicalAutoLinkPlugin from "./plugins/AutoLinkPlugin";
-import LinkPlugin from "./plugins/LinkPlugin";
-import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
 import CalloutPlugin from "./plugins/CalloutPlugin";
 import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import FocusPlugin from "./plugins/FocusPlugin";
-import { cls } from "lib/classname";
-import styles from "./RichTextInput.module.scss";
+import LinkPlugin from "./plugins/LinkPlugin";
+import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
 
 const theme = {
   link: "rtri-link",

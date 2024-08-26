@@ -1,12 +1,12 @@
+import Button from "@/components/UI/Button";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import Tooltip from "@/components/UI/Tooltip";
+import { useUniqueId } from "@/hooks";
+import { cls } from "@/lib/classname";
+import PageContext from "@/utils/pageContext";
 import React, { useCallback, useContext, useMemo, useState } from "react";
-import { cls } from "lib/classname";
-import { useUniqueId } from "hooks";
-import PageContext from "utils/pageContext";
-import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
-import DeleteContentModal from "./DeleteContentModal";
 import styles from "./AddContentButton.module.scss";
+import DeleteContentModal from "./DeleteContentModal";
 
 interface Props {
   children: string | React.ReactNode;

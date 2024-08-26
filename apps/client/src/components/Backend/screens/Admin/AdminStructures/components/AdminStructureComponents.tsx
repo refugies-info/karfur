@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import React from "react";
-import Image from "next/image";
-import marioProfile from "assets/mario-profile.jpg";
-import FButton from "components/UI/FButton/FButton";
-import styles from "./AdminStructureComponents.module.scss";
+import marioProfile from "@/assets/mario-profile.jpg";
+import FButton from "@/components/UI/FButton/FButton";
 import { GetAllStructuresResponse } from "@refugies-info/api-types";
+import Image from "next/image";
+import styled from "styled-components";
+import styles from "./AdminStructureComponents.module.scss";
 
 export const RowContainer = styled.div`
   display: flex;

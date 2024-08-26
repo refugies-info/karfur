@@ -1,9 +1,8 @@
-import React from "react";
-import { Container } from "reactstrap";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
+import { smoothScroll } from "@/lib/smoothScroll";
 import Link from "next/link";
-import { cls } from "lib/classname";
-import { smoothScroll } from "lib/smoothScroll";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { Container } from "reactstrap";
 import styles from "./SecondaryNavbar.module.scss";
 
 type LinkNavbar = {

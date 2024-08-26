@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { useTranslation } from "next-i18next";
-import FButton from "components/UI/FButton/FButton";
+import { assetsOnServer } from "@/assets/assetsOnServer";
+import FButton from "@/components/UI/FButton/FButton";
 import { partners } from "data/partners";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { assetsOnServer } from "assets/assetsOnServer";
+import styled from "styled-components";
 
 const MainContainer = styled.div`
   display: flex;
@@ -48,14 +47,14 @@ export const Partners = () => {
         <b>
           {t(
             "QuiSommesNous.appel-a-manifestation1",
-            "Ces organisations ont signé un Appel à manifestation d’intérêt et participent à l’évolution de la plateforme."
+            "Ces organisations ont signé un Appel à manifestation d’intérêt et participent à l’évolution de la plateforme.",
           )}
         </b>
         <br />
         <br />
         {t(
           "QuiSommesNous.appel-a-manifestation2",
-          "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez et renvoyez l’appel ci-dessous. Nous prendrons contact avec vous pour définir les modalités de notre partenariat."
+          "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez et renvoyez l’appel ci-dessous. Nous prendrons contact avec vous pour définir les modalités de notre partenariat.",
         )}
         <div style={{ marginTop: "32px" }}>
           <a href={assetsOnServer.quiSommesNous.pdfAMI} download>
@@ -71,7 +70,7 @@ export const Partners = () => {
             <ImageContainer key={i}>
               <Image src={partner.logo} alt={partner.name} width={160} height={100} style={{ objectFit: "contain" }} />
             </ImageContainer>
-          ) : null
+          ) : null,
         )}
       </LogoContainer>
     </MainContainer>

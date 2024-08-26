@@ -1,5 +1,14 @@
-import { DOMConversionMap, DOMConversionOutput, EditorConfig, ElementNode, LexicalNode, NodeKey, SerializedElementNode, Spread } from "lexical";
-import { getCalloutTranslationKey } from "lib/contentParsing";
+import { getCalloutTranslationKey } from "@/lib/contentParsing";
+import {
+  DOMConversionMap,
+  DOMConversionOutput,
+  EditorConfig,
+  ElementNode,
+  LexicalNode,
+  NodeKey,
+  SerializedElementNode,
+  Spread,
+} from "lexical";
 import { i18n } from "next-i18next";
 export type CalloutLevel = "info" | "important";
 
@@ -85,7 +94,7 @@ export class CalloutNode extends ElementNode {
       ...super.exportJSON(),
       type: "callout",
       version: 1,
-      level: this.__level
+      level: this.__level,
     };
   }
 

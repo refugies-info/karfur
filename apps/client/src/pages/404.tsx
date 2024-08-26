@@ -1,9 +1,8 @@
-import React from "react";
+import SEO from "@/components/Seo";
+import FButton from "@/components/UI/FButton/FButton";
+import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
+import styles from "@/scss/pages/404.module.scss";
 import Link from "next/link";
-import SEO from "components/Seo";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import styles from "scss/pages/404.module.scss";
-import FButton from "components/UI/FButton/FButton";
 
 const NotFound = () => {
   return (

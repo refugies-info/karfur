@@ -1,15 +1,14 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import HelpUsIcon1 from "@/assets/homepage/helpus-icon-1.png";
+import HelpUsIcon3 from "@/assets/homepage/helpus-icon-3.svg";
+import { Card, InlineLink, LanguageIcon } from "@/components/Pages/staticPages/common";
+import Warning from "@/components/UI/Warning";
+import { cls } from "@/lib/classname";
+import commonStyles from "@/scss/components/staticPages.module.scss";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
+import { Col, Container, Row } from "reactstrap";
 import { getPath } from "routes";
-import { Card, InlineLink, LanguageIcon } from "components/Pages/staticPages/common";
-import Warning from "components/UI/Warning";
-import HelpUsIcon1 from "assets/homepage/helpus-icon-1.png";
-import HelpUsIcon3 from "assets/homepage/helpus-icon-3.svg";
-import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./HelpUs.module.scss";
 
 const HelpUs = () => {

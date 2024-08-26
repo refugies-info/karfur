@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import MobileModal from "@/components/Modals/MobileModal";
+import Button from "@/components/UI/Button";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import Flag from "@/components/UI/Flag";
+import { useLocale, useSendSms } from "@/hooks";
+import { cls } from "@/lib/classname";
+import { isValidPhone } from "@/lib/validateFields";
+import { allLanguesSelector } from "@/services/Langue/langue.selectors";
+import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { useTranslation } from "next-i18next";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
-import { useLocale, useSendSms } from "hooks";
-import { isValidPhone } from "lib/validateFields";
-import { cls } from "lib/classname";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import MobileModal from "components/Modals/MobileModal";
-import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Flag from "components/UI/Flag";
 import LangueSelectList from "../../LangueSelectList";
 import styles from "./SendSMSModal.module.scss";
 

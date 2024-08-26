@@ -1,25 +1,25 @@
-import React, { ReactElement } from "react";
+import LogoDiair from "@/assets/embed/logo-diair.png";
+import LogoRI from "@/assets/embed/logo-ri-inline.png";
+import EmbedHeader from "@/components/Pages/embed/EmbedHeader";
+import SearchResults from "@/components/Pages/recherche/SearchResults";
+import { cls } from "@/lib/classname";
+import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
+import decodeQuery from "@/lib/recherche/decodeUrlQuery";
+import { queryDispositifs } from "@/lib/recherche/queryContents";
+import styles from "@/scss/pages/recherche.module.scss";
+import { fetchActiveDispositifsActionsCreator } from "@/services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchLanguesActionCreator, toggleLangueActionCreator } from "@/services/Langue/langue.actions";
+import { addToQueryActionCreator, setSearchResultsActionCreator } from "@/services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "@/services/SearchResults/searchResults.selector";
+import { fetchThemesActionCreator } from "@/services/Themes/themes.actions";
+import { themesSelector } from "@/services/Themes/themes.selectors";
+import { wrapper } from "@/services/configureStore";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useSelector } from "react-redux";
-import { END } from "redux-saga";
-import { Container } from "reactstrap";
 import Image from "next/image";
-import { queryDispositifs } from "lib/recherche/queryContents";
-import decodeQuery from "lib/recherche/decodeUrlQuery";
-import { fetchLanguesActionCreator, toggleLangueActionCreator } from "services/Langue/langue.actions";
-import { wrapper } from "services/configureStore";
-import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
-import { themesSelector } from "services/Themes/themes.selectors";
-import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { addToQueryActionCreator, setSearchResultsActionCreator } from "services/SearchResults/searchResults.actions";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { cls } from "lib/classname";
-import SearchResults from "components/Pages/recherche/SearchResults";
-import EmbedHeader from "components/Pages/embed/EmbedHeader";
-import LogoDiair from "assets/embed/logo-diair.png";
-import LogoRI from "assets/embed/logo-ri-inline.png";
-import styles from "scss/pages/recherche.module.scss";
+import { ReactElement } from "react";
+import { useSelector } from "react-redux";
+import { Container } from "reactstrap";
+import { END } from "redux-saga";
 
 const Embed = () => {
   const themes = useSelector(themesSelector);
@@ -65,8 +65,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 
@@ -76,5 +76,5 @@ export default Embed;
 Embed.getLayout = (page: ReactElement) => page;
 Embed.options = {
   cookiesModule: false,
-  supportModule: false
+  supportModule: false,
 };

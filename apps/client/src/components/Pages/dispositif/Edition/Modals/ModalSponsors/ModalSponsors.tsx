@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import BaseModal from "@/components/UI/BaseModal";
 import { CreateDispositifRequest, Picture, Sponsor } from "@refugies-info/api-types";
-import BaseModal from "components/UI/BaseModal";
+import { useCallback, useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { SimpleFooter, SponsorForm } from "../components";
 import { help } from "./data";
-import styles from "./ModalSponsors.module.scss";
 
 interface Props {
   show: boolean;

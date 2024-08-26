@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import TranslationStep1 from "@/assets/dispositif/translation/translate-step-1.svg";
+import TranslationStep2 from "@/assets/dispositif/translation/translate-step-2.svg";
+import TranslationStep3 from "@/assets/dispositif/translation/translate-step-3.svg";
+import TranslationStep0 from "@/assets/dispositif/welcome-step-1.svg";
+import BaseModal from "@/components/UI/BaseModal";
+import BubbleFlag from "@/components/UI/BubbleFlag";
+import Button from "@/components/UI/Button";
+import { Event } from "@/lib/tracking";
 import { Languages } from "@refugies-info/api-types";
-import { Event } from "lib/tracking";
-import Button from "components/UI/Button";
-import BaseModal from "components/UI/BaseModal";
-import BubbleFlag from "components/UI/BubbleFlag";
+import Image from "next/image";
+import { useState } from "react";
 import { StepsFooter } from "../../Edition/Modals/components";
 import { expertImages, modalContent } from "./data";
-import TranslationStep0 from "assets/dispositif/welcome-step-1.svg";
-import TranslationStep1 from "assets/dispositif/translation/translate-step-1.svg";
-import TranslationStep2 from "assets/dispositif/translation/translate-step-2.svg";
-import TranslationStep3 from "assets/dispositif/translation/translate-step-3.svg";
 import styles from "./ModalWelcome.module.scss";
 
 interface Props {

@@ -1,8 +1,8 @@
 /* stylelint-disable no-descending-specificity */
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/btn";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/btn";
+@import "@/scss/variables";
 
 body .btn {
   font-weight: bold;
@@ -96,7 +96,6 @@ body .btn {
     }
   }
 
-
   &.white {
     --hover-tint: #{$gray90};
 
@@ -151,7 +150,6 @@ body .btn {
       }
     }
   }
-
 
   &.validate-light {
     background: $vert;

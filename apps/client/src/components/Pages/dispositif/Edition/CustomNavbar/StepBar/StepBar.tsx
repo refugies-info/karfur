@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { cls } from "lib/classname";
+import { cls } from "@/lib/classname";
+import { useMemo } from "react";
 import styles from "./StepBar.module.scss";
 
 interface Props {

@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
-import { Id } from "@refugies-info/api-types";
+import { cls } from "@/lib/classname";
+import { langueSelector } from "@/services/Langue/langue.selectors";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
-import { langueSelector } from "services/Langue/langue.selectors";
-import { cls } from "lib/classname";
+import { Id } from "@refugies-info/api-types";
+import { useSelector } from "react-redux";
 import styles from "./LanguageBadge.module.scss";
 
 interface Props {

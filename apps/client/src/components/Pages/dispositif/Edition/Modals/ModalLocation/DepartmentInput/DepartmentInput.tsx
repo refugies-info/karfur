@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction, useRef } from "react";
-import { formatDepartment } from "lib/departments";
-import { useDepartmentAutocomplete } from "hooks";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Input from "components/Pages/dispositif/Input";
+import Input from "@/components/Pages/dispositif/Input";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { useDepartmentAutocomplete } from "@/hooks";
+import { formatDepartment } from "@/lib/departments";
+import { Dispatch, SetStateAction } from "react";
 import { RemovableItem } from "../../components";
 import styles from "./DepartmentInput.module.scss";
 

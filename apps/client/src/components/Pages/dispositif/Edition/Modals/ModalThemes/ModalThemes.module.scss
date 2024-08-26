@@ -1,11 +1,11 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/text";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/text";
 
 .help {
   @include dsfr-text("very-small");
-  
+
   color: var(--background-flat-info);
 }

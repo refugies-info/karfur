@@ -1,13 +1,16 @@
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { RoleName } from "@refugies-info/api-types";
-import { getPath, PathNames } from "routes";
-import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
-import API from "utils/API";
-import { useSelector } from "react-redux";
-import { userStructureDisposAssociesSelector, userStructureHasResponsibleSeenNotification } from "services/UserStructure/userStructure.selectors";
-import { getNbNewNotifications } from "../screens/UserNotifications/lib";
+import {
+  userStructureDisposAssociesSelector,
+  userStructureHasResponsibleSeenNotification,
+} from "@/services/UserStructure/userStructure.selectors";
+import API from "@/utils/API";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import { RoleName } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { getPath, PathNames } from "routes";
+import { getNbNewNotifications } from "../screens/UserNotifications/lib";
+import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
 
 const useBackendNavigation = (): MainNavigationProps.Item[] => {
   const { t } = useTranslation();
@@ -24,7 +27,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     window.location.href = "/";
   };
 
-  return ([
+  return [
     useBackendNavItem({
       access: "all",
       iconName: "search-outline",
@@ -80,8 +83,8 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
       textColor: "var(--text-default-error)",
       title: t("Toolbar.logout"),
       access: "all",
-    })
-  ].filter(n => n !== null) as MainNavigationProps.Item[]);
+    }),
+  ].filter((n) => n !== null) as MainNavigationProps.Item[];
 };
 
 export default useBackendNavigation;

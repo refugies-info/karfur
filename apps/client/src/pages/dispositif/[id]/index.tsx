@@ -1,14 +1,14 @@
-import Dispositif from "components/Content/Dispositif";
-import { wrapper } from "services/configureStore";
-import { END } from "redux-saga";
+import Dispositif from "@/components/Content/Dispositif";
+import { updateNbViews } from "@/lib/dispositifPage";
+import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
+import { wrapper } from "@/services/configureStore";
+import { fetchNeedsActionCreator } from "@/services/Needs/needs.actions";
+import { fetchSelectedDispositifActionCreator } from "@/services/SelectedDispositif/selectedDispositif.actions";
+import { fetchThemesActionCreator } from "@/services/Themes/themes.actions";
+import { fetchUserActionCreator } from "@/services/User/user.actions";
+import PageContext from "@/utils/pageContext";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { updateNbViews } from "lib/dispositifPage";
-import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import PageContext from "utils/pageContext";
-import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import { END } from "redux-saga";
 
 interface Props {
   history: string[];

@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from "react";
-import { useTranslation } from "next-i18next";
+import BaseModal from "@/components/UI/BaseModal";
+import Button from "@/components/UI/Button";
+import { handleApiError } from "@/lib/handleApiErrors";
+import API from "@/utils/API";
 import { Id } from "@refugies-info/api-types";
-import API from "utils/API";
-import { handleApiError } from "lib/handleApiErrors";
-import BaseModal from "components/UI/BaseModal";
-import Button from "components/UI/Button";
+import { useTranslation } from "next-i18next";
+import { useCallback, useState } from "react";
 import styles from "./ReactionModal.module.scss";
 
 interface Props {

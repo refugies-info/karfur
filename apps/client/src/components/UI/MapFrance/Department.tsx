@@ -1,6 +1,6 @@
+import { cls } from "@/lib/classname";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { operatorsPerDepartment } from "data/agirOperators";
-import { cls } from "lib/classname";
 import React, { MouseEventHandler, SVGAttributes, useContext, useMemo, useState } from "react";
 import styles from "./Department.module.scss";
 import { MapContext } from "./MapContext";

@@ -1,12 +1,12 @@
+import useChangeLanguage from "@/hooks/useChangeLanguage";
+import useLocale from "@/hooks/useLocale";
+import useUser from "@/hooks/useUser";
+import { fetchAllStructuresActionsCreator } from "@/services/AllStructures/allStructures.actions";
+import { fetchUserStructureActionCreator } from "@/services/UserStructure/userStructure.actions";
+import { userStructureSelector } from "@/services/UserStructure/userStructure.selectors";
+import { Modals } from "@/utils/pageContext";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modals } from "utils/pageContext";
-import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
-import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
-import useUser from "hooks/useUser";
-import useLocale from "hooks/useLocale";
-import useChangeLanguage from "hooks/useChangeLanguage";
 
 /**
  * Initializes the dispositif forms, and return the form context methods
@@ -40,7 +40,7 @@ const useDispositifForm = () => {
         fetchUserStructureActionCreator({
           structureId: user.user.structures[0],
           shouldRedirect: false,
-        })
+        }),
       );
     }
   }, [dispatch, user, userStructure]);
@@ -61,6 +61,6 @@ const useDispositifForm = () => {
     setActiveModal,
     preventSubmissionOnEnter,
   };
-}
+};
 
 export default useDispositifForm;

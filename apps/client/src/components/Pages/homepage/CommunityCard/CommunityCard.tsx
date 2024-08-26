@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
+import { InlineLink } from "@/components/Pages/staticPages/common";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
 import Image from "next/image";
-import styles from "./CommunityCard.module.scss";
-import { InlineLink } from "components/Pages/staticPages/common";
 import Link from "next/link";
+import { useMemo } from "react";
+import styles from "./CommunityCard.module.scss";
 
 type Color = "red" | "green" | "purple" | "brown" | "blue";
 
@@ -60,7 +60,7 @@ const CommunityCard = (props: Props) => {
         </div>
       </>
     ),
-    [props]
+    [props],
   );
   return !props.link ? (
     <div className={cls(styles.container, styles[`color_${props.color}`])}>{content}</div>

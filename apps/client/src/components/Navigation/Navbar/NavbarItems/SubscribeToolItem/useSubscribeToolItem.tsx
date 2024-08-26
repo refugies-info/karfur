@@ -1,9 +1,9 @@
+import { useAuth } from "@/hooks";
+import { Event } from "@/lib/tracking";
 import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
 import { useTranslation } from "next-i18next";
 import { isMobileOnly } from "react-device-detect";
-import { Event } from "lib/tracking";
 import { getPath } from "routes";
-import { useAuth } from "hooks";
 
 const useSubscribeToolItem = (): HeaderProps.QuickAccessItem | null => {
   const { t } = useTranslation();

@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import { assetsOnServer } from "@/assets/assetsOnServer";
 import { useTranslation } from "next-i18next";
-import { assetsOnServer } from "assets/assetsOnServer";
 import Image from "next/image";
+import styled from "styled-components";
 
 const ProblematicContentContainer = styled.div`
   display: flex;
@@ -51,7 +50,7 @@ const Statut = () => {
         <ProblematicDetailDescription>
           {t(
             "QuiSommesNous.problem_1_subheader",
-            "Mieux comprendre c'est déjà mieux accueillir. Migrant, demandeur d'asile ou réfugié ne désignent pas les mêmes réalités. Réfugiés.info s'adresse particulièrement aux réfugiés, c'est-à-dire aux personnes à qui la France accorde une protection internationale car leur vie est menacée dans leur pays d’origine."
+            "Mieux comprendre c'est déjà mieux accueillir. Migrant, demandeur d'asile ou réfugié ne désignent pas les mêmes réalités. Réfugiés.info s'adresse particulièrement aux réfugiés, c'est-à-dire aux personnes à qui la France accorde une protection internationale car leur vie est menacée dans leur pays d’origine.",
           )}
         </ProblematicDetailDescription>
       </TextContainer>
@@ -71,7 +70,7 @@ const Information = () => {
         <ProblematicDetailDescription>
           {t(
             "QuiSommesNous.problem_2_subheader",
-            "L’évolution rapide de la législation, le foisonnement de l’offre associative et la complexité de certaines démarches administratives rendent difficile la compréhension des droits et devoirs. Réfugiés.info centralise une information fiable, à jour et vulgarisée."
+            "L’évolution rapide de la législation, le foisonnement de l’offre associative et la complexité de certaines démarches administratives rendent difficile la compréhension des droits et devoirs. Réfugiés.info centralise une information fiable, à jour et vulgarisée.",
           )}
         </ProblematicDetailDescription>
       </TextContainer>
@@ -92,7 +91,7 @@ const Accompagnement = () => {
         <ProblematicDetailDescription>
           {t(
             "QuiSommesNous.problem_3_subheader2",
-            "Déménagement, changement de projet de vie... À chaque nouvel interlocuteur, il faut souvent tout reprendre de zéro. Réfugiés.info envisage de proposer aux réfugiés de se créer un parcours personnel qu’ils peuvent partager facilement avec leurs aidants."
+            "Déménagement, changement de projet de vie... À chaque nouvel interlocuteur, il faut souvent tout reprendre de zéro. Réfugiés.info envisage de proposer aux réfugiés de se créer un parcours personnel qu’ils peuvent partager facilement avec leurs aidants.",
           )}
         </ProblematicDetailDescription>
       </TextContainer>

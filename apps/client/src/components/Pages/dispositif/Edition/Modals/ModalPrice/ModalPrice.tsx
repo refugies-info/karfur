@@ -1,17 +1,17 @@
-import React, { useMemo, useState } from "react";
-import { Col, Row } from "reactstrap";
-import { useFormContext } from "react-hook-form";
+import PriceFree from "@/assets/dispositif/form-icons/price-free.svg";
+import PricePay from "@/assets/dispositif/form-icons/price-pay.svg";
+import NoIcon from "@/assets/dispositif/no-icon.svg";
+import BaseModal from "@/components/UI/BaseModal";
+import { cls } from "@/lib/classname";
 import { CreateDispositifRequest, Metadatas, priceDetails } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import BaseModal from "components/UI/BaseModal";
-import DropdownModals from "../../DropdownModals";
+import { useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import { Col, Row } from "reactstrap";
 import ChoiceButton from "../../ChoiceButton";
-import { SimpleFooter, InlineForm } from "../components";
-import PriceFree from "assets/dispositif/form-icons/price-free.svg";
-import PricePay from "assets/dispositif/form-icons/price-pay.svg";
+import DropdownModals from "../../DropdownModals";
+import { InlineForm, SimpleFooter } from "../components";
 import { dropdownOptions, help, helpPay } from "./data";
 import { getInitialPrice, getInitialType, isPriceValue } from "./functions";
-import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPrice.module.scss";
 
 interface Props {

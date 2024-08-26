@@ -1,5 +1,5 @@
+import FButton from "@/components/UI/FButton";
 import { Input } from "reactstrap";
-import FButton from "components/UI/FButton";
 import styles from "./NotesInput.module.scss";
 
 interface Props {
@@ -29,12 +29,7 @@ export const NotesInput = (props: Props) => {
         id="note"
         className={styles.input}
       />
-      <FButton
-        name="save-outline"
-        type={getButtonColor()}
-        onClick={props.saveAdminComments}
-        className="mt-1 w-100"
-      >
+      <FButton name="save-outline" type={getButtonColor()} onClick={props.saveAdminComments} className="mt-1 w-100">
         {!props.adminCommentsSaved ? "Enregistrer" : "Enregistré !"}
       </FButton>
     </>

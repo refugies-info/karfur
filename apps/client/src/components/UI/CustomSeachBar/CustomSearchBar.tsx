@@ -1,7 +1,7 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { colors } from "@/utils/colors";
 import React from "react";
 import { Input } from "reactstrap";
-import { colors } from "utils/colors";
 import styles from "./CustomSearchBar.module.scss";
 
 interface Props {

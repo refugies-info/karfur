@@ -1,8 +1,8 @@
-import EVAIcon from "components/UI/EVAIcon";
-import { limitNbCaracters } from "lib";
+import EVAIcon from "@/components/UI/EVAIcon";
+import { limitNbCaracters } from "@/lib";
+import { colors } from "@/utils/colors";
 import { useState } from "react";
 import styled from "styled-components";
-import { colors } from "utils/colors";
 import { getColorAndStatus } from "../../Admin/sharedComponents/SubComponents";
 
 export const ContribContainer = styled.div`

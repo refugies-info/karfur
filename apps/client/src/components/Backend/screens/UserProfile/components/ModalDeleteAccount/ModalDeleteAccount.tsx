@@ -1,7 +1,7 @@
-import { useAsyncFn } from "react-use";
+import ErrorMessage from "@/components/UI/ErrorMessage";
+import API from "@/utils/API";
 import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import API from "utils/API";
-import ErrorMessage from "components/UI/ErrorMessage";
+import { useAsyncFn } from "react-use";
 import styles from "./ModalDeleteAccount.module.scss";
 
 interface Props {}

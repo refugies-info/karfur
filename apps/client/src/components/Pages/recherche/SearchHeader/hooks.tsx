@@ -1,10 +1,10 @@
+import { allLanguesSelector } from "@/services/Langue/langue.selectors";
+import { searchResultsSelector } from "@/services/SearchResults/searchResults.selector";
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import _ from "lodash";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { searchResultsSelector } from "services/SearchResults/searchResults.selector";
 
 const useFilteredDocs = () => {
   const { demarches, dispositifs } = useSelector(searchResultsSelector);

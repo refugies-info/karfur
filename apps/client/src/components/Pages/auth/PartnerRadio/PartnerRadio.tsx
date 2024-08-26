@@ -1,6 +1,6 @@
+import { cls } from "@/lib/classname";
 import { fr } from "@codegouvfr/react-dsfr";
-import { cls } from "lib/classname";
-import React, { useId, memo, forwardRef, type ReactNode, type ComponentProps } from "react";
+import { forwardRef, memo, useId, type ComponentProps, type ReactNode } from "react";
 import styles from "./PartnerRadio.module.scss";
 
 // adapted copy of https://github.com/codegouvfr/react-dsfr/blob/main/src/shared/Fieldset.tsx

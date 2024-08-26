@@ -1,23 +1,23 @@
-import React, { memo, useEffect, useState } from "react";
-import Image from "next/image";
-import { useTranslation } from "next-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { cls } from "lib/classname";
-import useWindowSize from "hooks/useWindowSize";
+import noResultsImage from "@/assets/no_results_alt.svg";
+import DemarcheCard from "@/components/UI/DemarcheCard";
+import DispositifCard from "@/components/UI/DispositifCard";
+import FButton from "@/components/UI/FButton";
+import useWindowSize from "@/hooks/useWindowSize";
+import { cls } from "@/lib/classname";
+import { resetQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
 import {
   searchQuerySelector,
   searchResultsSelector,
-  themesDisplayedSelector
-} from "services/SearchResults/searchResults.selector";
-import { resetQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import FButton from "components/UI/FButton";
-import DemarcheCard from "components/UI/DemarcheCard";
-import DispositifCard from "components/UI/DispositifCard";
+  themesDisplayedSelector,
+} from "@/services/SearchResults/searchResults.selector";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { memo, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DemarcheCardTitle from "../DemarcheCardTitle";
 import DispositifCardTitle from "../DispositifCardTitle";
 import NotDeployedBanner from "../NotDeployedBanner";
 import SeeMoreButton from "../SeeMoreButton";
-import noResultsImage from "assets/no_results_alt.svg";
 import styles from "./SearchResults.module.scss";
 
 export const MAX_SHOWN_DEMARCHES = 14;
@@ -106,7 +106,7 @@ const SearchResults = (props: Props) => {
               styles.demarches,
               query.type !== "demarche" && styles.horizontal_scroll,
               query.type === "dispositif" && styles.hidden,
-              !hideDemarches && styles.all_visible
+              !hideDemarches && styles.all_visible,
             )}
           >
             <DemarcheCardTitle
@@ -116,7 +116,7 @@ const SearchResults = (props: Props) => {
             {demarches.map((d) =>
               typeof d === "string" ? null : ( // d can be a string if it comes from generateLightResults
                 <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
-              )
+              ),
             )}
           </div>
           {!isMobile && query.type !== "dispositif" && filteredResult.demarches.length >= MAX_SHOWN_DEMARCHES && (
@@ -137,7 +137,7 @@ const SearchResults = (props: Props) => {
               styles.results,
               styles.dispositifs,
               query.type === "demarche" && styles.hidden,
-              !hideDispositifs && styles.all_visible
+              !hideDispositifs && styles.all_visible,
             )}
           >
             <DispositifCardTitle
@@ -152,7 +152,7 @@ const SearchResults = (props: Props) => {
                   selectedDepartment={selectedDepartment}
                   targetBlank
                 />
-              )
+              ),
             )}
           </div>
           {!isMobile && query.type !== "demarche" && filteredResult.dispositifs.length >= MAX_SHOWN_DISPOSITIFS && (
@@ -173,7 +173,7 @@ const SearchResults = (props: Props) => {
               styles.results,
               styles.dispositifs,
               query.type === "demarche" && styles.hidden,
-              !hideSecondaryDispositifs && styles.all_visible
+              !hideSecondaryDispositifs && styles.all_visible,
             )}
           >
             <DispositifCardTitle
@@ -182,7 +182,7 @@ const SearchResults = (props: Props) => {
               themes={themesSelected}
             />
             {secondaryDispositifs.map((d) =>
-              typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
+              typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />,
             )}
           </div>
           {!isMobile &&

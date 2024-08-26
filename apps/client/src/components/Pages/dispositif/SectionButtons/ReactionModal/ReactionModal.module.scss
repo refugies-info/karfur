@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/input";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/input";
 
 .footer {
   margin-top: u(8);
@@ -18,7 +18,7 @@
   &:hover {
     background: var(--background-contrast-grey);
   }
-  
+
   &:focus {
     background: $gray30;
     border-color: var(--text-title-grey);

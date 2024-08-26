@@ -1,19 +1,19 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import BookmarkedModal from "@/components/Modals/BookmarkedModal";
+import { LangueMenu, ShareButtons, SMSForm, StructureReceiveDispositif } from "@/components/Pages/dispositif";
+import Button from "@/components/UI/Button";
+import Toast from "@/components/UI/Toast";
+import Tooltip from "@/components/UI/Tooltip";
+import { useAuth, useChangeLanguage, useContentLocale, useFavorites, useLocale, useUser } from "@/hooks";
+import { useDispositifTts } from "@/hooks/dispositif";
+import { cls } from "@/lib/classname";
+import { Event } from "@/lib/tracking";
+import { allLanguesSelector } from "@/services/Langue/langue.selectors";
+import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { DispositifStatus } from "@refugies-info/api-types";
-import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useUser } from "hooks";
-import { useDispositifTts } from "hooks/dispositif";
-import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import { hasTTSAvailable } from "data/activatedLanguages";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import Button from "components/UI/Button";
-import Toast from "components/UI/Toast";
-import BookmarkedModal from "components/Modals/BookmarkedModal";
-import { ShareButtons, SMSForm, LangueMenu, StructureReceiveDispositif } from "components/Pages/dispositif";
-import Tooltip from "components/UI/Tooltip";
+import { useTranslation } from "next-i18next";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {

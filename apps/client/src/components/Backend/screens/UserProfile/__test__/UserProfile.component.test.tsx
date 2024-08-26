@@ -1,9 +1,9 @@
+import { initialMockStore } from "@/__fixtures__/reduxStore";
+import { testUser } from "@/__fixtures__/user";
+import { setupGoogleMock } from "@/__mocks__/react-google-autocomplete";
 import "@testing-library/jest-dom";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { testUser } from "__fixtures__/user";
-import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
 import "jest-styled-components";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserProfile } from "../UserProfile";

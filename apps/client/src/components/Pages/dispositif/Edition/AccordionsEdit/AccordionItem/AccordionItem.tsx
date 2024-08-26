@@ -1,16 +1,16 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import AccordionBadge from "@/components/Pages/dispositif/AccordionBadge";
+import Text from "@/components/Pages/dispositif/Text";
+import Button from "@/components/UI/Button";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { useContentType } from "@/hooks/dispositif";
+import { cls } from "@/lib/classname";
+import { Event } from "@/lib/tracking";
+import { themeSelector } from "@/services/Themes/themes.selectors";
+import PageContext from "@/utils/pageContext";
+import dynamic from "next/dynamic";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
-import dynamic from "next/dynamic";
-import { Event } from "lib/tracking";
-import { useContentType } from "hooks/dispositif";
-import PageContext from "utils/pageContext";
-import { cls } from "lib/classname";
-import { themeSelector } from "services/Themes/themes.selectors";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Button from "components/UI/Button";
-import Text from "components/Pages/dispositif/Text";
-import AccordionBadge from "components/Pages/dispositif/AccordionBadge";
 import AddContentButton from "../../AddContentButton";
 import styles from "./AccordionItem.module.scss";
 

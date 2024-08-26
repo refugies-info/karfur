@@ -1,11 +1,11 @@
+import { initGA } from "@/lib/tracking";
 import { createConsentManagement } from "@codegouvfr/react-dsfr/consentManagement";
-import { initGA } from "lib/tracking";
 
 export const {
   ConsentBannerAndConsentManagement,
   FooterConsentManagementItem,
   FooterPersonalDataPolicyItem,
-  useConsent
+  useConsent,
 } = createConsentManagement({
   finalityDescription: () => ({
     analytics: {
@@ -14,7 +14,7 @@ export const {
     },
     youtube: {
       title: "Youtube",
-      description: "Nous utilisons des cookies pour afficher les vidéos Youtube."
+      description: "Nous utilisons des cookies pour afficher les vidéos Youtube.",
     },
   }),
   personalDataPolicyLinkProps: {
@@ -24,5 +24,5 @@ export const {
     if (finalityConsent_prev?.analytics !== finalityConsent.analytics) {
       initGA(finalityConsent.analytics);
     }
-  }
+  },
 });

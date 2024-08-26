@@ -1,16 +1,16 @@
-import React, { useCallback } from "react";
-import { Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem, Row, Col, Progress } from "reactstrap";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import FButton from "@/components/UI/FButton/FButton";
+import { Event } from "@/lib/tracking";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
+import { activatedLanguages } from "data/activatedLanguages";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
-import { useTranslation } from "next-i18next";
-import FButton from "components/UI/FButton/FButton";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { activatedLanguages } from "data/activatedLanguages";
-import styles from "./LanguageModal.module.scss";
+import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Progress, Row } from "reactstrap";
 import { getPath } from "routes";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { Event } from "lib/tracking";
+import styles from "./LanguageModal.module.scss";
 
 interface Props {
   show: boolean;

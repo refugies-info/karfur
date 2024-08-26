@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import { useWindowSize } from "@/hooks";
+import { addToQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
+import { SearchQuery } from "@/services/SearchResults/searchResults.reducer";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import HomeSearchHeaderDesktop from "./HomeSearchHeader.desktop";
 import HomeSearchHeaderMobile from "./HomeSearchHeader.mobile";
-import { useWindowSize } from "hooks";
 
 interface Props {}
 

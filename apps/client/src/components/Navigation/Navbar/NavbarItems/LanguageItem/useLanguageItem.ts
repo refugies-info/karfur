@@ -1,7 +1,7 @@
+import { useLanguages } from "@/hooks";
+import { toggleLangueModalActionCreator } from "@/services/Langue/langue.actions";
 import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
-import { useLanguages } from "hooks";
 import { useDispatch } from "react-redux";
-import { toggleLangueModalActionCreator } from "services/Langue/langue.actions";
 
 const useLanguageItem = (): HeaderProps.QuickAccessItem => {
   const dispatch = useDispatch();

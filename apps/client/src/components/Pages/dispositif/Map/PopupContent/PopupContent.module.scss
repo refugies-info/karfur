@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/unit";
 
 .popup {
   position: relative;
@@ -27,7 +27,7 @@
     align-items: baseline;
     word-break: break-word;
   }
-  
+
   .close {
     width: u(8);
     height: u(8);

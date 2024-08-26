@@ -1,7 +1,6 @@
-import React from "react";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
 import Image from "next/image";
-import { cls } from "lib/classname";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./RemovableItem.module.scss";
 
 interface Props {

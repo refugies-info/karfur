@@ -1,7 +1,6 @@
-import React from "react";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
 import { CreateDispositifRequest } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./Sidebar.module.scss";
 
 interface Props {

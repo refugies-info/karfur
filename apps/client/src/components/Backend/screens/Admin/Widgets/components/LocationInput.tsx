@@ -1,8 +1,8 @@
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import FilterButton from "@/components/UI/FilterButton";
+import { cls } from "@/lib/classname";
 import { useState } from "react";
 import Autocomplete from "react-google-autocomplete";
-import { cls } from "lib/classname";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FilterButton from "components/UI/FilterButton";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {
@@ -39,7 +39,7 @@ export const LocationInput = (props: Props) => {
             onPlaceSelected={onPlaceSelected}
             options={{
               componentRestrictions: { country: "fr" },
-              types: ["administrative_area_level_2"]
+              types: ["administrative_area_level_2"],
             }}
             autoFocus
             className={parentStyles.fake_field}

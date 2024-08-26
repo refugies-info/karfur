@@ -1,6 +1,5 @@
-import React from "react";
+import { cls } from "@/lib/classname";
 import Badge, { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
-import { cls } from "lib/classname";
 import styles from "./Badge.module.scss";
 
 interface Props {

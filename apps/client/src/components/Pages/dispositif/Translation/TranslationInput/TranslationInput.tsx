@@ -1,22 +1,22 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useAsyncFn, useNumber } from "react-use";
-import { useWatch } from "react-hook-form";
+import { useUser } from "@/hooks";
+import { Suggestion } from "@/hooks/dispositif";
+import { checkIsRTL } from "@/hooks/useRTL";
+import { cls } from "@/lib/classname";
+import { Event } from "@/lib/tracking";
+import API from "@/utils/API";
+import PageContext from "@/utils/pageContext";
 import { Languages } from "@refugies-info/api-types";
-import { useUser } from "hooks";
-import { Suggestion } from "hooks/dispositif";
-import { checkIsRTL } from "hooks/useRTL";
-import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
-import API from "utils/API";
-import PageContext from "utils/pageContext";
-import TranslationStatus from "./TranslationStatus";
-import UserSuggest from "./UserSuggest";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useWatch } from "react-hook-form";
+import { useAsyncFn, useNumber } from "react-use";
 import BottomButtons from "./BottomButtons";
-import TranslationEditField from "./TranslationEditField";
+import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
 import SuggestionsNavButtons from "./SuggestionsNavButtons";
 import TranslationEditAuthor from "./TranslationEditAuthor";
-import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
+import TranslationEditField from "./TranslationEditField";
 import styles from "./TranslationInput.module.scss";
+import TranslationStatus from "./TranslationStatus";
+import UserSuggest from "./UserSuggest";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
   return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;

@@ -1,22 +1,22 @@
-import React, { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
+import defaultStructureImage from "@/assets/recherche/default-structure-image.svg";
+import Button from "@/components/UI/Button";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import FRLink from "@/components/UI/FRLink";
+import Tooltip from "@/components/UI/Tooltip";
+import { cls } from "@/lib/classname";
+import { isStatus } from "@/lib/dispositif";
+import { allStructuresSelector } from "@/services/AllStructures/allStructures.selector";
+import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
+import { userSelector } from "@/services/User/user.selectors";
+import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import { isStatus } from "lib/dispositif";
-import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import { userSelector } from "services/User/user.selectors";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
-import FRLink from "components/UI/FRLink";
-import Button from "components/UI/Button";
+import { useMemo, useState } from "react";
+import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 import BaseCard from "../BaseCard";
-import DeleteContentModal from "./DeleteContentModal";
-import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import styles from "./CardMainSponsor.module.scss";
+import DeleteContentModal from "./DeleteContentModal";
 
 interface Props {
   dataMainSponsor: DeepPartialSkipArrayKey<UpdateDispositifRequest["mainSponsor"]>;

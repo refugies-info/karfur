@@ -1,24 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import FButton from "@/components/UI/FButton/FButton";
+import { cls } from "@/lib/classname";
+import { handleApiError } from "@/lib/handleApiErrors";
+import { dispositifSelector } from "@/services/AllDispositifs/allDispositifs.selector";
+import { allStructuresSelector } from "@/services/AllStructures/allStructures.selector";
+import { allActiveUsersSelector } from "@/services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
+import API from "@/utils/API";
+import { GetLogResponse, Id, ImprovementsRequest } from "@refugies-info/api-types";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Col, Input, Row } from "reactstrap";
 import Swal from "sweetalert2";
-import { cls } from "lib/classname";
-import FButton from "components/UI/FButton/FButton";
-import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import API from "utils/API";
 import { LogList } from "../../Logs/LogList";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
+import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import { UserButton } from "../../sharedComponents/UserButton";
-import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
-import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
+import { getFormattedStatus, getTitle, getUsersToSendMail } from "./functions";
 import styles from "./ImprovementsMailModal.module.scss";
-import { GetLogResponse, Id, ImprovementsRequest } from "@refugies-info/api-types";
-import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {
   show: boolean;

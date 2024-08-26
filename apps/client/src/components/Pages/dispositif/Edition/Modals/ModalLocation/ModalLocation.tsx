@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import imgAll from "@/assets/dispositif/form-icons/location-all.svg";
+import imgDepartment from "@/assets/dispositif/form-icons/location-department.svg";
+import imgInternet from "@/assets/dispositif/form-icons/location-internet.svg";
+import BaseModal from "@/components/UI/BaseModal";
 import { CreateDispositifRequest, Metadatas } from "@refugies-info/api-types";
-import BaseModal from "components/UI/BaseModal";
+import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, StepsFooter } from "../components";
 import { help, helpDepartments } from "./data";
 import DepartmentInput from "./DepartmentInput";
-import imgAll from "assets/dispositif/form-icons/location-all.svg";
-import imgDepartment from "assets/dispositif/form-icons/location-department.svg";
-import imgInternet from "assets/dispositif/form-icons/location-internet.svg";
-import styles from "./ModalLocation.module.scss";
 
 interface Props {
   show: boolean;

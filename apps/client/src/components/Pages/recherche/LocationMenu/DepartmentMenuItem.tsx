@@ -1,9 +1,9 @@
-import Checkbox from "components/UI/Checkbox";
-import { getDepartmentCodeFromName } from "lib/departments";
+import Checkbox from "@/components/UI/Checkbox";
+import { getDepartmentCodeFromName } from "@/lib/departments";
+import { addToQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "@/services/SearchResults/searchResults.selector";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import styles from "./DepartmentMenuItem.module.css";
 
 interface Props {

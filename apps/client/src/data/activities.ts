@@ -1,4 +1,4 @@
-import { assetsOnServer } from "assets/assetsOnServer";
+import { assetsOnServer } from "@/assets/assetsOnServer";
 
 export const activities = [
   {
@@ -39,8 +39,7 @@ export const activities = [
   {
     theme: "Logement",
     activity: "Accompagnement vers et dans le logement",
-    image:
-      assetsOnServer.annuaire.activites.logement.accompagnementVersLogement,
+    image: assetsOnServer.annuaire.activites.logement.accompagnementVersLogement,
   },
   {
     theme: "Logement",
@@ -80,15 +79,13 @@ export const activities = [
   {
     theme: "Administratif",
     activity: "Accompagnement juridique",
-    image:
-      assetsOnServer.annuaire.activites.administratif.accompagnementJuridique,
+    image: assetsOnServer.annuaire.activites.administratif.accompagnementJuridique,
   },
 
   {
     theme: "Insertion pro",
     activity: "Accompagnement vers l'emploi",
-    image:
-      assetsOnServer.annuaire.activites.insertionPro.accompagnementVersLemploi,
+    image: assetsOnServer.annuaire.activites.insertionPro.accompagnementVersLemploi,
   },
   {
     theme: "Insertion pro",
@@ -125,14 +122,12 @@ export const activities = [
   {
     theme: "Formation pro",
     activity: "Formations certifiantes",
-    image:
-      assetsOnServer.annuaire.activites.formationPro.formationsCertifiantes,
+    image: assetsOnServer.annuaire.activites.formationPro.formationsCertifiantes,
   },
   {
     theme: "Formation pro",
     activity: "Formations non certifiantes",
-    image:
-      assetsOnServer.annuaire.activites.formationPro.formationsNonCertifiantes,
+    image: assetsOnServer.annuaire.activites.formationPro.formationsNonCertifiantes,
   },
   {
     theme: "Formation pro",
@@ -148,8 +143,7 @@ export const activities = [
   {
     theme: "Études",
     activity: "Diplôme Universitaire Passerelle",
-    image:
-      assetsOnServer.annuaire.activites.etudes.diplômeUniversitairePasserelle,
+    image: assetsOnServer.annuaire.activites.etudes.diplômeUniversitairePasserelle,
   },
   {
     theme: "Études",

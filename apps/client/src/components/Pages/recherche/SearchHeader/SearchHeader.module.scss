@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/rtl";
+@import "@/scss/variables";
 
 .title,
 .stickybar {
@@ -50,7 +50,7 @@
   from {
     transform: translateY(-100%);
   }
-  
+
   to {
     transform: translateY(0);
   }

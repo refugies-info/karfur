@@ -1,5 +1,4 @@
-import { cls } from "lib/classname";
-import Image from "next/image";
+import { cls } from "@/lib/classname";
 
 interface Props {
   name: string;

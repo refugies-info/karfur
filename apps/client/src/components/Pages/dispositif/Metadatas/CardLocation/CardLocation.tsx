@@ -1,15 +1,14 @@
-import React, { useContext, useMemo } from "react";
+import LocationIcon from "@/assets/dispositif/metadatas/Location";
+import FRLink from "@/components/UI/FRLink";
+import { jsUcfirst } from "@/lib";
+import { formatDepartment } from "@/lib/departments";
+import { Event } from "@/lib/tracking";
+import PageContext from "@/utils/pageContext";
 import { ContentType, Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { Event } from "lib/tracking";
-import PageContext from "utils/pageContext";
-import { jsUcfirst } from "lib";
-import { formatDepartment } from "lib/departments";
-import FRLink from "components/UI/FRLink";
+import { useContext, useMemo } from "react";
 import BaseCard from "../BaseCard";
 import { getLocationLink } from "../functions";
-import LocationIcon from "assets/dispositif/metadatas/Location";
-import styles from "./CardLocation.module.scss";
 
 interface Props {
   data: Metadatas["location"] | null | undefined; // null = not useful / undefined = not set yet

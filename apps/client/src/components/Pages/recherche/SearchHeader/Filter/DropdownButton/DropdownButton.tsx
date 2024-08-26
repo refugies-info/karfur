@@ -1,5 +1,5 @@
+import { cls } from "@/lib/classname";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { cls } from "lib/classname";
 import { useTranslation } from "next-i18next";
 import React from "react";
 import styles from "./DropdownButton.module.scss";

@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/input";
-@import "~scss/mixins/rtl";
+@import "@/scss/colors";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/input";
+@import "@/scss/mixins/rtl";
 
 .theme {
   color: white;
@@ -44,7 +44,7 @@
       padding-left: inherit;
       padding-right: 44px;
     }
-    
+
     .flag {
       left: inherit;
       right: u(4);

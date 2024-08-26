@@ -1,16 +1,20 @@
+import { submitCreateForm, submitUpdateForm } from "@/lib/dispositifForm";
+import { addToAllStructuresActionCreator } from "@/services/AllStructures/allStructures.actions";
+import { setSelectedDispositifActionCreator } from "@/services/SelectedDispositif/selectedDispositif.actions";
+import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
+import PageContext from "@/utils/pageContext";
+import {
+  CreateDispositifRequest,
+  GetDispositifResponse,
+  PostDispositifsResponse,
+  UpdateDispositifResponse,
+} from "@refugies-info/api-types";
+import debounce from "lodash/debounce";
+import { logger } from "logger";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import debounce from "lodash/debounce";
-import { CreateDispositifRequest, GetDispositifResponse, PostDispositifsResponse, UpdateDispositifResponse } from "@refugies-info/api-types";
-import { getPath } from "routes";
-import { submitCreateForm, submitUpdateForm } from "lib/dispositifForm";
-import PageContext from "utils/pageContext";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { setSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
-import { addToAllStructuresActionCreator } from "services/AllStructures/allStructures.actions";
-import { logger } from "logger";
 
 const debouncedSave = debounce((callback: () => void) => callback(), 500);
 
@@ -34,7 +38,8 @@ const useAutosave = () => {
 
   useEffect(() => {
     if (pageContext.mode === "edit") {
-      if (JSON.stringify(data) !== JSON.stringify(oldData)) { // form has changed
+      if (JSON.stringify(data) !== JSON.stringify(oldData)) {
+        // form has changed
         methods.handleSubmit((data: CreateDispositifRequest) => {
           setOldData(data);
 
@@ -44,21 +49,31 @@ const useAutosave = () => {
             try {
               let response: UpdateDispositifResponse | PostDispositifsResponse | null = null;
 
-              if (id) { // update
-                response = await submitUpdateForm(id, data)
+              if (id) {
+                // update
+                response = await submitUpdateForm(id, data);
                 if (response && dispositif) {
-                  dispatch(setSelectedDispositifActionCreator({ ...dispositif, status: response.status, hasDraftVersion: response.hasDraftVersion }))
+                  dispatch(
+                    setSelectedDispositifActionCreator({
+                      ...dispositif,
+                      status: response.status,
+                      hasDraftVersion: response.hasDraftVersion,
+                    }),
+                  );
                 }
-              } else { // create
-                response = await submitCreateForm(data)
+              } else {
+                // create
+                response = await submitCreateForm(data);
                 if (response) {
                   // set partial dispositif in store, and continue edition on this page
-                  dispatch(setSelectedDispositifActionCreator({
-                    _id: response.id,
-                    status: response.status,
-                    hasDraftVersion: response.hasDraftVersion,
-                    typeContenu: response.typeContenu,
-                  } as GetDispositifResponse));
+                  dispatch(
+                    setSelectedDispositifActionCreator({
+                      _id: response.id,
+                      status: response.status,
+                      hasDraftVersion: response.hasDraftVersion,
+                      typeContenu: response.typeContenu,
+                    } as GetDispositifResponse),
+                  );
                 }
               }
 
@@ -67,11 +82,14 @@ const useAutosave = () => {
               // if main sponsor is a new one (= type object)
               if (!!response?.mainSponsor && typeof data.mainSponsor !== "string") {
                 methods.setValue("mainSponsor", response.mainSponsor); // set the id in the form values to prevent from creating multiple ones
-                dispatch(addToAllStructuresActionCreator({ // add it to structures list
-                  _id: response.mainSponsor,
-                  nom: data.mainSponsor?.name,
-                  picture: data.mainSponsor?.logo
-                }));
+                dispatch(
+                  addToAllStructuresActionCreator({
+                    // add it to structures list
+                    _id: response.mainSponsor,
+                    nom: data.mainSponsor?.name,
+                    picture: data.mainSponsor?.logo,
+                  }),
+                );
                 updatedOldData.mainSponsor = response.mainSponsor; // update old data not to restart submit
               }
 
@@ -100,6 +118,6 @@ const useAutosave = () => {
   }, [pageContext.mode, id, methods, data, oldData, router, dispositif, dispatch]);
 
   return { isSaving, hasError };
-}
+};
 
 export default useAutosave;

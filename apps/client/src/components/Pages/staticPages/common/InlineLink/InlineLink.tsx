@@ -1,8 +1,8 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { useRTL } from "hooks";
-import { cls } from "lib/classname";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { useRTL } from "@/hooks";
+import { cls } from "@/lib/classname";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import styles from "./InlineLink.module.scss";
 
 interface Props {
@@ -29,7 +29,7 @@ const InlineLink = (props: Props) => {
         />
       </>
     ),
-    [props.text, props.color, isRTL]
+    [props.text, props.color, isRTL],
   );
 
   if (props.type === "button") {

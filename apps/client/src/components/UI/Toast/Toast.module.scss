@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
+@import "@/scss/colors";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/rtl";
 
 .container {
   box-shadow: 0 6px 18px 0 #00001229;
@@ -40,7 +40,7 @@
 
 .close {
   @include ml-ltr(u(6));
-  
+
   width: u(6);
   height: u(6);
   padding: 0;

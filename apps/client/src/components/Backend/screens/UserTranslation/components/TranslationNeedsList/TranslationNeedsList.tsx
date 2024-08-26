@@ -1,12 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
 import { Id, Languages } from "@refugies-info/api-types";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { useSelector } from "react-redux";
+import { SortedNeed } from "../TranslationsAvancement/TranslationsAvancement";
 import NeedButton from "./NeedButton";
 import styles from "./TranslationNeedsList.module.scss";
-import { SortedNeed } from "../TranslationsAvancement/TranslationsAvancement";
 
 interface Props {
   setSelectedNeedId: (arg: Id) => void;

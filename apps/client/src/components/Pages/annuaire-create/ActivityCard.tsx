@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Image from "next/image";
-import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
-import placeholder from "assets/placeholder_annuaire.png";
-import useRTL from "hooks/useRTL";
+import placeholder from "@/assets/placeholder_annuaire.png";
+import { ThemeButton } from "@/components/UI/ThemeButton/ThemeButton";
+import useRTL from "@/hooks/useRTL";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import Image from "next/image";
+import styled from "styled-components";
 
 interface Props {
   activity: string;

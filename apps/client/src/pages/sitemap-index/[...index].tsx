@@ -1,5 +1,5 @@
-import { extractIndexFromUrl } from "lib/sitemap/extractIndexFromUrl";
-import { getAllUrls } from "lib/sitemap/getAllUrls";
+import { extractIndexFromUrl } from "@/lib/sitemap/extractIndexFromUrl";
+import { getAllUrls } from "@/lib/sitemap/getAllUrls";
 import { GetServerSideProps } from "next";
 import { getServerSideSitemapIndexLegacy, getServerSideSitemapLegacy } from "next-sitemap";
 

@@ -1,7 +1,7 @@
-import { LangueActions } from "./langue.actions";
-import { createReducer } from "typesafe-actions";
-import locale from "utils/locale";
+import locale from "@/utils/locale";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
+import { createReducer } from "typesafe-actions";
+import { LangueActions } from "./langue.actions";
 
 export interface LangueState {
   langues: GetLanguagesResponse[];
@@ -14,7 +14,7 @@ const initialLangueState = {
   langues: [],
   languei18nCode: "fr",
   showLanguageModal: false,
-  showLangModal: false
+  showLangModal: false,
 };
 
 export const langueReducer = createReducer<LangueState, LangueActions>(initialLangueState, {
@@ -22,6 +22,9 @@ export const langueReducer = createReducer<LangueState, LangueActions>(initialLa
     locale.saveInCache(action.payload);
     return { ...state, languei18nCode: action.payload };
   },
-  TOGGLE_LANG_MODAL: (state, action) => ({ ...state, showLangModal: action.payload !== undefined ? action.payload : !state.showLangModal }),
-  SET_LANGUES: (state, action) => ({ ...state, langues: action.payload })
+  TOGGLE_LANG_MODAL: (state, action) => ({
+    ...state,
+    showLangModal: action.payload !== undefined ? action.payload : !state.showLangModal,
+  }),
+  SET_LANGUES: (state, action) => ({ ...state, langues: action.payload }),
 });

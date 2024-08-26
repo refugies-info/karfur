@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import useRouterLocale from "@/hooks/useRouterLocale";
+import { allStructuresSelector } from "@/services/AllStructures/allStructures.selector";
+import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useRouterLocale from "hooks/useRouterLocale";
-import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
-import { prepareDeleteContrib } from "../Needs/lib";
-import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Table } from "reactstrap";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
+import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { prepareDeleteContrib } from "../Needs/lib";
+import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 
-import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
-import {
-  StyledTitle,
-  StyledHeader,
-  Content,
-  FigureContainer,
-  StyledSort,
-  StyledHeaderInner,
-} from "../sharedComponents/StyledAdmin";
-import { TabHeader, StyledStatus, FilterButton } from "../sharedComponents/SubComponents";
+import CustomSearchBar from "@/components/UI/CustomSeachBar";
+import FButton from "@/components/UI/FButton/FButton";
+import { removeAccents } from "@/lib";
+import { getAdminUrlParams, getInitialFilters } from "@/lib/getAdminUrlParams";
+import { statusCompare } from "@/lib/statusCompare";
+import { setAllDispositifsActionsCreator } from "@/services/AllDispositifs/allDispositifs.actions";
+import { allDispositifsSelector } from "@/services/AllDispositifs/allDispositifs.selector";
+import { GetAllStructuresResponse, Id, StructureStatus } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import { headers, correspondingStatus } from "./data";
-import { RowContainer, StructureName, ResponsableComponent } from "./components/AdminStructureComponents";
-import CustomSearchBar from "components/UI/CustomSeachBar";
-import FButton from "components/UI/FButton/FButton";
-import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
-import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
-import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
-import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
+import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
+import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
+import {
+  Content,
+  FigureContainer,
+  StyledHeader,
+  StyledHeaderInner,
+  StyledSort,
+  StyledTitle,
+} from "../sharedComponents/StyledAdmin";
+import { FilterButton, StyledStatus, TabHeader } from "../sharedComponents/SubComponents";
 import styles from "./AdminStructures.module.scss";
-import { statusCompare } from "lib/statusCompare";
-import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
-import { removeAccents } from "lib";
-import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { GetAllStructuresResponse, Id, StructureStatus } from "@refugies-info/api-types";
+import { ResponsableComponent, RowContainer, StructureName } from "./components/AdminStructureComponents";
+import { correspondingStatus, headers } from "./data";
+import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
+import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 
 moment.locale("fr");
 

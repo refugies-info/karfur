@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import Image from "next/image";
-import { useTranslation } from "next-i18next";
+import Button from "@/components/UI/Button";
+import { cls } from "@/lib/classname";
+import { sanitizeUrl } from "@/lib/sanitizeUrl";
 import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import { sanitizeUrl } from "lib/sanitizeUrl";
-import Button from "components/UI/Button";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { useCallback } from "react";
 import styles from "./Sponsors.module.scss";
 
 interface Props {

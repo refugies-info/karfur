@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import Image from "next/image";
-import styled from "styled-components";
+import AdminIcon from "@/assets/dispositif/crown.svg";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import ThemeIcon from "@/components/UI/ThemeIcon";
+import Tooltip from "@/components/UI/Tooltip";
+import { cls } from "@/lib/classname";
 import { GetThemeResponse } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import ThemeIcon from "components/UI/ThemeIcon";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
-import AdminIcon from "assets/dispositif/crown.svg";
+import Image from "next/image";
+import { useMemo } from "react";
+import styled from "styled-components";
 import styles from "./ThemeSelectButton.module.scss";
 
 interface ButtonProps {

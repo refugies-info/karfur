@@ -1,36 +1,36 @@
-import React, { useContext, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { ContentType } from "@refugies-info/api-types";
-import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "hooks";
-import PageContext from "utils/pageContext";
-import { cls } from "lib/classname";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "services/Themes/themes.selectors";
-import SEO from "components/Seo";
 import {
-  Header,
-  Sponsors,
-  Contributors,
-  Section,
-  Feedback,
-  LinkedThemes,
   ActionButtons,
   Banner,
+  Contributors,
+  Feedback,
+  Header,
+  LinkedThemes,
   Map,
-} from "components/Pages/dispositif";
+  Section,
+  Sponsors,
+} from "@/components/Pages/dispositif";
 import {
-  RightSidebarEdition,
-  LeftSidebarEdition,
-  CustomNavbar,
   BannerEdition,
-  SponsorsEdit,
+  CustomNavbar,
+  LeftSidebarEdition,
   MapEdit,
-} from "components/Pages/dispositif/Edition";
-import FRLink from "components/UI/FRLink";
-import RightSidebar from "./RightSidebar";
-import LeftSidebar from "./LeftSidebar";
+  RightSidebarEdition,
+  SponsorsEdit,
+} from "@/components/Pages/dispositif/Edition";
+import SEO from "@/components/Seo";
+import FRLink from "@/components/UI/FRLink";
+import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "@/hooks";
+import { cls } from "@/lib/classname";
+import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
+import { themeSelector } from "@/services/Themes/themes.selectors";
+import PageContext from "@/utils/pageContext";
+import { ContentType } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { useContext, useMemo } from "react";
+import { useSelector } from "react-redux";
 import styles from "./Dispositif.module.scss";
+import LeftSidebar from "./LeftSidebar";
+import RightSidebar from "./RightSidebar";
 
 interface Props {
   typeContenu?: ContentType;

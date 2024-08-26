@@ -1,4 +1,4 @@
-import { cls } from "lib/classname";
+import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef } from "react";
 import styles from "./SearchMenuItem.module.css";
@@ -18,10 +18,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   }, []);
 
   return (
-    <div
-      className={styles.item}
-      onClick={(e) => e.preventDefault()}
-    >
+    <div className={styles.item} onClick={(e) => e.preventDefault()}>
       <div className={styles.zone}>
         <i className={cls("fr-icon-search-line", styles.icon)} />
         <input

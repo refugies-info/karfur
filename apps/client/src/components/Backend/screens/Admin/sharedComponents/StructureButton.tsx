@@ -1,10 +1,9 @@
-import React from "react";
-import Image from "next/image";
-import { StyledStatus } from "./SubComponents";
-import { cls } from "lib/classname";
-import noStructure from "assets/noStructure.png";
-import styles from "../Admin.module.scss";
+import noStructure from "@/assets/noStructure.png";
+import { cls } from "@/lib/classname";
 import { ContentStructure, UserStructure } from "@refugies-info/api-types";
+import Image from "next/image";
+import styles from "../Admin.module.scss";
+import { StyledStatus } from "./SubComponents";
 
 export const StructureButton = (props: {
   sponsor: UserStructure | ContentStructure | null;

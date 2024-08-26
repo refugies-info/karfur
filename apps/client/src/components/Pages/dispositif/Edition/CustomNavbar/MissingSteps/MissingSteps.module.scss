@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/btn";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/btn";
 
 .missing {
   border-radius: u(2);
@@ -34,7 +34,7 @@
 
   &.error {
     @include buttonStatus("error");
-    
+
     color: var(--text-default-error);
   }
 }

@@ -1,7 +1,7 @@
+import placeholder from "@/assets/no_results_alt.svg";
+import TitleWithNumber from "@/components/Backend/TitleWithNumber";
+import FButton from "@/components/UI/FButton/FButton";
 import { GetStructureResponse, Id, Picture, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
-import placeholder from "assets/no_results_alt.svg";
-import TitleWithNumber from "components/Backend/TitleWithNumber";
-import FButton from "components/UI/FButton/FButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";

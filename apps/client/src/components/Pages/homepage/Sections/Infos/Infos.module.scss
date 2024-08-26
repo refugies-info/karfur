@@ -1,7 +1,7 @@
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/text";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/text";
 
 .infos {
   overflow-x: hidden;
@@ -66,7 +66,7 @@
   right: 8px;
 
   @include r-ltr(8px);
-  
+
   top: 8px;
   height: 48px;
 }

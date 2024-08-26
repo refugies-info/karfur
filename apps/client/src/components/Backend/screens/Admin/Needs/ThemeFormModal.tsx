@@ -1,28 +1,28 @@
-import { Picture } from "@refugies-info/api-types";
-import FButton from "components/UI/FButton/FButton";
-import FInput from "components/UI/FInput/FInput";
-import ImageInput from "components/UI/ImageInput";
-import { cls } from "lib/classname";
-import toArray from "lodash/toArray";
-import { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Col, Input, Row } from "reactstrap";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { needsSelector } from "services/Needs/needs.selectors";
+import FButton from "@/components/UI/FButton/FButton";
+import FInput from "@/components/UI/FInput/FInput";
+import ImageInput from "@/components/UI/ImageInput";
+import { cls } from "@/lib/classname";
+import { allLanguesSelector } from "@/services/Langue/langue.selectors";
+import { needsSelector } from "@/services/Needs/needs.selectors";
 import {
   createThemeActionCreator,
   deleteThemeActionCreator,
   saveThemeActionCreator,
-} from "services/Themes/themes.actions";
+} from "@/services/Themes/themes.actions";
+import { colors as themeColors } from "@/utils/colors";
+import { Picture } from "@refugies-info/api-types";
+import toArray from "lodash/toArray";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Input, Row } from "reactstrap";
 import Swal from "sweetalert2";
-import { colors as themeColors } from "utils/colors";
 import { LangueButton } from "../AdminUsers/components/AdminUsersComponents";
 import { DetailsModal } from "../sharedComponents/DetailsModal";
 import { Label } from "../sharedComponents/SubComponents";
 import styles from "./ThemeFormModal.module.scss";
 // import { isThemeTitleOk } from "./lib";
+import { allThemesSelector } from "@/services/Themes/themes.selectors";
 import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "@refugies-info/api-types";
-import { allThemesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   show: boolean;

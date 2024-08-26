@@ -1,13 +1,12 @@
-import { useState } from "react";
-import Image from "next/image";
+import marioProfile from "@/assets/mario-profile.jpg";
+import EVAIcon from "@/components/UI/EVAIcon";
+import { cls } from "@/lib/classname";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { GetTraductionsForReview, TranslatorFeedback } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import EVAIcon from "components/UI/EVAIcon";
-import marioProfile from "assets/mario-profile.jpg";
+import Image from "next/image";
+import { useState } from "react";
 import styles from "./NotationInput.module.scss";
-import { fr } from "@codegouvfr/react-dsfr";
 
 interface Props {
   author?: GetTraductionsForReview["author"];

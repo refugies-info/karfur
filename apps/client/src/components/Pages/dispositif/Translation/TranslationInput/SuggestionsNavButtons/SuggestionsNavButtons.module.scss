@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/icons";
-@import "~scss/mixins/text";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/icons";
+@import "@/scss/mixins/text";
 
 .nav {
   @include iconSize(u(4));
@@ -14,7 +14,7 @@
 
 .validate {
   @include iconSize(u(4));
-  
+
   width: u(8) !important;
   height: u(8);
   min-height: 0 !important;

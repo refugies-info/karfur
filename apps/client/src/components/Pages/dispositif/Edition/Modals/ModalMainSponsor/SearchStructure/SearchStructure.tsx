@@ -1,15 +1,15 @@
-import React, { ChangeEventHandler, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import StructureImage from "@/assets/dispositif/structure-image.svg";
+import Input from "@/components/Pages/dispositif/Input";
+import SearchStructureResult from "@/components/UI/SearchStructures/SearchStructureResult";
+import { removeAccents } from "@/lib";
+import { escapeRegexCharacters } from "@/lib/search";
+import { allStructuresSelector } from "@/services/AllStructures/allStructures.selector";
+import { Id } from "@refugies-info/api-types";
+import React, { ChangeEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
-import { Id } from "@refugies-info/api-types";
-import { removeAccents } from "lib";
-import { escapeRegexCharacters } from "lib/search";
-import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import SearchStructureResult from "components/UI/SearchStructures/SearchStructureResult";
-import Input from "components/Pages/dispositif/Input";
 import ChoiceButton from "../../../ChoiceButton";
 import { RemovableItem } from "../../components";
-import StructureImage from "assets/dispositif/structure-image.svg";
 import styles from "./SearchStructure.module.scss";
 
 interface Props {

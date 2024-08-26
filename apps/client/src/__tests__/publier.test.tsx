@@ -1,5 +1,5 @@
+import { initialMockStore } from "@/__fixtures__/reduxStore";
 import "jest-styled-components";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
 import publier from "../pages/publier";
 

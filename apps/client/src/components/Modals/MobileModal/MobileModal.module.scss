@@ -1,6 +1,6 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/text";
 
 .modal {
   &:global(.modal-dialog) {
@@ -30,7 +30,7 @@
 
   .content {
     --bs-modal-padding: 24px;
-    
+
     padding-top: 0;
   }
 }

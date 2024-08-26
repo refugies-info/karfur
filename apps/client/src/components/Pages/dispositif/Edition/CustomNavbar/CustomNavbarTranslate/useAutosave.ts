@@ -1,12 +1,12 @@
+import { TranslateForm } from "@/hooks/dispositif/useDispositifTranslateForm";
+import API from "@/utils/API";
+import PageContext from "@/utils/pageContext";
+import { Languages } from "@refugies-info/api-types";
+import debounce from "lodash/debounce";
+import { logger } from "logger";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
-import { useRouter } from "next/router";
-import debounce from "lodash/debounce";
-import { Languages } from "@refugies-info/api-types";
-import { logger } from "logger";
-import PageContext from "utils/pageContext";
-import API from "utils/API";
-import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 
 const debouncedSave = debounce((callback: () => void) => callback(), 500);
 
@@ -34,7 +34,8 @@ const useAutosave = () => {
 
   useEffect(() => {
     if (pageContext.mode === "translate") {
-      if (JSON.stringify(data) !== JSON.stringify(oldData)) { // form has changed
+      if (JSON.stringify(data) !== JSON.stringify(oldData)) {
+        // form has changed
         methods.handleSubmit((data: TranslateForm) => {
           debouncedSave(async () => {
             setIsSaving(true);
@@ -64,6 +65,6 @@ const useAutosave = () => {
   }, [pageContext.mode, id, language, methods, data, oldData, router, startDate]);
 
   return { isSaving, hasError };
-}
+};
 
 export default useAutosave;

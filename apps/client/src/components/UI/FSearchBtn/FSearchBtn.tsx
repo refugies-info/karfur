@@ -1,8 +1,6 @@
-import React from "react";
-
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
 import styles from "./FSearchBtn.module.scss";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 
 interface Props {
   className?: string;

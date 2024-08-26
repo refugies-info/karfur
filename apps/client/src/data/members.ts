@@ -1,8 +1,8 @@
-import Alain from "assets/qui-sommes-nous/Alain.png";
-import Alice from "assets/qui-sommes-nous/Alice.png";
-import Hugo from "assets/qui-sommes-nous/Hugo.png";
-import Margot from "assets/qui-sommes-nous/Margot.png";
-import Nour from "assets/qui-sommes-nous/Nour.png";
+import Alain from "@/assets/qui-sommes-nous/Alain.png";
+import Alice from "@/assets/qui-sommes-nous/Alice.png";
+import Hugo from "@/assets/qui-sommes-nous/Hugo.png";
+import Margot from "@/assets/qui-sommes-nous/Margot.png";
+import Nour from "@/assets/qui-sommes-nous/Nour.png";
 
 export type Member = {
   name: string;

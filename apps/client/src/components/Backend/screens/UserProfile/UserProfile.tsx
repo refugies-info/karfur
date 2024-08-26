@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { StructureMemberRole } from "@refugies-info/api-types";
-import { Col, Row } from "reactstrap";
+import { cls } from "@/lib/classname";
+import { userDetailsSelector, userSelector } from "@/services/User/user.selectors";
+import { userStructureRoleSelector, userStructureSelector } from "@/services/UserStructure/userStructure.selectors";
+import API from "@/utils/API";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
-import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
 import Button from "@codegouvfr/react-dsfr/Button";
+import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
+import { StructureMemberRole } from "@refugies-info/api-types";
 import { logger } from "logger";
-import API from "utils/API";
-import { cls } from "lib/classname";
-import { userDetailsSelector, userSelector } from "services/User/user.selectors";
-import { userStructureRoleSelector, userStructureSelector } from "services/UserStructure/userStructure.selectors";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Row } from "reactstrap";
 import {
   EditAvatar,
   EditButton,

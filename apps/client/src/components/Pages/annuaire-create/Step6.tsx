@@ -1,12 +1,11 @@
-import React from "react";
-import Link from "next/link";
-import FButton from "components/UI/FButton/FButton";
-import gif from "assets/annuaire/GIF-annuaire.gif";
-import Image from "next/image";
-import styles from "./Step6.module.scss";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
+import gif from "@/assets/annuaire/GIF-annuaire.gif";
+import FButton from "@/components/UI/FButton/FButton";
 import { Id } from "@refugies-info/api-types";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
+import styles from "./Step6.module.scss";
 
 interface Props {
   structureId: string | Id;

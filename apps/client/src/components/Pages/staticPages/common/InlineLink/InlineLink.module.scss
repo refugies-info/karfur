@@ -1,10 +1,10 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/btn";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/btn";
+@import "@/scss/variables";
 
 $breakpoint: "lg-limit";
 $purple: #3d2884;

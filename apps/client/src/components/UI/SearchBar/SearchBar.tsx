@@ -1,18 +1,18 @@
-import NoResultImage from "assets/no_results.svg";
+import NoResultImage from "@/assets/no_results.svg";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import FButton from "@/components/UI/FButton/FButton";
+import { removeAccents } from "@/lib";
+import { escapeRegexCharacters, getSuggestionValue } from "@/lib/search";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/UI/FButton/FButton";
-import { removeAccents } from "lib";
-import { escapeRegexCharacters, getSuggestionValue } from "lib/search";
 import debounce from "lodash/debounce";
 import { useState } from "react";
 import Autosuggest from "react-autosuggest";
 import styled from "styled-components";
 
+import { colors } from "@/utils/colors";
 import { GetActiveUsersResponse, GetAllUsersResponse } from "@refugies-info/api-types";
 import Image from "next/image";
-import { colors } from "utils/colors";
 
 type Suggestion = GetActiveUsersResponse;
 

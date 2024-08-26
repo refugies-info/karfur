@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import FInput from "components/UI/FInput/FInput";
-import FButton from "components/UI/FButton/FButton";
-import { structureTypes } from "data/structureTypes";
-import { CustomDropDown } from "./CustomDropdown";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import FButton from "@/components/UI/FButton/FButton";
+import FInput from "@/components/UI/FInput/FInput";
 import { GetStructureResponse } from "@refugies-info/api-types";
+import { structureTypes } from "data/structureTypes";
+import { useState } from "react";
+import styled from "styled-components";
+import { CustomDropDown } from "./CustomDropdown";
 
 const Title = styled.div`
   font-weight: bold;

@@ -1,16 +1,16 @@
-import React, { useMemo, useState } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
-import Image from "next/image";
-import { Col, Row } from "reactstrap";
+import ArrowRight from "@/assets/dispositif/arrow-right.svg";
+import BaseModal from "@/components/UI/BaseModal";
+import DispositifCard from "@/components/UI/DispositifCard";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { useContentType } from "@/hooks/dispositif";
 import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
-import { useContentType } from "hooks/dispositif";
-import DispositifCard from "components/UI/DispositifCard";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import BaseModal from "components/UI/BaseModal";
+import Image from "next/image";
+import { useMemo, useState } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
+import { Col, Row } from "reactstrap";
 import { SimpleFooter } from "../components";
-import { getDefaultDispositif } from "./functions";
 import { help } from "./data";
-import ArrowRight from "assets/dispositif/arrow-right.svg";
+import { getDefaultDispositif } from "./functions";
 import styles from "./ModalAbstract.module.scss";
 
 interface Props {

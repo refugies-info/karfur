@@ -1,6 +1,6 @@
-import { LangueState } from "services/Langue/langue.reducer";
-import { SearchResultsState } from "services/SearchResults/searchResults.reducer";
-import { UserFavoritesState } from "services/UserFavoritesInLocale/UserFavoritesInLocale.reducer";
+import { LangueState } from "@/services/Langue/langue.reducer";
+import { SearchResultsState } from "@/services/SearchResults/searchResults.reducer";
+import { UserFavoritesState } from "@/services/UserFavoritesInLocale/UserFavoritesInLocale.reducer";
 import { activeThemesMock } from "./activeThemes";
 
 const initialMockUserState = {
@@ -12,7 +12,7 @@ const initialMockUserState = {
   caregiver: false,
   hasStructure: false,
   userId: null,
-  rolesInStructure: []
+  rolesInStructure: [],
 };
 const initialMockLangueState: LangueState = {
   langues: [
@@ -24,8 +24,8 @@ const initialMockLangueState: LangueState = {
       i18nCode: "fr",
       avancement: 1,
       avancementTrad: 1,
-    }
-    , {
+    },
+    {
       _id: "en",
       langueFr: "Anglais",
       langueLoc: "English",
@@ -33,19 +33,19 @@ const initialMockLangueState: LangueState = {
       i18nCode: "en",
       avancement: 1,
       avancementTrad: 1,
-    }
+    },
   ],
   languei18nCode: "fr",
   showLanguageModal: false,
-  showLangModal: false
+  showLangModal: false,
 };
 
 const initialMockTranslationState = {
   translation: {
     initialText: {},
-    translatedText: {}
+    translatedText: {},
   },
-  translations: []
+  translations: [],
 };
 
 const initialUserFavoritesState: UserFavoritesState = {
@@ -56,7 +56,7 @@ const initialMockSearchReults: SearchResultsState = {
   results: {
     dispositifs: [],
     demarches: [],
-    dispositifsSecondaryTheme: []
+    dispositifsSecondaryTheme: [],
   },
   query: {
     search: "",
@@ -69,7 +69,7 @@ const initialMockSearchReults: SearchResultsState = {
     public: [],
     status: [],
     sort: "date",
-    type: "all"
+    type: "all",
   },
 };
 
@@ -93,7 +93,7 @@ export const initialMockStore = {
   needs: [],
   themes: {
     activeThemes: activeThemesMock,
-    inactiveThemes: []
+    inactiveThemes: [],
   },
-  searchResults: initialMockSearchReults
+  searchResults: initialMockSearchReults,
 };

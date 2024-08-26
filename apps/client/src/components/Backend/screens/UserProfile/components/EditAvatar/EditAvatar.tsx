@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import marioProfile from "@/assets/mario-profile.jpg";
+import { cls } from "@/lib/classname";
+import { handleApiDefaultError } from "@/lib/handleApiErrors";
+import { fetchUserActionCreator } from "@/services/User/user.actions";
+import { userDetailsSelector } from "@/services/User/user.selectors";
+import API from "@/utils/API";
 import Image from "next/image";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "reactstrap";
-import { cls } from "lib/classname";
-import { handleApiDefaultError } from "lib/handleApiErrors";
-import API from "utils/API";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { userDetailsSelector } from "services/User/user.selectors";
-import marioProfile from "assets/mario-profile.jpg";
 import styles from "./EditAvatar.module.scss";
 
 interface Props {}

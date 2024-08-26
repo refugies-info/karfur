@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
-import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { useTranslation } from "next-i18next";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { jsUcfirst } from "@/lib";
+import { cls } from "@/lib/classname";
 import {
   commitmentDetailsType,
   frequencyDetailsType,
@@ -8,9 +8,9 @@ import {
   priceDetails,
   timeUnitType,
 } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import { jsUcfirst } from "lib";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { useTranslation } from "next-i18next";
+import { useMemo, useState } from "react";
+import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import ChoiceButton from "../ChoiceButton";
 import styles from "./DropdownModals.module.scss";
 

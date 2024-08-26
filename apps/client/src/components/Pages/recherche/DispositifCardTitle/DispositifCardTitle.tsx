@@ -1,14 +1,13 @@
-import React from "react";
-import Image from "next/image";
-import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
-import useRTL from "hooks/useRTL";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import ThemeBadge from "components/UI/ThemeBadge";
-import iconMap from "assets/recherche/icon-map.svg";
-import commonStyles from "scss/components/contentCard.module.scss";
-import styles from "./DispositifCardTitle.module.scss";
+import iconMap from "@/assets/recherche/icon-map.svg";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import ThemeBadge from "@/components/UI/ThemeBadge";
+import useRTL from "@/hooks/useRTL";
+import { cls } from "@/lib/classname";
+import commonStyles from "@/scss/components/contentCard.module.scss";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import styles from "./DispositifCardTitle.module.scss";
 
 interface Props {
   color?: string;

@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { Event } from "@/lib/tracking";
 import throttle from "lodash/throttle";
-import { Event } from "lib/tracking";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * Send an analytics event when the page is scrolled to the bottom
@@ -32,7 +32,7 @@ const useScrolledBottomEvent = (sendEvent: boolean) => {
       setEventSent(true);
       if (sendEvent) Event("SCROLL", "scrolled bottom", "Dispo View");
     }
-  }, [isBottom, eventSent, sendEvent])
+  }, [isBottom, eventSent, sendEvent]);
 };
 
 export default useScrolledBottomEvent;

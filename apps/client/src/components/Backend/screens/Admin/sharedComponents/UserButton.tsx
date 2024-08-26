@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
-import Image from "next/image";
-import { Link } from "react-router-dom";
-import marioProfile from "assets/mario-profile.jpg";
-import styles from "../Admin.module.scss";
-import { cls } from "lib/classname";
-import { StyledStatus } from "./SubComponents";
+import marioProfile from "@/assets/mario-profile.jpg";
+import { cls } from "@/lib/classname";
 import { SimpleUser } from "@refugies-info/api-types";
+import Image from "next/image";
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
+import styles from "../Admin.module.scss";
+import { StyledStatus } from "./SubComponents";
 
 export const UserButton = (props: {
   user?: SimpleUser | null;

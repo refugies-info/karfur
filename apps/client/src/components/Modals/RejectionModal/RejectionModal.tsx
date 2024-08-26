@@ -1,9 +1,8 @@
-import React from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import FButton from "components/UI/FButton/FButton";
-import { rejectionFiche } from "assets/figma";
-import styles from "./RejectionModal.module.scss";
+import { rejectionFiche } from "@/assets/figma";
+import FButton from "@/components/UI/FButton/FButton";
 import Image from "next/image";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import styles from "./RejectionModal.module.scss";
 
 interface Props {
   show: boolean;

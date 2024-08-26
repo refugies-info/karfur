@@ -1,10 +1,10 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/text";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/icons";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/icons";
 
 $iconSize: u(4);
 $btnSize: u(8);
@@ -72,7 +72,7 @@ $btnSize: u(8);
 
     &.speed {
       @include dsfr-text("very-small");
-      
+
       font-weight: bold;
     }
 

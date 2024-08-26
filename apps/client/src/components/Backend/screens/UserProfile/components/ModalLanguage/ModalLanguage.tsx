@@ -1,8 +1,8 @@
+import { EditLanguage } from "@/components/User";
+import { fetchUserActionCreator } from "@/services/User/user.actions";
+import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { EditLanguage } from "components/User";
 
 interface Props {}
 

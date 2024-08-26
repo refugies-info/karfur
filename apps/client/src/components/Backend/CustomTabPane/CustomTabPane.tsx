@@ -1,4 +1,4 @@
-import React from "react";
+import { TabQuery } from "@/lib/getAdminUrlParams";
 import { TabPane } from "reactstrap";
 import { AdminContenu } from "../screens/Admin/AdminContenu";
 import { AdminStructures } from "../screens/Admin/AdminStructures";
@@ -6,7 +6,6 @@ import { AdminUsers } from "../screens/Admin/AdminUsers";
 import { Needs } from "../screens/Admin/Needs";
 import { Widgets } from "../screens/Admin/Widgets";
 import Dashboard from "../screens/Dashboard";
-import { TabQuery } from "lib/getAdminUrlParams";
 
 interface Props {
   activeTab: TabQuery;

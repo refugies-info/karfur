@@ -1,4 +1,4 @@
-import { getBaseUrl } from "lib/getBaseUrl";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 import Head from "next/head";
 import { NextRouter, useRouter } from "next/router";
 import { getPath, PathNames } from "routes";

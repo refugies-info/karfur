@@ -1,11 +1,11 @@
-import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
+import { cls } from "@/lib/classname";
+import { Event } from "@/lib/tracking";
+import { addToQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
+import { searchQuerySelector, themesDisplayedValueSelector } from "@/services/SearchResults/searchResults.selector";
 import { useTranslation } from "next-i18next";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { searchQuerySelector, themesDisplayedValueSelector } from "services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
 import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";

@@ -6,9 +6,8 @@
  *
  */
 import { LinkPlugin as LexicalLinkPlugin } from "@lexical/react/LexicalLinkPlugin";
-import * as React from "react";
 
-import { validateUrl } from "components/UI/RichTextInput/lib";
+import { validateUrl } from "@/components/UI/RichTextInput/lib";
 
 export default function LinkPlugin() {
   return <LexicalLinkPlugin validateUrl={validateUrl} />;

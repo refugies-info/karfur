@@ -1,11 +1,11 @@
-import { ReactElement, useEffect, useState } from "react";
+import CheckCode from "@/components/Pages/auth/CheckCode";
+import Layout from "@/components/Pages/auth/Layout";
+import SEO from "@/components/Seo";
+import { useAuthRedirect } from "@/hooks";
+import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
+import API from "@/utils/API";
 import { useRouter } from "next/router";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import API from "utils/API";
-import Layout from "components/Pages/auth/Layout";
-import CheckCode from "components/Pages/auth/CheckCode";
-import SEO from "components/Seo";
-import { useAuthRedirect } from "hooks";
+import { ReactElement, useEffect, useState } from "react";
 
 const LoginCode = () => {
   useAuthRedirect(true);

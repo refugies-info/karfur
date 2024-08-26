@@ -1,6 +1,6 @@
-import Checkbox from "components/UI/Checkbox";
-import { getDepartmentCodeFromName } from "lib/departments";
-import { onEnterOrSpace } from "lib/onEnterOrSpace";
+import Checkbox from "@/components/UI/Checkbox";
+import { getDepartmentCodeFromName } from "@/lib/departments";
+import { onEnterOrSpace } from "@/lib/onEnterOrSpace";
 import React, { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { getPlaceName } from "./functions";

@@ -1,6 +1,6 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/variables";
 
 .modal.show .modal-dialog.custom-modal {
   overflow: scroll;
@@ -77,7 +77,7 @@
     width: 0; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
-  
+
   ::-webkit-scrollbar {
     display: none;
     width: 0; /* remove scrollbar space */

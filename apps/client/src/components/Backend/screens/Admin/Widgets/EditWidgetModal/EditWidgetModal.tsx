@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import FButton from "@/components/UI/FButton";
+import { allLanguesSelector } from "@/services/Langue/langue.selectors";
+import { saveWidgetActionCreator } from "@/services/Widgets/widgets.actions";
+import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from "reactstrap";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
-import FButton from "components/UI/FButton";
-import { ThemesInput } from "../components/ThemesInput";
-import { LocationInput } from "../components/LocationInput";
-import { TypeContenuInput } from "../components/TypeContenuInput";
-import { LanguageInput } from "../components/LanguageInput";
+import { Col, Row } from "reactstrap";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
+import { LanguageInput } from "../components/LanguageInput";
+import { LocationInput } from "../components/LocationInput";
+import { ThemesInput } from "../components/ThemesInput";
+import { TypeContenuInput } from "../components/TypeContenuInput";
 import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./EditWidgetModal.module.scss";
-import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

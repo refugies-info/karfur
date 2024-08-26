@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import FButton from "@/components/UI/FButton";
+import Input from "@/components/UI/Input";
+import { Event } from "@/lib/tracking";
+import { isValidPhone } from "@/lib/validateFields";
+import { allLanguesSelector, languei18nSelector } from "@/services/Langue/langue.selectors";
+import API from "@/utils/API";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import API from "utils/API";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { isValidPhone } from "lib/validateFields";
-import { Event } from "lib/tracking";
-import { languei18nSelector, allLanguesSelector } from "services/Langue/langue.selectors";
-import Input from "components/UI/Input";
-import FButton from "components/UI/FButton";
 import LanguageDropdown from "../LanguageDropdown";
 import styles from "./MobileAppSmsForm.module.scss";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 const MobileAppSmsForm = () => {
   const { t } = useTranslation();

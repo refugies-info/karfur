@@ -1,5 +1,5 @@
-import Checkbox from "components/UI/Checkbox";
-import { getDepartmentNameFromCode } from "lib/departments";
+import Checkbox from "@/components/UI/Checkbox";
+import { getDepartmentNameFromCode } from "@/lib/departments";
 import React from "react";
 import styles from "./CommonPlaceMenuItem.module.css";
 

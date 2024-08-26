@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/responsive";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/responsive";
 
 .card {
   background: var(--background-alt-raised-grey);
@@ -107,7 +107,7 @@
   .label {
     font-weight: bold;
   }
-  
+
   .content {
     a {
       display: inline;

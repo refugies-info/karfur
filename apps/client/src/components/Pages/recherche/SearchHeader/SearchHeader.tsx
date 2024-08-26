@@ -1,6 +1,6 @@
-import { useScrollDirection } from "hooks/useScrollDirection";
-import useWindowSize from "hooks/useWindowSize";
-import { cls } from "lib/classname";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
+import useWindowSize from "@/hooks/useWindowSize";
+import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { Container } from "reactstrap";

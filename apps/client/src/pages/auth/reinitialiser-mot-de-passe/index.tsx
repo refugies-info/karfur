@@ -1,15 +1,15 @@
-import { ReactElement, useMemo } from "react";
-import { useRouter } from "next/router";
-import { ResetPasswordResponse } from "@refugies-info/api-types";
+import Layout from "@/components/Pages/auth/Layout";
+import SEO from "@/components/Seo";
+import { ForgotPassword } from "@/components/User";
+import { useAuthRedirect } from "@/hooks";
+import { cls } from "@/lib/classname";
+import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
+import styles from "@/scss/components/auth.module.scss";
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { ResetPasswordResponse } from "@refugies-info/api-types";
+import { useRouter } from "next/router";
+import { ReactElement, useMemo } from "react";
 import { getPath } from "routes";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { cls } from "lib/classname";
-import SEO from "components/Seo";
-import Layout from "components/Pages/auth/Layout";
-import { ForgotPassword } from "components/User";
-import styles from "scss/components/auth.module.scss";
-import { useAuthRedirect } from "hooks";
 
 const AuthForgotPassword = () => {
   useAuthRedirect(false);

@@ -1,5 +1,5 @@
+import { useLocale } from "@/hooks";
 import { GetNeedResponse, GetThemeResponse } from "@refugies-info/api-types";
-import { useLocale } from "hooks";
 import React from "react";
 import NeedItem from "./NeedItem";
 import styles from "./ResultsSection.module.css";

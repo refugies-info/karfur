@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import { cls } from "@/lib/classname";
+import { getCalloutTranslationKey, translationParsing } from "@/lib/contentParsing";
+import PageContext from "@/utils/pageContext";
 import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
-import { getCalloutTranslationKey, translationParsing } from "lib/contentParsing";
-import PageContext from "utils/pageContext";
+import { useContext } from "react";
 import styles from "./Text.module.scss";
 
 interface Props {

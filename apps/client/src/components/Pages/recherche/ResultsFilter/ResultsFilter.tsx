@@ -1,17 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
-import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
+import { Event } from "@/lib/tracking";
+import { addToQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
 import {
   searchQuerySelector,
   searchResultsSelector,
   themesDisplayedSelector,
-} from "services/SearchResults/searchResults.selector";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+} from "@/services/SearchResults/searchResults.selector";
+import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import { useTranslation } from "next-i18next";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import styles from "./ResultsFilter.module.scss";
 
 interface Props {}

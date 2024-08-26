@@ -1,25 +1,25 @@
-import { ReactElement, useState, useMemo, useEffect } from "react";
-import { useAsyncFn } from "react-use";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { RoleName } from "@refugies-info/api-types";
-import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
-import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import Layout from "@/components/Pages/auth/Layout";
+import SEO from "@/components/Seo";
+import ErrorMessage from "@/components/UI/ErrorMessage";
+import { useRegisterFlow } from "@/hooks";
+import { cls } from "@/lib/classname";
+import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
+import { hasRole } from "@/lib/hasRole";
+import API from "@/utils/API";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { useRegisterFlow } from "hooks";
+import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
+import { RoleName } from "@refugies-info/api-types";
 import { logger } from "logger";
-import API from "utils/API";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { cls } from "lib/classname";
-import { hasRole } from "lib/hasRole";
-import SEO from "components/Seo";
-import Layout from "components/Pages/auth/Layout";
-import ErrorMessage from "components/UI/ErrorMessage";
-// import GoalIconTs from "assets/auth/goal-icon-ts.svg"; // TODO: delete?
-import GoalIconStructure from "assets/auth/goal-icon-structure.svg";
-import GoalIconTranslate from "assets/auth/goal-icon-translate.svg";
-import GoalIconUser from "assets/auth/goal-icon-user.svg";
-import styles from "scss/components/auth.module.scss";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { ReactElement, useEffect, useMemo, useState } from "react";
+import { useAsyncFn } from "react-use";
+// import GoalIconTs from "@/assets/auth/goal-icon-ts.svg"; // TODO: delete?
+import GoalIconStructure from "@/assets/auth/goal-icon-structure.svg";
+import GoalIconTranslate from "@/assets/auth/goal-icon-translate.svg";
+import GoalIconUser from "@/assets/auth/goal-icon-user.svg";
+import styles from "@/scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();

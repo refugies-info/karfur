@@ -1,10 +1,10 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/input";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/input";
 
 .input {
   @include baseInput;
@@ -15,7 +15,7 @@
 
 .marque {
   @include dsfr-text("chapo");
-  
+
   font-weight: normal;
   display: flex;
   align-items: center;

@@ -1,8 +1,7 @@
-import React from "react";
-import useLocale from "hooks/useLocale";
-import styles from "./TagName.module.scss";
-import ThemeIcon from "../ThemeIcon";
+import useLocale from "@/hooks/useLocale";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import ThemeIcon from "../ThemeIcon";
+import styles from "./TagName.module.scss";
 
 interface Props {
   theme: GetThemeResponse;

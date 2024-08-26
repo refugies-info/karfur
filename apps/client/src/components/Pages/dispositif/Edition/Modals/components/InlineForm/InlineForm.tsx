@@ -1,4 +1,4 @@
-import { cls } from "lib/classname";
+import { cls } from "@/lib/classname";
 import React from "react";
 import styles from "./InlineForm.module.scss";
 

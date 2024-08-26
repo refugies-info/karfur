@@ -1,6 +1,6 @@
-@import "~scss/mixins/responsive";
-@import "~scss/variables";
-@import "~scss/mixins/rtl";
+@import "@/scss/mixins/responsive";
+@import "@/scss/variables";
+@import "@/scss/mixins/rtl";
 
 html body div[dir="rtl"] {
   text-align: right;
@@ -49,7 +49,7 @@ html body div[dir="ltr"] {
     margin-right: auto !important;
     margin-left: inherit !important;
   }
-  
+
   .ms-auto {
     margin-left: auto !important;
     margin-right: inherit !important;

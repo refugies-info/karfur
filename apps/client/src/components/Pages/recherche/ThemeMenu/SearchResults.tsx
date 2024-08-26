@@ -1,11 +1,11 @@
+import { ThemeMenuContext } from "@/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
+import { useLocale } from "@/hooks";
+import { sortThemes } from "@/lib/sortThemes";
+import { needsSelector } from "@/services/Needs/needs.selectors";
+import { themesSelector } from "@/services/Themes/themes.selectors";
 import { GetNeedResponse, GetThemeResponse } from "@refugies-info/api-types";
-import { ThemeMenuContext } from "components/Pages/recherche/ThemeMenu/ThemeMenuContext";
-import { useLocale } from "hooks";
-import { sortThemes } from "lib/sortThemes";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { needsSelector } from "services/Needs/needs.selectors";
-import { themesSelector } from "services/Themes/themes.selectors";
 import ResultsSection from "./ResultsSection";
 import styles from "./SearchResults.module.css";
 

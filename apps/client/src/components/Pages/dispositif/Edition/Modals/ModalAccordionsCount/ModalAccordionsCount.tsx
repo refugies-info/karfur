@@ -1,8 +1,7 @@
-import React from "react";
+import TutorielImage from "@/assets/dispositif/tutoriel-image.svg";
+import BaseModal from "@/components/UI/BaseModal";
+import Button from "@/components/UI/Button";
 import Image from "next/image";
-import BaseModal from "components/UI/BaseModal";
-import Button from "components/UI/Button";
-import TutorielImage from "assets/dispositif/tutoriel-image.svg";
 import styles from "./ModalAccordionsCount.module.scss";
 
 interface Props {

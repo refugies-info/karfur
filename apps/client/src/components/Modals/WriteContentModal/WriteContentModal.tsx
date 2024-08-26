@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { assetsOnServer } from "@/assets/assetsOnServer";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import FButton from "@/components/UI/FButton/FButton";
+import { userSelector } from "@/services/User/user.selectors";
+import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ModalBody, ModalFooter } from "reactstrap";
-import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { getPath } from "routes";
-import FButton from "components/UI/FButton/FButton";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { assetsOnServer } from "assets/assetsOnServer";
-import { userSelector } from "services/User/user.selectors";
-import WriteContentCard from "./WriteContentCard";
 import Modal from "../Modal";
-import styles from "./WriteContentModal.module.scss";
 import { pseudoModal, PseudoModal } from "../PseudoModal";
+import WriteContentCard from "./WriteContentCard";
+import styles from "./WriteContentModal.module.scss";
 
 interface Props {
   show: boolean;

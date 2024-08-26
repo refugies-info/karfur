@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/text";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/rtl";
+@import "@/scss/mixins/text";
+@import "@/scss/variables";
 
 .menu {
   // Layout
@@ -19,7 +19,6 @@
 
   /* shadow/light/$shadow-md */
   box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
-
 }
 
 .item {

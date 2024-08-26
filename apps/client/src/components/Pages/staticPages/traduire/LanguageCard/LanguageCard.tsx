@@ -1,12 +1,11 @@
-import React from "react";
-import Link from "next/link";
+import Flag from "@/components/UI/Flag";
+import { cls } from "@/lib/classname";
+import { smoothScroll } from "@/lib/smoothScroll";
+import { NeedKey } from "@/pages/traduire";
+import { langueSelector } from "@/services/Langue/langue.selectors";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 import { useSelector } from "react-redux";
-import { cls } from "lib/classname";
-import { smoothScroll } from "lib/smoothScroll";
-import { NeedKey } from "pages/traduire";
-import { langueSelector } from "services/Langue/langue.selectors";
-import Flag from "components/UI/Flag";
 import styles from "./LanguageCard.module.scss";
 
 interface Props {

@@ -1,10 +1,8 @@
-import React from "react";
+import DurationIcon from "@/assets/dispositif/metadatas/Durations";
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import BaseCard from "../BaseCard";
 import { getCommitment, getFrequency, getTimeSlots } from "../functions";
-import DurationIcon from "assets/dispositif/metadatas/Durations";
-import styles from "./CardAvailability.module.scss";
 
 interface Props {
   dataCommitment: Metadatas["commitment"] | undefined;

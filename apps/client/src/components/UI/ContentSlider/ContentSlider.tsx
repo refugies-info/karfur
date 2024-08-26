@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import useRTL from "@/hooks/useRTL";
+import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "reactstrap";
-import useRTL from "hooks/useRTL";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ContentSlider.module.scss";
 
 interface Props {
@@ -51,11 +51,12 @@ const ContentSlider = (props: Props) => {
     if (!slider.current) return;
     const pageWidth = slider.current.clientWidth - margins + gap;
     // Be permissive with the scroll behavior during testing
-    slider.current.scroll && slider.current.scroll({
-      left: page * pageWidth * (isRTL ? -1 : 1),
-      top: 0,
-      behavior: "smooth",
-    });
+    slider.current.scroll &&
+      slider.current.scroll({
+        left: page * pageWidth * (isRTL ? -1 : 1),
+        top: 0,
+        behavior: "smooth",
+      });
   }, [page, gap, margins, isRTL]);
 
   return (

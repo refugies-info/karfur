@@ -1,7 +1,7 @@
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import RichTextInput from "@/components/UI/RichTextInput";
 import { useMemo } from "react";
 import { useWatch } from "react-hook-form";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import RichTextInput from "components/UI/RichTextInput";
 import styles from "./TranslationEditField.module.scss";
 
 interface Props {

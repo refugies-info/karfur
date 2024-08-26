@@ -1,7 +1,7 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import useRTL from "hooks/useRTL";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import useRTL from "@/hooks/useRTL";
+import { colors } from "@/utils/colors";
 import { useTranslation } from "next-i18next";
-import { colors } from "utils/colors";
 import styles from "./FButtonMobile.module.scss";
 
 interface Props {

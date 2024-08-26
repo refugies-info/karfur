@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/input";
-@import "~scss/mixins/text";
+@import "@/scss/colors";
+@import "@/scss/variables";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/input";
+@import "@/scss/mixins/text";
 
 .container {
   display: flex;
@@ -24,7 +24,7 @@
 
 .label {
   @include dsfr-text("small");
-  
+
   color: var(--text-mention-grey);
   margin-bottom: 0;
   margin-left: u(2);

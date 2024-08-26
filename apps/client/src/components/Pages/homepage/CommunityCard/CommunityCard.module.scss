@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "@/scss/colors";
+@import "@/scss/mixins/responsive";
+@import "@/scss/mixins/unit";
+@import "@/scss/mixins/text";
+@import "@/scss/mixins/rtl";
+@import "@/scss/variables";
 
 $red: #9e180a;
 $light_red: #f9e8e8;
@@ -58,7 +58,7 @@ $light_blue: #dae0fb;
     color: $brown;
     background-color: $light_brown;
   }
-  
+
   .color_blue & {
     color: $blue;
     background-color: $light_blue;

@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import { cls } from "@/lib/classname";
 import { Button, ButtonProps } from "@codegouvfr/react-dsfr/Button";
-import { cls } from "lib/classname";
+import React, { useMemo } from "react";
 import styles from "./Button.module.scss";
 
 interface Props {
