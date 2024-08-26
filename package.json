@@ -50,7 +50,8 @@
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
-    "prepare": "husky"
+    "prepare": "husky",
+    "migrate": "ts-node migrations/cli.ts"
   },
   "dependencies": {},
   "engines": {
@@ -59,12 +60,15 @@
   },
   "devDependencies": {
     "check-dependency-version-consistency": "^4.1.0",
+    "dotenv": "^16.4.5",
     "husky": ">=6",
     "lint-staged": ">=10",
+    "mongo-migrate-ts": "^1.6.2",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
     "stylelint": "^16.8.2",
     "stylelint-config-standard-scss": "^13.1.0",
+    "ts-node": "^10.9.2",
     "turbo": "^2.0.9"
   },
   "packageManager": "yarn@1.2.22",
