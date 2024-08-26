@@ -189,7 +189,32 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 
 exports[`userContributions should render correctly when click on delete 1`] = `
 <DocumentFragment>
-  .c9 {
+  .c3 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c9 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -284,31 +309,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   line-height: 20px;
   cursor: pointer;
   color: gray90;
-}
-
-.c3 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c5 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c0 {
@@ -757,7 +757,32 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 
 exports[`userContributions should render correctly when contributions 1`] = `
 <DocumentFragment>
-  .c9 {
+  .c3 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c9 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -942,31 +967,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
   line-height: 20px;
   cursor: pointer;
   color: white;
-}
-
-.c3 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c5 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c0 {
@@ -2593,19 +2593,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
 
 exports[`userContributions should render correctly when loading 1`] = `
 <DocumentFragment>
-  .c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin-left: 100px;
-  margin-right: 100px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-}
-
-.c2 {
+  .c2 {
   display: flex;
   flex-direction: row;
   margin-bottom: 32px;
@@ -2628,6 +2616,18 @@ exports[`userContributions should render correctly when loading 1`] = `
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
+}
+
+.c1 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
 }
 
 .c0 {

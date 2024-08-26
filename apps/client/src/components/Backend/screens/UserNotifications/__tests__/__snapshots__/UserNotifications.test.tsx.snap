@@ -156,7 +156,32 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 
 exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
 <DocumentFragment>
-  .c4 {
+  .c1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c3 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c4 {
   background: focus;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
@@ -233,31 +258,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   color: white;
   margin-right: 8px;
   margin-left: 8px;
-}
-
-.c1 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c3 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c2 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
 }
 
 .c0 {
