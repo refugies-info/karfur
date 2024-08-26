@@ -306,10 +306,10 @@ const API = {
   ): Promise<GetDispositifsWithTranslationAvancementResponse[]> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetDispositifsWithTranslationAvancementResponse[]>>(
-        `/dispositifs/with-translations-status?locale=${locale}`,
-        { headers },
-      )
+      .get<
+        any,
+        APIResponse<GetDispositifsWithTranslationAvancementResponse[]>
+      >(`/dispositifs/with-translations-status?locale=${locale}`, { headers })
       .then((response) => response.data.data);
   },
   getDispositifs: (query: GetDispositifsRequest): Promise<GetDispositifsResponse[]> => {
@@ -550,10 +550,10 @@ const API = {
   ): Promise<GetTraductionsForReviewResponse> => {
     const headers = getHeaders(options?.token);
     return instance
-      .get<any, APIResponse<GetTraductionsForReviewResponse>>(
-        `/traduction/for_review?dispositif=${dispositif}&language=${language}`,
-        { headers },
-      )
+      .get<
+        any,
+        APIResponse<GetTraductionsForReviewResponse>
+      >(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, { headers })
       .then((response) => response.data.data);
   },
   getDefaultTraductionForDispositif: (

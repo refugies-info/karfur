@@ -1,8 +1,5 @@
-import {
-  allStructuresReducer,
-  initialAllStructuresState,
-} from "../allStructures.reducer";
 import { setAllStructuresActionCreator } from "../allStructures.actions";
+import { allStructuresReducer, initialAllStructuresState } from "../allStructures.reducer";
 
 const structures = [{ _id: "id1" }, { _id: "id2" }];
 describe("all structures reducer", () => {
@@ -11,8 +8,8 @@ describe("all structures reducer", () => {
       allStructuresReducer(
         initialAllStructuresState,
         // @ts-ignore
-        setAllStructuresActionCreator(structures)
-      )
+        setAllStructuresActionCreator(structures),
+      ),
     ).toEqual(structures);
   });
 });

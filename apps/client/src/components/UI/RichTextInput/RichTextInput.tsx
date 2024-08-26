@@ -57,7 +57,8 @@ const RichTextInput: FC<Props> = (props: Props) => {
 
   const onChange = (html: string) => {
     if (props.onChange) {
-      if (html === "<p><br></p>") props.onChange(""); // empty input
+      if (html === "<p><br></p>")
+        props.onChange(""); // empty input
       else props.onChange(html);
     }
   };

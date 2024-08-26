@@ -1,4 +1,3 @@
-import React from "react";
 import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./Language.module.scss";
 

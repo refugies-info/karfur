@@ -71,8 +71,8 @@ const FInput = (props: Props) => {
           props.inputClassName === "password-input" && props.value
             ? { width: props.value.length * 10 }
             : props.height && props.padding
-            ? { height: props.height, padding: props.padding }
-            : {}
+              ? { height: props.height, padding: props.padding }
+              : {}
         }
       />
       {(props.append || props.error) && (

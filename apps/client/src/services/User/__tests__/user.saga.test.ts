@@ -1,13 +1,13 @@
 import { testSaga } from "redux-saga-test-plan";
-import API from "../../../utils/API";
 import { testUser } from "../../../__fixtures__/user";
+import API from "../../../utils/API";
 import { finishLoading, LoadingStatusKey, startLoading } from "../../LoadingStatus/loadingStatus.actions";
-import { searchQuerySelector } from "../../SearchResults/searchResults.selector"
+import { searchQuerySelector } from "../../SearchResults/searchResults.selector";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 import { fetchUserActionCreator, setUserActionCreator } from "../user.actions";
 import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import latestActionsSaga, { fetchUser, saveUser } from "../user.saga";
-import { userSelector } from "../user.selectors"
+import { userSelector } from "../user.selectors";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

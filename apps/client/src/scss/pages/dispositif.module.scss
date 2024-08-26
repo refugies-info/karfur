@@ -99,7 +99,9 @@
     display: inline;
     padding: 4px 0;
     background-color: $white;
-    box-shadow: 8px 0 0 $white, -8px 0 0 $white;
+    box-shadow:
+      8px 0 0 $white,
+      -8px 0 0 $white;
     box-decoration-break: clone;
   }
 

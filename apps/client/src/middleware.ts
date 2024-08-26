@@ -1,7 +1,7 @@
-import { NextResponse, NextMiddleware } from "next/server";
+import { NextMiddleware, NextResponse } from "next/server";
 import { partnersRedirect } from "../redirects.js";
 
-const noLocaleRedirect = partnersRedirect.map(p => p.source)
+const noLocaleRedirect = partnersRedirect.map((p) => p.source);
 
 // Middleware to redirect to the correct locale if none is given
 export let middleware: NextMiddleware = (request) => {

@@ -1,6 +1,14 @@
 import { createContext } from "react";
 
-export type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes" | "Abstract" | "MainSponsor";
+export type Modals =
+  | "Availability"
+  | "Conditions"
+  | "Location"
+  | "Price"
+  | "Public"
+  | "Themes"
+  | "Abstract"
+  | "MainSponsor";
 
 interface DispositifContext {
   mode: "view" | "edit" | "translate";

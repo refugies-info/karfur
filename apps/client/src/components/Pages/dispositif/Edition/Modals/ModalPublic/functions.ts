@@ -1,7 +1,6 @@
 import { frenchLevelType, publicStatusType } from "@refugies-info/api-types";
 import uniq from "lodash/uniq";
 
-
 export const includeAllFrenchLevels = (frenchLevel: frenchLevelType[] | undefined | null) => {
   return !!(
     frenchLevel &&
@@ -27,7 +26,9 @@ export const includeAllRefugees = (publicStatus: publicStatusType[] | undefined)
 };
 
 export const removeAllRefugeeTypes = (publicStatus: publicStatusType[] | undefined): publicStatusType[] => {
-  return !publicStatus ? [] : publicStatus.filter(p => !["asile", "refugie", "subsidiaire", "apatride", "temporaire"].includes(p))
+  return !publicStatus
+    ? []
+    : publicStatus.filter((p) => !["asile", "refugie", "subsidiaire", "apatride", "temporaire"].includes(p));
 };
 
 export const addAllRefugeeTypes = (publicStatus: publicStatusType[] | undefined): publicStatusType[] => {

@@ -12,9 +12,11 @@ export const getThemesDisplayed = (
   allThemes: GetThemeResponse[],
   allNeeds: GetNeedResponse[],
   selectedThemes: Id[],
-  selectedNeeds: Id[]
+  selectedNeeds: Id[],
 ) => {
-  const needs = selectedNeeds.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as GetNeedResponse[];
+  const needs = selectedNeeds
+    .map((need) => allNeeds.find((n) => n._id === need))
+    .filter((n) => !!n) as GetNeedResponse[];
 
   // get all themes displayed
   const newThemesDisplayed: GetThemeResponse[] = [];
@@ -36,17 +38,13 @@ export const getThemesDisplayed = (
  * @param dispositifs - list of dispositifs
  * @returns number
  */
-const getCountDispositifsForDepartment = (
-  department: string,
-  dispositifs: GetDispositifsResponse[],
-): number => {
-  return [...dispositifs]
-    .filter(dispositif => {
-      const location = dispositif.metadatas?.location;
-      if (!location || !Array.isArray(location)) return false;
-      return location.map(dep => dep.split(" - ")[1]).includes(department)
-    }).length
-}
+const getCountDispositifsForDepartment = (department: string, dispositifs: GetDispositifsResponse[]): number => {
+  return [...dispositifs].filter((dispositif) => {
+    const location = dispositif.metadatas?.location;
+    if (!location || !Array.isArray(location)) return false;
+    return location.map((dep) => dep.split(" - ")[1]).includes(department);
+  }).length;
+};
 
 /**
  * Get departements considered as not deployed yet
@@ -63,4 +61,4 @@ export const getDepartmentsNotDeployed = (departments: string[], dispositifs: Ge
     }
   }
   return newDepartmentsNotDeployed;
-}
+};

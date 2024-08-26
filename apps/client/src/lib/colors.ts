@@ -7,7 +7,6 @@ const colorAvancement = (avancement: number) => {
     return "warning";
   }
   return "danger";
-
 };
 
 const fColorAvancement = (avancement: number) => {
@@ -19,44 +18,33 @@ const fColorAvancement = (avancement: number) => {
     return "orange";
   }
   return "rouge";
-
 };
 
-type AvancementText = "Annulé" | "Annulée" | "Exclu" | "Supprimé" | "Inactif" | "Inactive" | "En attente" | "En cours" | "Brouillon";
+type AvancementText =
+  | "Annulé"
+  | "Annulée"
+  | "Exclu"
+  | "Supprimé"
+  | "Inactif"
+  | "Inactive"
+  | "En attente"
+  | "En cours"
+  | "Brouillon";
 const colorStatut = (avancement: AvancementText) => {
-  if (
-    avancement === "Annulé" ||
-    avancement === "Annulée" ||
-    avancement === "Exclu" ||
-    avancement === "Supprimé"
-  ) {
+  if (avancement === "Annulé" || avancement === "Annulée" || avancement === "Exclu" || avancement === "Supprimé") {
     return "danger";
   } else if (avancement === "Inactif" || avancement === "Inactive") {
     return "secondary";
-  } else if (
-    avancement === "En attente" ||
-    avancement === "En cours" ||
-    avancement === "Brouillon"
-  ) {
+  } else if (avancement === "En attente" || avancement === "En cours" || avancement === "Brouillon") {
     return "warning";
   }
   return "success";
-
 };
 
 const randomColor = () => {
-  let colorArr = [
-    "primary",
-    "secondary",
-    "success",
-    "warning",
-    "danger",
-    "info",
-    "light",
-    "dark",
-  ];
+  let colorArr = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"];
   let nb = Math.floor(Math.random() * Math.floor(colorArr.length - 1));
   return colorArr[nb];
 };
 
-export { colorAvancement, colorStatut, randomColor, fColorAvancement };
+export { colorAvancement, colorStatut, fColorAvancement, randomColor };

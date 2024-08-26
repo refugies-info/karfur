@@ -1,13 +1,5 @@
-import React from "react";
-
-const Tag = ({ width = 140, height = 140}) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    viewBox="0 0 140 140"
-    width={width}
-    height={height}
-  >
+const Tag = ({ width = 140, height = 140 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 140 140" width={width} height={height}>
     <g transform="matrix(5.833333333333333,0,0,5.833333333333333,0,0)">
       <path
         d="M9,19.188a1.5,1.5,0,0,1-2.121,0L1.5,13.81a1.5,1.5,0,0,1,0-2.122L12,1.188A1.5,1.5,0,0,1,13.061.749h5.378a1.5,1.5,0,0,1,1.5,1.5V7.628a1.5,1.5,0,0,1-.439,1.06"

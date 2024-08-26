@@ -9,5 +9,6 @@
   "endOfLine": "auto",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "plugins": ["prettier-plugin-organize-imports"]
 }

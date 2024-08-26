@@ -1,23 +1,10 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchSelectedStructure,
-  updateSelectedStructure,
-} from "../selectedStructure.saga";
 import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
-import {
-  setSelectedStructureActionCreator,
-  fetchSelectedStructureActionCreator
-} from "../selectedStructure.actions";
-import {
-  FETCH_SELECTED_STRUCTURE,
-  UPDATE_SELECTED_STRUCTURE
-} from "../selectedStructure.actionTypes";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { fetchSelectedStructureActionCreator, setSelectedStructureActionCreator } from "../selectedStructure.actions";
+import { FETCH_SELECTED_STRUCTURE, UPDATE_SELECTED_STRUCTURE } from "../selectedStructure.actionTypes";
+import latestActionsSaga, { fetchSelectedStructure, updateSelectedStructure } from "../selectedStructure.saga";
 import { selectedStructureSelector } from "../selectedStructure.selector";
 
 describe("[Saga] Structures", () => {
@@ -116,7 +103,7 @@ describe("[Saga] Structures", () => {
           fetchSelectedStructureActionCreator({
             id: "structureId",
             locale: "fr",
-          })
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE))

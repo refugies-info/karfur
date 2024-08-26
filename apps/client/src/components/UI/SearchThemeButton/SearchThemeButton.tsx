@@ -18,7 +18,9 @@ const ThemeButton = styled.button<ThemeButtonProps>`
 
   &:hover {
     background: ${(props) => props.$color30};
-    box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
+    box-shadow:
+      0 0 0 1px ${(props) => props.$color100},
+      0 0 40px 0 #00000040;
     color: ${(props) => props.$color100} !important;
   }
 `;
@@ -28,7 +30,9 @@ const ThemeLink = styled(Link)<ThemeButtonProps>`
 
   &:hover {
     background: ${(props) => props.$color30} !important;
-    box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
+    box-shadow:
+      0 0 0 1px ${(props) => props.$color100},
+      0 0 40px 0 #00000040;
     color: ${(props) => props.$color100} !important;
   }
 `;

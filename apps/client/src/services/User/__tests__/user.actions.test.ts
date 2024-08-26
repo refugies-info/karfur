@@ -1,9 +1,6 @@
-import {
-  setUserActionCreator,
-  fetchUserActionCreator,
-} from "../user.actions";
-import { SET_USER, FETCH_USER } from "../user.actionTypes";
 import { testUser } from "../../../__fixtures__/user";
+import { fetchUserActionCreator, setUserActionCreator } from "../user.actions";
+import { FETCH_USER, SET_USER } from "../user.actionTypes";
 
 describe("[Actions] User", () => {
   it("should return a SET_USER action with correct payload", () => {

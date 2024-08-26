@@ -1,20 +1,10 @@
 //@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchUserContributions,
-  deleteContributionAndUpdate,
-} from "../userContributions.saga";
 import API from "../../../utils/API";
-import {
-  setUserContributionsActionCreator,
-  fetchUserContributionsActionCreator,
-} from "../userContributions.actions";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { fetchUserContributionsActionCreator, setUserContributionsActionCreator } from "../userContributions.actions";
 import { DELETE_DISPOSITIF } from "../userContributions.actionTypes";
+import latestActionsSaga, { deleteContributionAndUpdate, fetchUserContributions } from "../userContributions.saga";
 
 describe("[Saga] UserContributions", () => {
   describe("pilot", () => {

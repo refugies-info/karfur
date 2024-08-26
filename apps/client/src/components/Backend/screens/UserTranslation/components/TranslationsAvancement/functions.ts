@@ -108,7 +108,6 @@ export const filterData = (
   };
 };
 
-
 const isNotTranslated = (need: GetNeedResponse, ln: Languages) => {
   return (
     !need[ln]?.text || // no title translated

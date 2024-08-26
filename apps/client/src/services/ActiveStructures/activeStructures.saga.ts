@@ -1,11 +1,11 @@
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
-import API from "../../utils/API";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
-import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/loadingStatus.actions";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setActiveStructuresActionCreator } from "./activeStructures.actions";
 import { FETCH_ACTIVE_STRUCTURES } from "./activeStructures.actionTypes";
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
 export function* fetchActiveStructures(): SagaIterator {
   try {
@@ -16,7 +16,7 @@ export function* fetchActiveStructures(): SagaIterator {
     yield put(finishLoading(LoadingStatusKey.FETCH_STRUCTURES));
   } catch (error) {
     logger.error("[fetchActiveStructures] Error while fetching structures", {
-      error
+      error,
     });
     yield put(setActiveStructuresActionCreator([]));
     yield put(finishLoading(LoadingStatusKey.FETCH_STRUCTURES));

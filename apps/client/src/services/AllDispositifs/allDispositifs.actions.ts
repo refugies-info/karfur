@@ -1,16 +1,11 @@
-import {
-  SET_ALL_DISPOSITIFS,
-  FETCH_ALL_DISPOSITIFS,
-} from "./allDispositifs.actionTypes";
-import { ActionType, action } from "typesafe-actions";
 import { GetAllDispositifsResponse } from "@refugies-info/api-types";
+import { ActionType, action } from "typesafe-actions";
+import { FETCH_ALL_DISPOSITIFS, SET_ALL_DISPOSITIFS } from "./allDispositifs.actionTypes";
 
-export const setAllDispositifsActionsCreator = (
-  value: GetAllDispositifsResponse[]
-) => action(SET_ALL_DISPOSITIFS, value);
+export const setAllDispositifsActionsCreator = (value: GetAllDispositifsResponse[]) =>
+  action(SET_ALL_DISPOSITIFS, value);
 
-export const fetchAllDispositifsActionsCreator = () =>
-  action(FETCH_ALL_DISPOSITIFS);
+export const fetchAllDispositifsActionsCreator = () => action(FETCH_ALL_DISPOSITIFS);
 
 const actions = {
   setAllDispositifsActionsCreator,

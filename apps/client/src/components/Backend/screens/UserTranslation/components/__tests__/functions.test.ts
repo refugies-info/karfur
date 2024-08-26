@@ -1,5 +1,5 @@
-import { sortData } from "../functions";
 import { data, data1, data2, data3, data4, data5, data6, data7, data8 } from "../__fixtures__/dispositifs";
+import { sortData } from "../functions";
 
 describe("sortData", () => {
   it("should sort data", () => {
@@ -31,16 +31,7 @@ describe("sortData", () => {
       order: "nbMots",
       sens: "up",
     });
-    expect(result).toEqual([
-      data1,
-      data2,
-      data3,
-      data4,
-      data5,
-      data6,
-      data7,
-      data8,
-    ]);
+    expect(result).toEqual([data1, data2, data3, data4, data5, data6, data7, data8]);
   });
 
   it("should sort data", () => {
@@ -49,15 +40,6 @@ describe("sortData", () => {
       order: "nbMots",
       sens: "down",
     });
-    expect(result).toEqual([
-      data8,
-      data7,
-      data6,
-      data5,
-      data4,
-      data3,
-      data2,
-      data1,
-    ]);
+    expect(result).toEqual([data8, data7, data6, data5, data4, data3, data2, data1]);
   });
 });

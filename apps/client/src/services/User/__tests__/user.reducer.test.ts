@@ -1,7 +1,7 @@
-import { userReducer, initialUserState } from "../user.reducer";
-import { setUserActionCreator } from "../user.actions";
-import { testUser, testUserWithRoles } from "../../../__fixtures__/user";
 import { RoleName } from "@refugies-info/api-types";
+import { testUser, testUserWithRoles } from "../../../__fixtures__/user";
+import { setUserActionCreator } from "../user.actions";
+import { initialUserState, userReducer } from "../user.reducer";
 
 describe("[Reducer] user", () => {
   const expectedResult = {
@@ -13,7 +13,7 @@ describe("[Reducer] user", () => {
     contributeur: false,
     caregiver: false,
     hasStructure: false,
-    rolesInStructure: []
+    rolesInStructure: [],
   };
   it("should set user in store when action SET_USER is received with payload user without role", () => {
     expect(userReducer(initialUserState, setUserActionCreator(testUser))).toEqual(expectedResult);
@@ -29,7 +29,7 @@ describe("[Reducer] user", () => {
       contributeur: false,
       caregiver: false,
       hasStructure: false,
-      rolesInStructure: []
+      rolesInStructure: [],
     });
   });
 
@@ -43,14 +43,14 @@ describe("[Reducer] user", () => {
       contributeur: true,
       caregiver: false,
       hasStructure: true,
-      rolesInStructure: []
+      rolesInStructure: [],
     });
-  })
+  });
 
   it("should set user in store when action SET_USER is received with payload new user ", () => {
     const newUser = {
       ...testUserWithRoles,
-      _id: "55153a8014829a865bbf700d"
+      _id: "55153a8014829a865bbf700d",
     };
     expect(userReducer(initialUserState, setUserActionCreator(newUser))).toEqual({
       userId: newUser._id,
@@ -61,7 +61,7 @@ describe("[Reducer] user", () => {
       caregiver: false,
       hasStructure: true,
       rolesInStructure: [],
-      user: newUser
+      user: newUser,
     });
   });
 
@@ -73,9 +73,9 @@ describe("[Reducer] user", () => {
         {
           nom: RoleName.STRUCTURE,
           _id: "testObjectId",
-          nomPublique: "hasStructure"
-        }
-      ]
+          nomPublique: "hasStructure",
+        },
+      ],
     };
     expect(userReducer(initialUserState, setUserActionCreator(newUser))).toEqual({
       userId: newUser._id,
@@ -86,7 +86,7 @@ describe("[Reducer] user", () => {
       caregiver: false,
       hasStructure: false,
       rolesInStructure: [],
-      user: newUser
+      user: newUser,
     });
   });
 
@@ -95,11 +95,11 @@ describe("[Reducer] user", () => {
       ...testUser,
       _id: "55153a8014829a865bbf700d",
       roles: [],
-      structures: ["id1"]
+      structures: ["id1"],
     };
     expect(
       // @ts-ignore
-      userReducer(initialUserState, setUserActionCreator(newUser))
+      userReducer(initialUserState, setUserActionCreator(newUser)),
     ).toEqual({
       userId: newUser._id,
       admin: false,
@@ -109,7 +109,7 @@ describe("[Reducer] user", () => {
       caregiver: false,
       hasStructure: true,
       rolesInStructure: [],
-      user: newUser
+      user: newUser,
     });
   });
 });

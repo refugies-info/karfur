@@ -6,9 +6,9 @@ export type SelectedStructureState = GetStructureResponse | null;
 
 const initialSelectedStructureState: SelectedStructureState = null;
 
-export const selectedStructureReducer = createReducer<
-  SelectedStructureState,
-  SelectedStructureActions
->(initialSelectedStructureState, {
-  SET_SELECTED_STRUCTURE: (_, action) => action.payload,
-});
+export const selectedStructureReducer = createReducer<SelectedStructureState, SelectedStructureActions>(
+  initialSelectedStructureState,
+  {
+    SET_SELECTED_STRUCTURE: (_, action) => action.payload,
+  },
+);

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 type fetchPromise = Record<string, Promise<string>>;
 const fetching: fetchPromise = {};
@@ -17,7 +17,7 @@ const useThemeIcon = (theme: GetThemeResponse | undefined | null, size: number) 
       if (!xml) {
         const key = theme._id.toString();
         if (!fetching[key] && theme.icon?.secure_url) {
-          fetching[key] = axios.get(theme.icon.secure_url).then(res => res.data)
+          fetching[key] = axios.get(theme.icon.secure_url).then((res) => res.data);
         }
         xml = await fetching[key];
         sessionStorage.setItem(itemKey, xml);
@@ -29,6 +29,6 @@ const useThemeIcon = (theme: GetThemeResponse | undefined | null, size: number) 
   }, [theme]);
 
   return { imgXml, hasBeenFetched };
-}
+};
 
 export default useThemeIcon;

@@ -170,11 +170,21 @@
   // remove separator
   :global(.fr-radio-rich input[type="radio"] + label) {
     padding-right: 0;
-    background-size: 100% 1px, 0 100%, 100% 1px, 1px 100%, 1.125rem 1.125rem, 1.125rem 1.125rem;
+    background-size:
+      100% 1px,
+      0 100%,
+      100% 1px,
+      1px 100%,
+      1.125rem 1.125rem,
+      1.125rem 1.125rem;
   }
 
   :global(.fr-radio-rich__img) {
-    background-size: 100% 1px, 100% 1px, 1px 100%, 0 0;
+    background-size:
+      100% 1px,
+      100% 1px,
+      1px 100%,
+      0 0;
   }
 }
 

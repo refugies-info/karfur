@@ -32,7 +32,7 @@ const initialSearchResultsState: SearchResultsState = {
   results: {
     dispositifs: [],
     demarches: [],
-    dispositifsSecondaryTheme: []
+    dispositifsSecondaryTheme: [],
   },
   query: {
     search: "",
@@ -50,8 +50,6 @@ const initialSearchResultsState: SearchResultsState = {
 };
 
 export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(initialSearchResultsState, {
-  SET_RESULTS: (state, action) =>
-    ({ ...state, results: action.payload }),
-  ADD_TO_QUERY: (state, action) =>
-    ({ ...state, query: { ...state.query, ...action.payload } }),
+  SET_RESULTS: (state, action) => ({ ...state, results: action.payload }),
+  ADD_TO_QUERY: (state, action) => ({ ...state, query: { ...state.query, ...action.payload } }),
 });

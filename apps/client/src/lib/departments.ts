@@ -1,17 +1,23 @@
 import { departments } from "data/departments";
 
 // Map department name to number
-const codeToNameMap = departments.reduce((acc, dep) => {
-  const [code, name] = dep.split(" - ");
-  acc[name] = code;
-  return acc;
-}, {} as { [key: string]: string });
+const codeToNameMap = departments.reduce(
+  (acc, dep) => {
+    const [code, name] = dep.split(" - ");
+    acc[name] = code;
+    return acc;
+  },
+  {} as { [key: string]: string },
+);
 
-const nameToCodeMap = departments.reduce((acc, dep) => {
-  const [code, name] = dep.split(" - ");
-  acc[code] = name;
-  return acc;
-}, {} as { [key: string]: string });
+const nameToCodeMap = departments.reduce(
+  (acc, dep) => {
+    const [code, name] = dep.split(" - ");
+    acc[code] = name;
+    return acc;
+  },
+  {} as { [key: string]: string },
+);
 
 export const getDepartmentCodeFromName = (name: string) => codeToNameMap[name];
 

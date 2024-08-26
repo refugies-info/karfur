@@ -1,30 +1,30 @@
+import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
-import { langueReducer, LangueState } from "./Langue/langue.reducer";
-import { activeDispositifsReducer, ActiveDispositifsState } from "./ActiveDispositifs/activeDispositifs.reducer";
-import { structureReducer, UserStructureState } from "./UserStructure/userStructure.reducer";
-import { userReducer, UserState } from "./User/user.reducer";
-import { ttsReducer, TtsState } from "./Tts/tts.reducer";
-import { SelectedDispositifState, selectedDispositifReducer } from "./SelectedDispositif/selectedDispositif.reducer";
-import { LoadingStatusState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
+import { Reducer } from "typesafe-actions";
+import { ActiveDispositifsState, activeDispositifsReducer } from "./ActiveDispositifs/activeDispositifs.reducer";
 import { ActiveStructuresState, activeStructuresReducer } from "./ActiveStructures/activeStructures.reducer";
 import { ActiveUsersState, activeUsersReducer } from "./ActiveUsers/activeUsers.reducer";
-import { SelectedStructureState, selectedStructureReducer } from "./SelectedStructure/selectedStructure.reducer";
 import { AllDispositifsState, allDispositifsReducer } from "./AllDispositifs/allDispositifs.reducer";
 import { AllStructuresState, allStructuresReducer } from "./AllStructures/allStructures.reducer";
 import { AllUsersState, allUsersReducer } from "./AllUsers/allUsers.reducer";
-import { UserFavoritesState, userFavoritesReducer } from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
-import { UserContributionsState, userContributionsReducer } from "./UserContributions/userContributions.reducer";
 import {
   DispositifsWithTranslationsStatusState,
-  dispositifsWithTranslationsStatusReducer
+  dispositifsWithTranslationsStatusReducer,
 } from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
-import { needsReducer, NeedsState } from "./Needs/needs.reducer";
-import { widgetsReducer, WidgetsState } from "./Widgets/widgets.reducer";
-import { themesReducer, ThemesState } from "./Themes/themes.reducer";
-import { searchResultsReducer, SearchResultsState } from "./SearchResults/searchResults.reducer";
-import { HYDRATE } from "next-redux-wrapper";
-import { Reducer } from "typesafe-actions";
-import { miscellaneousReducer, MiscellaneousState } from "./Miscellaneous/miscellaneous.reducer";
+import { LangueState, langueReducer } from "./Langue/langue.reducer";
+import { LoadingStatusState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
+import { MiscellaneousState, miscellaneousReducer } from "./Miscellaneous/miscellaneous.reducer";
+import { NeedsState, needsReducer } from "./Needs/needs.reducer";
+import { SearchResultsState, searchResultsReducer } from "./SearchResults/searchResults.reducer";
+import { SelectedDispositifState, selectedDispositifReducer } from "./SelectedDispositif/selectedDispositif.reducer";
+import { SelectedStructureState, selectedStructureReducer } from "./SelectedStructure/selectedStructure.reducer";
+import { ThemesState, themesReducer } from "./Themes/themes.reducer";
+import { TtsState, ttsReducer } from "./Tts/tts.reducer";
+import { UserState, userReducer } from "./User/user.reducer";
+import { UserContributionsState, userContributionsReducer } from "./UserContributions/userContributions.reducer";
+import { UserFavoritesState, userFavoritesReducer } from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
+import { UserStructureState, structureReducer } from "./UserStructure/userStructure.reducer";
+import { WidgetsState, widgetsReducer } from "./Widgets/widgets.reducer";
 
 export interface RootState {
   activeDispositifs: ActiveDispositifsState;
@@ -71,7 +71,7 @@ const combinedReducer = combineReducers({
   userFavorites: userFavoritesReducer,
   users: allUsersReducer,
   userStructure: structureReducer,
-  widgets: widgetsReducer
+  widgets: widgetsReducer,
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {

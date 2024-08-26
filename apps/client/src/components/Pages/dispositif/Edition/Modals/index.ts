@@ -23,4 +23,3 @@ export {
   ModalThemes,
   ModalWelcome,
 };
-

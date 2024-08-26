@@ -1,26 +1,17 @@
-export type Hit = { id: string, highlight: any };
+export type Hit = { id: string; highlight: any };
 
-const commonSearchableAttributes = [
-  "sponsorName"
-];
+const commonSearchableAttributes = ["sponsorName"];
 
-const localizedSearchableAttributes = [
-  "title",
-  "name",
-  "titreMarque",
-  "abstract"
-];
+const localizedSearchableAttributes = ["title", "name", "titreMarque", "abstract"];
 
 export const getSearchableAttributes = (selectedLanguage: string | null) => {
-  const localizedAttributes: string[] = []
+  const localizedAttributes: string[] = [];
 
   for (const attr of localizedSearchableAttributes) {
     localizedAttributes.push(`${attr}_fr`);
-    if (selectedLanguage && selectedLanguage !== "fr" && selectedLanguage !== "default") localizedAttributes.push(`${attr}_${selectedLanguage}`);
+    if (selectedLanguage && selectedLanguage !== "fr" && selectedLanguage !== "default")
+      localizedAttributes.push(`${attr}_${selectedLanguage}`);
   }
 
-  return [
-    ...localizedAttributes,
-    ...commonSearchableAttributes,
-  ]
+  return [...localizedAttributes, ...commonSearchableAttributes];
 };

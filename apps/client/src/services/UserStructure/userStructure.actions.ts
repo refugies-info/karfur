@@ -1,23 +1,16 @@
-import {
-  SET_USER_STRUCTURE,
-  FETCH_USER_STRUCTURE,
-  UPDATE_USER_STRUCTURE,
-} from "./userStructure.actionTypes";
-import { action, ActionType } from "typesafe-actions";
 import { GetStructureResponse, Id, StructureMemberRole } from "@refugies-info/api-types";
+import { action, ActionType } from "typesafe-actions";
+import { FETCH_USER_STRUCTURE, SET_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 
-export const setUserStructureActionCreator = (value: GetStructureResponse | null) =>
-  action(SET_USER_STRUCTURE, value);
+export const setUserStructureActionCreator = (value: GetStructureResponse | null) => action(SET_USER_STRUCTURE, value);
 
-export const fetchUserStructureActionCreator = (value: {
-  structureId: Id | null;
-  shouldRedirect: boolean;
-}) => action(FETCH_USER_STRUCTURE, value);
+export const fetchUserStructureActionCreator = (value: { structureId: Id | null; shouldRedirect: boolean }) =>
+  action(FETCH_USER_STRUCTURE, value);
 
 export const updateUserStructureActionCreator = (value: {
   structure?: {
-    hasResponsibleSeenNotification: boolean
-  },
+    hasResponsibleSeenNotification: boolean;
+  };
   membres?: {
     type: "modify" | "delete" | "create";
     userId: Id;

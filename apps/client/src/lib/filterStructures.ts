@@ -8,10 +8,7 @@ export const filterStructuresByType = (arrayTofilter: GetActiveStructuresRespons
     let hasType: boolean = false;
 
     typeSelected.forEach((type) => {
-      if (
-        structure.structureTypes &&
-        structure.structureTypes.includes(type)
-      ) {
+      if (structure.structureTypes && structure.structureTypes.includes(type)) {
         hasType = true;
       }
     });
@@ -27,10 +24,7 @@ export const filterStructuresByKeword = (arrayTofilter: GetActiveStructuresRespo
       arrayTofilter.forEach((structure) => {
         if (
           (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
-            (structure.acronyme &&
-              structure.acronyme
-                .toLowerCase()
-                .includes(keyword.toLowerCase()))) &&
+            (structure.acronyme && structure.acronyme.toLowerCase().includes(keyword.toLowerCase()))) &&
           newArrayKeyword &&
           !newArrayKeyword.includes(structure)
         ) {
@@ -48,7 +42,7 @@ export const filterStructuresByLoc = (
   arrayTofilter: GetActiveStructuresResponse[],
   isCitySelected: boolean,
   depNumber: string,
-  depName: string
+  depName: string,
 ) => {
   let newArrayLoc: GetActiveStructuresResponse[] = [];
   if (isCitySelected) {
@@ -62,42 +56,26 @@ export const filterStructuresByLoc = (
         } else {
           if (depNumber && structure.disposAssociesLocalisation) {
             structure.disposAssociesLocalisation.forEach((el) => {
-              if (
-                el.substr(0, 2) === depNumber &&
-                newArrayLoc &&
-                !newArrayLoc.includes(structure)
-              ) {
+              if (el.substr(0, 2) === depNumber && newArrayLoc && !newArrayLoc.includes(structure)) {
                 newArrayLoc.push(structure);
               }
             });
             if (structure.departments) {
               structure.departments.forEach((el) => {
-                if (
-                  el.substr(0, 2) === depNumber &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
+                if (el.substr(0, 2) === depNumber && newArrayLoc && !newArrayLoc.includes(structure)) {
                   newArrayLoc.push(structure);
                 }
               });
             }
           } else if (depName && structure.disposAssociesLocalisation) {
             structure.disposAssociesLocalisation.forEach((el) => {
-              if (
-                el.includes(depName) &&
-                newArrayLoc &&
-                !newArrayLoc.includes(structure)
-              ) {
+              if (el.includes(depName) && newArrayLoc && !newArrayLoc.includes(structure)) {
                 newArrayLoc.push(structure);
               }
             });
             if (structure.departments) {
               structure.departments.forEach((el) => {
-                if (
-                  el.includes(depName) &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
+                if (el.includes(depName) && newArrayLoc && !newArrayLoc.includes(structure)) {
                   newArrayLoc.push(structure);
                 }
               });

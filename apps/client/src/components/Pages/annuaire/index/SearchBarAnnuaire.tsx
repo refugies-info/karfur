@@ -179,8 +179,8 @@ export const SearchBarAnnuaire = (props: Props) => {
           {props.typeSelected && props.typeSelected.length === 1
             ? props.typeSelected[0]
             : props.typeSelected && props.typeSelected.length > 1
-            ? props.typeSelected.length + " types"
-            : props.t("Annuaire.Type de structure", "Type de structure")}
+              ? props.typeSelected.length + " types"
+              : props.t("Annuaire.Type de structure", "Type de structure")}
           {props.typeSelected && props.typeSelected.length > 0 && (
             <EVAIcon
               name="close-circle"

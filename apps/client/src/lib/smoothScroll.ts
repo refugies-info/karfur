@@ -7,8 +7,8 @@ export const smoothScroll: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
   const anchor = href?.split("#")[1];
   if (anchor) {
     document.getElementById(anchor)?.scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
     window.location.href = "#" + anchor;
   }
-}
+};

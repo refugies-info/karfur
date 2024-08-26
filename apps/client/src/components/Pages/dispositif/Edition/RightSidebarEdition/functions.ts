@@ -1,5 +1,5 @@
 import { ContentType } from "@refugies-info/api-types";
-import { contentHelp, mapHelp, nextHelp, titleHelp, titreMarqueHelp, whatHelp } from "./data"
+import { contentHelp, mapHelp, nextHelp, titleHelp, titreMarqueHelp, whatHelp } from "./data";
 
 export const getHelp = (activeSection: string | undefined, typeContenu: ContentType) => {
   if (!activeSection) return null;
@@ -15,5 +15,5 @@ export const getHelp = (activeSection: string | undefined, typeContenu: ContentT
     if (activeSection.includes("how")) return contentHelp;
     if (activeSection.includes("next")) return nextHelp;
   }
-  return null
-}
+  return null;
+};

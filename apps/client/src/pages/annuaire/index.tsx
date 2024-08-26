@@ -171,8 +171,8 @@ const Annuaire = () => {
           a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
             ? -1
             : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0,
+              ? 1
+              : 0,
         )
       : [];
 

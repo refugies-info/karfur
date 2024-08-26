@@ -3,17 +3,14 @@ import { LoadingStatusActions } from "./loadingStatus.actions";
 
 export interface LoadingStatusState {
   [key: string]: {
-    error?: string|null;
+    error?: string | null;
     isLoading: boolean;
   };
 }
 
 export const initialState = {};
 
-export const loadingStatusReducer = createReducer<
-  LoadingStatusState,
-  LoadingStatusActions
->(initialState, {
+export const loadingStatusReducer = createReducer<LoadingStatusState, LoadingStatusActions>(initialState, {
   LOADING_START: (state, action) => ({
     ...state,
     [action.payload.key]: {

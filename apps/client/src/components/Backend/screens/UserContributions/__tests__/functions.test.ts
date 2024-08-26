@@ -1,4 +1,10 @@
-import { ContentType, DispositifStatus, GetStructureDispositifResponse, GetUserContributionsResponse, StructureMemberRole } from "@refugies-info/api-types";
+import {
+  ContentType,
+  DispositifStatus,
+  GetStructureDispositifResponse,
+  GetUserContributionsResponse,
+  StructureMemberRole,
+} from "@refugies-info/api-types";
 import { formatContributions } from "../functions";
 import { FormattedUserContribution } from "../types";
 
@@ -11,7 +17,7 @@ const userContrib1: GetUserContributionsResponse = {
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.DRAFT,
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const formattedUserContrib1: FormattedUserContribution = {
@@ -25,7 +31,7 @@ const formattedUserContrib1: FormattedUserContribution = {
   status: DispositifStatus.DRAFT,
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const userContrib2: GetUserContributionsResponse = {
@@ -37,7 +43,7 @@ const userContrib2: GetUserContributionsResponse = {
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 const formattedUserContrib2: FormattedUserContribution = {
   _id: "id2",
@@ -50,8 +56,7 @@ const formattedUserContrib2: FormattedUserContribution = {
   responsabilite: "sponsor2",
   isAuthorizedToDelete: true,
   titreMarque: "marque",
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 
 const userContrib3: GetUserContributionsResponse = {
@@ -63,8 +68,7 @@ const userContrib3: GetUserContributionsResponse = {
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.WAITING_ADMIN,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 const formattedUserContrib3: FormattedUserContribution = {
   _id: "id3",
@@ -77,8 +81,7 @@ const formattedUserContrib3: FormattedUserContribution = {
   status: DispositifStatus.WAITING_ADMIN,
   responsabilite: "structure",
   isAuthorizedToDelete: true,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 
 const userContrib4: GetUserContributionsResponse = {
@@ -90,8 +93,7 @@ const userContrib4: GetUserContributionsResponse = {
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.KO_STRUCTURE,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 const formattedUserContrib4: FormattedUserContribution = {
   _id: "id4",
@@ -104,8 +106,7 @@ const formattedUserContrib4: FormattedUserContribution = {
   status: DispositifStatus.KO_STRUCTURE,
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 
 const userContrib5: GetUserContributionsResponse = {
@@ -117,8 +118,7 @@ const userContrib5: GetUserContributionsResponse = {
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.WAITING_STRUCTURE,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 const formattedUserContrib5: FormattedUserContribution = {
   _id: "id5",
@@ -131,9 +131,8 @@ const formattedUserContrib5: FormattedUserContribution = {
   status: DispositifStatus.WAITING_STRUCTURE,
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
-
 
 const userContrib6: GetUserContributionsResponse = {
   _id: "id6",
@@ -144,8 +143,7 @@ const userContrib6: GetUserContributionsResponse = {
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 const formattedUserContrib6: FormattedUserContribution = {
   _id: "id6",
@@ -158,17 +156,10 @@ const formattedUserContrib6: FormattedUserContribution = {
   status: DispositifStatus.ACTIVE,
   responsabilite: "structure",
   isAuthorizedToDelete: false,
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
-const userContribs = [
-  userContrib1,
-  userContrib2,
-  userContrib3,
-  userContrib4,
-  userContrib5,
-  userContrib6
-];
+const userContribs = [userContrib1, userContrib2, userContrib3, userContrib4, userContrib5, userContrib6];
 
 const userStructureContrib1: GetStructureDispositifResponse = {
   _id: "id1s",
@@ -176,7 +167,8 @@ const userStructureContrib1: GetStructureDispositifResponse = {
   titreInformatif: "ti1s",
   titreMarque: "tm1s",
   mainSponsor: {
-    nom: "", picture: { imgId: "", public_id: "", secure_url: "" }
+    nom: "",
+    picture: { imgId: "", public_id: "", secure_url: "" },
   },
   nbMercis: 0,
   nbVues: 0,
@@ -186,7 +178,7 @@ const userStructureContrib1: GetStructureDispositifResponse = {
   nbMots: 0,
   nbVuesMobile: 0,
   availableLanguages: [],
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const formattedUserStructureContrib1: FormattedUserContribution = {
@@ -200,8 +192,7 @@ const formattedUserStructureContrib1: FormattedUserContribution = {
   status: DispositifStatus.DRAFT,
   responsabilite: "structure",
   isAuthorizedToDelete: true,
-  hasDraftVersion: false
-
+  hasDraftVersion: false,
 };
 
 const userStructureContrib2: GetStructureDispositifResponse = {
@@ -218,7 +209,7 @@ const userStructureContrib2: GetStructureDispositifResponse = {
   nbMots: 0,
   nbVuesMobile: 0,
   availableLanguages: [],
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const userStructureContrib3: GetStructureDispositifResponse = {
@@ -235,7 +226,7 @@ const userStructureContrib3: GetStructureDispositifResponse = {
   nbMots: 0,
   nbVuesMobile: 0,
   availableLanguages: [],
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const userStructureContrib4: GetStructureDispositifResponse = {
@@ -252,7 +243,7 @@ const userStructureContrib4: GetStructureDispositifResponse = {
   nbMots: 0,
   nbVuesMobile: 0,
   availableLanguages: [],
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const formattedUserStructureContrib4: FormattedUserContribution = {
@@ -266,7 +257,7 @@ const formattedUserStructureContrib4: FormattedUserContribution = {
   status: DispositifStatus.ACTIVE,
   responsabilite: "structure",
   isAuthorizedToDelete: true,
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const userStructureContrib5: GetStructureDispositifResponse = {
@@ -283,7 +274,7 @@ const userStructureContrib5: GetStructureDispositifResponse = {
   nbMots: 0,
   nbVuesMobile: 0,
   availableLanguages: [],
-  hasDraftVersion: false
+  hasDraftVersion: false,
 };
 
 const userStructureContrib = [
@@ -298,9 +289,26 @@ describe("formatContributions", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      { _id: "s1", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
+      {
+        _id: "s1",
+        createur: "",
+        adminPercentageProgressionStatus: "",
+        dispositifsAssocies: [],
+        nom: "structure",
+        membres: [
+          {
+            userId: "userId",
+            roles: [StructureMemberRole.CONTRIB],
+            username: "user",
+            picture: { secure_url: "", imgId: "", public_id: "" },
+            last_connected: new Date(),
+            added_at: new Date(),
+            mainRole: "Responsable",
+          },
+        ],
+      },
       "userId",
-      false
+      false,
     );
     expect(result).toEqual([
       formattedUserContrib1,
@@ -318,9 +326,26 @@ describe("formatContributions", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      { _id: "s1", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
+      {
+        _id: "s1",
+        createur: "",
+        adminPercentageProgressionStatus: "",
+        dispositifsAssocies: [],
+        nom: "structure",
+        membres: [
+          {
+            userId: "userId",
+            roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN],
+            username: "user",
+            picture: { secure_url: "", imgId: "", public_id: "" },
+            last_connected: new Date(),
+            added_at: new Date(),
+            mainRole: "Responsable",
+          },
+        ],
+      },
       "userId",
-      true
+      true,
     );
     expect(result).toEqual([
       formattedUserContrib1,

@@ -1,7 +1,7 @@
 import moment from "moment";
-import { StyledStatus } from "./SubComponents";
-import styles from "./SmallDispositif.module.scss";
 import { Dispositif } from "../AdminStructures/StructureDetailsModal/functions";
+import styles from "./SmallDispositif.module.scss";
+import { StyledStatus } from "./SubComponents";
 
 interface Props {
   dispositif: Dispositif;

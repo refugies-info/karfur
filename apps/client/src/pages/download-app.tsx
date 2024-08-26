@@ -1,7 +1,7 @@
-import { useEffect, ReactElement } from "react";
-import { isMobileOnly, isIOS, isAndroid } from "react-device-detect";
+import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useRouter } from "next/router";
-import { iosStoreLink, androidStoreLink } from "data/storeLinks";
+import { ReactElement, useEffect } from "react";
+import { isAndroid, isIOS, isMobileOnly } from "react-device-detect";
 
 const DownloadApp = () => {
   const router = useRouter();

@@ -1,4 +1,3 @@
-import React from "react";
 import { IconProps } from "./IconProps";
 
 const Price = ({ color, width = 32, height = 32 }: IconProps) => (

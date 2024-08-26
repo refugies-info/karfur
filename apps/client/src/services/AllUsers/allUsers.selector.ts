@@ -1,8 +1,7 @@
-import { RootState } from "../rootReducer";
 import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
+import { RootState } from "../rootReducer";
 
-export const allUsersSelector = (state: RootState): GetAllUsersResponse[] =>
-  state.users;
+export const allUsersSelector = (state: RootState): GetAllUsersResponse[] => state.users;
 
 export const allActiveUsersSelector = (state: RootState): GetAllUsersResponse[] =>
   state.users.filter((user) => user.status === "Actif");

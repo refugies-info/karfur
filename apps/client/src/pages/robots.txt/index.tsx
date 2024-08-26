@@ -10,7 +10,7 @@ const PROD_ROBOTS_TXT = [
   "Disallow: /*/backend",
   "Disallow: /*/directory-create",
   "Disallow: /*/annuaire-creation",
-  `Sitemap: ${SITE_URL}/sitemap-index.xml`
+  `Sitemap: ${SITE_URL}/sitemap-index.xml`,
 ];
 
 const STG_ROBOTS_TXT = ["User-agent: *", "Disallow: /"];
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.end();
   return {
     // This is unnecessary but Next.js requires it to be here
-    props: {}
+    props: {},
   };
 };
 

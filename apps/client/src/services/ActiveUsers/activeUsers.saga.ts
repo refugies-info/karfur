@@ -1,11 +1,11 @@
+import { GetActiveUsersResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
-import API from "../../utils/API";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
-import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/loadingStatus.actions";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setActiveUsersActionCreator } from "./activeUsers.actions";
 import { FETCH_ACTIVE_USERS } from "./activeUsers.actionTypes";
-import { GetActiveUsersResponse } from "@refugies-info/api-types";
 
 export function* fetchActiveUsers(): SagaIterator {
   try {
@@ -16,7 +16,7 @@ export function* fetchActiveUsers(): SagaIterator {
     yield put(finishLoading(LoadingStatusKey.FETCH_USERS));
   } catch (error) {
     logger.error("[fetchActiveUsers] Error while fetching users", {
-      error
+      error,
     });
     yield put(setActiveUsersActionCreator([]));
     yield put(finishLoading(LoadingStatusKey.FETCH_USERS));
