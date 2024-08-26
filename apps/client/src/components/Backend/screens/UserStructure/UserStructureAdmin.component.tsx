@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { UserStructureLoading } from "./components/UserStructureLoading";
-import { UserStructureDetails } from "./components/UserStructureDetails";
-import { colors } from "colors";
-import { userSelector } from "services/User/user.selectors";
-import API from "utils/API";
-import Swal from "sweetalert2";
 import { GetStructureResponse, Id, PatchStructureRolesRequest, StructureMemberRole } from "@refugies-info/api-types";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { userSelector } from "services/User/user.selectors";
+import Swal from "sweetalert2";
+import API from "utils/API";
+import { colors } from "utils/colors";
+import { UserStructureDetails } from "./components/UserStructureDetails";
+import { UserStructureLoading } from "./components/UserStructureLoading";
 
 declare const window: Window;
 

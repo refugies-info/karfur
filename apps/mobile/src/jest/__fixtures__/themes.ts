@@ -23,6 +23,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Французька мова",
       ti: "ፈረንሳይ",
     },
+    mainColor: "#BFCCFB",
     colors: {
       color100: "#3D2884",
       color80: "#705FA4",
@@ -81,6 +82,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Культура",
       ti: "ባህሊ",
     },
+    mainColor: "#FCBFB7",
     colors: {
       color100: "#9E180A",
       color80: "#E05A3E",
@@ -139,6 +141,7 @@ export const mockedThemesData: ThemeState = [
       ru: "Семья",
       ar: "العائلة",
     },
+    mainColor: "#FBB8F6",
     colors: {
       color100: "#77057A",
       color80: "#9E2DAD",
@@ -202,6 +205,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Транспорт",
       ti: "ብቅዓት = ክእለት",
     },
+    mainColor: "#FCC0B0",
     colors: {
       color100: "#CD5605",
       color80: "#F97319",
@@ -260,6 +264,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Працевлаштування",
       ti: "ምትእትታው ሞያ ብውሕልልነት",
     },
+    mainColor: "#60E0EB",
     colors: {
       color100: "#055E5A",
       color80: "#27A8A5",
@@ -318,6 +323,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Адміністративні питання",
       ti: "ቤት ጽሕፈታት",
     },
+    mainColor: "#EAC7B2",
     colors: {
       color100: "#443023",
       color80: "#715F56",
@@ -376,6 +382,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Зустрічі",
       ti: "ምርኻብ ወይ ምዝታይ",
     },
+    mainColor: "#FFFFFF",
     colors: {
       color100: "#770649",
       color80: "#D01F67",
@@ -434,6 +441,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Волонтерство",
       ti: "ወልንታዊ",
     },
+    mainColor: "#FFFFFF",
     colors: {
       color100: "#073099",
       color80: "#1C66DD",
@@ -492,6 +500,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Навчання",
       ti: "ምምሃር",
     },
+    mainColor: "#95E257",
     colors: {
       color100: "#204F01",
       color80: "#47AA0A",
@@ -550,6 +559,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Житло",
       ti: "መንበሪ ገዛ",
     },
+    mainColor: "#B6CFFB",
     colors: {
       color100: "#06508C",
       color80: "#1E9ED1",
@@ -608,6 +618,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Охорона здоров'я",
       ti: "ጥዕና",
     },
+    mainColor: "#FCC0B4",
     colors: {
       color100: "#910940",
       color80: "#D64B71",
@@ -666,6 +677,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Професійна освіта",
       ti: "ምስልጣን ሞያ",
     },
+    mainColor: "#E2CF58",
     colors: {
       color100: "#095411",
       color80: "#26B759",
@@ -724,6 +736,7 @@ export const mockedThemesData: ThemeState = [
       uk: "Відпочинок",
       ti: "ምዝንጋዕ",
     },
+    mainColor: "#FFFFFF",
     colors: {
       color100: "#600566",
       color80: "#9E2DAD",

@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
-import { userStructureSelector, userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { userStructureMembresSelector, userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import { UserStructureLoading } from "./components/UserStructureLoading";
 
-import { UserStructureDetails } from "./components/UserStructureDetails";
-import styled from "styled-components";
-import { colors } from "colors";
-import { userSelector } from "services/User/user.selectors";
-import Swal from "sweetalert2";
 import { Id, StructureMemberRole } from "@refugies-info/api-types";
+import { userSelector } from "services/User/user.selectors";
+import styled from "styled-components";
+import Swal from "sweetalert2";
+import { colors } from "utils/colors";
+import { UserStructureDetails } from "./components/UserStructureDetails";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;

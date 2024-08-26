@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Modal } from "reactstrap";
+import { GetActiveUsersResponse, Id, StructureMember } from "@refugies-info/api-types";
 import FButton from "components/UI/FButton/FButton";
-import styled from "styled-components";
-import { colors } from "colors";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchActiveUsersActionCreator } from "services/ActiveUsers/activeUsers.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
+import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "reactstrap";
+import { fetchActiveUsersActionCreator } from "services/ActiveUsers/activeUsers.actions";
+import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import styled from "styled-components";
+import { colors } from "utils/colors";
 import { CustomUserSearchBar } from "./CustomUserSearchBar";
 import styles from "./MemberModal.module.scss";
-import { GetActiveUsersResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 const Title = styled.div`
   font-weight: normal;

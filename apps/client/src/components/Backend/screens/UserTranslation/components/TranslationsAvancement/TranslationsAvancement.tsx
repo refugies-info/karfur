@@ -8,7 +8,6 @@ import {
   Languages,
   TraductionsStatus,
 } from "@refugies-info/api-types";
-import { colors } from "colors";
 import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
 import { useLanguages, useRouterLocale } from "hooks";
@@ -18,6 +17,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styled from "styled-components";
+import { colors } from "utils/colors";
 import { NeedTradStatus } from "../../types";
 import { FilterButton, LanguageTitle } from "../SubComponents";
 import { TranslationAvancementTable } from "../TranslationAvancementTable";

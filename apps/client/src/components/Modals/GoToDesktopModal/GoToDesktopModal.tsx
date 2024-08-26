@@ -1,12 +1,11 @@
-import React from "react";
-import { Modal } from "reactstrap";
-import styled from "styled-components";
 import { rendez_vous_ordinateur } from "assets/figma";
 import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
-import { colors } from "colors";
-import Image from "next/image";
-import styles from "scss/components/modals.module.scss";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { Modal } from "reactstrap";
+import styles from "scss/components/modals.module.scss";
+import styled from "styled-components";
+import { colors } from "utils/colors";
 
 interface Props {
   toggle: () => void;

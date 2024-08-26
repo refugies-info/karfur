@@ -1,9 +1,8 @@
-import { Spinner } from "reactstrap";
-import SearchBar from "components/UI/SearchBar/SearchBar";
-import React from "react";
-import styled from "styled-components";
-import { colors } from "colors";
 import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse } from "@refugies-info/api-types";
+import SearchBar from "components/UI/SearchBar/SearchBar";
+import { Spinner } from "reactstrap";
+import styled from "styled-components";
+import { colors } from "utils/colors";
 
 const ModifyLink = styled.div`
   font-weight: bold;

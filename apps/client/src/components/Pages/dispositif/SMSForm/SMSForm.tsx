@@ -1,16 +1,16 @@
-import React, { useMemo, useState } from "react";
-import { useTranslation } from "next-i18next";
-import { useSelector } from "react-redux";
-import { colors } from "colors";
-import { useLocale, useSendSms } from "hooks";
-import { isValidPhone } from "lib/validateFields";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Toast from "components/UI/Toast";
 import Tooltip from "components/UI/Tooltip";
-import LangueMenu from "../LangueMenu";
+import { useLocale, useSendSms } from "hooks";
+import { isValidPhone } from "lib/validateFields";
+import { useTranslation } from "next-i18next";
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { colors } from "utils/colors";
 import Input from "../Input";
+import LangueMenu from "../LangueMenu";
 import styles from "./SMSForm.module.scss";
 
 interface Props {

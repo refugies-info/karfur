@@ -1,4 +1,3 @@
-import { colors } from "colors";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
@@ -19,6 +18,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import Swal from "sweetalert2";
 import API from "utils/API";
+import { colors } from "utils/colors";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
