@@ -28,8 +28,8 @@ export class ThemesUpdateMainColor1724679986699 implements MigrationInterface {
   public async up(db: Db): Promise<void | never> {
     const themeCollection = db.collection("themes");
 
-    for (const [themeObjectId, mainColor] of Object.entries(themeColorsMap)) {
-      await themeCollection.updateOne({ _id: new ObjectId(themeObjectId) }, { $set: { mainColor: mainColor } });
+    for (const [id, mainColor] of Object.entries(themeColorsMap)) {
+      await themeCollection.updateOne({ _id: new ObjectId(id) }, { $set: { mainColor } });
     }
   }
 
