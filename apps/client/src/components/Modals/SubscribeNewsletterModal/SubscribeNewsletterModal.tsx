@@ -1,22 +1,22 @@
-import React, { useState, ChangeEventHandler } from "react";
-import { Modal } from "reactstrap";
-import { useTranslation } from "next-i18next";
-import styled from "styled-components";
 import { newsletter } from "assets/figma";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/UI/FButton/FButton";
+import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
 import FInput from "components/UI/FInput/FInput";
 import { Event } from "lib/tracking";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { ChangeEventHandler, useState } from "react";
+import { isMobile } from "react-device-detect";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "reactstrap";
+import styles from "scss/components/modals.module.scss";
+import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
+import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
+import styled from "styled-components";
 import Swal from "sweetalert2";
 import API from "utils/API";
-import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
-import { colors } from "colors";
-import { isMobile } from "react-device-detect";
-import FButton from "components/UI/FButton/FButton";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Image from "next/image";
-import styles from "scss/components/modals.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
-import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
+import { colors } from "utils/colors";
 
 declare const window: Window;
 

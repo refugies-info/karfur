@@ -1,8 +1,7 @@
-import React from "react";
-import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { colors } from "colors";
 import TitleWithNumber from "components/Backend/TitleWithNumber";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { colors } from "utils/colors";
+import { MainContainer, StructureContainer, StructurePictureContainer } from "./SubComponents";
 import styles from "./UserStructureLoading.module.scss";
 
 export const UserStructureLoading = () => (

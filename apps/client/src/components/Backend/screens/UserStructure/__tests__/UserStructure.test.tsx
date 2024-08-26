@@ -2,13 +2,13 @@ import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus 
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { colors } from "colors";
 import "jest-styled-components";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
+import { colors } from "utils/colors";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserStructureComponent } from "../UserStructure.component";
 

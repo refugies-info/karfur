@@ -1,15 +1,15 @@
-import Swal from "sweetalert2";
-import { colors } from "colors";
-import API from "utils/API";
 import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
+import Swal from "sweetalert2";
+import API from "utils/API";
+import { colors } from "utils/colors";
 
 // TODO: move function
 export const prepareDeleteContrib = (
   allDispositifs: GetAllDispositifsResponse[],
   setAllDispositifsActionsCreator: any,
   dispatch: any,
-  dispositifId: Id | null
+  dispositifId: Id | null,
 ) => {
   return Swal.fire({
     title: "Êtes-vous sûr ?",
@@ -47,6 +47,6 @@ export const prepareDeleteContrib = (
 };
 
 export const isThemeTitleOk = (title: Record<string, string>, languages: GetLanguagesResponse[]) => {
-  const emptyLn = languages.filter(ln => !title[ln.i18nCode]);
+  const emptyLn = languages.filter((ln) => !title[ln.i18nCode]);
   return emptyLn.length > 0;
-}
+};

@@ -1,8 +1,8 @@
-import React from "react";
 import { cls } from "lib/classname";
+import React from "react";
+import { colors } from "utils/colors";
 import EVAIcon from "../EVAIcon/EVAIcon";
 import styles from "./Input.module.scss";
-import { colors } from "colors";
 
 interface Props {
   type?: "text" | "email";

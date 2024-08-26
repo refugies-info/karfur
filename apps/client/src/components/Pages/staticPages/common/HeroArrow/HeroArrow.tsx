@@ -1,10 +1,9 @@
-import React from "react";
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
-import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { smoothScroll } from "lib/smoothScroll";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import { colors } from "utils/colors";
 import styles from "./HeroArrow.module.scss";
 
 interface Props {

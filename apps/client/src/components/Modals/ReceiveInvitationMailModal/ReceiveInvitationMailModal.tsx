@@ -1,16 +1,16 @@
-import React, { useState, ChangeEvent } from "react";
 import { SubscriptionRequest } from "@refugies-info/api-types";
-import { Modal } from "reactstrap";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
+import FInput from "components/UI/FInput/FInput";
+import { handleApiError } from "lib/handleApiErrors";
 import { useTranslation } from "next-i18next";
+import { ChangeEvent, useState } from "react";
+import { Modal } from "reactstrap";
+import styles from "scss/components/modals.module.scss";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
-import { colors } from "colors";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FInput from "components/UI/FInput/FInput";
 import API from "utils/API";
-import styles from "scss/components/modals.module.scss";
-import { handleApiError } from "lib/handleApiErrors";
+import { colors } from "utils/colors";
 
 declare const window: Window;
 interface Props {

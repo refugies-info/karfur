@@ -1,11 +1,8 @@
-import { ContribContainer } from "./SubComponents";
-import React from "react";
-import styled from "styled-components";
 import FButton from "components/UI/FButton";
-import { colors } from "colors";
-import Link from "next/link";
-import { getPath } from "routes";
 import { useRouter } from "next/router";
+import styled from "styled-components";
+import { colors } from "utils/colors";
+import { ContribContainer } from "./SubComponents";
 
 const Header = styled.div`
   font-weight: bold;

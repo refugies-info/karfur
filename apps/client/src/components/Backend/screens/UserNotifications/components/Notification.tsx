@@ -1,10 +1,10 @@
-import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import styled from "styled-components";
+import { colors } from "utils/colors";
 
 const Container = styled.div<{ read: boolean }>`
   background: ${(props: { read: boolean }) => (props.read ? colors.white : colors.focus)};

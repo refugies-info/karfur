@@ -1,8 +1,7 @@
-import React from "react";
 import TitleWithNumber from "components/Backend/TitleWithNumber";
-import styled from "styled-components";
 import FButton from "components/UI/FButton";
-import { colors } from "colors";
+import styled from "styled-components";
+import { colors } from "utils/colors";
 import styles from "../UserFavorites.module.scss";
 
 const HelpCard = styled.div`

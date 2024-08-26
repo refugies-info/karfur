@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import { Id } from "@refugies-info/api-types";
+import TitleWithNumber from "components/Backend/TitleWithNumber";
+import { FrameModal } from "components/Modals";
+import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
+import FButton from "components/UI/FButton/FButton";
 import { useUser } from "hooks";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import {
-  fetchUserContributionsActionCreator,
   deleteDispositifActionCreator,
+  fetchUserContributionsActionCreator,
 } from "services/UserContributions/userContributions.actions";
 import { userContributionsSelector } from "services/UserContributions/userContributions.selectors";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import {
   userStructureDisposAssociesSelector,
   userStructureSelector,
 } from "services/UserStructure/userStructure.selectors";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { formatContributions } from "./functions";
-import { NoContribution } from "./components/NoContribution";
-import { FrameModal } from "components/Modals";
-import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
-import { ContribContainer } from "./components/SubComponents";
-import TitleWithNumber from "components/Backend/TitleWithNumber";
-import FButton from "components/UI/FButton/FButton";
-import { UserContribTable } from "./components/UserContribTable";
-import { colors } from "colors";
+import styled from "styled-components";
 import Swal from "sweetalert2";
-import Skeleton from "react-loading-skeleton";
-import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { Id } from "@refugies-info/api-types";
+import { colors } from "utils/colors";
+import { NoContribution } from "./components/NoContribution";
+import { ContribContainer } from "./components/SubComponents";
+import { UserContribTable } from "./components/UserContribTable";
+import { formatContributions } from "./functions";
 
 const MainContainer = styled.div`
   display: flex;

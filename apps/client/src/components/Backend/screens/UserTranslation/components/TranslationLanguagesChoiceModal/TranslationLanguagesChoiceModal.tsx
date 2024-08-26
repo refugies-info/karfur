@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Modal } from "reactstrap";
-import FButton from "components/UI/FButton/FButton";
-import { useSelector, useDispatch } from "react-redux";
-import { userSelector } from "services/User/user.selectors";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { saveUserActionCreator } from "services/User/user.actions";
-import Skeleton from "react-loading-skeleton";
-import styled from "styled-components";
-import { colors } from "colors";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { useHistory } from "react-router-dom";
-import useRouterLocale from "hooks/useRouterLocale";
-import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
+import FButton from "components/UI/FButton/FButton";
 import { useLanguages } from "hooks";
+import useRouterLocale from "hooks/useRouterLocale";
 import isUndefined from "lodash/isUndefined";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { Modal } from "reactstrap";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { saveUserActionCreator } from "services/User/user.actions";
+import { userSelector } from "services/User/user.selectors";
+import styled from "styled-components";
+import { colors } from "utils/colors";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 
 const Header = styled.div`

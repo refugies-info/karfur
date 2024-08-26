@@ -1,8 +1,7 @@
-import React from "react";
-import { useTranslation } from "next-i18next";
 import FButton from "components/UI/FButton/FButton";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { colors } from "colors";
+import { colors } from "utils/colors";
 import styles from "./UnauthorizedAccess.module.scss";
 
 const UnauthorizedAccess = () => {

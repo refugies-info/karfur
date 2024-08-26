@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { colors } from "colors";
-import { FilterButton } from "./SubComponents";
+import { TraductionsStatus } from "@refugies-info/api-types";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
-import CustomSearchBar from "components/UI/CustomSeachBar";
-import { TraductionsStatus } from "@refugies-info/api-types";
+import styled from "styled-components";
+import { colors } from "utils/colors";
+import { FilterButton } from "./SubComponents";
 
 const RowContainer = styled.div`
   display: flex;
