@@ -80,6 +80,7 @@
     "yarn": "1.22.22"
   },
   "lint-staged": {
-    "*.{css,scss}": "stylelint --fix"
+    "*.{css,scss}": "stylelint --fix",
+    "*.{js,jsx,ts,tsx}": "prettier --write"
   }
 }
