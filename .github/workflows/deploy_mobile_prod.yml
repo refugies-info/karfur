@@ -46,7 +46,7 @@ jobs:
         run: npm install -g yarn@1.22.22
 
       - name: Setup Expo
-        uses: expo/expo-github-action@v7
+        uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           eas-version: latest
