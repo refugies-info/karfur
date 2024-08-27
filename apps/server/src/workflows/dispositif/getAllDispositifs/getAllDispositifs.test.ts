@@ -1,7 +1,7 @@
 import { StructureStatus } from "@refugies-info/api-types";
+import * as repository from "~/modules/dispositif/dispositif.repository";
+import { ObjectId } from "~/typegoose";
 import { dispositif } from "../../../__fixtures__";
-import * as repository from "../../../modules/dispositif/dispositif.repository";
-import { ObjectId } from "../../../typegoose";
 import { getAllDispositifs } from "./getAllDispositifs";
 
 describe("getAllDispositifs", () => {
@@ -9,10 +9,8 @@ describe("getAllDispositifs", () => {
     jest.clearAllMocks();
   });
 
-
   it("should call getDispositifsFromDB", async () => {
-    const expectedDispositif =
-    {
+    const expectedDispositif = {
       _id: new ObjectId("5ce7b52d83983700167bca27"),
       nbMercis: 0,
       hasDraftVersion: false,
@@ -28,8 +26,8 @@ describe("getAllDispositifs", () => {
         picture: {
           imgId: "",
           public_id: "",
-          secure_url: ""
-        }
+          secure_url: "",
+        },
       },
       created_at: new Date("2023-12-01T10:05:56.577Z"),
       publishedAt: new Date("2023-12-01T14:34:29.335Z"),
@@ -52,13 +50,10 @@ describe("getAllDispositifs", () => {
       needs: [
         new ObjectId("613721a409c5190dfa70d057"),
         new ObjectId("63450e79f14a373d5af284c0"),
-        new ObjectId("613721a409c5190dfa70d064")
+        new ObjectId("613721a409c5190dfa70d064"),
       ],
       theme: new ObjectId("63286a015d31b2c0cad9960a"),
-      secondaryThemes: [
-        new ObjectId("63286a015d31b2c0cad9960d"),
-        new ObjectId("63450dd43e23cd7181ba0b26")
-      ],
+      secondaryThemes: [new ObjectId("63286a015d31b2c0cad9960d"), new ObjectId("63450dd43e23cd7181ba0b26")],
       nbVues: 79,
       nbMots: 256,
       mainSponsor: {
@@ -68,11 +63,11 @@ describe("getAllDispositifs", () => {
         picture: {
           imgId: "",
           public_id: "",
-          secure_url: ""
-        }
+          secure_url: "",
+        },
       },
       themesSelectedByAuthor: false,
-      webOnly: false
+      webOnly: false,
     };
 
     const populatedDispositif: any = dispositif;
@@ -92,9 +87,9 @@ describe("getAllDispositifs", () => {
       picture: {
         imgId: "",
         public_id: "",
-        secure_url: ""
-      }
-    }
+        secure_url: "",
+      },
+    };
     populatedDispositif.creatorId = {
       _id: "id",
       username: "creator",
@@ -102,23 +97,23 @@ describe("getAllDispositifs", () => {
       picture: {
         imgId: "",
         public_id: "",
-        secure_url: ""
-      }
-    }
+        secure_url: "",
+      },
+    };
     populatedDispositif.lastModificationAuthor = {
       _id: "id",
       username: "author",
-    }
+    };
     populatedDispositif.publishedAtAuthor = {
       _id: "id",
       username: "author",
-    }
+    };
 
     const expectedResponse = {
       text: "success",
-      data: [expectedDispositif, expectedDispositif]
+      data: [expectedDispositif, expectedDispositif],
     };
-    const getDispositifsFromDBMock = jest.spyOn(repository, 'getDispositifsFromDB');
+    const getDispositifsFromDBMock = jest.spyOn(repository, "getDispositifsFromDB");
     getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif]);
 
     // Act

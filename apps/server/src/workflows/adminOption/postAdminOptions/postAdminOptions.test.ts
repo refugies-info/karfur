@@ -1,11 +1,7 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { createAdminOption, getAdminOption, updateAdminOption } from "~/modules/adminOptions/adminOptions.repository";
 import postAdminOptions from "./postAdminOptions";
-import {
-  getAdminOption,
-  createAdminOption,
-  updateAdminOption
-} from "../../../modules/adminOptions/adminOptions.repository";
-import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 
 /* jest.mock("../../../modules/adminOptions/adminOptions.repository", () => ({
   getAdminOption: jest.fn(),
@@ -49,7 +45,7 @@ describe.skip("postAdminOptions", () => {
       throw new Error("NOT_AUTHORIZED");
     });
     const req = {
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await postAdminOptions[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -58,19 +54,19 @@ describe.skip("postAdminOptions", () => {
     const req = {
       fromSite: true,
       body: {
-        value: true
+        value: true,
       },
       params: {
-        key: "notifs"
+        key: "notifs",
       },
       user: { roles: [] },
-      userId: "id"
+      userId: "id",
     };
     getAdminOption.mockReturnValueOnce(null);
     await postAdminOptions[1](req, res);
     expect(createAdminOption).toHaveBeenCalledWith({
       key: "notifs",
-      value: true
+      value: true,
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -78,13 +74,13 @@ describe.skip("postAdminOptions", () => {
     const req = {
       fromSite: true,
       body: {
-        value: true
+        value: true,
       },
       params: {
-        key: "notifs"
+        key: "notifs",
       },
       user: { roles: [] },
-      userId: "id"
+      userId: "id",
     };
     getAdminOption.mockReturnValueOnce({ key: "notifs", value: false });
     await postAdminOptions[1](req, res);

@@ -1,10 +1,10 @@
 // @ts-nocheck
 /* import { deleteWidget } from "./deleteWidget";
-import { deleteWidgetById } from "../../../modules/widgets/widgets.repository";
+import { deleteWidgetById } from "~/modules/widgets/widgets.repository";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+} from "~/libs/checkAuthorizations";
 
 jest.mock("../../../modules/widgets/widgets.repository", () => ({
   deleteWidgetById: jest.fn(),
@@ -39,7 +39,7 @@ describe.skip("deleteWidget", () => {
     });
     const req = {
       fromSite: false,
-      params: {}
+      params: {},
     };
     await deleteWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(405);
@@ -47,10 +47,10 @@ describe.skip("deleteWidget", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
-      params: {}
+      params: {},
     };
     await deleteWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -58,7 +58,7 @@ describe.skip("deleteWidget", () => {
   it("should return 400 if no id", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: { id: null }
+      params: { id: null },
     };
     await deleteWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
@@ -67,11 +67,10 @@ describe.skip("deleteWidget", () => {
   it("should return 200", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: { id: "widgetId" }
+      params: { id: "widgetId" },
     };
     await deleteWidget(req, res);
     expect(deleteWidgetById).toHaveBeenCalledWith("widgetId");
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

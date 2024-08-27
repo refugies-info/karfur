@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* import { getStructureById } from "./getStructureById";
-import { getStructureFromDB } from "../../../modules/structure/structure.repository";
-import { getUserById } from "../../../modules/users/users.repository"; */
+import { getStructureFromDB } from "~/modules/structure/structure.repository";
+import { getUserById } from "~/modules/users/users.repository"; */
 
 import { RoleName } from "@refugies-info/api-types";
 
@@ -103,7 +103,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(res.status).toHaveBeenCalledWith(200);
@@ -121,7 +121,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(200);
@@ -139,7 +139,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(200);
@@ -166,7 +166,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(404);
@@ -185,7 +185,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(500);
@@ -203,7 +203,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(res.status).toHaveBeenCalledWith(500);
@@ -227,7 +227,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(res.status).toHaveBeenCalledWith(500);
@@ -249,7 +249,7 @@ describe.skip("getStructureById", () => {
           withMembres: "false",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "en");
@@ -295,7 +295,7 @@ describe.skip("getStructureById", () => {
           withMembres: "true",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "en");
@@ -343,7 +343,7 @@ describe.skip("getStructureById", () => {
           withMembres: "true",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "en");
@@ -367,10 +367,7 @@ describe.skip("getStructureById", () => {
     getStructureFromDB.mockResolvedValueOnce({
       toJSON: () => ({
         ...structure1,
-        membres: [
-          { roles: ["admin"] },
-          { userId: "userId2", roles: ["contributeur"] },
-        ],
+        membres: [{ roles: ["admin"] }, { userId: "userId2", roles: ["contributeur"] }],
       }),
     });
 
@@ -386,10 +383,9 @@ describe.skip("getStructureById", () => {
           withMembres: "true",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
-
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -405,10 +401,7 @@ describe.skip("getStructureById", () => {
     getStructureFromDB.mockResolvedValueOnce({
       toJSON: () => ({
         ...structure1,
-        membres: [
-          { roles: ["admin"] },
-          { userId: "userId1", roles: ["contributeur"] },
-        ],
+        membres: [{ roles: ["admin"] }, { userId: "userId1", roles: ["contributeur"] }],
       }),
     });
 
@@ -422,7 +415,7 @@ describe.skip("getStructureById", () => {
           withMembres: "true",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
 
@@ -436,17 +429,13 @@ describe.skip("getStructureById", () => {
     });
   });
 
-
   it("should return empty membre array when getUserById throws ", async () => {
     getUserById.mockRejectedValueOnce(new Error("erreur"));
 
     getStructureFromDB.mockResolvedValueOnce({
       toJSON: () => ({
         ...structure1,
-        membres: [
-          { roles: ["admin"] },
-          { userId: "userId1", roles: ["contributeur"] },
-        ],
+        membres: [{ roles: ["admin"] }, { userId: "userId1", roles: ["contributeur"] }],
       }),
     });
 
@@ -462,7 +451,7 @@ describe.skip("getStructureById", () => {
           withMembres: "true",
         },
       },
-      res
+      res,
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
 

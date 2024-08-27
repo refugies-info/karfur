@@ -1,10 +1,7 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { createWidget } from "~/modules/widgets/widgets.repository";
 import { postWidgets } from "./postWidgets";
-import { createWidget } from "../../../modules/widgets/widgets.repository";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
 
 /* jest.mock("../../../modules/widgets/widgets.repository", () => ({
   createWidget: jest.fn(),
@@ -44,7 +41,7 @@ describe.skip("postWidgets", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
     };
@@ -83,10 +80,10 @@ describe.skip("postWidgets", () => {
         name: "test",
         typeContenu: ["demarche"],
         themes: [{ _id: "xyz" }],
-        department: "Paris"
+        department: "Paris",
       },
       user: { roles: [] },
-      userId: "id"
+      userId: "id",
     };
     await postWidgets(req, res);
     expect(createWidget).toHaveBeenCalledWith({
@@ -94,10 +91,8 @@ describe.skip("postWidgets", () => {
       themes: ["xyz"],
       typeContenu: ["demarche"],
       author: "id",
-      department: "Paris"
-
+      department: "Paris",
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

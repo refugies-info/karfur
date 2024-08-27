@@ -1,10 +1,10 @@
+import { GetUserFavoritesRequest, GetUserFavoritesResponse, Languages } from "@refugies-info/api-types";
 import { FilterQuery } from "mongoose";
-import logger from "../../../logger";
-import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { Dispositif, User } from "../../../typegoose";
-import { ResponseWithData } from "../../../types/interface";
-import { Favorite } from "../../../typegoose/User";
-import { GetUserFavoritesResponse, GetUserFavoritesRequest, Languages } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { getSimpleDispositifs } from "~/modules/dispositif/dispositif.repository";
+import { Dispositif, User } from "~/typegoose";
+import { Favorite } from "~/typegoose/User";
+import { ResponseWithData } from "~/types/interface";
 
 export const getUserFavoritesInLocale = async (
   user: User,

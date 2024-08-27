@@ -1,8 +1,8 @@
 import { isEmpty } from "lodash";
-import logger from "../../../logger";
-import { getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { NotFoundError } from "../../../errors";
-import { Traductions } from "../../../typegoose";
+import { NotFoundError } from "~/errors";
+import logger from "~/logger";
+import { getDispositifById, getDraftDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { Traductions } from "~/typegoose";
 
 export const getHasTextChanges = async (id: string): Promise<boolean> => {
   logger.info("[getHasTextChanges] called");

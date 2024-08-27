@@ -1,8 +1,8 @@
 import { TechnicalInfoRequest } from "@refugies-info/api-types";
 import { Body, Controller, Get, Post, Route } from "tsoa";
-import { AuthenticationError } from "../errors";
-import { Response } from "../types/interface";
-import { verifyVersion } from "../workflows";
+import { AuthenticationError } from "~/errors";
+import { Response } from "~/types/interface";
+import { verifyVersion } from "~/workflows";
 
 @Route("")
 export class MiscController extends Controller {

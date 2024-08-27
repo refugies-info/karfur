@@ -1,8 +1,7 @@
 // @ts-nocheck
-import { sendAdminImprovementsMail } from "./sendAdminImprovementsMail";
-import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
-import { log } from "./log";
 import { RoleName } from "@refugies-info/api-types";
+import { sendAdminImprovementsMailService } from "~/modules/mail/mail.service";
+import { sendAdminImprovementsMail } from "./sendAdminImprovementsMail";
 
 /* jest.mock("../../../modules/mail/mail.service", () => ({
   sendAdminImprovementsMailService: jest.fn(),
@@ -89,11 +88,7 @@ describe.skip("sendAdminImprovementsMail", () => {
       users: [user1, user2],
       titreInformatif: "TI",
       titreMarque: "TM",
-      sections: [
-        "Pourquoi c'est intéressant ?",
-        "Comment je m'engage ?",
-        "Carte interactive",
-      ],
+      sections: ["Pourquoi c'est intéressant ?", "Comment je m'engage ?", "Carte interactive"],
     };
     const req = { user: { roles: [{ nom: RoleName.ADMIN }] }, fromSite: true, body };
 

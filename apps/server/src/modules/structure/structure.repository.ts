@@ -1,12 +1,9 @@
-import logger from "../../logger";
-import { Structure, StructureId, StructureModel, UserId } from "../../typegoose";
-import { FilterQuery, ProjectionFields } from "mongoose";
 import { Id, Metadatas, Picture } from "@refugies-info/api-types";
+import { FilterQuery, ProjectionFields } from "mongoose";
+import logger from "~/logger";
+import { Structure, StructureId, StructureModel, UserId } from "~/typegoose";
 
-export const getStructureFromDB = async (
-  id: StructureId,
-  fields: "all" | Record<string, number>,
-): Promise<Structure> =>
+export const getStructureFromDB = async (id: StructureId, fields: "all" | Record<string, number>): Promise<Structure> =>
   StructureModel.findOne({ _id: id }, fields === "all" ? {} : fields)
     .then((structure) => structure.toObject() as Structure)
     .catch((e) => {
@@ -24,20 +21,20 @@ export const getStructuresFromDB = async (query: FilterQuery<Structure>, neededF
 type PopulatedDispositif = {
   _id: Id;
   status: string;
-  metadatas: Metadatas
-}
+  metadatas: Metadatas;
+};
 
 type PopulatedCreateur = {
   _id: Id;
   username: string;
   email: string;
   picture: Picture | null;
-}
+};
 
 type StructureWithDispos = Omit<Structure, "createur"> & {
   dispositifsAssocies: PopulatedDispositif[];
   createur: PopulatedCreateur[];
-}
+};
 
 export const getStructuresWithDispos = async (
   query: FilterQuery<Structure>,
@@ -51,16 +48,16 @@ export const getStructuresWithDispos = async (
         from: "dispositifs",
         localField: "_id",
         foreignField: "mainSponsor",
-        as: "dispositifsAssocies"
-      }
+        as: "dispositifsAssocies",
+      },
     },
     {
       $lookup: {
         from: "users",
         localField: "createur",
         foreignField: "_id",
-        as: "createur"
-      }
+        as: "createur",
+      },
     },
     {
       $project: {
@@ -68,17 +65,17 @@ export const getStructuresWithDispos = async (
         dispositifsAssocies: {
           _id: 1,
           status: 1,
-          metadatas: 1
+          metadatas: 1,
         },
         createur: {
           _id: 1,
           username: 1,
           email: 1,
           picture: 1,
-        }
-      }
-    }
-  ])
+        },
+      },
+    },
+  ]);
 };
 
 export const createStructureInDB = (structure: Partial<Structure>) => StructureModel.create(structure);
@@ -126,10 +123,7 @@ export const getNbStructures = async () => {
   return StructureModel.countDocuments({ status: "Actif" });
 };
 
-export const getStructureName = async (
-  id: Id,
-) => StructureModel.findById(id, { "nom": 1 })
-  .then(res => res?.nom)
+export const getStructureName = async (id: Id) => StructureModel.findById(id, { nom: 1 }).then((res) => res?.nom);
 
 export const addToStructureNotes = async (structureId: StructureId, text: string) => {
   return StructureModel.findOneAndUpdate(

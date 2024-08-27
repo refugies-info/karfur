@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { computePossibleNeeds } from "../needs.service";
 import { getNeedsFromDB } from "../needs.repository";
+import { computePossibleNeeds } from "../needs.service";
 
 jest.mock("../needs.repository", () => ({
   getNeedsFromDB: jest.fn(),
@@ -19,9 +19,9 @@ describe("computePossibleNeeds", () => {
   });
 
   const allNeeds = [
-    { _id: "id1", theme: {_id: "id1"} },
-    { _id: "id2", theme: {_id: "id1"} },
-    { _id: "id3", theme: {_id: "id2"} },
+    { _id: "id1", theme: { _id: "id1" } },
+    { _id: "id2", theme: { _id: "id1" } },
+    { _id: "id3", theme: { _id: "id2" } },
   ];
   it("should return correct value when all needs are in theme", async () => {
     getNeedsFromDB.mockResolvedValueOnce(allNeeds);

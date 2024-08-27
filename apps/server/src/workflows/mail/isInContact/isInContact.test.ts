@@ -4,11 +4,11 @@ import { isInContact } from "./isInContact";
 jest.mock("@sendinblue/client", () => ({
   ContactsApi: jest.fn().mockReturnValue({
     setApiKey: jest.fn(),
-    getContactInfo: jest.fn().mockResolvedValue({ body: { listIds: [57] } })
+    getContactInfo: jest.fn().mockResolvedValue({ body: { listIds: [57] } }),
   }),
   ContactsApiApiKeys: {
-    apiKey: ""
-  }
+    apiKey: "",
+  },
 }));
 
 describe("isInNewsletterList", () => {

@@ -1,15 +1,15 @@
-import logger from "../../../logger";
-import { cloneDeep, set } from "lodash";
 import { DemarcheContent, DispositifContent, Languages, TranslationContent } from "@refugies-info/api-types";
-import { addTradToAirtable } from "../../../modules/traductions/traductions.service";
-import { deleteTradsInDB } from "../../../modules/traductions/traductions.repository";
-import { getLanguageByCode } from "../../../modules/langues/langues.repository";
-import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
-import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
-import { Dispositif, DispositifModel, ErrorModel, Traductions, UserId } from "../../../typegoose";
-import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
-import { deleteLineBreaks, deleteLineBreaksInInfosections } from "../../../modules/dispositif/dispositif.service";
+import { cloneDeep, set } from "lodash";
+import logger from "~/logger";
+import { deleteLineBreaks, deleteLineBreaksInInfosections } from "~/modules/dispositif/dispositif.service";
+import { getLanguageByCode } from "~/modules/langues/langues.repository";
+import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
+import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedTradMailToTraductors";
+import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
+import { deleteTradsInDB } from "~/modules/traductions/traductions.repository";
+import { addTradToAirtable } from "~/modules/traductions/traductions.service";
+import { Dispositif, DispositifModel, ErrorModel, Traductions, UserId } from "~/typegoose";
 import { log } from "./log";
 
 const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {
@@ -23,9 +23,14 @@ const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>)
   if (next) set(newTranslation, "content.next", deleteLineBreaksInInfosections(next));
 
   return newTranslation;
-}
+};
 
-const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions, username: string) => {
+const validateTranslation = (
+  dispositif: Dispositif,
+  language: Languages,
+  translation: Traductions,
+  username: string,
+) => {
   const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation
   return DispositifModel.updateOne(
     { _id: dispositif._id },
@@ -46,23 +51,22 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
        */
       Promise.all([
         deleteTradsInDB(dispositif._id, language),
-        getLanguageByCode(language).then(langue => log(dispositif._id, translation.userId as UserId, langue._id)),
+        getLanguageByCode(language).then((langue) => log(dispositif._id, translation.userId as UserId, langue._id)),
         isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
-        isFirstValidation ? sendNotificationsForDispositif(dispositif._id, language).catch((error) => {
-          logger.error("[validateTranslations] error while sending notifications", error);
-        }) : null,
+        isFirstValidation
+          ? sendNotificationsForDispositif(dispositif._id, language).catch((error) => {
+              logger.error("[validateTranslations] error while sending notifications", error);
+            })
+          : null,
         isFirstValidation ? updateLanguagesAvancement() : null,
         dispositif.isDispositif() && isFirstValidation
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {
-            logger.error("[validateTranslations] error while sending mails to structure members", {
-              error: error.message,
-            });
-          })
+              logger.error("[validateTranslations] error while sending mails to structure members", {
+                error: error.message,
+              });
+            })
           : null,
-        isFirstValidation ? sendPublishedTradMailToTraductors(
-          language,
-          dispositif
-        ) : null
+        isFirstValidation ? sendPublishedTradMailToTraductors(language, dispositif) : null,
       ]),
     )
     .catch(async (err) => {
@@ -74,5 +78,5 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
 
       throw err;
     });
-}
+};
 export default validateTranslation;

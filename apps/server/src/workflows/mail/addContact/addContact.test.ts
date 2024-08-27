@@ -12,14 +12,14 @@ const mockResponse = (): MockResponse => {
 jest.mock("@sendinblue/client", () => ({
   ContactsApi: jest.fn().mockReturnValue({
     setApiKey: jest.fn(),
-    createContact: jest.fn().mockResolvedValue({})
+    createContact: jest.fn().mockResolvedValue({}),
   }),
   ContactsApiApiKeys: {
-    apiKey: ""
+    apiKey: "",
   },
   CreateContact: jest.fn().mockImplementation(() => {
-    return {}
-  })
+    return {};
+  }),
 }));
 
 describe.skip("setMail", () => {

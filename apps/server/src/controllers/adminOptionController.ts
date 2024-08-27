@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Route, Path, Security } from "tsoa";
 import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "@refugies-info/api-types";
+import { Body, Controller, Get, Path, Post, Route, Security } from "tsoa";
 
-import { getAdminOptions } from "../workflows/adminOption/getAdminOptions";
-import { postAdminOptions } from "../workflows/adminOption/postAdminOptions";
-import { ResponseWithData } from "../types/interface";
+import { ResponseWithData } from "~/types/interface";
+import { getAdminOptions } from "~/workflows/adminOption/getAdminOptions";
+import { postAdminOptions } from "~/workflows/adminOption/postAdminOptions";
 
 @Route("options")
 export class AdminOptionController extends Controller {

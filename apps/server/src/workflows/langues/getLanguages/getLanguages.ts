@@ -1,8 +1,8 @@
-import { ResponseWithData } from "../../../types/interface";
-import logger from "../../../logger";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import pick from "lodash/pick";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
+import pick from "lodash/pick";
+import logger from "~/logger";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const getLanguages = async (): ResponseWithData<GetLanguagesResponse[]> => {
   logger.info("[getLanguages] received");

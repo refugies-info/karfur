@@ -1,9 +1,9 @@
-import logger from "../../../logger";
-import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { log } from "./log";
-import { Dispositif } from "../../../typegoose";
-import { Response } from "../../../types/interface";
 import { AdminCommentsRequest } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { Dispositif } from "~/typegoose";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const updateDispositifAdminComments = async (id: string, body: AdminCommentsRequest, userId: any): Response => {
   const { adminComments, adminProgressionStatus, adminPercentageProgressionStatus } = body;

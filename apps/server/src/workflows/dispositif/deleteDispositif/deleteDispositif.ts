@@ -1,7 +1,7 @@
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { User } from "../../../typegoose";
-import { deleteDispositifInDb } from "../../../modules/dispositif/dispositif.service";
+import logger from "~/logger";
+import { deleteDispositifInDb } from "~/modules/dispositif/dispositif.service";
+import { User } from "~/typegoose";
+import { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const deleteDispositif = async (id: string, user: User): Response => {

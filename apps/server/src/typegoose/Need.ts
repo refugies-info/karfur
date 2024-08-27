@@ -29,10 +29,9 @@ export class Need extends Base {
 
   @prop({
     type: Number,
-    validate: { validator: (v: any) => isInteger(v) && v >= 0, message: "position must be an positive integer" }
+    validate: { validator: (v: any) => isInteger(v) && v >= 0, message: "position must be an positive integer" },
   })
   public position?: number;
-
 
   @prop({ _id: false })
   public image: ImageSchema;

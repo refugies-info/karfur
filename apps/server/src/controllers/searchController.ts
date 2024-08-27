@@ -1,8 +1,8 @@
-import { Controller, Get, Route } from "tsoa";
 import { UpdateIndexResponse } from "@refugies-info/api-types";
+import { Controller, Get, Route } from "tsoa";
 
-import { updateIndex } from "../workflows/search/updateIndex";
-import { ResponseWithData } from "../types/interface";
+import { ResponseWithData } from "~/types/interface";
+import { updateIndex } from "~/workflows/search/updateIndex";
 
 @Route("search")
 export class SearchController extends Controller {

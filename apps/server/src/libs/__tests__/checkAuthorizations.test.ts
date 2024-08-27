@@ -1,9 +1,12 @@
 import { DispositifStatus, RoleName, StructureMemberRole } from "@refugies-info/api-types";
-import { DispositifModel, ObjectId, Role, RoleModel, UserModel, StructureModel } from "../../typegoose";
+import { DispositifModel, ObjectId, RoleModel, StructureModel, UserModel } from "~/typegoose";
 import { dispositif as refDispositif } from "../../__fixtures__/dispositif";
-import { user as refUser } from "../../__fixtures__/user";
 import { structure as refStructure } from "../../__fixtures__/structure";
-import { checkUserIsAuthorizedToModifyDispositif, checkUserIsAuthorizedToDeleteDispositif } from "../checkAuthorizations";
+import { user as refUser } from "../../__fixtures__/user";
+import {
+  checkUserIsAuthorizedToDeleteDispositif,
+  checkUserIsAuthorizedToModifyDispositif,
+} from "../checkAuthorizations";
 
 const adminRole = new RoleModel({ nom: RoleName.ADMIN });
 const userAdmin = new UserModel(refUser);
@@ -25,11 +28,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.status = DispositifStatus.DRAFT;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -39,11 +38,7 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.DRAFT;
       dispositif.creatorId = CURRENT_USER_ID;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -52,11 +47,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.status = DispositifStatus.WAITING_STRUCTURE;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -66,11 +57,7 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.WAITING_STRUCTURE;
       dispositif.creatorId = CURRENT_USER_ID;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -79,14 +66,13 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.WAITING_STRUCTURE;
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: CURRENT_USER_ID, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: CURRENT_USER_ID, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -95,11 +81,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.status = DispositifStatus.WAITING_ADMIN;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -108,14 +90,13 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.WAITING_ADMIN;
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: CURRENT_USER_ID, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: CURRENT_USER_ID, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -124,30 +105,27 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.DRAFT;
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: CURRENT_USER_ID, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: CURRENT_USER_ID, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        true
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, true);
       expect(result).toBe(true);
     });
     it("should return true if status Brouillon de travail and user author", () => {
-
       const dispositif = new DispositifModel(refDispositif);
       dispositif.status = DispositifStatus.DRAFT;
       dispositif.creatorId = CURRENT_USER_ID;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: CURRENT_USER_ID, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: CURRENT_USER_ID, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        true
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, true);
       expect(result).toBe(true);
     });
 
@@ -156,15 +134,14 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.WAITING_ADMIN;
       dispositif.creatorId = CURRENT_USER_ID;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: OTHER_USER_ID1, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: OTHER_USER_ID1, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
       try {
-        checkUserIsAuthorizedToModifyDispositif(
-          dispositif,
-          userNotAdmin,
-          false
-        );
+        checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       } catch (error) {
         expect(error.message).toBe("The user is not authorized to edit content");
       }
@@ -176,11 +153,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.status = DispositifStatus.ACTIVE;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -189,14 +162,13 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.WAITING_ADMIN;
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: CURRENT_USER_ID, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: CURRENT_USER_ID, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -205,15 +177,14 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.ACTIVE;
       dispositif.creatorId = CURRENT_USER_ID;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: OTHER_USER_ID1, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: OTHER_USER_ID1, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
       try {
-        checkUserIsAuthorizedToModifyDispositif(
-          dispositif,
-          userNotAdmin,
-          false
-        );
+        checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       } catch (error) {
         expect(error.message).toBe("The user is not authorized to edit content");
       }
@@ -225,11 +196,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.status = DispositifStatus.KO_STRUCTURE;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -239,11 +206,7 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.KO_STRUCTURE;
       dispositif.creatorId = CURRENT_USER_ID;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
       expect(result).toBe(true);
     });
 
@@ -252,17 +215,15 @@ describe("checkAuthorizations", () => {
       dispositif.status = DispositifStatus.KO_STRUCTURE;
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
-      structure.membres = [{ userId: OTHER_USER_ID2, ...memberDetails }, { userId: CURRENT_USER_ID, ...memberDetails }];
+      structure.membres = [
+        { userId: OTHER_USER_ID2, ...memberDetails },
+        { userId: CURRENT_USER_ID, ...memberDetails },
+      ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userNotAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userNotAdmin, false);
 
       expect(result).toBe(true);
-
     });
 
     it("should return true if status Supprimé and user admin", () => {
@@ -270,11 +231,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.status = DispositifStatus.DELETED;
 
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        userAdmin,
-        false
-      );
+      const result = checkUserIsAuthorizedToModifyDispositif(dispositif, userAdmin, false);
       expect(result).toBe(true);
     });
   });
@@ -285,10 +242,7 @@ describe("checkAuthorizations", () => {
       dispositif.mainSponsor = new StructureModel(refStructure);
       dispositif.creatorId = OTHER_USER_ID1;
 
-      const result = checkUserIsAuthorizedToDeleteDispositif(
-        dispositif,
-        userAdmin
-      );
+      const result = checkUserIsAuthorizedToDeleteDispositif(dispositif, userAdmin);
       expect(result).toBe(true);
     });
 
@@ -297,15 +251,16 @@ describe("checkAuthorizations", () => {
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
       structure.membres = [
-        { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
+        {
+          userId: CURRENT_USER_ID,
+          added_at: new Date(),
+          roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN],
+        },
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToDeleteDispositif(
-        dispositif,
-        userNotAdmin
-      );
+      const result = checkUserIsAuthorizedToDeleteDispositif(dispositif, userNotAdmin);
       expect(result).toBe(true);
     });
 
@@ -315,14 +270,11 @@ describe("checkAuthorizations", () => {
       const structure = refStructure;
       structure.membres = [
         { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
-      const result = checkUserIsAuthorizedToDeleteDispositif(
-        dispositif,
-        userNotAdmin
-      );
+      const result = checkUserIsAuthorizedToDeleteDispositif(dispositif, userNotAdmin);
       expect(result).toBe(true);
     });
 
@@ -332,15 +284,12 @@ describe("checkAuthorizations", () => {
       const structure = refStructure;
       structure.membres = [
         { userId: OTHER_USER_ID1, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
       try {
-        checkUserIsAuthorizedToDeleteDispositif(
-          dispositif,
-          userNotAdmin
-        );
+        checkUserIsAuthorizedToDeleteDispositif(dispositif, userNotAdmin);
       } catch (error) {
         expect(error.message).toBe("NOT_AUTHORIZED");
       }
@@ -353,15 +302,12 @@ describe("checkAuthorizations", () => {
       const structure = refStructure;
       structure.membres = [
         { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
       try {
-        checkUserIsAuthorizedToDeleteDispositif(
-          dispositif,
-          userNotAdmin
-        );
+        checkUserIsAuthorizedToDeleteDispositif(dispositif, userNotAdmin);
       } catch (error) {
         expect(error.message).toBe("NOT_AUTHORIZED");
       }

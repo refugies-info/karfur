@@ -18,9 +18,7 @@
     "skipLibCheck": true,
     "strict": true,
     "paths": {
-      "~/*": [
-        "./*"
-      ]
+      "~/*": ["./*"]
     }
   },
   "exclude": [

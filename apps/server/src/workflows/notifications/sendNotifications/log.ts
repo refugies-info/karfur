@@ -1,6 +1,6 @@
-import { addLog } from "../../../modules/logs/logs.service";
-import logger from "../../../logger";
-import { DispositifId, UserId } from "../../../typegoose";
+import logger from "~/logger";
+import { addLog } from "~/modules/logs/logs.service";
+import { DispositifId, UserId } from "~/typegoose";
 
 export const log = async (demarcheId: DispositifId, authorId: UserId) => {
   try {

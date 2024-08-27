@@ -4,11 +4,11 @@ import { deleteContact } from "./deleteContact";
 jest.mock("@sendinblue/client", () => ({
   ContactsApi: jest.fn().mockReturnValue({
     setApiKey: jest.fn(),
-    deleteContact: jest.fn().mockResolvedValue(undefined)
+    deleteContact: jest.fn().mockResolvedValue(undefined),
   }),
   ContactsApiApiKeys: {
-    apiKey: ""
-  }
+    apiKey: "",
+  },
 }));
 
 describe("isInNewsletterList", () => {

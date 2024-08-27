@@ -1,6 +1,6 @@
 // @ts-nocheck
 /*import downloadApp from "./downloadApp";
-import { sendSMS } from "../../../connectors/twilio/sendSMS"; */
+import { sendSMS } from "~/connectors/twilio/sendSMS"; */
 
 /* jest.mock("../../../connectors/twilio/sendSMS", () => ({
   sendSMS: jest.fn()
@@ -26,13 +26,13 @@ describe.skip("downloadApp", () => {
     const req = {
       body: {
         phone: "0606060606",
-        locale: "fr"
+        locale: "fr",
       },
     };
     await downloadApp[1](req, res);
     expect(sendSMS).toHaveBeenCalledWith(
       "Voici le lien pour télécharger l'application Réfugiés.info : https://refugies.info/fr/download-app",
-      "0606060606"
+      "0606060606",
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -41,7 +41,7 @@ describe.skip("downloadApp", () => {
     const req = {
       body: {
         phone: "0606060606",
-        locale: "fr"
+        locale: "fr",
       },
     };
     await downloadApp[1](req, res);

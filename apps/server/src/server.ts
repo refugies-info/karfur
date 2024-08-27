@@ -1,14 +1,14 @@
 "use strict";
 require("dotenv").config();
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
 import cloudinary from "cloudinary";
-import formData from "express-form-data";
 import compression from "compression";
+import cors from "cors";
+import express from "express";
+import formData from "express-form-data";
+import mongoose from "mongoose";
+import { serverErrorHandler } from "~/errors";
+import logger from "~/logger";
 import { RegisterRoutes } from "../dist/routes";
-import logger from "./logger";
-import { serverErrorHandler } from "./errors";
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
@@ -36,7 +36,7 @@ const connectWithRetry = async () => {
       setTimeout(connectWithRetry, 5000);
     });
 };
-connectWithRetry().catch(e => logger.error("[mongoose] error", { error: e }));
+connectWithRetry().catch((e) => logger.error("[mongoose] error", { error: e }));
 
 //Body Parser
 app.use(compression());

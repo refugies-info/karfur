@@ -1,5 +1,5 @@
-import { Structure, UserId } from "../../../typegoose";
-import { addLog } from "../../../modules/logs/logs.service";
+import { addLog } from "~/modules/logs/logs.service";
+import { Structure, UserId } from "~/typegoose";
 
 export const log = async (structure: Partial<Structure>, oldStructure: Structure, authorId: UserId) => {
   if (structure.picture?.imgId && structure.picture?.imgId !== oldStructure.picture?.imgId) {
@@ -8,8 +8,8 @@ export const log = async (structure: Partial<Structure>, oldStructure: Structure
       link: {
         id: structure._id,
         model_link: "Structure",
-        next: "PageAnnuaire"
-      }
+        next: "PageAnnuaire",
+      },
     });
   }
   if (structure.nom && structure.nom !== oldStructure.nom) {
@@ -18,8 +18,8 @@ export const log = async (structure: Partial<Structure>, oldStructure: Structure
       link: {
         id: structure._id,
         model_link: "Structure",
-        next: "PageAnnuaire"
-      }
+        next: "PageAnnuaire",
+      },
     });
   }
   if (structure.status && structure.status !== oldStructure.status) {
@@ -46,8 +46,8 @@ export const log = async (structure: Partial<Structure>, oldStructure: Structure
       link: {
         id: structure._id,
         model_link: "Structure",
-        next: "PageAnnuaire"
-      }
+        next: "PageAnnuaire",
+      },
     });
   }
 };

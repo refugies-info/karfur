@@ -1,12 +1,12 @@
-import { DocumentType } from "@typegoose/typegoose";
-import { ObjectId, Role, RoleModel, UserModel } from "../../../typegoose";
-import { addStructureForUsers, registerUser, updateLastConnected } from "../users.service";
-import { sendWelcomeMail } from "../../mail/mail.service";
-import { addLog } from "../../logs/logs.service";
-import * as usersRep from "../users.repository";
 import { RoleName } from "@refugies-info/api-types";
-import * as roleRep from "../../role/role.repository";
+import { DocumentType } from "@typegoose/typegoose";
+import { ObjectId, Role, RoleModel, UserModel } from "~/typegoose";
 import { user } from "../../../__fixtures__";
+import { addLog } from "../../logs/logs.service";
+import { sendWelcomeMail } from "../../mail/mail.service";
+import * as roleRep from "../../role/role.repository";
+import * as usersRep from "../users.repository";
+import { addStructureForUsers, registerUser, updateLastConnected } from "../users.service";
 
 jest.mock("../../role/role.repository", () => ({
   getRoleByName: jest.fn(),
@@ -27,7 +27,7 @@ describe("addStructureForUsers", () => {
   });
   it("should add the structure to the user", async () => {
     //@ts-expect-error
-    jest.spyOn(usersRep, "addStructureForUsersInDB").mockResolvedValue(() => { });
+    jest.spyOn(usersRep, "addStructureForUsersInDB").mockResolvedValue(() => {});
     await addStructureForUsers(["userId"], "structId");
     expect(usersRep.addStructureForUsersInDB).toHaveBeenCalledWith(["userId"], "structId");
   });
@@ -54,11 +54,11 @@ describe("updateLastConnected", () => {
 
   it("should call updateUserInDB", async () => {
     //@ts-expect-error
-    jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => { });
+    jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => {});
     await updateLastConnected(user);
     expect(usersRep.updateUserInDB).toHaveBeenCalledWith(userId, {
       last_connected: new Date(1466424490000),
-      mfaCode: null
+      mfaCode: null,
     });
   });
 });
@@ -114,16 +114,15 @@ describe("registerUser", () => {
     jest.setSystemTime(mockDate);
 
     jest.spyOn(roleRep, "getRoleByName").mockImplementation(async (roleName: RoleName): Promise<DocumentType<Role>> => {
-      const role = new Role()
+      const role = new Role();
       role._id = roleId;
       role.nom = roleName;
-      role.nomPublique = ""
+      role.nomPublique = "";
       return new RoleModel(role);
-    })
+    });
 
-    jest.spyOn(usersRep, "createUser").mockImplementation(async userData => new UserModel({ ...user, ...userData }));
+    jest.spyOn(usersRep, "createUser").mockImplementation(async (userData) => new UserModel({ ...user, ...userData }));
   });
-
 
   it("should create user", async () => {
     const data = { email: "test@example.com" };
@@ -136,10 +135,9 @@ describe("registerUser", () => {
       status: "Actif",
       last_connected: new Date(1466424490000),
     });
-    expect(sendWelcomeMail).toHaveBeenCalledWith("test@example.com", null, userId)
-    expect(addLog).toHaveBeenCalledWith(userId, "User", "Utilisateur créé : première connexion")
+    expect(sendWelcomeMail).toHaveBeenCalledWith("test@example.com", null, userId);
+    expect(addLog).toHaveBeenCalledWith(userId, "User", "Utilisateur créé : première connexion");
   });
-
 
   afterEach(() => {
     jest.useRealTimers();

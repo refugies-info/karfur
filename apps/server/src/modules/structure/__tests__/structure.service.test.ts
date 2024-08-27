@@ -4,7 +4,7 @@ import { getStructureFromDB } from "../structure.repository";
 import {
   checkIfUserIsAuthorizedToModifyStructure,
   getStructureMembers,
-  userRespoStructureId
+  userRespoStructureId,
 } from "../structure.service";
 
 jest.mock("../structure.repository", () => ({
@@ -20,9 +20,7 @@ describe.skip("updateStructure", () => {
     getStructureFromDB.mockResolvedValueOnce(null);
 
     try {
-      await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [
-        { nom: "test" },
-      ]);
+      await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [{ nom: "test" }]);
     } catch (error) {
       expect(error.message).toEqual("NO_STRUCTURE_WITH_THIS_ID");
     }
@@ -36,9 +34,7 @@ describe.skip("updateStructure", () => {
     getStructureFromDB.mockResolvedValueOnce({ _id: "id", membres: [] });
 
     try {
-      await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [
-        { nom: "test" },
-      ]);
+      await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [{ nom: "test" }]);
     } catch (error) {
       expect(error.message).toEqual("USER_NOT_AUTHORIZED");
     }
@@ -50,11 +46,7 @@ describe.skip("updateStructure", () => {
   it("should return true if admin", async () => {
     getStructureFromDB.mockResolvedValueOnce({ _id: "id", membres: [] });
 
-    const result = await checkIfUserIsAuthorizedToModifyStructure(
-      "id",
-      "requestUserId",
-      [{ nom: RoleName.ADMIN }]
-    );
+    const result = await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [{ nom: RoleName.ADMIN }]);
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
       membres: 1,
     });
@@ -67,11 +59,7 @@ describe.skip("updateStructure", () => {
       membres: [{ userId: "userId", roles: ["administrateur"] }],
     });
 
-    const result = await checkIfUserIsAuthorizedToModifyStructure(
-      "id",
-      "userId",
-      [{ nom: "test" }]
-    );
+    const result = await checkIfUserIsAuthorizedToModifyStructure("id", "userId", [{ nom: "test" }]);
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
       membres: 1,
     });
@@ -84,11 +72,7 @@ describe.skip("updateStructure", () => {
       membres: [{ userId: "userId", roles: ["contributeur"] }],
     });
 
-    const result = await checkIfUserIsAuthorizedToModifyStructure(
-      "id",
-      "userId",
-      [{ nom: "test" }]
-    );
+    const result = await checkIfUserIsAuthorizedToModifyStructure("id", "userId", [{ nom: "test" }]);
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
       membres: 1,
     });
@@ -98,9 +82,7 @@ describe.skip("updateStructure", () => {
   it("should throw if getStructureFromDB throws", async () => {
     getStructureFromDB.mockRejectedValueOnce(new Error("erreur"));
     try {
-      await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [
-        { nom: "test" },
-      ]);
+      await checkIfUserIsAuthorizedToModifyStructure("id", "requestUserId", [{ nom: "test" }]);
     } catch (error) {
       expect(error.message).toEqual("erreur");
     }
@@ -153,11 +135,9 @@ describe.skip("userRespoStructureId", () => {
   it("should return structureId if responsable", async () => {
     const membres1 = [
       { _id: "membre1", userId: "user1", roles: ["administrateur"] },
-      { _id: "membre2", userId: "user2", roles: ["redacteur"] }
+      { _id: "membre2", userId: "user2", roles: ["redacteur"] },
     ];
-    const membres2 = [
-      { _id: "membre2", userId: "user2", roles: ["administrateur"] }
-    ];
+    const membres2 = [{ _id: "membre2", userId: "user2", roles: ["administrateur"] }];
     getStructureFromDB.mockResolvedValueOnce({ _id: "structureId1", membres: membres1 });
     getStructureFromDB.mockResolvedValueOnce({ _id: "structureId2", membres: membres2 });
 
@@ -168,7 +148,7 @@ describe.skip("userRespoStructureId", () => {
   it("should return null if not responsable", async () => {
     const membres1 = [
       { _id: "membre1", userId: "user1", roles: ["administrateur"] },
-      { _id: "membre2", userId: "user2", roles: ["redacteur"] }
+      { _id: "membre2", userId: "user2", roles: ["redacteur"] },
     ];
     getStructureFromDB.mockResolvedValueOnce({ _id: "structureId1", membres: membres1 });
 
@@ -177,4 +157,3 @@ describe.skip("userRespoStructureId", () => {
     expect(res).toEqual(null);
   });
 });
-

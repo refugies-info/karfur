@@ -1,16 +1,9 @@
 //@ts-nocheck
+import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
+import { getDispositifByIdWithMainSponsor, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { publishDispositif } from "~/modules/dispositif/dispositif.service";
+import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
 import { updateDispositifStatus } from "./updateDispositifStatus";
-import {
-  updateDispositifInDB,
-  getDispositifByIdWithMainSponsor,
-} from "../../../modules/dispositif/dispositif.repository";
-import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import {
-
-  checkUserIsAuthorizedToDeleteDispositif
-} from "../../../libs/checkAuthorizations";
-import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
-import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -21,7 +14,6 @@ const mockResponse = (): MockResponse => {
 };
 jest.mock("airtable");
 jest.mock("@sendgrid/mail");
-
 
 describe.skip("updateDispositifStatus", () => {
   beforeEach(() => {
@@ -112,7 +104,7 @@ describe.skip("updateDispositifStatus", () => {
     mainSponsor: 1,
     status: 1,
     typeContenu: 1,
-    contenu: 1
+    contenu: 1,
   };
   it("should return a 200 when new status is supprimé and user authorized and demarche", async () => {
     updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
@@ -128,15 +120,8 @@ describe.skip("updateDispositifStatus", () => {
     const res = mockResponse();
     await updateDispositifStatus(req, res);
 
-    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
-      "id",
-      neededFields
-    );
-    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(
-      { _id: "id" },
-      "userId",
-      []
-    );
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("id", neededFields);
+    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith({ _id: "id" }, "userId", []);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Supprimé",
     });
@@ -160,15 +145,8 @@ describe.skip("updateDispositifStatus", () => {
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
-    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
-      "id",
-      neededFields
-    );
-    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(
-      { _id: "id" },
-      "userId",
-      []
-    );
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("id", neededFields);
+    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith({ _id: "id" }, "userId", []);
 
     expect(updateDispositifInDB).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
@@ -199,15 +177,8 @@ describe.skip("updateDispositifStatus", () => {
     const res = mockResponse();
     await updateDispositifStatus(req, res);
 
-    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
-      "id",
-      neededFields
-    );
-    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(
-      dispo,
-      "userId",
-      []
-    );
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("id", neededFields);
+    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(dispo, "userId", []);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Supprimé",
     });

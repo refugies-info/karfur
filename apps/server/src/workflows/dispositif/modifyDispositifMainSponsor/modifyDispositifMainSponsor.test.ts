@@ -1,9 +1,8 @@
 // @ts-nocheck
-import { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
-import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
-import { log } from "./log";
 import { RoleName } from "@refugies-info/api-types";
+import { updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { updateAssociatedDispositifsInStructure } from "~/modules/structure/structure.repository";
+import { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -113,10 +112,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
       mainSponsor: "sponsorId",
       status: "En attente",
     });
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
-      "dispositifId",
-      "sponsorId"
-    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispositifId", "sponsorId");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -149,9 +145,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
   });
 
   it("should call updateDispositifInDB and return a 500 if updateDispositifInDB throws", async () => {
-    updateAssociatedDispositifsInStructure.mockRejectedValueOnce(
-      new Error("error")
-    );
+    updateAssociatedDispositifsInStructure.mockRejectedValueOnce(new Error("error"));
 
     const req = {
       fromSite: true,
@@ -172,10 +166,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
       mainSponsor: "sponsorId",
       status: "Actif",
     });
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
-      "dispositifId",
-      "sponsorId"
-    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispositifId", "sponsorId");
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
@@ -200,10 +191,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
       mainSponsor: "sponsorId",
       status: "En attente",
     });
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
-      "dispositifId",
-      "sponsorId"
-    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispositifId", "sponsorId");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });

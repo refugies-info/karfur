@@ -1,5 +1,5 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Languages } from "@refugies-info/api-types";
+import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
 import { Dispositif } from "./Dispositif";
 import { User } from "./User";

@@ -2,7 +2,7 @@
   "extends": "@refugies-info/typescript-config/base.json",
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": "./",
+    "baseUrl": "src",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
@@ -13,7 +13,8 @@
     "target": "es2021",
     "types": ["node", "jest"],
     "paths": {
-      "tsoa": ["../../node_modules/tsoa/dist"]
+      "tsoa": ["../../node_modules/tsoa/dist"],
+      "~/*": ["./*"]
     }
   },
   "exclude": ["node_modules", "dist"],

@@ -1,11 +1,11 @@
-import { addMerciDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { Merci } from "../../../typegoose/Dispositif";
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { ObjectId } from "../../../typegoose";
-import { AuthenticationError } from "../../../errors";
-import { log } from "./log";
 import { DispositifStatus } from "@refugies-info/api-types";
+import { AuthenticationError } from "~/errors";
+import logger from "~/logger";
+import { addMerciDispositifInDB, getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { ObjectId } from "~/typegoose";
+import { Merci } from "~/typegoose/Dispositif";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const addMerci = async (id: string, userId: string | null): Response => {
   logger.info("[addMerci] received", id);
@@ -24,4 +24,3 @@ export const addMerci = async (id: string, userId: string | null): Response => {
 
   return { text: "success" };
 };
-

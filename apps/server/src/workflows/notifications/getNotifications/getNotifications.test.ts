@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* import getNotifications from "./getNotifications";
-import { getNotificationsForUser } from "../../../modules/notifications/notifications.service"; */
+import { getNotificationsForUser } from "~/modules/notifications/notifications.service"; */
 
 /* jest.mock("../../../modules/notifications/notifications.service", () => ({
   getNotificationsForUser: jest.fn().mockReturnValue([
@@ -31,7 +31,6 @@ import { getNotificationsForUser } from "../../../modules/notifications/notifica
   ]),
 })); */
 
-
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
@@ -50,7 +49,7 @@ describe.skip("getNotifications", () => {
   it("should return 200", async () => {
     const req = {
       headers: {
-        "x-app-uid": "test"
+        "x-app-uid": "test",
       },
     };
     await getNotifications[1](req, res);
@@ -63,28 +62,27 @@ describe.skip("getNotifications", () => {
           uid: "test",
           seen: false,
           title: "notif 1",
-          data: {}
+          data: {},
         },
         {
           uid: "test",
           seen: false,
           title: "notif 2",
-          data: {}
+          data: {},
         },
         {
           uid: "test",
           seen: true,
           title: "notif 3",
-          data: {}
+          data: {},
         },
         {
           uid: "test",
           seen: false,
           title: "notif 4",
-          data: {}
+          data: {},
         },
-      ]
+      ],
     });
   });
-
 });

@@ -1,12 +1,12 @@
-import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security, Request } from "tsoa";
 import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
 import * as express from "express";
+import { Body, Controller, Delete, Get, Patch, Path, Post, Request, Route, Security } from "tsoa";
 
-import { getWidgets } from "../workflows/widget/getWidgets";
-import { postWidgets } from "../workflows/widget/postWidgets";
-import { patchWidget } from "../workflows/widget/patchWidget";
-import { deleteWidget } from "../workflows/widget/deleteWidget";
-import { IRequest, Response, ResponseWithData } from "../types/interface";
+import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import { deleteWidget } from "~/workflows/widget/deleteWidget";
+import { getWidgets } from "~/workflows/widget/getWidgets";
+import { patchWidget } from "~/workflows/widget/patchWidget";
+import { postWidgets } from "~/workflows/widget/postWidgets";
 
 @Route("widgets")
 export class WidgetController extends Controller {

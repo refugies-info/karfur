@@ -1,16 +1,32 @@
-import logger from "../../../logger";
-import { addNewParticipant, cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, ObjectId, StructureId, User } from "../../../typegoose";
-import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
-import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
-import { isToday } from "../../../libs/isToday";
-import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
-import { buildNewDispositif, isDispositifComplete, NotifType, notifyChange } from "../../../modules/dispositif/dispositif.service";
-import { log } from "./log";
-import { logContact } from "../../../modules/dispositif/log";
+import {
+  ContentType,
+  DispositifStatus,
+  UpdateDispositifRequest,
+  UpdateDispositifResponse,
+} from "@refugies-info/api-types";
 import { isString } from "lodash";
-import { countDispositifWords } from "../../../libs/wordCounter";
+import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
+import { isToday } from "~/libs/isToday";
+import { countDispositifWords } from "~/libs/wordCounter";
+import logger from "~/logger";
+import {
+  addNewParticipant,
+  cloneDispositifInDrafts,
+  getDispositifById,
+  getDraftDispositifById,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import {
+  buildNewDispositif,
+  isDispositifComplete,
+  NotifType,
+  notifyChange,
+} from "~/modules/dispositif/dispositif.service";
+import { logContact } from "~/modules/dispositif/log";
+import { Dispositif, ObjectId, StructureId, User } from "~/typegoose";
+import { DemarcheContent, DispositifContent, TranslationContent } from "~/typegoose/Dispositif";
+import { ResponseWithData } from "~/types/interface";
+import { log } from "./log";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -36,20 +52,44 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   };
 };
 
-export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): ResponseWithData<UpdateDispositifResponse> => {
+export const updateDispositif = async (
+  id: string,
+  body: UpdateDispositifRequest,
+  user: User,
+): ResponseWithData<UpdateDispositifResponse> => {
   logger.info("[updateDispositif] received", { id, body, user: user._id });
 
   const draftOldDispositif = await getDraftDispositifById(
     id,
-    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1, theme: 1, secondaryThemes: 1 },
+    {
+      typeContenu: 1,
+      translations: 1,
+      mainSponsor: 1,
+      creatorId: 1,
+      status: 1,
+      lastModificationDate: 1,
+      theme: 1,
+      secondaryThemes: 1,
+    },
     "mainSponsor",
   );
 
-  const oldDispositif = draftOldDispositif || await getDispositifById(
-    id,
-    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1, theme: 1, secondaryThemes: 1 },
-    "mainSponsor",
-  );
+  const oldDispositif =
+    draftOldDispositif ||
+    (await getDispositifById(
+      id,
+      {
+        typeContenu: 1,
+        translations: 1,
+        mainSponsor: 1,
+        creatorId: 1,
+        status: 1,
+        lastModificationDate: 1,
+        theme: 1,
+        secondaryThemes: 1,
+      },
+      "mainSponsor",
+    ));
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
 
   const translationContent = buildDispositifContent(body, oldDispositif);
@@ -59,7 +99,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     themesSelectedByAuthor: !user.isAdmin(),
     translations: {
       ...oldDispositif.translations,
-      fr: translationContent
+      fr: translationContent,
     },
     nbMots: countDispositifWords(translationContent.content),
     ...(await buildNewDispositif(body, user._id.toString())),
@@ -71,7 +111,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   if (needsDraftVersion) {
     newDispositif = await cloneDispositifInDrafts(id, {
       ...editedDispositif,
-      status: DispositifStatus.DRAFT
+      status: DispositifStatus.DRAFT,
     });
     await updateDispositifInDB(id, { hasDraftVersion: true }, false);
   } else {
@@ -89,7 +129,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   }
 
   if (body.contact) {
-    await logContact(user._id, newDispositif.mainSponsor as StructureId, body.contact)
+    await logContact(user._id, newDispositif.mainSponsor as StructureId, body.contact);
   }
 
   if (!newDispositif) throw new Error("dispositif not found");
@@ -98,7 +138,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
 
   // send notif only if non-admin user, and is today (= 1 notif per day maximum), and is active or waiting
   const isActive = oldDispositif.status === DispositifStatus.ACTIVE || !!draftOldDispositif;
-  const isWaiting = [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE].includes(oldDispositif.status)
+  const isWaiting = [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE].includes(oldDispositif.status);
   if (!isToday(oldDispositif.lastModificationDate) && !user.isAdmin() && (isWaiting || isActive)) {
     await notifyChange(NotifType.UPDATED, id, user._id);
   }
@@ -107,10 +147,10 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     text: "success",
     data: {
       id: newDispositif._id,
-      mainSponsor: newDispositif.mainSponsor as string || null,
+      mainSponsor: (newDispositif.mainSponsor as string) || null,
       typeContenu: newDispositif.typeContenu,
       status: newDispositif.status,
-      hasDraftVersion: needsDraftVersion || !!draftOldDispositif
-    }
+      hasDraftVersion: needsDraftVersion || !!draftOldDispositif,
+    },
   };
 };

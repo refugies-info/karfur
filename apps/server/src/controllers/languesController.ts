@@ -1,8 +1,8 @@
-import { Controller, Get, Route } from "tsoa";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
+import { Controller, Get, Route } from "tsoa";
 
-import { getLanguages } from "../workflows/langues/getLanguages";
-import { ResponseWithData } from "../types/interface";
+import { ResponseWithData } from "~/types/interface";
+import { getLanguages } from "~/workflows/langues/getLanguages";
 
 @Route("langues")
 export class LanguesController extends Controller {

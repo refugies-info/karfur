@@ -1,27 +1,27 @@
-import { DocumentType } from "@typegoose/typegoose";
-import { OAuth2Client } from "google-auth-library";
 import msal from "@azure/msal-node";
 import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { getUserByEmailFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { requestEmailLogin } from "../../../modules/users/login2FA";
-import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
-import { User } from "../../../typegoose/User";
-import { loginExceptionsManager, logUser, needs2FA } from "../../../modules/users/auth";
-import { registerUser } from "../../../modules/users/users.service";
+import { DocumentType } from "@typegoose/typegoose";
+import { OAuth2Client } from "google-auth-library";
+import logger from "~/logger";
+import { loginExceptionsManager, logUser, needs2FA } from "~/modules/users/auth";
+import { requestEmailLogin } from "~/modules/users/login2FA";
+import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { getUserByEmailFromDB, updateUserInDB } from "~/modules/users/users.repository";
+import { registerUser } from "~/modules/users/users.service";
+import { User } from "~/typegoose/User";
 
 const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  process.env.FRONT_SITE_URL
+  process.env.FRONT_SITE_URL,
 );
 
 const cca = new msal.ConfidentialClientApplication({
   auth: {
     clientId: process.env.MICROSOFT_CLIENT_ID,
     authority: "https://login.microsoftonline.com/common",
-    clientSecret: process.env.MICROSOFT_CLIENT_SECRET
-  }
+    clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
+  },
 });
 const MICROSOFT_REDIRECT_URL = process.env.FRONT_SITE_URL + "/fr/auth/microsoft-login";
 const MICROSOFT_SCOPES = ["User.Read"];
@@ -36,17 +36,17 @@ export const authWithPassword = async (user: DocumentType<User>, password: strin
 
   logger.info("[authWithPassword] password correct for user", { email: user.email });
   return true;
-}
+};
 
-export const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string, name: string } | null> => {
+export const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string; name: string } | null> => {
   logger.info("[authWithGoogle] start");
-  const { tokens } = await oauth2Client.getToken(loginRequest.authGoogle.authCode)
+  const { tokens } = await oauth2Client.getToken(loginRequest.authGoogle.authCode);
   const res = await oauth2Client.verifyIdToken({ idToken: tokens.id_token });
 
   const email = res.getPayload().email;
   const name = res.getPayload().given_name || "";
   return email ? { email, name } : null;
-}
+};
 
 export const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | null> => {
   logger.info("[authWithMicrosoft] start");
@@ -54,8 +54,8 @@ export const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<str
     const url = await cca.getAuthCodeUrl({
       scopes: MICROSOFT_SCOPES,
       redirectUri: MICROSOFT_REDIRECT_URL,
-      prompt: "consent"
-    })
+      prompt: "consent",
+    });
     throw new LoginError(LoginErrorType.SSO_URL, { url });
   } else {
     const res = await cca.acquireTokenByCode({
@@ -65,7 +65,7 @@ export const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<str
     });
     return res.account?.username || null;
   }
-}
+};
 
 export const login = async (body: LoginRequest): Promise<LoginResponse> => {
   logger.info("[Login] login attempt");

@@ -1,25 +1,25 @@
-import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import {
+  ageType,
+  commitmentDetailsType,
+  conditionType,
   ContentType,
   DispositifStatus,
+  frenchLevelType,
+  frequencyDetailsType,
+  frequencyUnitType,
   Languages,
   locationType,
-  frenchLevelType,
-  ageType,
   priceDetails,
   publicStatusType,
   publicType,
-  conditionType,
-  commitmentDetailsType,
-  frequencyDetailsType,
-  timeUnitType,
-  frequencyUnitType,
   timeSlotType,
+  timeUnitType,
 } from "@refugies-info/api-types";
+import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { get, has } from "lodash";
 import { Types } from "mongoose";
-import { PartialRecord } from "../types/interface";
-import { MustBePopulatedError } from "../errors";
+import { MustBePopulatedError } from "~/errors";
+import { PartialRecord } from "~/types/interface";
 import { Base } from "./Base";
 import { RichText, Uuid } from "./generics";
 import { Need, NeedId } from "./Need";

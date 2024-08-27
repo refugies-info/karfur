@@ -1,9 +1,9 @@
-import { Controller, Post, Body, Route, Security } from "tsoa";
 import { ContentLinkRequest, DownloadAppRequest } from "@refugies-info/api-types";
+import { Body, Controller, Post, Route, Security } from "tsoa";
 
-import { downloadApp } from "../workflows/sms/downloadApp";
-import { contentLink } from "../workflows/sms/contentLink";
-import { Response } from "../types/interface";
+import { Response } from "~/types/interface";
+import { contentLink } from "~/workflows/sms/contentLink";
+import { downloadApp } from "~/workflows/sms/downloadApp";
 
 @Route("sms")
 export class SmsController extends Controller {

@@ -1,9 +1,9 @@
-import cloudinary from "cloudinary";
-import { ImageModel } from "../../../typegoose";
-import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
-import { InvalidRequestError } from "../../../errors";
 import { PostImageResponse } from "@refugies-info/api-types";
+import cloudinary from "cloudinary";
+import { InvalidRequestError } from "~/errors";
+import logger from "~/logger";
+import { ImageModel } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const postImages = async (files: any): ResponseWithData<PostImageResponse> => {
   logger.info("[postImages] received a call");

@@ -1,11 +1,11 @@
-import passwordHash from "password-hash";
-import logger from "../../../logger";
 import { LoginResponse, RegisterRequest } from "@refugies-info/api-types";
-import { loginExceptionsManager } from "../../../modules/users/auth";
-import { isPasswordOk } from "../../../libs/validatePassword";
-import { LoginErrorType } from "../../../modules/users/LoginError";
-import { addToNewsletter } from "../../../connectors/sendinblue/addToNewsletter";
-import { registerUser } from "../../../modules/users/users.service";
+import passwordHash from "password-hash";
+import { addToNewsletter } from "~/connectors/sendinblue/addToNewsletter";
+import { isPasswordOk } from "~/libs/validatePassword";
+import logger from "~/logger";
+import { loginExceptionsManager } from "~/modules/users/auth";
+import { LoginErrorType } from "~/modules/users/LoginError";
+import { registerUser } from "~/modules/users/users.service";
 
 export const register = async (body: RegisterRequest): Promise<LoginResponse> => {
   logger.info("[Register] register user", { email: body.email });
@@ -20,7 +20,7 @@ export const register = async (body: RegisterRequest): Promise<LoginResponse> =>
       email: body.email,
       firstName: body.firstName,
       role: body.role,
-      hashedPassword
+      hashedPassword,
     });
 
     if (body.subscribeNewsletter) {

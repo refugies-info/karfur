@@ -48,7 +48,7 @@ export class Log extends Base {
     type: () => String,
     required: function () {
       return !!this.dynamicId;
-    }
+    },
   })
   public model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
 

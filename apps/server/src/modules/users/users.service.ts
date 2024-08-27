@@ -1,22 +1,22 @@
-import logger from "../../logger";
-import {
-  getUserById,
-  updateUserInDB,
-  removeStructureOfAllUsersInDB,
-  addStructureForUsersInDB,
-  removeStructureOfUserInDB,
-  createUser,
-} from "./users.repository";
-import { asyncForEach } from "../../libs/asyncForEach";
-import { User } from "../../typegoose";
-import { UserId } from "../../typegoose/User";
-import { Membre, StructureId } from "../../typegoose/Structure";
 import { RoleName, UserStatus } from "@refugies-info/api-types";
-import { getRoleByName } from "../role/role.repository";
-import { sendWelcomeMail } from "../mail/mail.service";
+import { asyncForEach } from "~/libs/asyncForEach";
+import { generateRandomId } from "~/libs/generateRandomId";
+import logger from "~/logger";
+import { User } from "~/typegoose";
+import { Membre, StructureId } from "~/typegoose/Structure";
+import { UserId } from "~/typegoose/User";
 import { addLog } from "../logs/logs.service";
+import { sendWelcomeMail } from "../mail/mail.service";
+import { getRoleByName } from "../role/role.repository";
 import { removeMemberFromStructure } from "../structure/structure.repository";
-import { generateRandomId } from "../../libs/generateRandomId";
+import {
+  addStructureForUsersInDB,
+  createUser,
+  getUserById,
+  removeStructureOfAllUsersInDB,
+  removeStructureOfUserInDB,
+  updateUserInDB,
+} from "./users.repository";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
@@ -48,7 +48,8 @@ export const removeStructureOfUser = async (userId: UserId, structureId: Structu
   });
 };
 
-export const updateLastConnected = (user: User) => updateUserInDB(user._id, { last_connected: new Date(), mfaCode: null });
+export const updateLastConnected = (user: User) =>
+  updateUserInDB(user._id, { last_connected: new Date(), mfaCode: null });
 
 export const getUsersFromStructureMembres = async (structureMembres: Membre[]): Promise<User[]> => {
   logger.info("[getUsersFromStructureMembres] received");
@@ -79,13 +80,12 @@ export const getUsersFromStructureMembres = async (structureMembres: Membre[]): 
   }
 };
 
-
 type RegisterUser = {
   email: string;
   hashedPassword?: string;
   firstName?: string;
   role?: RoleName.CONTRIB | RoleName.TRAD;
-}
+};
 
 export const registerUser = async (data: RegisterUser) => {
   const userRole = await getRoleByName(RoleName.USER);
@@ -95,7 +95,7 @@ export const registerUser = async (data: RegisterUser) => {
     email: data.email,
     firstName: data.firstName || null,
     password: data.hashedPassword || null,
-    roles: [userRole._id, extraRole?._id].filter(r => !!r),
+    roles: [userRole._id, extraRole?._id].filter((r) => !!r),
     status: UserStatus.ACTIVE,
     last_connected: new Date(),
   };
@@ -112,7 +112,7 @@ export const registerUser = async (data: RegisterUser) => {
   await addLog(user._id, "User", "Utilisateur créé : première connexion");
 
   return user;
-}
+};
 
 export const deleteUser = async (user: User) => {
   if (user.structures) {
@@ -131,4 +131,4 @@ export const deleteUser = async (user: User) => {
     structures: [],
     status: UserStatus.DELETED,
   });
-}
+};

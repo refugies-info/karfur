@@ -1,4 +1,3 @@
-import { Route, Controller, Post, Body, Delete, Path, Security, Get, Patch, Request } from "tsoa";
 import {
   GetNeedResponse,
   NeedRequest,
@@ -6,15 +5,10 @@ import {
   UpdatePositionsRequest,
 } from "@refugies-info/api-types";
 import * as express from "express";
+import { Body, Controller, Delete, Get, Patch, Path, Post, Request, Route, Security } from "tsoa";
 
-import {
-  postNeeds, deleteNeed,
-  addView,
-  updatePositions,
-  getNeeds,
-  patchNeed
-} from "../workflows/needs";
-import { Response, ResponseWithData } from "../types/interface";
+import { Response, ResponseWithData } from "~/types/interface";
+import { addView, deleteNeed, getNeeds, patchNeed, postNeeds, updatePositions } from "~/workflows/needs";
 
 @Route("needs")
 export class NeedController extends Controller {
@@ -50,7 +44,11 @@ export class NeedController extends Controller {
     jwt: ["expert"],
   })
   @Patch("{id}")
-  public async patch(@Path() id: string, @Body() body: Partial<NeedRequest>, @Request() request: express.Request): Response {
+  public async patch(
+    @Path() id: string,
+    @Body() body: Partial<NeedRequest>,
+    @Request() request: express.Request,
+  ): Response {
     return patchNeed(id, body, request.user);
   }
 

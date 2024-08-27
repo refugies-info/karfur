@@ -1,6 +1,6 @@
-import { getUserById } from "../../../modules/users/users.repository";
-import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
-import { deleteUser as deleteUserService } from "../../../modules/users/users.service";
+import { sendAccountDeletedMailService } from "~/modules/mail/mail.service";
+import { getUserById } from "~/modules/users/users.repository";
+import { deleteUser as deleteUserService } from "~/modules/users/users.service";
 
 export const deleteUser = async (id: string) => {
   const user = await getUserById(id, { email: 1, structures: 1 });

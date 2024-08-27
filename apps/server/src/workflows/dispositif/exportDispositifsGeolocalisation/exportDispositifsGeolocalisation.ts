@@ -1,8 +1,8 @@
-import { Response } from "../../../types/interface";
-import logger from "../../../logger";
-import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
-import { adaptDispositifDepartement, getDepartementsFigures } from "../../../modules/dispositif/dispositif.adapter";
-import { airtableUserBase } from "../../../connectors/airtable/airtable";
+import { airtableUserBase } from "~/connectors/airtable/airtable";
+import logger from "~/logger";
+import { adaptDispositifDepartement, getDepartementsFigures } from "~/modules/dispositif/dispositif.adapter";
+import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
+import { Response } from "~/types/interface";
 
 const exportDataInAirtable = (data: { departement: string; region: string; nbDispositifs: number }) => {
   airtableUserBase("Departements RI").create(
@@ -11,9 +11,9 @@ const exportDataInAirtable = (data: { departement: string; region: string; nbDis
         fields: {
           "Département": data.departement,
           "Nb dispositifs": data.nbDispositifs,
-          "Région": data.region
-        }
-      }
+          "Région": data.region,
+        },
+      },
     ],
     function (err: Error) {
       if (err) {
@@ -21,7 +21,7 @@ const exportDataInAirtable = (data: { departement: string; region: string; nbDis
           dep: data.departement,
           region: data.region,
           nb: data.nbDispositifs,
-          error: err.message
+          error: err.message,
         });
         return;
       }
@@ -29,9 +29,9 @@ const exportDataInAirtable = (data: { departement: string; region: string; nbDis
       logger.info("[exportDataInAirtable] successfully exported data", {
         dep: data.departement,
         region: data.region,
-        nb: data.nbDispositifs
+        nb: data.nbDispositifs,
       });
-    }
+    },
   );
 };
 

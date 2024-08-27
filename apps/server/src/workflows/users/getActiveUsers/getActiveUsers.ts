@@ -1,9 +1,9 @@
-import { getAllUsersFromDB } from "../../../modules/users/users.repository";
-import { User } from "../../../typegoose";
-import { ResponseWithData } from "../../../types/interface";
-import logger from "../../../logger";
-import { AuthenticationError } from "../../../errors";
 import { GetActiveUsersResponse } from "@refugies-info/api-types";
+import { AuthenticationError } from "~/errors";
+import logger from "~/logger";
+import { getAllUsersFromDB } from "~/modules/users/users.repository";
+import { User } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {
   logger.info("[getActiveUsers] received");

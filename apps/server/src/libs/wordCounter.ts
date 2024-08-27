@@ -1,7 +1,7 @@
 import { DemarcheContent, DispositifContent, InfoSection, InfoSections } from "@refugies-info/api-types";
-import isString from "lodash/isString";
 import get from "lodash/get";
-import { TranslationContent } from "../typegoose/Dispositif";
+import isString from "lodash/isString";
+import { TranslationContent } from "~/typegoose/Dispositif";
 
 /**
  * Basic word counter
@@ -10,7 +10,13 @@ import { TranslationContent } from "../typegoose/Dispositif";
  * @param str string
  * @returns number of words
  */
-export const countWords = (str?: string): number => (isString(str) ? str.replace(/<\/?[^>]+(>|$)/g, "").split(/\s+/).filter(w => !!w).length : 0);
+export const countWords = (str?: string): number =>
+  isString(str)
+    ? str
+        .replace(/<\/?[^>]+(>|$)/g, "")
+        .split(/\s+/)
+        .filter((w) => !!w).length
+    : 0;
 
 export const countWordsForInfoSections = (infoSections: InfoSections): number =>
   Object.values(infoSections || {}).reduce(
@@ -19,18 +25,17 @@ export const countWordsForInfoSections = (infoSections: InfoSections): number =>
   );
 
 export const countDispositifWords = (translation: DispositifContent | DemarcheContent) => {
-  return countWords(translation.titreInformatif) +
+  return (
+    countWords(translation.titreInformatif) +
     countWords(translation.titreMarque) +
     countWords(translation.abstract) +
     countWords(translation.what) +
     countWordsForInfoSections(translation.how) +
     countWordsForInfoSections((translation as DemarcheContent).next) +
     countWordsForInfoSections((translation as DispositifContent).why)
-}
+  );
+};
 
 export const countDispositifWordsForSections = (translation: TranslationContent, sections: string[]) => {
-  return sections.reduce(
-    (acc, key: string) => acc + countWords(get(translation, key) || ""),
-    0,
-  );
-}
+  return sections.reduce((acc, key: string) => acc + countWords(get(translation, key) || ""), 0);
+};

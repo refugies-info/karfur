@@ -1,9 +1,9 @@
-import logger from "../../../logger";
-import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
-import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
-import { Response } from "../../../types/interface";
 import { ProgressionIndicator } from "@refugies-info/api-types";
-import { airtableUserBase } from "../../../connectors/airtable/airtable";
+import { airtableUserBase } from "~/connectors/airtable/airtable";
+import { computeGlobalIndicator } from "~/controllers/traduction/lib";
+import logger from "~/logger";
+import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
+import { Response } from "~/types/interface";
 
 interface UserToExport {
   fields: {
@@ -38,13 +38,16 @@ const exportUsersInAirtable = (users: UserToExport[]): void => {
   });
 };
 
-const formatUser = (user: Awaited<ReturnType<typeof getAllUsersForAdminFromDB>>[0], indicators: ProgressionIndicator): UserToExport => {
+const formatUser = (
+  user: Awaited<ReturnType<typeof getAllUsersForAdminFromDB>>[0],
+  indicators: ProgressionIndicator,
+): UserToExport => {
   logger.info(`[formatUser] format user with id ${user._id}`);
   const structure =
     user.structures && user.structures.length > 0 ? user.structures.map((structure) => structure.nom).join() : "";
   const createdAt = user.created_at ? user.created_at.toISOString() : "";
   const last_connected = user.last_connected ? user.last_connected.toISOString() : "";
-  const roleNames = user.roles.filter(r => r.nom !== "User").map((r) => r.nomPublique);
+  const roleNames = user.roles.filter((r) => r.nom !== "User").map((r) => r.nomPublique);
   const langues = user.selectedLanguages.map((langue) => langue.langueFr);
   const nbWords = Math.floor(indicators?.wordsCount || 0);
   const timeSpent = Math.floor((indicators?.timeSpent || 0) / 60 / 1000);

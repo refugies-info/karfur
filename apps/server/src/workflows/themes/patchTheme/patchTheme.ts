@@ -1,12 +1,12 @@
-import merge from "lodash/fp/merge";
-import { DocumentType } from "@typegoose/typegoose";
-import logger from "../../../logger";
-import { getTheme, updateTheme } from "../../../modules/themes/themes.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Theme } from "../../../typegoose";
-import { ResponseWithData } from "../../../types/interface";
-import { NotFoundError } from "../../../errors";
 import { PatchThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import { DocumentType } from "@typegoose/typegoose";
+import merge from "lodash/fp/merge";
+import { NotFoundError } from "~/errors";
+import logger from "~/logger";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { getTheme, updateTheme } from "~/modules/themes/themes.repository";
+import { Theme } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> => {
   logger.info("[patchTheme] received", id);

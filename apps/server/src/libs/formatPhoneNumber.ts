@@ -9,6 +9,6 @@ const formatPhoneNumber = (phoneNumber: string) => {
     throw new Error("Phone number length invalid");
   }
   return newPhoneNumber;
-}
+};
 
 export default formatPhoneNumber;

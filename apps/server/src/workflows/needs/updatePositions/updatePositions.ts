@@ -1,7 +1,7 @@
 import { UpdatePositionsNeedResponse, UpdatePositionsRequest } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { updatePositions as updatePositionsInDb } from "../../../modules/needs/needs.repository";
-import { ResponseWithData } from "../../../types/interface";
+import logger from "~/logger";
+import { updatePositions as updatePositionsInDb } from "~/modules/needs/needs.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const updatePositions = async (
   body: UpdatePositionsRequest,

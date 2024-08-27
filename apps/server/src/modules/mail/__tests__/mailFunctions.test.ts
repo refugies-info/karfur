@@ -1,13 +1,10 @@
 // @ts-nocheck
-import {
-  sendPublishedMailToCreator,
-  sendPublishedMailToStructureMembers,
-} from "../mailFunctions";
 import { getUserById } from "../../users/users.repository";
 import {
   sendPublishedFicheMailToCreatorService,
   sendPublishedFicheMailToStructureMembersService,
 } from "../mail.service";
+import { sendPublishedMailToCreator, sendPublishedMailToStructureMembers } from "../mailFunctions";
 
 jest.mock("../../users/users.repository", () => ({
   getUserById: jest.fn(),
@@ -81,17 +78,9 @@ describe.skip("sendPublishedMailToStructureMembers", () => {
   const membre3 = { _id: "id3", username: "user3", email: "email3" };
 
   it("should call sendPublishedFicheMailToStructureMembersService with every membre", async () => {
-    await sendPublishedMailToStructureMembers(
-      [membre1, membre2, membre3],
-      "TI",
-      "TM",
-      "lien",
-      "dispoID"
-    );
+    await sendPublishedMailToStructureMembers([membre1, membre2, membre3], "TI", "TM", "lien", "dispoID");
 
-    expect(
-      sendPublishedFicheMailToStructureMembersService
-    ).toHaveBeenCalledWith({
+    expect(sendPublishedFicheMailToStructureMembersService).toHaveBeenCalledWith({
       pseudo: "user1",
       titreInformatif: "TI",
       titreMarque: "TM",
@@ -101,9 +90,7 @@ describe.skip("sendPublishedMailToStructureMembers", () => {
       userId: "id1",
     });
 
-    expect(
-      sendPublishedFicheMailToStructureMembersService
-    ).toHaveBeenCalledWith({
+    expect(sendPublishedFicheMailToStructureMembersService).toHaveBeenCalledWith({
       pseudo: "user2",
       titreInformatif: "TI",
       titreMarque: "TM",
@@ -113,9 +100,7 @@ describe.skip("sendPublishedMailToStructureMembers", () => {
       userId: "id2",
     });
 
-    expect(
-      sendPublishedFicheMailToStructureMembersService
-    ).toHaveBeenCalledWith({
+    expect(sendPublishedFicheMailToStructureMembersService).toHaveBeenCalledWith({
       pseudo: "user3",
       titreInformatif: "TI",
       titreMarque: "TM",

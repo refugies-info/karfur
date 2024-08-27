@@ -19,7 +19,7 @@ class LoginError extends Error {
   data: any;
 
   constructor(message: LoginErrorType, data?: any) {
-    super(message)
+    super(message);
     this.data = data || {};
   }
 }

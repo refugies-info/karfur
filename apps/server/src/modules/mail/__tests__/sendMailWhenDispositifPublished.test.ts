@@ -1,11 +1,8 @@
 // @ts-nocheck
-import { sendMailWhenDispositifPublished } from "../sendMailWhenDispositifPublished";
 import { getStructureMembers } from "../../structure/structure.service";
 import { getUsersFromStructureMembres } from "../../users/users.service";
-import {
-  sendPublishedMailToStructureMembers,
-  sendPublishedMailToCreator,
-} from "../mailFunctions";
+import { sendPublishedMailToCreator, sendPublishedMailToStructureMembers } from "../mailFunctions";
+import { sendMailWhenDispositifPublished } from "../sendMailWhenDispositifPublished";
 
 jest.mock("../../structure/structure.service", () => ({
   getStructureMembers: jest.fn(),
@@ -44,19 +41,8 @@ describe.skip("sendMailWhenDispositifPublished", () => {
     await sendMailWhenDispositifPublished(dispositif);
     expect(getStructureMembers).toHaveBeenCalledWith("sponsorId");
     expect(getUsersFromStructureMembres).toHaveBeenCalledWith(structureMembers);
-    expect(sendPublishedMailToStructureMembers).toHaveBeenCalledWith(
-      membres,
-      "TI",
-      "TM",
-      lien,
-      "id"
-    );
-    expect(sendPublishedMailToCreator).toHaveBeenCalledWith(
-      dispositif,
-      "TI",
-      "TM",
-      lien
-    );
+    expect(sendPublishedMailToStructureMembers).toHaveBeenCalledWith(membres, "TI", "TM", lien, "id");
+    expect(sendPublishedMailToCreator).toHaveBeenCalledWith(dispositif, "TI", "TM", lien);
   });
 
   it("should get structure members get users and send mails when creator in structure", async () => {
@@ -68,13 +54,7 @@ describe.skip("sendMailWhenDispositifPublished", () => {
     await sendMailWhenDispositifPublished(dispositif);
     expect(getStructureMembers).toHaveBeenCalledWith("sponsorId");
     expect(getUsersFromStructureMembres).toHaveBeenCalledWith(structureMembers);
-    expect(sendPublishedMailToStructureMembers).toHaveBeenCalledWith(
-      membres,
-      "TI",
-      "TM",
-      lien,
-      "id"
-    );
+    expect(sendPublishedMailToStructureMembers).toHaveBeenCalledWith(membres, "TI", "TM", lien, "id");
     expect(sendPublishedMailToCreator).not.toHaveBeenCalled();
   });
 });

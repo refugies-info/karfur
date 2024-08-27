@@ -1,11 +1,11 @@
-import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch, Query } from "tsoa";
-import { pick } from "lodash";
-import { Request as ExRequest } from "express";
 import {
   AddUserFavoriteRequest,
+  CheckCodeRequest,
+  CheckUserExistsResponse,
   DeleteUserFavoriteRequest,
   GetActiveUsersResponse,
   GetAllUsersResponse,
+  GetUserFavoritesRequest,
   GetUserFavoritesResponse,
   GetUserInfoResponse,
   GetUserStatisticsResponse,
@@ -13,40 +13,40 @@ import {
   LoginResponse,
   NewPasswordRequest,
   NewPasswordResponse,
+  RegisterRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SelectedLanguagesRequest,
-  UpdateUserRequest,
-  GetUserFavoritesRequest,
-  RegisterRequest,
-  CheckCodeRequest,
-  CheckUserExistsResponse,
   SendCodeRequest,
+  UpdateUserRequest,
   UpdateUserResponse,
 } from "@refugies-info/api-types";
+import { Request as ExRequest } from "express";
+import { pick } from "lodash";
+import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
 
-import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
-import { getAllUsers } from "../workflows/users/getAllUsers";
-import { getActiveUsers } from "../workflows/users/getActiveUsers";
-import { updateUser } from "../workflows/users/updateUser";
-import { exportUsers } from "../workflows/users/exportUsers";
-import { login } from "../workflows/users/login";
-import { setNewPassword } from "../workflows/users/setNewPassword";
-import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
-import { deleteUser } from "../workflows/users/deleteUser";
-import { setSelectedLanguages } from "../workflows";
-import { IRequest, Response, ResponseWithData } from "../types/interface";
-import { addUserFavorite } from "../workflows/users/addUserFavorite";
-import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
-import { resetPassword } from "../workflows/users/resetPassword";
-import { checkResetToken } from "../workflows/users/checkResetToken";
-import { checkUserExists } from "../workflows/users/checkUserExists";
-import { checkCode } from "../workflows/users/checkCode";
-import { register } from "../workflows/users/register";
-import { sendCode } from "../workflows/users/sendCode";
-import { deleteMyAccount } from "../workflows/users/deleteMyAccount";
+import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import { setSelectedLanguages } from "~/workflows";
+import { addUserFavorite } from "~/workflows/users/addUserFavorite";
+import { checkCode } from "~/workflows/users/checkCode";
+import { checkResetToken } from "~/workflows/users/checkResetToken";
+import { checkUserExists } from "~/workflows/users/checkUserExists";
+import { deleteMyAccount } from "~/workflows/users/deleteMyAccount";
+import { deleteUser } from "~/workflows/users/deleteUser";
+import { deleteUserFavorites } from "~/workflows/users/deleteUserFavorites";
+import { exportUsers } from "~/workflows/users/exportUsers";
+import { getActiveUsers } from "~/workflows/users/getActiveUsers";
+import { getAllUsers } from "~/workflows/users/getAllUsers";
+import { getFiguresOnUsers } from "~/workflows/users/getFiguresOnUsers";
+import { getUserFavoritesInLocale } from "~/workflows/users/getUserFavoritesInLocale";
+import { login } from "~/workflows/users/login";
+import { register } from "~/workflows/users/register";
+import { resetPassword } from "~/workflows/users/resetPassword";
+import { sendCode } from "~/workflows/users/sendCode";
+import { setNewPassword } from "~/workflows/users/setNewPassword";
+import { updateUser } from "~/workflows/users/updateUser";
 
-// import { UserStatus } from "../typegoose/User";
+// import { UserStatus } from "~/typegoose/User";
 
 // THIS NOT WORK BECAUSE TSOA NEED TO KNOW EVERY
 // EXTENDED TYPE (IE TYPEGOOSE TYPES) => HE CAN'T
@@ -100,7 +100,7 @@ export class UserController extends Controller {
   @Get("/exists")
   public async getExists(@Query() email: string): ResponseWithData<CheckUserExistsResponse> {
     const data = await checkUserExists(email);
-    return { text: "success", data }
+    return { text: "success", data };
   }
 
   @Security({ jwt: ["admin"] })
@@ -183,8 +183,8 @@ export class UserController extends Controller {
           "partner",
           "departments",
         ]),
-        sso: !request.user.password
-      }
+        sso: !request.user.password,
+      },
     };
   }
 

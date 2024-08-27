@@ -1,8 +1,8 @@
-import { Controller, Get, Route, Query, Security } from "tsoa";
 import { GetLogResponse } from "@refugies-info/api-types";
+import { Controller, Get, Query, Route, Security } from "tsoa";
 
-import { getLogs } from "../workflows/log/getLogs";
-import { ResponseWithData } from "../types/interface";
+import { ResponseWithData } from "~/types/interface";
+import { getLogs } from "~/workflows/log/getLogs";
 
 @Route("logs")
 export class LogController extends Controller {

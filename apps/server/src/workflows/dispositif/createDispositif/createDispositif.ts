@@ -1,7 +1,3 @@
-import logger from "../../../logger";
-import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, ObjectId, StructureId, UserId } from "../../../typegoose";
 import {
   ContentType,
   CreateDispositifRequest,
@@ -12,11 +8,15 @@ import {
   PostDispositifsResponse,
   RoleName,
 } from "@refugies-info/api-types";
-import { buildNewDispositif } from "../../../modules/dispositif/dispositif.service";
-import { getRoleByName } from "../../../modules/role/role.repository";
-import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
-import { logContact } from "../../../modules/dispositif/log";
-import { countDispositifWords } from "../../../libs/wordCounter";
+import { countDispositifWords } from "~/libs/wordCounter";
+import logger from "~/logger";
+import { createDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { buildNewDispositif } from "~/modules/dispositif/dispositif.service";
+import { logContact } from "~/modules/dispositif/log";
+import { getRoleByName } from "~/modules/role/role.repository";
+import { addRoleAndContribToUser } from "~/modules/users/users.repository";
+import { Dispositif, ObjectId, StructureId, UserId } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const createDispositif = async (
   body: CreateDispositifRequest,
@@ -54,7 +54,7 @@ export const createDispositif = async (
   const dispositif = await createDispositifInDB(newDispositif);
 
   if (body.contact) {
-    await logContact(userId as UserId, dispositif.mainSponsor as StructureId, body.contact)
+    await logContact(userId as UserId, dispositif.mainSponsor as StructureId, body.contact);
   }
 
   const contribRole = await getRoleByName(RoleName.CONTRIB);
@@ -64,10 +64,10 @@ export const createDispositif = async (
     text: "success",
     data: {
       id: dispositif._id,
-      mainSponsor: dispositif.mainSponsor as string || null,
+      mainSponsor: (dispositif.mainSponsor as string) || null,
       typeContenu: dispositif.typeContenu,
       status: dispositif.status,
-      hasDraftVersion: false
-    }
+      hasDraftVersion: false,
+    },
   };
 };

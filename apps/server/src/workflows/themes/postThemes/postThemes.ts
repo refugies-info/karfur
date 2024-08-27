@@ -1,10 +1,10 @@
-import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
-import { createTheme } from "../../../modules/themes/themes.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
-import { AppUser, Theme } from "../../../typegoose";
 import { PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { getAllAppUsers, updateNotificationsSettings } from "~/modules/appusers/appusers.repository";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { createTheme } from "~/modules/themes/themes.repository";
+import { AppUser, Theme } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const hasOneNotificationEnabled = (user: AppUser) =>
   user.notificationsSettings.demarches ||
@@ -19,10 +19,10 @@ export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: Ap
   });
 
 const updateUsersNotificationsSettings = async (theme: Theme) => {
-  const appUsers = await getAllAppUsers()
+  const appUsers = await getAllAppUsers();
   // TODO: use a batch update (see https://github.com/refugies-info/karfur/issues/2166)
   return Promise.all(appUsers.map(addThemeInNotificationSettingsForUser(theme)));
-}
+};
 
 export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThemeResponse> => {
   logger.info("[postThemes] received", theme);

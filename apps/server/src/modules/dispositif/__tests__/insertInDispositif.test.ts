@@ -22,9 +22,7 @@ describe.skip("insertInDispositif", () => {
       translatedText: {
         titreInformatif: "title",
         abstract: "description english",
-        contenu: [
-          { title: "C'est quoi en", content: "content en", children: [] },
-        ],
+        contenu: [{ title: "C'est quoi en", content: "content en", children: [] }],
       },
       traductions: [
         { _id: "trad1", userId: { _id: "userId1" } },
@@ -47,11 +45,7 @@ describe.skip("insertInDispositif", () => {
       participants: ["userId2", "userId3", "userId1"],
       avancement: { en: 1 },
     };
-    const { insertedDispositif, traductorIdsList } = await insertInDispositif(
-      trad,
-      "en",
-      dispo
-    );
+    const { insertedDispositif, traductorIdsList } = await insertInDispositif(trad, "en", dispo);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", result);
     expect(insertedDispositif).toEqual("updatedDispo");
     expect(traductorIdsList).toEqual(["userId1", "userId2"]);
@@ -79,9 +73,7 @@ describe.skip("insertInDispositif", () => {
       translatedText: {
         titreInformatif: "title ar",
         abstract: "description ar",
-        contenu: [
-          { title: "C'est quoi ar", content: "content ar", children: [] },
-        ],
+        contenu: [{ title: "C'est quoi ar", content: "content ar", children: [] }],
       },
       traductions: [
         { _id: "trad5", userId: { _id: "userId5" } },
@@ -108,11 +100,7 @@ describe.skip("insertInDispositif", () => {
       participants: ["userId2", "userId3", "userId1", "userId5"],
       avancement: { en: 1, ar: 1 },
     };
-    const { insertedDispositif, traductorIdsList } = await insertInDispositif(
-      trad,
-      "ar",
-      dispo
-    );
+    const { insertedDispositif, traductorIdsList } = await insertInDispositif(trad, "ar", dispo);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", result);
     expect(insertedDispositif).toEqual("updatedDispo");
     expect(traductorIdsList).toEqual(["userId5"]);

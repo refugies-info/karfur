@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* import contentLink from "./contentLink";
-import { sendSMS } from "../../../connectors/twilio/sendSMS"; */
+import { sendSMS } from "~/connectors/twilio/sendSMS"; */
 
 /* jest.mock("../../../connectors/twilio/sendSMS", () => ({
   sendSMS: jest.fn()
@@ -28,13 +28,13 @@ describe.skip("contentLink", () => {
       body: {
         phone: "0606060606",
         title: "Nouvelle fiche",
-        url: "https://refugies.info/fr/dispositif/nouvelle-fiche"
+        url: "https://refugies.info/fr/dispositif/nouvelle-fiche",
       },
     };
     await contentLink[1](req, res);
     expect(sendSMS).toHaveBeenCalledWith(
       "Bonjour\nVoici le lien vers la fiche Nouvelle fiche : https://refugies.info/fr/dispositif/nouvelle-fiche",
-      "0606060606"
+      "0606060606",
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -45,7 +45,7 @@ describe.skip("contentLink", () => {
       body: {
         phone: "0606060606",
         title: "Nouvelle fiche",
-        url: "https://refugies.info/fr/dispositif/nouvelle-fiche"
+        url: "https://refugies.info/fr/dispositif/nouvelle-fiche",
       },
     };
     await contentLink[1](req, res);

@@ -1,7 +1,7 @@
-import logger from "../../../logger";
 import { SendCodeRequest } from "@refugies-info/api-types";
-import { requestEmailLogin } from "../../../modules/users/login2FA";
-import { loginExceptionsManager } from "../../../modules/users/auth";
+import logger from "~/logger";
+import { loginExceptionsManager } from "~/modules/users/auth";
+import { requestEmailLogin } from "~/modules/users/login2FA";
 
 export const sendCode = async (body: SendCodeRequest): Promise<boolean> => {
   logger.info("[sendCode] send 2fa code");

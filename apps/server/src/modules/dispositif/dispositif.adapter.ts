@@ -1,8 +1,8 @@
 import _, { get } from "lodash";
 import moment from "moment";
-import logger from "../../logger";
+import logger from "~/logger";
+import { Dispositif, DispositifId, UserId } from "~/typegoose";
 import { departmentRegionCorrespondency, RegionData } from "./data";
-import { Dispositif, DispositifId, UserId } from "../../typegoose";
 
 export const filterDispositifsForDraftReminders = (
   dispositifs: Dispositif[],

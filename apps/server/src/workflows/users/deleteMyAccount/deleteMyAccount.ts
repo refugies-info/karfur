@@ -1,7 +1,7 @@
-import { User } from "../../../typegoose";
-import { deleteUser } from "../../../modules/users/users.service";
-import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
-import { slackDeletedAccount } from "../../../connectors/slack/sendSlackNotif";
+import { slackDeletedAccount } from "~/connectors/slack/sendSlackNotif";
+import { sendAccountDeletedMailService } from "~/modules/mail/mail.service";
+import { deleteUser } from "~/modules/users/users.service";
+import { User } from "~/typegoose";
 
 export const deleteMyAccount = async (user: User) => {
   await deleteUser(user);
@@ -9,4 +9,4 @@ export const deleteMyAccount = async (user: User) => {
     await sendAccountDeletedMailService(user.email);
     await slackDeletedAccount(user.email);
   }
-}
+};

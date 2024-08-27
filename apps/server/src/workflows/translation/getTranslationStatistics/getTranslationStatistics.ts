@@ -1,18 +1,18 @@
-import logger from "../../../logger";
-import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { RoleName, Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
-import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
-import { Dispositif } from "../../../typegoose";
-import { countDispositifWords } from "../../../libs/wordCounter";
-import { cache } from "../../../libs/cache";
+import { cache } from "~/libs/cache";
+import { countDispositifWords } from "~/libs/wordCounter";
+import logger from "~/logger";
+import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
+import { Dispositif } from "~/typegoose";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 const NB_WORDS_CACHE = "nbWordsCache";
 
 const countWordsInDispositif = (dispositif: Dispositif): number =>
   Object.entries(dispositif.translations)
-    .map(([ln, translation]) => ln === "fr" ? 0 : countDispositifWords(translation.content))
+    .map(([ln, translation]) => (ln === "fr" ? 0 : countDispositifWords(translation.content)))
     .reduce((acc, count) => acc + count, 0);
 
 const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>
@@ -44,7 +44,7 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
         nbWordsTranslated = promiseCalculation;
       } else {
         const promiseCalculation = getActiveContentsFiltered({}, {}).then((dispositifs) =>
-          dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0)
+          dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0),
         );
         cache.set(NB_WORDS_CACHE, promiseCalculation, 120);
         nbWordsTranslated = await promiseCalculation;

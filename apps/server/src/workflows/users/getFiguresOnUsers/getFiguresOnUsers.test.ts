@@ -3,8 +3,8 @@
 import { RoleName } from "@refugies-info/api-types";
 
 /* import { getFiguresOnUsers } from "./getFiguresOnUsers";
-import { UserModel } from "../../../typegoose/User";
-import logger from "../../../logger";
+import { UserModel } from "~/typegoose/User";
+import logger from "~/logger";
  */
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -18,52 +18,52 @@ jest.mock("../../../logger");
 
 const tradRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: RoleName.TRAD
+  nom: RoleName.TRAD,
 };
 const expertTradRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: RoleName.EXPERT_TRAD
+  nom: RoleName.EXPERT_TRAD,
 };
 const contribRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: RoleName.CONTRIB
+  nom: RoleName.CONTRIB,
 };
 const userRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: RoleName.USER
+  nom: RoleName.USER,
 };
 
 const users = [
   {
     _id: "5dbff32e367a343830cd2f49",
-    roles: []
+    roles: [],
   },
   {
     _id: "5dbff89209dee20b18091ec3",
-    roles: [userRole]
+    roles: [userRole],
   },
   {
     _id: "5dbff89209dee20b18091ec3",
-    roles: [tradRole]
+    roles: [tradRole],
   },
   {
     _id: "5dbff89209dee20b18091ec3",
-    roles: [expertTradRole]
+    roles: [expertTradRole],
   },
   {
     _id: "5dbff89209dee20b18091ec3",
-    roles: [contribRole]
-  }
+    roles: [contribRole],
+  },
 ];
 const users2 = [
   {
     _id: "5dbff89209dee20b18091ec3",
-    roles: [tradRole]
+    roles: [tradRole],
   },
   {
     _id: "5dbff89209dee20b18091ec3",
-    roles: [expertTradRole, tradRole]
-  }
+    roles: [expertTradRole, tradRole],
+  },
 ];
 
 describe.skip("getFiguresOnUsers", () => {
@@ -76,8 +76,8 @@ describe.skip("getFiguresOnUsers", () => {
       data: {
         nbContributors: 1,
         nbTraductors: 2,
-        nbExperts: 1
-      }
+        nbExperts: 1,
+      },
     });
   });
 
@@ -90,14 +90,14 @@ describe.skip("getFiguresOnUsers", () => {
       data: {
         nbContributors: 0,
         nbTraductors: 2,
-        nbExperts: 1
-      }
+        nbExperts: 1,
+      },
     });
   });
 
   it("should return zero values if user.find throws", async () => {
     UserModel.find.mockReturnValueOnce({
-      populate: jest.fn().mockRejectedValue(new Error("error"))
+      populate: jest.fn().mockRejectedValue(new Error("error")),
     });
     const res = mockResponse();
     await getFiguresOnUsers({}, res);
@@ -106,11 +106,11 @@ describe.skip("getFiguresOnUsers", () => {
       data: {
         nbContributors: 0,
         nbTraductors: 0,
-        nbExperts: 0
-      }
+        nbExperts: 0,
+      },
     });
     expect(logger.error).toHaveBeenCalledWith("[getFiguresOnUsers] error while getting users", {
-      error: "error"
+      error: "error",
     });
   });
 });

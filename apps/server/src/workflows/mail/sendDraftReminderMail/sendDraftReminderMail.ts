@@ -1,15 +1,12 @@
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { getDraftDispositifs, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import {
-  sendOneDraftReminderMailService,
-  sendMultipleDraftsReminderMailService
-} from "../../../modules/mail/mail.service";
+import logger from "~/logger";
 import {
   filterDispositifsForDraftReminders,
   formatDispositifsByCreator,
-  FormattedDispositif
-} from "../../../modules/dispositif/dispositif.adapter";
+  FormattedDispositif,
+} from "~/modules/dispositif/dispositif.adapter";
+import { getDraftDispositifs, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { sendMultipleDraftsReminderMailService, sendOneDraftReminderMailService } from "~/modules/mail/mail.service";
+import { Response } from "~/types/interface";
 import { log } from "./log";
 
 const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "first" | "second") => {
@@ -23,16 +20,16 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
         recipient.dispositifs[0].titreInformatif,
         recipient.creatorId,
         dispositifId,
-        reminder
+        reminder,
       );
       const updatedDispositif =
         reminder === "first"
           ? {
-            draftReminderMailSentDate: new Date()
-          }
+              draftReminderMailSentDate: new Date(),
+            }
           : {
-            draftSecondReminderMailSentDate: new Date()
-          };
+              draftSecondReminderMailSentDate: new Date(),
+            };
       await updateDispositifInDB(dispositifId, updatedDispositif);
       await log(dispositifId, reminder);
       return;
@@ -42,21 +39,23 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
 
     await sendMultipleDraftsReminderMailService(recipient.email, recipient.username, recipient.creatorId, reminder);
 
-    await Promise.all(recipient.dispositifs.map(async (dispositif) => {
-      const updatedDispositif =
-        reminder === "first"
-          ? {
-            draftReminderMailSentDate: new Date()
-          }
-          : {
-            draftSecondReminderMailSentDate: new Date()
-          };
-      await updateDispositifInDB(dispositif._id, updatedDispositif);
-      await log(dispositif._id, reminder);
-    }));
+    await Promise.all(
+      recipient.dispositifs.map(async (dispositif) => {
+        const updatedDispositif =
+          reminder === "first"
+            ? {
+                draftReminderMailSentDate: new Date(),
+              }
+            : {
+                draftSecondReminderMailSentDate: new Date(),
+              };
+        await updateDispositifInDB(dispositif._id, updatedDispositif);
+        await log(dispositif._id, reminder);
+      }),
+    );
   } catch (error) {
     logger.error("[sendDraftReminderMail] error with the recipient", {
-      creatorId: recipient.creatorId
+      creatorId: recipient.creatorId,
     });
   }
 };
@@ -71,24 +70,24 @@ export const sendDraftReminderMail = async (): Response => {
   const dispositifsFirstReminder = filterDispositifsForDraftReminders(
     dispositifs,
     nbDaysBeforeFirstReminder,
-    "draftReminderMailSentDate"
+    "draftReminderMailSentDate",
   );
 
   const nbDaysBeforeSecondReminder = 30;
   const dispositifsSecondReminder = filterDispositifsForDraftReminders(
     dispositifs,
     nbDaysBeforeSecondReminder,
-    "draftSecondReminderMailSentDate"
+    "draftSecondReminderMailSentDate",
   ).filter(
     (dispo) =>
       !dispositifsFirstReminder.find(
         // if dispo in 2 lists, send only first
-        (d) => d._id.toString() === dispo._id.toString()
-      )
+        (d) => d._id.toString() === dispo._id.toString(),
+      ),
   );
 
   logger.info(
-    `[sendDraftReminderMail] send ${dispositifsFirstReminder.length} 1rst reminders and ${dispositifsSecondReminder.length} 2nd reminders`
+    `[sendDraftReminderMail] send ${dispositifsFirstReminder.length} 1rst reminders and ${dispositifsSecondReminder.length} 2nd reminders`,
   );
 
   const formattedRecipientsFirstReminder = formatDispositifsByCreator(dispositifsFirstReminder);
@@ -101,5 +100,5 @@ export const sendDraftReminderMail = async (): Response => {
     await sendReminderEmails(recipient, "second");
   }
 
-  return { text: "success" }
+  return { text: "success" };
 };

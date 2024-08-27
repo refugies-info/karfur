@@ -1,13 +1,13 @@
-import passwordHash from "password-hash";
-import logger from "../../../logger";
-import { isPasswordOk } from "../../../libs/validatePassword";
-import { userRespoStructureId } from "../../../modules/structure/structure.service";
-import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
-import { ResponseWithData } from "../../../types/interface";
-import { getUserFromDB } from "../../../modules/users/users.repository";
 import { NewPasswordRequest, NewPasswordResponse } from "@refugies-info/api-types";
-import { loginExceptionsManager, logUser } from "../../../modules/users/auth";
-import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
+import passwordHash from "password-hash";
+import { isPasswordOk } from "~/libs/validatePassword";
+import logger from "~/logger";
+import { userRespoStructureId } from "~/modules/structure/structure.service";
+import { loginExceptionsManager, logUser } from "~/modules/users/auth";
+import { requestEmailLogin, verifyCode } from "~/modules/users/login2FA";
+import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { getUserFromDB } from "~/modules/users/users.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> => {
   try {

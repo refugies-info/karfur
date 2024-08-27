@@ -32,10 +32,7 @@ export const data = [
   { _id: "5e82f17c0f3ff1005039d9e1", needs: ["Avoir une aide psychologique"] },
   {
     _id: "6049efdfcc6c4200145485fa",
-    needs: [
-      "Obtenir des aides financières (RSA, CAF)",
-      "Financer ma formation",
-    ],
+    needs: ["Obtenir des aides financières (RSA, CAF)", "Financer ma formation"],
   },
   {
     _id: "5e7df8ca0f3ff10050398e75",
@@ -101,17 +98,11 @@ export const data = [
   },
   {
     _id: "5df7979521431b004e139c3c",
-    needs: [
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-      "Commencer à apprendre le français",
-    ],
+    needs: ["Passer un diplôme (DILF, DELF, DALF, TCF)", "Commencer à apprendre le français"],
   },
   {
     _id: "603510f966ec880014e6e86c",
-    needs: [
-      "Les démarches OFPRA (état civil)",
-      "Obtenir mes papiers importants",
-    ],
+    needs: ["Les démarches OFPRA (état civil)", "Obtenir mes papiers importants"],
   },
   {
     _id: "6050d114a3f2ce001428955f",
@@ -150,10 +141,7 @@ export const data = [
   },
   {
     _id: "604f30f5e0162200154411aa",
-    needs: [
-      "Les démarches OFPRA (état civil)",
-      "Obtenir mes papiers importants",
-    ],
+    needs: ["Les démarches OFPRA (état civil)", "Obtenir mes papiers importants"],
   },
   { _id: "6092ab8e6e6476001437f0b0", needs: ["Ouvrir un compte bancaire"] },
   {
@@ -180,11 +168,7 @@ export const data = [
   { _id: "5fbfc0e469bac10014a9e814", needs: ["Trouver un premier travail"] },
   {
     _id: "60746a89cf9a8c00148cc1d3",
-    needs: [
-      "Les démarches OFPRA (état civil)",
-      "Obtenir mes papiers importants",
-      "Les démarches pour ma famille",
-    ],
+    needs: ["Les démarches OFPRA (état civil)", "Obtenir mes papiers importants", "Les démarches pour ma famille"],
   },
   {
     _id: "5ddfc54400db44004e071193",
@@ -215,24 +199,15 @@ export const data = [
   },
   {
     _id: "60019780bf1abc0014d04a00",
-    needs: [
-      "Commencer à apprendre le français",
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-    ],
+    needs: ["Commencer à apprendre le français", "Passer un diplôme (DILF, DELF, DALF, TCF)"],
   },
   {
     _id: "5ce7b52d83983700167bca27",
-    needs: [
-      "Me former aux métiers du numérique",
-      "Apprendre le français du monde du travail",
-    ],
+    needs: ["Me former aux métiers du numérique", "Apprendre le français du monde du travail"],
   },
   {
     _id: "5f636eb3f7343d004610c0b5",
-    needs: [
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-      "Préparer mon entrée à l'université",
-    ],
+    needs: ["Passer un diplôme (DILF, DELF, DALF, TCF)", "Préparer mon entrée à l'université"],
   },
   {
     _id: "6022556472a37f0014bbdc9e",
@@ -241,10 +216,7 @@ export const data = [
   { _id: "6037709787fe6200145c424e", needs: ["Créer une entreprise"] },
   {
     _id: "5f918acdfc486c0047ef53a1",
-    needs: [
-      "Commencer à apprendre le français",
-      "Approfondir mes compétences linguistiques",
-    ],
+    needs: ["Commencer à apprendre le français", "Approfondir mes compétences linguistiques"],
   },
   {
     _id: "605db6405b99ca0014a9feb0",
@@ -265,10 +237,7 @@ export const data = [
   },
   {
     _id: "6022497972a37f0014bbdc91",
-    needs: [
-      "Commencer à apprendre le français",
-      "Approfondir mes compétences linguistiques",
-    ],
+    needs: ["Commencer à apprendre le français", "Approfondir mes compétences linguistiques"],
   },
   {
     _id: "5e96f677a61a45004f455f3c",
@@ -281,10 +250,7 @@ export const data = [
   },
   {
     _id: "5e7dbba01eaf4d0051da4233",
-    needs: [
-      "Me former aux métiers du numérique",
-      "Apprendre quand j'ai du temps libre",
-    ],
+    needs: ["Me former aux métiers du numérique", "Apprendre quand j'ai du temps libre"],
   },
   {
     _id: "5fb3a265a7a48a0046f50bfe",
@@ -292,10 +258,7 @@ export const data = [
   },
   {
     _id: "5fbfc22269bac10014a9e821",
-    needs: [
-      "Commencer à apprendre le français",
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-    ],
+    needs: ["Commencer à apprendre le français", "Passer un diplôme (DILF, DELF, DALF, TCF)"],
   },
   {
     _id: "60532487464aa50014a1fb90",
@@ -303,10 +266,7 @@ export const data = [
   },
   {
     _id: "5f96bcc0feb94b0046c103db",
-    needs: [
-      "Être accompagné pour trouver un travail",
-      "Être accompagné pour trouver un logement",
-    ],
+    needs: ["Être accompagné pour trouver un travail", "Être accompagné pour trouver un logement"],
   },
   {
     _id: "5ddbaea730109a00537d1a44",
@@ -314,10 +274,7 @@ export const data = [
   },
   {
     _id: "601c184a9f69df0014499c36",
-    needs: [
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-      "Commencer à apprendre le français",
-    ],
+    needs: ["Passer un diplôme (DILF, DELF, DALF, TCF)", "Commencer à apprendre le français"],
   },
   {
     _id: "5f929d92fc486c0047ef5d8c",
@@ -329,11 +286,7 @@ export const data = [
   },
   {
     _id: "5e466d13f9fa02004e267f95",
-    needs: [
-      "Rencontrer de nouvelles personnes",
-      "Trouver un premier travail",
-      "Me former aux métiers de la cuisine",
-    ],
+    needs: ["Rencontrer de nouvelles personnes", "Trouver un premier travail", "Me former aux métiers de la cuisine"],
   },
   {
     _id: "5eea2813f78c23005bc9cbb0",
@@ -341,10 +294,7 @@ export const data = [
   },
   {
     _id: "5e5fd0fd361338004e16e71f",
-    needs: [
-      "Être accompagné pour trouver un logement",
-      "Être accompagné pour trouver un travail",
-    ],
+    needs: ["Être accompagné pour trouver un logement", "Être accompagné pour trouver un travail"],
   },
   {
     _id: "5fbf7e53c9f633001482764b",
@@ -364,10 +314,7 @@ export const data = [
   },
   {
     _id: "602a56342bb80b0014cc570b",
-    needs: [
-      "Me former aux métiers de la cuisine",
-      "Apprendre le français du monde du travail",
-    ],
+    needs: ["Me former aux métiers de la cuisine", "Apprendre le français du monde du travail"],
   },
   {
     _id: "603fc01d7e319900146336a5",
@@ -384,10 +331,7 @@ export const data = [
   },
   {
     _id: "602bcfc31a1ab20014fc7d08",
-    needs: [
-      "Me former aux métiers de la cuisine",
-      "Me former aux métiers de l'agriculture",
-    ],
+    needs: ["Me former aux métiers de la cuisine", "Me former aux métiers de l'agriculture"],
   },
   {
     _id: "5e8b36b40f3ff100503ad93b",
@@ -436,10 +380,7 @@ export const data = [
   },
   {
     _id: "5f918a87fc486c0047ef5382",
-    needs: [
-      "Trouver un premier travail",
-      "Me former aux métiers de la cuisine",
-    ],
+    needs: ["Trouver un premier travail", "Me former aux métiers de la cuisine"],
   },
   { _id: "5f91937afc486c0047ef5546", needs: ["Trouver un premier travail"] },
   {
@@ -473,10 +414,7 @@ export const data = [
   },
   {
     _id: "5ec3dcabd5d822004ee97c27",
-    needs: [
-      "Rencontrer de nouvelles personnes",
-      "Être bénévole pour une association",
-    ],
+    needs: ["Rencontrer de nouvelles personnes", "Être bénévole pour une association"],
   },
   {
     _id: "5e84cef30f3ff100503a470c",
@@ -497,26 +435,17 @@ export const data = [
   },
   {
     _id: "605dc3375b99ca0014a9feb2",
-    needs: [
-      "Trouver un premier travail",
-      "Être accompagné pour trouver un travail",
-    ],
+    needs: ["Trouver un premier travail", "Être accompagné pour trouver un travail"],
   },
   {
     _id: "6044ca6ff46a4800149ac61f",
-    needs: [
-      "Trouver un premier travail",
-      "Savoir candidater (CV, entretien...)",
-    ],
+    needs: ["Trouver un premier travail", "Savoir candidater (CV, entretien...)"],
   },
   { _id: "60520f8cbf0a6d0014ee680c", needs: ["Tester mon niveau de langue"] },
   { _id: "5e96e8bba61a45004f455cdd", needs: ["Trouver un premier travail"] },
   {
     _id: "5fc9f8f9a640b00014f32dac",
-    needs: [
-      "Être accompagné pour trouver une formation",
-      "Créer une entreprise",
-    ],
+    needs: ["Être accompagné pour trouver une formation", "Créer une entreprise"],
   },
   { _id: "5fbe386a16c56300147f69ef", needs: ["Trouver un premier travail"] },
   { _id: "5dcea7e98a87590016672506", needs: ["Où chercher un travail ?"] },
@@ -567,10 +496,7 @@ export const data = [
   },
   {
     _id: "605db516dbaa7600145297fb",
-    needs: [
-      "Être aidé pour faire mes démarches administratives",
-      "Trouver les bonnes études",
-    ],
+    needs: ["Être aidé pour faire mes démarches administratives", "Trouver les bonnes études"],
   },
   {
     _id: "603f9ed06aec1700143471b3",
@@ -586,17 +512,11 @@ export const data = [
   },
   {
     _id: "604794f9b898f10014c9892b",
-    needs: [
-      "Obtenir mes papiers importants",
-      "Obtenir mes papiers importants de santé",
-    ],
+    needs: ["Obtenir mes papiers importants", "Obtenir mes papiers importants de santé"],
   },
   {
     _id: "6051e8eebf0a6d0014ee6809",
-    needs: [
-      "Obtenir mes papiers importants",
-      "Obtenir mes papiers importants de santé",
-    ],
+    needs: ["Obtenir mes papiers importants", "Obtenir mes papiers importants de santé"],
   },
   { _id: "60508fa6a3f2ce0014289555", needs: ["Avoir une aide psychologique"] },
   { _id: "5dc54940bceb3c004fc430d8", needs: ["Trouver un logement"] },
@@ -610,25 +530,16 @@ export const data = [
   },
   {
     _id: "5f918fbafc486c0047ef548d",
-    needs: [
-      "Commencer à apprendre le français",
-      "Être aidé pour faire mes démarches administratives",
-    ],
+    needs: ["Commencer à apprendre le français", "Être aidé pour faire mes démarches administratives"],
   },
   { _id: "6048ecb576fb800015351ee1", needs: ["Créer une entreprise"] },
   {
     _id: "5e1c8c0e0742580052a33972",
-    needs: [
-      "Obtenir des aides financières (RSA, CAF)",
-      "Gérer mon budget et obtenir des aides",
-    ],
+    needs: ["Obtenir des aides financières (RSA, CAF)", "Gérer mon budget et obtenir des aides"],
   },
   {
     _id: "5fb532beebfcd000146c1b75",
-    needs: [
-      "Être aidé pour faire mes démarches administratives",
-      "Être accompagné pour trouver un travail",
-    ],
+    needs: ["Être aidé pour faire mes démarches administratives", "Être accompagné pour trouver un travail"],
   },
   {
     _id: "6065af380774da00142298b5",
@@ -636,10 +547,7 @@ export const data = [
   },
   {
     _id: "5e6a5c1b361338004e1714fb",
-    needs: [
-      "Gérer mon budget et obtenir des aides",
-      "Les démarches pour ma famille",
-    ],
+    needs: ["Gérer mon budget et obtenir des aides", "Les démarches pour ma famille"],
   },
   {
     _id: "60533337464aa50014a1fb93",
@@ -651,10 +559,7 @@ export const data = [
   },
   {
     _id: "5f68a1410aab6900460c091a",
-    needs: [
-      "Trouver les bonnes études",
-      "Être aidé pour faire mes démarches administratives",
-    ],
+    needs: ["Trouver les bonnes études", "Être aidé pour faire mes démarches administratives"],
   },
   { _id: "5f50e8ded57488005ff3db8e", needs: ["Trouver un logement"] },
   {
@@ -675,10 +580,7 @@ export const data = [
   },
   {
     _id: "5dd40b5c3b4bf0004f6eb732",
-    needs: [
-      "Rencontrer de nouvelles personnes",
-      "Faire une activité culturelle ou créative",
-    ],
+    needs: ["Rencontrer de nouvelles personnes", "Faire une activité culturelle ou créative"],
   },
   {
     _id: "5e7b28231eaf4d0051d9ef58",
@@ -728,17 +630,11 @@ export const data = [
   },
   {
     _id: "5e7b292c1eaf4d0051d9efe2",
-    needs: [
-      "Découvrir la culture sur internet",
-      "Découvrir la culture en apprenant le français",
-    ],
+    needs: ["Découvrir la culture sur internet", "Découvrir la culture en apprenant le français"],
   },
   {
     _id: "5f91a254fc486c0047ef57c9",
-    needs: [
-      "Commencer à apprendre le français",
-      "Être accompagné pour trouver un travail",
-    ],
+    needs: ["Commencer à apprendre le français", "Être accompagné pour trouver un travail"],
   },
   {
     _id: "5f477332e12b3a0067628665",
@@ -746,17 +642,11 @@ export const data = [
   },
   {
     _id: "605daa876ac8c200146b37cf",
-    needs: [
-      "Me former aux métiers du social",
-      "Apprendre le français du monde du travail",
-    ],
+    needs: ["Me former aux métiers du social", "Apprendre le français du monde du travail"],
   },
   {
     _id: "5de0dc20281dad0016232e11",
-    needs: [
-      "Me former aux métiers du social",
-      "Apprendre le français du monde du travail",
-    ],
+    needs: ["Me former aux métiers du social", "Apprendre le français du monde du travail"],
   },
   {
     _id: "604a25c7f45d920014766933",
@@ -804,10 +694,7 @@ export const data = [
   },
   {
     _id: "5ddbafa8228ec80016ccdb3f",
-    needs: [
-      "Trouver les bonnes études",
-      "Être aidé pour faire mes démarches administratives",
-    ],
+    needs: ["Trouver les bonnes études", "Être aidé pour faire mes démarches administratives"],
   },
   {
     _id: "5e81fddd0f3ff1005039cc01",
@@ -815,10 +702,7 @@ export const data = [
   },
   {
     _id: "5e85ef5f0f3ff100503a789a",
-    needs: [
-      "Préparer mon entrée à l'université",
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-    ],
+    needs: ["Préparer mon entrée à l'université", "Passer un diplôme (DILF, DELF, DALF, TCF)"],
   },
   {
     _id: "5f4cf7f6e12b3a006762941f",
@@ -890,10 +774,7 @@ export const data = [
   },
   {
     _id: "5ea9a67cc2622f004e5f26b5",
-    needs: [
-      "Être accompagné pour trouver un travail",
-      "Rencontrer de nouvelles personnes",
-    ],
+    needs: ["Être accompagné pour trouver un travail", "Rencontrer de nouvelles personnes"],
   },
   {
     _id: "5f7331260aab6900460c3bc6",
@@ -901,10 +782,7 @@ export const data = [
   },
   {
     _id: "5e7df80e0f3ff10050398e28",
-    needs: [
-      "Passer un diplôme (DILF, DELF, DALF, TCF)",
-      "Approfondir mes compétences linguistiques",
-    ],
+    needs: ["Passer un diplôme (DILF, DELF, DALF, TCF)", "Approfondir mes compétences linguistiques"],
   },
   {
     _id: "601974c283693f00144b634b",
@@ -947,10 +825,7 @@ export const data = [
   },
   {
     _id: "60a7ce4b0f764a0014c5527c",
-    needs: [
-      "Les démarches OFPRA (état civil)",
-      "Les démarches pour ma famille",
-    ],
+    needs: ["Les démarches OFPRA (état civil)", "Les démarches pour ma famille"],
   },
   { _id: "609a9ff37e80e7001415cea1", needs: ["Trouver un logement"] },
   {
@@ -976,10 +851,7 @@ export const data = [
   },
   {
     _id: "5f5f2dd3d153510045eea4c6",
-    needs: [
-      "Être accompagné pour trouver une formation",
-      "Avoir le permis de conduire",
-    ],
+    needs: ["Être accompagné pour trouver une formation", "Avoir le permis de conduire"],
   },
   { _id: "608fe1ade5c3c90014038d64", needs: ["Trouver un premier travail"] },
   {
@@ -1005,17 +877,11 @@ export const data = [
   },
   {
     _id: "60a7b164331be50014dd88cc",
-    needs: [
-      "Les démarches OFPRA (état civil)",
-      "Les démarches pour ma famille",
-    ],
+    needs: ["Les démarches OFPRA (état civil)", "Les démarches pour ma famille"],
   },
   {
     _id: "6092c2a399c10300141d576d",
-    needs: [
-      "Me faire soigner gratuitement",
-      "Obtenir mes papiers importants de santé",
-    ],
+    needs: ["Me faire soigner gratuitement", "Obtenir mes papiers importants de santé"],
   },
   { _id: "6079953757ea9300141dd6b6", needs: ["Faire du sport"] },
   { _id: "60882c2b9cd0aa0014aab660", needs: ["Trouver un logement"] },

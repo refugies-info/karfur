@@ -1,10 +1,7 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { getAllWidgets } from "~/modules/widgets/widgets.repository";
 import { getWidgets } from "./getWidgets";
-import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
 
 jest.mock("../../../modules/widgets/widgets.repository", () => ({
   getAllWidgets: jest.fn(),
@@ -13,7 +10,6 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
   checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
 }));
-
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -41,7 +37,7 @@ describe.skip("getWidgets", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
     };
@@ -57,5 +53,4 @@ describe.skip("getWidgets", () => {
     expect(getAllWidgets).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

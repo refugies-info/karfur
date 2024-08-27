@@ -1,7 +1,7 @@
 import { GetLogResponse, Id } from "@refugies-info/api-types";
 import isEmpty from "lodash/isEmpty";
-import logger from "../../logger";
-import { DispositifId, LangueId, Log, StructureId, UserId, ObjectId } from "../../typegoose";
+import logger from "~/logger";
+import { DispositifId, LangueId, Log, ObjectId, StructureId, UserId } from "~/typegoose";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {
@@ -12,13 +12,13 @@ export type optionsType = {
     id: UserId | DispositifId | StructureId;
     model_link: "User" | "Dispositif" | "Structure";
     next:
-    | "ModalContenu"
-    | "ModalStructure"
-    | "ModalUser"
-    | "ModalReaction"
-    | "ModalImprovements"
-    | "ModalNeeds"
-    | "PageAnnuaire";
+      | "ModalContenu"
+      | "ModalStructure"
+      | "ModalUser"
+      | "ModalReaction"
+      | "ModalImprovements"
+      | "ModalNeeds"
+      | "PageAnnuaire";
   };
 };
 
@@ -61,17 +61,21 @@ const sameDynamicIds = (first: GetLogResponse["dynamicId"], second: GetLogRespon
   ) {
     return true;
   }
-  return false
-}
+  return false;
+};
 
 export const groupLogs = (logs: GetLogResponse[]): GetLogResponse[] => {
   return logs.reduceRight((prev, curr) => {
-    if (prev.find(l =>
-      datesAreOnSameDay(l.created_at, curr.created_at) &&
-      l.author?.username === curr.author?.username &&
-      l.text === curr.text &&
-      sameDynamicIds(l.dynamicId, curr.dynamicId)
-    )) return prev;
+    if (
+      prev.find(
+        (l) =>
+          datesAreOnSameDay(l.created_at, curr.created_at) &&
+          l.author?.username === curr.author?.username &&
+          l.text === curr.text &&
+          sameDynamicIds(l.dynamicId, curr.dynamicId),
+      )
+    )
+      return prev;
     return [curr, ...prev];
   }, [] as GetLogResponse[]);
-}
+};

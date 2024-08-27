@@ -1,11 +1,11 @@
 // @ts-nocheck
 /* import { modifyUserRoleInStructure } from "./modifyUserRoleInStructure";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
-import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
-import { removeStructureOfUser, addStructureForUsers } from "../../../modules/users/users.service";
-import { sendNewReponsableMailService } from "../../../modules/mail/mail.service";
-import { getUserById } from "../../../modules/users/users.repository";
-import { getRoleByName } from "../../../controllers/role/role.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
+import { updateStructureMember, getStructureFromDB } from "~/modules/structure/structure.repository";
+import { removeStructureOfUser, addStructureForUsers } from "~/modules/users/users.service";
+import { sendNewReponsableMailService } from "~/modules/mail/mail.service";
+import { getUserById } from "~/modules/users/users.repository";
+import { getRoleByName } from "~/controllers/role/role.repository";
 import { log } from "./log"; */
 
 type MockResponse = { json: any; status: any };
@@ -78,21 +78,21 @@ describe.skip("modifyUserRoleInStructure", () => {
     _id: "userId",
     username: "user",
     email: "test@test.com",
-    roles: ["userRole"]
+    roles: ["userRole"],
   };
   const structure = {
     structureId: "structureId",
     action: "modify",
     role: "contributeur",
-    membreId: "membreId"
+    membreId: "membreId",
   };
   const req = {
     user: { roles: ["test"] },
     userId: "userId",
     fromSite: true,
     body: {
-      query: structure
-    }
+      query: structure,
+    },
   };
 
   it("should return 402 if checkIfUserIsAuthorizedToModifyStructure throws NO_STRUCTURE_WITH_THIS_ID", async () => {
@@ -121,7 +121,7 @@ describe.skip("modifyUserRoleInStructure", () => {
     await modifyUserRoleInStructure(req, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", {
       _id: "structureId",
-      $set: { "membres.$.roles": ["contributeur"] }
+      $set: { "membres.$.roles": ["contributeur"] },
     });
     expect(removeStructureOfUser).not.toHaveBeenCalled();
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -139,7 +139,7 @@ describe.skip("modifyUserRoleInStructure", () => {
     await modifyUserRoleInStructure(requestResponsable, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", {
       _id: "structureId",
-      $set: { "membres.$.roles": ["administrateur"] }
+      $set: { "membres.$.roles": ["administrateur"] },
     });
     expect(removeStructureOfUser).not.toHaveBeenCalled();
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -151,7 +151,7 @@ describe.skip("modifyUserRoleInStructure", () => {
       pseudonyme: "user",
       email: "test@test.com",
       userId: "userId",
-      nomstructure: "My Structure"
+      nomstructure: "My Structure",
     });
 
     expect(res.status).toHaveBeenCalledWith(200);
@@ -165,10 +165,10 @@ describe.skip("modifyUserRoleInStructure", () => {
         userId: "userId",
         fromSite: true,
         body: {
-          query: { ...structure, role: null }
-        }
+          query: { ...structure, role: null },
+        },
       },
-      res
+      res,
     );
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(removeStructureOfUser).not.toHaveBeenCalled();
@@ -181,7 +181,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   const structureDelete = {
     _id: "structureId",
-    $pull: { membres: { userId: "membreId" } }
+    $pull: { membres: { userId: "membreId" } },
   };
 
   const reqDelete = {
@@ -189,8 +189,8 @@ describe.skip("modifyUserRoleInStructure", () => {
     userId: "userId",
     fromSite: true,
     body: {
-      query: { ...structure, action: "delete" }
-    }
+      query: { ...structure, action: "delete" },
+    },
   };
   it("should return 200 if delete ", async () => {
     await modifyUserRoleInStructure(reqDelete, res);
@@ -208,7 +208,7 @@ describe.skip("modifyUserRoleInStructure", () => {
     await modifyUserRoleInStructure(req, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", {
       _id: "structureId",
-      $set: { "membres.$.roles": ["contributeur"] }
+      $set: { "membres.$.roles": ["contributeur"] },
     });
     expect(removeStructureOfUser).not.toHaveBeenCalled();
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -235,8 +235,8 @@ describe.skip("modifyUserRoleInStructure", () => {
     userId: "userId",
     fromSite: true,
     body: {
-      query: { ...structure, action: "create" }
-    }
+      query: { ...structure, action: "create" },
+    },
   };
   const structureCreate = {
     _id: "structureId",
@@ -244,9 +244,9 @@ describe.skip("modifyUserRoleInStructure", () => {
       membres: {
         userId: "membreId",
         roles: ["contributeur"],
-        added_at: new Date(1466424490000)
-      }
-    }
+        added_at: new Date(1466424490000),
+      },
+    },
   };
   const structureCreateResponsable = {
     _id: "structureId",
@@ -254,9 +254,9 @@ describe.skip("modifyUserRoleInStructure", () => {
       membres: {
         userId: "membreId",
         roles: ["administrateur"],
-        added_at: new Date(1466424490000)
-      }
-    }
+        added_at: new Date(1466424490000),
+      },
+    },
   };
   const mockDate = new Date(1466424490000);
   jest.spyOn(global, "Date").mockImplementation(() => mockDate);
@@ -287,7 +287,7 @@ describe.skip("modifyUserRoleInStructure", () => {
       pseudonyme: "user",
       email: "test@test.com",
       userId: "userId",
-      nomstructure: "My Structure"
+      nomstructure: "My Structure",
     });
 
     expect(res.status).toHaveBeenCalledWith(200);
@@ -301,10 +301,10 @@ describe.skip("modifyUserRoleInStructure", () => {
         userId: "userId",
         fromSite: true,
         body: {
-          query: { ...structure, role: null, action: "create" }
-        }
+          query: { ...structure, role: null, action: "create" },
+        },
       },
-      res
+      res,
     );
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -336,10 +336,10 @@ describe.skip("modifyUserRoleInStructure", () => {
         userId: "userId",
         fromSite: true,
         body: {
-          query: { ...structure, role: null, action: "create" }
-        }
+          query: { ...structure, role: null, action: "create" },
+        },
       },
-      res
+      res,
     );
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(addStructureForUsers).not.toHaveBeenCalled();

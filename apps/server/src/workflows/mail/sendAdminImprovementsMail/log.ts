@@ -1,5 +1,5 @@
-import { DispositifId, UserId } from "../../../typegoose";
-import { addLog } from "../../../modules/logs/logs.service";
+import { addLog } from "~/modules/logs/logs.service";
+import { DispositifId, UserId } from "~/typegoose";
 
 export interface LogOptions {
   message: string;
@@ -28,8 +28,8 @@ export const log = async (dispositifId: DispositifId, authorId: UserId, options?
     link: {
       id: dispositifId,
       model_link: "Dispositif",
-      next: "ModalImprovements"
+      next: "ModalImprovements",
     },
-    author: authorId
+    author: authorId,
   });
 };

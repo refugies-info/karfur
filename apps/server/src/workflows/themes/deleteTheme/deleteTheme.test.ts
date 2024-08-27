@@ -1,8 +1,8 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { deleteThemeById } from "~/modules/themes/themes.repository";
+import { AppUserModel } from "~/typegoose/AppUser";
 import deleteTheme from "./deleteTheme";
-import { deleteThemeById } from "../../../modules/themes/themes.repository";
-import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { AppUserModel } from "../../../typegoose/AppUser";
 
 /* jest.mock("../../../modules/themes/themes.repository", () => ({
   deleteThemeById: jest.fn()
@@ -41,7 +41,7 @@ describe.skip("deleteTheme", () => {
     });
     const req = {
       fromSite: false,
-      params: {}
+      params: {},
     };
     await deleteTheme[1](req, res);
     expect(res.status).toHaveBeenCalledWith(405);
@@ -52,7 +52,7 @@ describe.skip("deleteTheme", () => {
     });
     const req = {
       user: { roles: [] },
-      params: {}
+      params: {},
     };
     await deleteTheme[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -60,7 +60,7 @@ describe.skip("deleteTheme", () => {
   it("should return 200", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: { id: "themeId" }
+      params: { id: "themeId" },
     };
     await deleteTheme[1](req, res);
     expect(deleteThemeById).toHaveBeenCalledWith("themeId");

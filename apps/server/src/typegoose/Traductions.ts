@@ -1,14 +1,11 @@
-import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Languages } from "@refugies-info/api-types";
+import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
-import { MustBePopulatedError } from "../errors";
+import { MustBePopulatedError } from "~/errors";
+import { countDispositifWords } from "~/libs/wordCounter";
 import { Base } from "./Base";
-import {
-  Dispositif,
-  TranslationContent,
-} from "./Dispositif";
+import { Dispositif, TranslationContent } from "./Dispositif";
 import { User } from "./User";
-import { countDispositifWords } from "../libs/wordCounter";
 
 export enum TraductionsType {
   SUGGESTION = "suggestion",
@@ -98,7 +95,7 @@ export class Traductions extends Base {
   public updatedAt: Date;
 
   public countWords(): number {
-    return countDispositifWords(this.translated.content)
+    return countDispositifWords(this.translated.content);
   }
 
   /**
@@ -107,9 +104,7 @@ export class Traductions extends Base {
    */
   public get status(): TraductionsStatus {
     if (this.type === TraductionsType.VALIDATION) {
-      return isEmpty(this.toReview) && this.finished
-        ? TraductionsStatus.VALIDATED
-        : TraductionsStatus.TO_REVIEW;
+      return isEmpty(this.toReview) && this.finished ? TraductionsStatus.VALIDATED : TraductionsStatus.TO_REVIEW;
     }
 
     // if type === "suggestion"
@@ -142,13 +137,13 @@ export class Traductions extends Base {
     const dispositifSectionsCounter = keys(dispositif.translations.fr).length;
     const translationSectionsCounter = keys(translation.translated).length;
     const notFinished = [...new Set([...(translation.toFinish || []), ...(translation.toReview || [])])].length;
-    return ((translationSectionsCounter - notFinished) / dispositifSectionsCounter) >= 1;
+    return (translationSectionsCounter - notFinished) / dispositifSectionsCounter >= 1;
   }
 
   public get sectionsTranslated(): string[] {
     const translatedSections = keys(this.translated);
     const notFinished = [...new Set([...(this.toFinish || []), ...(this.toReview || [])])];
-    return translatedSections.filter(t => !notFinished.includes(t));
+    return translatedSections.filter((t) => !notFinished.includes(t));
   }
 }
 

@@ -1,10 +1,7 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { updatePositions } from "~/modules/needs/needs.repository";
 import updatePositionsEndpoint from "./updatePositions";
-import { updatePositions } from "../../../modules/needs/needs.repository";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
 
 /* jest.mock("../../../modules/needs/needs.repository", () => ({
   updatePositions: jest.fn(),
@@ -39,7 +36,7 @@ describe.skip("updatePositions", () => {
     });
     const req = {
       fromSite: false,
-      body: {}
+      body: {},
     };
     await updatePositionsEndpoint[1](req, res);
     expect(res.status).toHaveBeenCalledWith(405);
@@ -47,10 +44,10 @@ describe.skip("updatePositions", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
-      body: {}
+      body: {},
     };
     await updatePositionsEndpoint[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -58,11 +55,10 @@ describe.skip("updatePositions", () => {
   it("should return 200", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      body: { orderedNeedIds: ["1", "2", "3"] }
+      body: { orderedNeedIds: ["1", "2", "3"] },
     };
     await updatePositionsEndpoint[1](req, res);
     expect(updatePositions).toHaveBeenCalledWith(["1", "2", "3"]);
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

@@ -1,8 +1,8 @@
-import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
-import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
-import pick from "lodash/pick";
 import { GetAllDispositifsResponse } from "@refugies-info/api-types";
+import pick from "lodash/pick";
+import logger from "~/logger";
+import { getDispositifsFromDB } from "~/modules/dispositif/dispositif.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsResponse[]> => {
   logger.info("[getAllDispositifs] called");
