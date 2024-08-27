@@ -1,6 +1,6 @@
-import EVAIcon from "components/UI/EVAIcon";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon";
+import { colors } from "~/utils/colors";
 
 const MainContainer = styled.div<{ state: string }>`
   background: ${(props: { state: string }) =>

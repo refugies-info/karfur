@@ -1,5 +1,5 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { useSanitizedContent } from "hooks";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useSanitizedContent } from "~/hooks";
 import { Marker } from "../Map";
 import styles from "./PopupContent.module.scss";
 

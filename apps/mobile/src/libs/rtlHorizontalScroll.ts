@@ -3,14 +3,14 @@ import { ScrollView } from "react-native";
 
 const scrollToEnd = (el: React.RefObject<ScrollView>) => {
   return el.current?.scrollToEnd({ animated: false });
-}
+};
 const scrollToStart = (el: React.RefObject<ScrollView>) => {
   return el.current?.scrollTo({ x: 0, y: 0, animated: false });
-}
+};
 
 export const initHorizontalScroll = (
   elements: React.RefObject<ScrollView> | React.RefObject<ScrollView>[],
-  isRTL: boolean
+  isRTL: boolean,
 ) => {
   setTimeout(() => {
     if (isRTL) {

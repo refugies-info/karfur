@@ -1,4 +1,4 @@
-import { TemplateName } from "../../connectors/sendgrid/sendgrid.types";
+import { TemplateName } from "~/connectors/sendgrid/sendgrid.types";
 
 // TODO: This should be implemented in the database with a UI etc...
 

@@ -1,6 +1,6 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
 
 .btn {
   font-weight: bold;
@@ -30,7 +30,7 @@
     .hoverHidden {
       display: none;
     }
-    
+
     .hoverVisible {
       display: inline;
     }

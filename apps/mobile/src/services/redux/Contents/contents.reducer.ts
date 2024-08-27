@@ -1,6 +1,6 @@
 import { ContentForApp } from "@refugies-info/api-types";
-import { ContentsActions } from "./contents.actions";
 import { createReducer } from "typesafe-actions";
+import { ContentsActions } from "./contents.actions";
 
 export type ContentsState = {
   fr: ContentForApp[];
@@ -28,17 +28,14 @@ export const initialContentsState = {
   nbGlobalContent: null,
 };
 
-export const contentsReducer = createReducer<ContentsState, ContentsActions>(
-  initialContentsState,
-  {
-    SET_CONTENTS: (state, action) => ({
-      ...state,
-      [action.payload.langue]: action.payload.contents,
-    }),
-    SET_NB_CONTENTS: (state, action) => ({
-      ...state,
-      nbLocalizedContent: action.payload.nbLocalizedContent,
-      nbGlobalContent: action.payload.nbGlobalContent,
-    }),
-  }
-);
+export const contentsReducer = createReducer<ContentsState, ContentsActions>(initialContentsState, {
+  SET_CONTENTS: (state, action) => ({
+    ...state,
+    [action.payload.langue]: action.payload.contents,
+  }),
+  SET_NB_CONTENTS: (state, action) => ({
+    ...state,
+    nbLocalizedContent: action.payload.nbLocalizedContent,
+    nbGlobalContent: action.payload.nbGlobalContent,
+  }),
+});

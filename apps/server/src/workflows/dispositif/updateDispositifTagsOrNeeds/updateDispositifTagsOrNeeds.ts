@@ -1,10 +1,14 @@
-import logger from "../../../logger";
-import { updateDispositifInDB, getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { computePossibleNeeds } from "../../../modules/needs/needs.service";
-import { log } from "./log";
-import { ObjectId, User } from "../../../typegoose";
 import { DispositifThemeNeedsRequest } from "@refugies-info/api-types";
-import { Response } from "../../../types/interface";
+import logger from "~/logger";
+import {
+  getDispositifById,
+  getDraftDispositifById,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import { computePossibleNeeds } from "~/modules/needs/needs.service";
+import { ObjectId, User } from "~/typegoose";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const updateDispositifTagsOrNeeds = async (
   id: string,
@@ -19,7 +23,7 @@ export const updateDispositifTagsOrNeeds = async (
 
   let newNeeds: string[] = [];
   const draftOriginalDispositif = await getDraftDispositifById(id, { needs: 1 });
-  const originalDispositif = draftOriginalDispositif || await getDispositifById(id, { needs: 1 });
+  const originalDispositif = draftOriginalDispositif || (await getDispositifById(id, { needs: 1 }));
   if (body.theme || body.secondaryThemes) {
     if (body.needs || originalDispositif.needs) {
       // if a need of the content has a tag that is not a tag of the content we remove the need

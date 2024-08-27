@@ -1,9 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import useThemeIcon from "hooks/useThemeIcon";
-import { cls } from "lib/classname";
-import styles from "./ThemeIcon.module.scss";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import Image from "next/image";
+import useThemeIcon from "~/hooks/useThemeIcon";
+import { cls } from "~/lib/classname";
+import styles from "./ThemeIcon.module.scss";
 
 interface Props {
   theme: GetThemeResponse | undefined | null;

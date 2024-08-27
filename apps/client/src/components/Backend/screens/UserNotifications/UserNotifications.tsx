@@ -1,28 +1,28 @@
-import { assetsOnServer } from "assets/assetsOnServer";
-import TitleWithNumber from "components/Backend/TitleWithNumber";
-import { ReactionLectureModal } from "components/Modals";
-import { useLocale } from "hooks";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
-import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
-import { userStructureIdSelector } from "services/User/user.selectors";
+import styled from "styled-components";
+import Swal from "sweetalert2";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import TitleWithNumber from "~/components/Backend/TitleWithNumber";
+import { ReactionLectureModal } from "~/components/Modals";
+import { useLocale } from "~/hooks";
+import { updateDispositifReactionActionCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { fetchSelectedStructureActionCreator } from "~/services/SelectedStructure/selectedStructure.actions";
+import { userStructureIdSelector } from "~/services/User/user.selectors";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "services/UserStructure/userStructure.actions";
+} from "~/services/UserStructure/userStructure.actions";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
   userStructureSelector,
-} from "services/UserStructure/userStructure.selectors";
-import styled from "styled-components";
-import Swal from "sweetalert2";
-import { colors } from "utils/colors";
+} from "~/services/UserStructure/userStructure.selectors";
+import { colors } from "~/utils/colors";
 import { Notification } from "./components/Notification";
 import { formatNotifications } from "./lib";
 import { FormattedNotification } from "./types";

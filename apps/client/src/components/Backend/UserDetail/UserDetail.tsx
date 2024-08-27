@@ -1,9 +1,9 @@
 import { GetActiveUsersResponse } from "@refugies-info/api-types";
-import marioProfile from "assets/mario-profile.jpg";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Image from "next/image";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import marioProfile from "~/assets/mario-profile.jpg";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { colors } from "~/utils/colors";
 
 interface Props {
   user: GetActiveUsersResponse;

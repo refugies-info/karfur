@@ -1,7 +1,7 @@
 import { fireEvent, waitFor } from "@testing-library/react";
 import mockRouter from "next-router-mock";
-import API from "utils/API";
-import { initialMockStore } from "__fixtures__/reduxStore";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
+import API from "~/utils/API";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import CheckCode from "./CheckCode";
 

@@ -11,7 +11,4 @@ const RTLTouchableOpacityContainer = styled.TouchableOpacity`
   flex-direction: ${({ theme }) => (theme.i18n.isRTL ? "row-reverse" : "row")};
 `;
 
-export {
-  RTLViewContainer as RTLView,
-  RTLTouchableOpacityContainer as RTLTouchableOpacity,
-};
+export { RTLTouchableOpacityContainer as RTLTouchableOpacity, RTLViewContainer as RTLView };

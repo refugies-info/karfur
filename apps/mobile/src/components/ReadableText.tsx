@@ -1,13 +1,10 @@
-import React, { useEffect, useRef, useState, ReactNode, useMemo } from "react";
+import { useIsFocused } from "@react-navigation/native";
+import React, { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
-import { useIsFocused } from "@react-navigation/native";
-import {
-  addToReadingList,
-  removeFromReadingList,
-} from "../services/redux/VoiceOver/voiceOver.actions";
-import { generateId } from "../libs/generateId";
-import { ReadingItem, ReadingObject } from "../types/interface";
+import { generateId } from "~/libs/generateId";
+import { addToReadingList, removeFromReadingList } from "~/services/redux/VoiceOver/voiceOver.actions";
+import { ReadingItem, ReadingObject } from "~/types/interface";
 import { ReadableColoredText } from "./ReadableColoredText";
 
 interface Props {
@@ -35,8 +32,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
     return props.text || (props.children as string) || "";
   }, [props.text, props.children]);
 
-  const elementFocused =
-    props.isFocused !== undefined ? props.isFocused : isFocused;
+  const elementFocused = props.isFocused !== undefined ? props.isFocused : isFocused;
 
   // Attach the properties/methods to the ref
   const readingObject = useRef<ReadingObject>();
@@ -77,12 +73,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   }, []);
 
   return (
-    <ReadableColoredText
-      text={props.text}
-      id={id}
-      ref={refView}
-      darkBg={props.darkBg}
-    >
+    <ReadableColoredText text={props.text} id={id} ref={refView} darkBg={props.darkBg}>
       {props.children}
     </ReadableColoredText>
   );

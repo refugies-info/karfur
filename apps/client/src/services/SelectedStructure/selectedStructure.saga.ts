@@ -1,25 +1,19 @@
-import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, select } from "redux-saga/effects";
+import { GetStructureResponse, PatchStructureRequest } from "@refugies-info/api-types";
 import pick from "lodash/pick";
-import API from "../../utils/API";
+import { SagaIterator } from "redux-saga";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { FETCH_SELECTED_STRUCTURE, UPDATE_SELECTED_STRUCTURE } from "./selectedStructure.actionTypes";
 import {
   fetchSelectedStructureActionCreator,
   setSelectedStructureActionCreator,
-  updateSelectedStructureActionCreator
+  updateSelectedStructureActionCreator,
 } from "./selectedStructure.actions";
 import { selectedStructureSelector } from "./selectedStructure.selector";
-import { GetStructureResponse, PatchStructureRequest } from "@refugies-info/api-types";
 
-export function* fetchSelectedStructure(
-  action: ReturnType<typeof fetchSelectedStructureActionCreator>
-): SagaIterator {
+export function* fetchSelectedStructure(action: ReturnType<typeof fetchSelectedStructureActionCreator>): SagaIterator {
   try {
     const { id, locale } = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
@@ -37,7 +31,7 @@ export function* fetchSelectedStructure(
 }
 
 export function* updateSelectedStructure(
-  action: ReturnType<typeof updateSelectedStructureActionCreator>
+  action: ReturnType<typeof updateSelectedStructureActionCreator>,
 ): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));
@@ -48,14 +42,42 @@ export function* updateSelectedStructure(
       logger.info("[updateSelectedStructure] no structure to update");
       return;
     }
-    const updatedStructure: PatchStructureRequest = pick(structure, ["picture", "contact", "phone_contact", "mail_contact", "responsable", "nom", "hasResponsibleSeenNotification", "acronyme", "adresse", "authorBelongs", "link", "mail_generique", "siren", "siret", "structureTypes", "websites", "facebook", "linkedin", "twitter", "activities", "departments", "phonesPublic", "mailsPublic", "adressPublic", "openingHours", "onlyWithRdv", "description"]);
+    const updatedStructure: PatchStructureRequest = pick(structure, [
+      "picture",
+      "contact",
+      "phone_contact",
+      "mail_contact",
+      "responsable",
+      "nom",
+      "hasResponsibleSeenNotification",
+      "acronyme",
+      "adresse",
+      "authorBelongs",
+      "link",
+      "mail_generique",
+      "siren",
+      "siret",
+      "structureTypes",
+      "websites",
+      "facebook",
+      "linkedin",
+      "twitter",
+      "activities",
+      "departments",
+      "phonesPublic",
+      "mailsPublic",
+      "adressPublic",
+      "openingHours",
+      "onlyWithRdv",
+      "description",
+    ]);
     yield call(API.updateStructure, structureId, updatedStructure);
 
     yield put(
       fetchSelectedStructureActionCreator({
         id: structureId.toString(),
-        locale: action.payload.locale
-      })
+        locale: action.payload.locale,
+      }),
     );
     logger.info("[updateSelectedStructure] successfully updated user structure");
     yield put(finishLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));

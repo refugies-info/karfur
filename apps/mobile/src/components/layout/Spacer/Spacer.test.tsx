@@ -1,6 +1,5 @@
-import React from "react";
-import Spacer from "./Spacer";
 import { render } from "../../utils/tests";
+import Spacer from "./Spacer";
 
 describe("Spacer snapshot test suite", () => {
   it("should render without bug / height", async () => {

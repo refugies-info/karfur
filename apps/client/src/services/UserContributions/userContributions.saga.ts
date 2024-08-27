@@ -1,22 +1,15 @@
+import { GetUserContributionsResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
-import { put, call, takeLatest } from "redux-saga/effects";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
 import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { DELETE_DISPOSITIF, FETCH_USER_CONTRIBUTIONS } from "./userContributions.actionTypes";
 import {
-  FETCH_USER_CONTRIBUTIONS,
-  DELETE_DISPOSITIF,
-} from "./userContributions.actionTypes";
-import {
-  setUserContributionsActionCreator,
   deleteDispositifActionCreator,
   fetchUserContributionsActionCreator,
+  setUserContributionsActionCreator,
 } from "./userContributions.actions";
-import { GetUserContributionsResponse } from "@refugies-info/api-types";
 
 export function* fetchUserContributions(): SagaIterator {
   try {
@@ -32,9 +25,7 @@ export function* fetchUserContributions(): SagaIterator {
   }
 }
 
-export function* deleteContributionAndUpdate(
-  action: ReturnType<typeof deleteDispositifActionCreator>
-): SagaIterator {
+export function* deleteContributionAndUpdate(action: ReturnType<typeof deleteDispositifActionCreator>): SagaIterator {
   try {
     logger.info("[deleteContributionAndUpdate] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));

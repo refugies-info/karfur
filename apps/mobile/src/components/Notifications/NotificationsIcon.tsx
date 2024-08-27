@@ -1,15 +1,14 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 
-import { styles } from "../../theme";
+import { styles } from "~/theme";
 
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { useNotifications } from "../../hooks/useNotifications";
-import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { useNotifications } from "~/hooks/useNotifications";
+import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 
 const ICON_WIDTH = 24;
 const ICON_HEIGHT = 24;
@@ -66,17 +65,10 @@ const NotificationsIcon = () => {
         navigate("NotificationsScreen");
       }}
     >
-      <Icon
-        width={ICON_WIDTH}
-        height={ICON_HEIGHT}
-        name="bell-outline"
-        fill={styles.colors.black}
-      />
+      <Icon width={ICON_WIDTH} height={ICON_HEIGHT} name="bell-outline" fill={styles.colors.black} />
       {accessGranted && notifications && notifications.unseenCount > 0 && (
         <View style={stylesheet.unseenContainer}>
-          <Text style={stylesheet.unseenText}>
-            {notifications.unseenCount > 9 ? "9" : notifications.unseenCount}
-          </Text>
+          <Text style={stylesheet.unseenText}>{notifications.unseenCount > 9 ? "9" : notifications.unseenCount}</Text>
         </View>
       )}
     </TouchableOpacity>

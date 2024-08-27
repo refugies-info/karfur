@@ -1,10 +1,10 @@
 //@ts-nocheck
 import "jest-styled-components";
 import { useParams } from "react-router-dom";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
-import API from "utils/API";
-import { dispositifsWithTranslations } from "__fixtures__/dispositifsWithTrad";
-import { initialMockStore } from "__fixtures__/reduxStore";
+import { dispositifsWithTranslations } from "~/__fixtures__/dispositifsWithTrad";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "~/services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import API from "~/utils/API";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserTranslation from "../UserTranslation";
 jest.mock("next/router", () => require("next-router-mock"));

@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { PropsOf } from "../../../utils";
+import { PropsOf } from "~/utils";
 
 const RadioGroup: React.FC<React.PropsWithChildren<PropsOf<typeof View>>> = ({ children, ...other }) => {
   return (

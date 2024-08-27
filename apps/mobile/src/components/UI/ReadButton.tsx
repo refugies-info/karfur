@@ -1,49 +1,31 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useIsFocused } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
 import { deactivateKeepAwake } from "expo-keep-awake";
-import {
-  ActivityIndicator,
-  Image,
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from "react-native-reanimated";
-import { useIsFocused } from "@react-navigation/native";
+import { debounce } from "lodash";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ActivityIndicator, Image, TouchableOpacity, useWindowDimensions } from "react-native";
 import { Icon } from "react-native-eva-icons";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import {
-  setReadingItem,
-  setShouldStop,
-} from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { Reader, getTtsReader } from "~/libs/ttsReader";
+import { logger } from "~/logger";
+import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { setReadingItem, setShouldStop } from "~/services/redux/VoiceOver/voiceOver.actions";
 import {
   currentItemSelector,
   currentScrollSelector,
   readingListLengthSelector,
   readingListSelector,
   shouldStopSelector,
-} from "../../services/redux/VoiceOver/voiceOver.selectors";
-import { styles } from "../../theme";
-import { PauseIcon, PlayIcon } from "../../theme/images/voiceover";
-import { ReadingItem } from "../../types/interface";
+} from "~/services/redux/VoiceOver/voiceOver.selectors";
+import { styles } from "~/theme";
+import { PauseIcon, PlayIcon } from "~/theme/images/voiceover";
+import { ReadingItem } from "~/types/interface";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 import { TextDSFR_MD_Bold, TextDSFR_XS, TextDSFR_XS_Med } from "../StyledText";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { logger } from "../../logger";
-import { Reader, getTtsReader } from "../../libs/ttsReader";
-import { debounce } from "lodash";
 
 const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
@@ -78,10 +60,8 @@ const PlayButton = styled.View<{ white: boolean }>`
   z-index: 20;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme, white }) =>
-    white ? "white" : theme.colors.darkBlue};
-  border: ${({ theme, white }) =>
-    white ? `1px solid ${theme.colors.darkBlue}` : "none"};
+  background-color: ${({ theme, white }) => (white ? "white" : theme.colors.darkBlue)};
+  border: ${({ theme, white }) => (white ? `1px solid ${theme.colors.darkBlue}` : "none")};
 `;
 const Buttons = styled(Animated.View)`
   flex-direction: row;
@@ -130,11 +110,7 @@ const sortItems = (a: ReadingItem, b: ReadingItem) => {
   return 1;
 };
 
-const getReadingList = (
-  list: ReadingItem[],
-  startFromId: string | null,
-  offset: number = 0
-) => {
+const getReadingList = (list: ReadingItem[], startFromId: string | null, offset: number = 0) => {
   const toRead = list.filter((item) => item);
   if (toRead.length === 0) return [];
   const firstItemToRead = startFromId || toRead[0].id;
@@ -157,9 +133,7 @@ export const ReadButton = (props: Props) => {
   const isStopped = useRef<boolean>(false);
   const isInstanceReading = useRef<boolean>(false);
   const [rate, setRate] = useState(1);
-  const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>(
-    []
-  );
+  const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const scale = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
@@ -208,7 +182,7 @@ export const ReadButton = (props: Props) => {
       // get reader
       toRead[indexToRead].text,
       currentLanguageI18nCode,
-      rate
+      rate,
     );
     setReader(newReader);
     setIsLoading(false);
@@ -241,11 +215,7 @@ export const ReadButton = (props: Props) => {
       });
 
       logger.info("startToRead, nb items :", readingListLength);
-      Promise.all(
-        Object.values(readingList).map((r) =>
-          r?.current?.getReadingItem(currentScroll)
-        )
-      )
+      Promise.all(Object.values(readingList).map((r) => r?.current?.getReadingItem(currentScroll)))
         .then((res) => res.filter((r) => !!r) as ReadingItem[])
         .then((res) => {
           // logger.info("startToRead:: res", res);
@@ -255,13 +225,8 @@ export const ReadButton = (props: Props) => {
           const sortedReadingList = res.sort(sortItems);
           setResolvedReadingList(sortedReadingList);
           const scrollLimit = currentScroll === 0 ? 0 : currentScroll + 200; // arbitrary offset to select element in the middle of the screen is scrolled
-          const firstItem = sortedReadingList.find(
-            (item) => item.posY >= scrollLimit
-          );
-          const toRead = getReadingList(
-            sortedReadingList,
-            firstItem?.id || null
-          );
+          const firstItem = sortedReadingList.find((item) => item.posY >= scrollLimit);
+          const toRead = getReadingList(sortedReadingList, firstItem?.id || null);
           setIsLoading(false);
           readList(toRead);
         })
@@ -280,11 +245,7 @@ export const ReadButton = (props: Props) => {
     setTimeout(() => {
       // setTimeout to ensure it happens after previous readList resolve
       if (currentItem) {
-        const toRead = getReadingList(
-          resolvedReadingList,
-          currentItem.id,
-          dir === "next" ? 1 : -1
-        );
+        const toRead = getReadingList(resolvedReadingList, currentItem.id, dir === "next" ? 1 : -1);
         readList(toRead);
       }
     }, 100);
@@ -390,7 +351,7 @@ export const ReadButton = (props: Props) => {
       icon: props.white ? styles.colors.darkBlue : "#ffffff",
       text: props.white ? styles.colors.darkBlue : styles.colors.darkGrey,
     }),
-    [props.white]
+    [props.white],
   );
 
   return (
@@ -405,10 +366,7 @@ export const ReadButton = (props: Props) => {
         <PlayButtonWrapper>
           <PlayButton white={!!props.white}>
             {isLoading ? (
-              <ActivityIndicator
-                style={{ width: 20, height: 20 }}
-                color={colors.icon}
-              />
+              <ActivityIndicator style={{ width: 20, height: 20 }} color={colors.icon} />
             ) : isReading && !isPaused ? (
               <PauseIcon size={20} color={colors.icon} />
             ) : (
@@ -418,13 +376,9 @@ export const ReadButton = (props: Props) => {
         </PlayButtonWrapper>
         {fontScale < 1.3 &&
           (props.bold ? (
-            <TextDSFR_XS_Med style={{ color: colors.text }}>
-              {t("tab_bar.listen", "Écouter")}
-            </TextDSFR_XS_Med>
+            <TextDSFR_XS_Med style={{ color: colors.text }}>{t("tab_bar.listen", "Écouter")}</TextDSFR_XS_Med>
           ) : (
-            <TextDSFR_XS style={{ color: colors.text }}>
-              {t("tab_bar.listen", "Écouter")}
-            </TextDSFR_XS>
+            <TextDSFR_XS style={{ color: colors.text }}>{t("tab_bar.listen", "Écouter")}</TextDSFR_XS>
           ))}
       </PlayContainer>
       <Buttons style={[animatedStyle]}>
@@ -438,29 +392,14 @@ export const ReadButton = (props: Props) => {
           <TextDSFR_MD_Bold>{rate === 1 ? "x1" : "x2"}</TextDSFR_MD_Bold>
         </Button>
         <Button onPress={debouncedPrev} ml>
-          <Icon
-            name={"arrow-back-outline"}
-            height={24}
-            width={24}
-            fill={styles.colors.black}
-          />
+          <Icon name={"arrow-back-outline"} height={24} width={24} fill={styles.colors.black} />
         </Button>
         <Space />
         <Button onPress={debouncedNext} mr>
-          <Icon
-            name={"arrow-forward-outline"}
-            height={24}
-            width={24}
-            fill={styles.colors.black}
-          />
+          <Icon name={"arrow-forward-outline"} height={24} width={24} fill={styles.colors.black} />
         </Button>
         <Button onPress={stopVoiceOver} background={styles.colors.red}>
-          <Icon
-            name={"close-outline"}
-            height={24}
-            width={24}
-            fill={styles.colors.white}
-          />
+          <Icon name={"close-outline"} height={24} width={24} fill={styles.colors.white} />
         </Button>
       </Buttons>
     </Container>

@@ -6,4 +6,4 @@ export const isToday = (date: Date | undefined) => {
     date.getMonth() === today.getMonth() &&
     date.getDate() === today.getDate()
   );
-}
+};

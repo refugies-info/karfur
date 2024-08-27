@@ -1,9 +1,9 @@
-import pick from "lodash/pick";
-import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
-import { Structure, UserId } from "../../../typegoose";
-import { ResponseWithData } from "../../../types/interface";
-import logger from "../../../logger";
 import { GetAllUsersResponse, StructureMemberRole, UserStructure } from "@refugies-info/api-types";
+import pick from "lodash/pick";
+import logger from "~/logger";
+import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
+import { Structure, UserId } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 const getRole = (membres: Structure["membres"], userId: UserId) => {
   const isAdmin = membres.find(

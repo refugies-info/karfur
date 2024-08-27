@@ -1,10 +1,9 @@
-import * as React from "react";
-import styled from "styled-components/native";
 import { View } from "react-native";
-import { onboardingCarouselData } from "./OnboardingCarouselData";
-import { TextDSFR_XL } from "../StyledText";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
+import { TextDSFR_XL } from "../StyledText";
+import { onboardingCarouselData } from "./OnboardingCarouselData";
 
 interface Props {
   step: number;
@@ -52,9 +51,7 @@ export const OnboardingCarouselElement = (props: Props) => {
       </Image>
       <TextContainer>
         <StyledText accessibilityRole="text">
-          <ReadableText isFocused={props.focused}>
-            {t("onboarding_screens." + onboardingElement.text)}
-          </ReadableText>
+          <ReadableText isFocused={props.focused}>{t("onboarding_screens." + onboardingElement.text)}</ReadableText>
         </StyledText>
       </TextContainer>
     </View>

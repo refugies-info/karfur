@@ -1,8 +1,8 @@
+import logger from "~/logger";
+import { Dispositif } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
-import { sendPublishedMailToStructureMembers, sendPublishedMailToCreator } from "./mailFunctions";
-import logger from "../../logger";
-import { Dispositif } from "../../typegoose";
+import { sendPublishedMailToCreator, sendPublishedMailToStructureMembers } from "./mailFunctions";
 
 export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
   logger.info("[sendMailWhenDispositifPublished] received");

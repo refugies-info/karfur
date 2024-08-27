@@ -1,12 +1,11 @@
-import React, { useMemo } from "react";
+import { GetActiveStructuresResponse, Id, Picture } from "@refugies-info/api-types";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import Link from "next/link";
-import { Picture } from "@refugies-info/api-types";
-import placeholder from "assets/no_results_alt.svg";
-import styles from "./LetterSection.module.scss";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
 import { getPath } from "routes";
-import { GetActiveStructuresResponse, Id } from "@refugies-info/api-types";
+import placeholder from "~/assets/no_results_alt.svg";
+import styles from "./LetterSection.module.scss";
 interface StructureCardProps {
   nom: string;
   acronyme: string;

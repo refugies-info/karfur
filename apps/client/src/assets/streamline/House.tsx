@@ -1,13 +1,5 @@
-import React from "react";
-
 const House = ({ width = 22, height = 22, stroke = "white" }) => (
-  <svg
-    width={width}
-    height={height}
-    viewBox="0 0 22 22"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width={width} height={height} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M4.125 16V19.125C4.125 19.8154 4.68464 20.375 5.375 20.375H9.125V15.375C9.125 14.6846 9.68464 14.125 10.375 14.125H11.625C12.3154 14.125 12.875 14.6846 12.875 15.375V20.375H16.625C17.3154 20.375 17.875 19.8154 17.875 19.125V16"
       stroke={stroke}

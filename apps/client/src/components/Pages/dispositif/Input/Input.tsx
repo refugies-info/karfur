@@ -1,6 +1,6 @@
 import React from "react";
-import { cls } from "lib/classname";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./Input.module.scss";
 
 interface Props {

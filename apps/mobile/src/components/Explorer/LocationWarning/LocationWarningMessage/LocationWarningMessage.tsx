@@ -1,11 +1,10 @@
-import * as React from "react";
 import { Pressable } from "react-native";
-import styled, { useTheme } from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
+import styled, { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { RTLView } from "../../../BasicComponents";
-import { useTranslationWithRTL } from "../../../../hooks/useTranslationWithRTL";
 import { Columns } from "../../../layout";
-import { TextDSFR_MD_Bold, TextDSFR_MD } from "../../../StyledText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../../StyledText";
 
 const InfoMessage = styled(RTLView)`
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -32,12 +31,7 @@ interface LocalizedWarningMessageProps {
   totalContent: number;
 }
 
-const LocationWarningMessage = ({
-  city,
-  onClose,
-  onPress,
-  totalContent,
-}: LocalizedWarningMessageProps) => {
+const LocationWarningMessage = ({ city, onClose, onPress, totalContent }: LocalizedWarningMessageProps) => {
   const { t } = useTranslationWithRTL();
   const theme = useTheme();
 
@@ -46,22 +40,13 @@ const LocationWarningMessage = ({
       <Columns layout="1 auto" verticalAlign="center">
         <Pressable onPress={onPress}>
           <Columns layout="auto 1" verticalAlign="center">
-            <Icon
-              name="info"
-              height={24}
-              width={24}
-              fill={theme.colors.darkBlue}
-            />
+            <Icon name="info" height={24} width={24} fill={theme.colors.darkBlue} />
             <InfoMessageText>
               {t("explorer_screen.warning_nb_contents", {
                 nbContent: totalContent,
                 city: city,
               })}{" "}
-              <InfoMessageLink
-                onPress={onPress}
-                accessibilityRole="button"
-                accessible={true}
-              >
+              <InfoMessageLink onPress={onPress} accessibilityRole="button" accessible={true}>
                 {t("explorer_screen.why_link")}
               </InfoMessageLink>
             </InfoMessageText>
@@ -73,12 +58,7 @@ const LocationWarningMessage = ({
           accessible={true}
           accessibilityLabel={t("global.close", "Fermer")}
         >
-          <Icon
-            name="close-outline"
-            height={24}
-            width={24}
-            fill={theme.colors.darkBlue}
-          />
+          <Icon name="close-outline" height={24} width={24} fill={theme.colors.darkBlue} />
         </Pressable>
       </Columns>
     </InfoMessage>

@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
 
 $error: #b01917;
 
@@ -54,7 +54,7 @@ $error: #b01917;
 
 .error_msg {
   @include text("small");
-  
+
   display: inline-block;
   margin-top: u(4);
   font-weight: bold;

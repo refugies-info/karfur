@@ -7,38 +7,29 @@ describe.skip("getDispositifDepartments", () => {
     const disp1 = {};
     const disp2 = { contenu: [] };
     const disp3 = {
-      contenu: [
-        { _id: "child1" },
-        { _id: "child2" }
-      ]
+      contenu: [{ _id: "child1" }, { _id: "child2" }],
     };
     const disp4 = {
       contenu: [
         {
-          _id: "child1"
+          _id: "child1",
         },
         {
           _id: "child2",
-          children: [
-            { title: "Prix" },
-            { title: "Age" }
-          ]
+          children: [{ title: "Prix" }, { title: "Age" }],
         },
-      ]
+      ],
     };
     const disp5 = {
       contenu: [
         {
-          _id: "child1"
+          _id: "child1",
         },
         {
           _id: "child2",
-          children: [
-            { title: "Prix" },
-            { title: "Zone d'action" }
-          ]
+          children: [{ title: "Prix" }, { title: "Zone d'action" }],
         },
-      ]
+      ],
     };
 
     const res1 = getDispositifDepartments(disp1);
@@ -57,7 +48,7 @@ describe.skip("getDispositifDepartments", () => {
     const disp = {
       contenu: [
         {
-          _id: "child1"
+          _id: "child1",
         },
         {
           _id: "child2",
@@ -65,11 +56,11 @@ describe.skip("getDispositifDepartments", () => {
             { title: "Prix" },
             {
               title: "Zone d'action",
-              departments: ["All", "35 - Ille-et-Vilaine"]
-            }
-          ]
+              departments: ["All", "35 - Ille-et-Vilaine"],
+            },
+          ],
         },
-      ]
+      ],
     };
 
     const res = getDispositifDepartments(disp);

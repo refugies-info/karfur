@@ -1,12 +1,12 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { GoogleMap, useJsApiLoader, MarkerF, InfoBox, Libraries } from "@react-google-maps/api";
+import { GoogleMap, InfoBox, Libraries, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { Poi } from "@refugies-info/api-types";
-import { Event } from "lib/tracking";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import { useCallback, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import styles from "./Map.module.scss";
 import PopupContent from "./PopupContent";
 import Sidebar from "./Sidebar";
-import styles from "./Map.module.scss";
 
 export type Marker = Poi & { id: number };
 

@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
-import styled from "styled-components/native";
+import { StackScreenProps } from "@react-navigation/stack";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRedirectDispositifActionCreator } from "../../services/redux/User/user.actions";
-import { RTLView } from "../../components/BasicComponents";
-import { ViewChoice } from "../../components/Explorer/ViewChoice";
-import { TagButton } from "../../components/Explorer/TagButton";
-import { TagsCarousel } from "../../components/Explorer/TagsCarousel";
+import styled from "styled-components/native";
+import { Page, Rows } from "~/components";
+import { RTLView } from "~/components/BasicComponents";
+import LocationWarning from "~/components/Explorer/LocationWarning";
+import { TagButton } from "~/components/Explorer/TagButton";
+import { TagsCarousel } from "~/components/Explorer/TagsCarousel";
+import { ViewChoice } from "~/components/Explorer/ViewChoice";
+import { NotificationsModal } from "~/components/Notifications";
+import { sortByOrder } from "~/libs";
+import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import { setRedirectDispositifActionCreator } from "~/services/redux/User/user.actions";
 import {
-  redirectDispositifSelector,
   currentI18nCodeSelector,
   hasUserSeenOnboardingSelector,
-} from "../../services/redux/User/user.selectors";
-import { ExplorerParamList } from "../../../types";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { sortByOrder } from "../../libs";
-import { styles } from "../../theme";
-import { themesSelector } from "../../services/redux/Themes/themes.selectors";
-import LocationWarning from "../../components/Explorer/LocationWarning";
-import { NotificationsModal } from "../../components/Notifications";
-import { Page, Rows } from "../../components";
+  redirectDispositifSelector,
+} from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { ExplorerParamList } from "~/types/navigation";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${styles.margin * 4}px;
@@ -39,9 +39,7 @@ const CarousselContainer = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
-export const ExplorerScreen = ({
-  navigation,
-}: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
+export const ExplorerScreen = ({ navigation }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const dispatch = useDispatch();
 
   const [tabSelected, setTabSelected] = useState("galery");
@@ -105,10 +103,7 @@ export const ExplorerScreen = ({
               <TagButton
                 key={index}
                 name={currentTheme.name[currentLanguageI18nCode || "fr"]}
-                backgroundColor={[
-                  currentTheme.colors.color100,
-                  currentTheme.colors.color80,
-                ]}
+                backgroundColor={[currentTheme.colors.color100, currentTheme.colors.color80]}
                 icon={currentTheme.appImage}
                 iconSize={60}
                 onPress={() => {

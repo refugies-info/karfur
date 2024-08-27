@@ -31,8 +31,7 @@ export type PathNames =
   | "/auth/inscription/territoire"
   | "/auth/reinitialiser-mot-de-passe"
   | "/auth/reinitialiser-mot-de-passe/mail-envoye"
-  | "/auth/reinitialiser-mot-de-passe/nouveau"
-  ;
+  | "/auth/reinitialiser-mot-de-passe/nouveau";
 
 type Routes = {
   [key in PathNames]: string;
@@ -71,7 +70,7 @@ const routes: Routes = {
   "/auth/inscription/territoire": "/auth/inscription/territoire",
   "/auth/reinitialiser-mot-de-passe": "/auth/reinitialiser-mot-de-passe",
   "/auth/reinitialiser-mot-de-passe/mail-envoye": "/auth/reinitialiser-mot-de-passe/mail-envoye",
-  "/auth/reinitialiser-mot-de-passe/nouveau": "/auth/reinitialiser-mot-de-passe/nouveau"
+  "/auth/reinitialiser-mot-de-passe/nouveau": "/auth/reinitialiser-mot-de-passe/nouveau",
 };
 
 export const isRoute = (currentPath: string, pathName: PathNames) => {

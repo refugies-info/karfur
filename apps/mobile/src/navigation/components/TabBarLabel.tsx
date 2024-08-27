@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "styled-components/native";
-import { TextDSFR_XS, TextDSFR_XS_Bold } from "../../components/StyledText";
+import { TextDSFR_XS, TextDSFR_XS_Bold } from "~/components/StyledText";
 
 interface TabBarLabelProps {
   focused: boolean;

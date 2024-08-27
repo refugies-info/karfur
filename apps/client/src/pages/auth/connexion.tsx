@@ -1,20 +1,20 @@
-import { ReactElement, useMemo, useState } from "react";
-import { useAsyncFn } from "react-use";
-import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
+import { useRouter } from "next/router";
+import { ReactElement, useMemo, useState } from "react";
+import { useAsyncFn } from "react-use";
 import { getPath } from "routes";
-import { useAuthRedirect, useLogin } from "hooks";
-import API from "utils/API";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
-import SEO from "components/Seo";
-import Layout from "components/Pages/auth/Layout";
-import Loader from "components/Pages/auth/Loader";
-import FRLink from "components/UI/FRLink";
-import styles from "scss/components/auth.module.scss";
+import Layout from "~/components/Pages/auth/Layout";
+import Loader from "~/components/Pages/auth/Loader";
+import SEO from "~/components/Seo";
+import FRLink from "~/components/UI/FRLink";
+import { useAuthRedirect, useLogin } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { Event } from "~/lib/tracking";
+import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
 
 const AuthLogin = () => {
   useAuthRedirect(true);

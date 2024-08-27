@@ -1,7 +1,6 @@
-import React from "react";
 import { Image } from "react-native";
 import { SvgUri } from "react-native-svg";
-import { getImageUri } from "../../../libs/getImageUri";
+import { getImageUri } from "~/libs/getImageUri";
 
 export interface UriImageProps {
   uri: string;

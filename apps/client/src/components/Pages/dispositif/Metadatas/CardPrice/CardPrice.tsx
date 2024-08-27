@@ -1,11 +1,9 @@
-import React from "react";
-import { useTranslation } from "next-i18next";
 import { Metadatas } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import FreeIcon from "~/assets/dispositif/metadatas/Free";
+import PriceIcon from "~/assets/dispositif/metadatas/Price";
 import BaseCard from "../BaseCard";
 import { getPrice } from "../functions";
-import FreeIcon from "assets/dispositif/metadatas/Free";
-import PriceIcon from "assets/dispositif/metadatas/Price";
-import styles from "./CardPrice.module.scss";
 
 interface Props {
   data: Metadatas["price"] | null | undefined; // null = not useful / undefined = not set yet

@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { getThemeName } from "lib/getThemeName";
+import styled from "styled-components";
+import { getThemeName } from "~/lib/getThemeName";
 import ThemeIcon from "../ThemeIcon";
-import { GetThemeResponse } from "@refugies-info/api-types";
 
 const ThemeButtonContainer = styled.div<{ color: string }>`
   background-color: ${(props: { color: string }) => props.color};

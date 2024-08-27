@@ -1,42 +1,29 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { Share, Platform, View } from "react-native";
-import { GetThemeResponse, Id, ViewsType } from "@refugies-info/api-types";
-import { Trans } from "react-i18next";
-import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { GetThemeResponse, Id, ViewsType } from "@refugies-info/api-types";
+import { useCallback, useMemo, useState } from "react";
+import { Trans } from "react-i18next";
+import { Platform, Share, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CustomButton,
-  RTLView,
-  ReadButton,
-  TextDSFR_MD_Bold,
-  TextDSFR_MD,
-  Toast,
-} from "../../../components";
-import { useTranslationWithRTL } from "../../../hooks";
-import { styles } from "../../../theme";
-import { logEventInFirebase } from "../../../utils/logEvent";
-import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
-import { noVoiceover } from "../../../libs/noVoiceover";
-import {
-  currentI18nCodeSelector,
-  selectedContentSelector,
-} from "../../../services";
-import {
-  isFavorite,
-  userFavorites,
-} from "../../../services/redux/User/user.selectors";
+import styled from "styled-components/native";
+import { CustomButton, RTLView, ReadButton, TextDSFR_MD, TextDSFR_MD_Bold, Toast } from "~/components";
+import { useTranslationWithRTL } from "~/hooks";
+import Config from "~/libs/getEnvironment";
+import { noVoiceover } from "~/libs/noVoiceover";
+import { currentI18nCodeSelector, selectedContentSelector } from "~/services";
 import {
   addUserFavoriteActionCreator,
   removeUserFavoriteActionCreator,
   saveUserHasNewFavoritesActionCreator,
   setRedirectDispositifActionCreator,
-} from "../../../services/redux/User/user.actions";
-import { updateNbVuesOrFavoritesOnContent } from "../../../utils/API";
-import Config from "../../../libs/getEnvironment";
-import { BottomTabParamList } from "../../../../types";
+} from "~/services/redux/User/user.actions";
+import { isFavorite, userFavorites } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { BottomTabParamList } from "~/types/navigation";
+import { updateNbVuesOrFavoritesOnContent } from "~/utils/API";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 
 const TabBarContainer = styled.View`
   position: absolute;
@@ -69,10 +56,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
 
   const currentLanguage = useSelector(currentI18nCodeSelector);
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
-  const noReadButton = useMemo(
-    () => noVoiceover(currentLanguage),
-    [currentLanguage]
-  );
+  const noReadButton = useMemo(() => noVoiceover(currentLanguage), [currentLanguage]);
 
   const favorites = useSelector(userFavorites);
   const [favoriteToast, setFavoriteToast] = useState("");
@@ -106,8 +90,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
 
     let urlType: string = selectedContent.typeContenu;
     if (currentLanguage !== "fr") {
-      urlType =
-        selectedContent.typeContenu === "demarche" ? "procedure" : "program";
+      urlType = selectedContent.typeContenu === "demarche" ? "procedure" : "program";
     }
     try {
       const shareData =
@@ -134,7 +117,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
           contentId,
           needId,
           theme: redirectTheme,
-        })
+        }),
       );
     }
     navigation.popToTop();
@@ -209,12 +192,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
           onClose={() => setFavoriteToast("")}
         >
           {favoriteToast === "removed" ? (
-            <ToastText>
-              {t(
-                "content_screen.favorite_deleted",
-                "Fiche supprimée de tes favoris"
-              )}
-            </ToastText>
+            <ToastText>{t("content_screen.favorite_deleted", "Fiche supprimée de tes favoris")}</ToastText>
           ) : (
             <View>
               <ToastText>

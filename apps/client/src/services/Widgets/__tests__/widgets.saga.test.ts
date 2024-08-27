@@ -1,23 +1,10 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchWidgets,
-  saveWidget,
-  createWidget,
-  deleteWidget
-} from "../widgets.saga";
-import {
-  DELETE_WIDGET,
-  SAVE_WIDGET,
-  CREATE_WIDGET,
-} from "../widgets.actionTypes";
 import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { setWidgetsActionCreator } from "../widgets.actions";
+import { CREATE_WIDGET, DELETE_WIDGET, SAVE_WIDGET } from "../widgets.actionTypes";
+import latestActionsSaga, { createWidget, deleteWidget, fetchWidgets, saveWidget } from "../widgets.saga";
 import { widgetsSelector } from "../widgets.selectors";
 
 describe("[Saga] Widgets", () => {
@@ -73,7 +60,7 @@ describe("[Saga] Widgets", () => {
         type: SAVE_WIDGET,
         payload: {
           id: "id3",
-          value: { name: "new" }
+          value: { name: "new" },
         },
       })
         .next()

@@ -1,12 +1,12 @@
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/UI/FButton/FButton";
 import { structureTypes } from "data/structureTypes";
-import { cls } from "lib/classname";
 import { createRef, useEffect, useState } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
+import { cls } from "~/lib/classname";
+import { colors } from "~/utils/colors";
 import styles from "./SearchBarAnnuaire.module.scss";
 interface Props {
   t: any;
@@ -179,8 +179,8 @@ export const SearchBarAnnuaire = (props: Props) => {
           {props.typeSelected && props.typeSelected.length === 1
             ? props.typeSelected[0]
             : props.typeSelected && props.typeSelected.length > 1
-            ? props.typeSelected.length + " types"
-            : props.t("Annuaire.Type de structure", "Type de structure")}
+              ? props.typeSelected.length + " types"
+              : props.t("Annuaire.Type de structure", "Type de structure")}
           {props.typeSelected && props.typeSelected.length > 0 && (
             <EVAIcon
               name="close-circle"

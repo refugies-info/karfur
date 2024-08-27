@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export const checkIsRTL = (locale: string | undefined) => ["ar", "ps", "fa"].includes(locale || "fr");
 
@@ -12,6 +12,6 @@ const useRTL = () => {
   }, [router.locale]);
 
   return isRTL;
-}
+};
 
 export default useRTL;

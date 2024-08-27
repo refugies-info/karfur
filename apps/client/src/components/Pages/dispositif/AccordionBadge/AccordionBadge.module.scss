@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
 .badge {
   @include dsfr-text("large");
@@ -23,7 +23,7 @@
 
   @include media-max("lg-limit") {
     @include dsfr-text("small");
-    
+
     width: u(6);
     height: u(6);
   }

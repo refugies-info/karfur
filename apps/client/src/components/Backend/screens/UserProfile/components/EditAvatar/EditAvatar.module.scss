@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
 
 .container {
   [type="file"] {
@@ -51,6 +51,6 @@
 
 .small {
   @include dsfr-text("very-small");
-  
+
   color: var(--text-mention-grey);
 }

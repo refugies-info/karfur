@@ -1,7 +1,7 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { colors } from "~/utils/colors";
 import styles from "./DropdownMenuMobile.module.scss";
 
 interface Props {

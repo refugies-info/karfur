@@ -1,10 +1,9 @@
-import React from "react";
-import Image from "next/image";
 import { Languages } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import TranslationStatus from "components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
-import { getClassStatus } from "./functions";
+import Image from "next/image";
+import TranslationStatus from "~/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
+import { cls } from "~/lib/classname";
 import { SortedNeed } from "../../TranslationsAvancement/TranslationsAvancement";
+import { getClassStatus } from "./functions";
 import styles from "./NeedButton.module.scss";
 
 interface Props {

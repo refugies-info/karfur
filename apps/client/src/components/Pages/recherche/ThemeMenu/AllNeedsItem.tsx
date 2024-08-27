@@ -1,7 +1,7 @@
-import { ThemeMenuContext } from "components/Pages/recherche/ThemeMenu/ThemeMenuContext";
-import Checkbox from "components/UI/Checkbox";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
+import Checkbox from "~/components/UI/Checkbox";
 import styles from "./AllNeedsItem.module.css";
 
 const AllNeedsItem: React.FC = () => {

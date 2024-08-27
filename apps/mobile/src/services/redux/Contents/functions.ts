@@ -1,8 +1,6 @@
 import { GetContentsForAppResponse } from "@refugies-info/api-types";
 
-export const groupResultsByNeed = (
-  contents: GetContentsForAppResponse["dataFr"]
-) => {
+export const groupResultsByNeed = (contents: GetContentsForAppResponse["dataFr"]) => {
   let results: Record<string, string[]> = {};
   if (contents && contents.length > 0) {
     contents.map((content) => {

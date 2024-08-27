@@ -1,14 +1,14 @@
-import Agathe from "../theme/images/aboutUs/team/agathe.png";
-import Alain from "../theme/images/aboutUs/team/alain.png";
-import Alice from "../theme/images/aboutUs/team/alice.png";
-import Andressa from "../theme/images/aboutUs/team/andressa.png";
-import Caroline from "../theme/images/aboutUs/team/caroline.png";
-import Claudia from "../theme/images/aboutUs/team/claudia.png";
-import Claire from "../theme/images/aboutUs/team/claire.png";
-import Hugo from "../theme/images/aboutUs/team/hugo.png";
-import Margot from "../theme/images/aboutUs/team/margot.png";
-import Matthieu from "../theme/images/aboutUs/team/matthieu.png";
-import Nour from "../theme/images/aboutUs/team/nour.png";
+import Agathe from "~/theme/images/aboutUs/team/agathe.png";
+import Alain from "~/theme/images/aboutUs/team/alain.png";
+import Alice from "~/theme/images/aboutUs/team/alice.png";
+import Andressa from "~/theme/images/aboutUs/team/andressa.png";
+import Caroline from "~/theme/images/aboutUs/team/caroline.png";
+import Claire from "~/theme/images/aboutUs/team/claire.png";
+import Claudia from "~/theme/images/aboutUs/team/claudia.png";
+import Hugo from "~/theme/images/aboutUs/team/hugo.png";
+import Margot from "~/theme/images/aboutUs/team/margot.png";
+import Matthieu from "~/theme/images/aboutUs/team/matthieu.png";
+import Nour from "~/theme/images/aboutUs/team/nour.png";
 
 const bucketUrl = "https://storage.googleapis.com/refugies-info-assets/";
 const bucketUrlPartners = bucketUrl + "logosPartenaires/";
@@ -201,5 +201,5 @@ export const membres = [
     name: "Caroline Wittmann",
     roleName: "Product owner",
     photo: Caroline,
-  }
+  },
 ];

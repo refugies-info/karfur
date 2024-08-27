@@ -1,23 +1,19 @@
+import { GetNeedResponse, UpdatePositionsNeedResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, call, put, select } from "redux-saga/effects";
-import API from "../../utils/API";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { CREATE_NEED, DELETE_NEED, GET_NEEDS, ORDER_NEEDS, SAVE_NEED } from "./needs.actionTypes";
 import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
-import { GET_NEEDS, SAVE_NEED, CREATE_NEED, DELETE_NEED, ORDER_NEEDS } from "./needs.actionTypes";
-import {
-  setNeedsActionCreator,
-  saveNeedActionCreator,
-  fetchNeedsActionCreator,
   createNeedActionCreator,
   deleteNeedActionCreator,
-  orderNeedsActionCreator
+  fetchNeedsActionCreator,
+  orderNeedsActionCreator,
+  saveNeedActionCreator,
+  setNeedsActionCreator,
 } from "./needs.actions";
 import { needsSelector } from "./needs.selectors";
-import { GetNeedResponse, UpdatePositionsNeedResponse } from "@refugies-info/api-types";
 
 export function* fetchNeeds(): SagaIterator {
   try {
@@ -35,9 +31,7 @@ export function* fetchNeeds(): SagaIterator {
   }
 }
 
-export function* saveNeed(
-  action: ReturnType<typeof saveNeedActionCreator>
-): SagaIterator {
+export function* saveNeed(action: ReturnType<typeof saveNeedActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     const newNeed = action.payload.value;
@@ -56,9 +50,7 @@ export function* saveNeed(
   }
 }
 
-export function* orderNeeds(
-  action: ReturnType<typeof orderNeedsActionCreator>
-): SagaIterator {
+export function* orderNeeds(action: ReturnType<typeof orderNeedsActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     logger.info("[saveNeed] start saving need order");
@@ -66,7 +58,7 @@ export function* orderNeeds(
     if (data) {
       const newNeeds: GetNeedResponse[] = [...(yield select(needsSelector))];
       for (const newNeed of data) {
-        const editedNeedIndex = newNeeds.findIndex(n => n._id === newNeed._id);
+        const editedNeedIndex = newNeeds.findIndex((n) => n._id === newNeed._id);
         newNeeds[editedNeedIndex] = newNeed;
       }
       yield put(setNeedsActionCreator(newNeeds));
@@ -82,9 +74,7 @@ export function* orderNeeds(
   }
 }
 
-export function* createNeed(
-  action: ReturnType<typeof createNeedActionCreator>
-): SagaIterator {
+export function* createNeed(action: ReturnType<typeof createNeedActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     const newNeed = action.payload;
@@ -102,16 +92,14 @@ export function* createNeed(
   }
 }
 
-export function* deleteNeed(
-  action: ReturnType<typeof deleteNeedActionCreator>
-): SagaIterator {
+export function* deleteNeed(action: ReturnType<typeof deleteNeedActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.DELETE_WIDGET));
     logger.info("[deleteNeed] start deleting need");
     yield call(API.deleteNeed, action.payload);
 
     const needs: GetNeedResponse[] = [...(yield select(needsSelector))];
-    yield put(setNeedsActionCreator(needs.filter(n => n._id !== action.payload)));
+    yield put(setNeedsActionCreator(needs.filter((n) => n._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));
   } catch (error) {

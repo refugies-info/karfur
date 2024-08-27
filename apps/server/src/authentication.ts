@@ -1,26 +1,33 @@
 import { Request } from "express";
 import jwt from "jwt-simple";
-import { User, UserModel } from "./typegoose";
-import { AuthenticationError, UnauthorizedError } from "./errors";
+import { AuthenticationError, UnauthorizedError } from "~/errors";
+import { User, UserModel } from "~/typegoose";
 
 // type Role = "optional" | "admin" | "expert";
 
-export async function expressAuthentication(request: Request, securityName: string, roles?: string[]): Promise<User | null> {
+export async function expressAuthentication(
+  request: Request,
+  securityName: string,
+  roles?: string[],
+): Promise<User | null> {
   const logData: any = { securityName, roles, userId: null };
 
   if (securityName === "fromSite") {
     const siteSecret = request.headers["site-secret"];
-    if (!siteSecret || siteSecret !== process.env.REACT_APP_SITE_SECRET) throw new UnauthorizedError("[authentication] Request blocked via API", undefined, logData);
+    if (!siteSecret || siteSecret !== process.env.REACT_APP_SITE_SECRET)
+      throw new UnauthorizedError("[authentication] Request blocked via API", undefined, logData);
   }
 
   if (securityName === "fromPostman") {
     const postmanToken = request.headers["postman-secret"];
-    if (!postmanToken && postmanToken !== process.env.POSTMAN_SECRET) throw new UnauthorizedError("[authentication] Must only run from Postman", undefined, logData);
+    if (!postmanToken && postmanToken !== process.env.POSTMAN_SECRET)
+      throw new UnauthorizedError("[authentication] Must only run from Postman", undefined, logData);
   }
 
   if (securityName === "fromCron") {
     const cronToken = request.body?.query?.cronToken;
-    if (!cronToken && cronToken !== process.env.CRON_TOKEN) throw new UnauthorizedError("[authentication] Must only run from cron", undefined, logData);
+    if (!cronToken && cronToken !== process.env.CRON_TOKEN)
+      throw new UnauthorizedError("[authentication] Must only run from cron", undefined, logData);
   }
 
   if (securityName === "jwt") {

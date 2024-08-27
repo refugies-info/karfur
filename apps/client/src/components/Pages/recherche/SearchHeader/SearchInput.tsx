@@ -1,8 +1,8 @@
-import { cls } from "lib/classname";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { cls } from "~/lib/classname";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./SearchInput.module.css";
 
 interface Props {

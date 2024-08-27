@@ -2,14 +2,9 @@ const csv = require("csvtojson");
 const fs = require("fs");
 
 const convertCsvToJson = async (language) => {
-  const jsonArray = await csv().fromFile(
-    "./csvAfterTrad/" + language + " - " + language + ".csv"
-  );
+  const jsonArray = await csv().fromFile("./csvAfterTrad/" + language + " - " + language + ".csv");
   // eslint-disable-next-line no-console
-  console.log(
-    `Nombre de lignes pour la langue ${language} :`,
-    jsonArray.length
-  );
+  console.log(`Nombre de lignes pour la langue ${language} :`, jsonArray.length);
   const finalJson = {};
   jsonArray.forEach((trad) => {
     if (!trad[language]) return;

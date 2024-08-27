@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { formatForAlgolia } from "../formatForAlgolia";
+import { activeLanguages } from "../__fixtures__/activeLanguages";
+import { besoin } from "../__fixtures__/besoin";
 import { demarche } from "../__fixtures__/demarche";
 import { dispositif } from "../__fixtures__/dispositif";
-import { besoin } from "../__fixtures__/besoin";
 import { theme } from "../__fixtures__/theme";
-import { activeLanguages } from "../__fixtures__/activeLanguages";
+import { formatForAlgolia } from "../formatForAlgolia";
 
 // TODO: rewrite
 describe.skip("formatForAlgolia", () => {
@@ -38,7 +38,7 @@ describe.skip("formatForAlgolia", () => {
       sponsorUrl: "https://image.com/logo2.jpg",
       sponsorName: "Coallia",
       priority: 30,
-      webOnly: false
+      webOnly: false,
     });
   });
   it("should format a demarche", () => {
@@ -55,7 +55,7 @@ describe.skip("formatForAlgolia", () => {
       sponsorUrl: "https://image.com/logo.jpg",
       sponsorName: "France Terre d'Asile",
       priority: 40,
-      webOnly: false
+      webOnly: false,
     });
   });
   it("should format a besoin", () => {
@@ -72,7 +72,7 @@ describe.skip("formatForAlgolia", () => {
       theme: "themeId",
       typeContenu: "besoin",
       priority: 20,
-      webOnly: false
+      webOnly: false,
     });
   });
   it("should format a theme", () => {
@@ -95,7 +95,7 @@ describe.skip("formatForAlgolia", () => {
       name_ar: undefined,
       typeContenu: "theme",
       priority: 10,
-      webOnly: false
+      webOnly: false,
     });
   });
 });

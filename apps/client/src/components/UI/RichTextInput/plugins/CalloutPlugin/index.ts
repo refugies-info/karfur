@@ -1,9 +1,10 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $findMatchingParent, mergeRegister } from "@lexical/utils";
 import { $setBlocksType } from "@lexical/selection";
+import { $findMatchingParent, mergeRegister } from "@lexical/utils";
 import {
   $createParagraphNode,
   $getSelection,
+  $isParagraphNode,
   $isRangeSelection,
   $setSelection,
   COMMAND_PRIORITY_EDITOR,
@@ -12,7 +13,6 @@ import {
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_UP_COMMAND,
   createCommand,
-  $isParagraphNode,
 } from "lexical";
 import { useEffect } from "react";
 
@@ -21,11 +21,7 @@ import { $createCalloutNode, $isCalloutNode, CalloutLevel, CalloutNode } from ".
 const INSERT_CALLOUT_COMMAND = createCommand<CalloutLevel>();
 const REMOVE_CALLOUT_COMMAND = createCommand();
 
-export {
-  INSERT_CALLOUT_COMMAND,
-  REMOVE_CALLOUT_COMMAND,
-  $isCalloutNode,
-}
+export { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND };
 
 export default function CalloutPlugin() {
   const [editor] = useLexicalComposerContext();
@@ -52,7 +48,7 @@ export default function CalloutPlugin() {
 
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
       // When callout is the last child pressing down arrow will insert paragraph
       // below it to allow adding more content. It's similar what $insertBlockNode
@@ -78,7 +74,7 @@ export default function CalloutPlugin() {
           }
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
       editor.registerCommand(
         KEY_ARROW_UP_COMMAND,
@@ -100,7 +96,7 @@ export default function CalloutPlugin() {
           }
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
       editor.registerCommand(
         INSERT_CALLOUT_COMMAND,
@@ -109,7 +105,10 @@ export default function CalloutPlugin() {
             const selection = $getSelection();
             if (!$isRangeSelection(selection)) return;
             // just change callout level
-            const matchingCalloutParent = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode) as CalloutNode | null;
+            const matchingCalloutParent = $findMatchingParent(
+              selection.anchor.getNode(),
+              $isCalloutNode,
+            ) as CalloutNode | null;
             if (matchingCalloutParent) {
               if (matchingCalloutParent.getLevel() !== level) {
                 matchingCalloutParent.setLevel(level);
@@ -129,12 +128,12 @@ export default function CalloutPlugin() {
             }
 
             // else, insert new one with line breaks
-            selection.insertNodes([$createParagraphNode(), $createCalloutNode(level), $createParagraphNode()])
+            selection.insertNodes([$createParagraphNode(), $createCalloutNode(level), $createParagraphNode()]);
           });
 
           return true;
         },
-        COMMAND_PRIORITY_EDITOR
+        COMMAND_PRIORITY_EDITOR,
       ),
       editor.registerCommand(
         REMOVE_CALLOUT_COMMAND,
@@ -147,7 +146,7 @@ export default function CalloutPlugin() {
 
           return true;
         },
-        COMMAND_PRIORITY_EDITOR
+        COMMAND_PRIORITY_EDITOR,
       ),
     );
   }, [editor]);

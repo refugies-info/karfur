@@ -16,7 +16,10 @@
     "removeComments": true,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "exclude": [
     "node_modules"

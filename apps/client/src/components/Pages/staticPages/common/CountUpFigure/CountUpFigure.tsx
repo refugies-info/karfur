@@ -1,4 +1,3 @@
-import React from "react";
 import CountUp from "react-countup";
 import { InView } from "react-intersection-observer";
 import styles from "./CountUpFigure.module.scss";

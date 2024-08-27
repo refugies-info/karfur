@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import type { Member } from "data/members";
+import { members } from "data/members";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import FButton from "components/UI/FButton/FButton";
-import { members } from "data/members";
-import type { Member } from "data/members";
+import { useState } from "react";
+import FButton from "~/components/UI/FButton/FButton";
 import styles from "./Team.module.scss";
 
 interface MemberProps {
@@ -19,7 +19,7 @@ const MemberCard = (props: MemberProps) => {
         className={styles.member_card}
         style={{
           backgroundColor: isHover ? props.member.borderColor : props.member.color,
-          borderColor: props.member.borderColor
+          borderColor: props.member.borderColor,
         }}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}

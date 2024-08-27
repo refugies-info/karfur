@@ -3,5 +3,5 @@ export const modalTitles = [
   "Imaginez que vous expliquez votre action à une personne réfugiée",
   "Utilisez un vocabulaire simple",
   "Allez à l'essentiel",
-  "Suivez le gabarit"
-]
+  "Suivez le gabarit",
+];

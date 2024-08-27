@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
-import { Linking, Platform } from "react-native";
-import Constants from "expo-constants";
-import {
-  getPermissionsAsync,
-  requestPermissionsAsync,
-  getExpoPushTokenAsync,
-  setNotificationChannelAsync,
-  AndroidImportance,
-} from "expo-notifications";
-import { PermissionStatus } from "expo-modules-core";
-import { isDevice } from "expo-device";
 import { useAppState } from "@react-native-community/hooks";
 import crashlytics from "@react-native-firebase/crashlytics";
+import Constants from "expo-constants";
+import { isDevice } from "expo-device";
+import { PermissionStatus } from "expo-modules-core";
+import {
+  AndroidImportance,
+  getExpoPushTokenAsync,
+  getPermissionsAsync,
+  requestPermissionsAsync,
+  setNotificationChannelAsync,
+} from "expo-notifications";
+import { useEffect, useState } from "react";
+import { Linking, Platform } from "react-native";
 
-import { updateAppUser } from "../utils/API";
+import { updateAppUser } from "~/utils/API";
 
 export const useNotificationsStatus = (): [boolean, () => Promise<void>, string] => {
-  const [status, setStatus] = useState<PermissionStatus>(
-    PermissionStatus.GRANTED
-  );
+  const [status, setStatus] = useState<PermissionStatus>(PermissionStatus.GRANTED);
   const appState = useAppState();
 
   useEffect(() => {

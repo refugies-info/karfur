@@ -9,7 +9,7 @@ export const dispositif = {
     ps: "یو کډوال حمایت کول",
     fa: "حمایت از یک پناهنده",
     ru: "Стать компаньоном для беженца",
-    uk: "Спонсуйте біженця"
+    uk: "Спонсуйте біженця",
   },
   titreMarque: {
     fr: "MAINtenant",
@@ -25,17 +25,12 @@ export const dispositif = {
     ps: "په فرانسه کې د ادغام او په تولنه کې د شمولیت په موخه له یو کډوال سره ووینئ او ملاتړ یې وکړئ.",
     fa: "ملاقات و حمایت از یک پناهنده در ادغام وی در فرانسه.",
     ru: "Познакомьтесь и поддержите беженца в его интеграции во Франции.",
-    uk: "Зустрічайте та супроводжуйте біженця під час його інтеграції у Франції."
+    uk: "Зустрічайте та супроводжуйте біженця під час його інтеграції у Франції.",
   },
   theme: { _id: "themeId1" },
   secondaryThemes: [],
   mainSponsor: {
-    dispositifsAssocies: [
-      "zzz",
-      "eee",
-      "rrr",
-      "www"
-    ],
+    dispositifsAssocies: ["zzz", "eee", "rrr", "www"],
     structureTypes: [],
     websites: [],
     activities: [],
@@ -60,16 +55,15 @@ export const dispositif = {
     picture: {
       imgId: "aaa",
       public_id: "pictures/XXX",
-      secure_url: "https://image.com/logo2.jpg"
+      secure_url: "https://image.com/logo2.jpg",
     },
-    membres: [  ],
+    membres: [],
     created_at: "2019-09-16T17:31:49.170Z",
     updatedAt: "2021-09-29T14:51:13.489Z",
   },
   typeContenu: "dispositif",
-  nbVues: 685
-}
-
+  nbVues: 685,
+};
 
 export const dispositifAlgolia = {
   objectID: "5ce7ab7383983700167bc9da",
@@ -95,5 +89,5 @@ export const dispositifAlgolia = {
   typeContenu: "dispositif",
   sponsorUrl: "https://image.com/logo2.jpg",
   sponsorName: "Coallia",
-  priority: 30
-}
+  priority: 30,
+};

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useAsyncFn } from "react-use";
-import { useSelector } from "react-redux";
-import Input from "@codegouvfr/react-dsfr/Input";
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import Input from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
-import { cls } from "lib/classname";
-import API from "utils/API";
-import { userDetailsSelector } from "services/User/user.selectors";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useAsyncFn } from "react-use";
+import { cls } from "~/lib/classname";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 import styles from "./EditPseudo.module.scss";
 
 interface Props {

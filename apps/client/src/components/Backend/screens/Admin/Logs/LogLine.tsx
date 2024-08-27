@@ -1,8 +1,8 @@
 import { GetLogResponse, Id } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
 import moment from "moment";
+import { LogText } from "~/components/Backend/screens/Admin/Logs/functions";
+import { cls } from "~/lib/classname";
 import styles from "./LogLine.module.scss";
-import { LogText } from "./functions";
 
 interface Props {
   log: GetLogResponse;

@@ -1,7 +1,8 @@
 import { ContentType } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
+import util from "util";
+import { getContentsForApp, getNbContents } from "~/utils/API";
 import { mockedThemesData } from "../../../../jest/__fixtures__/themes";
-import { getContentsForApp, getNbContents } from "../../../../utils/API";
 import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
 import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import {
@@ -13,7 +14,6 @@ import {
 import { setContentsActionCreator, setNbContentsActionCreator } from "../contents.actions";
 import latestActionsSaga, { fetchContents } from "../contents.saga";
 import { groupResultsByNeed } from "../functions";
-import util from "util"
 
 const theme = mockedThemesData[0];
 

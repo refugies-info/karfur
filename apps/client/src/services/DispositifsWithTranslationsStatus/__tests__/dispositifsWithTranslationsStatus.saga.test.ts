@@ -1,26 +1,17 @@
 //@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchDispositifTranslationsStatus,
-} from "../dispositifsWithTranslationsStatus.saga";
-import { FETCH_DISPOSITIFS_TRANSLATIONS_STATUS } from "../dispositifsWithTranslationsStatus.actionTypes";
 import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { setDispositifsWithTranslationsStatusActionCreator } from "../dispositifsWithTranslationsStatus.actions";
+import { FETCH_DISPOSITIFS_TRANSLATIONS_STATUS } from "../dispositifsWithTranslationsStatus.actionTypes";
+import latestActionsSaga, { fetchDispositifTranslationsStatus } from "../dispositifsWithTranslationsStatus.saga";
 
 describe("[Saga] dispositifsWithTranslationsStatus", () => {
   describe("pilot", () => {
     it("should trigger all the sagas", () => {
       testSaga(latestActionsSaga)
         .next()
-        .takeLatest(
-          "FETCH_DISPOSITIFS_TRANSLATIONS_STATUS",
-          fetchDispositifTranslationsStatus
-        )
+        .takeLatest("FETCH_DISPOSITIFS_TRANSLATIONS_STATUS", fetchDispositifTranslationsStatus)
         .next()
         .isDone();
     });
@@ -33,17 +24,13 @@ describe("[Saga] dispositifsWithTranslationsStatus", () => {
         payload: "ps",
       })
         .next()
-        .put(
-          startLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)
-        )
+        .put(startLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS))
         .next()
         .call(API.getDispositifsWithTranslationAvancement, "ps")
         .next([{ _id: "id" }])
         .put(setDispositifsWithTranslationsStatusActionCreator([{ _id: "id" }]))
         .next()
-        .put(
-          finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)
-        )
+        .put(finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS))
         .next()
         .isDone();
     });
@@ -54,17 +41,13 @@ describe("[Saga] dispositifsWithTranslationsStatus", () => {
         payload: "en",
       })
         .next()
-        .put(
-          startLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)
-        )
+        .put(startLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS))
         .next()
         .call(API.getDispositifsWithTranslationAvancement, "en")
         .throw(new Error("test"))
         .put(setDispositifsWithTranslationsStatusActionCreator([]))
         .next()
-        .put(
-          finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)
-        )
+        .put(finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS))
         .next()
         .isDone();
     });

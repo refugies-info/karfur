@@ -1,16 +1,15 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
-import { Event } from "lib/tracking";
-import PageContext from "utils/pageContext";
-import BaseModal from "components/UI/BaseModal";
-import Button from "components/UI/Button";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import { Step } from "~/hooks/dispositif";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import MissingSteps from "../../MissingSteps";
-import StepBar from "../../StepBar";
 import { StepStatus } from "../../MissingSteps/MissingSteps";
-import { Step } from "hooks/dispositif";
+import StepBar from "../../StepBar";
 import CompleteContent from "./CompleteContent";
 import NotationForm from "./NotationForm";
-import styles from "./PublishModal.module.scss";
 
 interface Props {
   show: boolean;

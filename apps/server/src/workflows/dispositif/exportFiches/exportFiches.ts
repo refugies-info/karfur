@@ -1,11 +1,10 @@
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { getDispositifsForExport } from "../../../modules/dispositif/dispositif.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Dispositif, Langue, Need, Theme } from "../../../typegoose";
-import { airtableUserBase } from "../../../connectors/airtable/airtable";
 import { Languages } from "@refugies-info/api-types";
-
+import { airtableUserBase } from "~/connectors/airtable/airtable";
+import logger from "~/logger";
+import { getDispositifsForExport } from "~/modules/dispositif/dispositif.repository";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { Dispositif, Langue, Need, Theme } from "~/typegoose";
+import { Response } from "~/types/interface";
 
 interface Result {
   [translatedTitleKey: string]: any;
@@ -62,28 +61,32 @@ const getLocation = (metadatas: Dispositif["metadatas"]) => {
 const getCommitment = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.commitment) return "";
   if (metadatas.commitment.amountDetails === "between") {
-    return `between ${metadatas.commitment.hours[0]} and ${metadatas.commitment.hours[1] || "?"} per ${metadatas.commitment.timeUnit}`
+    return `between ${metadatas.commitment.hours[0]} and ${metadatas.commitment.hours[1] || "?"} per ${metadatas.commitment.timeUnit}`;
   }
-  return `${metadatas.commitment.amountDetails} ${metadatas.commitment.hours[0]} per ${metadatas.commitment.timeUnit}`
+  return `${metadatas.commitment.amountDetails} ${metadatas.commitment.hours[0]} per ${metadatas.commitment.timeUnit}`;
 };
 const getFrequency = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.frequency) return "";
-  return `${metadatas.frequency.amountDetails} ${metadatas.frequency.hours} ${metadatas.frequency.timeUnit} per ${metadatas.frequency.frequencyUnit}`
+  return `${metadatas.frequency.amountDetails} ${metadatas.frequency.hours} ${metadatas.frequency.timeUnit} per ${metadatas.frequency.frequencyUnit}`;
 };
 
 const exportFichesInAirtable = (fiches: Result[]) => {
   logger.info(`[exportFichesInAirtable] export ${fiches.length} fiches in airtable`);
-  airtableUserBase("Fiches").create(fiches.map(fiche => ({ fields: fiche })), { typecast: true }, function (err: Error) {
-    if (err) {
-      logger.error("[exportFichesInAirtable] error while exporting fiches to airtable", {
-        fichesId: fiches.map((fiche) => fiche.Lien),
-        error: err,
-      });
-      return;
-    }
+  airtableUserBase("Fiches").create(
+    fiches.map((fiche) => ({ fields: fiche })),
+    { typecast: true },
+    function (err: Error) {
+      if (err) {
+        logger.error("[exportFichesInAirtable] error while exporting fiches to airtable", {
+          fichesId: fiches.map((fiche) => fiche.Lien),
+          error: err,
+        });
+        return;
+      }
 
-    logger.info(`[exportFichesInAirtable] successfully exported ${fiches.length}`);
-  });
+      logger.info(`[exportFichesInAirtable] successfully exported ${fiches.length}`);
+    },
+  );
 };
 
 const formatDispositif = (dispositif: Dispositif, activeLanguages: Langue[]): Result => {

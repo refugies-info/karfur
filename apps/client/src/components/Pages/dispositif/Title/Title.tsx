@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import PageContext from "utils/pageContext";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import PageContext from "~/utils/pageContext";
 import { TitleEdit } from "../Edition";
 import Text from "../Text";
 import styles from "./Title.module.scss";

@@ -14,7 +14,7 @@ describe("getDiffAlgoliaObject", () => {
     const res = getDiffAlgoliaObject(dispositifAlgolia, dispositifAlgoliaCopy);
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
-      title_fr: "Parrainer un réfugié"
+      title_fr: "Parrainer un réfugié",
     });
   });
 
@@ -24,7 +24,7 @@ describe("getDiffAlgoliaObject", () => {
     const res = getDiffAlgoliaObject(dispositifAlgolia, dispositifAlgoliaCopy);
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
-      needs: ["aaa", "bbb"]
+      needs: ["aaa", "bbb"],
     });
   });
 
@@ -36,7 +36,7 @@ describe("getDiffAlgoliaObject", () => {
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
       title_fr: "Parrainer un réfugié",
-      needs: ["aaa", "bbb"]
+      needs: ["aaa", "bbb"],
     });
   });
 });

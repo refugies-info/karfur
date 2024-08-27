@@ -1,8 +1,8 @@
 import { useRoute } from "@react-navigation/core";
 import { fireEvent } from "@testing-library/react-native";
-import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { LanguageChoiceScreen } from "../LanguageChoiceScreen";
 
 jest.mock("@react-navigation/core", () => ({

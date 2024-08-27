@@ -1,7 +1,7 @@
-import { Dispositif, Structure, User } from "../typegoose";
-import logger from "../logger";
-import { UnauthorizedError } from "../errors";
 import { DispositifStatus, StructureMemberRole } from "@refugies-info/api-types";
+import { UnauthorizedError } from "~/errors";
+import logger from "~/logger";
+import { Dispositif, Structure, User } from "~/typegoose";
 
 // Dispositif edition
 export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User, hasDraftVersion: boolean) => {
@@ -13,7 +13,8 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
 
   // author can modify
   const firstDraftVersion = dispositif.status === DispositifStatus.DRAFT && !hasDraftVersion; // the never published draft
-  const authorCanModify = [ // or waiting content
+  const authorCanModify = [
+    // or waiting content
     DispositifStatus.WAITING_STRUCTURE,
     DispositifStatus.KO_STRUCTURE,
   ];
@@ -38,7 +39,11 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
   return false;
 };
 
-export const checkUserIsAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User, hasDraftVersion: boolean): boolean => {
+export const checkUserIsAuthorizedToModifyDispositif = (
+  dispositif: Dispositif,
+  user: User,
+  hasDraftVersion: boolean,
+): boolean => {
   if (!isUserAuthorizedToModifyDispositif(dispositif, user, hasDraftVersion)) {
     throw new UnauthorizedError("The user is not authorized to edit content");
   }

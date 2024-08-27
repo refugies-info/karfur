@@ -1,10 +1,10 @@
 import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { useUser } from "hooks";
-import { limitNbCaracters } from "lib";
 import moment from "moment";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useUser } from "~/hooks";
+import { limitNbCaracters } from "~/lib";
+import { colors } from "~/utils/colors";
 import styles from "../Admin.module.scss";
 import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
 

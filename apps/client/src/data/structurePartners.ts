@@ -1,22 +1,22 @@
-import LogoAdoma from "assets/auth/structure-logos/structure-adoma.jpg";
-import LogoCoallia from "assets/auth/structure-logos/structure-coallia.png";
-import LogoPierreValdo from "assets/auth/structure-logos/structure-pierre-valdo.png";
-import LogoFAS from "assets/auth/structure-logos/structure-fas.jpg";
-import LogoCOS from "assets/auth/structure-logos/structure-cos.jpg";
-import LogoForumRefugies from "assets/auth/structure-logos/structure-forum-refugies.jpg";
-import LogoFranceHorizon from "assets/auth/structure-logos/structure-france-horizon.png";
-import LogoFtda from "assets/auth/structure-logos/structure-ftda.png";
-import LogoGipHis from "assets/auth/structure-logos/structure-gip-his.png";
-import LogoGroupeSos from "assets/auth/structure-logos/structure-groupe-sos.png";
-import LogoMens from "assets/auth/structure-logos/structure-mens.png";
-import LogoViltais from "assets/auth/structure-logos/structure-viltais.png";
+import LogoAdoma from "~/assets/auth/structure-logos/structure-adoma.jpg";
+import LogoCoallia from "~/assets/auth/structure-logos/structure-coallia.png";
+import LogoCOS from "~/assets/auth/structure-logos/structure-cos.jpg";
+import LogoFAS from "~/assets/auth/structure-logos/structure-fas.jpg";
+import LogoForumRefugies from "~/assets/auth/structure-logos/structure-forum-refugies.jpg";
+import LogoFranceHorizon from "~/assets/auth/structure-logos/structure-france-horizon.png";
+import LogoFtda from "~/assets/auth/structure-logos/structure-ftda.png";
+import LogoGipHis from "~/assets/auth/structure-logos/structure-gip-his.png";
+import LogoGroupeSos from "~/assets/auth/structure-logos/structure-groupe-sos.png";
+import LogoMens from "~/assets/auth/structure-logos/structure-mens.png";
+import LogoPierreValdo from "~/assets/auth/structure-logos/structure-pierre-valdo.png";
+import LogoViltais from "~/assets/auth/structure-logos/structure-viltais.png";
 
 type Partner = {
   image: any;
   width: number;
   height: number;
   name: string;
-}
+};
 
 export const partners: Partner[] = [
   { image: LogoAdoma, width: 56, height: 56, name: "Adoma" },
@@ -30,5 +30,5 @@ export const partners: Partner[] = [
   { image: LogoGipHis, width: 56, height: 27, name: "GIP HIS" },
   { image: LogoGroupeSos, width: 56, height: 19, name: "Groupe SOS" },
   { image: LogoMens, width: 56, height: 21, name: "Mens" },
-  { image: LogoViltais, width: 56, height: 19, name: "Viltaïs" }
-]
+  { image: LogoViltais, width: 56, height: 19, name: "Viltaïs" },
+];

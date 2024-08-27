@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const getRouterLocale = (locale: string | undefined) => {
   return locale && locale !== "fr" ? "/" + locale : "/fr";
-}
+};
 
 const useRouterLocale = () => {
   const router = useRouter();
@@ -14,6 +14,6 @@ const useRouterLocale = () => {
   }, [router.locale]);
 
   return locale;
-}
+};
 
 export default useRouterLocale;

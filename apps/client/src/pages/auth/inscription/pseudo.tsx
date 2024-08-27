@@ -1,13 +1,13 @@
-import { ReactElement, useMemo } from "react";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
-import { useRegisterFlow } from "hooks";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { cls } from "lib/classname";
-import SEO from "components/Seo";
-import Layout from "components/Pages/auth/Layout";
-import { EditPseudo } from "components/User";
-import styles from "scss/components/auth.module.scss";
+import { ReactElement, useMemo } from "react";
+import Layout from "~/components/Pages/auth/Layout";
+import SEO from "~/components/Seo";
+import { EditPseudo } from "~/components/User";
+import { useRegisterFlow } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import styles from "~/scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const { userId, getStepCount, next, back } = useRegisterFlow("pseudo", true);

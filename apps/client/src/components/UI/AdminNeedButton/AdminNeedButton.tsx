@@ -1,7 +1,6 @@
 import { GetNeedResponse } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
 import Image from "next/image";
-import React from "react";
+import { cls } from "~/lib/classname";
 import EVAIcon from "../EVAIcon/EVAIcon";
 import styles from "./AdminNeedButton.module.scss";
 

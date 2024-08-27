@@ -1,8 +1,8 @@
 import "jest-styled-components";
 import mockRouter from "next-router-mock";
-import pageComponent from "pages/auth/reinitialiser-mot-de-passe/nouveau";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
+import { setupGoogleMock } from "~/__mocks__/react-google-autocomplete";
+import pageComponent from "~/pages/auth/reinitialiser-mot-de-passe/nouveau";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../jest/lib/wrapWithProvidersAndRender";
 
 jest.mock("next/router", () => require("next-router-mock"));

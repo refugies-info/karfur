@@ -1,5 +1,5 @@
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
 
 .modal {
   margin: 0 !important;
@@ -19,7 +19,7 @@
 
 .text {
   @include dsfr-text("chapo");
-  
+
   margin-top: u(4);
   margin-bottom: u(5);
   text-align: center;

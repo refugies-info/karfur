@@ -1,13 +1,9 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
 import { Id } from "@refugies-info/api-types";
-import {
-  currentI18nCodeSelector,
-  needSelector,
-  themeSelector,
-} from "../../../../services";
-import { styles } from "../../../../theme";
-import { NeedsSummary } from "../../../../components/Needs/NeedsSummary";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { NeedsSummary } from "~/components/Needs/NeedsSummary";
+import { currentI18nCodeSelector, needSelector, themeSelector } from "~/services";
+import { styles } from "~/theme";
 
 interface LinkedNeedProps {
   needId: Id;

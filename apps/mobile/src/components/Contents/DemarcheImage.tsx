@@ -1,21 +1,20 @@
-import { ObjectId } from "../../types/interface";
+import { useMemo } from "react";
+import ameli from "~/theme/images/demarche/ameli.png";
+import caf from "~/theme/images/demarche/caf.png";
+import carteBancaire from "~/theme/images/demarche/carteBancaire.png";
+import carteIdentite from "~/theme/images/demarche/carteIdentite.png";
+import carteVitale from "~/theme/images/demarche/carteVitale.png";
+import covid from "~/theme/images/demarche/covid.png";
+import ofpra from "~/theme/images/demarche/OFPRA.png";
+import passeport from "~/theme/images/demarche/passeport.png";
+import permisConduire from "~/theme/images/demarche/permisConduire.png";
+import poleEmploi from "~/theme/images/demarche/poleEmploi.png";
+import titreSejour from "~/theme/images/demarche/titreSejour.png";
 import { StreamlineIcon } from "../StreamlineIcon";
-import React, { useMemo } from "react";
-import ameli from "../../theme/images/demarche/ameli.png";
-import caf from "../../theme/images/demarche/caf.png";
-import carteBancaire from "../../theme/images/demarche/carteBancaire.png";
-import carteIdentite from "../../theme/images/demarche/carteIdentite.png";
-import carteVitale from "../../theme/images/demarche/carteVitale.png";
-import covid from "../../theme/images/demarche/covid.png";
-import ofpra from "../../theme/images/demarche/OFPRA.png";
-import passeport from "../../theme/images/demarche/passeport.png";
-import poleEmploi from "../../theme/images/demarche/poleEmploi.png";
-import titreSejour from "../../theme/images/demarche/titreSejour.png";
-import permisConduire from "../../theme/images/demarche/permisConduire.png";
 
+import { Picture } from "@refugies-info/api-types";
 import { Image } from "react-native";
 import { getImageNameFromContentId } from "./contentsIdDemarcheImageCorrespondency";
-import { Picture } from "@refugies-info/api-types";
 
 interface Props {
   icon?: Picture;
@@ -74,10 +73,7 @@ const IMAGES = {
 };
 
 export const DemarcheImage = (props: Props) => {
-  const cardWidth = useMemo(
-    () => (props.isSmall ? SMALL_CARD_WIDTH : CARD_WIDTH),
-    [props.isSmall]
-  );
+  const cardWidth = useMemo(() => (props.isSmall ? SMALL_CARD_WIDTH : CARD_WIDTH), [props.isSmall]);
   const imageData = useMemo(() => {
     const imageName = getImageNameFromContentId(props.contentId);
     return imageName ? IMAGES[imageName] : null;
@@ -87,15 +83,9 @@ export const DemarcheImage = (props: Props) => {
     const height = cardWidth / imageData.ratio;
 
     return (
-      <Image
-        source={imageData.image}
-        resizeMode="contain"
-        style={{ width: cardWidth, height: height, flex: 1 }}
-      />
+      <Image source={imageData.image} resizeMode="contain" style={{ width: cardWidth, height: height, flex: 1 }} />
     );
   }
 
-  return props.icon ? (
-    <StreamlineIcon icon={props.icon} size={24} stroke={props.stroke} />
-  ) : null;
+  return props.icon ? <StreamlineIcon icon={props.icon} size={24} stroke={props.stroke} /> : null;
 };

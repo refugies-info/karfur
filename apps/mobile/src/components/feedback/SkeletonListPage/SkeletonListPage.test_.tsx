@@ -1,6 +1,5 @@
-import React from "react";
-import SkeletonListPage from "./SkeletonListPage";
 import { render } from "../../utils/tests";
+import SkeletonListPage from "./SkeletonListPage";
 
 describe("SkeletonListPage snapshot test suite", () => {
   it("should render without bug", () => {

@@ -1,9 +1,9 @@
-import { useUniqueId } from "hooks";
-import { SectionTitle } from "components/Pages/dispositif";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
+import { SectionTitle } from "~/components/Pages/dispositif";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Tooltip from "~/components/UI/Tooltip";
+import { useUniqueId } from "~/hooks";
+import { cls } from "~/lib/classname";
 import styles from "./SectionTitleAbstract.module.scss";
-import { cls } from "lib/classname";
 
 const SectionTitleAbstract = () => {
   const tooltipId = useUniqueId("help_abstract_");

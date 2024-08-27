@@ -1,9 +1,9 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { updateNotificationsSettings } from "~/modules/appusers/appusers.repository";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { createTheme } from "~/modules/themes/themes.repository";
 import postThemes, { hasOneNotificationEnabled } from "./postThemes";
-import { createTheme } from "../../../modules/themes/themes.repository";
-import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 
 /* jest.mock("../../../modules/appusers/appusers.repository", () => ({
   getAllAppUsers: jest.fn().mockResolvedValue([
@@ -95,7 +95,7 @@ describe.skip("postThemes", () => {
       throw new Error("NOT_AUTHORIZED");
     });
     const req = {
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await postThemes[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -105,14 +105,14 @@ describe.skip("postThemes", () => {
     const req = {
       fromSite: true,
       body: {
-        name: { fr: "Theme" }
+        name: { fr: "Theme" },
       },
       user: { roles: [] },
-      userId: "id"
+      userId: "id",
     };
     await postThemes[1](req, res);
     expect(createTheme).toHaveBeenCalledWith({
-      name: { fr: "Theme" }
+      name: { fr: "Theme" },
     });
     expect(getActiveLanguagesFromDB).toHaveBeenCalled();
 
@@ -120,13 +120,13 @@ describe.skip("postThemes", () => {
       demarches: true,
       global: true,
       local: false,
-      themes: { ThemeUUID: true, test: false, test2: true, test3: false, test4: false }
+      themes: { ThemeUUID: true, test: false, test2: true, test3: false, test4: false },
     });
     expect(updateNotificationsSettings).toHaveBeenNthCalledWith(2, "UserUUID2", {
       global: false,
       local: false,
       demarches: false,
-      themes: { ThemeUUID: false, test: false, test2: false, test3: false, test4: false }
+      themes: { ThemeUUID: false, test: false, test2: false, test3: false, test4: false },
     });
 
     expect(res.status).toHaveBeenCalledWith(200);
@@ -151,9 +151,9 @@ describe.skip("hasOneNotificationEnabled", () => {
           test: false,
           test2: true,
           test3: false,
-          test4: false
-        }
-      }
+          test4: false,
+        },
+      },
     };
 
     expect(hasOneNotificationEnabled(user)).toBe(true);
@@ -175,9 +175,9 @@ describe.skip("hasOneNotificationEnabled", () => {
           test: false,
           test2: false,
           test3: false,
-          test4: false
-        }
-      }
+          test4: false,
+        },
+      },
     };
 
     expect(hasOneNotificationEnabled(user)).toBe(true);
@@ -199,9 +199,9 @@ describe.skip("hasOneNotificationEnabled", () => {
           test: false,
           test2: false,
           test3: false,
-          test4: false
-        }
-      }
+          test4: false,
+        },
+      },
     };
 
     expect(hasOneNotificationEnabled(user)).toBe(false);

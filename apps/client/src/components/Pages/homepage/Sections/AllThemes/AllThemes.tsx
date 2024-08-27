@@ -1,11 +1,10 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { cls } from "lib/classname";
-import { getPath } from "routes";
-import ThemesGrid from "components/Content/ThemesGrid";
-import commonStyles from "scss/components/staticPages.module.scss";
-import styles from "./AllThemes.module.scss";
 import { Id } from "@refugies-info/api-types";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
+import ThemesGrid from "~/components/Content/ThemesGrid";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
+import styles from "./AllThemes.module.scss";
 
 interface Props {
   id: string;

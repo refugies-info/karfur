@@ -1,6 +1,6 @@
 import * as SibApiV3Sdk from "@sendinblue/client";
-import { InvalidRequestError } from "../../errors";
-import logger from "../../logger";
+import { InvalidRequestError } from "~/errors";
+import logger from "~/logger";
 
 let apiInstance = new SibApiV3Sdk.ContactsApi();
 apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.SENDINBLUE_API_KEY);
@@ -13,7 +13,7 @@ export const deleteFromNewsletterList = async (email: string) => {
   } catch (e) {
     logger.error("[deleteFromNewsletterList] Error while deleting contact", e);
   }
-}
+};
 
 export const addToNewsletter = async (email: string) => {
   if (process.env.NODE_ENV === "dev") {
@@ -28,7 +28,7 @@ export const addToNewsletter = async (email: string) => {
       await deleteFromNewsletterList(email);
     }
     // eslint-disable-next-line no-empty
-  } catch (e) { }
+  } catch (e) {}
 
   const createContactRequest = new SibApiV3Sdk.CreateContact();
   createContactRequest.email = email;
@@ -46,7 +46,7 @@ export const addToNewsletter = async (email: string) => {
     },
   );
   return;
-}
+};
 
 export const isInNewsletterList = async (email: string) => {
   try {
@@ -62,4 +62,4 @@ export const isInNewsletterList = async (email: string) => {
     }
     return false;
   }
-}
+};

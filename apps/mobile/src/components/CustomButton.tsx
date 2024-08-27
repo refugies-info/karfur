@@ -1,13 +1,11 @@
-import * as React from "react";
-import styled from "styled-components/native";
 import { StyleProp, TextStyle } from "react-native";
-import { RTLTouchableOpacity } from "./BasicComponents";
-import { styles } from "../theme";
-import { TextDSFR_MD_Bold, TextDSFR_MD_Med } from "./StyledText";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
+import styled, { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
+import { RTLTouchableOpacity } from "./BasicComponents";
 import { ReadableText } from "./ReadableText";
-import { useTheme } from "styled-components/native";
+import { TextDSFR_MD_Bold, TextDSFR_MD_Med } from "./StyledText";
 
 const ButtonContainer = styled(RTLTouchableOpacity)<{
   backgroundColor?: string;
@@ -16,16 +14,13 @@ const ButtonContainer = styled(RTLTouchableOpacity)<{
   isDisabled?: boolean;
   withShadows: boolean;
 }>`
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.colors.white};
+  background-color: ${({ backgroundColor, theme }) => backgroundColor || theme.colors.white};
   justify-content: center;
-  padding: ${({ isSmall, theme }) =>
-    !isSmall ? theme.radius * 3 : theme.margin}px;
+  padding: ${({ isSmall, theme }) => (!isSmall ? theme.radius * 3 : theme.margin)}px;
   border-radius: ${({ isSmall, theme }) => (!isSmall ? theme.radius * 2 : 8)}px;
   align-items: center;
   width: ${({ notFullWidth }) => (notFullWidth ? "auto" : "100%")};
-  ${({ isDisabled, withShadows, theme }) =>
-    isDisabled || !withShadows ? "" : theme.shadows.sm};
+  ${({ isDisabled, withShadows, theme }) => (isDisabled || !withShadows ? "" : theme.shadows.sm)};
   opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
 `;
 
@@ -37,11 +32,8 @@ const ColoredTextBold = styled(TextDSFR_MD_Bold)<{
 }>`
   color: ${({ textColor }) => textColor};
   margin-left: ${({ isRTL, iconFirst, hasIcon }) =>
-    hasIcon && (iconFirst || isRTL) && isRTL !== iconFirst
-      ? styles.margin
-      : 0}px;
-  margin-right: ${({ isRTL, iconFirst, hasIcon }) =>
-    hasIcon && isRTL === iconFirst ? styles.margin : 0}px;
+    hasIcon && (iconFirst || isRTL) && isRTL !== iconFirst ? styles.margin : 0}px;
+  margin-right: ${({ isRTL, iconFirst, hasIcon }) => (hasIcon && isRTL === iconFirst ? styles.margin : 0)}px;
 `;
 
 const ColoredTextNormal = styled(TextDSFR_MD_Med)<{
@@ -52,11 +44,8 @@ const ColoredTextNormal = styled(TextDSFR_MD_Med)<{
 }>`
   color: ${({ textColor }) => textColor};
   margin-left: ${({ isRTL, iconFirst, hasIcon }) =>
-    hasIcon && (iconFirst || isRTL) && isRTL !== iconFirst
-      ? styles.margin
-      : 0}px;
-  margin-right: ${({ isRTL, iconFirst, hasIcon }) =>
-    hasIcon && isRTL === iconFirst ? styles.margin : 0}px;
+    hasIcon && (iconFirst || isRTL) && isRTL !== iconFirst ? styles.margin : 0}px;
+  margin-right: ${({ isRTL, iconFirst, hasIcon }) => (hasIcon && isRTL === iconFirst ? styles.margin : 0)}px;
 `;
 
 interface Props {

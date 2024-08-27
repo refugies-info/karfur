@@ -2,19 +2,19 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { ExplorerParamList } from "../../../types";
-import { HeaderContentProps, Page } from "../../components";
-import { ErrorScreen } from "../../components/ErrorScreen";
-import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
-import { NeedsSummary } from "../../components/Needs/NeedsSummary";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { registerBackButton } from "../../libs/backButton";
-import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
-import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { needsSelector } from "../../services/redux/Needs/needs.selectors";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { styles } from "../../theme";
+import { HeaderContentProps, Page } from "~/components";
+import { ErrorScreen } from "~/components/ErrorScreen";
+import HeaderContentTitle from "~/components/layout/Header/HeaderContentTitle";
+import { NeedsSummary } from "~/components/Needs/NeedsSummary";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { registerBackButton } from "~/libs/backButton";
+import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
+import { LoadingStatusKey } from "~/services/redux/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.selectors";
+import { needsSelector } from "~/services/redux/Needs/needs.selectors";
+import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { ExplorerParamList } from "~/types/navigation";
 
 const computeNeedsToDisplay = (
   allNeeds: GetNeedResponse[],

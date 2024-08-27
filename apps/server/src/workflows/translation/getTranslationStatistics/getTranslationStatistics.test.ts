@@ -1,7 +1,7 @@
 //@ts-nocheck
 /* import getStatistics from "./getStatistics";
-import { getAllUsersFromDB } from "../../../modules/users/users.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository"; */
+import { getAllUsersFromDB } from "~/modules/users/users.repository";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository"; */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {

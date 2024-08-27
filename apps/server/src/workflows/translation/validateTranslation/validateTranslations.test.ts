@@ -1,11 +1,11 @@
 // @ts-nocheck
 /* import { validateTranslations } from "./validateTranslation";
-import { validateTradInDB, deleteTradsInDB } from "modules/traductions/traductions.repository";
-import { insertInDispositif } from "modules/dispositif/insertInDispositif";
-import { updateLanguagesAvancement } from "modules/langues/langues.service";
-import { getDispositifByIdWithAllFields } from "modules/dispositif/dispositif.repository";
-import { sendPublishedTradMailToStructure } from "modules/mail/sendPublishedTradMailToStructure";
-import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors"; */
+import { validateTradInDB, deleteTradsInDB } from "~/modules/traductions/traductions.repository";
+import { insertInDispositif } from "~/modules/dispositif/insertInDispositif";
+import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
+import { getDispositifByIdWithAllFields } from "~/modules/dispositif/dispositif.repository";
+import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedTradMailToTraductors"; */
 
 import { RoleName } from "@refugies-info/api-types";
 

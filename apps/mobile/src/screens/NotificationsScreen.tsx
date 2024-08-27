@@ -3,20 +3,20 @@ import React, { useMemo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 
-import { styles } from "../theme";
+import { styles } from "~/theme";
 
-import { Notification, useNotifications } from "../hooks/useNotifications";
-import { useNotificationsStatus } from "../hooks/useNotificationsStatus";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { Notification, useNotifications } from "~/hooks/useNotifications";
+import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useTheme } from "styled-components/native";
-import { BottomTabParamList, ExplorerParamList } from "../../types";
-import { Page, Rows } from "../components";
-import { HeaderContentProps, HeaderContentTitle } from "../components/layout/Header";
-import { EnableNotifications } from "../components/Notifications/EnableNotifications";
-import { NotificationCard } from "../components/Notifications/NotificationCard";
+import { Page, Rows } from "~/components";
+import { HeaderContentProps, HeaderContentTitle } from "~/components/layout/Header";
+import { EnableNotifications } from "~/components/Notifications/EnableNotifications";
+import { NotificationCard } from "~/components/Notifications/NotificationCard";
+import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
 
 const ICON_SIZE = 24;
 

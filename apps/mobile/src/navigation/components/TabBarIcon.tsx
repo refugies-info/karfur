@@ -1,7 +1,6 @@
-import React from "react";
 import { useWindowDimensions, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import { styles } from "../../theme";
+import { styles } from "~/theme";
 
 interface TabBarIconProps {
   color: string;
@@ -16,9 +15,7 @@ const ICON_SIZE_SMALL = 18;
 
 export const TabBarIcon = (props: TabBarIconProps) => {
   const { fontScale } = useWindowDimensions();
-  const iconNameWithFocus = props.focused
-    ? props.iconName
-    : props.iconName + "-outline";
+  const iconNameWithFocus = props.focused ? props.iconName : props.iconName + "-outline";
 
   // TODO Généraliser dans l'application ?
   const scale = Math.max(fontScale / 1.7, 1);

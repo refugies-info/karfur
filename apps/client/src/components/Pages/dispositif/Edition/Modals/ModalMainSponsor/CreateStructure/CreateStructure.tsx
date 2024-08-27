@@ -1,7 +1,6 @@
-import React from "react";
 import { MainSponsor } from "@refugies-info/api-types";
+import React from "react";
 import { SponsorForm } from "../../components";
-import styles from "./CreateStructure.module.scss";
 
 interface Props {
   sponsor: MainSponsor;

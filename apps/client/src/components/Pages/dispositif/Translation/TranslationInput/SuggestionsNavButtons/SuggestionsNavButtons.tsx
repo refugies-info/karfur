@@ -1,5 +1,5 @@
-import { cls } from "lib/classname";
-import Button from "components/UI/Button";
+import Button from "~/components/UI/Button";
+import { cls } from "~/lib/classname";
 import styles from "./SuggestionsNavButtons.module.scss";
 
 interface Props {

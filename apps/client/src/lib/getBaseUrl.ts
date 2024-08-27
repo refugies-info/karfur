@@ -5,4 +5,4 @@ export const getBaseUrl = () => {
     return "https://staging.refugies.info/";
   }
   return "https://refugies.info/";
-}
+};

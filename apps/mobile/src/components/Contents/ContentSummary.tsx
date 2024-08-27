@@ -1,19 +1,19 @@
-import React, { memo, useMemo } from "react";
-import styled from "styled-components/native";
-import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { useNavigation } from "@react-navigation/native";
+import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { memo, useMemo } from "react";
 import { Image } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import { styles } from "../../theme";
-import { TextDSFR_MD_Bold, TextDSFR_MD, TextDSFR_S } from "../StyledText";
-import NoLogo from "../../theme/images/contents/structure_no_logo.png";
-import { DemarcheImage } from "./DemarcheImage";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import Highlight from "../Search/Highlight";
-import { ReadableText } from "../ReadableText";
-import { defaultColors } from "../../libs/getThemeTag";
+import styled from "styled-components/native";
+import { defaultColors } from "~/libs/getThemeTag";
+import { styles } from "~/theme";
+import NoLogo from "~/theme/images/contents/structure_no_logo.png";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 import { Columns } from "../layout";
+import { ReadableText } from "../ReadableText";
+import Highlight from "../Search/Highlight";
+import { TextDSFR_MD, TextDSFR_MD_Bold, TextDSFR_S } from "../StyledText";
+import { DemarcheImage } from "./DemarcheImage";
 
 const IMAGE_SIZE = 58;
 
@@ -21,8 +21,7 @@ const ContentContainer = styled.TouchableOpacity<{
   isDispo: boolean;
   color?: string;
 }>`
-  background-color: ${({ isDispo, theme }) =>
-    isDispo ? theme.colors.white : theme.colors.lightGrey};
+  background-color: ${({ isDispo, theme }) => (isDispo ? theme.colors.white : theme.colors.lightGrey)};
   min-height: ${({ isDispo }) => (isDispo ? 80 : 72)}px;
   border-radius: ${({ theme }) => theme.radius * 2}px;
   ${({ theme }) => theme.shadows.sm}
@@ -39,8 +38,7 @@ const ImageContainer = styled.View<{ hasMatch?: boolean; lightColor?: string }>`
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
   border-width: 6px;
-  border-color: ${({ hasMatch, theme }) =>
-    hasMatch ? theme.colors.lightBlue : "transparent"};
+  border-color: ${({ hasMatch, theme }) => (hasMatch ? theme.colors.lightBlue : "transparent")};
   border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
@@ -100,7 +98,7 @@ const ContentSummaryComponent = (props: Props) => {
   const navigation: any = useNavigation();
   const theme = useMemo(
     () => props.theme || (props.content.theme as GetThemeResponse),
-    [props.theme, props.content.theme]
+    [props.theme, props.content.theme],
   );
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
 
@@ -113,15 +111,10 @@ const ContentSummaryComponent = (props: Props) => {
           accessible={true}
           accessibilityLabel={props.actionLabel}
         >
-          <Icon
-            name={props.actionIcon || ""}
-            width={16}
-            height={16}
-            fill={styles.colors.black}
-          />
+          <Icon name={props.actionIcon || ""} width={16} height={16} fill={styles.colors.black} />
         </ActionButton>
       ) : null,
-    [props.actionPress, props.actionLabel]
+    [props.actionPress, props.actionLabel],
   );
 
   if (props.content.typeContenu === "dispositif") {
@@ -161,10 +154,7 @@ const ContentSummaryComponent = (props: Props) => {
             </ImageContainer>
           ) : (
             <ImageContainer hasMatch={props.hasSponsorMatch}>
-              <Image
-                source={NoLogo}
-                style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-              />
+              <Image source={NoLogo} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
             </ImageContainer>
           )}
 
@@ -178,22 +168,16 @@ const ContentSummaryComponent = (props: Props) => {
                   color={colors.color100}
                 />
               ) : (
-                <ReadableText>
-                  {props.content.titreInformatif || ""}
-                </ReadableText>
+                <ReadableText>{props.content.titreInformatif || ""}</ReadableText>
               )}
             </TitreInfoText>
             {(!!props.content?.titreMarque ||
-              !!props?.searchItem?.[
-                `titreMarque_${props.searchLanguageMatch || "fr"}`
-              ]) && (
+              !!props?.searchItem?.[`titreMarque_${props.searchLanguageMatch || "fr"}`]) && (
               <TitreMarqueText color={colors.color100}>
                 {props.searchItem ? (
                   <Highlight
                     hit={props.searchItem}
-                    attribute={`titreMarque_${
-                      props.searchLanguageMatch || "fr"
-                    }`}
+                    attribute={`titreMarque_${props.searchLanguageMatch || "fr"}`}
                     //@ts-ignore
                     color={colors.color100}
                   />
@@ -243,12 +227,7 @@ const ContentSummaryComponent = (props: Props) => {
     >
       <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
         <ImageContainer lightColor={colors.color30}>
-          <DemarcheImage
-            icon={theme?.icon}
-            stroke={colors.color100}
-            contentId={props.content._id}
-            isSmall={true}
-          />
+          <DemarcheImage icon={theme?.icon} stroke={colors.color100} contentId={props.content._id} isSmall={true} />
         </ImageContainer>
 
         <TitlesContainer>

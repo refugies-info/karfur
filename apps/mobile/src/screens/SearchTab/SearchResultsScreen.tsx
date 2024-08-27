@@ -1,22 +1,22 @@
-import * as React from "react";
-import styled from "styled-components/native";
-import { useSelector } from "react-redux";
-import { ScrollView, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { InstantSearch, Configure } from "react-instantsearch-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import algoliasearch from "algoliasearch/lite";
-import { SearchParamList } from "../../../types";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
-import { needsSelector } from "../../services/redux/Needs/needs.selectors";
-import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
-import SearchBox from "../../components/Search/SearchBox";
-import InfiniteHits from "../../components/Search/InfiniteHits";
-import SearchSuggestions from "../../components/Search/SearchSuggestions";
-import { getSearchableAttributes } from "../../libs/search";
-import Config from "../../libs/getEnvironment";
-import { styles } from "../../theme";
+import * as React from "react";
+import { Configure, InstantSearch } from "react-instantsearch-native";
+import { ScrollView, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
+import styled from "styled-components/native";
+import InfiniteHits from "~/components/Search/InfiniteHits";
+import SearchBox from "~/components/Search/SearchBox";
+import SearchSuggestions from "~/components/Search/SearchSuggestions";
+import Config from "~/libs/getEnvironment";
+import { getSearchableAttributes } from "~/libs/search";
+import { mostViewedContentsSelector } from "~/services/redux/Contents/contents.selectors";
+import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
+import { needsSelector } from "~/services/redux/Needs/needs.selectors";
+import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { SearchParamList } from "~/types/navigation";
 
 const SearchBoxContainer = styled.View`
   padding-bottom: ${({ theme }) => theme.margin * 3}px;
@@ -24,20 +24,13 @@ const SearchBoxContainer = styled.View`
   ${({ theme }) => theme.shadows.xs};
 `;
 
-const searchClient = algoliasearch(
-  "L9HYT1676M",
-  process.env.ALGOLIA_API_KEY || ""
-);
+const searchClient = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY || "");
 
-export const SearchResultsScreen = ({
-  navigation,
-}: StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
+export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
   const insets = useSafeAreaInsets();
   const [searchState, setSearchState] = React.useState({ query: "" });
   const currentI18nCode = useSelector(currentI18nCodeSelector);
-  const mostViewedContents = useSelector(
-    mostViewedContentsSelector(currentI18nCode || "fr")
-  );
+  const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));
   const groupedContents = useSelector(groupedContentsSelector);
   const allNeeds = useSelector(needsSelector);
 
@@ -45,16 +38,13 @@ export const SearchResultsScreen = ({
   const nbContents = React.useMemo(() => {
     const nbContents: Record<string, number> = {};
     for (const need of allNeeds) {
-      nbContents[need._id.toString()] =
-        groupedContents[need._id.toString()]?.length || 0;
+      nbContents[need._id.toString()] = groupedContents[need._id.toString()]?.length || 0;
     }
     return nbContents;
   }, []);
 
   // Search parameters
-  const [searchableAttributes, setSearchableAttributes] = React.useState<
-    string[]
-  >([]);
+  const [searchableAttributes, setSearchableAttributes] = React.useState<string[]>([]);
   React.useEffect(() => {
     setSearchableAttributes(getSearchableAttributes(currentI18nCode));
   }, [currentI18nCode]);
@@ -81,9 +71,7 @@ export const SearchResultsScreen = ({
           filters="webOnly:false"
           analyticsTags={[`ln_${currentI18nCode}`]}
         />
-        <SearchBoxContainer
-          style={{ paddingTop: insets.top + styles.margin * 3 }}
-        >
+        <SearchBoxContainer style={{ paddingTop: insets.top + styles.margin * 3 }}>
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
         </SearchBoxContainer>
         {searchState.query !== "" ? (
@@ -105,10 +93,7 @@ export const SearchResultsScreen = ({
               paddingHorizontal: styles.margin * 3,
             }}
           >
-            <SearchSuggestions
-              contents={mostViewedContents}
-              navigation={navigation}
-            />
+            <SearchSuggestions contents={mostViewedContents} navigation={navigation} />
           </ScrollView>
         )}
       </InstantSearch>

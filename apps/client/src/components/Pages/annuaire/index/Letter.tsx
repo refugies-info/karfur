@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 
 interface MainContainerProps {
-  isClickable: boolean
+  isClickable: boolean;
 }
 const MainContainer = styled.a<MainContainerProps>`
   border-radius: 8px;
@@ -33,9 +32,5 @@ interface Props {
 }
 
 export const Letter = (props: Props) => (
-  <MainContainer
-    isClickable={props.isClickable}
-  >
-    {props.letter.toUpperCase()}
-  </MainContainer>
+  <MainContainer isClickable={props.isClickable}>{props.letter.toUpperCase()}</MainContainer>
 );

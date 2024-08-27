@@ -1,7 +1,6 @@
-import React from "react";
+import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
-import { Icon } from "react-native-eva-icons";
 import Columns from "../../layout/Columns";
 import RadioButton from "../RadioButton";
 
@@ -22,25 +21,15 @@ const MainContainer = styled(RTLTouchableOpacity)<{
   selected: boolean;
 }>`
   background-color: ${({ selected, flatStyle, theme }) =>
-    selected
-      ? theme.colors.dsfr_actionLowBlue
-      : flatStyle
-      ? "transparent"
-      : theme.colors.white};
-  ${({ selected, flatStyle, theme }) =>
-    selected || flatStyle ? "" : theme.shadows.sm_dsfr};
-  margin-bottom: ${({ flatStyle, theme }) =>
-    !flatStyle ? theme.margin * 3 : 0}px;
+    selected ? theme.colors.dsfr_actionLowBlue : flatStyle ? "transparent" : theme.colors.white};
+  ${({ selected, flatStyle, theme }) => (selected || flatStyle ? "" : theme.shadows.sm_dsfr)};
+  margin-bottom: ${({ flatStyle, theme }) => (!flatStyle ? theme.margin * 3 : 0)}px;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: ${({ theme }) => theme.margin * 2}px;
   border-width: 1px;
   border-color: ${({ selected, flatStyle, theme }) =>
-    selected
-      ? theme.colors.dsfr_action
-      : flatStyle
-      ? "transparent"
-      : theme.colors.dsfr_borderGrey};
+    selected ? theme.colors.dsfr_action : flatStyle ? "transparent" : theme.colors.dsfr_borderGrey};
 `;
 
 export const ChoiceButton = ({
@@ -72,9 +61,7 @@ export const ChoiceButton = ({
             name={iconOverride}
             width={24}
             height={24}
-            fill={
-              isSelected ? theme.colors.dsfr_action : theme.colors.dsfr_dark
-            }
+            fill={isSelected ? theme.colors.dsfr_action : theme.colors.dsfr_dark}
           />
         )}
       </Columns>

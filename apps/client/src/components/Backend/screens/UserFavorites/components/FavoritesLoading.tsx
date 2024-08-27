@@ -1,7 +1,7 @@
-import TitleWithNumber from "components/Backend/TitleWithNumber";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import TitleWithNumber from "~/components/Backend/TitleWithNumber";
+import { colors } from "~/utils/colors";
 import styles from "../UserFavorites.module.scss";
 
 const LoadingCardContainer = styled.div`

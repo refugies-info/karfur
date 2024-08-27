@@ -1,8 +1,8 @@
 type Target = {
-  name: string
-  targetDispositif: number
-  targetDemarche: number
-}
+  name: string;
+  targetDispositif: number;
+  targetDemarche: number;
+};
 
 export const targetByTag: Target[] = [
   {

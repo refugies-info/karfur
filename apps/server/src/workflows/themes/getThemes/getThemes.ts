@@ -1,8 +1,8 @@
-import logger from "../../../logger";
-import { getAllThemes } from "../../../modules/themes/themes.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { ResponseWithData } from "../../../types/interface";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { getAllThemes } from "~/modules/themes/themes.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const getThemes = async (): ResponseWithData<GetThemeResponse[]> => {
   logger.info("[getThemes] received");

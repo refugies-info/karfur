@@ -1,7 +1,7 @@
 // @ts-nocheck
+import { createStructureInDB } from "~/modules/structure/structure.repository";
+import { addStructureForUsers } from "~/modules/users/users.service";
 import { createStructure } from "./createStructure";
-import { createStructureInDB } from "../../../modules/structure/structure.repository";
-import { addStructureForUsers } from "../../../modules/users/users.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -52,9 +52,9 @@ describe.skip("createStructure", () => {
     body: {
       query: {
         nom: "structure",
-        membres: []
-      }
-    }
+        membres: [],
+      },
+    },
   };
 
   it("should return 200 when no membres", async () => {
@@ -63,14 +63,14 @@ describe.skip("createStructure", () => {
       nom: "structure",
       membres: [],
       status: "En attente",
-      createur: "userId"
+      createur: "userId",
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
       data: {
-        _id: "id"
-      }
+        _id: "id",
+      },
     });
   });
 
@@ -82,11 +82,11 @@ describe.skip("createStructure", () => {
       nom: "structure",
       membres: [],
       status: "En attente",
-      createur: "userId"
+      createur: "userId",
     });
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne"
+      text: "Erreur interne",
     });
   });
 
@@ -96,22 +96,22 @@ describe.skip("createStructure", () => {
     body: {
       query: {
         nom: "structure",
-        membres: [{ userId: "userId2", roles: ["admin"] }]
-      }
-    }
+        membres: [{ userId: "userId2", roles: ["admin"] }],
+      },
+    },
   };
 
   it("should return 200 and call addStructureForUsersInDB when membres", async () => {
     createStructureInDB.mockResolvedValueOnce({
       _id: "id",
-      membres: [{ userId: "userId2" }]
+      membres: [{ userId: "userId2" }],
     });
     await createStructure(reqWithMembres, res);
     expect(createStructureInDB).toHaveBeenCalledWith({
       nom: "structure",
       membres: [{ userId: "userId2", roles: ["admin"] }],
       status: "En attente",
-      createur: "userId"
+      createur: "userId",
     });
     expect(addStructureForUsers).toHaveBeenCalledWith(["userId2"], "id");
     expect(res.status).toHaveBeenCalledWith(200);
@@ -119,15 +119,15 @@ describe.skip("createStructure", () => {
       text: "Succès",
       data: {
         _id: "id",
-        membres: [{ userId: "userId2" }]
-      }
+        membres: [{ userId: "userId2" }],
+      },
     });
   });
 
   it("should return 500 if addStructureForUsers throws", async () => {
     createStructureInDB.mockResolvedValueOnce({
       _id: "id",
-      membres: [{ userId: "userId2" }]
+      membres: [{ userId: "userId2" }],
     });
 
     addStructureForUsers.mockRejectedValueOnce(new Error("erreur"));
@@ -136,7 +136,7 @@ describe.skip("createStructure", () => {
       nom: "structure",
       membres: [{ userId: "userId2", roles: ["admin"] }],
       status: "En attente",
-      createur: "userId"
+      createur: "userId",
     });
     expect(addStructureForUsers).toHaveBeenCalledWith(["userId2"], "id");
     expect(res.status).toHaveBeenCalledWith(500);
@@ -145,7 +145,7 @@ describe.skip("createStructure", () => {
 
   it("should return 200 if createStructureInDB returns no membres", async () => {
     createStructureInDB.mockResolvedValueOnce({
-      _id: "id"
+      _id: "id",
     });
 
     await createStructure(reqWithMembres, res);
@@ -153,13 +153,13 @@ describe.skip("createStructure", () => {
       nom: "structure",
       membres: [{ userId: "userId2", roles: ["admin"] }],
       status: "En attente",
-      createur: "userId"
+      createur: "userId",
     });
     expect(addStructureForUsers).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
-      data: { _id: "id" }
+      data: { _id: "id" },
     });
   });
 });

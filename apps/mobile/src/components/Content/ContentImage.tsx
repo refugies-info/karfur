@@ -1,28 +1,19 @@
-import React from "react";
+import { Picture } from "@refugies-info/api-types";
 import { Image } from "react-native";
 import styled, { useTheme } from "styled-components/native";
-import { styles } from "../../theme";
-import { TextDSFR_MD } from "../StyledText";
-import { StreamlineIcon } from "../StreamlineIcon";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
 import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
 import { DemarcheImage } from "../Contents/DemarcheImage";
 import Columns from "../layout/Columns";
 import { ReadableText } from "../ReadableText";
-import { Picture } from "@refugies-info/api-types";
+import { StreamlineIcon } from "../StreamlineIcon";
+import { TextDSFR_MD } from "../StyledText";
 
 const CONTAINER_SIZE = 100;
 
 export const getContainerDimensions = (imageName: string) => {
-  if (
-    [
-      "carteBancaire",
-      "carteIdentite",
-      "carteVitale",
-      "permisConduire",
-      "titreSejour",
-    ].includes(imageName)
-  ) {
+  if (["carteBancaire", "carteIdentite", "carteVitale", "permisConduire", "titreSejour"].includes(imageName)) {
     return { width: CONTAINER_SIZE, height: 56 + styles.margin * 2 };
   }
 
@@ -110,11 +101,7 @@ export const ContentImage = (props: Props) => {
   if (imageName) {
     const { width, height } = getContainerDimensions(imageName);
     return (
-      <SponsorImageContainer
-        width={width}
-        height={height}
-        style={{ justifyContent: "center", alignItems: "center" }}
-      >
+      <SponsorImageContainer width={width} height={height} style={{ justifyContent: "center", alignItems: "center" }}>
         <DemarcheImage contentId={props.contentId} />
       </SponsorImageContainer>
     );
@@ -124,17 +111,9 @@ export const ContentImage = (props: Props) => {
     // no image
     <SponsorImageContainer height={40}>
       <Columns layout="auto" RTLBehaviour verticalAlign="center">
-        {props.icon && (
-          <StreamlineIcon
-            icon={props.icon}
-            size={16}
-            stroke={theme.colors.black}
-          />
-        )}
+        {props.icon && <StreamlineIcon icon={props.icon} size={16} stroke={theme.colors.black} />}
         <TextDSFR_MD>
-          <ReadableText>
-            {t("content_screen.procedure", "Démarche")}
-          </ReadableText>
+          <ReadableText>{t("content_screen.procedure", "Démarche")}</ReadableText>
         </TextDSFR_MD>
       </Columns>
     </SponsorImageContainer>

@@ -15,15 +15,13 @@ export type Dispositif = {
 export const getDispositifsWithAllInformationRequired = (
   dispositifsIds: Id[],
   allDispositifs: GetAllDispositifsResponse[],
-  themes: GetThemeResponse[]
+  themes: GetThemeResponse[],
 ): Dispositif[] => {
   let dispositifsWithAllInformation: Dispositif[] = [];
   dispositifsIds.forEach((dispositifId, index) => {
-    let simplifiedDispositif = allDispositifs.find(
-      (dispositif) => dispositif._id === dispositifId
-    );
+    let simplifiedDispositif = allDispositifs.find((dispositif) => dispositif._id === dispositifId);
     if (simplifiedDispositif) {
-      const theme = themes.find(t => simplifiedDispositif?.theme === t._id);
+      const theme = themes.find((t) => simplifiedDispositif?.theme === t._id);
       let element: Dispositif = {
         titreInformatif: simplifiedDispositif.titreInformatif,
         creator: simplifiedDispositif.creatorId,
@@ -33,7 +31,7 @@ export const getDispositifsWithAllInformationRequired = (
         color: theme?.colors?.color100 || "#000000",
         color30: theme?.colors?.color30 || "#CCCCCC",
         hasCreatedStructure: index === 0,
-        hasDraftVersion: simplifiedDispositif.hasDraftVersion
+        hasDraftVersion: simplifiedDispositif.hasDraftVersion,
       };
       dispositifsWithAllInformation.push(element);
     }

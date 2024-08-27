@@ -1,10 +1,10 @@
 import { AddSuggestionDispositifRequest } from "@refugies-info/api-types";
 import uniqid from "uniqid";
-import { addSuggestionDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { ObjectId } from "../../../typegoose";
-import { DemarcheContent, DispositifContent, Suggestion } from "../../../typegoose/Dispositif";
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
+import logger from "~/logger";
+import { addSuggestionDispositifInDB, getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { ObjectId } from "~/typegoose";
+import { DemarcheContent, DispositifContent, Suggestion } from "~/typegoose/Dispositif";
+import { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const addSuggestion = async (

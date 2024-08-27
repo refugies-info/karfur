@@ -1,19 +1,19 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import "react-native-get-random-values"; // Needed before uuid import according to their docs
 import {
-  UseQueryOptions,
-  UseQueryResult,
+  MutationKey,
   QueryKey,
-  useQuery,
   useMutation,
   UseMutationOptions,
   UseMutationResult,
-  MutationKey,
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
 } from "react-query";
-import "react-native-get-random-values"; // Needed before uuid import according to their docs
 import { v4 as uuidv4 } from "uuid";
 
-import { apiCaller } from "../utils/ConfigAPI";
-import { logger } from "../logger";
+import { logger } from "~/logger";
+import { apiCaller } from "~/utils/ConfigAPI";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 export type ResponseWith<T> = { data: T };
@@ -33,7 +33,7 @@ export const getUid = async (): Promise<string> => {
 export const makeApiRequest = async <Request extends any, T extends any>(
   url: string,
   payload: Request,
-  method: Method = "GET"
+  method: Method = "GET",
 ): Promise<T> => {
   try {
     let headers = {};
@@ -69,18 +69,12 @@ export const useApi = <Type, Error>(
   method: Method,
   key: string | any[],
   payload?: any,
-  options?: UseQueryOptions<Type, Error, Type, QueryKey>
+  options?: UseQueryOptions<Type, Error, Type, QueryKey>,
 ): UseQueryResult<Type, Error> => {
   return useQuery<Type, Error, Type>(
     key,
-    () =>
-      makeApiRequest<any, any>(url, payload, method).then(
-        (response) => response.data
-      ),
-    options as Omit<
-      UseQueryOptions<Type, Error, Type, QueryKey>,
-      "queryKey" | "queryFn"
-    >
+    () => makeApiRequest<any, any>(url, payload, method).then((response) => response.data),
+    options as Omit<UseQueryOptions<Type, Error, Type, QueryKey>, "queryKey" | "queryFn">,
   );
 };
 
@@ -88,14 +82,11 @@ export const useApiMutation = <Type, Error>(
   url: string,
   method: Method,
   key: string | any[],
-  options?: UseMutationOptions<Type, Error, Type, MutationKey>
+  options?: UseMutationOptions<Type, Error, Type, MutationKey>,
 ): UseMutationResult<Type, Error, Type> => {
   return useMutation<Type, Error, Type>(
     key,
     (payload: any) => makeApiRequest<any, any>(url, payload, method),
-    options as Omit<
-      UseMutationOptions<Type, Error, Type>,
-      "mutationKey" | "mutationFn"
-    >
+    options as Omit<UseMutationOptions<Type, Error, Type>, "mutationKey" | "mutationFn">,
   );
 };

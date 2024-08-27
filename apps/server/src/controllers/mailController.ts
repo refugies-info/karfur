@@ -1,15 +1,20 @@
-import { Controller, Post, Body, Route, Security, Request, Get, Delete } from "tsoa";
-import { AddContactRequest, ImprovementsRequest, IsInContactResponse, SubscriptionRequest } from "@refugies-info/api-types";
+import {
+  AddContactRequest,
+  ImprovementsRequest,
+  IsInContactResponse,
+  SubscriptionRequest,
+} from "@refugies-info/api-types";
 import { Request as ExRequest } from "express";
+import { Body, Controller, Delete, Get, Post, Request, Route, Security } from "tsoa";
 
-import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
-import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminderMailToUpdateContents";
-import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
-import { sendSubscriptionReminderMail } from "../workflows/mail/sendSubscriptionReminderMail";
-import { addContact } from "../workflows/mail/addContact";
-import { isInContact } from "../workflows/mail/isInContact";
-import { deleteContact } from "../workflows/mail/deleteContact";
-import { Response, ResponseWithData } from "../types/interface";
+import { Response, ResponseWithData } from "~/types/interface";
+import { addContact } from "~/workflows/mail/addContact";
+import { deleteContact } from "~/workflows/mail/deleteContact";
+import { isInContact } from "~/workflows/mail/isInContact";
+import { sendAdminImprovementsMail } from "~/workflows/mail/sendAdminImprovementsMail";
+import { sendDraftReminderMail } from "~/workflows/mail/sendDraftReminderMail";
+import { sendReminderMailToUpdateContents } from "~/workflows/mail/sendReminderMailToUpdateContents";
+import { sendSubscriptionReminderMail } from "~/workflows/mail/sendSubscriptionReminderMail";
 
 @Route("mail")
 export class MailController extends Controller {

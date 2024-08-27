@@ -1,4 +1,4 @@
-import logger from "../../logger";
+import logger from "~/logger";
 import LoginError, { LoginErrorType } from "./LoginError";
 
 const { accountSid, authToken } = process.env;
@@ -9,11 +9,11 @@ const client = require("twilio")(accountSid, authToken);
 const getTwilioService = () => {
   return client.verify.services.list({ limit: 1 }).then((existingServices: any) => {
     if (existingServices.length === 0) {
-      return client.verify.services.create({ friendlyName: "Réfugiés.info" })
+      return client.verify.services.create({ friendlyName: "Réfugiés.info" });
     }
     return existingServices[0];
   });
-}
+};
 
 export const requestEmailLogin = async (email: string) => {
   try {
@@ -23,7 +23,7 @@ export const requestEmailLogin = async (email: string) => {
   } catch (e) {
     logger.error("[Login] error while sending email for", {
       email,
-      error: e
+      error: e,
     });
     throw new LoginError(LoginErrorType.ERROR_WHILE_SENDING_CODE);
   }
@@ -45,4 +45,3 @@ export const verifyCode = async (email: string, code: string) => {
   logger.info("[Login] user, code provided is correct", { email });
   return true;
 };
-

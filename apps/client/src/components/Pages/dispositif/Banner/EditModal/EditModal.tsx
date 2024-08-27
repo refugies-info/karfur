@@ -1,9 +1,7 @@
-import React from "react";
 import Image from "next/image";
-import Button from "components/UI/Button";
-import BaseModal from "components/UI/BaseModal";
-import TutorielImage from "assets/dispositif/tutoriel-image.svg";
-import styles from "./EditModal.module.scss";
+import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
 
 interface Props {
   show: boolean;

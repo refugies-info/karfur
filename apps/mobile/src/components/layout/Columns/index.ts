@@ -1,1 +1,1 @@
-export { default, ColumnsSpacing } from "./Columns";
+export { ColumnsSpacing, default } from "./Columns";

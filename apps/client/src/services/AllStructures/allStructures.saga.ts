@@ -1,15 +1,11 @@
+import { GetAllStructuresResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "../../logger";
 import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { FETCH_ALL_STRUCTURES } from "./allStructures.actionTypes";
 import { setAllStructuresActionCreator } from "./allStructures.actions";
-import { logger } from "../../logger";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
-import { GetAllStructuresResponse } from "@refugies-info/api-types";
 
 export function* fetchAllStructures(): SagaIterator {
   try {

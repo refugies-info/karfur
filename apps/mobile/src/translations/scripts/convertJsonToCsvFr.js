@@ -18,7 +18,7 @@ const convertJsonToCsvFr = () => {
           title,
           key,
           français: elementsFrench[key],
-        })
+        }),
       );
     }
 

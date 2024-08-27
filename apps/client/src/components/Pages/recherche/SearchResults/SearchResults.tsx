@@ -1,21 +1,21 @@
-import React, { memo, useEffect, useState } from "react";
-import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cls } from "lib/classname";
-import useWindowSize from "hooks/useWindowSize";
 import {
   searchQuerySelector,
   searchResultsSelector,
   themesDisplayedSelector,
 } from "services/SearchResults/searchResults.selector";
-import { resetQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import FButton from "components/UI/FButton";
-import DemarcheCard from "components/UI/DemarcheCard";
-import DispositifCard from "components/UI/DispositifCard";
+import noResultsImage from "~/assets/no_results_alt.svg";
+import DemarcheCard from "~/components/UI/DemarcheCard";
+import DispositifCard from "~/components/UI/DispositifCard";
+import FButton from "~/components/UI/FButton";
+import useWindowSize from "~/hooks/useWindowSize";
+import { cls } from "~/lib/classname";
+import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
 import SeeMoreButton from "../SeeMoreButton";
-import noResultsImage from "assets/no_results_alt.svg";
 import styles from "./SearchResults.module.scss";
 
 export const MAX_SHOWN_DEMARCHES = 14;

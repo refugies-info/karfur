@@ -1,5 +1,5 @@
 import { createBrowserHistory } from "history";
-import isInBrowser from "lib/isInBrowser";
+import isInBrowser from "~/lib/isInBrowser";
 
 const history = isInBrowser() ? createBrowserHistory() : undefined;
 

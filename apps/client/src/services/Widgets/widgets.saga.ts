@@ -1,21 +1,17 @@
+import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, call, put, select } from "redux-saga/effects";
-import API from "../../utils/API";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { CREATE_WIDGET, DELETE_WIDGET, GET_WIDGETS, SAVE_WIDGET } from "./widgets.actionTypes";
 import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
-import { GET_WIDGETS, SAVE_WIDGET, CREATE_WIDGET, DELETE_WIDGET } from "./widgets.actionTypes";
-import {
-  setWidgetsActionCreator,
-  saveWidgetActionCreator,
   createWidgetActionCreator,
-  deleteWidgetActionCreator
+  deleteWidgetActionCreator,
+  saveWidgetActionCreator,
+  setWidgetsActionCreator,
 } from "./widgets.actions";
 import { widgetsSelector } from "./widgets.selectors";
-import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "@refugies-info/api-types";
 
 export function* fetchWidgets(): SagaIterator {
   try {
@@ -37,9 +33,7 @@ export function* fetchWidgets(): SagaIterator {
   }
 }
 
-export function* saveWidget(
-  action: ReturnType<typeof saveWidgetActionCreator>
-): SagaIterator {
+export function* saveWidget(action: ReturnType<typeof saveWidgetActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_WIDGET));
     const newWidget = action.payload.value;
@@ -49,7 +43,7 @@ export function* saveWidget(
     const data: PatchWidgetResponse = yield call(API.patchWidget, id, newWidget);
     if (data) {
       const newWidgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
-      const editedWidgetIndex = newWidgets.findIndex(w => w._id === id);
+      const editedWidgetIndex = newWidgets.findIndex((w) => w._id === id);
       newWidgets[editedWidgetIndex] = data;
       yield put(setWidgetsActionCreator(newWidgets));
     }
@@ -64,9 +58,7 @@ export function* saveWidget(
   }
 }
 
-export function* createWidget(
-  action: ReturnType<typeof createWidgetActionCreator>
-): SagaIterator {
+export function* createWidget(action: ReturnType<typeof createWidgetActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.CREATE_WIDGET));
     const newWidget = action.payload;
@@ -86,16 +78,14 @@ export function* createWidget(
   }
 }
 
-export function* deleteWidget(
-  action: ReturnType<typeof deleteWidgetActionCreator>
-): SagaIterator {
+export function* deleteWidget(action: ReturnType<typeof deleteWidgetActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.DELETE_WIDGET));
     logger.info("[deleteWidget] start deleting widget");
     yield call(API.deleteWidget, action.payload);
 
     const widgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
-    yield put(setWidgetsActionCreator(widgets.filter(w => w._id !== action.payload)));
+    yield put(setWidgetsActionCreator(widgets.filter((w) => w._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));
   } catch (error) {

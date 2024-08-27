@@ -1,36 +1,36 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-types";
+import { logger } from "logger";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-types";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Col, Container, Row } from "reactstrap";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { wrapper } from "services/configureStore";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { cls } from "lib/classname";
-import API from "utils/API";
-import SEO from "components/Seo";
+import { Col, Container, Row } from "reactstrap";
+import HelpIcon2 from "~/assets/staticPages/publier/help-icon-crisp.svg";
+import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
+import HelpIcon1 from "~/assets/staticPages/traduire/help-icon-tutoriel.svg";
+import MockupsRIMobile from "~/assets/staticPages/traduire/mockupMobileRI.png";
+import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
 import {
   Accordion,
-  SecondaryNavbar,
-  Card,
-  StepContent,
   AutoplayVideo,
-  InlineLink,
-  Register,
+  Card,
   HeroArrow,
+  InlineLink,
   LanguageIcon,
-} from "components/Pages/staticPages/common";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import LanguageCard from "components/Pages/staticPages/traduire/LanguageCard";
-import WhoIcon3 from "assets/staticPages/traduire/who-icon-3.svg";
-import HelpIcon1 from "assets/staticPages/traduire/help-icon-tutoriel.svg";
-import HelpIcon2 from "assets/staticPages/publier/help-icon-crisp.svg";
-import StepImage5 from "assets/staticPages/publier/step-image-5.png";
-import MockupsRIMobile from "assets/staticPages/traduire/mockupMobileRI.png";
-import styles from "scss/components/staticPages.module.scss";
-import { logger } from "logger";
+  Register,
+  SecondaryNavbar,
+  StepContent,
+} from "~/components/Pages/staticPages/common";
+import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
+import SEO from "~/components/Seo";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import styles from "~/scss/components/staticPages.module.scss";
+import { wrapper } from "~/services/configureStore";
+import API from "~/utils/API";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 export type NeedKey = "strong" | "medium" | "weak";

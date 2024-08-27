@@ -1,9 +1,9 @@
 import { Id, Languages } from "@refugies-info/api-types";
 import { uniq } from "lodash";
-import { TraductionsType } from "../../typegoose/Traductions";
-import { Dispositif, DispositifId, Traductions, TraductionsModel, UserId } from "../../typegoose";
 import { FilterQuery } from "mongoose";
-import { DeleteResult } from "../../types/interface";
+import { Dispositif, DispositifId, Traductions, TraductionsModel, UserId } from "~/typegoose";
+import { TraductionsType } from "~/typegoose/Traductions";
+import { DeleteResult } from "~/types/interface";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
@@ -30,20 +30,26 @@ export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages)
   });
 
 export const findTraductors = (dispositifId: DispositifId, language: Languages) =>
-  TraductionsModel.find({
-    dispositifId,
-    language,
-    type: "suggestion"
-  }, { userId: 1 }).lean();
-
+  TraductionsModel.find(
+    {
+      dispositifId,
+      language,
+      type: "suggestion",
+    },
+    { userId: 1 },
+  ).lean();
 
 const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Dispositif) => {
   const traductions: Traductions[] = await TraductionsModel.find(query);
-  await Promise.all(traductions.map(traduction => TraductionsModel.updateOne(
-    { _id: traduction._id },
-    { finished: Traductions.computeFinished(dispositif, traduction) }
-  )));
-}
+  await Promise.all(
+    traductions.map((traduction) =>
+      TraductionsModel.updateOne(
+        { _id: traduction._id },
+        { finished: Traductions.computeFinished(dispositif, traduction) },
+      ),
+    ),
+  );
+};
 
 /**
  * Removes sections from translated, and from toReview or toFinish
@@ -52,38 +58,33 @@ const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Di
  */
 export const removeTraductionsSections = async (dispositifId: Id, sections: string[], dispositif: Dispositif) => {
   const query: FilterQuery<Traductions> = { dispositifId: dispositifId };
-  const sectionsToRemove = uniq(sections
-    .map(section => section.replace(".title", "").replace(".text", ""))
-    .map(section => `translated.${section}`)
+  const sectionsToRemove = uniq(
+    sections
+      .map((section) => section.replace(".title", "").replace(".text", ""))
+      .map((section) => `translated.${section}`),
   );
-  const unsetSections = sectionsToRemove.reduce((acc: any, curr) => (acc[curr] = "", acc), {});
+  const unsetSections = sectionsToRemove.reduce((acc: any, curr) => ((acc[curr] = ""), acc), {});
 
-  const result = await TraductionsModel.updateMany(
-    query,
-    {
-      $unset: unsetSections,
-      $pull: {
-        toReview: { $in: sections },
-        toReviewCache: { $in: sections },
-        toFinish: { $in: sections }
-      },
-    }
-  );
+  const result = await TraductionsModel.updateMany(query, {
+    $unset: unsetSections,
+    $pull: {
+      toReview: { $in: sections },
+      toReviewCache: { $in: sections },
+      toFinish: { $in: sections },
+    },
+  });
   await updateAvancements(query, dispositif);
   return result;
-}
+};
 
 export const addToReview = async (dispositifId: Id, toReview: string[], dispositif: Dispositif) => {
   const query: FilterQuery<Traductions> = { dispositifId: dispositifId, type: TraductionsType.VALIDATION };
-  const result = await TraductionsModel.updateMany(
-    query,
-    {
-      $addToSet: {
-        toReview: toReview,
-        toReviewCache: toReview
-      }
-    }
-  );
+  const result = await TraductionsModel.updateMany(query, {
+    $addToSet: {
+      toReview: toReview,
+      toReviewCache: toReview,
+    },
+  });
   await updateAvancements(query, dispositif);
   return result;
-}
+};

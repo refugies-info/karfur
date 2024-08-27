@@ -1,5 +1,4 @@
 // __mocks__/react-native-safe-area-context.js
-import React from "react";
 import { View } from "react-native";
 
 const inset = {

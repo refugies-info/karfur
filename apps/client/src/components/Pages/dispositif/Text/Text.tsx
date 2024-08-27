@@ -1,9 +1,9 @@
-import { useSanitizedContent } from "hooks";
-import { cls } from "lib/classname";
-import { getCalloutTranslationKey, translationParsing } from "lib/contentParsing";
 import { useTranslation } from "next-i18next";
 import { useContext } from "react";
-import PageContext from "utils/pageContext";
+import { useSanitizedContent } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { getCalloutTranslationKey, translationParsing } from "~/lib/contentParsing";
+import PageContext from "~/utils/pageContext";
 import styles from "./Text.module.scss";
 
 interface Props {

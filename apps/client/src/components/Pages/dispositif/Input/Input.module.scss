@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
 
 .input {
   border: 1px solid var(--border-default-grey);
@@ -84,10 +84,9 @@
   }
 }
 
-
 .error_msg {
   @include dsfr-text("very-small");
-  
+
   display: inline-block;
   margin-top: u(2);
   color: var(--text-default-error);

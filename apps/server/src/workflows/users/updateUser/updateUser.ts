@@ -1,23 +1,23 @@
-import { DocumentType } from "@typegoose/typegoose";
 import { RoleName, UpdateUserRequest } from "@refugies-info/api-types";
+import { DocumentType } from "@typegoose/typegoose";
 import isUndefined from "lodash/isUndefined";
 import omitBy from "lodash/omitBy";
-import logger from "../../../logger";
-import { getRoles } from "../../../modules/role/role.repository";
-import { getUserById, getUserFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
-import { loginExceptionsManager } from "../../../modules/users/auth";
-import { uniqIds } from "../../../libs/uniqIds";
-import formatPhoneNumber from "../../../libs/formatPhoneNumber";
-import { log } from "./log";
-import { ObjectId, User } from "../../../typegoose";
-import { UnauthorizedError } from "../../../errors";
-import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
+import { UnauthorizedError } from "~/errors";
+import formatPhoneNumber from "~/libs/formatPhoneNumber";
+import { uniqIds } from "~/libs/uniqIds";
+import logger from "~/logger";
+import { getRoles } from "~/modules/role/role.repository";
+import { loginExceptionsManager } from "~/modules/users/auth";
+import { requestEmailLogin, verifyCode } from "~/modules/users/login2FA";
+import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { getUserById, getUserFromDB, updateUserInDB } from "~/modules/users/users.repository";
+import { ObjectId, User } from "~/typegoose";
 import { changePassword } from "../changePassword";
+import { log } from "./log";
 
 const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User) => {
   const roles = await getRoles();
-  let newUser: Partial<User> = {}
+  let newUser: Partial<User> = {};
   const isRequestorAdmin = userReq.isAdmin();
   if (!isRequestorAdmin) {
     throw new UnauthorizedError("Token invalide");
@@ -27,8 +27,8 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
     phone: formatPhoneNumber(request.phone),
     adminComments: request.adminComments,
   };
-  const expertRole = roles.find(r => r.nom === RoleName.EXPERT_TRAD);
-  const adminRole = roles.find(r => r.nom === RoleName.ADMIN);
+  const expertRole = roles.find((r) => r.nom === RoleName.EXPERT_TRAD);
+  const adminRole = roles.find((r) => r.nom === RoleName.ADMIN);
   const currentRoles = userFromDB.roles;
 
   let newRoles = currentRoles.filter(
@@ -47,9 +47,14 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
   newUser.roles = newRoles;
 
   return newUser;
-}
+};
 
-const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User): Promise<{ newUser: Partial<User>, refreshToken: boolean }> => {
+const updateAsMyself = async (
+  id: string,
+  request: UpdateUserRequest["user"],
+  userFromDB: DocumentType<User>,
+  userReq: User,
+): Promise<{ newUser: Partial<User>; refreshToken: boolean }> => {
   const roles = await getRoles();
   let newUser: Partial<User> = {};
   let refreshToken = false;
@@ -64,22 +69,28 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
   };
 
   if (request.password) {
-    const newHashedPassword = await changePassword(id, request.password.oldPassword || "", request.password.newPassword || "");
+    const newHashedPassword = await changePassword(
+      id,
+      request.password.oldPassword || "",
+      request.password.newPassword || "",
+    );
     newUser.password = newHashedPassword;
     if (!refreshToken) refreshToken = true;
   }
   if (request.selectedLanguages) {
-    const traducteurRole = roles.find(r => r.nom === RoleName.TRAD);
+    const traducteurRole = roles.find((r) => r.nom === RoleName.TRAD);
     const newRoles = uniqIds([...userFromDB.roles, traducteurRole._id]);
     newUser.roles = newRoles;
-    newUser.selectedLanguages = request.selectedLanguages.map(ln => new ObjectId(ln));
+    newUser.selectedLanguages = request.selectedLanguages.map((ln) => new ObjectId(ln));
   }
   if (request.partner !== undefined) {
-    const caregiverRole = roles.find(r => r.nom === RoleName.CAREGIVER);
-    if (request.partner === "") { // remove partner -> remove TS role
-      const newRoles = userFromDB.roles.filter(r => r._id.toString() !== caregiverRole._id.toString());
+    const caregiverRole = roles.find((r) => r.nom === RoleName.CAREGIVER);
+    if (request.partner === "") {
+      // remove partner -> remove TS role
+      const newRoles = userFromDB.roles.filter((r) => r._id.toString() !== caregiverRole._id.toString());
       newUser.roles = newRoles;
-    } else { // add partner -> add ts role
+    } else {
+      // add partner -> add ts role
       const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
       newUser.roles = newRoles;
     }
@@ -98,9 +109,9 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
   }
   if (request.roles) {
     const newRoles = request.roles
-      .filter(r => [RoleName.USER, RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
-      .map(r => roles.find(role => role.nom === r)?._id)
-      .filter(r => !!r);
+      .filter((r) => [RoleName.USER, RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
+      .map((r) => roles.find((role) => role.nom === r)?._id)
+      .filter((r) => !!r);
     newUser.roles = uniqIds(newRoles); // keep only roles from request. Needed to fix bug in page "inscription/objectif"
   }
   if (request.email && request.email !== userFromDB.email) {
@@ -121,7 +132,7 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     if (!refreshToken) refreshToken = request.email !== userFromDB.email;
   }
   return { newUser, refreshToken };
-}
+};
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Promise<string | null> => {
   const { action } = body;
@@ -143,11 +154,16 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
   const user = await updateUserInDB(id, omitBy(newUser, isUndefined));
   const token = refreshToken ? user.getToken() : null;
 
-  await log(id, {
-    email: newUser.email || userFromDB.email,
-    phone: newUser.phone || userFromDB.phone,
-    username: newUser.username || userFromDB.username
-  }, userFromDB, userReq._id);
+  await log(
+    id,
+    {
+      email: newUser.email || userFromDB.email,
+      phone: newUser.phone || userFromDB.phone,
+      username: newUser.username || userFromDB.username,
+    },
+    userFromDB,
+    userReq._id,
+  );
 
   return token;
 };

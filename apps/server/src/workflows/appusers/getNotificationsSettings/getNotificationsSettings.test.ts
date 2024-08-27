@@ -1,11 +1,10 @@
 // @ts-nocheck
+import { getNotificationsSettings } from "~/modules/appusers/appusers.repository";
 import getNotificationsSettingsHandler from "./getNotificationsSettings";
-import { getNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 
 /* jest.mock("../../../modules/appusers/appusers.repository", () => ({
   getNotificationsSettings: jest.fn().mockReturnValue(),
 })); */
-
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -25,7 +24,7 @@ describe.skip("getNotificationsSettings", () => {
   it("should return 404 if no settings", async () => {
     const req = {
       headers: {
-        "x-app-uid": "test"
+        "x-app-uid": "test",
       },
     };
     getNotificationsSettings.mockReturnValueOnce(null);
@@ -36,7 +35,7 @@ describe.skip("getNotificationsSettings", () => {
   it("should return 200", async () => {
     const req = {
       headers: {
-        "x-app-uid": "test"
+        "x-app-uid": "test",
       },
     };
     getNotificationsSettings.mockReturnValueOnce({ uid: "test" });
@@ -45,5 +44,4 @@ describe.skip("getNotificationsSettings", () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ uid: "test" });
   });
-
 });

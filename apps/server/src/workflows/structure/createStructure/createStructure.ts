@@ -1,11 +1,11 @@
-import logger from "../../../logger";
-import { addStructureForUsers } from "../../../modules/users/users.service";
-import { createStructureInDB } from "../../../modules/structure/structure.repository";
-import { log } from "./log";
-import { Response } from "../../../types/interface";
-import { ObjectId, Structure } from "../../../typegoose";
-import { pick } from "lodash";
 import { PostStructureRequest, StructureMemberRole } from "@refugies-info/api-types";
+import { pick } from "lodash";
+import logger from "~/logger";
+import { createStructureInDB } from "~/modules/structure/structure.repository";
+import { addStructureForUsers } from "~/modules/users/users.service";
+import { ObjectId, Structure } from "~/typegoose";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const createStructure = async (body: PostStructureRequest, userId: string): Response => {
   logger.info("[createStructure] call received", { body });
@@ -15,12 +15,12 @@ export const createStructure = async (body: PostStructureRequest, userId: string
     status: body.status,
     membres: body.responsable
       ? [
-        {
-          userId: new ObjectId(body.responsable),
-          roles: [StructureMemberRole.ADMIN],
-          added_at: new Date(),
-        },
-      ]
+          {
+            userId: new ObjectId(body.responsable),
+            roles: [StructureMemberRole.ADMIN],
+            added_at: new Date(),
+          },
+        ]
       : [],
   };
 

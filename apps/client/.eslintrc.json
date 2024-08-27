@@ -19,7 +19,7 @@
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
     "no-use-before-define": "error",
-    "quotes": ["error", "double"],
+    "quotes": ["error", "double", { "avoidEscape": true }],
     "object-shorthand": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "react/prop-types": "off",

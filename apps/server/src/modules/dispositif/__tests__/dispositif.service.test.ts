@@ -1,9 +1,9 @@
-import * as repository from "../dispositif.repository";
-import * as languesService from "../../../modules/langues/langues.service";
-import { publishDispositif } from "../dispositif.service";
-import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
-import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
+import * as languesService from "~/modules/langues/langues.service";
+import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
 import { demarche, dispositif } from "../../../__fixtures__";
+import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
+import * as repository from "../dispositif.repository";
+import { publishDispositif } from "../dispositif.service";
 
 jest.mock("airtable");
 jest.mock("@sendgrid/mail");
@@ -14,8 +14,8 @@ describe.skip("publish dispositif", () => {
   });
 
   it("should update languages avancement and add content in airtable", async () => {
-    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
-    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
     updateDispositifInDBMock.mockResolvedValueOnce(demarche);
 
@@ -33,8 +33,8 @@ describe.skip("publish dispositif", () => {
   });
 
   it("updateLanguagesAvancement throws", async () => {
-    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
-    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
     updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
     updateLanguagesAvancementMock.mockRejectedValueOnce(new Error("erreur"));
@@ -53,8 +53,8 @@ describe.skip("publish dispositif", () => {
   });
 
   it("should return a 200 when new status is actif and a dispositif ", async () => {
-    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
-    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
     updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
 
@@ -72,8 +72,8 @@ describe.skip("publish dispositif", () => {
   });
 
   it("should return a 200 when new status is actif and a demarche ", async () => {
-    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
-    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
     updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
 

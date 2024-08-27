@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Col, Row } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import FButton from "components/UI/FButton/FButton";
-import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { needsSelector } from "services/Needs/needs.selectors";
-import API from "utils/API";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
-import styles from "./NeedsChoiceModal.module.scss";
-import { DetailsModal } from "../../sharedComponents/DetailsModal";
-import { themesSelector } from "services/Themes/themes.selectors";
-import AdminThemeButton from "components/UI/AdminThemeButton";
-import AdminNeedButton from "components/UI/AdminNeedButton";
-import { cls } from "lib/classname";
 import { DispositifThemeNeedsRequest, GetAllDispositifsResponse, GetNeedResponse, Id } from "@refugies-info/api-types";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Row } from "reactstrap";
+import AdminNeedButton from "~/components/UI/AdminNeedButton";
+import AdminThemeButton from "~/components/UI/AdminThemeButton";
+import FButton from "~/components/UI/FButton/FButton";
+import { cls } from "~/lib/classname";
+import { fetchAllDispositifsActionsCreator } from "~/services/AllDispositifs/allDispositifs.actions";
+import { dispositifSelector } from "~/services/AllDispositifs/allDispositifs.selector";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { needsSelector } from "~/services/Needs/needs.selectors";
+import { themesSelector } from "~/services/Themes/themes.selectors";
+import API from "~/utils/API";
+import { DetailsModal } from "../../sharedComponents/DetailsModal";
+import styles from "./NeedsChoiceModal.module.scss";
 
 interface Props {
   show: boolean;

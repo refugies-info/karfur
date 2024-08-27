@@ -4,13 +4,13 @@ import {
   TraductionsStatus,
 } from "@refugies-info/api-types";
 import { isEmpty, some } from "lodash";
-import { TraductionsType } from "../../../typegoose/Traductions";
-import logger from "../../../logger";
-import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
-import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
-import { Dispositif } from "../../../typegoose";
-import { TranslationContent } from "../../../typegoose/Dispositif";
-import { countDispositifWordsForSections } from "../../../libs/wordCounter";
+import { countDispositifWordsForSections } from "~/libs/wordCounter";
+import logger from "~/logger";
+import { getActiveContents } from "~/modules/dispositif/dispositif.repository";
+import { getTraductionsByLanguage } from "~/modules/traductions/traductions.repository";
+import { Dispositif } from "~/typegoose";
+import { TranslationContent } from "~/typegoose/Dispositif";
+import { TraductionsType } from "~/typegoose/Traductions";
 
 /* TODO: test this */
 /**
@@ -24,18 +24,19 @@ import { countDispositifWordsForSections } from "../../../libs/wordCounter";
 const getNbWordsDone = (
   traductions: Awaited<ReturnType<typeof getTraductionsByLanguage>>,
   validation: boolean,
-  originalContent: TranslationContent
+  originalContent: TranslationContent,
 ): number => {
-  const translated = [...new Set(
-    [].concat(
-      ...traductions
-        .filter(t => validation ? t.type === TraductionsType.VALIDATION : true)
-        .map(t => t.sectionsTranslated)
-    )
-  )
+  const translated = [
+    ...new Set(
+      [].concat(
+        ...traductions
+          .filter((t) => (validation ? t.type === TraductionsType.VALIDATION : true))
+          .map((t) => t.sectionsTranslated),
+      ),
+    ),
   ];
   return countDispositifWordsForSections(originalContent, translated);
-}
+};
 
 export const getDispositifsWithTranslationAvancement = async (locale: Languages) => {
   logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });

@@ -1,9 +1,7 @@
 // @ts-nocheck
 // import sendNotifications from "./sendNotifications";
-import {
-  checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations";
-import { sendNotificationsForDemarche } from "../../../modules/notifications/notifications.service";
+import { checkIfUserIsAdmin } from "~/libs/checkAuthorizations";
+import { sendNotificationsForDemarche } from "~/modules/notifications/notifications.service";
 import { log } from "./log";
 
 /* jest.mock("../../../modules/notifications/notifications.service", () => ({
@@ -34,7 +32,7 @@ describe.skip("sendNotifications", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
     };
@@ -47,12 +45,11 @@ describe.skip("sendNotifications", () => {
       fromSite: true,
       body: { demarcheId: "id" },
       user: { roles: [] },
-      userId: "user"
+      userId: "user",
     };
     await sendNotifications[1](req, res);
     expect(sendNotificationsForDemarche).toHaveBeenCalledWith("id");
     expect(log).toHaveBeenCalledWith("id", "user");
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

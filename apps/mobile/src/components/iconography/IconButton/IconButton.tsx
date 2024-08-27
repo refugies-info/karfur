@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { useTheme } from "styled-components/native";
 import Icon from "../Icon";
 
@@ -6,11 +5,9 @@ const ButtonContainer = styled.TouchableOpacity<{
   borderColor: string;
   outlined: boolean;
 }>`
-  background-color: ${({ outlined, theme }) =>
-    outlined ? "transparent" : theme.colors.white};
+  background-color: ${({ outlined, theme }) => (outlined ? "transparent" : theme.colors.white)};
   border-radius: ${({ theme }) => theme.radius * 2}px;
-  ${({ borderColor, outlined }) =>
-    outlined ? `border: 1px solid ${borderColor};` : ""}
+  ${({ borderColor, outlined }) => (outlined ? `border: 1px solid ${borderColor};` : "")}
   padding: ${({ theme }) => theme.radius * 2}px;
   width: 48px;
   ${({ outlined, theme }) => (outlined ? "" : theme.shadows.lg)}
@@ -45,12 +42,7 @@ const IconButton = ({
       onPress={onPress}
       outlined={outlined}
     >
-      <Icon
-        color={color || theme.colors.black}
-        loading={loading}
-        name={iconName}
-        size={ICON_SIZE}
-      />
+      <Icon color={color || theme.colors.black} loading={loading} name={iconName} size={ICON_SIZE} />
     </ButtonContainer>
   );
 };

@@ -1,39 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { SvgUri } from "react-native-svg";
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components/native";
-import { SvgUri } from "react-native-svg";
-import { styles } from "../../theme";
+import { styles } from "~/theme";
 
-import {
-  currentI18nCodeSelector,
-  userLocationSelector,
-} from "../../services/redux/User/user.selectors";
+import { currentI18nCodeSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
 
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { useNotificationsSettings } from "../../hooks/useNotificationSettings";
-import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
+import { useNotificationsSettings } from "~/hooks/useNotificationSettings";
+import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
-import { firstLetterUpperCase } from "../../libs";
+import { firstLetterUpperCase } from "~/libs";
 
-import { ToggleButton } from "../../components/UI/ToggleButton";
+import { ToggleButton } from "~/components/UI/ToggleButton";
 
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ProfileParamList } from "../../../types";
-import { themesSelector } from "../../services/redux/Themes/themes.selectors";
-import {
-  Page,
-  RadioGroup,
-  Separator,
-  TextDSFR_L_Bold,
-  TextDSFR_MD,
-} from "../../components";
-import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
+import { Page, RadioGroup, Separator, TextDSFR_L_Bold, TextDSFR_MD } from "~/components";
+import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
+import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import { ProfileParamList } from "~/types/navigation";
 
-import { getImageUri } from "../../libs/getImageUri";
-import LocalIcon from "../../theme/images/profile/local-icon.svg";
-import DemarcheIcon from "../../theme/images/profile/demarches-icon.svg";
+import { getImageUri } from "~/libs/getImageUri";
+import DemarcheIcon from "~/theme/images/profile/demarches-icon.svg";
+import LocalIcon from "~/theme/images/profile/local-icon.svg";
 
 const stylesheet = StyleSheet.create({
   toggleContainer: {
@@ -58,10 +49,7 @@ const SectionSubtitle = styled(TextDSFR_MD)`
 
 export const NotificationsSettingsScreen = () => {
   const { t } = useTranslationWithRTL();
-  const navigation =
-    useNavigation<
-      StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">
-    >();
+  const navigation = useNavigation<StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">>();
   const theme = useTheme();
   const [settings, updateSettings] = useNotificationsSettings();
   const [accessGranted] = useNotificationsStatus();
@@ -69,15 +57,9 @@ export const NotificationsSettingsScreen = () => {
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const [hasSetLocation, setHasSetLocation] = useState(
-    !!(location && location.department && location.city)
-  );
+  const [hasSetLocation, setHasSetLocation] = useState(!!(location && location.department && location.city));
   useEffect(() => {
-    const newHasSetLocation = !!(
-      location &&
-      location.department &&
-      location.city
-    );
+    const newHasSetLocation = !!(location && location.department && location.city);
     if (hasSetLocation !== newHasSetLocation) {
       setHasSetLocation(newHasSetLocation);
       if (!settings?.local && newHasSetLocation) updateSettings("local", true);
@@ -85,8 +67,7 @@ export const NotificationsSettingsScreen = () => {
     }
   }, [location]);
 
-  const themesDisabled =
-    !!settings && !settings?.global && !settings?.local && !settings?.demarches;
+  const themesDisabled = !!settings && !settings?.global && !settings?.local && !settings?.demarches;
 
   const updateLocalSettings = async (state: boolean) => {
     if (!hasSetLocation) {
@@ -106,17 +87,12 @@ export const NotificationsSettingsScreen = () => {
       {settings && (
         <>
           <RadioGroup style={stylesheet.toggleContainer}>
-            <SectionTitle accessibilityRole="header">
-              {t("notifications.newFiches")}
-            </SectionTitle>
+            <SectionTitle accessibilityRole="header">{t("notifications.newFiches")}</SectionTitle>
             <SectionSubtitle>
-              Choisis le type de fiches pour lequel tu souhaites recevoir des
-              notifications.
+              Choisis le type de fiches pour lequel tu souhaites recevoir des notifications.
             </SectionSubtitle>
             <ToggleButton
-              title={`${t("notifications.settingsLocal")} ${
-                !!location.city ? `: ${location.city}` : ""
-              }`}
+              title={`${t("notifications.settingsLocal")} ${!!location.city ? `: ${location.city}` : ""}`}
               subtitle={t("notifications.settingsLocalSubtitle")}
               enabled={hasSetLocation && settings?.local}
               onToggle={updateLocalSettings}
@@ -140,40 +116,23 @@ export const NotificationsSettingsScreen = () => {
             />
           </RadioGroup>
           <RadioGroup style={stylesheet.toggleContainer}>
-            <SectionTitle accessibilityRole="header">
-              {t("notifications.themes")}
-            </SectionTitle>
-            <SectionSubtitle>
-              Choisis les thèmes pour lesquels tu souhaites recevoir des
-              notifications.
-            </SectionSubtitle>
+            <SectionTitle accessibilityRole="header">{t("notifications.themes")}</SectionTitle>
+            <SectionSubtitle>Choisis les thèmes pour lesquels tu souhaites recevoir des notifications.</SectionSubtitle>
             {themes.map((theme, index) => (
               <View key={index}>
                 <ToggleButton
-                  title={firstLetterUpperCase(
-                    theme.name[currentLanguageI18nCode || "fr"]
-                  )}
+                  title={firstLetterUpperCase(theme.name[currentLanguageI18nCode || "fr"])}
                   icon={
                     theme.appImage ? (
-                      <SvgUri
-                        width={24}
-                        height={32}
-                        uri={getImageUri(theme.appImage.secure_url)}
-                      />
+                      <SvgUri width={24} height={32} uri={getImageUri(theme.appImage.secure_url)} />
                     ) : undefined
                   }
                   enabled={settings?.themes?.[theme._id.toString()]}
-                  onToggle={(state) =>
-                    updateSettings(`themes.${theme._id}`, state)
-                  }
+                  onToggle={(state) => updateSettings(`themes.${theme._id}`, state)}
                   disabled={themesDisabled}
                 />
                 {index < themes.length - 1 && (
-                  <Separator
-                    spacing={SeparatorSpacing.NoSpace}
-                    fullWidth
-                    key={`separator-${theme.name.fr}`}
-                  />
+                  <Separator spacing={SeparatorSpacing.NoSpace} fullWidth key={`separator-${theme.name.fr}`} />
                 )}
               </View>
             ))}

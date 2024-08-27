@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { GetLogResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
+import { useEffect, useState } from "react";
 import { LogLine } from "./LogLine";
 import styles from "./LogList.module.scss";
-import { GetLogResponse, Id } from "@refugies-info/api-types";
 
 type GroupedLogs = { [key: string]: GetLogResponse[] };
 

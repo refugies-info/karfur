@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useContentType } from "hooks/dispositif";
-import PageContext from "utils/pageContext";
+import { useContext, useEffect, useState } from "react";
+import { useContentType } from "~/hooks/dispositif";
+import PageContext from "~/utils/pageContext";
 import HelpCard from "../HelpCard";
 import { Help } from "./data";
 import { getHelp } from "./functions";
-import styles from "./RightSidebarEdition.module.scss";
 
 /**
  * Right sidebar of the EDIT mode. Used to show the contextual help.

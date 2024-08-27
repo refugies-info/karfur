@@ -5,7 +5,7 @@ export const theme = {
   _id: "theme1",
   short: {
     fr: "Court",
-    en: "Short"
+    en: "Short",
   },
   name: {
     fr: "Titre theme",

@@ -5,8 +5,8 @@ import {
   Languages,
 } from "@refugies-info/api-types";
 
-import { Dispositif } from "../../../typegoose";
-import logger from "../../../logger";
+import logger from "~/logger";
+import { Dispositif } from "~/typegoose";
 import getFilteredContentsForApp from "../getFilteredContentsForApp";
 
 const present =

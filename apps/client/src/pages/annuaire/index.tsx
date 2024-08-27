@@ -1,27 +1,27 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
+import { useRouter } from "next/router";
 import qs from "query-string";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 
-import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
-import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
-import { wrapper } from "services/configureStore";
 import { getPath } from "routes";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { filterStructuresByType, filterStructuresByKeword, filterStructuresByLoc } from "lib/filterStructures";
+import { filterStructuresByKeword, filterStructuresByLoc, filterStructuresByType } from "~/lib/filterStructures";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { fetchActiveStructuresActionCreator } from "~/services/ActiveStructures/activeStructures.actions";
+import { activeStructuresSelector } from "~/services/ActiveStructures/activeStructures.selector";
+import { wrapper } from "~/services/configureStore";
 
-import { NoResult } from "components/Pages/annuaire/index/NoResult";
-import { LetterSection } from "components/Pages/annuaire/index/LetterSection";
-import { Header } from "components/Pages/annuaire/index/Header";
-import SEO from "components/Seo";
+import { Header } from "~/components/Pages/annuaire/index/Header";
+import { LetterSection } from "~/components/Pages/annuaire/index/LetterSection";
+import { NoResult } from "~/components/Pages/annuaire/index/NoResult";
+import SEO from "~/components/Seo";
 
-import styles from "scss/pages/annuaire.module.scss";
-import isInBrowser from "lib/isInBrowser";
-import { Event } from "lib/tracking";
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import styles from "~/scss/pages/annuaire.module.scss";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -171,8 +171,8 @@ const Annuaire = () => {
           a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
             ? -1
             : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0,
+              ? 1
+              : 0,
         )
       : [];
 

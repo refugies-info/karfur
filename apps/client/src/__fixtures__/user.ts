@@ -1,4 +1,4 @@
-import { RoleName, GetUserInfoResponse, UserStatus } from "@refugies-info/api-types";
+import { GetUserInfoResponse, RoleName, UserStatus } from "@refugies-info/api-types";
 
 export const testUser: GetUserInfoResponse = {
   username: "test",
@@ -10,7 +10,7 @@ export const testUser: GetUserInfoResponse = {
   email: "",
   selectedLanguages: [],
   status: UserStatus.ACTIVE,
-  sso: false
+  sso: false,
 };
 
 export const testUserWithRoles: GetUserInfoResponse = {
@@ -22,12 +22,12 @@ export const testUserWithRoles: GetUserInfoResponse = {
     {
       nom: RoleName.EXPERT_TRAD,
       _id: "testObjectId",
-      nomPublique: "ExpertTrad"
+      nomPublique: "ExpertTrad",
     },
     {
       nom: RoleName.CONTRIB,
       _id: "testObjectId",
-      nomPublique: "Contrib"
-    }
-  ]
+      nomPublique: "Contrib",
+    },
+  ],
 };

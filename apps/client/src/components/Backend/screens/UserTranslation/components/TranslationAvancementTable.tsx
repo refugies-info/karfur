@@ -3,21 +3,21 @@ import {
   GetUserInfoResponse,
   Languages,
 } from "@refugies-info/api-types";
-import FButton from "components/UI/FButton/FButton";
-import { useLanguages } from "hooks";
-import { handleApiError } from "lib/handleApiErrors";
 import moment from "moment";
 import "moment/locale/fr";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Table } from "reactstrap";
-import styles from "scss/components/adminTable.module.scss";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import API from "utils/API";
-import { colors } from "utils/colors";
+import FButton from "~/components/UI/FButton/FButton";
+import { useLanguages } from "~/hooks";
+import { handleApiError } from "~/lib/handleApiErrors";
+import styles from "~/scss/components/adminTable.module.scss";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "~/services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import API from "~/utils/API";
+import { colors } from "~/utils/colors";
 import { TabHeader, Title } from "../../Admin/sharedComponents/SubComponents";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { sortData } from "./functions";

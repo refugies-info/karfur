@@ -38,16 +38,12 @@ function dateDiff(
 
   let delta: number = Math.abs(dateStart.getTime() - dateEnd.getTime());
 
-  return (units.length ? units : Object.keys(dateDiffDef)).reduce(
-    (res: any, key: string) => {
-      if (!dateDiffDef.hasOwnProperty(key))
-        throw new Error("Unknown unit in dateDiff: " + key);
-      res[key] = Math.floor(delta / dateDiffDef[key]);
-      delta -= res[key] * dateDiffDef[key];
-      return res;
-    },
-    {}
-  );
+  return (units.length ? units : Object.keys(dateDiffDef)).reduce((res: any, key: string) => {
+    if (!dateDiffDef.hasOwnProperty(key)) throw new Error("Unknown unit in dateDiff: " + key);
+    res[key] = Math.floor(delta / dateDiffDef[key]);
+    delta -= res[key] * dateDiffDef[key];
+    return res;
+  }, {});
 }
 
 const useDateDiffReadable = (date: Date) => {
@@ -55,15 +51,25 @@ const useDateDiffReadable = (date: Date) => {
   const diff = dateDiff(date);
 
   if (diff.year) {
-    return diff.year === 1 ? t("relative_date.year_one", { count: diff.year }) : t("relative_date.year_other", { count: diff.year });
+    return diff.year === 1
+      ? t("relative_date.year_one", { count: diff.year })
+      : t("relative_date.year_other", { count: diff.year });
   } else if (diff.month > 0) {
-    return diff.month === 1 ? t("relative_date.month_one", { count: diff.month }) : t("relative_date.month_other", { count: diff.month });
+    return diff.month === 1
+      ? t("relative_date.month_one", { count: diff.month })
+      : t("relative_date.month_other", { count: diff.month });
   } else if (diff.day > 0) {
-    return diff.day === 1 ? t("relative_date.day_one", { count: diff.day }) : t("relative_date.day_other", { count: diff.day });
+    return diff.day === 1
+      ? t("relative_date.day_one", { count: diff.day })
+      : t("relative_date.day_other", { count: diff.day });
   } else if (diff.hour > 0) {
-    return diff.hour === 1 ? t("relative_date.hour_one", { count: diff.hour }) : t("relative_date.hour_other", { count: diff.hour });
+    return diff.hour === 1
+      ? t("relative_date.hour_one", { count: diff.hour })
+      : t("relative_date.hour_other", { count: diff.hour });
   } else if (diff.minute > 0) {
-    return diff.minute === 1 ? t("relative_date.minute_one", { count: diff.minute }) : t("relative_date.minute_other", { count: diff.minute });
+    return diff.minute === 1
+      ? t("relative_date.minute_one", { count: diff.minute })
+      : t("relative_date.minute_other", { count: diff.minute });
   }
   return t("relative_date.now");
 };

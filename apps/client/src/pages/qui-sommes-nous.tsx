@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useTranslation } from "next-i18next";
-import styled from "styled-components";
-import { Mission } from "components/Pages/qui-sommes-nous/Mission";
-import { Problematic } from "components/Pages/qui-sommes-nous/Problematic";
-import { Contribution } from "components/Pages/qui-sommes-nous/Contribution";
-import { Team } from "components/Pages/qui-sommes-nous/Team";
-import { Partners } from "components/Pages/qui-sommes-nous/Partners";
-import { assetsOnServer } from "assets/assetsOnServer";
-import SEO from "components/Seo";
 import { NextPage } from "next";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import styles from "scss/pages/qui-sommes-nous.module.scss";
+import { useTranslation } from "next-i18next";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import { Contribution } from "~/components/Pages/qui-sommes-nous/Contribution";
+import { Mission } from "~/components/Pages/qui-sommes-nous/Mission";
+import { Partners } from "~/components/Pages/qui-sommes-nous/Partners";
+import { Problematic } from "~/components/Pages/qui-sommes-nous/Problematic";
+import { Team } from "~/components/Pages/qui-sommes-nous/Team";
+import SEO from "~/components/Seo";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import styles from "~/scss/pages/qui-sommes-nous.module.scss";
 
 const MainContainer = styled.div`
   flex: 1;

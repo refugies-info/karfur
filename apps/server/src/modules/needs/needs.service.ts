@@ -1,5 +1,5 @@
+import logger from "~/logger";
 import { getNeedsFromDB } from "./needs.repository";
-import logger from "../../logger";
 
 export const computePossibleNeeds = async (actualNeeds: string[], contentThemes: string[]) => {
   try {
@@ -24,7 +24,7 @@ export const computePossibleNeeds = async (actualNeeds: string[], contentThemes:
     return newNeeds;
   } catch (error) {
     logger.error("[computePossibleNeeds] error while getting needs", {
-      error: error.message
+      error: error.message,
     });
   }
 };

@@ -1,6 +1,6 @@
-import React from "react";
 import Image from "next/image";
-import { cls } from "lib/classname";
+import React from "react";
+import { cls } from "~/lib/classname";
 import styles from "./RichCheckbox.module.scss";
 
 interface Props {

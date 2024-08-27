@@ -1,4 +1,4 @@
-import { ContentStatus, StructureAdminStatus, UserStatus } from "types/interface";
+import { ContentStatus, StructureAdminStatus, UserStatus } from "~/types/interface";
 
 type Status = StructureAdminStatus | UserStatus | ContentStatus;
 export const statusCompare = (a: Status, b: Status) => {

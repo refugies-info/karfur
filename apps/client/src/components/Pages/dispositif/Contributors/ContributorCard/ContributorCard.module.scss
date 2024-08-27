@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
 
 .container {
   background: $darkBackgroundElevationContrast;
@@ -25,7 +25,7 @@
 
 .role {
   @include dsfr-text("small");
-  
+
   margin-top: u(2);
   color: white;
   background: $darkBackgroundContrastGrey;

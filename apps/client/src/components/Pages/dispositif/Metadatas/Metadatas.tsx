@@ -1,18 +1,17 @@
-import React from "react";
-import Image from "next/image";
-import { useTranslation } from "next-i18next";
-import isUndefined from "lodash/isUndefined";
-import { Event } from "lib/tracking";
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
-import FRLink from "components/UI/FRLink";
-import { getSponsorLink } from "./functions";
+import isUndefined from "lodash/isUndefined";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
+import FRLink from "~/components/UI/FRLink";
+import { Event } from "~/lib/tracking";
 import Card from "./BaseCard";
-import CardPrice from "./CardPrice";
 import CardAvailability from "./CardAvailability";
-import CardPublic from "./CardPublic";
 import CardConditions from "./CardConditions";
 import CardLocation from "./CardLocation";
-import defaultStructureImage from "assets/recherche/default-structure-image.svg";
+import CardPrice from "./CardPrice";
+import CardPublic from "./CardPublic";
+import { getSponsorLink } from "./functions";
 import styles from "./Metadatas.module.scss";
 
 interface Props {

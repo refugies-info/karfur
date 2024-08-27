@@ -1,17 +1,16 @@
 import {
-  Id,
-  Picture,
   ContentType,
-  SimpleDispositif,
   DispositifStatus,
-  Languages,
   GetStructureDispositifResponse,
+  Id,
+  Languages,
+  Picture,
+  SimpleDispositif,
   Suggestion as SuggestionAPIType,
 } from "@refugies-info/api-types";
-import { omit, pick, uniq, union } from "lodash";
+import { omit, pick, union, uniq } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
-import { Merci, Suggestion } from "../../typegoose/Dispositif";
 import {
   Dispositif,
   DispositifDraftModel,
@@ -21,17 +20,18 @@ import {
   ObjectId,
   Theme,
   UserId,
-} from "../../typegoose";
+} from "~/typegoose";
+import { Merci, Suggestion } from "~/typegoose/Dispositif";
+import { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
-import { DeleteResult } from "../../types/interface";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
     .populate<{
       mainSponsor: { _id: Id; nom: string; status: string; picture: Picture };
       creatorId: { _id: Id; username: string; picture: Picture; email: string };
-      lastModificationAuthor: { _id: Id; username: string | undefined, email: string };
-      publishedAtAuthor: { _id: Id; username: string | undefined, email: string };
+      lastModificationAuthor: { _id: Id; username: string | undefined; email: string };
+      publishedAtAuthor: { _id: Id; username: string | undefined; email: string };
     }>([
       { path: "mainSponsor", select: "_id nom status picture" },
       { path: "creatorId", select: "_id username picture email" },
@@ -190,16 +190,17 @@ export const updateDispositifInDB = async (
 ): Promise<Dispositif> => {
   return updateDraft
     ? DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
-      upsert: true,
-      new: true,
-    }).populate("theme secondaryThemes")
+        upsert: true,
+        new: true,
+      }).populate("theme secondaryThemes")
     : DispositifModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
-      upsert: true,
-      new: true,
-    }).populate("theme secondaryThemes");
+        upsert: true,
+        new: true,
+      }).populate("theme secondaryThemes");
 };
 
-export const deleteDraftDispositif = async (id: DispositifId): Promise<DeleteResult> => DispositifDraftModel.deleteOne({ _id: id });
+export const deleteDraftDispositif = async (id: DispositifId): Promise<DeleteResult> =>
+  DispositifDraftModel.deleteOne({ _id: id });
 
 export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: Merci): Promise<Dispositif> =>
   DispositifModel.findOneAndUpdate(
@@ -317,7 +318,7 @@ export const getDraftDispositifById = async (
 
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
   await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate<{
-    mainSponsor: { _id: string, nom: string };
+    mainSponsor: { _id: string; nom: string };
   }>("mainSponsor", "nom");
 
 export const getDispositifByIdWithMainSponsor = async (

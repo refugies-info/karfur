@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import PageContext from "utils/pageContext";
+import { useContext } from "react";
+import PageContext from "~/utils/pageContext";
 import { RichTextEdit } from "../Edition";
 import Text from "../Text";
 import styles from "./RichText.module.scss";

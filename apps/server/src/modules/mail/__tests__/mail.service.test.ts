@@ -1,19 +1,19 @@
 // @ts-nocheck
+import { sendMail } from "~/connectors/sendgrid/sendMail";
+import { addMailEvent } from "../mail.repository";
 import {
-  sendWelcomeMail,
-  sendResetPasswordMail,
-  sendOneDraftReminderMailService,
+  sendAdminImprovementsMailService,
   sendMultipleDraftsReminderMailService,
+  sendNewFicheEnAttenteMail,
+  sendOneDraftReminderMailService,
+  sendPublishedFicheMailToCreatorService,
   sendPublishedFicheMailToStructureMembersService,
   sendPublishedTradMailToStructureService,
-  sendPublishedFicheMailToCreatorService,
-  sendNewFicheEnAttenteMail,
   sendPublishedTradMailToTraductorsService,
-  sendAdminImprovementsMailService,
+  sendResetPasswordMail,
   sendSubscriptionReminderMailService,
+  sendWelcomeMail,
 } from "../mail.service";
-import { sendMail } from "../../../connectors/sendgrid/sendMail";
-import { addMailEvent } from "../mail.repository";
 
 jest.mock("../../../connectors/sendgrid/sendMail", () => ({
   sendMail: jest.fn(),
@@ -112,14 +112,7 @@ describe.skip("sendOneDraftReminderMailService", () => {
     jest.clearAllMocks();
   });
   it("should call send mail and add mail event", async () => {
-    await sendOneDraftReminderMailService(
-      "email",
-      "username",
-      "titre",
-      "userId",
-      "dispositifId",
-      "first"
-    );
+    await sendOneDraftReminderMailService("email", "username", "titre", "userId", "dispositifId", "first");
     const templateName = "oneDraftReminder";
     const dynamicData = {
       to: "email",

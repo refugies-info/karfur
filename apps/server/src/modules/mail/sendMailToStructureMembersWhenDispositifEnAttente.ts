@@ -1,8 +1,8 @@
-import logger from "../../logger";
+import logger from "~/logger";
+import { Dispositif, Structure } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { sendNewFicheEnAttenteMail } from "./mail.service";
-import { Dispositif, Structure } from "../../typegoose";
 
 export const sendMailToStructureMembersWhenDispositifEnAttente = async (dispositif: Dispositif) => {
   logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] received");
@@ -13,7 +13,7 @@ export const sendMailToStructureMembersWhenDispositifEnAttente = async (disposit
   return Promise.all(
     membresToSendMail.map((membre) => {
       logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] send mail to membre", {
-        membreId: membre._id
+        membreId: membre._id,
       });
       return sendNewFicheEnAttenteMail({
         pseudo: membre.username,
@@ -22,8 +22,8 @@ export const sendMailToStructureMembersWhenDispositifEnAttente = async (disposit
         lien,
         email: membre.email,
         dispositifId: dispositif._id,
-        userId: membre._id
+        userId: membre._id,
       });
-    })
+    }),
   );
 };

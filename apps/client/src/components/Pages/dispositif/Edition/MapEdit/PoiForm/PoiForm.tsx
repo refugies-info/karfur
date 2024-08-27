@@ -1,8 +1,8 @@
-import React from "react";
-import Button from "components/UI/Button";
 import { Poi } from "@refugies-info/api-types";
-import { isValidPhone, isValidEmail } from "lib/validateFields";
-import Input from "components/Pages/dispositif/Input";
+import React from "react";
+import Input from "~/components/Pages/dispositif/Input";
+import Button from "~/components/UI/Button";
+import { isValidEmail, isValidPhone } from "~/lib/validateFields";
 import styles from "./PoiForm.module.scss";
 
 interface Props {

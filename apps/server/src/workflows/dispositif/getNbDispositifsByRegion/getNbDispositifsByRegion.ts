@@ -1,8 +1,8 @@
-import logger from "../../../logger";
-import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
-import { ResponseWithData } from "../../../types/interface";
-import { adaptDispositifDepartement, getRegionFigures } from "../../../modules/dispositif/dispositif.adapter";
 import { GetRegionStatisticsResponse } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { adaptDispositifDepartement, getRegionFigures } from "~/modules/dispositif/dispositif.adapter";
+import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const getNbDispositifsByRegion = async (): ResponseWithData<GetRegionStatisticsResponse> => {
   logger.info("[getNbDispositifsByRegion]");

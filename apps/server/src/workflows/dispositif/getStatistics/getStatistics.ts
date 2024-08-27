@@ -1,12 +1,7 @@
 import { GetStatisticsRequest, GetStatisticsResponse } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import {
-  getNbMercis,
-  getNbVues,
-  getNbFiches,
-  getNbUpdatedRecently,
-} from "../../../modules/dispositif/dispositif.repository";
-import { ResponseWithData } from "../../../types/interface";
+import logger from "~/logger";
+import { getNbFiches, getNbMercis, getNbUpdatedRecently, getNbVues } from "~/modules/dispositif/dispositif.repository";
+import { ResponseWithData } from "~/types/interface";
 
 type Mercis = { mercis: number };
 type Vues = { nbVues: number; nbVuesMobile: number };

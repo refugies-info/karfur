@@ -1,6 +1,6 @@
-import FilterButton from "./FilterButton";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
+import FilterButton from "./FilterButton";
 
 describe("FilterButton snapshot test suite", () => {
   it("should render without bug", async () => {

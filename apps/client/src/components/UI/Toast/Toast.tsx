@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Toast as ToastTS, ToastBody } from "reactstrap";
+import { ToastBody, Toast as ToastTS } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import styles from "./Toast.module.scss";
 
 interface Props {

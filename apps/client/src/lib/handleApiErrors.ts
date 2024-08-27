@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 type ErrorData = {
   text?: string;
   title?: string;
-}
+};
 
 export const handleApiDefaultError = (error: any) => {
   Swal.fire({
@@ -13,7 +13,7 @@ export const handleApiDefaultError = (error: any) => {
     footer: "<i>" + error.message + "</i>",
     timer: 1500,
   });
-}
+};
 
 export const handleApiError = (data: ErrorData) => {
   Swal.fire({
@@ -22,4 +22,4 @@ export const handleApiError = (data: ErrorData) => {
     text: data.text || "",
     timer: 1500,
   });
-}
+};

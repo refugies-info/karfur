@@ -1,9 +1,13 @@
-import { DispositifStatusRequest, DispositifStatus } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { deleteDispositifInDb, publishDispositif, saveAndOverwriteDraft } from "../../../modules/dispositif/dispositif.service";
+import { DispositifStatus, DispositifStatusRequest } from "@refugies-info/api-types";
+import logger from "~/logger";
+import {
+  deleteDispositifInDb,
+  publishDispositif,
+  saveAndOverwriteDraft,
+} from "~/modules/dispositif/dispositif.service";
+import { Dispositif, User } from "~/typegoose";
+import { Response } from "~/types/interface";
 import { log } from "./log";
-import { Dispositif, User } from "../../../typegoose";
-import { Response } from "../../../types/interface";
 
 export const updateDispositifStatus = async (id: string, body: DispositifStatusRequest, user: User): Response => {
   logger.info("[updateDispositifStatus]", { id, body });

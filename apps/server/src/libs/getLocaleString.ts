@@ -1,13 +1,13 @@
 import { get } from "lodash";
 
-import fr from "../locales/fr/common.json";
-import en from "../locales/en/common.json";
-import ar from "../locales/ar/common.json";
-import fa from "../locales/fa/common.json";
-import ps from "../locales/ps/common.json";
-import ru from "../locales/ru/common.json";
-import uk from "../locales/uk/common.json";
-import ti from "../locales/ti/common.json";
+import ar from "~/locales/ar/common.json";
+import en from "~/locales/en/common.json";
+import fa from "~/locales/fa/common.json";
+import fr from "~/locales/fr/common.json";
+import ps from "~/locales/ps/common.json";
+import ru from "~/locales/ru/common.json";
+import ti from "~/locales/ti/common.json";
+import uk from "~/locales/uk/common.json";
 
 const languageStrings: Record<string, {}> = {
   fr,
@@ -17,7 +17,7 @@ const languageStrings: Record<string, {}> = {
   ps,
   ru,
   uk,
-  ti
+  ti,
 };
 
 const replaceParams = (params: any, text: string | undefined): string | undefined => {
@@ -28,6 +28,7 @@ const replaceParams = (params: any, text: string | undefined): string | undefine
     newText = newText.replace(`{{${key}}}`, value as string);
   }
   return newText;
-}
+};
 
-export const getLocaleString = (locale: string, key: string, params?: any) => replaceParams(params, get(languageStrings, `${locale}.${key}`) as string) || key;
+export const getLocaleString = (locale: string, key: string, params?: any) =>
+  replaceParams(params, get(languageStrings, `${locale}.${key}`) as string) || key;

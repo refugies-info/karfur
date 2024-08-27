@@ -1,12 +1,12 @@
-import Separator from "components/UI/Separator";
-import { getDepartmentCodeFromName } from "lib/departments";
-import { Event } from "lib/tracking";
 import debounce from "lodash/debounce";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import Separator from "~/components/UI/Separator";
+import { getDepartmentCodeFromName } from "~/lib/departments";
+import { Event } from "~/lib/tracking";
+import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
 import DepartmentMenuItem from "./DepartmentMenuItem";
 import styles from "./LocationMenu.module.css";

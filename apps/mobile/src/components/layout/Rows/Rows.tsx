@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */ // props are optionnal
-import React, { ReactNode } from "react";
-import { ViewStyle, StyleProp } from "react-native";
-import styled from "styled-components/native";
-import { FlexItem, getFlexValue } from "../common";
-import { isLastChild } from "../../utils";
 import isNull from "lodash/isNull";
+import React, { ReactNode } from "react";
+import { StyleProp, ViewStyle } from "react-native";
+import styled from "styled-components/native";
+import { isLastChild } from "../../utils";
+import { FlexItem, getFlexValue } from "../common";
 import Separator from "../Separator";
 
 const RowsWrapper = styled.View<{
@@ -14,10 +14,8 @@ const RowsWrapper = styled.View<{
   flex-grow: 1;
   flex-basis: auto;
   flex-direction: column;
-  ${({ verticalAlign }) =>
-    verticalAlign && `justify-content: ${verticalAlign}`};
-  ${({ horizontalAlign }) =>
-    horizontalAlign && `align-items: ${horizontalAlign}`};
+  ${({ verticalAlign }) => verticalAlign && `justify-content: ${verticalAlign}`};
+  ${({ horizontalAlign }) => horizontalAlign && `align-items: ${horizontalAlign}`};
 `;
 
 export enum RowsSpacing {
@@ -45,9 +43,7 @@ const Rows = ({
   style,
   separator = false,
 }: RowsProps) => {
-  const _children = React.Children.toArray(children).filter(
-    (child: ReactNode) => !isNull(child)
-  );
+  const _children = React.Children.toArray(children).filter((child: ReactNode) => !isNull(child));
   return (
     <RowsWrapper
       horizontalAlign={horizontalAlign}
@@ -62,16 +58,12 @@ const Rows = ({
             <FlexItem
               flex={getFlexValue(layout, index)}
               key={index}
-              marginBottom={
-                !isLastChild(_children, index) ? spacing : undefined
-              }
+              marginBottom={!isLastChild(_children, index) ? spacing : undefined}
             >
               {child}
-              {separator && !isLastChild(_children, index) && (
-                <Separator fullWidth />
-              )}
+              {separator && !isLastChild(_children, index) && <Separator fullWidth />}
             </FlexItem>
-          )
+          ),
       )}
     </RowsWrapper>
   );

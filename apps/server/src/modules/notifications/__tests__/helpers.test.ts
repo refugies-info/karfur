@@ -1,17 +1,17 @@
+import { ContentType } from "@refugies-info/api-types";
+import cloneDeep from "lodash/cloneDeep";
+import { ThemeModel } from "~/typegoose";
+import { demarche, dispositif, theme } from "../../../__fixtures__";
+import { targets } from "../__fixtures__/targets";
 import {
-  getTitle,
-  getAge,
-  parseDispositif,
   filterTargets,
   filterTargetsForDemarche,
+  getAge,
   getNotificationEmoji,
-  Requirements
+  getTitle,
+  parseDispositif,
+  Requirements,
 } from "../helpers";
-import cloneDeep from "lodash/cloneDeep";
-import { ContentType } from "@refugies-info/api-types";
-import { targets } from "../__fixtures__/targets";
-import { dispositif, demarche, theme } from "../../../__fixtures__";
-import { ThemeModel } from "../../../typegoose";
 
 describe("notification helpers", () => {
   it("should getTitle", () => {
@@ -20,30 +20,38 @@ describe("notification helpers", () => {
 
     const res2 = getTitle(
       {
-        "fr": "Titre",
-        "en": "Title"
-      }, "fr");
+        fr: "Titre",
+        en: "Title",
+      },
+      "fr",
+    );
     expect(res2).toEqual("Titre");
 
     const res3 = getTitle(
       {
-        "fr": "Titre",
-        "en": "Title"
-      }, "en");
+        fr: "Titre",
+        en: "Title",
+      },
+      "en",
+    );
     expect(res3).toEqual("Title");
 
     const res4 = getTitle(
       {
-        "fr": "Titre",
-        "en": "Title"
-      }, "pt");
+        fr: "Titre",
+        en: "Title",
+      },
+      "pt",
+    );
     expect(res4).toEqual("Titre");
 
     const res5 = getTitle(
       {
-        "es": "Titre",
-        "en": "Title"
-      }, "pt");
+        es: "Titre",
+        en: "Title",
+      },
+      "pt",
+    );
     expect(res5).toEqual("");
   });
 
@@ -56,25 +64,24 @@ describe("notification helpers", () => {
 
     disp1.metadatas.age = {
       type: "lessThan",
-      ages: [23]
+      ages: [23],
     };
     const res2 = getAge(disp1);
     expect(res2).toEqual({ min: 0, max: 23 });
 
     disp1.metadatas.age = {
       type: "moreThan",
-      ages: [23]
+      ages: [23],
     };
     const res3 = getAge(disp1);
     expect(res3).toEqual({ min: 23, max: 99 });
 
     disp1.metadatas.age = {
       type: "between",
-      ages: [12, 34]
+      ages: [12, 34],
     };
     const res4 = getAge(disp1);
     expect(res4).toEqual({ min: 12, max: 34 });
-
   });
 
   it("should parseDispositif", () => {
@@ -83,10 +90,10 @@ describe("notification helpers", () => {
       departments: ["13 - Bouches-du-Rhône"],
       age: {
         max: 99,
-        min: 0
+        min: 0,
       },
       type: ContentType.DISPOSITIF,
-      mainThemeId: "63286a015d31b2c0cad9960a"
+      mainThemeId: "63286a015d31b2c0cad9960a",
     });
   });
 
@@ -95,19 +102,19 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: "france",
       type: ContentType.DISPOSITIF,
-      mainThemeId: "theme1"
-    }
+      mainThemeId: "theme1",
+    };
     const res1 = filterTargets(targets, req1, "fr");
-    expect(res1.map(r => r.uid)).toEqual(["1", "6"]);
+    expect(res1.map((r) => r.uid)).toEqual(["1", "6"]);
 
     const req2 = {
       age: { min: 18, max: 25 },
       departments: ["35 - Ille-et-Vilaine"],
       type: ContentType.DISPOSITIF,
-      mainThemeId: "theme1"
-    }
+      mainThemeId: "theme1",
+    };
     const res2 = filterTargets(targets, req2, "fr");
-    expect(res2.map(r => r.uid)).toEqual(["1"]);
+    expect(res2.map((r) => r.uid)).toEqual(["1"]);
   });
 
   it("should filterTargetsForDemarche", () => {
@@ -115,23 +122,21 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: "france",
       type: ContentType.DEMARCHE,
-      mainThemeId: "theme1"
-    }
+      mainThemeId: "theme1",
+    };
     const res1 = filterTargetsForDemarche(targets, req1, demarche);
-    expect(res1.map(r => r.uid)).toEqual(["1", "2", "6"]);
+    expect(res1.map((r) => r.uid)).toEqual(["1", "2", "6"]);
   });
 
   it("should getNotificationEmoji", () => {
     const disp1 = dispositif;
     disp1.theme = new ThemeModel(theme);
-    const res1 = getNotificationEmoji(disp1)
+    const res1 = getNotificationEmoji(disp1);
     expect(res1).toEqual("💼");
 
     const disp2 = dispositif;
     disp2.theme = null;
-    const res2 = getNotificationEmoji(disp2)
+    const res2 = getNotificationEmoji(disp2);
     expect(res2).toEqual("🔔");
   });
-
-
 });

@@ -1,30 +1,30 @@
-import React, { useEffect, useRef, useMemo, useCallback } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { useDispatch, useSelector } from "react-redux";
 import { ContentType, ViewsType } from "@refugies-info/api-types";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
-import { ExplorerParamList, BottomTabParamList } from "../../../types";
-import { styles } from "../../theme";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { fetchSelectedContentActionCreator } from "../../services/redux/SelectedContent/selectedContent.actions";
-import { selectedContentSelector } from "../../services/redux/SelectedContent/selectedContent.selectors";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { LoadingStatusKey } from "~/services/redux/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.selectors";
+import { fetchSelectedContentActionCreator } from "~/services/redux/SelectedContent/selectedContent.actions";
+import { selectedContentSelector } from "~/services/redux/SelectedContent/selectedContent.selectors";
+import { themeSelector } from "~/services/redux/Themes/themes.selectors";
 import {
-  selectedI18nCodeSelector,
   currentI18nCodeSelector,
-  initialUrlSelector,
   hasUserSeenOnboardingSelector,
-} from "../../services/redux/User/user.selectors";
-import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
-import { themeSelector } from "../../services/redux/Themes/themes.selectors";
+  initialUrlSelector,
+  selectedI18nCodeSelector,
+} from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
 
-import { updateNbVuesOrFavoritesOnContent } from "../../utils/API";
-import { registerBackButton } from "../../libs/backButton";
+import { registerBackButton } from "~/libs/backButton";
+import { updateNbVuesOrFavoritesOnContent } from "~/utils/API";
 
-import { defaultColors } from "../../libs/getThemeTag";
+import isEmpty from "lodash/isEmpty";
 import {
   DemarcheImage,
   ErrorScreen,
@@ -40,30 +40,27 @@ import {
   TextDSFR_L,
   Title,
   UpButton,
-} from "../../components";
+} from "~/components";
+import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
+import { defaultColors } from "~/libs/getThemeTag";
+import { setInitialUrlActionCreator } from "~/services/redux/User/user.actions";
 import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
+import { ContentTabBar } from "./ContentTabBar";
+import { ExternalLink } from "./ExternalLink";
+import LanguageUnavailable from "./LanguageUnavailable";
+import { LastModificationDate } from "./LastModificationDate";
+import { LinkedThemesNeeds } from "./LinkedThemesNeeds";
+import { MapMarkers } from "./MapMarkers";
 import { Section } from "./Section";
 import { Mercis } from "./Sections";
-import isEmpty from "lodash/isEmpty";
-import LanguageUnavailable from "./LanguageUnavailable";
-import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
-import { LastModificationDate } from "./LastModificationDate";
-import { ExternalLink } from "./ExternalLink";
-import { ContentTabBar } from "./ContentTabBar";
-import { MapMarkers } from "./MapMarkers";
 import { Sponsors } from "./Sponsors";
-import { LinkedThemesNeeds } from "./LinkedThemesNeeds";
-import { setInitialUrlActionCreator } from "../../services/redux/User/user.actions";
 
 export type ContentScreenType = CompositeScreenProps<
   StackScreenProps<ExplorerParamList, "ContentScreen">,
   BottomTabScreenProps<BottomTabParamList>
 >;
 
-const CONTENT_STRUCTURES: Record<
-  ContentType,
-  ("what" | "how" | "why" | "next")[]
-> = {
+const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[]> = {
   [ContentType.DISPOSITIF]: ["what", "why", "how"],
   [ContentType.DEMARCHE]: ["what", "how", "next"],
 };
@@ -85,9 +82,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT));
 
   // Back button
   useEffect(() => registerBackButton(backScreen, navigation), []);
@@ -102,7 +97,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         fetchSelectedContentActionCreator({
           contentId,
           locale: selectedLanguage,
-        })
+        }),
       );
     }
   }, [selectedLanguage, contentId]);
@@ -113,10 +108,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   // On content change
   useEffect(() => {
     if (selectedContent) {
-      updateNbVuesOrFavoritesOnContent(
-        selectedContent._id.toString(),
-        ViewsType.MOBILE
-      );
+      updateNbVuesOrFavoritesOnContent(selectedContent._id.toString(), ViewsType.MOBILE);
     }
   }, [selectedContent]);
 
@@ -126,7 +118,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         fetchSelectedContentActionCreator({
           contentId: contentId,
           locale: selectedLanguage,
-        })
+        }),
       );
     }
     return;
@@ -140,10 +132,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   };
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
-  const lastModificationDate = useMemo(
-    () => selectedContent?.lastModificationDate,
-    [selectedContent]
-  );
+  const lastModificationDate = useMemo(() => selectedContent?.lastModificationDate, [selectedContent]);
 
   // before leaving, if initialUrl (deeplink), clear it to return to onboarding if necessary
   const initialUrl = useSelector(initialUrlSelector);
@@ -155,7 +144,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         if (!hasUserSeenOnboarding) e.preventDefault();
         dispatch(setInitialUrlActionCreator(null));
       }),
-    [navigation, hasUserSeenOnboarding, initialUrl]
+    [navigation, hasUserSeenOnboarding, initialUrl],
   );
 
   if (isLoading)
@@ -180,7 +169,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           buttonText={t("content_screen.start_again_button", "Recommencer")}
           text={t(
             "content_screen.error",
-            "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard."
+            "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard.",
           )}
           buttonIcon="refresh-outline"
         />
@@ -211,20 +200,13 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           {!isEmpty(selectedContent.titreMarque) && (
             <TextDSFR_L style={{ marginBottom: styles.margin * 3 }}>
-              <ReadableText>
-                {`${t("content_screen.with", "Avec")} ${
-                  selectedContent.titreMarque
-                }`}
-              </ReadableText>
+              <ReadableText>{`${t("content_screen.with", "Avec")} ${selectedContent.titreMarque}`}</ReadableText>
             </TextDSFR_L>
           )}
 
           {selectedContent.typeContenu === ContentType.DEMARCHE && (
             <>
-              <DemarcheImage
-                contentId={selectedContent._id.toString()}
-                isSmall={false}
-              />
+              <DemarcheImage contentId={selectedContent._id.toString()} isSmall={false} />
               <Spacer height={styles.margin * 3} />
             </>
           )}
@@ -234,21 +216,10 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           <Spacer height={styles.margin * 5} />
           <Section key="what" sectionKey="what" themeId={themeId || null} />
 
-          <InfocardsSection
-            key="infocards"
-            content={selectedContent}
-            color={colors.color100}
-          />
+          <InfocardsSection key="infocards" content={selectedContent} color={colors.color100} />
 
           {CONTENT_STRUCTURES[selectedContent.typeContenu].map(
-            (section, i) =>
-              section !== "what" && (
-                <Section
-                  key={i}
-                  sectionKey={section}
-                  themeId={themeId || null}
-                />
-              )
+            (section, i) => section !== "what" && <Section key={i} sectionKey={section} themeId={themeId || null} />,
           )}
 
           <ExternalLink
@@ -257,11 +228,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             backgroundColor={colors.color100}
           />
 
-          <MapMarkers
-            markers={selectedContent.map}
-            contentId={selectedContent._id}
-            color={colors.color100}
-          />
+          <MapMarkers markers={selectedContent.map} contentId={selectedContent._id} color={colors.color100} />
           <Spacer height={styles.margin * 5} />
           <Mercis dispositif={selectedContent} />
 
@@ -283,11 +250,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         <Spacer height={styles.margin * 15} />
       </Page>
 
-      <ContentTabBar
-        contentId={selectedContent._id.toString()}
-        needId={needId}
-        theme={theme}
-      />
+      <ContentTabBar contentId={selectedContent._id.toString()} needId={needId} theme={theme} />
     </>
   );
 };

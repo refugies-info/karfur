@@ -1,12 +1,11 @@
-import React from "react";
 import { Image, ScrollView, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
 import styled, { useTheme } from "styled-components/native";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import IlluMascotte from "~/theme/images/profile/illu-mascotte.png";
 import { TextDSFR_L } from "./StyledText";
-import { Rows, Spacer } from "./layout";
 import { ButtonDSFR } from "./buttons";
-import IlluMascotte from "../theme/images/profile/illu-mascotte.png";
+import { Rows, Spacer } from "./layout";
 
 interface Props {
   isModalVisible: boolean;
@@ -69,9 +68,7 @@ export const ConfirmationModal = (props: Props) => {
           </Rows>
           <TitleText>{props.text}</TitleText>
           <ButtonDSFR
-            accessibilityLabel={t(
-              props.i18nKeyValidateButton || "global.validate"
-            )}
+            accessibilityLabel={t(props.i18nKeyValidateButton || "global.validate")}
             title={t(props.i18nKeyValidateButton || "global.validate")}
             onPress={onValidate}
             iconName={props.iconValidateButton || "arrow-forward-outline"}

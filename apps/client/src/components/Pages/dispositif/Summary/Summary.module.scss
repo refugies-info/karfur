@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
 
 .card {
   display: none;
@@ -35,7 +35,7 @@
 
 .item {
   @include dsfr-text("small");
-  
+
   padding-bottom: u(4);
   text-decoration: underline;
 

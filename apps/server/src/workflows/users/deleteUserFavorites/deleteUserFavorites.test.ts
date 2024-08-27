@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* import { updateUserFavorites } from "./updateUserFavorites";
-import { updateUserInDB } from "../../../modules/users/users.repository"; */
+import { updateUserInDB } from "~/modules/users/users.repository"; */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {

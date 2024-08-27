@@ -1,18 +1,14 @@
-import * as React from "react";
-import styled from "styled-components/native";
-import { Flag } from "./Flag";
-import { useDispatch, useSelector } from "react-redux";
-import { View } from "react-native";
-import { setCurrentLanguageActionCreator } from "../../services/redux/User/user.actions";
-import { getSelectedLanguageFromI18nCode } from "../../libs/language";
-import {
-  currentI18nCodeSelector,
-  selectedI18nCodeSelector,
-} from "../../services/redux/User/user.selectors";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { Languages } from "@refugies-info/api-types";
+import { View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { getSelectedLanguageFromI18nCode } from "~/libs/language";
+import { setCurrentLanguageActionCreator } from "~/services/redux/User/user.actions";
+import { currentI18nCodeSelector, selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import { Flag } from "./Flag";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${({ theme }) => theme.colors.white};
@@ -50,8 +46,7 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
 const LanguageContainer = styled(ButtonContainerCommon)<{
   isSelected: boolean;
 }>`
-  background-color: ${({ isSelected, theme }) =>
-    isSelected ? theme.colors.white : theme.colors.grey60};
+  background-color: ${({ isSelected, theme }) => (isSelected ? theme.colors.white : theme.colors.grey60)};
   width: 48px;
   ${({ isSelected }) =>
     isSelected
@@ -82,22 +77,15 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
-  const selectedLanguage = getSelectedLanguageFromI18nCode(
-    selectedLanguageI18nCode
-  );
+  const selectedLanguage = getSelectedLanguageFromI18nCode(selectedLanguageI18nCode);
   const isFrenchSelected = currentLanguageI18nCode === "fr";
 
   const dispatch = useDispatch();
 
-  const changeLanguage = (
-    isFrenchSelected: boolean,
-    selectedLanguageI18nCode: Languages
-  ) => {
+  const changeLanguage = (isFrenchSelected: boolean, selectedLanguageI18nCode: Languages) => {
     if (isFrenchSelected) {
       i18n.changeLanguage(selectedLanguageI18nCode);
-      return dispatch(
-        setCurrentLanguageActionCreator(selectedLanguageI18nCode)
-      );
+      return dispatch(setCurrentLanguageActionCreator(selectedLanguageI18nCode));
     }
     i18n.changeLanguage("fr");
     return dispatch(setCurrentLanguageActionCreator("fr"));

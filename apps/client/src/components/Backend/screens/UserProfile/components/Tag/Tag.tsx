@@ -1,4 +1,4 @@
-import { cls } from "lib/classname";
+import { cls } from "~/lib/classname";
 import styles from "./Tag.module.scss";
 
 interface Props {

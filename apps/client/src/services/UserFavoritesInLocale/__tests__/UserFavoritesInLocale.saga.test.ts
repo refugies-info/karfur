@@ -1,26 +1,10 @@
 //@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchUserFavorites,
-  updateUserFavorites,
-} from "../UserFavoritesInLocale.saga";
-import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import API from "../../../utils/API";
-import {
-  fetchUserFavoritesActionCreator,
-  setUserFavoritesActionCreator,
-} from "../UserFavoritesInLocale.actions";
-import { testUser } from "../../../__fixtures__/user";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
-import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
-import {
-  UPDATE_USER_FAVORITES,
-  FETCH_USER_FAVORITES,
-} from "../UserFavoritesInLocale.actionTypes";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { FETCH_USER_FAVORITES, UPDATE_USER_FAVORITES } from "../UserFavoritesInLocale.actionTypes";
+import { fetchUserFavoritesActionCreator, setUserFavoritesActionCreator } from "../UserFavoritesInLocale.actions";
+import latestActionsSaga, { fetchUserFavorites, updateUserFavorites } from "../UserFavoritesInLocale.saga";
 
 describe("[Saga] UserFavorites", () => {
   describe("pilot", () => {
@@ -65,7 +49,7 @@ describe("[Saga] UserFavorites", () => {
         .next()
         .call(API.deleteUserFavorites, {
           dispositifId: "id",
-          all: true
+          all: true,
         })
         .next()
         .put(fetchUserFavoritesActionCreator("fr"))

@@ -1,23 +1,23 @@
-import CustomTabPane from "components/Backend/CustomTabPane";
-import EVAIcon from "components/UI/EVAIcon";
-import useRouterLocale from "hooks/useRouterLocale";
-import { getInitialTab, setSavedQuery, TabQuery } from "lib/getAdminUrlParams";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Nav, NavItem, NavLink, TabContent } from "reactstrap";
+import styled from "styled-components";
+import CustomTabPane from "~/components/Backend/CustomTabPane";
+import EVAIcon from "~/components/UI/EVAIcon";
+import useRouterLocale from "~/hooks/useRouterLocale";
+import { getInitialTab, setSavedQuery, TabQuery } from "~/lib/getAdminUrlParams";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
-} from "services/AllDispositifs/allDispositifs.actions";
+} from "~/services/AllDispositifs/allDispositifs.actions";
 import {
   fetchAllStructuresActionsCreator,
   setAllStructuresActionCreator,
-} from "services/AllStructures/allStructures.actions";
-import { fetchAllUsersActionsCreator, setAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
-import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
-import styled from "styled-components";
-import { colors } from "utils/colors";
+} from "~/services/AllStructures/allStructures.actions";
+import { fetchAllUsersActionsCreator, setAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions";
+import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
+import { colors } from "~/utils/colors";
 import styles from "./Admin.module.scss";
 
 const OngletText = styled.span<{ isActive: boolean }>`

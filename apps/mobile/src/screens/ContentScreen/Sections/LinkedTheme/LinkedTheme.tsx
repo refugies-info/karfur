@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import { Id } from "@refugies-info/api-types";
-import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { Id } from "@refugies-info/api-types";
+import { useCallback } from "react";
+import { useSelector } from "react-redux";
 
-import { currentI18nCodeSelector, themeSelector } from "../../../../services";
-import { TagButton } from "../../../../components/Explorer/TagButton";
+import { TagButton } from "~/components/Explorer/TagButton";
+import { currentI18nCodeSelector, themeSelector } from "~/services";
 import { ContentScreenType } from "../../ContentScreen";
 
 export interface LinkedThemesProps {

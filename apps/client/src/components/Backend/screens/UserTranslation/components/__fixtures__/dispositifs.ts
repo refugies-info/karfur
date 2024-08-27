@@ -1,4 +1,8 @@
-import { ContentType, GetDispositifsWithTranslationAvancementResponse, TraductionsStatus } from "@refugies-info/api-types";
+import {
+  ContentType,
+  GetDispositifsWithTranslationAvancementResponse,
+  TraductionsStatus,
+} from "@refugies-info/api-types";
 
 export const data1: GetDispositifsWithTranslationAvancementResponse = {
   tradStatus: TraductionsStatus.TO_TRANSLATE,
@@ -10,7 +14,7 @@ export const data1: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 1,
-  avancementValidation: 1
+  avancementValidation: 1,
 };
 
 export const data2: GetDispositifsWithTranslationAvancementResponse = {
@@ -23,7 +27,7 @@ export const data2: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 2,
-  avancementValidation: 2
+  avancementValidation: 2,
 };
 export const data3: GetDispositifsWithTranslationAvancementResponse = {
   tradStatus: TraductionsStatus.TO_REVIEW,
@@ -35,7 +39,7 @@ export const data3: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 3,
-  avancementValidation: 3
+  avancementValidation: 3,
 };
 
 export const data4: GetDispositifsWithTranslationAvancementResponse = {
@@ -48,7 +52,7 @@ export const data4: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 4,
-  avancementValidation: 4
+  avancementValidation: 4,
 };
 
 export const data8: GetDispositifsWithTranslationAvancementResponse = {
@@ -61,7 +65,7 @@ export const data8: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 8,
-  avancementValidation: 8
+  avancementValidation: 8,
 };
 
 export const data5: GetDispositifsWithTranslationAvancementResponse = {
@@ -74,7 +78,7 @@ export const data5: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 5,
-  avancementValidation: 5
+  avancementValidation: 5,
 };
 
 export const data6: GetDispositifsWithTranslationAvancementResponse = {
@@ -87,7 +91,7 @@ export const data6: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 6,
-  avancementValidation: 6
+  avancementValidation: 6,
 };
 
 export const data7: GetDispositifsWithTranslationAvancementResponse = {
@@ -100,7 +104,16 @@ export const data7: GetDispositifsWithTranslationAvancementResponse = {
   created_at: new Date(),
   lastTradUpdatedAt: null,
   avancementTrad: 7,
-  avancementValidation: 7
+  avancementValidation: 7,
 };
 
-export const data: GetDispositifsWithTranslationAvancementResponse[] = [data1, data2, data3, data4, data5, data6, data7, data8];
+export const data: GetDispositifsWithTranslationAvancementResponse[] = [
+  data1,
+  data2,
+  data3,
+  data4,
+  data5,
+  data6,
+  data7,
+  data8,
+];

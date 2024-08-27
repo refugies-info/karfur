@@ -1,9 +1,7 @@
-import React from "react";
-
 import House from "./House";
-import Search from "./Search";
-import Message from "./Message";
 import Menu from "./Menu";
+import Message from "./Message";
+import Search from "./Search";
 import Tag from "./Tag";
 
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";

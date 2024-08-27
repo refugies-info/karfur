@@ -1,19 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
-import { userSelector } from "services/User/user.selectors";
-import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
-import BaseModal from "components/UI/BaseModal";
-import { defaultContact, defaultSponsor } from "./data";
-import SearchStructure from "./SearchStructure";
-import ChooseStructure from "./ChooseStructure";
-import StructureContact from "./StructureContact";
-import CreateStructure from "./CreateStructure";
-import AuthorContact from "./AuthorContact";
-import MemberOfStructure from "./MemberOfStructure";
-import ThanksMessage from "./ThanksMessage";
+import BaseModal from "~/components/UI/BaseModal";
+import { userSelector } from "~/services/User/user.selectors";
+import { userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
 import { SimpleFooter, StepsFooter } from "../components";
+import AuthorContact from "./AuthorContact";
+import ChooseStructure from "./ChooseStructure";
+import CreateStructure from "./CreateStructure";
+import { defaultContact, defaultSponsor } from "./data";
 import {
   getDisplayedMaxStep,
   getDisplayedStep,
@@ -23,7 +19,11 @@ import {
   getTextContent,
   isNextButtonDisabled,
 } from "./functions";
+import MemberOfStructure from "./MemberOfStructure";
 import styles from "./ModalMainSponsor.module.scss";
+import SearchStructure from "./SearchStructure";
+import StructureContact from "./StructureContact";
+import ThanksMessage from "./ThanksMessage";
 
 export type ContactInfos = {
   name: string;

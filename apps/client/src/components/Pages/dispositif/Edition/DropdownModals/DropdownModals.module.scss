@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
 
 .dropdown {
   .toggle {
@@ -28,7 +28,7 @@
       }
     }
   }
-  
+
   .menu {
     box-shadow: 0 2px 6px 0 #00001229;
     border-radius: u(2);

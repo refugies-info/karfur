@@ -7,7 +7,7 @@ export const logs: GetLogResponse[] = [
     model_object: "Dispositif",
     text: "Contenu modifié",
     author: { username: "user_1", email: "user_1@example.com" },
-    created_at: new Date("2023-04-05T10:24:00")
+    created_at: new Date("2023-04-05T10:24:00"),
   },
   {
     _id: "2",
@@ -15,7 +15,7 @@ export const logs: GetLogResponse[] = [
     model_object: "Dispositif",
     text: "Thèmes modifiés",
     author: { username: "user_1", email: "user_1@example.com" },
-    created_at: new Date("2023-04-05T11:24:00")
+    created_at: new Date("2023-04-05T11:24:00"),
   },
   {
     _id: "3",
@@ -23,7 +23,7 @@ export const logs: GetLogResponse[] = [
     model_object: "Dispositif",
     text: "Contenu modifié",
     author: { username: "user_1", email: "user_1@example.com" },
-    created_at: new Date("2023-04-05T12:24:00")
+    created_at: new Date("2023-04-05T12:24:00"),
   },
   {
     _id: "4",
@@ -31,7 +31,7 @@ export const logs: GetLogResponse[] = [
     model_object: "Dispositif",
     text: "Contenu modifié",
     author: { username: "user_2", email: "user_2@example.com" },
-    created_at: new Date("2023-04-05T13:24:00")
+    created_at: new Date("2023-04-05T13:24:00"),
   },
   {
     _id: "5",
@@ -39,7 +39,7 @@ export const logs: GetLogResponse[] = [
     model_object: "Dispositif",
     text: "Contenu modifié",
     author: { username: "user_1", email: "user_1@example.com" },
-    created_at: new Date("2023-04-05T14:24:00")
+    created_at: new Date("2023-04-05T14:24:00"),
   },
   {
     _id: "6",
@@ -47,7 +47,7 @@ export const logs: GetLogResponse[] = [
     model_object: "Dispositif",
     text: "Contenu modifié",
     author: { username: "user_1", email: "user_1@example.com" },
-    created_at: new Date("2023-04-06T10:24:00")
+    created_at: new Date("2023-04-06T10:24:00"),
   },
   {
     _id: "7",
@@ -56,9 +56,9 @@ export const logs: GetLogResponse[] = [
     text: "Traduction validée en : {{dynamic}}",
     author: { username: "user_1", email: "user_1@example.com" },
     dynamicId: {
-      langueFr: "Ukrainien"
+      langueFr: "Ukrainien",
     },
-    created_at: new Date("2023-04-06T10:24:00")
+    created_at: new Date("2023-04-06T10:24:00"),
   },
   {
     _id: "8",
@@ -67,8 +67,8 @@ export const logs: GetLogResponse[] = [
     text: "Traduction validée en : {{dynamic}}",
     author: { username: "user_1", email: "user_1@example.com" },
     dynamicId: {
-      langueFr: "Arabe"
+      langueFr: "Arabe",
     },
-    created_at: new Date("2023-04-06T10:25:00")
+    created_at: new Date("2023-04-06T10:25:00"),
   },
-]
+];

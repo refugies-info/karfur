@@ -1,23 +1,23 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Card from "@codegouvfr/react-dsfr/Card";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
-import defaultStructureImage from "assets/recherche/default-structure-image.svg";
-import TempDispositifIllu from "assets/recherche/temp-illu-dispositif.png";
-import FavoriteButton from "components/UI/FavoriteButton";
-import { useSanitizedContent, useUtmz } from "hooks";
-import { jsLcfirst, jsUcfirst } from "lib";
-import { cls } from "lib/classname";
-import { getCommitmentText, getPriceText } from "lib/dispositif";
-import { getReadableText } from "lib/getReadableText";
-import { getTheme } from "lib/getTheme";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { useSelector } from "react-redux";
-import { getPath } from "routes";
-import styles from "scss/components/contentCard.module.scss";
-import { themesSelector } from "services/Themes/themes.selectors";
+import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
+import TempDispositifIllu from "~/assets/recherche/temp-illu-dispositif.png";
+import FavoriteButton from "~/components/UI/FavoriteButton";
+import { useSanitizedContent, useUtmz } from "~/hooks";
+import { jsLcfirst, jsUcfirst } from "~/lib";
+import { cls } from "~/lib/classname";
+import { getCommitmentText, getPriceText } from "~/lib/dispositif";
+import { getReadableText } from "~/lib/getReadableText";
+import { getTheme } from "~/lib/getTheme";
+import { getPath } from "~/routes";
+import styles from "~/scss/components/contentCard.module.scss";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
 
 interface Props {

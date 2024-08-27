@@ -1,11 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
-import { Event } from "lib/tracking";
-import PageContext from "utils/pageContext";
-import Button from "components/UI/Button";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import Button from "~/components/UI/Button";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import AddContentButton from "../AddContentButton";
-import styles from "./RichTextEdit.module.scss";
 
 const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr: false });
 

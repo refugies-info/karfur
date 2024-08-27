@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import Layout from "components/Pages/auth/Layout";
-import CheckCode from "components/Pages/auth/CheckCode";
-import SEO from "components/Seo";
-import { useAuthRedirect } from "hooks";
+import CheckCode from "~/components/Pages/auth/CheckCode";
+import Layout from "~/components/Pages/auth/Layout";
+import SEO from "~/components/Seo";
+import { useAuthRedirect } from "~/hooks";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 
 const SecurityCode = () => {
   useAuthRedirect(true);

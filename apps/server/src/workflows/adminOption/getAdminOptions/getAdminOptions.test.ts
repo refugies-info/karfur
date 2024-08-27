@@ -1,10 +1,7 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { getAdminOption } from "~/modules/adminOptions/adminOptions.repository";
 import getAdminOptions from "./getAdminOptions";
-import { getAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
 
 /* jest.mock("../../../modules/adminOptions/adminOptions.repository", () => ({
   getAdminOption: jest.fn(),
@@ -13,7 +10,6 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
   checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
 })); */
-
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -41,7 +37,7 @@ describe.skip("getAdminOptions", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
     };
@@ -53,12 +49,11 @@ describe.skip("getAdminOptions", () => {
       fromSite: true,
       user: { roles: [] },
       params: {
-        key: "notifs"
-      }
+        key: "notifs",
+      },
     };
     await getAdminOptions[1](req, res);
     expect(getAdminOption).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

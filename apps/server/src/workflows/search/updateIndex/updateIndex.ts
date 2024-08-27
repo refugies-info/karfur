@@ -1,16 +1,16 @@
 import { DispositifStatus, UpdateIndexResponse } from "@refugies-info/api-types";
 
-import { Langue } from "../../../typegoose";
+import { Langue } from "~/typegoose";
 
-import { AlgoliaObject, ResponseWithData } from "../../../types/interface";
-import logger from "../../../logger";
-import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
-import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { updateAlgoliaIndex } from "../../../modules/search/search.service";
-import { getAllAlgoliaObjects } from "../../../connectors/algolia/updateAlgoliaData";
-import { formatForAlgolia } from "../../../libs/formatForAlgolia";
-import { getAllThemes } from "../../../modules/themes/themes.repository";
+import { getAllAlgoliaObjects } from "~/connectors/algolia/updateAlgoliaData";
+import { formatForAlgolia } from "~/libs/formatForAlgolia";
+import logger from "~/logger";
+import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { getNeedsFromDB } from "~/modules/needs/needs.repository";
+import { updateAlgoliaIndex } from "~/modules/search/search.service";
+import { getAllThemes } from "~/modules/themes/themes.repository";
+import { AlgoliaObject, ResponseWithData } from "~/types/interface";
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields = {
@@ -22,7 +22,7 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     typeContenu: 1,
     webOnly: 1,
     mainSponsor: 1,
-    metadatas: 1
+    metadatas: 1,
   };
 
   const contentsArray = await getActiveContentsFiltered(neededFields, { status: DispositifStatus.ACTIVE });

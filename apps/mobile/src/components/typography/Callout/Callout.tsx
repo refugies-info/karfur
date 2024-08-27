@@ -1,9 +1,8 @@
-import * as React from "react";
 import { View } from "react-native";
 import { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks";
 import { Card, Columns, Rows, RowsSpacing, Spacer } from "../../layout";
 import { TextDSFR_L_Bold } from "../../StyledText";
-import { useTranslationWithRTL } from "../../../hooks";
 
 interface Props {
   key?: string;

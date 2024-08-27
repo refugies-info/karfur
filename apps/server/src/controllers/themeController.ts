@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security } from "tsoa";
 import { GetThemeResponse, PatchThemeResponse, PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import { Body, Controller, Delete, Get, Patch, Path, Post, Route, Security } from "tsoa";
 
-import { getThemes } from "../workflows/themes/getThemes";
-import { postThemes } from "../workflows/themes/postThemes";
-import { patchTheme } from "../workflows/themes/patchTheme";
-import { deleteTheme } from "../workflows/themes/deleteTheme";
-import { Response, ResponseWithData } from "../types/interface";
+import { Response, ResponseWithData } from "~/types/interface";
+import { deleteTheme } from "~/workflows/themes/deleteTheme";
+import { getThemes } from "~/workflows/themes/getThemes";
+import { patchTheme } from "~/workflows/themes/patchTheme";
+import { postThemes } from "~/workflows/themes/postThemes";
 
 @Route("themes")
 export class ThemeController extends Controller {

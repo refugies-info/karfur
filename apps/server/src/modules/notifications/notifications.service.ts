@@ -1,17 +1,17 @@
 import { Expo, ExpoPushMessage } from "expo-server-sdk";
 import uniq from "lodash/uniq";
 
-import { getDispositifById, updateDispositifInDB } from "../../modules/dispositif/dispositif.repository";
-import { getAllAppUsers } from "../../modules/appusers/appusers.repository";
+import { getAllAppUsers } from "~/modules/appusers/appusers.repository";
+import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
 
-import logger from "../../logger";
-import { getLocaleString as t } from "../../libs/getLocaleString";
-import { availableLanguages } from "../../libs/getFormattedLocale";
+import { availableLanguages } from "~/libs/getFormattedLocale";
+import { getLocaleString as t } from "~/libs/getLocaleString";
+import logger from "~/logger";
 
-import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji } from "./helpers";
-import { getAdminOption } from "../adminOptions/adminOptions.repository";
-import { Dispositif, DispositifId, Notification, NotificationModel } from "../../typegoose";
 import { ContentType, Languages } from "@refugies-info/api-types";
+import { Dispositif, DispositifId, Notification, NotificationModel } from "~/typegoose";
+import { getAdminOption } from "../adminOptions/adminOptions.repository";
+import { filterTargets, filterTargetsForDemarche, getNotificationEmoji, parseDispositif } from "./helpers";
 
 export const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
@@ -21,35 +21,30 @@ export const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
  * @param maxNotifs
  * @returns uid of the appuser and nb notifs sent
  */
-const getUserMaxNotifs = (nbDays: number, maxNotifs: number): Promise<{ _id: string, count: number }[]> => {
-  return NotificationModel.aggregate(
-    [
-      {
-        $match: {
-          $expr: {
-            $gte: [
-              "$createdAt",
-              {
-                $add: [
-                  new Date(),
-                  -1000 * 60 * 60 * 24 * nbDays
-                ]
-              }
-            ]
-          }
-        }
+const getUserMaxNotifs = (nbDays: number, maxNotifs: number): Promise<{ _id: string; count: number }[]> => {
+  return NotificationModel.aggregate([
+    {
+      $match: {
+        $expr: {
+          $gte: [
+            "$createdAt",
+            {
+              $add: [new Date(), -1000 * 60 * 60 * 24 * nbDays],
+            },
+          ],
+        },
       },
-      {
-        $group: { _id: "$uid", count: { $sum: 1 } }
+    },
+    {
+      $group: { _id: "$uid", count: { $sum: 1 } },
+    },
+    {
+      $match: {
+        count: { $gte: maxNotifs },
       },
-      {
-        $match: {
-          count: { $gte: maxNotifs }
-        }
-      }
-    ]
-  );
-}
+    },
+  ]);
+};
 
 /**
  * returns uids of appusers which should not receive notifications
@@ -58,8 +53,8 @@ const getUserMaxNotifs = (nbDays: number, maxNotifs: number): Promise<{ _id: str
 export const getUsersNotifsNotAllowed = async (): Promise<string[]> => {
   const usersLastDay = await getUserMaxNotifs(1, 3);
   const usersLastWeek = await getUserMaxNotifs(7, 7);
-  return uniq([...usersLastDay.map(u => u._id), ...usersLastWeek.map(u => u._id)]);
-}
+  return uniq([...usersLastDay.map((u) => u._id), ...usersLastWeek.map((u) => u._id)]);
+};
 
 export const getNotificationsToSend = async (notifications: Notification[], tokens: Record<string, string>) => {
   const usersNotAllowed: string[] = []; // await getUsersNotifsNotAllowed(); // FIXME: temporary removed to send survey to TS
@@ -79,7 +74,7 @@ export const getNotificationsToSend = async (notifications: Notification[], toke
     .filter((message) => message?.to);
 
   return messages;
-}
+};
 
 export const isNotificationsActive = async () => {
   const adminOption = await getAdminOption("activesNotifications");
@@ -138,7 +133,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
           typeContenu: 1,
           theme: 1,
           notificationsSent: 1,
-          metadatas: 1
+          metadatas: 1,
         },
         "theme",
       );
@@ -226,7 +221,7 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
           theme: 1,
           notificationsSent: 1,
           metadatas: 1,
-          translations: 1
+          translations: 1,
         },
         "theme",
       );
@@ -296,4 +291,4 @@ export default {
   sendNotifications,
   sendNotificationsForDispositif,
   sendNotificationsForDemarche,
-}
+};

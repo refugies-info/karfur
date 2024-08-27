@@ -1,9 +1,8 @@
-import React from "react";
-import { Text } from "react-native";
-import PageOnboarding from "./PageOnboarding";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { useRoute } from "@react-navigation/native";
+import { Text } from "react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import PageOnboarding from "./PageOnboarding";
 
 describe("PageOnboarding snapshot test suite", () => {
   beforeEach(() => {

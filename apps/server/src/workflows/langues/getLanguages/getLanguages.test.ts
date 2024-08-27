@@ -1,6 +1,6 @@
 // @ts-nocheck
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getLanguages } from "./getLanguages";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 /* jest.mock("../../../modules/langues/langues.repository", () => ({
   getActiveLanguagesFromDB: jest.fn(),

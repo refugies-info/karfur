@@ -1,26 +1,17 @@
+import { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "@refugies-info/api-types";
+import { SagaIterator } from "redux-saga";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "../../logger";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import {
   fetchUserFavoritesActionCreator,
   setUserFavoritesActionCreator,
   updateUserFavoritesActionCreator,
 } from "./UserFavoritesInLocale.actions";
-import { SagaIterator } from "redux-saga";
-import { logger } from "../../logger";
-import { put, call, takeLatest } from "redux-saga/effects";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
-import API from "../../utils/API";
-import {
-  FETCH_USER_FAVORITES,
-  UPDATE_USER_FAVORITES,
-} from "./UserFavoritesInLocale.actionTypes";
-import { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "@refugies-info/api-types";
+import { FETCH_USER_FAVORITES, UPDATE_USER_FAVORITES } from "./UserFavoritesInLocale.actionTypes";
 
-export function* fetchUserFavorites(
-  action: ReturnType<typeof fetchUserFavoritesActionCreator>
-): SagaIterator {
+export function* fetchUserFavorites(action: ReturnType<typeof fetchUserFavoritesActionCreator>): SagaIterator {
   try {
     logger.info("[fetchUserFavorites] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
@@ -34,9 +25,7 @@ export function* fetchUserFavorites(
   }
 }
 
-export function* updateUserFavorites(
-  action: ReturnType<typeof updateUserFavoritesActionCreator>
-): SagaIterator {
+export function* updateUserFavorites(action: ReturnType<typeof updateUserFavoritesActionCreator>): SagaIterator {
   try {
     logger.info("[updateUserFavorites] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));

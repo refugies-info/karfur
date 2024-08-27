@@ -1,17 +1,14 @@
-import React, { memo } from "react";
-import { View } from "react-native";
-import isEmpty from "lodash/isEmpty";
 import { Id } from "@refugies-info/api-types";
-import { ReadableText, Spacer, TextDSFR_MD_Bold } from "../../../components";
-import { useTranslationWithRTL } from "../../../hooks";
-import { styles } from "../../../theme";
-import { LinkedNeed, LinkedTheme } from "../Sections";
+import isEmpty from "lodash/isEmpty";
+import { memo } from "react";
+import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  hasUserSeenOnboardingSelector,
-  initialUrlSelector,
-} from "../../../services/redux/User/user.selectors";
-import { setInitialUrlActionCreator } from "../../../services/redux/User/user.actions";
+import { ReadableText, Spacer, TextDSFR_MD_Bold } from "~/components";
+import { useTranslationWithRTL } from "~/hooks";
+import { setInitialUrlActionCreator } from "~/services/redux/User/user.actions";
+import { hasUserSeenOnboardingSelector, initialUrlSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { LinkedNeed, LinkedTheme } from "../Sections";
 
 interface Props {
   needs?: Id[];
@@ -19,11 +16,7 @@ interface Props {
   secondaryThemes?: Id[];
 }
 
-const LinkedThemesNeedsComponent = ({
-  needs,
-  theme,
-  secondaryThemes,
-}: Props) => {
+const LinkedThemesNeedsComponent = ({ needs, theme, secondaryThemes }: Props) => {
   const { t } = useTranslationWithRTL();
 
   // before leaving, if initialUrl (deeplink), clear it to return to onboarding if needed
@@ -43,36 +36,20 @@ const LinkedThemesNeedsComponent = ({
   return (
     <>
       <TextDSFR_MD_Bold accessibilityRole="header">
-        <ReadableText>
-          {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
-        </ReadableText>
+        <ReadableText>{t("content_screen.related_topic", "THÉMATIQUES LIÉES")}</ReadableText>
       </TextDSFR_MD_Bold>
       <Spacer height={styles.margin * 2} />
       <View>
         {needs &&
           !isEmpty(needs) &&
-          needs.map((need) => (
-            <LinkedNeed
-              key={need.toString()}
-              needId={need}
-              beforeNavigate={beforeNavigate}
-            />
-          ))}
+          needs.map((need) => <LinkedNeed key={need.toString()} needId={need} beforeNavigate={beforeNavigate} />)}
         {theme && !isEmpty(theme) && (
-          <LinkedTheme
-            key={theme.toString()}
-            themeId={theme}
-            beforeNavigate={beforeNavigate}
-          />
+          <LinkedTheme key={theme.toString()} themeId={theme} beforeNavigate={beforeNavigate} />
         )}
         {secondaryThemes &&
           !isEmpty(secondaryThemes) &&
           secondaryThemes.map((secondaryTheme) => (
-            <LinkedTheme
-              key={secondaryTheme.toString()}
-              themeId={secondaryTheme}
-              beforeNavigate={beforeNavigate}
-            />
+            <LinkedTheme key={secondaryTheme.toString()} themeId={secondaryTheme} beforeNavigate={beforeNavigate} />
           ))}
       </View>
     </>

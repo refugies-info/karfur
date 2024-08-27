@@ -1,10 +1,10 @@
 import axios from "axios";
-import { cls } from "lib/classname";
-import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { useTranslation } from "next-i18next";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { cls } from "~/lib/classname";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
+import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./LocationMenuItem.module.css";
 
 const LocationMenuItem: React.FC = () => {

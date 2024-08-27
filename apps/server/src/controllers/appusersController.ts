@@ -1,4 +1,3 @@
-import { Controller, Get, Post, Body, Route, Header } from "tsoa";
 import {
   AppUserRequest,
   AppUserUid,
@@ -7,11 +6,12 @@ import {
   PostAppUserResponse,
   PostNotificationsSettingsResponse,
 } from "@refugies-info/api-types";
+import { Body, Controller, Get, Header, Post, Route } from "tsoa";
 
-import { updateAppUser } from "../workflows/appusers/updateAppUser";
-import { getNotificationsSettings } from "../workflows/appusers/getNotificationsSettings";
-import { postNotificationsSettings } from "../workflows/appusers/postNotificationsSettings";
-import { ResponseWithData } from "../types/interface";
+import { ResponseWithData } from "~/types/interface";
+import { getNotificationsSettings } from "~/workflows/appusers/getNotificationsSettings";
+import { postNotificationsSettings } from "~/workflows/appusers/postNotificationsSettings";
+import { updateAppUser } from "~/workflows/appusers/updateAppUser";
 
 @Route("appuser")
 export class AppUsersController extends Controller {

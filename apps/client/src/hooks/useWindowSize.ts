@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type WindowSize = {
-  width: number | undefined
-  height: number | undefined
-}
+  width: number | undefined;
+  height: number | undefined;
+};
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
@@ -25,6 +25,6 @@ const useWindowSize = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return { windowSize, isMobile, isTablet };
-}
+};
 
 export default useWindowSize;

@@ -1,9 +1,8 @@
-import React from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import FButton from "../../UI/FButton/FButton";
-import { responsableFiche } from "../../../assets/figma";
-import styles from "./ResponsableModal.module.scss";
 import Image from "next/image";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { responsableFiche } from "../../../assets/figma";
+import FButton from "../../UI/FButton/FButton";
+import styles from "./ResponsableModal.module.scss";
 
 interface Props {
   show: boolean;

@@ -1,6 +1,5 @@
-import React from "react";
-import { Modal, Spinner, Row, Col } from "reactstrap";
-import { cls } from "lib/classname";
+import { Col, Modal, Row, Spinner } from "reactstrap";
+import { cls } from "~/lib/classname";
 import styles from "./DetailsModal.module.scss";
 
 interface Props {

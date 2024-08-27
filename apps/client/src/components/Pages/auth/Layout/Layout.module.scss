@@ -1,6 +1,6 @@
-@import "~scss/mixins/text";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
 
 $headerHeight: 120px;
 
@@ -34,7 +34,6 @@ $headerHeight: 120px;
     width: 50%;
   }
 }
-
 
 .illu {
   width: 100%;
@@ -73,7 +72,7 @@ $headerHeight: 120px;
 
   margin-top: u(2);
   margin-bottom: u(12);
-  
+
   @include media-max("widescreen-up", true, true) {
     margin-bottom: u(10);
   }

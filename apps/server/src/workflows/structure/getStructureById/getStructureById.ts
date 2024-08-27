@@ -1,20 +1,26 @@
-import { FilterQuery } from "mongoose";
-import { ResponseWithData } from "../../../types/interface";
-import logger from "../../../logger";
-import { getStructureById as getStructure } from "../../../modules/structure/structure.repository";
-import { getUserById } from "../../../modules/users/users.repository";
-import { Dispositif, Structure, User } from "../../../typegoose";
-import { NotFoundError } from "../../../errors";
-import { getStructureDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { DispositifStatus, GetStructureResponse, Languages, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
-import { Membre } from "../../../typegoose/Structure";
+import {
+  DispositifStatus,
+  GetStructureResponse,
+  Languages,
+  StructureMember,
+  StructureMemberRole,
+} from "@refugies-info/api-types";
 import { omit } from "lodash";
+import { FilterQuery } from "mongoose";
+import { NotFoundError } from "~/errors";
+import logger from "~/logger";
+import { getStructureDispositifs } from "~/modules/dispositif/dispositif.repository";
+import { getStructureById as getStructure } from "~/modules/structure/structure.repository";
+import { getUserById } from "~/modules/users/users.repository";
+import { Dispositif, Structure, User } from "~/typegoose";
+import { Membre } from "~/typegoose/Structure";
+import { ResponseWithData } from "~/types/interface";
 
 const getMainRole = (membre: Membre) => {
   if (membre.roles.includes(StructureMemberRole.ADMIN)) return "Responsable";
   if (membre.roles.includes(StructureMemberRole.CONTRIB)) return "Rédacteur";
   return "Exclu";
-}
+};
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
@@ -32,13 +38,13 @@ const getMembers = async (structure: Structure) => {
           roles: membre.roles,
           added_at: membre.added_at,
           userId: membre.userId.toString(),
-          mainRole: getMainRole(membre)
+          mainRole: getMainRole(membre),
         };
         return res;
       }),
     ),
   );
-  return members.filter(u => !!u);
+  return members.filter((u) => !!u);
 };
 
 export const getStructureById = async (
@@ -55,9 +61,9 @@ export const getStructureById = async (
   const isAdmin = !!(user ? user.isAdmin() : false);
   const isMember = !!(user?._id
     ? (structure.membres || []).find((m) => {
-      if (!m.userId) return false;
-      return m.userId.toString() === user._id.toString();
-    })
+        if (!m.userId) return false;
+        return m.userId.toString() === user._id.toString();
+      })
     : false);
   const shouldIncludeMembers = isAdmin || isMember;
   const structureMembers = shouldIncludeMembers ? await getMembers(structure) : [];
@@ -65,9 +71,18 @@ export const getStructureById = async (
   // dispositifs
   const selectedLocale = (locale || "fr") as Languages;
   const dbQuery: FilterQuery<Dispositif> = {
-    status: isAdmin || isMember
-      ? { $in: [DispositifStatus.DRAFT, DispositifStatus.OK_STRUCTURE, DispositifStatus.WAITING_STRUCTURE, DispositifStatus.WAITING_ADMIN, DispositifStatus.ACTIVE] }
-      : DispositifStatus.ACTIVE,
+    status:
+      isAdmin || isMember
+        ? {
+            $in: [
+              DispositifStatus.DRAFT,
+              DispositifStatus.OK_STRUCTURE,
+              DispositifStatus.WAITING_STRUCTURE,
+              DispositifStatus.WAITING_ADMIN,
+              DispositifStatus.ACTIVE,
+            ],
+          }
+        : DispositifStatus.ACTIVE,
     mainSponsor: structure._id,
   };
 
@@ -75,7 +90,9 @@ export const getStructureById = async (
   const result: GetStructureResponse = {
     ...structure.toObject(),
     membres: structureMembers,
-    dispositifsAssocies: structureDispositifs.map(dispositif => (!isAdmin && !isMember) ? omit(dispositif, ["nbMercis", "suggestions"]) : dispositif),
+    dispositifsAssocies: structureDispositifs.map((dispositif) =>
+      !isAdmin && !isMember ? omit(dispositif, ["nbMercis", "suggestions"]) : dispositif,
+    ),
   };
 
   return {

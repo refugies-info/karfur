@@ -1,9 +1,9 @@
-import { Response } from "../../../types/interface";
-import logger from "../../../logger";
-import { removeFavoriteFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { User } from "../../../typegoose";
-import { InvalidRequestError } from "../../../errors";
 import { DeleteUserFavoriteRequest } from "@refugies-info/api-types";
+import { InvalidRequestError } from "~/errors";
+import logger from "~/logger";
+import { removeFavoriteFromDB, updateUserInDB } from "~/modules/users/users.repository";
+import { User } from "~/typegoose";
+import { Response } from "~/types/interface";
 
 export const deleteUserFavorites = async (user: User, query: DeleteUserFavoriteRequest): Response => {
   logger.info("[deleteUserFavorites] received");

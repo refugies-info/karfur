@@ -1,8 +1,7 @@
-import React from "react";
-import { Col, Container, Row } from "reactstrap";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { Col, Container, Row } from "reactstrap";
+import { cls } from "~/lib/classname";
 import styles from "./Needs.module.scss";
-import { cls } from "lib/classname";
 
 export const LoadingNeeds = () => {
   const arrayLines = new Array(12).fill("a");

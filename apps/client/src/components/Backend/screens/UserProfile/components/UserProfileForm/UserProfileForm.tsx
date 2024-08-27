@@ -1,22 +1,22 @@
-import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAsyncFn } from "react-use";
-import { useTranslation } from "next-i18next";
-import { UpdateUserRequest } from "@refugies-info/api-types";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
-import API from "utils/API";
-import { setAuthToken } from "utils/authToken";
-import { cls } from "lib/classname";
-import { isValidEmail, isValidPhone } from "lib/validateFields";
-import { getPasswordStrength } from "lib/validatePassword";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { userDetailsSelector, userSelector } from "services/User/user.selectors";
-import FRLink from "components/UI/FRLink";
-import ErrorMessage from "components/UI/ErrorMessage";
-import { ModalEmailCode, modalEmailCode } from "../ModalEmailCode";
+import { UpdateUserRequest } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAsyncFn } from "react-use";
+import ErrorMessage from "~/components/UI/ErrorMessage";
+import FRLink from "~/components/UI/FRLink";
+import { cls } from "~/lib/classname";
+import { isValidEmail, isValidPhone } from "~/lib/validateFields";
+import { getPasswordStrength } from "~/lib/validatePassword";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import { userDetailsSelector, userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
+import { setAuthToken } from "~/utils/authToken";
 import styles from "../../UserProfile.module.scss";
+import { ModalEmailCode, modalEmailCode } from "../ModalEmailCode";
 import { modalResetPassword, ModalResetPassword } from "../ModalResetPassword";
 
 interface Props {

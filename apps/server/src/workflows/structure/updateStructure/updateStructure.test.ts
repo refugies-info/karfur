@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { updateStructure } from "./updateStructure";
-import { updateStructureInDB } from "../../../modules/structure/structure.repository";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 import { RoleName } from "@refugies-info/api-types";
+import { updateStructureInDB } from "~/modules/structure/structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
+import { updateStructure } from "./updateStructure";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -62,15 +62,15 @@ describe.skip("updateStructure", () => {
   const structure = {
     nom: "structure",
     acronyme: "acronyme",
-    _id: "id"
+    _id: "id",
   };
   const req = {
     user: { roles: ["test"] },
     userId: "userId",
     fromSite: true,
     body: {
-      query: structure
-    }
+      query: structure,
+    },
   };
 
   it("should return 402 if checkIfUserIsAuthorizedToModifyStructure throws NO_STRUCTURE_WITH_THIS_ID", async () => {
@@ -95,12 +95,12 @@ describe.skip("updateStructure", () => {
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",
       acronyme: "acronyme",
-      _id: "id"
+      _id: "id",
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
-      data: structure
+      data: structure,
     });
   });
 
@@ -112,7 +112,7 @@ describe.skip("updateStructure", () => {
     expect(updateStructureInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne"
+      text: "Erreur interne",
     });
   });
 
@@ -124,11 +124,11 @@ describe.skip("updateStructure", () => {
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",
       acronyme: "acronyme",
-      _id: "id"
+      _id: "id",
     });
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne"
+      text: "Erreur interne",
     });
   });
 });

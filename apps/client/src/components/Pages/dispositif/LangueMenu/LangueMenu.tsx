@@ -1,14 +1,14 @@
+import { GetLanguagesResponse } from "@refugies-info/api-types";
+import uniqueId from "lodash/uniqueId";
+import { useTranslation } from "next-i18next";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-import { useTranslation } from "next-i18next";
-import uniqueId from "lodash/uniqueId";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import Flag from "components/UI/Flag";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Tooltip from "components/UI/Tooltip";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Flag from "~/components/UI/Flag";
+import Tooltip from "~/components/UI/Tooltip";
+import { cls } from "~/lib/classname";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LangueMenu.module.scss";
 
 interface Props {

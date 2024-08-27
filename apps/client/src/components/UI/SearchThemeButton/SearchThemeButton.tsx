@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 import styled from "styled-components";
-import { jsUcfirst } from "lib";
-import { cls } from "lib/classname";
-import useLocale from "hooks/useLocale";
+import useLocale from "~/hooks/useLocale";
+import { jsUcfirst } from "~/lib";
+import { cls } from "~/lib/classname";
 import styles from "./SearchThemeButton.module.scss";
-import { GetThemeResponse } from "@refugies-info/api-types";
 
 type ThemeButtonProps = {
   $color100: string;
@@ -18,7 +18,9 @@ const ThemeButton = styled.button<ThemeButtonProps>`
 
   &:hover {
     background: ${(props) => props.$color30};
-    box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
+    box-shadow:
+      0 0 0 1px ${(props) => props.$color100},
+      0 0 40px 0 #00000040;
     color: ${(props) => props.$color100} !important;
   }
 `;
@@ -28,7 +30,9 @@ const ThemeLink = styled(Link)<ThemeButtonProps>`
 
   &:hover {
     background: ${(props) => props.$color30} !important;
-    box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
+    box-shadow:
+      0 0 0 1px ${(props) => props.$color100},
+      0 0 40px 0 #00000040;
     color: ${(props) => props.$color100} !important;
   }
 `;

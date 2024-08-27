@@ -1,10 +1,8 @@
-import React from "react";
-import Image from "next/image";
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
 import BaseCard from "../BaseCard";
 import { getConditionImage } from "../functions";
-import styles from "./CardConditions.module.scss";
 
 interface Props {
   data: Metadatas["conditions"] | null | undefined; // null = not useful / undefined = not set yet

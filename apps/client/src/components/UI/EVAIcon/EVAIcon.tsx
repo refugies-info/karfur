@@ -1,6 +1,6 @@
 import * as eva from "eva-icons";
-import { cls } from "lib/classname";
 import { useEffect, useState } from "react";
+import { cls } from "~/lib/classname";
 import styles from "./EVAIcon.module.scss";
 
 const SIZE = {

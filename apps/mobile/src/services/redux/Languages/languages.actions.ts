@@ -1,9 +1,8 @@
 import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { SET_LANGUAGES, FETCH_LANGUAGES } from "./languages.actionTypes";
 import { action, ActionType } from "typesafe-actions";
+import { FETCH_LANGUAGES, SET_LANGUAGES } from "./languages.actionTypes";
 
-export const setLanguagesActionCreator = (value: GetLanguagesResponse[]) =>
-  action(SET_LANGUAGES, value);
+export const setLanguagesActionCreator = (value: GetLanguagesResponse[]) => action(SET_LANGUAGES, value);
 
 export const fetchLanguagesActionCreator = () => action(FETCH_LANGUAGES);
 

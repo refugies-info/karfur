@@ -1,6 +1,3 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useFormContext } from "react-hook-form";
-import { useTranslation } from "next-i18next";
 import {
   commitmentDetailsType,
   CreateDispositifRequest,
@@ -10,11 +7,15 @@ import {
   timeSlotType,
   timeUnitType,
 } from "@refugies-info/api-types";
-import { jsUcfirst } from "lib";
-import BaseModal from "components/UI/BaseModal";
+import { useTranslation } from "next-i18next";
+import { useCallback, useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import { jsUcfirst } from "~/lib";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
-import { StepsFooter, InlineForm } from "../components";
+import { InlineForm, StepsFooter } from "../components";
 import {
   commitmentDetailsOptions,
   frequencyDetailsOptions,
@@ -24,9 +25,7 @@ import {
   timeSlotOptions,
   timeUnitOptions,
 } from "./data";
-import NoIcon from "assets/dispositif/no-icon.svg";
 import { getInputValue, getInputValues, includesAllDays, isCommitmentHoursKo } from "./functions";
-import styles from "./ModalAvailability.module.scss";
 
 interface Props {
   show: boolean;

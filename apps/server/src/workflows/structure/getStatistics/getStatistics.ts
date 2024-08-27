@@ -1,8 +1,8 @@
-import logger from "../../../logger";
-import { getNbStructures, getStructuresFromDB } from "../../../modules/structure/structure.repository";
-import { ResponseWithData } from "../../../types/interface";
-import { findAllRespo } from "../../../modules/structure/structure.service";
 import { GetStructureStatisticsRequest, GetStructureStatisticsResponse } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { getNbStructures, getStructuresFromDB } from "~/modules/structure/structure.repository";
+import { findAllRespo } from "~/modules/structure/structure.service";
+import { ResponseWithData } from "~/types/interface";
 
 export const getStatistics = async (
   query: GetStructureStatisticsRequest,

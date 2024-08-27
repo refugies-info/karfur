@@ -1,6 +1,3 @@
-import Layout from "components/Layout/Layout";
-import { isContentPage } from "lib/isContentPage";
-import { Event, initGA } from "lib/tracking";
 import type { NextPage } from "next";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
@@ -12,16 +9,19 @@ import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import { isRoute } from "routes";
 import "scss/index.scss";
-import { wrapper } from "services/configureStore";
-import { PageOptions } from "types/interface";
+import Layout from "~/components/Layout/Layout";
+import { isContentPage } from "~/lib/isContentPage";
+import { Event, initGA } from "~/lib/tracking";
+import { wrapper } from "~/services/configureStore";
+import { PageOptions } from "~/types/interface";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
-import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
-import { finishLoading, LoadingStatusKey, startLoading } from "services/LoadingStatus/loadingStatus.actions";
+import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
+import { finishLoading, LoadingStatusKey, startLoading } from "~/services/LoadingStatus/loadingStatus.actions";
 
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { useRTL } from "hooks";
+import { useRTL } from "~/hooks";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",

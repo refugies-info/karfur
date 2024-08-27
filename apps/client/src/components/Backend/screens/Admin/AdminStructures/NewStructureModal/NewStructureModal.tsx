@@ -1,30 +1,35 @@
-import React, { useState } from "react";
-import { Event } from "types/interface";
-import { SimpleUser, StructureStatus } from "@refugies-info/api-types";
-import { Modal, Input, Spinner } from "reactstrap";
-import Image from "next/image";
-import FInput from "components/UI/FInput/FInput";
+import {
+  GetActiveUsersResponse,
+  GetAllUsersResponse,
+  PostStructureRequest,
+  SimpleUser,
+  StructureStatus,
+} from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import FButton from "components/UI/FButton/FButton";
-import API from "utils/API";
-import noStructure from "assets/noStructure.png";
+import Image from "next/image";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Input, Modal, Spinner } from "reactstrap";
+import Swal from "sweetalert2";
+import noStructure from "~/assets/noStructure.png";
+import FButton from "~/components/UI/FButton/FButton";
+import FInput from "~/components/UI/FInput/FInput";
+import { handleApiDefaultError, handleApiError } from "~/lib/handleApiErrors";
+import { statusCompare } from "~/lib/statusCompare";
+import { fetchAllDispositifsActionsCreator } from "~/services/AllDispositifs/allDispositifs.actions";
+import { fetchAllStructuresActionsCreator } from "~/services/AllStructures/allStructures.actions";
+import { fetchAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions";
+import { allActiveUsersSelector } from "~/services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { Event } from "~/types/interface";
+import API from "~/utils/API";
+import { StyledStatus } from "../../sharedComponents/SubComponents";
 import { RowContainer } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
-import { statusCompare } from "lib/statusCompare";
-import { StyledStatus } from "../../sharedComponents/SubComponents";
-import Swal from "sweetalert2";
-import { useSelector, useDispatch } from "react-redux";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
-import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
-import { GetActiveUsersResponse, GetAllUsersResponse, PostStructureRequest } from "@refugies-info/api-types";
-import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 

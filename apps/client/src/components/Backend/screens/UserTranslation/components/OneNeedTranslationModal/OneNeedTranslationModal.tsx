@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Id, Languages, NeedRequest } from "@refugies-info/api-types";
-import { needSelector } from "services/Needs/needs.selectors";
-import { saveNeedActionCreator } from "services/Needs/needs.actions";
-import BaseModal from "components/UI/BaseModal";
-import Button from "components/UI/Button";
-import ThemeIcon from "components/UI/ThemeIcon";
-import Flag from "components/UI/Flag";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import Flag from "~/components/UI/Flag";
+import ThemeIcon from "~/components/UI/ThemeIcon";
+import { saveNeedActionCreator } from "~/services/Needs/needs.actions";
+import { needSelector } from "~/services/Needs/needs.selectors";
 import styles from "./OneNeedTranslationModal.module.scss";
 
 interface Props {

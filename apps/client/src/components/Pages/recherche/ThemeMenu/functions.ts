@@ -5,7 +5,7 @@ export const getInitialTheme = (
   themes: GetThemeResponse[],
   needsSelected: Id[],
   themesSelected: Id[],
-  isMobile: boolean
+  isMobile: boolean,
 ) => {
   if (isMobile) return undefined;
   const allThemeIds = [...themesSelected];

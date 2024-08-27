@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { cls } from "lib/classname";
+import { cls } from "~/lib/classname";
 import ToolbarIcon from "../ToolbarIcon";
 import styles from "./ToolbarButton.module.scss";
 

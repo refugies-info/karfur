@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
 import uniqBy from "lodash/uniqBy";
+import { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import { formatDepartment, getDbDepartment } from "lib/departments";
+import { formatDepartment, getDbDepartment } from "~/lib/departments";
 
 const useDepartmentAutocomplete = () => {
   const [search, setSearch] = useState("");
@@ -27,9 +27,9 @@ const useDepartmentAutocomplete = () => {
           comp.types.includes("administrative_area_level_2"),
         );
         if (!departement) {
-          resolve(null)
+          resolve(null);
           return;
-        };
+        }
         let depName = departement.long_name;
         if (depName === "Département de Paris") depName = "Paris";
         if (depName) {
@@ -39,9 +39,8 @@ const useDepartmentAutocomplete = () => {
         }
         resolve(null);
       });
-    })
+    });
   };
-
 
   useEffect(() => {
     if (search) {
@@ -67,6 +66,6 @@ const useDepartmentAutocomplete = () => {
   }, [placePredictions]);
 
   return { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions };
-}
+};
 
 export default useDepartmentAutocomplete;

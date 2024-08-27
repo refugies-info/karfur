@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/icons";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+@import "~/scss/mixins/responsive";
 
 .container {
   display: flex;
@@ -60,7 +60,7 @@
 
 .delete {
   @include iconSize(u(4));
-  
+
   padding: u(2) !important;
   min-height: u(8) !important;
   margin-left: auto !important;

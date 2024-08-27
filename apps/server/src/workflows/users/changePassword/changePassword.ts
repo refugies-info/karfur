@@ -1,10 +1,10 @@
-import passwordHash from "password-hash";
-import logger from "../../../logger";
-import { getUserById } from "../../../modules/users/users.repository";
-import { isPasswordOk } from "../../../libs/validatePassword";
 import { UserStatus } from "@refugies-info/api-types";
-import { loginExceptionsManager } from "../../../modules/users/auth";
-import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
+import passwordHash from "password-hash";
+import { isPasswordOk } from "~/libs/validatePassword";
+import logger from "~/logger";
+import { loginExceptionsManager } from "~/modules/users/auth";
+import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { getUserById } from "~/modules/users/users.repository";
 
 /**
  * Returns new hashedPassword if ok
@@ -13,11 +13,7 @@ import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
  * @param newPassword
  * @returns
  */
-export const changePassword = async (
-  userId: string,
-  oldPassword: string,
-  newPassword: string,
-) => {
+export const changePassword = async (userId: string, oldPassword: string, newPassword: string) => {
   try {
     logger.info("[changePassword] received");
 
@@ -27,7 +23,8 @@ export const changePassword = async (
       throw new LoginError(LoginErrorType.USER_DELETED);
     }
 
-    if (!user.password) { // user logged in with sso cannot change his password
+    if (!user.password) {
+      // user logged in with sso cannot change his password
       throw new LoginError(LoginErrorType.INVALID_REQUEST);
     }
 

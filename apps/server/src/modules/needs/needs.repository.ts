@@ -1,6 +1,6 @@
 import { SimpleTheme } from "@refugies-info/api-types";
-import { DeleteResult } from "../../types/interface";
-import { Need, NeedId, NeedModel } from "../../typegoose";
+import { Need, NeedId, NeedModel } from "~/typegoose";
+import { DeleteResult } from "~/types/interface";
 
 export const createNeedInDB = async (need: Partial<Need>) => await new NeedModel(need).save();
 

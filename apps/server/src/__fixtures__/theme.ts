@@ -1,8 +1,8 @@
-import { ObjectId, Theme } from "../typegoose";
+import { ObjectId, Theme } from "~/typegoose";
 
 const theme = new Theme();
 
-theme._id = new ObjectId("63286a015d31b2c0cad9960e")
+theme._id = new ObjectId("63286a015d31b2c0cad9960e");
 theme.name = {
   fr: "trouver un travail",
   en: "find a job",
@@ -11,7 +11,7 @@ theme.name = {
   ps: "دنده ومومئ",
   ru: "найти работу",
   uk: "Працевлаштування",
-  ti: "ሓደ ስራሕ ምርካብ"
+  ti: "ሓደ ስራሕ ምርካብ",
 };
 theme.short = {
   fr: "Insertion pro",
@@ -21,7 +21,7 @@ theme.short = {
   ps: "مسلکي مرسته",
   ru: "Работа",
   uk: "Працевлаштування",
-  ti: "ምትእትታው ሞያ ብውሕልልነት"
+  ti: "ምትእትታው ሞያ ብውሕልልነት",
 };
 theme.mainColor = "#FFFFFF";
 theme.colors = {
@@ -29,34 +29,34 @@ theme.colors = {
   color80: "#27A8A5",
   color60: "#82F2DB",
   color40: "#D7FAF2",
-  color30: "#EDFDF9"
+  color30: "#EDFDF9",
 };
 theme.position = 6;
 theme.icon = {
   secure_url: "/images/icon_briefcase.svg",
   public_id: "",
-  imgId: ""
+  imgId: "",
 };
 theme.banner = {
   secure_url: "/images/illustration_Insertion-pro.svg",
   public_id: "",
-  imgId: ""
+  imgId: "",
 };
 theme.appBanner = {
   secure_url: "/images/app-banner/travail.png",
   public_id: "",
-  imgId: ""
+  imgId: "",
 };
 theme.appImage = {
   secure_url: "/images/app/travail.svg",
   public_id: "",
-  imgId: ""
+  imgId: "",
 };
 theme.shareImage = {
   secure_url: "/images/share/ri-insertion.png",
   public_id: "",
-  imgId: ""
+  imgId: "",
 };
 theme.notificationEmoji = "💼";
 
-export { theme }
+export { theme };

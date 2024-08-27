@@ -1,4 +1,3 @@
-import { Controller, Get, Post, Body, Route, Security, Header, Request } from "tsoa";
 import {
   AppUserUid,
   GetNotificationResponse,
@@ -6,11 +5,12 @@ import {
   SendNotificationsRequest,
 } from "@refugies-info/api-types";
 import * as express from "express";
+import { Body, Controller, Get, Header, Post, Request, Route, Security } from "tsoa";
 
-import { getNotifications } from "../workflows/notifications/getNotifications";
-import { markAsSeen } from "../workflows/notifications/markAsSeen";
-import { sendNotifications } from "../workflows/notifications/sendNotifications";
-import { Response, ResponseWithData } from "../types/interface";
+import { Response, ResponseWithData } from "~/types/interface";
+import { getNotifications } from "~/workflows/notifications/getNotifications";
+import { markAsSeen } from "~/workflows/notifications/markAsSeen";
+import { sendNotifications } from "~/workflows/notifications/sendNotifications";
 
 @Route("notifications")
 export class NotificationController extends Controller {

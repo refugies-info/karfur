@@ -2,8 +2,8 @@ import { Picture } from "@refugies-info/api-types";
 import React, { ComponentType, memo, useMemo } from "react";
 import { ImageBackground, View } from "react-native";
 import styled from "styled-components/native";
-import { getImageUri } from "../../../libs/getImageUri";
-import { PropsOf } from "../../../utils";
+import { getImageUri } from "~/libs/getImageUri";
+import { PropsOf } from "~/utils";
 import { HeaderContentProps } from "../Header";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 

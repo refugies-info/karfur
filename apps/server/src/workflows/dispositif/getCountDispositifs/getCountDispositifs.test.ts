@@ -1,6 +1,6 @@
 //@ts-nocheck
 /* import getStatistics from "./getStatistics";
-import { getNbMercis, getNbVues, getNbFiches, getNbUpdatedRecently } from "../../../modules/dispositif/dispositif.repository";
+import { getNbMercis, getNbVues, getNbFiches, getNbUpdatedRecently } from "~/modules/dispositif/dispositif.repository";
  */
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -38,7 +38,7 @@ describe.skip("getStatistics", () => {
       data: {
         nbVues: 175201,
         nbVuesMobile: 85741,
-      }
+      },
     });
   });
 
@@ -56,8 +56,8 @@ describe.skip("getStatistics", () => {
       data: {
         nbVues: 175201,
         nbVuesMobile: 85741,
-        nbUpdatedRecently: 12
-      }
+        nbUpdatedRecently: 12,
+      },
     });
   });
 
@@ -75,8 +75,8 @@ describe.skip("getStatistics", () => {
       data: {
         nbDispositifs: 13,
         nbDemarches: 14,
-        nbUpdatedRecently: 12
-      }
+        nbUpdatedRecently: 12,
+      },
     });
   });
 
@@ -97,15 +97,13 @@ describe.skip("getStatistics", () => {
         nbVuesMobile: 85741,
         nbDispositifs: 13,
         nbDemarches: 14,
-        nbUpdatedRecently: 12
-      }
+        nbUpdatedRecently: 12,
+      },
     });
   });
 
   it("should return a 500 if getNbMercis throws ", async () => {
-    getNbMercis.mockRejectedValueOnce(
-      new Error("error")
-    );
+    getNbMercis.mockRejectedValueOnce(new Error("error"));
 
     const res = mockResponse();
     await getStatistics[1](req, res);
@@ -115,9 +113,7 @@ describe.skip("getStatistics", () => {
   });
 
   it("should return a 500 if getNbVues throws ", async () => {
-    getNbVues.mockRejectedValueOnce(
-      new Error("error")
-    );
+    getNbVues.mockRejectedValueOnce(new Error("error"));
 
     const res = mockResponse();
     await getStatistics[1](req, res);

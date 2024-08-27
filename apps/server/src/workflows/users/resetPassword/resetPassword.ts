@@ -1,10 +1,10 @@
-import crypto from "crypto";
 import { ResetPasswordRequest, ResetPasswordResponse } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { getUserByEmailFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { ResponseWithData } from "../../../types/interface";
-import { sendResetPasswordMail } from "../../../modules/mail/mail.service";
-import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
+import crypto from "crypto";
+import logger from "~/logger";
+import { sendResetPasswordMail } from "~/modules/mail/mail.service";
+import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { getUserByEmailFromDB, updateUserInDB } from "~/modules/users/users.repository";
+import { ResponseWithData } from "~/types/interface";
 
 const url = process.env.FRONT_SITE_URL;
 

@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { $createParagraphNode, $getRoot, EditorState, LexicalEditor } from "lexical";
+import { useEffect, useState } from "react";
 
 interface Props {
   value?: string;

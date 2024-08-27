@@ -1,11 +1,11 @@
-import React, { useContext, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "next-i18next";
 import { ContentType, InfoSections } from "@refugies-info/api-types";
-import { getDispositifSectionTitle } from "lib/getDispositifSectionTitle";
-import PageContext from "utils/pageContext";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "services/Themes/themes.selectors";
+import { useTranslation } from "next-i18next";
+import { useContext, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { getDispositifSectionTitle } from "~/lib/getDispositifSectionTitle";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { themeSelector } from "~/services/Themes/themes.selectors";
+import PageContext from "~/utils/pageContext";
 import Accordions from "../Accordions";
 import RichText from "../RichText";
 import SectionButtons from "../SectionButtons";

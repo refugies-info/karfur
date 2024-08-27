@@ -3,7 +3,7 @@
 import {
   getUserById,
   updateUserInDB,
-} from "../../../modules/users/users.repository"; */
+} from "~/modules/users/users.repository"; */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {

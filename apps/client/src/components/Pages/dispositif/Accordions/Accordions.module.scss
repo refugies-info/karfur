@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
 .title {
   @include dsfr-text("chapo");
@@ -60,7 +60,7 @@
 
 .icon {
   @include ml-ltr(u(4));
-  
+
   transition: transform 0.2s ease-in-out;
 
   .open & {

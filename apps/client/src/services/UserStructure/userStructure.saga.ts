@@ -1,21 +1,26 @@
-import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, select } from "redux-saga/effects";
+import {
+  GetStructureResponse,
+  PatchStructureRequest,
+  PatchStructureRolesRequest,
+  StructureMemberRole,
+} from "@refugies-info/api-types";
 import pick from "lodash/pick";
+import Router from "next/router";
+import { SagaIterator } from "redux-saga";
+import { call, put, select, takeLatest } from "redux-saga/effects";
+import { UserState } from "~/services/User/user.reducer";
+import { logger } from "../../logger";
 import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { setUserRoleInStructureActionCreator } from "../User/user.actions";
+import { userSelector } from "../User/user.selectors";
 import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "./userStructure.actions";
-import { logger } from "../../logger";
-import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/loadingStatus.actions";
 import { userStructureSelector } from "./userStructure.selectors";
-import { userSelector } from "../User/user.selectors";
-import Router from "next/router";
-import { setUserRoleInStructureActionCreator } from "../User/user.actions";
-import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest, StructureMemberRole } from "@refugies-info/api-types";
-import { UserState } from "services/User/user.reducer";
 
 export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {
   try {
@@ -30,7 +35,8 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     const structureMembers = data ? data.membres : [];
     const userInStructure = structureMembers.filter((member) => member.userId === userId);
     const userRoles = userInStructure.length > 0 ? userInStructure[0].roles : [];
-    const isUserContribOrAdmin = userRoles.includes(StructureMemberRole.ADMIN) || userRoles.includes(StructureMemberRole.CONTRIB);
+    const isUserContribOrAdmin =
+      userRoles.includes(StructureMemberRole.ADMIN) || userRoles.includes(StructureMemberRole.CONTRIB);
 
     yield put(setUserRoleInStructureActionCreator(userRoles));
     if (shouldRedirect && !isUserContribOrAdmin) {
@@ -53,7 +59,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
       payload: action.payload,
     });
     const { membres, structure } = action.payload;
-    let structureId
+    let structureId;
     if (structure) {
       const structureFromStore: GetStructureResponse = yield select(userStructureSelector);
       structureId = structureFromStore._id;
@@ -61,9 +67,37 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
         logger.info("[updateUserStructure] no structure to update");
         return;
       }
-      const updatedStructure: PatchStructureRequest = pick(structure, ["picture", "contact", "phone_contact", "mail_contact", "responsable", "nom", "hasResponsibleSeenNotification", "acronyme", "adresse", "authorBelongs", "link", "mail_generique", "siren", "siret", "structureTypes", "websites", "facebook", "linkedin", "twitter", "activities", "departments", "phonesPublic", "mailsPublic", "adressPublic", "openingHours", "onlyWithRdv", "description"]);
+      const updatedStructure: PatchStructureRequest = pick(structure, [
+        "picture",
+        "contact",
+        "phone_contact",
+        "mail_contact",
+        "responsable",
+        "nom",
+        "hasResponsibleSeenNotification",
+        "acronyme",
+        "adresse",
+        "authorBelongs",
+        "link",
+        "mail_generique",
+        "siren",
+        "siret",
+        "structureTypes",
+        "websites",
+        "facebook",
+        "linkedin",
+        "twitter",
+        "activities",
+        "departments",
+        "phonesPublic",
+        "mailsPublic",
+        "adressPublic",
+        "openingHours",
+        "onlyWithRdv",
+        "description",
+      ]);
       yield call(API.updateStructure, structureId, updatedStructure);
-      yield put(setUserStructureActionCreator({ ...structureFromStore, ...structure }))
+      yield put(setUserStructureActionCreator({ ...structureFromStore, ...structure }));
     } else if (membres) {
       let query: PatchStructureRolesRequest | null = null;
       if (membres.type === "create") {

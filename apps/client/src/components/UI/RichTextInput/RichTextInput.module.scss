@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/text";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/variables";
 
 .container {
   border: 1px solid var(--border-default-grey);
@@ -27,7 +27,7 @@
 
 .placeholder {
   @include l-ltr(u(6));
-  
+
   position: absolute;
   bottom: u(12);
   color: var(--text-disabled-grey);

@@ -1,11 +1,11 @@
-import React, { memo, useCallback } from "react";
-import { Linking, View } from "react-native";
 import { Id } from "@refugies-info/api-types";
-import { CustomButton } from "../../../components";
-import { useTranslationWithRTL } from "../../../hooks";
-import { styles } from "../../../theme";
-import { logEventInFirebase } from "../../../utils/logEvent";
-import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
+import { memo, useCallback } from "react";
+import { Linking, View } from "react-native";
+import { CustomButton } from "~/components";
+import { useTranslationWithRTL } from "~/hooks";
+import { styles } from "~/theme";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 
 interface Props {
   externalLink: string | undefined;
@@ -22,9 +22,7 @@ const ExternalLinkComponent = (props: Props) => {
       contentId: props.contentId.toString(),
     });
     if (!props.externalLink) return;
-    const url = !props.externalLink.includes("https://")
-      ? "https://" + props.externalLink
-      : props.externalLink;
+    const url = !props.externalLink.includes("https://") ? "https://" + props.externalLink : props.externalLink;
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
         Linking.openURL(url);

@@ -1,7 +1,7 @@
-import TitleWithNumber from "components/Backend/TitleWithNumber";
-import FButton from "components/UI/FButton";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import TitleWithNumber from "~/components/Backend/TitleWithNumber";
+import FButton from "~/components/UI/FButton";
+import { colors } from "~/utils/colors";
 import styles from "../UserFavorites.module.scss";
 
 const HelpCard = styled.div`

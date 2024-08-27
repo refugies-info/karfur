@@ -1,14 +1,13 @@
-import React from "react";
-import { ContentSummary } from "../Contents/ContentSummary";
-import { NeedsSummary } from "../Needs/NeedsSummary";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { TagButton } from "../Explorer/TagButton";
 import { useSelector } from "react-redux";
-import { themeSelector } from "../../services";
-import { contentSelector } from "../../services/redux/Contents/contents.selectors";
-import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
-import { styles } from "../../theme";
+import { themeSelector } from "~/services";
+import { contentSelector } from "~/services/redux/Contents/contents.selectors";
+import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
+import { styles } from "~/theme";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import { ContentSummary } from "../Contents/ContentSummary";
+import { TagButton } from "../Explorer/TagButton";
+import { NeedsSummary } from "../Needs/NeedsSummary";
 
 interface Props {
   navigation: any;
@@ -22,10 +21,7 @@ interface Props {
 const paddingTagButton = { marginBottom: styles.margin * 2 };
 
 export const SearchContentSummary = (props: Props) => {
-  const themeId =
-    props.item.typeContenu === "theme"
-      ? props.item.objectID
-      : props.item.theme._id.toString();
+  const themeId = props.item.typeContenu === "theme" ? props.item.objectID : props.item.theme._id.toString();
   const theme = useSelector(themeSelector(themeId));
   if (!theme) {
     return null;
@@ -34,10 +30,7 @@ export const SearchContentSummary = (props: Props) => {
   if (props.item.typeContenu === "besoin") {
     // empty need
     const groupedContents = useSelector(groupedContentsSelector);
-    if (
-      !groupedContents[props.item.objectID] ||
-      groupedContents[props.item.objectID].length === 0
-    ) {
+    if (!groupedContents[props.item.objectID] || groupedContents[props.item.objectID].length === 0) {
       return null;
     }
     return (
@@ -54,10 +47,7 @@ export const SearchContentSummary = (props: Props) => {
         style={{ marginBottom: styles.margin * 2 }}
       />
     );
-  } else if (
-    props.item.typeContenu === "dispositif" ||
-    props.item.typeContenu === "demarche"
-  ) {
+  } else if (props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche") {
     const content = useSelector(contentSelector(props.item.objectID));
     if (!content) return null;
     // DISPOSITIF & DEMARCHE

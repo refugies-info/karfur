@@ -1,15 +1,11 @@
+import { GetThemeResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
-import {
-  startLoading,
-  finishLoading,
-  LoadingStatusKey,
-} from "../LoadingStatus/loadingStatus.actions";
-import { logger } from "../../../logger";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "~/logger";
+import { getThemes } from "~/utils/API";
+import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setThemesActionCreator } from "./themes.actions";
 import { FETCH_THEMES } from "./themes.actionTypes";
-import { getThemes } from "../../../utils/API";
-import { GetThemeResponse } from "@refugies-info/api-types";
 
 export function* fetchThemes(): SagaIterator {
   try {

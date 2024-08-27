@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
-import { Event } from "lib/tracking";
-import BaseModal from "components/UI/BaseModal";
+import { useEffect, useMemo, useState } from "react";
+import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
+import BaseModal from "~/components/UI/BaseModal";
+import { Event } from "~/lib/tracking";
 import { getMissingStepsEdit, Step } from "../functions";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";
-import styles from "./PublishModal.module.scss";
 
 interface Props {
   show: boolean;

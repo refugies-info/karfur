@@ -1,20 +1,17 @@
 // @ts-nocheck
 
 export const demarche = {
-  needs: [ "613721a409c5190dfa70d053", "614d8fb095b9b700142ee846" ],
+  needs: ["613721a409c5190dfa70d053", "614d8fb095b9b700142ee846"],
   _id: "5dd7cf3b6f0ac0004c87c8b6",
   titreInformatif: "Comprendre le Droit du Travail",
   abstract: "Connaître et comprendre les bases du droit du travail en France",
-  theme: {_id: "themeId1"},
-  secondaryThemes: [{_id: "themeId2"}],
+  theme: { _id: "themeId1" },
+  secondaryThemes: [{ _id: "themeId2" }],
   typeContenu: "demarche",
   mainSponsor: {
-    dispositifsAssocies: [
-      "5dc29cb05ad26c0016d3b2c5",
-      "5dd7cf3b6f0ac0004c87c8b6",
-    ],
+    dispositifsAssocies: ["5dc29cb05ad26c0016d3b2c5", "5dd7cf3b6f0ac0004c87c8b6"],
     structureTypes: [],
-    websites: [ "https://www.france-terre-asile.org/" ],
+    websites: ["https://www.france-terre-asile.org/"],
     activities: [],
     departments: [],
     phonesPublic: [],
@@ -26,7 +23,7 @@ export const demarche = {
     picture: {
       imgId: "aa",
       public_id: "'pictures/XX",
-      secure_url: "https://image.com/logo.jpg"
+      secure_url: "https://image.com/logo.jpg",
     },
     siren: "",
     siret: "",
@@ -43,8 +40,7 @@ export const demarche = {
     administrateur: "aaa",
     hasResponsibleSeenNotification: true,
     adressPublic: "",
-    openingHours: { details: [], noPublic: false }
+    openingHours: { details: [], noPublic: false },
   },
-  nbVues: 383
-}
-
+  nbVues: 383,
+};

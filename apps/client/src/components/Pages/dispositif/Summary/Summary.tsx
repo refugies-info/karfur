@@ -1,7 +1,6 @@
-import React from "react";
-import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { Event } from "lib/tracking";
+import Link from "next/link";
+import { Event } from "~/lib/tracking";
 import styles from "./Summary.module.scss";
 
 /**

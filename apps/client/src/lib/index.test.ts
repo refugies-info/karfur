@@ -1,8 +1,4 @@
-import {
-  jsUcfirst,
-  limitNbCaracters,
-  removeAccents,
-} from "./index";
+import { jsUcfirst, limitNbCaracters, removeAccents } from "./index";
 
 describe("jsUcfirst", () => {
   it("should return first letter upercase", () => {
@@ -44,4 +40,3 @@ describe("removeAccents", () => {
     expect(res).toEqual("Eca");
   });
 });
-

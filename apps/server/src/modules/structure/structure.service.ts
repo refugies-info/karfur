@@ -1,8 +1,8 @@
-import logger from "../../logger";
-import { getStructureFromDB } from "./structure.repository";
-import { Structure, User, UserId } from "../../typegoose";
-import { Membre, StructureId } from "../../typegoose/Structure";
 import { StructureMemberRole } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { Structure, User, UserId } from "~/typegoose";
+import { Membre, StructureId } from "~/typegoose/Structure";
+import { getStructureFromDB } from "./structure.repository";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
   if (!membres) return false;
@@ -17,12 +17,12 @@ const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
 
 export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: StructureId, currentUser: User) => {
   logger.info("[checkIfUserIsAuthorizedToModifyStructure] received", {
-    id: structureId
+    id: structureId,
   });
   const fetchedStructure = await getStructureFromDB(structureId, { membres: 1 });
   if (!fetchedStructure) {
     logger.info("[checkIfUserIsAuthorizedToModifyStructure] no structure with this id", {
-      id: structureId
+      id: structureId,
     });
 
     throw new Error("NO_STRUCTURE_WITH_THIS_ID");
@@ -33,7 +33,7 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: Stru
 
   if (!currentUser.isAdmin() && !isUserRespoOrContribBoolean) {
     logger.info("[checkIfUserIsAuthorizedToModifyStructure] user not authorized", {
-      id: structureId
+      id: structureId,
     });
     throw new Error("USER_NOT_AUTHORIZED");
   }

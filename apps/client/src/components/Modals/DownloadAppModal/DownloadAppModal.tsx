@@ -1,13 +1,13 @@
-import { useCallback } from "react";
-import { Modal } from "reactstrap";
-import { isIOS } from "react-device-detect";
+import Button from "@codegouvfr/react-dsfr/Button";
+import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import Button from "@codegouvfr/react-dsfr/Button";
-import { cls } from "lib/classname";
-import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import RatingStars from "assets/auth/rating-stars.svg";
-import MobileAppIllu from "assets/mobile-app-illustration.png";
+import { useCallback } from "react";
+import { isIOS } from "react-device-detect";
+import { Modal } from "reactstrap";
+import RatingStars from "~/assets/auth/rating-stars.svg";
+import MobileAppIllu from "~/assets/mobile-app-illustration.png";
+import { cls } from "~/lib/classname";
 import styles from "./DownloadApp.module.scss";
 
 interface Props {

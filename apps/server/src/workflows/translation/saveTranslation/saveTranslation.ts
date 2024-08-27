@@ -1,10 +1,10 @@
 import { ContentType, SaveTranslationRequest } from "@refugies-info/api-types";
 import { isUndefined } from "lodash";
-import { updateIndicator } from "../../../modules/indicators/indicators.service";
-import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
-import { TraductionsType } from "../../../typegoose/Traductions";
-import { getOtherValidationForDispositif } from "../../../modules/traductions/traductions.repository";
+import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { updateIndicator } from "~/modules/indicators/indicators.service";
+import { getOtherValidationForDispositif } from "~/modules/traductions/traductions.repository";
+import { ObjectId, Traductions, TraductionsModel, User } from "~/typegoose";
+import { TraductionsType } from "~/typegoose/Traductions";
 
 const saveTranslation = (
   { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,
@@ -43,13 +43,7 @@ const saveTranslation = (
 
     const wordsCount = _traduction.countWords();
 
-    await updateIndicator(
-      user._id,
-      dispositifId,
-      language,
-      timeSpent,
-      wordsCount
-    );
+    await updateIndicator(user._id, dispositifId, language, timeSpent, wordsCount);
 
     await addNewParticipant(dispositifId, user._id);
 
