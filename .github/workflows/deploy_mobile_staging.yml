@@ -8,22 +8,23 @@ on:
       - package.json
       - apps/mobile/**
       - packages/api-types/**
-env:
-  ALGOLIA_API_KEY: ${{ secrets.REC_ALGOLIA_API_KEY }}
-  ALGOLIA_INDEX: ${{ secrets.REC_ALGOLIA_INDEX }}
-  API_URL: ${{ secrets.REC_API_URL }}
-  ENV_NAME: DEVELOPMENT
-  EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-  EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
-  EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
-  GOOGLE_API_KEY: ${{ secrets.REC_GOOGLE_API_KEY }}
-  SITE_SECRET: ${{ secrets.REC_SITE_SECRET }}
-  SITE_URL: ${{ secrets.REC_SITE_URL }}
 
 jobs:
   update:
     name: EAS Update
     runs-on: ubuntu-latest
+    environment: staging-mobile
+    env:
+      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      ALGOLIA_INDEX: ${{ vars.ALGOLIA_INDEX }}
+      API_URL: ${{ vars.API_URL }}
+      ENV_NAME: DEVELOPMENT
+      EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
+      EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
+      EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      SITE_SECRET: ${{ secrets.SITE_SECRET }}
+      SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - name: Check for EXPO_TOKEN
         run: |

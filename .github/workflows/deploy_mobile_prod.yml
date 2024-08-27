@@ -9,22 +9,22 @@ on:
       - apps/mobile/**
       - packages/api-types/**
 
-env:
-  ALGOLIA_API_KEY: ${{ secrets.PROD_ALGOLIA_API_KEY }}
-  ALGOLIA_INDEX: prod_refugies
-  API_URL: https://api.refugies.info
-  ENV_NAME: PROD
-  EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-  EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
-  EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
-  GOOGLE_API_KEY: ${{ secrets.PROD_GOOGLE_API_KEY }}
-  SITE_SECRET: ${{ secrets.PROD_SITE_SECRET }}
-  SITE_URL: https://refugies.info
-
 jobs:
   update:
     name: EAS Update PROD
     runs-on: ubuntu-latest
+    environment: master-mobile
+    env:
+      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      ALGOLIA_INDEX: ${{ vars.ALGOLIA_INDEX }}
+      API_URL: ${{ vars.API_URL }}
+      ENV_NAME: PROD
+      EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
+      EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
+      EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      SITE_SECRET: ${{ secrets.SITE_SECRET }}
+      SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - name: Check for EXPO_TOKEN
         run: |
