@@ -1,5 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
-import { sanitize } from "dompurify";
+import { sanitize } from "isomorphic-dompurify";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn, useNumber } from "react-use";

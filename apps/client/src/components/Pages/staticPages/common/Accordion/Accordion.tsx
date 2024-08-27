@@ -1,4 +1,4 @@
-import { sanitize } from "dompurify";
+import { sanitize } from "isomorphic-dompurify";
 import Image from "next/image";
 import { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";

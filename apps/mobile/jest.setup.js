@@ -90,6 +90,6 @@ jest.mock("@react-native-async-storage/async-storage", () =>
 // Mock all SVG imports
 jest.mock("*.svg", () => "SvgMock");
 
-jest.mock("dompurify", () => ({
+jest.mock("isomorphic-dompurify", () => ({
   sanitize: jest.fn(),
 }));

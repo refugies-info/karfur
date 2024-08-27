@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { sanitize } from "dompurify";
 import * as Linking from "expo-linking";
+import { sanitize } from "isomorphic-dompurify";
 import * as React from "react";
 import { Text, View } from "react-native";
 import HTML from "react-native-render-html";
