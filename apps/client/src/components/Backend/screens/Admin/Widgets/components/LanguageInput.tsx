@@ -1,7 +1,7 @@
-import FilterButton from "@/components/UI/FilterButton";
-import LanguageText from "@/components/UI/Language";
-import { cls } from "@/lib/classname";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
+import FilterButton from "~/components/UI/FilterButton";
+import LanguageText from "~/components/UI/Language";
+import { cls } from "~/lib/classname";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {

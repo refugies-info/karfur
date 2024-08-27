@@ -1,16 +1,16 @@
-import Layout from "@/components/Pages/auth/Layout";
-import Loader from "@/components/Pages/auth/Loader";
-import SEO from "@/components/Seo";
-import { EditDepartments } from "@/components/User";
-import { useRegisterFlow } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
-import { getInscriptionMessage, getLoginRedirect } from "@/lib/loginRedirect";
-import styles from "@/scss/components/auth.module.scss";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { useRouter } from "next/router";
 import { ReactElement, useCallback, useMemo, useState } from "react";
+import Layout from "~/components/Pages/auth/Layout";
+import Loader from "~/components/Pages/auth/Loader";
+import SEO from "~/components/Seo";
+import { EditDepartments } from "~/components/User";
+import { useRegisterFlow } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { getInscriptionMessage, getLoginRedirect } from "~/lib/loginRedirect";
+import styles from "~/scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();

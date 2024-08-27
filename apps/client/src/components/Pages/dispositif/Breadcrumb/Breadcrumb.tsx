@@ -1,15 +1,15 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import ThemeIcon from "@/components/UI/ThemeIcon";
-import { useContentLocale, useLocale, useWindowSize } from "@/hooks";
-import { buildUrlQuery } from "@/lib/recherche/buildUrlQuery";
-import { needSelector } from "@/services/Needs/needs.selectors";
-import { themeSelector } from "@/services/Themes/themes.selectors";
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import ThemeIcon from "~/components/UI/ThemeIcon";
+import { useContentLocale, useLocale, useWindowSize } from "~/hooks";
+import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
+import { needSelector } from "~/services/Needs/needs.selectors";
+import { themeSelector } from "~/services/Themes/themes.selectors";
 import styles from "./Breadcrumb.module.scss";
 import { getDepartments } from "./functions";
 

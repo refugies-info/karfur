@@ -1,5 +1,5 @@
-import useLocale from "@/hooks/useLocale";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import useLocale from "~/hooks/useLocale";
 import ThemeIcon from "../ThemeIcon";
 import styles from "./TagName.module.scss";
 

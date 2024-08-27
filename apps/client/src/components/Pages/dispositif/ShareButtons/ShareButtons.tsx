@@ -1,12 +1,12 @@
-import Button from "@/components/UI/Button";
-import Toast from "@/components/UI/Toast";
-import Tooltip from "@/components/UI/Tooltip";
-import { Event } from "@/lib/tracking";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { ContentType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
+import Button from "~/components/UI/Button";
+import Toast from "~/components/UI/Toast";
+import Tooltip from "~/components/UI/Tooltip";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import styles from "./ShareButtons.module.scss";
 
 const ShareButtons = () => {

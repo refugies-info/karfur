@@ -1,4 +1,4 @@
-import { getThemesDisplayed } from "@/lib/recherche/functions";
+import { getThemesDisplayed } from "~/lib/recherche/functions";
 import { RootState } from "../rootReducer";
 import { Results, SearchQuery } from "./searchResults.reducer";
 

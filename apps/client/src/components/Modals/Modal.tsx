@@ -1,5 +1,5 @@
-import { cls } from "@/lib/classname";
 import { Modal, ModalHeader } from "reactstrap";
+import { cls } from "~/lib/classname";
 
 interface Props {
   show: boolean;

@@ -1,6 +1,6 @@
-import Input from "@/components/Pages/dispositif/Input";
-import { cls } from "@/lib/classname";
 import React from "react";
+import Input from "~/components/Pages/dispositif/Input";
+import { cls } from "~/lib/classname";
 import { ContactInfos } from "../ModalMainSponsor";
 import styles from "./AuthorContact.module.scss";
 

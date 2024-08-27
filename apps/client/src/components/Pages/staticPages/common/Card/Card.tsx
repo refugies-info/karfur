@@ -1,6 +1,6 @@
-import { cls } from "@/lib/classname";
 import Image from "next/image";
 import { ReactElement } from "react";
+import { cls } from "~/lib/classname";
 import styles from "./Card.module.scss";
 
 interface Props {

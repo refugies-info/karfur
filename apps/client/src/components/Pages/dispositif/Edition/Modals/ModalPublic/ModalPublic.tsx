@@ -1,7 +1,3 @@
-import NoIcon from "@/assets/dispositif/no-icon.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import { cls } from "@/lib/classname";
-import { entries } from "@/lib/typedObjectEntries";
 import {
   ageType,
   CreateDispositifRequest,
@@ -13,6 +9,10 @@ import {
 import { useTranslation } from "next-i18next";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import { cls } from "~/lib/classname";
+import { entries } from "~/lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
 import { InlineForm, StepsFooter } from "../components";
 import {

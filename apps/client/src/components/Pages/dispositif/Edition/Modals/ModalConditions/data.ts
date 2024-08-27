@@ -1,11 +1,11 @@
-import imgCb from "@/assets/dispositif/form-icons/conditions-cb.svg";
-import imgDriver from "@/assets/dispositif/form-icons/conditions-driver.svg";
-import imgFranceTravail from "@/assets/dispositif/form-icons/conditions-france-travail.svg";
-import imgOfii from "@/assets/dispositif/form-icons/conditions-ofii.svg";
-import imgOfpra from "@/assets/dispositif/form-icons/conditions-ofpra.svg";
-import imgSchool from "@/assets/dispositif/form-icons/conditions-school.svg";
-import imgTse from "@/assets/dispositif/form-icons/conditions-tse.svg";
 import { conditionType } from "@refugies-info/api-types";
+import imgCb from "~/assets/dispositif/form-icons/conditions-cb.svg";
+import imgDriver from "~/assets/dispositif/form-icons/conditions-driver.svg";
+import imgFranceTravail from "~/assets/dispositif/form-icons/conditions-france-travail.svg";
+import imgOfii from "~/assets/dispositif/form-icons/conditions-ofii.svg";
+import imgOfpra from "~/assets/dispositif/form-icons/conditions-ofpra.svg";
+import imgSchool from "~/assets/dispositif/form-icons/conditions-school.svg";
+import imgTse from "~/assets/dispositif/form-icons/conditions-tse.svg";
 
 export const help = {
   title: "Quelques conseils",

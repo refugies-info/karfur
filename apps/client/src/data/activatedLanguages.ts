@@ -1,5 +1,5 @@
-import { AvailableLanguageI18nCode } from "@/types/interface";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
+import { AvailableLanguageI18nCode } from "~/types/interface";
 
 export const activatedLanguages: GetLanguagesResponse[] = [
   {

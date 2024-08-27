@@ -1,6 +1,6 @@
-import { cls } from "@/lib/classname";
 import { CheckboxProps, Indicator, Root } from "@radix-ui/react-checkbox";
 import React from "react";
+import { cls } from "~/lib/classname";
 import styles from "./Checkbox.module.css";
 import CheckboxIcon from "./CheckboxIcon";
 

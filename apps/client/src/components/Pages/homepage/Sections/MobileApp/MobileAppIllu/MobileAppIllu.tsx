@@ -1,6 +1,6 @@
-import HomeAppMockup from "@/assets/homepage/app-mockup.png";
-import { AutoplayVideo } from "@/components/Pages/staticPages/common";
 import Image from "next/image";
+import HomeAppMockup from "~/assets/homepage/app-mockup.png";
+import { AutoplayVideo } from "~/components/Pages/staticPages/common";
 import styles from "./MobileAppIllu.module.scss";
 
 const MobileAppIllu = () => {

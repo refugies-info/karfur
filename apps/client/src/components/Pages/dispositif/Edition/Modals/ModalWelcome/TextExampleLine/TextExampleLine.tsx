@@ -1,5 +1,5 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import TextExample from "./TextExample";
 import styles from "./TextExampleLine.module.scss";
 

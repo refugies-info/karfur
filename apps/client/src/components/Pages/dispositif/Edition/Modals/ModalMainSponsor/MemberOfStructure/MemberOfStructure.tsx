@@ -1,7 +1,7 @@
-import NoIcon from "@/assets/dispositif/no-icon.svg";
-import YesIcon from "@/assets/dispositif/yes-icon.svg";
 import React from "react";
 import { Col, Row } from "reactstrap";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import YesIcon from "~/assets/dispositif/yes-icon.svg";
 import ChoiceButton from "../../../ChoiceButton";
 
 interface Props {

@@ -1,8 +1,8 @@
-import { handleApiError } from "@/lib/handleApiErrors";
-import API from "@/utils/API";
-import { colors } from "@/utils/colors";
 import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import Swal from "sweetalert2";
+import { handleApiError } from "~/lib/handleApiErrors";
+import API from "~/utils/API";
+import { colors } from "~/utils/colors";
 
 // TODO: move function
 export const prepareDeleteContrib = (

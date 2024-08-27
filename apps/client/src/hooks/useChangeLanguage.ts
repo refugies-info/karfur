@@ -1,8 +1,8 @@
-import { toggleLangueActionCreator } from "@/services/Langue/langue.actions";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { getPath, PathNames } from "routes";
+import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
 
 const useChangeLanguage = () => {
   const router = useRouter();

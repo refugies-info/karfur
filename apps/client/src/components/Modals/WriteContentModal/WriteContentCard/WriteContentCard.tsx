@@ -1,7 +1,7 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./WriteContentCard.module.scss";
 
 interface Props {

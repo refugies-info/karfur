@@ -1,6 +1,3 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton/FButton";
-import { Event } from "@/lib/tracking";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
@@ -10,6 +7,9 @@ import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
 import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Progress, Row } from "reactstrap";
 import { getPath } from "routes";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
+import { Event } from "~/lib/tracking";
 import styles from "./LanguageModal.module.scss";
 
 interface Props {

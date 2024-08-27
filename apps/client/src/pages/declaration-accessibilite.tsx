@@ -1,10 +1,10 @@
-import ConformiteResults from "@/assets/declaration-accessibilite/conformite-results.svg";
-import SEO from "@/components/Seo";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton/FButton";
-import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
-import styles from "@/scss/pages/declaration-accessibilite.module.scss";
 import Image from "next/image";
+import ConformiteResults from "~/assets/declaration-accessibilite/conformite-results.svg";
+import SEO from "~/components/Seo";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import styles from "~/scss/pages/declaration-accessibilite.module.scss";
 
 const DeclarationAccessibilite = () => {
   return (

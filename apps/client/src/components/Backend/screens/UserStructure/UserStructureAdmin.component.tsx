@@ -1,10 +1,10 @@
-import { userSelector } from "@/services/User/user.selectors";
-import API from "@/utils/API";
-import { colors } from "@/utils/colors";
 import { GetStructureResponse, Id, PatchStructureRolesRequest, StructureMemberRole } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
+import { colors } from "~/utils/colors";
 import { UserStructureDetails } from "./components/UserStructureDetails";
 import { UserStructureLoading } from "./components/UserStructureLoading";
 

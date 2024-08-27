@@ -1,10 +1,10 @@
-import gif from "@/assets/annuaire/GIF-annuaire.gif";
-import FButton from "@/components/UI/FButton/FButton";
 import { Id } from "@refugies-info/api-types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import gif from "~/assets/annuaire/GIF-annuaire.gif";
+import FButton from "~/components/UI/FButton/FButton";
 import styles from "./Step6.module.scss";
 
 interface Props {

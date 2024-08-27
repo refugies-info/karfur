@@ -1,7 +1,7 @@
-import { useChangeLanguage, useLocale, useUser } from "@/hooks";
 import { GetTraductionsForReviewResponse, Id, SaveTranslationRequest } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useChangeLanguage, useLocale, useUser } from "~/hooks";
 
 export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish" | "toReview">;
 const getDefaultFormValues = (userId: Id | null, traductions: GetTraductionsForReviewResponse): TranslateForm => {

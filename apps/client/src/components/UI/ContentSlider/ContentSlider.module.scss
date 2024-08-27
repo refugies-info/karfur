@@ -1,11 +1,11 @@
 /* stylelint-disable no-descending-specificity */
 @use "sass:color";
-@import "@/scss/colors";
-@import "@/scss/mixins/responsive";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/text";
-@import "@/scss/mixins/rtl";
-@import "@/scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
 
 /* stylelint-disable-next-line scss/dollar-variable-pattern */
 $fadeWidth_lg: 160px;

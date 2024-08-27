@@ -1,8 +1,8 @@
-import Button from "@/components/UI/Button";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
+import Button from "~/components/UI/Button";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import { Marker } from "../Map";
 import styles from "./Sidebar.module.scss";
 

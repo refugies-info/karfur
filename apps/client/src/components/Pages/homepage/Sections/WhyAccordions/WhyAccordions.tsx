@@ -1,9 +1,9 @@
-import { Accordion } from "@/components/Pages/staticPages/common";
-import { useWindowSize } from "@/hooks";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/staticPages.module.scss";
 import { useTranslation } from "next-i18next";
 import { Container } from "reactstrap";
+import { Accordion } from "~/components/Pages/staticPages/common";
+import { useWindowSize } from "~/hooks";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 
 interface Props {
   nbDemarches: number;

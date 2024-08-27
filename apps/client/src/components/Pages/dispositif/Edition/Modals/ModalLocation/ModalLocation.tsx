@@ -1,10 +1,10 @@
-import imgAll from "@/assets/dispositif/form-icons/location-all.svg";
-import imgDepartment from "@/assets/dispositif/form-icons/location-department.svg";
-import imgInternet from "@/assets/dispositif/form-icons/location-internet.svg";
-import BaseModal from "@/components/UI/BaseModal";
 import { CreateDispositifRequest, Metadatas } from "@refugies-info/api-types";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import imgAll from "~/assets/dispositif/form-icons/location-all.svg";
+import imgDepartment from "~/assets/dispositif/form-icons/location-department.svg";
+import imgInternet from "~/assets/dispositif/form-icons/location-internet.svg";
+import BaseModal from "~/components/UI/BaseModal";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, StepsFooter } from "../components";
 import { help, helpDepartments } from "./data";

@@ -1,10 +1,10 @@
-import Button from "@/components/UI/Button";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import API from "@/utils/API";
 import { GetTraductionsForReview, Languages, TranslatorFeedback } from "@refugies-info/api-types";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAsyncFn, useList } from "react-use";
+import Button from "~/components/UI/Button";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import API from "~/utils/API";
 import NotationInput from "./NotationInput";
 
 interface Props {

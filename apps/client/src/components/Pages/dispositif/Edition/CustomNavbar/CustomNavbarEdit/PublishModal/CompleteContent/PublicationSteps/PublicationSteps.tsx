@@ -1,7 +1,7 @@
-import Badge from "@/components/UI/Badge";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import React from "react";
+import Badge from "~/components/UI/Badge";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./PublicationSteps.module.scss";
 
 type Item = {

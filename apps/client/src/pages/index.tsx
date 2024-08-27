@@ -1,26 +1,4 @@
 import {
-  AllThemes,
-  Community,
-  FreeResources,
-  HelpUs,
-  Hero,
-  Infos,
-  MainFigures,
-  MobileApp,
-  NewContent,
-  WhyAccordions,
-} from "@/components/Pages/homepage/Sections";
-import SEO from "@/components/Seo";
-import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
-import isInBrowser from "@/lib/isInBrowser";
-import { Event } from "@/lib/tracking";
-import commonStyles from "@/scss/components/staticPages.module.scss";
-import { wrapper } from "@/services/configureStore";
-import { toggleNewsletterModalAction } from "@/services/Miscellaneous/miscellaneous.actions";
-import { fetchNeedsActionCreator } from "@/services/Needs/needs.actions";
-import { fetchThemesActionCreator } from "@/services/Themes/themes.actions";
-import API from "@/utils/API";
-import {
   ContentType,
   GetDispositifsResponse,
   GetStatisticsResponse,
@@ -33,6 +11,28 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
+import {
+  AllThemes,
+  Community,
+  FreeResources,
+  HelpUs,
+  Hero,
+  Infos,
+  MainFigures,
+  MobileApp,
+  NewContent,
+  WhyAccordions,
+} from "~/components/Pages/homepage/Sections";
+import SEO from "~/components/Seo";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import commonStyles from "~/scss/components/staticPages.module.scss";
+import { wrapper } from "~/services/configureStore";
+import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
+import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import API from "~/utils/API";
 
 export interface Props {
   contentStatistics: GetStatisticsResponse;

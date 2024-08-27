@@ -1,8 +1,8 @@
-import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
 import { Id, Languages } from "@refugies-info/api-types";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useSelector } from "react-redux";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { SortedNeed } from "../TranslationsAvancement/TranslationsAvancement";
 import NeedButton from "./NeedButton";
 import styles from "./TranslationNeedsList.module.scss";

@@ -1,8 +1,8 @@
-@import "@/scss/colors";
-@import "@/scss/variables";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/text";
-@import "@/scss/mixins/input";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/input";
 
 .list {
   list-style-type: none;

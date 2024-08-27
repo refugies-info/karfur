@@ -1,5 +1,5 @@
-import { hasRole } from "@/lib/hasRole";
 import { DispositifStatus, GetDispositifResponse, GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
+import { hasRole } from "~/lib/hasRole";
 import { isStatus } from "./isStatus";
 
 export const canEdit = (dispositif: GetDispositifResponse | null, user: GetUserInfoResponse | null) => {

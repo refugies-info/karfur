@@ -1,6 +1,6 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
 import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import styles from "./DayHoursPrecisions.module.scss";
 
 interface Props {

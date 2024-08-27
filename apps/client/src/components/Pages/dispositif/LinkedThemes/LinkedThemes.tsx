@@ -1,17 +1,17 @@
-import SearchThemeButton from "@/components/UI/SearchThemeButton";
-import { useLocale } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { buildUrlQuery } from "@/lib/recherche/buildUrlQuery";
-import { Event } from "@/lib/tracking";
-import { dispositifNeedsSelector } from "@/services/Needs/needs.selectors";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import { secondaryThemesSelector, themeSelector, themesSelector } from "@/services/Themes/themes.selectors";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
 import styled from "styled-components";
+import SearchThemeButton from "~/components/UI/SearchThemeButton";
+import { useLocale } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
+import { Event } from "~/lib/tracking";
+import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { secondaryThemesSelector, themeSelector, themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./LinkedThemes.module.scss";
 
 interface LinkNeedProps {

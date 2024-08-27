@@ -1,8 +1,8 @@
-import { addToQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
 import { GetUserInfoResponse } from "@refugies-info/api-types";
 import { AxiosError } from "axios";
 import { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
+import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { logger } from "../../logger";
 import API from "../../utils/API";
 import { finishLoading, LoadingStatusKey, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";

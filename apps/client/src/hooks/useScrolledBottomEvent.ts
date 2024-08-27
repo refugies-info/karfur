@@ -1,6 +1,6 @@
-import { Event } from "@/lib/tracking";
 import throttle from "lodash/throttle";
 import { useCallback, useEffect, useState } from "react";
+import { Event } from "~/lib/tracking";
 
 /**
  * Send an analytics event when the page is scrolled to the bottom

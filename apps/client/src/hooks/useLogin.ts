@@ -1,12 +1,12 @@
-import { getLoginRedirect } from "@/lib/loginRedirect";
-import { fetchUserActionCreator } from "@/services/User/user.actions";
-import { userDetailsSelector } from "@/services/User/user.selectors";
-import { setAuthToken } from "@/utils/authToken";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookie } from "react-use";
 import { getPath } from "routes";
+import { getLoginRedirect } from "~/lib/loginRedirect";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import { setAuthToken } from "~/utils/authToken";
 import useAuth from "./useAuth";
 
 const useLogin = () => {

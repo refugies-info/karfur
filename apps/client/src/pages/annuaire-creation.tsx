@@ -1,31 +1,31 @@
-import { FrameModal } from "@/components/Modals";
-import { AnnuaireGauge } from "@/components/Pages/annuaire-create/AnnuaireGauge";
-import { Modifications } from "@/components/Pages/annuaire-create/Modifications";
-import { Step1 } from "@/components/Pages/annuaire-create/Step1";
-import { Step2 } from "@/components/Pages/annuaire-create/Step2";
-import { Step3 } from "@/components/Pages/annuaire-create/Step3";
-import { Step4 } from "@/components/Pages/annuaire-create/Step4";
-import { Step5 } from "@/components/Pages/annuaire-create/Step5";
-import { Step6 } from "@/components/Pages/annuaire-create/Step6";
-import SEO from "@/components/Seo";
-import FButton from "@/components/UI/FButton/FButton";
-import { defaultStaticPropsWithThemes } from "@/lib/getDefaultStaticProps";
-import styles from "@/scss/pages/annuaire-create.module.scss";
-import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
-import {
-  setSelectedStructureActionCreator,
-  updateSelectedStructureActionCreator,
-} from "@/services/SelectedStructure/selectedStructure.actions";
-import {
-  selectedStructureIdSelector,
-  selectedStructureSelector,
-} from "@/services/SelectedStructure/selectedStructure.selector";
 import { GetStructureResponse } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "reactstrap";
+import { FrameModal } from "~/components/Modals";
+import { AnnuaireGauge } from "~/components/Pages/annuaire-create/AnnuaireGauge";
+import { Modifications } from "~/components/Pages/annuaire-create/Modifications";
+import { Step1 } from "~/components/Pages/annuaire-create/Step1";
+import { Step2 } from "~/components/Pages/annuaire-create/Step2";
+import { Step3 } from "~/components/Pages/annuaire-create/Step3";
+import { Step4 } from "~/components/Pages/annuaire-create/Step4";
+import { Step5 } from "~/components/Pages/annuaire-create/Step5";
+import { Step6 } from "~/components/Pages/annuaire-create/Step6";
+import SEO from "~/components/Seo";
+import FButton from "~/components/UI/FButton/FButton";
+import { defaultStaticPropsWithThemes } from "~/lib/getDefaultStaticProps";
+import styles from "~/scss/pages/annuaire-create.module.scss";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import {
+  setSelectedStructureActionCreator,
+  updateSelectedStructureActionCreator,
+} from "~/services/SelectedStructure/selectedStructure.actions";
+import {
+  selectedStructureIdSelector,
+  selectedStructureSelector,
+} from "~/services/SelectedStructure/selectedStructure.selector";
 
 const AnnuaireCreate = () => {
   const router = useRouter();

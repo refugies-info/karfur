@@ -1,10 +1,10 @@
-import BaseModal from "@/components/UI/BaseModal";
-import { userSelector } from "@/services/User/user.selectors";
-import { userStructureSelector } from "@/services/UserStructure/userStructure.selectors";
 import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
+import BaseModal from "~/components/UI/BaseModal";
+import { userSelector } from "~/services/User/user.selectors";
+import { userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
 import { SimpleFooter, StepsFooter } from "../components";
 import AuthorContact from "./AuthorContact";
 import ChooseStructure from "./ChooseStructure";

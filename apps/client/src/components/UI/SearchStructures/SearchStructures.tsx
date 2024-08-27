@@ -3,10 +3,10 @@ import { ChangeEventHandler, useCallback, useMemo, useState } from "react";
 import { Row } from "reactstrap";
 import styled from "styled-components";
 
-import NoResultImage from "@/assets/no_results.svg";
-import { removeAccents } from "@/lib";
-import { escapeRegexCharacters } from "@/lib/search";
 import { useTranslation } from "next-i18next";
+import NoResultImage from "~/assets/no_results.svg";
+import { removeAccents } from "~/lib";
+import { escapeRegexCharacters } from "~/lib/search";
 import FButton from "../FButton";
 
 import { GetAllStructuresResponse } from "@refugies-info/api-types";

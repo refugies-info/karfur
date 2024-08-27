@@ -1,6 +1,6 @@
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import useLocale from "./useLocale";
 import { checkIsRTL } from "./useRTL";
 

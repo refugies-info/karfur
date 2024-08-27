@@ -1,7 +1,7 @@
-import FreeIcon from "@/assets/dispositif/metadatas/Free";
-import PriceIcon from "@/assets/dispositif/metadatas/Price";
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
+import FreeIcon from "~/assets/dispositif/metadatas/Free";
+import PriceIcon from "~/assets/dispositif/metadatas/Price";
 import BaseCard from "../BaseCard";
 import { getPrice } from "../functions";
 

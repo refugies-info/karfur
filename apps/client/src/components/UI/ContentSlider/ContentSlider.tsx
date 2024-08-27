@@ -1,9 +1,9 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import useRTL from "@/hooks/useRTL";
-import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import useRTL from "~/hooks/useRTL";
+import { cls } from "~/lib/classname";
 import styles from "./ContentSlider.module.scss";
 
 interface Props {

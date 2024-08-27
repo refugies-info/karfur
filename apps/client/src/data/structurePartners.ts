@@ -1,15 +1,15 @@
-import LogoAdoma from "@/assets/auth/structure-logos/structure-adoma.jpg";
-import LogoCoallia from "@/assets/auth/structure-logos/structure-coallia.png";
-import LogoCOS from "@/assets/auth/structure-logos/structure-cos.jpg";
-import LogoFAS from "@/assets/auth/structure-logos/structure-fas.jpg";
-import LogoForumRefugies from "@/assets/auth/structure-logos/structure-forum-refugies.jpg";
-import LogoFranceHorizon from "@/assets/auth/structure-logos/structure-france-horizon.png";
-import LogoFtda from "@/assets/auth/structure-logos/structure-ftda.png";
-import LogoGipHis from "@/assets/auth/structure-logos/structure-gip-his.png";
-import LogoGroupeSos from "@/assets/auth/structure-logos/structure-groupe-sos.png";
-import LogoMens from "@/assets/auth/structure-logos/structure-mens.png";
-import LogoPierreValdo from "@/assets/auth/structure-logos/structure-pierre-valdo.png";
-import LogoViltais from "@/assets/auth/structure-logos/structure-viltais.png";
+import LogoAdoma from "~/assets/auth/structure-logos/structure-adoma.jpg";
+import LogoCoallia from "~/assets/auth/structure-logos/structure-coallia.png";
+import LogoCOS from "~/assets/auth/structure-logos/structure-cos.jpg";
+import LogoFAS from "~/assets/auth/structure-logos/structure-fas.jpg";
+import LogoForumRefugies from "~/assets/auth/structure-logos/structure-forum-refugies.jpg";
+import LogoFranceHorizon from "~/assets/auth/structure-logos/structure-france-horizon.png";
+import LogoFtda from "~/assets/auth/structure-logos/structure-ftda.png";
+import LogoGipHis from "~/assets/auth/structure-logos/structure-gip-his.png";
+import LogoGroupeSos from "~/assets/auth/structure-logos/structure-groupe-sos.png";
+import LogoMens from "~/assets/auth/structure-logos/structure-mens.png";
+import LogoPierreValdo from "~/assets/auth/structure-logos/structure-pierre-valdo.png";
+import LogoViltais from "~/assets/auth/structure-logos/structure-viltais.png";
 
 type Partner = {
   image: any;

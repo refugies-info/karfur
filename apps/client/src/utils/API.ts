@@ -1,6 +1,3 @@
-import isInBrowser from "@/lib/isInBrowser";
-import { APIResponse } from "@/types/interface";
-import { getAuthToken, removeAuthToken } from "@/utils/authToken";
 import {
   AddContactRequest,
   AddSuggestionDispositifRequest,
@@ -98,6 +95,9 @@ import {
 } from "@refugies-info/api-types";
 import axios, { Canceler } from "axios";
 import Swal from "sweetalert2";
+import isInBrowser from "~/lib/isInBrowser";
+import { APIResponse } from "~/types/interface";
+import { getAuthToken, removeAuthToken } from "~/utils/authToken";
 import { logger } from "../logger";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;

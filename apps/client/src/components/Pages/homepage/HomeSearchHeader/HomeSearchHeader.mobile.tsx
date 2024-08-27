@@ -1,10 +1,3 @@
-import DropdownMenuMobile from "@/components/Pages/recherche/DropdownMenuMobile";
-import LocationMenu from "@/components/Pages/recherche/LocationMenu";
-import ThemeMenu from "@/components/Pages/recherche/ThemeMenu";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/searchHeader.module.scss";
-import { searchQuerySelector, themesDisplayedValueSelector } from "@/services/SearchResults/searchResults.selector";
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -13,6 +6,13 @@ import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { getPath } from "routes";
+import DropdownMenuMobile from "~/components/Pages/recherche/DropdownMenuMobile";
+import LocationMenu from "~/components/Pages/recherche/LocationMenu";
+import ThemeMenu from "~/components/Pages/recherche/ThemeMenu";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/searchHeader.module.scss";
+import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import SearchInput from "../SearchInput";
 import styles from "./HomeSearchHeader.mobile.module.scss";
 

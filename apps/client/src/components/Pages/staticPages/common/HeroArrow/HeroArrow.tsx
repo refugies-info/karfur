@@ -1,9 +1,9 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
-import { smoothScroll } from "@/lib/smoothScroll";
-import { colors } from "@/utils/colors";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
+import { smoothScroll } from "~/lib/smoothScroll";
+import { colors } from "~/utils/colors";
 import styles from "./HeroArrow.module.scss";
 
 interface Props {

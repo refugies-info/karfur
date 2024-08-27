@@ -1,11 +1,11 @@
-import { fetchUserActionCreator } from "@/services/User/user.actions";
-import { userDetailsSelector } from "@/services/User/user.selectors";
-import { fetchUserFavoritesActionCreator } from "@/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import API from "@/utils/API";
 import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import { fetchUserFavoritesActionCreator } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import API from "~/utils/API";
 import useAuth from "./useAuth";
 
 export const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id | null) => {

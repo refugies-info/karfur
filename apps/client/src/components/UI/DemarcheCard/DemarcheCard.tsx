@@ -1,12 +1,3 @@
-import demarcheIcon from "@/assets/recherche/illu-demarche.svg";
-import FavoriteButton from "@/components/UI/FavoriteButton";
-import ThemeBadge from "@/components/UI/ThemeBadge";
-import { useUtmz } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { getReadableText } from "@/lib/getReadableText";
-import { getTheme, getThemes } from "@/lib/getTheme";
-import commonStyles from "@/scss/components/contentCard.module.scss";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -16,6 +7,15 @@ import { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
 import styled from "styled-components";
+import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
+import FavoriteButton from "~/components/UI/FavoriteButton";
+import ThemeBadge from "~/components/UI/ThemeBadge";
+import { useUtmz } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { getReadableText } from "~/lib/getReadableText";
+import { getTheme, getThemes } from "~/lib/getTheme";
+import commonStyles from "~/scss/components/contentCard.module.scss";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./DemarcheCard.module.scss";
 
 const THREE_MONTHS_MS = 3 * 2629746000;

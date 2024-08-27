@@ -1,6 +1,6 @@
-import Badge from "@/components/UI/Badge";
 import { DispositifStatus } from "@refugies-info/api-types";
 import { useMemo } from "react";
+import Badge from "~/components/UI/Badge";
 import { getStatus } from "./functions";
 
 interface Props {

@@ -1,5 +1,5 @@
-import FButton from "@/components/UI/FButton/FButton";
 import { useTranslation } from "next-i18next";
+import FButton from "~/components/UI/FButton/FButton";
 import styles from "./SocialLinks.module.scss";
 
 interface Props {

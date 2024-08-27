@@ -1,7 +1,7 @@
-import { cls } from "@/lib/classname";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useTranslation } from "next-i18next";
 import React from "react";
+import { cls } from "~/lib/classname";
 import styles from "./DropdownButton.module.scss";
 
 interface Props extends DropdownMenu.DropdownMenuTriggerProps {

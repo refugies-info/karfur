@@ -1,7 +1,7 @@
-import { UrlSearchQuery } from "@/pages/recherche";
-import { SearchQuery } from "@/services/SearchResults/searchResults.reducer";
 import { GetThemeResponse, Id } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
+import { UrlSearchQuery } from "~/pages/recherche";
+import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
 
 export const decodeQuery = (

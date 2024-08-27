@@ -1,6 +1,6 @@
-import BubbleFlag from "@/components/UI/BubbleFlag";
-import { useLanguages } from "@/hooks";
 import { Languages } from "@refugies-info/api-types";
+import BubbleFlag from "~/components/UI/BubbleFlag";
+import { useLanguages } from "~/hooks";
 import styles from "./BubbleFlags.module.scss";
 
 const BubbleFlags = () => {

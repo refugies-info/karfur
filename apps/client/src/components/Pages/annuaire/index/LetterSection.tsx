@@ -1,10 +1,10 @@
-import placeholder from "@/assets/no_results_alt.svg";
 import { GetActiveStructuresResponse, Id, Picture } from "@refugies-info/api-types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { getPath } from "routes";
+import placeholder from "~/assets/no_results_alt.svg";
 import styles from "./LetterSection.module.scss";
 interface StructureCardProps {
   nom: string;

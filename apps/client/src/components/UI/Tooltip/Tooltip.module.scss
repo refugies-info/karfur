@@ -1,7 +1,7 @@
-@import "@/scss/colors";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/text";
-@import "@/scss/mixins/rtl";
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
 
 .container {
   :global(.tooltip) {

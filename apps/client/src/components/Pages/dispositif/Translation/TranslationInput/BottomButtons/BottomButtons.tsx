@@ -1,5 +1,5 @@
-import Button from "@/components/UI/Button";
-import { Event } from "@/lib/tracking";
+import Button from "~/components/UI/Button";
+import { Event } from "~/lib/tracking";
 import styles from "./BottomButtons.module.scss";
 
 interface Props {

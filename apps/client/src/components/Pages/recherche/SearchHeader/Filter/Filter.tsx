@@ -1,14 +1,14 @@
-import Checkbox from "@/components/UI/Checkbox";
-import { cls } from "@/lib/classname";
-import { Event } from "@/lib/tracking";
-import { addToQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
-import { SearchQuery } from "@/services/SearchResults/searchResults.reducer";
-import { searchQuerySelector } from "@/services/SearchResults/searchResults.selector";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Checkbox from "~/components/UI/Checkbox";
+import { cls } from "~/lib/classname";
+import { Event } from "~/lib/tracking";
+import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import DropdownButton from "./DropdownButton";
 import styles from "./Filter.module.scss";
 

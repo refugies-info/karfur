@@ -1,6 +1,3 @@
-import NoIcon from "@/assets/dispositif/no-icon.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import { jsUcfirst } from "@/lib";
 import {
   commitmentDetailsType,
   CreateDispositifRequest,
@@ -13,6 +10,9 @@ import {
 import { useTranslation } from "next-i18next";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import { jsUcfirst } from "~/lib";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import { InlineForm, StepsFooter } from "../components";

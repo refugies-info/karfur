@@ -1,4 +1,3 @@
-import API from "@/utils/API";
 import {
   ContentType,
   CreateDispositifRequest,
@@ -11,6 +10,7 @@ import {
 import pick from "lodash/pick";
 import { logger } from "logger";
 import { v4 as uuidv4 } from "uuid";
+import API from "~/utils/API";
 
 /**
  * Get max accordions count depending on the content type and the section

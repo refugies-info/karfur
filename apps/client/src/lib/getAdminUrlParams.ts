@@ -1,6 +1,6 @@
-import { UserStatusType } from "@/types/interface";
 import { DispositifStatus, Id, StructureStatus } from "@refugies-info/api-types";
 import { NextRouter } from "next/router";
+import { UserStatusType } from "~/types/interface";
 
 export type TabQuery = "contenus" | "structures" | "utilisateurs" | "divers" | "categories" | "widgets" | undefined;
 type Status = DispositifStatus | StructureStatus | UserStatusType;

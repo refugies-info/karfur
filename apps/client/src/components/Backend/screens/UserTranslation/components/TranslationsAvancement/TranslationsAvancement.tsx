@@ -1,8 +1,3 @@
-import CustomSearchBar from "@/components/UI/CustomSeachBar";
-import FButton from "@/components/UI/FButton/FButton";
-import { useLanguages, useRouterLocale } from "@/hooks";
-import { needsSelector } from "@/services/Needs/needs.selectors";
-import { colors } from "@/utils/colors";
 import {
   ContentType,
   GetDispositifsWithTranslationAvancementResponse,
@@ -18,6 +13,11 @@ import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import CustomSearchBar from "~/components/UI/CustomSeachBar";
+import FButton from "~/components/UI/FButton/FButton";
+import { useLanguages, useRouterLocale } from "~/hooks";
+import { needsSelector } from "~/services/Needs/needs.selectors";
+import { colors } from "~/utils/colors";
 import { NeedTradStatus } from "../../types";
 import { FilterButton, LanguageTitle } from "../SubComponents";
 import { TranslationAvancementTable } from "../TranslationAvancementTable";

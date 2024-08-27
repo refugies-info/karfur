@@ -1,21 +1,21 @@
-import FeedbackIllu from "@/assets/dispositif/feedback-illu.svg";
-import ThumbDownIcon from "@/assets/dispositif/thumb-down.svg";
-import ThumbUpFillIcon from "@/assets/dispositif/thumb-up-fill.svg";
-import ThumbUpIcon from "@/assets/dispositif/thumb-up.svg";
-import Button from "@/components/UI/Button";
-import Toast from "@/components/UI/Toast";
-import { cls } from "@/lib/classname";
-import isInBrowser from "@/lib/isInBrowser";
-import { Event } from "@/lib/tracking";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import { userSelector } from "@/services/User/user.selectors";
-import API from "@/utils/API";
 import { DispositifStatus } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import FeedbackIllu from "~/assets/dispositif/feedback-illu.svg";
+import ThumbDownIcon from "~/assets/dispositif/thumb-down.svg";
+import ThumbUpFillIcon from "~/assets/dispositif/thumb-up-fill.svg";
+import ThumbUpIcon from "~/assets/dispositif/thumb-up.svg";
+import Button from "~/components/UI/Button";
+import Toast from "~/components/UI/Toast";
+import { cls } from "~/lib/classname";
+import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 import styles from "./Feedback.module.scss";
 
 const Feedback = () => {

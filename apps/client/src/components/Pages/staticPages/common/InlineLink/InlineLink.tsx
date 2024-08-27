@@ -1,8 +1,8 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { useRTL } from "@/hooks";
-import { cls } from "@/lib/classname";
 import Link from "next/link";
 import { useMemo } from "react";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useRTL } from "~/hooks";
+import { cls } from "~/lib/classname";
 import styles from "./InlineLink.module.scss";
 
 interface Props {

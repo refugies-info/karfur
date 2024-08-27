@@ -1,6 +1,6 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
 import { MainSponsor } from "@refugies-info/api-types";
 import React from "react";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { ContactInfos } from "./ModalMainSponsor";
 import styles from "./ModalMainSponsor.module.scss";
 

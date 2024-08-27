@@ -1,6 +1,6 @@
-import API from "@/utils/API";
 import { ContentType, GetActiveStructuresResponse, Id } from "@refugies-info/api-types";
 import { getPath, PathNames } from "routes";
+import API from "~/utils/API";
 
 const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 const PATHS_CRAWL: PathNames[] = [

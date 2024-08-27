@@ -1,10 +1,10 @@
-import BaseModal from "@/components/UI/BaseModal";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
+import BaseModal from "~/components/UI/BaseModal";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import { SimpleFooter } from "../components";
 import styles from "./ModalThemes.module.scss";
 import ThemeSelectButton from "./ThemeSelectButton";

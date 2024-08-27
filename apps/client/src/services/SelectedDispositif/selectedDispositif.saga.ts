@@ -1,8 +1,8 @@
-import API from "@/utils/API";
 import { GetDispositifResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
+import API from "~/utils/API";
 import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { fetchSelectedDispositifActionCreator, setSelectedDispositifActionCreator } from "./selectedDispositif.actions";
 import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";

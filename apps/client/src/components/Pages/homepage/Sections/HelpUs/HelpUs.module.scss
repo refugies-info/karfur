@@ -1,7 +1,7 @@
-@import "@/scss/mixins/responsive";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/text";
-@import "@/scss/mixins/btn";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/btn";
 
 .help_text {
   margin-top: u(6);

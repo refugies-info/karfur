@@ -1,6 +1,6 @@
-import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef } from "react";
+import { cls } from "~/lib/classname";
 import styles from "./SearchMenuItem.module.css";
 
 interface Props {

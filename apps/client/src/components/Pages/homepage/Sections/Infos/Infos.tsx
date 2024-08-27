@@ -1,16 +1,16 @@
-import NewsletterIllu from "@/assets/homepage/newsletter-illu.svg";
-import FormationPhoto from "@/assets/homepage/photo-formation.jpg";
-import { InlineLink } from "@/components/Pages/staticPages/common";
-import FButton from "@/components/UI/FButton";
-import Input from "@/components/UI/Input";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/staticPages.module.scss";
-import API from "@/utils/API";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Swal from "sweetalert2";
+import NewsletterIllu from "~/assets/homepage/newsletter-illu.svg";
+import FormationPhoto from "~/assets/homepage/photo-formation.jpg";
+import { InlineLink } from "~/components/Pages/staticPages/common";
+import FButton from "~/components/UI/FButton";
+import Input from "~/components/UI/Input";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
+import API from "~/utils/API";
 import styles from "./Infos.module.scss";
 
 const Infos = () => {

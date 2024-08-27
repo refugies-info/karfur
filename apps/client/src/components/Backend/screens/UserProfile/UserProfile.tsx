@@ -1,7 +1,3 @@
-import { cls } from "@/lib/classname";
-import { userDetailsSelector, userSelector } from "@/services/User/user.selectors";
-import { userStructureRoleSelector, userStructureSelector } from "@/services/UserStructure/userStructure.selectors";
-import API from "@/utils/API";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
@@ -10,6 +6,10 @@ import { logger } from "logger";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
+import { cls } from "~/lib/classname";
+import { userDetailsSelector, userSelector } from "~/services/User/user.selectors";
+import { userStructureRoleSelector, userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
+import API from "~/utils/API";
 import {
   EditAvatar,
   EditButton,

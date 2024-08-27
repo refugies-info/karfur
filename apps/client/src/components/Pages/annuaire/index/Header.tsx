@@ -1,9 +1,9 @@
-import useRTL from "@/hooks/useRTL";
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import useRTL from "~/hooks/useRTL";
 import styles from "./Header.module.scss";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 

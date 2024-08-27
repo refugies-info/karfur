@@ -1,7 +1,7 @@
-import TutorielImage from "@/assets/dispositif/tutoriel-image.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import Button from "@/components/UI/Button";
 import Image from "next/image";
+import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
 import styles from "./ModalAccordionsCount.module.scss";
 
 interface Props {

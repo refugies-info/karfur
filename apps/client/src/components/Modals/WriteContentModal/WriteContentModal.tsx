@@ -1,7 +1,3 @@
-import { assetsOnServer } from "@/assets/assetsOnServer";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton/FButton";
-import { userSelector } from "@/services/User/user.selectors";
 import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -9,6 +5,10 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ModalBody, ModalFooter } from "reactstrap";
 import { getPath } from "routes";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
+import { userSelector } from "~/services/User/user.selectors";
 import Modal from "../Modal";
 import { pseudoModal, PseudoModal } from "../PseudoModal";
 import WriteContentCard from "./WriteContentCard";

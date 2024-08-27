@@ -1,15 +1,15 @@
-import ErrorMessage from "@/components/UI/ErrorMessage";
-import { useDepartmentAutocomplete, useOutsideClick } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { formatDepartment } from "@/lib/departments";
-import { userDetailsSelector } from "@/services/User/user.selectors";
-import API from "@/utils/API";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { SearchBar } from "@codegouvfr/react-dsfr/SearchBar";
 import { logger } from "logger";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
+import ErrorMessage from "~/components/UI/ErrorMessage";
+import { useDepartmentAutocomplete, useOutsideClick } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { formatDepartment } from "~/lib/departments";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 import styles from "./EditDepartments.module.scss";
 
 interface Props {

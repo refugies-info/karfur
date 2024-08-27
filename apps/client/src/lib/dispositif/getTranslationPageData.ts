@@ -1,5 +1,5 @@
-import API from "@/utils/API";
 import { GetDispositifResponse, GetTraductionsForReviewResponse, GetUserInfoResponse } from "@refugies-info/api-types";
+import API from "~/utils/API";
 
 /**
  * build a TraductionsForReview object from a dispositif

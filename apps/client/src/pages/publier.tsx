@@ -1,20 +1,27 @@
-import HelpIcon3 from "@/assets/staticPages/publier/help-icon-crisp.svg";
-import HelpIcon2 from "@/assets/staticPages/publier/help-icon-tutoriel.svg";
-import HelpIcon1 from "@/assets/staticPages/publier/help-icon-visio.svg";
-import MockupsRIMobile from "@/assets/staticPages/publier/mockups-ri-mobile.png";
-import MockupsRI from "@/assets/staticPages/publier/mockups-ri.png";
-import RequiredIcon1 from "@/assets/staticPages/publier/required-icon-1.png";
-import RequiredIcon2 from "@/assets/staticPages/publier/required-icon-2.png";
-import RequiredIcon3 from "@/assets/staticPages/publier/required-icon-3.png";
-import StepImage4 from "@/assets/staticPages/publier/step-image-4.svg";
-import StepImage5 from "@/assets/staticPages/publier/step-image-5.png";
-import StepImage6 from "@/assets/staticPages/publier/step-image-6.svg";
-import TestimonyLogo1 from "@/assets/staticPages/publier/testimony-icon-1.png";
-import TestimonyLogo2 from "@/assets/staticPages/publier/testimony-icon-2.png";
-import TestimonyLogo3 from "@/assets/staticPages/publier/testimony-icon-3.png";
-import WhyImage1 from "@/assets/staticPages/publier/why-image-1.png";
-import WhyImage4 from "@/assets/staticPages/publier/why-image-4.png";
-import WriteContentModal from "@/components/Modals/WriteContentModal/WriteContentModal";
+import { RoleName } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Col, Container, Row } from "reactstrap";
+import HelpIcon3 from "~/assets/staticPages/publier/help-icon-crisp.svg";
+import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutoriel.svg";
+import HelpIcon1 from "~/assets/staticPages/publier/help-icon-visio.svg";
+import MockupsRIMobile from "~/assets/staticPages/publier/mockups-ri-mobile.png";
+import MockupsRI from "~/assets/staticPages/publier/mockups-ri.png";
+import RequiredIcon1 from "~/assets/staticPages/publier/required-icon-1.png";
+import RequiredIcon2 from "~/assets/staticPages/publier/required-icon-2.png";
+import RequiredIcon3 from "~/assets/staticPages/publier/required-icon-3.png";
+import StepImage4 from "~/assets/staticPages/publier/step-image-4.svg";
+import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
+import StepImage6 from "~/assets/staticPages/publier/step-image-6.svg";
+import TestimonyLogo1 from "~/assets/staticPages/publier/testimony-icon-1.png";
+import TestimonyLogo2 from "~/assets/staticPages/publier/testimony-icon-2.png";
+import TestimonyLogo3 from "~/assets/staticPages/publier/testimony-icon-3.png";
+import WhyImage1 from "~/assets/staticPages/publier/why-image-1.png";
+import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
+import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
 import {
   Accordion,
   Card,
@@ -24,23 +31,16 @@ import {
   Register,
   SecondaryNavbar,
   StepContent,
-} from "@/components/Pages/staticPages/common";
-import { CardExample, TestimonySlider } from "@/components/Pages/staticPages/publier";
-import SEO from "@/components/Seo";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import useWindowSize from "@/hooks/useWindowSize";
-import { cls } from "@/lib/classname";
-import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
-import styles from "@/scss/components/staticPages.module.scss";
-import { wrapper } from "@/services/configureStore";
-import API from "@/utils/API";
-import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { Col, Container, Row } from "reactstrap";
+} from "~/components/Pages/staticPages/common";
+import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
+import SEO from "~/components/Seo";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import useWindowSize from "~/hooks/useWindowSize";
+import { cls } from "~/lib/classname";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import styles from "~/scss/components/staticPages.module.scss";
+import { wrapper } from "~/services/configureStore";
+import API from "~/utils/API";
 
 export type View = "why" | "required" | "steps" | "faq" | "register";
 

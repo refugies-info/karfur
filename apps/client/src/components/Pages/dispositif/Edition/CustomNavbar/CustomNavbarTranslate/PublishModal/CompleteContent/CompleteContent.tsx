@@ -1,8 +1,8 @@
-import PublishImage from "@/assets/dispositif/publish-image.svg";
-import BubbleFlag from "@/components/UI/BubbleFlag";
-import Button from "@/components/UI/Button";
 import { Languages } from "@refugies-info/api-types";
 import Image from "next/image";
+import PublishImage from "~/assets/dispositif/publish-image.svg";
+import BubbleFlag from "~/components/UI/BubbleFlag";
+import Button from "~/components/UI/Button";
 import styles from "./CompleteContent.module.scss";
 
 interface Props {

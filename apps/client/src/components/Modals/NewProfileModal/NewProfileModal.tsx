@@ -1,12 +1,12 @@
-import BaseModal from "@/components/UI/BaseModal";
-import { useRegisterFlow } from "@/hooks";
-import { hasRole } from "@/lib/hasRole";
-import { userSelector } from "@/services/User/user.selectors";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useSelector } from "react-redux";
+import BaseModal from "~/components/UI/BaseModal";
+import { useRegisterFlow } from "~/hooks";
+import { hasRole } from "~/lib/hasRole";
+import { userSelector } from "~/services/User/user.selectors";
 
 const NewProfileModal = () => {
   const [show, setShow] = useState(false);

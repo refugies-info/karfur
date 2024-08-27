@@ -1,9 +1,9 @@
-import { Event } from "@/lib/tracking";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { GoogleMap, InfoBox, Libraries, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { Poi } from "@refugies-info/api-types";
 import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import styles from "./Map.module.scss";
 import PopupContent from "./PopupContent";
 import Sidebar from "./Sidebar";

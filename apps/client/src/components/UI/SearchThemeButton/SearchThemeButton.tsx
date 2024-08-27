@@ -1,11 +1,11 @@
-import useLocale from "@/hooks/useLocale";
-import { jsUcfirst } from "@/lib";
-import { cls } from "@/lib/classname";
 import { GetThemeResponse } from "@refugies-info/api-types";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 import styled from "styled-components";
+import useLocale from "~/hooks/useLocale";
+import { jsUcfirst } from "~/lib";
+import { cls } from "~/lib/classname";
 import styles from "./SearchThemeButton.module.scss";
 
 type ThemeButtonProps = {

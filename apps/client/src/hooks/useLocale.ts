@@ -1,6 +1,6 @@
-import { AvailableLanguageI18nCode } from "@/types/interface";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { AvailableLanguageI18nCode } from "~/types/interface";
 
 const useLocale = () => {
   const router = useRouter();

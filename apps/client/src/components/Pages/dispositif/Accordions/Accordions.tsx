@@ -1,11 +1,11 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
-import { Event } from "@/lib/tracking";
-import PageContext from "@/utils/pageContext";
 import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useContext, useState } from "react";
 import { Collapse, Button as RSButton } from "reactstrap";
 import styled from "styled-components";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import AccordionBadge from "../AccordionBadge";
 import { AccordionsEdit } from "../Edition";
 import SectionButtons from "../SectionButtons";

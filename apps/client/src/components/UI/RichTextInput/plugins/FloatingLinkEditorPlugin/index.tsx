@@ -5,9 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import Button from "@/components/UI/Button";
-import { cls } from "@/lib/classname";
-import { sanitizeUrl } from "@/lib/sanitizeUrl";
 import { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $findMatchingParent, mergeRegister } from "@lexical/utils";
@@ -26,6 +23,9 @@ import {
 import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Modal } from "reactstrap";
+import Button from "~/components/UI/Button";
+import { cls } from "~/lib/classname";
+import { sanitizeUrl } from "~/lib/sanitizeUrl";
 import { getSelectedNode, setFloatingElemPosition } from "../../lib";
 import styles from "./FloatinLinkEditorPlugin.module.scss";
 

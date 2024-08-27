@@ -1,12 +1,12 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import Flag from "@/components/UI/Flag";
-import { cls } from "@/lib/classname";
-import { allLanguesSelector } from "@/services/Langue/langue.selectors";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Flag from "~/components/UI/Flag";
+import { cls } from "~/lib/classname";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LanguageDropdown.module.scss";
 
 interface Props {

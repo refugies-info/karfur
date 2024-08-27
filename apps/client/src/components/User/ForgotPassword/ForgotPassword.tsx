@@ -1,11 +1,11 @@
-import { cls } from "@/lib/classname";
-import { Event } from "@/lib/tracking";
-import API from "@/utils/API";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { ResetPasswordResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useCallback, useState } from "react";
+import { cls } from "~/lib/classname";
+import { Event } from "~/lib/tracking";
+import API from "~/utils/API";
 import styles from "./ForgotPassword.module.scss";
 
 interface Props {

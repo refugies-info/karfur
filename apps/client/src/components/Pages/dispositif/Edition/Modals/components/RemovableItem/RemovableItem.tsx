@@ -1,6 +1,6 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import Image from "next/image";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./RemovableItem.module.scss";
 
 interface Props {

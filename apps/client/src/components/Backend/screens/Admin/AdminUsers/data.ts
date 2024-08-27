@@ -1,4 +1,4 @@
-import { UserStatus } from "@/types/interface";
+import { UserStatus } from "~/types/interface";
 
 export const userHeaders = [
   { name: "Pseudonyme", order: "username" },

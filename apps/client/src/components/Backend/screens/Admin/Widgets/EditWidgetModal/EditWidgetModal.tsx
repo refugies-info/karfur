@@ -1,10 +1,10 @@
-import FButton from "@/components/UI/FButton";
-import { allLanguesSelector } from "@/services/Langue/langue.selectors";
-import { saveWidgetActionCreator } from "@/services/Widgets/widgets.actions";
 import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
+import FButton from "~/components/UI/FButton";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
+import { saveWidgetActionCreator } from "~/services/Widgets/widgets.actions";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { LanguageInput } from "../components/LanguageInput";
 import { LocationInput } from "../components/LocationInput";

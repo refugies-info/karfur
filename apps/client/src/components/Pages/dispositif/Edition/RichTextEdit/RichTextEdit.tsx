@@ -1,9 +1,9 @@
-import Button from "@/components/UI/Button";
-import { Event } from "@/lib/tracking";
-import PageContext from "@/utils/pageContext";
 import dynamic from "next/dynamic";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import Button from "~/components/UI/Button";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import AddContentButton from "../AddContentButton";
 
 const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr: false });

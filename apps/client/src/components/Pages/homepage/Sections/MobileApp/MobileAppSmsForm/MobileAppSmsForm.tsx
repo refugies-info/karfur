@@ -1,14 +1,14 @@
-import FButton from "@/components/UI/FButton";
-import Input from "@/components/UI/Input";
-import { Event } from "@/lib/tracking";
-import { isValidPhone } from "@/lib/validateFields";
-import { allLanguesSelector, languei18nSelector } from "@/services/Langue/langue.selectors";
-import API from "@/utils/API";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import FButton from "~/components/UI/FButton";
+import Input from "~/components/UI/Input";
+import { Event } from "~/lib/tracking";
+import { isValidPhone } from "~/lib/validateFields";
+import { allLanguesSelector, languei18nSelector } from "~/services/Langue/langue.selectors";
+import API from "~/utils/API";
 import LanguageDropdown from "../LanguageDropdown";
 import styles from "./MobileAppSmsForm.module.scss";
 

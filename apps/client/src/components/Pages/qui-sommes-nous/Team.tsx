@@ -1,9 +1,9 @@
-import FButton from "@/components/UI/FButton/FButton";
 import type { Member } from "data/members";
 import { members } from "data/members";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useState } from "react";
+import FButton from "~/components/UI/FButton/FButton";
 import styles from "./Team.module.scss";
 
 interface MemberProps {

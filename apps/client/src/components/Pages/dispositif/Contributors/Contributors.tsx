@@ -1,10 +1,10 @@
-import ContentSlider from "@/components/UI/ContentSlider";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
+import ContentSlider from "~/components/UI/ContentSlider";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
 import styles from "./Contributors.module.scss";
 

@@ -1,8 +1,3 @@
-import { submitCreateForm, submitUpdateForm } from "@/lib/dispositifForm";
-import { addToAllStructuresActionCreator } from "@/services/AllStructures/allStructures.actions";
-import { setSelectedDispositifActionCreator } from "@/services/SelectedDispositif/selectedDispositif.actions";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import PageContext from "@/utils/pageContext";
 import {
   CreateDispositifRequest,
   GetDispositifResponse,
@@ -15,6 +10,11 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { submitCreateForm, submitUpdateForm } from "~/lib/dispositifForm";
+import { addToAllStructuresActionCreator } from "~/services/AllStructures/allStructures.actions";
+import { setSelectedDispositifActionCreator } from "~/services/SelectedDispositif/selectedDispositif.actions";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import PageContext from "~/utils/pageContext";
 
 const debouncedSave = debounce((callback: () => void) => callback(), 500);
 

@@ -1,6 +1,6 @@
-import DurationIcon from "@/assets/dispositif/metadatas/Durations";
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
+import DurationIcon from "~/assets/dispositif/metadatas/Durations";
 import BaseCard from "../BaseCard";
 import { getCommitment, getFrequency, getTimeSlots } from "../functions";
 

@@ -1,8 +1,8 @@
-import { CountUpFigure } from "@/components/Pages/staticPages/common";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/staticPages.module.scss";
 import { useTranslation } from "next-i18next";
 import { Col, Container, Row } from "reactstrap";
+import { CountUpFigure } from "~/components/Pages/staticPages/common";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 
 interface Props {
   nbVues: number;

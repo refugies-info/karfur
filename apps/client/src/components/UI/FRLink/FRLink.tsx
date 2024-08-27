@@ -1,7 +1,7 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import Link, { LinkProps } from "next/link";
 import React, { useMemo } from "react";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./FRLink.module.scss";
 
 interface Props {

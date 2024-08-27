@@ -1,7 +1,7 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
 import { useState } from "react";
 import { Tooltip } from "reactstrap";
 import styled from "styled-components";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 
 interface Props {
   hasModifications: boolean;

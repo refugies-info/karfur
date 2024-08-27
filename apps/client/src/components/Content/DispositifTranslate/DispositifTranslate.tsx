@@ -1,21 +1,21 @@
-import { Banner, Header, Section, SectionTitle } from "@/components/Pages/dispositif";
-import { CustomNavbar } from "@/components/Pages/dispositif/Edition";
-import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "@/components/Pages/dispositif/Translation";
-import SEO from "@/components/Seo";
-import FRLink from "@/components/UI/FRLink";
-import Flag from "@/components/UI/Flag";
-import { useContentLocale, useLanguages, useUser } from "@/hooks";
-import { useDispositifTranslation } from "@/hooks/dispositif";
-import { cls } from "@/lib/classname";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "@/services/Themes/themes.selectors";
-import PageContext from "@/utils/pageContext";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import { Col, Row } from "reactstrap";
+import { Banner, Header, Section, SectionTitle } from "~/components/Pages/dispositif";
+import { CustomNavbar } from "~/components/Pages/dispositif/Edition";
+import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "~/components/Pages/dispositif/Translation";
+import SEO from "~/components/Seo";
+import FRLink from "~/components/UI/FRLink";
+import Flag from "~/components/UI/Flag";
+import { useContentLocale, useLanguages, useUser } from "~/hooks";
+import { useDispositifTranslation } from "~/hooks/dispositif";
+import { cls } from "~/lib/classname";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { themeSelector } from "~/services/Themes/themes.selectors";
+import PageContext from "~/utils/pageContext";
 import styles from "./DispositifTranslate.module.scss";
 
 interface Props {

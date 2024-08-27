@@ -1,14 +1,14 @@
-import {
-  userStructureDisposAssociesSelector,
-  userStructureHasResponsibleSeenNotification,
-} from "@/services/UserStructure/userStructure.selectors";
-import API from "@/utils/API";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
+import {
+  userStructureDisposAssociesSelector,
+  userStructureHasResponsibleSeenNotification,
+} from "~/services/UserStructure/userStructure.selectors";
+import API from "~/utils/API";
 import { getNbNewNotifications } from "../screens/UserNotifications/lib";
 import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
 

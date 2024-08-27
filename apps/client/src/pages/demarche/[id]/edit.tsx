@@ -1,19 +1,19 @@
-import Dispositif from "@/components/Content/Dispositif";
-import { useDispositifForm } from "@/hooks/dispositif";
-import { canEdit } from "@/lib/dispositif";
-import { getDefaultValue } from "@/lib/dispositifForm";
-import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
-import { wrapper } from "@/services/configureStore";
-import { fetchSelectedDispositifActionCreator } from "@/services/SelectedDispositif/selectedDispositif.actions";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import { fetchThemesActionCreator } from "@/services/Themes/themes.actions";
-import { fetchUserActionCreator } from "@/services/User/user.actions";
-import PageContext from "@/utils/pageContext";
 import { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FormProvider, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
+import Dispositif from "~/components/Content/Dispositif";
+import { useDispositifForm } from "~/hooks/dispositif";
+import { canEdit } from "~/lib/dispositif";
+import { getDefaultValue } from "~/lib/dispositifForm";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { wrapper } from "~/services/configureStore";
+import { fetchSelectedDispositifActionCreator } from "~/services/SelectedDispositif/selectedDispositif.actions";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import PageContext from "~/utils/pageContext";
 
 interface Props {
   history: string[];

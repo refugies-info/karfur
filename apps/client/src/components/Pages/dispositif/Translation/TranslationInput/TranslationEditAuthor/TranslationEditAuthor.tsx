@@ -1,7 +1,7 @@
-import Button from "@/components/UI/Button";
-import { useUser } from "@/hooks";
-import { Suggestion } from "@/hooks/dispositif";
-import { cls } from "@/lib/classname";
+import Button from "~/components/UI/Button";
+import { useUser } from "~/hooks";
+import { Suggestion } from "~/hooks/dispositif";
+import { cls } from "~/lib/classname";
 import { FooterStatus } from "../functions";
 import UserSuggest from "../UserSuggest";
 import styles from "./TranslationEditAuthor.module.scss";

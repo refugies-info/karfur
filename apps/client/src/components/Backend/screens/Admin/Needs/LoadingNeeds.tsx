@@ -1,6 +1,6 @@
-import { cls } from "@/lib/classname";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Col, Container, Row } from "reactstrap";
+import { cls } from "~/lib/classname";
 import styles from "./Needs.module.scss";
 
 export const LoadingNeeds = () => {

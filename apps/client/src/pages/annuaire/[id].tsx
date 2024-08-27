@@ -4,22 +4,22 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 
-import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 
-import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
-import { fetchSelectedStructureActionCreator } from "@/services/SelectedStructure/selectedStructure.actions";
-import { selectedStructureSelector } from "@/services/SelectedStructure/selectedStructure.selector";
-import { userSelector } from "@/services/User/user.selectors";
-import { wrapper } from "@/services/configureStore";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { fetchSelectedStructureActionCreator } from "~/services/SelectedStructure/selectedStructure.actions";
+import { selectedStructureSelector } from "~/services/SelectedStructure/selectedStructure.selector";
+import { userSelector } from "~/services/User/user.selectors";
+import { wrapper } from "~/services/configureStore";
 
-import { LeftAnnuaireDetail } from "@/components/Pages/annuaire/id/LeftAnnuaireDetail";
-import { MiddleAnnuaireDetail } from "@/components/Pages/annuaire/id/MiddleAnnuaireDetails";
-import { RightAnnuaireDetails } from "@/components/Pages/annuaire/id/RightAnnuaireDetails";
-import SEO from "@/components/Seo";
+import { LeftAnnuaireDetail } from "~/components/Pages/annuaire/id/LeftAnnuaireDetail";
+import { MiddleAnnuaireDetail } from "~/components/Pages/annuaire/id/MiddleAnnuaireDetails";
+import { RightAnnuaireDetails } from "~/components/Pages/annuaire/id/RightAnnuaireDetails";
+import SEO from "~/components/Seo";
 
-import styles from "@/scss/pages/annuaire-id.module.scss";
-import { fetchThemesActionCreator } from "@/services/Themes/themes.actions";
+import styles from "~/scss/pages/annuaire-id.module.scss";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 
 interface Props {
   history: string[];

@@ -1,6 +1,6 @@
-import { MAX_SHOWN_DEMARCHES, MAX_SHOWN_DISPOSITIFS } from "@/components/Pages/recherche/SearchResults/SearchResults";
-import { Results } from "@/services/SearchResults/searchResults.reducer";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { MAX_SHOWN_DEMARCHES, MAX_SHOWN_DISPOSITIFS } from "~/components/Pages/recherche/SearchResults/SearchResults";
+import { Results } from "~/services/SearchResults/searchResults.reducer";
 
 const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number): GetDispositifsResponse[] => {
   //@ts-ignore - see comment below

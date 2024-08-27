@@ -1,12 +1,12 @@
-import { TranslateForm } from "@/hooks/dispositif/useDispositifTranslateForm";
-import API from "@/utils/API";
-import PageContext from "@/utils/pageContext";
 import { Languages } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { logger } from "logger";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
+import { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
+import API from "~/utils/API";
+import PageContext from "~/utils/pageContext";
 
 const debouncedSave = debounce((callback: () => void) => callback(), 500);
 

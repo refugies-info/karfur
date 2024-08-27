@@ -1,7 +1,7 @@
-import TranslationStatus from "@/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
-import { cls } from "@/lib/classname";
 import { Languages } from "@refugies-info/api-types";
 import Image from "next/image";
+import TranslationStatus from "~/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
+import { cls } from "~/lib/classname";
 import { SortedNeed } from "../../TranslationsAvancement/TranslationsAvancement";
 import { getClassStatus } from "./functions";
 import styles from "./NeedButton.module.scss";

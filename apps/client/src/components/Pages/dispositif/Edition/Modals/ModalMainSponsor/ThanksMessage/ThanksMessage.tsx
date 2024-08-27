@@ -1,7 +1,7 @@
-import ThanksModalImage from "@/assets/dispositif/thanks-modal-image.svg";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ThanksModalImage from "~/assets/dispositif/thanks-modal-image.svg";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import styles from "./ThanksMessage.module.scss";
 
 const icon = (

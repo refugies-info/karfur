@@ -1,7 +1,7 @@
-import ContentSlider from "@/components/UI/ContentSlider";
-import DemarcheCard from "@/components/UI/DemarcheCard";
-import DispositifCard from "@/components/UI/DispositifCard";
 import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
+import ContentSlider from "~/components/UI/ContentSlider";
+import DemarcheCard from "~/components/UI/DemarcheCard";
+import DispositifCard from "~/components/UI/DispositifCard";
 import styles from "./CardSlider.module.scss";
 
 interface Props {

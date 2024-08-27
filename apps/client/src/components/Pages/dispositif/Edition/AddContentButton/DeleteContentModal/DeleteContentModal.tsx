@@ -1,5 +1,5 @@
-import BaseModal from "@/components/UI/BaseModal";
-import Button from "@/components/UI/Button";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
 
 interface Props {
   show: boolean;

@@ -1,9 +1,9 @@
-@import "@/scss/mixins/responsive";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/rtl";
-@import "@/scss/mixins/text";
-@import "@/scss/colors";
-@import "@/scss/variables";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
 
 .container {
   background: radial-gradient(150.13% 150.13% at 50% 50%, #0421b1 0%, #1b62d8 100%);

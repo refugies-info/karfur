@@ -1,12 +1,12 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton/FButton";
-import { cls } from "@/lib/classname";
-import { colors } from "@/utils/colors";
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { structureTypes } from "data/structureTypes";
 import { createRef, useEffect, useState } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
+import { cls } from "~/lib/classname";
+import { colors } from "~/utils/colors";
 import styles from "./SearchBarAnnuaire.module.scss";
 interface Props {
   t: any;

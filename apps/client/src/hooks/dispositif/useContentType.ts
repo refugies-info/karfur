@@ -1,9 +1,9 @@
-import { SelectedDispositifState } from "@/services/SelectedDispositif/selectedDispositif.reducer";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { ContentType } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { SelectedDispositifState } from "~/services/SelectedDispositif/selectedDispositif.reducer";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 
 const getContentType = (dispositif: SelectedDispositifState, formTypeContenu: ContentType | undefined) => {
   if (dispositif?.typeContenu) {

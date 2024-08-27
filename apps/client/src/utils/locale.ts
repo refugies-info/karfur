@@ -1,4 +1,4 @@
-import isInBrowser from "@/lib/isInBrowser";
+import isInBrowser from "~/lib/isInBrowser";
 
 const LOCALE_KEY = "languei18nCode";
 

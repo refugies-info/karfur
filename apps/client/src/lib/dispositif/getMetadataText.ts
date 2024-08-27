@@ -1,6 +1,6 @@
-import { jsUcfirst } from "@/lib";
 import { Metadatas } from "@refugies-info/api-types";
 import { TFunction } from "next-i18next";
+import { jsUcfirst } from "~/lib";
 
 export const getCommitmentText = (data: Metadatas["commitment"] | undefined, t: TFunction): string | null => {
   if (!data) return null;

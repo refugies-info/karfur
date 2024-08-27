@@ -1,10 +1,3 @@
-import MobileRegisterImg from "@/assets/staticPages/publier/mobile-register.png";
-import { ReceiveInvitationMailModal } from "@/components/Modals";
-import { useAuth, useWindowSize } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { setLoginRedirect, setRegisterInfos } from "@/lib/loginRedirect";
-import { Event } from "@/lib/tracking";
-import commonStyles from "@/scss/components/staticPages.module.scss";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
@@ -13,6 +6,13 @@ import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
 import { Container } from "reactstrap";
 import { getPath } from "routes";
+import MobileRegisterImg from "~/assets/staticPages/publier/mobile-register.png";
+import { ReceiveInvitationMailModal } from "~/components/Modals";
+import { useAuth, useWindowSize } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { setLoginRedirect, setRegisterInfos } from "~/lib/loginRedirect";
+import { Event } from "~/lib/tracking";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 import styles from "./Register.module.scss";
 
 interface Props {

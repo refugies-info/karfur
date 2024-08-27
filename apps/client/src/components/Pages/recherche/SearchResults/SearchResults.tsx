@@ -1,19 +1,19 @@
-import noResultsImage from "@/assets/no_results_alt.svg";
-import DemarcheCard from "@/components/UI/DemarcheCard";
-import DispositifCard from "@/components/UI/DispositifCard";
-import FButton from "@/components/UI/FButton";
-import useWindowSize from "@/hooks/useWindowSize";
-import { cls } from "@/lib/classname";
-import { resetQueryActionCreator } from "@/services/SearchResults/searchResults.actions";
-import {
-  searchQuerySelector,
-  searchResultsSelector,
-  themesDisplayedSelector,
-} from "@/services/SearchResults/searchResults.selector";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import noResultsImage from "~/assets/no_results_alt.svg";
+import DemarcheCard from "~/components/UI/DemarcheCard";
+import DispositifCard from "~/components/UI/DispositifCard";
+import FButton from "~/components/UI/FButton";
+import useWindowSize from "~/hooks/useWindowSize";
+import { cls } from "~/lib/classname";
+import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import DemarcheCardTitle from "../DemarcheCardTitle";
 import DispositifCardTitle from "../DispositifCardTitle";
 import NotDeployedBanner from "../NotDeployedBanner";

@@ -1,12 +1,12 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { useContentType } from "@/hooks/dispositif";
-import { cls } from "@/lib/classname";
-import { themeSelector } from "@/services/Themes/themes.selectors";
-import PageContext from "@/utils/pageContext";
 import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useContentType } from "~/hooks/dispositif";
+import { cls } from "~/lib/classname";
+import { themeSelector } from "~/services/Themes/themes.selectors";
+import PageContext from "~/utils/pageContext";
 import CardAvailability from "../../Metadatas/CardAvailability";
 import CardConditions from "../../Metadatas/CardConditions";
 import CardLocation from "../../Metadatas/CardLocation";

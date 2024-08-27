@@ -1,11 +1,11 @@
-import CardSlider from "@/components/Pages/recherche/CardSlider";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/staticPages.module.scss";
 import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { Button, Container } from "reactstrap";
 import { getPath } from "routes";
+import CardSlider from "~/components/Pages/recherche/CardSlider";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 import styles from "./NewContent.module.scss";
 
 interface Props {

@@ -1,14 +1,3 @@
-import NoIcon from "@/assets/auth/no-icon.svg";
-import Layout from "@/components/Pages/auth/Layout";
-import PartnerRadio from "@/components/Pages/auth/PartnerRadio";
-import SEO from "@/components/Seo";
-import ErrorMessage from "@/components/UI/ErrorMessage";
-import { useRegisterFlow } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
-import { hasRole } from "@/lib/hasRole";
-import styles from "@/scss/components/auth.module.scss";
-import API from "@/utils/API";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RoleName } from "@refugies-info/api-types";
@@ -18,6 +7,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { ReactElement, useEffect, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
+import NoIcon from "~/assets/auth/no-icon.svg";
+import Layout from "~/components/Pages/auth/Layout";
+import PartnerRadio from "~/components/Pages/auth/PartnerRadio";
+import SEO from "~/components/Seo";
+import ErrorMessage from "~/components/UI/ErrorMessage";
+import { useRegisterFlow } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { hasRole } from "~/lib/hasRole";
+import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
 
 const AuthLogin = () => {
   const router = useRouter();

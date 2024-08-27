@@ -4,19 +4,19 @@ import { useRouter } from "next/router";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 
-import { userSelector } from "@/services/User/user.selectors";
+import { userSelector } from "~/services/User/user.selectors";
 
-import { ActivityCard } from "@/components/Pages/annuaire-create/ActivityCard";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton/FButton";
+import { ActivityCard } from "~/components/Pages/annuaire-create/ActivityCard";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
 import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { NoActivity } from "./NoActivity";
 
 import { activities } from "data/activities";
 import { getPath } from "routes";
 
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { GetStructureResponse, GetThemeResponse } from "@refugies-info/api-types";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./MiddleAnnuaireDetails.module.scss";
 
 interface Props {

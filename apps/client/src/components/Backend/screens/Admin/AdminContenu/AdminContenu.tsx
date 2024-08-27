@@ -1,17 +1,3 @@
-import WriteContentModal from "@/components/Modals/WriteContentModal/WriteContentModal";
-import CustomSearchBar from "@/components/UI/CustomSeachBar";
-import FButton from "@/components/UI/FButton/FButton";
-import useRouterLocale from "@/hooks/useRouterLocale";
-import { fetchActiveDispositifsActionsCreator } from "@/services/ActiveDispositifs/activeDispositifs.actions";
-import {
-  fetchAllDispositifsActionsCreator,
-  setAllDispositifsActionsCreator,
-} from "@/services/AllDispositifs/allDispositifs.actions";
-import { allDispositifsSelector } from "@/services/AllDispositifs/allDispositifs.selector";
-import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
-import API from "@/utils/API";
-import { colors } from "@/utils/colors";
 import moment from "moment";
 import "moment/locale/fr";
 import { useRouter } from "next/router";
@@ -19,6 +5,20 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner, Table } from "reactstrap";
 import Swal from "sweetalert2";
+import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
+import CustomSearchBar from "~/components/UI/CustomSeachBar";
+import FButton from "~/components/UI/FButton/FButton";
+import useRouterLocale from "~/hooks/useRouterLocale";
+import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
+import {
+  fetchAllDispositifsActionsCreator,
+  setAllDispositifsActionsCreator,
+} from "~/services/AllDispositifs/allDispositifs.actions";
+import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import API from "~/utils/API";
+import { colors } from "~/utils/colors";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
@@ -49,12 +49,12 @@ import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
 import { correspondingStatus, table_contenu } from "./data";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
 
-import { removeAccents } from "@/lib";
-import { getAdminUrlParams, getInitialFilters } from "@/lib/getAdminUrlParams";
-import { handleApiError } from "@/lib/handleApiErrors";
-import { statusCompare } from "@/lib/statusCompare";
-import { needsSelector } from "@/services/Needs/needs.selectors";
 import { DispositifStatus, GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
+import { removeAccents } from "~/lib";
+import { getAdminUrlParams, getInitialFilters } from "~/lib/getAdminUrlParams";
+import { handleApiError } from "~/lib/handleApiErrors";
+import { statusCompare } from "~/lib/statusCompare";
+import { needsSelector } from "~/services/Needs/needs.selectors";
 import styles from "./AdminContenu.module.scss";
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 

@@ -1,12 +1,12 @@
-import iconMap from "@/assets/recherche/icon-map.svg";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import ThemeBadge from "@/components/UI/ThemeBadge";
-import useRTL from "@/hooks/useRTL";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/contentCard.module.scss";
 import { GetThemeResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import iconMap from "~/assets/recherche/icon-map.svg";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import ThemeBadge from "~/components/UI/ThemeBadge";
+import useRTL from "~/hooks/useRTL";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/contentCard.module.scss";
 import styles from "./DispositifCardTitle.module.scss";
 
 interface Props {

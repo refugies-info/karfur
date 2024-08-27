@@ -1,10 +1,10 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import Tooltip from "@/components/UI/Tooltip";
-import { useUniqueId } from "@/hooks";
-import { cls } from "@/lib/classname";
-import PageContext from "@/utils/pageContext";
 import isUndefined from "lodash/isUndefined";
 import React, { useContext, useMemo } from "react";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Tooltip from "~/components/UI/Tooltip";
+import { useUniqueId } from "~/hooks";
+import { cls } from "~/lib/classname";
+import PageContext from "~/utils/pageContext";
 import styles from "./BaseCard.module.scss";
 
 type BaseCardStatus = "done" | "error";

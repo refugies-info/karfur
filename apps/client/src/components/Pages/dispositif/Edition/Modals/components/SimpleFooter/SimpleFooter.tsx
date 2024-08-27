@@ -1,4 +1,4 @@
-import Button from "@/components/UI/Button";
+import Button from "~/components/UI/Button";
 
 interface Props {
   onValidate: () => void;

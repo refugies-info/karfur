@@ -1,17 +1,3 @@
-import defaultStructureImage from "@/assets/recherche/default-structure-image.svg";
-import iconEuro from "@/assets/recherche/icon-euro.svg";
-import iconMap from "@/assets/recherche/icon-map.svg";
-import iconTime from "@/assets/recherche/icon-time.svg";
-import FavoriteButton from "@/components/UI/FavoriteButton";
-import ThemeBadge from "@/components/UI/ThemeBadge";
-import { useUtmz } from "@/hooks";
-import { jsLcfirst, jsUcfirst } from "@/lib";
-import { cls } from "@/lib/classname";
-import { getCommitmentText, getPriceText } from "@/lib/dispositif";
-import { getReadableText } from "@/lib/getReadableText";
-import { getTheme, getThemes } from "@/lib/getTheme";
-import commonStyles from "@/scss/components/contentCard.module.scss";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -21,6 +7,20 @@ import { memo } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
 import styled from "styled-components";
+import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
+import iconEuro from "~/assets/recherche/icon-euro.svg";
+import iconMap from "~/assets/recherche/icon-map.svg";
+import iconTime from "~/assets/recherche/icon-time.svg";
+import FavoriteButton from "~/components/UI/FavoriteButton";
+import ThemeBadge from "~/components/UI/ThemeBadge";
+import { useUtmz } from "~/hooks";
+import { jsLcfirst, jsUcfirst } from "~/lib";
+import { cls } from "~/lib/classname";
+import { getCommitmentText, getPriceText } from "~/lib/dispositif";
+import { getReadableText } from "~/lib/getReadableText";
+import { getTheme, getThemes } from "~/lib/getTheme";
+import commonStyles from "~/scss/components/contentCard.module.scss";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./DispositifCard.module.scss";
 
 type DispositifLinkProps = {

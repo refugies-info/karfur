@@ -8,11 +8,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "target": "ES2022",
-    "plugins": [{ "name": "next" }],
-    "paths": {
-      "~css/*": ["css/*"],
-      "@/*": ["./*"]
-    }
+    "plugins": [{ "name": "next" }]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

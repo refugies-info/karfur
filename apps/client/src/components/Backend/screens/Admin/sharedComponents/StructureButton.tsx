@@ -1,7 +1,7 @@
-import noStructure from "@/assets/noStructure.png";
-import { cls } from "@/lib/classname";
 import { ContentStructure, UserStructure } from "@refugies-info/api-types";
 import Image from "next/image";
+import noStructure from "~/assets/noStructure.png";
+import { cls } from "~/lib/classname";
 import styles from "../Admin.module.scss";
 import { StyledStatus } from "./SubComponents";
 

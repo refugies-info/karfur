@@ -1,10 +1,10 @@
-import NoIcon from "@/assets/dispositif/no-icon.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import { entries } from "@/lib/typedObjectEntries";
 import { conditionType, CreateDispositifRequest } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import { entries } from "~/lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter } from "../components";
 import { dropdownOptions, help } from "./data";

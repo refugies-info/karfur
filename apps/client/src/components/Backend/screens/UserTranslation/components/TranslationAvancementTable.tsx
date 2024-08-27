@@ -1,10 +1,3 @@
-import FButton from "@/components/UI/FButton/FButton";
-import { useLanguages } from "@/hooks";
-import { handleApiError } from "@/lib/handleApiErrors";
-import styles from "@/scss/components/adminTable.module.scss";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "@/services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
-import API from "@/utils/API";
-import { colors } from "@/utils/colors";
 import {
   GetDispositifsWithTranslationAvancementResponse,
   GetUserInfoResponse,
@@ -18,6 +11,13 @@ import { useDispatch } from "react-redux";
 import { Table } from "reactstrap";
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import FButton from "~/components/UI/FButton/FButton";
+import { useLanguages } from "~/hooks";
+import { handleApiError } from "~/lib/handleApiErrors";
+import styles from "~/scss/components/adminTable.module.scss";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "~/services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import API from "~/utils/API";
+import { colors } from "~/utils/colors";
 import { TabHeader, Title } from "../../Admin/sharedComponents/SubComponents";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { sortData } from "./functions";

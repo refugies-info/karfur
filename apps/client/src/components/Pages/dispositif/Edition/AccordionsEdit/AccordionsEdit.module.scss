@@ -1,10 +1,10 @@
-@import "@/scss/colors";
-@import "@/scss/variables";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/text";
-@import "@/scss/mixins/rtl";
-@import "@/scss/mixins/responsive";
-@import "@/scss/mixins/input";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/input";
 
 .subtitle {
   color: var(--text-mention-grey);

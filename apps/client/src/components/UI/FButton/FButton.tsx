@@ -1,7 +1,7 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
 import React from "react";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 
-import { cls } from "@/lib/classname";
+import { cls } from "~/lib/classname";
 import styles from "./FButton.module.scss";
 
 interface Props {

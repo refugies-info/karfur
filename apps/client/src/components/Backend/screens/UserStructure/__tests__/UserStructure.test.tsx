@@ -1,14 +1,14 @@
-import { initialMockStore } from "@/__fixtures__/reduxStore";
-import {
-  fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
-} from "@/services/UserStructure/userStructure.actions";
-import { colors } from "@/utils/colors";
 import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
 import Swal from "sweetalert2";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
+import {
+  fetchUserStructureActionCreator,
+  updateUserStructureActionCreator,
+} from "~/services/UserStructure/userStructure.actions";
+import { colors } from "~/utils/colors";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserStructureComponent } from "../UserStructure.component";
 

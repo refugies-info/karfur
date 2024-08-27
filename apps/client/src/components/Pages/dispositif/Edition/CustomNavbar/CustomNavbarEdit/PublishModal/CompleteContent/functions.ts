@@ -1,5 +1,5 @@
-import { isStatus } from "@/lib/dispositif";
 import { DispositifStatus } from "@refugies-info/api-types";
+import { isStatus } from "~/lib/dispositif";
 import { help } from "./data";
 
 export const getTextContent = (

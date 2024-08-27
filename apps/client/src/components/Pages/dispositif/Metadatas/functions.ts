@@ -1,10 +1,15 @@
-import imgCb from "@/assets/dispositif/form-icons/conditions-cb.svg";
-import imgDriver from "@/assets/dispositif/form-icons/conditions-driver.svg";
-import imgFranceTravail from "@/assets/dispositif/form-icons/conditions-france-travail.svg";
-import imgOfii from "@/assets/dispositif/form-icons/conditions-ofii.svg";
-import imgOfpra from "@/assets/dispositif/form-icons/conditions-ofpra.svg";
-import imgDiploma from "@/assets/dispositif/form-icons/conditions-school.svg";
-import imgTse from "@/assets/dispositif/form-icons/conditions-tse.svg";
+import { conditionType, Metadatas } from "@refugies-info/api-types";
+import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import { TFunction } from "next-i18next";
+import { LinkProps } from "next/link";
+import { getPath } from "routes";
+import imgCb from "~/assets/dispositif/form-icons/conditions-cb.svg";
+import imgDriver from "~/assets/dispositif/form-icons/conditions-driver.svg";
+import imgFranceTravail from "~/assets/dispositif/form-icons/conditions-france-travail.svg";
+import imgOfii from "~/assets/dispositif/form-icons/conditions-ofii.svg";
+import imgOfpra from "~/assets/dispositif/form-icons/conditions-ofpra.svg";
+import imgDiploma from "~/assets/dispositif/form-icons/conditions-school.svg";
+import imgTse from "~/assets/dispositif/form-icons/conditions-tse.svg";
 import {
   getAgeText,
   getCommitmentText,
@@ -14,13 +19,8 @@ import {
   getPublicStatusText,
   getPublicText,
   getTimeSlotsText,
-} from "@/lib/dispositif";
-import { buildUrlQuery } from "@/lib/recherche/buildUrlQuery";
-import { conditionType, Metadatas } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { TFunction } from "next-i18next";
-import { LinkProps } from "next/link";
-import { getPath } from "routes";
+} from "~/lib/dispositif";
+import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 
 export const getPrice = (price: Metadatas["price"] | null | undefined, t: TFunction) => {
   if (!price) return price; // null or undefined

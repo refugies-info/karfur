@@ -1,4 +1,4 @@
-import Button from "@/components/UI/Button";
+import Button from "~/components/UI/Button";
 import Steps from "./Steps";
 
 interface Props {

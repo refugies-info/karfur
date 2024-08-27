@@ -1,9 +1,9 @@
-import placeholder from "@/assets/placeholder_annuaire.png";
-import { ThemeButton } from "@/components/UI/ThemeButton/ThemeButton";
-import useRTL from "@/hooks/useRTL";
 import { GetThemeResponse } from "@refugies-info/api-types";
 import Image from "next/image";
 import styled from "styled-components";
+import placeholder from "~/assets/placeholder_annuaire.png";
+import { ThemeButton } from "~/components/UI/ThemeButton/ThemeButton";
+import useRTL from "~/hooks/useRTL";
 
 interface Props {
   activity: string;

@@ -1,10 +1,10 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { useConsent } from "@/hooks/useConsentContext";
-import useWindowSize from "@/hooks/useWindowSize";
-import { cls } from "@/lib/classname";
 import Image from "next/image";
 import { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useConsent } from "~/hooks/useConsentContext";
+import useWindowSize from "~/hooks/useWindowSize";
+import { cls } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./Accordion.module.scss";

@@ -1,6 +1,6 @@
-import useLocale from "@/hooks/useLocale";
-import { cls } from "@/lib/classname";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import useLocale from "~/hooks/useLocale";
+import { cls } from "~/lib/classname";
 import ThemeIcon from "../ThemeIcon";
 import styles from "./ThemeBadge.module.scss";
 

@@ -1,9 +1,9 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import Flag from "@/components/UI/Flag";
-import { allLanguesSelector } from "@/services/Langue/langue.selectors";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import React from "react";
 import { useSelector } from "react-redux";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Flag from "~/components/UI/Flag";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LangueSelectList.module.scss";
 
 interface Props {

@@ -1,7 +1,7 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./SeeMoreButton.module.scss";
 
 interface Props {

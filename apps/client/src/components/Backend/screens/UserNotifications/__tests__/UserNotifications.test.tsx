@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { initialMockStore } from "@/__fixtures__/reduxStore";
-import { updateDispositifReactionActionCreator } from "@/services/ActiveDispositifs/activeDispositifs.actions";
-import { fetchSelectedStructureActionCreator } from "@/services/SelectedStructure/selectedStructure.actions";
-import { fetchUserStructureActionCreator } from "@/services/UserStructure/userStructure.actions";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
 import Router from "next/router";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
+import { updateDispositifReactionActionCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchSelectedStructureActionCreator } from "~/services/SelectedStructure/selectedStructure.actions";
+import { fetchUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserNotifications from "../UserNotifications";
 

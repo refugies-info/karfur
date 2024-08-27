@@ -1,7 +1,7 @@
-import { formatDepartment, getDbDepartment } from "@/lib/departments";
 import uniqBy from "lodash/uniqBy";
 import { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import { formatDepartment, getDbDepartment } from "~/lib/departments";
 
 const useDepartmentAutocomplete = () => {
   const [search, setSearch] = useState("");

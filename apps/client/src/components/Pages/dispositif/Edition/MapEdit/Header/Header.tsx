@@ -1,10 +1,10 @@
-import Input from "@/components/Pages/dispositif/Input";
-import Button from "@/components/UI/Button";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { cls } from "@/lib/classname";
 import { useEffect, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { Col, Row } from "reactstrap";
+import Input from "~/components/Pages/dispositif/Input";
+import Button from "~/components/UI/Button";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
 import styles from "./Header.module.scss";
 
 interface Props {

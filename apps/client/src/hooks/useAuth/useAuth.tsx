@@ -1,7 +1,7 @@
-import { userSelector } from "@/services/User/user.selectors";
-import API from "@/utils/API";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 
 const useAuth = () => {
   const user = useSelector(userSelector);

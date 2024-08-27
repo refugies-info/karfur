@@ -1,13 +1,13 @@
-import PersosIllu from "@/assets/auth/illu-persos.svg";
-import AuthIllu from "@/assets/auth/login-illu.svg";
-import PartnersLogos from "@/assets/auth/partners-logo.png";
-import RatingStars from "@/assets/auth/rating-stars.svg";
-import AuthNavbar from "@/components/Navigation/AuthNavbar";
-import { useChangeLanguage, useLocale, useRTL } from "@/hooks";
-import { cls } from "@/lib/classname";
 import { Notice } from "@codegouvfr/react-dsfr/Notice";
 import Image from "next/image";
 import { useEffect } from "react";
+import PersosIllu from "~/assets/auth/illu-persos.svg";
+import AuthIllu from "~/assets/auth/login-illu.svg";
+import PartnersLogos from "~/assets/auth/partners-logo.png";
+import RatingStars from "~/assets/auth/rating-stars.svg";
+import AuthNavbar from "~/components/Navigation/AuthNavbar";
+import { useChangeLanguage, useLocale, useRTL } from "~/hooks";
+import { cls } from "~/lib/classname";
 import styles from "./Layout.module.scss";
 
 interface Props {

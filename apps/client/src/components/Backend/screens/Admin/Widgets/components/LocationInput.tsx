@@ -1,8 +1,8 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FilterButton from "@/components/UI/FilterButton";
-import { cls } from "@/lib/classname";
 import { useState } from "react";
 import Autocomplete from "react-google-autocomplete";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FilterButton from "~/components/UI/FilterButton";
+import { cls } from "~/lib/classname";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {

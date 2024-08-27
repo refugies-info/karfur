@@ -1,7 +1,7 @@
-import { cls } from "@/lib/classname";
-import checkStyles from "@/scss/components/checkbox.module.scss";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { Button } from "reactstrap";
+import { cls } from "~/lib/classname";
+import checkStyles from "~/scss/components/checkbox.module.scss";
 import styles from "./AdminUsersComponent.module.scss";
 interface RoleProps {
   role: string;

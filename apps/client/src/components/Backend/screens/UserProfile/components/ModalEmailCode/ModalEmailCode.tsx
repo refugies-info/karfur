@@ -1,5 +1,5 @@
-import CheckCode from "@/components/Pages/auth/CheckCode";
 import { createModal } from "@codegouvfr/react-dsfr/Modal";
+import CheckCode from "~/components/Pages/auth/CheckCode";
 
 interface Props {
   email: string;

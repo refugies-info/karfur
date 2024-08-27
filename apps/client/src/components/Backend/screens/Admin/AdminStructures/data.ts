@@ -1,6 +1,6 @@
-import { ProgressionStatus, StructureAdminStatus } from "@/types/interface";
-import { colors } from "@/utils/colors";
 import { StructureStatus } from "@refugies-info/api-types";
+import { ProgressionStatus, StructureAdminStatus } from "~/types/interface";
+import { colors } from "~/utils/colors";
 
 export const headers = [
   { name: "Nom", order: "nom" },

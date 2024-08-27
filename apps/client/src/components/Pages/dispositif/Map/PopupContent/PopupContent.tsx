@@ -1,4 +1,4 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { Marker } from "../Map";
 import styles from "./PopupContent.module.scss";
 

@@ -1,13 +1,13 @@
-import ArrowRight from "@/assets/dispositif/arrow-right.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import DispositifCard from "@/components/UI/DispositifCard";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { useContentType } from "@/hooks/dispositif";
 import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { Col, Row } from "reactstrap";
+import ArrowRight from "~/assets/dispositif/arrow-right.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import DispositifCard from "~/components/UI/DispositifCard";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useContentType } from "~/hooks/dispositif";
 import { SimpleFooter } from "../components";
 import { help } from "./data";
 import { getDefaultDispositif } from "./functions";

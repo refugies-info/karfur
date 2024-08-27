@@ -1,7 +1,7 @@
-import BaseModal from "@/components/UI/BaseModal";
 import { CreateDispositifRequest, Picture, Sponsor } from "@refugies-info/api-types";
 import { useCallback, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import BaseModal from "~/components/UI/BaseModal";
 import { SimpleFooter, SponsorForm } from "../components";
 import { help } from "./data";
 

@@ -1,5 +1,5 @@
-import FButton from "@/components/UI/FButton";
 import { Input } from "reactstrap";
+import FButton from "~/components/UI/FButton";
 import styles from "./NotesInput.module.scss";
 
 interface Props {

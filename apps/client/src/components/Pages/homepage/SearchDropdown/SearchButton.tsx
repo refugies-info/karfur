@@ -1,9 +1,9 @@
-import EVAIcon from "@/components/UI/EVAIcon";
-import { cls } from "@/lib/classname";
-import { onEnterOrSpace } from "@/lib/onEnterOrSpace";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import EVAIcon from "~/components/UI/EVAIcon";
+import { cls } from "~/lib/classname";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import styles from "./SearchButton.module.css";
 
 interface Props {

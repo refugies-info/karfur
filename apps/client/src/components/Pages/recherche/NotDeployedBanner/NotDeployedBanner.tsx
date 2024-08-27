@@ -1,9 +1,3 @@
-import iconMap from "@/assets/recherche/icon-map.svg";
-import NotDeployed from "@/assets/recherche/not_deployed_image.png";
-import { GoToDesktopModal, ReceiveInvitationMailModal } from "@/components/Modals";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton";
-import useWindowSize from "@/hooks/useWindowSize";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +5,12 @@ import { useRouter } from "next/router";
 import { memo, useCallback, useState } from "react";
 import { Button } from "reactstrap";
 import { getPath } from "routes";
+import iconMap from "~/assets/recherche/icon-map.svg";
+import NotDeployed from "~/assets/recherche/not_deployed_image.png";
+import { GoToDesktopModal, ReceiveInvitationMailModal } from "~/components/Modals";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton";
+import useWindowSize from "~/hooks/useWindowSize";
 import styles from "./NotDeployedBanner.module.scss";
 
 interface Props {

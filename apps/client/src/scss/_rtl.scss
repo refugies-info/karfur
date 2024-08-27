@@ -1,6 +1,6 @@
-@import "@/scss/mixins/responsive";
-@import "@/scss/variables";
-@import "@/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
+@import "~/scss/mixins/rtl";
 
 html body div[dir="rtl"] {
   text-align: right;

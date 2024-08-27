@@ -1,7 +1,7 @@
-import { cls } from "@/lib/classname";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isIOS } from "react-device-detect";
 import { useInView } from "react-intersection-observer";
+import { cls } from "~/lib/classname";
 import styles from "./AutoplayVideo.module.scss";
 
 interface Props {

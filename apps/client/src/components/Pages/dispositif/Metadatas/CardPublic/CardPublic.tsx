@@ -1,12 +1,12 @@
-import AgeIcon from "@/assets/dispositif/metadatas/Age";
-import FrenchLevelIcon from "@/assets/dispositif/metadatas/FrenchLevel";
-import StatusIcon from "@/assets/dispositif/metadatas/Status";
-import FRLink from "@/components/UI/FRLink";
-import { Event } from "@/lib/tracking";
-import PageContext from "@/utils/pageContext";
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
+import AgeIcon from "~/assets/dispositif/metadatas/Age";
+import FrenchLevelIcon from "~/assets/dispositif/metadatas/FrenchLevel";
+import StatusIcon from "~/assets/dispositif/metadatas/Status";
+import FRLink from "~/components/UI/FRLink";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import BaseCard from "../BaseCard";
 import {
   getAge,

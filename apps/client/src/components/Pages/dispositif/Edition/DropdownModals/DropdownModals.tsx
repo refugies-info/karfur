@@ -1,6 +1,3 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { jsUcfirst } from "@/lib";
-import { cls } from "@/lib/classname";
 import {
   commitmentDetailsType,
   frequencyDetailsType,
@@ -11,6 +8,9 @@ import {
 import { useTranslation } from "next-i18next";
 import { useMemo, useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { jsUcfirst } from "~/lib";
+import { cls } from "~/lib/classname";
 import ChoiceButton from "../ChoiceButton";
 import styles from "./DropdownModals.module.scss";
 

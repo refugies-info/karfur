@@ -1,12 +1,12 @@
-import LocationIcon from "@/assets/dispositif/metadatas/Location";
-import FRLink from "@/components/UI/FRLink";
-import { jsUcfirst } from "@/lib";
-import { formatDepartment } from "@/lib/departments";
-import { Event } from "@/lib/tracking";
-import PageContext from "@/utils/pageContext";
 import { ContentType, Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
+import LocationIcon from "~/assets/dispositif/metadatas/Location";
+import FRLink from "~/components/UI/FRLink";
+import { jsUcfirst } from "~/lib";
+import { formatDepartment } from "~/lib/departments";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import BaseCard from "../BaseCard";
 import { getLocationLink } from "../functions";
 

@@ -1,9 +1,9 @@
-import { StyledStatusContainer } from "@/components/Backend/screens/Admin/sharedComponents/SubComponents";
-import { cls } from "@/lib/classname";
 import { GetAllStructuresResponse } from "@refugies-info/api-types";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import Image from "next/image";
+import { StyledStatusContainer } from "~/components/Backend/screens/Admin/sharedComponents/SubComponents";
+import { cls } from "~/lib/classname";
 import styles from "./SearchStructureResult.module.scss";
 
 export interface SearchStructureResultProps {

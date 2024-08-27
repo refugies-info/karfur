@@ -1,6 +1,6 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import FButton from "@/components/UI/FButton/FButton";
 import { Input, Modal } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
 import styles from "./ReactionLectureModal.module.scss";
 
 interface Props {

@@ -1,12 +1,12 @@
-import QuitImage from "@/assets/dispositif/quit-image.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import Button from "@/components/UI/Button";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { isStatus } from "@/lib/dispositif";
 import { DispositifStatus } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useMemo } from "react";
 import { Col, Row } from "reactstrap";
+import QuitImage from "~/assets/dispositif/quit-image.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { isStatus } from "~/lib/dispositif";
 import { contents } from "./data";
 import styles from "./QuitModal.module.scss";
 

@@ -1,13 +1,13 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { jsUcfirst } from "@/lib";
-import { themesSelector } from "@/services/Themes/themes.selectors";
-import { colors } from "@/utils/colors";
 import { GetStructureResponse } from "@refugies-info/api-types";
 import { activities } from "data/activities";
 import groupBy from "lodash/groupBy";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { jsUcfirst } from "~/lib";
+import { themesSelector } from "~/services/Themes/themes.selectors";
+import { colors } from "~/utils/colors";
 import { ActivityCard } from "./ActivityCard";
 
 const MainContainer = styled.div``;

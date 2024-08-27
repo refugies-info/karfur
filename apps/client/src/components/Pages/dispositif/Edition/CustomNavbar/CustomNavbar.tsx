@@ -1,7 +1,7 @@
-import { Progress } from "@/hooks/dispositif";
-import PageContext from "@/utils/pageContext";
 import { ContentType, GetTraductionsForReview, Languages, TranslationContent } from "@refugies-info/api-types";
 import { useContext } from "react";
+import { Progress } from "~/hooks/dispositif";
+import PageContext from "~/utils/pageContext";
 import CustomNavbarEdit from "./CustomNavbarEdit";
 import CustomNavbarTranslate from "./CustomNavbarTranslate";
 

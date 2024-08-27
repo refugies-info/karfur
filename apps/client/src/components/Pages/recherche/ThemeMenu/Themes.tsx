@@ -1,10 +1,10 @@
-import { useLocale } from "@/hooks";
-import { sortThemes } from "@/lib/sortThemes";
-import { needsSelector } from "@/services/Needs/needs.selectors";
-import { searchQuerySelector } from "@/services/SearchResults/searchResults.selector";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useLocale } from "~/hooks";
+import { sortThemes } from "~/lib/sortThemes";
+import { needsSelector } from "~/services/Needs/needs.selectors";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import ThemeItem from "./ThemeItem";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import styles from "./Themes.module.css";

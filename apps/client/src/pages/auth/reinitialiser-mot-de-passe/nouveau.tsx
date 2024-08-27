@@ -1,13 +1,3 @@
-import Layout from "@/components/Pages/auth/Layout";
-import SEO from "@/components/Seo";
-import { useAuthRedirect, useLogin } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { getLanguageFromLocale } from "@/lib/getLanguageFromLocale";
-import { Event } from "@/lib/tracking";
-import { getPasswordStrength } from "@/lib/validatePassword";
-import styles from "@/scss/components/auth.module.scss";
-import { wrapper } from "@/services/configureStore";
-import API from "@/utils/API";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
@@ -16,6 +6,16 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { ReactElement, useCallback, useMemo, useState } from "react";
+import Layout from "~/components/Pages/auth/Layout";
+import SEO from "~/components/Seo";
+import { useAuthRedirect, useLogin } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { Event } from "~/lib/tracking";
+import { getPasswordStrength } from "~/lib/validatePassword";
+import styles from "~/scss/components/auth.module.scss";
+import { wrapper } from "~/services/configureStore";
+import API from "~/utils/API";
 
 interface Props {
   error: boolean;

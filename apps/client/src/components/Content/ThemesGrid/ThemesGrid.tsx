@@ -1,10 +1,10 @@
-import SearchThemeButton from "@/components/UI/SearchThemeButton";
-import { sortThemes } from "@/lib/sortThemes";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
+import SearchThemeButton from "~/components/UI/SearchThemeButton";
+import { sortThemes } from "~/lib/sortThemes";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./ThemesGrid.module.scss";
 
 interface Props {

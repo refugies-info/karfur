@@ -1,4 +1,4 @@
-import API from "@/utils/API";
+import API from "~/utils/API";
 
 let audio: HTMLAudioElement | null;
 

@@ -1,8 +1,8 @@
-import TutorielImage from "@/assets/dispositif/tutoriel-image.svg";
-import BaseModal from "@/components/UI/BaseModal";
-import Button from "@/components/UI/Button";
 import Image from "next/image";
 import { useCallback } from "react";
+import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
 
 interface Props {
   show: boolean;

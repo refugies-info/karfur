@@ -1,11 +1,11 @@
-import BookmarkedModal from "@/components/Modals/BookmarkedModal";
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import { useAuth, useFavorites } from "@/hooks";
-import { cls } from "@/lib/classname";
 import { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import { Button } from "reactstrap";
+import BookmarkedModal from "~/components/Modals/BookmarkedModal";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useAuth, useFavorites } from "~/hooks";
+import { cls } from "~/lib/classname";
 import Toast from "../Toast";
 import styles from "./FavoriteButton.module.scss";
 

@@ -1,5 +1,5 @@
-import { initGA } from "@/lib/tracking";
 import { createConsentManagement } from "@codegouvfr/react-dsfr/consentManagement";
+import { initGA } from "~/lib/tracking";
 
 export const {
   ConsentBannerAndConsentManagement,

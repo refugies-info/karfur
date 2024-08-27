@@ -1,9 +1,9 @@
-import FilterButton from "@/components/UI/FilterButton";
-import TagName from "@/components/UI/TagName";
-import { cls } from "@/lib/classname";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { Id } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
+import FilterButton from "~/components/UI/FilterButton";
+import TagName from "~/components/UI/TagName";
+import { cls } from "~/lib/classname";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {

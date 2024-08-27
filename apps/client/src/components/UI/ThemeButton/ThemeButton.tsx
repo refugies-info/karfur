@@ -1,8 +1,8 @@
-import { getThemeName } from "@/lib/getThemeName";
 import { GetThemeResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { getThemeName } from "~/lib/getThemeName";
 import ThemeIcon from "../ThemeIcon";
 
 const ThemeButtonContainer = styled.div<{ color: string }>`

@@ -7,7 +7,7 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { FC, useCallback, useState } from "react";
 
-import { cls } from "@/lib/classname";
+import { cls } from "~/lib/classname";
 import styles from "./RichTextInput.module.scss";
 import ToolbarPlugin from "./ToolbarPlugin";
 import nodes from "./nodes";

@@ -1,4 +1,4 @@
-import { NeedTradStatus } from "@/components/Backend/screens/UserTranslation/types";
+import { NeedTradStatus } from "~/components/Backend/screens/UserTranslation/types";
 
 export const getClassStatus = (status: NeedTradStatus): "info" | "warning" | "success" => {
   switch (status) {

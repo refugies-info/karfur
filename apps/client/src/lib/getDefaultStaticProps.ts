@@ -1,7 +1,7 @@
-import { wrapper } from "@/services/configureStore";
-import { fetchThemesActionCreator } from "@/services/Themes/themes.actions";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { END } from "redux-saga";
+import { wrapper } from "~/services/configureStore";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import { getLanguageFromLocale } from "./getLanguageFromLocale";
 
 export const defaultStaticProps = wrapper.getStaticProps(() => async ({ locale }) => {

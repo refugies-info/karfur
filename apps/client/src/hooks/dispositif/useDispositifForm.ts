@@ -1,12 +1,12 @@
-import useChangeLanguage from "@/hooks/useChangeLanguage";
-import useLocale from "@/hooks/useLocale";
-import useUser from "@/hooks/useUser";
-import { fetchAllStructuresActionsCreator } from "@/services/AllStructures/allStructures.actions";
-import { fetchUserStructureActionCreator } from "@/services/UserStructure/userStructure.actions";
-import { userStructureSelector } from "@/services/UserStructure/userStructure.selectors";
-import { Modals } from "@/utils/pageContext";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useChangeLanguage from "~/hooks/useChangeLanguage";
+import useLocale from "~/hooks/useLocale";
+import useUser from "~/hooks/useUser";
+import { fetchAllStructuresActionsCreator } from "~/services/AllStructures/allStructures.actions";
+import { fetchUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
+import { userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
+import { Modals } from "~/utils/pageContext";
 
 /**
  * Initializes the dispositif forms, and return the form context methods

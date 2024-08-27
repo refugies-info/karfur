@@ -1,15 +1,15 @@
-import Layout from "@/components/Pages/auth/Layout";
-import SEO from "@/components/Seo";
-import { useAuthRedirect, useLogin, useRegisterFlow } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
-import { getRegisterInfos } from "@/lib/loginRedirect";
-import { Event } from "@/lib/tracking";
-import styles from "@/scss/components/auth.module.scss";
-import API from "@/utils/API";
 import { useRouter } from "next/router";
 import { ReactElement, useEffect, useMemo, useState } from "react";
 import { getPath } from "routes";
+import Layout from "~/components/Pages/auth/Layout";
+import SEO from "~/components/Seo";
+import { useAuthRedirect, useLogin, useRegisterFlow } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { getRegisterInfos } from "~/lib/loginRedirect";
+import { Event } from "~/lib/tracking";
+import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
 
 const AuthMicrosoftLogin = () => {
   useAuthRedirect(false);

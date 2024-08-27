@@ -1,7 +1,7 @@
-import useWindowSize from "@/hooks/useWindowSize";
-import { cls } from "@/lib/classname";
 import Image from "next/image";
 import { ReactElement, useMemo } from "react";
+import useWindowSize from "~/hooks/useWindowSize";
+import { cls } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./StepContent.module.scss";

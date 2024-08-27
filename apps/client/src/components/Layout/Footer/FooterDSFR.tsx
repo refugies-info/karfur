@@ -1,14 +1,14 @@
-import { useEditionMode } from "@/hooks";
-import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "@/hooks/useConsentContext";
-import { Event } from "@/lib/tracking";
-import { toggleNewsletterModalAction } from "@/services/Miscellaneous/miscellaneous.actions";
-import { themesSelector } from "@/services/Themes/themes.selectors";
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
+import { useEditionMode } from "~/hooks";
+import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "~/hooks/useConsentContext";
+import { Event } from "~/lib/tracking";
+import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 
 const Footer = () => {
   const router = useRouter();

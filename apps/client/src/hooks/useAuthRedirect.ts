@@ -1,6 +1,6 @@
-import API from "@/utils/API";
 import { useRouter } from "next/router";
 import { useEffectOnce } from "react-use";
+import API from "~/utils/API";
 
 /**
  * Redirects the user if already logged in or missing email in parameters

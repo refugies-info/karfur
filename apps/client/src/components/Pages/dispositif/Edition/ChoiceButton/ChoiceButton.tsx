@@ -1,9 +1,9 @@
-import EVAIcon from "@/components/UI/EVAIcon/EVAIcon";
-import Tooltip from "@/components/UI/Tooltip";
-import { cls } from "@/lib/classname";
 import uniqueId from "lodash/uniqueId";
 import Image from "next/image";
 import React, { useMemo, useState } from "react";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Tooltip from "~/components/UI/Tooltip";
+import { cls } from "~/lib/classname";
 import styles from "./ChoiceButton.module.scss";
 
 interface Props {

@@ -1,4 +1,4 @@
-import { cls } from "@/lib/classname";
+import { cls } from "~/lib/classname";
 import styles from "./LanguageIcon.module.scss";
 
 interface Props {

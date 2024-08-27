@@ -1,11 +1,11 @@
-import { UserTradStatus } from "@/components/Pages/dispositif/Translation/TranslationInput/functions";
-import TranslationStatus from "@/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
-import Badge from "@/components/UI/Badge";
-import { Step as TranslateStep } from "@/hooks/dispositif";
-import { cls } from "@/lib/classname";
-import PageContext from "@/utils/pageContext";
 import { useTranslation } from "next-i18next";
 import { useCallback, useContext } from "react";
+import { UserTradStatus } from "~/components/Pages/dispositif/Translation/TranslationInput/functions";
+import TranslationStatus from "~/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
+import Badge from "~/components/UI/Badge";
+import { Step as TranslateStep } from "~/hooks/dispositif";
+import { cls } from "~/lib/classname";
+import PageContext from "~/utils/pageContext";
 import { Step as EditStep } from "../CustomNavbarEdit/functions";
 import { stepTranslations } from "./data";
 import styles from "./MissingSteps.module.scss";

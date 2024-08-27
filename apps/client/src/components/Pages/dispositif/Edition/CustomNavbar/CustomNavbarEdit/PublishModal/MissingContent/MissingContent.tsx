@@ -1,9 +1,9 @@
-import Button from "@/components/UI/Button";
-import { useContentType } from "@/hooks/dispositif";
-import { isStatus } from "@/lib/dispositif";
-import PageContext, { Modals } from "@/utils/pageContext";
 import { DispositifStatus } from "@refugies-info/api-types";
 import { useContext, useMemo } from "react";
+import Button from "~/components/UI/Button";
+import { useContentType } from "~/hooks/dispositif";
+import { isStatus } from "~/lib/dispositif";
+import PageContext, { Modals } from "~/utils/pageContext";
 import MissingSteps from "../../../MissingSteps";
 import StepBar from "../../../StepBar";
 import { getTotalSteps, Step } from "../../functions";

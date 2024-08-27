@@ -1,13 +1,13 @@
-import useLocale from "@/hooks/useLocale";
-import { getAllPageReadableText } from "@/lib/getReadableText";
-import { readAudio, stopAudio } from "@/lib/readAudio";
-import { Event } from "@/lib/tracking";
-import { dispositifNeedsSelector } from "@/services/Needs/needs.selectors";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import { secondaryThemesSelector, themeSelector } from "@/services/Themes/themes.selectors";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import useLocale from "~/hooks/useLocale";
+import { getAllPageReadableText } from "~/lib/getReadableText";
+import { readAudio, stopAudio } from "~/lib/readAudio";
+import { Event } from "~/lib/tracking";
+import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { secondaryThemesSelector, themeSelector } from "~/services/Themes/themes.selectors";
 
 /**
  * Gives methods to start and stop the TTS of the whole dispositif page

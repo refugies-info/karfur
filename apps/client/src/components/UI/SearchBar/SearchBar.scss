@@ -1,7 +1,7 @@
 /* stylelint-disable selector-class-pattern */
-@import "@/scss/colors";
-@import "@/scss/mixins/responsive";
-@import "@/scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
 
 .react-autosuggest__container {
   position: relative;

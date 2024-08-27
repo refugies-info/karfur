@@ -1,10 +1,10 @@
-import { allLanguesSelector } from "@/services/Langue/langue.selectors";
-import { userSelectedLanguageSelector } from "@/services/User/user.selectors";
 import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import keyBy from "lodash/keyBy";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
+import { userSelectedLanguageSelector } from "~/services/User/user.selectors";
 
 const useLanguages = () => {
   const router = useRouter();

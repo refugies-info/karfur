@@ -1,17 +1,17 @@
-import Button from "@/components/UI/Button";
-import { useLocale } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { changeRate, pauseAudio, readAudio, resumeAudio } from "@/lib/readAudio";
-import { Event } from "@/lib/tracking";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
 import { InfoSection } from "@refugies-info/api-types";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import Button from "~/components/UI/Button";
+import { useLocale } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { changeRate, pauseAudio, readAudio, resumeAudio } from "~/lib/readAudio";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 
-import Toast from "@/components/UI/Toast";
-import Tooltip from "@/components/UI/Tooltip";
+import Toast from "~/components/UI/Toast";
+import Tooltip from "~/components/UI/Tooltip";
 import { getPlayIcon, getTextToRead } from "./functions";
 import ReactionModal from "./ReactionModal";
 import styles from "./SectionButtons.module.scss";

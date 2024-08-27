@@ -1,6 +1,6 @@
-import { Event } from "@/lib/tracking";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { Event } from "~/lib/tracking";
 import styles from "./Summary.module.scss";
 
 /**

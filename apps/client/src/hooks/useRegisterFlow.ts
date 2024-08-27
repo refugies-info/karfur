@@ -1,15 +1,15 @@
-import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
-import { fetchUserActionCreator } from "@/services/User/user.actions";
-import { userDetailsSelector } from "@/services/User/user.selectors";
-import API from "@/utils/API";
-import { setAuthToken } from "@/utils/authToken";
 import { RoleName } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffectOnce } from "react-use";
 import { getPath } from "routes";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
+import { setAuthToken } from "~/utils/authToken";
 
 type Step = "objectif" | "partenaire" | "langue" | "pseudo" | "territoire";
 

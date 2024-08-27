@@ -1,12 +1,12 @@
-import BaseModal from "@/components/UI/BaseModal";
-import { setLoginRedirect } from "@/lib/loginRedirect";
-import { Event } from "@/lib/tracking";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getPath } from "routes";
+import BaseModal from "~/components/UI/BaseModal";
+import { setLoginRedirect } from "~/lib/loginRedirect";
+import { Event } from "~/lib/tracking";
 import styles from "./BookmarkedModal.module.scss";
 
 interface Props {

@@ -1,7 +1,7 @@
-import FButton from "@/components/UI/FButton";
-import { colors } from "@/utils/colors";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import FButton from "~/components/UI/FButton";
+import { colors } from "~/utils/colors";
 import { ContribContainer } from "./SubComponents";
 
 const Header = styled.div`

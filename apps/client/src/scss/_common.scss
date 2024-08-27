@@ -3,7 +3,7 @@
 @import "mixins/text";
 @import "mixins/btn";
 @import "colors";
-@import "@/scss/variables";
+@import "~/scss/variables";
 
 html {
   scroll-behavior: smooth;

@@ -1,14 +1,14 @@
-import Toast from "@/components/UI/Toast";
-import { useAuth } from "@/hooks";
-import { isContentFavorite } from "@/hooks/useFavorites";
-import { fetchUserActionCreator } from "@/services/User/user.actions";
-import { userDetailsSelector } from "@/services/User/user.selectors";
-import API from "@/utils/API";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { encode } from "querystring";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "~/components/UI/Toast";
+import { useAuth } from "~/hooks";
+import { isContentFavorite } from "~/hooks/useFavorites";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 
 const AutoAddFavorite = () => {
   const { t } = useTranslation();

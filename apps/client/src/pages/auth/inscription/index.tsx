@@ -1,13 +1,3 @@
-import Layout from "@/components/Pages/auth/Layout";
-import SEO from "@/components/Seo";
-import ErrorMessage from "@/components/UI/ErrorMessage";
-import { useAuthRedirect, useRegisterFlow } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
-import { getRegisterInfos } from "@/lib/loginRedirect";
-import { getPasswordStrength } from "@/lib/validatePassword";
-import styles from "@/scss/components/auth.module.scss";
-import API from "@/utils/API";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
@@ -22,6 +12,16 @@ import { useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
 import { Spinner } from "reactstrap";
 import { getPath } from "routes";
+import Layout from "~/components/Pages/auth/Layout";
+import SEO from "~/components/Seo";
+import ErrorMessage from "~/components/UI/ErrorMessage";
+import { useAuthRedirect, useRegisterFlow } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { getRegisterInfos } from "~/lib/loginRedirect";
+import { getPasswordStrength } from "~/lib/validatePassword";
+import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
 
 const AuthLogin = () => {
   useAuthRedirect(true);

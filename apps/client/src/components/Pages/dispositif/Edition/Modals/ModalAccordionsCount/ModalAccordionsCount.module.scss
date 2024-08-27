@@ -1,7 +1,7 @@
-@import "@/scss/colors";
-@import "@/scss/variables";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/rtl";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
 
 .content {
   flex-grow: 1;

@@ -1,11 +1,11 @@
-import { Event } from "@/lib/tracking";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import API from "@/utils/API";
 import { ContentType } from "@refugies-info/api-types";
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useCookie } from "react-use";
 import { getPath } from "routes";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import API from "~/utils/API";
 
 const useSendSms = () => {
   const [utmz] = useCookie("__utmz");

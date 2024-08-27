@@ -1,8 +1,8 @@
-import { useContentType } from "@/hooks/dispositif";
-import PageContext from "@/utils/pageContext";
 import { ContentType } from "@refugies-info/api-types";
 import { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useContentType } from "~/hooks/dispositif";
+import PageContext from "~/utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import styles from "./TitleEdit.module.scss";
 

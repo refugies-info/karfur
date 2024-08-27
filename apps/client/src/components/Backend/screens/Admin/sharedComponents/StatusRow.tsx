@@ -1,6 +1,6 @@
-import { statusCompare } from "@/lib/statusCompare";
-import { ContentStatus, ProgressionStatus, StructureAdminStatus } from "@/types/interface";
 import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "@refugies-info/api-types";
+import { statusCompare } from "~/lib/statusCompare";
+import { ContentStatus, ProgressionStatus, StructureAdminStatus } from "~/types/interface";
 import styles from "./StatusRow.module.scss";
 import { Label, StyledStatus } from "./SubComponents";
 

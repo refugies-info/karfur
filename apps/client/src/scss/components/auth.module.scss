@@ -1,11 +1,11 @@
 /* stylelint-disable selector-class-pattern */
 /* stylelint-disable scss/at-extend-no-missing-placeholder */
-@import "@/scss/mixins/text";
-@import "@/scss/colors";
-@import "@/scss/variables";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/responsive";
-@import "@/scss/mixins/margins";
+@import "~/scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/margins";
 
 .container {
   &.half {

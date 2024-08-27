@@ -1,6 +1,6 @@
-import Input from "@/components/Pages/dispositif/Input";
 import { Picture } from "@refugies-info/api-types";
 import React from "react";
+import Input from "~/components/Pages/dispositif/Input";
 import LogoInput from "../../../LogoInput";
 
 interface Props {

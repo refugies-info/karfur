@@ -1,4 +1,3 @@
-import { UserState } from "@/services/User/user.reducer";
 import {
   GetStructureResponse,
   PatchStructureRequest,
@@ -9,6 +8,7 @@ import pick from "lodash/pick";
 import Router from "next/router";
 import { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
+import { UserState } from "~/services/User/user.reducer";
 import { logger } from "../../logger";
 import API from "../../utils/API";
 import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";

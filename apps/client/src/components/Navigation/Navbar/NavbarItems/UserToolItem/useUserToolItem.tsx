@@ -1,14 +1,14 @@
-import { useAuth } from "@/hooks";
-import useRouterLocale from "@/hooks/useRouterLocale";
-import { Event } from "@/lib/tracking";
-import { userSelector } from "@/services/User/user.selectors";
-import history from "@/utils/backendHistory";
 import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { isMobileOnly } from "react-device-detect";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
+import { useAuth } from "~/hooks";
+import useRouterLocale from "~/hooks/useRouterLocale";
+import { Event } from "~/lib/tracking";
+import { userSelector } from "~/services/User/user.selectors";
+import history from "~/utils/backendHistory";
 
 const useUserToolItem = (): HeaderProps.QuickAccessItem | null => {
   const router = useRouter();

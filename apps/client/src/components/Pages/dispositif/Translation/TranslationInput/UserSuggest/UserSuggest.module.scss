@@ -1,9 +1,9 @@
-@import "@/scss/colors";
-@import "@/scss/variables";
-@import "@/scss/mixins/text";
-@import "@/scss/mixins/unit";
-@import "@/scss/mixins/icons";
-@import "@/scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+@import "~/scss/mixins/responsive";
 
 .container {
   @include dsfr-text("very-small");

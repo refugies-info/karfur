@@ -1,10 +1,10 @@
-import BaseModal from "@/components/UI/BaseModal";
-import Button from "@/components/UI/Button";
-import { Step } from "@/hooks/dispositif";
-import { Event } from "@/lib/tracking";
-import PageContext from "@/utils/pageContext";
 import { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import { Step } from "~/hooks/dispositif";
+import { Event } from "~/lib/tracking";
+import PageContext from "~/utils/pageContext";
 import MissingSteps from "../../MissingSteps";
 import { StepStatus } from "../../MissingSteps/MissingSteps";
 import StepBar from "../../StepBar";

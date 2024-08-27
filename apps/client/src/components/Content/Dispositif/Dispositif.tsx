@@ -1,3 +1,7 @@
+import { ContentType } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { useContext, useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   ActionButtons,
   Banner,
@@ -8,7 +12,7 @@ import {
   Map,
   Section,
   Sponsors,
-} from "@/components/Pages/dispositif";
+} from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
@@ -16,18 +20,14 @@ import {
   MapEdit,
   RightSidebarEdition,
   SponsorsEdit,
-} from "@/components/Pages/dispositif/Edition";
-import SEO from "@/components/Seo";
-import FRLink from "@/components/UI/FRLink";
-import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "@/hooks";
-import { cls } from "@/lib/classname";
-import { selectedDispositifSelector } from "@/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "@/services/Themes/themes.selectors";
-import PageContext from "@/utils/pageContext";
-import { ContentType } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { useContext, useMemo } from "react";
-import { useSelector } from "react-redux";
+} from "~/components/Pages/dispositif/Edition";
+import SEO from "~/components/Seo";
+import FRLink from "~/components/UI/FRLink";
+import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
+import { cls } from "~/lib/classname";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { themeSelector } from "~/services/Themes/themes.selectors";
+import PageContext from "~/utils/pageContext";
 import styles from "./Dispositif.module.scss";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";

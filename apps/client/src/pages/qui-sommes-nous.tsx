@@ -1,16 +1,16 @@
-import { assetsOnServer } from "@/assets/assetsOnServer";
-import { Contribution } from "@/components/Pages/qui-sommes-nous/Contribution";
-import { Mission } from "@/components/Pages/qui-sommes-nous/Mission";
-import { Partners } from "@/components/Pages/qui-sommes-nous/Partners";
-import { Problematic } from "@/components/Pages/qui-sommes-nous/Problematic";
-import { Team } from "@/components/Pages/qui-sommes-nous/Team";
-import SEO from "@/components/Seo";
-import { defaultStaticProps } from "@/lib/getDefaultStaticProps";
-import styles from "@/scss/pages/qui-sommes-nous.module.scss";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import { Contribution } from "~/components/Pages/qui-sommes-nous/Contribution";
+import { Mission } from "~/components/Pages/qui-sommes-nous/Mission";
+import { Partners } from "~/components/Pages/qui-sommes-nous/Partners";
+import { Problematic } from "~/components/Pages/qui-sommes-nous/Problematic";
+import { Team } from "~/components/Pages/qui-sommes-nous/Team";
+import SEO from "~/components/Seo";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import styles from "~/scss/pages/qui-sommes-nous.module.scss";
 
 const MainContainer = styled.div`
   flex: 1;

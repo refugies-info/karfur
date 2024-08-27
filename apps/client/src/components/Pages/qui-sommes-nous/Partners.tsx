@@ -1,9 +1,9 @@
-import { assetsOnServer } from "@/assets/assetsOnServer";
-import FButton from "@/components/UI/FButton/FButton";
 import { partners } from "data/partners";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import styled from "styled-components";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import FButton from "~/components/UI/FButton/FButton";
 
 const MainContainer = styled.div`
   display: flex;

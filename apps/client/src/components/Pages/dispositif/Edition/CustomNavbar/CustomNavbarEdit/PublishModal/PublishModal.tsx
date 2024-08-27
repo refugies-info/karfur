@@ -1,8 +1,8 @@
-import BaseModal from "@/components/UI/BaseModal";
-import { Event } from "@/lib/tracking";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
 import { useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
+import BaseModal from "~/components/UI/BaseModal";
+import { Event } from "~/lib/tracking";
 import { getMissingStepsEdit, Step } from "../functions";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";

@@ -1,16 +1,3 @@
-import noStructure from "@/assets/noStructure.png";
-import FButton from "@/components/UI/FButton/FButton";
-import FInput from "@/components/UI/FInput/FInput";
-import { handleApiDefaultError, handleApiError } from "@/lib/handleApiErrors";
-import { statusCompare } from "@/lib/statusCompare";
-import { fetchAllDispositifsActionsCreator } from "@/services/AllDispositifs/allDispositifs.actions";
-import { fetchAllStructuresActionsCreator } from "@/services/AllStructures/allStructures.actions";
-import { fetchAllUsersActionsCreator } from "@/services/AllUsers/allUsers.actions";
-import { allActiveUsersSelector } from "@/services/AllUsers/allUsers.selector";
-import { LoadingStatusKey } from "@/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "@/services/LoadingStatus/loadingStatus.selectors";
-import { Event } from "@/types/interface";
-import API from "@/utils/API";
 import {
   GetActiveUsersResponse,
   GetAllUsersResponse,
@@ -25,6 +12,19 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Modal, Spinner } from "reactstrap";
 import Swal from "sweetalert2";
+import noStructure from "~/assets/noStructure.png";
+import FButton from "~/components/UI/FButton/FButton";
+import FInput from "~/components/UI/FInput/FInput";
+import { handleApiDefaultError, handleApiError } from "~/lib/handleApiErrors";
+import { statusCompare } from "~/lib/statusCompare";
+import { fetchAllDispositifsActionsCreator } from "~/services/AllDispositifs/allDispositifs.actions";
+import { fetchAllStructuresActionsCreator } from "~/services/AllStructures/allStructures.actions";
+import { fetchAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions";
+import { allActiveUsersSelector } from "~/services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { Event } from "~/types/interface";
+import API from "~/utils/API";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import { RowContainer } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";

@@ -1,10 +1,10 @@
-import Character from "@/assets/homepage/hero/character.svg";
-import { HeroArrow } from "@/components/Pages/staticPages/common";
-import { cls } from "@/lib/classname";
-import commonStyles from "@/scss/components/staticPages.module.scss";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { Container } from "reactstrap";
+import Character from "~/assets/homepage/hero/character.svg";
+import { HeroArrow } from "~/components/Pages/staticPages/common";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 import HomeSearchHeader from "../../HomeSearchHeader";
 import styles from "./Hero.module.scss";
 
