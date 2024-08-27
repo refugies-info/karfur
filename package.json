@@ -40,6 +40,7 @@
     "test:client:update-snapshots": "yarn workspace @refugies-info/client test -u",
     "test:server": "yarn turbo test --filter=@refugies-info/server",
     "test:mobile": "yarn turbo test --filter=@refugies-info/mobile",
+    "test:mobile:update-snapshots": "yarn workspace @refugies-info/mobile test -u",
     "lint": "yarn turbo lint",
     "lint:api-types": "yarn turbo lint --filter=@refugies-info/api-types",
     "lint:client": "yarn turbo lint --filter=@refugies-info/client",
