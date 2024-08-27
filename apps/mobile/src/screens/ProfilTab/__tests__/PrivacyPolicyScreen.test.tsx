@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { PrivacyPolicyScreen } from "../PrivacyPolicyScreen";
 
 jest.useFakeTimers();

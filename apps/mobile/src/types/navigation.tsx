@@ -1,5 +1,5 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
-import { ObjectId } from "./src/types/interface";
+import { ObjectId } from "./interface";
 
 /**
  * Learn more about using TypeScript with React Navigation:

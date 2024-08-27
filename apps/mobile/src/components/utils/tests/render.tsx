@@ -1,6 +1,6 @@
 import { render, RenderOptions } from "@testing-library/react-native";
 import React, { ReactElement } from "react";
-import { ThemeProvider } from "../../../theme";
+import { ThemeProvider } from "~/theme";
 
 const AllTheProviders: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <ThemeProvider>{children}</ThemeProvider>;

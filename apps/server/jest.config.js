@@ -1,3 +1,5 @@
+const { pathsToModuleNameMapper } = require("ts-jest");
+
 module.exports = {
   preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js", "d.ts"],
@@ -15,4 +17,7 @@ module.exports = {
   // moduleDirectories: ["node_modules", "src"],
   testEnvironment: "node",
   setupFilesAfterEnv: ["./src/jest/setupJest.js"],
+  moduleNameMapper: pathsToModuleNameMapper({
+    "~/*": ["<rootDir>/src/*"]
+  }),
 };

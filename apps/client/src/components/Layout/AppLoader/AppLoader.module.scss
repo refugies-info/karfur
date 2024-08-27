@@ -1,5 +1,5 @@
-@import "~scss/colors";
-@import "~scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/mixins/text";
 
 @keyframes pulse {
   0% {
@@ -37,7 +37,7 @@
 
     p {
       @include text("h5");
-      
+
       color: white;
       font-weight: bold;
     }

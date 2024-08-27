@@ -1,7 +1,7 @@
 import find from "lodash/find";
 import { useTranslation } from "next-i18next";
 import { Modal } from "reactstrap";
-import { colors } from "utils/colors";
+import { colors } from "~/utils/colors";
 
 import FButton from "../../UI/FButton/FButton";
 import { sectionUrlCorrespondencies } from "./data";

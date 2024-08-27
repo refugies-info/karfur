@@ -1,41 +1,41 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import { isMobileOnly } from "react-device-detect";
+import { useDispatch, useSelector } from "react-redux";
 
 // actions
 import {
   fetchLanguesActionCreator,
-  toggleLangueModalActionCreator,
   toggleLangueActionCreator,
-} from "services/Langue/langue.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
+  toggleLangueModalActionCreator,
+} from "~/services/Langue/langue.actions";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
 
 // selectors
-import { ttsActiveSelector } from "services/Tts/tts.selector";
-import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
-import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { allLanguesSelector, showLangModalSelector } from "~/services/Langue/langue.selectors";
+import { hasErroredSelector, isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { ttsActiveSelector } from "~/services/Tts/tts.selector";
 
-import Navbar from "components/Navigation/Navbar";
-import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
-import Footer from "components/Layout/Footer";
-import { readAudio, stopAudio } from "lib/readAudio";
-import { isContentPage } from "lib/isContentPage";
-import { toggleSpinner } from "services/Tts/tts.actions";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { userDetailsSelector } from "services/User/user.selectors";
-import { useChangeLanguage, useRTL } from "hooks";
-import locale from "utils/locale";
-import { themesSelector } from "services/Themes/themes.selectors";
-import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
-import NewProfileModal from "components/Modals/NewProfileModal";
-import DownloadAppModal from "components/Modals/DownloadAppModal";
-import styles from "./Layout.module.scss";
+import Footer from "~/components/Layout/Footer";
+import DownloadAppModal from "~/components/Modals/DownloadAppModal";
+import LanguageModal from "~/components/Modals/LanguageModal/LanguageModal";
+import NewProfileModal from "~/components/Modals/NewProfileModal";
+import { SubscribeNewsletterModal } from "~/components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import Navbar from "~/components/Navigation/Navbar";
+import { useChangeLanguage, useRTL } from "~/hooks";
+import { isContentPage } from "~/lib/isContentPage";
+import { readAudio, stopAudio } from "~/lib/readAudio";
+import { setAnalyticsUserId } from "~/lib/tracking";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import { themesSelector } from "~/services/Themes/themes.selectors";
+import { toggleSpinner } from "~/services/Tts/tts.actions";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import locale from "~/utils/locale";
 import AppLoader from "./AppLoader";
 import AutoAddFavorite from "./AutoAddFavorite";
 import DownloadAppBanner from "./DownloadAppBanner";
-import { setAnalyticsUserId } from "lib/tracking";
+import styles from "./Layout.module.scss";
 
 interface Props {
   children: any;

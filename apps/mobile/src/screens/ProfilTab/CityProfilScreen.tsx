@@ -1,20 +1,18 @@
+import { StackScreenProps } from "@react-navigation/stack";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StackScreenProps } from "@react-navigation/stack";
-import { ProfileParamList } from "../../../types";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { FilterCityComponent } from "../../components/Geoloc/FilterCityComponent";
-import { Page, Rows } from "../../components";
+import { useTheme } from "styled-components/native";
+import { Page, Rows } from "~/components";
+import { FilterCityComponent } from "~/components/Geoloc/FilterCityComponent";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import {
   removeUserLocalizedWarningHiddenActionCreator,
   saveUserLocationActionCreator,
-} from "../../services/redux/User/user.actions";
-import { userLocationSelector } from "../../services/redux/User/user.selectors";
-import { useTheme } from "styled-components/native";
+} from "~/services/redux/User/user.actions";
+import { userLocationSelector } from "~/services/redux/User/user.selectors";
+import { ProfileParamList } from "~/types/navigation";
 
-export const CityProfilScreen = ({
-  navigation,
-}: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
+export const CityProfilScreen = ({ navigation }: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -31,18 +29,14 @@ export const CityProfilScreen = ({
             city: selectedCity,
             dep: selectedDepartment,
             shouldFetchContents: true,
-          })
+          }),
         );
       }
       dispatch(removeUserLocalizedWarningHiddenActionCreator());
       navigation.goBack();
     };
 
-    if (
-      selectedCity &&
-      userLocation.city !== selectedCity &&
-      selectedDepartment
-    ) {
+    if (selectedCity && userLocation.city !== selectedCity && selectedDepartment) {
       onValidate();
     }
   }, [selectedCity, selectedDepartment]);

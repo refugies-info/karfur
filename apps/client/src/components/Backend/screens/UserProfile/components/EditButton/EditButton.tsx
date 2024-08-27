@@ -1,4 +1,4 @@
-import { cls } from "lib/classname";
+import { cls } from "~/lib/classname";
 import styles from "./EditButton.module.scss";
 
 const icons = {

@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import styled, { useTheme } from "styled-components/native";
-import { useStateOnce } from "../../../hooks";
-import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
-import { useVoiceover } from "../../../hooks/useVoiceover";
+import { useStateOnce } from "~/hooks";
+import { useHeaderAnimation } from "~/hooks/useHeaderAnimation";
+import { useVoiceover } from "~/hooks/useVoiceover";
 import { SkeletonListPage } from "../../feedback";
 import { isDarkColor } from "../../utils";
 import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";

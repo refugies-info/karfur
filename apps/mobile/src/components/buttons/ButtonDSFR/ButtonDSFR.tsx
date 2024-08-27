@@ -1,10 +1,5 @@
-import React, { useMemo } from "react";
-import {
-  StyleProp,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  ViewStyle,
-} from "react-native";
+import { useMemo } from "react";
+import { StyleProp, TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
 import { Columns, ColumnsSpacing } from "../../layout";
@@ -34,10 +29,8 @@ const ButtonText = styled(TextDSFR_L_Med)<{
   disabled: boolean;
   size: "default" | "medium" | "small" | undefined;
 }>`
-  color: ${({ theme, color, disabled }) =>
-    disabled ? theme.colors.dsfr_borderGrey : color};
-  ${({ theme, size }) =>
-    !!size ? `font-size: ${theme.fonts.button[size]};` : ""}
+  color: ${({ theme, color, disabled }) => (disabled ? theme.colors.dsfr_borderGrey : color)};
+  ${({ theme, size }) => (!!size ? `font-size: ${theme.fonts.button[size]};` : "")}
 `;
 
 const Container = styled(TouchableOpacity)<{
@@ -50,9 +43,7 @@ const Container = styled(TouchableOpacity)<{
   border-color: ${({ borderColor }) => borderColor};
   border-width: 1px;
   padding-vertical: ${({ theme, size }) =>
-    size === "small" || size === "medium"
-      ? theme.margin
-      : theme.margin * 1.25}px;
+    size === "small" || size === "medium" ? theme.margin : theme.margin * 1.25}px;
   padding-horizontal: ${({ theme, size }) => theme.margin * 1.25}px;
   max-height: 50px;
   align-items: center;
@@ -85,11 +76,7 @@ const Button = ({
         return "transparent";
     }
   }, [priority]);
-  const color = useMemo(
-    () =>
-      priority === "primary" ? theme.colors.white : theme.colors.dsfr_action,
-    [priority]
-  );
+  const color = useMemo(() => (priority === "primary" ? theme.colors.white : theme.colors.dsfr_action), [priority]);
   const borderColor = useMemo(() => {
     switch (priority) {
       case "primary":
@@ -104,16 +91,8 @@ const Button = ({
   }, [priority]);
 
   const icon = useMemo(
-    () =>
-      iconName ? (
-        <Icon
-          color={color}
-          loading={loading}
-          name={iconName}
-          size={ICON_SIZE}
-        />
-      ) : null,
-    [iconName, color, loading]
+    () => (iconName ? <Icon color={color} loading={loading} name={iconName} size={ICON_SIZE} /> : null),
+    [iconName, color, loading],
   );
 
   return (
@@ -131,9 +110,7 @@ const Button = ({
     >
       <Columns
         layout="auto"
-        spacing={
-          !!title && !!icon ? ColumnsSpacing.Default : ColumnsSpacing.NoSpace
-        }
+        spacing={!!title && !!icon ? ColumnsSpacing.Default : ColumnsSpacing.NoSpace}
         RTLBehaviour
         verticalAlign="center"
       >

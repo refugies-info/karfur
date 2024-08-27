@@ -1,7 +1,7 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { colors } from "~/utils/colors";
 import { Content, FigureContainer, StyledHeader, StyledSort, StyledTitle } from "../../sharedComponents/StyledAdmin";
 import { FilterButton } from "../../sharedComponents/SubComponents";
 import { correspondingStatus, userHeaders } from "../data";

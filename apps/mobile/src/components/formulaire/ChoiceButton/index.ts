@@ -1,1 +1,1 @@
-export { default, ChoiceButtonProps } from "./ChoiceButton";
+export { ChoiceButtonProps, default } from "./ChoiceButton";

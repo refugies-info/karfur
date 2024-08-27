@@ -11,5 +11,5 @@ export const getPlaceName = (prediction: google.maps.places.AutocompletePredicti
       return `${placeName} ${prediction.terms[1]?.value || ""} (ville)`;
     }
   }
-  return prediction.description
-}
+  return prediction.description;
+};

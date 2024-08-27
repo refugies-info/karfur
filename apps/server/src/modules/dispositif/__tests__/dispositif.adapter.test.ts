@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { formatDispositifsByCreator, getTitreInfoOrMarque, countDispositifMercis } from "../dispositif.adapter";
+import { countDispositifMercis, formatDispositifsByCreator, getTitreInfoOrMarque } from "../dispositif.adapter";
 
 describe.skip("formatDispositifsByCreator", () => {
   beforeEach(() => {

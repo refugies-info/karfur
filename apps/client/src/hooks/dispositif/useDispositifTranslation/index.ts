@@ -1,2 +1,2 @@
 export { default } from "./useDispositifTranslation";
-export type { Suggestion, Progress, Step } from "./useDispositifTranslation";
+export type { Progress, Step, Suggestion } from "./useDispositifTranslation";

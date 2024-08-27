@@ -1,10 +1,10 @@
 import { TraductionsStatus } from "@refugies-info/api-types";
-import CustomSearchBar from "components/UI/CustomSeachBar";
-import FButton from "components/UI/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import CustomSearchBar from "~/components/UI/CustomSeachBar";
+import FButton from "~/components/UI/FButton";
+import { colors } from "~/utils/colors";
 import { FilterButton } from "./SubComponents";
 
 const RowContainer = styled.div`

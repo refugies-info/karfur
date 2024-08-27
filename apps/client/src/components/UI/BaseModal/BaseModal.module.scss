@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
 
 .modal {
   max-width: 800px !important;
@@ -67,7 +67,7 @@
 
   .close {
     @include dsfr-text("small");
-    
+
     padding: u(1) u(3);
     box-shadow: none;
     min-height: 0;

@@ -1,4 +1,4 @@
-import { Step } from "../CustomNavbarEdit/functions"
+import { Step } from "../CustomNavbarEdit/functions";
 
 export const stepTranslations: Record<Step, string> = {
   // no translation available
@@ -18,5 +18,4 @@ export const stepTranslations: Record<Step, string> = {
   commitment: "Infocards.availability",
   conditions: "Infocards.conditions",
   location: "Infocards.location",
-}
-
+};

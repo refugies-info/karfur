@@ -1,4 +1,4 @@
-import { ThemeState } from "../../services/redux/Themes/themes.reducer";
+import { ThemeState } from "~/services/redux/Themes/themes.reducer";
 
 export const mockedThemesData: ThemeState = [
   {
@@ -151,32 +151,27 @@ export const mockedThemesData: ThemeState = [
     },
     position: 8,
     icon: {
-      secure_url:
-        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665471801/pictures/o1fsbcdgsktlohgqnagp.svg",
+      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665471801/pictures/o1fsbcdgsktlohgqnagp.svg",
       public_id: "pictures/o1fsbcdgsktlohgqnagp",
       imgId: "6345153bf14a373d5af28d55",
     },
     banner: {
-      secure_url:
-        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469779/pictures/gfgzz4tcbxpe6edz2scu.svg",
+      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469779/pictures/gfgzz4tcbxpe6edz2scu.svg",
       public_id: "pictures/gfgzz4tcbxpe6edz2scu",
       imgId: "63450d553e23cd7181ba0aef",
     },
     appBanner: {
-      secure_url:
-        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469793/pictures/vqzsfmw8o7fgcjnbf07m.png",
+      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469793/pictures/vqzsfmw8o7fgcjnbf07m.png",
       public_id: "pictures/vqzsfmw8o7fgcjnbf07m",
       imgId: "63450d623e23cd7181ba0af1",
     },
     appImage: {
-      secure_url:
-        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469805/pictures/zhsms7ptlkjvolprxi3z.svg",
+      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469805/pictures/zhsms7ptlkjvolprxi3z.svg",
       public_id: "pictures/zhsms7ptlkjvolprxi3z",
       imgId: "63450d6f3e23cd7181ba0aff",
     },
     shareImage: {
-      secure_url:
-        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469825/pictures/fpjeqa0oxl8rp2uelrbz.png",
+      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469825/pictures/fpjeqa0oxl8rp2uelrbz.png",
       public_id: "pictures/fpjeqa0oxl8rp2uelrbz",
       imgId: "63450d813e23cd7181ba0b01",
     },

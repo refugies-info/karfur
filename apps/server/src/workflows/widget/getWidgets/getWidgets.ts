@@ -1,7 +1,7 @@
-import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
-import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
 import { GetWidgetResponse } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { getAllWidgets } from "~/modules/widgets/widgets.repository";
+import { ResponseWithData } from "~/types/interface";
 
 export const getWidgets = async (): ResponseWithData<GetWidgetResponse[]> => {
   logger.info("[getWidgets] received");

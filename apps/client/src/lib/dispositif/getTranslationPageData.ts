@@ -1,12 +1,12 @@
 import { GetDispositifResponse, GetTraductionsForReviewResponse, GetUserInfoResponse } from "@refugies-info/api-types";
-import API from "utils/API";
+import API from "~/utils/API";
 
 /**
  * build a TraductionsForReview object from a dispositif
  */
 const buildTranslationsObject = (
   dispositif: GetDispositifResponse,
-  user: GetUserInfoResponse | null
+  user: GetUserInfoResponse | null,
 ): GetTraductionsForReviewResponse => {
   const traductions: GetTraductionsForReviewResponse = [
     {
@@ -20,21 +20,21 @@ const buildTranslationsObject = (
           why: dispositif.why || {},
           how: dispositif.how,
           next: dispositif.next || {},
-        }
+        },
       },
       toReview: [],
-      toFinish: []
-    }
-  ]
+      toFinish: [],
+    },
+  ];
 
   return traductions;
-}
+};
 
 export const getTranslationPageData = async (
   dispositif: GetDispositifResponse,
   queryLanguage: string,
   token: string,
-  user: GetUserInfoResponse | null
+  user: GetUserInfoResponse | null,
 ) => {
   let traductions: GetTraductionsForReviewResponse = await API.getTraductionsForReview(
     {
@@ -58,6 +58,7 @@ export const getTranslationPageData = async (
   ).then((data) => data.translation);
 
   return {
-    traductions, defaultTraduction
-  }
-}
+    traductions,
+    defaultTraduction,
+  };
+};

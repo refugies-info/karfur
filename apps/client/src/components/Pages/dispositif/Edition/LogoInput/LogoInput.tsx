@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Input, Spinner } from "reactstrap";
-import Image from "next/image";
 import { Picture } from "@refugies-info/api-types";
-import API from "utils/API";
-import { handleApiDefaultError } from "lib/handleApiErrors";
-import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Image from "next/image";
+import { useState } from "react";
+import { Input, Spinner } from "reactstrap";
+import Button from "~/components/UI/Button";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { handleApiDefaultError } from "~/lib/handleApiErrors";
+import API from "~/utils/API";
 import styles from "./LogoInput.module.scss";
 
 interface Props {

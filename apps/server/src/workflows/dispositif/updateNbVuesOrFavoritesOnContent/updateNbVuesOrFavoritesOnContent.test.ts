@@ -1,6 +1,6 @@
 // @ts-nocheck
+import { updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
 import { updateNbVuesOrFavoritesOnContent } from "./updateNbVuesOrFavoritesOnContent";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 
 /* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
@@ -25,7 +25,7 @@ describe.skip("updateNbVuesOrFavoritesOnContent", () => {
       {
         body: { query: { id: "id", nbVues: 2 } },
       },
-      res
+      res,
     );
     expect(res.status).toHaveBeenCalledWith(500);
   });
@@ -38,7 +38,7 @@ describe.skip("updateNbVuesOrFavoritesOnContent", () => {
         body: { query: { id: "id", nbVues: 2 } },
         fromSite: true,
       },
-      res
+      res,
     );
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", { nbVues: 2 });
     expect(res.status).toHaveBeenCalledWith(200);

@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
 .container {
   display: flex;
@@ -29,7 +29,7 @@
 
 .theme {
   @include dsfr-text("very-small");
-  
+
   color: white !important;
   text-decoration: underline !important;
   padding: u(1) 6px;

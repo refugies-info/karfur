@@ -1,7 +1,7 @@
 import { UpdateDispositifPropertiesRequest } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { Response } from "../../../types/interface";
+import logger from "~/logger";
+import { updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { Response } from "~/types/interface";
 
 export const updateDispositifProperties = async (id: string, body: UpdateDispositifPropertiesRequest): Response => {
   logger.info("[updateDispositifProperties] received", id);

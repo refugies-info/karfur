@@ -1,5 +1,5 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { StructureMemberRole, StructureStatus } from "@refugies-info/api-types";
+import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { ImageSchema } from "./generics";
 import { User, UserId } from "./User";

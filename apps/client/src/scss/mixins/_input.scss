@@ -1,5 +1,5 @@
-@import "~scss/mixins/unit";
-@import "~scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/colors";
 
 /* Base input design */
 @mixin baseInput() {
@@ -27,7 +27,7 @@
   &:active {
     background: var(--background-contrast-grey) !important;
   }
-  
+
   &:focus {
     background: var(--background-alt-raised-grey) !important;
     border-color: $darkBackgroundAltGrey;

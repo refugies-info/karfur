@@ -1,9 +1,9 @@
 // @ts-nocheck
 /* import updateDispositif from "./updateDispositif";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
 import {
   checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations"; */
+} from "~/libs/checkAuthorizations"; */
 
 import { RoleName } from "@refugies-info/api-types";
 
@@ -39,7 +39,7 @@ describe.skip("updateDispositif", () => {
         webOnly: true,
       },
       params: { id: "id" },
-      user: { _id: "userId", roles: [{ nom: RoleName.ADMIN }] }
+      user: { _id: "userId", roles: [{ nom: RoleName.ADMIN }] },
     };
 
     const date = 148707670800;

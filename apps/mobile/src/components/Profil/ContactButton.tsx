@@ -1,5 +1,4 @@
-import * as React from "react";
-import { View, Linking } from "react-native";
+import { Linking, View } from "react-native";
 import { ButtonDSFR } from "../buttons";
 
 interface Props {

@@ -1,4 +1,4 @@
-import { assetsOnServer } from "assets/assetsOnServer";
+import { assetsOnServer } from "~/assets/assetsOnServer";
 
 export type Partner = {
   name: string;

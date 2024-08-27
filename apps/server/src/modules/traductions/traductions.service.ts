@@ -1,8 +1,8 @@
 import { Languages, TranslatorFeedback } from "@refugies-info/api-types";
-import { airtableContentBase } from "../../connectors/airtable/airtable";
-import { countDispositifWords, countDispositifWordsForSections } from "../../libs/wordCounter";
-import logger from "../../logger";
-import { Dispositif, Theme, Traductions, User } from "../../typegoose";
+import { airtableContentBase } from "~/connectors/airtable/airtable";
+import { countDispositifWords, countDispositifWordsForSections } from "~/libs/wordCounter";
+import logger from "~/logger";
+import { Dispositif, Theme, Traductions, User } from "~/typegoose";
 
 const url = process.env.FRONT_SITE_URL;
 
@@ -18,7 +18,12 @@ interface TradToExport {
   };
 }
 
-export const addTradToAirtable = async (dispositif: Dispositif, language: Languages, translation: Traductions, username: string) => {
+export const addTradToAirtable = async (
+  dispositif: Dispositif,
+  language: Languages,
+  translation: Traductions,
+  username: string,
+) => {
   const trad: TradToExport = {
     fields: {
       "Quel traducteur ?": username,
@@ -27,11 +32,12 @@ export const addTradToAirtable = async (dispositif: Dispositif, language: Langua
       "Langues": language.toUpperCase(),
       "Type": dispositif.typeContenu,
       "Travail effectué": translation.toReviewCache.length > 0 ? "à revoir" : "à traduire",
-      "Nb mots": translation.toReviewCache.length > 0 ?
-        countDispositifWordsForSections(dispositif.translations.fr, translation.toReviewCache) :
-        countDispositifWords(dispositif.translations.fr.content),
-    }
-  }
+      "Nb mots":
+        translation.toReviewCache.length > 0
+          ? countDispositifWordsForSections(dispositif.translations.fr, translation.toReviewCache)
+          : countDispositifWords(dispositif.translations.fr.content),
+    },
+  };
   return airtableContentBase("SUIVI TRAD").create([trad], { typecast: true }, (error: Error) => {
     if (error) {
       logger.error("[addTradToAirtable] error while adding trad to airtable", { error });
@@ -39,8 +45,7 @@ export const addTradToAirtable = async (dispositif: Dispositif, language: Langua
     }
     logger.info("[addTradToAirtable] trad successfully added");
   });
-}
-
+};
 
 interface FeedbackToExport {
   fields: {
@@ -56,7 +61,13 @@ interface FeedbackToExport {
   };
 }
 
-export const addFeedbackToAirtable = async (translator: User, expert: User, dispositif: Dispositif, language: Languages, feedbackRequest: TranslatorFeedback) => {
+export const addFeedbackToAirtable = async (
+  translator: User,
+  expert: User,
+  dispositif: Dispositif,
+  language: Languages,
+  feedbackRequest: TranslatorFeedback,
+) => {
   const feedback: FeedbackToExport = {
     fields: {
       "Pseudo du bénévole": translator.username,
@@ -68,8 +79,8 @@ export const addFeedbackToAirtable = async (translator: User, expert: User, disp
       "Lien": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
       "Thème": (dispositif.theme as Theme)?.short.fr || "",
       "Email bénévole": translator.email,
-    }
-  }
+    },
+  };
   return airtableContentBase("SUIVI bénévoles").create([feedback], { typecast: true }, (error: Error) => {
     if (error) {
       logger.error("[addFeedbackToAirtable] error while adding feedback to airtable", { error });
@@ -77,4 +88,4 @@ export const addFeedbackToAirtable = async (translator: User, expert: User, disp
     }
     logger.info("[addFeedbackToAirtable] feedback successfully added");
   });
-}
+};

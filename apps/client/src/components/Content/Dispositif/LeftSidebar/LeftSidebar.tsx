@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
 import { ContentType } from "@refugies-info/api-types";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "services/Themes/themes.selectors";
-import { Metadatas, Summary } from "components/Pages/dispositif";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { Metadatas, Summary } from "~/components/Pages/dispositif";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { themeSelector } from "~/services/Themes/themes.selectors";
 
 const Dispositif = () => {
   const dispositif = useSelector(selectedDispositifSelector);

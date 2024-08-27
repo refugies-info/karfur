@@ -1,22 +1,14 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, { fetchAllDispositifs } from "../allDispositifs.saga";
 import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { setAllDispositifsActionsCreator } from "../allDispositifs.actions";
+import latestActionsSaga, { fetchAllDispositifs } from "../allDispositifs.saga";
 
 describe("[Saga] All dispositifs", () => {
   describe("pilot", () => {
     it("should trigger all the all dispositifs sagas", () => {
-      testSaga(latestActionsSaga)
-        .next()
-        .takeLatest("FETCH_ALL_DISPOSITIFS", fetchAllDispositifs)
-        .next()
-        .isDone();
+      testSaga(latestActionsSaga).next().takeLatest("FETCH_ALL_DISPOSITIFS", fetchAllDispositifs).next().isDone();
     });
   });
 

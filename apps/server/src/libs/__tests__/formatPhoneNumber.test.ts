@@ -30,7 +30,7 @@ describe("formatPhoneNumber", () => {
   });
   it("should raise an error", () => {
     expect(() => {
-      formatPhoneNumber("003360708091")
+      formatPhoneNumber("003360708091");
     }).toThrow("Phone number length invalid");
   });
 });

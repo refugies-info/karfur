@@ -1,18 +1,18 @@
-import React, { memo, useCallback } from "react";
-import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { GetThemeResponse, Picture } from "@refugies-info/api-types";
-import { TextDSFR_MD_Bold, TextDSFR_S } from "../../components/StyledText";
-import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import Highlight from "../Search/Highlight";
-import { ReadableText } from "../ReadableText";
-import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
-import { ExplorerParamList } from "../../../types";
 import isEmpty from "lodash/isEmpty";
+import { memo, useCallback } from "react";
+import styled from "styled-components/native";
+import { RTLTouchableOpacity, RTLView } from "~/components/BasicComponents";
+import { TextDSFR_MD_Bold, TextDSFR_S } from "~/components/StyledText";
+import { ExplorerParamList } from "~/types/navigation";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import { ReadableText } from "../ReadableText";
+import Highlight from "../Search/Highlight";
 import { UriImage } from "../iconography";
+import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
 
 const NeedContainer = styled(RTLTouchableOpacity)<{
   needTheme: GetThemeResponse;
@@ -80,18 +80,8 @@ const NeedsSummaryComponent = ({
   }, [needTextFr, theme, id, backScreen, pressCallback]);
 
   return (
-    <NeedContainer
-      accessibilityRole="button"
-      needTheme={theme}
-      onPress={goToContent}
-      style={style}
-    >
-      <Columns
-        layout="1 auto"
-        horizontalAlign="center"
-        verticalAlign="center"
-        spacing={ColumnsSpacing.Large}
-      >
+    <NeedContainer accessibilityRole="button" needTheme={theme} onPress={goToContent} style={style}>
+      <Columns layout="1 auto" horizontalAlign="center" verticalAlign="center" spacing={ColumnsSpacing.Large}>
         <Rows spacing={RowsSpacing.Text} verticalAlign="center">
           <TextDSFR_MD_Bold color={theme.colors.color100}>
             {searchItem ? (
@@ -113,9 +103,7 @@ const NeedsSummaryComponent = ({
           ) : null}
         </Rows>
 
-        <IndicatorContainer>
-          {image && <UriImage uri={image.secure_url} />}
-        </IndicatorContainer>
+        <IndicatorContainer>{image && <UriImage uri={image.secure_url} />}</IndicatorContainer>
       </Columns>
     </NeedContainer>
   );

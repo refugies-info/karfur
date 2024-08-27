@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { sendPublishedTradMailToStructure } from "../sendPublishedTradMailToStructure";
 import { getStructureMembers } from "../../structure/structure.service";
 import { getUsersFromStructureMembres } from "../../users/users.service";
 import { sendPublishedTradMailToStructureService } from "../mail.service";
+import { sendPublishedTradMailToStructure } from "../sendPublishedTradMailToStructure";
 
 jest.mock("../../structure/structure.service", () => ({
   getStructureMembers: jest.fn(),

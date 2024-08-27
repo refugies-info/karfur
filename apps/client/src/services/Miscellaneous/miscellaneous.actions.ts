@@ -4,6 +4,6 @@ import { TOGGLE_NEWSLETTER_MODAL } from "./miscellaneous.actionTypes";
 export const toggleNewsletterModalAction = (visible?: boolean) => action(TOGGLE_NEWSLETTER_MODAL, visible);
 
 const actions = {
-  toggleNewsletterModalAction
+  toggleNewsletterModalAction,
 };
 export type MiscellaneousActions = ActionType<typeof actions>;

@@ -1,7 +1,7 @@
 import { get } from "lodash";
 
-import { AlgoliaObject } from "../types/interface";
-import { Dispositif, Langue, Need, Theme } from "../typegoose";
+import { Dispositif, Langue, Need, Theme } from "~/typegoose";
+import { AlgoliaObject } from "~/types/interface";
 
 const extractValuesPerLanguage = (translations: Dispositif["translations"], path: string, keyPrefix: string) => {
   if (!translations) return {};
@@ -37,12 +37,12 @@ const getAllThemeTitles = (theme: Theme, activeLanguages: Langue[], property: "n
 const getLocation = (dispositif: Dispositif): AlgoliaObject["location"] => {
   const location = dispositif.metadatas.location;
   if (Array.isArray(location)) {
-    return "0_localized"
+    return "0_localized";
   }
   if (location === "france") return "1_france";
   if (location === "online") return "2_online";
   return undefined;
-}
+};
 
 export const formatForAlgolia = (
   content: Dispositif | Need | Theme,
@@ -60,7 +60,7 @@ export const formatForAlgolia = (
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
       ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
       theme: { _id: (dispositif.theme as Theme)?._id || dispositif.theme || "" }, // TODO: revert to keeping only id (change on mobile app too)
-      secondaryThemes: (dispositif.secondaryThemes || []).map(t => ({ _id: (t as Theme)?._id || t })), // TODO: revert to keeping only id (change on mobile app too)
+      secondaryThemes: (dispositif.secondaryThemes || []).map((t) => ({ _id: (t as Theme)?._id || t })), // TODO: revert to keeping only id (change on mobile app too)
       needs: dispositif.needs,
       nbVues: dispositif.nbVues,
       typeContenu: dispositif.typeContenu,
@@ -68,7 +68,7 @@ export const formatForAlgolia = (
       sponsorName: mainSponsor?.nom,
       priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
       webOnly: dispositif.webOnly || false,
-      location
+      location,
     };
   } else if (type === "need") {
     const need = content as Need;

@@ -1,7 +1,14 @@
+import {
+  ContentType,
+  CreateDispositifRequest,
+  DispositifStatus,
+  GetDispositifsResponse,
+} from "@refugies-info/api-types";
 import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsResponse } from "@refugies-info/api-types";
 
-export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>): GetDispositifsResponse => {
+export const getDefaultDispositif = (
+  formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>,
+): GetDispositifsResponse => {
   return {
     _id: "",
     titreInformatif: formValues.titreInformatif || "Titre informatif",
@@ -12,17 +19,18 @@ export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateD
     secondaryThemes: formValues.secondaryThemes,
     metadatas: {
       location: formValues.metadatas?.location || ["Lieu"],
-      price: !!formValues.metadatas?.price ? {
-        values: formValues.metadatas?.price.values || [0],
-        details: formValues.metadatas?.price.details || undefined,
-      } : null,
+      price: !!formValues.metadatas?.price
+        ? {
+            values: formValues.metadatas?.price.values || [0],
+            details: formValues.metadatas?.price.details || undefined,
+          }
+        : null,
     },
     nbMots: 0,
     nbVues: 0,
     nbVuesMobile: 0,
     availableLanguages: [],
     needs: [],
-    hasDraftVersion: false
-  }
-}
-
+    hasDraftVersion: false,
+  };
+};

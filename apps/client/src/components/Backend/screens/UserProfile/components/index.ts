@@ -1,10 +1,10 @@
-export { default as LanguageBadge } from "./LanguageBadge";
-export { default as Tag } from "./Tag";
-export { default as EditButton } from "./EditButton";
 export { default as EditAvatar } from "./EditAvatar";
-export { default as UserProfileForm } from "./UserProfileForm";
+export { default as EditButton } from "./EditButton";
+export { default as LanguageBadge } from "./LanguageBadge";
+export * from "./ModalDeleteAccount";
 export * from "./ModalDepartments";
+export * from "./ModalEmailCode";
 export * from "./ModalLanguage";
 export * from "./ModalResetPassword";
-export * from "./ModalEmailCode";
-export * from "./ModalDeleteAccount";
+export { default as Tag } from "./Tag";
+export { default as UserProfileForm } from "./UserProfileForm";

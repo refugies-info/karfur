@@ -1,7 +1,6 @@
-import React from "react";
 import { Text } from "react-native";
-import Rows from "./Rows";
 import { render } from "../../utils/tests";
+import Rows from "./Rows";
 
 describe("Rows snapshot test suite", () => {
   it("should render without bug", async () => {
@@ -11,7 +10,7 @@ describe("Rows snapshot test suite", () => {
         <Text>Test</Text>
         <Text>Test</Text>
         <Text>Test</Text>
-      </Rows>
+      </Rows>,
     );
     expect(test).toMatchSnapshot();
   });
@@ -23,7 +22,7 @@ describe("Rows snapshot test suite", () => {
         <Text>Test</Text>
         <Text>Test</Text>
         <Text>Test</Text>
-      </Rows>
+      </Rows>,
     );
     expect(test).toMatchSnapshot();
   });

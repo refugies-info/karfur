@@ -3,7 +3,7 @@ import { FormattedNotification } from "./types";
 
 export const formatNotifications = (
   dispositifs: GetStructureDispositifResponse[],
-  hasResponsibleSeenAnnuaireNotif: boolean
+  hasResponsibleSeenAnnuaireNotif: boolean,
 ): FormattedNotification[] => {
   let result: FormattedNotification[] = [];
   if (!hasResponsibleSeenAnnuaireNotif) {
@@ -77,11 +77,8 @@ export const formatNotifications = (
 
 export const getNbNewNotifications = (
   dispositifs: GetStructureDispositifResponse[],
-  hasResponsibleSeenAnnuaireNotif: boolean
+  hasResponsibleSeenAnnuaireNotif: boolean,
 ) => {
-  const formattedNotifications = formatNotifications(
-    dispositifs,
-    hasResponsibleSeenAnnuaireNotif
-  );
+  const formattedNotifications = formatNotifications(dispositifs, hasResponsibleSeenAnnuaireNotif);
   return formattedNotifications.filter((notif) => !notif.read).length;
 };

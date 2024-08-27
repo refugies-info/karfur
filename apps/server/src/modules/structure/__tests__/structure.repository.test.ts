@@ -15,7 +15,6 @@ jest.mock("../../../schema/schemaStructure", () => ({
   }
 })); */
 
-
 describe.skip("getStructureFromDB", () => {
   it("should call Structure with populate if param is true", async () => {
     Structure.findOne.mockReturnValueOnce({
@@ -57,8 +56,8 @@ describe.skip("getStructuresFromDB", () => {
   it("should call structure.find when withDispositifsAssocies true ", async () => {
     Structure.find.mockReturnValueOnce({
       populate: jest.fn().mockReturnValue({
-        populate: jest.fn().mockResolvedValue(["structuresWithDispos"])
-      })
+        populate: jest.fn().mockResolvedValue(["structuresWithDispos"]),
+      }),
     });
 
     const query = { status: "Actif" };
@@ -78,7 +77,7 @@ describe.skip("updateAssociatedDispositifsInStructure", () => {
       { _id: "sponsorId" },
       { $addToSet: { dispositifsAssocies: "dispositifId" } },
       // @ts-ignore
-      { new: true }
+      { new: true },
     );
 
     expect(Structure.find).toHaveBeenCalledWith({
@@ -87,18 +86,14 @@ describe.skip("updateAssociatedDispositifsInStructure", () => {
   });
 
   it("should call Structure.findByIdAndUpdate and Structure.find which returns 2 structures", async () => {
-    Structure.find.mockResolvedValueOnce([
-      { _id: "id1" },
-      { _id: "id2" },
-      { _id: "sponsorId" },
-    ]);
+    Structure.find.mockResolvedValueOnce([{ _id: "id1" }, { _id: "id2" }, { _id: "sponsorId" }]);
 
     await updateAssociatedDispositifsInStructure("dispositifId", "sponsorId");
     expect(Structure.findByIdAndUpdate).toHaveBeenCalledWith(
       { _id: "sponsorId" },
       { $addToSet: { dispositifsAssocies: "dispositifId" } },
       // @ts-ignore
-      { new: true }
+      { new: true },
     );
 
     expect(Structure.find).toHaveBeenCalledWith({
@@ -109,19 +104,19 @@ describe.skip("updateAssociatedDispositifsInStructure", () => {
       { _id: "id1" },
       { $pull: { dispositifsAssocies: "dispositifId" } },
       // @ts-ignore
-      { new: true }
+      { new: true },
     );
     expect(Structure.findByIdAndUpdate).toHaveBeenCalledWith(
       { _id: "id2" },
       { $pull: { dispositifsAssocies: "dispositifId" } },
       // @ts-ignore
-      { new: true }
+      { new: true },
     );
     expect(Structure.findByIdAndUpdate).not.toHaveBeenCalledWith(
       { _id: "sponsorId" },
       { $pull: { dispositifsAssocies: "dispositifId" } },
       // @ts-ignore
-      { new: true }
+      { new: true },
     );
   });
 });

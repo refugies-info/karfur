@@ -1,18 +1,18 @@
-import React, { useMemo } from "react";
-import Image from "next/image";
-import { Col, Container, Row } from "reactstrap";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
-import { cls } from "lib/classname";
-import { useWindowSize } from "hooks";
-import { AvailableLanguageI18nCode } from "types/interface";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { assetsOnServer } from "assets/assetsOnServer";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
+import { Col, Container, Row } from "reactstrap";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useWindowSize } from "~/hooks";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
+import { AvailableLanguageI18nCode } from "~/types/interface";
+import styles from "./MobileApp.module.scss";
 import MobileAppIllu from "./MobileAppIllu";
 import MobileAppSmsForm from "./MobileAppSmsForm";
-import commonStyles from "scss/components/staticPages.module.scss";
-import styles from "./MobileApp.module.scss";
 
 const MobileApp = () => {
   const { t } = useTranslation();

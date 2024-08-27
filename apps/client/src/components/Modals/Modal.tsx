@@ -1,14 +1,13 @@
-import { cls } from "lib/classname";
-import React from "react";
 import { Modal, ModalHeader } from "reactstrap";
+import { cls } from "~/lib/classname";
 
 interface Props {
-  show: boolean
-  toggle?: any
-  modalHeader?: any
-  className?: string
-  modalRef?: any
-  children: any
+  show: boolean;
+  toggle?: any;
+  modalHeader?: any;
+  className?: string;
+  modalRef?: any;
+  children: any;
 }
 
 const modal = (props: Props) => {

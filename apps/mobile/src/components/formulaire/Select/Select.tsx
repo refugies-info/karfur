@@ -1,4 +1,3 @@
-import React from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
@@ -31,19 +30,10 @@ export const Select = ({ children, label, onPress, testID }: SelectProps) => {
   return (
     <View>
       <TextDSFR_MD>{label}</TextDSFR_MD>
-      <MainContainer
-        accessibilityRole="button"
-        onPress={onPress}
-        testID={testID}
-      >
+      <MainContainer accessibilityRole="button" onPress={onPress} testID={testID}>
         <Columns RTLBehaviour layout="1 auto" verticalAlign="center">
           <ReadableText>{children}</ReadableText>
-          <Icon
-            name="chevron-down"
-            width={24}
-            height={24}
-            fill={theme.colors.dsfr_dark}
-          />
+          <Icon name="chevron-down" width={24} height={24} fill={theme.colors.dsfr_dark} />
         </Columns>
       </MainContainer>
     </View>

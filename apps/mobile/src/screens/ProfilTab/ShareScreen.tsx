@@ -1,11 +1,8 @@
-import React, { useState, useCallback, useMemo } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useTheme } from "styled-components/native";
-import { useSelector } from "react-redux";
-import styled from "styled-components/native";
+import { useCallback, useMemo, useState } from "react";
 import { Share, View } from "react-native";
-import { ProfileParamList } from "../../../types";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useSelector } from "react-redux";
+import styled, { useTheme } from "styled-components/native";
 import {
   ButtonDSFR,
   Columns,
@@ -21,11 +18,13 @@ import {
   TextDSFR_MD,
   TextDSFR_MD_Med,
   Title,
-} from "../../components";
-import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { getSelectedLanguageFromI18nCode } from "../../libs/language";
-import { activatedLanguages } from "../../data/languagesData";
-import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
+} from "~/components";
+import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
+import { activatedLanguages } from "~/data/languagesData";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { getSelectedLanguageFromI18nCode } from "~/libs/language";
+import { selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { ProfileParamList } from "~/types/navigation";
 
 const FlagBackground = styled.View`
   background-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
@@ -43,17 +42,13 @@ const LanguagesContainer = styled.View`
   ${({ theme }) => theme.shadows.sm_dsfr};
 `;
 
-export const ShareScreen = ({
-  navigation,
-}: StackScreenProps<ProfileParamList, "ShareScreen">) => {
+export const ShareScreen = ({ navigation }: StackScreenProps<ProfileParamList, "ShareScreen">) => {
   const theme = useTheme();
   const { t, i18n, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
   const [open, setOpen] = useState(false);
-  const [selectedShareLanguage, setSelectedShareLanguage] = useState<string>(
-    selectedLanguageI18nCode || "fr"
-  );
+  const [selectedShareLanguage, setSelectedShareLanguage] = useState<string>(selectedLanguageI18nCode || "fr");
 
   const selectLanguage = useCallback((selectedCode: string) => {
     setSelectedShareLanguage(selectedCode);
@@ -72,7 +67,7 @@ export const ShareScreen = ({
 
   const selectedLanguage = useMemo(
     () => getSelectedLanguageFromI18nCode(selectedShareLanguage),
-    [selectedShareLanguage]
+    [selectedShareLanguage],
   );
 
   return (
@@ -85,11 +80,7 @@ export const ShareScreen = ({
       <Rows verticalAlign="space-between" spacing={RowsSpacing.Text}>
         <View>
           <Title>En quelle langue souhaites-tu envoyer l’application ?</Title>
-          <Select
-            label="Langue du message"
-            onPress={() => setOpen((o) => !o)}
-            testID="test-change-language"
-          >
+          <Select label="Langue du message" onPress={() => setOpen((o) => !o)} testID="test-change-language">
             <Columns RTLBehaviour layout="auto" verticalAlign="center">
               <FlagBackground>
                 <Flag langueFr={selectedLanguage.langueFr} />
@@ -97,9 +88,7 @@ export const ShareScreen = ({
               <RTLView>
                 <TextDSFR_MD_Med>{selectedLanguage.langueLoc}</TextDSFR_MD_Med>
                 <TextDSFR_MD style={{ color: theme.colors.dsfr_mentionGrey }}>
-                  {!isRTL
-                    ? " - " + selectedLanguage.langueFr
-                    : selectedLanguage.langueFr + " - "}
+                  {!isRTL ? " - " + selectedLanguage.langueFr : selectedLanguage.langueFr + " - "}
                 </TextDSFR_MD>
               </RTLView>
             </Columns>

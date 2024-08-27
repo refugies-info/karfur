@@ -11,7 +11,7 @@ const google_localities = [
   "sublocality_level_3",
   "sublocality_level_4",
   "sublocality_level_5",
-  "neighborhood"
+  "neighborhood",
 ];
 
 export { google_localities };

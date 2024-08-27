@@ -1,6 +1,7 @@
+import { Languages } from "@refugies-info/api-types";
 import * as React from "react";
-import styled from "styled-components/native";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Icon } from "react-native-eva-icons";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -8,32 +9,29 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { styles } from "../../theme";
+import { useSelector } from "react-redux";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { currentItemSelector } from "~/services/redux/VoiceOver/voiceOver.selectors";
+import { styles } from "~/theme";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 import { RTLTouchableOpacity } from "../BasicComponents";
+import { Columns } from "../layout";
+import { ReadableText } from "../ReadableText";
 import { TextDSFR_MD_Bold } from "../StyledText";
 import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
-import { Icon } from "react-native-eva-icons";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ContentFromHtml } from "./ContentFromHtml";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { ReadableText } from "../ReadableText";
-import { useSelector } from "react-redux";
-import { currentItemSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
-import { Languages } from "@refugies-info/api-types";
-import { Columns } from "../layout";
 
 const TitleContainer = styled(RTLTouchableOpacity)<{
   darkColor: string;
   isExpanded: boolean;
   lightColor: string;
 }>`
-  background-color: ${({ isExpanded, lightColor, theme }) =>
-    isExpanded ? lightColor : theme.colors.white};
+  background-color: ${({ isExpanded, lightColor, theme }) => (isExpanded ? lightColor : theme.colors.white)};
   padding: ${styles.margin * 2}px;
   border-radius: ${styles.radius * 2}px;
-  ${(props: { isExpanded: boolean }) =>
-    !props.isExpanded ? styles.shadows.lg : ""};
+  ${(props: { isExpanded: boolean }) => (!props.isExpanded ? styles.shadows.lg : "")};
   justify-content: space-between;
   border: ${({ darkColor, isExpanded, theme }) =>
     isExpanded ? `2px solid ${darkColor}` : `2px solid ${theme.colors.white}`};
@@ -109,17 +107,11 @@ export const AccordionAnimated = (props: Props) => {
   const toggleAccordion = () => setIsExpanded(!isExpanded);
   const height = useSharedValue(0);
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
-  const [hasSentEventInFirebase, setHasSentEventInFirebase] =
-    React.useState(false);
+  const [hasSentEventInFirebase, setHasSentEventInFirebase] = React.useState(false);
   const currentItemRef = React.useRef<string>("");
 
   const animatedHeight = useAnimatedStyle(() => ({
-    height: interpolate(
-      height.value,
-      [0, 1],
-      [0, bodySectionHeight],
-      Extrapolation.CLAMP
-    ),
+    height: interpolate(height.value, [0, 1], [0, bodySectionHeight], Extrapolation.CLAMP),
   }));
 
   const { isRTL } = useTranslationWithRTL();
@@ -145,8 +137,7 @@ export const AccordionAnimated = (props: Props) => {
   const currentItem = useSelector(currentItemSelector);
 
   React.useEffect(() => {
-    const accordionIsReading =
-      currentItem && currentItem.id === currentItemRef.current;
+    const accordionIsReading = currentItem && currentItem.id === currentItemRef.current;
     setIsExpanded(!!accordionIsReading);
     height.value = withTiming(accordionIsReading ? 1 : 0, { duration: 500 });
   }, [currentItem]);
@@ -183,21 +174,14 @@ export const AccordionAnimated = (props: Props) => {
             />
           )}
           <IconContainer isRTL={isRTL}>
-            <Icon
-              name={isExpanded ? "chevron-up" : "chevron-down"}
-              height={24}
-              width={24}
-              fill={props.darkColor}
-            />
+            <Icon name={isExpanded ? "chevron-up" : "chevron-down"} height={24} width={24} fill={props.darkColor} />
           </IconContainer>
         </Columns>
       </TitleContainer>
 
       <Animated.View style={[stylesheet.bodyBackground, animatedHeight]}>
         <View
-          onLayout={(event: any) =>
-            setBodySectionHeight(event.nativeEvent.layout.height)
-          }
+          onLayout={(event: any) => setBodySectionHeight(event.nativeEvent.layout.height)}
           style={stylesheet.bodyContainer}
         >
           <ExpandedContentContainer>

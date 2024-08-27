@@ -1,24 +1,10 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchThemes,
-  saveTheme,
-  createTheme,
-  deleteTheme
-} from "../themes.saga";
-import {
-  DELETE_THEME,
-  SAVE_THEME,
-  CREATE_THEME,
-} from "../themes.actionTypes";
 import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-  setError,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey, finishLoading, setError, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { setThemesActionCreator } from "../themes.actions";
+import { CREATE_THEME, DELETE_THEME, SAVE_THEME } from "../themes.actionTypes";
+import latestActionsSaga, { createTheme, deleteTheme, fetchThemes, saveTheme } from "../themes.saga";
 import { allThemesSelector } from "../themes.selectors";
 
 describe("[Saga] Themes", () => {
@@ -74,16 +60,16 @@ describe("[Saga] Themes", () => {
         type: SAVE_THEME,
         payload: {
           value: {
-            name: "new"
+            name: "new",
           },
-          id: "id3"
+          id: "id3",
         },
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_THEME))
         .next()
         .call(API.patchTheme, "id3", {
-          name: "new"
+          name: "new",
         })
         .next({ _id: "id3", name: "new" })
         .select(allThemesSelector)
@@ -102,7 +88,7 @@ describe("[Saga] Themes", () => {
         type: CREATE_THEME,
         payload: {
           _id: "id3",
-          name: "new"
+          name: "new",
         },
       })
         .next()
@@ -110,7 +96,7 @@ describe("[Saga] Themes", () => {
         .next()
         .call(API.postThemes, {
           _id: "id3",
-          name: "new"
+          name: "new",
         })
         .next({ _id: "id3", name: "new" })
         .select(allThemesSelector)

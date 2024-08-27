@@ -1,20 +1,17 @@
-import Dispositif from "components/Content/Dispositif";
-import { wrapper } from "services/configureStore";
-import { END } from "redux-saga";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { FormProvider, useForm } from "react-hook-form";
-import { logger } from "logger";
-import { getPath } from "routes";
-import { canTranslate, getTranslationPageData } from "lib/dispositif";
-import PageContext from "utils/pageContext";
-import { useDispositifTranslateForm } from "hooks/dispositif";
-import DispositifTranslate from "components/Content/DispositifTranslate";
-import API from "utils/API";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { FormProvider } from "react-hook-form";
+import { END } from "redux-saga";
+import { getPath } from "routes";
+import DispositifTranslate from "~/components/Content/DispositifTranslate";
+import { useDispositifTranslateForm } from "~/hooks/dispositif";
+import { canTranslate, getTranslationPageData } from "~/lib/dispositif";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { wrapper } from "~/services/configureStore";
+import { fetchSelectedDispositifActionCreator } from "~/services/SelectedDispositif/selectedDispositif.actions";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import PageContext from "~/utils/pageContext";
 
 interface Props {
   history: string[];

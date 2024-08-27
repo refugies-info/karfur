@@ -1,18 +1,18 @@
+import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
-import API from "utils/API";
-import { userDetailsSelector } from "services/User/user.selectors";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { fetchUserFavoritesActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import { fetchUserFavoritesActionCreator } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import API from "~/utils/API";
 import useAuth from "./useAuth";
 
 export const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id | null) => {
   if (id === null) return false;
   if ((userDetails?.favorites || []).length === 0) return false;
-  return !!(userDetails?.favorites || []).find(c => c.dispositifId === id);
-}
+  return !!(userDetails?.favorites || []).find((c) => c.dispositifId === id);
+};
 
 const useFavorites = (contentId: Id | null) => {
   const userDetails = useSelector(userDetailsSelector);
@@ -25,8 +25,8 @@ const useFavorites = (contentId: Id | null) => {
   const [isFavorite, setIsFavorite] = useState(isContentFavorite(userDetails, contentId));
 
   useEffect(() => {
-    setIsFavorite(isContentFavorite(userDetails, contentId))
-  }, [userDetails, contentId])
+    setIsFavorite(isContentFavorite(userDetails, contentId));
+  }, [userDetails, contentId]);
 
   const successCallback = useCallback(() => {
     dispatch(fetchUserActionCreator());
@@ -48,6 +48,6 @@ const useFavorites = (contentId: Id | null) => {
   }, [userDetails, contentId, isFavorite, successCallback, isAuth]);
 
   return { isFavorite, addToFavorites, deleteFromFavorites };
-}
+};
 
 export default useFavorites;

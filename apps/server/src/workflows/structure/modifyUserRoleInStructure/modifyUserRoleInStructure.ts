@@ -1,14 +1,14 @@
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
-import { sendNewReponsableMailService } from "../../../modules/mail/mail.service";
-import { getUserById } from "../../../modules/users/users.repository";
-import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
-import { addStructureForUsers, removeStructureOfUser } from "../../../modules/users/users.service";
-import { getRoleByName } from "../../../modules/role/role.repository";
-import { log } from "./log";
-import { User } from "../../../typegoose";
 import { PatchStructureRolesRequest, RoleName, StructureMemberRole } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { sendNewReponsableMailService } from "~/modules/mail/mail.service";
+import { getRoleByName } from "~/modules/role/role.repository";
+import { getStructureFromDB, updateStructureMember } from "~/modules/structure/structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
+import { getUserById } from "~/modules/users/users.repository";
+import { addStructureForUsers, removeStructureOfUser } from "~/modules/users/users.service";
+import { User } from "~/typegoose";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const modifyUserRoleInStructure = async (id: string, body: PatchStructureRolesRequest, user: User): Response => {
   const { membreId, action, role } = body;

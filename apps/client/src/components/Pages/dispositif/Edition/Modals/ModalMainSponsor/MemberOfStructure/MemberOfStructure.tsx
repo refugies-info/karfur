@@ -1,9 +1,8 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import YesIcon from "~/assets/dispositif/yes-icon.svg";
 import ChoiceButton from "../../../ChoiceButton";
-import YesIcon from "assets/dispositif/yes-icon.svg";
-import NoIcon from "assets/dispositif/no-icon.svg";
-import styles from "./MemberOfStructure.module.scss";
 
 interface Props {
   memberOfStructure: boolean | null;

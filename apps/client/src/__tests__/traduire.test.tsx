@@ -1,5 +1,5 @@
 import "jest-styled-components";
-import { initialMockStore } from "__fixtures__/reduxStore";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
 import traduire from "../pages/traduire";
 

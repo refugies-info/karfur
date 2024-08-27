@@ -1,7 +1,7 @@
-import NotificationsModal from "./NotificationsModal";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import NotificationsModal from "./NotificationsModal";
 import useNotificationsModal from "./useNotificationsModal";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
 
 // @see https://stackoverflow.com/questions/50793885/referenceerror-you-are-trying-to-import-a-file-after-the-jest-environment-has
 jest.useFakeTimers();

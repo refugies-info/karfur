@@ -1,6 +1,6 @@
-import { Controller, Post, Route, Body, Security } from "tsoa";
 import { TtsRequest } from "@refugies-info/api-types";
-import { getTts } from "../workflows/tts/getTts";
+import { Body, Controller, Post, Route, Security } from "tsoa";
+import { getTts } from "~/workflows/tts/getTts";
 
 @Route("tts")
 export class TtsController extends Controller {

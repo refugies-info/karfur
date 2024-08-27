@@ -1,10 +1,9 @@
-import React from "react";
 import { ScrollView } from "react-native";
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "styled-components/native";
-import useNotificationsModal from "./useNotificationsModal";
 import { EnableNotifications } from "../EnableNotifications";
+import useNotificationsModal from "./useNotificationsModal";
 
 interface Props {
   /**

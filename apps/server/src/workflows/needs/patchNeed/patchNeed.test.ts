@@ -1,10 +1,10 @@
 // @ts-nocheck
 /* import saveNeed from "./saveNeed";
-import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository"; */
+import { getNeedFromDB, saveNeedInDB } from "~/modules/needs/needs.repository"; */
 /* import {
   checkIfUserIsAdminOrExpert,
   checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations"; */
+} from "~/libs/checkAuthorizations"; */
 
 /* jest.mock("../../../modules/needs/needs.repository", () => ({
   getNeedFromDB: jest.fn().mockResolvedValue({
@@ -46,7 +46,7 @@ describe.skip("saveNeed", () => {
     });
     const req = {
       fromSite: false,
-      params: {}
+      params: {},
     };
     await saveNeed[1](req, res);
     expect(res.status).toHaveBeenCalledWith(405);
@@ -54,10 +54,10 @@ describe.skip("saveNeed", () => {
   it("should return 403 if not admin or expert", async () => {
     checkIfUserIsAdminOrExpert.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
-      params: {}
+      params: {},
     };
     await saveNeed[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -65,25 +65,24 @@ describe.skip("saveNeed", () => {
   it("should return 400 if no id", async () => {
     const req = {
       user: { roles: [] },
-      params: {}
+      params: {},
     };
     await saveNeed[1](req, res);
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
   it("should return 200 and edit updateAt when text changes", async () => {
-
     const req = {
       user: { roles: [] },
       params: {
-        id: "needId"
+        id: "needId",
       },
       body: {
         fr: {
           text: "nouveau titre",
-          subtitle: "sous-titre"
-        }
-      }
+          subtitle: "sous-titre",
+        },
+      },
     };
 
     const date = "2023-01-01";
@@ -94,8 +93,8 @@ describe.skip("saveNeed", () => {
       fr: {
         text: "nouveau titre",
         subtitle: "sous-titre",
-        updatedAt: "2023-01-01"
-      }
+        updatedAt: "2023-01-01",
+      },
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -104,14 +103,14 @@ describe.skip("saveNeed", () => {
     const req = {
       user: { roles: [] },
       params: {
-        id: "needId"
+        id: "needId",
       },
       body: {
         fr: {
           text: "titre",
-          subtitle: "nouveau sous-titre"
-        }
-      }
+          subtitle: "nouveau sous-titre",
+        },
+      },
     };
 
     const date = "2023-01-01";
@@ -122,8 +121,8 @@ describe.skip("saveNeed", () => {
       fr: {
         text: "titre",
         subtitle: "nouveau sous-titre",
-        updatedAt: "2023-01-01"
-      }
+        updatedAt: "2023-01-01",
+      },
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -132,14 +131,14 @@ describe.skip("saveNeed", () => {
     const req = {
       user: { roles: [] },
       params: {
-        id: "needId"
+        id: "needId",
       },
       body: {
         fr: {
           text: "titre",
-          subtitle: "sous-titre"
-        }
-      }
+          subtitle: "sous-titre",
+        },
+      },
     };
 
     const date = "2023-01-01";
@@ -150,8 +149,8 @@ describe.skip("saveNeed", () => {
       fr: {
         text: "titre",
         subtitle: "sous-titre",
-        updatedAt: "2022-12-31"
-      }
+        updatedAt: "2022-12-31",
+      },
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -160,15 +159,15 @@ describe.skip("saveNeed", () => {
     const req = {
       user: { roles: [] },
       params: {
-        id: "needId"
+        id: "needId",
       },
       body: {
         en: {
           text: "title",
           subtitle: "subtitle",
-          updatedAt: "2023-02-01"
-        }
-      }
+          updatedAt: "2023-02-01",
+        },
+      },
     };
 
     await saveNeed[1](req, res);
@@ -176,8 +175,8 @@ describe.skip("saveNeed", () => {
       en: {
         text: "title",
         subtitle: "subtitle",
-        updatedAt: "2023-02-01"
-      }
+        updatedAt: "2023-02-01",
+      },
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });

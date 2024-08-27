@@ -1,7 +1,7 @@
-import { AppUserModel } from "../../../typegoose";
-import logger from "../../../logger";
-import { deleteThemeById } from "../../../modules/themes/themes.repository";
-import { Response } from "../../../types/interface";
+import logger from "~/logger";
+import { deleteThemeById } from "~/modules/themes/themes.repository";
+import { AppUserModel } from "~/typegoose";
+import { Response } from "~/types/interface";
 
 export const deleteTheme = async (id: string): Response => {
   logger.info("[deleteTheme] received", id);
@@ -11,4 +11,3 @@ export const deleteTheme = async (id: string): Response => {
 
   return { text: "success" };
 };
-

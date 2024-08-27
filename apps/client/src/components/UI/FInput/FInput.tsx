@@ -1,9 +1,9 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 import React from "react";
 import { Input, InputGroup, InputGroupText } from "reactstrap";
 import { InputType } from "reactstrap/types/lib/Input";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { cls } from "~/lib/classname";
+import { colors } from "~/utils/colors";
 import styles from "./FInput.module.scss";
 
 interface Props {
@@ -71,8 +71,8 @@ const FInput = (props: Props) => {
           props.inputClassName === "password-input" && props.value
             ? { width: props.value.length * 10 }
             : props.height && props.padding
-            ? { height: props.height, padding: props.padding }
-            : {}
+              ? { height: props.height, padding: props.padding }
+              : {}
         }
       />
       {(props.append || props.error) && (

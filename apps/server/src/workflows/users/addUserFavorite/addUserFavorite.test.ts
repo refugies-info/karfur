@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* import { getUserFavoritesInLocale } from "./getUserFavoritesInLocale";
-import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import functions from "../../../controllers/dispositif/functions";
+import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import functions from "~/controllers/dispositif/functions";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifById: jest.fn()
@@ -50,7 +50,7 @@ describe.skip("getUserFavoritesInLocale", () => {
     const req = {
       fromSite: true,
       query: { locale: "fr" },
-      user: { _id: "userId" }
+      user: { _id: "userId" },
     };
     await getUserFavoritesInLocale(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -61,7 +61,7 @@ describe.skip("getUserFavoritesInLocale", () => {
     const req = {
       fromSite: true,
       query: { locale: "fr" },
-      user: { _id: "userId", cookies: { parkourPinned: {} } }
+      user: { _id: "userId", cookies: { parkourPinned: {} } },
     };
     await getUserFavoritesInLocale(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -72,7 +72,7 @@ describe.skip("getUserFavoritesInLocale", () => {
     const req = {
       fromSite: true,
       query: { locale: "fr" },
-      user: { _id: "userId", cookies: { dispositifPinned: [] } }
+      user: { _id: "userId", cookies: { dispositifPinned: [] } },
     };
     await getUserFavoritesInLocale(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -90,7 +90,7 @@ describe.skip("getUserFavoritesInLocale", () => {
     contenu: 1,
     mainSponsor: 1,
     needs: 1,
-    lastModificationDate: 1
+    lastModificationDate: 1,
   };
 
   it("should return 200 and get dispo if dispo pinned", async () => {
@@ -99,42 +99,42 @@ describe.skip("getUserFavoritesInLocale", () => {
       contenu: [{}, { children: [] }],
       mainSponsor: {
         nom: "",
-        picture: { secure_url: null }
-      }
+        picture: { secure_url: null },
+      },
     };
     const dispo1 = {
       titreInformatif: "TI1",
       contenu: [],
       toJSON: () => dispo1Data,
-      status: "Actif"
+      status: "Actif",
     };
     const dispo2Data = {
       titreInformatif: "TI2",
       contenu: [{}, { children: [] }],
       mainSponsor: {
         nom: "",
-        picture: { secure_url: null }
-      }
+        picture: { secure_url: null },
+      },
     };
     const dispo2 = {
       titreInformatif: "TI2",
       contenu: [],
       toJSON: () => dispo2Data,
-      status: "En attente"
+      status: "En attente",
     };
     const dispo3Data = {
       titreInformatif: "TI3",
       contenu: [{}, { children: [] }],
       mainSponsor: {
         nom: "",
-        picture: { secure_url: null }
-      }
+        picture: { secure_url: null },
+      },
     };
     const dispo3 = {
       titreInformatif: "TI3",
       contenu: [],
       toJSON: () => dispo3Data,
-      status: "Actif"
+      status: "Actif",
     };
     getDispositifById.mockResolvedValueOnce(dispo1);
     getDispositifById.mockResolvedValueOnce(dispo2);
@@ -147,9 +147,9 @@ describe.skip("getUserFavoritesInLocale", () => {
       user: {
         _id: "userId",
         cookies: {
-          dispositifsPinned: [{ _id: "id1" }, { _id: "id2" }, { _id: "id3" }]
-        }
-      }
+          dispositifsPinned: [{ _id: "id1" }, { _id: "id2" }, { _id: "id3" }],
+        },
+      },
     };
     await getUserFavoritesInLocale(req, res);
 
@@ -161,7 +161,7 @@ describe.skip("getUserFavoritesInLocale", () => {
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      data: [dispo1Data, dispo3Data]
+      data: [dispo1Data, dispo3Data],
     });
   });
 });

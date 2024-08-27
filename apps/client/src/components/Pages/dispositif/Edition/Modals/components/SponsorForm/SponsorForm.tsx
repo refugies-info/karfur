@@ -1,8 +1,7 @@
-import React from "react";
 import { Picture } from "@refugies-info/api-types";
-import Input from "components/Pages/dispositif/Input";
+import React from "react";
+import Input from "~/components/Pages/dispositif/Input";
 import LogoInput from "../../../LogoInput";
-import styles from "./SponsorForm.module.scss";
 
 interface Props {
   name: string | undefined;

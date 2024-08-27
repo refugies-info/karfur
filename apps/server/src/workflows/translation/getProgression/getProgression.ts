@@ -1,7 +1,7 @@
 import { GetProgressionResponse, ProgressionIndicator } from "@refugies-info/api-types";
-import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
-import logger from "../../../logger";
-import { IndicatorModel, ObjectId } from "../../../typegoose";
+import { computeGlobalIndicator } from "~/controllers/traduction/lib";
+import logger from "~/logger";
+import { IndicatorModel, ObjectId } from "~/typegoose";
 
 export const computeIndicator = async (userId: string, start: Date, end: Date): Promise<ProgressionIndicator> =>
   IndicatorModel.aggregate([
@@ -27,7 +27,7 @@ export const computeAllIndicators = async (userId: string, onlyTotal: boolean): 
     const totalIndicator = await computeGlobalIndicator(userId);
 
     let response: GetProgressionResponse = {
-      totalIndicator
+      totalIndicator,
     };
 
     if (!onlyTotal) {
@@ -59,6 +59,7 @@ export const computeAllIndicators = async (userId: string, onlyTotal: boolean): 
   }
 };
 
-const getProgression = (userId: string, onlyTotal: boolean): Promise<GetProgressionResponse> => computeAllIndicators(userId, onlyTotal);
+const getProgression = (userId: string, onlyTotal: boolean): Promise<GetProgressionResponse> =>
+  computeAllIndicators(userId, onlyTotal);
 
 export default getProgression;

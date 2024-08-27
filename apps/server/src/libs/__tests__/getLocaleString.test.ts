@@ -2,16 +2,15 @@
 import { getLocaleString } from "../getLocaleString";
 
 jest.mock("../../locales/fr/common.json", () => ({
-  "teststring": "Test 1",
-  "testparam": "test {{param}} sentence",
-  "testparams": "test {{param}} sentence with {{count}} params",
+  teststring: "Test 1",
+  testparam: "test {{param}} sentence",
+  testparams: "test {{param}} sentence with {{count}} params",
 }));
 jest.mock("../../locales/en/common.json", () => ({
-  "nested": {
-    "teststring": "Test 2"
-  }
+  nested: {
+    teststring: "Test 2",
+  },
 }));
-
 
 describe("getLocaleString", () => {
   it("should return the translation", () => {

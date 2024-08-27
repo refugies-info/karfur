@@ -1,9 +1,5 @@
-export const getDepartementFromResult = (
-  data: { long_name: string; short_name: string; types: string[] }[]
-) => {
-  const result = data.filter((element) =>
-    element.types.includes("administrative_area_level_2")
-  );
+export const getDepartementFromResult = (data: { long_name: string; short_name: string; types: string[] }[]) => {
+  const result = data.filter((element) => element.types.includes("administrative_area_level_2"));
   if (result.length > 0) {
     const department = result[0].long_name;
     if (department === "Département de Paris") {
@@ -14,9 +10,7 @@ export const getDepartementFromResult = (
   return null;
 };
 
-export const getCityFromResult = (
-  data: { long_name: string; short_name: string; types: string[] }[]
-) => {
+export const getCityFromResult = (data: { long_name: string; short_name: string; types: string[] }[]) => {
   const result = data.filter((element) => element.types.includes("locality"));
   if (result.length > 0) {
     const department = result[0].long_name;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Tooltip as TooltipTS, TooltipProps } from "reactstrap";
-import { cls } from "lib/classname";
+import { TooltipProps, Tooltip as TooltipTS } from "reactstrap";
+import { cls } from "~/lib/classname";
 import styles from "./Tooltip.module.scss";
 
 interface Props {

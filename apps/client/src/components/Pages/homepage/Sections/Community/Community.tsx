@@ -1,20 +1,19 @@
-import React from "react";
-import { Container } from "reactstrap";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
+import { useRouter } from "next/router";
+import { Container } from "reactstrap";
 import { getPath } from "routes";
-import CommunityRedacteurs from "assets/homepage/community-redacteurs.png";
-import CommunityStructures from "assets/homepage/community-structures.png";
-import CommunityCda from "assets/homepage/community-cda.png";
-import CommunityTraducteurs from "assets/homepage/community-traducteurs.png";
-import CommunityExperts from "assets/homepage/community-experts.png";
-import CommunityAmbassadeurs from "assets/homepage/community-ambassadeurs.png";
-import CommunityInfluenceurs from "assets/homepage/community-influenceurs.png";
-import CommunityTesteurs from "assets/homepage/community-testeurs.png";
-import CommunityEquipe from "assets/homepage/community-equipe.png";
+import CommunityAmbassadeurs from "~/assets/homepage/community-ambassadeurs.png";
+import CommunityCda from "~/assets/homepage/community-cda.png";
+import CommunityEquipe from "~/assets/homepage/community-equipe.png";
+import CommunityExperts from "~/assets/homepage/community-experts.png";
+import CommunityInfluenceurs from "~/assets/homepage/community-influenceurs.png";
+import CommunityRedacteurs from "~/assets/homepage/community-redacteurs.png";
+import CommunityStructures from "~/assets/homepage/community-structures.png";
+import CommunityTesteurs from "~/assets/homepage/community-testeurs.png";
+import CommunityTraducteurs from "~/assets/homepage/community-traducteurs.png";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 import CommunityCard from "../../CommunityCard";
-import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./Community.module.scss";
 
 interface Props {

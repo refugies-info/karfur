@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
 
 $breakpoint: "lg-limit";
 
@@ -56,7 +56,7 @@ $breakpoint: "lg-limit";
 
   @include media-max($breakpoint) {
     @include text("normal");
-    
+
     margin-top: u(4);
     margin-bottom: u(4);
   }

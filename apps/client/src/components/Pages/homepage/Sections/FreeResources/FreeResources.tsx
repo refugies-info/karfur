@@ -1,12 +1,11 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
-import Link from "next/link";
-import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import { cls } from "lib/classname";
-import FreeResourcesImg from "assets/homepage/free-resources.png";
-import { InlineLink } from "components/Pages/staticPages/common";
-import commonStyles from "scss/components/staticPages.module.scss";
+import Image from "next/image";
+import Link from "next/link";
+import { Col, Container, Row } from "reactstrap";
+import FreeResourcesImg from "~/assets/homepage/free-resources.png";
+import { InlineLink } from "~/components/Pages/staticPages/common";
+import { cls } from "~/lib/classname";
+import commonStyles from "~/scss/components/staticPages.module.scss";
 import styles from "./FreeResources.module.scss";
 
 const FreeResources = () => {

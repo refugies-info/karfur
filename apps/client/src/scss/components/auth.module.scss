@@ -1,11 +1,11 @@
 /* stylelint-disable selector-class-pattern */
 /* stylelint-disable scss/at-extend-no-missing-placeholder */
-@import "~scss/mixins/text";
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/margins";
+@import "~/scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/margins";
 
 .container {
   &.half {
@@ -101,7 +101,7 @@
 
     h1 {
       @include dsfr-text("h3");
-      
+
       margin-bottom: u(6);
     }
   }
@@ -170,11 +170,21 @@
   // remove separator
   :global(.fr-radio-rich input[type="radio"] + label) {
     padding-right: 0;
-    background-size: 100% 1px, 0 100%, 100% 1px, 1px 100%, 1.125rem 1.125rem, 1.125rem 1.125rem;
+    background-size:
+      100% 1px,
+      0 100%,
+      100% 1px,
+      1px 100%,
+      1.125rem 1.125rem,
+      1.125rem 1.125rem;
   }
 
   :global(.fr-radio-rich__img) {
-    background-size: 100% 1px, 100% 1px, 1px 100%, 0 0;
+    background-size:
+      100% 1px,
+      100% 1px,
+      1px 100%,
+      0 0;
   }
 }
 

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { cls } from "lib/classname";
-import GoogleLogo from "assets/dispositif/google.svg";
-import UserAvatar from "assets/mario-profile.jpg";
-import Crown from "assets/dispositif/crown.svg";
+import Crown from "~/assets/dispositif/crown.svg";
+import GoogleLogo from "~/assets/dispositif/google.svg";
+import UserAvatar from "~/assets/mario-profile.jpg";
+import { cls } from "~/lib/classname";
 import styles from "./UserSuggest.module.scss";
 
 interface Props {

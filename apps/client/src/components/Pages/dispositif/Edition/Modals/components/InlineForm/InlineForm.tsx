@@ -1,5 +1,5 @@
-import { cls } from "lib/classname";
 import React from "react";
+import { cls } from "~/lib/classname";
 import styles from "./InlineForm.module.scss";
 
 interface Props {

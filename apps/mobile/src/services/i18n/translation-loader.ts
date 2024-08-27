@@ -1,5 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
-import * as config from "../../config/i18n";
+import * as config from "~/config/i18n";
 
 const translationLoader: any = {
   type: "backend",

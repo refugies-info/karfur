@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
-@import "~scss/mixins/input";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/input";
 
 .form {
   display: flex;
@@ -40,7 +40,7 @@
       &:active {
         background: var(--background-contrast-grey) !important;
       }
-      
+
       &:focus {
         background: var(--background-alt-raised-grey) !important;
         border-color: $darkBackgroundAltGrey;

@@ -1,12 +1,11 @@
-import React from "react";
-import Link from "next/link";
-import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
-import { useTranslation } from "next-i18next";
-import styles from "./Header.module.scss";
-import useRTL from "hooks/useRTL";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
+import useRTL from "~/hooks/useRTL";
+import styles from "./Header.module.scss";
+import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 
 interface Props {
   letters: string[];

@@ -1,8 +1,8 @@
-import { useQueryClient } from "react-query";
 import set from "lodash/set";
+import { useQueryClient } from "react-query";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 import { useApi, useApiMutation } from "./useApi";
-import { logEventInFirebase } from "../utils/logEvent";
-import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 
 export type NotificationsSettings = {
   global: boolean;
@@ -25,13 +25,13 @@ const logSettingsUpdate = (key: string, value: boolean) => {
 
 export const useNotificationsSettings = (): [
   NotificationsSettings | undefined,
-  (key: string, value: boolean) => void
+  (key: string, value: boolean) => void,
 ] => {
   const queryClient = useQueryClient();
   const { data: settings } = useApi<NotificationsSettings, Error>(
     "/appuser/notification_settings",
     "GET",
-    "notificationsSettings"
+    "notificationsSettings",
   );
 
   const mutation = useApiMutation<Partial<NotificationsSettings>, Error>(
@@ -43,7 +43,7 @@ export const useNotificationsSettings = (): [
         queryClient.invalidateQueries("notificationsSettings");
         throw new Error("Failed to update notifications settings");
       },
-    }
+    },
   );
 
   const updateSettings = async (key: string, value: boolean) => {

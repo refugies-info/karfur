@@ -1,50 +1,43 @@
+import { MobileFrenchLevel } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  saveSelectedLanguage,
-  saveHasUserSeenOnboarding,
-  saveUserAge,
-  saveUserLocation,
-  saveUserFrenchLevel,
-  getUserInfos,
-  removeSelectedLanguage,
-  removeUserLocation,
-  removeUserAge,
-  removeUserFrenchLevel,
-  removeHasUserSeenOnboarding,
-  addUserFavorite,
-  removeUserFavorite,
-  removeUserAllFavorites,
-  saveUserHasNewFavorites,
-  removeUserHasNewFavorites,
-  saveUserLocalizedWarningHidden,
-  removeUserLocalizedWarningHidden,
-  resetUser,
-} from "../user.saga";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import { fetchContentsActionCreator } from "../../Contents/contents.actions";
+import { LoadingStatusKey, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { deleteItemInAsyncStorage, getItemInAsyncStorage, saveItemInAsyncStorage } from "../functions";
 import {
-  saveItemInAsyncStorage,
-  getItemInAsyncStorage,
-  deleteItemInAsyncStorage,
-} from "../functions";
-import {
-  setSelectedLanguageActionCreator,
-  setHasUserSeenOnboardingActionCreator,
   setCurrentLanguageActionCreator,
-  setUserFrenchLevelActionCreator,
+  setHasUserSeenOnboardingActionCreator,
+  setSelectedLanguageActionCreator,
   setUserAgeActionCreator,
-  setUserLocationActionCreator,
   setUserFavoritesActionCreator,
+  setUserFrenchLevelActionCreator,
   setUserHasNewFavoritesActionCreator,
   setUserLocalizedWarningHiddenActionCreator,
+  setUserLocationActionCreator,
 } from "../user.actions";
-import {
-  startLoading,
-  LoadingStatusKey,
-} from "../../LoadingStatus/loadingStatus.actions";
-import { fetchContentsActionCreator } from "../../Contents/contents.actions";
-import { hasUserSeenOnboardingSelector, shouldLoadContentSelector } from "../user.selectors";
-import { logEventInFirebase } from "../../../../utils/logEvent";
-import { FirebaseEvent } from "../../../../utils/eventsUsedInFirebase";
-import { MobileFrenchLevel } from "@refugies-info/api-types";
+import latestActionsSaga, {
+  addUserFavorite,
+  getUserInfos,
+  removeHasUserSeenOnboarding,
+  removeSelectedLanguage,
+  removeUserAge,
+  removeUserAllFavorites,
+  removeUserFavorite,
+  removeUserFrenchLevel,
+  removeUserHasNewFavorites,
+  removeUserLocalizedWarningHidden,
+  removeUserLocation,
+  resetUser,
+  saveHasUserSeenOnboarding,
+  saveSelectedLanguage,
+  saveUserAge,
+  saveUserFrenchLevel,
+  saveUserHasNewFavorites,
+  saveUserLocalizedWarningHidden,
+  saveUserLocation,
+} from "../user.saga";
+import { shouldLoadContentSelector } from "../user.selectors";
 
 describe("[Saga] user", () => {
   describe("pilot", () => {
@@ -57,10 +50,7 @@ describe("[Saga] user", () => {
         .next()
         .takeLatest("SAVE_USER_HAS_NEW_FAVORITES", saveUserHasNewFavorites)
         .next()
-        .takeLatest(
-          "SAVE_USER_LOCALIZED_WARNING_HIDDEN",
-          saveUserLocalizedWarningHidden
-        )
+        .takeLatest("SAVE_USER_LOCALIZED_WARNING_HIDDEN", saveUserLocalizedWarningHidden)
         .next()
         .takeLatest("SAVE_USER_LOCATION", saveUserLocation)
         .next()
@@ -78,17 +68,11 @@ describe("[Saga] user", () => {
         .next()
         .takeLatest("REMOVE_USER_FRENCH_LEVEL", removeUserFrenchLevel)
         .next()
-        .takeLatest(
-          "REMOVE_USER_HAS_SEEN_ONBOARDING",
-          removeHasUserSeenOnboarding
-        )
+        .takeLatest("REMOVE_USER_HAS_SEEN_ONBOARDING", removeHasUserSeenOnboarding)
         .next()
         .takeLatest("REMOVE_USER_HAS_NEW_FAVORITES", removeUserHasNewFavorites)
         .next()
-        .takeLatest(
-          "REMOVE_USER_LOCALIZED_WARNING_HIDDEN",
-          removeUserLocalizedWarningHidden
-        )
+        .takeLatest("REMOVE_USER_LOCALIZED_WARNING_HIDDEN", removeUserLocalizedWarningHidden)
         .next()
         .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
         .next()
@@ -205,9 +189,7 @@ describe("[Saga] user", () => {
           level: MobileFrenchLevel["Je parle un peu"],
         })
         .next()
-        .put(
-          setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"])
-        )
+        .put(setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"]))
         .next()
         .isDone();
     });
@@ -221,19 +203,13 @@ describe("[Saga] user", () => {
         },
       })
         .next()
-        .call(
-          saveItemInAsyncStorage,
-          "FRENCH_LEVEL",
-          MobileFrenchLevel["Je parle un peu"]
-        )
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", MobileFrenchLevel["Je parle un peu"])
         .next()
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
           level: MobileFrenchLevel["Je parle un peu"],
         })
         .next()
-        .put(
-          setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"])
-        )
+        .put(setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"]))
         .next()
         .put(fetchContentsActionCreator())
         .next()
@@ -249,11 +225,7 @@ describe("[Saga] user", () => {
         },
       })
         .next()
-        .call(
-          saveItemInAsyncStorage,
-          "FRENCH_LEVEL",
-          MobileFrenchLevel["Je parle un peu"]
-        )
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", MobileFrenchLevel["Je parle un peu"])
         .throw(new Error("error"))
         .put(setUserFrenchLevelActionCreator(null))
         .next()
@@ -427,9 +399,7 @@ describe("[Saga] user", () => {
         .next()
         .call(getItemInAsyncStorage, "FRENCH_LEVEL")
         .next(MobileFrenchLevel["Je parle un peu"])
-        .put(
-          setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"])
-        )
+        .put(setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"]))
         .next()
         .put(fetchContentsActionCreator())
         .next()

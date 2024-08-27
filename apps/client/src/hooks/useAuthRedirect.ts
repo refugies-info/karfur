@@ -1,6 +1,6 @@
-import { useEffectOnce } from "react-use";
 import { useRouter } from "next/router";
-import API from "utils/API";
+import { useEffectOnce } from "react-use";
+import API from "~/utils/API";
 
 /**
  * Redirects the user if already logged in or missing email in parameters
@@ -13,9 +13,9 @@ const useAuthRedirect = (needEmail: boolean) => {
     if (API.isAuth()) router.push("/backend/user-profile");
     const email = new URLSearchParams(window.location.search).get("email");
     if (!email && needEmail) router.push("/fr/auth");
-  })
+  });
 
   return null;
-}
+};
 
 export default useAuthRedirect;

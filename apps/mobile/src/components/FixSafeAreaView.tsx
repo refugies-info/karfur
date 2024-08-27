@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import styled from "styled-components/native";
 
 const StyledSafeAreaView = styled(SafeAreaView)`
   z-index: 2;

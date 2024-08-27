@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
-import Animated, {
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
-import { themesSelector } from "../../services";
-import { styles } from "../../theme";
+import { themesSelector } from "~/services";
+import { styles } from "~/theme";
 
 const Container = styled.View`
   flex-direction: row;
@@ -38,11 +33,7 @@ const Dot = ({ activeColor, active }: DotProps) => {
   const animated = useAnimatedStyle(() => ({
     opacity: opacity.value,
     transform: [{ scale: transform.value }],
-    backgroundColor: interpolateColor(
-      color.value,
-      [0, 1],
-      [styles.colors.darkGrey, activeColor]
-    ),
+    backgroundColor: interpolateColor(color.value, [0, 1], [styles.colors.darkGrey, activeColor]),
   }));
 
   useEffect(() => {
@@ -71,11 +62,7 @@ export const CarouselPagination = ({ size, activeDotIndex }: Props) => {
   return (
     <Container>
       {[...new Array(size).keys()].map((index) => (
-        <Dot
-          key={index}
-          active={index === activeDotIndex}
-          activeColor={themes[index].colors.color80}
-        />
+        <Dot key={index} active={index === activeDotIndex} activeColor={themes[index].colors.color80} />
       ))}
     </Container>
   );

@@ -1,13 +1,11 @@
 import { ContentType } from "@refugies-info/api-types";
 
 type Texts = {
-  addButtonText: string
-  buttonText: string
-  placeholderTitle: string
-  placeholderText: string
-}
-
-
+  addButtonText: string;
+  buttonText: string;
+  placeholderTitle: string;
+  placeholderText: string;
+};
 
 export const getTexts = (contentType: ContentType, isLastSection: boolean, index: number): Texts => {
   if (contentType === ContentType.DISPOSITIF) {
@@ -18,7 +16,7 @@ export const getTexts = (contentType: ContentType, isLastSection: boolean, index
         buttonText: `Argument ${index + 1}`,
         placeholderTitle: "Titre de l'argument",
         placeholderText: "Ici, apportez tous les détails intéressants et illustrez votre idée.",
-      }
+      };
     }
     // dispositif how
     return {
@@ -26,7 +24,7 @@ export const getTexts = (contentType: ContentType, isLastSection: boolean, index
       buttonText: "Contact et modalités d’inscription",
       placeholderTitle: "Contactez-nous",
       placeholderText: "Ici, précisez comment faire pour accéder au dispositif.",
-    }
+    };
   }
   // demarche how
   if (!isLastSection) {
@@ -35,7 +33,7 @@ export const getTexts = (contentType: ContentType, isLastSection: boolean, index
       buttonText: `Titre de l'étape ${index + 1}`,
       placeholderTitle: `Titre de l'étape ${index + 1}`,
       placeholderText: "Ici, apportez tous les détails intéressants et illustrez votre idée.",
-    }
+    };
   }
   // demarche next
   return {
@@ -43,5 +41,5 @@ export const getTexts = (contentType: ContentType, isLastSection: boolean, index
     buttonText: "Titre",
     placeholderTitle: "Titre",
     placeholderText: "Ici, apportez tous les détails intéressants et illustrez votre idée.",
-  }
-}
+  };
+};

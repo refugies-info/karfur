@@ -1,6 +1,6 @@
-import { sendMail } from "../../connectors/sendgrid/sendMail";
-import logger from "../../logger";
-import { DispositifId, UserId } from "../../typegoose";
+import { sendMail } from "~/connectors/sendgrid/sendMail";
+import logger from "~/logger";
+import { DispositifId, UserId } from "~/typegoose";
 import { consentsToEmail } from "./helpers";
 import { addMailEvent } from "./mail.repository";
 

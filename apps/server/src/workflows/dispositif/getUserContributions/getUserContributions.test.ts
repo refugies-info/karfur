@@ -1,6 +1,6 @@
 // @ts-nocheck
+import { getDispositifsWithCreatorId } from "~/modules/dispositif/dispositif.repository";
 import { getUserContributions } from "./getUserContributions";
-import { getDispositifsWithCreatorId } from "../../../modules/dispositif/dispositif.repository";
 
 /* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifsWithCreatorId: jest.fn()
@@ -37,7 +37,7 @@ describe.skip("getUserContributions", () => {
       titreInformatif: "TI2",
       status: "status2",
       mainSponsor: { nom: "sponsor" },
-      merci: [{ _id: 1 }, { _id: 2 }]
+      merci: [{ _id: 1 }, { _id: 2 }],
     };
 
     getDispositifsWithCreatorId.mockResolvedValueOnce([{ toJSON: () => dispo1 }, { toJSON: () => dispo2 }]);
@@ -51,7 +51,7 @@ describe.skip("getUserContributions", () => {
       mainSponsor: 1,
       nbVues: 1,
       status: 1,
-      merci: 1
+      merci: 1,
     };
     expect(getDispositifsWithCreatorId).toHaveBeenCalledWith("userId", neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -61,15 +61,15 @@ describe.skip("getUserContributions", () => {
           titreInformatif: "TI",
           status: "status",
           nbMercis: 0,
-          mainSponsor: null
+          mainSponsor: null,
         },
         {
           titreInformatif: "TI2",
           status: "status2",
           mainSponsor: "sponsor",
-          nbMercis: 2
-        }
-      ]
+          nbMercis: 2,
+        },
+      ],
     });
   });
 
@@ -85,7 +85,7 @@ describe.skip("getUserContributions", () => {
       mainSponsor: 1,
       nbVues: 1,
       status: 1,
-      merci: 1
+      merci: 1,
     };
     expect(getDispositifsWithCreatorId).toHaveBeenCalledWith("userId", neededFields);
     expect(res.status).toHaveBeenCalledWith(500);

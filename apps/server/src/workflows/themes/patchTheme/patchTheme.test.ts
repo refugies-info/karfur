@@ -1,11 +1,8 @@
 // @ts-nocheck
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "~/libs/checkAuthorizations";
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { updateTheme } from "~/modules/themes/themes.repository";
 import patchTheme from "./patchTheme";
-import { updateTheme } from "../../../modules/themes/themes.repository";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 /* jest.mock("../../../modules/themes/themes.repository", () => ({
   updateTheme: jest.fn(),
@@ -43,7 +40,7 @@ describe.skip("patchTheme", () => {
     });
     const req = {
       fromSite: false,
-      params: {}
+      params: {},
     };
     await patchTheme[1](req, res);
     expect(res.status).toHaveBeenCalledWith(405);
@@ -51,10 +48,10 @@ describe.skip("patchTheme", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
-      params: {}
+      params: {},
     };
     await patchTheme[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -67,16 +64,15 @@ describe.skip("patchTheme", () => {
       params: { id: "themeId" },
       userId: "userId",
       body: {
-        name: { fr: "test" }
-      }
+        name: { fr: "test" },
+      },
     };
     await patchTheme[1](req, res);
     expect(updateTheme).toHaveBeenCalledWith("themeId", {
-      name: { fr: "test" }
+      name: { fr: "test" },
     });
     expect(getActiveLanguagesFromDB).toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

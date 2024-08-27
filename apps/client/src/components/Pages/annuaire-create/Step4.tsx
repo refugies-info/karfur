@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Input } from "reactstrap";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FInput from "components/UI/FInput/FInput";
+import { GetStructureResponse } from "@refugies-info/api-types";
 import { days } from "data/days";
 import { departments as departmentsData } from "data/departments";
-import { HoursDetails } from "./HoursDetails";
-import { CustomDropDown } from "./CustomDropdown";
+import { useState } from "react";
+import { Input } from "reactstrap";
+import styled from "styled-components";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FInput from "~/components/UI/FInput/FInput";
 import { CustomCheckBox } from "./CustomCheckBox";
+import { CustomDropDown } from "./CustomDropdown";
+import { HoursDetails } from "./HoursDetails";
 import { AddButton } from "./Step2";
-import { GetStructureResponse } from "@refugies-info/api-types";
 
 interface Props {
   structure: GetStructureResponse | null;

@@ -1,11 +1,11 @@
 import React from "react";
-import styled from "styled-components/native";
-import { TouchableOpacity, TextInput } from "react-native";
 import { connectSearchBox } from "react-instantsearch-native";
-import { styles } from "../../theme";
-import { RTLView } from "../BasicComponents";
+import { TextInput, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
+import { RTLView } from "../BasicComponents";
 
 const MainContainer = styled.View`
   margin-horizontal: ${styles.margin * 3}px;
@@ -56,20 +56,10 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback })
         accessible={true}
         accessibilityLabel={t("global.back")}
       >
-        <Icon
-          name="arrow-back-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.darkGrey}
-        />
+        <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.darkGrey} />
       </TouchableOpacity>
       <InputContainer>
-        <Icon
-          name="search-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.darkGrey}
-        />
+        <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
         <StyledInput
           // @ts-ignore
           ref={input}
@@ -86,12 +76,7 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback })
           accessible={true}
           accessibilityLabel={t("global.clear_selection_accessibility")}
         >
-          <Icon
-            name="close-outline"
-            height={24}
-            width={24}
-            fill={styles.colors.darkGrey}
-          />
+          <Icon name="close-outline" height={24} width={24} fill={styles.colors.darkGrey} />
         </TouchableOpacity>
       </InputContainer>
     </MainContainer>

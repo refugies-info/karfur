@@ -1,14 +1,14 @@
 import { DocumentType, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import passwordHash from "password-hash";
 import jwt from "jwt-simple";
+import passwordHash from "password-hash";
 
+import { RoleName, UserStatus } from "@refugies-info/api-types";
+import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { ImageSchema } from "./generics";
 import { Langue } from "./Langue";
 import { Role } from "./Role";
 import { Structure } from "./Structure";
-import { Base } from "./Base";
-import { RoleName, UserStatus } from "@refugies-info/api-types";
 
 export class Favorite {
   @prop({ ref: () => Dispositif })
@@ -128,8 +128,8 @@ export class User extends Base {
 
     return this.roles && this.roles.length > 0
       ? this.roles
-        .filter((role) => role.nom === RoleName.ADMIN || role.nom === RoleName.EXPERT_TRAD)
-        .map((role) => role.nom)
+          .filter((role) => role.nom === RoleName.ADMIN || role.nom === RoleName.EXPERT_TRAD)
+          .map((role) => role.nom)
       : [];
   }
 

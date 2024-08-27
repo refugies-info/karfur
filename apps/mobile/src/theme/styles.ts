@@ -107,7 +107,7 @@ const fonts = {
     md: 16,
     l: 18,
     chapo: 20,
-    xl: 24
+    xl: 24,
   },
   families: {
     marianneReg: "Marianne-Regular",
@@ -167,7 +167,7 @@ const shadows = {
       shadow-offset: 0 2px;
       shadow-radius: 6px;
       elevation: 2;
-  `
+  `,
 };
 
 const shadowsStylesheet = {

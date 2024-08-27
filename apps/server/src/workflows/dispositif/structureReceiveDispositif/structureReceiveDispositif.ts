@@ -1,9 +1,9 @@
 import { DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { getDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { Response } from "../../../types/interface";
-import { Dispositif, User } from "../../../typegoose";
-import { InvalidRequestError, NotFoundError, UnauthorizedError } from "../../../errors";
+import { InvalidRequestError, NotFoundError, UnauthorizedError } from "~/errors";
+import logger from "~/logger";
+import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { Dispositif, User } from "~/typegoose";
+import { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const structureReceiveDispositif = async (
@@ -21,7 +21,10 @@ export const structureReceiveDispositif = async (
     throw new InvalidRequestError("The content cannot be accepted or rejected by the stucture");
   }
   if (!oldDispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString())) {
-    throw new UnauthorizedError("You are not allowed to accept or reject this content", undefined, { id, user: user._id });
+    throw new UnauthorizedError("You are not allowed to accept or reject this content", undefined, {
+      id,
+      user: user._id,
+    });
   }
   editedDispositif.status = body.accept ? DispositifStatus.WAITING_ADMIN : DispositifStatus.KO_STRUCTURE;
 

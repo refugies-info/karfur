@@ -1,12 +1,8 @@
-import logger from "../../../logger";
-import {
-  getAdminOption,
-  createAdminOption,
-  updateAdminOption,
-} from "../../../modules/adminOptions/adminOptions.repository";
-import { AdminOptions, AdminOptionsModel } from "../../../typegoose";
-import { ResponseWithData } from "../../../types/interface";
 import { AdminOptionRequest, PostAdminOptionResponse } from "@refugies-info/api-types";
+import logger from "~/logger";
+import { createAdminOption, getAdminOption, updateAdminOption } from "~/modules/adminOptions/adminOptions.repository";
+import { AdminOptions, AdminOptionsModel } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const postAdminOptions = async (
   key: string,

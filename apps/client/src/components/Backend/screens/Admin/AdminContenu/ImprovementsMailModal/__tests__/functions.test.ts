@@ -3,25 +3,13 @@ import { getUsersToSendMail } from "../functions";
 
 describe("getUsersToSendMail", () => {
   it("should return correct data when not en attente, en attente admin and accepté", () => {
-    const res = getUsersToSendMail(
-      "Brouillon",
-      "creatorId",
-      null,
-      [{ _id: "userId1" }],
-      [{ _id: "structure1" }]
-    );
+    const res = getUsersToSendMail("Brouillon", "creatorId", null, [{ _id: "userId1" }], [{ _id: "structure1" }]);
 
     expect(res).toEqual([]);
   });
 
   it("should return correct data when en attente and no creatorId", () => {
-    const res = getUsersToSendMail(
-      "En attente",
-      "",
-      null,
-      [{ _id: "userId1" }],
-      [{ _id: "structure1" }]
-    );
+    const res = getUsersToSendMail("En attente", "", null, [{ _id: "userId1" }], [{ _id: "structure1" }]);
 
     expect(res).toEqual([]);
   });
@@ -32,7 +20,7 @@ describe("getUsersToSendMail", () => {
       { _id: "creatorId" },
       null,
       [{ _id: "userId1" }],
-      [{ _id: "structure1" }]
+      [{ _id: "structure1" }],
     );
 
     expect(res).toEqual([{ _id: "creatorId", roles: ["Créateur"] }]);
@@ -44,7 +32,7 @@ describe("getUsersToSendMail", () => {
       { _id: "creatorId" },
       null,
       [{ _id: "userId1" }],
-      [{ _id: "structure1" }]
+      [{ _id: "structure1" }],
     );
     expect(res).toEqual([]);
   });
@@ -55,7 +43,7 @@ describe("getUsersToSendMail", () => {
       { _id: "creatorId" },
       { _id: "mainSponsorId" },
       [{ _id: "userId1" }],
-      [{ _id: "structure1" }]
+      [{ _id: "structure1" }],
     );
     expect(res).toEqual([]);
   });
@@ -66,7 +54,7 @@ describe("getUsersToSendMail", () => {
       { _id: "creatorId" },
       { _id: "mainSponsorId" },
       [{ _id: "userId1" }],
-      [{ _id: "structure1" }, { _id: "mainSponsorId" }]
+      [{ _id: "structure1" }, { _id: "mainSponsorId" }],
     );
     expect(res).toEqual([]);
   });
@@ -83,7 +71,7 @@ describe("getUsersToSendMail", () => {
           _id: "mainSponsorId",
           membres: [{ userId: "userId2" }, { userId: "userId3" }],
         },
-      ]
+      ],
     );
     expect(res).toEqual([]);
   });
@@ -114,7 +102,7 @@ describe("getUsersToSendMail", () => {
           _id: "mainSponsorId",
           membres: [{ userId: "userId2" }, { userId: "userId1" }],
         },
-      ]
+      ],
     );
     expect(res).toEqual([
       {

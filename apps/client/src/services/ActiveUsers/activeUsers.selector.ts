@@ -1,6 +1,4 @@
-import { RootState } from "../rootReducer";
 import { GetActiveUsersResponse } from "@refugies-info/api-types";
+import { RootState } from "../rootReducer";
 
-export const activeUsersSelector = (
-  state: RootState
-): GetActiveUsersResponse[] => state.activeUsers;
+export const activeUsersSelector = (state: RootState): GetActiveUsersResponse[] => state.activeUsers;

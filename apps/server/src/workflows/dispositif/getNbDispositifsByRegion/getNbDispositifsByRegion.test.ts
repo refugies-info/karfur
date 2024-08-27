@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
-// import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
+// import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -20,9 +20,7 @@ describe.skip("getNbDispositifsByRegion", () => {
   });
 
   it("should call getActiveDispositifsFromDBWithoutPopulate and return correct result", async () => {
-    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(
-      dispositifsFigures
-    );
+    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(dispositifsFigures);
     const res = mockResponse();
     await getNbDispositifsByRegion({}, res);
     expect(getActiveDispositifsFromDBWithoutPopulate).toHaveBeenCalledWith({
@@ -131,9 +129,7 @@ describe.skip("getNbDispositifsByRegion", () => {
   });
 
   it("should return a 500 if getActiveDispositifsFromDBWithoutPopulate throws ", async () => {
-    getActiveDispositifsFromDBWithoutPopulate.mockRejectedValue(
-      new Error("error")
-    );
+    getActiveDispositifsFromDBWithoutPopulate.mockRejectedValue(new Error("error"));
 
     const res = mockResponse();
     await getNbDispositifsByRegion({}, res);

@@ -1,10 +1,10 @@
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { log } from "./log";
-import { Dispositif } from "../../../typegoose";
-import { NotFoundError } from "../../../errors";
 import { Id, MainSponsorRequest } from "@refugies-info/api-types";
+import { NotFoundError } from "~/errors";
+import logger from "~/logger";
+import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { Dispositif } from "~/typegoose";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorRequest, userId: Id): Response => {
   logger.info("[modifyDispositifMainSponsor]", body);

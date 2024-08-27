@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import debounce from "lodash/debounce";
-import FInput from "components/UI/FInput";
-import UserDetail from "components/Backend/UserDetail";
-import { removeAccents } from "lib";
-import styles from "./CustomUserSearchBar.module.scss";
 import { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
+import debounce from "lodash/debounce";
+import { useState } from "react";
+import UserDetail from "~/components/Backend/UserDetail";
+import FInput from "~/components/UI/FInput";
+import { removeAccents } from "~/lib";
+import styles from "./CustomUserSearchBar.module.scss";
 
 interface Props {
   dataArray: GetActiveUsersResponse[];

@@ -1,8 +1,7 @@
-import { RecursivePartial } from "../types/interface";
+import { ObjectId } from "~/typegoose";
+import { RecursivePartial } from "~/types/interface";
 import { TranslationContent } from "./Dispositif";
 import { Traductions } from "./Traductions";
-import { ObjectId } from "../typegoose";
-
 
 const trad: TranslationContent = {
   content: {
@@ -15,7 +14,7 @@ const trad: TranslationContent = {
   },
 
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
 const trad_added: TranslationContent = {
@@ -33,7 +32,7 @@ const trad_added: TranslationContent = {
   },
 
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
 const trad_removed: TranslationContent = {
@@ -49,7 +48,7 @@ const trad_removed: TranslationContent = {
   },
 
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
 const trad_modified: TranslationContent = {
@@ -66,7 +65,7 @@ const trad_modified: TranslationContent = {
   },
 
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
 const trad_mixed: TranslationContent = {
@@ -85,7 +84,7 @@ const trad_mixed: TranslationContent = {
   },
 
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
 const trad_complete: TranslationContent = {
@@ -99,7 +98,7 @@ const trad_complete: TranslationContent = {
   },
 
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 const trad_avancement: RecursivePartial<TranslationContent> = {
   content: {
@@ -112,7 +111,7 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
     },
   },
   created_at: new Date(),
-  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
 describe("Traductions", () => {
@@ -143,11 +142,7 @@ describe("Traductions", () => {
     });
     it("should return modified, added and removed sections", () => {
       expect(Traductions.diff(trad, trad_mixed)).toEqual({
-        modified: [
-          "content.titreMarque",
-          "content.next.my-uuid-v4-key-2.title",
-          "content.next.my-uuid-v4-key-2.text",
-        ],
+        modified: ["content.titreMarque", "content.next.my-uuid-v4-key-2.title", "content.next.my-uuid-v4-key-2.text"],
         added: ["content.how.my-uuid-v4-key-2.title", "content.how.my-uuid-v4-key-2.text"],
         removed: ["content.next.my-uuid-v4-key.title", "content.next.my-uuid-v4-key.text"],
       });
@@ -161,7 +156,9 @@ describe("Traductions", () => {
     });
     it("should return false", () => {
       // @ts-ignore because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(false);
+      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(
+        false,
+      );
     });
     it("should return false", () => {
       expect(

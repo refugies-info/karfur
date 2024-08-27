@@ -1,10 +1,9 @@
 import LottieView from "lottie-react-native";
-import React from "react";
 import { View } from "react-native";
 import styled, { useTheme } from "styled-components/native";
-import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
-import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { TextDSFR_MD, TextDSFR_XL } from "~/components/StyledText";
+import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
 import { ButtonDSFR } from "../buttons";
 import { Spacer } from "../layout";

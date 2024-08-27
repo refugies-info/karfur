@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
 import uniqueId from "lodash/uniqueId";
+import { useEffect, useState } from "react";
 
 /**
  * Generates a uniq id to be used in the DOM.
@@ -8,13 +8,13 @@ import uniqueId from "lodash/uniqueId";
  * @returns a uniq id
  */
 const useUniqueId = (prefix?: string) => {
-  const [id, setId] = useState<string | undefined>(undefined)
+  const [id, setId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setId(`${prefix || ""}${uniqueId()}`)
-  }, [prefix])
+    setId(`${prefix || ""}${uniqueId()}`);
+  }, [prefix]);
 
-  return id
-}
+  return id;
+};
 
 export default useUniqueId;

@@ -1,19 +1,15 @@
-import * as React from "react";
-import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
-import { useSelector, useDispatch } from "react-redux";
-import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { activatedLanguages } from "../../data/languagesData";
-import { LanguageDetailsButton } from "../../components";
-import { Page, Rows, RowsSpacing, Title } from "../../components";
 import { Languages } from "@refugies-info/api-types";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
+import { LanguageDetailsButton, Page, Rows, RowsSpacing, Title } from "~/components";
+import { activatedLanguages } from "~/data/languagesData";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { saveSelectedLanguageActionCreator } from "~/services/redux/User/user.actions";
+import { selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { ProfileParamList } from "~/types/navigation";
 
-export const LangueProfilScreen = ({
-  navigation,
-}: StackScreenProps<ProfileParamList, "LangueProfilScreen">) => {
+export const LangueProfilScreen = ({ navigation }: StackScreenProps<ProfileParamList, "LangueProfilScreen">) => {
   const { t, i18n } = useTranslationWithRTL();
   const theme = useTheme();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
@@ -25,7 +21,7 @@ export const LangueProfilScreen = ({
       saveSelectedLanguageActionCreator({
         langue: ln,
         shouldFetchContents: true,
-      })
+      }),
     );
     return navigation.goBack();
   };
@@ -38,12 +34,7 @@ export const LangueProfilScreen = ({
       backgroundColor={theme.colors.dsfr_backgroundBlue}
       headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
-      <Title>
-        {t(
-          "profile_screens.language_choice",
-          "Choisis la langue de l’application"
-        )}
-      </Title>
+      <Title>{t("profile_screens.language_choice", "Choisis la langue de l’application")}</Title>
       <Rows spacing={RowsSpacing.NoSpace}>
         {activatedLanguages.map((language, index) => (
           <LanguageDetailsButton

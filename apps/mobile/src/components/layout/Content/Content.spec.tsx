@@ -1,7 +1,6 @@
-import React from "react";
 import { Text } from "react-native";
-import Content from "./Content";
 import { render } from "../../utils/tests";
+import Content from "./Content";
 
 describe("Content snapshot test suite", () => {
   it("should render without bug", async () => {
@@ -11,7 +10,7 @@ describe("Content snapshot test suite", () => {
         <Text>Test</Text>
         <Text>Test</Text>
         <Text>Test</Text>
-      </Content>
+      </Content>,
     );
     expect(test).toMatchSnapshot();
   });

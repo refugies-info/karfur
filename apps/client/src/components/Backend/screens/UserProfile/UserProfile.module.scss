@@ -1,5 +1,5 @@
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
 
 .container {
   background: var(--background-default-grey-hover);
@@ -69,7 +69,7 @@
 
   .label {
     @include dsfr-text("small");
-    
+
     color: var(--text-label-grey);
     text-transform: uppercase;
     font-weight: bold;

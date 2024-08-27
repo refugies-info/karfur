@@ -1,17 +1,13 @@
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { mockedLanguageData } from "../../../jest/__fixtures__/languages";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { LanguageChoiceModal } from "../LanguageChoiceModal";
-import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 
 jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual(
-    "../../../services/redux/User/user.actions"
-  );
+  const actions = jest.requireActual("../../../services/redux/User/user.actions");
   return {
-    saveSelectedLanguageActionCreator: jest.fn(
-      actions.saveSelectedLanguageActionCreator
-    ),
+    saveSelectedLanguageActionCreator: jest.fn(actions.saveSelectedLanguageActionCreator),
   };
 });
 

@@ -1,8 +1,8 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import { getDispositifById, removeMerciDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { AuthenticationError } from "../../../errors";
+import { AuthenticationError } from "~/errors";
+import logger from "~/logger";
+import { getDispositifById, removeMerciDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { Response } from "~/types/interface";
 
 export const deleteMerci = async (id: string, userId: string | null): Response => {
   logger.info("[deleteMerci] received", id);
@@ -15,4 +15,3 @@ export const deleteMerci = async (id: string, userId: string | null): Response =
 
   return { text: "success" };
 };
-

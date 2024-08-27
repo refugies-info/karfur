@@ -5,7 +5,11 @@
     "strict": true,
     "allowJs": false,
     "typeRoots": ["../../node_modules/@types", "node_modules/@types", "./src/types"],
-    "types": ["jest"]
+    "types": ["jest"],
+    "baseUrl": "src",
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": [
     "src"

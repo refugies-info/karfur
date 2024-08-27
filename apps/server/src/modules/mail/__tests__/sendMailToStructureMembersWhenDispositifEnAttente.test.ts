@@ -30,7 +30,7 @@ describe.skip("sendMailToStructureMembersWhenDispositifEnAttente", () => {
       lien,
       email: "email1",
       dispositifId: "dispoId",
-      userId: "userId1"
+      userId: "userId1",
     };
 
     const data2 = {
@@ -40,7 +40,7 @@ describe.skip("sendMailToStructureMembersWhenDispositifEnAttente", () => {
       lien,
       email: "email2",
       dispositifId: "dispoId",
-      userId: "userId2"
+      userId: "userId2",
     };
 
     getStructureMembers.mockResolvedValueOnce(structureMembers);
@@ -50,7 +50,7 @@ describe.skip("sendMailToStructureMembersWhenDispositifEnAttente", () => {
       _id: new Types.ObjectId("dispoId"),
       type: "dispositif",
       mainSponsor: { _id: new Types.ObjectId("sponsorId") },
-      translations: { fr: { content: { titreInformatif: "TI", titreMarque: "TN" } } }
+      translations: { fr: { content: { titreInformatif: "TI", titreMarque: "TN" } } },
     });
     expect(getStructureMembers).toHaveBeenCalledWith("sponsorId");
     expect(getUsersFromStructureMembres).toHaveBeenCalledWith("structureMembers");

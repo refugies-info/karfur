@@ -1,7 +1,6 @@
-import React from "react";
 import { Text } from "react-native";
 import styled from "styled-components/native";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
 const StyledText = styled((props: any) => {
   const { isRTL } = useTranslationWithRTL();

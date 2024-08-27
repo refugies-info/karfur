@@ -30,4 +30,3 @@ describe.skip("updateLanguagesAvancement", () => {
     expect(updateLanguageAvancementInDB).toHaveBeenCalledWith("langue2", 2 / 4);
   });
 });
-

@@ -11,10 +11,10 @@ import {
   UpdateDispositifRequest,
 } from "@refugies-info/api-types";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
-import { sendSlackNotif } from "../../connectors/slack/sendSlackNotif";
-import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthorizations";
-import logger from "../../logger";
-import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
+import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
+import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
+import logger from "~/logger";
+import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
 import {
   Dispositif,
   DispositifId,
@@ -24,9 +24,9 @@ import {
   TraductionsModel,
   User,
   UserId,
-} from "../../typegoose";
-import { TranslationContent } from "../../typegoose/Dispositif";
-import { TraductionsType } from "../../typegoose/Traductions";
+} from "~/typegoose";
+import { TranslationContent } from "~/typegoose/Dispositif";
+import { TraductionsType } from "~/typegoose/Traductions";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { createStructureInDB } from "../structure/structure.repository";

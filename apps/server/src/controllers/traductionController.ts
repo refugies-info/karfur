@@ -1,17 +1,5 @@
 import { Body, Controller, Delete, Get, Post, Queries, Query, Request, Route, Security } from "tsoa";
 
-import { IRequest, ResponseWithData, Response } from "../types/interface";
-import {
-  deleteTranslations,
-  getDefaultTraduction,
-  getProgression,
-  getTranslationStatistics,
-  getTraductionsForReview,
-  saveTranslation,
-  translate,
-  publishTranslation,
-  sendFeedback
-} from "../workflows";
 import {
   DeleteTranslationsRequest,
   GetDefaultTraductionResponse,
@@ -25,9 +13,21 @@ import {
   SendFeedbackRequest,
   TranslateRequest,
   TranslationStatisticsRequest,
-  TranslationStatisticsResponse
+  TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
-import logger from "../logger";
+import logger from "~/logger";
+import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import {
+  deleteTranslations,
+  getDefaultTraduction,
+  getProgression,
+  getTraductionsForReview,
+  getTranslationStatistics,
+  publishTranslation,
+  saveTranslation,
+  sendFeedback,
+  translate,
+} from "~/workflows";
 
 @Route("traduction")
 export class TranslationController extends Controller {
@@ -80,7 +80,7 @@ export class TranslationController extends Controller {
   ): ResponseWithData<GetTraductionsForReviewResponse> {
     return getTraductionsForReview(dispositif, language as Languages, request.user).then((traductions) => ({
       text: "success",
-      data: traductions
+      data: traductions,
     }));
   }
 
@@ -127,10 +127,7 @@ export class TranslationController extends Controller {
     jwt: ["expert"],
     fromSite: [],
   })
-  public publishTranslation(
-    @Body() body: PublishTranslationRequest,
-    @Request() request: IRequest,
-  ): Response {
+  public publishTranslation(@Body() body: PublishTranslationRequest, @Request() request: IRequest): Response {
     return publishTranslation(body, request.user).then(() => ({ text: "success" }));
   }
 
@@ -139,10 +136,7 @@ export class TranslationController extends Controller {
     jwt: ["expert"],
     fromSite: [],
   })
-  public sendFeedback(
-    @Body() body: SendFeedbackRequest,
-    @Request() request: IRequest,
-  ): Response {
+  public sendFeedback(@Body() body: SendFeedbackRequest, @Request() request: IRequest): Response {
     return sendFeedback(body, request.user).then(() => ({ text: "success" }));
   }
 }

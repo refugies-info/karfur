@@ -1,9 +1,8 @@
-import * as React from "react";
 import styled, { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks";
 import { RTLView } from "../BasicComponents";
 import { TextDSFR_MD } from "../StyledText";
 import { Icon } from "../iconography";
-import { useTranslationWithRTL } from "../../hooks";
 
 const Container = styled(RTLView)`
   background-color: white;

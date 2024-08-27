@@ -1,6 +1,6 @@
+import { NextFunction, Request, Response } from "express";
 import { ValidateError } from "tsoa";
-import { Response, Request, NextFunction } from "express";
-import logger from "./logger";
+import logger from "~/logger";
 export class RefactorTodoError extends Error {
   constructor() {
     super("Refactor TODO");
@@ -63,7 +63,7 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
       status: 422,
       path: req.url,
       fields: err.fields,
-    })
+    });
     return res.status(422).json({
       message: "Validation Failed",
       data: err.fields,
@@ -76,12 +76,12 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
       path: req.url,
       error: err.message,
       data: err.data,
-    })
+    });
 
     return res.status(err.status).json({
       message: err.message,
       code: err.code,
-      data: err.data
+      data: err.data,
     });
   }
 
@@ -90,7 +90,7 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
       status: 500,
       path: req.url,
       error: err,
-    })
+    });
     return res.status(500).json({
       message: err.message || "Internal Server Error",
     });

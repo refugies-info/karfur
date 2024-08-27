@@ -1,12 +1,11 @@
-import React from "react";
-import Link from "next/link";
-import styles from "scss/pages/legal-pages.module.scss";
-import SEO from "components/Seo";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { Event } from "lib/tracking";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
+import SEO from "~/components/Seo";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { Event } from "~/lib/tracking";
+import styles from "~/scss/pages/legal-pages.module.scss";
 
 const PlanDuSite = () => {
   const router = useRouter();

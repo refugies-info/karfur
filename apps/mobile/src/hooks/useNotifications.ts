@@ -17,9 +17,5 @@ interface NotificationsResponse {
 }
 
 export const useNotifications = () => {
-  return useApi<NotificationsResponse, Error>(
-    "/notifications",
-    "GET",
-    "notifications"
-  );
+  return useApi<NotificationsResponse, Error>("/notifications", "GET", "notifications");
 };

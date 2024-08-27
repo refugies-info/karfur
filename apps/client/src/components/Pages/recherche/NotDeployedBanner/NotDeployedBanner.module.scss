@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/rtl";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
 
 .container {
   background-color: $attention;

@@ -1,27 +1,27 @@
-import { register } from "./register";
 import { RoleName } from "@refugies-info/api-types";
-import { loginExceptionsManager } from "../../../modules/users/auth";
-import * as password from "../../../libs/validatePassword";
-import { addToNewsletter } from "../../../connectors/sendinblue/addToNewsletter";
-import { registerUser } from "../../../modules/users/users.service";
+import { addToNewsletter } from "~/connectors/sendinblue/addToNewsletter";
+import * as password from "~/libs/validatePassword";
+import { loginExceptionsManager } from "~/modules/users/auth";
+import { LoginErrorType } from "~/modules/users/LoginError";
+import { registerUser } from "~/modules/users/users.service";
+import { User } from "~/typegoose";
 import { user } from "../../../__fixtures__";
-import { User, UserModel } from "../../../typegoose";
-import { LoginErrorType } from "../../../modules/users/LoginError";
+import { register } from "./register";
 
-jest.spyOn(User.prototype, 'getToken').mockImplementation(() => "token");
+jest.spyOn(User.prototype, "getToken").mockImplementation(() => "token");
 
 jest.mock("password-hash", () => ({
-  generate: jest.fn(p => p)
+  generate: jest.fn((p) => p),
 }));
 jest.mock("../../../modules/users/auth", () => ({
-  loginExceptionsManager: jest.fn()
-}))
+  loginExceptionsManager: jest.fn(),
+}));
 jest.mock("../../../connectors/sendinblue/addToNewsletter", () => ({
-  addToNewsletter: jest.fn()
-}))
+  addToNewsletter: jest.fn(),
+}));
 jest.mock("../../../modules/users/users.service", () => ({
-  registerUser: jest.fn(() => user)
-}))
+  registerUser: jest.fn(() => user),
+}));
 
 describe("register", () => {
   beforeEach(() => {
@@ -31,9 +31,8 @@ describe("register", () => {
     jest.setSystemTime(new Date(2023, 0, 1));
   });
 
-
   it("should create user", async () => {
-    const isPasswordOkMock = jest.spyOn(password, 'isPasswordOk').mockReturnValue(true);
+    const isPasswordOkMock = jest.spyOn(password, "isPasswordOk").mockReturnValue(true);
 
     const res = await register({ email: "test@example.com", password: "password" });
     expect(isPasswordOkMock).toHaveBeenCalledWith("password");
@@ -41,40 +40,52 @@ describe("register", () => {
       email: "test@example.com",
       firstName: undefined,
       role: undefined,
-      hashedPassword: "password"
+      hashedPassword: "password",
     });
     expect(addToNewsletter).not.toHaveBeenCalled();
     expect(loginExceptionsManager).not.toHaveBeenCalled();
-    expect(res).toStrictEqual({ token: "token" })
+    expect(res).toStrictEqual({ token: "token" });
   });
 
   it("should create user and add informations", async () => {
-    const isPasswordOkMock = jest.spyOn(password, 'isPasswordOk').mockReturnValue(true);
+    const isPasswordOkMock = jest.spyOn(password, "isPasswordOk").mockReturnValue(true);
 
-    const res = await register({ email: "test@example.com", password: "password", subscribeNewsletter: true, firstName: "Test", role: RoleName.TRAD });
+    const res = await register({
+      email: "test@example.com",
+      password: "password",
+      subscribeNewsletter: true,
+      firstName: "Test",
+      role: RoleName.TRAD,
+    });
     expect(isPasswordOkMock).toHaveBeenCalledWith("password");
     expect(registerUser).toHaveBeenCalledWith({
       email: "test@example.com",
-      firstName: "Test", role: RoleName.TRAD,
-      hashedPassword: "password"
+      firstName: "Test",
+      role: RoleName.TRAD,
+      hashedPassword: "password",
     });
     expect(addToNewsletter).toHaveBeenCalledWith("test@example.com");
     expect(loginExceptionsManager).not.toHaveBeenCalled();
-    expect(res).toStrictEqual({ token: "token" })
+    expect(res).toStrictEqual({ token: "token" });
   });
 
   it("should reject if password to weak", async () => {
-    const isPasswordOkMock = jest.spyOn(password, 'isPasswordOk').mockReturnValue(false);
+    const isPasswordOkMock = jest.spyOn(password, "isPasswordOk").mockReturnValue(false);
     try {
-      await register({ email: "test@example.com", password: "password", subscribeNewsletter: true, firstName: "Test", role: RoleName.TRAD });
+      await register({
+        email: "test@example.com",
+        password: "password",
+        subscribeNewsletter: true,
+        firstName: "Test",
+        role: RoleName.TRAD,
+      });
       expect(isPasswordOkMock).toHaveBeenCalledWith("password");
       expect(registerUser).not.toHaveBeenCalledWith();
       expect(addToNewsletter).not.toHaveBeenCalled();
       expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.PASSWORD_TOO_WEAK));
-    } catch (e) { }
+    } catch (e) {}
     expect.assertions(4);
   });
-
 
   afterEach(() => {
     jest.useRealTimers();

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* import { updateDispositifAdminComments } from "./updateDispositifAdminComments";
-import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { updateDispositifInDB, getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { log } from "./log"; */
 
 type MockResponse = { json: any; status: any };
@@ -67,7 +67,7 @@ describe.skip("updateDispositifAdminComments", () => {
           adminPercentageProgressionStatus: "adminPercentageProgressionStatus",
         },
       },
-      user: { _id: "userId" }
+      user: { _id: "userId" },
     };
 
     const date = 148707670800;

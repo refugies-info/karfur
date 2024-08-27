@@ -1,4 +1,3 @@
-import React from "react";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
@@ -25,8 +24,7 @@ const ButtonText = styled.Text<{
   disabled: boolean;
   disabledColor: string;
 }>`
-  color: ${({ color, disabledColor, disabled }) =>
-    disabled ? disabledColor : color};
+  color: ${({ color, disabledColor, disabled }) => (disabled ? disabledColor : color)};
   font-family: ${({ theme }) => theme.fonts.button.family};
   font-size: ${({ theme }) => theme.fonts.button.size};
   font-weight: ${({ theme }) => theme.fonts.button.weight};
@@ -39,11 +37,8 @@ const Container = styled.View<{
   borderColor?: string;
   disabledBorderColor: string;
 }>`
-  background-color: ${({
-    backgroundColor,
-    disabledBackgroundColor,
-    disabled,
-  }) => (disabled ? disabledBackgroundColor : backgroundColor)};
+  background-color: ${({ backgroundColor, disabledBackgroundColor, disabled }) =>
+    disabled ? disabledBackgroundColor : backgroundColor};
   border-color: ${({ borderColor, disabledBorderColor, disabled, theme }) =>
     disabled ? disabledBorderColor : borderColor || theme.colors.black};
   border-radius: ${({ theme }) => theme.radius * 2}px;
@@ -67,12 +62,7 @@ const Button = ({
 }: ButtonProps) => {
   const theme = useTheme();
   const icon = iconName ? (
-    <Icon
-      color={iconColor || theme.colors.black}
-      loading={loading}
-      name={iconName}
-      size={ICON_SIZE}
-    />
+    <Icon color={iconColor || theme.colors.black} loading={loading} name={iconName} size={ICON_SIZE} />
   ) : null;
   return (
     <TouchableOpacity

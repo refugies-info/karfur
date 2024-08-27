@@ -1,4 +1,4 @@
-import API from "utils/API";
+import API from "~/utils/API";
 
 let audio: HTMLAudioElement | null;
 
@@ -9,9 +9,10 @@ const readAudio = function (
   locale: string = "fr-fr",
   callback: any = null,
   isActive: boolean = true,
-  startLoader: any = () => { },
+  startLoader: any = () => {},
 ) {
-  if (typeof Audio !== "undefined" && !audio) { // for browsers
+  if (typeof Audio !== "undefined" && !audio) {
+    // for browsers
     audio = new Audio();
   }
   if (!text || text === "null") return;
@@ -34,7 +35,7 @@ const readAudio = function (
         if (isActive) {
           audio.load();
           audio.playbackRate = BASE_RATE;
-          audio.play().catch(() => { });
+          audio.play().catch(() => {});
         }
         startLoader(false);
         return true;
@@ -43,7 +44,7 @@ const readAudio = function (
         return false;
       }
     })
-    .catch(() => { });
+    .catch(() => {});
 };
 
 const stopAudio = function () {
@@ -69,4 +70,4 @@ const changeRate = function (rate: 1 | 2) {
   audio.playbackRate = customRate;
 };
 
-export { readAudio, stopAudio, pauseAudio, resumeAudio, changeRate };
+export { changeRate, pauseAudio, readAudio, resumeAudio, stopAudio };

@@ -7,7 +7,9 @@ import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types"
  * @returns - themes and needs
  */
 export const getThemesFromNeeds = (needsSelected: Id[], allNeeds: GetNeedResponse[]): { themes: Id[]; needs: Id[] } => {
-  const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as GetNeedResponse[];
+  const needs = needsSelected
+    .map((need) => allNeeds.find((n) => n._id === need))
+    .filter((n) => !!n) as GetNeedResponse[];
 
   // get all themes displayed
   const themesDisplayed: GetThemeResponse[] = [];
@@ -29,7 +31,7 @@ export const getThemesFromNeeds = (needsSelected: Id[], allNeeds: GetNeedRespons
 
   return {
     themes: themesSelected,
-    needs: needs.filter((n) => !themesSelected.includes(n.theme._id)).map((n) => n._id)
+    needs: needs.filter((n) => !themesSelected.includes(n.theme._id)).map((n) => n._id),
   };
 };
 
@@ -40,7 +42,5 @@ export const getThemesFromNeeds = (needsSelected: Id[], allNeeds: GetNeedRespons
  * @returns - need ids
  */
 export const getNeedsFromThemes = (themesSelected: Id[], allNeeds: GetNeedResponse[]): Id[] => {
-  return allNeeds
-    .filter(need => themesSelected.includes(need.theme._id))
-    .map(n => n._id);
+  return allNeeds.filter((need) => themesSelected.includes(need.theme._id)).map((n) => n._id);
 };

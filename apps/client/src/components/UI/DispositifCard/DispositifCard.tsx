@@ -1,27 +1,27 @@
-import React, { memo } from "react";
-import { useSelector } from "react-redux";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import { jsUcfirst, jsLcfirst } from "lib";
-import { useUtmz } from "hooks";
-import { cls } from "lib/classname";
-import { getCommitmentText, getPriceText } from "lib/dispositif";
-import { getTheme, getThemes } from "lib/getTheme";
-import { themesSelector } from "services/Themes/themes.selectors";
-import ThemeBadge from "components/UI/ThemeBadge";
-import FavoriteButton from "components/UI/FavoriteButton";
-import iconMap from "assets/recherche/icon-map.svg";
-import iconTime from "assets/recherche/icon-time.svg";
-import iconEuro from "assets/recherche/icon-euro.svg";
-import defaultStructureImage from "assets/recherche/default-structure-image.svg";
-import commonStyles from "scss/components/contentCard.module.scss";
+import styled from "styled-components";
+import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
+import iconEuro from "~/assets/recherche/icon-euro.svg";
+import iconMap from "~/assets/recherche/icon-map.svg";
+import iconTime from "~/assets/recherche/icon-time.svg";
+import FavoriteButton from "~/components/UI/FavoriteButton";
+import ThemeBadge from "~/components/UI/ThemeBadge";
+import { useUtmz } from "~/hooks";
+import { jsLcfirst, jsUcfirst } from "~/lib";
+import { cls } from "~/lib/classname";
+import { getCommitmentText, getPriceText } from "~/lib/dispositif";
+import { getReadableText } from "~/lib/getReadableText";
+import { getTheme, getThemes } from "~/lib/getTheme";
+import commonStyles from "~/scss/components/contentCard.module.scss";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./DispositifCard.module.scss";
-import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { getReadableText } from "lib/getReadableText";
 
 type DispositifLinkProps = {
   $background: string; // use $ to prevent attribute to be passed to HTML

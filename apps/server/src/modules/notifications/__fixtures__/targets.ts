@@ -1,4 +1,4 @@
-import { AppUser } from "../../../typegoose";
+import { AppUser } from "~/typegoose";
 
 export const targets: AppUser[] = [
   {
@@ -13,9 +13,9 @@ export const targets: AppUser[] = [
       local: true,
       demarches: true,
       themes: {
-        "theme1": true
-      }
-    }
+        theme1: true,
+      },
+    },
   },
   {
     uid: "2",
@@ -26,9 +26,9 @@ export const targets: AppUser[] = [
       local: true,
       demarches: true,
       themes: {
-        "theme1": true
-      }
-    }
+        theme1: true,
+      },
+    },
   },
   {
     uid: "3",
@@ -40,9 +40,9 @@ export const targets: AppUser[] = [
       local: false,
       demarches: true,
       themes: {
-        "theme1": true
-      }
-    }
+        theme1: true,
+      },
+    },
   },
   {
     uid: "4",
@@ -53,9 +53,9 @@ export const targets: AppUser[] = [
       local: true,
       demarches: false,
       themes: {
-        "theme1": true
-      }
-    }
+        theme1: true,
+      },
+    },
   },
   {
     uid: "5",
@@ -66,9 +66,9 @@ export const targets: AppUser[] = [
       local: true,
       demarches: true,
       themes: {
-        "theme1": false
-      }
-    }
+        theme1: false,
+      },
+    },
   },
   {
     uid: "6",
@@ -82,9 +82,9 @@ export const targets: AppUser[] = [
       local: false,
       demarches: true,
       themes: {
-        "theme1": true
-      }
-    }
+        theme1: true,
+      },
+    },
   },
   {
     uid: "7",
@@ -97,9 +97,8 @@ export const targets: AppUser[] = [
       local: true,
       demarches: false,
       themes: {
-        "trouver un travail": true
-      }
-    }
+        "trouver un travail": true,
+      },
+    },
   },
-]
-
+];

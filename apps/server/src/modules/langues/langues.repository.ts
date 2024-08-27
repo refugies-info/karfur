@@ -1,6 +1,6 @@
 import { Id } from "@refugies-info/api-types";
 import { Types } from "mongoose";
-import { LangueModel } from "../../typegoose";
+import { LangueModel } from "~/typegoose";
 
 export const getActiveLanguagesFromDB = () =>
   LangueModel.find(
@@ -11,10 +11,10 @@ export const getActiveLanguagesFromDB = () =>
       langueCode: 1,
       i18nCode: 1,
       avancement: 1,
-      avancementTrad: 1
-    }
+      avancementTrad: 1,
+    },
   ).sort({
-    avancement: -1
+    avancement: -1,
   });
 
 export const updateLanguageAvancementInDB = (langueId: Types.ObjectId, avancementTrad: number) =>
@@ -22,7 +22,4 @@ export const updateLanguageAvancementInDB = (langueId: Types.ObjectId, avancemen
 
 export const getLanguageByCode = (locale: string) => LangueModel.findOne({ i18nCode: locale });
 
-export const getLangueName = async (
-  id: Id,
-) => LangueModel.findById(id, { "langueFr": 1 })
-  .then(res => res?.langueFr)
+export const getLangueName = async (id: Id) => LangueModel.findById(id, { langueFr: 1 }).then((res) => res?.langueFr);

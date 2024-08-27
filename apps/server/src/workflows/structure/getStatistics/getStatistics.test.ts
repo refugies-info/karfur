@@ -1,6 +1,6 @@
 //@ts-nocheck
+import { getNbStructures, getStructuresFromDB } from "~/modules/structure/structure.repository";
 import getStatistics from "./getStatistics";
-import { getNbStructures, getStructuresFromDB } from "../../../modules/structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -34,7 +34,7 @@ describe.skip("getStatistics", () => {
       text: "OK",
       data: {
         nbStructures: 12,
-      }
+      },
     });
   });
 
@@ -47,21 +47,19 @@ describe.skip("getStatistics", () => {
           { userId: 1, roles: ["administrateur"] },
           { userId: 2, roles: ["administrateur", "contributeur"] },
           { userId: 3, roles: ["contributeur"] },
-        ]
+        ],
       },
       {
         // ok if no members
       },
       {
-        membres: [
-          { userId: 1, roles: ["contributeur"] },
-        ]
+        membres: [{ userId: 1, roles: ["contributeur"] }],
       },
       {
         membres: [
           { userId: 1, roles: ["administrateur"] }, // same id, don't count
           { userId: 4, roles: ["administrateur"] },
-        ]
+        ],
       },
     ]);
 
@@ -75,19 +73,21 @@ describe.skip("getStatistics", () => {
       data: {
         nbStructures: 12,
         nbCDA: 3,
-      }
+      },
     });
   });
 
   it("should return all facets", async () => {
     const res = mockResponse();
-    getStructuresFromDB.mockResolvedValueOnce([{
-      membres: [
-        { userId: 1, roles: ["administrateur"] },
-        { userId: 2, roles: ["administrateur", "contributeur"] },
-        { userId: 3, roles: ["contributeur"] },
-      ]
-    }]);
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        membres: [
+          { userId: 1, roles: ["administrateur"] },
+          { userId: 2, roles: ["administrateur", "contributeur"] },
+          { userId: 3, roles: ["contributeur"] },
+        ],
+      },
+    ]);
 
     getStructuresFromDB.mockResolvedValueOnce([
       {
@@ -95,21 +95,19 @@ describe.skip("getStatistics", () => {
           { userId: 1, roles: ["administrateur"] },
           { userId: 2, roles: ["administrateur", "contributeur"] },
           { userId: 3, roles: ["contributeur"] },
-        ]
+        ],
       },
       {
         // ok if no members
       },
       {
-        membres: [
-          { userId: 1, roles: ["contributeur"] },
-        ]
+        membres: [{ userId: 1, roles: ["contributeur"] }],
       },
       {
         membres: [
           { userId: 1, roles: ["administrateur"] }, // same id, don't count
           { userId: 4, roles: ["administrateur"] },
-        ]
+        ],
       },
     ]);
 
@@ -123,15 +121,13 @@ describe.skip("getStatistics", () => {
       data: {
         nbStructures: 12,
         nbCDA: 3,
-        nbStructureAdmins: 3
-      }
+        nbStructureAdmins: 3,
+      },
     });
   });
 
   it("should return a 500 if getNbStructures throws ", async () => {
-    getNbStructures.mockRejectedValueOnce(
-      new Error("error")
-    );
+    getNbStructures.mockRejectedValueOnce(new Error("error"));
 
     const res = mockResponse();
     await getStatistics[1](req, res);

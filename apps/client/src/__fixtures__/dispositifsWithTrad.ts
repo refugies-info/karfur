@@ -1,4 +1,8 @@
-import { GetDispositifsWithTranslationAvancementResponse, ContentType, TraductionsStatus } from "@refugies-info/api-types";
+import {
+  ContentType,
+  GetDispositifsWithTranslationAvancementResponse,
+  TraductionsStatus,
+} from "@refugies-info/api-types";
 
 const content1 = {
   avancementTrad: 700,

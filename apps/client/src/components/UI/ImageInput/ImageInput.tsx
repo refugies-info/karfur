@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Col, Input, Row, Spinner } from "reactstrap";
-import API from "utils/API";
-import FButton from "../FButton";
-import emptyImage from "assets/empty-image.svg";
-import styles from "./ImageInput.module.scss";
-import Image from "next/image";
 import { Picture } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import { handleApiDefaultError } from "lib/handleApiErrors";
+import Image from "next/image";
+import { useState } from "react";
+import { Col, Input, Row, Spinner } from "reactstrap";
+import emptyImage from "~/assets/empty-image.svg";
+import { cls } from "~/lib/classname";
+import { handleApiDefaultError } from "~/lib/handleApiErrors";
+import API from "~/utils/API";
+import FButton from "../FButton";
+import styles from "./ImageInput.module.scss";
 
 interface Props {
   onImageUploaded: (image: Picture) => void;

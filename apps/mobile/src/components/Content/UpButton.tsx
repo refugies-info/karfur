@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks";
+import { styles } from "~/theme";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { Icon } from "../iconography";
-import { styles } from "../../theme";
-import { useTranslationWithRTL } from "../../hooks";
 import { Spacer } from "../layout";
 import { TextDSFR_S } from "../StyledText";
 
@@ -28,9 +27,7 @@ export const UpButton = (props: Props) => {
     <UpButtonContainer onPress={props.scrollTop}>
       <Icon name="arrow-upward" size={16} color={styles.colors.action} />
       <Spacer width={styles.margin} />
-      <UpButtonText>
-        {t("content_screen.scrollToTop", "Haut de page")}
-      </UpButtonText>
+      <UpButtonText>{t("content_screen.scrollToTop", "Haut de page")}</UpButtonText>
     </UpButtonContainer>
   );
 };

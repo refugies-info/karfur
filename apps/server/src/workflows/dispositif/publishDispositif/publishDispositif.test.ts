@@ -34,7 +34,7 @@ describe.skip("updateDispositif", () => {
         webOnly: true,
       },
       params: { id: "id" },
-      user: { _id: "userId", roles: [{ nom: RoleName.ADMIN }] }
+      user: { _id: "userId", roles: [{ nom: RoleName.ADMIN }] },
     };
 
     const date = 148707670800;

@@ -1,17 +1,12 @@
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, all } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "../../logger";
 import API from "../../utils/API";
+import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
+import { finishLoading, LoadingStatusKey, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { FETCH_LANGUES, TOGGLE_LANGUE } from "./langue.actionTypes";
 import { setLanguesActionCreator } from "./langue.actions";
-import {
-  startLoading,
-  finishLoading,
-  LoadingStatusKey,
-  setError,
-} from "../LoadingStatus/loadingStatus.actions";
-import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
-import { logger } from "../../logger";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 export function* fetchLangues(): SagaIterator {
   try {
@@ -37,10 +32,7 @@ export function* toggleLangue(): SagaIterator {
 }
 
 function* latestActionsSaga() {
-  yield all([
-    takeLatest(FETCH_LANGUES, fetchLangues),
-    takeLatest(TOGGLE_LANGUE, toggleLangue),
-  ]);
+  yield all([takeLatest(FETCH_LANGUES, fetchLangues), takeLatest(TOGGLE_LANGUE, toggleLangue)]);
 }
 
 export default latestActionsSaga;

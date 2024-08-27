@@ -24,7 +24,10 @@
     "authenticationModule": "./src/authentication.ts"
   },
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "~/*": ["./*"]
+    },
     "include": [
       "src"
     ]

@@ -1,20 +1,20 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useCookie } from "react-use";
-import { Col, Row } from "reactstrap";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { useLogin } from "hooks";
 import { logger } from "logger";
-import API from "utils/API";
-import { cls } from "lib/classname";
-import isInBrowser from "lib/isInBrowser";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCookie } from "react-use";
+import { Col, Row } from "reactstrap";
+import GmailIcon from "~/assets/auth/providers/gmail-icon.svg";
+import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
+import { useLogin } from "~/hooks";
+import { cls } from "~/lib/classname";
+import isInBrowser from "~/lib/isInBrowser";
+import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
 import Loader from "../Loader";
-import GmailIcon from "assets/auth/providers/gmail-icon.svg";
-import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
-import styles from "scss/components/auth.module.scss";
 
 interface Props {
   type: "2fa" | "login" | "updateUser";

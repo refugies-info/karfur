@@ -1,11 +1,10 @@
-import React from "react";
 import Image from "next/image";
-import FButton from "components/UI/FButton/FButton";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import SEO from "components/Seo";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import ConformiteResults from "assets/declaration-accessibilite/conformite-results.svg";
-import styles from "scss/pages/declaration-accessibilite.module.scss";
+import ConformiteResults from "~/assets/declaration-accessibilite/conformite-results.svg";
+import SEO from "~/components/Seo";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import FButton from "~/components/UI/FButton/FButton";
+import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import styles from "~/scss/pages/declaration-accessibilite.module.scss";
 
 const DeclarationAccessibilite = () => {
   return (

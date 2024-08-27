@@ -1,6 +1,6 @@
 // @ts-nocheck
+import { getNeedFromDB, saveNeedInDB } from "~/modules/needs/needs.repository";
 import addView from "./addView";
-import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository";
 
 /* jest.mock("../../../modules/needs/needs.repository", () => ({
   getNeedFromDB: jest.fn(),
@@ -24,20 +24,20 @@ describe.skip("addView", () => {
 
   it("should return 400 if no need found", async () => {
     const req = {
-      body: { id: "needId" }
+      body: { id: "needId" },
     };
     getNeedFromDB.mockImplementationOnce(() => {
-      return null
+      return null;
     });
     await addView[1](req, res);
     expect(res.status).toHaveBeenCalledWith(400);
   });
   it("should return 200 and increment views", async () => {
     const req = {
-      body: { id: "needId" }
+      body: { id: "needId" },
     };
     getNeedFromDB.mockImplementationOnce(() => {
-      return { _id: "needId", nbVues: 4 }
+      return { _id: "needId", nbVues: 4 };
     });
     await addView[1](req, res);
     expect(saveNeedInDB).toHaveBeenCalledWith("needId", { nbVues: 5 });
@@ -45,14 +45,13 @@ describe.skip("addView", () => {
   });
   it("should return 200 and increment views if no nbVues", async () => {
     const req = {
-      body: { id: "needId" }
+      body: { id: "needId" },
     };
     getNeedFromDB.mockImplementationOnce(() => {
-      return { _id: "needId" }
+      return { _id: "needId" };
     });
     await addView[1](req, res);
     expect(saveNeedInDB).toHaveBeenCalledWith("needId", { nbVues: 1 });
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

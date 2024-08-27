@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/input";
-@import "~scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/input";
+@import "~/scss/mixins/text";
 
 .text {
   position: relative;
@@ -30,7 +30,7 @@
 
 .help {
   @include dsfr-text("very-small");
-  
+
   position: absolute;
   bottom: u(4);
   left: u(4);

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { BLUR_COMMAND, COMMAND_PRIORITY_LOW, FOCUS_COMMAND } from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { mergeRegister } from "@lexical/utils";
+import { BLUR_COMMAND, COMMAND_PRIORITY_LOW, FOCUS_COMMAND } from "lexical";
+import { useEffect } from "react";
 
 interface FocusPluginProps {
   onFocus?: () => void;

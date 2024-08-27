@@ -1,11 +1,11 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import useWindowSize from "hooks/useWindowSize";
-import { checkIfEllipsis } from "lib/checkIfEllipsis";
-import { cls } from "lib/classname";
-import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { colors } from "utils/colors";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import useWindowSize from "~/hooks/useWindowSize";
+import { checkIfEllipsis } from "~/lib/checkIfEllipsis";
+import { cls } from "~/lib/classname";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
+import { colors } from "~/utils/colors";
 import styles from "./SearchInput.module.scss";
 
 interface Props {

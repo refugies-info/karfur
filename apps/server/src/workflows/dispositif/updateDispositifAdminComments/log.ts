@@ -1,11 +1,11 @@
-import { Dispositif, DispositifId, UserId } from "../../../typegoose";
-import { addLog } from "../../../modules/logs/logs.service";
+import { addLog } from "~/modules/logs/logs.service";
+import { Dispositif, DispositifId, UserId } from "~/typegoose";
 
 export const log = async (
   dispositifId: DispositifId,
   dispositif: Partial<Dispositif>,
   oldDispositif: Dispositif,
-  authorId: UserId
+  authorId: UserId,
 ) => {
   const newComments = dispositif.adminComments || "";
   const oldComments = oldDispositif.adminComments || "";

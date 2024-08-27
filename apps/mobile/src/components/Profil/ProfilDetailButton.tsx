@@ -1,8 +1,8 @@
 import * as React from "react";
-import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
+import styled from "styled-components/native";
+import { styles } from "~/theme";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
-import { styles } from "../../theme";
 import { TextDSFR_MD_Med } from "../StyledText";
 
 const ButtonContainer = styled(RTLTouchableOpacity)<{
@@ -18,9 +18,7 @@ const ButtonContainer = styled(RTLTouchableOpacity)<{
   padding-horizontal: ${styles.margin * 2}px;
   margin-bottom: ${styles.margin * 2}px;
   border: 1px solid ${theme.colors.dsfr_borderGrey};
-  background-color: ${
-    purpleVariant ? theme.colors.dsfr_backgroundBlue : theme.colors.white
-  };
+  background-color: ${purpleVariant ? theme.colors.dsfr_backgroundBlue : theme.colors.white};
   ${!purpleVariant ? theme.shadows.sm_dsfr : ""}
   `
       : ""}
@@ -38,12 +36,9 @@ const StyledLabel = styled(TextDSFR_MD_Med)<{
   isBold: boolean;
 }>`
   flex: 1;
-  ${({ theme, isBold }) =>
-    isBold ? `font-family: ${theme.fonts.families.marianneBold};` : ""}
-  ${({ isEmpty, theme }) =>
-    isEmpty ? `color: ${theme.colors.dsfr_disabledGrey};` : ""}
-  ${({ purpleVariant, theme }) =>
-    purpleVariant ? `color: ${theme.colors.dsfr_purple};` : ""}
+  ${({ theme, isBold }) => (isBold ? `font-family: ${theme.fonts.families.marianneBold};` : "")}
+  ${({ isEmpty, theme }) => (isEmpty ? `color: ${theme.colors.dsfr_disabledGrey};` : "")}
+  ${({ purpleVariant, theme }) => (purpleVariant ? `color: ${theme.colors.dsfr_purple};` : "")}
 `;
 
 type IconRight = "edit" | "navigate" | "external";
@@ -86,8 +81,8 @@ export const ProfilDetailButton = (props: Props) => (
             props.purpleVariant
               ? styles.colors.dsfr_purple
               : props.isEmpty
-              ? styles.colors.dsfr_disabledGrey
-              : styles.colors.black
+                ? styles.colors.dsfr_disabledGrey
+                : styles.colors.black
           }
         />
       )}
@@ -103,22 +98,13 @@ export const ProfilDetailButton = (props: Props) => (
     </LabelContainer>
     <RTLView>
       {props.isEmpty ? (
-        <Icon
-          name="plus-circle"
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          fill={styles.colors.dsfr_success}
-        />
+        <Icon name="plus-circle" width={ICON_SIZE} height={ICON_SIZE} fill={styles.colors.dsfr_success} />
       ) : (
         <Icon
           name={ICONS[props.iconRight]}
           width={ICON_SIZE}
           height={ICON_SIZE}
-          fill={
-            props.purpleVariant
-              ? styles.colors.dsfr_purple
-              : styles.colors.dsfr_mentionGrey
-          }
+          fill={props.purpleVariant ? styles.colors.dsfr_purple : styles.colors.dsfr_mentionGrey}
         />
       )}
     </RTLView>

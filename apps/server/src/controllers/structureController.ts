@@ -1,4 +1,3 @@
-import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body, Patch } from "tsoa";
 import {
   GetActiveStructuresResponse,
   GetAllStructuresResponse,
@@ -10,15 +9,16 @@ import {
   PostStructureRequest,
 } from "@refugies-info/api-types";
 import { Request as ExRequest } from "express";
+import { Body, Controller, Get, Patch, Path, Post, Queries, Query, Request, Route, Security } from "tsoa";
 
-import { getAllStructures } from "../workflows/structure/getAllStructures";
-import { getStructureById } from "../workflows/structure/getStructureById";
-import { getActiveStructures } from "../workflows/structure/getActiveStructures";
-import { createStructure } from "../workflows/structure/createStructure";
-import { updateStructure } from "../workflows/structure/updateStructure";
-import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
-import { getStatistics } from "../workflows/structure/getStatistics";
-import { IRequest, Response, ResponseWithData } from "../types/interface";
+import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import { createStructure } from "~/workflows/structure/createStructure";
+import { getActiveStructures } from "~/workflows/structure/getActiveStructures";
+import { getAllStructures } from "~/workflows/structure/getAllStructures";
+import { getStatistics } from "~/workflows/structure/getStatistics";
+import { getStructureById } from "~/workflows/structure/getStructureById";
+import { modifyUserRoleInStructure } from "~/workflows/structure/modifyUserRoleInStructure";
+import { updateStructure } from "~/workflows/structure/updateStructure";
 
 @Route("structures")
 export class StructureController extends Controller {

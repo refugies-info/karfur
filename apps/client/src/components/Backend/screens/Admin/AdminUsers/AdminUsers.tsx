@@ -1,50 +1,49 @@
-import marioProfile from "assets/mario-profile.jpg";
-import React, { useEffect, useState } from "react";
+import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import { useDispatch } from "react-redux";
-import {
-  StyledHeader,
-  StyledTitle,
-  FigureContainer,
-  StyledSort,
-  Content,
-  StyledHeaderInner,
-} from "../sharedComponents/StyledAdmin";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useRouterLocale from "hooks/useRouterLocale";
-import { userHeaders, correspondingStatus } from "./data";
-import { Table, Spinner } from "reactstrap";
-import { useSelector } from "react-redux";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
-import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
-import { RowContainer, StructureName } from "../AdminStructures/components/AdminStructureComponents";
-import { Role, LangueFlag } from "./components/AdminUsersComponents";
-import { LoadingAdminUsers } from "./components/LoadingAdminUsers";
-import CustomSearchBar from "components/UI/CustomSeachBar";
-import { UserStatusType } from "types/interface";
-import { prepareDeleteContrib } from "../Needs/lib";
-import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
-import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
-import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { removeAccents } from "lib";
-import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
-import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
-import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
-import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
-import FButton from "components/UI/FButton/FButton";
-import API from "utils/API";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Spinner, Table } from "reactstrap";
 import Swal from "sweetalert2";
+import marioProfile from "~/assets/mario-profile.jpg";
+import CustomSearchBar from "~/components/UI/CustomSeachBar";
+import FButton from "~/components/UI/FButton/FButton";
+import useRouterLocale from "~/hooks/useRouterLocale";
+import { removeAccents } from "~/lib";
+import { getAdminUrlParams, getInitialFilters } from "~/lib/getAdminUrlParams";
+import { handleApiError } from "~/lib/handleApiErrors";
+import { statusCompare } from "~/lib/statusCompare";
+import { setAllDispositifsActionsCreator } from "~/services/AllDispositifs/allDispositifs.actions";
+import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
+import { allActiveUsersSelector } from "~/services/AllUsers/allUsers.selector";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { UserStatusType } from "~/types/interface";
+import API from "~/utils/API";
+import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
+import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
+import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { RowContainer, StructureName } from "../AdminStructures/components/AdminStructureComponents";
+import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
+import { prepareDeleteContrib } from "../Needs/lib";
+import {
+  Content,
+  FigureContainer,
+  StyledHeader,
+  StyledHeaderInner,
+  StyledSort,
+  StyledTitle,
+} from "../sharedComponents/StyledAdmin";
+import { FilterButton, TabHeader } from "../sharedComponents/SubComponents";
 import styles from "./AdminUsers.module.scss";
-import { statusCompare } from "lib/statusCompare";
-import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
-import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
-import { handleApiError } from "lib/handleApiErrors";
+import { LangueFlag, Role } from "./components/AdminUsersComponents";
+import { LoadingAdminUsers } from "./components/LoadingAdminUsers";
+import { correspondingStatus, userHeaders } from "./data";
+import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 
 moment.locale("fr");
 

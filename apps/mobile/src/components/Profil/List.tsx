@@ -1,9 +1,8 @@
-import * as React from "react";
-import styled from "styled-components/native";
-import { RTLView } from "../BasicComponents";
-import { styles } from "../../theme";
-import { TextDSFR_MD } from "../StyledText";
 import { View } from "react-native";
+import styled from "styled-components/native";
+import { styles } from "~/theme";
+import { RTLView } from "../BasicComponents";
+import { TextDSFR_MD } from "../StyledText";
 
 const BulletPoint = styled(TextDSFR_MD)<{ isRTL: boolean }>`
   margin-right: ${({ isRTL }) => (isRTL ? styles.margin / 2 : 0)}px;
@@ -29,7 +28,7 @@ export const List = (props: Props) => (
           <BulletPoint isRTL={props.isRTL}>{"\u2022"}</BulletPoint>
           <ListItem isRTL={props.isRTL}>{item}</ListItem>
         </RTLView>
-      ) : null
+      ) : null,
     )}
   </View>
 );

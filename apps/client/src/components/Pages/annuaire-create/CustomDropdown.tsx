@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -33,10 +32,7 @@ export const CustomDropDown = (props: Props) => {
   return (
     <DropDownContainer>
       {props.elementList.map((element) => (
-        <ItemContainer
-          onClick={() => props.onDropdownElementClick(element)}
-          key={element}
-        >
+        <ItemContainer onClick={() => props.onDropdownElementClick(element)} key={element}>
           {element}
         </ItemContainer>
       ))}

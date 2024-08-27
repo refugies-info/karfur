@@ -1,31 +1,21 @@
-import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, select } from "redux-saga/effects";
 import crashlytics from "@react-native-firebase/crashlytics";
+import { SagaIterator } from "redux-saga";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 
-import {
-  startLoading,
-  finishLoading,
-  LoadingStatusKey,
-} from "../LoadingStatus/loadingStatus.actions";
-import { logger } from "../../../logger";
-import {
-  setContentsActionCreator,
-  setNbContentsActionCreator,
-} from "./contents.actions";
-import { FETCH_CONTENTS } from "./contents.actionTypes";
-import { getContentsForApp, getNbContents } from "../../../utils/API";
+import { GetContentsForAppResponse, GetNbContentsForCountyResponse } from "@refugies-info/api-types";
+import { logger } from "~/logger";
+import { getContentsForApp, getNbContents } from "~/utils/API";
+import { setGroupedContentsActionCreator } from "../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
+import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
-  userLocationSelector,
   userFrenchLevelSelector,
+  userLocationSelector,
 } from "../User/user.selectors";
+import { setContentsActionCreator, setNbContentsActionCreator } from "./contents.actions";
+import { FETCH_CONTENTS } from "./contents.actionTypes";
 import { groupResultsByNeed } from "./functions";
-import { setGroupedContentsActionCreator } from "../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
-import {
-  GetContentsForAppResponse,
-  GetNbContentsForCountyResponse,
-} from "@refugies-info/api-types";
 
 export function* fetchContents(): SagaIterator {
   try {
@@ -54,7 +44,7 @@ export function* fetchContents(): SagaIterator {
           setContentsActionCreator({
             langue: selectedLanguage,
             contents: data.data,
-          })
+          }),
         );
       }
       if (data && data.dataFr) {
@@ -62,7 +52,7 @@ export function* fetchContents(): SagaIterator {
           setContentsActionCreator({
             langue: "fr",
             contents: data.dataFr,
-          })
+          }),
         );
 
         const groupedResults = yield call(groupResultsByNeed, data.dataFr);

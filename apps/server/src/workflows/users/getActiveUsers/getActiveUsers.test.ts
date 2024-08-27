@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* import { getAllUsers } from "./getAllUsers";
-import { getAllUsersFromDB } from "../../../modules/users/users.repository"; */
+import { getAllUsersFromDB } from "~/modules/users/users.repository"; */
 
 import { RoleName } from "@refugies-info/api-types";
 
@@ -13,7 +13,7 @@ const mockResponse = (): MockResponse => {
 };
 
 jest.mock("../../../modules/users/users.repository", () => ({
-  getAllUsersFromDB: jest.fn()
+  getAllUsersFromDB: jest.fn(),
 }));
 
 const neededFields = {
@@ -26,7 +26,7 @@ const neededFields = {
   email: 1,
   phone: 1,
   selectedLanguages: 1,
-  adminComments: 1
+  adminComments: 1,
 };
 
 const user1 = {
@@ -35,29 +35,35 @@ const user1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: [{ nom: RoleName.ADMIN }, { nom: RoleName.EXPERT_TRAD }, { nom: RoleName.TRAD }, { nom: RoleName.USER }, { nom: RoleName.CONTRIB }],
+  roles: [
+    { nom: RoleName.ADMIN },
+    { nom: RoleName.EXPERT_TRAD },
+    { nom: RoleName.TRAD },
+    { nom: RoleName.USER },
+    { nom: RoleName.CONTRIB },
+  ],
   structures: [
     {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id1", roles: ["administrateur"] }]
+      membres: [{ userId: "id1", roles: ["administrateur"] }],
     },
     {
       _id: "id_structure",
       nom: "struct2",
       picture: { secure_url: "sec_struct2" },
-      membres: [{ userId: "id1", roles: ["contributeur"] }]
-    }
+      membres: [{ userId: "id1", roles: ["contributeur"] }],
+    },
   ],
   email: "email1",
   phone: "",
   selectedLanguages: [
     { langueCode: "fr", langueFr: "Français" },
     { langueCode: "gb", langueFr: "Anglais" },
-    { langueCode: "sa", langueFr: "Pachto" }
+    { langueCode: "sa", langueFr: "Pachto" },
   ],
-  last_connected: ""
+  last_connected: "",
 };
 
 const user2 = {
@@ -69,14 +75,14 @@ const user2 = {
   created_at: "created_at",
   email: "email2",
   phone: "",
-  last_connected: ""
+  last_connected: "",
 };
 
 const user3 = {
   ...user1,
   _id: "id3",
   roles: [{ nom: RoleName.EXPERT_TRAD }],
-  structures: []
+  structures: [],
 };
 
 const user4 = {
@@ -87,9 +93,9 @@ const user4 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id1", roles: ["membre"] }]
-    }
-  ]
+      membres: [{ userId: "id1", roles: ["membre"] }],
+    },
+  ],
 };
 const user5 = {
   ...user1,
@@ -100,9 +106,9 @@ const user5 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id5", roles: ["administrateur"] }]
-    }
-  ]
+      membres: [{ userId: "id5", roles: ["administrateur"] }],
+    },
+  ],
 };
 
 const simplifiedUserAdmin1 = {
@@ -117,25 +123,25 @@ const simplifiedUserAdmin1 = {
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
       _id: "id_structure",
-      role: ["Responsable"]
+      role: ["Responsable"],
     },
     {
       _id: "id_structure",
       nom: "struct2",
       picture: { secure_url: "sec_struct2" },
-      role: ["Rédacteur"]
-    }
+      role: ["Rédacteur"],
+    },
   ],
   email: "email1",
   phone: "",
   langues: [
     { langueCode: "gb", langueFr: "Anglais" },
-    { langueCode: "sa", langueFr: "Pachto" }
+    { langueCode: "sa", langueFr: "Pachto" },
   ],
   nbStructures: 2,
   nbContributions: 0,
   last_connected: "",
-  adminComments: undefined
+  adminComments: undefined,
 };
 
 const simplifiedUserAdmin2 = {
@@ -151,7 +157,7 @@ const simplifiedUserAdmin2 = {
   roles: [],
   structures: [],
   nbContributions: 0,
-  last_connected: ""
+  last_connected: "",
 };
 
 const simplifiedUserAdmin3 = {
@@ -160,7 +166,7 @@ const simplifiedUserAdmin3 = {
   roles: [RoleName.EXPERT_TRAD],
   nbStructures: 0,
   structures: [],
-  nbContributions: 0
+  nbContributions: 0,
 };
 
 const simplifiedUserAdmin4 = {
@@ -173,9 +179,9 @@ const simplifiedUserAdmin4 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      role: []
-    }
-  ]
+      role: [],
+    },
+  ],
 };
 
 const simplifiedUserAdmin5 = {
@@ -188,9 +194,9 @@ const simplifiedUserAdmin5 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      role: ["Responsable"]
-    }
-  ]
+      role: ["Responsable"],
+    },
+  ],
 };
 
 const simplifiedUser1 = {
@@ -198,7 +204,7 @@ const simplifiedUser1 = {
   _id: "id1",
   picture: { secure_url: "secure_url1" },
   status: "Actif",
-  email: "email1"
+  email: "email1",
 };
 
 const simplifiedUser2 = {
@@ -206,22 +212,22 @@ const simplifiedUser2 = {
   _id: "id2",
   picture: { secure_url: "secure_url2" },
   status: "Actif",
-  email: "email2"
+  email: "email2",
 };
 
 const simplifiedUser3 = {
   ...simplifiedUser1,
-  _id: "id3"
+  _id: "id3",
 };
 
 const simplifiedUser4 = {
   ...simplifiedUser1,
-  _id: "id4"
+  _id: "id4",
 };
 
 const simplifiedUser5 = {
   ...simplifiedUser1,
-  _id: "id5"
+  _id: "id5",
 };
 
 const users = [user1, user2, user3, user4, user5];
@@ -240,8 +246,8 @@ describe.skip("getAllUsers", () => {
         simplifiedUserAdmin2,
         simplifiedUserAdmin3,
         simplifiedUserAdmin4,
-        simplifiedUserAdmin5
-      ]
+        simplifiedUserAdmin5,
+      ],
     });
   });
   it("should call getAllUsersFromDB and return 200 when user has structure", async () => {
@@ -252,7 +258,7 @@ describe.skip("getAllUsers", () => {
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      data: [simplifiedUser1, simplifiedUser2, simplifiedUser3, simplifiedUser4, simplifiedUser5]
+      data: [simplifiedUser1, simplifiedUser2, simplifiedUser3, simplifiedUser4, simplifiedUser5],
     });
   });
   it("should return 403 unauthorized when no role in structure", async () => {
@@ -263,7 +269,7 @@ describe.skip("getAllUsers", () => {
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(403);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Accès interdit"
+      text: "Accès interdit",
     });
   });
   it("should return 403 unauthorized when no role", async () => {
@@ -274,7 +280,7 @@ describe.skip("getAllUsers", () => {
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(403);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Accès interdit"
+      text: "Accès interdit",
     });
   });
 
@@ -285,7 +291,7 @@ describe.skip("getAllUsers", () => {
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne"
+      text: "Erreur interne",
     });
   });
 });

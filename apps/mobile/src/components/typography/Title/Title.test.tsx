@@ -1,6 +1,5 @@
-import React from "react";
-import Title from "./Title";
 import { render } from "../../utils/tests";
+import Title from "./Title";
 
 describe("Title snapshot test suite", () => {
   it("should render without bug", async () => {

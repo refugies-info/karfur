@@ -1,19 +1,19 @@
-import LanguageModal from "./LanguageModal/LanguageModal";
-import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
-import ResponsableModal from "./ResponsableModal/ResponsableModal";
-import RejectionModal from "./RejectionModal/RejectionModal";
-import GoToDesktopModal from "./GoToDesktopModal";
-import ReceiveInvitationMailModal from "./ReceiveInvitationMailModal";
-import Modal from "./Modal";
 import FrameModal from "./FrameModal/FrameModal";
+import GoToDesktopModal from "./GoToDesktopModal";
+import LanguageModal from "./LanguageModal/LanguageModal";
+import Modal from "./Modal";
+import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
+import ReceiveInvitationMailModal from "./ReceiveInvitationMailModal";
+import RejectionModal from "./RejectionModal/RejectionModal";
+import ResponsableModal from "./ResponsableModal/ResponsableModal";
 
 export {
-  LanguageModal,
-  ReactionLectureModal,
-  ResponsableModal,
-  RejectionModal,
   FrameModal,
-  Modal,
   GoToDesktopModal,
+  LanguageModal,
+  Modal,
+  ReactionLectureModal,
   ReceiveInvitationMailModal,
+  RejectionModal,
+  ResponsableModal,
 };

@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/btn";
+@import "~/scss/colors";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/btn";
 
 .need {
   padding: u(2);
@@ -38,7 +38,7 @@
 
   .subtitle {
     @include dsfr-text("small");
-    
+
     display: block;
   }
 }

@@ -1,22 +1,17 @@
+import { GetThemeResponse, PatchThemeResponse, PostThemeResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, call, put, select } from "redux-saga/effects";
-import API from "../../utils/API";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
+import API from "../../utils/API";
+import { LoadingStatusKey, finishLoading, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { CREATE_THEME, DELETE_THEME, GET_THEMES, SAVE_THEME } from "./themes.actionTypes";
 import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-  setError,
-} from "../LoadingStatus/loadingStatus.actions";
-import { GET_THEMES, SAVE_THEME, CREATE_THEME, DELETE_THEME } from "./themes.actionTypes";
-import {
-  setThemesActionCreator,
-  saveThemeActionCreator,
   createThemeActionCreator,
-  deleteThemeActionCreator
+  deleteThemeActionCreator,
+  saveThemeActionCreator,
+  setThemesActionCreator,
 } from "./themes.actions";
 import { allThemesSelector } from "./themes.selectors";
-import { GetThemeResponse, PatchThemeResponse, PostThemeResponse } from "@refugies-info/api-types";
 
 export function* fetchThemes(): SagaIterator {
   try {
@@ -36,9 +31,7 @@ export function* fetchThemes(): SagaIterator {
   }
 }
 
-export function* saveTheme(
-  action: ReturnType<typeof saveThemeActionCreator>
-): SagaIterator {
+export function* saveTheme(action: ReturnType<typeof saveThemeActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_THEME));
     const newTheme = action.payload.value;
@@ -48,7 +41,7 @@ export function* saveTheme(
     const data: PatchThemeResponse = yield call(API.patchTheme, id, newTheme);
     if (data) {
       const newThemes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
-      const editedThemeIndex = newThemes.findIndex(w => w._id === id);
+      const editedThemeIndex = newThemes.findIndex((w) => w._id === id);
       newThemes[editedThemeIndex] = data;
       yield put(setThemesActionCreator(newThemes));
     }
@@ -63,9 +56,7 @@ export function* saveTheme(
   }
 }
 
-export function* createTheme(
-  action: ReturnType<typeof createThemeActionCreator>
-): SagaIterator {
+export function* createTheme(action: ReturnType<typeof createThemeActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.CREATE_THEME));
     const newTheme = action.payload;
@@ -85,16 +76,14 @@ export function* createTheme(
   }
 }
 
-export function* deleteTheme(
-  action: ReturnType<typeof deleteThemeActionCreator>
-): SagaIterator {
+export function* deleteTheme(action: ReturnType<typeof deleteThemeActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.DELETE_THEME));
     logger.info("[deleteTheme] start deleting theme");
     yield call(API.deleteTheme, action.payload);
 
     const themes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
-    yield put(setThemesActionCreator(themes.filter(w => w._id !== action.payload)));
+    yield put(setThemesActionCreator(themes.filter((w) => w._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_THEME));
   } catch (error) {

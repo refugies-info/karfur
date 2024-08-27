@@ -1,26 +1,21 @@
-import * as React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useDispatch, useSelector } from "react-redux";
-import { View, Dimensions } from "react-native";
-import styled from "styled-components/native";
 import LottieView from "lottie-react-native";
-import { OnboardingParamList } from "../../../types";
-import { saveHasUserSeenOnboardingActionCreator } from "../../services/redux/User/user.actions";
-import { styles } from "../../theme";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { TextDSFR_XL } from "../../components/StyledText";
-import { fetchContentsActionCreator } from "../../services/redux/Contents/contents.actions";
-import {
-  userLocationSelector,
-  userAgeSelector,
-  userFrenchLevelSelector,
-} from "../../services/redux/User/user.selectors";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { Dimensions, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components/native";
+import { ButtonDSFR, ReadableText, Spacer } from "~/components";
+import PageOnboarding from "~/components/layout/PageOnboarding";
+import { TextDSFR_XL } from "~/components/StyledText";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { fetchContentsActionCreator } from "~/services/redux/Contents/contents.actions";
+import { saveHasUserSeenOnboardingActionCreator } from "~/services/redux/User/user.actions";
+import { userAgeSelector, userFrenchLevelSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import EndOnboardingIllu from "~/theme/images/onboarding/end-onboarding-illu.svg";
+import { OnboardingParamList } from "~/types/navigation";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
-import { ButtonDSFR, ReadableText, Spacer } from "../../components";
-import PageOnboarding from "../../components/layout/PageOnboarding";
-import EndOnboardingIllu from "../../theme/images/onboarding/end-onboarding-illu.svg";
 
 const Title = styled(TextDSFR_XL)`
   color: ${({ theme }) => theme.colors.dsfr_action};
@@ -42,10 +37,7 @@ const FakeTabBarArrowContainer = styled.View<{ width: number }>`
   margin-top: ${styles.margin * 2}px;
 `;
 
-export const FinishOnboarding = ({}: StackScreenProps<
-  OnboardingParamList,
-  "FinishOnboarding"
->) => {
+export const FinishOnboarding = ({}: StackScreenProps<OnboardingParamList, "FinishOnboarding">) => {
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
@@ -54,8 +46,7 @@ export const FinishOnboarding = ({}: StackScreenProps<
   const frenchLevel = useSelector(userFrenchLevelSelector);
 
   // TODO: restore when design ready
-  const hasUserEnteredInfos =
-    true; /* !!frenchLevel || !!age || !!location.city || !!location.department; */
+  const hasUserEnteredInfos = true; /* !!frenchLevel || !!age || !!location.city || !!location.department; */
 
   const fakeTabBarWidth = Dimensions.get("screen").width * 0.88;
 
@@ -64,10 +55,8 @@ export const FinishOnboarding = ({}: StackScreenProps<
       dispatch(saveHasUserSeenOnboardingActionCreator());
       dispatch(fetchContentsActionCreator());
       logEventInFirebase(
-        hasUserEnteredInfos
-          ? FirebaseEvent.PROFILE_COMPLETED
-          : FirebaseEvent.PROFILE_NOT_COMPLETED,
-        {}
+        hasUserEnteredInfos ? FirebaseEvent.PROFILE_COMPLETED : FirebaseEvent.PROFILE_NOT_COMPLETED,
+        {},
       );
     } catch (e) {}
   };
@@ -103,7 +92,7 @@ export const FinishOnboarding = ({}: StackScreenProps<
               ? t("onboarding_screens.ready")
               : t(
                   "onboarding_screens.end_no_info",
-                  "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi »."
+                  "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi ».",
                 )}
           </ReadableText>
         </Title>

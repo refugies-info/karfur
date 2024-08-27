@@ -1,7 +1,6 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/native";
-import { Columns, ColumnsSpacing } from "../../components";
+import { Columns, ColumnsSpacing } from "~/components";
 import { TabBarItem } from "./TabBarItem";
 
 interface TabBarProps {

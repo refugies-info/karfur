@@ -1,12 +1,12 @@
 import { ContentType, Id, InfoSections } from "@refugies-info/api-types";
-import React, { memo, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSelector } from "react-redux";
-import { AccordionAnimated, ContentFromHtml, ReadableText, Title } from "../../../components";
-import { useTranslationWithRTL } from "../../../hooks";
-import { defaultColors } from "../../../libs";
-import { currentI18nCodeSelector, selectedContentSelector, themeSelector } from "../../../services";
-import { styles } from "../../../theme";
+import { AccordionAnimated, ContentFromHtml, ReadableText, Title } from "~/components";
+import { useTranslationWithRTL } from "~/hooks";
+import { defaultColors } from "~/libs";
+import { currentI18nCodeSelector, selectedContentSelector, themeSelector } from "~/services";
+import { styles } from "~/theme";
 
 export interface SectionProps {
   sectionKey: "what" | "how" | "why" | "next";
@@ -39,15 +39,8 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
   const width = useMemo(
-    () =>
-      dispositif.typeContenu === ContentType.DEMARCHE
-        ? accordionMaxWidthWithStep
-        : accordionMaxWidthWithoutStep,
-    [
-      dispositif.typeContenu,
-      accordionMaxWidthWithStep,
-      accordionMaxWidthWithoutStep,
-    ]
+    () => (dispositif.typeContenu === ContentType.DEMARCHE ? accordionMaxWidthWithStep : accordionMaxWidthWithoutStep),
+    [dispositif.typeContenu, accordionMaxWidthWithStep, accordionMaxWidthWithoutStep],
   );
 
   const title = useMemo(() => {

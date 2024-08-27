@@ -1,8 +1,8 @@
 //@ts-nocheck
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import "jest-styled-components";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
   DeleteButton,

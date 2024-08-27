@@ -1,5 +1,5 @@
-@import "~scss/colors";
-@import "~scss/variables";
+@import "~/scss/colors";
+@import "~/scss/variables";
 
 .admin {
   display: flex;
@@ -33,7 +33,8 @@
     background-color: $gray10;
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     background-color: $gray20;
   }
 

@@ -1,5 +1,5 @@
-import { initialLanguageState, languagesReducer } from "../languages.reducer";
 import { setLanguagesActionCreator } from "../languages.actions";
+import { initialLanguageState, languagesReducer } from "../languages.reducer";
 
 describe("[Reducer] languages", () => {
   it("sets the available languages to the store", () => {
@@ -21,9 +21,9 @@ describe("[Reducer] languages", () => {
             i18nCode: "",
             avancementTrad: 1,
             avancement: 1,
-          }
-        ])
-      )
+          },
+        ]),
+      ),
     ).toEqual({
       availableLanguages: [
         {
@@ -39,7 +39,7 @@ describe("[Reducer] languages", () => {
           i18nCode: "",
           avancementTrad: 1,
           avancement: 1,
-        }
+        },
       ],
     });
   });

@@ -1,14 +1,13 @@
-import React from "react";
 import { Metadatas } from "@refugies-info/api-types";
-import Age from "../../theme/images/infocards/Age";
-import Durations from "../../theme/images/infocards/Durations";
-import Free from "../../theme/images/infocards/Free";
-import FrenchLevel from "../../theme/images/infocards/FrenchLevel";
-import Location from "../../theme/images/infocards/Location";
-import Price from "../../theme/images/infocards/Price";
-import Public from "../../theme/images/infocards/Public";
-import Status from "../../theme/images/infocards/Status";
-import Commitment from "../../theme/images/infocards/Commitment";
+import Age from "~/theme/images/infocards/Age";
+import Commitment from "~/theme/images/infocards/Commitment";
+import Durations from "~/theme/images/infocards/Durations";
+import Free from "~/theme/images/infocards/Free";
+import FrenchLevel from "~/theme/images/infocards/FrenchLevel";
+import Location from "~/theme/images/infocards/Location";
+import Price from "~/theme/images/infocards/Price";
+import Public from "~/theme/images/infocards/Public";
+import Status from "~/theme/images/infocards/Status";
 
 type metaKeys = keyof Metadatas;
 interface Props {

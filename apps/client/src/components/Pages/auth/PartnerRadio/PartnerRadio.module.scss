@@ -1,5 +1,5 @@
-@import "~scss/mixins/btn";
-@import "~scss/mixins/unit";
+@import "~/scss/mixins/btn";
+@import "~/scss/mixins/unit";
 
 .container {
   display: flex;
@@ -11,7 +11,7 @@
 
 .radio {
   @include choiceButton;
-  
+
   flex-direction: column;
   justify-content: center;
   padding: u(4) u(6);

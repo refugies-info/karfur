@@ -1,6 +1,6 @@
 // @ts-nocheck
 import getDispositifs from "./getDispositifs";
-// import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
+// import { getDispositifArray } from "~/modules/dispositif/dispositif.repository";
 
 /* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifArray: jest.fn(),
@@ -24,14 +24,19 @@ describe.skip("getDispositifs", () => {
     jest.clearAllMocks();
   });
 
-
   it("should call getDispositifsArray and return correct result if one content has a zone d'action and an other not", async () => {
     getDispositifArray.mockResolvedValue(dispositifs);
     const res = mockResponse();
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 0, {});
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      0,
+      {},
+    );
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -52,7 +57,13 @@ describe.skip("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 0, {});
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      0,
+      {},
+    );
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -72,7 +83,13 @@ describe.skip("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 0, {});
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      0,
+      {},
+    );
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "en");
@@ -92,7 +109,13 @@ describe.skip("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en", limit: 12, sort: "publishedAt" } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 12, { "publishedAt": -1 });
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      12,
+      { publishedAt: -1 },
+    );
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "en");
@@ -113,7 +136,13 @@ describe.skip("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 0, {});
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      0,
+      {},
+    );
 
     expect(turnToLocalized).not.toHaveBeenCalled();
     expect(turnToLocalized).not.toHaveBeenCalled();
@@ -136,7 +165,13 @@ describe.skip("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 0, {});
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      0,
+      {},
+    );
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 
@@ -158,7 +193,13 @@ describe.skip("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs[1](req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor", 0, {});
+    expect(getDispositifArray).toHaveBeenCalledWith(
+      query,
+      { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
+      "mainSponsor",
+      0,
+      {},
+    );
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 

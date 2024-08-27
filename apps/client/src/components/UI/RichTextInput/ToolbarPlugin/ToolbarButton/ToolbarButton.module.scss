@@ -1,6 +1,6 @@
-@import "~scss/colors";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
 
 .btn {
   height: u(8);
@@ -22,7 +22,7 @@
 
   &.text_btn {
     @include dsfr-text("small");
-    
+
     font-weight: 500;
     justify-content: flex-start;
     padding-left: u(2);

@@ -1,12 +1,20 @@
-import { ResponseWithData } from "../../../types/interface";
-import logger from "../../../logger";
-import { getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { NotFoundError } from "../../../errors";
+import {
+  ContentStructure,
+  DispositifStatus,
+  GetDispositifResponse,
+  Id,
+  Languages,
+  SimpleUser,
+  Sponsor,
+} from "@refugies-info/api-types";
 import pick from "lodash/pick";
-import { ContentStructure, DispositifStatus, GetDispositifResponse, Id, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
-import { getRoles } from "../../../modules/role/role.repository";
-import { Dispositif, Role, Structure, User } from "../../../typegoose";
-import { isUserAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
+import { NotFoundError } from "~/errors";
+import { isUserAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
+import logger from "~/logger";
+import { getDispositifById, getDraftDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { getRoles } from "~/modules/role/role.repository";
+import { Dispositif, Role, Structure, User } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 const getRoleName = (id: string, roles: Role[]) => roles.find((r) => r._id.toString() === id.toString())?.nom || "";
 const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDispositifResponse["metadatas"] => {
@@ -27,16 +35,18 @@ const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
 
   // is part of structure: OK
   const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
-  const isMemberOfStructure = user && !!(sponsor?.membres || []).find((membre) => membre.userId && membre.userId.toString() === user._id.toString());
+  const isMemberOfStructure =
+    user &&
+    !!(sponsor?.membres || []).find((membre) => membre.userId && membre.userId.toString() === user._id.toString());
   if (isMemberOfStructure) return true;
 
   // if author: OK while the structure has not accepted the dispositif
   const isAuthor = user && dispositif.creatorId.toString() === user._id.toString();
-  if (isAuthor && [
-    DispositifStatus.DRAFT,
-    DispositifStatus.DELETED,
-    DispositifStatus.WAITING_STRUCTURE,
-  ].includes(dispositif.status)) return true;
+  if (
+    isAuthor &&
+    [DispositifStatus.DRAFT, DispositifStatus.DELETED, DispositifStatus.WAITING_STRUCTURE].includes(dispositif.status)
+  )
+    return true;
 
   // if no members yet, user just created the structure: OK
   const noMembersYet = sponsor && (sponsor.membres || []).length === 0;
@@ -45,13 +55,17 @@ const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
   }
 
   return false;
-}
+};
 
-export const getContentById = async (id: string, locale: Languages, user?: User | undefined): ResponseWithData<GetDispositifResponse> => {
+export const getContentById = async (
+  id: string,
+  locale: Languages,
+  user?: User | undefined,
+): ResponseWithData<GetDispositifResponse> => {
   logger.info("[getContentById] called", {
     locale,
     id,
-    user: user?._id
+    user: user?._id,
   });
 
   const fields = {
@@ -79,7 +93,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
     mainSponsor: ContentStructure;
     sponsors: (ContentStructure | Sponsor)[];
     participants: SimpleUser[];
-    creatorId: { _id: Id, username: string };
+    creatorId: { _id: Id; username: string };
   }>([
     { path: "mainSponsor", select: "_id nom picture membres" },
     { path: "sponsors", select: "_id nom picture" },
@@ -90,17 +104,23 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
 
   // if user logged in, and allowed to edit, load draft version instead
   const dispositifForAccessCheck = await getDispositifById(
-    id, { mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor",
+    id,
+    { mainSponsor: 1, creatorId: 1, status: 1 },
+    "mainSponsor",
   );
   if (!canViewDispositif(dispositifForAccessCheck, user)) throw new NotFoundError("Dispositif not found");
-  if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user, !!originalDispositif.hasDraftVersion) && !!originalDispositif.hasDraftVersion) {
+  if (
+    user &&
+    isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user, !!originalDispositif.hasDraftVersion) &&
+    !!originalDispositif.hasDraftVersion
+  ) {
     draftDispositif = await (
       await getDraftDispositifById(id, fields)
     )?.populate<{
       mainSponsor: ContentStructure;
       sponsors: (ContentStructure | Sponsor)[];
       participants: SimpleUser[];
-      creatorId: { _id: Id, username: string };
+      creatorId: { _id: Id; username: string };
     }>([
       { path: "mainSponsor", select: "_id nom picture" },
       { path: "sponsors", select: "_id nom picture" },
@@ -139,7 +159,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
       "status",
       "theme",
       "externalLink",
-      "creatorId"
+      "creatorId",
     ]),
   };
 

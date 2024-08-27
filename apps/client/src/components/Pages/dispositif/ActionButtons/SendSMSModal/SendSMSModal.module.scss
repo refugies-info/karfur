@@ -1,9 +1,9 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/rtl";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
 .form {
   .text {
@@ -45,7 +45,7 @@
       i {
         line-height: 24px !important;
         height: 24px !important;
-        
+
         svg {
           width: 24px;
           height: 24px;

@@ -1,14 +1,11 @@
 import { PublishTranslationRequest } from "@refugies-info/api-types";
-import { getValidation } from "../../../modules/traductions/traductions.repository";
-import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { User } from "../../../typegoose";
-import { UnauthorizedError } from "../../../errors";
+import { UnauthorizedError } from "~/errors";
+import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { getValidation } from "~/modules/traductions/traductions.repository";
+import { User } from "~/typegoose";
 import validateTranslation from "../validateTranslation";
 
-const publishTranslation = (
-  { language, dispositifId }: PublishTranslationRequest,
-  user: User,
-): Promise<void> =>
+const publishTranslation = ({ language, dispositifId }: PublishTranslationRequest, user: User): Promise<void> =>
   getDispositifById(dispositifId, { translations: 1, typeContenu: 1 }).then(async (dispositif) => {
     const userIsExpert = user.isExpert() || user.isAdmin();
     if (dispositif.isTranslatedIn(language) && !userIsExpert) {

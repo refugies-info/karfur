@@ -1,8 +1,8 @@
 import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
-import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import { colorAvancement } from "~/lib/colors";
+import { colors } from "~/utils/colors";
 import styles from "./SubComponents.module.scss";
 
 interface Props {

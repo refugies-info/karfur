@@ -1,5 +1,5 @@
+import { DispositifStatus, StructureStatus } from "@refugies-info/api-types";
 import { AxiosResponse } from "axios";
-import { DispositifStatus, StructureStatus, GetDispositifResponse, GetDispositifsResponse, Id } from "@refugies-info/api-types";
 
 export type APIResponse<T = null> = AxiosResponse<{
   text: "success" | "error";

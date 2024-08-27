@@ -1,17 +1,17 @@
-import { DispositifStatus, StructureStatus, Id } from "@refugies-info/api-types";
+import { DispositifStatus, Id, StructureStatus } from "@refugies-info/api-types";
 import { NextRouter } from "next/router";
-import { UserStatusType } from "types/interface";
+import { UserStatusType } from "~/types/interface";
 
 export type TabQuery = "contenus" | "structures" | "utilisateurs" | "divers" | "categories" | "widgets" | undefined;
 type Status = DispositifStatus | StructureStatus | UserStatusType;
 
 type AdminUrlParams = {
-  tab?: string
-  filter?: string
-  userId?: string
-  contentId?: string
-  structureId?: string
-}
+  tab?: string;
+  filter?: string;
+  userId?: string;
+  contentId?: string;
+  structureId?: string;
+};
 
 export const getAdminUrlParams = (
   tab: TabQuery,
@@ -29,18 +29,18 @@ export const getAdminUrlParams = (
   if (selectedStructureId) urlParams.structureId = selectedStructureId.toString();
 
   return new URLSearchParams(urlParams).toString();
-}
+};
 
 // local storage queries
-const ADMIN_URL_PARAMS = "adminUrlParams"
+const ADMIN_URL_PARAMS = "adminUrlParams";
 const getSavedQuery = () => {
   const savedQuery = localStorage.getItem(ADMIN_URL_PARAMS);
   return savedQuery ? new URLSearchParams(savedQuery) : null;
-}
+};
 
 export const setSavedQuery = (query: string) => {
   localStorage.setItem(ADMIN_URL_PARAMS, query);
-}
+};
 
 /**
  * Get initial tab of admin
@@ -53,17 +53,18 @@ export const setSavedQuery = (query: string) => {
 export const getInitialTab = (router: NextRouter) => {
   if (router.query.tab) return router.query.tab as TabQuery; // option 1: url
 
-  return getSavedQuery()?.get("tab") as TabQuery  // option 2: url
-    || "contenus"; // option 3: contenus
-}
-
+  return (
+    (getSavedQuery()?.get("tab") as TabQuery) || // option 2: url
+    "contenus"
+  ); // option 3: contenus
+};
 
 const DEFAULT_FILTERS = {
   filter: null,
   selectedUserId: null,
   selectedDispositifId: null,
   selectedStructureId: null,
-}
+};
 
 /**
  * Get initial filters of tab if active
@@ -74,20 +75,18 @@ const DEFAULT_FILTERS = {
  * @returns
  */
 export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
-
   // Option 1: query of route
   if (router.query.tab) {
-    if (router.query.tab !== currentTab) return DEFAULT_FILTERS
+    if (router.query.tab !== currentTab) return DEFAULT_FILTERS;
 
-    const filterQuery = router.query.filter ?
-      decodeURI(router.query.filter as string) as Status : undefined;
+    const filterQuery = router.query.filter ? (decodeURI(router.query.filter as string) as Status) : undefined;
 
     return {
       filter: filterQuery,
-      selectedUserId: router.query.userId as Id || null,
-      selectedDispositifId: router.query.contentId as Id || null,
-      selectedStructureId: router.query.structureId as Id || null,
-    }
+      selectedUserId: (router.query.userId as Id) || null,
+      selectedDispositifId: (router.query.contentId as Id) || null,
+      selectedStructureId: (router.query.structureId as Id) || null,
+    };
   }
 
   // Option 2: query of localStorage
@@ -96,18 +95,19 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
     const initialTab = savedQuery.get("tab");
 
     if (initialTab && initialTab === currentTab) {
-      const filterQuery = savedQuery.get("filter") ?
-        decodeURI(savedQuery.get("filter") as string) as Status : undefined;
+      const filterQuery = savedQuery.get("filter")
+        ? (decodeURI(savedQuery.get("filter") as string) as Status)
+        : undefined;
 
       return {
         filter: filterQuery,
-        selectedUserId: savedQuery.get("userId") as Id || null,
-        selectedDispositifId: savedQuery.get("contentId") as Id || null,
-        selectedStructureId: savedQuery.get("structureId") as Id || null,
-      }
+        selectedUserId: (savedQuery.get("userId") as Id) || null,
+        selectedDispositifId: (savedQuery.get("contentId") as Id) || null,
+        selectedStructureId: (savedQuery.get("structureId") as Id) || null,
+      };
     }
     return DEFAULT_FILTERS;
   }
 
   return DEFAULT_FILTERS;
-}
+};

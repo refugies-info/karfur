@@ -1,9 +1,8 @@
-import React from "react";
+import { GetLogResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
+import { cls } from "~/lib/classname";
 import styles from "./LogLine.module.scss";
 import { getLogText } from "./functions";
-import { cls } from "lib/classname";
-import { GetLogResponse, Id } from "@refugies-info/api-types";
 
 interface Props {
   log: GetLogResponse;

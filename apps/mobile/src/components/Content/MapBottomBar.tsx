@@ -1,15 +1,14 @@
-import React from "react";
-import styled from "styled-components/native";
-import { View } from "react-native";
-import { MarkerGoogle } from "../../types/interface";
-import { TextDSFR_MD } from "../StyledText";
-import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
-import { CustomButton } from "../CustomButton";
-import { styles } from "../../theme";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { MapContentFromHtml } from "./MapContentHtml";
-import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
+import { View } from "react-native";
+import { Icon } from "react-native-eva-icons";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
+import { MarkerGoogle } from "~/types/interface";
+import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
+import { CustomButton } from "../CustomButton";
+import { TextDSFR_MD } from "../StyledText";
+import { MapContentFromHtml } from "./MapContentHtml";
 
 interface Props {
   selectedMarker: MarkerGoogle | null;
@@ -46,8 +45,7 @@ const ContentContainer = styled(RTLView)<{
 }>`
   margin-bottom: ${({ marginBottom, theme }) =>
     marginBottom !== undefined ? theme.margin * marginBottom : theme.margin}px;
-  margin-top: ${({ marginTop, theme }) =>
-    marginTop !== undefined ? theme.margin * marginTop : theme.margin}px;
+  margin-top: ${({ marginTop, theme }) => (marginTop !== undefined ? theme.margin * marginTop : theme.margin)}px;
   align-items: flex-start;
 `;
 
@@ -58,8 +56,7 @@ const ContentTouchableOpacity = styled(RTLTouchableOpacity)<{
 }>`
   margin-bottom: ${({ marginBottom, theme }) =>
     marginBottom !== undefined ? theme.margin * marginBottom : theme.margin}px;
-  margin-top: ${({ marginTop, theme }) =>
-    marginTop !== undefined ? theme.margin * marginTop : theme.margin}px;
+  margin-top: ${({ marginTop, theme }) => (marginTop !== undefined ? theme.margin * marginTop : theme.margin)}px;
   align-items: flex-start;
 `;
 
@@ -84,17 +81,11 @@ export const MapBottomBar = (props: Props) => {
     return <MainContainer isSelected={false} />;
   }
   const formattedMarkerName =
-    props.selectedMarker && props.selectedMarker.nom
-      ? props.selectedMarker.nom.replace("<br>", "")
-      : "";
+    props.selectedMarker && props.selectedMarker.nom ? props.selectedMarker.nom.replace("<br>", "") : "";
   return (
     <MainContainer isSelected={true}>
       <View style={{ marginBottom: styles.margin * 4 }}>
-        <ContentContainer
-          color={props.textColor}
-          marginBottom={4}
-          marginTop={0}
-        >
+        <ContentContainer color={props.textColor} marginBottom={4} marginTop={0}>
           <HTMLContainer>
             <MapContentFromHtml
               htmlContent={formattedMarkerName}
@@ -115,9 +106,7 @@ export const MapBottomBar = (props: Props) => {
             accessibilityLabel={t("content_screen.address")}
           />
           <HTMLContainer>
-            <TextValue color={props.textColor}>
-              {props.selectedMarker.address}
-            </TextValue>
+            <TextValue color={props.textColor}>{props.selectedMarker.address}</TextValue>
           </HTMLContainer>
         </ContentContainer>
 
@@ -132,15 +121,9 @@ export const MapBottomBar = (props: Props) => {
           />
           <HTMLContainer>
             {props.selectedMarker.email ? (
-              <MapContentFromHtml
-                htmlContent={props.selectedMarker.email}
-                darkColor={props.textColor}
-                isBold={false}
-              />
+              <MapContentFromHtml htmlContent={props.selectedMarker.email} darkColor={props.textColor} isBold={false} />
             ) : (
-              <TextValue color={props.textColor}>
-                {t("content_screen.not_set", "-")}
-              </TextValue>
+              <TextValue color={props.textColor}>{t("content_screen.not_set", "-")}</TextValue>
             )}
           </HTMLContainer>
         </ContentContainer>
@@ -171,9 +154,7 @@ export const MapBottomBar = (props: Props) => {
                 isBold={false}
               />
             ) : (
-              <TextValue color={props.textColor}>
-                {t("content_screen.not_set", "-")}
-              </TextValue>
+              <TextValue color={props.textColor}>{t("content_screen.not_set", "-")}</TextValue>
             )}
           </HTMLContainer>
         </ContentTouchableOpacity>
@@ -181,13 +162,7 @@ export const MapBottomBar = (props: Props) => {
         {!!props.selectedMarker.description && (
           <>
             <ContentContainer color={props.textColor} marginTop={4}>
-              <TextIcon
-                name="info-outline"
-                width={ICON_SIZE}
-                height={ICON_SIZE}
-                fill={props.textColor}
-                isRTL={isRTL}
-              />
+              <TextIcon name="info-outline" width={ICON_SIZE} height={ICON_SIZE} fill={props.textColor} isRTL={isRTL} />
               <HTMLContainer>
                 <MapContentFromHtml
                   htmlContent={props.selectedMarker.description}

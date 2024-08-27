@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
 .container {
   padding: u(4);
@@ -14,7 +14,7 @@
 
 .title {
   @include dsfr-text("large");
-  
+
   font-weight: bold;
   margin-bottom: u(4);
   margin-top: u(4);

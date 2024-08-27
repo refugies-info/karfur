@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from "react";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import styles from "./MobileModal.module.scss";
 
 interface Props {

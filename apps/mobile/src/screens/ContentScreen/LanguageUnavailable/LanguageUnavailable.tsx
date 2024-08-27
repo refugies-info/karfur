@@ -1,14 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
 import styled from "styled-components/native";
-import { Icon, Spacer, ReadableText } from "../../../components";
-import {
-  currentI18nCodeSelector,
-  selectedContentSelector,
-} from "../../../services";
-import { useTranslationWithRTL } from "../../../hooks";
-import { getSelectedLanguageFromI18nCode } from "../../../libs/language";
+import { Icon, ReadableText, Spacer } from "~/components";
+import { useTranslationWithRTL } from "~/hooks";
+import { getSelectedLanguageFromI18nCode } from "~/libs/language";
+import { currentI18nCodeSelector, selectedContentSelector } from "~/services";
 
 const NoticeView = styled.View`
   background-color: #e8edff;
@@ -44,9 +41,7 @@ const LanguageUnavailable = () => {
   const { t } = useTranslationWithRTL();
   const currentLanguageCode = useSelector(currentI18nCodeSelector);
   const [localeMessageHidden, setLocaleMessageHidden] = React.useState(false);
-  const selectedContent = useSelector(
-    selectedContentSelector(currentLanguageCode)
-  );
+  const selectedContent = useSelector(selectedContentSelector(currentLanguageCode));
   const currentLanguage = getSelectedLanguageFromI18nCode(currentLanguageCode);
 
   if (

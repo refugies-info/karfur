@@ -1,7 +1,7 @@
 // @ts-nocheck
+import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
+import { getAllThemes } from "~/modules/themes/themes.repository";
 import getThemes from "./getThemes";
-import { getAllThemes } from "../../../modules/themes/themes.repository";
-import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 /* jest.mock("../../../modules/themes/themes.repository", () => ({
   getAllThemes: jest.fn(),
@@ -32,5 +32,4 @@ describe.skip("getThemes", () => {
     expect(getActiveLanguagesFromDB).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

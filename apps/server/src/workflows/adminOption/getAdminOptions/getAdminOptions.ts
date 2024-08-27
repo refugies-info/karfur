@@ -1,9 +1,9 @@
-import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
-import { getAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
-import { NotFoundError } from "../../../errors";
-import { AdminOptions } from "../../../typegoose";
 import { GetAdminOptionResponse } from "@refugies-info/api-types";
+import { NotFoundError } from "~/errors";
+import logger from "~/logger";
+import { getAdminOption } from "~/modules/adminOptions/adminOptions.repository";
+import { AdminOptions } from "~/typegoose";
+import { ResponseWithData } from "~/types/interface";
 
 export const getAdminOptions = async (key: string): ResponseWithData<GetAdminOptionResponse> => {
   logger.info("[getAdminOptions] received");

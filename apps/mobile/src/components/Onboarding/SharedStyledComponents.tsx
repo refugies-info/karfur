@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
-import { styles } from "../../theme";
+import { TextDSFR_MD, TextDSFR_XL } from "~/components/StyledText";
+import { styles } from "~/theme";
 
 export const Title = styled(TextDSFR_XL)`
   margin-bottom: ${styles.margin * 2}px;

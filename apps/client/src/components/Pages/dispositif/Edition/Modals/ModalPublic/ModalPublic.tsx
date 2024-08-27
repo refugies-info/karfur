@@ -1,6 +1,3 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { useFormContext } from "react-hook-form";
-import { useTranslation } from "next-i18next";
 import {
   ageType,
   CreateDispositifRequest,
@@ -9,11 +6,15 @@ import {
   publicStatusType,
   publicType,
 } from "@refugies-info/api-types";
-import { cls } from "lib/classname";
-import { entries } from "lib/typedObjectEntries";
-import BaseModal from "components/UI/BaseModal";
+import { useTranslation } from "next-i18next";
+import { useCallback, useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import { cls } from "~/lib/classname";
+import { entries } from "~/lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
-import { StepsFooter, InlineForm } from "../components";
+import { InlineForm, StepsFooter } from "../components";
 import {
   ageOptions,
   ChoiceItem,
@@ -24,8 +25,6 @@ import {
   publicStatusOptions,
 } from "./data";
 import { addAllRefugeeTypes, includeAllFrenchLevels, includeAllRefugees, removeAllRefugeeTypes } from "./functions";
-import NoIcon from "assets/dispositif/no-icon.svg";
-import styles from "./ModalPublic.module.scss";
 
 interface Props {
   show: boolean;

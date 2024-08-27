@@ -1,7 +1,7 @@
 // @ts-nocheck
-/* import { Langue } from "../../typegoose";
+/* import { Langue } from "~/typegoose";
 import { getActiveLanguagesFromDB } from "../langues.repository"; */
-/* 
+/*
 jest.mock("../../typegoose", () => ({
   Langue: {
     find: jest.fn()
@@ -14,7 +14,7 @@ describe.skip("getActiveLanguagesFromDB", () => {
   });
   it("should call Langue.find", async () => {
     Langue.find.mockReturnValueOnce({
-      sort: jest.fn()
+      sort: jest.fn(),
     });
     await getActiveLanguagesFromDB();
     expect(Langue.find).toHaveBeenCalledWith(
@@ -25,8 +25,8 @@ describe.skip("getActiveLanguagesFromDB", () => {
         langueCode: 1,
         i18nCode: 1,
         avancement: 1,
-        avancementTrad: 1
-      }
+        avancementTrad: 1,
+      },
     );
   });
 });

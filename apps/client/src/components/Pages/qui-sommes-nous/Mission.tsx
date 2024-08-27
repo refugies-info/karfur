@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import Image from "next/image";
-import FButton from "components/UI/FButton/FButton";
-import { assetsOnServer } from "assets/assetsOnServer";
-import { getPath } from "routes";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { getPath } from "routes";
+import styled from "styled-components";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import FButton from "~/components/UI/FButton/FButton";
 
 const MissionContentContainer = styled.div`
   display: flex;

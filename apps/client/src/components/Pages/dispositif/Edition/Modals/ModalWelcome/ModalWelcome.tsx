@@ -1,15 +1,15 @@
-import React, { useState } from "react";
 import Image from "next/image";
-import { Event } from "lib/tracking";
-import BaseModal from "components/UI/BaseModal";
-import Button from "components/UI/Button";
+import { useState } from "react";
+import WelcomeStep1 from "~/assets/dispositif/welcome-step-1.svg";
+import WelcomeStep2 from "~/assets/dispositif/welcome-step-2.svg";
+import WelcomeStep5 from "~/assets/dispositif/welcome-step-5.png";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import { Event } from "~/lib/tracking";
 import { StepsFooter } from "../components";
 import { modalTitles } from "./data";
-import TextExampleLine from "./TextExampleLine";
-import WelcomeStep1 from "assets/dispositif/welcome-step-1.svg";
-import WelcomeStep2 from "assets/dispositif/welcome-step-2.svg";
-import WelcomeStep5 from "assets/dispositif/welcome-step-5.png";
 import styles from "./ModalWelcome.module.scss";
+import TextExampleLine from "./TextExampleLine";
 
 interface Props {
   show: boolean;

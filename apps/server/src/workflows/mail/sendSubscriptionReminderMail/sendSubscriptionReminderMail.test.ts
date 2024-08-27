@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { sendSubscriptionReminderMailService } from "../../../modules/mail/mail.service";
+import { sendSubscriptionReminderMailService } from "~/modules/mail/mail.service";
 import { sendSubscriptionReminderMail } from "./sendSubscriptionReminderMail";
 
 /* jest.mock("../../../modules/mail/mail.service", () => ({
@@ -21,21 +21,13 @@ describe.skip("sendSubscriptionReminderMailService", () => {
     expect(res.status).toHaveBeenCalledWith(405);
   });
   it("Should call sendSubscriptionReminderMailService and return 200", async () => {
-    await sendSubscriptionReminderMail(
-      { fromSite: true, body: { email: "email" } },
-      res
-    );
+    await sendSubscriptionReminderMail({ fromSite: true, body: { email: "email" } }, res);
     expect(sendSubscriptionReminderMailService).toHaveBeenCalledWith("email");
     expect(res.status).toHaveBeenCalledWith(200);
   });
   it("Should call sendSubscriptionReminderMailService and return 500 when it throws", async () => {
-    sendSubscriptionReminderMailService.mockRejectedValueOnce(
-      new Error("erreur")
-    );
-    await sendSubscriptionReminderMail(
-      { fromSite: true, body: { email: "email" } },
-      res
-    );
+    sendSubscriptionReminderMailService.mockRejectedValueOnce(new Error("erreur"));
+    await sendSubscriptionReminderMail({ fromSite: true, body: { email: "email" } }, res);
     expect(sendSubscriptionReminderMailService).toHaveBeenCalledWith("email");
     expect(res.status).toHaveBeenCalledWith(500);
   });

@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import Image from "next/image";
-import { useTranslation } from "next-i18next";
 import { SimpleUser } from "@refugies-info/api-types";
-import DefaultAvatar from "assets/dispositif/default-avatar.png";
-import { cls } from "lib/classname";
-import { getRole } from "./functions";
-import AdminIcon from "assets/dispositif/crown.svg";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import { useMemo } from "react";
+import AdminIcon from "~/assets/dispositif/crown.svg";
+import DefaultAvatar from "~/assets/dispositif/default-avatar.png";
+import { cls } from "~/lib/classname";
 import styles from "./ContributorCard.module.scss";
+import { getRole } from "./functions";
 
 interface Props {
   user: SimpleUser;

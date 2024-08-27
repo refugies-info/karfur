@@ -1,13 +1,13 @@
-import React, { useState, useMemo } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { useLocale } from "hooks";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import Button from "components/UI/Button";
-import Flag from "components/UI/Flag";
-import SendSMSModal from "./SendSMSModal";
-import ReadLanguageModal from "./ReadLanguageModal";
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import Button from "~/components/UI/Button";
+import Flag from "~/components/UI/Flag";
+import { useLocale } from "~/hooks";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./ActionButtons.module.scss";
+import ReadLanguageModal from "./ReadLanguageModal";
+import SendSMSModal from "./SendSMSModal";
 
 /**
  * Floating action buttons for mobile version

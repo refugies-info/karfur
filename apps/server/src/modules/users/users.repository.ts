@@ -1,7 +1,7 @@
 import { Id, UserStatus } from "@refugies-info/api-types";
 import { FilterQuery, Types } from "mongoose";
-import { LangueId, ObjectId, Role, Structure, StructureId, User, UserModel } from "../../typegoose";
-import { Favorite, UserId } from "../../typegoose/User";
+import { LangueId, ObjectId, Role, Structure, StructureId, User, UserModel } from "~/typegoose";
+import { Favorite, UserId } from "~/typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 

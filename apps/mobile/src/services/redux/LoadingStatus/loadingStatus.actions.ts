@@ -8,12 +8,9 @@ export enum LoadingStatusKey {
   FETCH_THEMES = "FETCH_THEMES",
 }
 
-export const startLoading = (key: LoadingStatusKey) =>
-  action("LOADING_START", { key });
-export const finishLoading = (key: LoadingStatusKey) =>
-  action("LOADING_END", { key });
-export const setError = (key: LoadingStatusKey, error: string | undefined) =>
-  action("LOADING_ERROR", { key, error });
+export const startLoading = (key: LoadingStatusKey) => action("LOADING_START", { key });
+export const finishLoading = (key: LoadingStatusKey) => action("LOADING_END", { key });
+export const setError = (key: LoadingStatusKey, error: string | undefined) => action("LOADING_ERROR", { key, error });
 
 const actions = {
   startLoading,

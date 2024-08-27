@@ -1,13 +1,9 @@
-import React from "react";
-import { IconProps } from "./IconProps";
 import { Path, Svg } from "react-native-svg";
+import { IconProps } from "./IconProps";
 
 const FrenchLevel = ({ color, width = 32, height = 32 }: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 56 56" fill="none">
-    <Path
-      d="M16.5773 22.295L23.1079 39.6924L27.7576 52.5445H30.3698L24.0482 22.295H16.5773Z"
-      fill="#EA931F"
-    />
+    <Path d="M16.5773 22.295L23.1079 39.6924L27.7576 52.5445H30.3698L24.0482 22.295H16.5773Z" fill="#EA931F" />
     <Path
       d="M14.9055 22.295C14.8532 28.2509 14.9055 36.2965 14.6965 36.6622C14.592 36.9234 11.1439 39.7446 4.35211 45.1258L5.71047 47.4246C13.7561 42.2001 18.0401 39.2744 18.4581 38.5953C19.085 37.5504 22.1675 27.9896 23.787 22.295H14.9055Z"
       fill="#F9AA38"

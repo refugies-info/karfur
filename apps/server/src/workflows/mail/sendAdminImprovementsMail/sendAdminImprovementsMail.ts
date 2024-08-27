@@ -1,10 +1,10 @@
-import logger from "../../../logger";
-import { Response } from "../../../types/interface";
-import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
-import { asyncForEach } from "../../../libs/asyncForEach";
-import { log } from "./log";
 import { ImprovementsRequest } from "@refugies-info/api-types";
-import { DispositifId, UserId } from "../../../typegoose";
+import { asyncForEach } from "~/libs/asyncForEach";
+import logger from "~/logger";
+import { sendAdminImprovementsMailService } from "~/modules/mail/mail.service";
+import { DispositifId, UserId } from "~/typegoose";
+import { Response } from "~/types/interface";
+import { log } from "./log";
 
 export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userId: string): Response => {
   logger.info("[sendAdminImprovementsMail] received with data", { data: body });

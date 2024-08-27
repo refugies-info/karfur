@@ -1,8 +1,8 @@
-@import "~scss/colors";
-@import "~scss/variables";
-@import "~scss/mixins/text";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/links";
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/links";
 
 .highlighted {
   background: var(--background-action-low-blue-france);

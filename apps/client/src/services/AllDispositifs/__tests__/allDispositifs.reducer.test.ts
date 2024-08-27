@@ -1,8 +1,5 @@
-import {
-  allDispositifsReducer,
-  initialAllDispositifsState,
-} from "../allDispositifs.reducer";
 import { setAllDispositifsActionsCreator } from "../allDispositifs.actions";
+import { allDispositifsReducer, initialAllDispositifsState } from "../allDispositifs.reducer";
 
 const dispositifs = [{ _id: "id1" }, { _id: "id2" }];
 describe("all dispositifs reducer", () => {
@@ -11,8 +8,8 @@ describe("all dispositifs reducer", () => {
       allDispositifsReducer(
         initialAllDispositifsState,
         // @ts-ignore
-        setAllDispositifsActionsCreator(dispositifs)
-      )
+        setAllDispositifsActionsCreator(dispositifs),
+      ),
     ).toEqual(dispositifs);
   });
 });

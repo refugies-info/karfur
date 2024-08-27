@@ -1,11 +1,11 @@
 import React from "react";
-import Houssam from "assets/dispositif/translation/houssam.jpg";
-import Kim from "assets/dispositif/translation/kim.jpg";
-import Marianne from "assets/dispositif/translation/marianne.jpg";
-import Noor from "assets/dispositif/translation/noor.jpg";
-import Olga from "assets/dispositif/translation/olga.jpg";
-import Rohullah from "assets/dispositif/translation/rohullah.jpg";
-import Saba from "assets/dispositif/translation/saba.jpg";
+import Houssam from "~/assets/dispositif/translation/houssam.jpg";
+import Kim from "~/assets/dispositif/translation/kim.jpg";
+import Marianne from "~/assets/dispositif/translation/marianne.jpg";
+import Noor from "~/assets/dispositif/translation/noor.jpg";
+import Olga from "~/assets/dispositif/translation/olga.jpg";
+import Rohullah from "~/assets/dispositif/translation/rohullah.jpg";
+import Saba from "~/assets/dispositif/translation/saba.jpg";
 
 export const modalContent: { title: string; text: React.ReactNode }[] = [
   {

@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components/native";
+import CityIcon from "~/theme/images/onboarding/city-icon.svg";
 import { RTLTouchableOpacity, RTLView } from "../../BasicComponents";
-import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../StyledText";
-import CityIcon from "../../../theme/images/onboarding/city-icon.svg";
 import { ReadableText } from "../../ReadableText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../StyledText";
 
 const CityText = styled(TextDSFR_MD_Bold)`
   color: ${({ theme }) => theme.colors.dsfr_dark};

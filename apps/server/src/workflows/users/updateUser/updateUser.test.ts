@@ -1,14 +1,13 @@
 // @ts-nocheck
 // import { updateUser } from "./updateUser";
-// import { getRoleByName } from "../../../controllers/role/role.repository";
+// import { getRoleByName } from "~/controllers/role/role.repository";
 /* import {
   getUserById,
   updateUserInDB,
-} from "../../../modules/users/users.repository";
-import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
-import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA"; */
+} from "~/modules/users/users.repository";
+import { sendResetPhoneNumberMail } from "~/modules/mail/mail.service";
+import { requestSMSLogin, verifyCode } from "~/modules/users/login2FA"; */
 import { RoleName } from "@refugies-info/api-types";
-import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -92,7 +91,7 @@ describe.skip("updateUser", () => {
     getUserById.mockResolvedValueOnce({
       username: "user",
       phone: "0607080910",
-      roles: ["autreRoleId"]
+      roles: ["autreRoleId"],
     });
     await updateUser(reqRolesEmpty, res);
     expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
@@ -158,7 +157,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
 
     expect(getRoleByName).toHaveBeenCalledWith(RoleName.TRAD);
@@ -190,7 +189,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
 
     expect(getRoleByName).toHaveBeenCalledWith(RoleName.TRAD);
@@ -204,7 +203,9 @@ describe.skip("updateUser", () => {
   });
 
   it("should return 501 if user himself and send SMS for phone verification", async () => {
-    requestSMSLogin.mockImplementationOnce(() => { throw new Error("NO_CODE_SUPPLIED") });
+    requestSMSLogin.mockImplementationOnce(() => {
+      throw new Error("NO_CODE_SUPPLIED");
+    });
     await updateUser(
       {
         fromSite: true,
@@ -212,7 +213,7 @@ describe.skip("updateUser", () => {
           query: {
             user: {
               _id: "userId",
-              phone: "0600000000"
+              phone: "0600000000",
             },
             action: "modify-my-details",
           },
@@ -220,7 +221,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
 
     expect(requestSMSLogin).toHaveBeenCalledWith("0600000000");
@@ -238,7 +239,7 @@ describe.skip("updateUser", () => {
             user: {
               _id: "userId",
               phone: "0600000000",
-              code: "123456"
+              code: "123456",
             },
             action: "modify-my-details",
           },
@@ -246,18 +247,20 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
 
     expect(verifyCode).toHaveBeenCalledWith("0600000000", "123456");
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
-      phone: "0600000000"
+      phone: "0600000000",
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
   it("should return 402 if user himself and check code fails for phone verification", async () => {
-    verifyCode.mockImplementationOnce(() => { throw new Error("WRONG_CODE") });
+    verifyCode.mockImplementationOnce(() => {
+      throw new Error("WRONG_CODE");
+    });
     await updateUser(
       {
         fromSite: true,
@@ -266,7 +269,7 @@ describe.skip("updateUser", () => {
             user: {
               _id: "userId",
               phone: "0600000000",
-              code: "123456"
+              code: "123456",
             },
             action: "modify-my-details",
           },
@@ -274,7 +277,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
 
     expect(verifyCode).toHaveBeenCalledWith("0600000000", "123456");
@@ -518,7 +521,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
@@ -538,7 +541,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
@@ -562,7 +565,7 @@ describe.skip("updateUser", () => {
         user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
@@ -586,7 +589,7 @@ describe.skip("updateUser", () => {
         user: { username: "pseudo", _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
@@ -610,7 +613,7 @@ describe.skip("updateUser", () => {
         user: { username: "newPseudo", _id: "userId" },
         userId: "userId",
       },
-      res
+      res,
     );
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",

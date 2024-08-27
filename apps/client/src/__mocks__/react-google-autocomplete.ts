@@ -3,8 +3,8 @@ export const setupGoogleMock = () => {
   const google = {
     maps: {
       places: {
-        AutocompleteService: class { },
-        PlacesService: class { },
+        AutocompleteService: class {},
+        PlacesService: class {},
         PlacesServiceStatus: {
           INVALID_REQUEST: "INVALID_REQUEST",
           NOT_FOUND: "NOT_FOUND",
@@ -12,10 +12,10 @@ export const setupGoogleMock = () => {
           OVER_QUERY_LIMIT: "OVER_QUERY_LIMIT",
           REQUEST_DENIED: "REQUEST_DENIED",
           UNKNOWN_ERROR: "UNKNOWN_ERROR",
-          ZERO_RESULTS: "ZERO_RESULTS"
-        }
+          ZERO_RESULTS: "ZERO_RESULTS",
+        },
       },
-      Geocoder: () => { },
+      Geocoder: () => {},
       GeocoderStatus: {
         ERROR: "ERROR",
         INVALID_REQUEST: "INVALID_REQUEST",
@@ -23,9 +23,9 @@ export const setupGoogleMock = () => {
         OVER_QUERY_LIMIT: "OVER_QUERY_LIMIT",
         REQUEST_DENIED: "REQUEST_DENIED",
         UNKNOWN_ERROR: "UNKNOWN_ERROR",
-        ZERO_RESULTS: "ZERO_RESULTS"
-      }
-    }
+        ZERO_RESULTS: "ZERO_RESULTS",
+      },
+    },
   };
   global.window.google = google;
 };

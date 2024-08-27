@@ -1,7 +1,7 @@
 import { Id } from "@refugies-info/api-types";
 import Link from "next/link";
 import { Table } from "reactstrap";
-import styles from "scss/components/adminTable.module.scss";
+import styles from "~/scss/components/adminTable.module.scss";
 import { DeleteButton, SeeButton, Title } from "../../Admin/sharedComponents/SubComponents";
 import { FormattedUserContribution } from "../types";
 import { ContribStyledStatus, Responsabilite, StatutHeader, TypeContenu } from "./SubComponents";

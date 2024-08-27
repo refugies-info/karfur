@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import moment from "moment";
-import styled from "styled-components";
-import TimePicker from "rc-time-picker";
-import { CustomCheckBox } from "./CustomCheckBox";
 import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
+import moment from "moment";
+import TimePicker from "rc-time-picker";
+import { useState } from "react";
+import styled from "styled-components";
+import { CustomCheckBox } from "./CustomCheckBox";
 
 interface Props {
   day: string;

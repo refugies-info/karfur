@@ -1,12 +1,12 @@
 // @ts-nocheck
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import "jest-styled-components";
-import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
-import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
-import { colors } from "utils/colors";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
+import { fetchUserContributionsActionCreator } from "~/services/UserContributions/userContributions.actions";
+import { fetchUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
+import { colors } from "~/utils/colors";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserContributions from "../UserContributions";
 

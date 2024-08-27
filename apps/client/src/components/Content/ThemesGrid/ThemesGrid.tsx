@@ -1,12 +1,11 @@
-import React from "react";
-import { Container } from "reactstrap";
+import { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
-import { sortThemes } from "lib/sortThemes";
-import { themesSelector } from "services/Themes/themes.selectors";
-import SearchThemeButton from "components/UI/SearchThemeButton";
+import { Container } from "reactstrap";
+import SearchThemeButton from "~/components/UI/SearchThemeButton";
+import { sortThemes } from "~/lib/sortThemes";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./ThemesGrid.module.scss";
-import { Id } from "@refugies-info/api-types";
 
 interface Props {
   className?: string;

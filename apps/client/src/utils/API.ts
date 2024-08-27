@@ -1,9 +1,3 @@
-import axios, { Canceler } from "axios";
-import { getAuthToken, removeAuthToken } from "utils/authToken";
-import Swal from "sweetalert2";
-import { logger } from "../logger";
-import isInBrowser from "lib/isInBrowser";
-import { APIResponse } from "types/interface";
 import {
   AddContactRequest,
   AddSuggestionDispositifRequest,
@@ -11,6 +5,8 @@ import {
   AddViewsRequest,
   AdminCommentsRequest,
   AdminOptionRequest,
+  CheckCodeRequest,
+  CheckUserExistsResponse,
   ContentLinkRequest,
   CountDispositifsRequest,
   CreateDispositifRequest,
@@ -53,9 +49,9 @@ import {
   GetWidgetResponse,
   Id,
   ImprovementsRequest,
+  IsInContactResponse,
   LoginRequest,
   LoginResponse,
-  CheckCodeRequest,
   MainSponsorRequest,
   NeedRequest,
   NewPasswordRequest,
@@ -71,11 +67,15 @@ import {
   PostThemeResponse,
   PostWidgetResponse,
   PublishDispositifRequest,
+  PublishTranslationRequest,
   ReadSuggestionDispositifRequest,
+  RegisterRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SaveTranslationRequest,
   SaveTranslationResponse,
+  SendCodeRequest,
+  SendFeedbackRequest,
   SendNotificationsRequest,
   StructureReceiveDispositifRequest,
   SubscriptionRequest,
@@ -90,15 +90,15 @@ import {
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
   UpdateUserRequest,
-  WidgetRequest,
-  PublishTranslationRequest,
-  CheckUserExistsResponse,
-  SendCodeRequest,
-  RegisterRequest,
-  IsInContactResponse,
   UpdateUserResponse,
-  SendFeedbackRequest
+  WidgetRequest,
 } from "@refugies-info/api-types";
+import axios, { Canceler } from "axios";
+import Swal from "sweetalert2";
+import isInBrowser from "~/lib/isInBrowser";
+import { APIResponse } from "~/types/interface";
+import { getAuthToken, removeAuthToken } from "~/utils/authToken";
+import { logger } from "../logger";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
@@ -137,8 +137,8 @@ const CancelToken = axios.CancelToken;
 let cancel: Canceler;
 
 type RequestOptions = {
-  token?: string
-}
+  token?: string;
+};
 
 const getHeaders = (jwtToken?: string) => {
   const headers: any = {
@@ -155,32 +155,44 @@ const API = {
   // Auth
   login: (body: LoginRequest): Promise<LoginResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<LoginResponse>>("/user/login", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<LoginResponse>>("/user/login", body, { headers })
+      .then((response) => response.data.data);
   },
   checkCode: (body: CheckCodeRequest): Promise<LoginResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<LoginResponse>>("/user/check-code", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<LoginResponse>>("/user/check-code", body, { headers })
+      .then((response) => response.data.data);
   },
   sendCode: (body: SendCodeRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post<any, null>("/user/send-code", body, { headers }).then(() => null)
+    return instance.post<any, null>("/user/send-code", body, { headers }).then(() => null);
   },
   checkUserExists: (email: string): Promise<CheckUserExistsResponse> => {
-    return instance.get<any, APIResponse<CheckUserExistsResponse>>(`/user/exists?email=${email}`).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<CheckUserExistsResponse>>(`/user/exists?email=${email}`)
+      .then((response) => response.data.data);
   },
   register: (body: RegisterRequest): Promise<LoginResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<LoginResponse>>("/user/register", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<LoginResponse>>("/user/register", body, { headers })
+      .then((response) => response.data.data);
   },
   resetPassword: (body: ResetPasswordRequest): Promise<ResetPasswordResponse> => {
-    return instance.post<any, APIResponse<ResetPasswordResponse>>("/user/password/reset", body).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<ResetPasswordResponse>>("/user/password/reset", body)
+      .then((response) => response.data.data);
   },
   checkResetToken: (token: String): Promise<null> => {
     return instance.get<any, null>(`/user/password/reset?token=${token}`).then(() => null);
   },
   setNewPassword: (body: NewPasswordRequest): Promise<NewPasswordResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<NewPasswordResponse>>("/user/password/new", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<NewPasswordResponse>>("/user/password/new", body, { headers })
+      .then((response) => response.data.data);
   },
   isAuth: () => {
     if (!isInBrowser()) return false;
@@ -193,11 +205,15 @@ const API = {
   // User
   getUser: (options?: RequestOptions): Promise<GetUserInfoResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get<any, APIResponse<GetUserInfoResponse>>("/user", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetUserInfoResponse>>("/user", { headers })
+      .then((response) => response.data.data);
   },
   updateUser: (id: Id, body: UpdateUserRequest): Promise<UpdateUserResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, APIResponse<UpdateUserResponse>>(`/user/${id}`, body, { headers }).then(response => response.data.data)
+    return instance
+      .patch<any, APIResponse<UpdateUserResponse>>(`/user/${id}`, body, { headers })
+      .then((response) => response.data.data);
   },
   deleteMyAccount: (): Promise<null> => {
     const headers = getHeaders();
@@ -209,11 +225,15 @@ const API = {
   },
   getUserContributions: (): Promise<GetUserContributionsResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetUserContributionsResponse>>("/dispositifs/user-contributions", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetUserContributionsResponse>>("/dispositifs/user-contributions", { headers })
+      .then((response) => response.data.data);
   },
   getUserFavorites: (query: GetUserFavoritesRequest): Promise<GetUserFavoritesResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetUserFavoritesResponse>>(`/user/favorites?locale=${query.locale}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetUserFavoritesResponse>>(`/user/favorites?locale=${query.locale}`, { headers })
+      .then((response) => response.data.data);
   },
   addUserFavorite: (body: AddUserFavoriteRequest): Promise<null> => {
     const headers = getHeaders();
@@ -227,25 +247,35 @@ const API = {
   // Users
   getUsersStatistics: (): Promise<GetUserStatisticsResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetUserStatisticsResponse>>("/user/statistics", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetUserStatisticsResponse>>("/user/statistics", { headers })
+      .then((response) => response.data.data);
   },
   getActiveUsers: (): Promise<GetActiveUsersResponse[]> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetActiveUsersResponse[]>>("/user/actives", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetActiveUsersResponse[]>>("/user/actives", { headers })
+      .then((response) => response.data.data);
   },
   getAllUsers: (): Promise<GetAllUsersResponse[]> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetAllUsersResponse[]>>("/user/all", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetAllUsersResponse[]>>("/user/all", { headers })
+      .then((response) => response.data.data);
   },
 
   // Dispositif
   getDispositif: (id: string, locale: string, options?: RequestOptions): Promise<GetDispositifResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get<any, APIResponse<GetDispositifResponse>>(`/dispositifs/${id}?locale=${locale}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetDispositifResponse>>(`/dispositifs/${id}?locale=${locale}`, { headers })
+      .then((response) => response.data.data);
   },
   countDispositifs: (query: CountDispositifsRequest): Promise<GetCountDispositifsResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetCountDispositifsResponse>>("/dispositifs/count", { params: query, headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetCountDispositifsResponse>>("/dispositifs/count", { params: query, headers })
+      .then((response) => response.data.data);
   },
   deleteDispositif: (id: Id): Promise<null> => {
     const headers = getHeaders();
@@ -275,18 +305,29 @@ const API = {
     locale: string,
   ): Promise<GetDispositifsWithTranslationAvancementResponse[]> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetDispositifsWithTranslationAvancementResponse[]>>(`/dispositifs/with-translations-status?locale=${locale}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<
+        any,
+        APIResponse<GetDispositifsWithTranslationAvancementResponse[]>
+      >(`/dispositifs/with-translations-status?locale=${locale}`, { headers })
+      .then((response) => response.data.data);
   },
   getDispositifs: (query: GetDispositifsRequest): Promise<GetDispositifsResponse[]> => {
-    return instance.get<any, APIResponse<GetDispositifsResponse[]>>("/dispositifs", { params: query }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetDispositifsResponse[]>>("/dispositifs", { params: query })
+      .then((response) => response.data.data);
   },
   getAllDispositifs: (): Promise<GetAllDispositifsResponse[]> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetAllDispositifsResponse[]>>("/dispositifs/all", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetAllDispositifsResponse[]>>("/dispositifs/all", { headers })
+      .then((response) => response.data.data);
   },
   getNbDispositifsByRegion: (): Promise<GetRegionStatisticsResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics", { headers })
+      .then((response) => response.data.data);
   },
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<null> => {
     const headers = getHeaders();
@@ -294,11 +335,15 @@ const API = {
   },
   getDispositifHasTextChanges: (id: string): Promise<GetDispositifsHasTextChanges> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetDispositifsHasTextChanges>>(`/dispositifs/${id}/has-text-changes`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetDispositifsHasTextChanges>>(`/dispositifs/${id}/has-text-changes`, { headers })
+      .then((response) => response.data.data);
   },
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<GetStatisticsResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetStatisticsResponse>>("/dispositifs/statistics", { params: query, headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetStatisticsResponse>>("/dispositifs/statistics", { params: query, headers })
+      .then((response) => response.data.data);
   },
   addDispositifMerci: (id: string): Promise<null> => {
     const headers = getHeaders();
@@ -326,7 +371,9 @@ const API = {
   },
   updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<UpdateDispositifResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, APIResponse<UpdateDispositifResponse>>(`/dispositifs/${id}`, body, { headers }).then(response => response.data.data)
+    return instance
+      .patch<any, APIResponse<UpdateDispositifResponse>>(`/dispositifs/${id}`, body, { headers })
+      .then((response) => response.data.data);
   },
   publishDispositif: (id: Id, body: PublishDispositifRequest): Promise<null> => {
     const headers = getHeaders();
@@ -334,7 +381,9 @@ const API = {
   },
   createDispositif: (body: CreateDispositifRequest): Promise<PostDispositifsResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<PostDispositifsResponse>>("/dispositifs", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<PostDispositifsResponse>>("/dispositifs", body, { headers })
+      .then((response) => response.data.data);
   },
 
   // Mail
@@ -348,7 +397,9 @@ const API = {
   },
   isInContacts: (): Promise<IsInContactResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<IsInContactResponse>>("/mail/contacts", { headers }).then(response => response.data.data);
+    return instance
+      .get<any, APIResponse<IsInContactResponse>>("/mail/contacts", { headers })
+      .then((response) => response.data.data);
   },
   deleteContact: (): Promise<null> => {
     const headers = getHeaders();
@@ -374,24 +425,30 @@ const API = {
   },
   getStructureById: (id: string, locale: string, options?: RequestOptions): Promise<GetStructureResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get<any, APIResponse<GetStructureResponse>>(`/structures/${id}?locale=${locale}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetStructureResponse>>(`/structures/${id}?locale=${locale}`, { headers })
+      .then((response) => response.data.data);
   },
   getActiveStructures: (): Promise<GetActiveStructuresResponse[]> => {
-    return instance.get<any, APIResponse<GetActiveStructuresResponse[]>>("/structures/getActiveStructures").then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetActiveStructuresResponse[]>>("/structures/getActiveStructures")
+      .then((response) => response.data.data);
   },
   getAllStructures: (): Promise<GetAllStructuresResponse[]> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetAllStructuresResponse[]>>("/structures/all", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetAllStructuresResponse[]>>("/structures/all", { headers })
+      .then((response) => response.data.data);
   },
-  getStructuresStatistics: (
-    query: GetStructureStatisticsRequest,
-  ): Promise<GetStructureStatisticsResponse> => {
-    return instance.get<any, APIResponse<GetStructureStatisticsResponse>>("/structures/statistics", { params: query }).then(response => response.data.data)
+  getStructuresStatistics: (query: GetStructureStatisticsRequest): Promise<GetStructureStatisticsResponse> => {
+    return instance
+      .get<any, APIResponse<GetStructureStatisticsResponse>>("/structures/statistics", { params: query })
+      .then((response) => response.data.data);
   },
 
   // Needs
   getNeeds: (): Promise<GetNeedResponse> => {
-    return instance.get<any, APIResponse<GetNeedResponse>>("/needs").then(response => response.data.data)
+    return instance.get<any, APIResponse<GetNeedResponse>>("/needs").then((response) => response.data.data);
   },
   postNeeds: (body: NeedRequest): Promise<null> => {
     const headers = getHeaders();
@@ -403,7 +460,9 @@ const API = {
   },
   orderNeeds: (body: UpdatePositionsRequest): Promise<UpdatePositionsNeedResponse[]> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<UpdatePositionsNeedResponse[]>>("/needs/positions", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<UpdatePositionsNeedResponse[]>>("/needs/positions", body, { headers })
+      .then((response) => response.data.data);
   },
   deleteNeed: (query: Id): Promise<null> => {
     const headers = getHeaders();
@@ -412,15 +471,19 @@ const API = {
 
   // Themes
   getThemes: (): Promise<GetThemeResponse[]> => {
-    return instance.get<any, APIResponse<GetThemeResponse[]>>("/themes").then(response => response.data.data)
+    return instance.get<any, APIResponse<GetThemeResponse[]>>("/themes").then((response) => response.data.data);
   },
   postThemes: (body: ThemeRequest): Promise<PostThemeResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<PostThemeResponse>>("/themes", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<PostThemeResponse>>("/themes", body, { headers })
+      .then((response) => response.data.data);
   },
   patchTheme: (id: Id, body: Partial<ThemeRequest>): Promise<PatchThemeResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, APIResponse<PatchThemeResponse>>(`/themes/${id}`, body, { headers }).then(response => response.data.data);
+    return instance
+      .patch<any, APIResponse<PatchThemeResponse>>(`/themes/${id}`, body, { headers })
+      .then((response) => response.data.data);
   },
   deleteTheme: (query: Id): Promise<null> => {
     const headers = getHeaders();
@@ -430,15 +493,21 @@ const API = {
   // Widgets
   getWidgets: (): Promise<GetWidgetResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetWidgetResponse>>("/widgets", { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetWidgetResponse>>("/widgets", { headers })
+      .then((response) => response.data.data);
   },
   postWidgets: (body: WidgetRequest): Promise<PostWidgetResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<PostWidgetResponse>>("/widgets", body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<PostWidgetResponse>>("/widgets", body, { headers })
+      .then((response) => response.data.data);
   },
   patchWidget: (id: Id, body: Partial<WidgetRequest>): Promise<PatchWidgetResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, APIResponse<PatchWidgetResponse>>(`/widgets/${id}`, body, { headers }).then(response => response.data.data)
+    return instance
+      .patch<any, APIResponse<PatchWidgetResponse>>(`/widgets/${id}`, body, { headers })
+      .then((response) => response.data.data);
   },
   deleteWidget: (query: Id): Promise<null> => {
     const headers = getHeaders();
@@ -462,7 +531,9 @@ const API = {
   // Trads
   saveTraduction: (query: SaveTranslationRequest): Promise<SaveTranslationResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<SaveTranslationResponse>>("/traduction", query, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<SaveTranslationResponse>>("/traduction", query, { headers })
+      .then((response) => response.data.data);
   },
   publishTraduction: (query: PublishTranslationRequest): Promise<null> => {
     const headers = getHeaders();
@@ -473,13 +544,26 @@ const API = {
     return instance.post<any, null>("/traduction/feedback", query, { headers }).then(() => null);
   },
 
-  getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }, options?: RequestOptions): Promise<GetTraductionsForReviewResponse> => {
+  getTraductionsForReview: (
+    { dispositif, language }: { dispositif: string; language: string },
+    options?: RequestOptions,
+  ): Promise<GetTraductionsForReviewResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get<any, APIResponse<GetTraductionsForReviewResponse>>(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<
+        any,
+        APIResponse<GetTraductionsForReviewResponse>
+      >(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, { headers })
+      .then((response) => response.data.data);
   },
-  getDefaultTraductionForDispositif: ({ dispositif }: { dispositif: string }, options?: RequestOptions): Promise<GetDefaultTraductionResponse> => {
+  getDefaultTraductionForDispositif: (
+    { dispositif }: { dispositif: string },
+    options?: RequestOptions,
+  ): Promise<GetDefaultTraductionResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get<any, APIResponse<GetDefaultTraductionResponse>>(`/traduction?dispositif=${dispositif}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetDefaultTraductionResponse>>(`/traduction?dispositif=${dispositif}`, { headers })
+      .then((response) => response.data.data);
   },
 
   deleteTrads: (query: DeleteTranslationsRequest): Promise<null> => {
@@ -488,31 +572,41 @@ const API = {
   },
   get_progression: (query: GetProgressionRequest): Promise<GetProgressionResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetProgressionResponse>>("/traduction/get_progression", { params: query, headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetProgressionResponse>>("/traduction/get_progression", { params: query, headers })
+      .then((response) => response.data.data);
   },
 
   get_translation: (query: TranslateRequest): Promise<string> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<string>>("/traduction/translate", query, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<string>>("/traduction/translate", query, { headers })
+      .then((response) => response.data.data);
   },
   getTranslationStatistics: (query: TranslationStatisticsRequest): Promise<TranslationStatisticsResponse> => {
-    return instance.get<any, APIResponse<any>>("/traduction/statistics", { params: query }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<any>>("/traduction/statistics", { params: query })
+      .then((response) => response.data.data);
   },
 
   // langues
   getLanguages: (): Promise<GetLanguagesResponse> => {
-    return instance.get<any, APIResponse<GetLanguagesResponse>>("/langues").then(response => response.data.data)
+    return instance.get<any, APIResponse<GetLanguagesResponse>>("/langues").then((response) => response.data.data);
   },
 
   // Misc
   postImage: (query: any): Promise<PostImageResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<PostImageResponse>>("/images", query, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<PostImageResponse>>("/images", query, { headers })
+      .then((response) => response.data.data);
   },
   // Logs
   logs: (id: Id): Promise<GetLogResponse[]> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetLogResponse[]>>(`/logs?id=${id}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetLogResponse[]>>(`/logs?id=${id}`, { headers })
+      .then((response) => response.data.data);
   },
 
   // Notifications
@@ -524,11 +618,15 @@ const API = {
   // AdminOptions
   getAdminOption: (key: string): Promise<GetAdminOptionResponse> => {
     const headers = getHeaders();
-    return instance.get<any, APIResponse<GetAdminOptionResponse>>(`/options/${key}`, { headers }).then(response => response.data.data)
+    return instance
+      .get<any, APIResponse<GetAdminOptionResponse>>(`/options/${key}`, { headers })
+      .then((response) => response.data.data);
   },
   setAdminOption: (key: string, body: AdminOptionRequest): Promise<PostAdminOptionResponse> => {
     const headers = getHeaders();
-    return instance.post<any, APIResponse<PostAdminOptionResponse>>(`/options/${key}`, body, { headers }).then(response => response.data.data)
+    return instance
+      .post<any, APIResponse<PostAdminOptionResponse>>(`/options/${key}`, body, { headers })
+      .then((response) => response.data.data);
   },
 
   // tts

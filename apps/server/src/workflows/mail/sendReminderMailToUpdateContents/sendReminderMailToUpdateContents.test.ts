@@ -1,14 +1,14 @@
 // @ts-nocheck
-import { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents";/* 
+import mockdate from "mockdate";
+import moment from "moment";
+import { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents"; /*
 import {
   getPublishedDispositifWithMainSponsor,
   updateDispositifInDB,
-} from "../../../modules/dispositif/dispositif.repository";
-import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
-import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
-import { getUserById } from "../../../modules/users/users.repository";*/
-import moment from "moment";
-import mockdate from "mockdate";
+} from "~/modules/dispositif/dispositif.repository";
+import { checkCronAuthorization } from "~/libs/checkAuthorizations";
+import { sendUpdateReminderMailService } from "~/modules/mail/mail.service";
+import { getUserById } from "~/modules/users/users.repository";*/
 
 mockdate.set("2019-11-10T10:00:00.00Z");
 
@@ -76,9 +76,7 @@ describe.skip("sendReminderMailToUpdateContents", () => {
     titreInformatif: "titre",
     typeContenu: "dispositif",
     updatedAt: moment.utc("2019-02-01T13:00:00.232Z"),
-    lastReminderMailSentToUpdateContentDate: moment.utc(
-      "2019-10-01T13:00:00.232Z"
-    ),
+    lastReminderMailSentToUpdateContentDate: moment.utc("2019-10-01T13:00:00.232Z"),
     mainSponsor: {
       _id: "sponsor_id",
       membres: [
@@ -163,7 +161,7 @@ describe.skip("sendReminderMailToUpdateContents", () => {
       "titre",
       "userId",
       "id1",
-      "https://refugies.info/dispositif/id1"
+      "https://refugies.info/dispositif/id1",
     );
 
     expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
@@ -172,7 +170,7 @@ describe.skip("sendReminderMailToUpdateContents", () => {
       "titre",
       "userId",
       "id3",
-      "https://refugies.info/demarche/id3"
+      "https://refugies.info/demarche/id3",
     );
 
     expect(sendUpdateReminderMailService).not.toHaveBeenCalledWith(
@@ -181,16 +179,12 @@ describe.skip("sendReminderMailToUpdateContents", () => {
       "titre",
       "userId",
       "id4",
-      "https://refugies.info/dispositif/id4"
+      "https://refugies.info/dispositif/id4",
     );
+    expect(logger.info).toHaveBeenCalledWith("[sendReminderMailToUpdateContents] received");
+    expect(logger.info).toHaveBeenCalledWith("[sendReminderMailToUpdateContents] 4 dispositifs find");
     expect(logger.info).toHaveBeenCalledWith(
-      "[sendReminderMailToUpdateContents] received"
-    );
-    expect(logger.info).toHaveBeenCalledWith(
-      "[sendReminderMailToUpdateContents] 4 dispositifs find"
-    );
-    expect(logger.info).toHaveBeenCalledWith(
-      "[sendReminderMailToUpdateContents] dispositif with id id2 has already received reminder 40 days ago"
+      "[sendReminderMailToUpdateContents] dispositif with id id2 has already received reminder 40 days ago",
     );
     expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
       lastReminderMailSentToUpdateContentDate: 1573380000000,
@@ -217,9 +211,7 @@ describe.skip("sendReminderMailToUpdateContents", () => {
       },
     };
 
-    getPublishedDispositifWithMainSponsor.mockResolvedValueOnce([
-      { ...dispo1, toJSON: () => dispo1 },
-    ]);
+    getPublishedDispositifWithMainSponsor.mockResolvedValueOnce([{ ...dispo1, toJSON: () => dispo1 }]);
     getUserById.mockResolvedValue({
       username: "username",
       email: "email",
@@ -239,7 +231,7 @@ describe.skip("sendReminderMailToUpdateContents", () => {
       "titre",
       "userId",
       "id1",
-      "https://refugies.info/dispositif/id1"
+      "https://refugies.info/dispositif/id1",
     );
     expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
       lastReminderMailSentToUpdateContentDate: 1573380000000,

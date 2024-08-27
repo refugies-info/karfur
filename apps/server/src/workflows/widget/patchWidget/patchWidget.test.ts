@@ -1,10 +1,10 @@
 // @ts-nocheck
 /* import { patchWidget } from "./patchWidget";
-import { updateWidget } from "../../../modules/widgets/widgets.repository";
+import { updateWidget } from "~/modules/widgets/widgets.repository";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+} from "~/libs/checkAuthorizations";
 import { Widget } from ".../../../schema/schemaWidget"; */
 
 /* jest.mock("../../../modules/widgets/widgets.repository", () => ({
@@ -40,7 +40,7 @@ describe.skip("patchWidget", () => {
     });
     const req = {
       fromSite: false,
-      params: {}
+      params: {},
     };
     await patchWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(405);
@@ -48,10 +48,10 @@ describe.skip("patchWidget", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
-      params: {}
+      params: {},
     };
     await patchWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -60,7 +60,7 @@ describe.skip("patchWidget", () => {
     const req = {
       fromSite: true,
       user: { roles: [] },
-      params: { id: null }
+      params: { id: null },
     };
     await patchWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
@@ -76,8 +76,8 @@ describe.skip("patchWidget", () => {
         typeContenu: ["dispositif"],
         themes: [{ _id: "xyz" }],
         languages: [],
-        department: ""
-      }
+        department: "",
+      },
     };
     await patchWidget(req, res);
     expect(updateWidget).toHaveBeenCalledWith("widgetId", {
@@ -85,9 +85,8 @@ describe.skip("patchWidget", () => {
       typeContenu: ["dispositif"],
       themes: ["xyz"],
       languages: [],
-      department: ""
+      department: "",
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });

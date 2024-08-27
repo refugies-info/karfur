@@ -1,9 +1,9 @@
 import { useRoute } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
+import { saveUserLocationActionCreator } from "~/services/redux/User/user.actions";
+import { initialUserState } from "~/services/redux/User/user.reducer";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { saveUserLocationActionCreator } from "../../../services/redux/User/user.actions";
-import { initialUserState } from "../../../services/redux/User/user.reducer";
 import { FilterCity } from "../FilterCity";
 
 jest.useFakeTimers();

@@ -1,9 +1,8 @@
 import React, { useCallback } from "react";
-import Input from "components/Pages/dispositif/Input";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import Input from "~/components/Pages/dispositif/Input";
 import ChoiceButton from "../../../ChoiceButton";
 import { ContactInfos } from "../ModalMainSponsor";
-import NoIcon from "assets/dispositif/no-icon.svg";
-import styles from "./StructureContact.module.scss";
 
 interface Props {
   contact: ContactInfos;

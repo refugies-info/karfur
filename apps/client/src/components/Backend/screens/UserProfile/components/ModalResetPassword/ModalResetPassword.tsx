@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
 import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import { ForgotPassword, ForgotPasswordMailSent } from "components/User";
+import { useCallback, useState } from "react";
+import { ForgotPassword, ForgotPasswordMailSent } from "~/components/User";
 
 interface Props {
   email: string;

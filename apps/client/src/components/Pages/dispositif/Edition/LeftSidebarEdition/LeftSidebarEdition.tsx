@@ -1,11 +1,20 @@
-import React, { useCallback, useContext } from "react";
+import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
-import { useContentType } from "hooks/dispositif";
-import { themeSelector } from "services/Themes/themes.selectors";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import PageContext from "utils/pageContext";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useContentType } from "~/hooks/dispositif";
+import { cls } from "~/lib/classname";
+import { themeSelector } from "~/services/Themes/themes.selectors";
+import PageContext from "~/utils/pageContext";
+import CardAvailability from "../../Metadatas/CardAvailability";
+import CardConditions from "../../Metadatas/CardConditions";
+import CardLocation from "../../Metadatas/CardLocation";
+import CardMainSponsor from "../../Metadatas/CardMainSponsor";
+import CardPrice from "../../Metadatas/CardPrice";
+import CardPublic from "../../Metadatas/CardPublic";
+import CardTheme from "../../Metadatas/CardTheme";
+import AddContentButton from "../AddContentButton";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -16,15 +25,6 @@ import {
   ModalPublic,
   ModalThemes,
 } from "../Modals";
-import AddContentButton from "../AddContentButton";
-import CardPrice from "../../Metadatas/CardPrice";
-import CardLocation from "../../Metadatas/CardLocation";
-import CardPublic from "../../Metadatas/CardPublic";
-import CardAvailability from "../../Metadatas/CardAvailability";
-import CardConditions from "../../Metadatas/CardConditions";
-import CardTheme from "../../Metadatas/CardTheme";
-import CardMainSponsor from "../../Metadatas/CardMainSponsor";
-import { cls } from "lib/classname";
 import styles from "./LeftSidebarEdition.module.scss";
 
 interface Props {

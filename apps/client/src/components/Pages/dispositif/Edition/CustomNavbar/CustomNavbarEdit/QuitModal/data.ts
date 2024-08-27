@@ -12,9 +12,9 @@ export const contents: Record<string, Content> = {
     items: [
       "Votre fiche est enregistrée dans vos brouillons.",
       "Tant qu’elle est en brouillon, elle est visible uniquement par vous.",
-      "Vous devrez la compléter et la valider pour qu’elle soit envoyée à notre équipe éditoriale pour relecture."
+      "Vous devrez la compléter et la valider pour qu’elle soit envoyée à notre équipe éditoriale pour relecture.",
     ],
-    buttonText: "Rester dans l'éditeur"
+    buttonText: "Rester dans l'éditeur",
   },
   draftComplete: {
     title: "Pourquoi ne pas valider votre fiche ?",
@@ -22,9 +22,9 @@ export const contents: Record<string, Content> = {
     items: [
       "Votre fiche est enregistrée dans vos brouillons.",
       "Tant qu’elle est en brouillon, elle est visible uniquement par vous.",
-      "Vous devrez la valider pour qu’elle soit envoyée à notre équipe éditoriale pour relecture."
+      "Vous devrez la valider pour qu’elle soit envoyée à notre équipe éditoriale pour relecture.",
     ],
-    buttonText: "Valider ma fiche"
+    buttonText: "Valider ma fiche",
   },
   waitingIncomplete: {
     title: "Attention, votre fiche n’est plus complète !",
@@ -33,7 +33,7 @@ export const contents: Record<string, Content> = {
       "Votre fiche redevient un brouillon.",
       "Vous devrez la compléter et la valider pour qu’elle soit à nouveau envoyée à notre équipe éditoriale pour relecture.",
     ],
-    buttonText: "Rester dans l'éditeur"
+    buttonText: "Rester dans l'éditeur",
   },
   publishedIncomplete: {
     title: "Attention, la mise à jour de votre fiche n’est pas encore en ligne !",
@@ -41,9 +41,9 @@ export const contents: Record<string, Content> = {
     items: [
       "L’ancienne version est toujours publiée et visible par les utilisateurs.",
       "Votre nouvelle version de travail est enregistrée en tant que brouillon.",
-      "Vous devrez revenir la compléter et la valider pour qu’elle soit publiée à la place de l’ancienne version."
+      "Vous devrez revenir la compléter et la valider pour qu’elle soit publiée à la place de l’ancienne version.",
     ],
-    buttonText: "Rester dans l'éditeur"
+    buttonText: "Rester dans l'éditeur",
   },
   publishedComplete: {
     title: "Pourquoi ne pas valider votre fiche ?",
@@ -51,8 +51,8 @@ export const contents: Record<string, Content> = {
     items: [
       "L’ancienne version est toujours publiée et visible par les utilisateurs.",
       "Votre nouvelle version de travail est enregistrée en tant que brouillon.",
-      "Vous devrez revenir la valider pour qu’elle soit publiée à la place de l’ancienne version."
+      "Vous devrez revenir la valider pour qu’elle soit publiée à la place de l’ancienne version.",
     ],
-    buttonText: "Envoyer pour traduction"
+    buttonText: "Envoyer pour traduction",
   },
-}
+};

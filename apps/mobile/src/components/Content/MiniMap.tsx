@@ -1,14 +1,10 @@
 import * as React from "react";
-import styled from "styled-components/native";
-import MapView, {
-  Marker,
-  PROVIDER_DEFAULT,
-  PROVIDER_GOOGLE,
-} from "react-native-maps";
 import { Dimensions, Platform } from "react-native";
-import { MapGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
-import { styles } from "../../theme";
+import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
+import styled from "styled-components/native";
+import { styles } from "~/theme";
+import { MapGoogle } from "~/types/interface";
 
 interface Props {
   children: React.ReactNode;
@@ -46,9 +42,7 @@ export const MiniMap = (props: Props) => {
       <ContentContainer>{props.children}</ContentContainer>
       <MapViewContainer>
         <MapView
-          provider={
-            Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
-          }
+          provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
           style={{
             width: mapWidth,
             height: mapHeight,
@@ -61,14 +55,8 @@ export const MiniMap = (props: Props) => {
           }}
         >
           {props.map.markers.map((marker, key) => {
-            const lat =
-              typeof marker.latitude === "string"
-                ? parseFloat(marker.latitude)
-                : marker.latitude;
-            const lng =
-              typeof marker.longitude === "string"
-                ? parseFloat(marker.longitude)
-                : marker.longitude;
+            const lat = typeof marker.latitude === "string" ? parseFloat(marker.latitude) : marker.latitude;
+            const lng = typeof marker.longitude === "string" ? parseFloat(marker.longitude) : marker.longitude;
             return (
               <Marker
                 key={key}
@@ -77,12 +65,7 @@ export const MiniMap = (props: Props) => {
                   longitude: lng,
                 }}
               >
-                <Icon
-                  name="pin"
-                  fill={props.markersColor}
-                  width={40}
-                  height={40}
-                />
+                <Icon name="pin" fill={props.markersColor} width={40} height={40} />
               </Marker>
             );
           })}

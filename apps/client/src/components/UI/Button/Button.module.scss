@@ -1,7 +1,7 @@
-@import "~scss/colors";
-@import "~scss/mixins/unit";
-@import "~scss/mixins/responsive";
-@import "~scss/mixins/icons";
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/icons";
 
 @keyframes rotate {
   0% {
@@ -15,7 +15,7 @@
 
 .btn {
   @include iconSize(24px);
-  
+
   border-radius: u(2);
 
   &.small_icon {

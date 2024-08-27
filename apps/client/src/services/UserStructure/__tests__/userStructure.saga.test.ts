@@ -1,27 +1,13 @@
 // @ts-nocheck
-import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchUserStructure,
-  updateUserStructure,
-} from "../userStructure.saga";
-import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
-import {
-  FETCH_USER_STRUCTURE,
-  UPDATE_USER_STRUCTURE,
-} from "../userStructure.actionTypes";
-import {
-  setUserStructureActionCreator,
-  fetchUserStructureActionCreator,
-} from "../userStructure.actions";
-import { userSelector } from "../../User/user.selectors";
-import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
-import { userStructureSelector } from "../userStructure.selectors";
 import mockRouter from "next-router-mock";
+import { testSaga } from "redux-saga-test-plan";
+import API from "../../../utils/API";
+import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
+import { userSelector } from "../../User/user.selectors";
+import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "../userStructure.actionTypes";
+import { fetchUserStructureActionCreator, setUserStructureActionCreator } from "../userStructure.actions";
+import latestActionsSaga, { fetchUserStructure, updateUserStructure } from "../userStructure.saga";
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] Structures", () => {
@@ -95,7 +81,7 @@ describe("[Saga] Structures", () => {
         .put(
           setUserStructureActionCreator({
             membres: [{ userId: "id1", roles: ["membre"] }],
-          })
+          }),
         )
         .next()
         .select(userSelector)
@@ -122,7 +108,7 @@ describe("[Saga] Structures", () => {
         .put(
           setUserStructureActionCreator({
             membres: [{ userId: "id", roles: ["membre"] }],
-          })
+          }),
         )
         .next()
         .select(userSelector)
@@ -144,12 +130,12 @@ describe("[Saga] Structures", () => {
         .next()
         .call(API.getStructureById, "id", "fr")
         .next({
-          membres: [{ userId: "id", roles: ["administrateur"] }]
+          membres: [{ userId: "id", roles: ["administrateur"] }],
         })
         .put(
           setUserStructureActionCreator({
             membres: [{ userId: "id", roles: ["administrateur"] }],
-          })
+          }),
         )
         .next()
         .select(userSelector)
@@ -174,7 +160,7 @@ describe("[Saga] Structures", () => {
         .put(
           setUserStructureActionCreator({
             membres: [{ userId: "id", roles: ["administrateur"] }],
-          })
+          }),
         )
         .next()
         .select(userSelector)
@@ -199,7 +185,7 @@ describe("[Saga] Structures", () => {
         .put(
           setUserStructureActionCreator({
             membres: [{ userId: "id", roles: ["contributeur"] }],
-          })
+          }),
         )
         .next()
         .select(userSelector)
@@ -224,7 +210,7 @@ describe("[Saga] Structures", () => {
         .put(
           setUserStructureActionCreator({
             membres: [{ userId: "id", roles: ["contributeur"] }],
-          })
+          }),
         )
         .next()
         .select(userSelector)
@@ -269,7 +255,7 @@ describe("[Saga] Structures", () => {
           fetchUserStructureActionCreator({
             structureId: "structureId",
             shouldRedirect: true,
-          })
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
@@ -283,7 +269,7 @@ describe("[Saga] Structures", () => {
         payload: {
           membres: {
             type: "create",
-          }
+          },
         },
       })
         .next()
@@ -318,7 +304,7 @@ describe("[Saga] Structures", () => {
           fetchUserStructureActionCreator({
             structureId: "structureId",
             shouldRedirect: true,
-          })
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
@@ -366,7 +352,7 @@ describe("[Saga] Structures", () => {
           fetchUserStructureActionCreator({
             structureId: "structureId",
             shouldRedirect: true,
-          })
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))

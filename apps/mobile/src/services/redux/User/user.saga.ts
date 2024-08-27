@@ -1,69 +1,60 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, select } from "redux-saga/effects";
-import { logger } from "../../../logger";
+import { call, put, select, takeLatest } from "redux-saga/effects";
+import { logger } from "~/logger";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import { fetchContentsActionCreator } from "../Contents/contents.actions";
+import { LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { deleteItemInAsyncStorage, getItemInAsyncStorage, saveItemInAsyncStorage } from "./functions";
 import {
-  saveSelectedLanguageActionCreator,
-  setSelectedLanguageActionCreator,
-  setHasUserSeenOnboardingActionCreator,
-  setUserHasNewFavoritesActionCreator,
-  setUserLocalizedWarningHiddenActionCreator,
-  setCurrentLanguageActionCreator,
-  saveUserLocationActionCreator,
-  saveUserFrenchLevelActionCreator,
-  saveUserAgeActionCreator,
-  setUserAgeActionCreator,
-  setUserLocationActionCreator,
-  setUserFrenchLevelActionCreator,
-  removeUserAgeActionCreator,
-  removeUserLocationActionCreator,
-  removeUserFrenchLevelActionCreator,
-  setUserFavoritesActionCreator,
   addUserFavoriteActionCreator,
-  removeUserFavoriteActionCreator,
+  removeHasUserSeenOnboardingActionCreator,
   removeSelectedLanguageActionCreator,
+  removeUserAgeActionCreator,
+  removeUserAllFavoritesActionCreator,
+  removeUserFavoriteActionCreator,
+  removeUserFrenchLevelActionCreator,
   removeUserHasNewFavoritesActionCreator,
   removeUserLocalizedWarningHiddenActionCreator,
-  removeUserAllFavoritesActionCreator,
-  removeHasUserSeenOnboardingActionCreator,
+  removeUserLocationActionCreator,
+  saveSelectedLanguageActionCreator,
+  saveUserAgeActionCreator,
+  saveUserFrenchLevelActionCreator,
+  saveUserLocationActionCreator,
+  setCurrentLanguageActionCreator,
+  setHasUserSeenOnboardingActionCreator,
+  setSelectedLanguageActionCreator,
+  setUserAgeActionCreator,
+  setUserFavoritesActionCreator,
+  setUserFrenchLevelActionCreator,
+  setUserHasNewFavoritesActionCreator,
+  setUserLocalizedWarningHiddenActionCreator,
+  setUserLocationActionCreator,
 } from "./user.actions";
 import {
+  ADD_USER_FAVORITE,
+  GET_USER_INFOS,
+  REMOVE_SELECTED_LANGUAGE,
+  REMOVE_USER_AGE,
+  REMOVE_USER_ALL_FAVORITES,
+  REMOVE_USER_FAVORITE,
+  REMOVE_USER_FRENCH_LEVEL,
+  REMOVE_USER_HAS_NEW_FAVORITES,
+  REMOVE_USER_HAS_SEEN_ONBOARDING,
+  REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
+  REMOVE_USER_LOCATION,
+  RESET_USER,
   SAVE_SELECTED_LANGUAGE,
-  SAVE_USER_HAS_SEEN_ONBOARDING,
-  SAVE_USER_LOCATION,
   SAVE_USER_AGE,
   SAVE_USER_FRENCH_LEVEL,
   SAVE_USER_HAS_NEW_FAVORITES,
+  SAVE_USER_HAS_SEEN_ONBOARDING,
   SAVE_USER_LOCALIZED_WARNING_HIDDEN,
-  GET_USER_INFOS,
-  REMOVE_SELECTED_LANGUAGE,
-  REMOVE_USER_LOCATION,
-  REMOVE_USER_FRENCH_LEVEL,
-  REMOVE_USER_AGE,
-  REMOVE_USER_HAS_SEEN_ONBOARDING,
-  REMOVE_USER_HAS_NEW_FAVORITES,
-  REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
-  ADD_USER_FAVORITE,
-  REMOVE_USER_FAVORITE,
-  REMOVE_USER_ALL_FAVORITES,
-  RESET_USER,
+  SAVE_USER_LOCATION,
 } from "./user.actionTypes";
-import {
-  saveItemInAsyncStorage,
-  getItemInAsyncStorage,
-  deleteItemInAsyncStorage,
-} from "./functions";
-import { fetchContentsActionCreator } from "../Contents/contents.actions";
 import { shouldLoadContentSelector, userFavorites } from "./user.selectors";
-import {
-  startLoading,
-  LoadingStatusKey,
-} from "../LoadingStatus/loadingStatus.actions";
-import { logEventInFirebase } from "../../../utils/logEvent";
-import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
 
-export function* saveSelectedLanguage(
-  action: ReturnType<typeof saveSelectedLanguageActionCreator>
-): SagaIterator {
+export function* saveSelectedLanguage(action: ReturnType<typeof saveSelectedLanguageActionCreator>): SagaIterator {
   try {
     const { langue: i18nCode, shouldFetchContents } = action.payload;
     logger.info("[saveSelectedLanguage] saga", { langue: i18nCode });
@@ -96,9 +87,7 @@ export function* removeSelectedLanguage(): SagaIterator {
   }
 }
 
-export function* saveUserLocation(
-  action: ReturnType<typeof saveUserLocationActionCreator>
-): SagaIterator {
+export function* saveUserLocation(action: ReturnType<typeof saveUserLocationActionCreator>): SagaIterator {
   try {
     const { city, dep, shouldFetchContents } = action.payload;
     logger.info("[saveUserLocation] saga", { city, dep });
@@ -119,9 +108,7 @@ export function* saveUserLocation(
   }
 }
 
-export function* removeUserLocation(
-  action: ReturnType<typeof removeUserLocationActionCreator>
-): SagaIterator {
+export function* removeUserLocation(action: ReturnType<typeof removeUserLocationActionCreator>): SagaIterator {
   try {
     const shouldFetchContents = action.payload;
     logger.info("[removeUserLocation] saga");
@@ -136,9 +123,7 @@ export function* removeUserLocation(
   }
 }
 
-export function* saveUserFrenchLevel(
-  action: ReturnType<typeof saveUserFrenchLevelActionCreator>
-): SagaIterator {
+export function* saveUserFrenchLevel(action: ReturnType<typeof saveUserFrenchLevelActionCreator>): SagaIterator {
   try {
     const { frenchLevel, shouldFetchContents } = action.payload;
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
@@ -158,9 +143,7 @@ export function* saveUserFrenchLevel(
   }
 }
 
-export function* removeUserFrenchLevel(
-  action: ReturnType<typeof removeUserFrenchLevelActionCreator>
-): SagaIterator {
+export function* removeUserFrenchLevel(action: ReturnType<typeof removeUserFrenchLevelActionCreator>): SagaIterator {
   try {
     const shouldFetchContents = action.payload;
     logger.info("[removeUserFrenchLevel] saga");
@@ -174,9 +157,7 @@ export function* removeUserFrenchLevel(
   }
 }
 
-export function* saveUserAge(
-  action: ReturnType<typeof saveUserAgeActionCreator>
-): SagaIterator {
+export function* saveUserAge(action: ReturnType<typeof saveUserAgeActionCreator>): SagaIterator {
   try {
     const { age, shouldFetchContents } = action.payload;
     logger.info("[saveUserAge] saga", { age });
@@ -195,9 +176,7 @@ export function* saveUserAge(
   }
 }
 
-export function* removeUserAge(
-  action: ReturnType<typeof removeUserAgeActionCreator>
-): SagaIterator {
+export function* removeUserAge(action: ReturnType<typeof removeUserAgeActionCreator>): SagaIterator {
   try {
     const shouldFetchContents = action.payload;
     logger.info("[removeUserAge] saga");
@@ -288,15 +267,8 @@ export function* getUserInfos(): SagaIterator {
   try {
     logger.info("[getUserInfos] saga");
     try {
-      const hasUserAlreadySeenOnboarding = yield call(
-        getItemInAsyncStorage,
-        "HAS_USER_SEEN_ONBOARDING"
-      );
-      yield put(
-        setHasUserSeenOnboardingActionCreator(
-          hasUserAlreadySeenOnboarding === "TRUE"
-        )
-      );
+      const hasUserAlreadySeenOnboarding = yield call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING");
+      yield put(setHasUserSeenOnboardingActionCreator(hasUserAlreadySeenOnboarding === "TRUE"));
     } catch (error: any) {
       logger.error("Error while getting onboarding status", {
         error: error.message,
@@ -308,10 +280,7 @@ export function* getUserInfos(): SagaIterator {
       yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
     }
     try {
-      const selectedLanguage = yield call(
-        getItemInAsyncStorage,
-        "SELECTED_LANGUAGE"
-      );
+      const selectedLanguage = yield call(getItemInAsyncStorage, "SELECTED_LANGUAGE");
       if (selectedLanguage) {
         yield put(setSelectedLanguageActionCreator(selectedLanguage));
         yield put(setCurrentLanguageActionCreator(selectedLanguage));
@@ -367,10 +336,7 @@ export function* getUserInfos(): SagaIterator {
       });
     }
     try {
-      const value = yield call(
-        getItemInAsyncStorage,
-        "LOCALIZED_WARNING_HIDDEN"
-      );
+      const value = yield call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN");
       const isLocalizedWarningHidden = value === "TRUE";
       if (isLocalizedWarningHidden) {
         yield put(setUserLocalizedWarningHiddenActionCreator(true));
@@ -387,38 +353,24 @@ export function* getUserInfos(): SagaIterator {
   }
 }
 
-export function* addUserFavorite(
-  action: ReturnType<typeof addUserFavoriteActionCreator>
-): SagaIterator {
+export function* addUserFavorite(action: ReturnType<typeof addUserFavoriteActionCreator>): SagaIterator {
   try {
     logger.info("[addFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
     const newFavorites = [...(favorites || []), action.payload];
-    yield call(
-      saveItemInAsyncStorage,
-      "FAVORITES",
-      JSON.stringify(newFavorites)
-    );
+    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error: any) {
     logger.error("Error while adding favorite", { error: error.message });
   }
 }
 
-export function* removeUserFavorite(
-  action: ReturnType<typeof removeUserFavoriteActionCreator>
-): SagaIterator {
+export function* removeUserFavorite(action: ReturnType<typeof removeUserFavoriteActionCreator>): SagaIterator {
   try {
     logger.info("[removeFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
-    const newFavorites = (favorites || []).filter(
-      (f: string) => f !== action.payload
-    );
-    yield call(
-      saveItemInAsyncStorage,
-      "FAVORITES",
-      JSON.stringify(newFavorites)
-    );
+    const newFavorites = (favorites || []).filter((f: string) => f !== action.payload);
+    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error: any) {
     logger.error("Error while removing favorite", { error: error.message });
@@ -452,10 +404,7 @@ function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
   yield takeLatest(SAVE_USER_HAS_NEW_FAVORITES, saveUserHasNewFavorites);
-  yield takeLatest(
-    SAVE_USER_LOCALIZED_WARNING_HIDDEN,
-    saveUserLocalizedWarningHidden
-  );
+  yield takeLatest(SAVE_USER_LOCALIZED_WARNING_HIDDEN, saveUserLocalizedWarningHidden);
   yield takeLatest(SAVE_USER_LOCATION, saveUserLocation);
   yield takeLatest(SAVE_USER_FRENCH_LEVEL, saveUserFrenchLevel);
   yield takeLatest(SAVE_USER_AGE, saveUserAge);
@@ -464,15 +413,9 @@ function* latestActionsSaga() {
   yield takeLatest(REMOVE_USER_LOCATION, removeUserLocation);
   yield takeLatest(REMOVE_USER_AGE, removeUserAge);
   yield takeLatest(REMOVE_USER_FRENCH_LEVEL, removeUserFrenchLevel);
-  yield takeLatest(
-    REMOVE_USER_HAS_SEEN_ONBOARDING,
-    removeHasUserSeenOnboarding
-  );
+  yield takeLatest(REMOVE_USER_HAS_SEEN_ONBOARDING, removeHasUserSeenOnboarding);
   yield takeLatest(REMOVE_USER_HAS_NEW_FAVORITES, removeUserHasNewFavorites);
-  yield takeLatest(
-    REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
-    removeUserLocalizedWarningHidden
-  );
+  yield takeLatest(REMOVE_USER_LOCALIZED_WARNING_HIDDEN, removeUserLocalizedWarningHidden);
   yield takeLatest(ADD_USER_FAVORITE, addUserFavorite);
   yield takeLatest(REMOVE_USER_FAVORITE, removeUserFavorite);
   yield takeLatest(REMOVE_USER_ALL_FAVORITES, removeUserAllFavorites);

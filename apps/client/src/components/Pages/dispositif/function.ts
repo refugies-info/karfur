@@ -6,8 +6,8 @@ export const sharingOptions = (type: string, titreInformatif: string, titreMarqu
 
     return navigator
       .share({ title, text })
-      .then(() => { })
-      .catch(() => { });
+      .then(() => {})
+      .catch(() => {});
   }
   return null;
 };

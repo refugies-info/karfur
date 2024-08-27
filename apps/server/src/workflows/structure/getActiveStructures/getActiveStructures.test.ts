@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* import { getActiveStructures } from "./getActiveStructures";
-import { getStructuresFromDB } from "../../../modules/structure/structure.repository"; */
+import { getStructuresFromDB } from "~/modules/structure/structure.repository"; */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -71,7 +71,7 @@ describe.skip("getActiveStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
       { nom: 1, acronyme: 1, picture: 1, departments: 1, structureTypes: 1 },
-      true
+      true,
     );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -105,7 +105,7 @@ describe.skip("getActiveStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
       { nom: 1, acronyme: 1, picture: 1, departments: 1, structureTypes: 1 },
-      true
+      true,
     );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({

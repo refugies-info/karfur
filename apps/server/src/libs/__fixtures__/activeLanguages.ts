@@ -7,7 +7,7 @@ export const activeLanguages = [
     langueLoc: "Français",
     langueCode: "fr",
     i18nCode: "fr",
-    avancement: 1
+    avancement: 1,
   },
   {
     _id: "5ce57c969aadae8734c7aee0",
@@ -16,7 +16,7 @@ export const activeLanguages = [
     langueCode: "af",
     i18nCode: "ps",
     avancement: 0.9993781177414255,
-    avancementTrad: 0.8571428571428571
+    avancementTrad: 0.8571428571428571,
   },
   {
     _id: "5ce57c969aadae8734c7aee8",
@@ -25,7 +25,7 @@ export const activeLanguages = [
     langueCode: "ir",
     i18nCode: "fa",
     avancement: 0.998505422764829,
-    avancementTrad: 0.9271137026239067
+    avancementTrad: 0.9271137026239067,
   },
   {
     _id: "5ce57c969aadae8734c7aedf",
@@ -34,7 +34,7 @@ export const activeLanguages = [
     langueCode: "gb",
     i18nCode: "en",
     avancement: 0.9985054227648286,
-    avancementTrad: 0.5072886297376094
+    avancementTrad: 0.5072886297376094,
   },
   {
     _id: "5db9684e5cdcfc00165352be",
@@ -43,7 +43,7 @@ export const activeLanguages = [
     langueCode: "er",
     i18nCode: "ti",
     avancement: 0.9985054227648286,
-    avancementTrad: 0.33527696793002915
+    avancementTrad: 0.33527696793002915,
   },
   {
     _id: "5ce57c969aadae8734c7aee2",
@@ -52,7 +52,7 @@ export const activeLanguages = [
     langueCode: "ru",
     i18nCode: "ru",
     avancement: 0.9982588508415552,
-    avancementTrad: 0.9446064139941691
+    avancementTrad: 0.9446064139941691,
   },
   {
     _id: "5ce57c969aadae8734c7aede",
@@ -61,7 +61,7 @@ export const activeLanguages = [
     langueCode: "sa",
     i18nCode: "ar",
     avancement: 0.9894785882273115,
-    avancementTrad: 0.9883381924198251
+    avancementTrad: 0.9883381924198251,
   },
   {
     _id: "aaabbbccc",
@@ -70,6 +70,6 @@ export const activeLanguages = [
     langueCode: "ua",
     i18nCode: "uk",
     avancement: 0,
-    avancementTrad: 0
-  }
-]
+    avancementTrad: 0,
+  },
+];

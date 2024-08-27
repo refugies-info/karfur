@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useAsyncFn } from "react-use";
-import { useSelector } from "react-redux";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { logger } from "logger";
-import { cls } from "lib/classname";
-import API from "utils/API";
-import { userDetailsSelector } from "services/User/user.selectors";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import ErrorMessage from "components/UI/ErrorMessage";
-import RichCheckbox from "components/UI/RichCheckbox";
-import Flag from "components/UI/Flag";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useAsyncFn } from "react-use";
+import ErrorMessage from "~/components/UI/ErrorMessage";
+import Flag from "~/components/UI/Flag";
+import RichCheckbox from "~/components/UI/RichCheckbox";
+import { cls } from "~/lib/classname";
+import { allLanguesSelector } from "~/services/Langue/langue.selectors";
+import { userDetailsSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 import styles from "./EditLanguage.module.scss";
 
 const buttonProps = {

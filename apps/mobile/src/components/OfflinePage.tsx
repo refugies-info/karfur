@@ -1,14 +1,12 @@
-import React from "react";
 import { Image, Linking } from "react-native";
-import styled from "styled-components/native";
-import { Rows } from "./layout";
+import styled, { useTheme } from "styled-components/native";
+import { storeUrl } from "~/data/storeLinks";
+import { useTranslationWithRTL } from "~/hooks";
+import AppInPhone from "~/theme/images/app-in-phone.png";
+import Logo from "~/theme/images/logo.svg";
 import { Button } from "./buttons";
-import { useTheme } from "styled-components/native";
-import { useTranslationWithRTL } from "../hooks";
-import Logo from "../theme/images/logo.svg";
-import AppInPhone from "../theme/images/app-in-phone.png";
+import { Rows } from "./layout";
 import { TextDSFR_L_Bold } from "./StyledText";
-import { storeUrl } from "../data/storeLinks";
 
 const MainContainer = styled.View`
   padding-horizontal: 30px;
@@ -38,17 +36,9 @@ const OfflinePage = () => {
     <MainContainer>
       <Rows layout="auto 1 1 1" horizontalAlign="center" verticalAlign="center">
         <Image style={{ height: 250, width: 125 }} source={AppInPhone} />
-        <Logo
-          width={LOGO_WIDTH}
-          height={LOGO_HEIGHT}
-          accessible={true}
-          accessibilityLabel="Réfugiés point info"
-        />
+        <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} accessible={true} accessibilityLabel="Réfugiés point info" />
         <TextDSFR_L_Bold style={{ textAlign: "center" }}>
-          {t(
-            "global.new_app_version",
-            "Une nouvelle version de l'application Réfugiés.info est disponible."
-          )}
+          {t("global.new_app_version", "Une nouvelle version de l'application Réfugiés.info est disponible.")}
         </TextDSFR_L_Bold>
         <Button
           accessibilityLabel="Mettre à jour sur le Store"

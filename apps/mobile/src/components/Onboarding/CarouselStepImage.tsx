@@ -1,10 +1,9 @@
-import React from "react";
 import { Image, StyleSheet } from "react-native";
 
-import Step0 from "../../theme/images/onboarding/illu-step0.png";
-import Step1 from "../../theme/images/onboarding/illu-step1.png";
-import Step2 from "../../theme/images/onboarding/illu-step2.png";
-import Step3 from "../../theme/images/onboarding/illu-step3.svg";
+import Step0 from "~/theme/images/onboarding/illu-step0.png";
+import Step1 from "~/theme/images/onboarding/illu-step1.png";
+import Step2 from "~/theme/images/onboarding/illu-step2.png";
+import Step3 from "~/theme/images/onboarding/illu-step3.svg";
 
 interface Props {
   step: number;

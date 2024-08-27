@@ -7,4 +7,4 @@ export const getDepartments = (location: Metadatas["location"], t: TFunction) =>
   if (nbDepartments === 0) return "";
   if (nbDepartments === 1) return `(${location[0]})`;
   return t("Dispositif.inDepartments", { count: nbDepartments });
-}
+};

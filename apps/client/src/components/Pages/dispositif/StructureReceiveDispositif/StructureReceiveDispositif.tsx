@@ -1,22 +1,22 @@
-import { useCallback, useState } from "react";
-import { useToggle } from "react-use";
+import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import { ContentType, DispositifStatus } from "@refugies-info/api-types";
+import { useToggle } from "react-use";
 import { getPath } from "routes";
-import API from "utils/API";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import Button from "components/UI/Button";
-import BaseModal from "components/UI/BaseModal";
+import Swal from "sweetalert2";
+import NoIcon from "~/assets/dispositif/no-icon.svg";
+import ReceiveDispositif from "~/assets/dispositif/receive-dispositif.svg";
+import YesIcon from "~/assets/dispositif/yes-icon.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import API from "~/utils/API";
 import { ChoiceButton } from "../Edition";
 import Status from "../Status";
-import YesIcon from "assets/dispositif/yes-icon.svg";
-import NoIcon from "assets/dispositif/no-icon.svg";
-import ReceiveDispositif from "assets/dispositif/receive-dispositif.svg";
 import styles from "./StructureReceiveDispositif.module.scss";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Swal from "sweetalert2";
 
 const StructureReceiveDispositif = () => {
   const [receiveDispositif, setReceiveDispositif] = useState<boolean | null>(null);

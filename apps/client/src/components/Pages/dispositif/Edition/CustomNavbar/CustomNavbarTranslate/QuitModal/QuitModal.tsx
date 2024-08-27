@@ -1,18 +1,18 @@
-import { useCallback, useContext, useMemo } from "react";
-import { Col, Row } from "reactstrap";
-import Image from "next/image";
 import { Languages } from "@refugies-info/api-types";
-import PageContext from "utils/pageContext";
-import { useUser, useLanguages } from "hooks";
-import Button from "components/UI/Button";
-import BaseModal from "components/UI/BaseModal";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import StepBar from "../../StepBar";
+import Image from "next/image";
+import { useContext, useMemo } from "react";
+import { Col, Row } from "reactstrap";
+import PublishImage from "~/assets/dispositif/publish-image.svg";
+import QuitImage from "~/assets/dispositif/quit-image.svg";
+import BaseModal from "~/components/UI/BaseModal";
+import Button from "~/components/UI/Button";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useLanguages, useUser } from "~/hooks";
+import { Step } from "~/hooks/dispositif";
+import PageContext from "~/utils/pageContext";
 import MissingSteps from "../../MissingSteps";
-import { Step } from "hooks/dispositif";
+import StepBar from "../../StepBar";
 import { ContentKey, contentTitle, getContentIntro } from "./data";
-import PublishImage from "assets/dispositif/publish-image.svg";
-import QuitImage from "assets/dispositif/quit-image.svg";
 import styles from "./QuitModal.module.scss";
 
 interface Props {

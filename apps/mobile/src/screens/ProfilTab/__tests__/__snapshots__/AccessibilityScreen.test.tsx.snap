@@ -556,10 +556,10 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           }
         >
-          Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application 
-          iOS
+          Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application
            
-          Réfugiés.info.
+          iOS
+           Réfugiés.info.
         </Text>
         <Text
           isRTL={false}
@@ -810,8 +810,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             ]
           }
         >
-          Cette déclaration d'accessibilité s'applique à l'application mobile
-           
+          Cette déclaration d'accessibilité s'applique à l'application mobile 
           iOS
            Réfugiés.info.
         </Text>

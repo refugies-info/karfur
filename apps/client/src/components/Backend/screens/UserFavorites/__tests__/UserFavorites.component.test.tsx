@@ -1,12 +1,12 @@
 //@ts-nocheck
 import userEvent from "@testing-library/user-event";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import mockAxios from "jest-mock-axios";
 import routerMock from "next/router";
+import { initialMockStore } from "~/__fixtures__/reduxStore";
 import {
   fetchUserFavoritesActionCreator,
   updateUserFavoritesActionCreator,
-} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+} from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserFavorites from "../UserFavorites";
 

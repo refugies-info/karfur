@@ -1,6 +1,5 @@
-import React from "react";
 import { useTranslation } from "next-i18next";
-import FButton from "components/UI/FButton/FButton";
+import FButton from "~/components/UI/FButton/FButton";
 import styles from "./SocialLinks.module.scss";
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
 
 const getLink = (link: string | undefined) => {
   if (!link) return;
-  return (link.includes("http") ? "" : "http://") + link
+  return (link.includes("http") ? "" : "http://") + link;
 };
 
 export const SocialsLink = (props: Props) => {
@@ -78,5 +77,5 @@ export const SocialsLink = (props: Props) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};

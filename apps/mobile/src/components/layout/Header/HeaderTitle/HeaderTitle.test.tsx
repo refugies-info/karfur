@@ -1,6 +1,5 @@
-import React from "react";
-import HeaderTitle from "./HeaderTitle";
 import { render } from "../../../utils/tests";
+import HeaderTitle from "./HeaderTitle";
 
 describe("HeaderTitle snapshot test suite", () => {
   it("should render without bug", async () => {

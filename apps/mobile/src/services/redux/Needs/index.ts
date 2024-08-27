@@ -1,5 +1,1 @@
-export {
-  needSelector,
-  needNameSelector,
-  needsSelector,
-} from "./needs.selectors";
+export { needNameSelector, needSelector, needsSelector } from "./needs.selectors";

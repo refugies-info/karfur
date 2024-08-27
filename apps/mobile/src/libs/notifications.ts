@@ -1,16 +1,15 @@
-import * as Notifications from "expo-notifications";
 import { Subscription } from "expo-modules-core";
+import * as Notifications from "expo-notifications";
 import { NotificationResponse } from "expo-notifications";
 
 let notificationDataStack: NotificationResponse[] = [];
 let notificationListener: Subscription | null = null;
 
 export const enableNotificationsListener = () => {
-  notificationListener = Notifications
-    .addNotificationResponseReceivedListener((response) => {
-      if (response) notificationDataStack.push(response);
-    });
-}
+  notificationListener = Notifications.addNotificationResponseReceivedListener((response) => {
+    if (response) notificationDataStack.push(response);
+  });
+};
 
 export const disableNotificationsListener = () => {
   notificationListener && notificationListener.remove();

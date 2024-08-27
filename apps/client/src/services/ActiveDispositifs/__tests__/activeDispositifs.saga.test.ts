@@ -1,20 +1,12 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, {
-  fetchActiveDispositifs,
-  updateDispositifReaction,
-} from "../activeDispositifs.saga";
 import API from "../../../utils/API";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-  setError,
-} from "../../LoadingStatus/loadingStatus.actions";
-import { setActiveDispositifsActionsCreator } from "../activeDispositifs.actions";
 import { languei18nSelector } from "../../Langue/langue.selectors";
-import { UPDATE_DISPOSITIF_REACTION } from "../activeDispositifs.actionTypes";
+import { LoadingStatusKey, finishLoading, setError, startLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
+import { setActiveDispositifsActionsCreator } from "../activeDispositifs.actions";
+import { UPDATE_DISPOSITIF_REACTION } from "../activeDispositifs.actionTypes";
+import latestActionsSaga, { fetchActiveDispositifs, updateDispositifReaction } from "../activeDispositifs.saga";
 
 describe("[Saga] Active dispositifs", () => {
   describe("pilot", () => {
@@ -78,7 +70,7 @@ describe("[Saga] Active dispositifs", () => {
           suggestion: {
             dispositifId: "idDisp",
             suggestionId: "idSugg",
-            type: "remove"
+            type: "remove",
           },
         },
       })
@@ -89,7 +81,7 @@ describe("[Saga] Active dispositifs", () => {
           fetchUserStructureActionCreator({
             structureId: "id",
             shouldRedirect: false,
-          })
+          }),
         )
         .next()
         .isDone();
@@ -102,7 +94,7 @@ describe("[Saga] Active dispositifs", () => {
           suggestion: {
             dispositifId: "idDisp",
             suggestionId: "idSugg",
-            type: "read"
+            type: "read",
           },
         },
       })
@@ -113,7 +105,7 @@ describe("[Saga] Active dispositifs", () => {
           fetchUserStructureActionCreator({
             structureId: "id",
             shouldRedirect: false,
-          })
+          }),
         )
         .next()
         .isDone();

@@ -1,21 +1,21 @@
+import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
-import { getDefaultValue, hasMissingAccordions } from "lib/dispositifForm";
-import { canEdit } from "lib/dispositif";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { useDispositifForm } from "hooks/dispositif";
-import PageContext from "utils/pageContext";
-import { wrapper } from "services/configureStore";
-import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import Dispositif from "components/Content/Dispositif";
-import { ModalAccordionsCount } from "components/Pages/dispositif/Edition/Modals";
+import Dispositif from "~/components/Content/Dispositif";
+import { ModalAccordionsCount } from "~/components/Pages/dispositif/Edition/Modals";
+import { useDispositifForm } from "~/hooks/dispositif";
+import { canEdit } from "~/lib/dispositif";
+import { getDefaultValue, hasMissingAccordions } from "~/lib/dispositifForm";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { wrapper } from "~/services/configureStore";
+import { fetchSelectedDispositifActionCreator } from "~/services/SelectedDispositif/selectedDispositif.actions";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
+import PageContext from "~/utils/pageContext";
 
 interface Props {
   history: string[];

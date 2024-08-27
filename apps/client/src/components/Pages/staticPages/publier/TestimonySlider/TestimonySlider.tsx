@@ -1,8 +1,8 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import useRTL from "hooks/useRTL";
-import { cls } from "lib/classname";
 import { useEffect, useRef, useState } from "react";
 import { Button, Col } from "reactstrap";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import useRTL from "~/hooks/useRTL";
+import { cls } from "~/lib/classname";
 import TestimonyAuthor from "./TestimonyAuthor";
 import styles from "./TestimonySlider.module.scss";
 

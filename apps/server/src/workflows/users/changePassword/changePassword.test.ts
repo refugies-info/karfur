@@ -1,11 +1,10 @@
-import { changePassword } from "./changePassword";
-import * as usersRep from "../../../modules/users/users.repository";
-import { loginExceptionsManager } from "../../../modules/users/auth";
-import { UserModel } from "../../../typegoose";
-import { LoginErrorType } from "../../../modules/users/LoginError";
 import { UserStatus } from "@refugies-info/api-types";
 import passwordHash from "password-hash";
-
+import { loginExceptionsManager } from "~/modules/users/auth";
+import { LoginErrorType } from "~/modules/users/LoginError";
+import * as usersRep from "~/modules/users/users.repository";
+import { UserModel } from "~/typegoose";
+import { changePassword } from "./changePassword";
 
 jest.mock("../../../modules/users/users.repository", () => ({
   getUserById: jest.fn(),
@@ -18,8 +17,8 @@ jest.mock("password-hash", () => ({
 }));
 
 jest.mock("../../../modules/users/auth", () => ({
-  loginExceptionsManager: jest.fn()
-}))
+  loginExceptionsManager: jest.fn(),
+}));
 
 describe("changePassword", () => {
   beforeEach(() => {
@@ -27,7 +26,7 @@ describe("changePassword", () => {
   });
 
   it("should get user and return error if no user", async () => {
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(null);
 
     await changePassword("id", "", "");
@@ -35,7 +34,7 @@ describe("changePassword", () => {
     expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.USER_DELETED));
   });
   it("should get user and return error if user deleted", async () => {
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({ status: UserStatus.DELETED }));
 
     await changePassword("id", "", "");
@@ -44,7 +43,7 @@ describe("changePassword", () => {
   });
 
   it("should get user and return error if no password", async () => {
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({}));
 
     await changePassword("id", "", "");
@@ -53,8 +52,8 @@ describe("changePassword", () => {
   });
 
   it("should get user and return error if wrong password", async () => {
-    const hashVerifyMock = jest.spyOn(passwordHash, 'verify');
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const hashVerifyMock = jest.spyOn(passwordHash, "verify");
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
     hashVerifyMock.mockReturnValueOnce(false);
 
@@ -64,7 +63,7 @@ describe("changePassword", () => {
   });
 
   it("should get user and return error if same password", async () => {
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
 
     await changePassword("id", "test1", "test1");
@@ -73,7 +72,7 @@ describe("changePassword", () => {
   });
 
   it("should get user and return error if password too weak", async () => {
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
 
     await changePassword("id", "test1", "a");
@@ -82,7 +81,7 @@ describe("changePassword", () => {
   });
 
   it("should get user and return hashedPassword if ok", async () => {
-    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
 
     const res = await changePassword("id", "test1", "Test1a@");

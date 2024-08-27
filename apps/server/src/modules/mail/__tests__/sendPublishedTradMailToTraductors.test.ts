@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { sendPublishedTradMailToTraductors } from "../sendPublishedTradMailToTraductors";
 import { getUserById } from "../../users/users.repository";
 import { sendPublishedTradMailToTraductorsService } from "../mail.service";
+import { sendPublishedTradMailToTraductors } from "../sendPublishedTradMailToTraductors";
 
 jest.mock("../../users/users.repository", () => ({
   getUserById: jest.fn(),
@@ -35,7 +35,7 @@ describe.skip("sendPublishedTradMailToTraductors", () => {
       "dispositif",
       "titreInfo",
       "titreMarque",
-      "dispositifId"
+      "dispositifId",
     );
 
     const data = {
@@ -79,14 +79,7 @@ describe.skip("sendPublishedTradMailToTraductors", () => {
       email: 1,
       status: 1,
     };
-    await sendPublishedTradMailToTraductors(
-      ["id1"],
-      "ps",
-      "demarche",
-      "titreInfo",
-      "titreMarque",
-      "demarcheId"
-    );
+    await sendPublishedTradMailToTraductors(["id1"], "ps", "demarche", "titreInfo", "titreMarque", "demarcheId");
 
     const data = {
       dispositifId: "demarcheId",

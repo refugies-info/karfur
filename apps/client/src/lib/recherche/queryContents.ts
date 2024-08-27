@@ -1,6 +1,6 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
-import { Results, SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import {
   filterByAge,
   filterByFrenchLevel,

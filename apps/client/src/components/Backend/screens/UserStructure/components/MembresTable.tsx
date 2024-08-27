@@ -1,8 +1,8 @@
-import marioProfile from "assets/mario-profile.jpg";
 import Image from "next/image";
 import { Table } from "reactstrap";
 import styled from "styled-components";
-import { colors } from "utils/colors";
+import marioProfile from "~/assets/mario-profile.jpg";
+import { colors } from "~/utils/colors";
 import { DeleteButton, EditButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
 // import "./MembresTable.scss";
 import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";

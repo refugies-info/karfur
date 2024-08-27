@@ -1,5 +1,5 @@
 // @ts-nocheck
-/* import { DispositifModel } from "../../../typegoose/Dispositif";
+/* import { DispositifModel } from "~/typegoose/Dispositif";
 import {
   getDispositifsFromDB,
   updateDispositifInDB,
@@ -19,8 +19,8 @@ describe.skip("getDispositifsFromDB", () => {
   it("should call Dispositif", async () => {
     DispositifModel.find.mockReturnValueOnce({
       populate: jest.fn().mockReturnValueOnce({
-        populate: jest.fn().mockResolvedValue(dispositifsList)
-      })
+        populate: jest.fn().mockResolvedValue(dispositifsList),
+      }),
     });
     const neededFields = { status: 1, typeContenu: 1 };
     const res = await getDispositifsFromDB(neededFields);
@@ -33,20 +33,20 @@ describe.skip("getDispositifsFromDB", () => {
 describe.skip("updateDispositifStatus", () => {
   it("should call Dispositif", async () => {
     DispositifModel.findOneAndUpdate.mockReturnValueOnce({
-      populate: jest.fn().mockResolvedValue({ id: "id1" })
+      populate: jest.fn().mockResolvedValue({ id: "id1" }),
     });
 
     const res = await updateDispositifInDB("id1", {
       status: "Actif",
-      publishedAt: "01/01/01"
+      publishedAt: "01/01/01",
     });
     expect(DispositifModel.findOneAndUpdate).toHaveBeenCalledWith(
       { _id: "id1" },
       { status: "Actif", publishedAt: "01/01/01" },
       {
         upsert: true,
-        new: true
-      }
+        new: true,
+      },
     );
     expect(res).toEqual({ id: "id1" });
   });
@@ -68,17 +68,17 @@ describe.skip("getDispositifArray", () => {
     nbMots: 1,
     nbVues: 1,
     audienceAge: 1,
-    niveauFrancais: 1
+    niveauFrancais: 1,
   };
   it("should call Dispositif when query has no audience age", async () => {
     DispositifModel.find.mockReturnValueOnce({
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList)
-          })
-        })
-      })
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          }),
+        }),
+      }),
     });
     const query = { status: "Actif" };
 
@@ -92,10 +92,10 @@ describe.skip("getDispositifArray", () => {
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList)
-          })
-        })
-      })
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          }),
+        }),
+      }),
     });
 
     const query = { status: "Actif" };
@@ -104,7 +104,7 @@ describe.skip("getDispositifArray", () => {
 
     expect(DispositifModel.find).toHaveBeenCalledWith(query, {
       ...neededFields,
-      updatedAt: 1
+      updatedAt: 1,
     });
     expect(res).toEqual(dispositifsList);
   });
@@ -114,10 +114,10 @@ describe.skip("getDispositifArray", () => {
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList)
-          })
-        })
-      })
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          }),
+        }),
+      }),
     });
 
     const query = { "status": "Actif", "audienceAge.bottomValue": 25 };
@@ -133,16 +133,16 @@ describe.skip("getDispositifArray", () => {
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList)
-          })
-        })
-      })
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          }),
+        }),
+      }),
     });
 
     const query = {
       "status": "Actif",
       "audienceAge.bottomValue": 25,
-      "audienceAge.topValue": 50
+      "audienceAge.topValue": 50,
     };
 
     const res = await getDispositifArray(query);
@@ -155,22 +155,22 @@ describe.skip("getDispositifArray", () => {
 describe.skip("updateDispositifInDB", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
     DispositifModel.findOneAndUpdate.mockReturnValueOnce({
-      populate: jest.fn().mockResolvedValue(null)
+      populate: jest.fn().mockResolvedValue(null),
     });
     await updateDispositifInDB("dispositifId", {
       mainSponsor: "sponsorId",
-      status: "Actif"
+      status: "Actif",
     });
     expect(DispositifModel.findOneAndUpdate).toHaveBeenCalledWith(
       { _id: "dispositifId" },
       {
         mainSponsor: "sponsorId",
-        status: "Actif"
+        status: "Actif",
       },
       {
         upsert: true,
-        new: true
-      }
+        new: true,
+      },
     );
   });
 });
@@ -178,13 +178,13 @@ describe.skip("updateDispositifInDB", () => {
 describe.skip("getActiveDispositifsFromDBWithoutPopulate", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
     await getActiveDispositifsFromDBWithoutPopulate({
-      contenu: 1
+      contenu: 1,
     });
     expect(DispositifModel.find).toHaveBeenCalledWith(
       { status: "Actif", typeContenu: "dispositif" },
       {
-        contenu: 1
-      }
+        contenu: 1,
+      },
     );
   });
 });

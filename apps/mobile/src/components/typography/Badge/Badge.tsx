@@ -1,4 +1,3 @@
-import * as React from "react";
 import styled from "styled-components/native";
 import { TextDSFR_S_Bold } from "../../StyledText";
 import { Icon } from "../../iconography";
@@ -20,10 +19,7 @@ export const Container = styled.View<{ background: string }>`
 
 type BadgeType = "success" | "error" | "info" | "warning" | "new";
 
-const COLORS: Record<
-  BadgeType,
-  { text: string; background: string; icon: string }
-> = {
+const COLORS: Record<BadgeType, { text: string; background: string; icon: string }> = {
   success: {
     text: "#18753C",
     background: "#B8FEC9",

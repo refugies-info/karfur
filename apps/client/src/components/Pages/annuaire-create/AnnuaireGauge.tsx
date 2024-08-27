@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components";
 import { colors } from "data/annuaireStepColors";
+import styled from "styled-components";
 
 const MainContainer = styled.div`
   display: flex;
@@ -9,24 +8,23 @@ const MainContainer = styled.div`
 `;
 
 interface StickLineProps {
-  filled: boolean
-  colorFilled: string
-  colorToDo: string
+  filled: boolean;
+  colorFilled: string;
+  colorToDo: string;
 }
 const StickLine = styled.div<StickLineProps>`
   display: flex;
   flex: 1;
-  background: ${(props: StickLineProps) =>
-    props.filled ? props.colorFilled : props.colorToDo};
+  background: ${(props: StickLineProps) => (props.filled ? props.colorFilled : props.colorToDo)};
   border-radius: 6px;
   height: 8px;
 `;
 interface StepContainerProps {
-  selected: boolean
-  colorFilled: string
-  colorToDo: string
-  value: number
-  filled: boolean
+  selected: boolean;
+  colorFilled: string;
+  colorToDo: string;
+  value: number;
+  filled: boolean;
 }
 const StepContainer = styled.div<StepContainerProps>`
   background: #ffffff;
@@ -42,15 +40,11 @@ const StepContainer = styled.div<StepContainerProps>`
   justify-content: center;
   align-items: center;
   background: ${(props: StepContainerProps) =>
-    props.filled
-      ? props.colorFilled
-      : props.selected
-      ? "#FFFFFF"
-      : props.colorToDo};
+    props.filled ? props.colorFilled : props.selected ? "#FFFFFF" : props.colorToDo};
 `;
 interface StepTextProps {
-  selected: boolean
-  colorFilled: string
+  selected: boolean;
+  colorFilled: string;
 }
 const StepText = styled.div<StepTextProps>`
   font-weight: bold;
@@ -59,13 +53,7 @@ const StepText = styled.div<StepTextProps>`
   color: ${(props: StepTextProps) => (props.selected ? props.colorFilled : "#FFFFFF;")};
 `;
 
-const Step = (props: {
-  value: number;
-  filled: boolean;
-  selected: boolean;
-  colorFilled: string;
-  colorToDo: string;
-}) => (
+const Step = (props: { value: number; filled: boolean; selected: boolean; colorFilled: string; colorToDo: string }) => (
   <StepContainer
     filled={props.filled}
     selected={props.selected}
@@ -73,10 +61,7 @@ const Step = (props: {
     colorToDo={props.colorToDo}
     value={props.value}
   >
-    <StepText
-      selected={props.selected}
-      colorFilled={props.colorFilled}
-    >
+    <StepText selected={props.selected} colorFilled={props.colorFilled}>
       {props.value}
     </StepText>
   </StepContainer>
@@ -92,11 +77,7 @@ export const AnnuaireGauge = (props: { step: number }) => {
         colorToDo={colors[0].colorToDo}
         colorFilled={colors[0].colorFilled}
       />
-      <StickLine
-        filled={props.step > 1}
-        colorFilled={colors[1].colorFilled}
-        colorToDo={colors[1].colorToDo}
-      />
+      <StickLine filled={props.step > 1} colorFilled={colors[1].colorFilled} colorToDo={colors[1].colorToDo} />
       <Step
         value={2}
         filled={props.step > 2}
@@ -104,11 +85,7 @@ export const AnnuaireGauge = (props: { step: number }) => {
         colorToDo={colors[1].colorToDo}
         colorFilled={colors[1].colorFilled}
       />
-      <StickLine
-        filled={props.step > 2}
-        colorFilled={colors[2].colorFilled}
-        colorToDo={colors[2].colorToDo}
-      />
+      <StickLine filled={props.step > 2} colorFilled={colors[2].colorFilled} colorToDo={colors[2].colorToDo} />
       <Step
         value={3}
         filled={props.step > 3}
@@ -116,11 +93,7 @@ export const AnnuaireGauge = (props: { step: number }) => {
         colorToDo={colors[2].colorToDo}
         colorFilled={colors[2].colorFilled}
       />
-      <StickLine
-        filled={props.step > 3}
-        colorFilled={colors[3].colorFilled}
-        colorToDo={colors[3].colorToDo}
-      />
+      <StickLine filled={props.step > 3} colorFilled={colors[3].colorFilled} colorToDo={colors[3].colorToDo} />
       <Step
         value={4}
         filled={props.step > 4}
@@ -128,11 +101,7 @@ export const AnnuaireGauge = (props: { step: number }) => {
         colorToDo={colors[3].colorToDo}
         colorFilled={colors[3].colorFilled}
       />
-      <StickLine
-        filled={props.step > 4}
-        colorFilled={colors[4].colorFilled}
-        colorToDo={colors[4].colorToDo}
-      />
+      <StickLine filled={props.step > 4} colorFilled={colors[4].colorFilled} colorToDo={colors[4].colorToDo} />
       <Step
         value={5}
         filled={props.step > 5}

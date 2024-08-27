@@ -1,15 +1,11 @@
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
-import {
-  startLoading,
-  finishLoading,
-  LoadingStatusKey,
-} from "../LoadingStatus/loadingStatus.actions";
-import { getLanguages } from "../../../utils/API";
-import { logger } from "../../../logger";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "~/logger";
+import { getLanguages } from "~/utils/API";
+import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setLanguagesActionCreator } from "./languages.actions";
 import { FETCH_LANGUAGES } from "./languages.actionTypes";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 export function* fetchLanguages(): SagaIterator {
   try {

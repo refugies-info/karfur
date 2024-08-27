@@ -4,8 +4,8 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
-import { initialRootStateFactory, rootReducer, RootState } from "../services/redux/reducers";
-import { ThemeProvider } from "../theme";
+import { initialRootStateFactory, rootReducer, RootState } from "~/services/redux/reducers";
+import { ThemeProvider } from "~/theme";
 
 interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<any>;

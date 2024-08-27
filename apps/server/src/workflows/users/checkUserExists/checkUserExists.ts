@@ -1,8 +1,8 @@
 import { CheckUserExistsResponse } from "@refugies-info/api-types";
-import logger from "../../../logger";
-import { NotFoundError } from "../../../errors";
-import { getUserByEmailFromDB } from "../../../modules/users/users.repository";
-import { needs2FA } from "../../../modules/users/auth";
+import { NotFoundError } from "~/errors";
+import logger from "~/logger";
+import { needs2FA } from "~/modules/users/auth";
+import { getUserByEmailFromDB } from "~/modules/users/users.repository";
 
 export const checkUserExists = async (email: string): Promise<CheckUserExistsResponse> => {
   logger.info("[checkUserExists] received");

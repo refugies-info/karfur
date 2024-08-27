@@ -1,42 +1,37 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { isMacOs } from "react-device-detect";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
-import {
-  $isListNode,
-  INSERT_ORDERED_LIST_COMMAND,
-  INSERT_UNORDERED_LIST_COMMAND,
-  ListNode,
-  REMOVE_LIST_COMMAND,
-} from "@lexical/list";
+import { $isListNode, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND, ListNode } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $isDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
 import { $createHeadingNode, $isHeadingNode } from "@lexical/rich-text";
-import { $isParentElementRTL, $setBlocksType, $selectAll } from "@lexical/selection";
+import { $isParentElementRTL, $selectAll, $setBlocksType } from "@lexical/selection";
+import { $isTableSelection } from "@lexical/table";
 import {
   $findMatchingParent,
-  $getNearestNodeOfType,
   $getNearestBlockElementAncestorOrThrow,
+  $getNearestNodeOfType,
   mergeRegister,
 } from "@lexical/utils";
-import { $isTextNode, NodeKey } from "lexical";
-import { $isDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
 import {
   $createParagraphNode,
   $getSelection,
   $isRangeSelection,
   $isRootOrShadowRoot,
+  $isTextNode,
   CAN_REDO_COMMAND,
   CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   FORMAT_TEXT_COMMAND,
+  NodeKey,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
-import { $isTableSelection } from "@lexical/table"
-import { cls } from "lib/classname";
+import { useCallback, useEffect, useState } from "react";
+import { isMacOs } from "react-device-detect";
+import { cls } from "~/lib/classname";
+import { getSelectedNode } from "../lib";
 import { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
 import { CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
-import { getSelectedNode } from "../lib";
 import ToolbarButton from "./ToolbarButton";
 import ToolbarDropdown from "./ToolbarDropdown";
 import styles from "./ToolbarPlugin.module.scss";

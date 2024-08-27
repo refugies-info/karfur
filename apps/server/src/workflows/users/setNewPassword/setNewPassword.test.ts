@@ -1,9 +1,9 @@
 //@ts-nocheck
 /* import { setNewPassword } from "./setNewPassword";
-import { login2FA } from "../../../modules/users/login2FA";
-import { proceedWithLogin } from "../../../modules/users/users.service";
-import { userRespoStructureId } from "../../../modules/structure/structure.service";
- *//* import { UserModel } from "src/typegoose/User"; */
+import { login2FA } from "~/modules/users/login2FA";
+import { proceedWithLogin } from "~/modules/users/users.service";
+import { userRespoStructureId } from "~/modules/structure/structure.service";
+ */ /* import { UserModel } from "~/typegoose/User"; */
 
 import { RoleName } from "@refugies-info/api-types";
 
@@ -52,7 +52,7 @@ describe.skip("setNewPassword", () => {
   it("should return 400 if invalid request", async () => {
     const req = {
       fromSite: true,
-      body: { newPassword: "newPassword" }
+      body: { newPassword: "newPassword" },
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
@@ -61,7 +61,7 @@ describe.skip("setNewPassword", () => {
   it("should return 400 if invalid request", async () => {
     const req = {
       fromSite: true,
-      body: { reset_password_token: "token" }
+      body: { reset_password_token: "token" },
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
@@ -73,8 +73,8 @@ describe.skip("setNewPassword", () => {
       fromSite: true,
       body: {
         newPassword: "password",
-        reset_password_token: "token"
-      }
+        reset_password_token: "token",
+      },
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(500);
@@ -82,78 +82,78 @@ describe.skip("setNewPassword", () => {
   });
   it("should return 403 if no email", async () => {
     UserModel.findOne.mockReturnValueOnce({
-      email: ""
+      email: "",
     });
     const req = {
       fromSite: true,
       body: {
         newPassword: "password",
-        reset_password_token: "token"
-      }
+        reset_password_token: "token",
+      },
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(403);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi."
+      text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
     });
   });
   it("should get user and return 400 if password is the same as before", async () => {
     UserModel.findOne.mockReturnValueOnce({
       email: "dev@refugies.info",
       roles: [],
-      password: "userPassword"
+      password: "userPassword",
     });
     const req = {
       fromSite: true,
       body: {
         newPassword: "userPassword",
-        reset_password_token: "token"
+        reset_password_token: "token",
       },
-      roles: []
+      roles: [],
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       code: "USED_PASSWORD",
-      text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
+      text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
     });
   });
   it("should return 401 if admin", async () => {
     UserModel.findOne.mockReturnValueOnce({
       email: "dev@refugies.info",
-      roles: ["Admin"]
+      roles: ["Admin"],
     });
     const req = {
       fromSite: true,
       body: {
         newPassword: "password",
-        reset_password_token: "token"
+        reset_password_token: "token",
       },
-      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }],
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site"
+      text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
     });
   });
   it("should get user and return 401 if password too weak", async () => {
     UserModel.findOne.mockReturnValueOnce({
       email: "dev@refugies.info",
-      roles: []
+      roles: [],
     });
     const req = {
       fromSite: true,
       body: {
         newPassword: "a",
-        reset_password_token: "token"
+        reset_password_token: "token",
       },
-      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }],
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Le mot de passe est trop faible"
+      text: "Le mot de passe est trop faible",
     });
   });
   it("should call login2FA is user has structure", async () => {
@@ -161,16 +161,16 @@ describe.skip("setNewPassword", () => {
       email: "dev@refugies.info",
       roles: [],
       save: jest.fn(),
-      getToken: jest.fn()
+      getToken: jest.fn(),
     });
     userRespoStructureId.mockResolvedValueOnce("structureId");
     const req = {
       fromSite: true,
       body: {
         newPassword: "password1&",
-        reset_password_token: "token"
+        reset_password_token: "token",
       },
-      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }],
     };
     await setNewPassword(req, res);
     expect(login2FA).toHaveBeenCalled();
@@ -182,16 +182,16 @@ describe.skip("setNewPassword", () => {
       email: "dev@refugies.info",
       roles: [],
       save: jest.fn(),
-      getToken: jest.fn()
+      getToken: jest.fn(),
     });
     userRespoStructureId.mockResolvedValueOnce(null);
     const req = {
       fromSite: true,
       body: {
         newPassword: "password1&",
-        reset_password_token: "token"
+        reset_password_token: "token",
       },
-      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }],
     };
     await setNewPassword(req, res);
     expect(login2FA).not.toHaveBeenCalled();
@@ -203,22 +203,22 @@ describe.skip("setNewPassword", () => {
       email: "dev@refugies.info",
       roles: [],
       save: jest.fn(),
-      getToken: jest.fn().mockReturnValue("token")
+      getToken: jest.fn().mockReturnValue("token"),
     });
     userRespoStructureId.mockResolvedValueOnce(null);
     const req = {
       fromSite: true,
       body: {
         newPassword: "password1&",
-        reset_password_token: "token"
+        reset_password_token: "token",
       },
-      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }],
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       token: "token",
-      text: "Authentification réussie"
+      text: "Authentification réussie",
     });
   });
 });

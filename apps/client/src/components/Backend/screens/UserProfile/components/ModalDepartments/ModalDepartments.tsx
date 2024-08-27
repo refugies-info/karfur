@@ -1,8 +1,8 @@
+import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { EditDepartments } from "components/User";
+import { EditDepartments } from "~/components/User";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
 
 interface Props {}
 

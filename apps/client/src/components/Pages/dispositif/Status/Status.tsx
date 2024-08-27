@@ -1,8 +1,7 @@
-import React, { useMemo } from "react";
 import { DispositifStatus } from "@refugies-info/api-types";
-import Badge from "components/UI/Badge";
+import { useMemo } from "react";
+import Badge from "~/components/UI/Badge";
 import { getStatus } from "./functions";
-import styles from "./Status.module.scss";
 
 interface Props {
   status: DispositifStatus | undefined;
