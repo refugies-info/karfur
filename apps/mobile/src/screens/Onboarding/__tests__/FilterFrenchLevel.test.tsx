@@ -1,10 +1,10 @@
 import { useRoute } from "@react-navigation/native";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
 import { fireEvent } from "@testing-library/react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
+import { saveUserFrenchLevelActionCreator } from "~/services/redux/User/user.actions";
+import { initialUserState } from "~/services/redux/User/user.reducer";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { saveUserFrenchLevelActionCreator } from "../../../services/redux/User/user.actions";
-import { initialUserState } from "../../../services/redux/User/user.reducer";
 import { FilterFrenchLevel } from "../FilterFrenchLevel";
 
 // jest.useFakeTimers();

@@ -1,8 +1,7 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
 import { RootState } from "../reducers";
 
-export const themesSelector = (state: RootState): GetThemeResponse[] =>
-  state.themes;
+export const themesSelector = (state: RootState): GetThemeResponse[] => state.themes;
 
 export const themeSelector =
   (id: string | null | undefined) =>

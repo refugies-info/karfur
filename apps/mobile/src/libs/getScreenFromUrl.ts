@@ -1,8 +1,10 @@
 import { Languages } from "@refugies-info/api-types";
 
-export const getScreenFromUrl = (url: string): {
-  rootNavigator: "Explorer" | "Profil"
-  screenParams: any
+export const getScreenFromUrl = (
+  url: string,
+): {
+  rootNavigator: "Explorer" | "Profil";
+  screenParams: any;
 } | null => {
   // Dispositif
   const rxDispositif = /([a-z][a-z]\/)?(dispositif|program)\/[a-z|0-9]*/g;
@@ -13,10 +15,10 @@ export const getScreenFromUrl = (url: string): {
       screenParams: {
         screen: "ContentScreen",
         params: {
-          contentId: resDispositif[0].replace(/([a-z][a-z]\/)?(dispositif|program)\//g, "")
-        }
-      }
-    }
+          contentId: resDispositif[0].replace(/([a-z][a-z]\/)?(dispositif|program)\//g, ""),
+        },
+      },
+    };
   }
 
   // Demarche
@@ -28,10 +30,10 @@ export const getScreenFromUrl = (url: string): {
       screenParams: {
         screen: "ContentScreen",
         params: {
-          contentId: resDemarche[0].replace(/([a-z][a-z]\/)?(demarche|procedure)\//g, "")
-        }
-      }
-    }
+          contentId: resDemarche[0].replace(/([a-z][a-z]\/)?(demarche|procedure)\//g, ""),
+        },
+      },
+    };
   }
 
   // About
@@ -40,8 +42,8 @@ export const getScreenFromUrl = (url: string): {
       rootNavigator: "Profil",
       screenParams: {
         screen: "AboutScreen",
-      }
-    }
+      },
+    };
   }
 
   // Legal notice
@@ -50,8 +52,8 @@ export const getScreenFromUrl = (url: string): {
       rootNavigator: "Profil",
       screenParams: {
         screen: "LegalNoticeScreen",
-      }
-    }
+      },
+    };
   }
 
   // Privacy policy
@@ -60,8 +62,8 @@ export const getScreenFromUrl = (url: string): {
       rootNavigator: "Profil",
       screenParams: {
         screen: "PrivacyPolicyScreen",
-      }
-    }
+      },
+    };
   }
 
   // Accessibility
@@ -70,18 +72,17 @@ export const getScreenFromUrl = (url: string): {
       rootNavigator: "Profil",
       screenParams: {
         screen: "AccessibilityScreen",
-      }
-    }
+      },
+    };
   }
 
   return {
     rootNavigator: "Explorer",
     screenParams: {
       screen: "ExplorerScreen",
-    }
+    },
   };
 };
-
 
 /**
  * Get the langage from a RI url
@@ -91,5 +92,5 @@ export const getScreenFromUrl = (url: string): {
 export const getLocaleFromUrl = (url: string): Languages => {
   const languageCodeRegex = /\/([a-z]{2})\//;
   const match = url.match(languageCodeRegex);
-  return match ? match[1] as Languages : "fr";
-}
+  return match ? (match[1] as Languages) : "fr";
+};

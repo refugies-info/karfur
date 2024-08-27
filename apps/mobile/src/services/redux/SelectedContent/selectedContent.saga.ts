@@ -1,21 +1,12 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
-import {
-  startLoading,
-  finishLoading,
-  LoadingStatusKey,
-} from "../LoadingStatus/loadingStatus.actions";
-import { getContentById } from "../../../utils/API";
-import { logger } from "../../../logger";
-import {
-  fetchSelectedContentActionCreator,
-  setSelectedContentActionCreator,
-} from "./selectedContent.actions";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "~/logger";
+import { getContentById } from "~/utils/API";
+import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { fetchSelectedContentActionCreator, setSelectedContentActionCreator } from "./selectedContent.actions";
 import { FETCH_SELECTED_CONTENT } from "./selectedContent.actionTypes";
 
-export function* fetchSelectedContent(
-  action: ReturnType<typeof fetchSelectedContentActionCreator>
-): SagaIterator {
+export function* fetchSelectedContent(action: ReturnType<typeof fetchSelectedContentActionCreator>): SagaIterator {
   const { contentId, locale } = action.payload;
   try {
     logger.info("[fetchSelectedContent] saga", { contentId, locale });
@@ -27,9 +18,7 @@ export function* fetchSelectedContent(
     });
     const contentLocale = data || null;
 
-    yield put(
-      setSelectedContentActionCreator({ content: contentLocale, locale })
-    );
+    yield put(setSelectedContentActionCreator({ content: contentLocale, locale }));
     if (locale !== "fr") {
       const dataFr = yield call(getContentById, {
         contentId,
@@ -40,7 +29,7 @@ export function* fetchSelectedContent(
         setSelectedContentActionCreator({
           content: contentFr,
           locale: "fr",
-        })
+        }),
       );
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));

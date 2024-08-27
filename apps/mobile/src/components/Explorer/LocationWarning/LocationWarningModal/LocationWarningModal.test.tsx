@@ -1,6 +1,5 @@
-import React from "react";
-import LocationWarningModal from "./LocationWarningModal";
 import { render } from "../../../utils/tests";
+import LocationWarningModal from "./LocationWarningModal";
 
 jest.mock("react-i18next", () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
@@ -32,7 +31,7 @@ describe("LocationWarningModal snapshot test suite", () => {
         nbLocalizedContent={6}
         city="Roubaix"
         closeModal={() => null}
-      />
+      />,
     );
     expect(test).toMatchSnapshot();
   });

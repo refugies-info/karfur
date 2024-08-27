@@ -1,6 +1,6 @@
 import React from "react";
-import { Icon } from "react-native-eva-icons";
 import { PixelRatio, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-eva-icons";
 import Animated, {
   Easing,
   Extrapolation,
@@ -10,11 +10,11 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import styled, { useTheme } from "styled-components/native";
-import { styles } from "../theme";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
 import { RTLView } from "./BasicComponents";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { TextDSFR_XS_Bold } from "./StyledText";
-import { Columns, Rows } from "./layout";
+import { Columns } from "./layout";
 
 interface Props {
   i18nKey?: string;
@@ -65,12 +65,7 @@ export const Toast = (props: Props) => {
     transform: [
       //@ts-ignore
       {
-        translateY: interpolate(
-          bottom.value,
-          [0, 100],
-          [180, 0],
-          Extrapolation.CLAMP
-        ),
+        translateY: interpolate(bottom.value, [0, 100], [180, 0], Extrapolation.CLAMP),
       },
     ],
   }));
@@ -104,17 +99,8 @@ export const Toast = (props: Props) => {
     <ToastContainer style={[animatedBottom]}>
       <ToastView>
         <Columns RTLBehaviour layout="auto" verticalAlign="center">
-          <TextIcon
-            name={props.icon}
-            height={16}
-            width={16}
-            fill={theme.colors.white}
-          />
-          {props.i18nKey ? (
-            <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText>
-          ) : (
-            props.children
-          )}
+          <TextIcon name={props.icon} height={16} width={16} fill={theme.colors.white} />
+          {props.i18nKey ? <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText> : props.children}
         </Columns>
 
         <TouchableOpacity
@@ -123,12 +109,7 @@ export const Toast = (props: Props) => {
           accessible={true}
           accessibilityLabel={t("global.close")}
         >
-          <Icon
-            name="close"
-            height={24}
-            width={24}
-            fill={styles.colors.white}
-          />
+          <Icon name="close" height={24} width={24} fill={styles.colors.white} />
         </TouchableOpacity>
       </ToastView>
     </ToastContainer>

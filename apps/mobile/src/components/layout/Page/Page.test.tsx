@@ -1,9 +1,8 @@
-import React from "react";
-import { Text } from "react-native";
-import Page from "./Page";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { useRoute } from "@react-navigation/native";
+import { Text } from "react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import Page from "./Page";
 
 describe("Page snapshot test suite", () => {
   beforeEach(() => {

@@ -1,11 +1,10 @@
-import React from "react";
-import { View } from "react-native";
 import { GetContentsForAppRequest } from "@refugies-info/api-types";
-import { Title } from "../../components/Onboarding/SharedStyledComponents";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { ageFilters } from "../../data/filtersData";
-import { Explaination } from "../../components/Onboarding/Explaination";
-import { FilterButton, RadioGroup, ReadableText } from "../../components";
+import { View } from "react-native";
+import { FilterButton, RadioGroup, ReadableText } from "~/components";
+import { Explaination } from "~/components/Onboarding/Explaination";
+import { Title } from "~/components/Onboarding/SharedStyledComponents";
+import { ageFilters } from "~/data/filtersData";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
 interface Props {
   onAgeClick: (key: GetContentsForAppRequest["age"]) => void;
@@ -18,14 +17,9 @@ export const FilterAgeComponent = (props: Props) => {
   return (
     <View>
       <Title>
-        <ReadableText>
-          {t("onboarding_screens.age", "Quel âge as-tu ?")}
-        </ReadableText>
+        <ReadableText>{t("onboarding_screens.age", "Quel âge as-tu ?")}</ReadableText>
       </Title>
-      <Explaination
-        step={2}
-        defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
-      />
+      <Explaination step={2} defaultText="C’est pour te montrer les démarches et les activités pour ton âge." />
       <RadioGroup>
         {ageFilters.map((age) => (
           <FilterButton

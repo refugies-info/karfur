@@ -13,13 +13,13 @@ import {
   ReadableText,
   TextDSFR_MD_Bold,
   TextDSFR_XL,
-} from "../../../components";
-import { useTranslationWithRTL } from "../../../hooks";
-import { styles } from "../../../theme";
-import { MapGoogle } from "../../../types/interface";
-import { PropsOf } from "../../../utils";
-import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
-import { logEventInFirebase } from "../../../utils/logEvent";
+} from "~/components";
+import { useTranslationWithRTL } from "~/hooks";
+import { styles } from "~/theme";
+import { MapGoogle } from "~/types/interface";
+import { PropsOf } from "~/utils";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
 
 const HeaderText = styled(TextDSFR_XL)`
   margin-top: ${({ theme }) => theme.margin * 2}px;

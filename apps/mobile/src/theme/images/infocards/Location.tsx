@@ -1,6 +1,5 @@
-import React from "react";
-import { IconProps } from "./IconProps";
 import { Path, Svg } from "react-native-svg";
+import { IconProps } from "./IconProps";
 
 const Location = ({ color, width = 32, height = 32 }: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 56 56" fill="none">

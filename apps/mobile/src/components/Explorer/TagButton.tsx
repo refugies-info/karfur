@@ -1,16 +1,16 @@
+import { Picture } from "@refugies-info/api-types";
+import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
+import isArray from "lodash/isArray";
 import * as React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
+import { firstLetterUpperCase } from "~/libs";
+import { styles } from "~/theme";
 import { RTLTouchableOpacity } from "../BasicComponents";
-import { TextDSFR_L_Bold } from "../StyledText";
-import { styles } from "../../theme";
-import { firstLetterUpperCase } from "../../libs";
-import { StreamlineIcon } from "../StreamlineIcon";
-import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
-import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
-import isArray from "lodash/isArray";
-import { Picture } from "@refugies-info/api-types";
+import Highlight from "../Search/Highlight";
+import { StreamlineIcon } from "../StreamlineIcon";
+import { TextDSFR_L_Bold } from "../StyledText";
 
 interface Props {
   backgroundColor: string | Array<any>;
@@ -26,8 +26,7 @@ interface Props {
 }
 
 const StyledContainer = styled(LinearGradient)<{ inline?: boolean }>`
-  ${({ inline, theme }) =>
-    !inline ? "flex: 1;" : `margin-right: ${theme.margin * 2}px;`}
+  ${({ inline, theme }) => (!inline ? "flex: 1;" : `margin-right: ${theme.margin * 2}px;`)}
   padding-vertical: ${({ theme }) => theme.margin}px;
   padding-horizontal: ${({ theme }) => theme.margin * 2}px;
   margin-vertical: ${({ theme }) => theme.margin}px;
@@ -64,11 +63,8 @@ const TagButtonComponent = ({
   textColor,
 }: Props) => {
   const gradientBackgroundColor = React.useMemo(
-    () =>
-      isArray(backgroundColor)
-        ? backgroundColor
-        : [backgroundColor, backgroundColor],
-    [backgroundColor]
+    () => (isArray(backgroundColor) ? backgroundColor : [backgroundColor, backgroundColor]),
+    [backgroundColor],
   );
   return (
     <StyledContainer

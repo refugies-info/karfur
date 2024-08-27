@@ -1,7 +1,7 @@
 import { sanitize } from "dompurify";
 import HTML from "react-native-render-html";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { styles } from "../../theme";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
 import { ReadableText } from "../ReadableText";
 import { TextDSFR_MD } from "../StyledText";
 

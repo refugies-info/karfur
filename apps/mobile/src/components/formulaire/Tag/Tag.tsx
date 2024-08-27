@@ -30,15 +30,8 @@ export const Tag = (props: TagProps) => {
       accessible={true}
       accessibilityLabel={props.accessibilityLabel}
     >
-      <TextDSFR_MD_Bold style={{ color: "white" }}>
-        {props.children}
-      </TextDSFR_MD_Bold>
-      <Icon
-        name="close-outline"
-        fill={theme.colors.white}
-        height={24}
-        width={24}
-      />
+      <TextDSFR_MD_Bold style={{ color: "white" }}>{props.children}</TextDSFR_MD_Bold>
+      <Icon name="close-outline" fill={theme.colors.white} height={24} width={24} />
     </TagContainer>
   );
 };

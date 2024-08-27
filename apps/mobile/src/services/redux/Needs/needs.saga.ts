@@ -1,14 +1,10 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
-import {
-  startLoading,
-  finishLoading,
-  LoadingStatusKey,
-} from "../LoadingStatus/loadingStatus.actions";
-import { logger } from "../../../logger";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { logger } from "~/logger";
+import { getNeeds } from "~/utils/API";
+import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setNeedsActionCreator } from "./needs.actions";
 import { FETCH_NEEDS } from "./needs.actionTypes";
-import { getNeeds } from "../../../utils/API";
 
 export function* fetchNeeds(): SagaIterator {
   try {

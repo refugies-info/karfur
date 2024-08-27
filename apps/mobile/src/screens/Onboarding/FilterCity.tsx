@@ -1,27 +1,22 @@
-import React, { useCallback } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { OnboardingParamList } from "../../../types";
-import { FilterCityComponent } from "../../components/Geoloc/FilterCityComponent";
-import PageOnboarding from "../../components/layout/PageOnboarding";
-import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
+import { FilterCityComponent } from "~/components/Geoloc/FilterCityComponent";
+import PageOnboarding from "~/components/layout/PageOnboarding";
+import { OnboardingProgressBar } from "~/components/Onboarding/OnboardingProgressBar";
 import {
   removeUserLocalizedWarningHiddenActionCreator,
   removeUserLocationActionCreator,
   saveUserLocationActionCreator,
-} from "../../services/redux/User/user.actions";
+} from "~/services/redux/User/user.actions";
+import { OnboardingParamList } from "~/types/navigation";
 
-export const FilterCity = ({
-  navigation,
-}: StackScreenProps<OnboardingParamList, "FilterCity">) => {
+export const FilterCity = ({ navigation }: StackScreenProps<OnboardingParamList, "FilterCity">) => {
   const dispatch = useDispatch();
   const [selectedCity, setSelectedCity] = React.useState("");
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
 
-  const navigateToNextScreen = useCallback(
-    () => navigation.navigate("FilterAge"),
-    [navigation]
-  );
+  const navigateToNextScreen = useCallback(() => navigation.navigate("FilterAge"), [navigation]);
 
   const onSkip = useCallback(() => {
     dispatch(removeUserLocationActionCreator(false));
@@ -36,7 +31,7 @@ export const FilterCity = ({
           city: selectedCity,
           dep: selectedDepartment,
           shouldFetchContents: false,
-        })
+        }),
       );
       return navigateToNextScreen();
     }

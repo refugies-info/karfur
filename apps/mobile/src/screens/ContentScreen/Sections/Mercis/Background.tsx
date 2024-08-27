@@ -1,14 +1,5 @@
-import * as React from "react";
 import { View } from "react-native";
-import Svg, {
-  G,
-  Path,
-  Ellipse,
-  Line,
-  Defs,
-  ClipPath,
-  Rect,
-} from "react-native-svg";
+import Svg, { ClipPath, Defs, Ellipse, G, Line, Path, Rect } from "react-native-svg";
 const originalWidth = 327;
 const originalHeight = 240;
 const aspectRatio = originalWidth / originalHeight;

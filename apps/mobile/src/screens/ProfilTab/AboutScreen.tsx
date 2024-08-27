@@ -1,31 +1,26 @@
-import * as React from "react";
-import { View, ScrollView, StyleSheet, Image } from "react-native";
-import * as Linking from "expo-linking";
-import {
-  TextDSFR_L,
-  TextDSFR_L_Bold,
-  TextDSFR_MD,
-  TextDSFR_MD_Bold,
-} from "../../components/StyledText";
 import { StackScreenProps } from "@react-navigation/stack";
-import { ProfileParamList } from "../../../types";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import * as Linking from "expo-linking";
+import * as React from "react";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
-import { styles } from "../../theme";
-import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
-import { CustomButton } from "../../components/CustomButton";
-import Contributif1 from "../../theme/images/aboutUs/contributif-1.png";
-import Contributif2 from "../../theme/images/aboutUs/contributif-2.png";
-import Contributif3 from "../../theme/images/aboutUs/contributif-3.png";
-import Mission1 from "../../theme/images/aboutUs/mission-1.png";
-import Mission2 from "../../theme/images/aboutUs/mission-2.png";
-import Mission3 from "../../theme/images/aboutUs/mission-3.png";
-import Problematique1 from "../../theme/images/aboutUs/problematique-1.png";
-import Problematique2 from "../../theme/images/aboutUs/problematique-2.png";
-import Problematique3 from "../../theme/images/aboutUs/problematique-3.png";
-import { RTLView } from "../../components/BasicComponents";
-import { partners, membres } from "../../data/aboutUs";
-import { Page, Rows, Title } from "../../components";
+import { Page, Rows, Title } from "~/components";
+import { RTLView } from "~/components/BasicComponents";
+import { CustomButton } from "~/components/CustomButton";
+import { TextDSFR_L, TextDSFR_L_Bold, TextDSFR_MD, TextDSFR_MD_Bold } from "~/components/StyledText";
+import { membres, partners } from "~/data/aboutUs";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { initHorizontalScroll } from "~/libs/rtlHorizontalScroll";
+import { styles } from "~/theme";
+import Contributif1 from "~/theme/images/aboutUs/contributif-1.png";
+import Contributif2 from "~/theme/images/aboutUs/contributif-2.png";
+import Contributif3 from "~/theme/images/aboutUs/contributif-3.png";
+import Mission1 from "~/theme/images/aboutUs/mission-1.png";
+import Mission2 from "~/theme/images/aboutUs/mission-2.png";
+import Mission3 from "~/theme/images/aboutUs/mission-3.png";
+import Problematique1 from "~/theme/images/aboutUs/problematique-1.png";
+import Problematique2 from "~/theme/images/aboutUs/problematique-2.png";
+import Problematique3 from "~/theme/images/aboutUs/problematique-3.png";
+import { ProfileParamList } from "~/types/navigation";
 
 const CARD_WIDTH = 280;
 const LOGO_WIDTH = 104;
@@ -108,10 +103,7 @@ const sortPartners = () =>
     return -1;
   });
 
-export const AboutScreen = ({}: StackScreenProps<
-  ProfileParamList,
-  "AboutScreen"
->) => {
+export const AboutScreen = ({}: StackScreenProps<ProfileParamList, "AboutScreen">) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   const scrollviewMissions = React.useRef<ScrollView>(null);
@@ -122,13 +114,8 @@ export const AboutScreen = ({}: StackScreenProps<
 
   React.useEffect(() => {
     initHorizontalScroll(
-      [
-        scrollviewMissions,
-        scrollviewProblematiques,
-        scrollviewContributif,
-        scrollviewPartners,
-      ],
-      isRTL
+      [scrollviewMissions, scrollviewProblematiques, scrollviewContributif, scrollviewPartners],
+      isRTL,
     );
   }, [isRTL]);
 
@@ -236,9 +223,7 @@ export const AboutScreen = ({}: StackScreenProps<
             <View>
               <CardImage source={Contributif1} />
               <CardTitle>{t("about_screen.contributive_1_header2")}</CardTitle>
-              <TextDSFR_MD>
-                {t("about_screen.contributive_1_subheader")}
-              </TextDSFR_MD>
+              <TextDSFR_MD>{t("about_screen.contributive_1_subheader")}</TextDSFR_MD>
             </View>
           </Card>
           <Card
@@ -251,18 +236,14 @@ export const AboutScreen = ({}: StackScreenProps<
             <View>
               <CardImage source={Contributif2} />
               <CardTitle>{t("about_screen.contributive_2_header")}</CardTitle>
-              <TextDSFR_MD>
-                {t("about_screen.contributive_2_subheader")}
-              </TextDSFR_MD>
+              <TextDSFR_MD>{t("about_screen.contributive_2_subheader")}</TextDSFR_MD>
             </View>
           </Card>
           <Card style={{ justifyContent: "space-between" }}>
             <View>
               <CardImage source={Contributif3} />
               <CardTitle>{t("about_screen.contributive_3_header")}</CardTitle>
-              <TextDSFR_MD>
-                {t("about_screen.contributive_3_subheader")}
-              </TextDSFR_MD>
+              <TextDSFR_MD>{t("about_screen.contributive_3_subheader")}</TextDSFR_MD>
             </View>
           </Card>
         </ScrollView>
@@ -294,9 +275,7 @@ export const AboutScreen = ({}: StackScreenProps<
             backgroundColor={styles.colors.black}
             iconName="download-outline"
             textColor={styles.colors.white}
-            onPress={() =>
-              Linking.openURL("https://refugies.info/AMI_REFUGIE_INFO.pdf")
-            }
+            onPress={() => Linking.openURL("https://refugies.info/AMI_REFUGIE_INFO.pdf")}
             notFullWidth={true}
             iconFirst={true}
             style={{
@@ -307,9 +286,7 @@ export const AboutScreen = ({}: StackScreenProps<
         </RTLView>
 
         {/* L'ÉQUIPE */}
-        <Title style={{ marginBottom: styles.margin * 3 }}>
-          {t("about_screen.team")}
-        </Title>
+        <Title style={{ marginBottom: styles.margin * 3 }}>{t("about_screen.team")}</Title>
         <TeamContainer>
           {membres.map((membre, index) => (
             <TeamItem key={index}>

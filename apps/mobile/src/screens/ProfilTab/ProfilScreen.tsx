@@ -5,33 +5,33 @@ import * as React from "react";
 import { Linking } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components/native";
-import { ProfileParamList } from "../../../types";
-import { Columns, Flag, Page, Spacer } from "../../components";
-import { ConfirmationModal } from "../../components/ConfirmationModal";
-import { CustomButton } from "../../components/CustomButton";
-import { MascotteSpeaking } from "../../components/Profil/MascotteSpeaking";
-import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
-import { H1 } from "../../components/Profil/Typography";
-import { TextDSFR_L_Bold, TextDSFR_XS } from "../../components/StyledText";
-import { ageFilters, frenchLevelFilters } from "../../data/filtersData";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { firstLetterUpperCase } from "../../libs";
-import { getSelectedLanguageFromI18nCode } from "../../libs/language";
+import { Columns, Flag, Page, Spacer } from "~/components";
+import { ConfirmationModal } from "~/components/ConfirmationModal";
+import { CustomButton } from "~/components/CustomButton";
+import { MascotteSpeaking } from "~/components/Profil/MascotteSpeaking";
+import { ProfilDetailButton } from "~/components/Profil/ProfilDetailButton";
+import { H1 } from "~/components/Profil/Typography";
+import { TextDSFR_L_Bold, TextDSFR_XS } from "~/components/StyledText";
+import { ageFilters, frenchLevelFilters } from "~/data/filtersData";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { firstLetterUpperCase } from "~/libs";
+import { getSelectedLanguageFromI18nCode } from "~/libs/language";
 import {
   removeUserAgeActionCreator,
   removeUserFrenchLevelActionCreator,
   removeUserLocationActionCreator,
   resetUserActionCreator,
-} from "../../services/redux/User/user.actions";
+} from "~/services/redux/User/user.actions";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
   userFrenchLevelSelector,
   userLocationSelector,
-} from "../../services/redux/User/user.selectors";
-import { styles } from "../../theme";
-import UserProfileIcon from "../../theme/images/profile/user-profile.svg";
-import { updateAppUser } from "../../utils/API";
+} from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import UserProfileIcon from "~/theme/images/profile/user-profile.svg";
+import { ProfileParamList } from "~/types/navigation";
+import { updateAppUser } from "~/utils/API";
 
 // TODO: use separator from components
 const Separator = styled.View`

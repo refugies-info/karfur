@@ -1,9 +1,9 @@
 import { useRoute } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
+import { saveUserAgeActionCreator } from "~/services/redux/User/user.actions";
+import { initialUserState } from "~/services/redux/User/user.reducer";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { saveUserAgeActionCreator } from "../../../services/redux/User/user.actions";
-import { initialUserState } from "../../../services/redux/User/user.reducer";
 import { FilterAge } from "../FilterAge";
 
 jest.useFakeTimers();

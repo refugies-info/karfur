@@ -3,46 +3,43 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import React, { useState, useRef, useEffect } from "react";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useDispatch, useSelector } from "react-redux";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as Linking from "expo-linking";
 import { Subscription } from "expo-modules-core";
 import * as Notifications from "expo-notifications";
+import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
-import * as Linking from "expo-linking";
-import { styles } from "../theme";
+import { useDispatch, useSelector } from "react-redux";
+import { styles } from "~/theme";
 
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "~/types/navigation";
 
-import { markNotificationAsSeen } from "../utils/API";
+import { markNotificationAsSeen } from "~/utils/API";
 
+import { fetchNeedsActionCreator } from "~/services/redux/Needs/needs.actions";
 import {
   getUserInfosActionCreator,
   saveSelectedLanguageActionCreator,
   setInitialUrlActionCreator,
-} from "../services/redux/User/user.actions";
-import {
-  hasUserSeenOnboardingSelector,
-  initialUrlSelector,
-} from "../services/redux/User/user.selectors";
-import { setUserHasNewFavoritesActionCreator } from "../services/redux/User/user.actions";
-import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
+  setUserHasNewFavoritesActionCreator,
+} from "~/services/redux/User/user.actions";
+import { hasUserSeenOnboardingSelector, initialUrlSelector } from "~/services/redux/User/user.selectors";
 
-import BottomTabNavigator from "./BottomTabNavigator";
-import { OnboardingStackNavigator } from "./OnboardingNavigator";
-import { logEventInFirebase } from "../utils/logEvent";
-import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
-import { themesSelector } from "../services/redux/Themes/themes.selectors";
-import { fetchThemesActionCreator } from "../services/redux/Themes/themes.actions";
 import { NotificationResponse } from "expo-notifications";
+import { getLocaleFromUrl } from "~/libs/getScreenFromUrl";
 import {
   disableNotificationsListener,
   getNotificationFromStack,
   notificationDataStackLength,
-} from "../libs/notifications";
-import { getLocaleFromUrl } from "../libs/getScreenFromUrl";
+} from "~/libs/notifications";
+import { fetchThemesActionCreator } from "~/services/redux/Themes/themes.actions";
+import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import BottomTabNavigator from "./BottomTabNavigator";
+import { OnboardingStackNavigator } from "./OnboardingNavigator";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -91,24 +88,20 @@ export const RootNavigator = () => {
           saveSelectedLanguageActionCreator({
             langue: getLocaleFromUrl(url),
             shouldFetchContents: false,
-          })
+          }),
         );
         dispatch(setInitialUrlActionCreator(url));
       }
     };
 
-    const emitter = Linking.addEventListener("url", (event) =>
-      saveInitialUrl(event)
-    );
+    const emitter = Linking.addEventListener("url", (event) => saveInitialUrl(event));
     Linking.getInitialURL().then(saveInitialUrl);
 
     return emitter.remove;
   }, []);
 
   //Notifications listener
-  const handleNotification = async (
-    response: NotificationResponse | null | undefined
-  ) => {
+  const handleNotification = async (response: NotificationResponse | null | undefined) => {
     if (!response) return;
     switch (response?.notification?.request?.content?.data?.type) {
       case "dispositif": {
@@ -123,8 +116,7 @@ export const RootNavigator = () => {
           },
         });
         await markNotificationAsSeen({
-          notificationId: response.notification.request.content.data
-            .notificationId as string,
+          notificationId: response.notification.request.content.data.notificationId as string,
         });
         queryClient.invalidateQueries("notifications");
       }
@@ -142,16 +134,14 @@ export const RootNavigator = () => {
       disableNotificationsListener();
 
       // Listener for app backgrounded
-      responseListener.current =
-        Notifications.addNotificationResponseReceivedListener((response) =>
-          handleNotification(response)
-        );
+      responseListener.current = Notifications.addNotificationResponseReceivedListener((response) =>
+        handleNotification(response),
+      );
 
       // Listener for app is foregrounded
-      notificationsListener.current =
-        Notifications.addNotificationReceivedListener(() => {
-          queryClient.invalidateQueries("notifications");
-        });
+      notificationsListener.current = Notifications.addNotificationReceivedListener(() => {
+        queryClient.invalidateQueries("notifications");
+      });
     }
 
     return () => {
@@ -160,9 +150,7 @@ export const RootNavigator = () => {
       }
 
       if (notificationsListener.current) {
-        Notifications.removeNotificationSubscription(
-          notificationsListener.current
-        );
+        Notifications.removeNotificationSubscription(notificationsListener.current);
       }
     };
   }, [navigationReady]);
@@ -188,17 +176,10 @@ export const RootNavigator = () => {
   };
 
   return (
-    <NavigationContainer
-      theme={MyTheme}
-      ref={navigationRef}
-      onReady={() => setNavigationReady(true)}
-    >
+    <NavigationContainer theme={MyTheme} ref={navigationRef} onReady={() => setNavigationReady(true)}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!hasUserSeenOnboarding && !initialUrl ? (
-          <Stack.Screen
-            name="OnboardingNavigator"
-            component={OnboardingStackNavigator}
-          />
+          <Stack.Screen name="OnboardingNavigator" component={OnboardingStackNavigator} />
         ) : (
           <Stack.Screen name="Root" component={BottomTabNavigator} />
         )}

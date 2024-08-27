@@ -1,45 +1,21 @@
 import { Action, combineReducers } from "redux";
+import { ContentsState, contentsReducer, initialContentsState } from "./Contents/contents.reducer";
 import {
-  loadingStatusReducer,
-  LoadingStatusState,
-  initialLoadingState,
-} from "./LoadingStatus/loadingStatus.reducer";
-import {
-  languagesReducer,
-  LanguageState,
-  initialLanguageState,
-} from "./Languages/languages.reducer";
-import { userReducer, UserState, initialUserState } from "./User/user.reducer";
-import {
-  contentsReducer,
-  ContentsState,
-  initialContentsState,
-} from "./Contents/contents.reducer";
+  GroupedContentsState,
+  groupedContentsReducer,
+  initialGroupedContentsState,
+} from "./ContentsGroupedByNeeds/contentsGroupedByNeeds.reducer";
+import { LanguageState, initialLanguageState, languagesReducer } from "./Languages/languages.reducer";
+import { LoadingStatusState, initialLoadingState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
+import { NeedState, initialNeedState, needsReducer } from "./Needs/needs.reducer";
 import {
   SelectedContentState,
   initialSelectedContentState,
   selectedContentReducer,
 } from "./SelectedContent/selectedContent.reducer";
-import {
-  NeedState,
-  initialNeedState,
-  needsReducer,
-} from "./Needs/needs.reducer";
-import {
-  groupedContentsReducer,
-  GroupedContentsState,
-  initialGroupedContentsState,
-} from "./ContentsGroupedByNeeds/contentsGroupedByNeeds.reducer";
-import {
-  VoiceOverState,
-  initialVoiceOverState,
-  voiceOverReducer,
-} from "./VoiceOver/voiceOver.reducer";
-import {
-  ThemeState,
-  initialThemeState,
-  themesReducer,
-} from "./Themes/themes.reducer";
+import { ThemeState, initialThemeState, themesReducer } from "./Themes/themes.reducer";
+import { UserState, initialUserState, userReducer } from "./User/user.reducer";
+import { VoiceOverState, initialVoiceOverState, voiceOverReducer } from "./VoiceOver/voiceOver.reducer";
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
   languages: languagesReducer,
@@ -78,9 +54,6 @@ export const initialRootStateFactory = (): RootState => ({
   themes: initialThemeState,
 });
 
-export const rootReducer = (
-  state: RootState | undefined,
-  action: Action<any>
-): RootReducer =>
+export const rootReducer = (state: RootState | undefined, action: Action<any>): RootReducer =>
   // @ts-ignore
   appReducer(state, action);

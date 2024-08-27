@@ -1,18 +1,15 @@
+import * as Location from "expo-location";
 import React from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import * as Location from "expo-location";
 import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { getCityFromResult, getDepartementFromResult } from "~/libs/geolocalisation";
+import { styles } from "~/theme";
+import { getPlaceIdFromLocationFromGoogleAPI } from "~/utils/API";
 import { RTLTouchableOpacity } from "../../BasicComponents";
-import { styles } from "../../../theme";
-import { TextDSFR_MD_Med, TextDSFR_XS } from "../../StyledText";
-import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
-import { getPlaceIdFromLocationFromGoogleAPI } from "../../../utils/API";
-import {
-  getDepartementFromResult,
-  getCityFromResult,
-} from "../../../libs/geolocalisation";
 import { ReadableText } from "../../ReadableText";
+import { TextDSFR_MD_Med, TextDSFR_XS } from "../../StyledText";
 
 const GeolocButtonContainer = styled(RTLTouchableOpacity)<{
   hasError: boolean;
@@ -21,8 +18,7 @@ const GeolocButtonContainer = styled(RTLTouchableOpacity)<{
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ hasError, theme }) =>
-    hasError ? theme.colors.dsfr_error : "transparent"};
+  border-color: ${({ hasError, theme }) => (hasError ? theme.colors.dsfr_error : "transparent")};
   justify-content: space-between;
   gap: ${({ theme }) => theme.margin * 2}px;
 `;
@@ -47,12 +43,7 @@ interface Props {
   onError: () => void;
 }
 
-const GeolocButton = ({
-  setSelectedCity,
-  setSelectedDepartment,
-  setLoading,
-  onError,
-}: Props) => {
+const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onError }: Props) => {
   const [error, setError] = React.useState("");
   const { t, isRTL } = useTranslationWithRTL();
 
@@ -66,16 +57,8 @@ const GeolocButton = ({
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      if (
-        location &&
-        location.coords &&
-        location.coords.latitude &&
-        location.coords.longitude
-      ) {
-        const result = await getPlaceIdFromLocationFromGoogleAPI(
-          location.coords.longitude,
-          location.coords.latitude
-        );
+      if (location && location.coords && location.coords.latitude && location.coords.longitude) {
+        const result = await getPlaceIdFromLocationFromGoogleAPI(location.coords.longitude, location.coords.latitude);
 
         if (
           result &&
@@ -84,12 +67,8 @@ const GeolocButton = ({
           result.data.results.length > 0 &&
           result.data.results[0].address_components
         ) {
-          const department = getDepartementFromResult(
-            result.data.results[0].address_components
-          );
-          const city = getCityFromResult(
-            result.data.results[0].address_components
-          );
+          const department = getDepartementFromResult(result.data.results[0].address_components);
+          const city = getCityFromResult(result.data.results[0].address_components);
 
           if (!department || !city) {
             throw new Error("NO_CORRESPONDING_DEP");
@@ -106,15 +85,15 @@ const GeolocButton = ({
         setError(
           t(
             "onboarding_screens.error_geoloc_acces",
-            "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation."
-          )
+            "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation.",
+          ),
         );
       } else {
         setError(
           t(
             "onboarding_screens.error_geoloc",
-            "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
-          )
+            "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement.",
+          ),
         );
       }
       onError();
@@ -124,21 +103,10 @@ const GeolocButton = ({
 
   return (
     <View>
-      <GeolocButtonContainer
-        onPress={useGeoloc}
-        hasError={!!error}
-        accessibilityRole="button"
-      >
-        <Icon
-          name="pin"
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          fill={styles.colors.dsfr_blueSun113}
-        />
+      <GeolocButtonContainer onPress={useGeoloc} hasError={!!error} accessibilityRole="button">
+        <Icon name="pin" width={ICON_SIZE} height={ICON_SIZE} fill={styles.colors.dsfr_blueSun113} />
         <GeolocText>
-          <ReadableText>
-            {t("onboarding_screens.position_button", "Utiliser ma position")}
-          </ReadableText>
+          <ReadableText>{t("onboarding_screens.position_button", "Utiliser ma position")}</ReadableText>
         </GeolocText>
         <Icon
           name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}

@@ -1,21 +1,21 @@
-import React, { useEffect, useMemo } from "react";
-import { View, TouchableWithoutFeedback, StyleSheet } from "react-native";
-import Modal from "react-native-modal";
-import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
-import { styles } from "../../theme";
-import { TextDSFR_L_Bold } from "../../components/StyledText";
-import { activatedLanguages } from "../../data/languagesData";
-import { RTLView } from "../../components/BasicComponents";
-import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { CustomButton } from "../../components/CustomButton";
-import { Icon } from "react-native-eva-icons";
-import { useStopVoiceover } from "../../hooks/useStopVoiceover";
-import LanguageDetailsButton from "../../components/Language/LanguageDetailsButton";
 import { Languages } from "@refugies-info/api-types";
+import { useEffect, useMemo } from "react";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { Icon } from "react-native-eva-icons";
+import Modal from "react-native-modal";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components/native";
+import { RTLView } from "~/components/BasicComponents";
+import { CustomButton } from "~/components/CustomButton";
+import LanguageDetailsButton from "~/components/Language/LanguageDetailsButton";
+import { TextDSFR_L_Bold } from "~/components/StyledText";
+import { activatedLanguages } from "~/data/languagesData";
+import { useStopVoiceover } from "~/hooks/useStopVoiceover";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { saveSelectedLanguageActionCreator } from "~/services/redux/User/user.actions";
+import { selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
 
 interface Props {
   isModalVisible: boolean;
@@ -72,7 +72,7 @@ export const LanguageChoiceModal = (props: Props) => {
       saveSelectedLanguageActionCreator({
         langue: ln,
         shouldFetchContents: true,
-      })
+      }),
     );
     props.toggleModal();
   };
@@ -89,7 +89,7 @@ export const LanguageChoiceModal = (props: Props) => {
       marginLeft: isRTL ? styles.margin : 0,
       marginRight: !isRTL ? styles.margin : 0,
     }),
-    [isRTL]
+    [isRTL],
   );
 
   return (
@@ -109,16 +109,8 @@ export const LanguageChoiceModal = (props: Props) => {
     >
       <ModalView style={{ paddingBottom: insets.bottom }}>
         <TitleContainer>
-          <Icon
-            name="globe-2-outline"
-            width={24}
-            height={24}
-            fill={styles.colors.black}
-            style={iconStyle}
-          />
-          <TextDSFR_L_Bold>
-            {t("global.language", "Langue de l'application")}
-          </TextDSFR_L_Bold>
+          <Icon name="globe-2-outline" width={24} height={24} fill={styles.colors.black} style={iconStyle} />
+          <TextDSFR_L_Bold>{t("global.language", "Langue de l'application")}</TextDSFR_L_Bold>
         </TitleContainer>
 
         <LanguagesContainer>

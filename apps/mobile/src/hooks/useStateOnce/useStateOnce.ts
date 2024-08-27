@@ -11,7 +11,7 @@ const useStateOnce = <T extends unknown>(defaultValue?: T) => {
         toggleSetted();
       }
     },
-    [value]
+    [value],
   );
   return [value, setter];
 };

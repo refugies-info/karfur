@@ -1,1 +1,1 @@
-export { default, RadioButtonProps } from "./RadioButton";
+export { RadioButtonProps, default } from "./RadioButton";

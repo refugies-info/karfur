@@ -1,18 +1,17 @@
-import React from "react";
+import { ContentForApp } from "@refugies-info/api-types";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { styles } from "../../theme";
-import { sortByOrder } from "../../libs";
+import { useSelector } from "react-redux";
+import { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { sortByOrder } from "~/libs";
+import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { ReadableText } from "../ReadableText";
-import { themesSelector } from "../../services/redux/Themes/themes.selectors";
-import { useSelector } from "react-redux";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { SectionTitle } from "../typography";
-import { useTheme } from "styled-components/native";
-import { ContentForApp } from "@refugies-info/api-types";
 import { Spacer } from "../layout";
+import { ReadableText } from "../ReadableText";
+import { SectionTitle } from "../typography";
 
 interface Props {
   contents: ContentForApp[];
@@ -35,22 +34,12 @@ const SearchSuggestions = (props: Props) => {
     <>
       <Spacer height={_theme.margin * 3} />
       <SectionTitle>
-        <ReadableText>
-          {t(
-            "search_screen.most_searched_content",
-            "Les fiches les plus recherchées"
-          )}
-        </ReadableText>
+        <ReadableText>{t("search_screen.most_searched_content", "Les fiches les plus recherchées")}</ReadableText>
       </SectionTitle>
 
       {(props.contents || []).map((content: ContentForApp) => {
         return (
-          <ContentSummary
-            key={content._id}
-            backScreen="Search"
-            content={content}
-            style={stylesheet.contentSummary}
-          />
+          <ContentSummary key={content._id} backScreen="Search" content={content} style={stylesheet.contentSummary} />
         );
       })}
       <SectionTitle>

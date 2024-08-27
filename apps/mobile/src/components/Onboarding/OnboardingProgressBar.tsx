@@ -1,15 +1,10 @@
 import * as React from "react";
 import { ViewStyle } from "react-native";
-import Animated, {
-  AnimateStyle,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { AnimateStyle, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import styled from "styled-components/native";
-import { useTranslationWithRTL } from "../../hooks";
-import { ButtonDSFR } from "../buttons";
+import { useTranslationWithRTL } from "~/hooks";
 import { RTLView } from "../BasicComponents";
+import { ButtonDSFR } from "../buttons";
 
 const MainContainer = styled(RTLView)`
   align-items: center;

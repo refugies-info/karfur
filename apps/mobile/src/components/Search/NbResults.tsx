@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
 import { TextDSFR_L_Bold } from "../StyledText";
-import { styles } from "../../theme";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const StyledTextBold = styled(TextDSFR_L_Bold)`
   margin-top: ${styles.margin * 5}px;
@@ -17,11 +16,7 @@ interface Props {
 const NbResults = (props: Props) => {
   const { t } = useTranslationWithRTL();
 
-  return (
-    <StyledTextBold>
-      {t("search_screen.results", "résultats", { nbResults: props.nbResults })}
-    </StyledTextBold>
-  );
+  return <StyledTextBold>{t("search_screen.results", "résultats", { nbResults: props.nbResults })}</StyledTextBold>;
 };
 
 export default NbResults;

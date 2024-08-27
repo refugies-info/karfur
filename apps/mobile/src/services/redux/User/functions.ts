@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { updateAppUser } from "../../../utils/API";
+import { updateAppUser } from "~/utils/API";
 
 type Item =
   | "SELECTED_LANGUAGE"
@@ -34,8 +34,7 @@ export const saveItemInAsyncStorage = async (item: Item, value: string) => {
   }
 };
 
-export const getItemInAsyncStorage = async (item: Item) =>
-  await AsyncStorage.getItem(item);
+export const getItemInAsyncStorage = async (item: Item) => await AsyncStorage.getItem(item);
 
 export const deleteItemInAsyncStorage = async (item: Item) => {
   await AsyncStorage.removeItem(item);

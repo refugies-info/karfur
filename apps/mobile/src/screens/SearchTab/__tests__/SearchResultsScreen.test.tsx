@@ -1,7 +1,7 @@
-import { SearchResultsScreen } from "../SearchResultsScreen";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { mockedThemesData } from "../../../jest/__fixtures__/themes";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import { SearchResultsScreen } from "../SearchResultsScreen";
 
 jest.useFakeTimers();
 

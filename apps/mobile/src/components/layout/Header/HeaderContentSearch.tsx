@@ -1,8 +1,7 @@
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
-import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import { HeaderContentProps } from "./HeaderContentProps";
 
@@ -31,16 +30,8 @@ const HeaderContentSearch = ({}: HeaderContentSearchProps) => {
   const { t } = useTranslationWithRTL();
   const navigation = useNavigation<any>();
   return (
-    <FakeInput
-      onPress={() => navigation.navigate("SearchResultsScreen")}
-      accessibilityRole="button"
-    >
-      <Icon
-        name="search-outline"
-        height={24}
-        width={24}
-        fill={theme.colors.darkGrey}
-      />
+    <FakeInput onPress={() => navigation.navigate("SearchResultsScreen")} accessibilityRole="button">
+      <Icon name="search-outline" height={24} width={24} fill={theme.colors.darkGrey} />
       <FakeInputText>{t("search_screen.search", "Rechercher")}</FakeInputText>
     </FakeInput>
   );

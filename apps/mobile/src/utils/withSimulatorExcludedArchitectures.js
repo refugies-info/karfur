@@ -10,9 +10,7 @@ function setExcludedArchitectures(project) {
     // Guessing that this is the best way to emulate Xcode.
     // Using `project.addToBuildSettings` modifies too many targets.
     if (
-      typeof (buildSettings === null || buildSettings === void 0
-        ? void 0
-        : buildSettings.PRODUCT_NAME) !== "undefined"
+      typeof (buildSettings === null || buildSettings === void 0 ? void 0 : buildSettings.PRODUCT_NAME) !== "undefined"
     ) {
       // eslint-disable-next-line quotes
       buildSettings['"EXCLUDED_ARCHS[sdk=iphonesimulator*]"'] = '"arm64"';

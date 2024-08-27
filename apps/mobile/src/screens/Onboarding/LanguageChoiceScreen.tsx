@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Image } from "react-native";
-import styled from "styled-components/native";
-import { Languages } from "@refugies-info/api-types";
-import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
-import { LanguageDetailsButton } from "../../components";
-import { activatedLanguages } from "../../data/languagesData";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import PageOnboarding from "../../components/layout/PageOnboarding";
-import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import HelloIllu from "../../theme/images/onboarding/hello.png";
+import { Languages } from "@refugies-info/api-types";
+import { useEffect } from "react";
+import { Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components/native";
+import { LanguageDetailsButton } from "~/components";
+import PageOnboarding from "~/components/layout/PageOnboarding";
+import { activatedLanguages } from "~/data/languagesData";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { saveSelectedLanguageActionCreator } from "~/services/redux/User/user.actions";
+import { selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import HelloIllu from "~/theme/images/onboarding/hello.png";
+import { OnboardingParamList } from "~/types/navigation";
 
 const ImageContainer = styled.View`
   margin-top: ${({ theme }) => theme.margin * 2}px;
@@ -20,9 +20,7 @@ const ImageContainer = styled.View`
   align-items: center;
 `;
 
-export const LanguageChoiceScreen = ({
-  navigation,
-}: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
+export const LanguageChoiceScreen = ({ navigation }: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
   const { i18n } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
@@ -38,20 +36,14 @@ export const LanguageChoiceScreen = ({
       saveSelectedLanguageActionCreator({
         langue: ln,
         shouldFetchContents: false,
-      })
+      }),
     );
     navigation.navigate("OnboardingSteps"); // needed in case we re-select same language
   };
   return (
     <PageOnboarding hideNavbar>
       <ImageContainer>
-        <Image
-          source={HelloIllu}
-          width={80}
-          height={80}
-          alt=""
-          style={{ width: 80, height: 80 }}
-        />
+        <Image source={HelloIllu} width={80} height={80} alt="" style={{ width: 80, height: 80 }} />
       </ImageContainer>
       {activatedLanguages.map((language, index) => (
         <LanguageDetailsButton

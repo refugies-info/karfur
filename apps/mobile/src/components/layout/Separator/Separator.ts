@@ -8,7 +8,7 @@ export enum SeparatorSpacing {
   NoSpace = "nospace",
 }
 
-const Separator = styled.View<{ fullWidth?: boolean, spacing?: SeparatorSpacing, color?: string }>`
+const Separator = styled.View<{ fullWidth?: boolean; spacing?: SeparatorSpacing; color?: string }>`
   height: 1px;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "90%")};
   align-self: center;

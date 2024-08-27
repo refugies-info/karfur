@@ -1,25 +1,21 @@
-import * as React from "react";
-import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { useDispatch, useSelector } from "react-redux";
-import { userAgeSelector } from "../../services/redux/User/user.selectors";
-import { saveUserAgeActionCreator } from "../../services/redux/User/user.actions";
-import { Page } from "../../components";
 import { GetContentsForAppRequest } from "@refugies-info/api-types";
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
-import { FilterAgeComponent } from "../../components/Profil/FilterAgeComponent";
+import { Page } from "~/components";
+import { FilterAgeComponent } from "~/components/Profil/FilterAgeComponent";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { saveUserAgeActionCreator } from "~/services/redux/User/user.actions";
+import { userAgeSelector } from "~/services/redux/User/user.selectors";
+import { ProfileParamList } from "~/types/navigation";
 
-export const AgeProfilScreen = ({
-  navigation,
-}: StackScreenProps<ProfileParamList, "AgeProfilScreen">) => {
+export const AgeProfilScreen = ({ navigation }: StackScreenProps<ProfileParamList, "AgeProfilScreen">) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const userAge = useSelector(userAgeSelector);
-  const [selectedAge, setSelectedAge] = React.useState<
-    GetContentsForAppRequest["age"] | undefined
-  >(undefined);
+  const [selectedAge, setSelectedAge] = React.useState<GetContentsForAppRequest["age"] | undefined>(undefined);
 
   React.useEffect(() => {
     if (userAge) setSelectedAge(userAge);
@@ -38,10 +34,7 @@ export const AgeProfilScreen = ({
       backgroundColor={theme.colors.dsfr_backgroundBlue}
       headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
-      <FilterAgeComponent
-        selectedAge={selectedAge}
-        onAgeClick={onValidateAge}
-      />
+      <FilterAgeComponent selectedAge={selectedAge} onAgeClick={onValidateAge} />
     </Page>
   );
 };

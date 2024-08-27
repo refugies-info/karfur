@@ -1,10 +1,6 @@
-import {
-  errorSelector,
-  hasErroredSelector,
-  isLoadingSelector,
-} from "../loadingStatus.selectors";
 import { initialRootStateFactory } from "../../reducers";
 import { LoadingStatusKey } from "../loadingStatus.actions";
+import { errorSelector, hasErroredSelector, isLoadingSelector } from "../loadingStatus.selectors";
 
 describe("[Selector] LoadingStatus", () => {
   describe("[Selector] isLoadingSelector", () => {
@@ -13,14 +9,12 @@ describe("[Selector] LoadingStatus", () => {
       loadingStatus: {
         FETCH_LANGUAGES: {
           isLoading: true,
-          error: undefined
+          error: undefined,
         },
       },
     };
     it("selects the loading status", () => {
-      expect(
-        isLoadingSelector(LoadingStatusKey.FETCH_LANGUAGES)(state)
-      ).toEqual(true);
+      expect(isLoadingSelector(LoadingStatusKey.FETCH_LANGUAGES)(state)).toEqual(true);
     });
   });
 
@@ -35,9 +29,7 @@ describe("[Selector] LoadingStatus", () => {
       },
     };
     it("selects the loading status", () => {
-      expect(
-        hasErroredSelector(LoadingStatusKey.FETCH_LANGUAGES)(state)
-      ).toEqual(true);
+      expect(hasErroredSelector(LoadingStatusKey.FETCH_LANGUAGES)(state)).toEqual(true);
     });
   });
 
@@ -53,9 +45,7 @@ describe("[Selector] LoadingStatus", () => {
       },
     };
     it("selects the loading status", () => {
-      expect(errorSelector(LoadingStatusKey.FETCH_LANGUAGES)(state)).toEqual(
-        error
-      );
+      expect(errorSelector(LoadingStatusKey.FETCH_LANGUAGES)(state)).toEqual(error);
     });
   });
 });

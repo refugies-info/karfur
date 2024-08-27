@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
 import styled from "styled-components/native";
-import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
+import { FlexItem, getFlexValue } from "../common";
 
 const ColumnsWrapper = styled(Animated.View)<{
   horizontalAlign?: string;
@@ -12,11 +12,9 @@ const ColumnsWrapper = styled(Animated.View)<{
 }>`
   flex-grow: 1;
   flex-basis: auto;
-  flex-direction: ${({ theme, RTLBehaviour }) =>
-    RTLBehaviour && theme.i18n.isRTL ? "row-reverse" : "row"};
+  flex-direction: ${({ theme, RTLBehaviour }) => (RTLBehaviour && theme.i18n.isRTL ? "row-reverse" : "row")};
   ${({ verticalAlign }) => verticalAlign && `align-items: ${verticalAlign}`};
-  ${({ horizontalAlign }) =>
-    horizontalAlign && `justify-content: ${horizontalAlign}`};
+  ${({ horizontalAlign }) => horizontalAlign && `justify-content: ${horizontalAlign}`};
 `;
 
 export enum ColumnsSpacing {
@@ -60,13 +58,11 @@ const Columns = ({
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             RTLBehaviour={RTLBehaviour}
-            marginHorizontal={
-              !isLastChild(children, index) ? spacing : undefined
-            }
+            marginHorizontal={!isLastChild(children, index) ? spacing : undefined}
           >
             {child}
           </FlexItem>
-        ) : null
+        ) : null,
       )}
     </ColumnsWrapper>
   );

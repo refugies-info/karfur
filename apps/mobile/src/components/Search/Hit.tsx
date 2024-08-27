@@ -1,15 +1,10 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { View } from "react-native";
+import { styles } from "~/theme";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
-import { styles } from "../../theme";
 //@ts-ignore: not exported by algolia types
 import { connectHitInsights } from "react-instantsearch-native";
 import aa from "search-insights";
-import { useSelector } from "react-redux";
-import {
-  contentSelector,
-  contentsSelector,
-} from "../../services/redux/Contents/contents.selectors";
 
 const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   const props = Object.keys(hit._highlightResult);
@@ -21,8 +16,7 @@ const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   return selectedLanguage;
 };
 
-const hasSponsorMatch = (hit: any) =>
-  hit._highlightResult?.sponsorName?.matchLevel === "full";
+const hasSponsorMatch = (hit: any) => hit._highlightResult?.sponsorName?.matchLevel === "full";
 
 interface Props {
   hit: any;
@@ -32,13 +26,7 @@ interface Props {
   insights: any;
 }
 
-const Hit = ({
-  hit,
-  navigation,
-  selectedLanguage,
-  nbContents,
-  insights,
-}: Props) => {
+const Hit = ({ hit, navigation, selectedLanguage, nbContents, insights }: Props) => {
   const sendAlgoliaEvent = useCallback(() => {
     insights("clickedObjectIDsAfterSearch", {
       eventName: "Card clicked",
@@ -61,9 +49,7 @@ const Hit = ({
         item={hit}
         languageMatch={getLanguageMatch(hit, selectedLanguage || "fr")}
         hasSponsorMatch={hasSponsorMatch(hit)}
-        nbContents={
-          hit.typeContenu === "besoin" ? nbContents[hit.objectID] : null
-        }
+        nbContents={hit.typeContenu === "besoin" ? nbContents[hit.objectID] : null}
         pressCallback={sendAlgoliaEvent}
       />
     </View>

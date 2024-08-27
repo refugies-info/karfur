@@ -1,1 +1,1 @@
-export { default, SpacerProps } from "./Spacer";
+export { SpacerProps, default } from "./Spacer";

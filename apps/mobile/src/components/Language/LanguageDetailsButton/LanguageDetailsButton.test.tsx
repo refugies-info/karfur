@@ -1,20 +1,32 @@
 import { fireEvent } from "@testing-library/react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { render } from "../../utils/tests";
 import LanguageDetailsButton from "./LanguageDetailsButton";
 
 describe("LanguageDetailsButton snapshot test suite", () => {
   it("should render without bug", async () => {
     const test = await render(
-      <LanguageDetailsButton isSelected langueCode="fr" langueFr="Français" langueLoc="Français" onPress={() => null} />,
+      <LanguageDetailsButton
+        isSelected
+        langueCode="fr"
+        langueFr="Français"
+        langueLoc="Français"
+        onPress={() => null}
+      />,
     );
     expect(test).toMatchSnapshot();
   });
 
   it("should render not selected", async () => {
     const test = await render(
-      <LanguageDetailsButton isSelected={false} langueCode="fr" langueFr="Français" langueLoc="Français" onPress={() => null} />,
+      <LanguageDetailsButton
+        isSelected={false}
+        langueCode="fr"
+        langueFr="Français"
+        langueLoc="Français"
+        onPress={() => null}
+      />,
     );
     expect(test).toMatchSnapshot();
   });
@@ -28,7 +40,14 @@ describe("LanguageDetailsButton snapshot test suite", () => {
 
   it("should render with radio hided", async () => {
     const test = await render(
-      <LanguageDetailsButton isSelected langueCode="en" langueFr="Anglais" langueLoc="English" onPress={() => null} hideRadio />,
+      <LanguageDetailsButton
+        isSelected
+        langueCode="en"
+        langueFr="Anglais"
+        langueLoc="English"
+        onPress={() => null}
+        hideRadio
+      />,
     );
     expect(test).toMatchSnapshot();
   });

@@ -1,5 +1,3 @@
-import { Languages } from "@refugies-info/api-types";
-
 /**
  * @deprecated
  */
@@ -38,6 +36,5 @@ export interface ReadingItem {
 }
 
 export type ReadingObject = {
-  getReadingItem: (currentScroll: number) => Promise<ReadingItem | undefined>
-}
-
+  getReadingItem: (currentScroll: number) => Promise<ReadingItem | undefined>;
+};

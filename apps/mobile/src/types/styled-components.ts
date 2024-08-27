@@ -1,6 +1,6 @@
 // import original module declarations
 import "styled-components/native";
-import { styles as theme } from "../theme";
+import { styles as theme } from "~/theme";
 
 type ThemeInterface = typeof theme;
 

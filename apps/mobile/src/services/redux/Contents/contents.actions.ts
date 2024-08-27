@@ -1,23 +1,11 @@
-import {
-  SET_CONTENTS,
-  SET_NB_CONTENTS,
-  FETCH_CONTENTS,
-} from "./contents.actionTypes";
+import { ContentForApp, GetNbContentsForCountyResponse, Languages } from "@refugies-info/api-types";
 import { action, ActionType } from "typesafe-actions";
-import {
-  ContentForApp,
-  GetNbContentsForCountyResponse,
-  Languages,
-} from "@refugies-info/api-types";
+import { FETCH_CONTENTS, SET_CONTENTS, SET_NB_CONTENTS } from "./contents.actionTypes";
 
-export const setContentsActionCreator = (value: {
-  langue: Languages;
-  contents: ContentForApp[];
-}) => action(SET_CONTENTS, value);
+export const setContentsActionCreator = (value: { langue: Languages; contents: ContentForApp[] }) =>
+  action(SET_CONTENTS, value);
 
-export const setNbContentsActionCreator = (
-  value: GetNbContentsForCountyResponse
-) => action(SET_NB_CONTENTS, value);
+export const setNbContentsActionCreator = (value: GetNbContentsForCountyResponse) => action(SET_NB_CONTENTS, value);
 
 export const fetchContentsActionCreator = () => action(FETCH_CONTENTS);
 

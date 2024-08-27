@@ -1,6 +1,5 @@
-import React from "react";
-import Tag from "./Tag";
 import { render } from "../../utils/tests";
+import Tag from "./Tag";
 
 describe("Tag snapshot test suite", () => {
   it("should render without bug", async () => {

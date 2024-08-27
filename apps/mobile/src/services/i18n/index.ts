@@ -1,7 +1,7 @@
-import i18next from "i18next";
-import * as config from "../../config/i18n";
-import translationLoader from "./translation-loader";
 import { Languages } from "@refugies-info/api-types";
+import i18next from "i18next";
+import * as config from "~/config/i18n";
+import translationLoader from "./translation-loader";
 
 const i18n = {
   /**
@@ -22,7 +22,7 @@ const i18n = {
             return reject(error);
           }
           resolve(true);
-        }
+        },
       );
     });
   },

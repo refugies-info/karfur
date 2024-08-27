@@ -18,9 +18,7 @@ export const getImageNameFromContentId = (contentId: string) => {
     return "covid";
   }
 
-  if (
-    ["5dc947cebceb3c004fc43214", "605dc3375b99ca0014a9feb2"].includes(contentId)
-  ) {
+  if (["5dc947cebceb3c004fc43214", "605dc3375b99ca0014a9feb2"].includes(contentId)) {
     return "poleEmploi";
   }
 
@@ -32,21 +30,15 @@ export const getImageNameFromContentId = (contentId: string) => {
     return "passeport";
   }
 
-  if (
-    ["605237c2464aa50014a1fb69", "603510f966ec880014e6e86c"].includes(contentId)
-  ) {
+  if (["605237c2464aa50014a1fb69", "603510f966ec880014e6e86c"].includes(contentId)) {
     return "ofpra";
   }
 
-  if (
-    ["5eb91481c2622f004e5fa686", "5dc2da982e9859001680b8a2"].includes(contentId)
-  ) {
+  if (["5eb91481c2622f004e5fa686", "5dc2da982e9859001680b8a2"].includes(contentId)) {
     return "titreSejour";
   }
 
-  if (
-    ["5fcf5a0afaef7600140a1a2d", "6092ab8e6e6476001437f0b0"].includes(contentId)
-  ) {
+  if (["5fcf5a0afaef7600140a1a2d", "6092ab8e6e6476001437f0b0"].includes(contentId)) {
     return "carteBancaire";
   }
 

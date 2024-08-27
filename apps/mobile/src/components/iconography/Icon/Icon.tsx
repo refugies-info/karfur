@@ -1,7 +1,6 @@
-import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import styled from "styled-components/native";
 import { Icon as EvaIcon } from "react-native-eva-icons";
+import styled from "styled-components/native";
 
 // TODO: passer en svg
 import IconLoader from "./IconLoader";
@@ -34,15 +33,7 @@ export interface IconProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const Icon = ({
-  name,
-  color,
-  size,
-  skeleton = false,
-  loading = false,
-  disabled = false,
-  style = {},
-}: IconProps) => {
+const Icon = ({ name, color, size, skeleton = false, loading = false, disabled = false, style = {} }: IconProps) => {
   const IconComponent = supportedIcons[name];
 
   if (skeleton) return <IconSkeleton size={size} />;

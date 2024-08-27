@@ -1,13 +1,10 @@
-import React from "react";
-import { StyleProp, ViewStyle } from "react-native";
-import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
-import { styles } from "../theme";
+import styled from "styled-components/native";
+import { styles } from "~/theme";
 
 const ButtonContainer = styled.TouchableOpacity<{ rounded: boolean }>`
   background-color: ${styles.colors.white};
-  border-radius: ${({ rounded }) =>
-    !rounded ? styles.radius * 2 : styles.radius * 10}px;
+  border-radius: ${({ rounded }) => (!rounded ? styles.radius * 2 : styles.radius * 10)}px;
   padding: ${styles.radius * 2}px;
   ${styles.shadows.lg}
 `;
@@ -35,11 +32,6 @@ export const SmallButton = (props: Props) => (
     accessible={true}
     accessibilityLabel={props.label || ""}
   >
-    <Icon
-      name={props.iconName}
-      width={ICON_SIZE}
-      height={ICON_SIZE}
-      fill={styles.colors.black}
-    />
+    <Icon name={props.iconName} width={ICON_SIZE} height={ICON_SIZE} fill={styles.colors.black} />
   </ButtonContainer>
 );

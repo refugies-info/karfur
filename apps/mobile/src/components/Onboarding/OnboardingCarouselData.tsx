@@ -1,14 +1,13 @@
-import * as React from "react";
 import { Image, ImageStyle, StyleProp } from "react-native";
-import Step0 from "../../theme/images/onboarding/step0.png";
-import Step1 from "../../theme/images/onboarding/step1.png";
-import Step2 from "../../theme/images/onboarding/step2.png";
-import Step3 from "../../theme/images/onboarding/step3.png";
-import Step4 from "../../theme/images/onboarding/step4.png";
-import { BackStep1 } from "../../theme/images/onboarding/BackStep1";
-import { BackStep2 } from "../../theme/images/onboarding/BackStep2";
-import { BackStep3 } from "../../theme/images/onboarding/BackStep3";
-import { BackStep4 } from "../../theme/images/onboarding/BackStep4";
+import { BackStep1 } from "~/theme/images/onboarding/BackStep1";
+import { BackStep2 } from "~/theme/images/onboarding/BackStep2";
+import { BackStep3 } from "~/theme/images/onboarding/BackStep3";
+import { BackStep4 } from "~/theme/images/onboarding/BackStep4";
+import Step0 from "~/theme/images/onboarding/step0.png";
+import Step1 from "~/theme/images/onboarding/step1.png";
+import Step2 from "~/theme/images/onboarding/step2.png";
+import Step3 from "~/theme/images/onboarding/step3.png";
+import Step4 from "~/theme/images/onboarding/step4.png";
 
 const imageStyle: StyleProp<ImageStyle> = {
   resizeMode: "contain",

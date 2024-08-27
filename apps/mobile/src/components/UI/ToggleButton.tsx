@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Switch, StyleSheet } from "react-native";
+import { StyleSheet, Switch, View } from "react-native";
 
-import { styles } from "../../theme";
 import styled from "styled-components/native";
+import { styles } from "~/theme";
 
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
 import { TextDSFR_MD_Med, TextDSFR_S } from "../StyledText";
 
@@ -38,8 +38,7 @@ const stylesheet = StyleSheet.create({
 });
 
 const SwitchContainer = styled(View)`
-  ${({ theme }) =>
-    theme.i18n.isRTL ? "marginRight: 20px" : "marginLeft: 20px"};
+  ${({ theme }) => (theme.i18n.isRTL ? "marginRight: 20px" : "marginLeft: 20px")};
 `;
 
 interface Props {
@@ -51,14 +50,7 @@ interface Props {
   disabled?: boolean; // Toggle button disabled
 }
 
-export const ToggleButton = ({
-  title,
-  subtitle,
-  icon,
-  enabled,
-  onToggle,
-  disabled,
-}: Props) => {
+export const ToggleButton = ({ title, subtitle, icon, enabled, onToggle, disabled }: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
   const onToggleSwitch = () => {

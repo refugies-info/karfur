@@ -1,9 +1,7 @@
-import React from "react";
-import Select from "./Select";
-import { render } from "../../utils/tests";
 import { Text } from "react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../../services/redux/reducers";
+import Select from "./Select";
 
 describe("Select snapshot test suite", () => {
   it("should render without bug", async () => {

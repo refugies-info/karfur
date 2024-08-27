@@ -1,6 +1,6 @@
 import { ContentForApp, Languages } from "@refugies-info/api-types";
-import { ObjectId } from "../../../types/interface";
-import { getContentById } from "../../../utils/API";
+import { ObjectId } from "~/types/interface";
+import { getContentById } from "~/utils/API";
 
 /**
  * Return the contents to display
@@ -12,13 +12,11 @@ import { getContentById } from "../../../utils/API";
 const getContentsToDisplay = async (
   contentsId: ObjectId[],
   contents: ContentForApp[],
-  currentLanguageI18nCode: Languages | null
+  currentLanguageI18nCode: Languages | null,
 ) => {
   let result: ContentForApp[] = [];
   for (let contentId of contentsId) {
-    const contentWithInfosArray = contents.filter(
-      (content) => content._id === contentId
-    );
+    const contentWithInfosArray = contents.filter((content) => content._id === contentId);
     if (contentWithInfosArray.length > 0) {
       // result already in store
       result.push(contentWithInfosArray[0]);

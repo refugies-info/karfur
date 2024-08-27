@@ -1,10 +1,7 @@
 import { Languages } from "@refugies-info/api-types";
 import { initialRootStateFactory } from "../../reducers";
 import { initialUserState } from "../user.reducer";
-import {
-  hasUserSeenOnboardingSelector,
-  selectedI18nCodeSelector,
-} from "../user.selectors";
+import { hasUserSeenOnboardingSelector, selectedI18nCodeSelector } from "../user.selectors";
 
 describe("[Selector] user", () => {
   describe("[Selector] hasUserSeenOnboardingSelector", () => {

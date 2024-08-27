@@ -1,18 +1,13 @@
+import { conditionType, ContentType, GetDispositifResponse, Metadatas } from "@refugies-info/api-types";
 import React, { memo, useMemo } from "react";
-import styled from "styled-components/native";
 import { Image } from "react-native";
-import {
-  conditionType,
-  ContentType,
-  GetDispositifResponse,
-  Metadatas,
-} from "@refugies-info/api-types";
-import { TextDSFR_L_Bold, TextDSFR_MD_Bold, TextDSFR_MD } from "../StyledText";
-import { getConditionImage, getDescriptionNew } from "../../libs/content";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { getConditionImage, getDescriptionNew } from "~/libs/content";
+import { styles } from "~/theme";
 import { ReadableText } from "../ReadableText";
+import { TextDSFR_L_Bold, TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
 import { Columns, Rows, RowsSpacing } from "../layout";
-import { styles } from "../../theme";
 import { Title } from "../typography";
 import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
 
@@ -93,30 +88,18 @@ const Metadata = ({
       <InfocardTextContainer>
         {withTitle && (
           <SubtitleText>
-            <ReadableText>
-              {t("Infocards." + metadataKey, metadataKey)}
-            </ReadableText>
+            <ReadableText>{t("Infocards." + metadataKey, metadataKey)}</ReadableText>
           </SubtitleText>
         )}
         <DescriptionText>
-          <ReadableText>
-            {getDescriptionNew(metadatas, metadataKey, t)}
-          </ReadableText>
+          <ReadableText>{getDescriptionNew(metadatas, metadataKey, t)}</ReadableText>
         </DescriptionText>
       </InfocardTextContainer>
     </Columns>
   );
 };
 
-const Section = ({
-  children,
-  color,
-  title,
-}: {
-  children: React.ReactNode;
-  color: string;
-  title: string;
-}) => (
+const Section = ({ children, color, title }: { children: React.ReactNode; color: string; title: string }) => (
   <SectionContainer>
     <TitleText color={color}>
       <ReadableText>{title}</ReadableText>
@@ -132,103 +115,47 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
   return (
     <>
       <Title color={color} accessibilityRole="header">
-        <ReadableText>
-          {t("content_screen.informations", "Informations importantes")}
-        </ReadableText>
+        <ReadableText>{t("content_screen.informations", "Informations importantes")}</ReadableText>
       </Title>
       <MainContainer>
         <Rows separator spacing={RowsSpacing.Default}>
-          <Section
-            color={color}
-            title={t("Infocards.publicTitle", "Public visé")}
-          >
-            <Metadata
-              color={color}
-              metadatas={metadatas}
-              metadataKey="publicStatus"
-              withTitle
-            />
-            {metadatas.public && (
-              <Metadata
-                color={color}
-                metadatas={metadatas}
-                metadataKey="public"
-                withTitle
-              />
-            )}
+          <Section color={color} title={t("Infocards.publicTitle", "Public visé")}>
+            <Metadata color={color} metadatas={metadatas} metadataKey="publicStatus" withTitle />
+            {metadatas.public && <Metadata color={color} metadatas={metadatas} metadataKey="public" withTitle />}
 
-            <Metadata
-              color={color}
-              metadatas={metadatas}
-              metadataKey="frenchLevel"
-              withTitle
-            />
-            <Metadata
-              color={color}
-              metadatas={metadatas}
-              metadataKey="age"
-              withTitle
-            />
+            <Metadata color={color} metadatas={metadatas} metadataKey="frenchLevel" withTitle />
+            <Metadata color={color} metadatas={metadatas} metadataKey="age" withTitle />
           </Section>
 
           {metadatas.price && (
             <Section color={color} title={t("Infocards.price", "Prix")}>
-              <Metadata
-                color={color}
-                metadatas={metadatas}
-                metadataKey="price"
-              />
+              <Metadata color={color} metadatas={metadatas} metadataKey="price" />
             </Section>
           )}
 
-          {(metadatas.commitment ||
-            metadatas.frequency ||
-            metadatas.timeSlots) && (
-            <Section
-              color={color}
-              title={t("Infocards.availability", "Disponibilité demandée")}
-            >
+          {(metadatas.commitment || metadatas.frequency || metadatas.timeSlots) && (
+            <Section color={color} title={t("Infocards.availability", "Disponibilité demandée")}>
               {metadatas.commitment && (
-                <Metadata
-                  color={color}
-                  metadatas={metadatas}
-                  metadataKey="commitment"
-                  withTitle
-                />
+                <Metadata color={color} metadatas={metadatas} metadataKey="commitment" withTitle />
               )}
               {metadatas.frequency && (
-                <Metadata
-                  color={color}
-                  metadatas={metadatas}
-                  metadataKey="frequency"
-                  withTitle
-                />
+                <Metadata color={color} metadatas={metadatas} metadataKey="frequency" withTitle />
               )}
               {metadatas.timeSlots && (
-                <Metadata
-                  color={color}
-                  metadatas={metadatas}
-                  metadataKey="timeSlots"
-                  withTitle
-                />
+                <Metadata color={color} metadatas={metadatas} metadataKey="timeSlots" withTitle />
               )}
             </Section>
           )}
 
           {metadatas.conditions && (
-            <Section
-              color={color}
-              title={t("Infocards.conditions", "Conditions")}
-            >
+            <Section color={color} title={t("Infocards.conditions", "Conditions")}>
               {/* <Metadata metadatas={metadatas} metadataKey="conditions" /> */}
               <Rows layout="1" spacing={RowsSpacing.Text}>
                 {metadatas.conditions.map((condition: conditionType) => (
                   <Columns layout="auto 1" key={condition}>
                     {getConditionImage(condition)}
                     <DescriptionText>
-                      <ReadableText>
-                        {t(`Infocards.${condition}`, condition)}
-                      </ReadableText>
+                      <ReadableText>{t(`Infocards.${condition}`, condition)}</ReadableText>
                     </DescriptionText>
                   </Columns>
                 ))}
@@ -236,30 +163,15 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
             </Section>
           )}
 
-          {content.typeContenu === ContentType.DISPOSITIF &&
-            metadatas.location && (
-              <Section
-                color={color}
-                title={t("Infocards.location", "Zone d'action")}
-              >
-                <Metadata
-                  color={color}
-                  metadatas={metadatas}
-                  metadataKey="location"
-                />
-              </Section>
-            )}
+          {content.typeContenu === ContentType.DISPOSITIF && metadatas.location && (
+            <Section color={color} title={t("Infocards.location", "Zone d'action")}>
+              <Metadata color={color} metadatas={metadatas} metadataKey="location" />
+            </Section>
+          )}
 
           {content.mainSponsor && (
-            <Section
-              color={color}
-              title={t("Infocards.proposedBy", "Proposé par")}
-            >
-              <Columns
-                RTLBehaviour
-                layout="auto 1"
-                horizontalAlign="space-between"
-              >
+            <Section color={color} title={t("Infocards.proposedBy", "Proposé par")}>
+              <Columns RTLBehaviour layout="auto 1" horizontalAlign="space-between">
                 {content.mainSponsor.picture?.secure_url && (
                   <Image
                     source={{ uri: content.mainSponsor.picture.secure_url }}

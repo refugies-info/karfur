@@ -1,44 +1,43 @@
+import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
 import * as React from "react";
 import { Image, View } from "react-native";
+import { Icon } from "react-native-eva-icons";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useDispatch, useSelector } from "react-redux";
 import useAsync from "react-use/lib/useAsync";
 import styled, { useTheme } from "styled-components/native";
-import { StackScreenProps } from "@react-navigation/stack";
-import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
-import Swipeable from "react-native-gesture-handler/Swipeable";
-import { Icon } from "react-native-eva-icons";
 
-import { BottomTabParamList, FavorisParamList } from "../../../types";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { ContentForApp } from "@refugies-info/api-types";
+import { Page, Rows } from "~/components";
+import { ConfirmationModal } from "~/components/ConfirmationModal";
+import { ContentSummary } from "~/components/Contents/ContentSummary";
+import { CustomButton } from "~/components/CustomButton";
+import { ReadableText } from "~/components/ReadableText";
+import { TextDSFR_MD, TextDSFR_XL } from "~/components/StyledText";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { contentsSelector } from "~/services/redux/Contents/contents.selectors";
 import {
+  removeUserAllFavoritesActionCreator,
+  removeUserFavoriteActionCreator,
+  removeUserHasNewFavoritesActionCreator,
+} from "~/services/redux/User/user.actions";
+import {
+  currentI18nCodeSelector,
   hasUserNewFavoritesSelector,
   userFavorites,
-} from "../../services/redux/User/user.selectors";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import {
-  removeUserFavoriteActionCreator,
-  removeUserAllFavoritesActionCreator,
-  removeUserHasNewFavoritesActionCreator,
-} from "../../services/redux/User/user.actions";
-import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
-import { CustomButton } from "../../components/CustomButton";
-import { ContentSummary } from "../../components/Contents/ContentSummary";
-import { ConfirmationModal } from "../../components/ConfirmationModal";
-import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { Page, Rows } from "../../components";
+} from "~/services/redux/User/user.selectors";
+import EmptyIllu from "~/theme/images/favoris/illu-empty-favorites.png";
+import { BottomTabParamList, FavorisParamList } from "~/types/navigation";
 import getContentsToDisplay from "./getContentsToDisplay";
-import { ReadableText } from "../../components/ReadableText";
-import { ContentForApp } from "@refugies-info/api-types";
 
 const EmptyContainer = styled.View`
   padding-horizontal: ${({ theme }) => theme.margin * 4}px;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  padding-bottom: ${({ theme }) =>
-    theme.margin * 5 + (theme.insets.bottom || 0)}px;
+  padding-bottom: ${({ theme }) => theme.margin * 5 + (theme.insets.bottom || 0)}px;
 `;
 const EmptyTitle = styled(TextDSFR_XL)`
   text-align: center;
@@ -80,17 +79,15 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
       if (hasNewFavorites) {
         dispatch(removeUserHasNewFavoritesActionCreator());
       }
-    }, [hasNewFavorites])
+    }, [hasNewFavorites]),
   );
 
   const { value: contentsToDisplay = [], loading } = useAsync(
     () => getContentsToDisplay(favorites, contents, currentLanguageI18nCode),
-    [favorites, contents, currentLanguageI18nCode]
+    [favorites, contents, currentLanguageI18nCode],
   );
 
-  const [favoriteToDelete, setFavoriteToDelete] = React.useState<
-    string | "all"
-  >("");
+  const [favoriteToDelete, setFavoriteToDelete] = React.useState<string | "all">("");
   const showDeleteModal = (contentId: string | "all") => {
     setFavoriteToDelete(contentId);
   };
@@ -110,57 +107,40 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
   const renderActions = () => {
     return (
       <ActionContainer>
-        <Icon
-          name="trash-2-outline"
-          width={24}
-          height={24}
-          fill={theme.colors.white}
-        ></Icon>
+        <Icon name="trash-2-outline" width={24} height={24} fill={theme.colors.white}></Icon>
       </ActionContainer>
     );
   };
 
   return (
     <>
-      <Page
-        hideBack
-        loading={loading}
-        title={t("favorites_screen.my_content", "Mes fiches")}
-      >
+      <Page hideBack loading={loading} title={t("favorites_screen.my_content", "Mes fiches")}>
         {favorites.length > 0 ? (
           <Rows layout="1 auto">
             <View>
               <Rows layout="1" verticalAlign="flex-start">
-                {contentsToDisplay.map(
-                  (content: ContentForApp, index: number) => (
-                    <CardItem key={content._id}>
-                      <Swipeable
-                        renderRightActions={!isRTL ? renderActions : undefined}
-                        renderLeftActions={isRTL ? renderActions : undefined}
-                        leftThreshold={!isRTL ? 9999 : 120}
-                        rightThreshold={isRTL ? 9999 : 120}
-                        onSwipeableRightOpen={
-                          !isRTL ? () => deleteFavorite(content._id) : undefined
-                        }
-                        onSwipeableLeftOpen={
-                          isRTL ? () => deleteFavorite(content._id) : undefined
-                        }
-                        overshootFriction={8}
-                        containerStyle={{ overflow: "visible" }}
-                      >
-                        <ContentSummary
-                          content={content}
-                          actionPress={() => showDeleteModal(content._id)}
-                          actionIcon={"trash-2-outline"}
-                          actionLabel={t(
-                            "favorites_screen.delete_content_accessibility"
-                          )}
-                          backScreen="Favoris"
-                        />
-                      </Swipeable>
-                    </CardItem>
-                  )
-                )}
+                {contentsToDisplay.map((content: ContentForApp, index: number) => (
+                  <CardItem key={content._id}>
+                    <Swipeable
+                      renderRightActions={!isRTL ? renderActions : undefined}
+                      renderLeftActions={isRTL ? renderActions : undefined}
+                      leftThreshold={!isRTL ? 9999 : 120}
+                      rightThreshold={isRTL ? 9999 : 120}
+                      onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
+                      onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
+                      overshootFriction={8}
+                      containerStyle={{ overflow: "visible" }}
+                    >
+                      <ContentSummary
+                        content={content}
+                        actionPress={() => showDeleteModal(content._id)}
+                        actionIcon={"trash-2-outline"}
+                        actionLabel={t("favorites_screen.delete_content_accessibility")}
+                        backScreen="Favoris"
+                      />
+                    </Swipeable>
+                  </CardItem>
+                ))}
               </Rows>
             </View>
 
@@ -178,21 +158,13 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
           </Rows>
         ) : (
           <EmptyContainer>
-            <Image
-              source={EmptyIllu}
-              style={{ width: 312, height: 250, marginTop: theme.margin * 4 }}
-            />
+            <Image source={EmptyIllu} style={{ width: 312, height: 250, marginTop: theme.margin * 4 }} />
             <EmptyTitle>
-              <ReadableText>
-                {t("favorites_screen.empty", "C'est vide")}
-              </ReadableText>
+              <ReadableText>{t("favorites_screen.empty", "C'est vide")}</ReadableText>
             </EmptyTitle>
             <EmptyText>
               <ReadableText>
-                {t(
-                  "favorites_screen.add_content",
-                  "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
-                )}
+                {t("favorites_screen.add_content", "Pour ajouter une fiche dans tes favoris, clique sur l’étoile.")}
               </ReadableText>
             </EmptyText>
             <CustomButton
@@ -213,14 +185,8 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
         toggleModal={hideDeleteModal}
         text={
           favoriteToDelete === "all"
-            ? t(
-                "favorites_screen.delete_all",
-                "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?"
-              )
-            : t(
-                "favorites_screen.delete_content",
-                "Veux-tu vraiment supprimer cette fiche de tes favoris ?"
-              )
+            ? t("favorites_screen.delete_all", "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?")
+            : t("favorites_screen.delete_content", "Veux-tu vraiment supprimer cette fiche de tes favoris ?")
         }
         onValidate={() => deleteFavorite(favoriteToDelete)}
         i18nKeyValidateButton="global.delete"

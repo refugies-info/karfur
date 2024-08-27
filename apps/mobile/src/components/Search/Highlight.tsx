@@ -1,8 +1,7 @@
-import React from "react";
-import { Text } from "react-native";
 import { connectHighlight } from "react-instantsearch-native";
-import { styles } from "../../theme";
-import { firstLetterUpperCase } from "../../libs";
+import { Text } from "react-native";
+import { firstLetterUpperCase } from "~/libs";
+import { styles } from "~/theme";
 
 interface Props {
   hit: any[];
@@ -13,14 +12,7 @@ interface Props {
   colorNotHighlighted?: string;
 }
 
-const Highlight = ({
-  attribute,
-  hit,
-  highlight,
-  capitalize,
-  color,
-  colorNotHighlighted,
-}: Props) => {
+const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighlighted }: Props) => {
   const highlights = highlight({
     highlightProperty: "_highlightResult",
     attribute,
@@ -41,9 +33,7 @@ const Highlight = ({
             };
 
         if (color) {
-          style.color = isHighlighted
-            ? color
-            : `${colorNotHighlighted || color}B3`;
+          style.color = isHighlighted ? color : `${colorNotHighlighted || color}B3`;
         }
 
         return (

@@ -1,5 +1,5 @@
-import { styles } from "../theme"
-import { ThemeColors } from "../types/interface";
+import { styles } from "~/theme";
+import { ThemeColors } from "~/types/interface";
 
 export const defaultColors: ThemeColors = {
   color100: styles.colors.black,

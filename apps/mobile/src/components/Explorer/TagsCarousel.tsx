@@ -1,12 +1,12 @@
-import Carousel from "react-native-reanimated-carousel";
 import React, { useEffect } from "react";
-import { View, Dimensions, StyleProp, ViewStyle } from "react-native";
-import { CarousselCard } from "./CarousselCard";
-import { sortByOrder } from "../../libs";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { Dimensions, StyleProp, View, ViewStyle } from "react-native";
+import Carousel from "react-native-reanimated-carousel";
 import { useSelector } from "react-redux";
-import { themesSelector } from "../../services/redux/Themes/themes.selectors";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { sortByOrder } from "~/libs";
+import { themesSelector } from "~/services/redux/Themes/themes.selectors";
 import { CarouselPagination } from "./CarouselPagination";
+import { CarousselCard } from "./CarousselCard";
 
 const MIN_CARD_WIDTH = 248;
 const CARD_RATIO = 0.775;
@@ -29,10 +29,7 @@ export const TagsCarousel = (props: any) => {
   const carouselItems = themes.sort(sortByOrder);
 
   // TODO : improve here to have responsive cards
-  const cardWidth = Math.max(
-    Dimensions.get("window").width * 0,
-    MIN_CARD_WIDTH
-  );
+  const cardWidth = Math.max(Dimensions.get("window").width * 0, MIN_CARD_WIDTH);
   const cardHeight = cardWidth / CARD_RATIO;
 
   useEffect(() => {
@@ -63,10 +60,7 @@ export const TagsCarousel = (props: any) => {
         modeConfig={CAROUSEL_CONFIG}
         style={carouselStyle}
       />
-      <CarouselPagination
-        size={carouselItems.length}
-        activeDotIndex={activeIndex}
-      />
+      <CarouselPagination size={carouselItems.length} activeDotIndex={activeIndex} />
     </View>
   );
 };

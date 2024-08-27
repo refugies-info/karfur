@@ -1,13 +1,13 @@
-import React, { useState, useRef } from "react";
-import { View, TextInput, TouchableOpacity } from "react-native";
+import React, { useRef, useState } from "react";
+import { TextInput, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Modal from "react-native-modal";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
-import { styles } from "../../theme";
-import { GoogleAPISuggestion } from "../../../types";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
+import { GoogleAPISuggestion } from "~/types/navigation";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import CityChoice from "../Geoloc/CityChoice";
 
 const MainContainer = styled.View`
@@ -83,12 +83,7 @@ export const SearchBarCity = (props: Props) => {
         accessibilityRole="button"
         accessibilityLabel={t("onboarding_screens.city_label", "Ta ville")}
       >
-        <Icon
-          name="search-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.darkGrey}
-        />
+        <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
         <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
@@ -109,12 +104,7 @@ export const SearchBarCity = (props: Props) => {
               accessible={true}
               accessibilityLabel={t("global.back")}
             >
-              <Icon
-                name="arrow-back-outline"
-                height={24}
-                width={24}
-                fill={styles.colors.dsfr_action}
-              />
+              <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
             </TouchableOpacity>
             <InputContainer>
               <StyledInput
@@ -131,19 +121,11 @@ export const SearchBarCity = (props: Props) => {
                 accessible={true}
                 accessibilityLabel={t("global.clear_selection_accessibility")}
               >
-                <Icon
-                  name="close-outline"
-                  height={24}
-                  width={24}
-                  fill={styles.colors.dsfr_action}
-                />
+                <Icon name="close-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
               </TouchableOpacity>
             </InputContainer>
           </MainContainer>
-          <SuggestionsContainer
-            keyboardShouldPersistTaps={"handled"}
-            keyboardDismissMode="on-drag"
-          >
+          <SuggestionsContainer keyboardShouldPersistTaps={"handled"} keyboardDismissMode="on-drag">
             {props.geoloc}
             {(props.suggestions || []).map((suggestion) => (
               <CityChoice

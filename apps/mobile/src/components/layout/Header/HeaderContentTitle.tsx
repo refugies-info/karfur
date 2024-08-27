@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
-import styled, { useTheme } from "styled-components/native";
 import { Picture } from "@refugies-info/api-types";
+import { ReactNode } from "react";
+import styled, { useTheme } from "styled-components/native";
 
-import { firstLetterUpperCase } from "../../../libs";
+import { firstLetterUpperCase } from "~/libs";
 import { ReadableText } from "../../ReadableText";
 import { StreamlineIcon } from "../../StreamlineIcon";
 import Columns from "../Columns";
@@ -32,12 +32,7 @@ const HeaderContentTitle = ({
   const theme = useTheme();
   return (
     <TitleContainer>
-      <Columns
-        RTLBehaviour
-        layout="1 auto"
-        verticalAlign="center"
-        horizontalAlign="center"
-      >
+      <Columns RTLBehaviour layout="1 auto" verticalAlign="center" horizontalAlign="center">
         <Columns RTLBehaviour layout="auto" verticalAlign="center">
           <HeaderTitle
             hasBackgroundImage={headerBackgroundImage !== undefined}

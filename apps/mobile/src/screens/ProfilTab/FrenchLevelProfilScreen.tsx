@@ -1,15 +1,14 @@
-import * as React from "react";
-import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { useDispatch, useSelector } from "react-redux";
-import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
-import { frenchLevelFilters } from "../../data/filtersData";
-import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user.actions";
-import { Page } from "../../components";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
-import { FilterFrenchLevelComponent } from "../../components/Profil/FilterFrenchLevelComponent";
+import { Page } from "~/components";
+import { FilterFrenchLevelComponent } from "~/components/Profil/FilterFrenchLevelComponent";
+import { frenchLevelFilters } from "~/data/filtersData";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { saveUserFrenchLevelActionCreator } from "~/services/redux/User/user.actions";
+import { userFrenchLevelSelector } from "~/services/redux/User/user.selectors";
+import { ProfileParamList } from "~/types/navigation";
 
 export const FrenchLevelProfilScreen = ({
   navigation,
@@ -18,9 +17,7 @@ export const FrenchLevelProfilScreen = ({
   const theme = useTheme();
   const userFrenchLevel = useSelector(userFrenchLevelSelector);
   const selectedFrenchLevel: MobileFrenchLevel | null =
-    frenchLevelFilters.find(
-      (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
-    )?.key || null;
+    frenchLevelFilters.find((frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel)?.key || null;
 
   const onValidateFrenchLevel = (frenchLevelKey: MobileFrenchLevel) => {
     if (selectedFrenchLevel && selectedFrenchLevel === frenchLevelKey) return;
@@ -28,7 +25,7 @@ export const FrenchLevelProfilScreen = ({
       saveUserFrenchLevelActionCreator({
         frenchLevel: frenchLevelKey,
         shouldFetchContents: true,
-      })
+      }),
     );
     navigation.goBack();
   };

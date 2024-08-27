@@ -1,18 +1,18 @@
+import { GetThemeResponse } from "@refugies-info/api-types";
+import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
 import { TouchableOpacity, View } from "react-native";
-import styled from "styled-components/native";
-import { RTLView } from "../BasicComponents";
-import { styles } from "../../theme";
-import { TextDSFR_MD_Bold } from "../StyledText";
-import { firstLetterUpperCase } from "../../libs";
-import { StreamlineIcon } from "../StreamlineIcon";
-import { LinearGradient } from "expo-linear-gradient";
-import { TagImage } from "./TagImage";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useSelector } from "react-redux";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { GetThemeResponse } from "@refugies-info/api-types";
+import styled from "styled-components/native";
+import { firstLetterUpperCase } from "~/libs";
+import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
+import { logEventInFirebase } from "~/utils/logEvent";
+import { RTLView } from "../BasicComponents";
+import { StreamlineIcon } from "../StreamlineIcon";
+import { TextDSFR_MD_Bold } from "../StyledText";
+import { TagImage } from "./TagImage";
 
 interface Props {
   theme: GetThemeResponse;
@@ -74,20 +74,12 @@ const CarousselCardComponent = (props: Props) => {
         width={props.cardWidth}
         height={props.cardHeight}
       >
-        <View
-          style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
-        >
+        <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
           <TagImage theme={props.theme} />
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
-          <StyledText>
-            {firstLetterUpperCase(
-              props.theme.name[currentLanguageI18nCode || "fr"]
-            )}
-          </StyledText>
-          {props.theme.icon && (
-            <StreamlineIcon icon={props.theme.icon} size={20} />
-          )}
+          <StyledText>{firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}</StyledText>
+          {props.theme.icon && <StreamlineIcon icon={props.theme.icon} size={20} />}
         </StyledContainer>
       </CardGradient>
     </TouchableOpacity>

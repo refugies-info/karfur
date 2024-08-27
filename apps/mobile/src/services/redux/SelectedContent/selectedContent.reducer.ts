@@ -1,6 +1,6 @@
-import { SelectedContentActions } from "./selectedContent.actions";
-import { createReducer } from "typesafe-actions";
 import { GetDispositifResponse } from "@refugies-info/api-types";
+import { createReducer } from "typesafe-actions";
+import { SelectedContentActions } from "./selectedContent.actions";
 
 export type SelectedContentState = {
   fr: GetDispositifResponse | null;
@@ -23,12 +23,12 @@ export const initialSelectedContentState: SelectedContentState = {
   ru: null,
   uk: null,
 };
-export const selectedContentReducer = createReducer<
-  SelectedContentState,
-  SelectedContentActions
->(initialSelectedContentState, {
-  SET_SELECTED_CONTENT: (state, action) => ({
-    ...state,
-    [action.payload.locale]: action.payload.content,
-  }),
-});
+export const selectedContentReducer = createReducer<SelectedContentState, SelectedContentActions>(
+  initialSelectedContentState,
+  {
+    SET_SELECTED_CONTENT: (state, action) => ({
+      ...state,
+      [action.payload.locale]: action.payload.content,
+    }),
+  },
+);

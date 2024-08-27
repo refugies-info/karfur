@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { FavorisParamList } from "../../../types";
-import React from "react";
-import { FavorisScreen } from "../../screens/FavorisTab/FavorisScreen";
+import { FavorisScreen } from "~/screens/FavorisTab/FavorisScreen";
+import { FavorisParamList } from "~/types/navigation";
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "styled-components/native";
-import { SkeletonContent } from "../../../components";
+import { SkeletonContent } from "~/components";
 
 const PageSkeleton: React.FC<React.PropsWithChildren> = ({ children }) => {
   const theme = useTheme();

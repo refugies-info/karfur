@@ -1,13 +1,13 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
 
-import { ExplorerParamList } from "../../../types";
-import { ExplorerScreen } from "../../screens/ExplorerTab/ExplorerScreen";
-import { ContentsScreen } from "../../screens/ContentsScreen";
-import { NeedsScreen } from "../../screens/ExplorerTab/NeedsScreen";
-import { NotificationsScreen } from "../../screens/NotificationsScreen";
-import { ContentScreen, NearMeCardsScreen } from "../../screens";
+import { ContentScreen, NearMeCardsScreen } from "~/screens";
+import { ContentsScreen } from "~/screens/ContentsScreen";
+import { ExplorerScreen } from "~/screens/ExplorerTab/ExplorerScreen";
+import { NeedsScreen } from "~/screens/ExplorerTab/NeedsScreen";
+import { NotificationsScreen } from "~/screens/NotificationsScreen";
+import { ExplorerParamList } from "~/types/navigation";
 
 interface Props {
   navigation?: any;
@@ -36,14 +36,8 @@ export const ExplorerNavigator = ({ navigation, route }: Props) => {
       <ExplorerStack.Screen name="ContentScreen" component={ContentScreen} />
       <ExplorerStack.Screen name="ContentsScreen" component={ContentsScreen} />
       <ExplorerStack.Screen name="NeedsScreen" component={NeedsScreen} />
-      <ExplorerStack.Screen
-        name="NotificationsScreen"
-        component={NotificationsScreen}
-      />
-      <ExplorerStack.Screen
-        name="NearMeCardsScreen"
-        component={NearMeCardsScreen}
-      />
+      <ExplorerStack.Screen name="NotificationsScreen" component={NotificationsScreen} />
+      <ExplorerStack.Screen name="NearMeCardsScreen" component={NearMeCardsScreen} />
     </ExplorerStack.Navigator>
   );
 };

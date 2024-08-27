@@ -1,14 +1,13 @@
-import React from "react";
-import ChoiceButton from "./ChoiceButton";
-import { render } from "../../utils/tests";
 import { Text } from "react-native";
+import { render } from "../../utils/tests";
+import ChoiceButton from "./ChoiceButton";
 
 describe("ChoiceButton snapshot test suite", () => {
   it("should render without bug", async () => {
     const test = await render(
       <ChoiceButton testID="testID" onPress={() => null} isSelected>
         <Text>Langue</Text>
-      </ChoiceButton>
+      </ChoiceButton>,
     );
     expect(test).toMatchSnapshot();
   });
@@ -16,7 +15,7 @@ describe("ChoiceButton snapshot test suite", () => {
     const test = await render(
       <ChoiceButton testID="testID" onPress={() => null} isSelected={false}>
         <Text>Langue</Text>
-      </ChoiceButton>
+      </ChoiceButton>,
     );
     expect(test).toMatchSnapshot();
   });
@@ -24,7 +23,7 @@ describe("ChoiceButton snapshot test suite", () => {
     const test = await render(
       <ChoiceButton testID="testID" onPress={() => null} isSelected flatStyle>
         <Text>Test</Text>
-      </ChoiceButton>
+      </ChoiceButton>,
     );
     expect(test).toMatchSnapshot();
   });
@@ -32,7 +31,7 @@ describe("ChoiceButton snapshot test suite", () => {
     const test = await render(
       <ChoiceButton testID="testID" onPress={() => null} isSelected hideRadio>
         <Text>Test</Text>
-      </ChoiceButton>
+      </ChoiceButton>,
     );
     expect(test).toMatchSnapshot();
   });

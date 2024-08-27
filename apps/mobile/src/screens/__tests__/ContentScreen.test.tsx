@@ -1,10 +1,10 @@
 import { useRoute } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
+import { initialRootStateFactory } from "~/services/redux/reducers";
+import { initialUserState } from "~/services/redux/User/user.reducer";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
 import { mockedThemesData } from "../../jest/__fixtures__/themes";
 import { wrapWithProvidersAndRender } from "../../jest/wrapWithProvidersAndRender";
-import { initialRootStateFactory } from "../../services/redux/reducers";
-import { initialUserState } from "../../services/redux/User/user.reducer";
 import ContentScreen from "../ContentScreen";
 
 const theme = mockedThemesData[0];

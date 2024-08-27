@@ -1,11 +1,10 @@
-import * as React from "react";
 import { Image, View } from "react-native";
 import styled, { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks";
+import { TextBubble } from "~/theme/images/profile/TextBubble";
+import IlluMascotte from "~/theme/images/profile/illu-mascotte.png";
 import { TextDSFR_MD } from "../StyledText";
 import { Columns } from "../layout";
-import { TextBubble } from "../../theme/images/profile/TextBubble";
-import IlluMascotte from "../../theme/images/profile/illu-mascotte.png";
-import { useTranslationWithRTL } from "../../hooks";
 
 const Text = styled(TextDSFR_MD)`
   color: ${({ theme }) => theme.colors.dsfr_action};

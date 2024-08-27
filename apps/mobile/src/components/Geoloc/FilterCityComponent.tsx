@@ -1,26 +1,23 @@
-import { useTheme } from "styled-components/native";
-import { RTLView } from "../BasicComponents";
-import { styles } from "../../theme";
 import React, { useMemo } from "react";
-import { GoogleAPISuggestion } from "../../../types";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { ActivityIndicator, View } from "react-native";
 import { useSelector } from "react-redux";
-import { userLocationSelector } from "../../services/redux/User/user.selectors";
-import {
-  getCitiesFromGoogleAPI,
-  getCityDetailsFromGoogleAPI,
-} from "../../utils/API";
-import { getDepartementFromResult } from "../../libs/geolocalisation";
-import { Title, Label } from "../Onboarding/SharedStyledComponents";
-import { View, ActivityIndicator } from "react-native";
-import { SearchBarCity } from "../Onboarding/SearchBarCity";
-import { Explaination } from "../Onboarding/Explaination";
+import { useTheme } from "styled-components/native";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { getDepartementFromResult } from "~/libs/geolocalisation";
+import { userLocationSelector } from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import { GoogleAPISuggestion } from "~/types/navigation";
+import { getCitiesFromGoogleAPI, getCityDetailsFromGoogleAPI } from "~/utils/API";
+import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
-import { Rows } from "../layout";
-import { ReadableText } from "../ReadableText";
 import { Tag } from "../formulaire";
-import GeolocButton from "./GeolocButton";
+import { Rows } from "../layout";
+import { Explaination } from "../Onboarding/Explaination";
+import { SearchBarCity } from "../Onboarding/SearchBarCity";
+import { Label, Title } from "../Onboarding/SharedStyledComponents";
+import { ReadableText } from "../ReadableText";
 import CityChoice from "./CityChoice";
+import GeolocButton from "./GeolocButton";
 
 const CITIES = [
   { city: "Paris", department: "Paris" },
@@ -60,9 +57,7 @@ export const FilterCityComponent = ({
 }: Props) => {
   const theme = useTheme();
   const [enteredText, setEnteredText] = React.useState("");
-  const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>(
-    []
-  );
+  const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>([]);
   const [error, setError] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t } = useTranslationWithRTL();
@@ -104,15 +99,8 @@ export const FilterCityComponent = ({
     setIsGeolocLoading(true);
     setSelectedCity(city);
     const results = await getCityDetailsFromGoogleAPI(place_id);
-    if (
-      results &&
-      results.data &&
-      results.data.result &&
-      results.data.result.address_components
-    ) {
-      const department = getDepartementFromResult(
-        results.data.result.address_components
-      );
+    if (results && results.data && results.data.result && results.data.result.address_components) {
+      const department = getDepartementFromResult(results.data.result.address_components);
 
       if (!department) {
         setIsGeolocLoading(false);
@@ -133,10 +121,7 @@ export const FilterCityComponent = ({
   const onSelectSuggestion = async (suggestion: GoogleAPISuggestion) => {
     try {
       setEnteredText("");
-      await setCityAndGetDepartment(
-        suggestion.structured_formatting.main_text,
-        suggestion.place_id
-      );
+      await setCityAndGetDepartment(suggestion.structured_formatting.main_text, suggestion.place_id);
     } catch (error: any) {
       setError(defaultError);
       resetData();
@@ -159,18 +144,11 @@ export const FilterCityComponent = ({
     <Rows verticalAlign="space-between">
       <View>
         <Title>
-          <ReadableText>
-            {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
-          </ReadableText>
+          <ReadableText>{t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}</ReadableText>
         </Title>
-        <Explaination
-          step={1}
-          defaultText="C’est pour te montrer les associations et les activités dans ta ville."
-        />
+        <Explaination step={1} defaultText="C’est pour te montrer les associations et les activités dans ta ville." />
         <Label>
-          <ReadableText>
-            {t("onboarding_screens.city_label", "Ta ville")}
-          </ReadableText>
+          <ReadableText>{t("onboarding_screens.city_label", "Ta ville")}</ReadableText>
         </Label>
         {!selectedCity && (
           <View>
@@ -197,10 +175,7 @@ export const FilterCityComponent = ({
         {isGeolocLoading && <ActivityIndicator color={styles.colors.grey60} />}
         {!!selectedCity && !!selectedDepartment && (
           <RTLView>
-            <Tag
-              onRemove={resetData}
-              accessibilityLabel={t("global.reinitialize")}
-            >
+            <Tag onRemove={resetData} accessibilityLabel={t("global.reinitialize")}>
               {selectedCity + " (" + selectedDepartment + ")"}
             </Tag>
           </RTLView>

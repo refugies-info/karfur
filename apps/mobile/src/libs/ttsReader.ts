@@ -1,9 +1,9 @@
-import * as Speech from "expo-speech";
 import { AVPlaybackStatusSuccess, Audio } from "expo-av";
-import ReactNativeBlobUtil from "react-native-blob-util";
-import { fetchAudio } from "../utils/API";
+import * as Speech from "expo-speech";
 import { Platform } from "react-native";
-import { logger } from "../logger";
+import ReactNativeBlobUtil from "react-native-blob-util";
+import { logger } from "~/logger";
+import { fetchAudio } from "~/utils/API";
 
 export interface Reader {
   play: () => Promise<void>;
@@ -23,7 +23,7 @@ const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
       (playbackStatus: AVPlaybackStatusSuccess) => {
         if (playbackStatus.didJustFinish) resolve(null);
         if (!playbackStatus.shouldPlay && playbackStatus.positionMillis === 0) resolve(null); // sound stopped
-      }
+      },
     );
   });
 
@@ -34,11 +34,7 @@ const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
  * @param rate - voice reading speed
  * @returns reader
  */
-const getAzureReader = async (
-  text: string,
-  language: string | null,
-  rate: number
-): Promise<Reader> => {
+const getAzureReader = async (text: string, language: string | null, rate: number): Promise<Reader> => {
   const path = await fetchAudio({
     text: text,
     locale: language || "fr",
@@ -49,7 +45,7 @@ const getAzureReader = async (
       progressUpdateIntervalMillis: 10,
       rate,
       positionMillis: 1, // used to detect if sound has been stopped (> 0 : will play, = 0 : has stopped)
-    }
+    },
   );
 
   return {
@@ -66,9 +62,9 @@ const getAzureReader = async (
     resume: () => sound.playAsync(),
     setRate: (rate: number) => sound.setRateAsync(rate, true),
     canResume: true,
-    canChangeRate: true
+    canChangeRate: true,
   };
-}
+};
 
 /**
  * Returns reader based on native phone TTS capabilities
@@ -77,43 +73,40 @@ const getAzureReader = async (
  * @param rate - voice reading speed
  * @returns reader
  */
-const getNativeReader = (
-  text: string,
-  language: string | null,
-  rate: number
-): Reader => ({
-  play: () => new Promise((resolve) => {
-    Speech.speak(text, {
-      rate: rate,
-      language: language || "fr",
-      onDone: () => resolve(),
-    });
-  }),
+const getNativeReader = (text: string, language: string | null, rate: number): Reader => ({
+  play: () =>
+    new Promise((resolve) => {
+      Speech.speak(text, {
+        rate: rate,
+        language: language || "fr",
+        onDone: () => resolve(),
+      });
+    }),
   stop: () => Speech.stop(),
   pause: () => {
     if (Platform.OS === "android") {
       Speech.stop();
     } else {
-      Speech.pause()
+      Speech.pause();
     }
   },
   resume: () => {
     if (Platform.OS === "android") {
-      logger.error("Resume not implemented in Android")
+      logger.error("Resume not implemented in Android");
     } else {
       Speech.resume();
     }
   },
-  setRate: () => { },
+  setRate: () => {},
   canResume: Platform.OS === "android" ? false : true,
-  canChangeRate: false
-})
+  canChangeRate: false,
+});
 
 const needsAzureTts = (language: string | null) => {
   if (!language) return false; // default FR
-  if (Platform.OS === "android") return ["ps", "fa"].includes(language)
-  return ["ps"].includes(language)
-}
+  if (Platform.OS === "android") return ["ps", "fa"].includes(language);
+  return ["ps"].includes(language);
+};
 
 /**
  * Returns a TTS reader
@@ -122,11 +115,5 @@ const needsAzureTts = (language: string | null) => {
  * @param rate - voice reading speed
  * @returns reader
  */
-export const getTtsReader = async (
-  text: string,
-  language: string | null,
-  rate: number
-): Promise<Reader> => needsAzureTts(language) ?
-    getAzureReader(text, language, rate) :
-    getNativeReader(text, language, rate);
-
+export const getTtsReader = async (text: string, language: string | null, rate: number): Promise<Reader> =>
+  needsAzureTts(language) ? getAzureReader(text, language, rate) : getNativeReader(text, language, rate);

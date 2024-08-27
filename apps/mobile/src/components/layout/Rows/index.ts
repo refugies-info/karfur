@@ -1,2 +1,1 @@
-export { default } from "./Rows";
-export { RowsSpacing } from "./Rows";
+export { RowsSpacing, default } from "./Rows";

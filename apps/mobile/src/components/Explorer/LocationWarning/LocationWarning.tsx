@@ -1,12 +1,8 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useToggle from "react-use/lib/useToggle";
-import { nbContentsSelector } from "../../../services/redux/Contents/contents.selectors";
-import { saveUserLocalizedWarningHiddenActionCreator } from "../../../services/redux/User/user.actions";
-import {
-  isLocalizedWarningHiddenSelector,
-  userLocationSelector,
-} from "../../../services/redux/User/user.selectors";
+import { nbContentsSelector } from "~/services/redux/Contents/contents.selectors";
+import { saveUserLocalizedWarningHiddenActionCreator } from "~/services/redux/User/user.actions";
+import { isLocalizedWarningHiddenSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
 import LocationWarningMessage from "./LocationWarningMessage";
 import LocationWarningModal from "./LocationWarningModal";
 
@@ -23,15 +19,11 @@ const LocationWarning = () => {
   const selectedLocation = useSelector(userLocationSelector);
 
   // The user hide this warning before
-  const isLocalizedWarningHidden = useSelector(
-    isLocalizedWarningHiddenSelector
-  );
+  const isLocalizedWarningHidden = useSelector(isLocalizedWarningHiddenSelector);
 
-  const [isLocalizedModalVisible, toggleIsLocalizedModalVisible] =
-    useToggle(false);
+  const [isLocalizedModalVisible, toggleIsLocalizedModalVisible] = useToggle(false);
 
-  const totalContent =
-    (nbContents.nbGlobalContent || 0) + (nbContents.nbLocalizedContent || 0);
+  const totalContent = (nbContents.nbGlobalContent || 0) + (nbContents.nbLocalizedContent || 0);
   const isLocalizedWarningVisible = !!(
     !isLocalizedWarningHidden &&
     selectedLocation.city &&

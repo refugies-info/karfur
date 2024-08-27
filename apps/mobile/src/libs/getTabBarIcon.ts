@@ -7,7 +7,7 @@ export const getTabBarIcon = (routeName: string) => {
   switch (routeName) {
     case "Explorer":
       return ICON_EXPLORER;
-      case "Favoris":
+    case "Favoris":
       return ICON_FAVORITES;
     case "Profil":
       return ICON_PROFILE;
@@ -16,4 +16,4 @@ export const getTabBarIcon = (routeName: string) => {
     default:
       return "";
   }
-}
+};

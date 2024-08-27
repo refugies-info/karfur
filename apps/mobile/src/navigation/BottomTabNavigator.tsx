@@ -3,33 +3,29 @@
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 
-import * as React from "react";
-import {
-  BottomTabBarProps,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components/native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BottomTabParamList } from "../../types";
-import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
-import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
-import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
-import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
-import { ReadButton } from "../components/UI/ReadButton";
-import { TabBarItem } from "./components/TabBarItem";
-import { useDispatch, useSelector } from "react-redux";
+import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components/native";
+import { ReadButton } from "~/components/UI/ReadButton";
+import { useStopVoiceover } from "~/hooks/useStopVoiceover";
+import { getScreenFromUrl } from "~/libs/getScreenFromUrl";
+import { noVoiceover } from "~/libs/noVoiceover";
+import { setInitialUrlUsed } from "~/services/redux/User/user.actions";
 import {
   currentI18nCodeSelector,
   initialUrlSelector,
   isInitialUrlUsedSelector,
-} from "../services/redux/User/user.selectors";
-import { noVoiceover } from "../libs/noVoiceover";
-import { logger } from "../logger";
-import { getScreenFromUrl } from "../libs/getScreenFromUrl";
-import { setInitialUrlUsed } from "../services/redux/User/user.actions";
-import { useStopVoiceover } from "../hooks/useStopVoiceover";
+} from "~/services/redux/User/user.selectors";
+import { BottomTabParamList } from "~/types/navigation";
+import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
+import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
+import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
+import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
+import { TabBarItem } from "./components/TabBarItem";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -45,12 +41,7 @@ const Space = styled.View`
   margin: ${({ theme }) => theme.margin}px;
 `;
 
-function BottomTabBar({
-  state,
-  descriptors,
-  navigation,
-  insets,
-}: BottomTabBarProps) {
+function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {
   // Hide tab bar if needed
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   //@ts-ignore
@@ -79,24 +70,15 @@ function BottomTabBar({
     };
 
     return (
-      <TabBarItem
-        key={index}
-        isFocused={isFocused}
-        onPress={onPress}
-        options={options}
-        route={route}
-        label={label}
-      />
+      <TabBarItem key={index} isFocused={isFocused} onPress={onPress} options={options} route={route} label={label} />
     );
   });
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-  const explorerScreen =
-    state.routes.find((route) => route.name === "Explorer")?.state?.index || 0; // will return undefined if explorerScreen just mounted, 0 else
+  const explorerScreen = state.routes.find((route) => route.name === "Explorer")?.state?.index || 0; // will return undefined if explorerScreen just mounted, 0 else
 
   const hasNotificationScreen = (
-    state.routes.find((route) => route.name === "Explorer")?.state?.routes ||
-    ([] as any[])
+    state.routes.find((route) => route.name === "Explorer")?.state?.routes || ([] as any[])
   ).find((route) => route.name === "NotificationsScreen");
 
   const noReadButton =
