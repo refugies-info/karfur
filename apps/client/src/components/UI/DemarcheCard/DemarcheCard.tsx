@@ -80,9 +80,9 @@ const DemarcheCard = (props: Props) => {
             )}
           </>
         }
-        title={<span dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
+        title={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
         titleAs="h3"
-        desc={<span dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
+        desc={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
         end={
           props.demarche.lastModificationDate ? (
             <div className={styles.info}>

@@ -70,3 +70,12 @@
   background-color: var(--background-contrast-yellow-tournesol);
   color: var(--text-action-high-yellow-tournesol);
 }
+
+.three_lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+}
