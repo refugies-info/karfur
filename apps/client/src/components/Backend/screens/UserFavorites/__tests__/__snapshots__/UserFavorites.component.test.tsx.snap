@@ -440,7 +440,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     href="[object Object]"
                     title="tinfo1"
                   >
-                    <span>
+                    <span
+                      class="three_lines"
+                    >
                       tinfo1
                     </span>
                   </a>
@@ -448,7 +450,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <p
                   class="fr-card__desc"
                 >
-                  <span>
+                  <span
+                    class="three_lines"
+                  >
                     abstract1
                   </span>
                 </p>
@@ -486,9 +490,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     <i
                       class="fr-icon-building-line"
                     />
-                    <span>
-                      titreMarque1
-                    </span>
+                    <span />
                   </div>
                 </div>
                 <div
@@ -557,7 +559,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     href="[object Object]"
                     title="tinfo2"
                   >
-                    <span>
+                    <span
+                      class="three_lines"
+                    >
                       tinfo2
                     </span>
                   </a>
@@ -565,7 +569,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <p
                   class="fr-card__desc"
                 >
-                  <span>
+                  <span
+                    class="three_lines"
+                  >
                     abstract2
                   </span>
                 </p>
@@ -603,9 +609,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     <i
                       class="fr-icon-building-line"
                     />
-                    <span>
-                      titreMarque2
-                    </span>
+                    <span />
                   </div>
                 </div>
                 <div
@@ -674,7 +678,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     href="[object Object]"
                     title="tinfo3"
                   >
-                    <span>
+                    <span
+                      class="three_lines"
+                    >
                       tinfo3
                     </span>
                   </a>
@@ -682,7 +688,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <p
                   class="fr-card__desc"
                 >
-                  <span>
+                  <span
+                    class="three_lines"
+                  >
                     abstract3
                   </span>
                 </p>

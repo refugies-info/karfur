@@ -1421,7 +1421,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Déclarer un changement de situation sur Étrangers en France"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Déclarer un changement de situation sur Étrangers en France
                         </span>
                       </a>
@@ -1429,7 +1431,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Déclarer sur le site de l'ANEF votre nouvelle adresse, la perte ou le vol de votre carte de séjour, ...
                       </span>
                     </p>
@@ -1540,7 +1544,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire une demande de DCEM"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire une demande de DCEM
                         </span>
                       </a>
@@ -1548,7 +1554,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Demander un document de circulation pour un étranger mineur sur le site Étrangers en France (ANEF).
                       </span>
                     </p>
@@ -1659,7 +1667,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Demander le RSA"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Demander le RSA
                         </span>
                       </a>
@@ -1667,7 +1677,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Le Revenu de Solidarité Active, c'est quoi ? Qui peut avoir cette aide financière ? Comment faire ?
                       </span>
                     </p>
@@ -1778,7 +1790,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Avoir le Diplôme d’accès aux études universitaires (DAEU)"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Avoir le Diplôme d’accès aux études universitaires (DAEU)
                         </span>
                       </a>
@@ -1786,7 +1800,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Ce diplôme vous permet d'avoir le niveau du baccalauréat et de faire des études supérieures.
                       </span>
                     </p>
@@ -1892,7 +1908,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire une demande DAHO ou DALO"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire une demande DAHO ou DALO
                         </span>
                       </a>
@@ -1900,7 +1918,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Droit à un hébergement (DAHO) ou un logement (DALO) en urgence si les premières demandes n'ont pas réussi.
                       </span>
                     </p>
@@ -2011,7 +2031,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Payer les impôts sur le revenu"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Payer les impôts sur le revenu
                         </span>
                       </a>
@@ -2019,7 +2041,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Quand et comment déclarer les revenus, payer les impôts, et recevoir un avis d'imposition.
                       </span>
                     </p>
@@ -2125,7 +2149,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire et utiliser une e-photo"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire et utiliser une e-photo
                         </span>
                       </a>
@@ -2133,7 +2159,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Une e-photo est demandée pour les documents officiels. Explications pour la faire et l'utiliser sur internet.
                       </span>
                     </p>
@@ -2244,7 +2272,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Créer un compte personnel sur le site Étrangers en France"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Créer un compte personnel sur le site Étrangers en France
                         </span>
                       </a>
@@ -2252,7 +2282,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         En créant un compte personnel, vous pourrez faire vos démarches en ligne (titre de séjour, naturalisation,...)
                       </span>
                     </p>
@@ -2358,7 +2390,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Avoir un Passe Navigo pour prendre les transports en Île-de-France"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Avoir un Passe Navigo pour prendre les transports en Île-de-France
                         </span>
                       </a>
@@ -2366,7 +2400,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Une carte et un abonnement pour prendre le métro, le bus, le tramway, le RER, le train, en région parisienne.
                       </span>
                     </p>
@@ -2472,7 +2508,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Demander des aides au logement"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Demander des aides au logement
                         </span>
                       </a>
@@ -2480,7 +2518,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         La CAF peut vous donner des aides (APL, ALF, ALS) pour payer votre logement, selon votre situation.
                       </span>
                     </p>
@@ -2591,7 +2631,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Demander la fabrication du permis de conduire"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Demander la fabrication du permis de conduire
                         </span>
                       </a>
@@ -2599,7 +2641,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Après la réussite du permis, les étapes pour demander la fabrication directement sur le site de l'ANTS
                       </span>
                     </p>
@@ -2705,7 +2749,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Ouvrir un contrat de gaz ou d'électricité"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Ouvrir un contrat de gaz ou d'électricité
                         </span>
                       </a>
@@ -2713,7 +2759,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Un contrat est nécessaire pour utiliser l’électricité ou le gaz chez vous
                       </span>
                     </p>
@@ -2824,7 +2872,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Immatriculer une voiture"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Immatriculer une voiture
                         </span>
                       </a>
@@ -2832,7 +2882,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Découvrez comment avoir le certificat d’immatriculation, qui est comme la carte d’identité de votre voiture
                       </span>
                     </p>
@@ -2938,7 +2990,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Acheter une voiture"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Acheter une voiture
                         </span>
                       </a>
@@ -2946,7 +3000,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Comment et où acheter une voiture neuve ou d'occasion, l'immatriculer et l'assurer, les contrôles techniques..
                       </span>
                     </p>
@@ -3052,7 +3108,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Assurer une voiture"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Assurer une voiture
                         </span>
                       </a>
@@ -3060,7 +3118,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Découvrez comment faire pour assurer votre voiture en France.
                       </span>
                     </p>
@@ -3230,7 +3290,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Être accompagné pour entrer dans la vie professionnelle"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Être accompagné pour entrer dans la vie professionnelle
                         </span>
                       </a>
@@ -3238,7 +3300,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Un programme pour progresser en français, découvrir des métiers et rencontrer des entreprises
                       </span>
                     </p>
@@ -3282,7 +3346,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          BIENVENU.E
+                          FACE GRAND LYON
                         </span>
                       </div>
                     </div>
@@ -3350,7 +3414,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration
                         </span>
                       </a>
@@ -3358,7 +3424,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Apprendre le vocabulaire professionnel et les compétences techniques dans des secteurs qui recrutent
                       </span>
                     </p>
@@ -3402,7 +3470,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          TREMPLIN
+                          ABC FORMATION
                         </span>
                       </div>
                     </div>
@@ -3470,7 +3538,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Trouver une formation de français en Ile-de-France"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Trouver une formation de français en Ile-de-France
                         </span>
                       </a>
@@ -3478,7 +3548,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Réseau Alpha propose une cartographie des cours et formations de français en Ile-de-France.
                       </span>
                     </p>
@@ -3585,7 +3657,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire une mission de service civique pour jeunes réfugiés"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire une mission de service civique pour jeunes réfugiés
                         </span>
                       </a>
@@ -3593,7 +3667,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Missions rémunérées ouvertes spécialement aux jeunes réfugiés en Ile-de-France (de 18 à 25 ans).
                       </span>
                     </p>
@@ -3637,7 +3713,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          l'association AIME
+                          AIME ONG
                         </span>
                       </div>
                     </div>
@@ -3705,7 +3781,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Apprendre le français à l'université"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Apprendre le français à l'université
                         </span>
                       </a>
@@ -3713,7 +3791,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Avoir un diplôme reconnu de l'université de Toulouse pour continuer ses études en France ou travailler.
                       </span>
                     </p>
@@ -3757,7 +3837,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          DIU Passerelle - DILAMI
+                          Université fédérale de Toulouse
                         </span>
                       </div>
                     </div>
@@ -3825,7 +3905,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Avoir de l'aide pour faire ses démarches"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Avoir de l'aide pour faire ses démarches
                         </span>
                       </a>
@@ -3833,7 +3915,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Avoir un accompagnement pour faire ses démarches administratives et utiliser un ordinateur.
                       </span>
                     </p>
@@ -3872,7 +3956,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          Espace France Services FACE Vendée
+                          FACE Vendée
                         </span>
                       </div>
                     </div>
@@ -3940,7 +4024,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Apprendre le français pour le code de la route"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Apprendre le français pour le code de la route
                         </span>
                       </a>
@@ -3948,7 +4034,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Une formation intensive de 100h de français pour préparer l'examen du code de la route
                       </span>
                     </p>
@@ -3992,7 +4080,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          Habitat et Humanisme Urgence
+                          Habitat et Humanisme
                         </span>
                       </div>
                     </div>
@@ -4060,7 +4148,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Apprendre du vocabulaire avec des images"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Apprendre du vocabulaire avec des images
                         </span>
                       </a>
@@ -4068,7 +4158,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Des livres de vocabulaire avec des images pour apprendre et mémoriser facilement les mots en français
                       </span>
                     </p>
@@ -4175,7 +4267,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Prendre des cours de français à Pantin"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Prendre des cours de français à Pantin
                         </span>
                       </a>
@@ -4183,7 +4277,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         La formation d'Habitat-Cité vous permettra d'améliorer votre niveau de français et de rechercher un emploi.
                       </span>
                     </p>
@@ -4227,7 +4323,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          Formation linguistique à visée professionnelle
+                          Habitat-Cité
                         </span>
                       </div>
                     </div>
@@ -4295,7 +4391,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire un service civique à Valence"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire un service civique à Valence
                         </span>
                       </a>
@@ -4303,7 +4401,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Engagement de 8 mois pour des missions de solidarité accessible aux 18-25 ans.
                       </span>
                     </p>
@@ -4347,7 +4447,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          Unis-Cité Drôme Ardèche
+                          Unis-Cité
                         </span>
                       </div>
                     </div>
@@ -4415,7 +4515,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Etre accompagné pour construire un projet professionnel"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Etre accompagné pour construire un projet professionnel
                         </span>
                       </a>
@@ -4423,7 +4525,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Des cours d'anglais et de français, et des conseils de professionnels pour se préparer à trouver un travail
                       </span>
                     </p>
@@ -4535,7 +4639,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire un service civique dans le Val d'Oise"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire un service civique dans le Val d'Oise
                         </span>
                       </a>
@@ -4543,7 +4649,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Un service civique de 8 mois pour les 16-25 ans (30 ans pour les personnes en situation de handicap)
                       </span>
                     </p>
@@ -4582,7 +4690,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          Unis-Cité Val d'Oise
+                          Unis-Cité
                         </span>
                       </div>
                     </div>
@@ -4650,7 +4758,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Être accompagné pour travailler dans la restauration"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Être accompagné pour travailler dans la restauration
                         </span>
                       </a>
@@ -4658,7 +4768,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Stamtish est une association qui aide les personnes réfugiées à réaliser leur projet dans la restauration
                       </span>
                     </p>
@@ -4770,7 +4882,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Apprendre le français avec un professeur"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Apprendre le français avec un professeur
                         </span>
                       </a>
@@ -4778,7 +4892,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Cours de français tous niveaux de infra A1 à B2, avec un professeur à Blois
                       </span>
                     </p>
@@ -4817,7 +4933,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          le CRIA41
+                          CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher 
                         </span>
                       </div>
                     </div>
@@ -4885,7 +5001,9 @@ exports[`homepage renders homepage 1`] = `
                         href="[object Object]"
                         title="Faire une formation en développement web"
                       >
-                        <span>
+                        <span
+                          class="three_lines"
+                        >
                           Faire une formation en développement web
                         </span>
                       </a>
@@ -4893,7 +5011,9 @@ exports[`homepage renders homepage 1`] = `
                     <p
                       class="fr-card__desc"
                     >
-                      <span>
+                      <span
+                        class="three_lines"
+                      >
                         Une formation de 7 semaines (technique + français) pour découvrir le métier de développeur web
                       </span>
                     </p>
@@ -4937,7 +5057,7 @@ exports[`homepage renders homepage 1`] = `
                           class="fr-icon-building-line"
                         />
                         <span>
-                          la Prépa web Refugeeks²
+                          Simplon.co
                         </span>
                       </div>
                     </div>
