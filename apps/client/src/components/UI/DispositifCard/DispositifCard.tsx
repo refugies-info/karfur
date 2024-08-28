@@ -53,6 +53,7 @@ const DispositifCard = (props: Props) => {
     return `${splittedLocation[1]} ${splittedLocation[0]}`;
   };
 
+  const safeSponsorName = useSanitizedContent(props.dispositif?.mainSponsor?.nom);
   const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
   const safeAbstract = useSanitizedContent(props.dispositif.abstract);
@@ -104,7 +105,7 @@ const DispositifCard = (props: Props) => {
             </div>
             <div className={cls(styles.info, "mb-3")}>
               <i className="fr-icon-building-line" />
-              <span dangerouslySetInnerHTML={{ __html: safeTitreMarque }} />
+              <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
             </div>
           </>
         }
