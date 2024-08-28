@@ -1,15 +1,15 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Card from "@codegouvfr/react-dsfr/Card";
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
-import TempDispositifIllu from "~/assets/recherche/temp-illu-dispositif.png";
 import FavoriteButton from "~/components/UI/FavoriteButton";
 import { useSanitizedContent, useUtmz } from "~/hooks";
+import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
 import { cls } from "~/lib/classname";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
@@ -56,6 +56,7 @@ const DispositifCard = (props: Props) => {
   const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
   const safeAbstract = useSanitizedContent(props.dispositif.abstract);
+  const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
 
   return (
     <div className={cls(styles.wrapper)}>
@@ -76,7 +77,7 @@ const DispositifCard = (props: Props) => {
         }}
         size="medium"
         imageAlt=""
-        imageUrl={TempDispositifIllu.src}
+        imageUrl={cardImageUrl}
         badge={
           <Badge small className={isOnline ? styles.badge_online : styles.badge_department}>
             {isOnline && <i className="ri-at-line me-1"></i>}

@@ -1,15 +1,15 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Card from "@codegouvfr/react-dsfr/Card";
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
-import TempDemarcheIllu from "~/assets/recherche/temp-illu-demarche.png";
 import FavoriteButton from "~/components/UI/FavoriteButton";
 import { useSanitizedContent, useUtmz } from "~/hooks";
+import { useCardImageUrl } from "~/hooks/useCardImage";
 import { cls } from "~/lib/classname";
 import { getReadableText } from "~/lib/getReadableText";
 import { getRelativeTimeString } from "~/lib/getRelativeDate";
@@ -34,6 +34,7 @@ const DemarcheCard = (props: Props) => {
   const safeTitreMarque = useSanitizedContent(props.demarche?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.demarche.titreInformatif);
   const safeAbstract = useSanitizedContent(props.demarche.abstract);
+  const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
 
   return (
     <div className={styles.wrapper}>
@@ -52,7 +53,7 @@ const DemarcheCard = (props: Props) => {
         }}
         size="medium"
         imageAlt="texte alternatif de l’image"
-        imageUrl={TempDemarcheIllu.src}
+        imageUrl={cardImageUrl}
         badge={
           <Badge small className={styles.badge_demarche}>
             <span>Démarche</span>
