@@ -74,6 +74,7 @@ const DispositifCard = (props: Props) => {
           target: props.targetBlank ? "_blank" : undefined,
           rel: props.targetBlank ? "noopener noreferrer" : undefined,
           title: getReadableText(props.dispositif.titreInformatif || ""),
+          className: "fr-link",
         }}
         size="medium"
         imageAlt=""

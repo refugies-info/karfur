@@ -50,6 +50,7 @@ const DemarcheCard = (props: Props) => {
           target: props.targetBlank ? "_blank" : undefined,
           rel: props.targetBlank ? "noopener noreferrer" : undefined,
           title: getReadableText(props.demarche.titreInformatif || ""),
+          className: "fr-link",
         }}
         size="medium"
         imageAlt="texte alternatif de l’image"
