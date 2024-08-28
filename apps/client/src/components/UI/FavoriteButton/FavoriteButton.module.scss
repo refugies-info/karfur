@@ -5,27 +5,15 @@
 @import "~/scss/variables";
 
 .btn {
-  width: u(8);
-  height: u(8);
+  width: u(6);
+  height: u(6);
   border-radius: 50% !important;
   padding: 0 !important;
   background: $white !important;
-  border: none !important;
+  border: 1px solid var(--border-default-grey) !important;
 
   @include isMobile {
     display: none !important;
-  }
-
-  &,
-  & span,
-  & span > i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon_fill {
-    display: none;
   }
 
   &:hover,
@@ -34,19 +22,17 @@
     background: $white !important;
   }
 
-  &:hover,
-  &.active {
-    .icon_outline {
-      display: none;
-    }
+  & > i::before {
+    --icon-size: 16px !important;
+  }
 
-    .icon_fill {
-      display: flex;
-    }
+  i {
+    color: var(--text-disabled-grey);
   }
 
   &.active {
-    background: $bleuCharte !important;
-    display: flex !important;
+    i {
+      color: var(--artwork-major-blue-france-active);
+    }
   }
 }

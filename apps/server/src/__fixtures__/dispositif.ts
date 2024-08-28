@@ -37,7 +37,7 @@ dispositif.translations = {
       titreInformatif: "Apprendre le français",
       titreMarque: "Des mots d'ancrage",
       abstract: "Formations et ateliers linguistiques pour progresser en français à Marseille",
-      what: "<p dir=\"ltr\"><span>Des cours de français à Marseille pour améliorer votre niveau à l’écrit et à l’oral, pour :</span></p><ul><li value=\"1\"><span>être autonome dans la vie quotidienne,</span></li><li value=\"2\"><span>trouver un travail,</span></li><li value=\"3\"><span>accompagner au mieux la scolarité de vos enfants...</span></li></ul><div class=\"callout callout--info\" data-callout=\"info\" data-title=\"Bon à savoir\"><span>Nous pouvons vous aider à préparer l'examen de langue DELF B1.</span></div>",
+      what: '<p dir="ltr"><span>Des cours de français à Marseille pour améliorer votre niveau à l’écrit et à l’oral, pour :</span></p><ul><li value="1"><span>être autonome dans la vie quotidienne,</span></li><li value="2"><span>trouver un travail,</span></li><li value="3"><span>accompagner au mieux la scolarité de vos enfants...</span></li></ul><div class="callout callout--info" data-callout="info" data-title="Bon à savoir"><span>Nous pouvons vous aider à préparer l\'examen de langue DELF B1.</span></div>',
       how: {
         "d758ba3e-ed67-4aa9-9256-4d8b10a7971e": {
           title: "Venez-nous rencontrer !",

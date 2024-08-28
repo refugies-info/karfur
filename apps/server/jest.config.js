@@ -18,6 +18,6 @@ module.exports = {
   testEnvironment: "node",
   setupFilesAfterEnv: ["./src/jest/setupJest.js"],
   moduleNameMapper: pathsToModuleNameMapper({
-    "~/*": ["<rootDir>/src/*"]
+    "~/*": ["<rootDir>/src/*"],
   }),
 };

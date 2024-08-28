@@ -1,8 +1,8 @@
 import { GetLogResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
+import { LogText } from "~/components/Backend/screens/Admin/Logs/functions";
 import { cls } from "~/lib/classname";
 import styles from "./LogLine.module.scss";
-import { getLogText } from "./functions";
 
 interface Props {
   log: GetLogResponse;
@@ -48,7 +48,7 @@ export const LogLine = (props: Props) => {
   return (
     <div className={cls(styles.container, !!log.link && styles.clickable)} onClick={handleClick}>
       <div className="me-1">{moment(log.created_at).format("HH:mm")}</div>
-      {getLogText(log)}
+      {LogText(log)}
       {log.author && <div className="ms-auto">{log.author.username}</div>}
     </div>
   );

@@ -2,6 +2,11 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedSelector,
+} from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
 import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
@@ -9,13 +14,6 @@ import FButton from "~/components/UI/FButton";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import {
-  searchQuerySelector,
-  searchResultsSelector,
-  themesDisplayedSelector,
-} from "~/services/SearchResults/searchResults.selector";
-import DemarcheCardTitle from "../DemarcheCardTitle";
-import DispositifCardTitle from "../DispositifCardTitle";
 import NotDeployedBanner from "../NotDeployedBanner";
 import SeeMoreButton from "../SeeMoreButton";
 import styles from "./SearchResults.module.scss";
@@ -109,10 +107,6 @@ const SearchResults = (props: Props) => {
               !hideDemarches && styles.all_visible,
             )}
           >
-            <DemarcheCardTitle
-              count={filteredResult.demarches.length}
-              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
-            />
             {demarches.map((d) =>
               typeof d === "string" ? null : ( // d can be a string if it comes from generateLightResults
                 <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
@@ -140,10 +134,6 @@ const SearchResults = (props: Props) => {
               !hideDispositifs && styles.all_visible,
             )}
           >
-            <DispositifCardTitle
-              count={filteredResult.dispositifs.length}
-              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
-            />
             {dispositifs.map((d) =>
               typeof d === "string" ? null : (
                 <DispositifCard
@@ -176,11 +166,6 @@ const SearchResults = (props: Props) => {
               !hideSecondaryDispositifs && styles.all_visible,
             )}
           >
-            <DispositifCardTitle
-              count={filteredResult.dispositifsSecondaryTheme.length}
-              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
-              themes={themesSelected}
-            />
             {secondaryDispositifs.map((d) =>
               typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />,
             )}

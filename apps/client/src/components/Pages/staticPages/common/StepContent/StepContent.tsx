@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ReactElement, useMemo } from "react";
+import { useSanitizedContent } from "~/hooks";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
@@ -33,6 +34,8 @@ const StepContent = (props: Props) => {
     [props.buttonStep, props.buttonStepEnd],
   );
 
+  const safeTitle = useSanitizedContent(props.title);
+
   return (
     <div
       className={cls(
@@ -49,7 +52,7 @@ const StepContent = (props: Props) => {
         <h3
           className={styles.title}
           dangerouslySetInnerHTML={{
-            __html: props.title,
+            __html: safeTitle,
           }}
         ></h3>
         {props.texts.map((text, i) => (

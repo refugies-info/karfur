@@ -1,3 +1,4 @@
+import { sanitize } from "isomorphic-dompurify";
 import Image from "next/image";
 import { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
@@ -99,7 +100,7 @@ const Accordion = (props: Props) => {
                 <p
                   className={styles.text}
                   dangerouslySetInnerHTML={{
-                    __html: item.text,
+                    __html: sanitize(item.text),
                   }}
                 ></p>
 

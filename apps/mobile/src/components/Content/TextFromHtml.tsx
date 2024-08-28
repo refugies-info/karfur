@@ -1,4 +1,4 @@
-import { sanitize } from "dompurify";
+import { sanitize } from "isomorphic-dompurify";
 import HTML from "react-native-render-html";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";

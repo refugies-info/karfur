@@ -13,6 +13,7 @@
     "dev": "yarn build && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "gen:tsoa": "tsoa spec-and-routes",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache",
+    "lint:fix": "eslint --fix",
     "pr:prod": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
     "start": "node dist/src/apps/server.js",

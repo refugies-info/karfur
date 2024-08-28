@@ -1,4 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
+import { sanitize } from "isomorphic-dompurify";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn, useNumber } from "react-use";
@@ -197,7 +198,7 @@ const TranslationInput = (props: Props) => {
           </div>
           <div
             className={styles.value}
-            dangerouslySetInnerHTML={{ __html: display.text }}
+            dangerouslySetInnerHTML={{ __html: sanitize(display.text) }}
             dir={isRTL ? "rtl" : "ltr"}
           />
         </div>
@@ -223,9 +224,15 @@ const TranslationInput = (props: Props) => {
                   onClick={user.expertTrad ? () => clickSuggestionAsExpert(suggestions[index]?.text) : undefined}
                 >
                   {index === max ? (
-                    <div dangerouslySetInnerHTML={{ __html: googleTranslateValue }} dir={isRTL ? "rtl" : "ltr"} />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: sanitize(googleTranslateValue) }}
+                      dir={isRTL ? "rtl" : "ltr"}
+                    />
                   ) : (
-                    <div dangerouslySetInnerHTML={{ __html: suggestions[index]?.text }} dir={isRTL ? "rtl" : "ltr"} />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: sanitize(suggestions[index]?.text) }}
+                      dir={isRTL ? "rtl" : "ltr"}
+                    />
                   )}
                 </div>
               )}

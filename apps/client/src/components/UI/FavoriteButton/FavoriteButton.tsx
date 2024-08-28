@@ -3,7 +3,6 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import { Button } from "reactstrap";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useAuth, useFavorites } from "~/hooks";
 import { cls } from "~/lib/classname";
 import Toast from "../Toast";
@@ -47,8 +46,7 @@ export const FavoriteButton = (props: Props) => {
         onClick={onClick}
         title={isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}
       >
-        <EVAIcon name="star-outline" fill="dark" className={styles.icon_outline} size={20} />
-        <EVAIcon name="star" fill={isFavorite ? "white" : "dark"} className={styles.icon_fill} size={20} />
+        <i className={isFavorite ? "fr-icon-star-fill" : "fr-icon-star-line"} />
       </Button>
 
       {showFavoriteModal && (
