@@ -436,7 +436,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__title"
                 >
                   <a
-                    class=""
+                    class="fr-link"
                     href="[object Object]"
                     title="tinfo1"
                   >
@@ -509,7 +509,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <img
                   alt=""
                   class="fr-responsive-img"
-                  src="/img.jpg"
+                  src="/images/cards/dispositif/administratif.svg"
                 />
               </div>
               <ul
@@ -553,7 +553,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__title"
                 >
                   <a
-                    class=""
+                    class="fr-link"
                     href="[object Object]"
                     title="tinfo2"
                   >
@@ -626,7 +626,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <img
                   alt=""
                   class="fr-responsive-img"
-                  src="/img.jpg"
+                  src="/images/cards/dispositif/administratif.svg"
                 />
               </div>
               <ul
@@ -670,7 +670,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__title"
                 >
                   <a
-                    class=""
+                    class="fr-link"
                     href="[object Object]"
                     title="tinfo3"
                   >
@@ -739,7 +739,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <img
                   alt="texte alternatif de l’image"
                   class="fr-responsive-img"
-                  src="/img.jpg"
+                  src="/images/cards/dispositif/administratif.svg"
                 />
               </div>
               <ul

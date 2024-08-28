@@ -1417,7 +1417,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Déclarer un changement de situation sur Étrangers en France"
                       >
@@ -1490,7 +1490,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -1536,7 +1536,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire une demande de DCEM"
                       >
@@ -1609,7 +1609,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -1655,7 +1655,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Demander le RSA"
                       >
@@ -1728,7 +1728,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -1774,7 +1774,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Avoir le Diplôme d’accès aux études universitaires (DAEU)"
                       >
@@ -1842,7 +1842,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -1888,7 +1888,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire une demande DAHO ou DALO"
                       >
@@ -1961,7 +1961,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2007,7 +2007,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Payer les impôts sur le revenu"
                       >
@@ -2075,7 +2075,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2121,7 +2121,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire et utiliser une e-photo"
                       >
@@ -2194,7 +2194,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2240,7 +2240,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Créer un compte personnel sur le site Étrangers en France"
                       >
@@ -2308,7 +2308,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2354,7 +2354,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Avoir un Passe Navigo pour prendre les transports en Île-de-France"
                       >
@@ -2422,7 +2422,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2468,7 +2468,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Demander des aides au logement"
                       >
@@ -2541,7 +2541,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2587,7 +2587,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Demander la fabrication du permis de conduire"
                       >
@@ -2655,7 +2655,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2701,7 +2701,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Ouvrir un contrat de gaz ou d'électricité"
                       >
@@ -2774,7 +2774,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2820,7 +2820,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Immatriculer une voiture"
                       >
@@ -2888,7 +2888,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -2934,7 +2934,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Acheter une voiture"
                       >
@@ -3002,7 +3002,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3048,7 +3048,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Assurer une voiture"
                       >
@@ -3116,7 +3116,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt="texte alternatif de l’image"
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3226,7 +3226,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Être accompagné pour entrer dans la vie professionnelle"
                       >
@@ -3304,7 +3304,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3346,7 +3346,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration"
                       >
@@ -3424,7 +3424,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3466,7 +3466,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Trouver une formation de français en Ile-de-France"
                       >
@@ -3539,7 +3539,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3581,7 +3581,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire une mission de service civique pour jeunes réfugiés"
                       >
@@ -3659,7 +3659,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3701,7 +3701,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Apprendre le français à l'université"
                       >
@@ -3779,7 +3779,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3821,7 +3821,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Avoir de l'aide pour faire ses démarches"
                       >
@@ -3894,7 +3894,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -3936,7 +3936,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Apprendre le français pour le code de la route"
                       >
@@ -4014,7 +4014,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4056,7 +4056,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Apprendre du vocabulaire avec des images"
                       >
@@ -4129,7 +4129,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4171,7 +4171,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Prendre des cours de français à Pantin"
                       >
@@ -4249,7 +4249,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4291,7 +4291,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire un service civique à Valence"
                       >
@@ -4369,7 +4369,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4411,7 +4411,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Etre accompagné pour construire un projet professionnel"
                       >
@@ -4489,7 +4489,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4531,7 +4531,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire un service civique dans le Val d'Oise"
                       >
@@ -4604,7 +4604,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4646,7 +4646,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Être accompagné pour travailler dans la restauration"
                       >
@@ -4724,7 +4724,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4766,7 +4766,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Apprendre le français avec un professeur"
                       >
@@ -4839,7 +4839,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
@@ -4881,7 +4881,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        class=""
+                        class="fr-link"
                         href="[object Object]"
                         title="Faire une formation en développement web"
                       >
@@ -4959,7 +4959,7 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/img.jpg"
+                      src="/images/cards/dispositif/administratif.svg"
                     />
                   </div>
                   <ul
