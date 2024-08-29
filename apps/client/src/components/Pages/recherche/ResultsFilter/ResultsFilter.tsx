@@ -2,7 +2,7 @@ import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFi
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -12,11 +12,9 @@ import {
   searchResultsSelector,
   themesDisplayedSelector,
 } from "~/services/SearchResults/searchResults.selector";
-import styles from "./ResultsFilter.module.scss";
+import styles from "./ResultsFilter.module.css";
 
-interface Props {}
-
-const ResultsFilter = (props: Props) => {
+const ResultsFilter = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -75,56 +73,56 @@ const ResultsFilter = (props: Props) => {
 
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
-      <Container className={styles.container_inner}>
-        <div className={styles.types}>
+      <div className={styles.tabs}>
+        <div className={styles.tabs_inner}>
           {filterType.map((option, i) => (
-            <Button
+            <button
               key={i}
-              className={cls(styles.btn, query.type === option.key && styles.selected)}
+              className={cls(styles.tab_button, query.type === option.key && styles.tab_button_selected)}
               onClick={() => selectType(option.key)}
             >
               <>
                 {/* @ts-ignore */}
                 {t(option.value)} {getCount(option.key)}
               </>
-            </Button>
+            </button>
           ))}
         </div>
+      </div>
 
-        {!query.search && (
-          <Dropdown isOpen={open} toggle={toggleSort}>
-            <DropdownToggle className={styles.dropdown}>
-              <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-              {/* @ts-ignore */}
-              <>{t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}</>
-            </DropdownToggle>
-            <DropdownMenu className={styles.menu}>
-              {sortOptions
-                .filter((option) => {
-                  // do not show theme option if 1 theme only is selected
-                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                  // do not show location if no department
-                  if (query.departments.length === 0 && option.key === "location") return false;
-                  return true;
-                })
-                .map((option, i) => {
-                  const isSelected = query.sort === option.key;
-                  return (
-                    <DropdownItem
-                      key={i}
-                      onClick={() => selectSort(option.key)}
-                      className={cls(styles.item, isSelected && styles.selected)}
-                    >
-                      {/* @ts-ignore */}
-                      <>{t(option.value)}</>
-                      {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
-                    </DropdownItem>
-                  );
-                })}
-            </DropdownMenu>
-          </Dropdown>
-        )}
-      </Container>
+      {!query.search && (
+        <Dropdown isOpen={open} toggle={toggleSort}>
+          <DropdownToggle className={styles.dropdown}>
+            <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
+            {/* @ts-ignore */}
+            <>{t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}</>
+          </DropdownToggle>
+          <DropdownMenu className={styles.menu}>
+            {sortOptions
+              .filter((option) => {
+                // do not show theme option if 1 theme only is selected
+                if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                // do not show location if no department
+                if (query.departments.length === 0 && option.key === "location") return false;
+                return true;
+              })
+              .map((option, i) => {
+                const isSelected = query.sort === option.key;
+                return (
+                  <DropdownItem
+                    key={i}
+                    onClick={() => selectSort(option.key)}
+                    className={cls(styles.item, isSelected && styles.selected)}
+                  >
+                    {/* @ts-ignore */}
+                    <>{t(option.value)}</>
+                    {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
+                  </DropdownItem>
+                );
+              })}
+          </DropdownMenu>
+        </Dropdown>
+      )}
     </div>
   );
 };

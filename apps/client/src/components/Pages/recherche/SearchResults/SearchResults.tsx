@@ -8,6 +8,7 @@ import {
   themesDisplayedSelector,
 } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
+import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
 import FButton from "~/components/UI/FButton";
@@ -15,8 +16,7 @@ import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
-import SeeMoreButton from "../SeeMoreButton";
-import styles from "./SearchResults.module.scss";
+import styles from "./SearchResults.module.css";
 
 export const MAX_SHOWN_DEMARCHES = 14;
 export const MAX_SHOWN_DISPOSITIFS = 15;
@@ -88,7 +88,9 @@ const SearchResults = (props: Props) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
+      <ResultsFilter />
+
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
 
       {/* demarches */}
@@ -113,9 +115,6 @@ const SearchResults = (props: Props) => {
               ),
             )}
           </div>
-          {!isMobile && query.type !== "dispositif" && filteredResult.demarches.length >= MAX_SHOWN_DEMARCHES && (
-            <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
-          )}
         </div>
       )}
 
@@ -145,9 +144,6 @@ const SearchResults = (props: Props) => {
               ),
             )}
           </div>
-          {!isMobile && query.type !== "demarche" && filteredResult.dispositifs.length >= MAX_SHOWN_DISPOSITIFS && (
-            <SeeMoreButton onClick={() => setHideDispositifs((h) => !h)} visible={!hideDispositifs} />
-          )}
         </div>
       )}
 
@@ -170,17 +166,9 @@ const SearchResults = (props: Props) => {
               typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />,
             )}
           </div>
-          {!isMobile &&
-            query.type !== "demarche" &&
-            filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_DISPOSITIFS && (
-              <SeeMoreButton
-                onClick={() => setHideSecondaryDispositifs((h) => !h)}
-                visible={!hideSecondaryDispositifs}
-              />
-            )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

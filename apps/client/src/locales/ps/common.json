@@ -179,9 +179,10 @@
     "sortTheme": "د موضوع له مخي",
     "sortDate": "تر ټولو ورستي",
     "sortView": "ترټولو ډیر لیدل شوي",
-    "typeAll": "ټول",
-    "typeDispositif": "د برنامو فایلونه",
-    "typeDemarche": "د طرزالعملونو فایلونه"
+    "typeAll": "ټولې فیشونه",
+    "typeDispositif": "وسایل",
+    "typeDemarche": "مراحل",
+    "typeRessource": "سرچینې"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",

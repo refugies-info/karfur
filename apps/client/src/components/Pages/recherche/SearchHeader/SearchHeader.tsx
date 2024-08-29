@@ -4,7 +4,6 @@ import { Container } from "reactstrap";
 import { useScrollDirection } from "~/hooks/useScrollDirection";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
-import ResultsFilter from "../ResultsFilter";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
@@ -40,8 +39,6 @@ const SearchHeader = (props: Props) => {
           <Filters isSmall={scrolled} />
         </div>
       </div>
-
-      <ResultsFilter />
     </>
   );
 };

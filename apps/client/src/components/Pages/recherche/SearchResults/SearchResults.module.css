@@ -1,0 +1,12 @@
+.container {
+  /* Layout */
+  display: flex;
+  padding: 56px 120px;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  align-self: stretch;
+
+  /* Style */
+  background: var(--text-inverted-grey);
+}

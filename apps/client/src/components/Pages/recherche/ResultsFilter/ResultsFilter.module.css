@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.tabs_inner {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  place-content: center;
+  flex-wrap: wrap;
+
+  /* Style */
+  border-radius: 4px;
+  border: 1px solid var(--border-default-grey);
+}
+
+.tab_button {
+  /* Layout */
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  /* Style */
+  border-radius: 4px;
+}
+
+.tab_button_selected {
+  border: 1px solid var(--border-active-blue-france);
+}
