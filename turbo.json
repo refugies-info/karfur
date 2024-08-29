@@ -7,24 +7,7 @@
         "node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"
       ]
     },
-    "@refugies-info/client#build": {
-      "dependsOn": [
-        "//#update-icons",
-        "^build"
-      ],
-      "env": [
-        "NEXT_PUBLIC_*"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**"
-      ]
-    },
-    "@refugies-info/server#build": {
+    "build": {
       "dependsOn": [
         "^build"
       ],
@@ -53,6 +36,7 @@
         "MICROSOFT_CLIENT_SECRET",
         "MINIMUM_APP_VERSION",
         "MONGODB_URI",
+        "NEXT_PUBLIC_*",
         "NODE_ENV",
         "PORT",
         "POSTMAN_SECRET",
@@ -68,7 +52,8 @@
         ".env"
       ],
       "outputs": [
-        ".dist/**"
+        ".next/**",
+        "!.next/cache/**"
       ]
     },
     "check:types": {
