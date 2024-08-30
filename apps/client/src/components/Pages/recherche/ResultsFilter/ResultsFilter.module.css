@@ -104,7 +104,5 @@
   align-self: stretch;
 
   &:hover {
-    border: 1px solid var(--border-default-grey);
-    background: var(--background-alt-grey);
-  }
+    background: var(--background-default-grey-hover);  }
 }
