@@ -14,6 +14,8 @@ export interface ThemeRequest {
   appBanner?: Picture;
   appImage?: Picture;
   shareImage?: Picture;
+  dispositifImage?: Picture;
+  demarcheImage?: Picture;
   notificationEmoji: string;
   adminComments: string;
 }
@@ -33,6 +35,8 @@ export interface GetThemeResponse {
   appBanner?: Picture;
   appImage?: Picture;
   shareImage?: Picture;
+  dispositifImage?: Picture;
+  demarcheImage?: Picture;
   notificationEmoji: string;
   active: boolean;
   adminComments?: string;
@@ -53,6 +57,8 @@ export interface PatchThemeResponse {
   appBanner: Picture;
   appImage: Picture;
   shareImage: Picture;
+  dispositifImage?: Picture;
+  demarcheImage?: Picture;
   notificationEmoji: string;
   active: boolean;
   adminComments?: string;
@@ -73,6 +79,8 @@ export interface PostThemeResponse {
   appBanner?: Picture;
   appImage?: Picture;
   shareImage?: Picture;
+  dispositifImage?: Picture;
+  demarcheImage?: Picture;
   notificationEmoji: string;
   active: boolean;
   adminComments?: string;
