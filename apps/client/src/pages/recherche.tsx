@@ -6,7 +6,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "reactstrap";
 import { END } from "redux-saga";
 import { getPath, isRoute } from "routes";
 import SearchHeader from "~/components/Pages/recherche/SearchHeader";
@@ -115,10 +114,7 @@ const Recherche = () => {
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
       <SearchHeader nbResults={dispositifs.length} />
-
-      <Container className={styles.container_inner}>
-        <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
-      </Container>
+      <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
     </div>
   );
 };

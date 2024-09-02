@@ -17,7 +17,6 @@
   /* Layout */
   display: flex;
   align-items: center;
-  place-content: center;
   flex-wrap: wrap;
 
   /* Style */

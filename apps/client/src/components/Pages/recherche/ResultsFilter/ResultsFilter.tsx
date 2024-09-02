@@ -33,7 +33,17 @@ const ResultsFilter = () => {
       case "demarche":
         return `(${nbDemarches})`;
       case "dispositif":
-        return `(${nbDispositifs})`;
+        const deptCount = query.departments.length;
+        switch (deptCount) {
+          case 0:
+            return `(${nbDispositifs})`;
+
+          case 1:
+            return `${query.departments[0]} (${nbDispositifs})`;
+
+          default:
+            return `${query.departments[0]} + ${deptCount - 1} (${nbDispositifs})`;
+        }
       default:
         return "";
     }
