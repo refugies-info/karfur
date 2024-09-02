@@ -4,7 +4,7 @@ import { createReducer } from "typesafe-actions";
 import { SearchResultsActions } from "./searchResults.actions";
 
 export type Results = {
-  dispositifs: GetDispositifsResponse[];
+  matches: GetDispositifsResponse[];
   suggestions: GetDispositifsResponse[];
 };
 
@@ -29,7 +29,7 @@ export interface SearchResultsState {
 
 const initialSearchResultsState: SearchResultsState = {
   results: {
-    dispositifs: [],
+    matches: [],
     suggestions: [],
   },
   query: {

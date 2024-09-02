@@ -35,12 +35,10 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const { isMobile } = useWindowSize();
-  const dispositifs = !isMobile
-    ? filteredResult.dispositifs.slice(0, MAX_SHOWN_DISPOSITIFS)
-    : filteredResult.dispositifs;
+  const dispositifs = !isMobile ? filteredResult.matches.slice(0, MAX_SHOWN_DISPOSITIFS) : filteredResult.matches;
 
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
-  const noResults = filteredResult.dispositifs.length === 0;
+  const noResults = filteredResult.matches.length === 0;
 
   // Banner
   const hideBanner = () => {

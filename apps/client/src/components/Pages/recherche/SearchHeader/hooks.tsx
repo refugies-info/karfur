@@ -7,7 +7,7 @@ import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 
 const useFilteredDocs = () => {
-  const { dispositifs } = useSelector(searchResultsSelector);
+  const { matches: dispositifs } = useSelector(searchResultsSelector);
 
   return useMemo(() => {
     return dispositifs;

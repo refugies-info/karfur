@@ -24,19 +24,19 @@ const ResultsFilter = () => {
   const [open, setOpen] = useState(false);
 
   const nbDemarches = useMemo(
-    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "demarche").length,
-    [filteredResult.dispositifs],
+    () => filteredResult.matches.filter(({ typeContenu }) => typeContenu === "demarche").length,
+    [filteredResult.matches],
   );
   const nbDispositifs = useMemo(
-    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "dispositif").length,
-    [filteredResult.dispositifs],
+    () => filteredResult.matches.filter(({ typeContenu }) => typeContenu === "dispositif").length,
+    [filteredResult.matches],
   );
   const onlineResourceCount = useMemo(
     () =>
-      filteredResult.dispositifs
+      filteredResult.matches
         .filter((d) => d.metadatas?.location?.includes("online"))
         .filter((d) => !d.metadatas?.location?.includes("france")).length,
-    [filteredResult.dispositifs],
+    [filteredResult.matches],
   );
 
   const getCount = (type: TypeOptions) => {

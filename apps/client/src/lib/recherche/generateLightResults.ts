@@ -21,7 +21,7 @@ const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number
  */
 export const generateLightResults = (results: Results) => {
   const lightResults: Results = {
-    dispositifs: getSearchDispositifs(results.dispositifs, MAX_SHOWN_DISPOSITIFS),
+    matches: getSearchDispositifs(results.matches, MAX_SHOWN_DISPOSITIFS),
     suggestions: getSearchDispositifs(results.suggestions, MAX_SHOWN_DISPOSITIFS),
   };
 
