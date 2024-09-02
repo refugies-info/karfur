@@ -6699,8 +6699,8 @@ exports[`ContentScreen should render correctly 1`] = `
                 <ViewManagerAdapter_ExpoLinearGradient
                   colors={
                     [
-                      4288550922,
-                      4292893246,
+                      4285990266,
+                      4288556461,
                     ]
                   }
                   endPoint={
@@ -6800,7 +6800,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       <Text
                         style={{}}
                       >
-                        Culture
+                        Famille
                       </Text>
                       <View />
                     </Text>
@@ -15622,8 +15622,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 <ViewManagerAdapter_ExpoLinearGradient
                   colors={
                     [
-                      4288550922,
-                      4292893246,
+                      4285990266,
+                      4288556461,
                     ]
                   }
                   endPoint={
@@ -15723,7 +15723,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       <Text
                         style={{}}
                       >
-                        Culture
+                        Famille
                       </Text>
                       <View />
                     </Text>

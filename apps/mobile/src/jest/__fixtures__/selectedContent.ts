@@ -234,5 +234,5 @@ export const selectedContent: GetDispositifResponse = {
     },
   ],
   status: DispositifStatus.ACTIVE,
-  theme: "63286a015d31b2c0cad99615",
+  theme: "63450dd43e23cd7181ba0b26",
 };
