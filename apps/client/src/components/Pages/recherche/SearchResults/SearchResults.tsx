@@ -2,24 +2,18 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  searchQuerySelector,
-  searchResultsSelector,
-  themesDisplayedSelector,
-} from "services/SearchResults/searchResults.selector";
+import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
-import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
 import FButton from "~/components/UI/FButton";
-import useWindowSize from "~/hooks/useWindowSize";
+import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.css";
 
-export const MAX_SHOWN_DEMARCHES = 14;
-export const MAX_SHOWN_DISPOSITIFS = 15;
+export const MAX_SHOWN_DISPOSITIFS = 24;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {
@@ -32,7 +26,6 @@ const SearchResults = (props: Props) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const filteredResult = useSelector(searchResultsSelector);
-  const themesSelected = useSelector(themesDisplayedSelector);
 
   const [hideDemarches, setHideDemarches] = useState(true);
   const [hideDispositifs, setHideDispositifs] = useState(true);
@@ -46,20 +39,13 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const { isMobile } = useWindowSize();
-
-  const demarches =
-    hideDemarches && !isMobile ? filteredResult.demarches.slice(0, MAX_SHOWN_DEMARCHES) : filteredResult.demarches;
   const dispositifs =
     hideDispositifs && !isMobile
       ? filteredResult.dispositifs.slice(0, MAX_SHOWN_DISPOSITIFS)
       : filteredResult.dispositifs;
-  const secondaryDispositifs =
-    hideSecondaryDispositifs && !isMobile
-      ? filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_DISPOSITIFS)
-      : filteredResult.dispositifsSecondaryTheme;
 
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
-  const noResults = demarches.length === 0 && dispositifs.length === 0 && secondaryDispositifs.length === 0;
+  const noResults = filteredResult.dispositifs.length === 0;
 
   // Banner
   const hideBanner = () => {
@@ -93,38 +79,8 @@ const SearchResults = (props: Props) => {
 
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
 
-      {/* demarches */}
-      {demarches.length > 0 && (
-        <div className={styles.section}>
-          <div className={cls(styles.title, query.type === "dispositif" && styles.hidden)}>
-            <h2>{t("Recherche.demarcheTitle", "Les fiches démarches")}</h2>
-            <span>{filteredResult.demarches.length}</span>
-          </div>
-          <div
-            className={cls(
-              styles.results,
-              styles.demarches,
-              query.type !== "demarche" && styles.horizontal_scroll,
-              query.type === "dispositif" && styles.hidden,
-              !hideDemarches && styles.all_visible,
-            )}
-          >
-            {demarches.map((d) =>
-              typeof d === "string" ? null : ( // d can be a string if it comes from generateLightResults
-                <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
-              ),
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* dispositifs */}
       {dispositifs.length > 0 && (
         <div className={styles.section}>
-          <div className={cls(styles.title, query.type === "demarche" && styles.hidden)}>
-            <h2>{t("Recherche.dispositifTitle", "Les fiches dispositifs")}</h2>
-            <span>{filteredResult.dispositifs.length}</span>
-          </div>
           <div
             className={cls(
               styles.results,
@@ -142,28 +98,6 @@ const SearchResults = (props: Props) => {
                   targetBlank
                 />
               ),
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* other dispositifs */}
-      {secondaryDispositifs.length > 0 && (
-        <div className={styles.section}>
-          <div className={cls(styles.title, query.type === "demarche" && styles.hidden)}>
-            <h2>{t("Recherche.otherDispositifTitle", "Autres fiches avec ce thème")}</h2>
-            <span>{filteredResult.dispositifsSecondaryTheme.length}</span>
-          </div>
-          <div
-            className={cls(
-              styles.results,
-              styles.dispositifs,
-              query.type === "demarche" && styles.hidden,
-              !hideSecondaryDispositifs && styles.all_visible,
-            )}
-          >
-            {secondaryDispositifs.map((d) =>
-              typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />,
             )}
           </div>
         </div>

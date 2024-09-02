@@ -23,18 +23,21 @@ const ResultsFilter = () => {
   const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
 
-  const nbDemarches = filteredResult.demarches.length;
-  const nbDispositifs = filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length;
-  const onlineResourceCount = useMemo(() => {
-    return (
-      filteredResult.demarches
-        .filter((d) => d.metadatas?.location?.includes("online"))
-        .filter((d) => !d.metadatas?.location?.includes("france")).length +
+  const nbDemarches = useMemo(
+    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "dispositif").length,
+    [filteredResult.dispositifs],
+  );
+  const nbDispositifs = useMemo(
+    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "demarche").length,
+    [filteredResult.dispositifs],
+  );
+  const onlineResourceCount = useMemo(
+    () =>
       filteredResult.dispositifs
         .filter((d) => d.metadatas?.location?.includes("online"))
-        .filter((d) => !d.metadatas?.location?.includes("france")).length
-    );
-  }, [filteredResult.demarches, filteredResult.dispositifs]);
+        .filter((d) => !d.metadatas?.location?.includes("france")).length,
+    [filteredResult.dispositifs],
+  );
 
   const getCount = (type: TypeOptions) => {
     switch (type) {

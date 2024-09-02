@@ -22,8 +22,7 @@ describe("recherche", () => {
         searchResults: {
           results: {
             dispositifs: [],
-            demarches: [],
-            dispositifsSecondaryTheme: [],
+            suggestions: [],
           },
           query: {
             search: "",

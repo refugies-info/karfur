@@ -5,8 +5,7 @@ import { SearchResultsActions } from "./searchResults.actions";
 
 export type Results = {
   dispositifs: GetDispositifsResponse[];
-  demarches: GetDispositifsResponse[];
-  dispositifsSecondaryTheme: GetDispositifsResponse[];
+  suggestions: GetDispositifsResponse[];
 };
 
 export type SearchQuery = {
@@ -31,8 +30,7 @@ export interface SearchResultsState {
 const initialSearchResultsState: SearchResultsState = {
   results: {
     dispositifs: [],
-    demarches: [],
-    dispositifsSecondaryTheme: [],
+    suggestions: [],
   },
   query: {
     search: "",

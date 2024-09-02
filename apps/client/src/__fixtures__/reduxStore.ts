@@ -55,8 +55,7 @@ const initialUserFavoritesState: UserFavoritesState = {
 const initialMockSearchReults: SearchResultsState = {
   results: {
     dispositifs: [],
-    demarches: [],
-    dispositifsSecondaryTheme: [],
+    suggestions: [],
   },
   query: {
     search: "",
