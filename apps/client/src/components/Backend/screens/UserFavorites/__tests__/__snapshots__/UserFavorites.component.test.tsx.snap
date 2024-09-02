@@ -511,7 +511,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <img
                   alt=""
                   class="fr-responsive-img"
-                  src="/images/cards/dispositif/administratif.svg"
+                  src="/images/cards/dispositif/français.svg"
                 />
               </div>
               <ul
@@ -747,7 +747,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <img
                   alt="texte alternatif de l’image"
                   class="fr-responsive-img"
-                  src="/images/cards/dispositif/administratif.svg"
+                  src="/images/cards/dispositif/logement.svg"
                 />
               </div>
               <ul
