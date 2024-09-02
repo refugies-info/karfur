@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  position: relative;
   height: 40px;
   justify-content: space-between;
   align-items: flex-start;
@@ -11,6 +12,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  z-index: 5;
 }
 
 .tabs_inner {
@@ -56,7 +58,7 @@
   color: var(--text-active-blue-france);
 }
 
-.sort_container {
+.sort_button_container {
   /* Layout */
   display: flex;
   padding: 8px 12px 8px 16px;
@@ -66,6 +68,22 @@
   /* Style */
   border: 1px solid var(--border-default-grey);
   background: var(--text-inverted-grey);
+}
+
+.sort_container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.sort_spacer {
+  display: flex;
+  width: 282px;
+  justify-content: end;
 }
 
 .sort_label {
@@ -86,6 +104,7 @@
   padding: 8px;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 10;
 
   /* Style */
   border-top: 1px solid var(--background-action-low-blue-france);

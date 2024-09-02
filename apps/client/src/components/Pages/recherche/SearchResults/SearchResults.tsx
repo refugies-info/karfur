@@ -1,6 +1,7 @@
+import _ from "lodash";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
@@ -49,6 +50,16 @@ const SearchResults = (props: Props) => {
     props.departmentsNotDeployed.length > 0 &&
     props.departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
 
+  const [cardsPerRow, setCardsPerRow] = useState(6);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const boundingRect = ref?.current?.getBoundingClientRect();
+  useLayoutEffect(() => {
+    if (boundingRect) {
+      const count = _.floor((boundingRect.width + 24) / (282 + 24));
+      setCardsPerRow(count);
+    }
+  }, [boundingRect]);
+
   if (noResults) {
     return (
       <div className={styles.no_results}>
@@ -68,11 +79,11 @@ const SearchResults = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <ResultsFilter />
+      <ResultsFilter cardsPerRow={cardsPerRow} />
 
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
 
-      <div className={styles.results}>
+      <div className={styles.results} ref={ref}>
         {dispositifs.length > 0 && (
           <div className={styles.titi}>
             <div className={cls(styles.results, styles.dispositifs, query.type === "demarche" && styles.hidden)}>

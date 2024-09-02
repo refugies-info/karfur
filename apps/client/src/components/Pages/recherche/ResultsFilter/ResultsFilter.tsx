@@ -1,8 +1,9 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import _ from "lodash";
 import { useTranslation } from "next-i18next";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
@@ -15,7 +16,11 @@ import {
 } from "~/services/SearchResults/searchResults.selector";
 import styles from "./ResultsFilter.module.css";
 
-const ResultsFilter = () => {
+interface Props {
+  cardsPerRow: number;
+}
+
+const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -122,42 +127,50 @@ const ResultsFilter = () => {
           ))}
         </div>
       </div>
-
-      <DropdownMenu.Root open={open} modal={true} onOpenChange={toggleSort}>
-        <DropdownMenu.Trigger className={styles.sort_container} asChild>
-          <button>
-            <span className={styles.sort_label}>
-              {/* @ts-ignore */}
-              {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
-            </span>
-            <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
-          </button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content className={styles.sort_menu_content}>
-            {sortOptions
-              .filter((option) => {
-                // do not show theme option if 1 theme only is selected
-                if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                // do not show location if no department
-                if (query.departments.length === 0 && option.key === "location") return false;
-                return true;
-              })
-              .map((option, i) => {
-                const isSelected = query.sort === option.key;
-                return (
-                  <DropdownMenu.Item key={i} asChild>
-                    <button onClick={() => selectSort(option.key)} className={cls(styles.sort_menu_item)}>
-                      {/* @ts-ignore */}
-                      <>{t(option.value)}</>
-                      {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
-                    </button>
-                  </DropdownMenu.Item>
-                );
-              })}
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
-      </DropdownMenu.Root>
+      <div className={styles.sort_container}>
+        {_.range(0, cardsPerRow - 1).map((i) => (
+          <div key={i} className={styles.sort_spacer}>
+            &nbsp;
+          </div>
+        ))}
+        <div className={styles.sort_spacer}>
+          <DropdownMenu.Root open={open} modal={true} onOpenChange={toggleSort}>
+            <DropdownMenu.Trigger className={styles.sort_button_container} asChild>
+              <button>
+                <span className={styles.sort_label}>
+                  {/* @ts-ignore */}
+                  {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
+                </span>
+                <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content className={styles.sort_menu_content}>
+                {sortOptions
+                  .filter((option) => {
+                    // do not show theme option if 1 theme only is selected
+                    if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                    // do not show location if no department
+                    if (query.departments.length === 0 && option.key === "location") return false;
+                    return true;
+                  })
+                  .map((option, i) => {
+                    const isSelected = query.sort === option.key;
+                    return (
+                      <DropdownMenu.Item key={i} asChild>
+                        <button onClick={() => selectSort(option.key)} className={cls(styles.sort_menu_item)}>
+                          {/* @ts-ignore */}
+                          <>{t(option.value)}</>
+                          {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
+                        </button>
+                      </DropdownMenu.Item>
+                    );
+                  })}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        </div>
+      </div>
     </div>
   );
 };
