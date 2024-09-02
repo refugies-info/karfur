@@ -2,7 +2,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
@@ -25,8 +25,18 @@ const ResultsFilter = () => {
 
   const nbDemarches = filteredResult.demarches.length;
   const nbDispositifs = filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length;
+  const onlineResourceCount = useMemo(() => {
+    return (
+      filteredResult.demarches
+        .filter((d) => d.metadatas?.location?.includes("online"))
+        .filter((d) => !d.metadatas?.location?.includes("france")).length +
+      filteredResult.dispositifs
+        .filter((d) => d.metadatas?.location?.includes("online"))
+        .filter((d) => !d.metadatas?.location?.includes("france")).length
+    );
+  }, [filteredResult.demarches, filteredResult.dispositifs]);
 
-  const getCount = (type: string) => {
+  const getCount = (type: TypeOptions) => {
     switch (type) {
       case "all":
         return `(${nbDemarches + nbDispositifs})`;
@@ -44,6 +54,8 @@ const ResultsFilter = () => {
           default:
             return `${query.departments[0]} + ${deptCount - 1} (${nbDispositifs})`;
         }
+      case "ressource":
+        return `(${onlineResourceCount})`;
       default:
         return "";
     }
