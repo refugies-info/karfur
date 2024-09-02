@@ -27,10 +27,6 @@ const SearchResults = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const filteredResult = useSelector(searchResultsSelector);
 
-  const [hideDemarches, setHideDemarches] = useState(true);
-  const [hideDispositifs, setHideDispositifs] = useState(true);
-  const [hideSecondaryDispositifs, setHideSecondaryDispositifs] = useState(true);
-
   const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
 
   useEffect(() => {
@@ -39,10 +35,9 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const { isMobile } = useWindowSize();
-  const dispositifs =
-    hideDispositifs && !isMobile
-      ? filteredResult.dispositifs.slice(0, MAX_SHOWN_DISPOSITIFS)
-      : filteredResult.dispositifs;
+  const dispositifs = !isMobile
+    ? filteredResult.dispositifs.slice(0, MAX_SHOWN_DISPOSITIFS)
+    : filteredResult.dispositifs;
 
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const noResults = filteredResult.dispositifs.length === 0;
@@ -79,29 +74,24 @@ const SearchResults = (props: Props) => {
 
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
 
-      {dispositifs.length > 0 && (
-        <div className={styles.section}>
-          <div
-            className={cls(
-              styles.results,
-              styles.dispositifs,
-              query.type === "demarche" && styles.hidden,
-              !hideDispositifs && styles.all_visible,
-            )}
-          >
-            {dispositifs.map((d) =>
-              typeof d === "string" ? null : (
-                <DispositifCard
-                  key={d._id.toString()}
-                  dispositif={d}
-                  selectedDepartment={selectedDepartment}
-                  targetBlank
-                />
-              ),
-            )}
+      <div className={styles.results}>
+        {dispositifs.length > 0 && (
+          <div className={styles.titi}>
+            <div className={cls(styles.results, styles.dispositifs, query.type === "demarche" && styles.hidden)}>
+              {dispositifs.map((d) =>
+                typeof d === "string" ? null : (
+                  <DispositifCard
+                    key={d._id.toString()}
+                    dispositif={d}
+                    selectedDepartment={selectedDepartment}
+                    targetBlank
+                  />
+                ),
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

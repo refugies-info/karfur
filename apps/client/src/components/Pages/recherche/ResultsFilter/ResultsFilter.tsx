@@ -24,11 +24,11 @@ const ResultsFilter = () => {
   const [open, setOpen] = useState(false);
 
   const nbDemarches = useMemo(
-    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "dispositif").length,
+    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "demarche").length,
     [filteredResult.dispositifs],
   );
   const nbDispositifs = useMemo(
-    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "demarche").length,
+    () => filteredResult.dispositifs.filter(({ typeContenu }) => typeContenu === "dispositif").length,
     [filteredResult.dispositifs],
   );
   const onlineResourceCount = useMemo(

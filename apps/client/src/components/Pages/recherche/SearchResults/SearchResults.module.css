@@ -10,3 +10,12 @@
   /* Style */
   background: var(--text-inverted-grey);
 }
+
+.results {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 24px;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
