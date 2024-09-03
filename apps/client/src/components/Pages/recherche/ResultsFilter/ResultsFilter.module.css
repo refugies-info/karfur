@@ -7,19 +7,27 @@
   align-self: stretch;
 }
 
-.tabs {
+.tabs_container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
   z-index: 5;
 }
 
-.tabs_inner {
+.tabs {
   /* Layout */
   display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
   align-items: center;
   flex-wrap: wrap;
+  width: max-content;
 
   /* Style */
   border-radius: 4px;
@@ -61,6 +69,8 @@
 .sort_button_container {
   /* Layout */
   display: flex;
+  position: absolute;
+  right: 0;
   padding: 8px 12px 8px 16px;
   align-items: center;
   gap: 8px;
@@ -73,8 +83,9 @@
 .sort_container {
   display: flex;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
   align-items: center;
   gap: 24px;
   align-self: stretch;

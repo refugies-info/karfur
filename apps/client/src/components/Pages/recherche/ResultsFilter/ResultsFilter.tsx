@@ -104,8 +104,13 @@ const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
 
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
-      <div className={styles.tabs}>
-        <div className={styles.tabs_inner}>
+      <div className={styles.tabs_container}>
+        {_.range(0, Math.max(cardsPerRow, 4)).map((i) => (
+          <div key={i} className={styles.sort_spacer}>
+            &nbsp;
+          </div>
+        ))}
+        <div className={styles.tabs}>
           {filterType.map((option, i) => (
             <button
               key={i}
@@ -126,50 +131,41 @@ const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
             </button>
           ))}
         </div>
-      </div>
-      <div className={styles.sort_container}>
-        {_.range(0, cardsPerRow - 1).map((i) => (
-          <div key={i} className={styles.sort_spacer}>
-            &nbsp;
-          </div>
-        ))}
-        <div className={styles.sort_spacer}>
-          <DropdownMenu.Root open={open} modal={true} onOpenChange={toggleSort}>
-            <DropdownMenu.Trigger className={styles.sort_button_container} asChild>
-              <button>
-                <span className={styles.sort_label}>
-                  {/* @ts-ignore */}
-                  {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
-                </span>
-                <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
-              </button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Portal>
-              <DropdownMenu.Content className={styles.sort_menu_content}>
-                {sortOptions
-                  .filter((option) => {
-                    // do not show theme option if 1 theme only is selected
-                    if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                    // do not show location if no department
-                    if (query.departments.length === 0 && option.key === "location") return false;
-                    return true;
-                  })
-                  .map((option, i) => {
-                    const isSelected = query.sort === option.key;
-                    return (
-                      <DropdownMenu.Item key={i} asChild>
-                        <button onClick={() => selectSort(option.key)} className={cls(styles.sort_menu_item)}>
-                          {/* @ts-ignore */}
-                          <>{t(option.value)}</>
-                          {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
-                        </button>
-                      </DropdownMenu.Item>
-                    );
-                  })}
-              </DropdownMenu.Content>
-            </DropdownMenu.Portal>
-          </DropdownMenu.Root>
-        </div>
+        <DropdownMenu.Root open={open} modal={true} onOpenChange={toggleSort}>
+          <DropdownMenu.Trigger className={styles.sort_button_container} asChild>
+            <button>
+              <span className={styles.sort_label}>
+                {/* @ts-ignore */}
+                {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
+              </span>
+              <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className={styles.sort_menu_content}>
+              {sortOptions
+                .filter((option) => {
+                  // do not show theme option if 1 theme only is selected
+                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                  // do not show location if no department
+                  if (query.departments.length === 0 && option.key === "location") return false;
+                  return true;
+                })
+                .map((option, i) => {
+                  const isSelected = query.sort === option.key;
+                  return (
+                    <DropdownMenu.Item key={i} asChild>
+                      <button onClick={() => selectSort(option.key)} className={cls(styles.sort_menu_item)}>
+                        {/* @ts-ignore */}
+                        <>{t(option.value)}</>
+                        {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
+                      </button>
+                    </DropdownMenu.Item>
+                  );
+                })}
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
       </div>
     </div>
   );

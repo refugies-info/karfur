@@ -14,8 +14,8 @@
 .results {
   display: flex;
   align-items: flex-start;
-  align-content: flex-start;
   gap: 24px;
   align-self: stretch;
   flex-wrap: wrap;
+  place-content: flex-start center;
 }
