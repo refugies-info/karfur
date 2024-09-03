@@ -9,7 +9,6 @@ import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import FButton from "~/components/UI/FButton";
 import { useWindowSize } from "~/hooks";
-import { cls } from "~/lib/classname";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.css";
@@ -84,22 +83,17 @@ const SearchResults = (props: Props) => {
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
 
       <div className={styles.results} ref={ref}>
-        {dispositifs.length > 0 && (
-          <div className={styles.titi}>
-            <div className={cls(styles.results, styles.dispositifs, query.type === "demarche" && styles.hidden)}>
-              {dispositifs.map((d) =>
-                typeof d === "string" ? null : (
-                  <DispositifCard
-                    key={d._id.toString()}
-                    dispositif={d}
-                    selectedDepartment={selectedDepartment}
-                    targetBlank
-                  />
-                ),
-              )}
-            </div>
-          </div>
-        )}
+        {dispositifs.length > 0 &&
+          dispositifs.map((d) =>
+            typeof d === "string" ? null : (
+              <DispositifCard
+                key={d._id.toString()}
+                dispositif={d}
+                selectedDepartment={selectedDepartment}
+                targetBlank
+              />
+            ),
+          )}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@
   align-self: stretch;
 }
 
-.tabs_container {
+.grid {
   display: flex;
   position: absolute;
   top: 50%;
@@ -66,7 +66,7 @@
   color: var(--text-active-blue-france);
 }
 
-.sort_button_container {
+.sort_button {
   /* Layout */
   display: flex;
   position: absolute;
@@ -78,17 +78,6 @@
   /* Style */
   border: 1px solid var(--border-default-grey);
   background: var(--text-inverted-grey);
-}
-
-.sort_container {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  align-items: center;
-  gap: 24px;
-  align-self: stretch;
 }
 
 .sort_spacer {

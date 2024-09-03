@@ -6,6 +6,7 @@
   align-items: center;
   gap: 56px;
   align-self: stretch;
+  min-width: 1128px; /* Minimum width to ensure at least 4 columns (4 * 282px + 3 * 24px gap) */
 
   /* Style */
   background: var(--text-inverted-grey);

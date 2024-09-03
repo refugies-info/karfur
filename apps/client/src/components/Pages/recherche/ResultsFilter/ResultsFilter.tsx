@@ -104,7 +104,7 @@ const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
 
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
-      <div className={styles.tabs_container}>
+      <div className={styles.grid}>
         {_.range(0, Math.max(cardsPerRow, 4)).map((i) => (
           <div key={i} className={styles.sort_spacer}>
             &nbsp;
@@ -132,7 +132,7 @@ const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
           ))}
         </div>
         <DropdownMenu.Root open={open} modal={true} onOpenChange={toggleSort}>
-          <DropdownMenu.Trigger className={styles.sort_button_container} asChild>
+          <DropdownMenu.Trigger className={styles.sort_button} asChild>
             <button>
               <span className={styles.sort_label}>
                 {/* @ts-ignore */}
