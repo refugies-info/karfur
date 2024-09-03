@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
@@ -14,7 +14,7 @@ import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.
 import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.css";
 
-export const MAX_SHOWN_DISPOSITIFS = 24;
+export const MATCHES_PER_PAGE = 24;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {
@@ -43,7 +43,9 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const { isMobile } = useWindowSize();
-  const dispositifs = !isMobile ? filteredResults.matches.slice(0, MAX_SHOWN_DISPOSITIFS) : filteredResults.matches;
+  const [dispositifs, setDispositifs] = useState(
+    !isMobile ? filteredResults.matches.slice(0, MATCHES_PER_PAGE) : filteredResults.matches,
+  );
 
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const noResults = filteredResults.matches.length === 0;
@@ -66,6 +68,34 @@ const SearchResults = (props: Props) => {
       setCardsPerRow(count);
     }
   }, [boundingRect]);
+
+  const loadMoreData = useCallback(
+    (page: number) => {
+      // eslint-disable-next-line no-console
+      console.log(page, dispositifs.length, filteredResults.matches.length);
+      if (dispositifs.length < filteredResults.matches.length) {
+        setDispositifs(!isMobile ? filteredResults.matches.slice(0, page * MATCHES_PER_PAGE) : filteredResults.matches);
+      }
+    },
+    [dispositifs.length, filteredResults.matches, isMobile],
+  );
+
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight / 2) {
+        setPage((prevPage) => prevPage + 1);
+        loadMoreData(page + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [page, loadMoreData]);
 
   if (noResults) {
     return (
