@@ -13,10 +13,8 @@
 }
 
 .results {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(4, 282px);
   gap: 24px;
-  align-self: stretch;
-  flex-wrap: wrap;
-  place-content: flex-start center;
+  justify-content: center;
 }
