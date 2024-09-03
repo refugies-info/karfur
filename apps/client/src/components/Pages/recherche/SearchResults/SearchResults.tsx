@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { memo, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
@@ -9,6 +9,7 @@ import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import FButton from "~/components/UI/FButton";
 import { useWindowSize } from "~/hooks";
+import { filterByType } from "~/lib/recherche/filterContents";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.css";
@@ -25,7 +26,14 @@ const SearchResults = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const filteredResult = useSelector(searchResultsSelector);
+  const searchResults = useSelector(searchResultsSelector);
+
+  const filteredResults = useMemo(() => {
+    return {
+      matches: searchResults.matches.filter((dispositif) => filterByType(dispositif, query.type)),
+      suggestions: searchResults.suggestions,
+    };
+  }, [query.type, searchResults]);
 
   const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
 
@@ -35,10 +43,10 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const { isMobile } = useWindowSize();
-  const dispositifs = !isMobile ? filteredResult.matches.slice(0, MAX_SHOWN_DISPOSITIFS) : filteredResult.matches;
+  const dispositifs = !isMobile ? filteredResults.matches.slice(0, MAX_SHOWN_DISPOSITIFS) : filteredResults.matches;
 
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
-  const noResults = filteredResult.matches.length === 0;
+  const noResults = filteredResults.matches.length === 0;
 
   // Banner
   const hideBanner = () => {
