@@ -37,10 +37,7 @@ const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
     [filteredResult.matches],
   );
   const onlineResourceCount = useMemo(
-    () =>
-      filteredResult.matches
-        .filter((d) => d.metadatas?.location?.includes("online"))
-        .filter((d) => !d.metadatas?.location?.includes("france")).length,
+    () => filteredResult.matches.filter((d) => d.metadatas?.location === "online").length,
     [filteredResult.matches],
   );
 

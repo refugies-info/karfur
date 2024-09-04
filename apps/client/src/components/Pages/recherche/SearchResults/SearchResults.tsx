@@ -28,6 +28,8 @@ const SearchResults = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
 
+  const [page, setPage] = useState(1);
+
   const filteredResults = useMemo(() => {
     return {
       matches: searchResults.matches.filter((dispositif) => filterByType(dispositif, query.type)),
@@ -43,8 +45,9 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const { isMobile } = useWindowSize();
-  const [dispositifs, setDispositifs] = useState(
-    !isMobile ? filteredResults.matches.slice(0, MATCHES_PER_PAGE) : filteredResults.matches,
+  const dispositifs = useMemo(
+    () => (!isMobile ? filteredResults.matches.slice(0, page * MATCHES_PER_PAGE) : filteredResults.matches),
+    [filteredResults.matches, isMobile, page],
   );
 
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
@@ -74,13 +77,11 @@ const SearchResults = (props: Props) => {
       // eslint-disable-next-line no-console
       console.log(page, dispositifs.length, filteredResults.matches.length);
       if (dispositifs.length < filteredResults.matches.length) {
-        setDispositifs(!isMobile ? filteredResults.matches.slice(0, page * MATCHES_PER_PAGE) : filteredResults.matches);
+        setPage(page);
       }
     },
-    [dispositifs.length, filteredResults.matches, isMobile],
+    [dispositifs.length, filteredResults.matches],
   );
-
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
