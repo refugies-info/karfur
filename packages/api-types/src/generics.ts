@@ -112,7 +112,6 @@ export interface SimpleUser {
 export enum StructureMemberRole {
   ADMIN = "administrateur",
   CONTRIB = "contributeur",
-  CREATOR = "createur", // TODO: delete (unused) and remove in DB. Next, transform role from [] to string
 }
 
 export interface StructureMember {
