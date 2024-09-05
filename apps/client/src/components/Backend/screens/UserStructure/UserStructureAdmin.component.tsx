@@ -52,7 +52,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     const query: PatchStructureRolesRequest = {
       membreId: userId.toString(),
       action: "create",
-      role: StructureMemberRole.CONTRIB,
+      role: StructureMemberRole.ADMIN,
     };
     setIsLoading(true);
     await API.updateStructureRoles(structure._id, query);

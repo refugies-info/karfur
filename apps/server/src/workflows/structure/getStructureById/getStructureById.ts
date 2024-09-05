@@ -18,7 +18,6 @@ import { ResponseWithData } from "~/types/interface";
 
 const getMainRole = (membre: Membre) => {
   if (membre.roles.includes(StructureMemberRole.ADMIN)) return "Responsable";
-  if (membre.roles.includes(StructureMemberRole.CONTRIB)) return "Rédacteur";
   return "Exclu";
 };
 

@@ -111,7 +111,6 @@ export interface SimpleUser {
 
 export enum StructureMemberRole {
   ADMIN = "administrateur",
-  CONTRIB = "contributeur",
 }
 
 export interface StructureMember {

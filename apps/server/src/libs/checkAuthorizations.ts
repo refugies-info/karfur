@@ -68,12 +68,7 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   if (sponsor && !userInStructure) return false; // user not in structure
 
   // user is responsable of structure
-  if (userInStructure.roles.includes(StructureMemberRole.ADMIN)) {
-    return true;
-  }
-
-  // user is redacteur of structure and author
-  if (userInStructure.roles.includes(StructureMemberRole.CONTRIB) && isAuthor) {
+  if (userInStructure.roles.includes(StructureMemberRole.ADMIN) && isAuthor) {
     return true;
   }
 

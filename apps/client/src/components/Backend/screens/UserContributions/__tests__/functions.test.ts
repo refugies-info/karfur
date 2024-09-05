@@ -298,7 +298,7 @@ describe("formatContributions", () => {
         membres: [
           {
             userId: "userId",
-            roles: [StructureMemberRole.CONTRIB],
+            roles: [StructureMemberRole.ADMIN],
             username: "user",
             picture: { secure_url: "", imgId: "", public_id: "" },
             last_connected: new Date(),
@@ -335,7 +335,7 @@ describe("formatContributions", () => {
         membres: [
           {
             userId: "userId",
-            roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN],
+            roles: [StructureMemberRole.ADMIN],
             username: "user",
             picture: { secure_url: "", imgId: "", public_id: "" },
             last_connected: new Date(),

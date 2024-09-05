@@ -11,10 +11,6 @@ const getRole = (membres: Structure["membres"], userId: UserId) => {
   );
   if (isAdmin) return ["Responsable"];
 
-  const isContrib = membres.find(
-    (membre) => membre.userId.toString() === userId.toString() && membre.roles.includes(StructureMemberRole.CONTRIB),
-  );
-  if (isContrib) return ["Rédacteur"];
   return [];
 };
 

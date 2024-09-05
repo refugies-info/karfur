@@ -23,14 +23,9 @@ const isUserAuthorizedToDeleteDispositif = (
   const isUserInStructure = !!dispositifSponsorId && !!userStructure && dispositifSponsorId === userStructure._id;
   if (dispositifSponsorId && !isUserInStructure) return false; // user not in structure
 
-  // user is responsable of structure
+  // user is responsable of structure and author
   const userInStructure = userStructure && userStructure.membres.find((membre) => membre.userId?.toString() === userId);
-  if (userInStructure?.roles.includes(StructureMemberRole.ADMIN)) {
-    return true;
-  }
-
-  // user is redacteur of structure and author
-  if (userInStructure?.roles.includes(StructureMemberRole.CONTRIB) && isAuthor) {
+  if (userInStructure?.roles.includes(StructureMemberRole.ADMIN) && isAuthor) {
     return true;
   }
   return false;

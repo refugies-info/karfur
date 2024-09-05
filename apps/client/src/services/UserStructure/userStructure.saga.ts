@@ -35,11 +35,10 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     const structureMembers = data ? data.membres : [];
     const userInStructure = structureMembers.filter((member) => member.userId === userId);
     const userRoles = userInStructure.length > 0 ? userInStructure[0].roles : [];
-    const isUserContribOrAdmin =
-      userRoles.includes(StructureMemberRole.ADMIN) || userRoles.includes(StructureMemberRole.CONTRIB);
+    const isUserAdmin = userRoles.includes(StructureMemberRole.ADMIN);
 
     yield put(setUserRoleInStructureActionCreator(userRoles));
-    if (shouldRedirect && !isUserContribOrAdmin) {
+    if (shouldRedirect && !isUserAdmin) {
       yield call(Router.push, "/");
     }
 
@@ -104,7 +103,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
         query = {
           membreId: membres.userId.toString(),
           action: "create",
-          role: StructureMemberRole.CONTRIB,
+          role: StructureMemberRole.ADMIN,
         };
       } else if (membres.type === "modify" && membres.newRole) {
         query = {

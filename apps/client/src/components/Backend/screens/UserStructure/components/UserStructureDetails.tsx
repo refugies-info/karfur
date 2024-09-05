@@ -9,7 +9,6 @@ import placeholder from "~/assets/no_results_alt.svg";
 import TitleWithNumber from "~/components/Backend/TitleWithNumber";
 import FButton from "~/components/UI/FButton/FButton";
 import AddMemberModal from "./AddMemberModal";
-import EditMemberModal from "./EditMemberModal";
 import { MembresTable } from "./MembresTable";
 import { MainContainer, StructureContainer, StructurePictureContainer } from "./SubComponents";
 import styles from "./UserStructureDetails.module.scss";
@@ -135,14 +134,6 @@ export const UserStructureDetails = (props: Props) => {
           show={showAddMemberModal}
           addUserInStructure={props.addUserInStructure}
           membres={membres}
-        />
-      )}
-      {isUserAuthorizedToAddMembers && (
-        <EditMemberModal
-          toggle={toggleEditMemberModal}
-          show={showEditMemberModal}
-          modifyRole={props.modifyRole}
-          selectedUser={selectedUser}
         />
       )}
     </MainContainer>

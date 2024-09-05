@@ -82,7 +82,7 @@ describe("UserStructure", () => {
     membres: [
       {
         userId: "id1",
-        roles: [StructureMemberRole.CONTRIB],
+        roles: [StructureMemberRole.ADMIN],
         username: "membre1",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),

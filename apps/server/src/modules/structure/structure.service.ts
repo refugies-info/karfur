@@ -12,7 +12,7 @@ const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
 
   if (membreInStructure.length === 0) return false;
   const roles = membreInStructure[0].roles;
-  return roles.includes(StructureMemberRole.ADMIN) || roles.includes(StructureMemberRole.CONTRIB);
+  return roles.includes(StructureMemberRole.ADMIN);
 };
 
 export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: StructureId, currentUser: User) => {
