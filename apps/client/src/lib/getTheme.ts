@@ -56,6 +56,16 @@ const defaultTheme: GetThemeResponse = {
     public_id: "",
     imgId: "",
   },
+  dispositifImage: {
+    secure_url: "/images/cards/dispositif/travail.png",
+    public_id: "",
+    imgId: "",
+  },
+  demarcheImage: {
+    secure_url: "/images/cards/demarche/travail.png",
+    public_id: "",
+    imgId: "",
+  },
   notificationEmoji: "",
   adminComments: "",
   active: true,

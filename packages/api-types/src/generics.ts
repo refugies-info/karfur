@@ -56,6 +56,8 @@ export interface SimpleTheme {
   appBanner: Picture;
   appImage: Picture;
   shareImage: Picture;
+  dispositifImage: Picture;
+  demarcheImage: Picture;
   notificationEmoji: string;
   adminComments?: string;
 }

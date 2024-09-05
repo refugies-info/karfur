@@ -51,6 +51,12 @@ export const ThemeFormModal = (props: Props) => {
   const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
   const [appBanner, setAppBanner] = useState<Picture | undefined>(props.selectedTheme?.appBanner || undefined);
   const [appImage, setAppImage] = useState<Picture | undefined>(props.selectedTheme?.appImage || undefined);
+  const [dispositifImage, setDispositifImage] = useState<Picture | undefined>(
+    props.selectedTheme?.dispositifImage || undefined,
+  );
+  const [demarcheImage, setDemarcheImage] = useState<Picture | undefined>(
+    props.selectedTheme?.demarcheImage || undefined,
+  );
   const [shareImage, setShareImage] = useState<Picture | undefined>(props.selectedTheme?.shareImage || undefined);
   const [icon, setIcon] = useState<Picture | undefined>(props.selectedTheme?.icon || undefined);
 
@@ -78,6 +84,8 @@ export const ThemeFormModal = (props: Props) => {
       setAppBanner(props.selectedTheme.appBanner);
       setAppImage(props.selectedTheme.appImage);
       setShareImage(props.selectedTheme.shareImage);
+      setDispositifImage(props.selectedTheme.dispositifImage);
+      setDemarcheImage(props.selectedTheme.demarcheImage);
       setIcon(props.selectedTheme.icon);
     } else {
       setShort({ fr: "" });
@@ -89,6 +97,8 @@ export const ThemeFormModal = (props: Props) => {
       setAppBanner(undefined);
       setAppImage(undefined);
       setShareImage(undefined);
+      setDispositifImage(undefined);
+      setDemarcheImage(undefined);
       setIcon(undefined);
     }
   }, [props.selectedTheme]);
@@ -107,6 +117,8 @@ export const ThemeFormModal = (props: Props) => {
         appBanner,
         appImage,
         shareImage,
+        dispositifImage,
+        demarcheImage,
         icon,
         adminComments: notes || "",
       };
@@ -123,6 +135,8 @@ export const ThemeFormModal = (props: Props) => {
         appBanner,
         appImage,
         shareImage,
+        dispositifImage,
+        demarcheImage,
         icon,
         adminComments: notes || "",
         position: themes.length + 1,
@@ -342,6 +356,32 @@ export const ThemeFormModal = (props: Props) => {
               labelNoBackground={true}
               dimensionsHelp="20x20px"
               darkBackground={true}
+            />
+          </div>
+          <div className="mb-2">
+            <Label>Image dispositif</Label>
+            <ImageInput
+              image={dispositifImage}
+              onImageUploaded={(e) => {
+                setDispositifImage(e);
+              }}
+              minHeight={90}
+              imageSize={80}
+              labelNoBackground={true}
+              dimensionsHelp="1440x500px"
+            />
+          </div>
+          <div className="mb-2">
+            <Label>Image démarche</Label>
+            <ImageInput
+              image={demarcheImage}
+              onImageUploaded={(e) => {
+                setDemarcheImage(e);
+              }}
+              minHeight={90}
+              imageSize={80}
+              labelNoBackground={true}
+              dimensionsHelp="1440x500px"
             />
           </div>
         </Col>

@@ -57,6 +57,16 @@ theme.shareImage = {
   public_id: "",
   imgId: "",
 };
+theme.dispositifImage = {
+  secure_url: "/images/cards/dispositif/travail.svg",
+  public_id: "",
+  imgId: "",
+};
+theme.demarcheImage = {
+  secure_url: "/images/cards/demarche/travail.svg",
+  public_id: "",
+  imgId: "",
+};
 theme.notificationEmoji = "💼";
 
 export { theme };

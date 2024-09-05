@@ -52,6 +52,12 @@ export class Theme extends Base {
   @prop({ _id: false })
   public shareImage?: ImageSchema;
 
+  @prop({ _id: false })
+  public dispositifImage?: ImageSchema;
+
+  @prop({ _id: false })
+  public demarcheImage?: ImageSchema;
+
   @prop()
   public notificationEmoji!: string;
 
@@ -76,6 +82,8 @@ export class Theme extends Base {
       !this.banner.secure_url ||
       !this.appImage.secure_url ||
       !this.shareImage.secure_url ||
+      !this.dispositifImage.secure_url ||
+      !this.demarcheImage.secure_url ||
       !this.notificationEmoji
     ) {
       return false;
