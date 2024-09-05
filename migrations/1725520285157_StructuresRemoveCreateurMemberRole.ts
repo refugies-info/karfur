@@ -5,25 +5,12 @@ export class StructuresRemoveCreateurMemberRole1725520285157 implements Migratio
   public async up(db: Db): Promise<void | never> {
     const collection = db.collection("structures");
 
-    // Delete any createur roles
-    await collection.updateMany(
-      { "membres.roles": "createur" },
-      {
-        $set: {
-          "membres.$[elem].roles": {
-            $filter: {
-              input: "$membres.roles",
-              as: "role",
-              cond: { $ne: ["$$role", "createur"] },
-            },
-          },
-        },
-      },
-      {
-        arrayFilters: [{ "elem.roles": "createur" }],
-      },
-    );
+    // Remove "createur" value from the roles array of membres items
+    // @ts-ignore
+    await collection.updateMany({ membres: { $exists: true } }, { $pull: { membres: { roles: "createur" } } });
   }
 
-  public async down(db: Db): Promise<void | never> {}
+  public async down(db: Db): Promise<void | never> {
+    // No down migration provided
+  }
 }
