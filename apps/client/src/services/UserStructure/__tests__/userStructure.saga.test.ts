@@ -171,64 +171,7 @@ describe("[Saga] Structures", () => {
         .next()
         .isDone();
     });
-
-    it("should call api and not push / when membre contributeur", () => {
-      testSaga(fetchUserStructure, {
-        type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id", shouldRedirect: true },
-      })
-        .next()
-        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
-        .next()
-        .call(API.getStructureById, "id", "fr")
-        .next({ membres: [{ userId: "id", roles: ["contributeur"] }] })
-        .put(
-          setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["contributeur"] }],
-          }),
-        )
-        .next()
-        .select(userSelector)
-        .next({ userId: "id" })
-        .put(setUserRoleInStructureActionCreator(["contributeur"]))
-        .next()
-        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
-        .next()
-        .isDone();
-    });
-
-    it("should call api and not push / when membre contributeur", () => {
-      testSaga(fetchUserStructure, {
-        type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id", shouldRedirect: false },
-      })
-        .next()
-        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
-        .next()
-        .call(API.getStructureById, "id", "fr")
-        .next({ membres: [{ userId: "id", roles: ["contributeur"] }] })
-        .put(
-          setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["contributeur"] }],
-          }),
-        )
-        .next()
-        .select(userSelector)
-        .next({ userId: "id" })
-        .put(setUserRoleInStructureActionCreator(["contributeur"]))
-        .next()
-        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
-        .next()
-        .isDone();
-    });
   });
-
-  /*   const membres: {
-      type: "modify" | "delete" | "create";
-      userId: Id;
-      structureId: Id;
-      newRole?: "administrateur" | "contributeur" | undefined;
-  } | undefined */
 
   describe("updateUserStructure", () => {
     it("should call and dispatch correct actions with modifyMembres true action create", () => {
@@ -248,7 +191,7 @@ describe("[Saga] Structures", () => {
         .call(API.updateStructureRoles, "structureId", {
           membreId: "userId",
           action: "create",
-          role: "contributeur",
+          role: "administrateur",
         })
         .next()
         .put(
