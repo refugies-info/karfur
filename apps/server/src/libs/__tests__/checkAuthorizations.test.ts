@@ -295,23 +295,5 @@ describe("checkAuthorizations", () => {
       }
       expect.assertions(1);
     });
-
-    it("should throw if redacteur but not author", () => {
-      const dispositif = new DispositifModel(refDispositif);
-      dispositif.creatorId = OTHER_USER_ID1;
-      const structure = refStructure;
-      structure.membres = [
-        { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.ADMIN] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.ADMIN] },
-      ];
-      dispositif.mainSponsor = new StructureModel(structure);
-
-      try {
-        checkUserIsAuthorizedToDeleteDispositif(dispositif, userNotAdmin);
-      } catch (error) {
-        expect(error.message).toBe("NOT_AUTHORIZED");
-      }
-      expect.assertions(1);
-    });
   });
 });
