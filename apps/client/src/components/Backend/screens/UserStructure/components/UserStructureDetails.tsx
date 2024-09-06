@@ -52,9 +52,6 @@ export const UserStructureDetails = (props: Props) => {
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
   const toggleAddMemberModal = () => setShowAddMemberModal(!showAddMemberModal);
 
-  const [showEditMemberModal, setShowEditMemberModal] = useState(false);
-  const toggleEditMemberModal = () => setShowEditMemberModal(!showEditMemberModal);
-
   const [selectedUser, setSelectedUser] = useState<null | StructureMember>(null);
 
   const getSecureUrl = (picture: Picture | null) => {
@@ -123,7 +120,6 @@ export const UserStructureDetails = (props: Props) => {
           membres={membres}
           userId={props.userId}
           isUserAuthorizedToAddMembers={isUserAuthorizedToAddMembers}
-          toggleEditMemberModal={toggleEditMemberModal}
           setSelectedUser={setSelectedUser}
           deleteUserFromStructure={props.deleteUserFromStructure}
         />
