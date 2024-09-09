@@ -1,5 +1,6 @@
 import {
   ContentType,
+  DemarcheContent,
   DispositifStatus,
   GetStructureDispositifResponse,
   Id,
@@ -107,6 +108,8 @@ export const getSimpleDispositifs = async (
       translations: 1,
       nbVuesMobile: 1,
       hasDraftVersion: 1,
+      administrationLogo: 1,
+      typeContenu: 1,
     },
     "",
     limit,
@@ -118,10 +121,22 @@ export const getSimpleDispositifs = async (
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: dispositif.metadatas,
-        ...omit(dispositif, ["translations"]),
+        ...omit(dispositif, ["translations", "mainSponsor"]),
         availableLanguages: Object.keys(dispositif.translations),
         hasDraftVersion: dispositif.hasDraftVersion,
       };
+      if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
+        resDisp.sponsor = dispositif.mainSponsor;
+      }
+      if (
+        dispositif.typeContenu === ContentType.DEMARCHE &&
+        (dispositif.administrationLogo || (translation.content as DemarcheContent).administrationName)
+      ) {
+        resDisp.sponsor = {
+          nom: (translation.content as DemarcheContent).administrationName,
+          picture: dispositif.administrationLogo,
+        };
+      }
       return resDisp;
     }),
   );
@@ -144,6 +159,8 @@ export const getStructureDispositifs = async (
       hasDraftVersion: 1,
       merci: 1,
       suggestions: 1,
+      administrationLogo: 1,
+      typeContenu: 1,
     },
     "suggestions.userId",
     limit,
@@ -172,12 +189,24 @@ export const getStructureDispositifs = async (
           _id: dispositif._id,
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
           metadatas: dispositif.metadatas,
-          ...omit(dispositif, ["translations", "merci"]),
+          ...omit(dispositif, ["translations", "merci", "mainSponsor"]),
           availableLanguages: Object.keys(dispositif.translations),
           hasDraftVersion: dispositif.hasDraftVersion,
           nbMercis: dispositif.merci.length,
           suggestions,
         };
+        if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
+          resDisp.sponsor = dispositif.mainSponsor;
+        }
+        if (
+          dispositif.typeContenu === ContentType.DEMARCHE &&
+          (dispositif.administrationLogo || (translation.content as DemarcheContent).administrationName)
+        ) {
+          resDisp.sponsor = {
+            nom: (translation.content as DemarcheContent).administrationName,
+            picture: dispositif.administrationLogo,
+          };
+        }
         return resDisp;
       }),
     );

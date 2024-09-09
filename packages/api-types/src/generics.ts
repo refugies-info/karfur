@@ -238,7 +238,7 @@ export interface SimpleDispositif {
   nbMots: number;
   nbVues: number;
   nbVuesMobile: number;
-  mainSponsor?: {
+  sponsor?: {
     nom: string;
     picture: Picture;
   };

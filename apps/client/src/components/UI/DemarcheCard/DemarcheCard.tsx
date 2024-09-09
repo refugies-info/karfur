@@ -31,7 +31,7 @@ const DemarcheCard = (props: Props) => {
   const theme = getTheme(props.demarche.theme, themes);
   const { params: utmParams } = useUtmz();
 
-  const safeTitreMarque = useSanitizedContent(props.demarche?.titreMarque);
+  const safeSponsorName = useSanitizedContent(props.demarche?.sponsor?.nom);
   const safeTitreInformatif = useSanitizedContent(props.demarche.titreInformatif);
   const safeAbstract = useSanitizedContent(props.demarche.abstract);
   const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
@@ -63,7 +63,13 @@ const DemarcheCard = (props: Props) => {
         start={
           <>
             <div className={styles.sponsor}>
-              <Image src={demarcheIcon} width={48} height={48} alt="" />
+              <Image
+                src={props.demarche?.sponsor?.picture?.secure_url || demarcheIcon}
+                alt={props.demarche?.sponsor?.nom || ""}
+                width={48}
+                height={48}
+                style={{ objectFit: "contain" }}
+              />
             </div>
             <div className="d-flex gap-2 mb-2">
               <NewThemeBadge theme={theme} />
@@ -71,11 +77,10 @@ const DemarcheCard = (props: Props) => {
                 <NewThemeBadge theme={props.demarche.secondaryThemes?.length || 0} />
               )}
             </div>
-            {/* TODO: update code below when operator capability is added to the demarche */}
-            {props.demarche?.titreMarque && (
+            {props.demarche?.sponsor?.nom && (
               <div className={cls(styles.info, "mb-3")}>
                 <i className="fr-icon-building-line" />
-                <span dangerouslySetInnerHTML={{ __html: safeTitreMarque }} />
+                <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
               </div>
             )}
           </>
