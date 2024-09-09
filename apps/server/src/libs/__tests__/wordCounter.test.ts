@@ -70,6 +70,7 @@ describe("countDispositifWords", () => {
         },
         "my-uuid-v4-key-2": { title: "titre de la seconde section", text: "<p>texte de la seconde section</p>" },
       },
+      administrationName: "France Travail",
     };
     const res = countDispositifWords(content);
     expect(res).toEqual(41);
@@ -92,6 +93,7 @@ describe("countDispositifWordsForSections", () => {
           },
           "my-uuid-v4-key-2": { title: "titre de la seconde section", text: "<p>texte de la seconde section</p>" },
         },
+        administrationName: "France Travail",
       },
       created_at: new Date(),
       validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),

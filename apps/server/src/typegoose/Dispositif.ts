@@ -21,7 +21,7 @@ import { Types } from "mongoose";
 import { MustBePopulatedError } from "~/errors";
 import { PartialRecord } from "~/types/interface";
 import { Base } from "./Base";
-import { RichText, Uuid } from "./generics";
+import { ImageSchema, RichText, Uuid } from "./generics";
 import { Need, NeedId } from "./Need";
 
 import { Structure, StructureId } from "./Structure";
@@ -70,6 +70,8 @@ export class DemarcheContent extends Content {
   how: InfoSections;
   @prop()
   next: InfoSections;
+  @prop()
+  administrationName: string;
 }
 
 export class Suggestion {
@@ -273,6 +275,8 @@ export class Dispositif extends Base {
   public metadatas: Metadatas;
   @prop()
   public map: Poi[] | null;
+  @prop({ type: () => ImageSchema, _id: false })
+  public administrationLogo?: ImageSchema;
 
   public getMainSponsor(): Structure {
     if (!this.mainSponsor || !isDocument(this.mainSponsor)) {

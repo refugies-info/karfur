@@ -423,6 +423,7 @@ export const buildNewDispositif = async (
   if (formContent.map !== undefined) editedDispositif.map = formContent.map;
   //@ts-ignore
   if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // TODO picture type
+  if (formContent.administration?.logo) editedDispositif.administrationLogo = formContent.administration?.logo; // TODO picture type
 
   return editedDispositif;
 };

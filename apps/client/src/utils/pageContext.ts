@@ -8,7 +8,8 @@ export type Modals =
   | "Public"
   | "Themes"
   | "Abstract"
-  | "MainSponsor";
+  | "MainSponsor"
+  | "Administration";
 
 interface DispositifContext {
   mode: "view" | "edit" | "translate";

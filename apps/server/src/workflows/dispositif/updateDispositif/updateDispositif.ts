@@ -43,6 +43,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   } else {
     if (body.how) content.how = body.how;
     if (body.next) (content as DemarcheContent).next = body.next;
+    if (body.administration?.name) (content as DemarcheContent).administrationName = body.administration.name;
   }
 
   return {
@@ -70,6 +71,7 @@ export const updateDispositif = async (
       lastModificationDate: 1,
       theme: 1,
       secondaryThemes: 1,
+      administrationLogo: 1,
     },
     "mainSponsor",
   );
@@ -87,6 +89,7 @@ export const updateDispositif = async (
         lastModificationDate: 1,
         theme: 1,
         secondaryThemes: 1,
+        administrationLogo: 1,
       },
       "mainSponsor",
     ));
