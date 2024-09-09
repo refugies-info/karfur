@@ -75,7 +75,7 @@
     "ts-node": "^10.9.2",
     "turbo": "^2.0.9"
   },
-  "packageManager": "yarn@1.2.22",
+  "packageManager": "yarn@1.22.22",
   "volta": {
     "node": "20.13.1",
     "yarn": "1.22.22"
