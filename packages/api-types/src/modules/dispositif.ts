@@ -1,6 +1,7 @@
 import {
   ContentStructure,
   ContentType,
+  DemarcheAdministration,
   DispositifStatus,
   Id,
   InfoSection,
@@ -28,7 +29,7 @@ export type Suggestion = {
   suggestion: string;
   suggestionId: string;
   section: string;
-}
+};
 
 /**
  * @url GET /dispositifs/count
@@ -165,6 +166,7 @@ interface DispositifRequest {
   theme?: string;
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
+  administration?: DemarcheAdministration;
   metadatas?: Metadatas;
   map?: Poi[] | null;
 }
@@ -193,12 +195,12 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifResponse extends DispositifResponse { }
+export interface UpdateDispositifResponse extends DispositifResponse {}
 
 /**
  * @url PATCH /dispositifs/{id}/publish
@@ -233,6 +235,7 @@ export type GetDispositifResponse = {
   why?: InfoSections;
   how: InfoSections;
   next?: InfoSections;
+  administration?: DemarcheAdministration;
   typeContenu: ContentType;
   status: DispositifStatus;
   mainSponsor?: ContentStructure;
@@ -242,7 +245,7 @@ export type GetDispositifResponse = {
   sponsors?: (Sponsor | ContentStructure)[];
   participants: SimpleUser[];
   merci: { created_at: Date; userId?: Id }[];
-  creatorId: { _id: Id, username?: string };
+  creatorId: { _id: Id; username?: string };
   metadatas: Metadatas;
   map: Poi[] | null;
   availableLanguages: string[];
@@ -268,6 +271,7 @@ export interface GetUserContributionsResponse {
   nbMercis: number;
   status: DispositifStatus;
   hasDraftVersion: boolean;
+  // TODO: add administration?
 }
 
 /**
@@ -377,7 +381,7 @@ export interface GetAllDispositifsResponse {
 /**
  * @url POST /dispositifs
  */
-export interface PostDispositifsResponse extends DispositifResponse { }
+export interface PostDispositifsResponse extends DispositifResponse {}
 
 /**
  * @url GET /dispositifs

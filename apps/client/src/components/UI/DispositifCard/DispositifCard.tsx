@@ -53,7 +53,7 @@ const DispositifCard = (props: Props) => {
     return `${splittedLocation[1]} ${splittedLocation[0]}`;
   };
 
-  const safeSponsorName = useSanitizedContent(props.dispositif?.mainSponsor?.nom);
+  const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
   const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
   const safeAbstract = useSanitizedContent(props.dispositif.abstract);
@@ -90,8 +90,8 @@ const DispositifCard = (props: Props) => {
           <>
             <div className={styles.sponsor}>
               <Image
-                src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
-                alt={props.dispositif?.mainSponsor?.nom || ""}
+                src={props.dispositif?.sponsor?.picture?.secure_url || defaultStructureImage}
+                alt={props.dispositif?.sponsor?.nom || ""}
                 width={48}
                 height={48}
                 style={{ objectFit: "contain" }}

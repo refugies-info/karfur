@@ -11,6 +11,7 @@ const trad: TranslationContent = {
     what: "WHAT",
     how: { "my-uuid-v4-key": { title: "title", text: "text" } },
     next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    administrationName: "France Travail",
   },
 
   created_at: new Date(),
@@ -29,6 +30,7 @@ const trad_added: TranslationContent = {
       "my-uuid-v4-key-2": { title: "title", text: "text" },
       "my-uuid-v4-key-3": { title: "title", text: "text" },
     },
+    administrationName: "France Travail",
   },
 
   created_at: new Date(),
@@ -45,6 +47,7 @@ const trad_removed: TranslationContent = {
     next: {
       "my-uuid-v4-key": { title: "title", text: "text" },
     },
+    administrationName: "France Travail",
   },
 
   created_at: new Date(),
@@ -62,6 +65,7 @@ const trad_modified: TranslationContent = {
       "my-uuid-v4-key": { title: "title", text: "text" },
       "my-uuid-v4-key-2": { title: "new title", text: "new text" },
     },
+    administrationName: "France Travail",
   },
 
   created_at: new Date(),
@@ -81,6 +85,7 @@ const trad_mixed: TranslationContent = {
     next: {
       "my-uuid-v4-key-2": { title: "new title", text: "new text" },
     },
+    administrationName: "France Travail",
   },
 
   created_at: new Date(),
@@ -95,6 +100,7 @@ const trad_complete: TranslationContent = {
     what: "WHAT",
     how: { "my-uuid-v4-key": { title: "title", text: "text" } },
     next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    administrationName: "France Travail",
   },
 
   created_at: new Date(),

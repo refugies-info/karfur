@@ -30,7 +30,14 @@ export const createDispositif = async (
     abstract: body.abstract || "",
     what: body.what || "",
     how: body.how || {},
-    ...(body.typeContenu === ContentType.DISPOSITIF ? { why: body.why || {} } : { next: body.next || {} }),
+    ...(body.typeContenu === ContentType.DISPOSITIF
+      ? {
+          why: body.why || {},
+        }
+      : {
+          next: body.next || {},
+          administrationName: body.administration?.name || "",
+        }),
   };
   const newDispositif: Partial<Dispositif> = {
     status: DispositifStatus.DRAFT,

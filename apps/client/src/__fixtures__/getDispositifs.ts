@@ -19,7 +19,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -77,7 +77,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -141,7 +141,7 @@ export const lastDemarches = [
     typeContenu: ContentType.DEMARCHE,
     nbMots: 1967,
     created_at: new Date("2020-01-13T15:26:06.424Z"),
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -186,7 +186,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -249,7 +249,7 @@ export const lastDemarches = [
     },
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -305,7 +305,7 @@ export const lastDemarches = [
     },
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -353,7 +353,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -410,7 +410,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -468,7 +468,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -524,7 +524,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -587,7 +587,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -644,7 +644,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -702,7 +702,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -760,7 +760,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -817,7 +817,7 @@ export const lastDemarches = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
@@ -891,7 +891,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "FACE GRAND LYON",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png",
@@ -958,7 +958,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "ABC FORMATION",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1670237766/pictures/jdivlio5x1iasjnawmun.png",
@@ -1034,7 +1034,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Réseau Alpha",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg",
@@ -1113,7 +1113,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "AIME ONG",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669902286/pictures/rdx992fstuftcndifsb3.png",
@@ -1183,7 +1183,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Université fédérale de Toulouse",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg",
@@ -1254,7 +1254,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "FACE Vendée",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png",
@@ -1332,7 +1332,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Habitat et Humanisme",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png",
@@ -1396,7 +1396,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "fable-Lab",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665386364/pictures/lqntfdymui845jb5jc2y.png",
@@ -1464,7 +1464,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Habitat-Cité",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668078132/pictures/etoivbrifagwdyzycckz.png",
@@ -1542,7 +1542,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Unis-Cité",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
@@ -1614,7 +1614,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "BSB(Re)Connect",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg",
@@ -1685,7 +1685,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Unis-Cité",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
@@ -1758,7 +1758,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Stamtish",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png",
@@ -1830,7 +1830,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher ",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png",
@@ -1901,7 +1901,7 @@ export const lastDispositifs = [
         ],
       },
     ],
-    mainSponsor: {
+    sponsor: {
       nom: "Simplon.co",
       picture: {
         secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1570439852/pictures/xblmdsm8aly06enczcrx.png",

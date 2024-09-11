@@ -36,6 +36,7 @@ export interface DemarcheContent extends Content {
   what: RichText;
   how: InfoSections;
   next: InfoSections;
+  administrationName: string;
 }
 
 export interface TranslationContent {
@@ -49,12 +50,12 @@ export interface GetTraductionsForReview {
     id: string;
     username: string;
     picture?: Picture;
-  }
+  };
   author: {
     id: string;
     username: string;
     picture?: Picture;
-  }
+  };
   toReview?: string[];
   toFinish: string[];
 }
@@ -147,7 +148,7 @@ export interface Statistics {
   }[];
 }
 
-export interface TranslationStatisticsResponse extends Statistics { }
+export interface TranslationStatisticsResponse extends Statistics {}
 
 export interface PublishTranslationRequest {
   dispositifId: string;

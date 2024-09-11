@@ -595,8 +595,9 @@ const API = {
   },
 
   // Misc
-  postImage: (query: any): Promise<PostImageResponse> => {
+  postImage: (query: FormData): Promise<PostImageResponse> => {
     const headers = getHeaders();
+    headers["Content-Type"] = "multipart/form-data";
     return instance
       .post<any, APIResponse<PostImageResponse>>("/images", query, { headers })
       .then((response) => response.data.data);
