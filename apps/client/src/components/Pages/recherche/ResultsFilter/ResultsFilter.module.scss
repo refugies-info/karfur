@@ -1,0 +1,75 @@
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/colors";
+
+.container {
+  width: 100%;
+  container-type: inline-size;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  width: 100%;
+  gap: u(4);
+
+  @container (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.sort_button {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: u(2);
+
+  @container (min-width: 768px) {
+    margin-left: auto;
+  }
+
+  /* Style */
+  border: 1px solid $gray50;
+  background: var(--text-inverted-grey);
+  padding: u(2) u(4);
+  min-width: fit-content;
+  justify-content: space-between;
+}
+
+.sort_label {
+  color: var(--text-action-high-grey);
+  font-weight: 500;
+}
+
+.sort_menu_content {
+  /* Layout */
+  display: flex;
+  width: fit-content;
+  padding: u(2);
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+
+  /* Style */
+  border-top: 1px solid var(--background-action-low-blue-france);
+  background: var(--text-inverted-grey);
+
+  /* shadow/light/$shadow-md */
+  box-shadow: 0 4px 12px rgb(0 0 18 / 16%);
+}
+
+.sort_menu_item {
+  display: flex;
+  padding: u(2) u(4);
+  align-items: flex-start;
+  gap: u(2);
+  align-self: stretch;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--background-default-grey-hover);
+  }
+}

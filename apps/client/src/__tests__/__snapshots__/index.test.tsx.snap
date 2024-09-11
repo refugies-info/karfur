@@ -3243,7 +3243,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3367,7 +3367,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3486,7 +3486,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3610,7 +3610,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3734,7 +3734,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3853,7 +3853,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3977,7 +3977,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4096,7 +4096,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4220,7 +4220,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4344,7 +4344,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4468,7 +4468,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4587,7 +4587,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4711,7 +4711,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4830,7 +4830,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4954,7 +4954,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>

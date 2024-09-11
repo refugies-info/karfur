@@ -1,11 +1,11 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
-import _ from "lodash";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { TabItem, TabsBar } from "~/components/UI/Tabs";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -14,14 +14,12 @@ import {
   searchResultsSelector,
   themesDisplayedSelector,
 } from "~/services/SearchResults/searchResults.selector";
-import styles from "./ResultsFilter.module.css";
+import styles from "./ResultsFilter.module.scss";
 
-interface Props {
-  cardsPerRow: number;
-}
+type TranslationFunction = (key: string, options?: object) => string;
 
-const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
-  const { t } = useTranslation();
+const ResultsFilter = (): React.ReactNode => {
+  const { t } = useTranslation() as { t: TranslationFunction };
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const themesDisplayed = useSelector(themesDisplayedSelector);
@@ -99,70 +97,79 @@ const ResultsFilter: React.FC<Props> = ({ cardsPerRow }) => {
     [dispatch],
   );
 
+  const menuItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  useEffect(() => {
+    if (open) {
+      menuItemRefs.current[0]?.focus();
+    }
+  }, [open]);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, index: number): void => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      const direction = event.shiftKey ? -1 : 1;
+      const itemsCount = menuItemRefs.current.length;
+      let nextIndex = (index + direction + itemsCount) % itemsCount;
+
+      // Find the next focusable item
+      while (nextIndex !== index) {
+        if (menuItemRefs.current[nextIndex]) {
+          menuItemRefs.current[nextIndex]?.focus();
+          break;
+        }
+        nextIndex = (nextIndex + direction + itemsCount) % itemsCount;
+      }
+    }
+  };
+
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
       <div className={styles.grid}>
-        {_.range(0, Math.max(cardsPerRow, 4)).map((i) => (
-          <div key={i} className={styles.sort_spacer}>
-            &nbsp;
-          </div>
-        ))}
-        <div className={styles.tabs}>
+        <TabsBar>
           {filterType.map((option, i) => (
-            <button
-              key={i}
-              className={cls(styles.tab_button, query.type === option.key && styles.tab_button_selected)}
-              onClick={() => selectType(option.key)}
-            >
-              <>
-                <span
-                  className={cls(
-                    styles.tab_button_label,
-                    query.type === option.key && styles.tab_button_label_selected,
-                  )}
-                >
-                  {/* @ts-ignore */}
-                  {t(option.value)} {getCount(option.key)}
-                </span>
-              </>
-            </button>
+            <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
+              {t(option.value)} {getCount(option.key)}
+            </TabItem>
           ))}
-        </div>
-        <DropdownMenu.Root open={open} modal={true} onOpenChange={toggleSort}>
+        </TabsBar>
+        <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleSort}>
           <DropdownMenu.Trigger className={styles.sort_button} asChild>
-            <button>
+            <button aria-haspopup="true" aria-expanded={open}>
               <span className={styles.sort_label}>
-                {/* @ts-ignore */}
                 {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
               </span>
               <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
             </button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Portal>
-            <DropdownMenu.Content className={styles.sort_menu_content}>
+            <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
               {sortOptions
                 .filter((option) => {
-                  // do not show theme option if 1 theme only is selected
                   if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                  // do not show location if no department
                   if (query.departments.length === 0 && option.key === "location") return false;
                   return true;
                 })
                 .map((option, i) => {
                   const isSelected = query.sort === option.key;
                   return (
-                    <DropdownMenu.Item key={i} asChild>
-                      <button onClick={() => selectSort(option.key)} className={cls(styles.sort_menu_item)}>
-                        {/* @ts-ignore */}
-                        <>{t(option.value)}</>
-                        {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
-                      </button>
+                    <DropdownMenu.Item
+                      key={i}
+                      onSelect={() => selectSort(option.key)}
+                      className={cls(styles.sort_menu_item)}
+                      ref={(el) => {
+                        menuItemRefs.current[i] = el;
+                      }}
+                      onKeyDown={(e) => handleKeyDown(e, i)}
+                      tabIndex={0}
+                    >
+                      {t(option.value)}
+                      {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
                     </DropdownMenu.Item>
                   );
                 })}
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
-        </DropdownMenu.Root>
+        </DropdownMenu.Root>{" "}
       </div>
     </div>
   );

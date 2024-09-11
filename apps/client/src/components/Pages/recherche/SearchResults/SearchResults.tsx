@@ -1,18 +1,18 @@
-import _ from "lodash";
+import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Container } from "reactstrap";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
-import FButton from "~/components/UI/FButton";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
-import styles from "./SearchResults.module.css";
+import styles from "./SearchResults.module.scss";
 
 export const MATCHES_PER_PAGE = 24;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
@@ -62,16 +62,6 @@ const SearchResults = (props: Props) => {
     props.departmentsNotDeployed.length > 0 &&
     props.departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
 
-  const [cardsPerRow, setCardsPerRow] = useState(6);
-  const ref = useRef<HTMLDivElement | null>(null);
-  const boundingRect = ref?.current?.getBoundingClientRect();
-  useLayoutEffect(() => {
-    if (boundingRect) {
-      const count = _.floor((boundingRect.width + 24) / (282 + 24));
-      setCardsPerRow(count);
-    }
-  }, [boundingRect]);
-
   const loadMoreData = useCallback(
     (page: number) => {
       // eslint-disable-next-line no-console
@@ -104,37 +94,38 @@ const SearchResults = (props: Props) => {
         <h2>{t("Recherche.noResultTitle", "Oups, aucun résultat")}</h2>
         <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
 
-        <FButton type="login" name="refresh-outline" onClick={() => dispatch(resetQueryActionCreator())}>
+        <Button onClick={() => dispatch(resetQueryActionCreator())}>
           {t("Recherche.resetFilters", "Effacer tous les filtres")}
-        </FButton>
+        </Button>
 
-        <div className={styles.image}>
-          <Image src={noResultsImage} width={420} height={280} alt="No results" />
-        </div>
+        <Image src={noResultsImage} width={420} height={280} alt="No results" />
       </div>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <ResultsFilter cardsPerRow={cardsPerRow} />
+    <section className={styles.wrapper}>
+      <Container className={styles.container}>
+        <ResultsFilter />
 
-      {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
+        {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
 
-      <div className={styles.results} ref={ref}>
-        {dispositifs.length > 0 &&
-          dispositifs.map((d) =>
-            typeof d === "string" ? null : (
-              <DispositifCard
-                key={d._id.toString()}
-                dispositif={d}
-                selectedDepartment={selectedDepartment}
-                targetBlank
-              />
-            ),
-          )}
-      </div>
-    </div>
+        <div className={styles.results}>
+          {dispositifs.length > 0 &&
+            dispositifs.map((d) =>
+              typeof d === "string" ? null : (
+                <DispositifCard
+                  key={d._id.toString()}
+                  className={styles.card}
+                  dispositif={d}
+                  selectedDepartment={selectedDepartment}
+                  targetBlank
+                />
+              ),
+            )}
+        </div>
+      </Container>
+    </section>
   );
 };
 
