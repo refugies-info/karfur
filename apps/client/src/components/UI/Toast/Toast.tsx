@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import React, { useEffect, useRef, useState } from "react";
 import { ToastBody, Toast as ToastTS } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -25,7 +26,12 @@ const Toast = (props: Props) => {
   return (
     <ToastTS className={styles.container} isOpen={isOpen} fade={false} aria-live="polite">
       <ToastBody className={styles.body}>
-        <EVAIcon name="checkmark-circle-2" fill={styles.lightTextDefaultSuccess} size={24} className="me-2" />
+        <EVAIcon
+          name="checkmark-circle-2"
+          fill={fr.colors.decisions.background.actionHigh.success.default}
+          size={24}
+          className="me-2"
+        />
         {props.children}
       </ToastBody>
       <button
@@ -35,7 +41,7 @@ const Toast = (props: Props) => {
         }}
         className={styles.close}
       >
-        <EVAIcon name="close-outline" fill={styles.lightTextMentionGrey} size={24} />
+        <EVAIcon name="close-outline" fill={fr.colors.decisions.text.mention.grey.default} size={24} />
       </button>
     </ToastTS>
   );

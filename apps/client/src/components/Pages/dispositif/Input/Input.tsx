@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import React from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
@@ -46,7 +47,11 @@ const Input = (props: Props) => {
         {props.icon && (
           <EVAIcon
             name={props.icon}
-            fill={!props.value ? styles.lightTextMentionGrey : styles.lightTextTitleGrey}
+            fill={
+              !props.value
+                ? fr.colors.decisions.text.mention.grey.default
+                : fr.colors.decisions.text.actionHigh.grey.default
+            }
             size={20}
             className={cls(styles.icon, styles.prepend)}
           />
@@ -54,7 +59,7 @@ const Input = (props: Props) => {
         {props.error && (
           <EVAIcon
             name="alert-circle"
-            fill={styles.lightTextDefaultError}
+            fill={fr.colors.decisions.background.actionHigh.error.default}
             size={24}
             className={cls(styles.icon, styles.append)}
           />
@@ -62,7 +67,7 @@ const Input = (props: Props) => {
         {props.valid && !props.error && (
           <EVAIcon
             name="checkmark-circle-2"
-            fill={styles.lightTextDefaultSuccess}
+            fill={fr.colors.decisions.background.actionHigh.success.default}
             size={20}
             className={cls(styles.icon, styles.append)}
           />

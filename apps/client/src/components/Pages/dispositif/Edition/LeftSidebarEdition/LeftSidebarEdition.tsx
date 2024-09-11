@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
@@ -61,7 +62,7 @@ const LeftSidebarEdition = (props: Props) => {
           <EVAIcon
             name="color-palette-outline"
             size={24}
-            fill={styles.lightTextDisabledGrey}
+            fill={fr.colors.decisions.text.disabled.grey.default}
             className={cls(styles.theme_icon, "me-2")}
           />
           Thèmes
@@ -185,7 +186,7 @@ const LeftSidebarEdition = (props: Props) => {
           <EVAIcon
             name="home-outline"
             size={24}
-            fill={styles.lightTextDisabledGrey}
+            fill={fr.colors.decisions.text.disabled.grey.default}
             className={cls(styles.theme_icon, "me-2")}
           />
           Structure
@@ -202,7 +203,7 @@ const LeftSidebarEdition = (props: Props) => {
         <EVAIcon
           name="file-text-outline"
           size={24}
-          fill={styles.lightTextDisabledGrey}
+          fill={fr.colors.decisions.text.disabled.grey.default}
           className={cls(styles.theme_icon, "me-2")}
         />
         En bref

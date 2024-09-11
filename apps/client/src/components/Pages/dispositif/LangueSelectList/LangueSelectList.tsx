@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -44,7 +45,7 @@ const LangueSelectList = (props: Props) => {
             <EVAIcon
               name={isSelected ? "radio-button-on" : "radio-button-off"}
               size={24}
-              fill={isSelected ? styles.lightTextActionHighBlueFrance : "dark"}
+              fill={isSelected ? fr.colors.decisions.text.actionHigh.blueFrance.default : "dark"}
               className="me-2"
             />
             <span>

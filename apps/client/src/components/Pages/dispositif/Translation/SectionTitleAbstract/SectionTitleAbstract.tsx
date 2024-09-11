@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { SectionTitle } from "~/components/Pages/dispositif";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Tooltip from "~/components/UI/Tooltip";
@@ -15,7 +16,7 @@ const SectionTitleAbstract = () => {
         id={tooltipId}
         name="question-mark-circle-outline"
         size={32}
-        fill={styles.lightTextMentionGrey}
+        fill={fr.colors.decisions.text.mention.grey.default}
         className="ms-6 mb-4"
       />
       {tooltipId && (

@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -31,7 +32,12 @@ const TranslationEditField = ({ isHTML, section, validate, isRTL, loading, maxLe
       />
       {maxLength && (
         <p className={styles.error}>
-          <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
+          <EVAIcon
+            name="alert-triangle"
+            size={16}
+            fill={fr.colors.decisions.background.actionHigh.error.default}
+            className="me-2"
+          />
           {remainingChars} sur 110 caractères restants
         </p>
       )}

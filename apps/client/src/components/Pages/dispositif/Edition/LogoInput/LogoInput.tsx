@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { Picture } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useState } from "react";
@@ -74,7 +75,7 @@ const LogoInput = (props: Props) => {
             <EVAIcon
               name="close-circle"
               size={20}
-              fill={styles.lightTextDefaultError}
+              fill={fr.colors.decisions.background.actionHigh.error.default}
               onClick={deleteImage}
               className={styles.delete}
             />

@@ -1,8 +1,8 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { MainSponsor } from "@refugies-info/api-types";
 import React from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { ContactInfos } from "./ModalMainSponsor";
-import styles from "./ModalMainSponsor.module.scss";
 
 // Help
 type Help = { title: string; content: string | React.ReactNode | (string | React.ReactNode)[] };
@@ -112,7 +112,12 @@ const thanksAttachUser: ThanksMessage = {
 
 // Modal content
 const titleIcon = (
-  <EVAIcon name="checkmark-circle-2" size={32} fill={styles.lightTextDefaultSuccess} className="me-2" />
+  <EVAIcon
+    name="checkmark-circle-2"
+    size={32}
+    fill={fr.colors.decisions.background.actionHigh.success.default}
+    className="me-2"
+  />
 );
 
 type ModalContent = {
