@@ -14,6 +14,7 @@ export default function Document(props: DocumentProps) {
         <script defer data-domain="refugies.info" src="https://plausible.io/js/script.tagged-events.js"></script>
       </Head>
       <body>
+        <div className="bg-red-500 p-20">TEST TAILWIND</div>
         <Main />
         <NextScript />
       </body>
