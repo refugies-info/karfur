@@ -497,7 +497,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__end"
                 >
                   <div
-                    class="d-flex gap-3"
+                    class="d-flex gap-2"
                   />
                 </div>
               </div>
@@ -616,7 +616,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__end"
                 >
                   <div
-                    class="d-flex gap-3"
+                    class="d-flex gap-2"
                   />
                 </div>
               </div>

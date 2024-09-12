@@ -1,9 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "build": {
+    "//#update-icons": {
+      "cache": false,
+      "outputs": [
+        "node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"
+      ]
+    },
+    "@refugies-info/client#build": {
       "dependsOn": [
-        "^build"
+        "//#update-icons"
+      ],
+      "env": [
+        "NEXT_PUBLIC_*"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "@refugies-info/server#build": {
+      "dependsOn": [
       ],
       "env": [
         "accountSid",
@@ -30,7 +51,6 @@
         "MICROSOFT_CLIENT_SECRET",
         "MINIMUM_APP_VERSION",
         "MONGODB_URI",
-        "NEXT_PUBLIC_*",
         "NODE_ENV",
         "PORT",
         "POSTMAN_SECRET",
@@ -46,13 +66,23 @@
         ".env"
       ],
       "outputs": [
-        ".next/**",
-        "!.next/cache/**"
+        ".dist/**"
       ]
     },
     "check:types": {
       "dependsOn": [
         "^check:types"
+      ]
+    },
+    "@refugies-info/client#dev": {
+      "dependsOn": [
+        "//#update-icons"
+      ],
+      "persistent": true,
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env"
       ]
     },
     "dev": {

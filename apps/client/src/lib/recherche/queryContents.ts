@@ -98,23 +98,19 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
  * @returns - results
  */
 export const queryDispositifs = (query: SearchQuery, dispositifs: GetDispositifsResponse[]): Results => {
-  const results = filterDispositifs(query, dispositifs, false);
+  const matches = filterDispositifs(query, dispositifs, false);
 
   // dispositifs which have theme in secondary themes
-  let dispositifsSecondaryTheme: GetDispositifsResponse[] = [];
-  let demarchesSecondaryTheme: GetDispositifsResponse[] = [];
+  let suggestions: GetDispositifsResponse[] = [];
   if (query.themes.length > 0) {
     const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
-      .filter((dispositif) => !results.map((d) => d._id).includes(dispositif._id));
-    const contentSecondaryTheme = filterDispositifs(query, remainingDispositifs, true);
-    dispositifsSecondaryTheme = contentSecondaryTheme.filter((d) => d.typeContenu === "dispositif");
-    demarchesSecondaryTheme = contentSecondaryTheme.filter((d) => d.typeContenu === "demarche");
+      .filter((dispositif) => !matches.map((d) => d._id).includes(dispositif._id));
+    suggestions = filterDispositifs(query, remainingDispositifs, true);
   }
 
   return {
-    dispositifs: results.filter((d) => d.typeContenu === "dispositif"),
-    demarches: [...results.filter((d) => d.typeContenu === "demarche"), ...demarchesSecondaryTheme],
-    dispositifsSecondaryTheme: dispositifsSecondaryTheme,
+    matches: matches,
+    suggestions,
   };
 };
 

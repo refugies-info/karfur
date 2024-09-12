@@ -1,98 +1,64 @@
 @import "~/scss/colors";
-@import "~/scss/mixins/responsive";
-@import "~/scss/mixins/unit";
-@import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
-.section {
-  order: 3;
-  position: relative;
+.wrapper {
+  background: white;
+  container-type: inline-size;
 }
 
-.hidden {
-  display: none !important;
-}
+.container {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  padding-block: u(14);
+  gap: u(14);
 
-.title {
-  display: none;
+  /* Style */
+  background: $white;
 
-  @include isMobile {
-    display: flex;
-    align-items: center;
-    margin-bottom: u(8);
-
-    h2 {
-      @include text("h4");
-
-      margin-right: u(4);
-      margin-bottom: 0;
-
-      @include rtl {
-        margin-right: 0;
-        margin-left: u(4);
-      }
-    }
-
-    span {
-      @include text("h5");
-
-      padding: u(1) u(2);
-      background: $white;
-      font-weight: bold;
-      border-radius: u(1);
-    }
+  /* Responsive */
+  @include media-min("xl-limit") {
+    max-width: 1200px; /* TODO:fix this width with the future tailwind container */
   }
 }
 
 .results {
-  margin-bottom: 80px;
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
-  position: relative;
+  display: grid;
+  gap: u(6);
+  max-width: 100%;
 
-  &.dispositifs {
-    gap: u(8);
+  @container (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  &.demarches {
-    gap: u(6);
-
-    @include isMobile {
-      &.horizontal_scroll {
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        margin-left: -15px;
-        margin-right: -15px;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-bottom: 15px;
-      }
-    }
+  @container (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  @include isDesktop {
-    &.all_visible {
-      margin-bottom: 220px;
-    }
+  @container (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .no_results {
-  text-align: center;
-
-  @include isMobile {
-    margin-top: u(10);
-  }
-
-  p {
-    margin-top: u(4);
-    margin-bottom: u(8);
-  }
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: u(2);
+  align-items: center;
+  justify-content: center;
+  padding: u(8);
 }
 
-.image {
-  margin-top: u(8);
-  margin-bottom: u(8);
+.card {
+  width: 100%;
+
+  > div {
+    width: 100%;
+  }
 }
