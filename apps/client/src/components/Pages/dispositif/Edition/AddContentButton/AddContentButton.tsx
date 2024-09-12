@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import React, { useCallback, useContext, useMemo, useState } from "react";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -38,7 +39,13 @@ const AddContentButton = (props: Props) => {
     [props.hasError, showMissingSteps, hasContent, props.optional],
   );
   const errorIcon = useMemo(
-    () => <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.icon, styles.ok)} />,
+    () => (
+      <EVAIcon
+        name="alert-triangle"
+        fill={fr.colors.decisions.background.actionHigh.error.default}
+        className={cls(styles.icon, styles.ok)}
+      />
+    ),
     [],
   );
   const safeContent = useSanitizedContent(typeof props.content === "string" ? props.content : undefined);
@@ -74,7 +81,7 @@ const AddContentButton = (props: Props) => {
             {!hasErrorStatus ? (
               <EVAIcon
                 name="checkmark-circle-2"
-                fill={styles.lightPrimaryBlueFranceSun}
+                fill={fr.colors.decisions.background.actionHigh.blueFrance.active}
                 className={cls(styles.icon, styles.ok)}
               />
             ) : (
@@ -82,7 +89,7 @@ const AddContentButton = (props: Props) => {
             )}
             <EVAIcon
               name="edit-2"
-              fill={styles.lightTextActionHighBlueFrance}
+              fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
               className={cls(styles.icon, styles.edit)}
             />
             {props.onDelete !== undefined && (
@@ -90,7 +97,11 @@ const AddContentButton = (props: Props) => {
                 <div onMouseEnter={() => setHideEditTooltip(true)} onMouseLeave={() => setHideEditTooltip(false)}>
                   <EVAIcon
                     name="trash-2-outline"
-                    fill={props.onDelete ? styles.lightTextActionHighBlueFrance : styles.lightTextDisabledGrey}
+                    fill={
+                      props.onDelete
+                        ? fr.colors.decisions.text.actionHigh.blueFrance.default
+                        : fr.colors.decisions.text.disabled.grey.default
+                    }
                     className={cls(styles.icon, styles.delete, !props.onDelete && styles.disabled)}
                     onClick={(e: any) => {
                       e.stopPropagation();
@@ -123,7 +134,12 @@ const AddContentButton = (props: Props) => {
         <>
           <span className={styles.empty}>{props.children}</span>
           {!hasErrorStatus ? (
-            <EVAIcon name="plus-circle" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
+            <EVAIcon
+              name="plus-circle"
+              size={24}
+              fill={fr.colors.decisions.text.mention.grey.default}
+              className={styles.icon}
+            />
           ) : (
             errorIcon
           )}

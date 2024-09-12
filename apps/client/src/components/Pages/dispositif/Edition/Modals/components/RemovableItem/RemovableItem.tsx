@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import Image from "next/image";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
@@ -29,7 +30,12 @@ const RemovableItem = (props: Props) => {
         />
       )}
       {props.text}
-      <EVAIcon name="close-outline" fill={styles.lightTextActionHighBlueFrance} size={24} className="ms-2" />
+      <EVAIcon
+        name="close-outline"
+        fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
+        size={24}
+        className="ms-2"
+      />
     </button>
   );
 };

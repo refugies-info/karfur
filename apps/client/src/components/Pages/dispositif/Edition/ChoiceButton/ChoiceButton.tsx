@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import uniqueId from "lodash/uniqueId";
 import Image from "next/image";
 import React, { useMemo, useState } from "react";
@@ -46,7 +47,11 @@ const ChoiceButton = (props: Props) => {
       <EVAIcon
         name={iconName}
         size={20}
-        fill={props.selected ? styles.lightTextActionHighBlueFrance : styles.lightTextTitleGrey}
+        fill={
+          props.selected
+            ? fr.colors.decisions.text.actionHigh.blueFrance.default
+            : fr.colors.decisions.text.actionHigh.grey.default
+        }
         className="me-2"
       />
       <span className={styles.text}>
@@ -57,7 +62,7 @@ const ChoiceButton = (props: Props) => {
             <EVAIcon
               name="question-mark-circle-outline"
               size={20}
-              fill={styles.lightTextMentionGrey}
+              fill={fr.colors.decisions.text.mention.grey.default}
               className="ms-2"
               id={tooltipId}
             />

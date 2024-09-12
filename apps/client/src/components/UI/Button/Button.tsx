@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { Button, ButtonProps } from "@codegouvfr/react-dsfr/Button";
 import React, { useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -22,9 +23,9 @@ interface Props {
 }
 
 const getIconColor = (props: Props) => {
-  if (props.disabled) return styles.lightTextDisabledGrey;
+  if (props.disabled) return fr.colors.decisions.text.disabled.grey.default;
   return (["secondary", "tertiary", "tertiary no outline"] as ButtonProps["priority"][]).includes(props.priority)
-    ? styles.lightTextActionHighBlueFrance
+    ? fr.colors.decisions.text.actionHigh.blueFrance.default
     : "white";
 };
 const getIconMargin = (props: Props) => {
