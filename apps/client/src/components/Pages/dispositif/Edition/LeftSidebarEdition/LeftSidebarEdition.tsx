@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
@@ -9,6 +10,7 @@ import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import CardAvailability from "../../Metadatas/CardAvailability";
 import CardConditions from "../../Metadatas/CardConditions";
+import CardDemarcheAdministration from "../../Metadatas/CardDemarcheAdministration";
 import CardLocation from "../../Metadatas/CardLocation";
 import CardMainSponsor from "../../Metadatas/CardMainSponsor";
 import CardPrice from "../../Metadatas/CardPrice";
@@ -19,6 +21,7 @@ import {
   ModalAbstract,
   ModalAvailability,
   ModalConditions,
+  ModalDemarcheAdministration,
   ModalLocation,
   ModalMainSponsor,
   ModalPrice,
@@ -59,11 +62,28 @@ const LeftSidebarEdition = (props: Props) => {
           <EVAIcon
             name="color-palette-outline"
             size={24}
-            fill={styles.lightTextDisabledGrey}
+            fill={fr.colors.decisions.text.disabled.grey.default}
             className={cls(styles.theme_icon, "me-2")}
           />
           Thèmes
         </AddContentButton>
+      )}
+
+      {contentType === ContentType.DEMARCHE && (
+        <>
+          {values.administration !== undefined &&
+          (values.administration?.name !== undefined || values?.administration?.logo !== undefined) ? (
+            <CardDemarcheAdministration
+              dataAdministration={values.administration}
+              color={color}
+              onClick={() => setActiveModal?.("Administration")}
+            />
+          ) : (
+            <AddContentButton onClick={() => setActiveModal?.("Administration")} className="mb-6" size="md">
+              Administration (optionnel)
+            </AddContentButton>
+          )}
+        </>
       )}
 
       <p className={styles.title}>C'est pour qui ?</p>
@@ -166,7 +186,7 @@ const LeftSidebarEdition = (props: Props) => {
           <EVAIcon
             name="home-outline"
             size={24}
-            fill={styles.lightTextDisabledGrey}
+            fill={fr.colors.decisions.text.disabled.grey.default}
             className={cls(styles.theme_icon, "me-2")}
           />
           Structure
@@ -183,7 +203,7 @@ const LeftSidebarEdition = (props: Props) => {
         <EVAIcon
           name="file-text-outline"
           size={24}
-          fill={styles.lightTextDisabledGrey}
+          fill={fr.colors.decisions.text.disabled.grey.default}
           className={cls(styles.theme_icon, "me-2")}
         />
         En bref
@@ -197,6 +217,7 @@ const LeftSidebarEdition = (props: Props) => {
       <ModalThemes show={activeModal === "Themes"} toggle={toggleModal} />
       <ModalAbstract show={activeModal === "Abstract"} toggle={toggleModal} />
       <ModalMainSponsor show={activeModal === "MainSponsor"} toggle={toggleModal} />
+      <ModalDemarcheAdministration show={activeModal === "Administration"} toggle={toggleModal} />
     </div>
   );
 };

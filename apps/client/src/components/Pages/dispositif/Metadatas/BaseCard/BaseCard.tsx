@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import isUndefined from "lodash/isUndefined";
 import React, { useContext, useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -90,18 +91,22 @@ const BaseCard = ({ id, title, items, color, onClick }: Props) => {
               <>
                 <EVAIcon
                   name="checkmark-circle-2"
-                  fill={styles.lightPrimaryBlueFranceSun}
+                  fill={fr.colors.decisions.background.actionHigh.blueFrance.active}
                   className={cls(styles.status, styles.done)}
                 />
                 <EVAIcon
                   name="edit-2"
-                  fill={styles.lightTextActionHighBlueFrance}
+                  fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
                   className={cls(styles.status, styles.edit)}
                 />
               </>
             )}
             {status === "error" && (
-              <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.status)} />
+              <EVAIcon
+                name="alert-triangle"
+                fill={fr.colors.decisions.background.actionHigh.error.default}
+                className={cls(styles.status)}
+              />
             )}
           </p>
           {getContent(items, pageContext.mode === "edit")}

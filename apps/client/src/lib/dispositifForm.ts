@@ -87,6 +87,7 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
       "next",
       "metadatas",
       "map",
+      "administration",
     ]),
     mainSponsor: dispositif.mainSponsor?._id.toString(),
     theme: dispositif.theme?.toString(),

@@ -6555,19 +6555,10 @@ axe-core@^4.9.1:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.10.0.tgz#d9e56ab0147278272739a000880196cdfe113b59"
   integrity sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==
 
-axios@^1.6.1, axios@^1.6.8:
-  version "1.7.2"
-  resolved "https://registry.npmjs.org/axios/-/axios-1.7.2.tgz"
-  integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
-  dependencies:
-    follow-redirects "^1.15.6"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
-
-axios@^1.7.2, axios@^1.7.4:
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.5.tgz#21eed340eb5daf47d29b6e002424b3e88c8c54b1"
-  integrity sha512-fZu86yCo+svH3uqJ/yTdQ0QHpQu5oL+/QE+QPSv6BZSkDAoky9vytxp7u5qk83OJFS3kEBcesWni9WTZAv3tSw==
+axios@^1.6.1, axios@^1.6.8, axios@^1.7.4, axios@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.6.tgz#34f338182f6802fd3824a6511d6ddf99dd5ae0b5"
+  integrity sha512-Ekur6XDwhnJ5RgOCaxFnXyqlPALI3rVeukZMwOdfghW7/wGz784BYKiQq+QD8NPcr91KRo30KfHOchyijwWw7g==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -7406,10 +7397,10 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
-cloudinary@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.2.0.tgz#9736a7421b5552c43603950fa41d9997c869d0b5"
-  integrity sha512-akbLTZcNegGSkl07Frnt9fyiK9KZ2zPS+a+j7uLrjNYxVhDpDdIBz9G6snPCYqgk+WLVMRPfXTObalLr5L6g0Q==
+cloudinary@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.4.0.tgz#c7c6f7d233f5751252edfc28e0d47a73793a5cf6"
+  integrity sha512-5HA9VffeaR3MKiHpRo9A5SWgZFPxzlEDep0O4KzL3TIDi1hmQC9gjA4dHpVmdeFC0ZD1Xr5fGsWRKVDK9Ay9PQ==
   dependencies:
     lodash "^4.17.21"
     q "^1.5.1"
@@ -9110,13 +9101,13 @@ expo-av@~13.10.6:
   resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-13.10.6.tgz#ca1b5d0c46a016069f653c1740a25516ffc730a2"
   integrity sha512-h3c1fg5yhWnP0RIGO+fhgPx6cmh4B4lnKdXR2i69aC3vs5D5Cu+JlzBon1gLIu6eUo2IVfC0RjSLpfQbcJ4doQ==
 
-expo-build-properties@~0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/expo-build-properties/-/expo-build-properties-0.11.1.tgz#dc9ab9fb1ac989b97da500b3ec75139c961d8b26"
-  integrity sha512-m4j4aEjFaDuBE6KWYMxDhWgLzzSmpE7uHKAwtvXyNmRK+6JKF0gjiXi0sXgI5ngNppDQpsyPFMvqG7uQpRuCuw==
+expo-build-properties@~0.12.5:
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/expo-build-properties/-/expo-build-properties-0.12.5.tgz#4d6232389f00c846ba37ca5df2c0b5527c2d94ca"
+  integrity sha512-donC1le0PYfLKCPKRMGQoixuWuwDWCngzXSoQXUPsgHTDHQUKr8aw+lcWkTwZcItgNovcnk784I0dyfYDcxybA==
   dependencies:
     ajv "^8.11.0"
-    semver "^7.5.3"
+    semver "^7.6.0"
 
 expo-constants@~15.4.0, expo-constants@~15.4.3, expo-constants@~15.4.6:
   version "15.4.6"
@@ -12931,15 +12922,7 @@ metro@0.80.10, metro@^0.80.3:
     ws "^7.5.10"
     yargs "^17.6.2"
 
-micromatch@^4.0.2, micromatch@^4.0.7, micromatch@~4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.7.tgz#33e8190d9fe474a9895525f5618eee136d46c2e5"
-  integrity sha512-LPP/3KorzCwBxfeUuZmaR6bG2kdeHSbe0P2tY3FLRU4vYrjYz5hI4QZwV0njUx3jeuKe67YukQ1LSPZBKDqO/Q==
-  dependencies:
-    braces "^3.0.3"
-    picomatch "^2.3.1"
-
-micromatch@^4.0.4:
+micromatch@^4.0.2, micromatch@^4.0.4, micromatch@^4.0.7, micromatch@~4.0.7:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
   integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
@@ -15763,15 +15746,10 @@ semver@^6.3.0, semver@^6.3.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
 
-semver@^7.1.3, semver@^7.3.5, semver@^7.5.1, semver@^7.5.2, semver@^7.5.3, semver@^7.5.4, semver@^7.6.3:
+semver@^7.1.3, semver@^7.3.5, semver@^7.5.1, semver@^7.5.2, semver@^7.5.3, semver@^7.5.4, semver@^7.6.0, semver@^7.6.2, semver@^7.6.3:
   version "7.6.3"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.3.tgz#980f7b5550bc175fb4dc09403085627f9eb33143"
   integrity sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==
-
-semver@^7.6.0, semver@^7.6.2:
-  version "7.6.2"
-  resolved "https://registry.npmjs.org/semver/-/semver-7.6.2.tgz"
-  integrity sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==
 
 send@0.18.0, send@^0.18.0:
   version "0.18.0"
@@ -16805,10 +16783,10 @@ svgo@^3.0.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
-sweetalert2@^11.6.16:
-  version "11.12.4"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.12.4.tgz#2f7cc2663dab7845f33d5abd6ce3f642a09b91dd"
-  integrity sha512-ZSpyaLbAmn4b7xjnV9x9BFD1UOrCAhIzm1D8dZ443kGxtVKqbTIA5SgXs4xeEtmFfEXUyC3RBgpSlu1AXmCiHA==
+sweetalert2@^11.14.0:
+  version "11.14.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.14.0.tgz#baaec0f53aefb7c01fcbc78288e1c59da332e9c4"
+  integrity sha512-kF1Q/+GtZZXr+rYVcBNwlEsnxP089CpDbck+MYjvLaQj9x4fzHqN9UhlkHOIR0k09LVu2sx8cU9BnvRlxWIZqg==
 
 symbol-tree@^3.2.4:
   version "3.2.4"

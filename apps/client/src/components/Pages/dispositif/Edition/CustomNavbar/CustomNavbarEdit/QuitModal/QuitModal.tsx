@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { DispositifStatus } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useMemo } from "react";
@@ -35,7 +36,7 @@ const QuitModal = (props: Props) => {
     () => (
       <EVAIcon
         name="arrow-forward-outline"
-        fill={styles.lightTextActionHighBlueFrance}
+        fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
         size={16}
         className={styles.icon}
       />

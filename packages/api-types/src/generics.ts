@@ -95,6 +95,11 @@ export interface Sponsor {
   link?: string;
 }
 
+export interface DemarcheAdministration {
+  name?: string;
+  logo?: Picture;
+}
+
 // User
 export enum UserStatus {
   ACTIVE = "Actif",
@@ -231,7 +236,7 @@ export interface SimpleDispositif {
   nbMots: number;
   nbVues: number;
   nbVuesMobile: number;
-  mainSponsor?: {
+  sponsor?: {
     nom: string;
     picture: Picture;
   };

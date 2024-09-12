@@ -25,6 +25,7 @@ interface Props {
   selectedDepartment?: string;
   targetBlank?: boolean;
   demoCard?: boolean;
+  className?: string;
 }
 
 const DispositifCard = (props: Props) => {
@@ -53,14 +54,14 @@ const DispositifCard = (props: Props) => {
     return `${splittedLocation[1]} ${splittedLocation[0]}`;
   };
 
-  const safeSponsorName = useSanitizedContent(props.dispositif?.mainSponsor?.nom);
+  const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
   const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
   const safeAbstract = useSanitizedContent(props.dispositif.abstract);
   const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
 
   return (
-    <div className={cls(styles.wrapper)}>
+    <div className={cls(styles.wrapper, props.className)}>
       <Card
         background
         border
@@ -90,8 +91,8 @@ const DispositifCard = (props: Props) => {
           <>
             <div className={styles.sponsor}>
               <Image
-                src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
-                alt={props.dispositif?.mainSponsor?.nom || ""}
+                src={props.dispositif?.sponsor?.picture?.secure_url || defaultStructureImage}
+                alt={props.dispositif?.sponsor?.nom || ""}
                 width={48}
                 height={48}
                 style={{ objectFit: "contain" }}
@@ -113,7 +114,7 @@ const DispositifCard = (props: Props) => {
         titleAs="h3"
         desc={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
         end={
-          <div className="d-flex gap-3">
+          <div className="d-flex gap-2">
             {price !== undefined && (
               <div className={styles.info}>
                 <i className="fr-icon-money-euro-circle-line" />

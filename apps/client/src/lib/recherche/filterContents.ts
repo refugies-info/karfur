@@ -1,5 +1,5 @@
 import { GetDispositifsResponse, Id, publicStatusType, publicType } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions, TypeOptions } from "data/searchFilters";
 
 export const filterByThemeOrNeed = (
   dispositif: GetDispositifsResponse,
@@ -113,4 +113,17 @@ export const filterByStatus = (dispositif: GetDispositifsResponse, statusFilters
     }
   }
   return false;
+};
+
+export const filterByType = ({ typeContenu, metadatas }: GetDispositifsResponse, type: TypeOptions) => {
+  switch (type) {
+    case "all":
+      return true;
+    case "demarche":
+      return typeContenu === "demarche";
+    case "dispositif":
+      return typeContenu === "dispositif";
+    case "ressource":
+      return metadatas?.location === "online";
+  }
 };

@@ -1,5 +1,7 @@
 import {
   ContentStructure,
+  ContentType,
+  DemarcheContent,
   DispositifStatus,
   GetDispositifResponse,
   Id,
@@ -85,6 +87,7 @@ export const getContentById = async (
     externalLink: 1,
     creatorId: 1,
     hasDraftVersion: 1,
+    administrationLogo: 1,
   };
   let draftDispositif = null;
   const originalDispositif = await (
@@ -162,6 +165,13 @@ export const getContentById = async (
       "creatorId",
     ]),
   };
+
+  if (dispositif.typeContenu === ContentType.DEMARCHE) {
+    response.administration = {
+      name: (dispositif.translations[dataLanguage].content as DemarcheContent).administrationName,
+      logo: dispositif.administrationLogo,
+    };
+  }
 
   return { text: "success", data: response };
 };

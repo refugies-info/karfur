@@ -21,9 +21,8 @@ describe("recherche", () => {
         ...initialMockStore,
         searchResults: {
           results: {
-            dispositifs: [],
-            demarches: [],
-            dispositifsSecondaryTheme: [],
+            matches: [],
+            suggestions: [],
           },
           query: {
             search: "",

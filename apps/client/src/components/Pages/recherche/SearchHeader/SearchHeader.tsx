@@ -4,7 +4,6 @@ import { Container } from "reactstrap";
 import { useScrollDirection } from "~/hooks/useScrollDirection";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
-import ResultsFilter from "../ResultsFilter";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
@@ -35,13 +34,9 @@ const SearchHeader = (props: Props) => {
           <p>{t("Recherche.subtitle", { count: props.nbResults })}</p>
         </Container>
       </div>
-      <div className={styles.filters}>
-        <div className={cls(styles.stickybar, scrolled && styles.scrolled)}>
-          <Filters isSmall={scrolled} />
-        </div>
+      <div className={cls(styles.stickybar, scrolled && styles.scrolled)}>
+        <Filters isSmall={scrolled} />
       </div>
-
-      <ResultsFilter />
     </>
   );
 };

@@ -29,8 +29,7 @@
     "dev:client": "yarn turbo dev --filter=@refugies-info/client",
     "dev:server": "yarn turbo dev --filter=@refugies-info/server",
     "dev:mobile": "yarn turbo dev --filter=@refugies-info/mobile",
-    "prebuild": "react-dsfr update-icons --projectDir ./apps/client",
-    "predev": "react-dsfr update-icons --projectDir ./apps/client",
+    "update-icons": "react-dsfr update-icons --projectDir ./apps/client",
     "start": "yarn turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",
@@ -75,7 +74,7 @@
     "ts-node": "^10.9.2",
     "turbo": "^2.0.9"
   },
-  "packageManager": "yarn@1.2.22",
+  "packageManager": "yarn@1.22.22",
   "volta": {
     "node": "20.13.1",
     "yarn": "1.22.22"

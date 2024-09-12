@@ -20,369 +20,189 @@ exports[`recherche renders search results 1`] = `
       </div>
     </div>
     <div
-      class="filters"
+      class="stickybar"
     >
       <div
-        class="stickybar"
+        class="container container"
       >
         <div
-          class="container container"
+          class="container"
         >
           <div
-            class="container"
-          >
-            <div
-              class="zone"
-            >
-              <i
-                class="fr-icon-search-line icon"
-              />
-              <input
-                class="input"
-                placeholder="Mot-clé"
-                type="text"
-                value=""
-              />
-            </div>
-            <div
-              class="border"
-            >
-               
-            </div>
-          </div>
-          <div
-            class="d-flex align-items-center gap-3"
-          >
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r0:"
-                type="button"
-              >
-                Dispositif.Département
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
-            </span>
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button values"
-                data-state="closed"
-                id="radix-:r2:"
-                type="button"
-              >
-                Français
-              </button>
-              <button
-                class="clear"
-                title="Recherche.resetButton"
-              >
-                <i
-                  class="ri-close-circle-fill"
-                />
-              </button>
-            </span>
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r4:"
-                type="button"
-              >
-                Recherche.filterStatus
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
-            </span>
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r6:"
-                type="button"
-              >
-                Recherche.filterPublic
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
-            </span>
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r8:"
-                type="button"
-              >
-                Recherche.filterAge
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
-            </span>
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:ra:"
-                type="button"
-              >
-                Recherche.filterFrenchLevel
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
-            </span>
-            <span
-              class="container"
-            >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:rc:"
-                type="button"
-              >
-                Recherche.filterLanguage
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="container no_result"
-    >
-      <div
-        class="container_inner container"
-      >
-        <div
-          class="types"
-        >
-          <button
-            class="btn selected btn btn-secondary"
-            type="button"
-          >
-            Filters.typeAll (0)
-          </button>
-          <button
-            class="btn btn btn-secondary"
-            type="button"
-          >
-            Filters.typeDispositif (0)
-          </button>
-          <button
-            class="btn btn btn-secondary"
-            type="button"
-          >
-            Filters.typeDemarche (0)
-          </button>
-        </div>
-        <div
-          class="dropdown"
-        >
-          <button
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="dropdown btn btn-secondary"
-            type="button"
-          >
-            <span
-              class="icon icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-swap-outline"
-                  fill="black"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="swap"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(-90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M4 9h13l-1.6 1.2a1 1 0 0 0-.2 1.4 1 1 0 0 0 .8.4 1 1 0 0 0 .6-.2l4-3a1 1 0 0 0 0-1.59l-3.86-3a1 1 0 0 0-1.23 1.58L17.08 7H4a1 1 0 0 0 0 2z"
-                      />
-                      <path
-                        d="M20 16H7l1.6-1.2a1 1 0 0 0-1.2-1.6l-4 3a1 1 0 0 0 0 1.59l3.86 3a1 1 0 0 0 .61.21 1 1 0 0 0 .79-.39 1 1 0 0 0-.17-1.4L6.92 18H20a1 1 0 0 0 0-2z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            Filters.sortDate
-          </button>
-          <div
-            aria-hidden="true"
-            class="menu dropdown-menu"
-            data-bs-popper="static"
-            role="menu"
-            tabindex="-1"
-          >
-            <button
-              class="item selected dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              Filters.sortDate
-              <span
-                class="icon"
-              >
-                <i
-                  style="height: 20px; line-height: 20px;"
-                >
-                  <svg
-                    class="eva eva-checkmark-outline"
-                    fill="white"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    width="20px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="checkmark"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          width="24"
-                        />
-                        <path
-                          d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-            </button>
-            <button
-              class="item dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              Filters.sortView
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="container_inner container"
-    >
-      <div
-        class="no_results"
-      >
-        <h2>
-          Recherche.noResultTitle
-        </h2>
-        <p>
-          Recherche.noResultText
-        </p>
-        <button
-          class="btn login"
-        >
-          <span
-            class="me-2 icon"
+            class="zone"
           >
             <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-refresh-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="refresh"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Recherche.resetFilters
-        </button>
+              class="fr-icon-search-line icon"
+            />
+            <input
+              class="input"
+              placeholder="Mot-clé"
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="border"
+          >
+             
+          </div>
+        </div>
         <div
-          class="image"
+          class="d-flex align-items-center gap-3"
         >
-          <img
-            alt="No results"
-            data-nimg="1"
-            decoding="async"
-            height="280"
-            loading="lazy"
-            src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-            style="color: transparent;"
-            width="420"
-          />
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button"
+              data-state="closed"
+              id="radix-:r0:"
+              type="button"
+            >
+              Dispositif.Département
+              <i
+                class="ri-arrow-down-s-line"
+              />
+            </button>
+          </span>
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button values"
+              data-state="closed"
+              id="radix-:r2:"
+              type="button"
+            >
+              Français
+            </button>
+            <button
+              class="clear"
+              title="Recherche.resetButton"
+            >
+              <i
+                class="ri-close-circle-fill"
+              />
+            </button>
+          </span>
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button"
+              data-state="closed"
+              id="radix-:r4:"
+              type="button"
+            >
+              Recherche.filterStatus
+              <i
+                class="ri-arrow-down-s-line"
+              />
+            </button>
+          </span>
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button"
+              data-state="closed"
+              id="radix-:r6:"
+              type="button"
+            >
+              Recherche.filterPublic
+              <i
+                class="ri-arrow-down-s-line"
+              />
+            </button>
+          </span>
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button"
+              data-state="closed"
+              id="radix-:r8:"
+              type="button"
+            >
+              Recherche.filterAge
+              <i
+                class="ri-arrow-down-s-line"
+              />
+            </button>
+          </span>
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button"
+              data-state="closed"
+              id="radix-:ra:"
+              type="button"
+            >
+              Recherche.filterFrenchLevel
+              <i
+                class="ri-arrow-down-s-line"
+              />
+            </button>
+          </span>
+          <span
+            class="container"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="button"
+              data-state="closed"
+              id="radix-:rc:"
+              type="button"
+            >
+              Recherche.filterLanguage
+              <i
+                class="ri-arrow-down-s-line"
+              />
+            </button>
+          </span>
         </div>
       </div>
+    </div>
+    <div
+      class="no_results"
+    >
+      <h2>
+        Recherche.noResultTitle
+      </h2>
+      <p>
+        Recherche.noResultText
+      </p>
+      <button
+        class="fr-btn"
+        id="fr-button-:re:"
+      >
+        Recherche.resetFilters
+      </button>
+      <img
+        alt="No results"
+        data-nimg="1"
+        decoding="async"
+        height="280"
+        loading="lazy"
+        src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+        srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+        style="color: transparent;"
+        width="420"
+      />
     </div>
   </div>
 </DocumentFragment>

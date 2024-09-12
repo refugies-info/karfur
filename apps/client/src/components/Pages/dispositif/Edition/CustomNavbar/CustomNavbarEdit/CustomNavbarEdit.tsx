@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
@@ -118,7 +119,7 @@ const CustomNavbarEdit = (props: Props) => {
         <div className={styles.warning}>
           <div className={cls("fr-container", styles.inner)}>
             <span>
-              <EVAIcon name="info" size={24} fill={styles.lightBorderPlainInfo} className="me-4" />
+              <EVAIcon name="info" size={24} fill={fr.colors.decisions.text.default.info.default} className="me-4" />
               L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de rédiger dans une autre
               langue.
             </span>
@@ -128,7 +129,7 @@ const CustomNavbarEdit = (props: Props) => {
                 setShowLanguageWarning(false);
               }}
             >
-              <EVAIcon name="close-outline" size={16} fill={styles.lightBorderPlainInfo} />
+              <EVAIcon name="close-outline" size={16} fill={fr.colors.decisions.text.default.info.default} />
             </button>
           </div>
         </div>

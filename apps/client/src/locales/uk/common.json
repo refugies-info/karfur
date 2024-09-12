@@ -179,9 +179,10 @@
     "sortTheme": "За тематикою",
     "sortDate": "Останні",
     "sortView": "Найбільше переглядів",
-    "typeAll": "Усі",
-    "typeDispositif": "Записи програм",
-    "typeDemarche": "Записи адміністративних процедур"
+    "typeAll": "Усі записи",
+    "typeDispositif": "Схеми",
+    "typeDemarche": "Процедури",
+    "typeRessource": "Ресурси"
   },
   "Status": {
     "En attente": "Очікування",

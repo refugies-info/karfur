@@ -497,7 +497,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__end"
                 >
                   <div
-                    class="d-flex gap-3"
+                    class="d-flex gap-2"
                   />
                 </div>
               </div>
@@ -616,7 +616,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__end"
                 >
                   <div
-                    class="d-flex gap-3"
+                    class="d-flex gap-2"
                   />
                 </div>
               </div>
@@ -708,7 +708,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent;"
+                      style="color: transparent; object-fit: contain;"
                       width="48"
                     />
                   </div>
@@ -721,16 +721,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     >
                       Logement
                     </div>
-                  </div>
-                  <div
-                    class="info mb-3"
-                  >
-                    <i
-                      class="fr-icon-building-line"
-                    />
-                    <span>
-                      titreMarque3
-                    </span>
                   </div>
                 </div>
                 <div

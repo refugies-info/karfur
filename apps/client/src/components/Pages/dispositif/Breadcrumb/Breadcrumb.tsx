@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
@@ -32,7 +33,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
       <EVAIcon
         name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}
         size={16}
-        fill={styles.lightTextMentionGrey}
+        fill={fr.colors.decisions.text.mention.grey.default}
         className="mx-1"
       />
     ),
@@ -50,7 +51,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
       {(!isTablet || showBreadcrumb) && (
         <div className={styles.container}>
           <Link href={getPath("/", "fr")} className={styles.home} title={t("homepage")}>
-            <EVAIcon name="home-outline" fill={styles.lightTextMentionGrey} size={16} />
+            <EVAIcon name="home-outline" fill={fr.colors.decisions.text.mention.grey.default} size={16} />
           </Link>
 
           {chevron}

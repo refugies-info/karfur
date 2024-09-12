@@ -7,12 +7,13 @@ import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 
 const useFilteredDocs = () => {
-  const { demarches, dispositifs } = useSelector(searchResultsSelector);
+  const { matches: dispositifs } = useSelector(searchResultsSelector);
 
   return useMemo(() => {
-    return [...demarches, ...dispositifs];
-  }, [demarches, dispositifs]);
+    return dispositifs;
+  }, [dispositifs]);
 };
+
 /**
  * Group docs by public status type and count them.
  * @returns

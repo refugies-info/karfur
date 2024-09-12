@@ -1333,14 +1333,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -1358,6 +1358,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +2
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -1456,14 +1466,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -1481,6 +1491,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +2
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -1579,14 +1599,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -1604,6 +1624,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +1
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -1702,14 +1732,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -1722,6 +1752,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -1820,14 +1860,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -1845,6 +1885,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +1
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -1943,14 +1993,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -1963,6 +2013,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2061,14 +2121,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2086,6 +2146,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +1
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2184,14 +2254,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2204,6 +2274,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2302,14 +2382,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2322,6 +2402,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2420,14 +2510,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2445,6 +2535,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +2
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2543,14 +2643,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2563,6 +2663,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2661,14 +2771,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2686,6 +2796,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           +1
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2784,14 +2904,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2804,6 +2924,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -2902,14 +3032,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -2922,6 +3052,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -3020,14 +3160,14 @@ exports[`homepage renders homepage 1`] = `
                         class="sponsor"
                       >
                         <img
-                          alt=""
+                          alt="Comité de la Démarche Accessible"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                          style="color: transparent;"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
@@ -3040,6 +3180,16 @@ exports[`homepage renders homepage 1`] = `
                         >
                           Thème
                         </div>
+                      </div>
+                      <div
+                        class="info mb-3"
+                      >
+                        <i
+                          class="fr-icon-building-line"
+                        />
+                        <span>
+                          Comité de la Démarche Accessible
+                        </span>
                       </div>
                     </div>
                     <div
@@ -3243,7 +3393,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3367,7 +3517,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3486,7 +3636,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3610,7 +3760,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3734,7 +3884,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3853,7 +4003,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -3977,7 +4127,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4096,7 +4246,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4220,7 +4370,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4344,7 +4494,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4468,7 +4618,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4587,7 +4737,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4711,7 +4861,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4830,7 +4980,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>
@@ -4954,7 +5104,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__end"
                     >
                       <div
-                        class="d-flex gap-3"
+                        class="d-flex gap-2"
                       />
                     </div>
                   </div>

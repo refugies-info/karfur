@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import Link, { LinkProps } from "next/link";
 import React, { useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -18,7 +19,12 @@ const FRLink = (props: Props) => {
     return (
       <>
         {props.icon && (
-          <EVAIcon name={props.icon} size={20} fill={styles.lightTextActionHighBlueFrance} className="me-2" />
+          <EVAIcon
+            name={props.icon}
+            size={20}
+            fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
+            className="me-2"
+          />
         )}
         {props.children}
       </>
