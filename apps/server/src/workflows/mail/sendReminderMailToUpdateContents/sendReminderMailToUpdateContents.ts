@@ -1,4 +1,3 @@
-import { StructureMemberRole } from "@refugies-info/api-types";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { filterDispositifsForUpdateReminders } from "~/modules/dispositif/dispositif.adapter";
@@ -39,25 +38,23 @@ export const sendReminderMailToUpdateContents = async (): Response => {
             await Promise.all(
               dispositif.getMainSponsor().membres.map(async (membre) => {
                 try {
-                  if (membre.roles.includes(StructureMemberRole.ADMIN)) {
-                    let user = await getUserById(membre.userId.toString(), {
-                      username: 1,
-                      email: 1,
-                    });
-                    if (user.email) {
-                      await sendUpdateReminderMailService(
-                        user.email,
-                        user.username,
-                        dispositif.titreInformatif,
-                        user._id,
-                        dispositif._id,
-                        "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id,
-                      );
+                  let user = await getUserById(membre.userId.toString(), {
+                    username: 1,
+                    email: 1,
+                  });
+                  if (user.email) {
+                    await sendUpdateReminderMailService(
+                      user.email,
+                      user.username,
+                      dispositif.titreInformatif,
+                      user._id,
+                      dispositif._id,
+                      "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id,
+                    );
 
-                      await updateDispositifInDB(dispositif._id, {
-                        lastReminderMailSentToUpdateContentDate: new Date(),
-                      });
-                    }
+                    await updateDispositifInDB(dispositif._id, {
+                      lastReminderMailSentToUpdateContentDate: new Date(),
+                    });
                   }
                 } catch (e) {
                   logger.error("[sendReminderMailToUpdateContents] error while sending mail", e);

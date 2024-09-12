@@ -1,35 +1,17 @@
-import { GetAllUsersResponse, StructureMemberRole, UserStructure } from "@refugies-info/api-types";
+import { GetAllUsersResponse, UserStructure } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import logger from "~/logger";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
 import { Structure, UserId } from "~/typegoose";
 import { ResponseWithData } from "~/types/interface";
 
-const getRole = (membres: Structure["membres"], userId: UserId) => {
-  const isAdmin = membres.find(
-    (membre) => membre.userId.toString() === userId.toString() && membre.roles.includes(StructureMemberRole.ADMIN),
-  );
-  if (isAdmin) return ["Responsable"];
-
-  return [];
-};
-
-const getStructureRoles = (structures: Structure[], userId: UserId) => {
-  if (!structures || structures.length === 0) return [];
-  const structure = structures[0];
-  if (!structure) return [];
-
-  return getRole(structure.membres, userId);
-};
-
 export const getStructures = (userId: UserId, structures: Structure[]): UserStructure[] =>
   structures.map((structure) => {
-    const role = getRole(structure.membres, userId);
     return {
       _id: structure._id,
       nom: structure.nom,
       picture: structure.picture,
-      role,
+      role: ["Responsable"],
     };
   });
 
@@ -51,9 +33,7 @@ export const getAllUsers = async (): ResponseWithData<GetAllUsersResponse[]> => 
   const users = await getAllUsersForAdminFromDB(neededFields);
 
   const result = users.map((user) => {
-    const plateformeRoles = user.getPlateformeRoles() as string[];
-    const structureRoles = getStructureRoles(user.getStructures(), user._id);
-    const roles = plateformeRoles.concat(structureRoles);
+    const roles = user.getPlateformeRoles() as string[];
 
     const res: GetAllUsersResponse = {
       ...pick(user, [

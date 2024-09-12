@@ -3,7 +3,6 @@ import {
   DispositifStatus,
   GetStructureDispositifResponse,
   GetUserContributionsResponse,
-  StructureMemberRole,
 } from "@refugies-info/api-types";
 import { formatContributions } from "../functions";
 import { FormattedUserContribution } from "../types";
@@ -298,12 +297,10 @@ describe("formatContributions", () => {
         membres: [
           {
             userId: "userId",
-            roles: [StructureMemberRole.ADMIN],
             username: "user",
             picture: { secure_url: "", imgId: "", public_id: "" },
             last_connected: new Date(),
             added_at: new Date(),
-            mainRole: "Responsable",
           },
         ],
       },
@@ -335,12 +332,10 @@ describe("formatContributions", () => {
         membres: [
           {
             userId: "userId",
-            roles: [StructureMemberRole.ADMIN],
             username: "user",
             picture: { secure_url: "", imgId: "", public_id: "" },
             last_connected: new Date(),
             added_at: new Date(),
-            mainRole: "Responsable",
           },
         ],
       },

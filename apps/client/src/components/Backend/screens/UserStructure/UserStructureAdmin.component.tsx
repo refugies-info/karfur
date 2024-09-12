@@ -1,4 +1,4 @@
-import { GetStructureResponse, Id, PatchStructureRolesRequest, StructureMemberRole } from "@refugies-info/api-types";
+import { GetStructureResponse, Id, PatchStructureRolesRequest } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -52,20 +52,6 @@ export const UserStructureAdminComponent = (props: Props) => {
     const query: PatchStructureRolesRequest = {
       membreId: userId.toString(),
       action: "create",
-      role: StructureMemberRole.ADMIN,
-    };
-    setIsLoading(true);
-    await API.updateStructureRoles(structure._id, query);
-    setIsLoading(false);
-    toggleReload();
-  };
-
-  const modifyRole = async (userId: Id, role: StructureMemberRole) => {
-    if (!structure) return;
-    const query: PatchStructureRolesRequest = {
-      membreId: userId.toString(),
-      action: "modify",
-      role,
     };
     setIsLoading(true);
     await API.updateStructureRoles(structure._id, query);
@@ -115,7 +101,6 @@ export const UserStructureAdminComponent = (props: Props) => {
       structureId={structure._id}
       addUserInStructure={addUserInStructure}
       isAdmin={user.admin}
-      modifyRole={modifyRole}
       deleteUserFromStructure={deleteUserFromStructure}
     />
   );

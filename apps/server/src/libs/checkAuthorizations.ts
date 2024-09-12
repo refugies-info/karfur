@@ -1,4 +1,4 @@
-import { DispositifStatus, StructureMemberRole } from "@refugies-info/api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { UnauthorizedError } from "~/errors";
 import logger from "~/logger";
 import { Dispositif, Structure, User } from "~/typegoose";
@@ -68,11 +68,7 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   if (sponsor && !userInStructure) return false; // user not in structure
 
   // user is responsable of structure
-  if (userInStructure.roles.includes(StructureMemberRole.ADMIN)) {
-    return true;
-  }
-
-  return false;
+  return true;
 };
 
 export const checkUserIsAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) => {

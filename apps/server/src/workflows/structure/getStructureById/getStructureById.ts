@@ -1,10 +1,4 @@
-import {
-  DispositifStatus,
-  GetStructureResponse,
-  Languages,
-  StructureMember,
-  StructureMemberRole,
-} from "@refugies-info/api-types";
+import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
 import { omit } from "lodash";
 import { FilterQuery } from "mongoose";
 import { NotFoundError } from "~/errors";
@@ -13,13 +7,7 @@ import { getStructureDispositifs } from "~/modules/dispositif/dispositif.reposit
 import { getStructureById as getStructure } from "~/modules/structure/structure.repository";
 import { getUserById } from "~/modules/users/users.repository";
 import { Dispositif, Structure, User } from "~/typegoose";
-import { Membre } from "~/typegoose/Structure";
 import { ResponseWithData } from "~/types/interface";
-
-const getMainRole = (membre: Membre) => {
-  if (membre.roles.includes(StructureMemberRole.ADMIN)) return "Responsable";
-  return "Exclu";
-};
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
@@ -34,10 +22,8 @@ const getMembers = async (structure: Structure) => {
           email: user.email,
           picture: user.picture,
           last_connected: user.last_connected,
-          roles: membre.roles,
           added_at: membre.added_at,
           userId: membre.userId.toString(),
-          mainRole: getMainRole(membre),
         };
         return res;
       }),

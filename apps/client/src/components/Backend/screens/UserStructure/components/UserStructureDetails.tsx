@@ -1,4 +1,4 @@
-import { GetStructureResponse, Id, Picture, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
+import { GetStructureResponse, Id, Picture, StructureMember } from "@refugies-info/api-types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -35,16 +35,11 @@ interface Props {
   structureId: Id;
   addUserInStructure: (arg: Id) => void;
   isAdmin: boolean;
-  modifyRole: (arg: Id, role: StructureMemberRole) => void;
   deleteUserFromStructure: (arg: Id) => void;
 }
 
 const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: GetStructureResponse["membres"]) => {
-  if (isAdmin) return true;
-
-  if (userWithRole.length > 0 && userWithRole[0].roles && userWithRole[0].roles.length > 0)
-    return userWithRole[0].roles.includes(StructureMemberRole.ADMIN);
-  return false;
+  return isAdmin || userWithRole.length > 0;
 };
 
 export const UserStructureDetails = (props: Props) => {
@@ -63,7 +58,7 @@ export const UserStructureDetails = (props: Props) => {
 
   const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
 
-  const membres = props.membres.filter((membre) => membre.mainRole !== "Exclu");
+  const { membres } = props;
   const isMember = props.membres.find((el) => props.userId && el.userId === props.userId) ? true : false;
 
   return (

@@ -3,7 +3,6 @@ import {
   GetStructureResponse,
   GetUserContributionsResponse,
   Id,
-  StructureMemberRole,
 } from "@refugies-info/api-types";
 import { FormattedUserContribution } from "./types";
 
@@ -25,7 +24,7 @@ const isUserAuthorizedToDeleteDispositif = (
 
   // user is responsable of structure and author
   const userInStructure = userStructure && userStructure.membres.find((membre) => membre.userId?.toString() === userId);
-  if (userInStructure?.roles.includes(StructureMemberRole.ADMIN) && isAuthor) {
+  if (isAuthor) {
     return true;
   }
   return false;

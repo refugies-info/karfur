@@ -1,4 +1,4 @@
-import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { GetStructureResponse, StructureStatus, UserStatus } from "@refugies-info/api-types";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
@@ -79,21 +79,17 @@ describe("UserStructure", () => {
     membres: [
       {
         userId: "id1",
-        roles: [StructureMemberRole.ADMIN],
         username: "membre1",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),
         added_at: new Date(),
-        mainRole: "Rédacteur",
       },
       {
         userId: "id2",
-        roles: [StructureMemberRole.ADMIN],
         username: "membre2",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),
         added_at: new Date(),
-        mainRole: "Rédacteur",
       },
     ],
     dispositifsAssocies: [],
@@ -126,7 +122,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });
@@ -161,7 +156,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });
@@ -197,7 +191,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });
@@ -236,7 +229,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });

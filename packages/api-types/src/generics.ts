@@ -114,19 +114,13 @@ export interface SimpleUser {
   roles?: string[];
 }
 
-export enum StructureMemberRole {
-  ADMIN = "administrateur",
-}
-
 export interface StructureMember {
   userId: string;
   username?: string;
   email?: string;
   picture: Picture;
   last_connected: Date;
-  roles: StructureMemberRole[];
   added_at: Date;
-  mainRole: "Rédacteur" | "Responsable" | "Exclu";
 }
 
 // Dispositif
