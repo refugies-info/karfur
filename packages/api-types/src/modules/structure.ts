@@ -65,7 +65,7 @@ export interface PatchStructureRequest {
  */
 export interface PatchStructureRolesRequest {
   membreId: string;
-  action: "delete" | "modify" | "create";
+  action: "delete" | "create";
 }
 
 interface Membre {

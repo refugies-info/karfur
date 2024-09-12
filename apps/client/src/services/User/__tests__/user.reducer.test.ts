@@ -13,7 +13,6 @@ describe("[Reducer] user", () => {
     contributeur: false,
     caregiver: false,
     hasStructure: false,
-    rolesInStructure: [],
   };
   it("should set user in store when action SET_USER is received with payload user without role", () => {
     expect(userReducer(initialUserState, setUserActionCreator(testUser))).toEqual(expectedResult);
@@ -29,7 +28,6 @@ describe("[Reducer] user", () => {
       contributeur: false,
       caregiver: false,
       hasStructure: false,
-      rolesInStructure: [],
     });
   });
 
@@ -43,7 +41,6 @@ describe("[Reducer] user", () => {
       contributeur: true,
       caregiver: false,
       hasStructure: true,
-      rolesInStructure: [],
     });
   });
 
@@ -60,7 +57,6 @@ describe("[Reducer] user", () => {
       contributeur: true,
       caregiver: false,
       hasStructure: true,
-      rolesInStructure: [],
       user: newUser,
     });
   });
@@ -85,7 +81,6 @@ describe("[Reducer] user", () => {
       contributeur: false,
       caregiver: false,
       hasStructure: false,
-      rolesInStructure: [],
       user: newUser,
     });
   });
@@ -108,7 +103,6 @@ describe("[Reducer] user", () => {
       contributeur: false,
       caregiver: false,
       hasStructure: true,
-      rolesInStructure: [],
       user: newUser,
     });
   });

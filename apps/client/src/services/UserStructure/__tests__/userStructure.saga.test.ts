@@ -3,7 +3,6 @@ import mockRouter from "next-router-mock";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
 import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
-import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
 import { userSelector } from "../../User/user.selectors";
 import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "../userStructure.actionTypes";
 import { fetchUserStructureActionCreator, setUserStructureActionCreator } from "../userStructure.actions";
@@ -38,8 +37,6 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "userId" })
-        .put(setUserRoleInStructureActionCreator([]))
-        .next()
         .call(mockRouter.push, "/")
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
@@ -61,35 +58,6 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "userId" })
-        .put(setUserRoleInStructureActionCreator([]))
-        .next()
-        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
-        .next()
-        .isDone();
-    });
-
-    it("should call api and push / when membre not admin or respo", () => {
-      testSaga(fetchUserStructure, {
-        type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id", shouldRedirect: true },
-      })
-        .next()
-        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
-        .next()
-        .call(API.getStructureById, "id", "fr")
-        .next({ membres: [{ userId: "id1", roles: ["membre"] }] })
-        .put(
-          setUserStructureActionCreator({
-            membres: [{ userId: "id1", roles: ["membre"] }],
-          }),
-        )
-        .next()
-        .select(userSelector)
-        .next({ userId: "id1" })
-        .put(setUserRoleInStructureActionCreator(["membre"]))
-        .next()
-        .call(mockRouter.push, "/")
-        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();
@@ -104,17 +72,15 @@ describe("[Saga] Structures", () => {
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .call(API.getStructureById, "id", "fr")
-        .next({ membres: [{ userId: "id", roles: ["membre"] }] })
+        .next({ membres: [{ userId: "id" }] })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["membre"] }],
+            membres: [{ userId: "id" }],
           }),
         )
         .next()
         .select(userSelector)
         .next({ userId: "id" })
-        .put(setUserRoleInStructureActionCreator(["membre"]))
-        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();
@@ -130,18 +96,16 @@ describe("[Saga] Structures", () => {
         .next()
         .call(API.getStructureById, "id", "fr")
         .next({
-          membres: [{ userId: "id", roles: ["administrateur"] }],
+          membres: [{ userId: "id" }],
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["administrateur"] }],
+            membres: [{ userId: "id" }],
           }),
         )
         .next()
         .select(userSelector)
         .next({ userId: "id" })
-        .put(setUserRoleInStructureActionCreator(["administrateur"]))
-        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();
@@ -156,17 +120,15 @@ describe("[Saga] Structures", () => {
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .call(API.getStructureById, "id", "fr")
-        .next({ membres: [{ userId: "id", roles: ["administrateur"] }] })
+        .next({ membres: [{ userId: "id" }] })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["administrateur"] }],
+            membres: [{ userId: "id" }],
           }),
         )
         .next()
         .select(userSelector)
         .next({ userId: "id" })
-        .put(setUserRoleInStructureActionCreator(["administrateur"]))
-        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();
@@ -191,7 +153,6 @@ describe("[Saga] Structures", () => {
         .call(API.updateStructureRoles, "structureId", {
           membreId: "userId",
           action: "create",
-          role: "administrateur",
         })
         .next()
         .put(
@@ -219,39 +180,6 @@ describe("[Saga] Structures", () => {
         .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
 
-        .isDone();
-    });
-
-    it("should call and dispatch correct actions with modifyMembres true action modify", () => {
-      testSaga(updateUserStructure, {
-        type: UPDATE_USER_STRUCTURE,
-        payload: {
-          membres: {
-            structureId: "structureId",
-            userId: "userId",
-            type: "modify",
-            newRole: "administrateur",
-          },
-        },
-      })
-        .next()
-        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
-        .next()
-        .call(API.updateStructureRoles, "structureId", {
-          membreId: "userId",
-          action: "modify",
-          role: "administrateur",
-        })
-        .next()
-        .put(
-          fetchUserStructureActionCreator({
-            structureId: "structureId",
-            shouldRedirect: true,
-          }),
-        )
-        .next()
-        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
-        .next()
         .isDone();
     });
 

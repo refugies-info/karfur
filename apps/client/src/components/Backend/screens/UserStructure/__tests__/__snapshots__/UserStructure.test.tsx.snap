@@ -27,37 +27,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 8px;
 }
 
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
 .c14 {
   font-weight: normal;
   font-size: 32px;
@@ -128,6 +97,37 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 .c13 {
   color: gray90;
   max-width: 190px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  margin-top: 26px;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.c1 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 315px;
+  height: fit-content;
 }
 
 .c2 {
@@ -854,37 +854,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 8px;
 }
 
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
 .c11 {
   width: 40px;
   height: 40px;
@@ -930,6 +899,37 @@ exports[`UserStructure should render correctly when structure with membres when 
 .c13 {
   color: gray90;
   max-width: 190px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  margin-top: 26px;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.c1 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 315px;
+  height: fit-content;
 }
 
 .c2 {
@@ -1332,37 +1332,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 8px;
 }
 
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
 .c11 {
   width: 40px;
   height: 40px;
@@ -1408,6 +1377,37 @@ exports[`UserStructure should render correctly when structure with membres when 
 .c13 {
   color: gray90;
   max-width: 190px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  margin-top: 26px;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.c1 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 315px;
+  height: fit-content;
 }
 
 .c2 {
