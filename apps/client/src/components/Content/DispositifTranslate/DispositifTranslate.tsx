@@ -99,6 +99,13 @@ const Dispositif = (props: Props) => {
                 </div>
               )}
 
+              {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
+                <div className={cls(styles.marque, "mb-8")}>
+                  <span>{t("Dispositif.with")}</span>
+                  <TranslationInput id="step-administrationName" {...getInputProps("content.administrationName")} />
+                </div>
+              )}
+
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <section key={i} className="mb-8">
                   <SectionTitle titleKey={section} />
@@ -141,6 +148,11 @@ const Dispositif = (props: Props) => {
               {typeContenu === ContentType.DISPOSITIF && (
                 <div className="mb-8">
                   {t("Dispositif.with")} {dispositif?.titreMarque}
+                </div>
+              )}
+              {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
+                <div className="mb-8">
+                  {t("Dispositif.with")} {dispositif.administration.name}
                 </div>
               )}
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (

@@ -79,7 +79,8 @@ const isAccordionTranslated = (
 export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | undefined) => {
   if (!defaultTranslation) return 0;
   const removeTitreMarque = defaultTranslation.content.titreMarque === "" ? 1 : 0;
-  return Object.keys(defaultTranslation.content).length - removeTitreMarque;
+  const removeAdministrationName = (defaultTranslation.content as DemarcheContent).administrationName === "" ? 1 : 0;
+  return Object.keys(defaultTranslation.content).length - removeTitreMarque - removeAdministrationName;
 };
 
 export const getWordsCount = (
@@ -116,10 +117,14 @@ export const getMissingStepsTranslate = (
   isExpert: boolean,
 ): Step[] => {
   let content: TranslationType = isExpert ? [formValue] : [formValue, ...suggestions];
-
   const steps = [
     isTradDone("content.titreInformatif", content) ? null : "titreInformatif",
     !isTradDone("content.titreMarque", content) && typeContenu === ContentType.DISPOSITIF ? "titreMarque" : null,
+    !isTradDone("content.administrationName", content) &&
+    typeContenu === ContentType.DEMARCHE &&
+    (defaultTranslation?.content as DemarcheContent).administrationName
+      ? "administrationName"
+      : null,
     isTradDone("content.what", content) ? null : "what",
     typeContenu === ContentType.DISPOSITIF
       ? isAccordionTranslated(content, "why", (defaultTranslation?.content as DispositifContent).why)
