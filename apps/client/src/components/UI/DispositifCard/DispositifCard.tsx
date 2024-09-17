@@ -25,6 +25,7 @@ interface Props {
   selectedDepartment?: string;
   targetBlank?: boolean;
   demoCard?: boolean;
+  className?: string;
 }
 
 const DispositifCard = (props: Props) => {
@@ -60,7 +61,7 @@ const DispositifCard = (props: Props) => {
   const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
 
   return (
-    <div className={cls(styles.wrapper)}>
+    <div className={cls(styles.wrapper, props.className)}>
       <Card
         background
         border
@@ -113,7 +114,7 @@ const DispositifCard = (props: Props) => {
         titleAs="h3"
         desc={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
         end={
-          <div className="d-flex gap-3">
+          <div className="d-flex gap-2">
             {price !== undefined && (
               <div className={styles.info}>
                 <i className="fr-icon-money-euro-circle-line" />

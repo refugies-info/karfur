@@ -3,7 +3,7 @@ import type { publicStatusType, publicType } from "@refugies-info/api-types";
 export type AgeOptions = "-18" | "18-25" | "+25";
 export type FrenchOptions = "a" | "b" | "c";
 export type SortOptions = "date" | "view" | "theme" | "location";
-export type TypeOptions = "dispositif" | "demarche" | "all";
+export type TypeOptions = "dispositif" | "demarche" | "all" | "ressource";
 export type PublicOptions = publicType;
 export type StatusOptions = publicStatusType;
 
@@ -56,6 +56,7 @@ export const filterType: TypeFilters = [
   { key: "all", value: "Filters.typeAll", backwardCompatibility: "" },
   { key: "dispositif", value: "Filters.typeDispositif", backwardCompatibility: "dispositifs" },
   { key: "demarche", value: "Filters.typeDemarche", backwardCompatibility: "demarches" },
+  { key: "ressource", value: "Filters.typeRessource", backwardCompatibility: "ressources" },
 ];
 export const publicOptions: PublicFilters = [
   { key: "family", value: "Infocards.family" },

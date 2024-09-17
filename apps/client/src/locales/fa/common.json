@@ -179,9 +179,10 @@
     "sortTheme": "با موضوع",
     "sortDate": "برگه های جدید",
     "sortView": "با بیشترین بازدید",
-    "typeAll": "همه",
-    "typeDispositif": "برگه‌های برنامه",
-    "typeDemarche": "برگه های روند اداری"
+    "typeAll": "همه رکوردها",
+    "typeDispositif": "دستگاه‌ها",
+    "typeDemarche": "رویه‌ها",
+    "typeRessource": "منابع"
   },
   "Status": {
     "En attente": "در انتظار",

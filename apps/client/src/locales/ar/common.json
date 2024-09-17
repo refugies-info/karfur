@@ -179,9 +179,10 @@
     "sortTheme": "حسب الموضوع",
     "sortDate": "الصفحات الأحدث",
     "sortView": "الصفحات الأكثر مشاهدة",
-    "typeAll": "كل الصفحات",
-    "typeDispositif": "صفحات الدورات و البرامج و الفورماسيون",
-    "typeDemarche": "صفحات المعاملات الادارية"
+    "typeAll": "جميع الملفات",
+    "typeDispositif": "الأجهزة",
+    "typeDemarche": "الإجراءات",
+    "typeRessource": "الموارد"
   },
   "Status": {
     "En attente": "في الانتظار",

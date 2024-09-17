@@ -179,9 +179,10 @@
     "sortTheme": "По теме",
     "sortDate": "Недавно добавленные",
     "sortView": "Самые популярные",
-    "typeAll": "Все",
-    "typeDispositif": "Страницы программ",
-    "typeDemarche": "Страницы административных процедур"
+    "typeAll": "Все записи",
+    "typeDispositif": "Устройства",
+    "typeDemarche": "Процедуры",
+    "typeRessource": "Ресурсы"
   },
   "Status": {
     "En attente": "На проверке",

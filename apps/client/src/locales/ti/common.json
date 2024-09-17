@@ -172,9 +172,10 @@
     "sortTheme": "ምደባ በብእዋን ወይ ብመንጽር ግዜ",
     "sortDate": "ናይ ቀረባ እዋን",
     "sortView": "ናይ ቅድም ዝነበረ",
-    "typeAll": "ኩሉ",
-    "typeDispositif": "ትሩባት ፋይላት",
-    "typeDemarche": "ናይ ምሕዳር ፋይላት"
+    "typeAll": "ኩሉ መዝገቦች",
+    "typeDispositif": "መሳርያታት",
+    "typeDemarche": "ኣካላት",
+    "typeRessource": "ሓበሬታታት"
   },
   "Status": {
     "En attente": "መጻንሒ",

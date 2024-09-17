@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -106,7 +107,7 @@ const ModalThemes = (props: Props) => {
 
         {remainingSelect > 0 && (
           <p className={styles.help}>
-            <EVAIcon name="info" size={16} fill={styles.lightBorderPlainInfo} className="me-2" />
+            <EVAIcon name="info" size={16} fill={fr.colors.decisions.text.default.info.default} className="me-2" />
             {remainingSelect} thèmes restants maximum
           </p>
         )}

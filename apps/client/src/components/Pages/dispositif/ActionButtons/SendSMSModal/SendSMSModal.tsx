@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { useTranslation } from "next-i18next";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -118,7 +119,12 @@ const SendSMSModal = (props: Props) => {
 
           {error && (
             <div className={styles.error}>
-              <EVAIcon name="alert-triangle" size={24} fill={styles.lightTextDefaultError} className="me-2" />
+              <EVAIcon
+                name="alert-triangle"
+                size={24}
+                fill={fr.colors.decisions.background.actionHigh.error.default}
+                className="me-2"
+              />
               <p>{error}</p>
             </div>
           )}

@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import dynamic from "next/dynamic";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -109,7 +110,7 @@ const AccordionItem = (props: Props) => {
                 <EVAIcon
                   name="trash-2-outline"
                   size={32}
-                  fill={styles.lightTextMentionGrey}
+                  fill={fr.colors.decisions.text.mention.grey.default}
                   onClick={(e: any) => {
                     e.preventDefault();
                     props.onDelete ? props.onDelete() : null;

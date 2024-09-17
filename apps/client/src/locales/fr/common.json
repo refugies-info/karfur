@@ -186,9 +186,10 @@
     "sortTheme": "Par thématique",
     "sortDate": "Les plus récentes",
     "sortView": "Les plus vues",
-    "typeAll": "Tout",
-    "typeDispositif": "Fiches dispositifs",
-    "typeDemarche": "Fiches démarches"
+    "typeAll": "Toutes les fiches",
+    "typeDispositif": "Dispositifs",
+    "typeDemarche": "Démarches",
+    "typeRessource": "Ressources"
   },
   "Status": {
     "En attente": "En attente",

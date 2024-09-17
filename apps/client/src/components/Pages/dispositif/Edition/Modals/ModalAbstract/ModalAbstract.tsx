@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -49,7 +50,12 @@ const ModalAbstract = (props: Props) => {
               />
 
               <p className={styles.help}>
-                <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
+                <EVAIcon
+                  name="alert-triangle"
+                  size={16}
+                  fill={fr.colors.decisions.background.actionHigh.error.default}
+                  className="me-2"
+                />
                 {remainingChars} sur 110 caractères restants
               </p>
             </div>

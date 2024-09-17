@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -98,7 +99,12 @@ const StructureReceiveDispositif = () => {
         title={
           receiveDispositif ? (
             <>
-              <EVAIcon name="checkmark-circle-2" size={32} fill={styles.lightTextDefaultSuccess} className="me-2" />{" "}
+              <EVAIcon
+                name="checkmark-circle-2"
+                size={32}
+                fill={fr.colors.decisions.background.actionHigh.success.default}
+                className="me-2"
+              />{" "}
               Super !
             </>
           ) : (

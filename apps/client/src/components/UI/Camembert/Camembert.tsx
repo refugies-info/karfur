@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { useMemo } from "react";
 import styles from "./Camembert.module.scss";
 
@@ -13,7 +14,7 @@ const Camembert = (props: Props) => {
       <div
         className={styles.progress}
         style={{
-          background: `conic-gradient(${styles.lightPrimaryBlueFranceSun} ${degrees}deg, white ${degrees}deg, white 360deg)`,
+          background: `conic-gradient(${fr.colors.decisions.background.actionHigh.blueFrance.active} ${degrees}deg, white ${degrees}deg, white 360deg)`,
         }}
       ></div>
     </div>

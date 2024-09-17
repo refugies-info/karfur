@@ -179,9 +179,10 @@
     "sortTheme": "By topic",
     "sortDate": "Most recent",
     "sortView": "Most viewed",
-    "typeAll": "All",
-    "typeDispositif": "Scheme sheets",
-    "typeDemarche": "Procedure sheets"
+    "typeAll": "All records",
+    "typeDispositif": "Schemes",
+    "typeDemarche": "Procedures",
+    "typeRessource": "Resources"
   },
   "Status": {
     "En attente": "Pending",

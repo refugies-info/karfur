@@ -1,5 +1,5 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { MAX_SHOWN_DEMARCHES, MAX_SHOWN_DISPOSITIFS } from "~/components/Pages/recherche/SearchResults/SearchResults";
+import { MATCHES_PER_PAGE } from "~/components/Pages/recherche/SearchResults/SearchResults";
 import { Results } from "~/services/SearchResults/searchResults.reducer";
 
 const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number): GetDispositifsResponse[] => {
@@ -21,9 +21,8 @@ const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number
  */
 export const generateLightResults = (results: Results) => {
   const lightResults: Results = {
-    dispositifs: getSearchDispositifs(results.dispositifs, MAX_SHOWN_DISPOSITIFS),
-    demarches: getSearchDispositifs(results.demarches, MAX_SHOWN_DEMARCHES),
-    dispositifsSecondaryTheme: getSearchDispositifs(results.dispositifsSecondaryTheme, MAX_SHOWN_DISPOSITIFS),
+    matches: getSearchDispositifs(results.matches, MATCHES_PER_PAGE),
+    suggestions: getSearchDispositifs(results.suggestions, MATCHES_PER_PAGE),
   };
 
   return lightResults;
