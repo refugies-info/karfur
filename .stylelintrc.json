@@ -2,25 +2,48 @@
   "extends": "stylelint-config-standard-scss",
   "overrides": [
     {
-      "files": ["**/*.scss"],
+      "files": [
+        "**/*.scss"
+      ],
       "customSyntax": "postcss-scss"
     }
   ],
   "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind"
+        ]
+      }
+    ],
     "selector-class-pattern": "^[a-z]+(-[a-z0-9]+)*$|^[a-z]+(_[a-z0-9]+)*$|^[a-z][a-zA-Z0-9]*$",
     "scss/dollar-variable-pattern": "^[a-z]+(-[a-z0-9]+)*$|^[a-z]+(_[a-z0-9]+)*$|^[a-z][a-zA-Z0-9]*$",
     "scss/at-mixin-pattern": "^[a-z]+(-[a-z0-9]+)*$|^[a-z]+(_[a-z0-9]+)*$|^[a-z][a-zA-Z0-9]*$",
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["export", "import", "global", "local", "external"]
+        "ignorePseudoClasses": [
+          "export",
+          "import",
+          "global",
+          "local",
+          "external"
+        ]
       }
     ],
     "property-no-unknown": [
       true,
       {
-        "ignoreProperties": ["composes", "compose-with"],
-        "ignoreSelectors": [":export", "^:import"]
+        "ignoreProperties": [
+          "composes",
+          "compose-with"
+        ],
+        "ignoreSelectors": [
+          ":export",
+          "^:import"
+        ]
       }
     ]
   }
