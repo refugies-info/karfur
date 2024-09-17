@@ -31,3 +31,5 @@ jobs:
 
       - name: Lint, Check Types and Test
         run: yarn migrate up
+        env:
+          MIGRATE_MONGO_URI: ${{ secrets.MIGRATE_MONGO_URI }}
