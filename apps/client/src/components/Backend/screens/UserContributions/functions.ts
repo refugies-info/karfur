@@ -22,12 +22,8 @@ const isUserAuthorizedToDeleteDispositif = (
   const isUserInStructure = !!dispositifSponsorId && !!userStructure && dispositifSponsorId === userStructure._id;
   if (dispositifSponsorId && !isUserInStructure) return false; // user not in structure
 
-  // user is responsable of structure and author
-  const userInStructure = userStructure && userStructure.membres.find((membre) => membre.userId?.toString() === userId);
-  if (isAuthor) {
-    return true;
-  }
-  return false;
+  // user is member of structure, they have the same rights as the admin
+  return true;
 };
 
 export const formatContributions = (
