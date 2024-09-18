@@ -31,7 +31,7 @@ const convertCsvToJsonFr = async () => {
   });
 
   const stringify = JSON.stringify(finalJson);
-  fs.writeFileSync("../fr.json", stringify);
+  fs.writeFileSync("../fr/common.json", stringify);
 };
 
 const main = async () => {
