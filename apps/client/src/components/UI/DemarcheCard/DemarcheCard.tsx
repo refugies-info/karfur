@@ -22,6 +22,7 @@ import { NewThemeBadge } from "../NewThemeBadge";
 interface Props {
   demarche: GetDispositifsResponse;
   targetBlank?: boolean;
+  demoCard?: boolean;
 }
 
 const DemarcheCard = (props: Props) => {
@@ -87,7 +88,12 @@ const DemarcheCard = (props: Props) => {
         }
         title={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
         titleAs="h3"
-        desc={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
+        desc={
+          <span
+            className={cls(styles.three_lines, props.demoCard && styles.demo)}
+            dangerouslySetInnerHTML={{ __html: safeAbstract }}
+          ></span>
+        }
         end={
           props.demarche.lastModificationDate ? (
             <div className={styles.info}>

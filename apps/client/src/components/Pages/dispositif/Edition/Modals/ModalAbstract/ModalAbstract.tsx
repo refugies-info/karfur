@@ -6,6 +6,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { Col, Row } from "reactstrap";
 import ArrowRight from "~/assets/dispositif/arrow-right.svg";
 import BaseModal from "~/components/UI/BaseModal";
+import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useContentType } from "~/hooks/dispositif";
@@ -13,6 +14,7 @@ import { SimpleFooter } from "../components";
 import { help } from "./data";
 import { getDefaultDispositif } from "./functions";
 import styles from "./ModalAbstract.module.scss";
+import { useSponsorData } from "./useSponsorData";
 
 interface Props {
   show: boolean;
@@ -33,6 +35,7 @@ const ModalAbstract = (props: Props) => {
   };
 
   const remainingChars = useMemo(() => MAX_LENGTH - (abstract || "").length, [abstract]);
+  const sponsor = useSponsorData(values, typeContenu);
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
@@ -60,15 +63,18 @@ const ModalAbstract = (props: Props) => {
               </p>
             </div>
           </Col>
+          <span className={styles.arrow}>
+            <Image src={ArrowRight} width={60} height={29} alt="" />
+          </span>
           {typeContenu === ContentType.DISPOSITIF && (
-            <>
-              <span className={styles.arrow}>
-                <Image src={ArrowRight} width={60} height={29} alt="" />
-              </span>
-              <Col>
-                <DispositifCard dispositif={{ ...getDefaultDispositif(values), abstract }} demoCard />
-              </Col>
-            </>
+            <Col>
+              <DispositifCard dispositif={{ ...getDefaultDispositif(values, sponsor), abstract }} demoCard />
+            </Col>
+          )}
+          {typeContenu === ContentType.DEMARCHE && (
+            <Col>
+              <DemarcheCard demarche={{ ...getDefaultDispositif(values, sponsor), abstract }} demoCard />
+            </Col>
           )}
         </Row>
 

@@ -41,10 +41,14 @@
 
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 82%;
   left: 230px;
   transform: translateY(-50px);
   z-index: 1;
-  width: 64px;
+  width: 70px;
   height: 30px;
+
+  img {
+    max-width: 100%;
+  }
 }

@@ -112,7 +112,12 @@ const DispositifCard = (props: Props) => {
         }
         title={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
         titleAs="h3"
-        desc={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeAbstract }}></span>}
+        desc={
+          <span
+            className={cls(styles.three_lines, props.demoCard && styles.demo)}
+            dangerouslySetInnerHTML={{ __html: safeAbstract }}
+          ></span>
+        }
         end={
           <div className="d-flex gap-2">
             {price !== undefined && (
