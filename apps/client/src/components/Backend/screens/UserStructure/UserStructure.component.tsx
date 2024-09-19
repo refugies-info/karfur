@@ -1,20 +1,19 @@
+import { Id } from "@refugies-info/api-types";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import Swal from "sweetalert2";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { userSelector } from "~/services/User/user.selectors";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "~/services/UserStructure/userStructure.actions";
 import { userStructureMembresSelector, userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
-import { UserStructureLoading } from "./components/UserStructureLoading";
-
-import { Id, StructureMemberRole } from "@refugies-info/api-types";
-import styled from "styled-components";
-import Swal from "sweetalert2";
-import { userSelector } from "~/services/User/user.selectors";
 import { colors } from "~/utils/colors";
 import { UserStructureDetails } from "./components/UserStructureDetails";
+import { UserStructureLoading } from "./components/UserStructureLoading";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -70,21 +69,6 @@ export const UserStructureComponent = (props: Props) => {
     dispatch(
       updateUserStructureActionCreator({
         membres: { structureId: userStructure._id, userId, type: "create" },
-      }),
-    );
-  };
-
-  const modifyRole = (userId: Id, role: StructureMemberRole) => {
-    if (!userStructure) return;
-
-    dispatch(
-      updateUserStructureActionCreator({
-        membres: {
-          structureId: userStructure._id,
-          userId,
-          newRole: role,
-          type: "modify",
-        },
       }),
     );
   };
@@ -154,7 +138,6 @@ export const UserStructureComponent = (props: Props) => {
         structureId={userStructure._id}
         addUserInStructure={addUserInStructure}
         isAdmin={user.admin}
-        modifyRole={modifyRole}
         deleteUserFromStructure={deleteUserFromStructure}
       />
     </div>

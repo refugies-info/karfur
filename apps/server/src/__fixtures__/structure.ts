@@ -1,4 +1,4 @@
-import { StructureMemberRole, StructureStatus } from "@refugies-info/api-types";
+import { StructureStatus } from "@refugies-info/api-types";
 import { ObjectId, Structure } from "~/typegoose";
 
 const structure: Structure = new Structure();
@@ -22,7 +22,6 @@ structure.disposAssociesLocalisation = [];
 structure.membres = [
   {
     userId: "6569af9815c38bd134125ff3",
-    roles: [StructureMemberRole.ADMIN],
     added_at: new Date("2023-12-01T14:25:27.089Z"),
   },
 ];

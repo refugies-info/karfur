@@ -1,4 +1,4 @@
-import { PostStructureRequest, StructureMemberRole } from "@refugies-info/api-types";
+import { PostStructureRequest } from "@refugies-info/api-types";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { createStructureInDB } from "~/modules/structure/structure.repository";
@@ -17,7 +17,6 @@ export const createStructure = async (body: PostStructureRequest, userId: string
       ? [
           {
             userId: new ObjectId(body.responsable),
-            roles: [StructureMemberRole.ADMIN],
             added_at: new Date(),
           },
         ]

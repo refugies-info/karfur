@@ -1,9 +1,4 @@
-import {
-  GetStructureResponse,
-  PatchStructureRequest,
-  PatchStructureRolesRequest,
-  StructureMemberRole,
-} from "@refugies-info/api-types";
+import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import Router from "next/router";
 import { SagaIterator } from "redux-saga";
@@ -12,7 +7,6 @@ import { UserState } from "~/services/User/user.reducer";
 import { logger } from "../../logger";
 import API from "../../utils/API";
 import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { setUserRoleInStructureActionCreator } from "../User/user.actions";
 import { userSelector } from "../User/user.selectors";
 import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 import {
@@ -34,12 +28,9 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     const userId = user.userId;
     const structureMembers = data ? data.membres : [];
     const userInStructure = structureMembers.filter((member) => member.userId === userId);
-    const userRoles = userInStructure.length > 0 ? userInStructure[0].roles : [];
-    const isUserContribOrAdmin =
-      userRoles.includes(StructureMemberRole.ADMIN) || userRoles.includes(StructureMemberRole.CONTRIB);
+    const isUserAdmin = userInStructure.length > 0;
 
-    yield put(setUserRoleInStructureActionCreator(userRoles));
-    if (shouldRedirect && !isUserContribOrAdmin) {
+    if (shouldRedirect && !isUserAdmin) {
       yield call(Router.push, "/");
     }
 
@@ -104,13 +95,6 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
         query = {
           membreId: membres.userId.toString(),
           action: "create",
-          role: StructureMemberRole.CONTRIB,
-        };
-      } else if (membres.type === "modify" && membres.newRole) {
-        query = {
-          membreId: membres.userId.toString(),
-          action: "modify",
-          role: membres.newRole,
         };
       } else if (membres.type === "delete") {
         query = {

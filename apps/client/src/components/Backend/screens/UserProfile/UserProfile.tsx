@@ -1,14 +1,12 @@
-import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
-import { StructureMemberRole } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import { cls } from "~/lib/classname";
 import { userDetailsSelector, userSelector } from "~/services/User/user.selectors";
-import { userStructureRoleSelector, userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
+import { userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
 import API from "~/utils/API";
 import {
   EditAvatar,
@@ -34,7 +32,6 @@ export const UserProfile = (props: Props) => {
   const user = useSelector(userSelector);
   const userDetails = useSelector(userDetailsSelector);
   const userStructure = useSelector(userStructureSelector);
-  const userStructureRole = useSelector(userStructureRoleSelector);
 
   const [edition, setEdition] = useState(false);
   const [newsletter, setNewsletter] = useState<boolean | null>(null);
@@ -123,11 +120,6 @@ export const UserProfile = (props: Props) => {
               <div className={styles.info}>
                 <label>Structure</label>
                 <p>{userStructure.nom}</p>
-                {userStructureRole?.includes(StructureMemberRole.ADMIN) && (
-                  <Badge severity="success" noIcon className="mt-2" as="span">
-                    Responsable
-                  </Badge>
-                )}
               </div>
             )}
 

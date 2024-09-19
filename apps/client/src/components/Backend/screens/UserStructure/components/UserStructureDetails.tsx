@@ -1,4 +1,4 @@
-import { GetStructureResponse, Id, Picture, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
+import { GetStructureResponse, Id, Picture, StructureMember } from "@refugies-info/api-types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,7 +9,6 @@ import placeholder from "~/assets/no_results_alt.svg";
 import TitleWithNumber from "~/components/Backend/TitleWithNumber";
 import FButton from "~/components/UI/FButton/FButton";
 import AddMemberModal from "./AddMemberModal";
-import EditMemberModal from "./EditMemberModal";
 import { MembresTable } from "./MembresTable";
 import { MainContainer, StructureContainer, StructurePictureContainer } from "./SubComponents";
 import styles from "./UserStructureDetails.module.scss";
@@ -36,25 +35,17 @@ interface Props {
   structureId: Id;
   addUserInStructure: (arg: Id) => void;
   isAdmin: boolean;
-  modifyRole: (arg: Id, role: StructureMemberRole) => void;
   deleteUserFromStructure: (arg: Id) => void;
 }
 
 const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: GetStructureResponse["membres"]) => {
-  if (isAdmin) return true;
-
-  if (userWithRole.length > 0 && userWithRole[0].roles && userWithRole[0].roles.length > 0)
-    return userWithRole[0].roles.includes(StructureMemberRole.ADMIN);
-  return false;
+  return isAdmin || userWithRole.length > 0;
 };
 
 export const UserStructureDetails = (props: Props) => {
   const router = useRouter();
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
   const toggleAddMemberModal = () => setShowAddMemberModal(!showAddMemberModal);
-
-  const [showEditMemberModal, setShowEditMemberModal] = useState(false);
-  const toggleEditMemberModal = () => setShowEditMemberModal(!showEditMemberModal);
 
   const [selectedUser, setSelectedUser] = useState<null | StructureMember>(null);
 
@@ -67,7 +58,7 @@ export const UserStructureDetails = (props: Props) => {
 
   const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
 
-  const membres = props.membres.filter((membre) => membre.mainRole !== "Exclu");
+  const { membres } = props;
   const isMember = props.membres.find((el) => props.userId && el.userId === props.userId) ? true : false;
 
   return (
@@ -124,7 +115,6 @@ export const UserStructureDetails = (props: Props) => {
           membres={membres}
           userId={props.userId}
           isUserAuthorizedToAddMembers={isUserAuthorizedToAddMembers}
-          toggleEditMemberModal={toggleEditMemberModal}
           setSelectedUser={setSelectedUser}
           deleteUserFromStructure={props.deleteUserFromStructure}
         />
@@ -135,14 +125,6 @@ export const UserStructureDetails = (props: Props) => {
           show={showAddMemberModal}
           addUserInStructure={props.addUserInStructure}
           membres={membres}
-        />
-      )}
-      {isUserAuthorizedToAddMembers && (
-        <EditMemberModal
-          toggle={toggleEditMemberModal}
-          show={showEditMemberModal}
-          modifyRole={props.modifyRole}
-          selectedUser={selectedUser}
         />
       )}
     </MainContainer>

@@ -1,4 +1,4 @@
-import { StructureMemberRole, StructureStatus } from "@refugies-info/api-types";
+import { StructureStatus } from "@refugies-info/api-types";
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { ImageSchema } from "./generics";
@@ -7,8 +7,6 @@ import { User, UserId } from "./User";
 export class Membre {
   @prop({ required: true })
   public userId!: Ref<User, UserId>;
-  @prop({ required: true, type: () => [String] })
-  public roles!: StructureMemberRole[];
   @prop({ required: true })
   public added_at!: Date;
 }

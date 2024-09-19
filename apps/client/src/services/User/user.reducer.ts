@@ -1,4 +1,4 @@
-import { GetUserInfoResponse, Id, RoleName, StructureMemberRole } from "@refugies-info/api-types";
+import { GetUserInfoResponse, Id, RoleName } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
 
@@ -12,7 +12,6 @@ export interface UserState {
   contributeur: boolean;
   caregiver: boolean;
   hasStructure: boolean;
-  rolesInStructure: StructureMemberRole[];
 }
 export const initialUserState: UserState = {
   userId: null,
@@ -24,7 +23,6 @@ export const initialUserState: UserState = {
   contributeur: false,
   caregiver: false,
   hasStructure: false,
-  rolesInStructure: [],
 };
 
 export const userReducer = createReducer<UserState, UserActions>(initialUserState, {
@@ -40,5 +38,4 @@ export const userReducer = createReducer<UserState, UserActions>(initialUserStat
     caregiver: (action.payload?.roles || []).some((x) => x.nom === RoleName.CAREGIVER),
     hasStructure: (action.payload?.structures || []).length > 0,
   }),
-  SET_USER_ROLE_IN_STRUCTURE: (state, action) => ({ ...state, rolesInStructure: action.payload }),
 });

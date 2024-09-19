@@ -1,4 +1,4 @@
-import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureMemberRole, StructureStatus } from "../generics";
+import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureStatus } from "../generics";
 import { Suggestion } from "./dispositif";
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
@@ -65,14 +65,11 @@ export interface PatchStructureRequest {
  */
 export interface PatchStructureRolesRequest {
   membreId: string;
-  action: "delete" | "modify" | "create";
-  role?: StructureMemberRole;
+  action: "delete" | "create";
 }
-
 
 interface Membre {
   userId: Id;
-  roles: StructureMemberRole[];
 }
 /**
  * @url GET /structures/all
@@ -117,7 +114,6 @@ export interface GetStructureStatisticsResponse {
   nbStructureAdmins?: number;
 }
 
-
 export interface DetailedOpeningHours {
   day: string;
   from0?: string;
@@ -135,7 +131,7 @@ export interface OpeningHours {
 export type GetStructureDispositifResponse = SimpleDispositif & {
   nbMercis?: number;
   suggestions?: Suggestion[];
-}
+};
 
 /**
  * @url GET /structures/{id}

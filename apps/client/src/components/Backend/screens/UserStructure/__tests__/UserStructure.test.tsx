@@ -1,13 +1,10 @@
-import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { GetStructureResponse, StructureStatus, UserStatus } from "@refugies-info/api-types";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
 import Swal from "sweetalert2";
 import { initialMockStore } from "~/__fixtures__/reduxStore";
-import {
-  fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
-} from "~/services/UserStructure/userStructure.actions";
+import { fetchUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
 import { colors } from "~/utils/colors";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserStructureComponent } from "../UserStructure.component";
@@ -82,21 +79,17 @@ describe("UserStructure", () => {
     membres: [
       {
         userId: "id1",
-        roles: [StructureMemberRole.CONTRIB],
         username: "membre1",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),
         added_at: new Date(),
-        mainRole: "Rédacteur",
       },
       {
         userId: "id2",
-        roles: [StructureMemberRole.ADMIN],
         username: "membre2",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),
         added_at: new Date(),
-        mainRole: "Rédacteur",
       },
     ],
     dispositifsAssocies: [],
@@ -129,7 +122,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });
@@ -164,7 +156,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });
@@ -200,63 +191,11 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });
     await user.click(screen.getByTestId("test-add-member"));
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  it("should render correctly when edit member modal is open, select respo and validate", async () => {
-    const user = userEvent.setup();
-    window.scrollTo = jest.fn();
-    const { asFragment } = wrapWithProvidersAndRenderForTesting({
-      Component: UserStructureComponent,
-      reduxState: {
-        ...initialMockStore,
-        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-        userStructure: structure,
-        user: {
-          userId: "id2",
-          user: {
-            _id: "id2",
-            contributions: [],
-            email: "",
-            phone: "",
-            roles: [],
-            selectedLanguages: [],
-            status: UserStatus.ACTIVE,
-            username: "membre2",
-            structures: [],
-            sso: false,
-          },
-          admin: false,
-          traducteur: false,
-          expertTrad: false,
-          contributeur: false,
-          caregiver: false,
-          hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
-        },
-      },
-    });
-    await user.click(screen.getByTestId("edit-member-id1"));
-    expect(asFragment()).toMatchSnapshot();
-
-    await user.click(screen.getByTestId("test-role-Responsable"));
-    expect(asFragment()).toMatchSnapshot();
-
-    await user.click(screen.getByTestId("test-validate-edit"));
-
-    expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
-      membres: {
-        structureId: "structureId",
-        userId: "id1",
-        newRole: "administrateur",
-        type: "modify",
-      },
-    });
   });
 
   it("should delete user ", async () => {
@@ -290,7 +229,6 @@ describe("UserStructure", () => {
           contributeur: false,
           caregiver: false,
           hasStructure: false,
-          rolesInStructure: [StructureMemberRole.ADMIN],
         },
       },
     });

@@ -1,4 +1,4 @@
-import { GetAllStructuresResponse, Id, SimpleUser, StructureMemberRole } from "@refugies-info/api-types";
+import { GetAllStructuresResponse, Id, SimpleUser } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
@@ -34,11 +34,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
         (d) => d.status && !["Supprimé", "Brouillon"].includes(d.status),
       );
       const nbFiches = dispositifsAssocies.length;
-      const responsablesArray = structure.membres
-        ? structure.membres.filter(
-            (user) => user.roles && user.userId && user.roles.includes(StructureMemberRole.ADMIN),
-          )
-        : [];
+      const responsablesArray = structure.membres;
       const responsableId = responsablesArray.length > 0 ? responsablesArray[0].userId : null;
       const createur: SimpleUser | null = structure.createur[0] || null;
       return {

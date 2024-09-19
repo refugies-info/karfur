@@ -1,4 +1,4 @@
-import { Id, PatchStructureRolesRequest, SimpleUser, StructureMemberRole } from "@refugies-info/api-types";
+import { Id, PatchStructureRolesRequest, SimpleUser } from "@refugies-info/api-types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Spinner } from "reactstrap";
@@ -71,7 +71,6 @@ export const SelectFirstResponsableModal = (props: Props) => {
       const structure: PatchStructureRolesRequest = {
         membreId: selectedUser._id.toString(),
         action: "create",
-        role: StructureMemberRole.ADMIN,
       };
 
       await API.updateStructureRoles(props.selectedStructureId, structure);

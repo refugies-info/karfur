@@ -37,21 +37,15 @@ export const correspondingStatus: UserStatus[] = [
     order: 4,
   },
   {
-    displayedStatus: "Rédacteurs",
-    storedStatus: "Rédacteurs",
-    color: green,
-    order: 5,
-  },
-  {
     displayedStatus: "Multi-structure",
     storedStatus: "Multi-structure",
     color: green,
-    order: 6,
+    order: 5,
   },
   {
     displayedStatus: "Tous",
     storedStatus: "Tous",
     color: green,
-    order: 7,
+    order: 6,
   },
 ];

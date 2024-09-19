@@ -829,23 +829,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
   background-color: error;
 }
 
-.c18 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: not-allowed;
-}
-
-.c18:hover {
-  background-color: gray70;
-}
-
 .c1 {
   background: lightGrey;
   border-radius: 12px;
@@ -2535,9 +2518,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c18"
+                        class="c12"
                         data-testid="delete-button-id7"
-                        disabled=""
                         hovercolor="error"
                       >
                         <div
