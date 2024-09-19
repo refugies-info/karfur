@@ -8,7 +8,7 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "build": "yarn gen:tsoa && tsc",
+    "build": "yarn gen:tsoa && ncc build src/server.ts -o dist",
     "check:types": "yarn gen:tsoa && tsc --noEmit",
     "dev": "yarn build && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "gen:tsoa": "tsoa spec-and-routes",
@@ -16,7 +16,7 @@
     "lint:fix": "eslint --fix",
     "pr:prod": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
-    "start": "node dist/src/server.js",
+    "start": "node dist/index.js",
     "test": "jest --runInBand"
   },
   "dependencies": {
@@ -66,6 +66,7 @@
     "@types/uniqid": "^5.3.0",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
+    "@vercel/ncc": "^0.38.1",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-config-turbo": "^2.0.9",
