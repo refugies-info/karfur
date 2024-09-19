@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: master-migrate
+    concurrency:
+      group: master-migrate
+      cancel-in-progress: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
