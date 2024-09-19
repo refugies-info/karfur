@@ -1,0 +1,38 @@
+name: Migrate Production
+
+on:
+  pull_request:
+    branches:
+      - master-mobile
+      - master-frontend
+      - master-backend
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: master-migrate
+    concurrency:
+      group: master-migrate
+      cancel-in-progress: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.13.1"
+
+      - name: Install expected yarn version
+        run: sudo npm install --force --global yarn@1.22.22
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint, Check Types and Test
+        run: yarn migrate up
+        env:
+          MIGRATE_MONGO_URI: ${{ secrets.MIGRATE_MONGO_URI }}

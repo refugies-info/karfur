@@ -178,8 +178,6 @@ export const AdminUsers = () => {
       filteredUsers = usersFilteredBySearch.filter(
         (user) => user.selectedLanguages && user.selectedLanguages.length > 0,
       );
-    } else if (filter === "Rédacteurs") {
-      filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("Rédacteur"));
     } else if (filter === "Multi-structure") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.nbStructures || 0) > 1);
     }

@@ -1,4 +1,3 @@
-import { StructureMemberRole } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { Structure, User, UserId } from "~/typegoose";
 import { Membre, StructureId } from "~/typegoose/Structure";
@@ -10,9 +9,7 @@ const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
     return membre.userId && membre.userId.toString() === userId.toString();
   });
 
-  if (membreInStructure.length === 0) return false;
-  const roles = membreInStructure[0].roles;
-  return roles.includes(StructureMemberRole.ADMIN) || roles.includes(StructureMemberRole.CONTRIB);
+  return membreInStructure.length > 0;
 };
 
 export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: StructureId, currentUser: User) => {
@@ -70,10 +67,7 @@ export const userRespoStructureId = async (structures: StructureId[], userId: Us
     });
 
     if (membreInStructure.length === 0) continue;
-    const roles = membreInStructure[0].roles;
-    if (roles.includes(StructureMemberRole.ADMIN)) return structureId;
-
-    continue;
+    return structureId;
   }
 
   return null;
@@ -84,9 +78,7 @@ export const findAllRespo = (structures: Structure[]) => {
 
   for (const structure of structures) {
     if (!structure.membres) continue;
-    const admins = structure.membres
-      .filter((m: Membre) => m.roles.includes(StructureMemberRole.ADMIN))
-      .map((m) => m.userId.toString());
+    const admins = structure.membres.map((m) => m.userId.toString());
     userIds.push(...admins);
   }
 

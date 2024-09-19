@@ -1,4 +1,4 @@
-import { GetStructureResponse, Id, StructureMemberRole } from "@refugies-info/api-types";
+import { GetStructureResponse, Id } from "@refugies-info/api-types";
 import { action, ActionType } from "typesafe-actions";
 import { FETCH_USER_STRUCTURE, SET_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 
@@ -12,10 +12,9 @@ export const updateUserStructureActionCreator = (value: {
     hasResponsibleSeenNotification: boolean;
   };
   membres?: {
-    type: "modify" | "delete" | "create";
+    type: "delete" | "create";
     userId: Id;
     structureId: Id;
-    newRole?: StructureMemberRole;
   };
 }) => action(UPDATE_USER_STRUCTURE, value);
 

@@ -114,21 +114,13 @@ export interface SimpleUser {
   roles?: string[];
 }
 
-export enum StructureMemberRole {
-  ADMIN = "administrateur",
-  CONTRIB = "contributeur",
-  CREATOR = "createur", // TODO: delete (unused) and remove in DB. Next, transform role from [] to string
-}
-
 export interface StructureMember {
   userId: string;
   username?: string;
   email?: string;
   picture: Picture;
   last_connected: Date;
-  roles: StructureMemberRole[];
   added_at: Date;
-  mainRole: "Rédacteur" | "Responsable" | "Exclu";
 }
 
 // Dispositif

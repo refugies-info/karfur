@@ -27,6 +27,78 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 8px;
 }
 
+.c14 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.c16 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.c15 {
+  background: focus;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 15px;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.c11 {
+  width: 40px;
+  height: 40px;
+  background-color: gray70;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c11:hover {
+  background-color: error;
+}
+
+.c8 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: bleuCharte;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: gray90;
+}
+
+.c10 {
+  color: bleuCharte;
+  max-width: 190px;
+}
+
+.c13 {
+  color: gray90;
+  max-width: 190px;
+}
+
 .c0 {
   display: flex;
   flex-direction: row;
@@ -56,117 +128,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: center;
   width: 315px;
   height: fit-content;
-}
-
-.c17 {
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 40px;
-}
-
-.c19 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 8px;
-}
-
-.c18 {
-  background: focus;
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 15px;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 20px;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.c12 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c12:hover {
-  background-color: gray90;
-}
-
-.c13 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c13:hover {
-  background-color: error;
-}
-
-.c8 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.c9 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-}
-
-.c14 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-}
-
-.c10 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-  width: fit-content;
-}
-
-.c15 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-  width: fit-content;
-}
-
-.c11 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c16 {
-  color: gray90;
-  max-width: 190px;
 }
 
 .c2 {
@@ -332,9 +293,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   Nom
                 </th>
                 <th>
-                  Role
-                </th>
-                <th>
                   Dernière connexion
                 </th>
                 <th>
@@ -377,15 +335,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   <div
                     class="c10"
                   >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  >
                     undefined undefined
                   </div>
                 </td>
@@ -393,7 +342,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   class="align-middle"
                 >
                   <div
-                    class="c11"
+                    class="c10"
                   />
                 </td>
                 <td
@@ -403,50 +352,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     style="display: flex; flex-direction: row;"
                   >
                     <div
-                      class="c12"
-                      data-testid="edit-member-id2"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
+                      class="c11"
                       data-testid="delete-button-id2"
                       hovercolor="error"
                     >
@@ -513,7 +419,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                       width="70"
                     />
                     <div
-                      class="c14"
+                      class="c12"
                     >
                       membre1
                     </div>
@@ -523,16 +429,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   class="align-middle"
                 >
                   <div
-                    class="c15"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c16"
+                    class="c13"
                   >
                     undefined undefined
                   </div>
@@ -541,7 +438,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   class="align-middle"
                 >
                   <div
-                    class="c16"
+                    class="c13"
                   />
                 </td>
                 <td
@@ -551,50 +448,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     style="display: flex; flex-direction: row;"
                   >
                     <div
-                      class="c12"
-                      data-testid="edit-member-id1"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
+                      class="c11"
                       data-testid="delete-button-id1"
                       hovercolor="error"
                     >
@@ -645,12 +499,12 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <div>
         <div
-          class="c17"
+          class="c14"
         >
           Ajouter un membre
         </div>
         <div
-          class="c18"
+          class="c15"
         >
           <b>
             Attention :
@@ -707,7 +561,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           </div>
         </div>
         <div
-          class="c19"
+          class="c16"
         >
           <button
             class="btn outline-black me-2"
@@ -786,1856 +640,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               </i>
             </span>
             Ajouter
-          </button>
-        </div>
-      </div>
-      <div />
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 1`] = `
-<DocumentFragment>
-  .c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
-.c20 {
-  background: grey2;
-  border-width: 1px;
-  border-style: solid;
-  border-color: gray90;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 4px 0px 4px 0px;
-  cursor: pointer;
-  color: gray90;
-}
-
-.c23 {
-  background: white;
-  border-width: 1px;
-  border-style: solid;
-  border-color: gray90;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 4px 0px 4px 0px;
-  cursor: pointer;
-  color: gray90;
-}
-
-.c22 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-bottom: 10px;
-}
-
-.c21 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.c18 {
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 40px;
-  margin-right: 15px;
-}
-
-.c24 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 12px;
-}
-
-.c17 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.c19 {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-}
-
-.c12 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c12:hover {
-  background-color: gray90;
-}
-
-.c13 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c13:hover {
-  background-color: error;
-}
-
-.c8 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.c9 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-}
-
-.c14 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-}
-
-.c10 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-  width: fit-content;
-}
-
-.c15 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-  width: fit-content;
-}
-
-.c11 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c16 {
-  color: gray90;
-  max-width: 190px;
-}
-
-.c2 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.c4 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-<div
-    style="display: flex; flex-direction: column; flex: 1;"
-  >
-    <div
-      class="c0 container"
-    >
-      <div
-        class="c1"
-      >
-        <img
-          alt="ACRO"
-          class="sponsor_img"
-          data-nimg="1"
-          decoding="async"
-          height="115"
-          loading="lazy"
-          src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
-          srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
-          style="color: transparent; object-fit: contain;"
-          width="235"
-        />
-        <div
-          class="c2"
-        >
-          structureTest
-        </div>
-        <a
-          class="btn dark"
-          href="/directory/structureId"
-        >
-          <span
-            class="me-2 icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-book-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="book"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Voir dans l'annuaire
-        </a>
-      </div>
-      <div
-        class="c3"
-      >
-        <div
-          class="c4"
-        >
-          <div
-            class="c5"
-          >
-            <div
-              class="c6"
-            >
-              Membres
-            </div>
-            <div
-              class="c7"
-            >
-              2
-            </div>
-            <div
-              class="c6"
-            />
-          </div>
-          <div>
-            <button
-              class="btn dark"
-              data-testid="test-add-member"
-            >
-              <span
-                class="me-2 icon"
-              >
-                <i
-                  style="height: 20px; line-height: 20px;"
-                >
-                  <svg
-                    class="eva eva-person-add-outline"
-                    fill="#fff"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    width="20px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="person-add"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          width="24"
-                        />
-                        <path
-                          d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"
-                        />
-                        <path
-                          d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                        />
-                        <path
-                          d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-              Ajouter un membre
-            </button>
-          </div>
-        </div>
-        <div
-          class="table-responsive"
-        >
-          <table
-            class="table table-borderless"
-          >
-            <thead>
-              <tr>
-                <th>
-                  Nom
-                </th>
-                <th>
-                  Role
-                </th>
-                <th>
-                  Dernière connexion
-                </th>
-                <th>
-                  Ajouté le
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                class="membres-table"
-              >
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c8"
-                  >
-                    <img
-                      alt=""
-                      class="user-img me-2"
-                      data-nimg="1"
-                      decoding="async"
-                      height="40"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="70"
-                    />
-                    <div
-                      class="c9"
-                    >
-                      membre2
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c10"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  >
-                    undefined undefined
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  />
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    style="display: flex; flex-direction: row;"
-                  >
-                    <div
-                      class="c12"
-                      data-testid="edit-member-id2"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
-                      data-testid="delete-button-id2"
-                      hovercolor="error"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-trash"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="trash"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="membres-table"
-              >
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c8"
-                  >
-                    <img
-                      alt=""
-                      class="user-img me-2"
-                      data-nimg="1"
-                      decoding="async"
-                      height="40"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="70"
-                    />
-                    <div
-                      class="c14"
-                    >
-                      membre1
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c15"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c16"
-                  >
-                    undefined undefined
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c16"
-                  />
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    style="display: flex; flex-direction: row;"
-                  >
-                    <div
-                      class="c12"
-                      data-testid="edit-member-id1"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
-                      data-testid="delete-button-id1"
-                      hovercolor="error"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-trash"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="trash"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div />
-      <div>
-        <div
-          class="c17"
-        >
-          <div
-            class="c18"
-          >
-            Modifier le rôle de
-          </div>
-          <img
-            alt=""
-            class="user_img me-2"
-            data-nimg="1"
-            decoding="async"
-            height="40"
-            loading="lazy"
-            src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-            srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-            style="color: transparent; object-fit: contain;"
-            width="70"
-          />
-          <div
-            class="c19"
-          >
-            membre1
-          </div>
-        </div>
-        <div
-          class="c20"
-          data-testid="test-role-Rédacteur"
-          state="current"
-        >
-          <div
-            class="c21"
-          >
-            <div
-              class="c22"
-            >
-              Nommer « rédacteur » 
-            </div>
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-radio-button-on"
-                  fill="gray90"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="radio-button-on"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                      />
-                      <path
-                        d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-          </div>
-          Éditer et valider les fiches 
-          <br />
-          Accepter les fiches proposées à ma structure 
-          <br />
-          Voir les réactions aux fiches de ma structure 
-          <br />
-          Compléter la fiche annuaire de ma structure 
-          <br />
-        </div>
-        <div
-          class="c23"
-          data-testid="test-role-Responsable"
-          state="none"
-        >
-          <div
-            class="c21"
-          >
-            <div
-              class="c22"
-            >
-              Nommer « responsable »
-            </div>
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-radio-button-off"
-                  fill="gray90"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="radio-button-off"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-          </div>
-          Éditer et valider les fiches 
-          <br />
-          Accepter les fiches proposées à ma structure 
-          <br />
-          Voir les réactions aux fiches de ma structure 
-          <br />
-          Compléter la fiche annuaire de ma structure 
-          <br />
-          <span>
-            + Ajouter ou supprimer d'autres membres
-            <br />
-          </span>
-          <span>
-            + Nommer d'autres responsables
-            <br />
-          </span>
-        </div>
-        <div
-          class="c24"
-        >
-          <button
-            class="btn outline-black me-2"
-          >
-            <span
-              class="me-2 icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-close-outline"
-                  fill="#fff"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="close"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(180 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            Annuler
-          </button>
-          <button
-            class="btn validate"
-            data-testid="test-validate-edit"
-            disabled=""
-          >
-            <span
-              class="me-2 icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-checkmark-outline"
-                  fill="#fff"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="checkmark"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            Valider
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
-<DocumentFragment>
-  .c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
-.c20 {
-  background: white;
-  border-width: 1px;
-  border-style: solid;
-  border-color: gray90;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 4px 0px 4px 0px;
-  cursor: pointer;
-  color: gray90;
-}
-
-.c23 {
-  background: focus;
-  border-width: 1px;
-  border-style: solid;
-  border-color: focus;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 4px 0px 4px 0px;
-  cursor: pointer;
-  color: white;
-}
-
-.c22 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-bottom: 10px;
-}
-
-.c21 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.c18 {
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 40px;
-  margin-right: 15px;
-}
-
-.c24 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 12px;
-}
-
-.c17 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.c19 {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-}
-
-.c12 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c12:hover {
-  background-color: gray90;
-}
-
-.c13 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c13:hover {
-  background-color: error;
-}
-
-.c8 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.c9 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-}
-
-.c14 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-}
-
-.c10 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-  width: fit-content;
-}
-
-.c15 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-  width: fit-content;
-}
-
-.c11 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c16 {
-  color: gray90;
-  max-width: 190px;
-}
-
-.c2 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.c4 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-<div
-    style="display: flex; flex-direction: column; flex: 1;"
-  >
-    <div
-      class="c0 container"
-    >
-      <div
-        class="c1"
-      >
-        <img
-          alt="ACRO"
-          class="sponsor_img"
-          data-nimg="1"
-          decoding="async"
-          height="115"
-          loading="lazy"
-          src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
-          srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
-          style="color: transparent; object-fit: contain;"
-          width="235"
-        />
-        <div
-          class="c2"
-        >
-          structureTest
-        </div>
-        <a
-          class="btn dark"
-          href="/directory/structureId"
-        >
-          <span
-            class="me-2 icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-book-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="book"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Voir dans l'annuaire
-        </a>
-      </div>
-      <div
-        class="c3"
-      >
-        <div
-          class="c4"
-        >
-          <div
-            class="c5"
-          >
-            <div
-              class="c6"
-            >
-              Membres
-            </div>
-            <div
-              class="c7"
-            >
-              2
-            </div>
-            <div
-              class="c6"
-            />
-          </div>
-          <div>
-            <button
-              class="btn dark"
-              data-testid="test-add-member"
-            >
-              <span
-                class="me-2 icon"
-              >
-                <i
-                  style="height: 20px; line-height: 20px;"
-                >
-                  <svg
-                    class="eva eva-person-add-outline"
-                    fill="#fff"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    width="20px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="person-add"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          width="24"
-                        />
-                        <path
-                          d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"
-                        />
-                        <path
-                          d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                        />
-                        <path
-                          d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-              Ajouter un membre
-            </button>
-          </div>
-        </div>
-        <div
-          class="table-responsive"
-        >
-          <table
-            class="table table-borderless"
-          >
-            <thead>
-              <tr>
-                <th>
-                  Nom
-                </th>
-                <th>
-                  Role
-                </th>
-                <th>
-                  Dernière connexion
-                </th>
-                <th>
-                  Ajouté le
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                class="membres-table"
-              >
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c8"
-                  >
-                    <img
-                      alt=""
-                      class="user-img me-2"
-                      data-nimg="1"
-                      decoding="async"
-                      height="40"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="70"
-                    />
-                    <div
-                      class="c9"
-                    >
-                      membre2
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c10"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  >
-                    undefined undefined
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  />
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    style="display: flex; flex-direction: row;"
-                  >
-                    <div
-                      class="c12"
-                      data-testid="edit-member-id2"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
-                      data-testid="delete-button-id2"
-                      hovercolor="error"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-trash"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="trash"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="membres-table"
-              >
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c8"
-                  >
-                    <img
-                      alt=""
-                      class="user-img me-2"
-                      data-nimg="1"
-                      decoding="async"
-                      height="40"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="70"
-                    />
-                    <div
-                      class="c14"
-                    >
-                      membre1
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c15"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c16"
-                  >
-                    undefined undefined
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c16"
-                  />
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    style="display: flex; flex-direction: row;"
-                  >
-                    <div
-                      class="c12"
-                      data-testid="edit-member-id1"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
-                      data-testid="delete-button-id1"
-                      hovercolor="error"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-trash"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="trash"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div />
-      <div>
-        <div
-          class="c17"
-        >
-          <div
-            class="c18"
-          >
-            Modifier le rôle de
-          </div>
-          <img
-            alt=""
-            class="user_img me-2"
-            data-nimg="1"
-            decoding="async"
-            height="40"
-            loading="lazy"
-            src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-            srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-            style="color: transparent; object-fit: contain;"
-            width="70"
-          />
-          <div
-            class="c19"
-          >
-            membre1
-          </div>
-        </div>
-        <div
-          class="c20"
-          data-testid="test-role-Rédacteur"
-          state="none"
-        >
-          <div
-            class="c21"
-          >
-            <div
-              class="c22"
-            >
-              Nommer « rédacteur » 
-            </div>
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-radio-button-off"
-                  fill="gray90"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="radio-button-off"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-          </div>
-          Éditer et valider les fiches 
-          <br />
-          Accepter les fiches proposées à ma structure 
-          <br />
-          Voir les réactions aux fiches de ma structure 
-          <br />
-          Compléter la fiche annuaire de ma structure 
-          <br />
-        </div>
-        <div
-          class="c23"
-          data-testid="test-role-Responsable"
-          state="selected"
-        >
-          <div
-            class="c21"
-          >
-            <div
-              class="c22"
-            >
-              Nommer « responsable »
-            </div>
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-radio-button-on"
-                  fill="white"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="radio-button-on"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                      />
-                      <path
-                        d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-          </div>
-          Éditer et valider les fiches 
-          <br />
-          Accepter les fiches proposées à ma structure 
-          <br />
-          Voir les réactions aux fiches de ma structure 
-          <br />
-          Compléter la fiche annuaire de ma structure 
-          <br />
-          <span>
-            + Ajouter ou supprimer d'autres membres
-            <br />
-          </span>
-          <span>
-            + Nommer d'autres responsables
-            <br />
-          </span>
-        </div>
-        <div
-          class="c24"
-        >
-          <button
-            class="btn outline-black me-2"
-          >
-            <span
-              class="me-2 icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-close-outline"
-                  fill="#fff"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="close"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(180 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            Annuler
-          </button>
-          <button
-            class="btn validate"
-            data-testid="test-validate-edit"
-          >
-            <span
-              class="me-2 icon"
-            >
-              <i
-                style="height: 20px; line-height: 20px;"
-              >
-                <svg
-                  class="eva eva-checkmark-outline"
-                  fill="#fff"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  width="20px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="checkmark"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            Valider
           </button>
         </div>
       </div>
@@ -2850,392 +854,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 8px;
 }
 
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
-.c8 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.c9 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-}
-
-.c12 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-}
-
-.c10 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-  width: fit-content;
-}
-
-.c13 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-  width: fit-content;
-}
-
 .c11 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c14 {
-  color: gray90;
-  max-width: 190px;
-}
-
-.c2 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.c4 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-<div
-    style="display: flex; flex-direction: column; flex: 1;"
-  >
-    <div
-      class="c0 container"
-    >
-      <div
-        class="c1"
-      >
-        <img
-          alt="ACRO"
-          class="sponsor_img"
-          data-nimg="1"
-          decoding="async"
-          height="115"
-          loading="lazy"
-          src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
-          srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
-          style="color: transparent; object-fit: contain;"
-          width="235"
-        />
-        <div
-          class="c2"
-        >
-          structureTest
-        </div>
-        <a
-          class="btn dark"
-          href="/directory/structureId"
-        >
-          <span
-            class="me-2 icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-book-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="book"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Voir dans l'annuaire
-        </a>
-      </div>
-      <div
-        class="c3"
-      >
-        <div
-          class="c4"
-        >
-          <div
-            class="c5"
-          >
-            <div
-              class="c6"
-            >
-              Membres
-            </div>
-            <div
-              class="c7"
-            >
-              2
-            </div>
-            <div
-              class="c6"
-            />
-          </div>
-        </div>
-        <div
-          class="table-responsive"
-        >
-          <table
-            class="table table-borderless"
-          >
-            <thead>
-              <tr>
-                <th>
-                  Nom
-                </th>
-                <th>
-                  Role
-                </th>
-                <th>
-                  Dernière connexion
-                </th>
-                <th>
-                  Ajouté le
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                class="membres-table"
-              >
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c8"
-                  >
-                    <img
-                      alt=""
-                      class="user-img me-2"
-                      data-nimg="1"
-                      decoding="async"
-                      height="40"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="70"
-                    />
-                    <div
-                      class="c9"
-                    >
-                      membre1
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c10"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  >
-                    undefined undefined
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  />
-                </td>
-              </tr>
-              <tr
-                class="membres-table"
-              >
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c8"
-                  >
-                    <img
-                      alt=""
-                      class="user-img me-2"
-                      data-nimg="1"
-                      decoding="async"
-                      height="40"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="70"
-                    />
-                    <div
-                      class="c12"
-                    >
-                      membre2
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c13"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c14"
-                  >
-                    undefined undefined
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c14"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
-<DocumentFragment>
-  .c5 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c7 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c6 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
-.c0 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c3 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.c1 {
-  background: lightGrey;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 315px;
-  height: fit-content;
-}
-
-.c12 {
   width: 40px;
   height: 40px;
   background-color: gray70;
@@ -3248,24 +867,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   cursor: pointer;
 }
 
-.c12:hover {
-  background-color: gray90;
-}
-
-.c13 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c13:hover {
+.c11:hover {
   background-color: error;
 }
 
@@ -3282,7 +884,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   color: bleuCharte;
 }
 
-.c14 {
+.c12 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -3290,35 +892,44 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c10 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: bleuCharte;
-  width: fit-content;
-}
-
-.c15 {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
-  width: fit-content;
-}
-
-.c11 {
   color: bleuCharte;
   max-width: 190px;
 }
 
-.c16 {
+.c13 {
   color: gray90;
   max-width: 190px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  margin-top: 26px;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.c1 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 315px;
+  height: fit-content;
 }
 
 .c2 {
@@ -3484,7 +1095,482 @@ exports[`UserStructure should render correctly when structure with membres when 
                   Nom
                 </th>
                 <th>
-                  Role
+                  Dernière connexion
+                </th>
+                <th>
+                  Ajouté le
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="membres-table"
+              >
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    class="c8"
+                  >
+                    <img
+                      alt=""
+                      class="user-img me-2"
+                      data-nimg="1"
+                      decoding="async"
+                      height="40"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="70"
+                    />
+                    <div
+                      class="c9"
+                    >
+                      membre1
+                    </div>
+                  </div>
+                </td>
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    class="c10"
+                  >
+                    undefined undefined
+                  </div>
+                </td>
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    class="c10"
+                  />
+                </td>
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    style="display: flex; flex-direction: row;"
+                  >
+                    <div
+                      class="c11"
+                      data-testid="delete-button-id1"
+                      hovercolor="error"
+                    >
+                      <div
+                        style="margin-bottom: 4px;"
+                      >
+                        <span
+                          class="icon"
+                        >
+                          <i
+                            style="height: 20px; line-height: 20px;"
+                          >
+                            <svg
+                              class="eva eva-trash"
+                              fill="white"
+                              height="20px"
+                              viewBox="0 0 24 24"
+                              width="20px"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g
+                                data-name="Layer 2"
+                              >
+                                <g
+                                  data-name="trash"
+                                >
+                                  <rect
+                                    height="24"
+                                    opacity="0"
+                                    width="24"
+                                  />
+                                  <path
+                                    d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                  />
+                                </g>
+                              </g>
+                            </svg>
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="membres-table"
+              >
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    class="c8"
+                  >
+                    <img
+                      alt=""
+                      class="user-img me-2"
+                      data-nimg="1"
+                      decoding="async"
+                      height="40"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="70"
+                    />
+                    <div
+                      class="c12"
+                    >
+                      membre2
+                    </div>
+                  </div>
+                </td>
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    class="c13"
+                  >
+                    undefined undefined
+                  </div>
+                </td>
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    class="c13"
+                  />
+                </td>
+                <td
+                  class="align-middle"
+                >
+                  <div
+                    style="display: flex; flex-direction: row;"
+                  >
+                    <div
+                      class="c11"
+                      data-testid="delete-button-id2"
+                      hovercolor="error"
+                    >
+                      <div
+                        style="margin-bottom: 4px;"
+                      >
+                        <span
+                          class="icon"
+                        >
+                          <i
+                            style="height: 20px; line-height: 20px;"
+                          >
+                            <svg
+                              class="eva eva-trash"
+                              fill="white"
+                              height="20px"
+                              viewBox="0 0 24 24"
+                              width="20px"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g
+                                data-name="Layer 2"
+                              >
+                                <g
+                                  data-name="trash"
+                                >
+                                  <rect
+                                    height="24"
+                                    opacity="0"
+                                    width="24"
+                                  />
+                                  <path
+                                    d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                  />
+                                </g>
+                              </g>
+                            </svg>
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
+<DocumentFragment>
+  .c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c11 {
+  width: 40px;
+  height: 40px;
+  background-color: gray70;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c11:hover {
+  background-color: error;
+}
+
+.c8 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: bleuCharte;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: gray90;
+}
+
+.c10 {
+  color: bleuCharte;
+  max-width: 190px;
+}
+
+.c13 {
+  color: gray90;
+  max-width: 190px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  margin-top: 26px;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.c1 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 315px;
+  height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+<div
+    style="display: flex; flex-direction: column; flex: 1;"
+  >
+    <div
+      class="c0 container"
+    >
+      <div
+        class="c1"
+      >
+        <img
+          alt="ACRO"
+          class="sponsor_img"
+          data-nimg="1"
+          decoding="async"
+          height="115"
+          loading="lazy"
+          src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
+          srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
+          style="color: transparent; object-fit: contain;"
+          width="235"
+        />
+        <div
+          class="c2"
+        >
+          structureTest
+        </div>
+        <a
+          class="btn dark"
+          href="/directory/structureId"
+        >
+          <span
+            class="me-2 icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-book-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="book"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          Voir dans l'annuaire
+        </a>
+      </div>
+      <div
+        class="c3"
+      >
+        <div
+          class="c4"
+        >
+          <div
+            class="c5"
+          >
+            <div
+              class="c6"
+            >
+              Membres
+            </div>
+            <div
+              class="c7"
+            >
+              2
+            </div>
+            <div
+              class="c6"
+            />
+          </div>
+          <div>
+            <button
+              class="btn dark"
+              data-testid="test-add-member"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-person-add-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="person-add"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"
+                        />
+                        <path
+                          d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                        />
+                        <path
+                          d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Ajouter un membre
+            </button>
+          </div>
+        </div>
+        <div
+          class="table-responsive"
+        >
+          <table
+            class="table table-borderless"
+          >
+            <thead>
+              <tr>
+                <th>
+                  Nom
                 </th>
                 <th>
                   Dernière connexion
@@ -3529,15 +1615,6 @@ exports[`UserStructure should render correctly when structure with membres when 
                   <div
                     class="c10"
                   >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c11"
-                  >
                     undefined undefined
                   </div>
                 </td>
@@ -3545,7 +1622,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c11"
+                    class="c10"
                   />
                 </td>
                 <td
@@ -3555,50 +1632,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     style="display: flex; flex-direction: row;"
                   >
                     <div
-                      class="c12"
-                      data-testid="edit-member-id2"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
+                      class="c11"
                       data-testid="delete-button-id2"
                       hovercolor="error"
                     >
@@ -3665,7 +1699,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                       width="70"
                     />
                     <div
-                      class="c14"
+                      class="c12"
                     >
                       membre1
                     </div>
@@ -3675,16 +1709,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c15"
-                  >
-                    Rédacteur
-                  </div>
-                </td>
-                <td
-                  class="align-middle"
-                >
-                  <div
-                    class="c16"
+                    class="c13"
                   >
                     undefined undefined
                   </div>
@@ -3693,7 +1718,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c16"
+                    class="c13"
                   />
                 </td>
                 <td
@@ -3703,50 +1728,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     style="display: flex; flex-direction: row;"
                   >
                     <div
-                      class="c12"
-                      data-testid="edit-member-id1"
-                      hovercolor="gray90"
-                    >
-                      <div
-                        style="margin-bottom: 4px;"
-                      >
-                        <span
-                          class="icon"
-                        >
-                          <i
-                            style="height: 20px; line-height: 20px;"
-                          >
-                            <svg
-                              class="eva eva-edit"
-                              fill="white"
-                              height="20px"
-                              viewBox="0 0 24 24"
-                              width="20px"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <g
-                                data-name="Layer 2"
-                              >
-                                <g
-                                  data-name="edit"
-                                >
-                                  <rect
-                                    height="24"
-                                    opacity="0"
-                                    width="24"
-                                  />
-                                  <path
-                                    d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </i>
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="c13"
+                      class="c11"
                       data-testid="delete-button-id1"
                       hovercolor="error"
                     >
@@ -3795,7 +1777,6 @@ exports[`UserStructure should render correctly when structure with membres when 
           </table>
         </div>
       </div>
-      <div />
       <div />
     </div>
   </div>

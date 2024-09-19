@@ -3,7 +3,6 @@ import {
   GetStructureResponse,
   GetUserContributionsResponse,
   Id,
-  StructureMemberRole,
 } from "@refugies-info/api-types";
 import { FormattedUserContribution } from "./types";
 
@@ -23,17 +22,8 @@ const isUserAuthorizedToDeleteDispositif = (
   const isUserInStructure = !!dispositifSponsorId && !!userStructure && dispositifSponsorId === userStructure._id;
   if (dispositifSponsorId && !isUserInStructure) return false; // user not in structure
 
-  // user is responsable of structure
-  const userInStructure = userStructure && userStructure.membres.find((membre) => membre.userId?.toString() === userId);
-  if (userInStructure?.roles.includes(StructureMemberRole.ADMIN)) {
-    return true;
-  }
-
-  // user is redacteur of structure and author
-  if (userInStructure?.roles.includes(StructureMemberRole.CONTRIB) && isAuthor) {
-    return true;
-  }
-  return false;
+  // user is member of structure, they have the same rights as the admin
+  return true;
 };
 
 export const formatContributions = (
