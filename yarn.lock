@@ -4423,10 +4423,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-2.8.1.tgz#6e785431db49318048fdd14b601998437b6cc200"
   integrity sha512-DCmCIC0Gn9m6K0Mlg2MwNmTxMEpBu5lTLsI6b/XUAv/vLGa6o+X7RhCai4FWeqkjCU36+ZOwaLzDo4NBWMXaoQ==
 
-"@react-native-community/netinfo@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-11.1.0.tgz#b3b2ab741a5d935e445685ade8a53d48775e082b"
-  integrity sha512-pIbCuqgrY7SkngAcjUs9fMzNh1h4soQMVw1IeGp1HN5//wox3fUVOuvyIubTscUbdLFKiltJAiuQek7Nhx1bqA==
+"@react-native-community/netinfo@11.4.0":
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-11.4.0.tgz#de0930db98e3618d74693d84d3ef956eabbeb0b6"
+  integrity sha512-EGJByXkYebOfbflwcgdUO6hgUmVsE6RnRPHJ2Pp6M1mZX3YQkfotS7i1/TwTk4LpioyOePvEQwmy8PfW942Upg==
 
 "@react-native-firebase/analytics@^20.0.0":
   version "20.4.0"
