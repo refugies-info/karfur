@@ -16,7 +16,7 @@
     "lint:fix": "eslint --fix",
     "pr:prod": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
-    "start": "node dist/src/apps/server.js",
+    "start": "node dist/src/server.js",
     "test": "jest --runInBand"
   },
   "dependencies": {
