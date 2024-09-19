@@ -1,7 +1,7 @@
 name: Migrate Staging
 
 on:
-  pull_request:
+  push:
     branches:
       - staging-mobile
       - staging-frontend
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  migrate-staging:
     runs-on: ubuntu-latest
     environment: staging-migrate
     concurrency:

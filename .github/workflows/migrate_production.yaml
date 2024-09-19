@@ -1,7 +1,7 @@
 name: Migrate Production
 
 on:
-  pull_request:
+  push:
     branches:
       - master-mobile
       - master-frontend
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  migrate-production:
     runs-on: ubuntu-latest
     environment: master-migrate
     concurrency:
