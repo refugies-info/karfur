@@ -32,7 +32,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Lint, Check Types and Test
+      - name: Apply pending migrations
         run: yarn migrate up
         env:
           MIGRATE_MONGO_URI: ${{ secrets.MIGRATE_MONGO_URI }}
