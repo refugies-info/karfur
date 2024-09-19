@@ -8,10 +8,11 @@ import { ReactElement, ReactNode, useCallback, useEffect, useState } from "react
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import { isRoute } from "routes";
-import "scss/index.scss";
 import Layout from "~/components/Layout/Layout";
+import "~/css/globals.css";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
+import "~/scss/index.scss";
 import { wrapper } from "~/services/configureStore";
 import { PageOptions } from "~/types/interface";
 

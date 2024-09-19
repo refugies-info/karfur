@@ -1,6 +1,6 @@
+import { Toto } from "@refugies-info/ui";
 import { DocumentProps, Head, Html, Main, NextScript } from "next/document";
 import { dsfrDocumentApi } from "./_app";
-
 const { getColorSchemeHtmlAttributes, augmentDocumentForDsfr } = dsfrDocumentApi;
 
 export default function Document(props: DocumentProps) {
@@ -14,7 +14,9 @@ export default function Document(props: DocumentProps) {
         <script defer data-domain="refugies.info" src="https://plausible.io/js/script.tagged-events.js"></script>
       </Head>
       <body>
-        <div className="bg-red-500 p-20">TEST TAILWIND</div>
+        <button className="p-20 bg-blue-france-75 hover:bg-blue-france-hover active:bg-blue-france-active">
+          <Toto>huhu</Toto>
+        </button>
         <Main />
         <NextScript />
       </body>

@@ -1,8 +1,18 @@
 {
   "extends": "@refugies-info/typescript-config/base.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
-  "include": ["tailwind.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  // "include": ["tailwind.config.ts", "utils/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }
