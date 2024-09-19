@@ -1,0 +1,12 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+
+.modal {
+  max-width: 400px !important;
+}
+
+.button {
+  width: 100%;
+  justify-content: center;
+}

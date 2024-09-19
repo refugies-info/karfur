@@ -1,0 +1,6 @@
+.main {
+  display: flex;
+  max-height: 416px;
+  align-items: flex-start;
+  gap: 16px;
+}

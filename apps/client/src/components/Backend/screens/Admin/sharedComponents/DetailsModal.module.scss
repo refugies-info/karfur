@@ -1,0 +1,38 @@
+@import "~/scss/variables";
+@import "~/scss/mixins/responsive";
+
+.modal {
+  &.xl {
+    @include media-min("xl-limit") {
+      max-width: 1200px !important;
+    }
+  }
+
+  .modal_content {
+    box-shadow: 0 10px 15px 0 #00000040;
+    border-radius: $radius;
+    border: none;
+    background: #e0e0e0;
+    padding: 24px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+
+  h2 {
+    display: inline;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0 1rem;
+  }
+
+  input {
+    margin: 0 1rem;
+  }
+}

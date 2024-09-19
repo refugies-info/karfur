@@ -1,0 +1,56 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.container {
+  [type="file"] {
+    z-index: 2;
+    cursor: pointer;
+    display: block;
+    filter: alpha(opacity=0);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+  }
+
+  [type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+  }
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: u(4);
+  margin-left: u(2);
+  margin-right: u(2);
+  background-color: white;
+  position: relative;
+
+  &.loading {
+    opacity: 0.5;
+  }
+
+  .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.small {
+  @include dsfr-text("very-small");
+
+  color: var(--text-mention-grey);
+}

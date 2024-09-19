@@ -1,0 +1,15 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+
+.content {
+  @include dsfr-text("normal");
+  @include content-text;
+}
+
+.highlighted {
+  background: lightblue;
+}

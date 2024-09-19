@@ -1,0 +1,38 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+
+.dropdown {
+  .toggle {
+    background: var(--background-alt-raised-grey);
+    padding: u(2) u(3);
+    color: $darkBackgroundAltGrey;
+    border-radius: u(2);
+    white-space: nowrap;
+    border: 1px solid var(--border-default-grey);
+
+    &:hover,
+    &:active {
+      background: var(--background-contrast-grey) !important;
+    }
+
+    &:focus {
+      background: var(--background-alt-raised-grey) !important;
+      border-color: $darkBackgroundAltGrey;
+    }
+
+    &:global([aria-expanded="true"]) {
+      .icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .menu {
+    box-shadow: 0 2px 6px 0 #00001229;
+    border-radius: u(2);
+    margin-top: u(2);
+    padding: u(4);
+  }
+}

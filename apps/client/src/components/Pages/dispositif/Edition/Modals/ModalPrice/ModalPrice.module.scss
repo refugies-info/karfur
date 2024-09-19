@@ -1,0 +1,30 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/input";
+
+.form {
+  border: 1px solid var(--border-default-grey);
+  padding: u(4);
+  border-radius: u(2);
+  margin-bottom: u(8);
+
+  .title {
+    @include dsfr-text("h6");
+
+    font-weight: bold;
+    margin-bottom: u(6);
+  }
+}
+
+.inline_form {
+  p {
+    white-space: nowrap;
+    color: black;
+  }
+}
+
+.choice {
+  white-space: nowrap;
+}

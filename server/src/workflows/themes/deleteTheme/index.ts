@@ -1,2 +1,0 @@
-export { deleteTheme } from "./deleteTheme";
-

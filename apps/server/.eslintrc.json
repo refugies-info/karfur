@@ -1,0 +1,35 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "turbo"],
+  "parser": "@typescript-eslint/parser",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-else-return": "error",
+    "no-console": "error",
+    "no-unused-expressions": "error",
+    "no-unused-vars": "off",
+    "no-use-before-define": "error",
+    "quotes": ["error", "double", { "avoidEscape": true }],
+    "object-shorthand": "off",
+    "eqeqeq": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-floating-promises": "error"
+  }
+}

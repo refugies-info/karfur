@@ -1,0 +1,29 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+
+.container {
+  margin-top: u(10);
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  @include mr-ltr(u(2));
+
+  padding: u(2) !important;
+  margin-bottom: u(2);
+
+  @include media-max("xl-limit") {
+    @include mr-ltr(u(1));
+
+    margin-bottom: u(1);
+  }
+
+  &:last-child {
+    @include mr-ltr(0);
+  }
+}

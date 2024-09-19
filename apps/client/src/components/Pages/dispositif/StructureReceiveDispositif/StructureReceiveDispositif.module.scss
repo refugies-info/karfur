@@ -1,0 +1,21 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+
+.container {
+  padding: u(4);
+  background: white;
+  border-radius: u(2);
+  border: 1px solid var(--border-default-grey);
+  box-shadow: 0 6px 18px 0 #00001229;
+}
+
+.title {
+  @include dsfr-text("large");
+
+  font-weight: bold;
+  margin-bottom: u(4);
+  margin-top: u(4);
+}

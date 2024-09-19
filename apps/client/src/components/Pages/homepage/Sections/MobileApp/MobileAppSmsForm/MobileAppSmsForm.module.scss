@@ -1,0 +1,59 @@
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+
+.container {
+  margin-top: u(8);
+
+  @include isTablet {
+    display: none;
+  }
+
+  label {
+    margin-bottom: u(4);
+    font-weight: bold;
+
+    @include text("h5");
+  }
+}
+
+.sms_form {
+  position: relative;
+}
+
+.input {
+  input {
+    height: 64px;
+    padding-right: 50%;
+
+    @include rtl {
+      padding-left: 50%;
+      padding-right: u(4);
+    }
+  }
+}
+
+.options {
+  @include r-ltr(8px);
+
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 8px;
+}
+
+.submit {
+  @include ml-ltr(u(2));
+
+  height: 48px;
+}
+
+.instructions {
+  @include text("small");
+
+  margin-top: u(4);
+  color: $white;
+}

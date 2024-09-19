@@ -1,0 +1,51 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+
+.btn {
+  height: u(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+
+  .icon {
+    line-height: u(4);
+    height: u(4);
+    display: flex;
+    align-items: center;
+  }
+
+  &.icon_btn {
+    width: u(8);
+  }
+
+  &.text_btn {
+    @include dsfr-text("small");
+
+    font-weight: 500;
+    justify-content: flex-start;
+    padding-left: u(2);
+    padding-right: u(2);
+  }
+
+  &:hover {
+    background-color: $gray40b;
+  }
+
+  &.selected {
+    background-color: var(--background-action-low-blue-france);
+
+    &.text_btn {
+      color: var(--background-action-high-blue-france);
+    }
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--background-action-low-blue-france) 95%, black) !important;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}

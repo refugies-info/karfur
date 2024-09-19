@@ -1,0 +1,804 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserNotifications should render correctly when 0 notif 1`] = `
+<DocumentFragment>
+  .c0 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 26px;
+  margin-right: 120px;
+  margin-left: 120px;
+  height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c1 {
+  color: darkGrey;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+<div
+    style="display: flex; flex-direction: column; flex: 1;"
+  >
+    <div
+      class="c0"
+    >
+      <div
+        class="c1"
+      >
+        <div
+          class="c2"
+        >
+          Aucune notification ! 
+        </div>
+        <div
+          style="margin-top: 32px; margin-bottom: 20px;"
+        >
+          <img
+            alt="no-notification"
+            data-nimg="1"
+            decoding="async"
+            height="289"
+            loading="lazy"
+            src="https://storage.googleapis.com/refugies-info-assets/middle-office/aucune_notification.svg"
+            style="color: transparent;"
+            width="400"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserNotifications should render correctly when loading 1`] = `
+<DocumentFragment>
+  .c1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c3 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 26px;
+  margin-right: 120px;
+  margin-left: 120px;
+  height: fit-content;
+}
+
+<div
+    style="display: flex; flex-direction: column; flex: 1;"
+  >
+    <div
+      class="c0"
+    >
+      <div
+        class="c1"
+      >
+        <div
+          class="c2"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c3"
+        >
+          ...
+        </div>
+        <div
+          class="c2"
+        >
+          nouvelle notification.
+        </div>
+      </div>
+      <span
+        aria-busy="true"
+        aria-live="polite"
+      >
+        <span
+          class="react-loading-skeleton"
+          style="height: 50px;"
+        >
+          ‌
+        </span>
+        <br />
+        <span
+          class="react-loading-skeleton"
+          style="height: 50px;"
+        >
+          ‌
+        </span>
+        <br />
+        <span
+          class="react-loading-skeleton"
+          style="height: 50px;"
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
+<DocumentFragment>
+  .c1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c3 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c4 {
+  background: focus;
+  border-radius: 12px;
+  padding: 8px 8px 8px 20px;
+  margin: 8px 0px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: focus;
+}
+
+.c4:hover {
+  border-color: gray90;
+}
+
+.c9 {
+  background: white;
+  border-radius: 12px;
+  padding: 8px 8px 8px 20px;
+  margin: 8px 0px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+}
+
+.c9:hover {
+  border-color: gray90;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  color: white;
+  margin-left: 20px;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  color: gray90;
+  margin-left: 20px;
+}
+
+.c8 {
+  background: lightGrey;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-left: 8px;
+}
+
+.c7 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.c0 {
+  background: lightGrey;
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 26px;
+  margin-right: 120px;
+  margin-left: 120px;
+  height: fit-content;
+}
+
+<div
+    style="display: flex; flex-direction: column; flex: 1;"
+  >
+    <div
+      class="c0"
+    >
+      <div
+        class="c1"
+      >
+        <div
+          class="c2"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c3"
+        >
+          3
+        </div>
+        <div
+          class="c2"
+        >
+          nouvelles notifications.
+        </div>
+      </div>
+      <div
+        class="c4"
+        data-testid="test-notif-annuaire"
+      >
+        <div
+          class="c5"
+        >
+          <span
+            class="icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-bell"
+                fill="white"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="bell"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          <div
+            class="c6"
+          >
+            Recensez votre structure dans l'annuaire de l'intégration
+          </div>
+        </div>
+        <div
+          class="c5"
+        >
+          <button
+            class="btn dark me-2"
+          >
+            <span
+              class="me-2 icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-folder-add-outline"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="folder-add"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <path
+                        d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"
+                      />
+                      <path
+                        d="M19.5 7.05h-7L9.87 3.87a1 1 0 0 0-.77-.37H4.5A2.47 2.47 0 0 0 2 5.93v12.14a2.47 2.47 0 0 0 2.5 2.43h15a2.47 2.47 0 0 0 2.5-2.43V9.48a2.47 2.47 0 0 0-2.5-2.43zm.5 11a.46.46 0 0 1-.5.43h-15a.46.46 0 0 1-.5-.43V5.93a.46.46 0 0 1 .5-.43h4.13l2.6 3.18a1 1 0 0 0 .77.37h7.5a.46.46 0 0 1 .5.43z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            Compléter la fiche annuaire
+          </button>
+          <button
+            class="btn error ms-2"
+            data-testid="test-delete-annuaire"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-trash-2"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="trash-2"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <path
+                        d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0zm0-11.67c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM16 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="c4"
+        data-testid="test-notif-new content"
+      >
+        <div
+          class="c5"
+        >
+          <span
+            class="icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-bell"
+                fill="white"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="bell"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          <div
+            class="c6"
+          >
+            Une nouvelle fiche a été attribuée à votre structure
+          </div>
+        </div>
+        <div
+          class="c5"
+        >
+          <div
+            class="c7"
+          >
+            Depuis 5 jours
+          </div>
+          <button
+            class="btn dark"
+          >
+            <span
+              class="me-2 icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-eye"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="eye"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="1.5"
+                      />
+                      <path
+                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            Voir la fiche
+          </button>
+        </div>
+      </div>
+      <div
+        class="c4"
+        data-testid="test-notif-reaction"
+      >
+        <div
+          class="c5"
+        >
+          <span
+            class="icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-bell"
+                fill="white"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="bell"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          <div
+            class="c6"
+          >
+            Nouvelle réaction sur la fiche :
+          </div>
+          <div
+            class="c8"
+          >
+            titre info
+          </div>
+        </div>
+        <div
+          class="c5"
+        >
+          <button
+            class="btn dark"
+          >
+            <span
+              class="me-2 icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-eye"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="eye"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="1.5"
+                      />
+                      <path
+                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            Voir la réaction
+          </button>
+          <button
+            class="btn error ms-2"
+            data-testid="test-delete-reaction"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-trash-2"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="trash-2"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <path
+                        d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0zm0-11.67c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM16 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="c9"
+        data-testid="test-notif-reaction"
+      >
+        <div
+          class="c5"
+        >
+          <span
+            class="icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-bell-outline"
+                fill="gray90"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="bell"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          <div
+            class="c10"
+          >
+            Nouvelle réaction sur la fiche :
+          </div>
+          <div
+            class="c8"
+          >
+            titre info2
+          </div>
+        </div>
+        <div
+          class="c5"
+        >
+          <button
+            class="btn dark"
+          >
+            <span
+              class="me-2 icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-eye"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="eye"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="1.5"
+                      />
+                      <path
+                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            Voir la réaction
+          </button>
+          <button
+            class="btn error ms-2"
+            data-testid="test-delete-reaction"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-trash-2"
+                  fill="#fff"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="trash-2"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        width="24"
+                      />
+                      <path
+                        d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0zm0-11.67c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM16 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

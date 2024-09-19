@@ -1,0 +1,61 @@
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/colors";
+@import "~/scss/variables";
+
+.container {
+  background: radial-gradient(150.13% 150.13% at 50% 50%, #0421b1 0%, #1b62d8 100%);
+}
+
+.mockup {
+  @include media-max("lg-limit") {
+    text-align: center;
+  }
+}
+
+.store {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: u(8);
+  z-index: 2;
+
+  @include isTablet {
+    justify-content: center;
+  }
+
+  a {
+    @include mr-ltr(u(4));
+
+    img {
+      max-width: 124px;
+      height: auto;
+
+      @include isTablet {
+        max-width: inherit;
+        height: auto;
+      }
+    }
+  }
+}
+
+.reviews {
+  @include ml-ltr(u(4));
+
+  @include isTablet {
+    position: absolute;
+    top: -80px;
+    transform: translateX(70%);
+
+    @include rtl {
+      transform: translateX(-70%);
+    }
+  }
+}
+
+.links {
+  background: none;
+}

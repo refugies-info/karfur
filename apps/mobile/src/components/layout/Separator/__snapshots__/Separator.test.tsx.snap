@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Separator snapshot test suite should render without bug 1`] = `
+<View
+  style={
+    {
+      "alignSelf": "center",
+      "backgroundColor": "#EDEBEB",
+      "height": 1,
+      "marginVertical": 8,
+      "width": "90%",
+    }
+  }
+/>
+`;

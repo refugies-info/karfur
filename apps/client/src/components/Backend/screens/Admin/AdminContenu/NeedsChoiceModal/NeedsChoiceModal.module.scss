@@ -1,0 +1,14 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+
+.column {
+  background: $white;
+  border-radius: $radius;
+  padding: 16px;
+}
+
+.subtitle {
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-bottom: 8px;
+}

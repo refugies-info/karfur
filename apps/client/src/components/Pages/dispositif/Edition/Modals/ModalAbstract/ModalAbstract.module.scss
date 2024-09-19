@@ -1,0 +1,54 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/input";
+@import "~/scss/mixins/text";
+
+.text {
+  position: relative;
+  height: 100%;
+}
+
+.input {
+  @include baseInput;
+
+  height: 100%;
+  padding-bottom: u(12);
+  background: $gray30;
+  border: 1px solid var(--border-default-grey);
+  max-width: 230px;
+
+  &:hover {
+    background: var(--background-contrast-grey);
+  }
+
+  &:focus {
+    background: $gray30;
+    border-color: var(--text-title-grey);
+  }
+}
+
+.help {
+  @include dsfr-text("very-small");
+
+  position: absolute;
+  bottom: u(4);
+  left: u(4);
+  right: u(4);
+  margin-bottom: 0;
+  color: var(--text-default-error);
+}
+
+.arrow {
+  position: absolute;
+  top: 82%;
+  left: 230px;
+  transform: translateY(-50px);
+  z-index: 1;
+  width: 70px;
+  height: 30px;
+
+  img {
+    max-width: 100%;
+  }
+}

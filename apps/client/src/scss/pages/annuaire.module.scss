@@ -1,0 +1,15 @@
+@import "~/scss/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  background: $gray40;
+}
+
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 24px;
+}

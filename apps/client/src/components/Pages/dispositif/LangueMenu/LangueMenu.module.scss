@@ -1,0 +1,78 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+
+.dropdown {
+  & > button {
+    background: transparent;
+    color: $gray90;
+    border: none;
+    padding: u(2) u(3);
+    position: relative;
+    white-space: nowrap;
+
+    &:active {
+      background-color: inherit !important;
+      border-color: inherit !important;
+      color: inherit !important;
+    }
+
+    .icon {
+      @include r-ltr(u(3));
+
+      position: absolute;
+      top: u(3);
+    }
+  }
+
+  .open .icon {
+    transform: rotate(180deg);
+  }
+
+  .menu {
+    box-shadow: 0 4px 12px 0 #00001229;
+    padding: u(2);
+    border-radius: u(2);
+    margin-top: u(2);
+    margin-bottom: u(2);
+
+    .item {
+      @include text("normal");
+
+      display: flex;
+      align-items: center;
+      padding: u(2) u(3);
+      border-radius: u(2) !important;
+      margin-bottom: u(1);
+      border: none;
+
+      &:hover {
+        background: $gray40b;
+        color: $dark;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      :global(.fi) {
+        margin: 0 u(2) 0 0;
+
+        @include rtl {
+          margin: 0 0 0 u(2);
+        }
+      }
+
+      &.selected {
+        background: $bleuCharte !important;
+        color: $white !important;
+      }
+    }
+
+    .item_locale {
+      @include mr-ltr(u(1));
+    }
+  }
+}

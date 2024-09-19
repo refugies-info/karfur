@@ -1,0 +1,40 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+
+.modal {
+  height: 584px;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p {
+    margin-bottom: u(6);
+  }
+}
+
+.image {
+  text-align: center;
+  position: relative;
+}
+
+.bubble {
+  position: absolute;
+  left: 50%;
+  margin-left: 56px;
+  top: -16px;
+}
+
+.expert {
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid var(--text-default-grey);
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+}

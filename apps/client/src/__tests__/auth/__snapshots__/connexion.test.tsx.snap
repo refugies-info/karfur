@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth/connexion renders connexion if email 1`] = `
+<DocumentFragment>
+  <div
+    class="container half"
+  >
+    <button
+      class="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+      id="fr-button-:r0:"
+    >
+      Retour
+    </button>
+    <div
+      class="title"
+    >
+      <h1>
+        Ravis de vous revoir !
+      </h1>
+      <button
+        class="fr-tag fr-tag--dismiss tag"
+        id="fr-tag-:r1:"
+      >
+        test@example.com
+      </button>
+    </div>
+    <form>
+      <div
+        class="fr-password"
+        id="password-input-:r2:"
+      >
+        <label
+          class="fr-label"
+          for="password-:r3:"
+        >
+          Mot de passe
+        </label>
+        <div
+          class="fr-input-wrap"
+        >
+          <input
+            class="fr-password__input fr-input"
+            id="password-:r3:"
+            name="password"
+            type="password"
+          />
+        </div>
+        <div
+          class="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm"
+        >
+          <input
+            aria-label="Afficher le mot de passe"
+            id="password-:r3:-toggle-show"
+            type="checkbox"
+          />
+          <label
+            class="fr-password__checkbox fr-label"
+            for="password-:r3:-toggle-show"
+          >
+            Afficher
+          </label>
+        </div>
+      </div>
+      <div
+        class="mt-2 mb"
+      >
+        <a
+          class="fr-link link"
+          href="/auth/reinitialiser-mot-de-passe?email=test@example.com"
+        >
+          Mot de passe oublié ?
+        </a>
+      </div>
+      <button
+        class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button"
+        id="fr-button-:r4:"
+        type="submit"
+      >
+        Me connecter
+      </button>
+    </form>
+    <div
+      class="separator my-10"
+    >
+      <span>
+        ou
+      </span>
+    </div>
+    <a
+      class="fr-btn fr-btn--tertiary button"
+      href="/auth/code-connexion?email=test@example.com"
+      id="fr-button-:r5:"
+    >
+      Me connecter avec un code reçu par mail
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`auth/connexion renders null if no email 1`] = `<DocumentFragment />`;

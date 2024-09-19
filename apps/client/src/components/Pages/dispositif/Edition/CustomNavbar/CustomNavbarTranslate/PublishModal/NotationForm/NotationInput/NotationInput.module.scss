@@ -1,0 +1,15 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+
+.item {
+  padding: u(4);
+  background: $gray30;
+  margin-bottom: u(6);
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 1px solid var(--border-plain-grey);
+}

@@ -1,0 +1,26 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/input";
+
+.footer {
+  margin-top: u(8);
+  text-align: right;
+}
+
+.textarea {
+  @include baseInput;
+
+  background: $gray30;
+  border: 1px solid var(--border-default-grey);
+  min-height: 240px;
+
+  &:hover {
+    background: var(--background-contrast-grey);
+  }
+
+  &:focus {
+    background: $gray30;
+    border-color: var(--text-title-grey);
+  }
+}

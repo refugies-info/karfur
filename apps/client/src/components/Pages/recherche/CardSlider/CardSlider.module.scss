@@ -1,0 +1,19 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.dispositifs {
+  padding-bottom: u(4);
+}
+
+.demarches {
+  margin-bottom: u(10);
+  padding-bottom: u(10);
+
+  & .card > a {
+    height: 100%;
+  }
+}

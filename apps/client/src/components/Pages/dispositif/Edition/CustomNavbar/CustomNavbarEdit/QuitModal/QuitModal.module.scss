@@ -1,0 +1,25 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/input";
+@import "~/scss/mixins/text";
+
+.content {
+  margin-bottom: u(8);
+}
+
+.list {
+  list-style-type: none;
+
+  li {
+    position: relative;
+    padding-left: u(5);
+    margin-bottom: u(4);
+
+    .icon {
+      position: absolute;
+      left: u(-2);
+      top: u(1);
+    }
+  }
+}

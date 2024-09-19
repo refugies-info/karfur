@@ -1,0 +1,63 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+@import "~/scss/mixins/responsive";
+
+.badge {
+  @include dsfr-text("small");
+
+  text-transform: uppercase;
+  padding-left: u(2);
+  padding-right: u(1);
+  border-radius: u(1);
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+
+  &.error {
+    background: var(--background-contrast-error);
+    color: var(--text-default-error);
+
+    svg {
+      fill: var(--text-default-error);
+    }
+  }
+
+  &.warning {
+    background: var(--background-contrast-warning);
+    color: var(--text-default-warning);
+
+    svg {
+      fill: var(--text-default-warning);
+    }
+  }
+
+  &.new {
+    background: var(--background-contrast-yellow-tournesol);
+    color: var(--text-action-high-yellow-tournesol);
+
+    svg {
+      fill: var(--text-action-high-yellow-tournesol);
+    }
+  }
+
+  &.success {
+    background: var(--background-contrast-success);
+    color: var(--text-default-success);
+
+    svg {
+      fill: var(--text-default-success);
+    }
+  }
+
+  &.info {
+    background: var(--background-action-low-blue-france);
+    color: var(--background-active-blue-france-active);
+
+    svg {
+      fill: var(--background-active-blue-france-active);
+    }
+  }
+}

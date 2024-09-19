@@ -1,0 +1,1039 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserFavorites should render correctly when 0 favorites 1`] = `
+<DocumentFragment>
+  .c0 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c1 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c3 {
+  background: white;
+  border-radius: 12px;
+  padding: 13px;
+  width: 248px;
+  height: 248px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: focus;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c4 {
+  background: white;
+  border-radius: 12px;
+  width: 248px;
+  height: 248px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c5 {
+  background: gray60;
+  border-radius: 8px;
+  width: 221px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.c6 {
+  background: gray60;
+  border-radius: 8px;
+  width: 130px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.c7 {
+  background: gray60;
+  border-radius: 3px;
+  width: 221px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c8 {
+  background: gray60;
+  border-radius: 3px;
+  width: 200px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c9 {
+  background: gray60;
+  border-radius: 3px;
+  width: 180px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c10 {
+  background: gray60;
+  height: 50px;
+  width: 100%;
+  border-radius: 0px 0px 12px 12px;
+  margin-top: 16px;
+  padding-top: 18px;
+  padding-left: 50px;
+}
+
+.c11 {
+  background: white;
+  border-radius: 3px;
+  width: 180px;
+  height: 14px;
+}
+
+<div
+    class="container"
+  >
+    <div
+      style="margin-right: 40px; margin-left: 40px;"
+    >
+      <div
+        class="c0"
+      >
+        <div
+          class="c1"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c2"
+        >
+          0
+        </div>
+        <div
+          class="c1"
+        >
+          UserFavorites.content_saved
+        </div>
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div
+        class="c3"
+      >
+        UserFavorites.Comment ajouter
+        <button
+          class="btn tuto me-2"
+        >
+          <span
+            class="me-2 icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-question-mark-circle-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="menu-arrow-circle"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      transform="rotate(180 12 12)"
+                      width="24"
+                    />
+                    <path
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                    />
+                    <path
+                      d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
+                    />
+                    <circle
+                      cx="12"
+                      cy="17"
+                      r="1"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          UserFavorites.tutoriel
+        </button>
+      </div>
+      <div
+        class="c4"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <div
+            class="c5"
+            width="221px"
+          />
+          <div
+            class="c6"
+            width="130px"
+          />
+        </div>
+        <div>
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c8"
+            width="200px"
+          />
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c9"
+            width="180px"
+          />
+          <div
+            class="c10"
+          >
+            <div
+              class="c11"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="c4"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <div
+            class="c5"
+            width="221px"
+          />
+          <div
+            class="c6"
+            width="130px"
+          />
+        </div>
+        <div>
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c8"
+            width="200px"
+          />
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c9"
+            width="180px"
+          />
+          <div
+            class="c10"
+          >
+            <div
+              class="c11"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="c4"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <div
+            class="c5"
+            width="221px"
+          />
+          <div
+            class="c6"
+            width="130px"
+          />
+        </div>
+        <div>
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c8"
+            width="200px"
+          />
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c9"
+            width="180px"
+          />
+          <div
+            class="c10"
+          >
+            <div
+              class="c11"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserFavorites should render correctly when 3 favorites 1`] = `
+<DocumentFragment>
+  .c0 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c1 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+<div
+    class="container"
+  >
+    <div
+      class="title"
+    >
+      <div
+        class="c0"
+      >
+        <div
+          class="c1"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c2"
+        >
+          3
+        </div>
+        <div
+          class="c1"
+        >
+          UserFavorites.contents_saved
+        </div>
+      </div>
+      <div>
+        <button
+          class="btn outline-black"
+          data-testid="remove-all-favorites-button"
+        >
+          <span
+            class="me-2 icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-trash-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="trash"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h12z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          UserFavorites.Tout supprimer
+        </button>
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div>
+        <div
+          class="wrapper"
+        >
+          <div
+            class="fr-card fr-enlarge-link"
+            id="fr-card-:r0:"
+          >
+            <div
+              class="fr-card__body"
+            >
+              <div
+                class="fr-card__content"
+              >
+                <h3
+                  class="fr-card__title"
+                >
+                  <a
+                    class="fr-link"
+                    href="[object Object]"
+                    title="tinfo1"
+                  >
+                    <span
+                      class="three_lines"
+                    >
+                      tinfo1
+                    </span>
+                  </a>
+                </h3>
+                <p
+                  class="fr-card__desc"
+                >
+                  <span
+                    class="three_lines"
+                  >
+                    abstract1
+                  </span>
+                </p>
+                <div
+                  class="fr-card__start"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(239, 232, 244);"
+                    >
+                      Français
+                    </div>
+                  </div>
+                  <div
+                    class="info mb-3"
+                  >
+                    <i
+                      class="fr-icon-building-line"
+                    />
+                    <span />
+                  </div>
+                </div>
+                <div
+                  class="fr-card__end"
+                >
+                  <div
+                    class="d-flex gap-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  src="/images/cards/dispositif/français.svg"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
+                    id="fr-badge-:r1:"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
+          >
+            <i
+              class="fr-icon-star-line"
+            />
+          </button>
+        </div>
+      </div>
+      <div>
+        <div
+          class="wrapper"
+        >
+          <div
+            class="fr-card fr-enlarge-link"
+            id="fr-card-:r2:"
+          >
+            <div
+              class="fr-card__body"
+            >
+              <div
+                class="fr-card__content"
+              >
+                <h3
+                  class="fr-card__title"
+                >
+                  <a
+                    class="fr-link"
+                    href="[object Object]"
+                    title="tinfo2"
+                  >
+                    <span
+                      class="three_lines"
+                    >
+                      tinfo2
+                    </span>
+                  </a>
+                </h3>
+                <p
+                  class="fr-card__desc"
+                >
+                  <span
+                    class="three_lines"
+                  >
+                    abstract2
+                  </span>
+                </p>
+                <div
+                  class="fr-card__start"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(238, 231, 229);"
+                    >
+                      Administratif
+                    </div>
+                  </div>
+                  <div
+                    class="info mb-3"
+                  >
+                    <i
+                      class="fr-icon-building-line"
+                    />
+                    <span />
+                  </div>
+                </div>
+                <div
+                  class="fr-card__end"
+                >
+                  <div
+                    class="d-flex gap-2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  src="/images/cards/dispositif/administratif.svg"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
+                    id="fr-badge-:r3:"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
+          >
+            <i
+              class="fr-icon-star-line"
+            />
+          </button>
+        </div>
+      </div>
+      <div>
+        <div
+          class="wrapper"
+        >
+          <div
+            class="fr-card fr-enlarge-link"
+            id="fr-card-:r4:"
+          >
+            <div
+              class="fr-card__body"
+            >
+              <div
+                class="fr-card__content"
+              >
+                <h3
+                  class="fr-card__title"
+                >
+                  <a
+                    class="fr-link"
+                    href="[object Object]"
+                    title="tinfo3"
+                  >
+                    <span
+                      class="three_lines"
+                    >
+                      tinfo3
+                    </span>
+                  </a>
+                </h3>
+                <p
+                  class="fr-card__desc"
+                >
+                  <span
+                    class="three_lines"
+                  >
+                    abstract3
+                  </span>
+                </p>
+                <div
+                  class="fr-card__start"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(221, 242, 249);"
+                    >
+                      Logement
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__end"
+                />
+              </div>
+            </div>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt="texte alternatif de l’image"
+                  class="fr-responsive-img"
+                  src="/images/cards/dispositif/logement.svg"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
+                    id="fr-badge-:r5:"
+                  >
+                    <span>
+                      Démarche
+                    </span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
+          >
+            <i
+              class="fr-icon-star-line"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserFavorites should render correctly when loading 1`] = `
+<DocumentFragment>
+  .c0 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c1 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c3 {
+  background: white;
+  border-radius: 12px;
+  width: 248px;
+  height: 248px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c4 {
+  background: gray60 height:50px;
+  width: 100%;
+  border-radius: 0px 0px 12px 12px;
+  margin-top: 16px;
+  padding-top: 18px;
+  padding-left: 50px;
+}
+
+<div
+    class="container"
+  >
+    <div
+      class="title"
+    >
+      <div
+        class="c0"
+      >
+        <div
+          class="c1"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c2"
+        >
+          ...
+        </div>
+        <div
+          class="c1"
+        >
+          UserFavorites.content_saved
+        </div>
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div
+        class="c3"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <span
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+          </span>
+        </div>
+        <div>
+          <div
+            style="margin-left: 13px; margin-right: 13px;"
+          >
+            <span
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            class="c4"
+          />
+        </div>
+      </div>
+      <div
+        class="c3"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <span
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+          </span>
+        </div>
+        <div>
+          <div
+            style="margin-left: 13px; margin-right: 13px;"
+          >
+            <span
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            class="c4"
+          />
+        </div>
+      </div>
+      <div
+        class="c3"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <span
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+          </span>
+        </div>
+        <div>
+          <div
+            style="margin-left: 13px; margin-right: 13px;"
+          >
+            <span
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            class="c4"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

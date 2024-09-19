@@ -1,0 +1,24 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/links";
+
+.highlighted {
+  background: var(--background-action-low-blue-france);
+  border-radius: u(2);
+  margin: u(-4);
+  padding: u(4);
+  display: inline-block;
+}
+
+.content {
+  @include dsfr-text("normal");
+
+  a[href] {
+    @include dsfr-link;
+
+    /* stylelint-disable-next-line value-keyword-case */
+    --underline-img: linear-gradient(0deg, currentColor, currentColor); // force underline
+  }
+}

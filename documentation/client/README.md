@@ -1,7 +1,7 @@
 # Client documentation
 
 This project is a React based project, which uses the NextJS framework.
-The source code is located at `/client`.
+The source code is located at `/apps/client`.
 
 - [Client documentation](#client-documentation)
   - [Tech stack](#tech-stack)
@@ -27,7 +27,7 @@ It includes the following libraries:
 
 ## Setup
 
-_It is recommended to [setup the server](../server/) first as you will need it to build or run the client._
+_It is recommended to [setup the server](../apps/server/) first as you will need it to build or run the client._
 
 1. Clone the repository locally
 2. Install the dependencies
@@ -120,13 +120,13 @@ Here are some more specific guides:
 > yarn test
 
 # launch only the unit tests. use the -- -u parameter to update snapshots
-> yarn test:unit
+> yarn test
 
 # launch only the types tests
-> yarn test:types
+> yarn check:types
 
 # launch only the lint tests
-> yarn test:lint
+> yarn lint
 
 # generates test coverage report (jest) (pending bug fix)
 > yarn test-with-coverage
