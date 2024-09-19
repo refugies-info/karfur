@@ -120,7 +120,7 @@ describe("userContributions", () => {
         mainSponsor: "sponsor",
       },
     ],
-    membres: [{ _id: "userId", roles: ["contributeur"] }],
+    membres: [{ _id: "userId" }],
   };
   const userState = {
     user: {

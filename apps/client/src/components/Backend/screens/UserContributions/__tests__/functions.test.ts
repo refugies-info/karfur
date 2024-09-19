@@ -314,8 +314,8 @@ describe("formatContributions", () => {
       formattedUserContrib4,
       formattedUserContrib5,
       formattedUserContrib6,
-      { ...formattedUserStructureContrib1, isAuthorizedToDelete: false },
-      { ...formattedUserStructureContrib4, isAuthorizedToDelete: false },
+      { ...formattedUserStructureContrib1, isAuthorizedToDelete: true },
+      { ...formattedUserStructureContrib4, isAuthorizedToDelete: true },
     ]);
   });
 
