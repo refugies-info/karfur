@@ -1,0 +1,28 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/map";
+
+.container {
+  @include zoom-controls;
+
+  height: 320px;
+  position: relative;
+  border-radius: u(2);
+  border: 1px solid var(--border-default-grey);
+  overflow: hidden;
+  margin-bottom: u(14);
+
+  @include media-max("lg-limit") {
+    height: 75vh;
+  }
+
+  .popup {
+    background: white;
+    box-shadow: 0 6px 18px 0 #00001229;
+    border-radius: u(2);
+  }
+}

@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
+<View
+  horizontalAlign="center"
+  style={
+    {
+      "alignItems": "center",
+      "flexBasis": "auto",
+      "flexDirection": "column",
+      "flexGrow": 1,
+      "justifyContent": "space-between",
+    }
+  }
+  verticalAlign="space-between"
+>
+  <View
+    style={
+      {
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexBasis": 0,
+        "flexGrow": 2,
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexBasis": 0,
+        "flexGrow": 2,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Rows snapshot test suite should render without bug 1`] = `
+<View
+  style={
+    {
+      "flexBasis": "auto",
+      "flexDirection": "column",
+      "flexGrow": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexBasis": "auto",
+        "flexGrow": 0,
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexBasis": "auto",
+        "flexGrow": 0,
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexBasis": "auto",
+        "flexGrow": 0,
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexBasis": "auto",
+        "flexGrow": 0,
+      }
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+</View>
+`;

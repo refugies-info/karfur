@@ -1,0 +1,43 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
+
+.modal {
+  height: auto !important;
+
+  @include isMobile {
+    width: 345px !important;
+
+    :global(.modal-body) {
+      padding: 0 !important;
+    }
+  }
+
+  .close {
+    background: transparent;
+    border: none;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+  }
+
+  .cards {
+    padding-top: u(8);
+    display: flex;
+    justify-content: space-between;
+
+    @include isMobile {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      & > button {
+        margin-bottom: u(6);
+      }
+    }
+  }
+}

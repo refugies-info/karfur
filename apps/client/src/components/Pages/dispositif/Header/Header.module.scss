@@ -1,0 +1,19 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+
+.container {
+  margin-bottom: u(20);
+  position: relative;
+}
+
+.share {
+  display: none !important;
+
+  @include media-max("lg-limit") {
+    margin-top: u(10);
+    display: block !important;
+  }
+}

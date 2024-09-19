@@ -1,0 +1,128 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+@import "~/scss/mixins/responsive";
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  transition: transform ease-in-out 0.2s;
+
+  .btn {
+    @include iconSize(u(4));
+    @include dsfr-text("small");
+
+    width: u(8);
+    height: u(8);
+    min-height: u(8) !important;
+    box-shadow: 0 6px 18px 0 #00001229;
+    background-color: white;
+    color: var(--background-action-high-blue-france);
+
+    @include media-max("lg-limit") {
+      display: none;
+    }
+  }
+
+  &.hidden {
+    transform: translateX(-200px);
+
+    .btn {
+      width: fit-content;
+    }
+  }
+
+  @include media-max("lg-limit") {
+    transform: none !important;
+    top: inherit;
+    max-width: 100%;
+  }
+
+  .list {
+    background: white;
+    width: 200px;
+    height: 100%;
+    border-right: 1px solid var(--border-default-grey);
+    padding: u(2);
+    overflow-y: scroll;
+
+    @include media-max("lg-limit") {
+      background: transparent;
+      display: flex;
+      overflow: scroll hidden;
+      width: auto;
+      height: auto;
+      border: none;
+
+      & > span {
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+.item {
+  padding: u(2);
+  width: 100%;
+  text-align: left;
+  border-radius: u(2);
+
+  @include media-max("lg-limit") {
+    width: 200px;
+    background: white;
+    margin-right: u(2);
+    margin-left: u(2);
+    box-shadow: 0 6px 18px 0 #00001229;
+    border: 1px solid transparent;
+  }
+
+  &:hover,
+  &.active {
+    background: var(--background-action-low-blue-france) !important;
+    color: var(--background-action-high-blue-france);
+
+    @include media-max("lg-limit") {
+      border-color: var(--background-action-high-blue-france);
+    }
+
+    svg {
+      fill: var(--background-action-high-blue-france);
+    }
+  }
+
+  .title {
+    @include dsfr-text("small");
+
+    margin-bottom: 0;
+
+    @include media-max("lg-limit") {
+      min-height: 36px;
+      margin-bottom: u(2);
+    }
+  }
+
+  .city {
+    @include dsfr-text("very-small");
+
+    margin-bottom: 0;
+  }
+}
+
+.divider {
+  display: block;
+  margin: u(1) 0;
+  width: 100%;
+  height: 1px;
+  background: var(--border-default-grey);
+
+  @include media-max("lg-limit") {
+    display: none;
+  }
+}

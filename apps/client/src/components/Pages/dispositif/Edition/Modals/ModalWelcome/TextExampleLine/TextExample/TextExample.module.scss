@@ -1,0 +1,46 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+
+.container {
+  @include dsfr-text("small");
+
+  margin-bottom: 0 !important;
+  padding: u(3) u(2) u(2);
+  border-radius: u(2);
+  position: relative;
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+
+  &.success {
+    background: var(--background-contrast-success);
+  }
+
+  &.error {
+    background: var(--background-contrast-error);
+  }
+}
+
+.icon {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .success & {
+    background: var(--text-default-success);
+  }
+
+  .error & {
+    background: var(--text-default-error);
+  }
+}

@@ -1,0 +1,70 @@
+@use "sass:map";
+
+$breakpoints: (
+  "phone-down": 500px,
+  "sm-limit": 577px,
+  "tablet-up": 768px,
+  "md-limit": 769px,
+  "lg-limit": 992px,
+  "desktop-up": 1024px,
+  "xl-limit": 1200px,
+  "widescreen-up": 1440px,
+);
+$drawerLimit: 768px;
+
+/* from... */
+@mixin media-min($_key, $screen: true) {
+  $break: map.get($breakpoints, $_key);
+
+  @if $screen {
+    @media screen and (min-width: $break) {
+      & {
+        @content;
+      }
+    }
+  } @else {
+    @media (min-width: $break) {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
+/* to... */
+@mixin media-max($_key, $screen: true, $include: false) {
+  $break: map.get($breakpoints, $_key);
+  $limit: if($include, 0, 1);
+
+  @if $screen {
+    @media screen and (max-width: ($break - $limit)) {
+      & {
+        @content;
+      }
+    }
+  } @else {
+    @media (max-width: ($break - $limit)) {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin isMobile() {
+  @include media-max("tablet-up") {
+    @content;
+  }
+}
+
+@mixin isTablet() {
+  @include media-max("lg-limit") {
+    @content;
+  }
+}
+
+@mixin isDesktop() {
+  @include media-min("md-limit") {
+    @content;
+  }
+}

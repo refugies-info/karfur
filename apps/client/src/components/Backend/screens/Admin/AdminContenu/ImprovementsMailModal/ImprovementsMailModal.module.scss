@@ -1,0 +1,47 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/responsive";
+
+.text {
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.categories {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.infoline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recap {
+  background: $erreur;
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.input {
+  border-radius: $radius;
+  font-size: 12px;
+  padding: 16px;
+  color: $dark;
+  flex-grow: 1;
+  border: 1px solid $gray70;
+}
+
+.category {
+  font-size: 12px !important;
+  padding: 8px !important;
+  font-weight: normal !important;
+  margin: 0 8px 8px 0;
+}

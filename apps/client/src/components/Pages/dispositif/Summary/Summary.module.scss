@@ -1,0 +1,45 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+
+.card {
+  display: none;
+  background: var(--background-contrast-grey);
+  border: 1px solid var(--border-default-grey);
+  padding: u(4);
+  margin-bottom: u(6);
+  margin-top: u(6);
+  border-radius: u(2);
+
+  @include media-max("lg-limit") {
+    display: block;
+  }
+
+  ol > li::marker {
+    @include dsfr-text("small");
+
+    font-weight: normal;
+  }
+}
+
+.title {
+  @include dsfr-text("small");
+
+  font-weight: bold;
+  margin-bottom: u(4);
+  text-transform: uppercase;
+}
+
+.item {
+  @include dsfr-text("small");
+
+  padding-bottom: u(4);
+  text-decoration: underline;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

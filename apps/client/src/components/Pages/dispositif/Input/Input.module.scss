@@ -1,0 +1,117 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.input {
+  border: 1px solid var(--border-default-grey);
+  outline: none !important;
+  background: var(--background-alt-raised-grey);
+  border-radius: u(2);
+  padding: u(2) u(4);
+  width: 100%;
+
+  &:focus {
+    border-color: var(--text-title-grey);
+    color: var(--text-title-grey);
+  }
+
+  .with_icon & {
+    @include pl-ltr(44px);
+  }
+
+  .valid & {
+    border-color: var(--text-default-success);
+  }
+
+  .error & {
+    border-color: var(--text-default-error);
+  }
+
+  .valid &,
+  .error & {
+    padding-right: u(11) !important;
+  }
+}
+
+.container {
+  label {
+    margin-bottom: u(2);
+    color: var(--text-title-grey);
+  }
+
+  &.valid label {
+    color: var(--text-default-success);
+  }
+
+  &.error label {
+    color: var(--text-default-error);
+  }
+
+  &:hover {
+    .input {
+      background: var(--background-contrast-grey);
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  top: 9px;
+
+  &.prepend {
+    @include l-ltr(u(4));
+  }
+
+  &.append {
+    @include r-ltr(u(4));
+  }
+
+  .input:focus + & {
+    svg {
+      fill: var(--text-title-grey);
+    }
+  }
+}
+
+.error_msg {
+  @include dsfr-text("very-small");
+
+  display: inline-block;
+  margin-top: u(2);
+  color: var(--text-default-error);
+}
+
+.empty_btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: u(2);
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: u(6);
+  height: u(6);
+  border-radius: 50%;
+
+  @include rtl {
+    right: inherit;
+    left: 0;
+  }
+
+  &:hover {
+    background: $gray30;
+  }
+}

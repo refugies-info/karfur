@@ -1,0 +1,12 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.tag {
+  cursor: default;
+  color: var(--text-action-high-blue-france);
+  background-color: var(--background-action-low-blue-france);
+}

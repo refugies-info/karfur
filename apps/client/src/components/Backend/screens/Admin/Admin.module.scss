@@ -1,0 +1,80 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: $gray20;
+  max-width: 100%;
+
+  .tab_content {
+    border: none;
+    background: $gray20;
+  }
+}
+
+.details_button {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 52px;
+  padding: 12px;
+  border-radius: $radius;
+  background-color: $white;
+  cursor: pointer;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    background-color: $gray10;
+  }
+
+  &:active,
+  &:focus {
+    background-color: $gray20;
+  }
+
+  &.disabled {
+    background-color: $white !important;
+    cursor: default !important;
+  }
+
+  .user_img {
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .sponsor_img {
+    margin-right: 8px;
+  }
+
+  &.wrap {
+    width: fit-content;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+
+  & > div {
+    margin-left: 8px;
+  }
+}
+
+.text {
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+}

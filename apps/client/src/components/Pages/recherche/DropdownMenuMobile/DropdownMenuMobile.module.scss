@@ -1,0 +1,77 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.container {
+  background: $white;
+  height: 100%;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: u(4);
+}
+
+.icon {
+  width: u(10);
+  height: u(10);
+  border-radius: 50%;
+  background: $bleuCharte;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: u(2);
+
+  @include rtl {
+    margin-right: 0;
+    margin-left: u(2);
+  }
+}
+
+.close {
+  background: transparent;
+  border: none;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: u(4);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -16px 16px 0 #0000000d;
+  background: $white;
+  z-index: 3;
+
+  & > button {
+    @include text("normal");
+
+    border-radius: $radius;
+
+    &.btn_search {
+      font-weight: bold;
+      padding: 12px;
+    }
+  }
+
+  .reset {
+    color: $bleuCharte;
+
+    & > span {
+      position: relative;
+      top: -2px;
+    }
+  }
+}

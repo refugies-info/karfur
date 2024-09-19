@@ -1,0 +1,53 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.title,
+.stickybar {
+  background: var(--background-action-low-blue-france);
+}
+
+.title {
+  text-align: center;
+  padding-top: u(14);
+  padding-bottom: u(10);
+
+  h1 {
+    @include dsfr-text("h1");
+  }
+
+  p {
+    @include dsfr-text("chapo");
+  }
+}
+
+.stickybar {
+  padding-bottom: u(14);
+
+  &.scrolled {
+    padding-top: u(4);
+    padding-bottom: u(4);
+
+    @include media-min("desktop-up") {
+      position: fixed;
+      top: -1px;
+      z-index: 20;
+      width: 100%;
+      animation: 0.3s ease-in-out 1 both slidein;
+      box-shadow: 0 4px 18px 0 #0000001a;
+    }
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

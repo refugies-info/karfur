@@ -1,0 +1,1003 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user translation should redirect if user has language but not langue in url + snap view without content 1`] = `
+<DocumentFragment>
+  .c1 {
+  font-weight: bold;
+  font-size: 27.7097px;
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  align-items: center;
+  flex: 1;
+}
+
+.c2 {
+  background: white;
+  border-radius: 12px;
+  width: 1040px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 32px;
+  line-height: 40px;
+  color: darkGrey;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.c4 {
+  font-size: 18px;
+  line-height: 23px;
+  color: darkGrey;
+  margin-bottom: 40px;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+<div
+    class="main"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="c0"
+      >
+        <div
+          class="c1"
+        >
+          Vous n'avez pas traduit de fiches pour le moment.
+        </div>
+        <div
+          class="c2"
+        >
+          <div
+            class="c3"
+          >
+            Vous parlez une autre langue ?
+          </div>
+          <div
+            class="c4"
+          >
+            Aidez à traduire les contenus à votre rythme.
+          </div>
+          <div
+            class="c5"
+          >
+            <button
+              class="btn dark me-2"
+            >
+              <img
+                alt="a"
+                data-nimg="1"
+                decoding="async"
+                height="21"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=48&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=48&q=75 2x"
+                style="color: transparent;"
+                width="21"
+              />
+              Commencer à traduire
+            </button>
+            <button
+              class="btn tuto ms-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-video-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="video"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Explications
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-controls="user-pseudo-modal"
+        aria-hidden="true"
+        class="fr-btn fr-hidden"
+        data-fr-opened="false"
+        id="user-pseudo-modal-hidden-control-button"
+        tabindex="-1"
+        type="button"
+      >
+         
+      </button>
+      <dialog
+        aria-labelledby="fr-modal-title-user-pseudo-modal"
+        class="fr-modal"
+        data-fr-concealing-backdrop="true"
+        id="user-pseudo-modal"
+        role="dialog"
+      >
+        <div
+          class="fr-container fr-container--fluid fr-container-md"
+        >
+          <div
+            class="fr-grid-row fr-grid-row--center"
+          >
+            <div
+              class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+            >
+              <div
+                class="fr-modal__body"
+              >
+                <div
+                  class="fr-modal__header"
+                >
+                  <button
+                    aria-controls="user-pseudo-modal"
+                    class="fr-btn--close fr-btn"
+                    title="Fermer"
+                    type="button"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                <div
+                  class="fr-modal__content"
+                >
+                  <h1
+                    class="fr-modal__title"
+                    id="fr-modal-title-user-pseudo-modal"
+                  >
+                    Choisissez un pseudonyme
+                  </h1>
+                  <p>
+                    Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+                  </p>
+                  <form>
+                    <div
+                      class="fr-input-group mt-12 mb-0"
+                    >
+                      <label
+                        class="fr-label"
+                        for="input-:r4:"
+                      >
+                        Votre pseudonyme
+                        <span
+                          class="fr-hint-text"
+                        >
+                          N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78.
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="input-:r4:-desc-error"
+                        class="fr-input"
+                        id="input-:r4:"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
+                      id="fr-button-:r5:"
+                      type="submit"
+                    >
+                      Suivant
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`user translation should redirect if user has no language but langue in url + snap no langue 1`] = `
+<DocumentFragment>
+  .c1 {
+  font-weight: bold;
+  font-size: 27.7097px;
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  align-items: center;
+  flex: 1;
+}
+
+.c2 {
+  background: white;
+  border-radius: 12px;
+  width: 1040px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 32px;
+  line-height: 40px;
+  color: darkGrey;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.c4 {
+  font-size: 18px;
+  line-height: 23px;
+  color: darkGrey;
+  margin-bottom: 40px;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+<div
+    class="main"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="c0"
+      >
+        <div
+          class="c1"
+        >
+          Vous n'avez pas traduit de fiches pour le moment.
+        </div>
+        <div
+          class="c2"
+        >
+          <div
+            class="c3"
+          >
+            Vous parlez une autre langue ?
+          </div>
+          <div
+            class="c4"
+          >
+            Aidez à traduire les contenus à votre rythme.
+          </div>
+          <div
+            class="c5"
+          >
+            <button
+              class="btn dark me-2"
+            >
+              <img
+                alt="a"
+                data-nimg="1"
+                decoding="async"
+                height="21"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=48&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=48&q=75 2x"
+                style="color: transparent;"
+                width="21"
+              />
+              Commencer à traduire
+            </button>
+            <button
+              class="btn tuto ms-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-video-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="video"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Explications
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-controls="user-pseudo-modal"
+        aria-hidden="true"
+        class="fr-btn fr-hidden"
+        data-fr-opened="false"
+        id="user-pseudo-modal-hidden-control-button"
+        tabindex="-1"
+        type="button"
+      >
+         
+      </button>
+      <dialog
+        aria-labelledby="fr-modal-title-user-pseudo-modal"
+        class="fr-modal"
+        data-fr-concealing-backdrop="true"
+        id="user-pseudo-modal"
+        role="dialog"
+      >
+        <div
+          class="fr-container fr-container--fluid fr-container-md"
+        >
+          <div
+            class="fr-grid-row fr-grid-row--center"
+          >
+            <div
+              class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+            >
+              <div
+                class="fr-modal__body"
+              >
+                <div
+                  class="fr-modal__header"
+                >
+                  <button
+                    aria-controls="user-pseudo-modal"
+                    class="fr-btn--close fr-btn"
+                    title="Fermer"
+                    type="button"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                <div
+                  class="fr-modal__content"
+                >
+                  <h1
+                    class="fr-modal__title"
+                    id="fr-modal-title-user-pseudo-modal"
+                  >
+                    Choisissez un pseudonyme
+                  </h1>
+                  <p>
+                    Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+                  </p>
+                  <form>
+                    <div
+                      class="fr-input-group mt-12 mb-0"
+                    >
+                      <label
+                        class="fr-label"
+                        for="input-:ra:"
+                      >
+                        Votre pseudonyme
+                        <span
+                          class="fr-hint-text"
+                        >
+                          N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78.
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="input-:ra:-desc-error"
+                        class="fr-input"
+                        id="input-:ra:"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
+                      id="fr-button-:rb:"
+                      type="submit"
+                    >
+                      Suivant
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`user translation should render correctly with expert, admin 1`] = `
+<DocumentFragment>
+  <div
+    class="main"
+  >
+    <div
+      class="container"
+    >
+      <button
+        aria-controls="user-pseudo-modal"
+        aria-hidden="true"
+        class="fr-btn fr-hidden"
+        data-fr-opened="false"
+        id="user-pseudo-modal-hidden-control-button"
+        tabindex="-1"
+        type="button"
+      >
+         
+      </button>
+      <dialog
+        aria-labelledby="fr-modal-title-user-pseudo-modal"
+        class="fr-modal"
+        data-fr-concealing-backdrop="true"
+        id="user-pseudo-modal"
+        role="dialog"
+      >
+        <div
+          class="fr-container fr-container--fluid fr-container-md"
+        >
+          <div
+            class="fr-grid-row fr-grid-row--center"
+          >
+            <div
+              class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+            >
+              <div
+                class="fr-modal__body"
+              >
+                <div
+                  class="fr-modal__header"
+                >
+                  <button
+                    aria-controls="user-pseudo-modal"
+                    class="fr-btn--close fr-btn"
+                    title="Fermer"
+                    type="button"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                <div
+                  class="fr-modal__content"
+                >
+                  <h1
+                    class="fr-modal__title"
+                    id="fr-modal-title-user-pseudo-modal"
+                  >
+                    Choisissez un pseudonyme
+                  </h1>
+                  <p>
+                    Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+                  </p>
+                  <form>
+                    <div
+                      class="fr-input-group mt-12 mb-0"
+                    >
+                      <label
+                        class="fr-label"
+                        for="input-:rj:"
+                      >
+                        Votre pseudonyme
+                        <span
+                          class="fr-hint-text"
+                        >
+                          N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78.
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="input-:rj:-desc-error"
+                        class="fr-input"
+                        id="input-:rj:"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
+                      id="fr-button-:rk:"
+                      type="submit"
+                    >
+                      Suivant
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`user translation should render correctly with expert, non admin 1`] = `
+<DocumentFragment>
+  <div
+    class="main"
+  >
+    <div
+      class="container"
+    >
+      <button
+        aria-controls="user-pseudo-modal"
+        aria-hidden="true"
+        class="fr-btn fr-hidden"
+        data-fr-opened="false"
+        id="user-pseudo-modal-hidden-control-button"
+        tabindex="-1"
+        type="button"
+      >
+         
+      </button>
+      <dialog
+        aria-labelledby="fr-modal-title-user-pseudo-modal"
+        class="fr-modal"
+        data-fr-concealing-backdrop="true"
+        id="user-pseudo-modal"
+        role="dialog"
+      >
+        <div
+          class="fr-container fr-container--fluid fr-container-md"
+        >
+          <div
+            class="fr-grid-row fr-grid-row--center"
+          >
+            <div
+              class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+            >
+              <div
+                class="fr-modal__body"
+              >
+                <div
+                  class="fr-modal__header"
+                >
+                  <button
+                    aria-controls="user-pseudo-modal"
+                    class="fr-btn--close fr-btn"
+                    title="Fermer"
+                    type="button"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                <div
+                  class="fr-modal__content"
+                >
+                  <h1
+                    class="fr-modal__title"
+                    id="fr-modal-title-user-pseudo-modal"
+                  >
+                    Choisissez un pseudonyme
+                  </h1>
+                  <p>
+                    Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+                  </p>
+                  <form>
+                    <div
+                      class="fr-input-group mt-12 mb-0"
+                    >
+                      <label
+                        class="fr-label"
+                        for="input-:rg:"
+                      >
+                        Votre pseudonyme
+                        <span
+                          class="fr-hint-text"
+                        >
+                          N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78.
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="input-:rg:-desc-error"
+                        class="fr-input"
+                        id="input-:rg:"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
+                      id="fr-button-:rh:"
+                      type="submit"
+                    >
+                      Suivant
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`user translation should render correctly with non expert, non admin 1`] = `
+<DocumentFragment>
+  <div
+    class="main"
+  >
+    <div
+      class="container"
+    >
+      <button
+        aria-controls="user-pseudo-modal"
+        aria-hidden="true"
+        class="fr-btn fr-hidden"
+        data-fr-opened="false"
+        id="user-pseudo-modal-hidden-control-button"
+        tabindex="-1"
+        type="button"
+      >
+         
+      </button>
+      <dialog
+        aria-labelledby="fr-modal-title-user-pseudo-modal"
+        class="fr-modal"
+        data-fr-concealing-backdrop="true"
+        id="user-pseudo-modal"
+        role="dialog"
+      >
+        <div
+          class="fr-container fr-container--fluid fr-container-md"
+        >
+          <div
+            class="fr-grid-row fr-grid-row--center"
+          >
+            <div
+              class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+            >
+              <div
+                class="fr-modal__body"
+              >
+                <div
+                  class="fr-modal__header"
+                >
+                  <button
+                    aria-controls="user-pseudo-modal"
+                    class="fr-btn--close fr-btn"
+                    title="Fermer"
+                    type="button"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                <div
+                  class="fr-modal__content"
+                >
+                  <h1
+                    class="fr-modal__title"
+                    id="fr-modal-title-user-pseudo-modal"
+                  >
+                    Choisissez un pseudonyme
+                  </h1>
+                  <p>
+                    Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+                  </p>
+                  <form>
+                    <div
+                      class="fr-input-group mt-12 mb-0"
+                    >
+                      <label
+                        class="fr-label"
+                        for="input-:rd:"
+                      >
+                        Votre pseudonyme
+                        <span
+                          class="fr-hint-text"
+                        >
+                          N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78.
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="input-:rd:-desc-error"
+                        class="fr-input"
+                        id="input-:rd:"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
+                      id="fr-button-:re:"
+                      type="submit"
+                    >
+                      Suivant
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`user translation should return loader langue in url = first selected langue 1`] = `
+<DocumentFragment>
+  .c1 {
+  font-weight: bold;
+  font-size: 27.7097px;
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  align-items: center;
+  flex: 1;
+}
+
+.c2 {
+  background: white;
+  border-radius: 12px;
+  width: 1040px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 32px;
+  line-height: 40px;
+  color: darkGrey;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.c4 {
+  font-size: 18px;
+  line-height: 23px;
+  color: darkGrey;
+  margin-bottom: 40px;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+<div
+    class="main"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="c0"
+      >
+        <div
+          class="c1"
+        >
+          Vous n'avez pas traduit de fiches pour le moment.
+        </div>
+        <div
+          class="c2"
+        >
+          <div
+            class="c3"
+          >
+            Vous parlez une autre langue ?
+          </div>
+          <div
+            class="c4"
+          >
+            Aidez à traduire les contenus à votre rythme.
+          </div>
+          <div
+            class="c5"
+          >
+            <button
+              class="btn dark me-2"
+            >
+              <img
+                alt="a"
+                data-nimg="1"
+                decoding="async"
+                height="21"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=48&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=48&q=75 2x"
+                style="color: transparent;"
+                width="21"
+              />
+              Commencer à traduire
+            </button>
+            <button
+              class="btn tuto ms-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-video-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="video"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Explications
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-controls="user-pseudo-modal"
+        aria-hidden="true"
+        class="fr-btn fr-hidden"
+        data-fr-opened="false"
+        id="user-pseudo-modal-hidden-control-button"
+        tabindex="-1"
+        type="button"
+      >
+         
+      </button>
+      <dialog
+        aria-labelledby="fr-modal-title-user-pseudo-modal"
+        class="fr-modal"
+        data-fr-concealing-backdrop="true"
+        id="user-pseudo-modal"
+        role="dialog"
+      >
+        <div
+          class="fr-container fr-container--fluid fr-container-md"
+        >
+          <div
+            class="fr-grid-row fr-grid-row--center"
+          >
+            <div
+              class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+            >
+              <div
+                class="fr-modal__body"
+              >
+                <div
+                  class="fr-modal__header"
+                >
+                  <button
+                    aria-controls="user-pseudo-modal"
+                    class="fr-btn--close fr-btn"
+                    title="Fermer"
+                    type="button"
+                  >
+                    Fermer
+                  </button>
+                </div>
+                <div
+                  class="fr-modal__content"
+                >
+                  <h1
+                    class="fr-modal__title"
+                    id="fr-modal-title-user-pseudo-modal"
+                  >
+                    Choisissez un pseudonyme
+                  </h1>
+                  <p>
+                    Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+                  </p>
+                  <form>
+                    <div
+                      class="fr-input-group mt-12 mb-0"
+                    >
+                      <label
+                        class="fr-label"
+                        for="input-:r1:"
+                      >
+                        Votre pseudonyme
+                        <span
+                          class="fr-hint-text"
+                        >
+                          N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78.
+                        </span>
+                      </label>
+                      <input
+                        aria-describedby="input-:r1:-desc-error"
+                        class="fr-input"
+                        id="input-:r1:"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
+                      id="fr-button-:r2:"
+                      type="submit"
+                    >
+                      Suivant
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</DocumentFragment>
+`;

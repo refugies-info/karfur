@@ -1,0 +1,101 @@
+// RI colors
+$attention: #f9ef99;
+$bgfocus: #d2edfc;
+$bleuCharte: #0421b1;
+$blue: #0a54bf;
+$darkColor: #212121;
+$darkGrey: #5e5e5e;
+$darkOrange: #ea6206;
+$erreur: #ffcecb;
+$error: #f44336;
+$focus: #2d9cdb;
+$gray10: #fbfbfb;
+$gray20: #f2f2f2;
+$gray30: #f6f6f6;
+$gray40: #e5e5e5;
+$gray40b: #edebeb;
+$gray50: #cdcdcd;
+$gray60: #c6c6c6;
+$gray70: #828282;
+$gray70b: #ababab;
+$gray80: #5e5e5e;
+$gray90: #212121;
+$green: #137f3a;
+$greenValidate: #bdf0c7;
+$grey2: #e0e0e0;
+$grey50b: #e0e0e0;
+$lightColor: #f2f2f2;
+$lightgreen: #def6c2;
+$lightGrey: #edebeb;
+$lightOrange: #ffe2b8;
+$lightYellow: #fff7ae;
+$orange: #ff9800;
+$orangeDark: #ea6206;
+$redDark: #b50437;
+$rouge: #e55039;
+$standby: #fdd497;
+$validation: #def6c2;
+$validationDefault: #8bc34a;
+$validationHover: #4caf50;
+$vert: #2ca12a;
+$vert2: #008205;
+$vertFonce: #219653;
+$white: #fff;
+$yellow: #ffeb3b;
+
+// Adhoc DSFR colors (should be removed as the site moves to DSFR)
+$darkBackgroundActionHighBlueFrance: #8585f6;
+$darkBackgroundAltBlueFrance: #1b1b35;
+$darkBackgroundAltGrey: #1e1e1e;
+$darkBackgroundContrastGrey: #242424;
+$darkBackgroundElevationContrast: #2f2f2f;
+$darkBorderPlainError: #ff5655;
+
+// RI colors used in TypeScript
+:export {
+  attention: $attention;
+  bleuCharte: $bleuCharte;
+  blue: $blue;
+  darkColor: $darkColor;
+  darkGrey: $darkGrey;
+  darkOrange: $darkOrange;
+  erreur: $erreur;
+  error: $error;
+  focus: $focus;
+  gray10: $gray10;
+  gray20: $gray20;
+  gray50: $gray50;
+  gray60: $gray60;
+  gray70: $gray70;
+  gray80: $gray80;
+  gray90: $gray90;
+  green: $green;
+  grey2: $grey2;
+  grey50b: $grey50b;
+  lightBlue: $bgfocus;
+  lightColor: $lightColor;
+  lightgreen: $lightgreen;
+  lightGrey: $lightGrey;
+  lightOrange: $lightOrange;
+  lightYellow: $lightYellow;
+  orange: $orange;
+  orangeDark: $orangeDark;
+  redDark: $redDark;
+  rouge: $rouge;
+  standby: $standby;
+  validation: $validation;
+  validationDefault: $validationDefault;
+  validationHover: $validationHover;
+  vert: $vert;
+  vert2: $vert2;
+  white: $white;
+  yellow: $yellow;
+
+  // DSFR colors
+  darkBackgroundActionHighBlueFrance: $darkBackgroundActionHighBlueFrance;
+  darkBackgroundAltBlueFrance: $darkBackgroundAltBlueFrance;
+  darkBackgroundAltGrey: $darkBackgroundAltGrey;
+  darkBackgroundContrastGrey: $darkBackgroundContrastGrey;
+  darkBackgroundElevationContrast: $darkBackgroundElevationContrast;
+  darkBorderPlainError: $darkBorderPlainError;
+}

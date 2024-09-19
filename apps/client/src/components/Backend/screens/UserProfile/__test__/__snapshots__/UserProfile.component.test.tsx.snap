@@ -1,0 +1,731 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper"
+    >
+      <div
+        class="mb-10 align-items-center row"
+      >
+        <div
+          class="col"
+        >
+          <h1>
+            Mon profil
+          </h1>
+        </div>
+        <div
+          class="text-end text-nowrap col"
+        >
+          <button
+            class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-error-warning-line fr-btn--icon-right danger ms-2"
+            id="fr-button-:r0:"
+          >
+            Supprimer mon profil
+          </button>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="flex-grow-0 col"
+        >
+          <h2>
+            Photo de profil
+          </h2>
+          <div
+            class="block"
+          >
+            <div
+              class="container"
+            >
+              <div
+                class="avatar"
+              >
+                <img
+                  alt="user picture"
+                  data-nimg="1"
+                  decoding="async"
+                  height="160"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+                  style="color: transparent;"
+                  width="160"
+                />
+              </div>
+              <p
+                class="small my-4"
+              >
+                Votre photo apparaît sur les fiches auxquelles vous contribuez.
+              </p>
+              <button
+                class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative"
+              >
+                Modifier ma photo
+                <input
+                  id="avatar"
+                  type="file"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col"
+        >
+          <div
+            class="d-flex align-items-center justify-content-between"
+          >
+            <h2>
+              Informations personnelles
+            </h2>
+            <button
+              class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-edit-box-line fr-btn--icon-right fix_align"
+              id="fr-button-:r1:"
+            >
+              Modifier mes informations personnelles
+            </button>
+          </div>
+          <div
+            class="block form mb-10"
+          >
+            <form>
+              <div
+                class="fr-input-group"
+              >
+                <label
+                  class="fr-label"
+                  for="input-:r2:"
+                >
+                  Pseudonyme public
+                  <span
+                    class="fr-hint-text"
+                  >
+                    Votre pseudonyme apparaît sur les fiches auxquelles vous contribuez.
+                  </span>
+                </label>
+                <input
+                  aria-describedby="input-:r2:-desc-error"
+                  class="fr-input"
+                  id="input-:r2:"
+                  name="pseudo"
+                  readonly=""
+                  title="pseudo-input"
+                  type="text"
+                  value="test"
+                />
+              </div>
+              <div
+                class="fr-input-group empty"
+              >
+                <label
+                  class="fr-label"
+                  for="input-:r3:"
+                >
+                  Prénom
+                  <span
+                    class="fr-hint-text"
+                  >
+                    Votre prénom n’est pas public, il est utilisé pour échanger avec vous directement.
+                  </span>
+                </label>
+                <input
+                  aria-describedby="input-:r3:-desc-error"
+                  class="fr-input"
+                  id="input-:r3:"
+                  name="firstName"
+                  readonly=""
+                  title="firstname-input"
+                  type="text"
+                  value="Non défini"
+                />
+              </div>
+              <div
+                class="fr-input-group empty"
+              >
+                <label
+                  class="fr-label"
+                  for="input-:r4:"
+                >
+                  Email
+                  <span
+                    class="fr-hint-text"
+                  />
+                </label>
+                <input
+                  aria-describedby="input-:r4:-desc-error"
+                  class="fr-input"
+                  id="input-:r4:"
+                  name="email"
+                  readonly=""
+                  title="email-input"
+                  type="text"
+                  value="Non défini"
+                />
+              </div>
+              <div
+                class="fr-input-group empty"
+              >
+                <label
+                  class="fr-label"
+                  for="input-:r5:"
+                >
+                  Téléphone
+                </label>
+                <input
+                  aria-describedby="input-:r5:-desc-error"
+                  class="fr-input"
+                  id="input-:r5:"
+                  name="phone"
+                  readonly=""
+                  title="phone-input"
+                  type="text"
+                  value="Non défini"
+                />
+              </div>
+              <div
+                class="fr-input-group"
+              >
+                <label
+                  class="fr-label"
+                  for="input-:r6:"
+                >
+                  Mot de passe actuel
+                </label>
+                <input
+                  aria-describedby="input-:r6:-desc-error"
+                  class="fr-input"
+                  id="input-:r6:"
+                  name="fake-password-input"
+                  readonly=""
+                  title="fake-password-input"
+                  type="text"
+                  value="********"
+                />
+              </div>
+              <button
+                class="fr-link link link"
+                type="button"
+              >
+                Mot de passe oublié ?
+              </button>
+            </form>
+            <button
+              aria-controls="user-email-code-modal"
+              aria-hidden="true"
+              class="fr-btn fr-hidden"
+              data-fr-opened="false"
+              id="user-email-code-modal-hidden-control-button"
+              tabindex="-1"
+              type="button"
+            >
+               
+            </button>
+            <dialog
+              aria-labelledby="fr-modal-title-user-email-code-modal"
+              class="fr-modal"
+              data-fr-concealing-backdrop="true"
+              id="user-email-code-modal"
+              role="dialog"
+            >
+              <div
+                class="fr-container fr-container--fluid fr-container-md"
+              >
+                <div
+                  class="fr-grid-row fr-grid-row--center"
+                >
+                  <div
+                    class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+                  >
+                    <div
+                      class="fr-modal__body"
+                    >
+                      <div
+                        class="fr-modal__header"
+                      >
+                        <button
+                          aria-controls="user-email-code-modal"
+                          class="fr-btn--close fr-btn"
+                          title="Fermer"
+                          type="button"
+                        >
+                          Fermer
+                        </button>
+                      </div>
+                      <div
+                        class="fr-modal__content"
+                      >
+                        <h1
+                          class="fr-modal__title"
+                          id="fr-modal-title-user-email-code-modal"
+                        >
+                          Entrez le code reçu
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dialog>
+            <button
+              aria-controls="user-password-modal"
+              aria-hidden="true"
+              class="fr-btn fr-hidden"
+              data-fr-opened="false"
+              id="user-password-modal-hidden-control-button"
+              tabindex="-1"
+              type="button"
+            >
+               
+            </button>
+            <dialog
+              aria-labelledby="fr-modal-title-user-password-modal"
+              class="fr-modal"
+              data-fr-concealing-backdrop="true"
+              id="user-password-modal"
+              role="dialog"
+            >
+              <div
+                class="fr-container fr-container--fluid fr-container-md"
+              >
+                <div
+                  class="fr-grid-row fr-grid-row--center"
+                >
+                  <div
+                    class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+                  >
+                    <div
+                      class="fr-modal__body"
+                    >
+                      <div
+                        class="fr-modal__header"
+                      >
+                        <button
+                          aria-controls="user-password-modal"
+                          class="fr-btn--close fr-btn"
+                          title="Fermer"
+                          type="button"
+                        >
+                          Fermer
+                        </button>
+                      </div>
+                      <div
+                        class="fr-modal__content"
+                      >
+                        <h1
+                          class="fr-modal__title"
+                          id="fr-modal-title-user-password-modal"
+                        >
+                          Mot de passe oublié
+                        </h1>
+                        <p>
+                          Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+                        </p>
+                        <form
+                          class="container"
+                        >
+                          <div
+                            class="fr-input-group mb-0"
+                          >
+                            <label
+                              class="fr-label"
+                              for="input-:r9:"
+                            >
+                              Adresse mail
+                            </label>
+                            <input
+                              aria-describedby="input-:r9:-desc-error"
+                              class="fr-input"
+                              id="input-:r9:"
+                              name="email"
+                              type="email"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            class="text-end"
+                          >
+                            <button
+                              class="fr-btn fr-icon-mail-line fr-btn--icon-right button mt"
+                              id="fr-button-:ra:"
+                              type="submit"
+                            >
+                              Envoyer le lien de réinitialisation
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dialog>
+          </div>
+          <h2>
+            Préférences
+          </h2>
+          <div
+            class="block mb-4"
+          >
+            <div
+              class="d-flex justify-content-between mb-3"
+            >
+              <label
+                class="label"
+              >
+                Départements pour la recherche
+              </label>
+              <button
+                class="button"
+              >
+                <i
+                  class="fr-icon-map-pin-2-line icon"
+                />
+                Modifier
+              </button>
+            </div>
+            <p
+              class="empty"
+            >
+              Non défini
+            </p>
+          </div>
+          <div
+            class="block"
+          >
+            <label
+              class="label mb-2"
+              for="newsletter"
+            >
+              Communication par email
+            </label>
+            <div
+              class="fr-toggle"
+              id="fr-toggle-:rb:"
+            >
+              <input
+                aria-describedby="fr-toggle-:rb:-hint-text"
+                class="fr-toggle__input"
+                disabled=""
+                id="fr-toggle-:rb:-input"
+                type="checkbox"
+              />
+              <label
+                class="fr-toggle__label"
+                for="fr-toggle-:rb:-input"
+              >
+                <span>
+                  <strong>
+                    La lettre d’information de Réfugiés.info
+                  </strong>
+                   : actualités, nouveaux contenus, mises à jour, événements.
+                </span>
+              </label>
+              <p
+                class="fr-hint-text"
+                id="fr-toggle-:rb:-hint-text"
+              >
+                Maximum 1 fois par mois
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      aria-controls="user-departments-modal"
+      aria-hidden="true"
+      class="fr-btn fr-hidden"
+      data-fr-opened="false"
+      id="user-departments-modal-hidden-control-button"
+      tabindex="-1"
+      type="button"
+    >
+       
+    </button>
+    <dialog
+      aria-labelledby="fr-modal-title-user-departments-modal"
+      class="fr-modal"
+      data-fr-concealing-backdrop="true"
+      id="user-departments-modal"
+      role="dialog"
+    >
+      <div
+        class="fr-container fr-container--fluid fr-container-md"
+      >
+        <div
+          class="fr-grid-row fr-grid-row--center"
+        >
+          <div
+            class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+          >
+            <div
+              class="fr-modal__body"
+            >
+              <div
+                class="fr-modal__header"
+              >
+                <button
+                  aria-controls="user-departments-modal"
+                  class="fr-btn--close fr-btn"
+                  title="Fermer"
+                  type="button"
+                >
+                  Fermer
+                </button>
+              </div>
+              <div
+                class="fr-modal__content"
+              >
+                <h1
+                  class="fr-modal__title"
+                  id="fr-modal-title-user-departments-modal"
+                >
+                  Départements pour la recherche
+                </h1>
+                <p
+                  class="mb-8"
+                >
+                  Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Les démarches nationales resteront visibles.
+                </p>
+                <form>
+                  <label
+                    class="fr-label mb-2"
+                    for="location"
+                  >
+                    Nom ou numéro du département
+                    <span
+                      class="fr-hint-text"
+                    >
+                      Plusieurs choix possibles
+                    </span>
+                  </label>
+                  <div
+                    class="position-relative"
+                  >
+                    <div />
+                  </div>
+                  <div
+                    class="text-end"
+                  >
+                    <button
+                      class="fr-btn fr-icon-check-line fr-btn--icon-right button mt-12"
+                      disabled=""
+                      id="fr-button-:rd:"
+                      type="submit"
+                    >
+                      Valider
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <button
+      aria-controls="user-language-modal"
+      aria-hidden="true"
+      class="fr-btn fr-hidden"
+      data-fr-opened="false"
+      id="user-language-modal-hidden-control-button"
+      tabindex="-1"
+      type="button"
+    >
+       
+    </button>
+    <dialog
+      aria-labelledby="fr-modal-title-user-language-modal"
+      class="fr-modal"
+      data-fr-concealing-backdrop="true"
+      id="user-language-modal"
+      role="dialog"
+    >
+      <div
+        class="fr-container fr-container--fluid fr-container-md"
+      >
+        <div
+          class="fr-grid-row fr-grid-row--center"
+        >
+          <div
+            class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+          >
+            <div
+              class="fr-modal__body"
+            >
+              <div
+                class="fr-modal__header"
+              >
+                <button
+                  aria-controls="user-language-modal"
+                  class="fr-btn--close fr-btn"
+                  title="Fermer"
+                  type="button"
+                >
+                  Fermer
+                </button>
+              </div>
+              <div
+                class="fr-modal__content"
+              >
+                <h1
+                  class="fr-modal__title"
+                  id="fr-modal-title-user-language-modal"
+                >
+                  <div
+                    class="mb-6"
+                  >
+                    Langues de traduction
+                  </div>
+                </h1>
+                <form>
+                  <label
+                    class="choice mb-4 rounded-0"
+                    for="language"
+                  >
+                    <input
+                      name="language"
+                      type="checkbox"
+                      value="en"
+                    />
+                    <i
+                      class="ri-checkbox-blank-line me-2"
+                    />
+                    <span
+                      class="text"
+                    >
+                      <strong>
+                        Anglais
+                      </strong>
+                       - English
+                    </span>
+                    <span
+                      class="flag fi fi-en"
+                      title="en"
+                    />
+                  </label>
+                  <div
+                    class="text-end"
+                  >
+                    <button
+                      class="fr-btn fr-icon-check-line fr-btn--icon-right button mt-8"
+                      disabled=""
+                      id="fr-button-:rf:"
+                      type="submit"
+                    >
+                      Valider
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <button
+      aria-controls="delete-account-modal"
+      aria-hidden="true"
+      class="fr-btn fr-hidden"
+      data-fr-opened="false"
+      id="delete-account-modal-hidden-control-button"
+      tabindex="-1"
+      type="button"
+    >
+       
+    </button>
+    <dialog
+      aria-labelledby="fr-modal-title-delete-account-modal"
+      class="fr-modal"
+      data-fr-concealing-backdrop="true"
+      id="delete-account-modal"
+      role="dialog"
+    >
+      <div
+        class="fr-container fr-container--fluid fr-container-md"
+      >
+        <div
+          class="fr-grid-row fr-grid-row--center"
+        >
+          <div
+            class="fr-col-12 fr-col-md-8 fr-col-lg-6"
+          >
+            <div
+              class="fr-modal__body"
+            >
+              <div
+                class="fr-modal__header"
+              >
+                <button
+                  aria-controls="delete-account-modal"
+                  class="fr-btn--close fr-btn"
+                  title="Fermer"
+                  type="button"
+                >
+                  Fermer
+                </button>
+              </div>
+              <div
+                class="fr-modal__content"
+              >
+                <h1
+                  class="fr-modal__title"
+                  id="fr-modal-title-delete-account-modal"
+                >
+                  Êtes-vous sûrs de vouloir supprimer votre compte ?
+                </h1>
+                <p
+                  class="mb-8"
+                >
+                  Vous perdrez l'accès à vos favoris ainsi qu'à votre structure et aux fiches que vous avez rédigées.
+                </p>
+              </div>
+              <div
+                class="fr-modal__footer"
+              >
+                <ul
+                  class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left"
+                >
+                  <li>
+                    <button
+                      aria-controls="delete-account-modal"
+                      class="fr-btn fr-icon-delete-bin-line fr-btn--icon-left danger"
+                      id="fr-button-:rh:"
+                    >
+                      Supprimer mon compte
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      aria-controls="delete-account-modal"
+                      class="fr-btn fr-btn--secondary"
+                      id="fr-button-:ri:"
+                    >
+                      Annuler
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`UserProfile should render correctly when loading 1`] = `
+<DocumentFragment>
+  <div>
+    Une erreur est survenue, veuillez recharger la page !
+  </div>
+</DocumentFragment>
+`;

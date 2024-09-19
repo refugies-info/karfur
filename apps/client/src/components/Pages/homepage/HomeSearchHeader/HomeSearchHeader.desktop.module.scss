@@ -1,0 +1,44 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/btn";
+@import "~/scss/variables";
+
+.container {
+  width: 100%;
+  position: relative;
+  background: $white;
+  border-radius: $radius;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 10%);
+  display: flex;
+  align-items: stretch;
+  margin-top: 56px;
+
+  @include isMobile {
+    margin-top: 0;
+  }
+}
+
+.menu {
+  // Layout
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 30;
+
+  // Style
+  border-top: 1px solid var(--background-open-blue-france);
+  background: var(--text-inverted-grey);
+
+  /* shadow/light/$shadow-md */
+  box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
+}
+
+.inputs {
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
+}

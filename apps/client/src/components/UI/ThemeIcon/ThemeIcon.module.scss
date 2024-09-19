@@ -1,0 +1,12 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
+
+.icon {
+  display: inline-flex;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,34 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+@import "~/scss/mixins/responsive";
+
+.container {
+  @include dsfr-text("very-small");
+
+  display: flex;
+  align-items: center;
+
+  .image {
+    width: u(6);
+    height: u(6);
+    border-radius: 50%;
+    border: 1px solid var(--text-default-grey);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &.big {
+    @include dsfr-text("normal");
+
+    .image {
+      width: u(8);
+      height: u(8);
+    }
+  }
+}

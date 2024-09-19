@@ -1,0 +1,11 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+
+.container {
+  p {
+    color: var(--text-default-grey);
+    margin-bottom: u(6);
+  }
+}

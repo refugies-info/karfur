@@ -1,0 +1,9 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+
+.abstract {
+  display: flex;
+  align-items: center;
+}

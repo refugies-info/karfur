@@ -1,0 +1,36 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/responsive";
+
+.marque {
+  @include dsfr-text("small");
+
+  color: white;
+  text-transform: uppercase;
+  border-radius: u(2);
+  padding: u(1) u(2);
+  display: inline-block;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("normal");
+  }
+}
+
+.img {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.title {
+  display: none;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("h3");
+
+    display: block;
+    font-weight: bold;
+    margin-top: u(16);
+  }
+}

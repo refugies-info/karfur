@@ -1,0 +1,59 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+
+.container {
+  background: var(--background-contrast-info);
+  border-radius: u(2);
+  padding: u(8);
+  color: var(--background-flat-info);
+  margin-top: u(6);
+  margin-bottom: u(8);
+}
+
+.item {
+  padding-bottom: u(6);
+  display: flex;
+  align-items: baseline;
+  position: relative;
+
+  &::after {
+    content: "";
+    height: 100%;
+    width: 2px;
+    background: var(--background-flat-info);
+    position: absolute;
+    left: 11px;
+    top: 6px;
+  }
+
+  &:last-child::after {
+    content: none;
+    display: none;
+  }
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  @include dsfr-text("very-small");
+
+  margin-bottom: 0;
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+
+  // trick to avoid border going over icons
+  background: var(--background-contrast-info);
+  height: 20px;
+}
+
+.badge {
+  background-color: var(--background-action-low-blue-france) !important;
+}

@@ -1,0 +1,21 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+
+.item {
+  @include ml-ltr(u(2));
+
+  @include media-min("lg-limit") {
+    @include ml-ltr(0);
+
+    display: none;
+  }
+
+  @include media-min("xl-limit") {
+    @include ml-ltr(u(2));
+
+    display: inline-block;
+  }
+}

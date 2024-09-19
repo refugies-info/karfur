@@ -1,0 +1,25 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+
+.container {
+  .btn {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: u(2);
+
+    &.playing {
+      background: var(--background-active-blue-france-active) !important;
+    }
+  }
+
+  .read {
+    & > button {
+      width: 100%;
+      justify-content: center;
+      color: var(--background-action-high-blue-france);
+      border: 1px solid var(--border-default-grey);
+      border-radius: u(2);
+    }
+  }
+}

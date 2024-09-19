@@ -1,0 +1,1 @@
+export { isDarkColor } from "./isDarkColor";

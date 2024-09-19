@@ -1,0 +1,84 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/variables";
+
+.menu {
+  // Layout
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 30;
+
+  // Style
+  border-top: 1px solid var(--background-open-blue-france);
+  background: var(--text-inverted-grey);
+
+  /* shadow/light/$shadow-md */
+  box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
+}
+
+.item {
+  @include text("normal");
+
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  border: none;
+
+  // Wrap text
+  white-space: normal;
+
+  &:hover {
+    background: $gray40b;
+    color: $dark;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  & > span {
+    position: relative;
+    top: -1px;
+  }
+
+  :global(.fi) {
+    margin: 0 u(2) 0 0;
+
+    @include rtl {
+      margin: 0 0 0 u(2);
+    }
+  }
+}
+
+.label {
+  flex: 1 0 0;
+}
+
+.countContainer {
+  display: flex;
+  padding-top: 4px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.count {
+  @include dsfr-text("very-small");
+
+  color: var(--text-mention-grey);
+}
+
+.backdrop {
+  background: rgb(0 0 0 / 30%);
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}

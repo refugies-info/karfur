@@ -1,0 +1,36 @@
+@import "~/scss/mixins/unit";
+@import "~/scss/colors";
+
+/* Base input design */
+@mixin baseInput() {
+  background: white;
+  padding: u(4);
+  border-radius: u(2);
+  width: 100%;
+  outline: none !important;
+  border: 1px solid var(--border-default-grey);
+
+  &:focus {
+    border-color: var(--text-title-grey);
+  }
+}
+
+@mixin styledInput() {
+  @include baseInput;
+
+  background: var(--background-alt-raised-grey);
+  color: var(--text-title-grey);
+  border: 1px solid var(--border-default-grey);
+  padding: u(2) u(4);
+
+  &:hover,
+  &:active {
+    background: var(--background-contrast-grey) !important;
+  }
+
+  &:focus {
+    background: var(--background-alt-raised-grey) !important;
+    border-color: $darkBackgroundAltGrey;
+    color: $darkBackgroundAltGrey;
+  }
+}

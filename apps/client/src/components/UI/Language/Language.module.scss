@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: normal;
+
+  :global(.fi) {
+    margin-right: 8px;
+  }
+
+  & > span {
+    font-weight: bold;
+    margin-right: 4px;
+  }
+}

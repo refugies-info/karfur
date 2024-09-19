@@ -1,0 +1,1330 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`traduire renders traduire 1`] = `
+<DocumentFragment>
+  <div
+    class="main"
+  >
+    <div
+      class="section bg_blue mb-4"
+    >
+      <div
+        class="container container"
+      >
+        <div
+          class="hero row"
+        >
+          <div
+            class="hero_title col-sm-12 col-lg-6"
+          >
+            <h1
+              class="text-white"
+            >
+              Translate.title
+            </h1>
+            <p
+              class="subtitle"
+            >
+              Translate.subtitle
+            </p>
+            <div
+              class="container"
+            >
+              <a
+                class="btn"
+                href="/undefined#who"
+                title="Suivant"
+              >
+                <span
+                  class="icon"
+                >
+                  <i
+                    style="height: 24px; line-height: 24px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-downward-outline"
+                      fill="bleuCharte"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="col-sm-12 col-lg-6"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent; max-width: 100%; height: auto;"
+              width="40"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container shadow"
+    >
+      <div
+        class="inner container"
+      >
+        <div>
+          <a
+            class="btn green"
+            href="/undefined#who"
+          >
+            Translate.navbarItem1
+          </a>
+          <a
+            class="btn orange"
+            href="/undefined#steps"
+          >
+            Translate.navbarItem2
+          </a>
+          <a
+            class="btn purple"
+            href="/undefined#next"
+          >
+            Translate.navbarItem3
+          </a>
+          <a
+            class="btn red"
+            href="/undefined#faq"
+          >
+            Translate.navbarItem4
+          </a>
+        </div>
+        <a
+          class="btn blue"
+          href="/undefined#register"
+        >
+          <span
+            class="icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-plus-circle-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="plus-circle"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                    />
+                    <path
+                      d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          Translate.navbarItem5
+        </a>
+      </div>
+    </div>
+    <div
+      class="scrollspy_section"
+    >
+      <div
+        class="section"
+      >
+        <span
+          class="anchor"
+          id="who"
+        />
+        <div
+          class="container container"
+        >
+          <h2
+            class="title2 mb-0"
+          >
+            Translate.whoTitle
+          </h2>
+          <p
+            class="subtitle"
+          >
+            Translate.whoSubtitle
+          </p>
+          <div
+            class="top_space row"
+          >
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container grey"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ua"
+                        title="ua"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ir"
+                        title="ir"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-sa"
+                        title="sa"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-gb"
+                        title="gb"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-af"
+                        title="af"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ru"
+                        title="ru"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-er"
+                        title="er"
+                      />
+                    </div>
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Translate.whoCardTitle1
+                  </h3>
+                  <div
+                    class="text mb-0"
+                  >
+                    <p
+                      class="mb-0"
+                    >
+                      Translate.whoCardText1
+                    </p>
+                  </div>
+                </div>
+                <div />
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container grey"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <div
+                      class="container"
+                      style="width: 56px; height: 56px;"
+                    >
+                      <span
+                        class="flag fi fi-fr"
+                        title="fr"
+                      />
+                    </div>
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Translate.whoCardTitle2
+                  </h3>
+                  <div
+                    class="text mb-0"
+                  >
+                    <p
+                      class="mb-0"
+                    >
+                      Translate.whoCardText2
+                    </p>
+                  </div>
+                </div>
+                <div />
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container grey"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Translate.whoCardTitle3
+                  </h3>
+                  <div
+                    class="text mb-0"
+                  >
+                    <p
+                      class="mb-0"
+                    >
+                      Translate.whoCardText3
+                    </p>
+                  </div>
+                </div>
+                <div />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="section bg_green"
+      >
+        <div
+          class="container needs container"
+        >
+          <h2
+            class="title2 text-center text-white"
+          >
+            Translate.needTitle
+          </h2>
+          <div
+            class="row"
+          >
+            <div
+              class="col-sm-12 col-lg-4"
+            >
+              <a
+                class="container"
+                href="/undefined#register"
+              >
+                <div
+                  class="title"
+                />
+                <p
+                  class="subtitle"
+                >
+                  Translate.need 
+                  <span
+                    class="need strong"
+                  >
+                    Translate.strong
+                  </span>
+                </p>
+              </a>
+            </div>
+            <div
+              class="col-sm-12 col-lg-4"
+            >
+              <a
+                class="container"
+                href="/undefined#register"
+              >
+                <div
+                  class="title"
+                >
+                  <span
+                    class="flag fi fi-en d-block me-2"
+                    title="en"
+                  />
+                  Anglais
+                </div>
+                <p
+                  class="subtitle"
+                >
+                  Translate.need 
+                  <span
+                    class="need medium"
+                  >
+                    Translate.medium
+                  </span>
+                </p>
+              </a>
+            </div>
+            <div
+              class="col-sm-12 col-lg-4"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="section"
+    >
+      <span
+        class="anchor"
+        id="steps"
+      />
+      <div
+        class="container container"
+      >
+        <h2
+          class="title2"
+        >
+          Translate.stepsTitle
+        </h2>
+        <div
+          class="warning_mobile"
+        >
+          <span
+            class="icon"
+          >
+            <i
+              style="height: 24px; line-height: 24px;"
+            >
+              <svg
+                class="eva eva-alert-circle-outline"
+                fill="black"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="alert-circle"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                    />
+                    <circle
+                      cx="12"
+                      cy="16"
+                      r="1"
+                    />
+                    <path
+                      d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          <p>
+            Translate.stepsWarningMobile
+          </p>
+        </div>
+        <div
+          class="row orange"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="step"
+            >
+              <span>
+                1
+              </span>
+            </div>
+            <h3
+              class="title"
+            >
+              Translate.stepsSubtitle1
+            </h3>
+            <p
+              class="text"
+            >
+              Translate.stepsText1
+            </p>
+            <a
+              class="link color_orange"
+              href="/undefined#register"
+              rel="noopener noreferrer"
+            >
+              <span>
+                Translate.stepsCTA1
+              </span>
+              <span
+                class="icon icon"
+              >
+                <i
+                  style="height: 24px; line-height: 24px;"
+                >
+                  <svg
+                    class="eva eva-arrow-forward-outline"
+                    fill="orange"
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="arrow-forward"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          transform="rotate(-90 12 12)"
+                          width="24"
+                        />
+                        <path
+                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+            </a>
+          </div>
+          <div
+            class="media"
+          >
+            <video
+              class="video autoplay-video"
+              height="320"
+              loop=""
+            >
+              <source
+                src="/video/publier-video-step1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+        <div
+          class="row orange"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="step"
+            >
+              <span>
+                2
+              </span>
+            </div>
+            <h3
+              class="title"
+            >
+              Translate.stepsSubtitle2
+            </h3>
+            <p
+              class="text"
+            >
+              Translate.stepsText2
+            </p>
+          </div>
+          <div
+            class="media"
+          >
+            <video
+              class="video autoplay-video"
+              height="320"
+              loop=""
+            >
+              <source
+                src="/video/translate-video-step2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+        <div
+          class="row orange"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="step"
+            >
+              <span>
+                3
+              </span>
+            </div>
+            <h3
+              class="title"
+            >
+              Translate.stepsSubtitle3
+            </h3>
+            <p
+              class="text"
+            >
+              Translate.stepsText3
+            </p>
+            <div
+              class="warning"
+            >
+              <ul
+                class="mb-0"
+              >
+                <li
+                  class="mb-2"
+                >
+                  Translate.stepsList3Item1
+                </li>
+                <li
+                  class="mb-2"
+                >
+                  Translate.stepsList3Item2
+                </li>
+                <li>
+                  Translate.stepsList3Item3
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="media"
+          >
+            <video
+              class="video autoplay-video"
+              height="320"
+              loop=""
+            >
+              <source
+                src="/video/translate-video-step3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+        <div
+          class="row orange has_btn_step"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="step"
+            >
+              <span>
+                4
+              </span>
+            </div>
+            <h3
+              class="title"
+            >
+              Translate.stepsSubtitle4
+            </h3>
+            <p
+              class="text"
+            >
+              Translate.stepsText4a
+            </p>
+            <p
+              class="text"
+            >
+              Translate.stepsText4b
+            </p>
+            <div
+              class="btn_step last"
+            >
+              Translate.stepsButton
+            </div>
+          </div>
+          <div
+            class="media"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="415"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+              style="color: transparent; object-fit: contain;"
+              width="550"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="scrollspy_section"
+    >
+      <div
+        class="section bg_purple"
+      >
+        <span
+          class="anchor"
+          id="next"
+        />
+        <div
+          class="container container"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-sm-12 col-lg-6"
+            >
+              <h2
+                class="title2 bottom_space mb-0 text-white"
+              >
+                Translate.nextTitle
+              </h2>
+              <p
+                class="p bottom_space"
+              >
+                Translate.nextText1
+              </p>
+              <p
+                class="p"
+              >
+                Translate.nextText2
+              </p>
+            </div>
+            <div
+              class="text-end col-sm-12 col-lg-6"
+            >
+              <video
+                class="video autoplay-video"
+                height="320"
+                loop=""
+              >
+                <source
+                  src="/video/translate-video-next.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="section bg_grey"
+      >
+        <div
+          class="container container"
+        >
+          <h2
+            class="title2 center mb-0"
+          >
+            StaticPages.helpTitle
+          </h2>
+          <div
+            class="top_space justify-content-center row"
+          >
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    Translate.helpTileTitle1
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      Translate.helpTileText1
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <a
+                    class="link color_red"
+                    href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      Translate.helpTileCTA1
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            >
+              <div
+                class="container"
+              >
+                <div>
+                  <div
+                    class="header"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="56"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="56"
+                    />
+                  </div>
+                  <h3
+                    class="title"
+                  >
+                    StaticPages.helpTileTitle3
+                  </h3>
+                  <div
+                    class="text"
+                  >
+                    <p>
+                      StaticPages.helpTileText3
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="link color_red"
+                  >
+                    <span>
+                      StaticPages.helpTileCTA3
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="red"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="section"
+    >
+      <span
+        class="anchor"
+        id="faq"
+      />
+      <div
+        class="container faq container"
+      >
+        <h2
+          class="title2 text-center"
+        >
+          StaticPages.faqTitle
+        </h2>
+        <div
+          class="row"
+        >
+          <div
+            class="infos col"
+          >
+            <div
+              class="container"
+            >
+              <button
+                class="btn btn btn-secondary"
+                type="button"
+              >
+                Translate.faqAccordionTitle1
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 32px; line-height: 32px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-ios-downward-outline"
+                      fill="black"
+                      height="32px"
+                      viewBox="0 0 24 24"
+                      width="32px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-ios-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <div
+                class="collapse"
+              >
+                <p
+                  class="text"
+                >
+                  Translate.faqAccordionText1
+                </p>
+              </div>
+            </div>
+            <div
+              class="container"
+            >
+              <button
+                class="btn btn btn-secondary"
+                type="button"
+              >
+                Translate.faqAccordionTitle2
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 32px; line-height: 32px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-ios-downward-outline"
+                      fill="black"
+                      height="32px"
+                      viewBox="0 0 24 24"
+                      width="32px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-ios-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <div
+                class="collapse"
+              >
+                <p
+                  class="text"
+                >
+                  Translate.faqAccordionText2
+                </p>
+              </div>
+            </div>
+            <div
+              class="container"
+            >
+              <button
+                class="btn btn btn-secondary"
+                type="button"
+              >
+                Translate.faqAccordionTitle3
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 32px; line-height: 32px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-ios-downward-outline"
+                      fill="black"
+                      height="32px"
+                      viewBox="0 0 24 24"
+                      width="32px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-ios-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <div
+                class="collapse"
+              >
+                <p
+                  class="text"
+                >
+                  Translate.faqAccordionText3
+                </p>
+              </div>
+            </div>
+            <div
+              class="container"
+            >
+              <button
+                class="btn btn btn-secondary"
+                type="button"
+              >
+                Translate.faqAccordionTitle4
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 32px; line-height: 32px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-ios-downward-outline"
+                      fill="black"
+                      height="32px"
+                      viewBox="0 0 24 24"
+                      width="32px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-ios-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <div
+                class="collapse"
+              >
+                <p
+                  class="text"
+                >
+                  Translate.faqAccordionText4
+                </p>
+              </div>
+            </div>
+            <div
+              class="container"
+            >
+              <button
+                class="btn btn btn-secondary"
+                type="button"
+              >
+                Translate.faqAccordionTitle5
+                <span
+                  class="icon icon"
+                >
+                  <i
+                    style="height: 32px; line-height: 32px;"
+                  >
+                    <svg
+                      class="eva eva-arrow-ios-downward-outline"
+                      fill="black"
+                      height="32px"
+                      viewBox="0 0 24 24"
+                      width="32px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        data-name="Layer 2"
+                      >
+                        <g
+                          data-name="arrow-ios-downward"
+                        >
+                          <rect
+                            height="24"
+                            opacity="0"
+                            width="24"
+                          />
+                          <path
+                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </i>
+                </span>
+              </button>
+              <div
+                class="collapse"
+              >
+                <p
+                  class="text"
+                >
+                  Translate.faqAccordionText5
+                </p>
+                <div
+                  class="cta"
+                >
+                  <a
+                    class="link color_blue"
+                    href="https://airtable.com/shrQxPHedgZ5PuXot"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>
+                      Translate.faqAccordionCTA5
+                    </span>
+                    <span
+                      class="icon icon"
+                    >
+                      <i
+                        style="height: 24px; line-height: 24px;"
+                      >
+                        <svg
+                          class="eva eva-arrow-forward-outline"
+                          fill="blue"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g
+                            data-name="Layer 2"
+                          >
+                            <g
+                              data-name="arrow-forward"
+                            >
+                              <rect
+                                height="24"
+                                opacity="0"
+                                transform="rotate(-90 12 12)"
+                                width="24"
+                              />
+                              <path
+                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                              />
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="section bg_grey"
+    >
+      <span
+        class="anchor"
+        id="register"
+      />
+      <div
+        class="register container"
+      >
+        <h2
+          class="title2 mb-0"
+        >
+          StaticPages.registerTitle
+        </h2>
+        <p
+          class="subtitle mb-14"
+        >
+          Translate.registerSubtitle
+        </p>
+        <button
+          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
+          id="fr-button-:r0:"
+        >
+          login_or_signup
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
