@@ -1,4 +1,4 @@
-import axios from "react-native-axios";
+import axios from "axios";
 import Config from "~/libs/getEnvironment";
 
 export const dbURL = Config.dbUrl;
