@@ -9,9 +9,8 @@
   "main": "server.js",
   "scripts": {
     "build": "yarn gen:tsoa && ncc build src/server.ts -o dist",
-    "build:dev": "yarn gen:tsoa && tsc",
     "check:types": "yarn gen:tsoa && tsc --noEmit",
-    "dev": "yarn build:dev && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "dev": "yarn build && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "gen:tsoa": "tsoa spec-and-routes",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "lint:fix": "eslint --fix",

@@ -35,7 +35,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       );
       const nbFiches = dispositifsAssocies.length;
       const responsablesArray = structure.membres;
-      const responsableId = responsablesArray?.length > 0 ? responsablesArray[0].userId : null;
+      const responsableId = responsablesArray.length > 0 ? responsablesArray[0].userId : null;
       const createur: SimpleUser | null = structure.createur[0] || null;
       return {
         ...pick(structure, [
