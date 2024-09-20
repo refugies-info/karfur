@@ -82,5 +82,9 @@
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
+  },
+  "resolutions": {
+    "path-to-regexp": "1.9.0",
+    "semver": "7.5.2"
   }
 }
