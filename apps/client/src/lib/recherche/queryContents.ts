@@ -1,5 +1,6 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
+import { FilterKey, getDisplayRule } from "~/lib/recherche/resultsDisplayRules";
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import {
   filterByAge,
@@ -11,7 +12,6 @@ import {
   filterByThemeOrNeed,
 } from "./filterContents";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
-import { sortDispositifs } from "./sortContents";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const indexName =
@@ -19,6 +19,10 @@ const indexName =
     ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
     : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
 const index = searchClient.initIndex(indexName || "");
+
+const buildFilters = (query: SearchQuery): Array<FilterKey> => {
+  return [];
+};
 
 /**
  * Filters a list of dispositifs from a query, for primary theme or secondary themes
@@ -32,15 +36,17 @@ const filterDispositifs = (
   dispositifs: GetDispositifsResponse[],
   secondaryThemes: boolean,
 ): GetDispositifsResponse[] => {
-  return [...dispositifs]
+  const filters = buildFilters(query);
+  const rule = getDisplayRule(query.type, filters, query.sort);
+  const filteredDispositifs = dispositifs
     .filter((dispositif) => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
     .filter((dispositif) => filterByLocations(dispositif, query.departments))
     .filter((dispositif) => filterByAge(dispositif, query.age))
     .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
     .filter((dispositif) => filterByLanguage(dispositif, query.language))
     .filter((dispositif) => filterByPublic(dispositif, query.public))
-    .filter((dispositif) => filterByStatus(dispositif, query.status))
-    .sort((a, b) => sortDispositifs(a, b, query.sort, !!query.search));
+    .filter((dispositif) => filterByStatus(dispositif, query.status));
+  return rule?.sortFunction ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b)) : filteredDispositifs;
 };
 
 let searchCache = "";

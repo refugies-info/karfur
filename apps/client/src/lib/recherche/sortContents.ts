@@ -9,13 +9,7 @@ const sortOptionsValues = {
   theme: "theme",
 };
 
-export const sortDispositifs = (
-  dispA: GetDispositifsResponse,
-  dispB: GetDispositifsResponse,
-  sortOption: SortOptions,
-  hasSearch: boolean,
-) => {
-  if (hasSearch) return 0; // if algolia search, do not sort and use algolia order
+const sortDispositifs = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse, sortOption: SortOptions) => {
   let sortKey = sortOptionsValues[sortOption];
   let valA = get(dispA, sortKey);
   let valB = get(dispB, sortKey);
@@ -36,16 +30,16 @@ export const sortDispositifs = (
 };
 
 export const sortByLocation = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
-  sortDispositifs(dispA, dispB, "location", false);
+  sortDispositifs(dispA, dispB, "location");
 
 export const sortByDate = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
-  sortDispositifs(dispA, dispB, "date", false);
+  sortDispositifs(dispA, dispB, "date");
 
 export const sortByView = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
-  sortDispositifs(dispA, dispB, "view", false);
+  sortDispositifs(dispA, dispB, "view");
 
 export const sortByTheme = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
-  sortDispositifs(dispA, dispB, "theme", false);
+  sortDispositifs(dispA, dispB, "theme");
 
 export const noSort = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => 0;
 

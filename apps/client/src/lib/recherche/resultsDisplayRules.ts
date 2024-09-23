@@ -24,9 +24,10 @@ type DisplayRule = {
       }
     | {
         display: false;
+        sortFunction?: undefined;
       }
   > &
-    Record<"suggestions", { display: boolean }>;
+    Record<"suggestions", { display: boolean; sortFunction?: undefined }>;
 };
 
 const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
