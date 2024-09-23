@@ -1,5 +1,6 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { SortOptions, TypeFilters } from "~/data/searchFilters";
+import _ from "lodash";
+import { SortOptions, TypeOptions } from "~/data/searchFilters";
 import {
   noSort,
   sortByDate,
@@ -10,12 +11,13 @@ import {
 } from "~/lib/recherche/sortContents";
 
 type FilterKey = "age" | "frenchLevel" | "keywords" | "location" | "public" | "status" | "theme";
-type RuleKey = "default" | SortOptions;
+type RuleKey = "default" | SortOptions | "suggestions";
+type Tab = TypeOptions;
 
 type DisplayRule = {
   filters: Array<FilterKey>;
   rules: Record<
-    RuleKey,
+    Exclude<RuleKey, "suggestions">,
     | {
         display: true;
         sortFunction: (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => number;
@@ -27,7 +29,7 @@ type DisplayRule = {
     Record<"suggestions", { display: boolean }>;
 };
 
-export const displayRules: Record<TypeFilters[number]["key"], DisplayRule[]> = {
+const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
   all: [
     {
       filters: [],
@@ -846,4 +848,21 @@ export const displayRules: Record<TypeFilters[number]["key"], DisplayRule[]> = {
       },
     },
   ],
+};
+
+export const getDisplayRule = (tab: Tab, filters: Array<FilterKey>, key: RuleKey) => {
+  // Check if the typeFilter exists in displayRules
+  if (!DISPLAY_RULES[tab]) {
+    return undefined;
+  }
+
+  // Iterate through the array of DisplayRule objects for the given typeFilter
+  for (const rule of DISPLAY_RULES[tab]) {
+    // Check if the filters array matches the provided filters
+    if (_.isEqual(rule.filters, filters)) {
+      return rule.rules[key];
+    }
+  }
+
+  return undefined;
 };
