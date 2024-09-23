@@ -467,7 +467,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           sortFunction: sortByTheme,
         },
         suggestions: {
-          display: true,
+          display: false,
         },
       },
     },
@@ -494,7 +494,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           sortFunction: sortByTheme,
         },
         suggestions: {
-          display: true,
+          display: false,
         },
       },
     },
@@ -601,7 +601,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
       rules: {
         default: {
           display: true,
-          sortFunction: sortByLocation,
+          sortFunction: sortByView,
         },
         view: {
           display: true,
