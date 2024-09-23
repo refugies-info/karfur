@@ -5,7 +5,7 @@ steps:
     args:
       [
         "-c",
-        'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> .env; done',
+        'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> apps/client/.env; done',
       ]
     dir: client
 
