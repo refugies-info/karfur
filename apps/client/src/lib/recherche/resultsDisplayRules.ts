@@ -12,7 +12,7 @@ import {
 
 export type FilterKey = "age" | "frenchLevel" | "keywords" | "location" | "public" | "status" | "theme";
 export type RuleKey = "default" | SortOptions | "suggestions";
-export type Tab = TypeOptions;
+export type TabKey = TypeOptions;
 
 type DisplayRule = {
   filters: Array<FilterKey>;
@@ -29,7 +29,7 @@ type DisplayRule = {
     Record<"suggestions", { display: boolean }>;
 };
 
-const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
+const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
   all: [
     {
       filters: [],
@@ -357,8 +357,7 @@ const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
           display: false,
         },
         location: {
-          display: true,
-          sortFunction: sortByViewFirstLocalThenFrance,
+          display: false,
         },
         theme: {
           display: false,
@@ -423,7 +422,8 @@ const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
       filters: ["theme", "location", "keywords"],
       rules: {
         default: {
-          display: false,
+          display: true,
+          sortFunction: noSort,
         },
         view: {
           display: false,
@@ -626,7 +626,8 @@ const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
       filters: ["theme", "location", "keywords"],
       rules: {
         default: {
-          display: false,
+          display: true,
+          sortFunction: noSort,
         },
         view: {
           display: false,
@@ -851,7 +852,7 @@ const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
   ],
 };
 
-export const getDisplayRule = (tab: Tab, filters: Array<FilterKey>, key: RuleKey) => {
+export const getDisplayRule = (tab: TabKey, filters: Array<FilterKey>, key: RuleKey) => {
   // Check if the typeFilter exists in displayRules
   if (!DISPLAY_RULES[tab]) {
     return undefined;
