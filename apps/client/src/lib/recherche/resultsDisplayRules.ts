@@ -10,9 +10,9 @@ import {
   sortByViewFirstLocalThenFrance,
 } from "~/lib/recherche/sortContents";
 
-type FilterKey = "age" | "frenchLevel" | "keywords" | "location" | "public" | "status" | "theme";
-type RuleKey = "default" | SortOptions | "suggestions";
-type Tab = TypeOptions;
+export type FilterKey = "age" | "frenchLevel" | "keywords" | "location" | "public" | "status" | "theme";
+export type RuleKey = "default" | SortOptions | "suggestions";
+export type Tab = TypeOptions;
 
 type DisplayRule = {
   filters: Array<FilterKey>;
@@ -215,7 +215,8 @@ const DISPLAY_RULES: Record<Tab, DisplayRule[]> = {
       filters: ["theme", "location", "keywords"],
       rules: {
         default: {
-          display: false,
+          display: true,
+          sortFunction: noSort,
         },
         view: {
           display: false,
