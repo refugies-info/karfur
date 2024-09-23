@@ -125,8 +125,8 @@ const ResultsFilter = (): React.ReactNode => {
   };
 
   const filteredSortOptions = useMemo(() => {
+    const filters = buildFilters(query);
     return sortOptions.filter((option) => {
-      const filters = buildFilters(query);
       const rule = getDisplayRule(query.type, filters, option.key);
       return rule ? rule.display : true;
     });
