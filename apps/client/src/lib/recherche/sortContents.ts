@@ -34,3 +34,22 @@ export const sortDispositifs = (
   if (!valB) return -1;
   return valA > valB ? -1 : valA < valB ? 1 : 0;
 };
+
+export const sortByLocation = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
+  sortDispositifs(dispA, dispB, "location", false);
+
+export const sortByDate = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
+  sortDispositifs(dispA, dispB, "date", false);
+
+export const sortByView = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
+  sortDispositifs(dispA, dispB, "view", false);
+
+export const sortByTheme = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
+  sortDispositifs(dispA, dispB, "theme", false);
+
+export const noSort = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => 0;
+
+export const sortByViewFirstLocalThenFrance = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => {
+  // TODO: First local contents, then french contents sort each section by view
+  return 0;
+};
