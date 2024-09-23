@@ -7,7 +7,7 @@ steps:
         "-c",
         'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> .env; done',
       ]
-    dir: client
+    dir: apps/client
 
   # Build the front image
   - name: "gcr.io/cloud-builders/docker"
