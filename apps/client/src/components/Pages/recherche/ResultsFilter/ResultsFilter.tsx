@@ -154,30 +154,24 @@ const ResultsFilter = (): React.ReactNode => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
               <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
-                {filteredSortOptions
-                  .filter((option) => {
-                    if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                    if (query.departments.length === 0 && option.key === "location") return false;
-                    return true;
-                  })
-                  .map((option, i) => {
-                    const isSelected = query.sort === option.key;
-                    return (
-                      <DropdownMenu.Item
-                        key={i}
-                        onSelect={() => selectSort(option.key)}
-                        className={cls(styles.sort_menu_item)}
-                        ref={(el) => {
-                          menuItemRefs.current[i] = el;
-                        }}
-                        onKeyDown={(e) => handleKeyDown(e, i)}
-                        tabIndex={0}
-                      >
-                        {t(option.value)}
-                        {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
-                      </DropdownMenu.Item>
-                    );
-                  })}
+                {filteredSortOptions.map((option, i) => {
+                  const isSelected = query.sort === option.key;
+                  return (
+                    <DropdownMenu.Item
+                      key={i}
+                      onSelect={() => selectSort(option.key)}
+                      className={cls(styles.sort_menu_item)}
+                      ref={(el) => {
+                        menuItemRefs.current[i] = el;
+                      }}
+                      onKeyDown={(e) => handleKeyDown(e, i)}
+                      tabIndex={0}
+                    >
+                      {t(option.value)}
+                      {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
+                    </DropdownMenu.Item>
+                  );
+                })}
               </DropdownMenu.Content>
             </DropdownMenu.Portal>
           </DropdownMenu.Root>
