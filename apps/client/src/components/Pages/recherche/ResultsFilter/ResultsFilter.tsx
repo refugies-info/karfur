@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
 import { cls } from "~/lib/classname";
+import { buildFilters } from "~/lib/recherche/queryContents";
+import { getDisplayRule } from "~/lib/recherche/resultsDisplayRules";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
@@ -122,6 +124,14 @@ const ResultsFilter = (): React.ReactNode => {
     }
   };
 
+  const filteredSortOptions = useMemo(() => {
+    return sortOptions.filter((option) => {
+      const filters = buildFilters(query);
+      const rule = getDisplayRule(query.type, filters, option.key);
+      return rule ? rule.display : true;
+    });
+  }, [query]);
+
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
       <div className={styles.grid}>
@@ -132,44 +142,46 @@ const ResultsFilter = (): React.ReactNode => {
             </TabItem>
           ))}
         </TabsBar>
-        <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleSort}>
-          <DropdownMenu.Trigger className={styles.sort_button} asChild>
-            <button aria-haspopup="true" aria-expanded={open}>
-              <span className={styles.sort_label}>
-                {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
-              </span>
-              <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
-            </button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
-              {sortOptions
-                .filter((option) => {
-                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                  if (query.departments.length === 0 && option.key === "location") return false;
-                  return true;
-                })
-                .map((option, i) => {
-                  const isSelected = query.sort === option.key;
-                  return (
-                    <DropdownMenu.Item
-                      key={i}
-                      onSelect={() => selectSort(option.key)}
-                      className={cls(styles.sort_menu_item)}
-                      ref={(el) => {
-                        menuItemRefs.current[i] = el;
-                      }}
-                      onKeyDown={(e) => handleKeyDown(e, i)}
-                      tabIndex={0}
-                    >
-                      {t(option.value)}
-                      {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
-                    </DropdownMenu.Item>
-                  );
-                })}
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>{" "}
+        {filteredSortOptions.length > 0 && (
+          <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleSort}>
+            <DropdownMenu.Trigger className={styles.sort_button} asChild>
+              <button aria-haspopup="true" aria-expanded={open}>
+                <span className={styles.sort_label}>
+                  {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
+                </span>
+                <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
+                {filteredSortOptions
+                  .filter((option) => {
+                    if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                    if (query.departments.length === 0 && option.key === "location") return false;
+                    return true;
+                  })
+                  .map((option, i) => {
+                    const isSelected = query.sort === option.key;
+                    return (
+                      <DropdownMenu.Item
+                        key={i}
+                        onSelect={() => selectSort(option.key)}
+                        className={cls(styles.sort_menu_item)}
+                        ref={(el) => {
+                          menuItemRefs.current[i] = el;
+                        }}
+                        onKeyDown={(e) => handleKeyDown(e, i)}
+                        tabIndex={0}
+                      >
+                        {t(option.value)}
+                        {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
+                      </DropdownMenu.Item>
+                    );
+                  })}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        )}
       </div>
     </div>
   );

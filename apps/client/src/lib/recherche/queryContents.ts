@@ -20,7 +20,7 @@ const indexName =
     : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
 const index = searchClient.initIndex(indexName || "");
 
-const buildFilters = (query: SearchQuery): Array<FilterKey> => {
+export const buildFilters = (query: SearchQuery): Array<FilterKey> => {
   return [];
 };
 
