@@ -29,7 +29,16 @@ import {
   transformMyTranslation,
 } from "./suggestionFunctions";
 
-export type Step = "titreInformatif" | "titreMarque" | "what" | "why" | "how" | "how" | "next" | "abstract";
+export type Step =
+  | "titreInformatif"
+  | "titreMarque"
+  | "what"
+  | "why"
+  | "how"
+  | "how"
+  | "next"
+  | "abstract"
+  | "administrationName";
 export type Suggestion = {
   validator?: {
     id: string;
@@ -167,7 +176,7 @@ const useDispositifTranslation = (
         deleteTrad,
         isHTML: isInputHTML(section),
         size: getInputSize(section),
-        noAutoTrad: section.includes("titreMarque"),
+        noAutoTrad: section.includes("titreMarque") || section.includes("administrationName"),
         maxLength: section.includes("abstract") ? 110 : undefined,
       };
     },
