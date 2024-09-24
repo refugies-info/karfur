@@ -71,7 +71,7 @@ const LocationMenu: React.FC<Props> = () => {
           const oldDeps = query.departments;
           dispatch(
             addToQueryActionCreator({
-              departments: [...new Set(depName ? [...oldDeps, depName] : [...oldDeps])],
+              departments: [...new Set([...oldDeps, depName])],
               sort: "location",
             }),
           );

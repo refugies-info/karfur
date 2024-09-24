@@ -33,7 +33,7 @@ export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): S
           yield put(
             addToQueryActionCreator({
               departments: (data.departments || [])?.map((dep) => dep.split(" - ")[1]),
-              sort: "location",
+              sort: "default",
             }),
           );
         }

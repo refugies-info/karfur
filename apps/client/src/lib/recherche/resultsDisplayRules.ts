@@ -11,7 +11,7 @@ import {
 } from "~/lib/recherche/sortContents";
 
 export type FilterKey = "age" | "frenchLevel" | "keywords" | "location" | "public" | "status" | "theme";
-export type RuleKey = "default" | SortOptions | "suggestions";
+export type RuleKey = SortOptions | "suggestions";
 export type TabKey = TypeOptions;
 
 type DisplayRule = {
@@ -868,4 +868,18 @@ export const getDisplayRule = (tab: TabKey, filters: Array<FilterKey>, key: Rule
   }
 
   return undefined;
+};
+
+export const getDefaultSortOption = (tab: TabKey, filters: Array<FilterKey>): SortOptions => {
+  const rule = getDisplayRule(tab, filters, "default");
+  switch (rule?.sortFunction) {
+    case sortByDate:
+      return "date";
+    case sortByLocation:
+      return "location";
+    case sortByTheme:
+      return "theme";
+    default:
+      return "view";
+  }
 };

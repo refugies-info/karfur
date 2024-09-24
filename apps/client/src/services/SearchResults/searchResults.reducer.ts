@@ -42,7 +42,7 @@ const initialSearchResultsState: SearchResultsState = {
     language: [],
     public: [],
     status: [],
-    sort: "date",
+    sort: "default",
     type: "all",
   },
 };
