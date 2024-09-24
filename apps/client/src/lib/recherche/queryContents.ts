@@ -22,7 +22,7 @@ const index = searchClient.initIndex(indexName || "");
 
 export const buildFilters = (query: SearchQuery): Array<FilterKey> => {
   let filters: Array<FilterKey> = [];
-  if (query.themes && query.themes.length > 0) {
+  if ((query.themes && query.themes.length > 0) || (query.needs && query.needs.length > 0)) {
     filters.push("theme");
   }
   if (query.departments && query.departments.length > 0) {
