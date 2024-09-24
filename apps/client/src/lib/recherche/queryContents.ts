@@ -21,7 +21,17 @@ const indexName =
 const index = searchClient.initIndex(indexName || "");
 
 export const buildFilters = (query: SearchQuery): Array<FilterKey> => {
-  return [];
+  let filters: Array<FilterKey> = [];
+  if (query.themes && query.themes.length > 0) {
+    filters.push("theme");
+  }
+  if (query.departments && query.departments.length > 0) {
+    filters.push("location");
+  }
+  if (query.search) {
+    filters.push("keywords");
+  }
+  return filters;
 };
 
 /**

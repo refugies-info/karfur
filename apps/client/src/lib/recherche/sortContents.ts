@@ -45,5 +45,26 @@ export const noSort = (dispA: GetDispositifsResponse, dispB: GetDispositifsRespo
 
 export const sortByViewFirstLocalThenFrance = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => {
   // TODO: First local contents, then french contents sort each section by view
+  const locationA = get(dispA, "metadatas.location");
+  const locationB = get(dispB, "metadatas.location");
+
+  // First, sort by location
+  if ((Array.isArray(locationA) && !Array.isArray(locationB)) || (!!locationA && !locationB)) return -1;
+  if ((Array.isArray(locationB) && !Array.isArray(locationA)) || (!!locationB && !locationA)) return 1;
+
+  // If locations are of the same type, sort by views
+  if (
+    (Array.isArray(locationA) && Array.isArray(locationB)) ||
+    (!Array.isArray(locationA) && !Array.isArray(locationB))
+  ) {
+    const viewsA = get(dispA, "nbVues");
+    const viewsB = get(dispB, "nbVues");
+
+    if (!viewsA) return 1;
+    if (!viewsB) return -1;
+    return viewsA > viewsB ? -1 : viewsA < viewsB ? 1 : 0;
+  }
+
+  // If we reach here, locations are considered equal
   return 0;
 };
