@@ -6,7 +6,6 @@ import { DeepPartialSkipArrayKey } from "react-hook-form";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import FRLink from "~/components/UI/FRLink";
 import { isStatus } from "~/lib/dispositif";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "~/services/User/user.selectors";
@@ -39,21 +38,7 @@ const CardDemarcheAdministration = ({ dataAdministration, color, onClick }: Prop
         }
         items={[
           {
-            content: (
-              <span className={styles.name}>
-                <span>
-                  <FRLink
-                    onClick={(e: any) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                    }}
-                    href="#"
-                  >
-                    {dataAdministration?.name}
-                  </FRLink>
-                </span>
-              </span>
-            ),
+            content: <span>{dataAdministration?.name}</span>,
             icon: (
               <Image
                 src={dataAdministration?.logo?.secure_url || defaultStructureImage}
