@@ -31,7 +31,7 @@ interface Props {
  */
 const AccordionItem = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { unregister, register, getValues, setValue } = useFormContext();
+  const { register, getValues, setValue } = useFormContext();
 
   const currentTheme = useSelector(themeSelector(getValues("theme")));
   const color = currentTheme?.colors.color100 || "#000";
@@ -56,11 +56,6 @@ const AccordionItem = (props: Props) => {
       </div>
     );
   };
-
-  // when item unmounted, delete it from form values
-  useEffect(() => {
-    return () => unregister(props.id);
-  }, [unregister, props.id]);
 
   const pageContext = useContext(PageContext);
   useEffect(() => {
