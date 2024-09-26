@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { ContentType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
@@ -7,6 +8,7 @@ import { Container } from "reactstrap";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import noResultsImage from "~/assets/no_results_alt.svg";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
+import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
@@ -112,8 +114,9 @@ const SearchResults = (props: Props) => {
 
         <div className={styles.results}>
           {dispositifs.length > 0 &&
-            dispositifs.map((d) =>
-              typeof d === "string" ? null : (
+            dispositifs.map((d) => {
+              if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
+              return d.typeContenu === ContentType.DISPOSITIF ? (
                 <DispositifCard
                   key={d._id.toString()}
                   className={styles.card}
@@ -121,8 +124,10 @@ const SearchResults = (props: Props) => {
                   selectedDepartment={selectedDepartment}
                   targetBlank
                 />
-              ),
-            )}
+              ) : (
+                <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
+              );
+            })}
         </div>
       </Container>
     </section>
