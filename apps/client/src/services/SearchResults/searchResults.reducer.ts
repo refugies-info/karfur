@@ -52,13 +52,12 @@ const initialSearchResultsState: SearchResultsState = {
 export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(initialSearchResultsState, {
   SET_RESULTS: (state, action) => ({ ...state, results: action.payload }),
   ADD_TO_QUERY: (state, action) => {
-    const { query } = state;
+    const query = { ...state.query, ...action.payload };
     const filters = buildFilters(query);
     const rule = getDisplayRule(query.type, filters, query.sort);
-    const newState = {
+    return {
       ...state,
-      query: { ...query, sort: !rule?.display ? "default" : query.sort, ...action.payload },
+      query: { ...query, sort: !rule?.display ? "default" : query.sort },
     };
-    return newState;
   },
 });
