@@ -104,7 +104,7 @@ const DispositifCard = (props: Props) => {
                 <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
               )}
             </div>
-            <div className={cls(styles.info, "mb-3")}>
+            <div className={cls(styles.info, "mb-2")}>
               <i className="fr-icon-building-line" />
               <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
             </div>
@@ -130,7 +130,7 @@ const DispositifCard = (props: Props) => {
             {commitment && (
               <div className={styles.info}>
                 <i className="fr-icon-time-line" />
-                <span>{getCommitmentText(commitment, t)}</span>
+                <span>{getCommitmentText(commitment, t, true)}</span>
               </div>
             )}
           </div>

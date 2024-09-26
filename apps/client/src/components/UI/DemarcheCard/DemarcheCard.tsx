@@ -23,6 +23,7 @@ interface Props {
   demarche: GetDispositifsResponse;
   targetBlank?: boolean;
   demoCard?: boolean;
+  className?: string;
 }
 
 const DemarcheCard = (props: Props) => {
@@ -38,7 +39,7 @@ const DemarcheCard = (props: Props) => {
   const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={cls(styles.wrapper, props.className)}>
       <Card
         background
         border
@@ -79,7 +80,7 @@ const DemarcheCard = (props: Props) => {
               )}
             </div>
             {props.demarche?.sponsor?.nom && (
-              <div className={cls(styles.info, "mb-3")}>
+              <div className={cls(styles.info, "mb-2")}>
                 <i className="fr-icon-building-line" />
                 <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
               </div>
