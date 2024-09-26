@@ -58,6 +58,12 @@
   z-index: 2;
 }
 
+.title {
+  color: var(--text-title-grey);
+
+  @include dsfr-text("h6");
+}
+
 /* Badges */
 .badge_department {
   background-color: var(--background-contrast-purple-glycine);

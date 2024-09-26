@@ -87,7 +87,12 @@ const DemarcheCard = (props: Props) => {
             )}
           </>
         }
-        title={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
+        title={
+          <span
+            className={cls(styles.three_lines, styles.title)}
+            dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
+          ></span>
+        }
         titleAs="h3"
         desc={
           <span
