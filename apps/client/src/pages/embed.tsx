@@ -59,7 +59,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   await store.sagaTask?.toPromise();
 
   const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
-  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs);
+  const results = queryDispositifs(
+    initialQuery,
+    store.getState().activeDispositifs,
+    store.getState().themes.activeThemes,
+  );
   store.dispatch(setSearchResultsActionCreator(results));
   store.dispatch(addToQueryActionCreator(initialQuery));
 
