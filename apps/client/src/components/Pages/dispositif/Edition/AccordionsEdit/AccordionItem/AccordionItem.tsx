@@ -57,6 +57,15 @@ const AccordionItem = (props: Props) => {
     );
   };
 
+  /* caused the bug https://github.com/refugies-info/karfur/pull/2293
+  TODO: uncomment if it creates a regression, clean up otherwise
+
+  // when item unmounted, delete it from form values
+  useEffect(() => {
+    return () => unregister(props.id);
+  }, [unregister, props.id]);
+  */
+
   const pageContext = useContext(PageContext);
   useEffect(() => {
     if (isActive) {
