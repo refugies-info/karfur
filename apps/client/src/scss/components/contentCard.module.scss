@@ -13,6 +13,18 @@
   /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__content) {
     position: relative;
+    padding: u(6);
+    margin-left: u(-6);
+    margin-right: u(-6);
+  }
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global(.fr-card__body) {
+    padding-right: u(6);
+    padding-left: u(6);
+  }
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global(.fr-card__title ::after) {
+    right: u(6) !important;
   }
 }
 
@@ -54,7 +66,7 @@
   border: 1px solid var(--border-default-grey);
   background: white;
   top: u(-6);
-  right: 2rem; // same padding as dsfr card
+  right: u(6);
   z-index: 2;
 }
 
