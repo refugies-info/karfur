@@ -1,14 +1,7 @@
 import { GetDispositifsResponse, GetThemeResponse } from "@refugies-info/api-types";
 import _ from "lodash";
 import { SortOptions, TypeOptions } from "~/data/searchFilters";
-import {
-  noSort,
-  sortByDate,
-  sortByLocation,
-  sortByTheme,
-  sortByView,
-  sortByViewFirstLocalThenFrance,
-} from "~/lib/recherche/sortContents";
+import { noSort, sortByDate, sortByLocation, sortByTheme, sortByView } from "~/lib/recherche/sortContents";
 
 export type FilterKey = "age" | "frenchLevel" | "keywords" | "location" | "public" | "status" | "theme";
 export type RuleKey = SortOptions | "suggestions";
@@ -80,7 +73,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
         },
         location: {
           display: true,
-          sortFunction: sortByViewFirstLocalThenFrance,
+          sortFunction: sortByLocation,
         },
         theme: {
           display: true,
@@ -206,7 +199,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
         },
         location: {
           display: true,
-          sortFunction: sortByViewFirstLocalThenFrance,
+          sortFunction: sortByLocation,
         },
         theme: {
           display: false,
@@ -286,7 +279,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
         },
         location: {
           display: true,
-          sortFunction: sortByViewFirstLocalThenFrance,
+          sortFunction: sortByLocation,
         },
         theme: {
           display: true,
@@ -338,7 +331,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
         },
         location: {
           display: true,
-          sortFunction: sortByViewFirstLocalThenFrance,
+          sortFunction: sortByLocation,
         },
         theme: {
           display: false,
@@ -413,7 +406,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
         },
         location: {
           display: true,
-          sortFunction: sortByViewFirstLocalThenFrance,
+          sortFunction: sortByLocation,
         },
         theme: {
           display: false,

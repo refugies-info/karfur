@@ -1,11 +1,4 @@
-import {
-  noSort,
-  sortByDate,
-  sortByLocation,
-  sortByTheme,
-  sortByView,
-  sortByViewFirstLocalThenFrance,
-} from "~/lib/recherche/sortContents";
+import { noSort, sortByDate, sortByLocation, sortByTheme, sortByView } from "~/lib/recherche/sortContents";
 import { FilterKey, getDisplayRule, TabKey } from "../resultsDisplayRules";
 
 describe("All Tab Rules", () => {
@@ -51,7 +44,7 @@ describe("All Tab Rules", () => {
     });
     expect(getDisplayRule(tab, filters, "location")).toEqual({
       display: true,
-      sortFunction: sortByViewFirstLocalThenFrance,
+      sortFunction: sortByLocation,
     });
     expect(getDisplayRule(tab, filters, "theme")).toEqual({
       display: true,
@@ -167,7 +160,7 @@ describe("All Tab Rules", () => {
     });
     expect(getDisplayRule(tab, filters, "location")).toEqual({
       display: true,
-      sortFunction: sortByViewFirstLocalThenFrance,
+      sortFunction: sortByLocation,
     });
     expect(getDisplayRule(tab, filters, "theme")).toEqual({
       display: false,
@@ -243,7 +236,7 @@ describe("Dispositif Tab Rules", () => {
     });
     expect(getDisplayRule(tab, filters, "location")).toEqual({
       display: true,
-      sortFunction: sortByViewFirstLocalThenFrance,
+      sortFunction: sortByLocation,
     });
     expect(getDisplayRule(tab, filters, "theme")).toEqual({
       display: true,
@@ -291,7 +284,7 @@ describe("Dispositif Tab Rules", () => {
     });
     expect(getDisplayRule(tab, filters, "location")).toEqual({
       display: true,
-      sortFunction: sortByViewFirstLocalThenFrance,
+      sortFunction: sortByLocation,
     });
     expect(getDisplayRule(tab, filters, "theme")).toEqual({
       display: false,
@@ -360,7 +353,7 @@ describe("Dispositif Tab Rules", () => {
     });
     expect(getDisplayRule(tab, filters, "location")).toEqual({
       display: true,
-      sortFunction: sortByViewFirstLocalThenFrance,
+      sortFunction: sortByLocation,
     });
     expect(getDisplayRule(tab, filters, "theme")).toEqual({
       display: false,
