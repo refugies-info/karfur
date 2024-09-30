@@ -1,8 +1,8 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import Card from "@codegouvfr/react-dsfr/Card";
 import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { useSelector } from "react-redux";
@@ -62,85 +62,100 @@ const DispositifCard = (props: Props) => {
 
   return (
     <div className={cls(styles.wrapper, props.className)}>
-      <Card
-        background
-        border
-        enlargeLink
-        linkProps={{
-          href: props.demoCard
-            ? "#"
-            : {
-                pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
-                query: { id: props.dispositif._id.toString(), ...utmParams },
-              },
-          target: props.targetBlank ? "_blank" : undefined,
-          rel: props.targetBlank ? "noopener noreferrer" : undefined,
-          title: getReadableText(props.dispositif.titreInformatif || ""),
-          className: "fr-link",
-        }}
-        size="medium"
-        imageAlt=""
-        imageUrl={cardImageUrl}
-        badge={
-          <Badge small className={isOnline ? styles.badge_online : styles.badge_department}>
-            {isOnline && <i className="ri-at-line me-1"></i>}
-            {getDepartement()}
-          </Badge>
-        }
-        start={
-          <>
-            <div className={styles.sponsor}>
-              <Image
-                src={props.dispositif?.sponsor?.picture?.secure_url || defaultStructureImage}
-                alt={props.dispositif?.sponsor?.nom || ""}
-                width={48}
-                height={48}
-                style={{ objectFit: "contain" }}
+      <div className={cls("fr-card fr-enlarge-link", styles.container)}>
+        <div className={cls("fr-card__body", styles.body)}>
+          <div className={cls("fr-card__content", styles.content)}>
+            <div className={styles.text}>
+              <h3 className="fr-card__title">
+                <Link
+                  target={props.targetBlank ? "_blank" : undefined}
+                  rel={props.targetBlank ? "noopener noreferrer" : undefined}
+                  title={getReadableText(props.dispositif.titreInformatif || "")}
+                  href={
+                    props.demoCard
+                      ? "#"
+                      : {
+                          pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
+                          query: { id: props.dispositif._id.toString(), ...utmParams },
+                        }
+                  }
+                >
+                  <span
+                    className={cls(styles.title, styles.three_lines)}
+                    dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
+                  ></span>
+                </Link>
+              </h3>
+              <p
+                className={cls("fr-card__desc", styles.desc, props.demoCard && styles.demo)}
+                dangerouslySetInnerHTML={{ __html: safeAbstract }}
               />
             </div>
-            <div className="d-flex gap-2 mb-2">
-              <NewThemeBadge theme={theme} />
-              {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
-                <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
-              )}
-            </div>
-            <div className={cls(styles.info, "mb-2")}>
-              <i className="fr-icon-building-line" />
-              <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
-            </div>
-          </>
-        }
-        title={
-          <span
-            className={cls(styles.three_lines, styles.title)}
-            dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
-          ></span>
-        }
-        titleAs="h3"
-        desc={
-          <span
-            className={cls(styles.three_lines, props.demoCard && styles.demo)}
-            dangerouslySetInnerHTML={{ __html: safeAbstract }}
-          ></span>
-        }
-        end={
-          <div className="d-flex gap-2">
-            {price !== undefined && (
-              <div className={styles.info}>
-                <i className="fr-icon-money-euro-circle-line" />
-                <span>{getPriceText(price, t)}</span>
-              </div>
-            )}
 
-            {commitment && (
-              <div className={styles.info}>
-                <i className="fr-icon-time-line" />
-                <span>{getCommitmentText(commitment, t, true)}</span>
+            <div className="fr-card__start mb-3 position-relative">
+              <div className={styles.sponsor}>
+                <Image
+                  src={props.dispositif?.sponsor?.picture?.secure_url || defaultStructureImage}
+                  alt={props.dispositif?.sponsor?.nom || ""}
+                  width={48}
+                  height={48}
+                  style={{ objectFit: "contain" }}
+                />
               </div>
-            )}
+              <div className="d-flex gap-2 mb-2">
+                <NewThemeBadge theme={theme} />
+                {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
+                  <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
+                )}
+              </div>
+              <div className={styles.info}>
+                <span>
+                  <i className="fr-icon-building-line me-2" />
+                  <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.end}>
+              <div className={cls(styles.info, "d-flex gap-2")}>
+                {price !== undefined && (
+                  <span className="flex-shrink-0">
+                    <i className="fr-icon-money-euro-circle-line me-2" />
+                    <span>{getPriceText(price, t)}</span>
+                  </span>
+                )}
+                {commitment && (
+                  <span className="flex-shrink-1">
+                    <i className="fr-icon-time-line me-2" />
+                    <span>{getCommitmentText(commitment, t, true)}</span>
+                  </span>
+                )}
+              </div>
+              <i className="fr-icon-arrow-right-line" />
+            </div>
           </div>
-        }
-      />
+        </div>
+        <div className="fr-card__header">
+          <div className="fr-card__img">
+            <Image
+              className="fr-responsive-img"
+              width={280}
+              height={158}
+              src={cardImageUrl}
+              alt=""
+              data-fr-js-ratio="true"
+            />
+          </div>
+          <ul className="fr-badges-group">
+            <li>
+              <Badge small className={isOnline ? styles.badge_online : styles.badge_department}>
+                {isOnline && <i className="ri-at-line me-1"></i>}
+                {getDepartement()}
+              </Badge>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <FavoriteButton contentId={props.dispositif._id} className={styles.favorite} />
     </div>

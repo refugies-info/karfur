@@ -6,74 +6,58 @@
 @import "~/scss/variables";
 
 .wrapper {
+  width: 282px;
+  aspect-ratio: 0.62;
   position: relative;
   display: flex;
-  width: 282px;
 
-  /* stylelint-disable-next-line selector-class-pattern */
-  :global(.fr-card__content) {
-    position: relative;
+  .container {
+    max-width: 100%;
+  }
+
+  .body {
+    padding-right: 0;
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  .content {
     padding: u(6);
-    margin-left: u(-6);
-    margin-right: u(-6);
+    padding-bottom: u(6) !important; // override dsfr
+    margin-left: 0;
+    margin-right: 0;
   }
-  /* stylelint-disable-next-line selector-class-pattern */
-  :global(.fr-card__body) {
-    padding-right: u(6);
-    padding-left: u(6);
+
+  .text {
+    order: 2;
+    height: 146px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    // TODO: improve to move ... at the end of the text
+    @keyframes detect-scroll {
+      from,
+      to {
+        --can-scroll: ;
+      }
+    }
+
+    animation: detect-scroll linear;
+    animation-timeline: scroll(self);
+
+    .desc {
+      &::after {
+        --opacity-if-can-scroll: var(--can-scroll) 1;
+        --opacity-if-cant-scroll: 0;
+
+        opacity: var(--opacity-if-can-scroll, var(--opacity-if-cant-scroll));
+        content: "...";
+        position: absolute;
+        bottom: u(6) + u(5) + u(5);
+        right: u(6);
+      }
+    }
   }
-  /* stylelint-disable-next-line selector-class-pattern */
-  :global(.fr-card__title ::after) {
-    right: u(6) !important;
-  }
-}
-
-/* Favorite button */
-.favorite {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  z-index: 5;
-
-  @include rtl {
-    right: inherit;
-    left: 12px;
-  }
-}
-
-.info {
-  @include dsfr-text("very-small");
-
-  display: flex;
-  align-items: center;
-  gap: u(2);
-  color: var(--text-mention-grey);
-
-  & > i::before {
-    --icon-size: 16px !important;
-  }
-}
-
-.demo {
-  border: 1px solid var(--border-default-grey);
-  background: var(--background-default-grey-hover);
-  margin: u(-0.5);
-  padding: u(0.5);
-}
-
-.sponsor {
-  position: absolute;
-  border: 1px solid var(--border-default-grey);
-  background: white;
-  top: u(-6);
-  right: u(6);
-  z-index: 2;
-}
-
-.title {
-  color: var(--text-title-grey);
-
-  @include dsfr-text("h6");
 }
 
 /* Badges */
@@ -94,6 +78,82 @@
 .badge_demarche {
   background-color: var(--background-contrast-yellow-tournesol);
   color: var(--text-action-high-yellow-tournesol);
+}
+
+.end {
+  order: 4;
+  padding-right: u(7);
+  margin-top: auto;
+  position: relative;
+
+  > i {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: 20px;
+
+    &::before {
+      --icon-size: 16px !important;
+
+      line-height: 16px !important;
+      color: var(--text-action-high-blue-france);
+    }
+  }
+}
+
+/* Favorite button */
+.favorite {
+  position: absolute;
+  top: u(2);
+  right: u(3);
+  z-index: 5;
+
+  @include rtl {
+    right: inherit;
+    left: u(3);
+  }
+}
+
+/* Info components */
+.info {
+  height: 20px; // fix for removing space after inline-block elements
+
+  & > span {
+    @include dsfr-text("very-small");
+
+    display: inline-block;
+    color: var(--text-mention-grey);
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    & > i::before {
+      --icon-size: 16px !important;
+    }
+  }
+}
+
+.demo {
+  border: 1px solid var(--border-default-grey);
+  background: var(--background-default-grey-hover);
+  margin: u(-0.5);
+  padding: u(0.5);
+}
+
+.sponsor {
+  position: absolute;
+  border: 1px solid var(--border-default-grey);
+  background: white;
+  top: (u(-6) + u(-6)) - 1; /* padding top + half of image size - border top */
+  right: u(-2);
+  z-index: 1;
+}
+
+.title {
+  color: var(--text-title-grey);
+
+  @include dsfr-text("h6");
 }
 
 .three_lines {

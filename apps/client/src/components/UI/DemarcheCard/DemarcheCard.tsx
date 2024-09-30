@@ -1,8 +1,8 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import Card from "@codegouvfr/react-dsfr/Card";
 import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo } from "react";
 import { useSelector } from "react-redux";
@@ -40,75 +40,104 @@ const DemarcheCard = (props: Props) => {
 
   return (
     <div className={cls(styles.wrapper, props.className)}>
-      <Card
-        background
-        border
-        enlargeLink
-        linkProps={{
-          href: {
-            pathname: getPath("/demarche/[id]", router.locale),
-            query: { id: props.demarche._id.toString(), ...utmParams },
-          },
-          target: props.targetBlank ? "_blank" : undefined,
-          rel: props.targetBlank ? "noopener noreferrer" : undefined,
-          title: getReadableText(props.demarche.titreInformatif || ""),
-          className: "fr-link",
-        }}
-        size="medium"
-        imageAlt="texte alternatif de l’image"
-        imageUrl={cardImageUrl}
-        badge={
-          <Badge small className={styles.badge_demarche}>
-            <span>Démarche</span>
-          </Badge>
-        }
-        start={
-          <>
-            <div className={styles.sponsor}>
-              <Image
-                src={props.demarche?.sponsor?.picture?.secure_url || demarcheIcon}
-                alt={props.demarche?.sponsor?.nom || ""}
-                width={48}
-                height={48}
-                style={{ objectFit: "contain" }}
+      <div className={cls("fr-card fr-enlarge-link", styles.container)}>
+        <div className={cls("fr-card__body", styles.body)}>
+          <div className={cls("fr-card__content", styles.content)}>
+            <div className={styles.text}>
+              <h3 className="fr-card__title">
+                <Link
+                  target={props.targetBlank ? "_blank" : undefined}
+                  rel={props.targetBlank ? "noopener noreferrer" : undefined}
+                  title={getReadableText(props.demarche.titreInformatif || "")}
+                  href={
+                    props.demoCard
+                      ? "#"
+                      : {
+                          pathname: getPath(`/${props.demarche.typeContenu}/[id]`, router.locale),
+                          query: { id: props.demarche._id.toString(), ...utmParams },
+                        }
+                  }
+                >
+                  <span
+                    className={cls(styles.title, styles.three_lines)}
+                    dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
+                  ></span>
+                </Link>
+              </h3>
+              <p
+                className={cls("fr-card__desc", styles.desc, props.demoCard && styles.demo)}
+                dangerouslySetInnerHTML={{ __html: safeAbstract }}
               />
             </div>
-            <div className="d-flex gap-2 mb-2">
-              <NewThemeBadge theme={theme} />
-              {(props.demarche.secondaryThemes?.length || 0) > 0 && (
-                <NewThemeBadge theme={props.demarche.secondaryThemes?.length || 0} />
+
+            <div className="fr-card__start mb-3 position-relative">
+              <div className={styles.sponsor}>
+                <Image
+                  src={props.demarche?.sponsor?.picture?.secure_url || demarcheIcon}
+                  alt={props.demarche?.sponsor?.nom || ""}
+                  width={48}
+                  height={48}
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <div className="d-flex gap-2 mb-2">
+                <NewThemeBadge theme={theme} />
+                {(props.demarche.secondaryThemes?.length || 0) > 0 && (
+                  <NewThemeBadge theme={props.demarche.secondaryThemes?.length || 0} />
+                )}
+              </div>
+              <div className={styles.info}>
+                <span>
+                  <i className="fr-icon-building-line me-2" />
+                  <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
+                </span>
+              </div>
+
+              {props.demarche?.sponsor?.nom && (
+                <div className={styles.info}>
+                  <i className="fr-icon-building-line me-2" />
+                  <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
+                </div>
               )}
             </div>
-            {props.demarche?.sponsor?.nom && (
-              <div className={cls(styles.info, "mb-2")}>
-                <i className="fr-icon-building-line" />
-                <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
-              </div>
-            )}
-          </>
-        }
-        title={
-          <span
-            className={cls(styles.three_lines, styles.title)}
-            dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
-          ></span>
-        }
-        titleAs="h3"
-        desc={
-          <span
-            className={cls(styles.three_lines, props.demoCard && styles.demo)}
-            dangerouslySetInnerHTML={{ __html: safeAbstract }}
-          ></span>
-        }
-        end={
-          props.demarche.lastModificationDate ? (
-            <div className={styles.info}>
-              <i className="fr-icon-time-line" />
-              Mise à jour {getRelativeTimeString(new Date(props.demarche.lastModificationDate), router.locale || "fr")}
+
+            <div className={styles.end}>
+              {props.demarche.lastModificationDate && (
+                <div className={styles.info}>
+                  <span className="flex-shrink-1">
+                    <i className="fr-icon-time-line me-2" />
+                    <span>
+                      Mise à jour{" "}
+                      {getRelativeTimeString(new Date(props.demarche.lastModificationDate), router.locale || "fr")}
+                    </span>
+                  </span>
+                </div>
+              )}
             </div>
-          ) : null
-        }
-      />
+            <i className="fr-icon-arrow-right-line" />
+          </div>
+        </div>
+
+        <div className="fr-card__header">
+          <div className="fr-card__img">
+            <Image
+              className="fr-responsive-img"
+              width={280}
+              height={158}
+              src={cardImageUrl}
+              alt=""
+              data-fr-js-ratio="true"
+            />
+          </div>
+          <ul className="fr-badges-group">
+            <li>
+              <Badge small className={styles.badge_demarche}>
+                <span>Démarche</span>
+              </Badge>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <FavoriteButton contentId={props.demarche._id} className={styles.favorite} />
     </div>
