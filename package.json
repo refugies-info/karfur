@@ -62,7 +62,7 @@
     "check-dependency-version-consistency": "^4.1.0",
     "dotenv": "^16.4.5",
     "husky": ">=6",
-    "lint-staged": ">=10",
+    "lint-staged": ">=15",
     "mongo-migrate-ts": "^1.6.2",
     "mongodb": "^6.8.0",
     "patch-package": "^8.0.0",
