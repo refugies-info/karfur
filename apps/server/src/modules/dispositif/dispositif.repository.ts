@@ -82,15 +82,25 @@ export const getDispositifArray = async (
     ...extraFields,
   };
 
-  return DispositifModel.find(query, neededFields)
+  const dispositifs = await DispositifModel.find(query, neededFields)
     .sort(sort)
     .limit(limit)
     .populate<{ mainSponsor: { _id: Id; nom: string; picture: Picture } }>({
       path: "mainSponsor",
       select: "_id nom picture",
     })
+    .populate<{ theme: { _id: Id; position: number } }>({
+      path: "theme",
+      select: "_id position",
+    })
     .lean()
     .populate(populate);
+
+  return dispositifs.map((dispositif) => ({
+    ...dispositif,
+    theme: dispositif.theme?._id,
+    sortThemeIndex: dispositif.theme?.position || 0,
+  }));
 };
 
 export const getSimpleDispositifs = async (
@@ -124,6 +134,7 @@ export const getSimpleDispositifs = async (
         ...omit(dispositif, ["translations", "mainSponsor"]),
         availableLanguages: Object.keys(dispositif.translations),
         hasDraftVersion: dispositif.hasDraftVersion,
+        themeSortIndex: dispositif.sortThemeIndex,
       };
       if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
         resDisp.sponsor = dispositif.mainSponsor;
@@ -194,6 +205,7 @@ export const getStructureDispositifs = async (
           hasDraftVersion: dispositif.hasDraftVersion,
           nbMercis: dispositif.merci.length,
           suggestions,
+          themeSortIndex: dispositif.sortThemeIndex,
         };
         if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
           resDisp.sponsor = dispositif.mainSponsor;

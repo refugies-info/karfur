@@ -41,5 +41,6 @@ export const getDefaultDispositif = (
     availableLanguages: [],
     needs: [],
     hasDraftVersion: false,
+    themeSortIndex: 0,
   };
 };
