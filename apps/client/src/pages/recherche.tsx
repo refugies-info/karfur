@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
 import debounce from "lodash/debounce";
 import { useTranslation } from "next-i18next";
@@ -30,7 +30,6 @@ import { addToQueryActionCreator, setSearchResultsActionCreator } from "~/servic
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
-import { allThemesSelector } from "~/services/Themes/themes.selectors";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
@@ -47,14 +46,8 @@ export type UrlSearchQuery = {
 };
 
 const debouncedQuery = debounce(
-  (
-    query: SearchQuery,
-    dispositifs: GetDispositifsResponse[],
-    themes: GetThemeResponse[],
-    locale: string,
-    callback: (res: Results) => void,
-  ) => {
-    return queryDispositifsWithAlgolia(query, dispositifs, themes, locale).then((res: Results) => callback(res));
+  (query: SearchQuery, dispositifs: GetDispositifsResponse[], locale: string, callback: (res: Results) => void) => {
+    return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
   },
   500,
 );
@@ -68,7 +61,6 @@ const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
   const languei18nCode = useSelector(languei18nSelector);
   const query = useSelector(searchQuerySelector);
-  const themes = useSelector(allThemesSelector);
 
   // when navigating, save state to prevent loop on search page
   const [isNavigating, setIsNavigating] = useState(false);
@@ -102,12 +94,12 @@ const Recherche = () => {
 
     // query dispositifs
     if (!isNavigating) {
-      debouncedQuery(query, dispositifs, themes, languei18nCode, (res) => {
+      debouncedQuery(query, dispositifs, languei18nCode, (res) => {
         updateUrl();
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, themes, dispatch, router, isNavigating, languei18nCode, params]);
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
@@ -140,11 +132,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
   store.dispatch(addToQueryActionCreator(initialQuery));
 
-  const results = queryDispositifs(
-    initialQuery,
-    store.getState().activeDispositifs,
-    store.getState().themes.activeThemes,
-  );
+  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs);
   store.dispatch(setSearchResultsActionCreator(generateLightResults(results)));
 
   return {

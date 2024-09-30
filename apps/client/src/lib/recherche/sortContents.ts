@@ -1,7 +1,5 @@
-import { GetDispositifsResponse, GetThemeResponse } from "@refugies-info/api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import get from "lodash/get";
-import { getTheme } from "~/lib/getTheme";
-import { sortThemes } from "~/lib/sortThemes";
 
 const sortOptionsValues = {
   date: "publishedAt",
@@ -24,21 +22,14 @@ export const sortByDate = (dispA: GetDispositifsResponse, dispB: GetDispositifsR
 export const sortByView = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
   sortHelper(dispA, dispB, "view");
 
-export const sortByTheme = (
-  dispA: GetDispositifsResponse,
-  dispB: GetDispositifsResponse,
-  themes: GetThemeResponse[],
-) => {
-  const themeIdA = get(dispA, "theme");
-  const themeIdB = get(dispB, "theme");
+export const sortByTheme = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => {
+  const valA = get(dispA, "themeSortIndex");
+  const valB = get(dispB, "themeSortIndex");
 
-  if (!themeIdA) return 1;
-  if (!themeIdB) return -1;
+  if (!valA) return 1;
+  if (!valB) return -1;
 
-  const themeA = getTheme(themeIdA, themes);
-  const themeB = getTheme(themeIdB, themes);
-
-  return sortThemes(themeA, themeB);
+  return valA > valB ? 1 : -1;
 };
 
 export const noSort = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => 0;

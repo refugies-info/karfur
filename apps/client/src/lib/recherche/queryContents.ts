@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetThemeResponse } from "@refugies-info/api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
 import { FilterKey, getDisplayRule } from "~/lib/recherche/resultsDisplayRules";
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
@@ -44,7 +44,6 @@ export const buildFilters = (query: SearchQuery): Array<FilterKey> => {
 const filterDispositifs = (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
-  themes: GetThemeResponse[],
   secondaryThemes: boolean,
 ): GetDispositifsResponse[] => {
   const filters = buildFilters(query);
@@ -57,9 +56,7 @@ const filterDispositifs = (
     .filter((dispositif) => filterByLanguage(dispositif, query.language))
     .filter((dispositif) => filterByPublic(dispositif, query.public))
     .filter((dispositif) => filterByStatus(dispositif, query.status));
-  return rule?.sortFunction
-    ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b, themes))
-    : filteredDispositifs;
+  return rule?.sortFunction ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b)) : filteredDispositifs;
 };
 
 let searchCache = "";
@@ -116,19 +113,15 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
  * @param dispositifs - list of dispositifs
  * @returns - results
  */
-export const queryDispositifs = (
-  query: SearchQuery,
-  dispositifs: GetDispositifsResponse[],
-  themes: GetThemeResponse[],
-): Results => {
-  const matches = filterDispositifs(query, dispositifs, themes, false);
+export const queryDispositifs = (query: SearchQuery, dispositifs: GetDispositifsResponse[]): Results => {
+  const matches = filterDispositifs(query, dispositifs, false);
 
   // dispositifs which have theme in secondary themes
   let suggestions: GetDispositifsResponse[] = [];
   if (query.themes.length > 0) {
     const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
       .filter((dispositif) => !matches.map((d) => d._id).includes(dispositif._id));
-    suggestions = filterDispositifs(query, remainingDispositifs, themes, true);
+    suggestions = filterDispositifs(query, remainingDispositifs, true);
   }
 
   return {
@@ -148,11 +141,10 @@ export const queryDispositifs = (
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
-  themes: GetThemeResponse[],
   locale: string,
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return queryDispositifs(query, filteredDispositifsByAlgolia, themes);
+  return queryDispositifs(query, filteredDispositifsByAlgolia);
 };
 
 /**

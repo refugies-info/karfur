@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetThemeResponse } from "@refugies-info/api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import _ from "lodash";
 import { SortOptions, TypeOptions } from "~/data/searchFilters";
 import { noSort, sortByDate, sortByLocation, sortByTheme, sortByView } from "~/lib/recherche/sortContents";
@@ -13,11 +13,7 @@ type DisplayRule = {
     Exclude<RuleKey, "suggestions">,
     | {
         display: true;
-        sortFunction: (
-          dispA: GetDispositifsResponse,
-          dispB: GetDispositifsResponse,
-          themes: GetThemeResponse[],
-        ) => number;
+        sortFunction: (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => number;
       }
     | {
         display: false;
