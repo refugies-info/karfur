@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
 import { cls } from "~/lib/classname";
-import { buildFilters } from "~/lib/recherche/queryContents";
-import { getDefaultSortOption, getDisplayRule } from "~/lib/recherche/resultsDisplayRules";
+import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
@@ -116,20 +115,16 @@ const ResultsFilter = (): React.ReactNode => {
     }
   };
 
-  const filters = useMemo(() => {
-    return buildFilters(query);
-  }, [query]);
-
   const filteredSortOptions = useMemo(() => {
     return sortOptions.filter((option) => {
-      const rule = getDisplayRule(query.type, filters, option.key);
+      const rule = getDisplayRuleForQuery(query, option.key);
       return rule ? rule.display : true;
     });
-  }, [query, filters]);
+  }, [query]);
 
   const defaultSortOption = useMemo(() => {
-    return getDefaultSortOption(query.type, filters);
-  }, [query, filters]);
+    return getDefaultSortOption(query);
+  }, [query]);
 
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>

@@ -1,6 +1,8 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
-import { FilterKey, getDisplayRule } from "~/lib/recherche/resultsDisplayRules";
+import { SortOptions } from "~/data/searchFilters";
+import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
+import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import {
   filterByAge,
@@ -20,18 +22,38 @@ const indexName =
     : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
 const index = searchClient.initIndex(indexName || "");
 
-export const buildFilters = (query: SearchQuery): Array<FilterKey> => {
-  let filters: Array<FilterKey> = [];
+const buildFilterKeys = (query: SearchQuery): Array<FilterKey> => {
+  let keys: Array<FilterKey> = [];
   if ((query.themes && query.themes.length > 0) || (query.needs && query.needs.length > 0)) {
-    filters.push("theme");
+    keys.push("theme");
   }
   if (query.departments && query.departments.length > 0) {
-    filters.push("location");
+    keys.push("location");
   }
   if (query.search) {
-    filters.push("keywords");
+    keys.push("keywords");
   }
-  return filters;
+  return keys;
+};
+
+export const getDisplayRuleForQuery = (query: SearchQuery, ruleKey: RuleKey | undefined = undefined) => {
+  const filterKeys = buildFilterKeys(query);
+  return getDisplayRule(query.type, filterKeys, ruleKey || query.sort);
+};
+
+export const getDefaultSortOption = (query: SearchQuery): SortOptions => {
+  const filterKeys = buildFilterKeys(query);
+  const rule = getDisplayRule(query.type, filterKeys, "default");
+  switch (rule?.sortFunction) {
+    case sortByDate:
+      return "date";
+    case sortByLocation:
+      return "location";
+    case sortByTheme:
+      return "theme";
+    default:
+      return "view";
+  }
 };
 
 /**
@@ -46,8 +68,8 @@ const filterDispositifs = (
   dispositifs: GetDispositifsResponse[],
   secondaryThemes: boolean,
 ): GetDispositifsResponse[] => {
-  const filters = buildFilters(query);
-  const rule = getDisplayRule(query.type, filters, query.sort);
+  const filterKeys = buildFilterKeys(query);
+  const rule = getDisplayRule(query.type, filterKeys, query.sort);
   const filteredDispositifs = dispositifs
     .filter((dispositif) => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
     .filter((dispositif) => filterByLocations(dispositif, query.departments))
