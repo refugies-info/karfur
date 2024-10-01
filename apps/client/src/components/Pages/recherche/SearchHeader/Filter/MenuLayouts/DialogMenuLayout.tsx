@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";

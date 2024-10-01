@@ -179,7 +179,7 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, className }: Pro
                 .map((option, i) => {
                   const isSelected = query.sort === option.key;
                   return (
-                    <div className={styles.radioContainer}>
+                    <div key={i} className={styles.radioContainer}>
                       <RadioButtons
                         options={[
                           {

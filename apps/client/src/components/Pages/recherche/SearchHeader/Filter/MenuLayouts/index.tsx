@@ -1,3 +1,4 @@
+import React from "react";
 export type LayoutProps = {
   label: string;
   icon?: string;
