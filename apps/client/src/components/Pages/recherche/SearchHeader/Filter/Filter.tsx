@@ -1,60 +1,68 @@
+import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  DialogMenuLayout,
+  DialogMenuLayoutTitle,
+  DropDownMenuLayout,
+} from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import Checkbox from "~/components/UI/Checkbox";
+import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import DropdownButton from "./DropdownButton";
+import { searchQuerySelector, themesDisplayedSelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./Filter.module.scss";
+
+type TranslationFunction = (key: string, options?: object) => string;
 
 export type Selected = AgeOptions | FrenchOptions | string;
 export type FilterOptions = { key: Selected; value: string; count: number }[];
 
-type OptionsDropdown = {
+type PropsBase = {
+  label: string;
+  icon?: string;
+  gaType: string;
+  layout?: "mobile" | "desktop";
+  className?: string;
+};
+
+type MenuItemProps = {
   filterKey: keyof SearchQuery;
   options: FilterOptions;
   selected: Selected[];
   translateOptions?: boolean;
   menuItemStyles?: string;
+  label?: string;
+};
+type MenuItems = PropsBase & {
+  externalMenu?: never;
+  menuItems: [MenuItemProps, ...MenuItemProps[]];
 };
 
-type MenuDropdown = {
-  menu: React.ReactNode;
-  value: string[];
-  reset: () => void;
-  menuItemStyles?: never;
+type ExternalMenu = PropsBase & {
+  externalMenu: {
+    menu: React.ReactNode;
+    value: string[];
+    reset: () => void;
+    menuItemStyles?: never;
+  };
+  menuItems?: never;
 };
 
-interface Props {
-  label: string;
-  gaType: string;
-  dropdownMenu: OptionsDropdown | MenuDropdown;
-}
+type Props = MenuItems | ExternalMenu;
 
-const Filter = (props: Props) => {
-  const { t } = useTranslation();
-  const { gaType } = props;
-  const [open, setOpen] = useState(false);
+const Filter = ({ gaType, menuItems, externalMenu, label, icon, className }: Props) => {
+  const { t } = useTranslation() as { t: TranslationFunction };
   const dispatch = useDispatch();
+  const query = useSelector(searchQuerySelector);
+  const themesDisplayed = useSelector(themesDisplayedSelector);
 
-  const optionsDropdown: OptionsDropdown | null = !!(props.dropdownMenu as OptionsDropdown).options
-    ? (props.dropdownMenu as OptionsDropdown)
-    : null;
-  const menuDropdown: MenuDropdown | null = !!(props.dropdownMenu as MenuDropdown).menu
-    ? (props.dropdownMenu as MenuDropdown)
-    : null;
-
-  const toggleDropdown = useCallback(() => {
-    setOpen((o) => {
-      if (!o) Event("USE_SEARCH", "open filter", gaType);
-      return !o;
-    });
-  }, [gaType]);
+  const { isTablet } = useWindowSize();
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -63,93 +71,174 @@ const Filter = (props: Props) => {
     [dispatch],
   );
 
-  const onSelectItem = (key: string) => {
-    if (!optionsDropdown) return;
-    const newSelected = optionsDropdown.selected.includes(key)
-      ? [...optionsDropdown.selected].filter((opt) => opt !== key)
-      : [...optionsDropdown.selected, key];
+  const onSelectItem = (filterKey: keyof SearchQuery, key: string) => {
+    if (externalMenu) return;
 
-    addToQuery({ [optionsDropdown.filterKey]: newSelected });
+    const menuItem = menuItems.find((item) => item.filterKey === filterKey);
+    if (!menuItem) return;
+
+    const newSelected = menuItem.selected.includes(key)
+      ? [...menuItem.selected].filter((opt) => opt !== key)
+      : [...menuItem.selected, key];
+
+    addToQuery({ [filterKey]: newSelected });
     Event("USE_SEARCH", "click filter", gaType);
   };
 
   const resetOptions = () => {
-    if (menuDropdown) menuDropdown.reset();
-    else if (optionsDropdown) addToQuery({ [optionsDropdown.filterKey]: [] });
+    if (externalMenu) {
+      externalMenu.reset();
+      return;
+    }
+
+    const resetQuery: Record<string, string[] | undefined> = {};
+    menuItems.forEach((item) => {
+      resetQuery[item.filterKey] = [];
+    });
+
+    addToQuery(resetQuery);
   };
 
-  useEffect(() => {
-    const handleKey = (e: any) => (e.key === "Escape" ? setOpen(false) : {});
-    document.addEventListener("keyup", handleKey);
+  const selectSort = useCallback(
+    (key: SortOptions) => {
+      dispatch(addToQueryActionCreator({ sort: key }));
+      Event("USE_SEARCH", "click filter", "sort");
+    },
+    [dispatch],
+  );
 
-    return () => {
-      document.removeEventListener("keyup", handleKey);
-    };
-  }, []);
-
-  const query = useSelector(searchQuerySelector);
   const value = useMemo(() => {
-    if (menuDropdown) return menuDropdown.value;
-    // get value from filters with key and translate it
-    if (optionsDropdown) {
-      const querySelected = query[optionsDropdown.filterKey];
-      if (Array.isArray(querySelected)) {
-        return querySelected
-          .map((selected) => {
-            const val = optionsDropdown.options.find((a) => a.key === selected)?.value;
-            //@ts-ignore
-            if (val) return t(val);
-            return null;
-          })
-          .filter((v) => v !== null) as string[];
-      }
+    if (externalMenu) return externalMenu.value;
+    const querySelected = menuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
+    if (Array.isArray(querySelected)) {
+      return querySelected.map((selected) => {
+        const val = menuItems.flatMap((item) => item.options.find((a) => a.key === selected)?.value).filter(Boolean);
+        return val.length > 0 ? t(val[0] as any) : null;
+      });
     }
-    return [];
-  }, [menuDropdown, optionsDropdown, query, t]);
+    return null;
+  }, [externalMenu, query, menuItems, t]);
 
   return (
-    <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleDropdown}>
-      <DropdownMenu.Trigger asChild>
-        <DropdownButton
-          label={props.label}
-          value={value}
-          onClick={toggleDropdown}
-          onClear={resetOptions}
-          isOpen={open}
-        />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content className={styles.menu} avoidCollisions={false}>
-          {optionsDropdown
-            ? optionsDropdown.options.map((option, i) => {
-                const isSelected = optionsDropdown.selected.includes(option.key);
-                const isDisabled = option.count === 0;
+    <div className={cls(styles.filter, className)}>
+      {isTablet ? (
+        <DialogMenuLayout
+          label={label}
+          icon={icon}
+          value={value as string[]}
+          resetOptions={resetOptions}
+          gaType={gaType}
+        >
+          {externalMenu ? (
+            externalMenu.menu
+          ) : (
+            <>
+              {menuItems.map((item, i) => {
                 return (
-                  <DropdownMenu.Item
-                    key={i}
-                    onClick={() => onSelectItem(option.key)}
-                    className={cls(styles.item, optionsDropdown.menuItemStyles)}
-                    disabled={isDisabled}
-                  >
-                    <Checkbox checked={isSelected} disabled={isDisabled}>
-                      <div className={styles.label}>
-                        {optionsDropdown.translateOptions
-                          ? //@ts-ignore
-                            t(option.value)
-                          : option.value}
-                      </div>
-                      <div className={styles.countContainer}>
-                        <div className={styles.count}>{option.count ?? ""}</div>
-                      </div>
-                    </Checkbox>
-                  </DropdownMenu.Item>
+                  <>
+                    {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
+                    {item.options.map((option, o) => {
+                      const currentmenu = menuItems[i];
+                      const isSelected = currentmenu.selected.includes(option.key);
+                      const isDisabled = option.count === 0;
+                      return (
+                        <Checkbox
+                          key={o}
+                          onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                          tabIndex={0}
+                          checked={isSelected}
+                          disabled={isDisabled}
+                          className={cls(styles.item, currentmenu.menuItemStyles)}
+                          aria-checked={isSelected}
+                          aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
+                        >
+                          <div
+                            className={styles.label}
+                            onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
+                            aria-controls=""
+                          >
+                            {currentmenu.translateOptions ? t(option.value) : option.value}
+                          </div>
+                          <div className={styles.countContainer}>
+                            <div className={styles.count}>{option.count ?? ""}</div>
+                          </div>
+                        </Checkbox>
+                      );
+                    })}
+                  </>
                 );
-              })
-            : menuDropdown?.menu}
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-      {open && <div className={styles.backdrop} onClick={toggleDropdown} />}
-    </DropdownMenu.Root>
+              })}
+              <DialogMenuLayoutTitle className={styles.menuItemLabel}>{t("Recherche.sortBy")}</DialogMenuLayoutTitle>
+
+              {sortOptions
+                .filter((option) => {
+                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                  if (query.departments.length === 0 && option.key === "location") return false;
+                  return true;
+                })
+                .map((option, i) => {
+                  const isSelected = query.sort === option.key;
+                  return (
+                    <div className={styles.radioContainer}>
+                      <RadioButtons
+                        options={[
+                          {
+                            label: t(option.value),
+                            nativeInputProps: {
+                              checked: isSelected,
+                              onChange: () => selectSort(option.key),
+                            },
+                          },
+                        ]}
+                      />
+                    </div>
+                  );
+                })}
+            </>
+          )}
+        </DialogMenuLayout>
+      ) : (
+        <DropDownMenuLayout
+          label={label}
+          icon={icon}
+          value={value as string[]}
+          resetOptions={resetOptions}
+          gaType={gaType}
+        >
+          {externalMenu
+            ? externalMenu.menu
+            : menuItems.map((item, i) =>
+                item.options.map((option, o) => {
+                  const currentmenu = menuItems[i];
+                  const isSelected = currentmenu.selected.includes(option.key);
+                  const isDisabled = option.count === 0;
+                  return (
+                    <DropdownMenu.Item
+                      key={o}
+                      className={cls(styles.item, currentmenu.menuItemStyles)}
+                      disabled={isDisabled}
+                      asChild
+                    >
+                      <Checkbox
+                        onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                        tabIndex={0}
+                        checked={isSelected}
+                        disabled={isDisabled}
+                      >
+                        <div className={styles.label}>
+                          {currentmenu.translateOptions ? t(option.value) : option.value}
+                        </div>
+                        <div className={styles.countContainer}>
+                          <div className={styles.count}>{option.count ?? ""}</div>
+                        </div>
+                      </Checkbox>
+                    </DropdownMenu.Item>
+                  );
+                }),
+              )}
+        </DropDownMenuLayout>
+      )}
+    </div>
   );
 };
 

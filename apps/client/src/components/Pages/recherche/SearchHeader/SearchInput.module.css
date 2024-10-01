@@ -1,58 +1,26 @@
 .container {
-  display: flex;
-  width: 720px;
-  height: 40px;
-  flex-direction: column;
-  align-items: flex-start;
+  width: 100%;
 
-  /* Style */
-  border-radius: 4px 4px 0 0;
-  background: var(--text-inverted-grey);
-}
-
-.zone {
-  display: flex;
-  padding: 8px 12px;
-  align-items: flex-start;
-  gap: 12px;
-  align-self: stretch;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-}
-
-.input {
-  display: flex;
-  height: 24px;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 0 0;
-
-  /* Style */
-  overflow: hidden;
-  color: var(--text-mention-grey);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Italique */
-  font-family: Marianne, sans-serif;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 24px; /* 150% */
-
-  &:not(:placeholder-shown) {
-    color: var(--text-title-grey);
-    font-style: normal;
+  & label {
+    display: none !important;
   }
-}
 
-.border {
-  width: 720px;
-  height: 2px;
+  & .fr-input-wrap {
+    width: 100%;
+  }
 
-  /* Style */
-  background: var(--border-plain-blue-france);
+  & > div::before {
+    left: 1rem;
+    right: auto !important;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--background-flat-blue-france);
+  }
+
+  & input {
+    padding-left: 3rem !important;
+    padding-right: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 var(--background-flat-blue-france);
+  }
 }

@@ -2,7 +2,6 @@ import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchButton from "~/components/UI/SearchButton";
 import Separator from "~/components/UI/Separator";
 import { queryDispositifsWithoutThemes } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
@@ -115,7 +114,7 @@ const ThemeMenu = (props: Props) => {
     <ThemeMenuContext.Provider
       value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
     >
-      <SearchButton onChange={(e) => setSearch(e.target.value)} />
+      {/* <SearchButton onChange={(e) => setSearch(e.target.value)} /> */}
       <Separator />
       <div className={styles.main}>
         {search ? (
