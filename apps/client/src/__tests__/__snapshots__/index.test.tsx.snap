@@ -1293,41 +1293,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r4:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Déclarer un changement de situation sur Étrangers en France"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/6392ff59bcd2075a379203a9"
+                          title="Déclarer un changement de situation sur Étrangers en France"
                         >
-                          Déclarer un changement de situation sur Étrangers en France
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Déclarer un changement de situation sur Étrangers en France
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Déclarer sur le site de l'ANEF votre nouvelle adresse, la perte ou le vol de votre carte de séjour, ...
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1360,27 +1358,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1391,9 +1400,165 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
+                    />
+                  </div>
+                  <ul
+                    class="fr-badges-group"
+                  >
+                    <li>
+                      <p
+                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
+                        id="fr-badge-:r4:"
+                      >
+                        Démarche
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button
+                class="btn favorite btn btn-secondary"
+                title="Dispositif.addToFavorites"
+                type="button"
+              >
+                <i
+                  class="fr-icon-star-line"
+                />
+              </button>
+            </div>
+            <div
+              class="wrapper"
+            >
+              <div
+                class="fr-card fr-enlarge-link container"
+              >
+                <div
+                  class="fr-card__body body"
+                >
+                  <div
+                    class="fr-card__content content"
+                  >
+                    <div
+                      class="text"
+                    >
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/63972dcb98b670cc4bae76e6"
+                          title="Faire une demande de DCEM"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire une demande de DCEM
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        Demander un document de circulation pour un étranger mineur sur le site Étrangers en France (ANEF).
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
+                    >
+                      <div
+                        class="sponsor"
+                      >
+                        <img
+                          alt="Comité de la Démarche Accessible"
+                          data-nimg="1"
+                          decoding="async"
+                          height="48"
+                          loading="lazy"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
+                          width="48"
+                        />
+                      </div>
+                      <div
+                        class="d-flex gap-2 mb-2"
+                      >
+                        <div
+                          class="container theme-badge"
+                          style="background-color: rgb(238, 238, 238);"
+                        >
+                          Thème
+                        </div>
+                        <div
+                          class="container theme-badge"
+                        >
+                          +2
+                        </div>
+                      </div>
+                      <div
+                        class="info"
+                      >
+                        <span>
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="end"
+                    >
+                      <div
+                        class="info"
+                      >
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
+                      </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__header"
+                >
+                  <div
+                    class="fr-card__img"
+                  >
+                    <img
+                      alt=""
+                      class="fr-responsive-img"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -1404,9 +1569,7 @@ exports[`homepage renders homepage 1`] = `
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                         id="fr-badge-:r5:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -1426,41 +1589,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r6:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire une demande de DCEM"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Faire une demande de DCEM
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
-                      >
-                        Demander un document de circulation pour un étranger mineur sur le site Étrangers en France (ANEF).
-                      </span>
-                    </p>
                     <div
-                      class="fr-card__start"
+                      class="text"
+                    >
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/5e1c8c0e0742580052a33972"
+                          title="Demander le RSA"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Demander le RSA
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        Le Revenu de Solidarité Active, c'est quoi ? Qui peut avoir cette aide financière ? Comment faire ?
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1489,31 +1650,42 @@ exports[`homepage renders homepage 1`] = `
                         <div
                           class="container theme-badge"
                         >
-                          +2
+                          +1
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1524,9 +1696,160 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
+                    />
+                  </div>
+                  <ul
+                    class="fr-badges-group"
+                  >
+                    <li>
+                      <p
+                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
+                        id="fr-badge-:r6:"
+                      >
+                        Démarche
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button
+                class="btn favorite btn btn-secondary"
+                title="Dispositif.addToFavorites"
+                type="button"
+              >
+                <i
+                  class="fr-icon-star-line"
+                />
+              </button>
+            </div>
+            <div
+              class="wrapper"
+            >
+              <div
+                class="fr-card fr-enlarge-link container"
+              >
+                <div
+                  class="fr-card__body body"
+                >
+                  <div
+                    class="fr-card__content content"
+                  >
+                    <div
+                      class="text"
+                    >
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/637781c6896812af208f3495"
+                          title="Avoir le Diplôme d’accès aux études universitaires (DAEU)"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Avoir le Diplôme d’accès aux études universitaires (DAEU)
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        Ce diplôme vous permet d'avoir le niveau du baccalauréat et de faire des études supérieures.
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
+                    >
+                      <div
+                        class="sponsor"
+                      >
+                        <img
+                          alt="Comité de la Démarche Accessible"
+                          data-nimg="1"
+                          decoding="async"
+                          height="48"
+                          loading="lazy"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
+                          width="48"
+                        />
+                      </div>
+                      <div
+                        class="d-flex gap-2 mb-2"
+                      >
+                        <div
+                          class="container theme-badge"
+                          style="background-color: rgb(238, 238, 238);"
+                        >
+                          Thème
+                        </div>
+                      </div>
+                      <div
+                        class="info"
+                      >
+                        <span>
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="end"
+                    >
+                      <div
+                        class="info"
+                      >
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
+                      </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__header"
+                >
+                  <div
+                    class="fr-card__img"
+                  >
+                    <img
+                      alt=""
+                      class="fr-responsive-img"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -1537,9 +1860,7 @@ exports[`homepage renders homepage 1`] = `
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                         id="fr-badge-:r7:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -1559,41 +1880,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r8:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Demander le RSA"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Demander le RSA
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
-                      >
-                        Le Revenu de Solidarité Active, c'est quoi ? Qui peut avoir cette aide financière ? Comment faire ?
-                      </span>
-                    </p>
                     <div
-                      class="fr-card__start"
+                      class="text"
+                    >
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/6123a82c6bf6bc00148a5176"
+                          title="Faire une demande DAHO ou DALO"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire une demande DAHO ou DALO
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        Droit à un hébergement (DAHO) ou un logement (DALO) en urgence si les premières demandes n'ont pas réussi.
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1626,27 +1945,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1657,9 +1987,160 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
+                    />
+                  </div>
+                  <ul
+                    class="fr-badges-group"
+                  >
+                    <li>
+                      <p
+                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
+                        id="fr-badge-:r8:"
+                      >
+                        Démarche
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button
+                class="btn favorite btn btn-secondary"
+                title="Dispositif.addToFavorites"
+                type="button"
+              >
+                <i
+                  class="fr-icon-star-line"
+                />
+              </button>
+            </div>
+            <div
+              class="wrapper"
+            >
+              <div
+                class="fr-card fr-enlarge-link container"
+              >
+                <div
+                  class="fr-card__body body"
+                >
+                  <div
+                    class="fr-card__content content"
+                  >
+                    <div
+                      class="text"
+                    >
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/5dd7c4b06f0ac0004c87c88d"
+                          title="Payer les impôts sur le revenu"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Payer les impôts sur le revenu
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        Quand et comment déclarer les revenus, payer les impôts, et recevoir un avis d'imposition.
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
+                    >
+                      <div
+                        class="sponsor"
+                      >
+                        <img
+                          alt="Comité de la Démarche Accessible"
+                          data-nimg="1"
+                          decoding="async"
+                          height="48"
+                          loading="lazy"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
+                          width="48"
+                        />
+                      </div>
+                      <div
+                        class="d-flex gap-2 mb-2"
+                      >
+                        <div
+                          class="container theme-badge"
+                          style="background-color: rgb(238, 238, 238);"
+                        >
+                          Thème
+                        </div>
+                      </div>
+                      <div
+                        class="info"
+                      >
+                        <span>
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="end"
+                    >
+                      <div
+                        class="info"
+                      >
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
+                      </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__header"
+                >
+                  <div
+                    class="fr-card__img"
+                  >
+                    <img
+                      alt=""
+                      class="fr-responsive-img"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -1670,9 +2151,7 @@ exports[`homepage renders homepage 1`] = `
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                         id="fr-badge-:r9:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -1692,41 +2171,187 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:ra:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Avoir le Diplôme d’accès aux études universitaires (DAEU)"
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/63528e00976acb4f7bcd37ad"
+                          title="Faire et utiliser une e-photo"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire et utiliser une e-photo
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        Une e-photo est demandée pour les documents officiels. Explications pour la faire et l'utiliser sur internet.
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
+                    >
+                      <div
+                        class="sponsor"
+                      >
+                        <img
+                          alt="Comité de la Démarche Accessible"
+                          data-nimg="1"
+                          decoding="async"
+                          height="48"
+                          loading="lazy"
+                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          style="color: transparent; object-fit: contain;"
+                          width="48"
+                        />
+                      </div>
+                      <div
+                        class="d-flex gap-2 mb-2"
+                      >
+                        <div
+                          class="container theme-badge"
+                          style="background-color: rgb(238, 238, 238);"
+                        >
+                          Thème
+                        </div>
+                        <div
+                          class="container theme-badge"
+                        >
+                          +1
+                        </div>
+                      </div>
+                      <div
+                        class="info"
+                      >
+                        <span>
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="end"
+                    >
+                      <div
+                        class="info"
                       >
                         <span
-                          class="three_lines"
+                          class="flex-shrink-1"
                         >
-                          Avoir le Diplôme d’accès aux études universitaires (DAEU)
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
                         </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                      </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="fr-card__header"
+                >
+                  <div
+                    class="fr-card__img"
+                  >
+                    <img
+                      alt=""
+                      class="fr-responsive-img"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
+                    />
+                  </div>
+                  <ul
+                    class="fr-badges-group"
+                  >
+                    <li>
+                      <p
+                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
+                        id="fr-badge-:ra:"
                       >
-                        Ce diplôme vous permet d'avoir le niveau du baccalauréat et de faire des études supérieures.
-                      </span>
-                    </p>
+                        Démarche
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button
+                class="btn favorite btn btn-secondary"
+                title="Dispositif.addToFavorites"
+                type="button"
+              >
+                <i
+                  class="fr-icon-star-line"
+                />
+              </button>
+            </div>
+            <div
+              class="wrapper"
+            >
+              <div
+                class="fr-card fr-enlarge-link container"
+              >
+                <div
+                  class="fr-card__body body"
+                >
+                  <div
+                    class="fr-card__content content"
+                  >
                     <div
-                      class="fr-card__start"
+                      class="text"
+                    >
+                      <h3
+                        class="fr-card__title"
+                      >
+                        <a
+                          href="/procedure/63401d8783f485a025e88388"
+                          title="Créer un compte personnel sur le site Étrangers en France"
+                        >
+                          <span
+                            class="title three_lines"
+                          >
+                            Créer un compte personnel sur le site Étrangers en France
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
+                      >
+                        En créant un compte personnel, vous pourrez faire vos démarches en ligne (titre de séjour, naturalisation,...)
+                      </p>
+                    </div>
+                    <div
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1754,27 +2379,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1785,9 +2421,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -1798,9 +2442,7 @@ exports[`homepage renders homepage 1`] = `
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                         id="fr-badge-:rb:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -1820,563 +2462,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:rc:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire une demande DAHO ou DALO"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Faire une demande DAHO ou DALO
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
-                      >
-                        Droit à un hébergement (DAHO) ou un logement (DALO) en urgence si les premières demandes n'ont pas réussi.
-                      </span>
-                    </p>
                     <div
-                      class="fr-card__start"
+                      class="text"
                     >
-                      <div
-                        class="sponsor"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <img
-                          alt="Comité de la Démarche Accessible"
-                          data-nimg="1"
-                          decoding="async"
-                          height="48"
-                          loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
-                          style="color: transparent; object-fit: contain;"
-                          width="48"
-                        />
-                      </div>
-                      <div
-                        class="d-flex gap-2 mb-2"
-                      >
-                        <div
-                          class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                        <a
+                          href="/procedure/630337ddf2087e2b25ac7609"
+                          title="Avoir un Passe Navigo pour prendre les transports en Île-de-France"
                         >
-                          Thème
-                        </div>
-                        <div
-                          class="container theme-badge"
-                        >
-                          +1
-                        </div>
-                      </div>
-                      <div
-                        class="info mb-3"
-                      >
-                        <i
-                          class="fr-icon-building-line"
-                        />
-                        <span>
-                          Comité de la Démarche Accessible
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="fr-card__end"
-                    >
-                      <div
-                        class="info"
-                      >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="fr-card__header"
-                >
-                  <div
-                    class="fr-card__img"
-                  >
-                    <img
-                      alt="texte alternatif de l’image"
-                      class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
-                    />
-                  </div>
-                  <ul
-                    class="fr-badges-group"
-                  >
-                    <li>
+                          <span
+                            class="title three_lines"
+                          >
+                            Avoir un Passe Navigo pour prendre les transports en Île-de-France
+                          </span>
+                        </a>
+                      </h3>
                       <p
-                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rd:"
-                      >
-                        <span>
-                          Démarche
-                        </span>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <button
-                class="btn favorite btn btn-secondary"
-                title="Dispositif.addToFavorites"
-                type="button"
-              >
-                <i
-                  class="fr-icon-star-line"
-                />
-              </button>
-            </div>
-            <div
-              class="wrapper"
-            >
-              <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:re:"
-              >
-                <div
-                  class="fr-card__body"
-                >
-                  <div
-                    class="fr-card__content"
-                  >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Payer les impôts sur le revenu"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Payer les impôts sur le revenu
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
-                      >
-                        Quand et comment déclarer les revenus, payer les impôts, et recevoir un avis d'imposition.
-                      </span>
-                    </p>
-                    <div
-                      class="fr-card__start"
-                    >
-                      <div
-                        class="sponsor"
-                      >
-                        <img
-                          alt="Comité de la Démarche Accessible"
-                          data-nimg="1"
-                          decoding="async"
-                          height="48"
-                          loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
-                          style="color: transparent; object-fit: contain;"
-                          width="48"
-                        />
-                      </div>
-                      <div
-                        class="d-flex gap-2 mb-2"
-                      >
-                        <div
-                          class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
-                        >
-                          Thème
-                        </div>
-                      </div>
-                      <div
-                        class="info mb-3"
-                      >
-                        <i
-                          class="fr-icon-building-line"
-                        />
-                        <span>
-                          Comité de la Démarche Accessible
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="fr-card__end"
-                    >
-                      <div
-                        class="info"
-                      >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="fr-card__header"
-                >
-                  <div
-                    class="fr-card__img"
-                  >
-                    <img
-                      alt="texte alternatif de l’image"
-                      class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
-                    />
-                  </div>
-                  <ul
-                    class="fr-badges-group"
-                  >
-                    <li>
-                      <p
-                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rf:"
-                      >
-                        <span>
-                          Démarche
-                        </span>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <button
-                class="btn favorite btn btn-secondary"
-                title="Dispositif.addToFavorites"
-                type="button"
-              >
-                <i
-                  class="fr-icon-star-line"
-                />
-              </button>
-            </div>
-            <div
-              class="wrapper"
-            >
-              <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:rg:"
-              >
-                <div
-                  class="fr-card__body"
-                >
-                  <div
-                    class="fr-card__content"
-                  >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire et utiliser une e-photo"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Faire et utiliser une e-photo
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
-                      >
-                        Une e-photo est demandée pour les documents officiels. Explications pour la faire et l'utiliser sur internet.
-                      </span>
-                    </p>
-                    <div
-                      class="fr-card__start"
-                    >
-                      <div
-                        class="sponsor"
-                      >
-                        <img
-                          alt="Comité de la Démarche Accessible"
-                          data-nimg="1"
-                          decoding="async"
-                          height="48"
-                          loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
-                          style="color: transparent; object-fit: contain;"
-                          width="48"
-                        />
-                      </div>
-                      <div
-                        class="d-flex gap-2 mb-2"
-                      >
-                        <div
-                          class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
-                        >
-                          Thème
-                        </div>
-                        <div
-                          class="container theme-badge"
-                        >
-                          +1
-                        </div>
-                      </div>
-                      <div
-                        class="info mb-3"
-                      >
-                        <i
-                          class="fr-icon-building-line"
-                        />
-                        <span>
-                          Comité de la Démarche Accessible
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="fr-card__end"
-                    >
-                      <div
-                        class="info"
-                      >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="fr-card__header"
-                >
-                  <div
-                    class="fr-card__img"
-                  >
-                    <img
-                      alt="texte alternatif de l’image"
-                      class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
-                    />
-                  </div>
-                  <ul
-                    class="fr-badges-group"
-                  >
-                    <li>
-                      <p
-                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rh:"
-                      >
-                        <span>
-                          Démarche
-                        </span>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <button
-                class="btn favorite btn btn-secondary"
-                title="Dispositif.addToFavorites"
-                type="button"
-              >
-                <i
-                  class="fr-icon-star-line"
-                />
-              </button>
-            </div>
-            <div
-              class="wrapper"
-            >
-              <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:ri:"
-              >
-                <div
-                  class="fr-card__body"
-                >
-                  <div
-                    class="fr-card__content"
-                  >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Créer un compte personnel sur le site Étrangers en France"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Créer un compte personnel sur le site Étrangers en France
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
-                      >
-                        En créant un compte personnel, vous pourrez faire vos démarches en ligne (titre de séjour, naturalisation,...)
-                      </span>
-                    </p>
-                    <div
-                      class="fr-card__start"
-                    >
-                      <div
-                        class="sponsor"
-                      >
-                        <img
-                          alt="Comité de la Démarche Accessible"
-                          data-nimg="1"
-                          decoding="async"
-                          height="48"
-                          loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
-                          style="color: transparent; object-fit: contain;"
-                          width="48"
-                        />
-                      </div>
-                      <div
-                        class="d-flex gap-2 mb-2"
-                      >
-                        <div
-                          class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
-                        >
-                          Thème
-                        </div>
-                      </div>
-                      <div
-                        class="info mb-3"
-                      >
-                        <i
-                          class="fr-icon-building-line"
-                        />
-                        <span>
-                          Comité de la Démarche Accessible
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      class="fr-card__end"
-                    >
-                      <div
-                        class="info"
-                      >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="fr-card__header"
-                >
-                  <div
-                    class="fr-card__img"
-                  >
-                    <img
-                      alt="texte alternatif de l’image"
-                      class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
-                    />
-                  </div>
-                  <ul
-                    class="fr-badges-group"
-                  >
-                    <li>
-                      <p
-                        class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rj:"
-                      >
-                        <span>
-                          Démarche
-                        </span>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <button
-                class="btn favorite btn btn-secondary"
-                title="Dispositif.addToFavorites"
-                type="button"
-              >
-                <i
-                  class="fr-icon-star-line"
-                />
-              </button>
-            </div>
-            <div
-              class="wrapper"
-            >
-              <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:rk:"
-              >
-                <div
-                  class="fr-card__body"
-                >
-                  <div
-                    class="fr-card__content"
-                  >
-                    <h3
-                      class="fr-card__title"
-                    >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Avoir un Passe Navigo pour prendre les transports en Île-de-France"
-                      >
-                        <span
-                          class="three_lines"
-                        >
-                          Avoir un Passe Navigo pour prendre les transports en Île-de-France
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                        class="fr-card__desc desc"
                       >
                         Une carte et un abonnement pour prendre le métro, le bus, le tramway, le RER, le train, en région parisienne.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2404,27 +2522,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -2435,9 +2564,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -2446,11 +2583,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rl:"
+                        id="fr-badge-:rc:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -2470,41 +2605,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:rm:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Demander des aides au logement"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/62f265d81119eede87fb1ae2"
+                          title="Demander des aides au logement"
                         >
-                          Demander des aides au logement
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Demander des aides au logement
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         La CAF peut vous donner des aides (APL, ALF, ALS) pour payer votre logement, selon votre situation.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2537,27 +2670,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -2568,9 +2712,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -2579,11 +2731,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rn:"
+                        id="fr-badge-:rd:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -2603,41 +2753,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:ro:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Demander la fabrication du permis de conduire"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/62b9809b796009107a932cbc"
+                          title="Demander la fabrication du permis de conduire"
                         >
-                          Demander la fabrication du permis de conduire
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Demander la fabrication du permis de conduire
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Après la réussite du permis, les étapes pour demander la fabrication directement sur le site de l'ANTS
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2665,27 +2813,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 3 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 3 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -2696,9 +2855,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -2707,11 +2874,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rp:"
+                        id="fr-badge-:re:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -2731,41 +2896,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:rq:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Ouvrir un contrat de gaz ou d'électricité"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/62bab2e7b47f6b02fa9783f2"
+                          title="Ouvrir un contrat de gaz ou d'électricité"
                         >
-                          Ouvrir un contrat de gaz ou d'électricité
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Ouvrir un contrat de gaz ou d'électricité
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Un contrat est nécessaire pour utiliser l’électricité ou le gaz chez vous
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2798,27 +2961,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 3 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 3 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -2829,9 +3003,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -2840,11 +3022,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rr:"
+                        id="fr-badge-:rf:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -2864,41 +3044,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:rs:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Immatriculer une voiture"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/62b5cc16092a73346b4a9a11"
+                          title="Immatriculer une voiture"
                         >
-                          Immatriculer une voiture
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Immatriculer une voiture
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Découvrez comment avoir le certificat d’immatriculation, qui est comme la carte d’identité de votre voiture
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2926,27 +3104,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 3 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 3 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -2957,9 +3146,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -2968,11 +3165,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rt:"
+                        id="fr-badge-:rg:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -2992,41 +3187,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:ru:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Acheter une voiture"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/62a897aceece9a373f34ee49"
+                          title="Acheter une voiture"
                         >
-                          Acheter une voiture
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Acheter une voiture
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Comment et où acheter une voiture neuve ou d'occasion, l'immatriculer et l'assurer, les contrôles techniques..
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3054,27 +3247,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 2 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 2 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -3085,9 +3289,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3096,11 +3308,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:rv:"
+                        id="fr-badge-:rh:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -3120,41 +3330,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r10:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Assurer une voiture"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/procedure/62a8ae34eece9a373f350351"
+                          title="Assurer une voiture"
                         >
-                          Assurer une voiture
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Assurer une voiture
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Découvrez comment faire pour assurer votre voiture en France.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3182,27 +3390,38 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Comité de la Démarche Accessible
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Comité de la Démarche Accessible
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
                         class="info"
                       >
-                        <i
-                          class="fr-icon-time-line"
-                        />
-                        Mise à jour il y a 3 ans
+                        <span
+                          class="flex-shrink-1"
+                        >
+                          <i
+                            class="fr-icon-time-line me-2"
+                          />
+                          <span>
+                            Mise à jour il y a 3 ans
+                          </span>
+                        </span>
                       </div>
+                      <i
+                        class="fr-icon-arrow-right-line"
+                      />
                     </div>
                   </div>
                 </div>
@@ -3213,9 +3432,17 @@ exports[`homepage renders homepage 1`] = `
                     class="fr-card__img"
                   >
                     <img
-                      alt="texte alternatif de l’image"
+                      alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdemarche%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3224,11 +3451,9 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                        id="fr-badge-:r11:"
+                        id="fr-badge-:ri:"
                       >
-                        <span>
-                          Démarche
-                        </span>
+                        Démarche
                       </p>
                     </li>
                   </ul>
@@ -3312,41 +3537,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r12:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Être accompagné pour entrer dans la vie professionnelle"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/6317279072a7091286cfaf24"
+                          title="Être accompagné pour entrer dans la vie professionnelle"
                         >
-                          Être accompagné pour entrer dans la vie professionnelle
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Être accompagné pour entrer dans la vie professionnelle
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Un programme pour progresser en français, découvrir des métiers et rencontrer des entreprises
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3379,21 +3602,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          FACE GRAND LYON
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            FACE GRAND LYON
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -3407,7 +3635,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3416,7 +3652,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r13:"
+                        id="fr-badge-:rj:"
                       />
                     </li>
                   </ul>
@@ -3436,41 +3672,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r14:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/638dcbbaf0b1a31177cf9602"
+                          title="Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration"
                         >
-                          Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Apprendre le vocabulaire professionnel et les compétences techniques dans des secteurs qui recrutent
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3503,21 +3737,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          ABC FORMATION
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            ABC FORMATION
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -3531,7 +3770,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3540,7 +3787,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r15:"
+                        id="fr-badge-:rk:"
                       />
                     </li>
                   </ul>
@@ -3560,41 +3807,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r16:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Trouver une formation de français en Ile-de-France"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/638613c54730d143903ca9ca"
+                          title="Trouver une formation de français en Ile-de-France"
                         >
-                          Trouver une formation de français en Ile-de-France
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Trouver une formation de français en Ile-de-France
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Réseau Alpha propose une cartographie des cours et formations de français en Ile-de-France.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3622,21 +3867,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Réseau Alpha
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Réseau Alpha
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -3650,7 +3900,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3659,7 +3917,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r17:"
+                        id="fr-badge-:rl:"
                       />
                     </li>
                   </ul>
@@ -3679,41 +3937,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r18:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire une mission de service civique pour jeunes réfugiés"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/63873a586fd089c3dad298f2"
+                          title="Faire une mission de service civique pour jeunes réfugiés"
                         >
-                          Faire une mission de service civique pour jeunes réfugiés
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire une mission de service civique pour jeunes réfugiés
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Missions rémunérées ouvertes spécialement aux jeunes réfugiés en Ile-de-France (de 18 à 25 ans).
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3746,21 +4002,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          AIME ONG
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            AIME ONG
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -3774,7 +4035,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3783,7 +4052,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r19:"
+                        id="fr-badge-:rm:"
                       />
                     </li>
                   </ul>
@@ -3803,41 +4072,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1a:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Apprendre le français à l'université"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/635a71c8d43c4d1a3f25227f"
+                          title="Apprendre le français à l'université"
                         >
-                          Apprendre le français à l'université
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Apprendre le français à l'université
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Avoir un diplôme reconnu de l'université de Toulouse pour continuer ses études en France ou travailler.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3870,21 +4137,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Université fédérale de Toulouse
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Université fédérale de Toulouse
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -3898,7 +4170,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -3907,7 +4187,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1b:"
+                        id="fr-badge-:rn:"
                       />
                     </li>
                   </ul>
@@ -3927,41 +4207,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1c:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Avoir de l'aide pour faire ses démarches"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/6376470705f74970c5342371"
+                          title="Avoir de l'aide pour faire ses démarches"
                         >
-                          Avoir de l'aide pour faire ses démarches
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Avoir de l'aide pour faire ses démarches
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Avoir un accompagnement pour faire ses démarches administratives et utiliser un ordinateur.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3989,21 +4267,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          FACE Vendée
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            FACE Vendée
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4017,7 +4300,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4026,7 +4317,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1d:"
+                        id="fr-badge-:ro:"
                       />
                     </li>
                   </ul>
@@ -4046,41 +4337,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1e:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Apprendre le français pour le code de la route"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/634d28bd9d3bda3be5cfd979"
+                          title="Apprendre le français pour le code de la route"
                         >
-                          Apprendre le français pour le code de la route
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Apprendre le français pour le code de la route
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Une formation intensive de 100h de français pour préparer l'examen du code de la route
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4113,21 +4402,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Habitat et Humanisme
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Habitat et Humanisme
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4141,7 +4435,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4150,7 +4452,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1f:"
+                        id="fr-badge-:rp:"
                       />
                     </li>
                   </ul>
@@ -4170,41 +4472,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1g:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Apprendre du vocabulaire avec des images"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/6332c0e6a36f411314ba4ca3"
+                          title="Apprendre du vocabulaire avec des images"
                         >
-                          Apprendre du vocabulaire avec des images
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Apprendre du vocabulaire avec des images
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Des livres de vocabulaire avec des images pour apprendre et mémoriser facilement les mots en français
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4232,21 +4532,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          fable-Lab
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            fable-Lab
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4260,7 +4565,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4269,7 +4582,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1h:"
+                        id="fr-badge-:rq:"
                       />
                     </li>
                   </ul>
@@ -4289,41 +4602,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1i:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Prendre des cours de français à Pantin"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/636cd4572c725bfbf72d6302"
+                          title="Prendre des cours de français à Pantin"
                         >
-                          Prendre des cours de français à Pantin
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Prendre des cours de français à Pantin
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         La formation d'Habitat-Cité vous permettra d'améliorer votre niveau de français et de rechercher un emploi.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4356,21 +4667,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Habitat-Cité
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Habitat-Cité
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4384,7 +4700,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4393,7 +4717,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1j:"
+                        id="fr-badge-:rr:"
                       />
                     </li>
                   </ul>
@@ -4413,41 +4737,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1k:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire un service civique à Valence"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/63231e68d585c0849a9bb2b1"
+                          title="Faire un service civique à Valence"
                         >
-                          Faire un service civique à Valence
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire un service civique à Valence
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Engagement de 8 mois pour des missions de solidarité accessible aux 18-25 ans.
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4480,21 +4802,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Unis-Cité
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Unis-Cité
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4508,7 +4835,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4517,7 +4852,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1l:"
+                        id="fr-badge-:rs:"
                       />
                     </li>
                   </ul>
@@ -4537,41 +4872,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1m:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Etre accompagné pour construire un projet professionnel"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/634e7269313f6183f3510709"
+                          title="Etre accompagné pour construire un projet professionnel"
                         >
-                          Etre accompagné pour construire un projet professionnel
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Etre accompagné pour construire un projet professionnel
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Des cours d'anglais et de français, et des conseils de professionnels pour se préparer à trouver un travail
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4604,21 +4937,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          BSB(Re)Connect
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            BSB(Re)Connect
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4632,7 +4970,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4641,7 +4987,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1n:"
+                        id="fr-badge-:rt:"
                       />
                     </li>
                   </ul>
@@ -4661,41 +5007,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1o:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire un service civique dans le Val d'Oise"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/634fba2814dbd7acb5c4f759"
+                          title="Faire un service civique dans le Val d'Oise"
                         >
-                          Faire un service civique dans le Val d'Oise
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire un service civique dans le Val d'Oise
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Un service civique de 8 mois pour les 16-25 ans (30 ans pour les personnes en situation de handicap)
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4723,21 +5067,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Unis-Cité
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Unis-Cité
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4751,7 +5100,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4760,7 +5117,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1p:"
+                        id="fr-badge-:ru:"
                       />
                     </li>
                   </ul>
@@ -4780,41 +5137,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1q:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Être accompagné pour travailler dans la restauration"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/6317495572a7091286cfbd68"
+                          title="Être accompagné pour travailler dans la restauration"
                         >
-                          Être accompagné pour travailler dans la restauration
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Être accompagné pour travailler dans la restauration
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Stamtish est une association qui aide les personnes réfugiées à réaliser leur projet dans la restauration
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4847,21 +5202,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Stamtish
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Stamtish
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4875,7 +5235,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -4884,7 +5252,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1r:"
+                        id="fr-badge-:rv:"
                       />
                     </li>
                   </ul>
@@ -4904,41 +5272,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1s:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Apprendre le français avec un professeur"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/6336f551bf68aaed7fe0f8b4"
+                          title="Apprendre le français avec un professeur"
                         >
-                          Apprendre le français avec un professeur
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Apprendre le français avec un professeur
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Cours de français tous niveaux de infra A1 à B2, avec un professeur à Blois
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4966,21 +5332,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher 
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher 
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -4994,7 +5365,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -5003,7 +5382,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1t:"
+                        id="fr-badge-:r10:"
                       />
                     </li>
                   </ul>
@@ -5023,41 +5402,39 @@ exports[`homepage renders homepage 1`] = `
               class="wrapper"
             >
               <div
-                class="fr-card fr-enlarge-link"
-                id="fr-card-:r1u:"
+                class="fr-card fr-enlarge-link container"
               >
                 <div
-                  class="fr-card__body"
+                  class="fr-card__body body"
                 >
                   <div
-                    class="fr-card__content"
+                    class="fr-card__content content"
                   >
-                    <h3
-                      class="fr-card__title"
+                    <div
+                      class="text"
                     >
-                      <a
-                        class="fr-link"
-                        href="[object Object]"
-                        title="Faire une formation en développement web"
+                      <h3
+                        class="fr-card__title"
                       >
-                        <span
-                          class="three_lines"
+                        <a
+                          href="/program/63623b16a2a5bf7006723347"
+                          title="Faire une formation en développement web"
                         >
-                          Faire une formation en développement web
-                        </span>
-                      </a>
-                    </h3>
-                    <p
-                      class="fr-card__desc"
-                    >
-                      <span
-                        class="three_lines"
+                          <span
+                            class="title three_lines"
+                          >
+                            Faire une formation en développement web
+                          </span>
+                        </a>
+                      </h3>
+                      <p
+                        class="fr-card__desc desc"
                       >
                         Une formation de 7 semaines (technique + français) pour découvrir le métier de développeur web
-                      </span>
-                    </p>
+                      </p>
+                    </div>
                     <div
-                      class="fr-card__start"
+                      class="fr-card__start mb-3 position-relative"
                     >
                       <div
                         class="sponsor"
@@ -5090,21 +5467,26 @@ exports[`homepage renders homepage 1`] = `
                         </div>
                       </div>
                       <div
-                        class="info mb-3"
+                        class="info"
                       >
-                        <i
-                          class="fr-icon-building-line"
-                        />
                         <span>
-                          Simplon.co
+                          <i
+                            class="fr-icon-building-line me-2"
+                          />
+                          <span>
+                            Simplon.co
+                          </span>
                         </span>
                       </div>
                     </div>
                     <div
-                      class="fr-card__end"
+                      class="end"
                     >
                       <div
-                        class="d-flex gap-2"
+                        class="info d-flex gap-2"
+                      />
+                      <i
+                        class="fr-icon-arrow-right-line"
                       />
                     </div>
                   </div>
@@ -5118,7 +5500,15 @@ exports[`homepage renders homepage 1`] = `
                     <img
                       alt=""
                       class="fr-responsive-img"
-                      src="/images/cards/dispositif/travail.png"
+                      data-fr-js-ratio="true"
+                      data-nimg="1"
+                      decoding="async"
+                      height="158"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=384&q=75 1x, /_next/image?url=%2Fimages%2Fcards%2Fdispositif%2Ftravail.png&w=640&q=75 2x"
+                      style="color: transparent;"
+                      width="280"
                     />
                   </div>
                   <ul
@@ -5127,7 +5517,7 @@ exports[`homepage renders homepage 1`] = `
                     <li>
                       <p
                         class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                        id="fr-badge-:r1v:"
+                        id="fr-badge-:r11:"
                       />
                     </li>
                   </ul>
