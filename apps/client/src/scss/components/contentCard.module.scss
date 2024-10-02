@@ -13,6 +13,16 @@
 
   .container {
     max-width: 100%;
+
+    --bg: 255, 255, 255;
+
+    &:hover {
+      --bg: 246, 246, 246;
+    }
+
+    &:active {
+      --bg: 237, 237, 237;
+    }
   }
 
   .body {
@@ -29,32 +39,23 @@
   }
 
   .text {
+    $shadowHeight: 12px;
+
     order: 2;
-    height: 146px;
+    height: 146px + $shadowHeight;
     overflow: hidden;
     flex-shrink: 0;
-
-    // TODO: improve to move ... at the end of the text
-    @keyframes detect-scroll {
-      from,
-      to {
-        --can-scroll: ;
-      }
-    }
-
-    animation: detect-scroll linear;
-    animation-timeline: scroll(self);
+    position: relative;
 
     .desc {
       &::after {
-        --opacity-if-can-scroll: var(--can-scroll) 1;
-        --opacity-if-cant-scroll: 0;
-
-        opacity: var(--opacity-if-can-scroll, var(--opacity-if-cant-scroll));
-        content: "...";
+        content: "";
         position: absolute;
-        bottom: u(6) + u(5) + u(5);
-        right: u(6);
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: $shadowHeight;
+        background: linear-gradient(0deg, rgb(var(--bg) 1) 0%, rgb(var(--bg) 0) 100%);
       }
     }
   }
