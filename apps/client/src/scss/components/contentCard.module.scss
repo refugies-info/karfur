@@ -14,14 +14,14 @@
   .container {
     max-width: 100%;
 
-    --bg: 255, 255, 255;
+    --bg: 255 255 255;
 
     &:hover {
-      --bg: 246, 246, 246;
+      --bg: 246 246 246;
     }
 
     &:active {
-      --bg: 237, 237, 237;
+      --bg: 237 237 237;
     }
   }
 
@@ -55,7 +55,7 @@
         right: 0;
         left: 0;
         height: $shadowHeight;
-        background: linear-gradient(0deg, rgb(var(--bg) 1) 0%, rgb(var(--bg) 0) 100%);
+        background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
       }
     }
   }
