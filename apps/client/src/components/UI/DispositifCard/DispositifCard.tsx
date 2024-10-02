@@ -4,9 +4,10 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
+import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import FavoriteButton from "~/components/UI/FavoriteButton";
 import { useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
@@ -14,6 +15,7 @@ import { jsLcfirst, jsUcfirst } from "~/lib";
 import { cls } from "~/lib/classname";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
 import { getReadableText } from "~/lib/getReadableText";
+import { getRelativeTimeString } from "~/lib/getRelativeDate";
 import { getTheme } from "~/lib/getTheme";
 import { getPath } from "~/routes";
 import styles from "~/scss/components/contentCard.module.scss";
@@ -32,6 +34,10 @@ const DispositifCard = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const themes = useSelector(themesSelector);
+  const isDispositif = useMemo(
+    () => props.dispositif.typeContenu === ContentType.DISPOSITIF,
+    [props.dispositif.typeContenu],
+  );
   const theme = getTheme(props.dispositif.theme, themes);
   const { params: utmParams } = useUtmz();
 
@@ -39,26 +45,32 @@ const DispositifCard = (props: Props) => {
   const price = props.dispositif.metadatas?.price;
   const isOnline = props.dispositif.metadatas?.location === "online";
 
-  const getDepartement = () => {
+  const badge = useMemo((): { className: string; text: string | null } => {
+    if (!isDispositif) return { text: "Démarche", className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
-    if (!location) return null;
+    if (!location) return { text: null, className: styles.badge_department };
     if (!Array.isArray(location)) {
-      if (location === "france") return jsUcfirst(t("Recherche.france", "toute la France"));
-      if (location === "online") return jsUcfirst(t("Recherche.online"));
+      if (location === "france")
+        return { text: jsUcfirst(t("Recherche.france", "toute la France")), className: styles.badge_department };
+      if (location === "online") return { text: jsUcfirst(t("Recherche.online")), className: styles.badge_online };
     }
-    if (props.selectedDepartment) return props.selectedDepartment;
+    if (props.selectedDepartment) return { text: props.selectedDepartment, className: styles.badge_department };
     if (Array.isArray(location) && location.length > 1)
-      return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+      return {
+        text: `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`,
+        className: styles.badge_department,
+      };
 
     const splittedLocation = location[0].split(" - ");
-    return `${splittedLocation[1]} ${splittedLocation[0]}`;
-  };
+    return { text: `${splittedLocation[1]} ${splittedLocation[0]}`, className: styles.badge_department };
+  }, [props.dispositif.metadatas, props.selectedDepartment, isDispositif, t]);
 
   const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
-  const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
   const safeAbstract = useSanitizedContent(props.dispositif.abstract);
-  const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
+  const cardImageUrl = useCardImageUrl(theme, props.dispositif.typeContenu);
+
+  const defaultImage = isDispositif ? defaultStructureImage : demarcheIcon;
 
   return (
     <div className={cls(styles.wrapper, props.className)}>
@@ -95,7 +107,7 @@ const DispositifCard = (props: Props) => {
             <div className="fr-card__start mb-3 position-relative">
               <div className={styles.sponsor}>
                 <Image
-                  src={props.dispositif?.sponsor?.picture?.secure_url || defaultStructureImage}
+                  src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
                   alt={props.dispositif?.sponsor?.nom || ""}
                   width={48}
                   height={48}
@@ -108,29 +120,53 @@ const DispositifCard = (props: Props) => {
                   <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
                 )}
               </div>
-              <div className={styles.info}>
-                <span>
-                  <i className="fr-icon-building-line me-2" />
-                  <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
-                </span>
-              </div>
+
+              {props.dispositif?.sponsor?.nom && (
+                <div className={styles.info}>
+                  <span>
+                    <i className="fr-icon-building-line me-2" />
+                    <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className={styles.end}>
-              <div className={cls(styles.info, "d-flex gap-2")}>
-                {price !== undefined && (
-                  <span className="flex-shrink-0">
-                    <i className="fr-icon-money-euro-circle-line me-2" />
-                    <span>{getPriceText(price, t)}</span>
-                  </span>
-                )}
-                {commitment && (
-                  <span className="flex-shrink-1">
-                    <i className="fr-icon-time-line me-2" />
-                    <span>{getCommitmentText(commitment, t, true)}</span>
-                  </span>
-                )}
-              </div>
+              {isDispositif ? (
+                <>
+                  <div className={cls(styles.info, "d-flex gap-2")}>
+                    {price !== undefined && (
+                      <span className="flex-shrink-0">
+                        <i className="fr-icon-money-euro-circle-line me-2" />
+                        <span>{getPriceText(price, t)}</span>
+                      </span>
+                    )}
+                    {commitment && (
+                      <span className="flex-shrink-1">
+                        <i className="fr-icon-time-line me-2" />
+                        <span>{getCommitmentText(commitment, t, true)}</span>
+                      </span>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {props.dispositif.lastModificationDate && (
+                    <div className={styles.info}>
+                      <span className="flex-shrink-1">
+                        <i className="fr-icon-time-line me-2" />
+                        <span>
+                          Mise à jour{" "}
+                          {getRelativeTimeString(
+                            new Date(props.dispositif.lastModificationDate),
+                            router.locale || "fr",
+                          )}
+                        </span>
+                      </span>
+                    </div>
+                  )}
+                </>
+              )}
               <i className="fr-icon-arrow-right-line" />
             </div>
           </div>
@@ -148,9 +184,9 @@ const DispositifCard = (props: Props) => {
           </div>
           <ul className="fr-badges-group">
             <li>
-              <Badge small className={isOnline ? styles.badge_online : styles.badge_department}>
+              <Badge small className={badge.className}>
                 {isOnline && <i className="ri-at-line me-1"></i>}
-                {getDepartement()}
+                {badge.text}
               </Badge>
             </li>
           </ul>
