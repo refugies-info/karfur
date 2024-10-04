@@ -7,6 +7,7 @@ export const stepTranslations: Record<Step, string> = {
   theme: "Thèmes",
   sponsors: "Partenaires",
   mainSponsor: "Structure",
+  administrationName: "Nom de l'administration",
   // translation available, use it
   what: "Dispositif.sectionWhat",
   why: "Dispositif.sectionWhy",
