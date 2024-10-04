@@ -169,7 +169,7 @@ const ResultsFilter = (): React.ReactNode => {
                 })}
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
-        </DropdownMenu.Root>{" "}
+        </DropdownMenu.Root>
       </div>
     </div>
   );

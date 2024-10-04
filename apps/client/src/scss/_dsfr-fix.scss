@@ -48,7 +48,7 @@
 }
 
 // remove when remixicons css is removed
-.fr-header [class^="ri-"],
-.fr-header [class*=" ri-"] {
+[class^="ri-"],
+[class*=" ri-"] {
   font-family: inherit !important;
 }

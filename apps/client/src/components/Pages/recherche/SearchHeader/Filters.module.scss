@@ -1,8 +1,8 @@
 @import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
 
 .search {
   position: relative;
-  width: 720px;
   margin-bottom: u(10);
 
   i {
@@ -25,34 +25,45 @@
 
 .container {
   display: flex;
-  gap: u(3);
+  width: 100%;
+  flex-direction: column;
+  gap: u(8);
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  container-type: inline-size;
 
-  &.small {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+  .searchZone {
+    max-width: 768px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
 
-    .search {
-      width: 200px;
-      flex-shrink: 0;
-      margin-bottom: 0;
+  .filterHiddenOnMobile {
+    @container (max-width: 768px) {
+      display: none;
     }
   }
-}
 
-.menuItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  align-self: stretch;
+  .collapsedFiltersButton {
+    display: none;
 
-  &.small {
-    width: 272px;
+    @container (max-width: 768px) {
+      display: inline-flex;
+      margin-left: auto;
+
+      & button {
+        aspect-ratio: 1;
+        padding: u(3);
+      }
+    }
   }
 
-  &.medium {
-    width: 302px;
+  .filtersBar {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: u(2);
+    width: 100%;
   }
 }
