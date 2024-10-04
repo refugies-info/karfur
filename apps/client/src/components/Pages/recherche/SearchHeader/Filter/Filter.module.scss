@@ -5,28 +5,15 @@
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
-.menu {
-  // Layout
-  display: flex;
-  padding: 8px;
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 30;
-
-  // Style
-  border-top: 1px solid var(--background-open-blue-france);
-  background: var(--text-inverted-grey);
-
-  /* shadow/light/$shadow-md */
-  box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
-}
-
 .item {
   @include text("normal");
 
+  place-items: center;
+  text-align: left;
   display: flex;
+  width: 100%;
   align-items: flex-start;
-  gap: 8px;
+  gap: u(2);
   align-self: stretch;
   border: none;
 
@@ -54,31 +41,48 @@
       margin: 0 0 0 u(2);
     }
   }
+
+  .countContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .count {
+    @include dsfr-text("very-small");
+
+    color: var(--text-mention-grey);
+  }
 }
 
 .label {
   flex: 1 0 0;
 }
 
-.countContainer {
-  display: flex;
-  padding-top: 4px;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
+.icon {
+  border: 1px solid red;
 
-.count {
-  @include dsfr-text("very-small");
+  &::before {
+    --icon-size: 16px;
 
-  color: var(--text-mention-grey);
+    background-color: transparent;
+  }
 }
 
 .backdrop {
-  background: rgb(0 0 0 / 30%);
+  background: rgb(0 0 0 / 0%);
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   z-index: 10;
+}
+
+.radioContainer {
+  padding-inline: u(2);
+
+  & fieldset {
+    margin-block: u(1);
+  }
 }

@@ -70,7 +70,7 @@ const DispositifCard = (props: Props) => {
           href: props.demoCard
             ? "#"
             : {
-                pathname: getPath("/dispositif/[id]", router.locale),
+                pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
                 query: { id: props.dispositif._id.toString(), ...utmParams },
               },
           target: props.targetBlank ? "_blank" : undefined,

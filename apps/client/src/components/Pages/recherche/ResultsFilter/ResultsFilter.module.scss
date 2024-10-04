@@ -23,12 +23,13 @@
 
 .sort_button {
   /* Layout */
-  display: flex;
+  display: none;
   align-items: center;
   gap: u(2);
 
   @container (min-width: 768px) {
     margin-left: auto;
+    display: block;
   }
 
   /* Style */

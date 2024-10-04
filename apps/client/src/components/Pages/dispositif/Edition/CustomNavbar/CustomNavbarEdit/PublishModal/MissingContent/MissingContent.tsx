@@ -27,6 +27,7 @@ const STEPS_MODAL: Record<Step, Modals | null> = {
   mainSponsor: "MainSponsor",
   titreInformatif: null,
   titreMarque: null,
+  administrationName: null,
   what: null,
   why: null,
   how: null,

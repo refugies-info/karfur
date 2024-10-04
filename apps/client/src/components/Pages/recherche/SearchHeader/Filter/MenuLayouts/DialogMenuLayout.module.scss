@@ -1,0 +1,98 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/variables";
+
+.dialogMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100svw;
+  height: 100svh;
+  overflow-y: auto;
+  background-color: #fff;
+  z-index: 9999999;
+  will-change: transform;
+
+  .dialogTitle {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: u(4);
+    margin-bottom: 0;
+
+    @include dsfr-text("chapo");
+
+    background-color: #fff;
+    border-bottom: 1px solid $gray20;
+  }
+
+  .dialogInnerContent {
+    padding: u(4);
+  }
+
+  .dialogFooter {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: u(4);
+    padding: u(4);
+    background-color: #fff;
+    border-top: 1px solid $gray20;
+  }
+
+  .dialogSubTitle {
+    @include dsfr-text("large");
+
+    font-weight: bold;
+    color: black;
+    margin-bottom: u(2);
+    padding-inline: u(2);
+
+    &:not(:first-child) {
+      margin-top: u(8);
+    }
+  }
+
+  /* Slide-in Animation */
+  &.slideIn {
+    animation: slide-in-from-right 600ms ease-out forwards;
+  }
+
+  /* Slide-out Animation */
+  &.slideOut {
+    animation: slide-out-to-right 600ms ease-out forwards;
+  }
+}
+
+body:has(.dialogMenu[data-state="open"]) {
+  overflow: hidden;
+}
+
+/* Slide-In Animation */
+@keyframes slide-in-from-right {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Slide-Out Animation */
+@keyframes slide-out-to-right {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -50,7 +50,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: dispositifId as string,
       locale: "fr",
-      token: req.cookies.authorization,
+      // token: req.cookies.authorization, // fetch dispositif as anonymous user to use the published version as reference
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());

@@ -80,6 +80,7 @@ const LeftSidebarEdition = (props: Props) => {
             />
           ) : (
             <AddContentButton onClick={() => setActiveModal?.("Administration")} className="mb-6" size="md">
+              <i className="fr-icon-image-line me-2" />
               Administration (optionnel)
             </AddContentButton>
           )}
