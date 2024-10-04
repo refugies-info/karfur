@@ -2,7 +2,11 @@ import { Metadatas } from "@refugies-info/api-types";
 import { TFunction } from "next-i18next";
 import { jsUcfirst } from "~/lib";
 
-export const getCommitmentText = (data: Metadatas["commitment"] | undefined, t: TFunction): string | null => {
+export const getCommitmentText = (
+  data: Metadatas["commitment"] | undefined,
+  t: TFunction,
+  shortVersion?: boolean,
+): string | null => {
   if (!data) return null;
 
   if (data.amountDetails === "between" && data.hours.length >= 2) {
@@ -15,6 +19,11 @@ export const getCommitmentText = (data: Metadatas["commitment"] | undefined, t: 
     );
   }
 
+  if (shortVersion) {
+    return `${data.hours[0]} ${t(`Infocards.${data.timeUnit}`, {
+      count: data.hours[0],
+    })}`;
+  }
   return jsUcfirst(
     `${t(`Infocards.${data.amountDetails}`)} ${data.hours[0]} ${t(`Infocards.${data.timeUnit}`, {
       count: data.hours[0],

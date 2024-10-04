@@ -7,8 +7,8 @@
 
 .container {
   @include dsfr-text("very-small");
-  
-  padding: 2px u(1);
+
+  padding: 2px u(2);
   border-radius: u(3);
   color: var(--text-action-high-grey);
   background-color: var(--background-contrast-grey);

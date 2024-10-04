@@ -112,17 +112,17 @@ const SearchResults = (props: Props) => {
 
         <div className={styles.results}>
           {dispositifs.length > 0 &&
-            dispositifs.map((d) =>
-              typeof d === "string" ? null : (
+            dispositifs.map((d) => {
+              if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
+              return (
                 <DispositifCard
                   key={d._id.toString()}
-                  className={styles.card}
                   dispositif={d}
                   selectedDepartment={selectedDepartment}
                   targetBlank
                 />
-              ),
-            )}
+              );
+            })}
         </div>
       </Container>
     </section>
