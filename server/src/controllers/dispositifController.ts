@@ -28,13 +28,14 @@ import {
   StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  UpdateDispositifResponse
-} from "@refugies-info/api-types"
-import express from "express"
-import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa"
-import { NotFoundError } from "../errors"
-import logger from "../logger"
-import { Response, ResponseWithData } from "../types/interface"
+  UpdateDispositifResponse,
+} from "@refugies-info/api-types";
+import express from "express";
+import { ObjectId } from "mongodb";
+import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
+import { NotFoundError } from "../errors";
+import logger from "../logger";
+import { Response, ResponseWithData } from "../types/interface";
 import {
   addMerci,
   addSuggestion,
@@ -49,7 +50,9 @@ import {
   getContentsForApp,
   getCountDispositifs,
   getDispositifs,
-  getDispositifsWithTranslationAvancement, getHasTextChanges, getNbContentsForCounty,
+  getDispositifsWithTranslationAvancement,
+  getHasTextChanges,
+  getNbContentsForCounty,
   getNbDispositifsByRegion,
   getStatistics,
   getUserContributions,
@@ -62,8 +65,8 @@ import {
   updateDispositifProperties,
   updateDispositifStatus,
   updateDispositifTagsOrNeeds,
-  updateNbVuesOrFavoritesOnContent
-} from "../workflows"
+  updateNbVuesOrFavoritesOnContent,
+} from "../workflows";
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -358,6 +361,9 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): ResponseWithData<GetDispositifResponse> {
     if (id === "getContentById") throw new NotFoundError("Outdated route, please use /dispositifs/{id} instead.");
+    if (!ObjectId.isValid(id)) {
+      throw new NotFoundError("Invalid dispostif ID");
+    }
     return getContentById(id, locale, request.user);
   }
 }
