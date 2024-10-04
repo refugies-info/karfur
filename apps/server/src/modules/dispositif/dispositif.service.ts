@@ -266,6 +266,7 @@ export const saveAndOverwriteDraft = async (
       lastModificationAuthor: 1,
       needs: 1,
       publishedAt: 1,
+      administrationLogo: 1,
     });
   }
 
@@ -286,6 +287,7 @@ export const saveAndOverwriteDraft = async (
     dispositifToSave.lastModificationAuthor = draftDispositif.lastModificationAuthor;
     dispositifToSave.needs = draftDispositif.needs;
     dispositifToSave.nbMots = draftDispositif.nbMots;
+    dispositifToSave.administrationLogo = draftDispositif.administrationLogo;
   }
 
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });

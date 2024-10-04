@@ -135,7 +135,7 @@
     "jest-styled-components": "^7.0.0",
     "next-router-mock": "^0.9.13",
     "papaparse": "^5.3.2",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.47",
     "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.5",
     "sass": "^1.57.1",

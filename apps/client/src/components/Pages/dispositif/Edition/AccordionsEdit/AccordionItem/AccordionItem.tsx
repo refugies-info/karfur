@@ -31,7 +31,7 @@ interface Props {
  */
 const AccordionItem = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { unregister, register, getValues, setValue } = useFormContext();
+  const { register, getValues, setValue } = useFormContext();
 
   const currentTheme = useSelector(themeSelector(getValues("theme")));
   const color = currentTheme?.colors.color100 || "#000";
@@ -57,10 +57,14 @@ const AccordionItem = (props: Props) => {
     );
   };
 
+  /* caused the bug https://github.com/refugies-info/karfur/pull/2293
+  TODO: uncomment if it creates a regression, clean up otherwise
+
   // when item unmounted, delete it from form values
   useEffect(() => {
     return () => unregister(props.id);
   }, [unregister, props.id]);
+  */
 
   const pageContext = useContext(PageContext);
   useEffect(() => {

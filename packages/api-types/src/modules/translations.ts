@@ -78,6 +78,7 @@ export interface SaveTranslationRequest {
       why?: { [key: string]: Partial<InfoSection> };
       how?: { [key: string]: Partial<InfoSection> };
       next?: { [key: string]: Partial<InfoSection> };
+      administrationName?: string;
     };
   }>;
 }

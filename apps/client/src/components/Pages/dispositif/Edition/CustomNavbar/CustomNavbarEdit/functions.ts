@@ -29,6 +29,7 @@ const isMetadataOk = (content: any | any[]) => {
 export type Step =
   | "titreInformatif"
   | "titreMarque"
+  | "administrationName"
   | "what"
   | "why"
   | "how"

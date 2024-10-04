@@ -133,7 +133,7 @@ export const getContentById = async (
   }
 
   const dispositif = draftDispositif || originalDispositif;
-  const dataLanguage = dispositif.isTranslatedIn(locale) ? locale : "fr";
+  const dataLanguage = originalDispositif.isTranslatedIn(locale) ? locale : "fr"; // find translation in published version only
 
   const allRoles = await getRoles();
   const participantsWithRoles = dispositif.participants.map((p) => ({
@@ -141,14 +141,21 @@ export const getContentById = async (
     roles: p.roles.filter((r) => !!r).map((r) => getRoleName(r, allRoles)),
   }));
 
+  const originalDispositifObject = originalDispositif.toObject();
   const dispositifObject = dispositif.toObject();
+  // if FR: show draft version if available / if other language: show published verison
+  const translation =
+    dataLanguage === "fr"
+      ? dispositifObject.translations[dataLanguage]
+      : originalDispositifObject.translations[dataLanguage];
+
   const response: GetDispositifResponse = {
     _id: dispositifObject._id,
-    ...dispositifObject.translations[dataLanguage].content,
+    ...translation.content,
     participants: participantsWithRoles,
     metadatas: getMetadatas(dispositifObject.metadatas),
-    availableLanguages: Object.keys(dispositifObject.translations),
-    date: dispositifObject.translations[dataLanguage].created_at || dispositifObject.lastModificationDate,
+    availableLanguages: Object.keys(originalDispositifObject.translations), // show available languages of published version only
+    date: translation.created_at || dispositifObject.lastModificationDate,
     hasDraftVersion: !!draftDispositif,
     ...pick(dispositif, [
       "typeContenu",
@@ -168,7 +175,7 @@ export const getContentById = async (
 
   if (dispositif.typeContenu === ContentType.DEMARCHE) {
     response.administration = {
-      name: (dispositif.translations[dataLanguage].content as DemarcheContent).administrationName,
+      name: (translation.content as DemarcheContent).administrationName,
       logo: dispositif.administrationLogo,
     };
   }
