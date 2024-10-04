@@ -423,41 +423,39 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           class="wrapper"
         >
           <div
-            class="fr-card fr-enlarge-link"
-            id="fr-card-:r0:"
+            class="fr-card fr-enlarge-link container"
           >
             <div
-              class="fr-card__body"
+              class="fr-card__body body"
             >
               <div
-                class="fr-card__content"
+                class="fr-card__content content"
               >
-                <h3
-                  class="fr-card__title"
+                <div
+                  class="text"
                 >
-                  <a
-                    class="fr-link"
-                    href="[object Object]"
-                    title="tinfo1"
+                  <h3
+                    class="fr-card__title"
                   >
-                    <span
-                      class="three_lines"
+                    <a
+                      href="/program/id1"
+                      title="tinfo1"
                     >
-                      tinfo1
-                    </span>
-                  </a>
-                </h3>
-                <p
-                  class="fr-card__desc"
-                >
-                  <span
-                    class="three_lines"
+                      <span
+                        class="title three_lines"
+                      >
+                        tinfo1
+                      </span>
+                    </a>
+                  </h3>
+                  <p
+                    class="fr-card__desc desc"
                   >
                     abstract1
-                  </span>
-                </p>
+                  </p>
+                </div>
                 <div
-                  class="fr-card__start"
+                  class="fr-card__start mb-3 position-relative"
                 >
                   <div
                     class="sponsor"
@@ -484,20 +482,15 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                       Français
                     </div>
                   </div>
-                  <div
-                    class="info mb-3"
-                  >
-                    <i
-                      class="fr-icon-building-line"
-                    />
-                    <span />
-                  </div>
                 </div>
                 <div
-                  class="fr-card__end"
+                  class="end"
                 >
                   <div
-                    class="d-flex gap-2"
+                    class="info d-flex gap-2"
+                  />
+                  <i
+                    class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
@@ -511,7 +504,133 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <img
                   alt=""
                   class="fr-responsive-img"
+                  data-fr-js-ratio="true"
+                  data-nimg="1"
+                  decoding="async"
+                  height="158"
+                  loading="lazy"
                   src="/images/cards/dispositif/français.svg"
+                  style="color: transparent;"
+                  width="280"
+                />
+              </div>
+              <ul
+                class="fr-badges-group"
+              >
+                <li>
+                  <p
+                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
+                    id="fr-badge-:r0:"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
+          >
+            <i
+              class="fr-icon-star-line"
+            />
+          </button>
+        </div>
+      </div>
+      <div>
+        <div
+          class="wrapper"
+        >
+          <div
+            class="fr-card fr-enlarge-link container"
+          >
+            <div
+              class="fr-card__body body"
+            >
+              <div
+                class="fr-card__content content"
+              >
+                <div
+                  class="text"
+                >
+                  <h3
+                    class="fr-card__title"
+                  >
+                    <a
+                      href="/program/id2"
+                      title="tinfo2"
+                    >
+                      <span
+                        class="title three_lines"
+                      >
+                        tinfo2
+                      </span>
+                    </a>
+                  </h3>
+                  <p
+                    class="fr-card__desc desc"
+                  >
+                    abstract2
+                  </p>
+                </div>
+                <div
+                  class="fr-card__start mb-3 position-relative"
+                >
+                  <div
+                    class="sponsor"
+                  >
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="48"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="48"
+                    />
+                  </div>
+                  <div
+                    class="d-flex gap-2 mb-2"
+                  >
+                    <div
+                      class="container theme-badge"
+                      style="background-color: rgb(238, 231, 229);"
+                    >
+                      Administratif
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="end"
+                >
+                  <div
+                    class="info d-flex gap-2"
+                  />
+                  <i
+                    class="fr-icon-arrow-right-line"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="fr-card__header"
+            >
+              <div
+                class="fr-card__img"
+              >
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  data-fr-js-ratio="true"
+                  data-nimg="1"
+                  decoding="async"
+                  height="158"
+                  loading="lazy"
+                  src="/images/cards/dispositif/administratif.svg"
+                  style="color: transparent;"
+                  width="280"
                 />
               </div>
               <ul
@@ -542,160 +661,39 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           class="wrapper"
         >
           <div
-            class="fr-card fr-enlarge-link"
-            id="fr-card-:r2:"
+            class="fr-card fr-enlarge-link container"
           >
             <div
-              class="fr-card__body"
+              class="fr-card__body body"
             >
               <div
-                class="fr-card__content"
+                class="fr-card__content content"
               >
-                <h3
-                  class="fr-card__title"
-                >
-                  <a
-                    class="fr-link"
-                    href="[object Object]"
-                    title="tinfo2"
-                  >
-                    <span
-                      class="three_lines"
-                    >
-                      tinfo2
-                    </span>
-                  </a>
-                </h3>
-                <p
-                  class="fr-card__desc"
-                >
-                  <span
-                    class="three_lines"
-                  >
-                    abstract2
-                  </span>
-                </p>
                 <div
-                  class="fr-card__start"
+                  class="text"
                 >
-                  <div
-                    class="sponsor"
+                  <h3
+                    class="fr-card__title"
                   >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="48"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="48"
-                    />
-                  </div>
-                  <div
-                    class="d-flex gap-2 mb-2"
-                  >
-                    <div
-                      class="container theme-badge"
-                      style="background-color: rgb(238, 231, 229);"
+                    <a
+                      href="/procedure/id3"
+                      title="tinfo3"
                     >
-                      Administratif
-                    </div>
-                  </div>
-                  <div
-                    class="info mb-3"
-                  >
-                    <i
-                      class="fr-icon-building-line"
-                    />
-                    <span />
-                  </div>
-                </div>
-                <div
-                  class="fr-card__end"
-                >
-                  <div
-                    class="d-flex gap-2"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="fr-card__header"
-            >
-              <div
-                class="fr-card__img"
-              >
-                <img
-                  alt=""
-                  class="fr-responsive-img"
-                  src="/images/cards/dispositif/administratif.svg"
-                />
-              </div>
-              <ul
-                class="fr-badges-group"
-              >
-                <li>
+                      <span
+                        class="title three_lines"
+                      >
+                        tinfo3
+                      </span>
+                    </a>
+                  </h3>
                   <p
-                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                    id="fr-badge-:r3:"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-          <button
-            class="btn favorite btn btn-secondary"
-            title="Dispositif.addToFavorites"
-            type="button"
-          >
-            <i
-              class="fr-icon-star-line"
-            />
-          </button>
-        </div>
-      </div>
-      <div>
-        <div
-          class="wrapper"
-        >
-          <div
-            class="fr-card fr-enlarge-link"
-            id="fr-card-:r4:"
-          >
-            <div
-              class="fr-card__body"
-            >
-              <div
-                class="fr-card__content"
-              >
-                <h3
-                  class="fr-card__title"
-                >
-                  <a
-                    class="fr-link"
-                    href="[object Object]"
-                    title="tinfo3"
-                  >
-                    <span
-                      class="three_lines"
-                    >
-                      tinfo3
-                    </span>
-                  </a>
-                </h3>
-                <p
-                  class="fr-card__desc"
-                >
-                  <span
-                    class="three_lines"
+                    class="fr-card__desc desc"
                   >
                     abstract3
-                  </span>
-                </p>
+                  </p>
+                </div>
                 <div
-                  class="fr-card__start"
+                  class="fr-card__start mb-3 position-relative"
                 >
                   <div
                     class="sponsor"
@@ -724,8 +722,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </div>
                 </div>
                 <div
-                  class="fr-card__end"
-                />
+                  class="end"
+                >
+                  <i
+                    class="fr-icon-arrow-right-line"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -735,9 +737,16 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 class="fr-card__img"
               >
                 <img
-                  alt="texte alternatif de l’image"
+                  alt=""
                   class="fr-responsive-img"
-                  src="/images/cards/dispositif/logement.svg"
+                  data-fr-js-ratio="true"
+                  data-nimg="1"
+                  decoding="async"
+                  height="158"
+                  loading="lazy"
+                  src="/images/cards/demarche/logement.svg"
+                  style="color: transparent;"
+                  width="280"
                 />
               </div>
               <ul
@@ -746,11 +755,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <li>
                   <p
                     class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                    id="fr-badge-:r5:"
+                    id="fr-badge-:r2:"
                   >
-                    <span>
-                      Démarche
-                    </span>
+                    Démarche
                   </p>
                 </li>
               </ul>
