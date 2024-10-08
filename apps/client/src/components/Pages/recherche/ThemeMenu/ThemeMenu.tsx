@@ -2,8 +2,10 @@ import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import MobileMenu from "~/components/Pages/recherche/ThemeMenu/MobileMenu";
 import SearchButton from "~/components/UI/SearchButton";
-import Separator from "~/components/UI/Separator";
+import { useWindowSize } from "~/hooks";
+import { cls } from "~/lib/classname";
 import { queryDispositifsWithoutThemes } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
@@ -19,13 +21,14 @@ import { themesSelector } from "~/services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
 import Needs from "./Needs";
 import SearchResults from "./SearchResults";
-import styles from "./ThemeMenu.module.css";
+import styles from "./ThemeMenu.module.scss";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import Themes from "./Themes";
 
 interface Props {
   mobile: boolean;
   isOpen: boolean;
+  className?: string;
 }
 
 const debouncedQuery = debounce(
@@ -40,15 +43,18 @@ const debouncedQuery = debounce(
   500,
 );
 
-const ThemeMenu = (props: Props) => {
+const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const dispatch = useDispatch();
+  const { isMobile } = useWindowSize();
+
+  console.log(isMobile);
 
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
   const query = useSelector(searchQuerySelector);
   const allDispositifs = useSelector(activeDispositifsSelector);
-  const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
+  const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, mobile);
 
   const [selectedThemeId, setSelectedThemeId] = useState<Id | undefined>(initialTheme);
 
@@ -57,12 +63,12 @@ const ThemeMenu = (props: Props) => {
   const onClickTheme = useCallback(
     (themeId: Id) => {
       setSelectedThemeId((old) => {
-        if (old === themeId && props.mobile) return null;
+        if (old === themeId && mobile) return null;
         return themeId;
       });
       Event("USE_SEARCH", "use theme filter", "click theme");
     },
-    [setSelectedThemeId, props.mobile],
+    [setSelectedThemeId, mobile],
   );
 
   // fetch dispositifs if not done already
@@ -76,11 +82,11 @@ const ThemeMenu = (props: Props) => {
 
   // reset selected theme when popup opens
   useEffect(() => {
-    if (props.isOpen) {
-      setSelectedThemeId(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
+    if (isOpen) {
+      setSelectedThemeId(getInitialTheme(needs, sortedThemes, query.needs, query.themes, mobile));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.isOpen]);
+  }, [isOpen]);
 
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
@@ -88,7 +94,7 @@ const ThemeMenu = (props: Props) => {
   // count dispositifs by need and theme
   const languei18nCode = useSelector(languei18nSelector);
   useEffect(() => {
-    if (props.isOpen) {
+    if (isOpen) {
       debouncedQuery(query, allDispositifs, languei18nCode, (dispositifs) => {
         const newNbDispositifsByNeed: Record<string, number> = {};
         const newNbDispositifsByTheme: Record<string, number> = {};
@@ -109,23 +115,30 @@ const ThemeMenu = (props: Props) => {
         setNbDispositifsByNeed(newNbDispositifsByNeed);
       });
     }
-  }, [query, allDispositifs, needs, sortedThemes, props.mobile, languei18nCode, props.isOpen]);
+  }, [query, allDispositifs, needs, sortedThemes, mobile, languei18nCode, isOpen]);
 
   return (
     <ThemeMenuContext.Provider
       value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
     >
-      <SearchButton onChange={(e) => setSearch(e.target.value)} />
-      <Separator />
-      <div className={styles.main}>
-        {search ? (
-          <SearchResults />
-        ) : (
-          <>
-            <Themes />
-            <Needs />
-          </>
-        )}
+      <div className={cls(styles.container, className)}>
+        <div className={cls(styles.searchBar, isMobile ? styles.searchBarSticky : "")}>
+          <SearchButton onChange={(e) => setSearch(e.target.value)} />
+        </div>
+        <div className={styles.main}>
+          {search ? (
+            <SearchResults />
+          ) : isMobile ? (
+            <>
+              <MobileMenu />
+            </>
+          ) : (
+            <>
+              <Themes />
+              <Needs />
+            </>
+          )}
+        </div>
       </div>
     </ThemeMenuContext.Provider>
   );

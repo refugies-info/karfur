@@ -9,12 +9,12 @@ const AllNeedsItem: React.FC = () => {
   const { selectedThemeId, nbDispositifsByTheme } = useContext(ThemeMenuContext);
 
   return (
-    <Checkbox>
-      <span className={styles.container}>
+    <div className={styles.container}>
+      <Checkbox>
         <span className={styles.label}>{t("Recherche.all", "Tous")}</span>
         <span className={styles.count}>{selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""}</span>
-      </span>
-    </Checkbox>
+      </Checkbox>
+    </div>
   );
 };
 
