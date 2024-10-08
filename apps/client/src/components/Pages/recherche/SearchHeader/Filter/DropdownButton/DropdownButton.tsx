@@ -33,7 +33,9 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
           </span>
         )}
         {!icon && value.length === 0 && !icon && (
-          <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
+          <>
+            {label} <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
+          </>
         )}
       </button>
 
