@@ -2,7 +2,6 @@ import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MobileMenu from "~/components/Pages/recherche/ThemeMenu/MobileMenu";
 import SearchButton from "~/components/UI/SearchButton";
 import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
@@ -128,14 +127,10 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
         <div className={styles.main}>
           {search ? (
             <SearchResults />
-          ) : isMobile ? (
-            <>
-              <MobileMenu />
-            </>
           ) : (
             <>
               <Themes />
-              <Needs />
+              {!isMobile && <Needs />}
             </>
           )}
         </div>

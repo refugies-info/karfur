@@ -11,3 +11,7 @@
   /* Style */
   background: var(--text-inverted-grey);
 }
+
+.accordion {
+  width: 100%;
+}

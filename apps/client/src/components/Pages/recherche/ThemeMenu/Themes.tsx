@@ -1,6 +1,8 @@
+import * as Accordion from "@radix-ui/react-accordion";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocale } from "~/hooks";
+import ThemeItemMobile from "~/components/Pages/recherche/ThemeMenu/ThemeItem.mobile";
+import { useLocale, useWindowSize } from "~/hooks";
 import { sortThemes } from "~/lib/sortThemes";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
@@ -18,6 +20,8 @@ const Themes: React.FC = () => {
 
   const query = useSelector(searchQuerySelector);
   const needs = useSelector(needsSelector);
+
+  const { isMobile } = useWindowSize();
 
   // count needs selected by theme
   useEffect(() => {
@@ -38,22 +42,42 @@ const Themes: React.FC = () => {
   }, [query.needs, query.themes, themes, needs]);
 
   return (
-    <div className={styles.container}>
-      {sortedThemes.map(({ _id, mainColor, short }, i) => {
-        const count = nbNeedsSelectedByTheme[_id.toString()];
-        const selected = selectedThemeId === _id;
-        return (
-          <ThemeItem
-            key={i}
-            color={mainColor}
-            id={_id.toString()}
-            label={short[locale] ?? ""}
-            needCount={count}
-            selected={selected}
-          />
-        );
-      })}
-    </div>
+    <>
+      {isMobile ? (
+        <Accordion.Root className={styles.accordion} type="single" collapsible>
+          {sortedThemes.map(({ _id, mainColor, short }, i) => {
+            const count = nbNeedsSelectedByTheme[_id.toString()];
+            return (
+              <ThemeItemMobile
+                className={styles.accordionItem}
+                color={mainColor}
+                key={i}
+                themeId={_id.toString()}
+                label={short[locale] ?? ""}
+                needCount={count}
+              />
+            );
+          })}
+        </Accordion.Root>
+      ) : (
+        <div className={styles.container}>
+          {sortedThemes.map(({ _id, mainColor, short }, i) => {
+            const count = nbNeedsSelectedByTheme[_id.toString()];
+            const selected = selectedThemeId === _id;
+            return (
+              <ThemeItem
+                key={i}
+                color={mainColor}
+                id={_id.toString()}
+                label={short[locale] ?? ""}
+                needCount={count}
+                selected={selected}
+              />
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 

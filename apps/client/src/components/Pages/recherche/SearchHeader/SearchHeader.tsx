@@ -1,7 +1,6 @@
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { Container } from "reactstrap";
-import ThemeMenu from "~/components/Pages/recherche/ThemeMenu";
 import { useScrollDirection } from "~/hooks/useScrollDirection";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
@@ -29,11 +28,6 @@ const SearchHeader = (props: Props) => {
 
   return (
     <>
-      <div style={{ width: "600px" }}>
-        <ThemeMenu mobile={true} isOpen={true} />
-      </div>
-      <ThemeMenu mobile={true} isOpen={true} />
-
       <div className={styles.title}>
         <Container>
           <h1>{t("Recherche.title")}</h1>
