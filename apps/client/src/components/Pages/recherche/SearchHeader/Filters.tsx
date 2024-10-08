@@ -12,12 +12,7 @@ import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
-
-interface Props {
-  isSmall?: boolean;
-}
-
-const Filters = (props: Props) => {
+const Filters = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -39,7 +34,7 @@ const Filters = (props: Props) => {
 
   // LOCATION
   const resetDepartment = useCallback(() => {
-    dispatch(addToQueryActionCreator({ departments: [], sort: "date" }));
+    dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
   }, [dispatch]);
 
   const statusOptions = useStatusOptions();
@@ -49,12 +44,13 @@ const Filters = (props: Props) => {
   const languageOptions = useLanguagesOptions();
 
   return (
-    <Container className={cls(styles.container, props.isSmall && styles.small)}>
-      <SearchInput onChange={onChangeSearchInput} />
-      <div className="d-flex align-items-center gap-3">
+    <Container className={cls(styles.container)}>
+      <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
+      <div className={styles.filtersBar}>
         <Filter
           label={t("Dispositif.Département", "Département")}
-          dropdownMenu={{
+          layout={"mobile"}
+          externalMenu={{
             value: query.departments,
             reset: resetDepartment,
             menu: <LocationMenu />,
@@ -63,7 +59,7 @@ const Filters = (props: Props) => {
         />
         <Filter
           label={t("Recherche.themes", "Thèmes")}
-          dropdownMenu={{
+          externalMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
             menu: <ThemeMenu mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
@@ -72,57 +68,121 @@ const Filters = (props: Props) => {
         />
         <Filter
           label={t("Recherche.filterStatus", "Statut")}
-          dropdownMenu={{
-            filterKey: "status",
-            selected: query.status,
-            options: statusOptions,
-            translateOptions: true,
-            menuItemStyles: cls(styles.menuItem, styles.small),
-          }}
+          menuItems={[
+            {
+              filterKey: "status",
+              selected: query.status,
+              options: statusOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+          ]}
+          className={cls(styles.filter, styles.filterHiddenOnMobile)}
           gaType="age"
         />
         <Filter
           label={t("Recherche.filterPublic", "Public visé")}
-          dropdownMenu={{
-            filterKey: "public",
-            selected: query.public,
-            options: publicOptions,
-            translateOptions: true,
-            menuItemStyles: cls(styles.menuItem, styles.small),
-          }}
+          menuItems={[
+            {
+              filterKey: "public",
+              selected: query.public,
+              options: publicOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+          ]}
+          className={cls(styles.filter, styles.filterHiddenOnMobile)}
           gaType="public"
         />
         <Filter
           label={t("Recherche.filterAge", "Tranche d'âge")}
-          dropdownMenu={{
-            filterKey: "age",
-            selected: query.age,
-            options: ageOptions,
-            translateOptions: true,
-            menuItemStyles: cls(styles.menuItem, styles.small),
-          }}
+          menuItems={[
+            {
+              filterKey: "age",
+              selected: query.age,
+              options: ageOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+          ]}
+          className={cls(styles.filter, styles.filterHiddenOnMobile)}
           gaType="status"
         />
         <Filter
           label={t("Recherche.filterFrenchLevel", "Niveau de français")}
-          dropdownMenu={{
-            filterKey: "frenchLevel",
-            selected: query.frenchLevel,
-            options: frenchLevelOptions,
-            translateOptions: true,
-            menuItemStyles: cls(styles.menuItem, styles.small),
-          }}
+          menuItems={[
+            {
+              filterKey: "frenchLevel",
+              selected: query.frenchLevel,
+              options: frenchLevelOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+          ]}
+          className={cls(styles.filter, styles.filterHiddenOnMobile)}
           gaType="frenchLevel"
         />
         <Filter
           label={t("Recherche.filterLanguage", "Fiches traduites en")}
-          dropdownMenu={{
-            filterKey: "language",
-            selected: query.language,
-            options: languageOptions,
-            translateOptions: false,
-            menuItemStyles: cls(styles.menuItem, styles.medium),
-          }}
+          menuItems={[
+            {
+              filterKey: "language",
+              selected: query.language,
+              options: languageOptions,
+              translateOptions: false,
+              menuItemStyles: cls(styles.menuItem, styles.medium),
+            },
+          ]}
+          className={cls(styles.filter, styles.filterHiddenOnMobile)}
+          gaType="language"
+        />
+
+        <Filter
+          label={t("Recherche.filtersAndSortModalTitle", "Filtres et tri")}
+          icon="ri-equalizer-line"
+          menuItems={[
+            {
+              label: t("Recherche.filterStatus", "Statut"),
+              filterKey: "status",
+              selected: query.status,
+              options: statusOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+            {
+              label: t("Recherche.filterPublic", "Public visé"),
+              filterKey: "public",
+              selected: query.public,
+              options: publicOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+            {
+              label: t("Recherche.filterAge", "Tranche d'âge"),
+              filterKey: "age",
+              selected: query.age,
+              options: ageOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+            {
+              label: t("Recherche.filterFrenchLevel", "Niveau de français"),
+              filterKey: "frenchLevel",
+              selected: query.frenchLevel,
+              options: frenchLevelOptions,
+              translateOptions: true,
+              menuItemStyles: cls(styles.menuItem, styles.small),
+            },
+            {
+              label: t("Recherche.filterLanguage", "Fiches traduites en"),
+              filterKey: "language",
+              selected: query.language,
+              options: languageOptions,
+              translateOptions: false,
+              menuItemStyles: cls(styles.menuItem, styles.medium),
+            },
+          ]}
+          className={cls(styles.collapsedFiltersButton)}
           gaType="language"
         />
       </div>

@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TitleWithNumber from "~/components/Backend/TitleWithNumber";
 import { FrameModal } from "~/components/Modals";
-import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
 import FButton from "~/components/UI/FButton/FButton";
 import Toast from "~/components/UI/Toast";
@@ -92,11 +91,7 @@ const UserFavorites = (props: Props) => {
             <div className={styles.cards}>
               {favorites.map((fav, index) => (
                 <div key={index}>
-                  {fav.typeContenu === "demarche" ? (
-                    <DemarcheCard demarche={fav} />
-                  ) : (
-                    <DispositifCard dispositif={fav} />
-                  )}
+                  <DispositifCard dispositif={fav} />
                 </div>
               ))}
             </div>

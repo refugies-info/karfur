@@ -1,13 +1,10 @@
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { Container } from "reactstrap";
-import { useScrollDirection } from "~/hooks/useScrollDirection";
-import useWindowSize from "~/hooks/useWindowSize";
+import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
-
-const SCROLL_LIMIT = 500;
 
 interface Props {
   nbResults: number;
@@ -15,16 +12,9 @@ interface Props {
 
 const SearchHeader = (props: Props) => {
   const { t } = useTranslation();
-  const { isMobile } = useWindowSize();
+  const stickyBarRef = useRef<HTMLDivElement>(null);
 
-  // SCROLL
-  const [scrolled, setScrolled] = useState(true);
-  const [_scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
-  useEffect(() => {
-    if (!isMobile) {
-      setScrolled(!!overScrollLimit);
-    }
-  }, [overScrollLimit, isMobile]);
+  const isSticky = useIsSticky(stickyBarRef);
 
   return (
     <>
@@ -34,8 +24,8 @@ const SearchHeader = (props: Props) => {
           <p>{t("Recherche.subtitle", { count: props.nbResults })}</p>
         </Container>
       </div>
-      <div className={cls(styles.stickybar, scrolled && styles.scrolled)}>
-        <Filters isSmall={scrolled} />
+      <div ref={stickyBarRef} className={cls(styles.stickybar, isSticky && styles.sticky)}>
+        <Filters />
       </div>
     </>
   );

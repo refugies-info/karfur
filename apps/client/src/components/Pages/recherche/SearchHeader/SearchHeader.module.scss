@@ -13,7 +13,7 @@
 .title {
   text-align: center;
   padding-top: u(14);
-  padding-bottom: u(10);
+  padding-bottom: u(1);
 
   h1 {
     @include dsfr-text("h1");
@@ -25,29 +25,17 @@
 }
 
 .stickybar {
-  padding-bottom: u(14);
+  position: sticky;
+  top: -1px;
+  padding-top: u(2.5);
+  padding-bottom: u(10);
+  transition: 0.1s padding linear;
+  clip-path: inset(0 -18px -18px -18px);
 
-  &.scrolled {
-    padding-top: u(4);
-    padding-bottom: u(4);
-
-    @include media-min("desktop-up") {
-      position: fixed;
-      top: -1px;
-      z-index: 20;
-      width: 100%;
-      animation: 0.3s ease-in-out 1 both slidein;
-      box-shadow: 0 4px 18px 0 #0000001a;
-    }
-  }
-}
-
-@keyframes slidein {
-  from {
-    transform: translateY(-100%);
-  }
-
-  to {
-    transform: translateY(0);
+  &.sticky {
+    padding-bottom: u(2.5);
+    z-index: 20;
+    width: 100%;
+    box-shadow: 0 4px 18px 0 #0000001a;
   }
 }

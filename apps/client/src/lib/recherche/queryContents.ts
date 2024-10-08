@@ -1,5 +1,8 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
+import { SortOptions } from "~/data/searchFilters";
+import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
+import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import {
   filterByAge,
@@ -11,7 +14,6 @@ import {
   filterByThemeOrNeed,
 } from "./filterContents";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
-import { sortDispositifs } from "./sortContents";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const indexName =
@@ -19,6 +21,40 @@ const indexName =
     ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
     : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
 const index = searchClient.initIndex(indexName || "");
+
+const buildFilterKeys = (query: SearchQuery): Array<FilterKey> => {
+  let keys: Array<FilterKey> = [];
+  if ((query.themes && query.themes.length > 0) || (query.needs && query.needs.length > 0)) {
+    keys.push("theme");
+  }
+  if (query.departments && query.departments.length > 0) {
+    keys.push("location");
+  }
+  if (query.search) {
+    keys.push("keywords");
+  }
+  return keys;
+};
+
+export const getDisplayRuleForQuery = (query: SearchQuery, ruleKey: RuleKey | undefined = undefined) => {
+  const filterKeys = buildFilterKeys(query);
+  return getDisplayRule(query.type, filterKeys, ruleKey || query.sort);
+};
+
+export const getDefaultSortOption = (query: SearchQuery): SortOptions => {
+  const filterKeys = buildFilterKeys(query);
+  const rule = getDisplayRule(query.type, filterKeys, "default");
+  switch (rule?.sortFunction) {
+    case sortByDate:
+      return "date";
+    case sortByLocation:
+      return "location";
+    case sortByTheme:
+      return "theme";
+    default:
+      return "view";
+  }
+};
 
 /**
  * Filters a list of dispositifs from a query, for primary theme or secondary themes
@@ -32,15 +68,17 @@ const filterDispositifs = (
   dispositifs: GetDispositifsResponse[],
   secondaryThemes: boolean,
 ): GetDispositifsResponse[] => {
-  return [...dispositifs]
+  const filterKeys = buildFilterKeys(query);
+  const rule = getDisplayRule(query.type, filterKeys, query.sort);
+  const filteredDispositifs = dispositifs
     .filter((dispositif) => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
     .filter((dispositif) => filterByLocations(dispositif, query.departments))
     .filter((dispositif) => filterByAge(dispositif, query.age))
     .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
     .filter((dispositif) => filterByLanguage(dispositif, query.language))
     .filter((dispositif) => filterByPublic(dispositif, query.public))
-    .filter((dispositif) => filterByStatus(dispositif, query.status))
-    .sort((a, b) => sortDispositifs(a, b, query.sort, !!query.search));
+    .filter((dispositif) => filterByStatus(dispositif, query.status));
+  return rule?.sortFunction ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b)) : filteredDispositifs;
 };
 
 let searchCache = "";

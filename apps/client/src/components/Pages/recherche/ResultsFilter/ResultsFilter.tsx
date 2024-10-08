@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
 import { cls } from "~/lib/classname";
+import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
@@ -66,14 +67,6 @@ const ResultsFilter = (): React.ReactNode => {
 
   const noResult = nbDemarches + nbDispositifs === 0;
 
-  useEffect(() => {
-    // if we select 1 theme, and sort option was "theme", change it
-    if (themesDisplayed.length === 1 && query.sort === "theme") {
-      dispatch(addToQueryActionCreator({ sort: "date" }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [themesDisplayed.length]);
-
   const selectType = useCallback(
     (key: TypeOptions) => {
       dispatch(addToQueryActionCreator({ type: key }));
@@ -122,6 +115,17 @@ const ResultsFilter = (): React.ReactNode => {
     }
   };
 
+  const filteredSortOptions = useMemo(() => {
+    return sortOptions.filter((option) => {
+      const rule = getDisplayRuleForQuery(query, option.key);
+      return rule ? rule.display : true;
+    });
+  }, [query]);
+
+  const defaultSortOption = useMemo(() => {
+    return getDefaultSortOption(query);
+  }, [query]);
+
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
       <div className={styles.grid}>
@@ -132,25 +136,23 @@ const ResultsFilter = (): React.ReactNode => {
             </TabItem>
           ))}
         </TabsBar>
-        <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleSort}>
-          <DropdownMenu.Trigger className={styles.sort_button} asChild>
-            <button aria-haspopup="true" aria-expanded={open}>
-              <span className={styles.sort_label}>
-                {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
-              </span>
-              <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
-            </button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
-              {sortOptions
-                .filter((option) => {
-                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                  if (query.departments.length === 0 && option.key === "location") return false;
-                  return true;
-                })
-                .map((option, i) => {
-                  const isSelected = query.sort === option.key;
+        {filteredSortOptions.length > 0 && (
+          <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleSort}>
+            <DropdownMenu.Trigger className={styles.sort_button} asChild>
+              <button aria-haspopup="true" aria-expanded={open}>
+                <span className={styles.sort_label}>
+                  {t(
+                    sortOptions.find((opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort))
+                      ?.value || "",
+                  )}
+                </span>
+                <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
+                {filteredSortOptions.map((option, i) => {
+                  const isSelected = (query.sort === "default" ? defaultSortOption : query.sort) === option.key;
                   return (
                     <DropdownMenu.Item
                       key={i}
@@ -167,9 +169,10 @@ const ResultsFilter = (): React.ReactNode => {
                     </DropdownMenu.Item>
                   );
                 })}
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>{" "}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        )}
       </div>
     </div>
   );

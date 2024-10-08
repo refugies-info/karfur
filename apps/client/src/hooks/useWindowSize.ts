@@ -7,9 +7,10 @@ type WindowSize = {
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: undefined,
-    height: undefined,
+    width: typeof window !== "undefined" ? window.innerWidth : undefined,
+    height: typeof window !== "undefined" ? window.innerHeight : undefined,
   });
+
   const isMobile = windowSize.width && windowSize.width <= 768;
   const isTablet = windowSize.width && windowSize.width < 992;
 
