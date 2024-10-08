@@ -2,7 +2,7 @@ import type { publicStatusType, publicType } from "@refugies-info/api-types";
 
 export type AgeOptions = "-18" | "18-25" | "+25";
 export type FrenchOptions = "a" | "b" | "c";
-export type SortOptions = "date" | "view" | "theme" | "location";
+export type SortOptions = "default" | "date" | "view" | "theme" | "location";
 export type TypeOptions = "dispositif" | "demarche" | "all" | "ressource";
 export type PublicOptions = publicType;
 export type StatusOptions = publicStatusType;

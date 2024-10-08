@@ -1,6 +1,7 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
 import { createReducer } from "typesafe-actions";
+import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { SearchResultsActions } from "./searchResults.actions";
 
 export type Results = {
@@ -42,12 +43,19 @@ const initialSearchResultsState: SearchResultsState = {
     language: [],
     public: [],
     status: [],
-    sort: "date",
+    sort: "default",
     type: "all",
   },
 };
 
 export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(initialSearchResultsState, {
   SET_RESULTS: (state, action) => ({ ...state, results: action.payload }),
-  ADD_TO_QUERY: (state, action) => ({ ...state, query: { ...state.query, ...action.payload } }),
+  ADD_TO_QUERY: (state, action) => {
+    const query = { ...state.query, ...action.payload };
+    const rule = getDisplayRuleForQuery(query);
+    return {
+      ...state,
+      query: { ...query, sort: !rule?.display ? "default" : query.sort },
+    };
+  },
 });

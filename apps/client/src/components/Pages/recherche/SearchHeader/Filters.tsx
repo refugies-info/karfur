@@ -34,7 +34,7 @@ const Filters = () => {
 
   // LOCATION
   const resetDepartment = useCallback(() => {
-    dispatch(addToQueryActionCreator({ departments: [], sort: "date" }));
+    dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
   }, [dispatch]);
 
   const statusOptions = useStatusOptions();
