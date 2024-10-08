@@ -54,8 +54,8 @@ export const sortOptions: SortFilters = [
 ];
 export const filterType: TypeFilters = [
   { key: "all", value: "Filters.typeAll", backwardCompatibility: "" },
-  { key: "dispositif", value: "Filters.typeDispositif", backwardCompatibility: "dispositifs" },
   { key: "demarche", value: "Filters.typeDemarche", backwardCompatibility: "demarches" },
+  { key: "dispositif", value: "Filters.typeDispositif", backwardCompatibility: "dispositifs" },
   { key: "ressource", value: "Filters.typeRessource", backwardCompatibility: "ressources" },
 ];
 export const publicOptions: PublicFilters = [
