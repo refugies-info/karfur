@@ -2547,7 +2547,7 @@ exports[`homepage renders homepage 1`] = `
                             class="fr-icon-time-line me-2"
                           />
                           <span>
-                            Mise à jour il y a 2 ans
+                            Mise à jour il y a 3 ans
                           </span>
                         </span>
                       </div>
