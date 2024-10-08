@@ -360,7 +360,7 @@ const Agir = () => {
                   imageAlt=""
                   imageUrl={ActeursIlluDemarche.src}
                   linkProps={{
-                    href: getPath("/recherche", "fr", `?${buildUrlQuery({ type: "demarche", sort: "date" })}`),
+                    href: getPath("/recherche", "fr", `?${buildUrlQuery({ type: "demarche", sort: "default" })}`),
                   }}
                   size="small"
                   titleAs="h4"

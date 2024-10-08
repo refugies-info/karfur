@@ -1,7 +1,6 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import DemarcheCard from "~/components/UI/DemarcheCard";
 import DispositifCard from "~/components/UI/DispositifCard";
 import styles from "./RightAnnuaireDetails.module.scss";
 
@@ -42,11 +41,7 @@ export const RightAnnuaireDetails = (props: Props) => {
         {nbActiveDispositifs > 0 &&
           activeDispositifsAssocies.map((dispositif) => (
             <div key={dispositif._id.toString()} className={styles.card}>
-              {dispositif.typeContenu === "demarche" ? (
-                <DemarcheCard demarche={dispositif} />
-              ) : (
-                <DispositifCard dispositif={dispositif} />
-              )}
+              <DispositifCard dispositif={dispositif} />
             </div>
           ))}
       </div>
