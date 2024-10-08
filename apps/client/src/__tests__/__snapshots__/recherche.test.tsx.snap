@@ -69,6 +69,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r1:"
                 type="button"
               >
+                Dispositif.Département 
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -115,6 +116,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r5:"
                 type="button"
               >
+                Recherche.filterStatus 
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -135,6 +137,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r7:"
                 type="button"
               >
+                Recherche.filterPublic 
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -155,6 +158,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r9:"
                 type="button"
               >
+                Recherche.filterAge 
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -175,6 +179,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:rb:"
                 type="button"
               >
+                Recherche.filterFrenchLevel 
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -195,6 +200,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:rd:"
                 type="button"
               >
+                Recherche.filterLanguage 
                 <i
                   class="ri-arrow-down-s-line"
                 />
