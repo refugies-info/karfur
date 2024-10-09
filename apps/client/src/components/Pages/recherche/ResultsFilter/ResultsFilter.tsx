@@ -49,14 +49,11 @@ const ResultsFilter = (): React.ReactNode => {
       case "dispositif":
         const deptCount = query.departments.length;
         switch (deptCount) {
-          case 0:
-            return `(${nbDispositifs})`;
-
           case 1:
             return `${query.departments[0]} (${nbDispositifs})`;
 
           default:
-            return `${query.departments[0]} + ${deptCount - 1} (${nbDispositifs})`;
+            return `(${nbDispositifs})`;
         }
       case "ressource":
         return `(${onlineResourceCount})`;

@@ -181,8 +181,7 @@
     "sortView": "Most viewed",
     "typeAll": "All records",
     "typeDispositif": "Schemes",
-    "typeDemarche": "Procedures",
-    "typeRessource": "Resources"
+    "typeDemarche": "Procedures"
   },
   "Status": {
     "En attente": "Pending",
