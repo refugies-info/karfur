@@ -9,6 +9,7 @@
 
 .disabled {
   cursor: not-allowed;
+  background: var(--background-default-grey-hover);
 }
 
 .root {
