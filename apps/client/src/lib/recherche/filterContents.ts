@@ -39,7 +39,7 @@ export const filterByLocations = (dispositif: GetDispositifsResponse, department
   return false;
 };
 
-const filterAgeValues: Record<AgeOptions, [number, number]> = {
+const FILTER_AGE_VALUES: Record<AgeOptions, [number, number]> = {
   "-18": [0, 18],
   "18-25": [18, 25],
   "+25": [25, 99],
@@ -85,15 +85,15 @@ function convertAudienceAgeToRange(audienceAge: AudienceAge): [number, number] {
   }
 }
 
-export const getMatchingAgeFilters = (dispositif: GetDispositifsResponse): AgeOptions[] => {
-  const allAgeOptions = Object.keys(filterAgeValues) as AgeOptions[];
+export const getMatchingAgeOptions = (dispositif: GetDispositifsResponse): AgeOptions[] => {
+  const allAgeOptions = Object.keys(FILTER_AGE_VALUES) as AgeOptions[];
   const audienceAge = dispositif.metadatas?.age;
   if (!audienceAge || !audienceAge.ages) return allAgeOptions;
 
   const audienceAgeRange = convertAudienceAgeToRange(audienceAge);
 
   return allAgeOptions.reduce((acc, age) => {
-    const filterRange = filterAgeValues[age];
+    const filterRange = FILTER_AGE_VALUES[age];
     if (isAgeRangeCompatible(filterRange, audienceAgeRange)) {
       return [...acc, age];
     }
@@ -101,14 +101,14 @@ export const getMatchingAgeFilters = (dispositif: GetDispositifsResponse): AgeOp
   }, [] as AgeOptions[]);
 };
 
-export const countMatchingAgeFilters = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]): number => {
+export const countMatchingAgeOptions = (dispositif: GetDispositifsResponse, ageOptions: AgeOptions[]): number => {
   const audienceAge = dispositif.metadatas?.age;
-  if (!audienceAge || !audienceAge.ages) return ageFilters.length;
+  if (!audienceAge || !audienceAge.ages) return ageOptions.length;
 
   const audienceAgeRange = convertAudienceAgeToRange(audienceAge);
 
-  return ageFilters.reduce((count, age) => {
-    const filterRange = filterAgeValues[age];
+  return ageOptions.reduce((count, age) => {
+    const filterRange = FILTER_AGE_VALUES[age];
     if (isAgeRangeCompatible(filterRange, audienceAgeRange)) {
       return count + 1;
     }
@@ -118,10 +118,10 @@ export const countMatchingAgeFilters = (dispositif: GetDispositifsResponse, ageF
 
 export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
-  return countMatchingAgeFilters(dispositif, ageFilters) === ageFilters.length;
+  return countMatchingAgeOptions(dispositif, ageFilters) === ageFilters.length;
 };
 
-const filterFrenchLevelValues = {
+const FILTER_FRENCH_LEVEL_VALUES = {
   a: ["A1", "A2"],
   b: ["A1", "A2", "B1", "B2"],
   c: [],
@@ -136,12 +136,12 @@ export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLe
     return true;
   } else if (frenchLevelFilters.includes("b")) {
     for (const frenchLevel of frenchLevels) {
-      if (filterFrenchLevelValues["b"].includes(frenchLevel)) return true;
+      if (FILTER_FRENCH_LEVEL_VALUES["b"].includes(frenchLevel)) return true;
     }
     return false;
   } else if (frenchLevelFilters.includes("a")) {
     for (const frenchLevel of frenchLevels) {
-      if (filterFrenchLevelValues["a"].includes(frenchLevel)) return true;
+      if (FILTER_FRENCH_LEVEL_VALUES["a"].includes(frenchLevel)) return true;
     }
     return false;
   }

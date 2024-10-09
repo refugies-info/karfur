@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { getMatchingAgeFilters } from "~/lib/recherche/filterContents";
+import { getMatchingAgeOptions } from "~/lib/recherche/filterContents";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 
@@ -64,7 +64,7 @@ export const useAgeOptions = () => {
 
   const counts = useMemo(() => {
     return _(docs)
-      .flatMap((doc) => getMatchingAgeFilters(doc))
+      .flatMap((doc) => getMatchingAgeOptions(doc))
       .countBy()
       .value();
   }, [docs]);
