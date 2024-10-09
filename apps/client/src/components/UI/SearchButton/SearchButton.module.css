@@ -10,6 +10,11 @@
   background: var(--background-contrast-grey);
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
 .zone {
   display: flex;
   align-items: flex-start;

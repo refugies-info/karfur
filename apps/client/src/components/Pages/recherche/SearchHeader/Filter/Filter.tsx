@@ -27,7 +27,6 @@ type PropsBase = {
   label: string;
   icon?: string;
   gaType: string;
-  layout?: "mobile" | "desktop";
   className?: string;
 };
 

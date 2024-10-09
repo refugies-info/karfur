@@ -49,7 +49,6 @@ const Filters = () => {
       <div className={styles.filtersBar}>
         <Filter
           label={t("Dispositif.Département", "Département")}
-          layout={"mobile"}
           externalMenu={{
             value: query.departments,
             reset: resetDepartment,
