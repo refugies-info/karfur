@@ -46,8 +46,6 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
 
-  console.log(isMobile);
-
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
@@ -120,7 +118,7 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
     <ThemeMenuContext.Provider
       value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
     >
-      <div className={cls(styles.container, className)}>
+      <div className={cls(!isMobile && styles.container, className)}>
         <div className={cls(styles.searchBar, isMobile ? styles.searchBarSticky : "")}>
           <SearchButton onChange={(e) => setSearch(e.target.value)} />
         </div>

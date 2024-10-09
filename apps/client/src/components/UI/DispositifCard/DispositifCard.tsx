@@ -1,12 +1,13 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import Card from "@codegouvfr/react-dsfr/Card";
 import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
+import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import FavoriteButton from "~/components/UI/FavoriteButton";
 import { useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
@@ -14,6 +15,7 @@ import { jsLcfirst, jsUcfirst } from "~/lib";
 import { cls } from "~/lib/classname";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
 import { getReadableText } from "~/lib/getReadableText";
+import { getRelativeTimeString } from "~/lib/getRelativeDate";
 import { getTheme } from "~/lib/getTheme";
 import { getPath } from "~/routes";
 import styles from "~/scss/components/contentCard.module.scss";
@@ -32,6 +34,10 @@ const DispositifCard = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const themes = useSelector(themesSelector);
+  const isDispositif = useMemo(
+    () => props.dispositif.typeContenu === ContentType.DISPOSITIF,
+    [props.dispositif.typeContenu],
+  );
   const theme = getTheme(props.dispositif.theme, themes);
   const { params: utmParams } = useUtmz();
 
@@ -39,103 +45,153 @@ const DispositifCard = (props: Props) => {
   const price = props.dispositif.metadatas?.price;
   const isOnline = props.dispositif.metadatas?.location === "online";
 
-  const getDepartement = () => {
+  const badge = useMemo((): { className: string; text: string | null } => {
+    if (!isDispositif) return { text: "Démarche", className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
-    if (!location) return null;
+    if (!location) return { text: null, className: styles.badge_department };
     if (!Array.isArray(location)) {
-      if (location === "france") return jsUcfirst(t("Recherche.france", "toute la France"));
-      if (location === "online") return jsUcfirst(t("Recherche.online"));
+      if (location === "france")
+        return { text: jsUcfirst(t("Recherche.france", "toute la France")), className: styles.badge_department };
+      if (location === "online") return { text: jsUcfirst(t("Recherche.online")), className: styles.badge_online };
     }
-    if (props.selectedDepartment) return props.selectedDepartment;
+    if (props.selectedDepartment) return { text: props.selectedDepartment, className: styles.badge_department };
     if (Array.isArray(location) && location.length > 1)
-      return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+      return {
+        text: `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`,
+        className: styles.badge_department,
+      };
 
     const splittedLocation = location[0].split(" - ");
-    return `${splittedLocation[1]} ${splittedLocation[0]}`;
-  };
+    return { text: `${splittedLocation[1]} ${splittedLocation[0]}`, className: styles.badge_department };
+  }, [props.dispositif.metadatas, props.selectedDepartment, isDispositif, t]);
 
   const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
-  const safeTitreMarque = useSanitizedContent(props.dispositif?.titreMarque);
   const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
   const safeAbstract = useSanitizedContent(props.dispositif.abstract);
-  const cardImageUrl = useCardImageUrl(theme, ContentType.DISPOSITIF);
+  const cardImageUrl = useCardImageUrl(theme, props.dispositif.typeContenu);
+
+  const defaultImage = isDispositif ? defaultStructureImage : demarcheIcon;
 
   return (
     <div className={cls(styles.wrapper, props.className)}>
-      <Card
-        background
-        border
-        enlargeLink
-        linkProps={{
-          href: props.demoCard
-            ? "#"
-            : {
-                pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
-                query: { id: props.dispositif._id.toString(), ...utmParams },
-              },
-          target: props.targetBlank ? "_blank" : undefined,
-          rel: props.targetBlank ? "noopener noreferrer" : undefined,
-          title: getReadableText(props.dispositif.titreInformatif || ""),
-          className: "fr-link",
-        }}
-        size="medium"
-        imageAlt=""
-        imageUrl={cardImageUrl}
-        badge={
-          <Badge small className={isOnline ? styles.badge_online : styles.badge_department}>
-            {isOnline && <i className="ri-at-line me-1"></i>}
-            {getDepartement()}
-          </Badge>
-        }
-        start={
-          <>
-            <div className={styles.sponsor}>
-              <Image
-                src={props.dispositif?.sponsor?.picture?.secure_url || defaultStructureImage}
-                alt={props.dispositif?.sponsor?.nom || ""}
-                width={48}
-                height={48}
-                style={{ objectFit: "contain" }}
+      <div className={cls("fr-card fr-enlarge-link", styles.container)}>
+        <div className={cls("fr-card__body", styles.body)}>
+          <div className={cls("fr-card__content", styles.content)}>
+            <div className={styles.text}>
+              <h3 className="fr-card__title">
+                <Link
+                  target={props.targetBlank ? "_blank" : undefined}
+                  rel={props.targetBlank ? "noopener noreferrer" : undefined}
+                  title={getReadableText(props.dispositif.titreInformatif || "")}
+                  href={
+                    props.demoCard
+                      ? "#"
+                      : {
+                          pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
+                          query: { id: props.dispositif._id.toString(), ...utmParams },
+                        }
+                  }
+                >
+                  <span
+                    className={cls(styles.title, styles.three_lines)}
+                    dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
+                  ></span>
+                </Link>
+              </h3>
+              <p
+                className={cls("fr-card__desc", styles.desc, props.demoCard && styles.demo)}
+                dangerouslySetInnerHTML={{ __html: safeAbstract }}
               />
             </div>
-            <div className="d-flex gap-2 mb-2">
-              <NewThemeBadge theme={theme} />
-              {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
-                <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
+
+            <div className="fr-card__start mb-3 position-relative">
+              <div className={styles.sponsor}>
+                <Image
+                  src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
+                  alt={props.dispositif?.sponsor?.nom || ""}
+                  width={48}
+                  height={48}
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <div className="d-flex gap-2 mb-2">
+                <NewThemeBadge theme={theme} />
+                {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
+                  <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
+                )}
+              </div>
+
+              {props.dispositif?.sponsor?.nom && (
+                <div className={styles.info}>
+                  <span>
+                    <i className="fr-icon-building-line me-2" />
+                    <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
+                  </span>
+                </div>
               )}
             </div>
-            <div className={cls(styles.info, "mb-3")}>
-              <i className="fr-icon-building-line" />
-              <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
-            </div>
-          </>
-        }
-        title={<span className={styles.three_lines} dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}></span>}
-        titleAs="h3"
-        desc={
-          <span
-            className={cls(styles.three_lines, props.demoCard && styles.demo)}
-            dangerouslySetInnerHTML={{ __html: safeAbstract }}
-          ></span>
-        }
-        end={
-          <div className="d-flex gap-2">
-            {price !== undefined && (
-              <div className={styles.info}>
-                <i className="fr-icon-money-euro-circle-line" />
-                <span>{getPriceText(price, t)}</span>
-              </div>
-            )}
 
-            {commitment && (
-              <div className={styles.info}>
-                <i className="fr-icon-time-line" />
-                <span>{getCommitmentText(commitment, t)}</span>
-              </div>
-            )}
+            <div className={styles.end}>
+              {isDispositif ? (
+                <>
+                  <div className={cls(styles.info, "d-flex gap-2")}>
+                    {price !== undefined && (
+                      <span className="flex-shrink-0">
+                        <i className="fr-icon-money-euro-circle-line me-2" />
+                        <span>{getPriceText(price, t)}</span>
+                      </span>
+                    )}
+                    {commitment && (
+                      <span className="flex-shrink-1">
+                        <i className="fr-icon-time-line me-2" />
+                        <span>{getCommitmentText(commitment, t, true)}</span>
+                      </span>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {props.dispositif.lastModificationDate && (
+                    <div className={styles.info}>
+                      <span className="flex-shrink-1">
+                        <i className="fr-icon-time-line me-2" />
+                        <span>
+                          Mise à jour{" "}
+                          {getRelativeTimeString(
+                            new Date(props.dispositif.lastModificationDate),
+                            router.locale || "fr",
+                          )}
+                        </span>
+                      </span>
+                    </div>
+                  )}
+                </>
+              )}
+              <i className="fr-icon-arrow-right-line" />
+            </div>
           </div>
-        }
-      />
+        </div>
+        <div className="fr-card__header">
+          <div className="fr-card__img">
+            <Image
+              className="fr-responsive-img"
+              width={280}
+              height={158}
+              src={cardImageUrl}
+              alt=""
+              data-fr-js-ratio="true"
+            />
+          </div>
+          <ul className="fr-badges-group">
+            <li>
+              <Badge small className={badge.className}>
+                {isOnline && <i className="ri-at-line me-1"></i>}
+                {badge.text}
+              </Badge>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <FavoriteButton contentId={props.dispositif._id} className={styles.favorite} />
     </div>

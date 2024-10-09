@@ -35,7 +35,7 @@ const Needs: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <AllNeedsItem />
+      <AllNeedsItem themeId={selectedThemeId as string} />
       <div className={styles.needs} ref={needsContainerRef}>
         {displayedNeeds.map((need, i) => {
           return <NeedItem key={i} need={need} />;

@@ -29,7 +29,7 @@
     "dev:client": "yarn turbo dev --filter=@refugies-info/client",
     "dev:server": "yarn turbo dev --filter=@refugies-info/server",
     "dev:mobile": "yarn turbo dev --filter=@refugies-info/mobile",
-    "update-icons": "react-dsfr update-icons --projectDir ./apps/client",
+    "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
     "start": "yarn turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",

@@ -19,7 +19,7 @@ const DepartmentMenuItem: React.FC<Props> = ({ dep }) => {
     dispatch(
       addToQueryActionCreator({
         departments,
-        sort: departments.length === 0 ? "date" : "location",
+        sort: departments.length === 0 ? "default" : "location",
       }),
     );
   }, [dispatch, query.departments, dep]);

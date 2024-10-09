@@ -1,0 +1,37 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/variables";
+
+.menu {
+  // Layout
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 30;
+
+  // Style
+  border-top: 1px solid var(--background-open-blue-france);
+  background: var(--text-inverted-grey);
+
+  /* shadow/light/$shadow-md */
+  box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
+}
+
+.menu button:active {
+  background: red;
+}
+
+.menuItemLabel {
+  @include dsfr-text("large");
+
+  border: 1px solid green;
+  color: var(--text-title-grey);
+
+  &:not(:first-child) {
+    margin-top: u(4);
+  }
+}

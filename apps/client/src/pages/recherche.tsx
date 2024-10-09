@@ -28,7 +28,7 @@ import { languei18nSelector } from "~/services/Langue/langue.selectors";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { addToQueryActionCreator, setSearchResultsActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 
 export type UrlSearchQuery = {
@@ -61,7 +61,6 @@ const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
   const languei18nCode = useSelector(languei18nSelector);
   const query = useSelector(searchQuerySelector);
-  const filteredResult = useSelector(searchResultsSelector);
 
   // when navigating, save state to prevent loop on search page
   const [isNavigating, setIsNavigating] = useState(false);

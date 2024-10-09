@@ -178,6 +178,7 @@ const userStructureContrib1: GetStructureDispositifResponse = {
   nbVuesMobile: 0,
   availableLanguages: [],
   hasDraftVersion: false,
+  themeSortIndex: 0,
 };
 
 const formattedUserStructureContrib1: FormattedUserContribution = {
@@ -209,6 +210,7 @@ const userStructureContrib2: GetStructureDispositifResponse = {
   nbVuesMobile: 0,
   availableLanguages: [],
   hasDraftVersion: false,
+  themeSortIndex: 0,
 };
 
 const userStructureContrib3: GetStructureDispositifResponse = {
@@ -226,6 +228,7 @@ const userStructureContrib3: GetStructureDispositifResponse = {
   nbVuesMobile: 0,
   availableLanguages: [],
   hasDraftVersion: false,
+  themeSortIndex: 0,
 };
 
 const userStructureContrib4: GetStructureDispositifResponse = {
@@ -243,6 +246,7 @@ const userStructureContrib4: GetStructureDispositifResponse = {
   nbVuesMobile: 0,
   availableLanguages: [],
   hasDraftVersion: false,
+  themeSortIndex: 0,
 };
 
 const formattedUserStructureContrib4: FormattedUserContribution = {
@@ -274,6 +278,7 @@ const userStructureContrib5: GetStructureDispositifResponse = {
   nbVuesMobile: 0,
   availableLanguages: [],
   hasDraftVersion: false,
+  themeSortIndex: 0,
 };
 
 const userStructureContrib = [

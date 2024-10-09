@@ -3,8 +3,6 @@
   align-items: flex-start;
   gap: 8px;
   background-color: #fff;
-  position: sticky;
-  top: 67px;
   border-top: 6px solid #fff;
   transform: translateY(-8px);
   width: 100%;
