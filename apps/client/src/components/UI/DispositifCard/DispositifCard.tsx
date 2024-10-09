@@ -156,10 +156,10 @@ const DispositifCard = (props: Props) => {
                       <span className="flex-shrink-1">
                         <i className="fr-icon-time-line me-2" />
                         <span>
-                          Mise à jour{" "}
                           {getRelativeTimeString(
                             new Date(props.dispositif.lastModificationDate),
                             router.locale || "fr",
+                            t,
                           )}
                         </span>
                       </span>
