@@ -3,6 +3,7 @@ import _ from "lodash";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { getMatchingAgeFilters } from "~/lib/recherche/filterContents";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 
@@ -63,34 +64,7 @@ export const useAgeOptions = () => {
 
   const counts = useMemo(() => {
     return _(docs)
-      .map((doc) => {
-        switch (doc.metadatas?.age?.type) {
-          case "lessThan":
-            return Array.isArray(doc.metadatas?.age?.ages) && doc.metadatas?.age?.ages.length > 0
-              ? [0, doc.metadatas?.age?.ages[0]]
-              : null;
-          case "moreThan":
-            return Array.isArray(doc.metadatas?.age?.ages) && doc.metadatas?.age?.ages.length > 0
-              ? [doc.metadatas?.age?.ages[0], Number.MAX_SAFE_INTEGER]
-              : null;
-          case "between":
-            return Array.isArray(doc.metadatas?.age?.ages) && doc.metadatas?.age?.ages.length > 1
-              ? [doc.metadatas?.age?.ages[0], doc.metadatas?.age?.ages[1]]
-              : null;
-          default:
-            return [0, Number.MAX_SAFE_INTEGER];
-        }
-      })
-      .filter((x) => x !== null)
-      .map(([min, max]) => {
-        if (min < 18 && max < 18) {
-          return "-18";
-        }
-        if (min >= 18 && max <= 25) {
-          return "18-25";
-        }
-        return "+25";
-      })
+      .flatMap((doc) => getMatchingAgeFilters(doc))
       .countBy()
       .value();
   }, [docs]);

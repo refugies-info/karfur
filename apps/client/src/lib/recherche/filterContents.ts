@@ -39,22 +39,86 @@ export const filterByLocations = (dispositif: GetDispositifsResponse, department
   return false;
 };
 
-const filterAgeValues = {
+const filterAgeValues: Record<AgeOptions, [number, number]> = {
   "-18": [0, 18],
   "18-25": [18, 25],
   "+25": [25, 99],
 };
 
+const isAgeRangeCompatible = (filterRange: [number, number], audienceRange: [number, number]): boolean => {
+  const [filterMin, filterMax] = filterRange;
+  const [audienceMin, audienceMax] = audienceRange;
+
+  return filterMin >= audienceMin && filterMax <= audienceMax;
+};
+
+interface AudienceAge {
+  type: "between" | "moreThan" | "lessThan";
+  ages: number[];
+}
+
+function convertAudienceAgeToRange(audienceAge: AudienceAge): [number, number] {
+  const MAX_AGE = Number.MAX_SAFE_INTEGER;
+  const MIN_AGE = 0;
+
+  switch (audienceAge.type) {
+    case "between":
+      if (audienceAge.ages.length !== 2) {
+        throw new Error("Invalid 'between' age range");
+      }
+      return [audienceAge.ages[0], audienceAge.ages[1]];
+
+    case "moreThan":
+      if (audienceAge.ages.length !== 1) {
+        throw new Error("Invalid 'moreThan' age value");
+      }
+      return [audienceAge.ages[0] + 1, MAX_AGE];
+
+    case "lessThan":
+      if (audienceAge.ages.length !== 1) {
+        throw new Error("Invalid 'lessThan' age value");
+      }
+      return [MIN_AGE, audienceAge.ages[0] - 1];
+
+    default:
+      throw new Error("Invalid audience age type");
+  }
+}
+
+export const getMatchingAgeFilters = (dispositif: GetDispositifsResponse): AgeOptions[] => {
+  const allAgeOptions = Object.keys(filterAgeValues) as AgeOptions[];
+  const audienceAge = dispositif.metadatas?.age;
+  if (!audienceAge || !audienceAge.ages) return allAgeOptions;
+
+  const audienceAgeRange = convertAudienceAgeToRange(audienceAge);
+
+  return allAgeOptions.reduce((acc, age) => {
+    const filterRange = filterAgeValues[age];
+    if (isAgeRangeCompatible(filterRange, audienceAgeRange)) {
+      return [...acc, age];
+    }
+    return acc;
+  }, [] as AgeOptions[]);
+};
+
+export const countMatchingAgeFilters = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]): number => {
+  const audienceAge = dispositif.metadatas?.age;
+  if (!audienceAge || !audienceAge.ages) return ageFilters.length;
+
+  const audienceAgeRange = convertAudienceAgeToRange(audienceAge);
+
+  return ageFilters.reduce((count, age) => {
+    const filterRange = filterAgeValues[age];
+    if (isAgeRangeCompatible(filterRange, audienceAgeRange)) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
+};
+
 export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
-  const audienceAge = dispositif.metadatas?.age;
-  if (!audienceAge || !audienceAge.ages[0] || !audienceAge.ages[1]) return true;
-  for (const age of ageFilters) {
-    if (audienceAge.ages[0] <= filterAgeValues[age][0] && audienceAge.ages[1] >= filterAgeValues[age][1]) {
-      return true;
-    }
-  }
-  return false;
+  return countMatchingAgeFilters(dispositif, ageFilters) === ageFilters.length;
 };
 
 const filterFrenchLevelValues = {
