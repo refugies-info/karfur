@@ -7,6 +7,10 @@
   align-self: stretch;
 }
 
+.disabled {
+  cursor: not-allowed;
+}
+
 .root {
   display: flex;
   flex-wrap: wrap;
