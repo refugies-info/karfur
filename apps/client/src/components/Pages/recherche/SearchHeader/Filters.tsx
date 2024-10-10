@@ -57,7 +57,7 @@ const Filters = () => {
           gaType="department"
         />
         <Filter
-          label={t("Recherche.themes", "Thèmes")}
+          label={t("Recherche.theme", "Thème")}
           externalMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
@@ -122,7 +122,7 @@ const Filters = () => {
           gaType="frenchLevel"
         />
         <Filter
-          label={t("Recherche.filterLanguage", "Fiches traduites en")}
+          label={t("Recherche.filterLanguage", "Traduit en")}
           menuItems={[
             {
               filterKey: "language",
