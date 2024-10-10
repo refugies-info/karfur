@@ -121,7 +121,8 @@
     "filtersAndSortModalTitle": "Filtres et tri",
     "sortBy": "Trier par",
     "clear": "Effacer",
-    "seeAllButtonWithCount": "Voir les {{count}} fiches"
+    "seeAllButtonWithCount": "Voir les {{count}} fiches",
+    "tooltipAucuneFicheCorrespondante": "Aucune fiche ne correspond à ce critère. Ajustez vos autres filtres pour filtrer sur ce critère spécifique."
   },
   "Widget": {
     "fiches": "Fiches",
