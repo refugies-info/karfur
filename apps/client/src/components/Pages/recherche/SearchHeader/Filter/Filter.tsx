@@ -9,6 +9,7 @@ import {
   DialogMenuLayoutTitle,
   DropDownMenuLayout,
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
+import ZeroCountTooltip from "~/components/Pages/recherche/SearchHeader/Filter/ZeroCountTooltip";
 import Checkbox from "~/components/UI/Checkbox";
 import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
@@ -142,27 +143,28 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, className }: Pro
                       const isSelected = currentmenu.selected.includes(option.key);
                       const isDisabled = option.count === 0;
                       return (
-                        <Checkbox
-                          key={o}
-                          onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
-                          tabIndex={0}
-                          checked={isSelected}
-                          disabled={isDisabled}
-                          className={cls(styles.item, currentmenu.menuItemStyles)}
-                          aria-checked={isSelected}
-                          aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
-                        >
-                          <div
-                            className={styles.label}
-                            onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
-                            aria-controls=""
+                        <ZeroCountTooltip key={o} active={isDisabled}>
+                          <Checkbox
+                            onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                            tabIndex={0}
+                            checked={isSelected}
+                            disabled={isDisabled}
+                            className={cls(styles.item, currentmenu.menuItemStyles)}
+                            aria-checked={isSelected}
+                            aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
                           >
-                            {currentmenu.translateOptions ? t(option.value) : option.value}
-                          </div>
-                          <div className={styles.countContainer}>
-                            <div className={styles.count}>{option.count ?? ""}</div>
-                          </div>
-                        </Checkbox>
+                            <div
+                              className={styles.label}
+                              onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
+                              aria-controls=""
+                            >
+                              {currentmenu.translateOptions ? t(option.value) : option.value}
+                            </div>
+                            <div className={styles.countContainer}>
+                              <div className={styles.count}>{option.count ?? ""}</div>
+                            </div>
+                          </Checkbox>
+                        </ZeroCountTooltip>
                       );
                     })}
                   </>
@@ -219,19 +221,21 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, className }: Pro
                       disabled={isDisabled}
                       asChild
                     >
-                      <Checkbox
-                        onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
-                        tabIndex={0}
-                        checked={isSelected}
-                        disabled={isDisabled}
-                      >
-                        <div className={styles.label}>
-                          {currentmenu.translateOptions ? t(option.value) : option.value}
-                        </div>
-                        <div className={styles.countContainer}>
-                          <div className={styles.count}>{option.count ?? ""}</div>
-                        </div>
-                      </Checkbox>
+                      <ZeroCountTooltip active={isDisabled}>
+                        <Checkbox
+                          onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                          tabIndex={0}
+                          checked={isSelected}
+                          disabled={isDisabled}
+                        >
+                          <div className={styles.label}>
+                            {currentmenu.translateOptions ? t(option.value) : option.value}
+                          </div>
+                          <div className={styles.countContainer}>
+                            <div className={styles.count}>{option.count ?? ""}</div>
+                          </div>
+                        </Checkbox>
+                      </ZeroCountTooltip>
                     </DropdownMenu.Item>
                   );
                 }),

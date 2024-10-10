@@ -1,0 +1,22 @@
+@import "~/scss/mixins/text";
+
+.tooltip {
+  @include dsfr-text("very-small");
+
+  color: var(--text-inverted-blue-france);
+  background-color: $darkBackgroundAltBlueFrance;
+  padding: 2px 4px;
+  border-radius: 4px;
+  z-index: 1000010;
+
+  @media print {
+    display: none;
+  }
+}
+
+.trigger {
+  width: 100%;
+  padding-inline: 0;
+  cursor: not-allowed !important;
+  text-align: start;
+}
