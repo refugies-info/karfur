@@ -90,7 +90,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r3:"
                 type="button"
               >
-                Recherche.themes
+                Recherche.theme
               </button>
               <button
                 class="clear"
