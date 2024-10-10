@@ -3,10 +3,12 @@
 .tooltip {
   @include dsfr-text("very-small");
 
+  width: 360px;
   color: var(--text-inverted-blue-france);
   background-color: $darkBackgroundAltBlueFrance;
-  padding: 2px 4px;
   border-radius: 4px;
+  padding: 2px 4px;
+  opacity: 1;
   z-index: 1000010;
 
   @media print {
