@@ -122,7 +122,7 @@ const Filters = () => {
           gaType="frenchLevel"
         />
         <Filter
-          label={t("Recherche.filterLanguage", "Fiches traduites en")}
+          label={t("Recherche.filterLanguage", "Traduit en")}
           menuItems={[
             {
               filterKey: "language",
