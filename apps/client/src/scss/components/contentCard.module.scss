@@ -11,6 +11,11 @@
   position: relative;
   display: flex;
 
+  em {
+    background-color: #fbe769;
+    font-style: normal;
+  }
+
   /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__title > a::after) {
     content: none;
