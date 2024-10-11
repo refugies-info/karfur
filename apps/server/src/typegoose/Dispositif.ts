@@ -71,7 +71,7 @@ export class DemarcheContent extends Content {
   @prop()
   next: InfoSections;
   @prop()
-  administrationName: string;
+  administrationName: string | null;
 }
 
 export class Suggestion {
@@ -276,7 +276,7 @@ export class Dispositif extends Base {
   @prop()
   public map: Poi[] | null;
   @prop({ type: () => ImageSchema, _id: false })
-  public administrationLogo?: ImageSchema;
+  public administrationLogo?: ImageSchema | null;
 
   public getMainSponsor(): Structure {
     if (!this.mainSponsor || !isDocument(this.mainSponsor)) {

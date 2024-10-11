@@ -71,8 +71,7 @@ const LeftSidebarEdition = (props: Props) => {
 
       {contentType === ContentType.DEMARCHE && (
         <>
-          {values.administration !== undefined &&
-          (values.administration?.name !== undefined || values?.administration?.logo !== undefined) ? (
+          {values.administration !== undefined && (!!values.administration?.name || !!values?.administration?.logo) ? (
             <CardDemarcheAdministration
               dataAdministration={values.administration}
               color={color}

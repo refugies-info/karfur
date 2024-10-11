@@ -6,7 +6,20 @@
 @import "~/scss/mixins/icons";
 @import "~/scss/mixins/responsive";
 
+.name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
 .img {
   border-radius: 2px;
   overflow: hidden;
+}
+
+.delete {
+  @include iconSize(u(4));
+
+  padding: u(2) !important;
+  min-height: u(8) !important;
 }
