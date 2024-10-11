@@ -50,13 +50,12 @@
     height: 146px + $shadowHeight;
     overflow: hidden;
     flex-shrink: 0;
-    position: relative;
 
     .desc {
       &::after {
         content: "";
         position: absolute;
-        bottom: 0;
+        bottom: u(6 + 5) + 5; // cannot set parent position to relative to keep all card clickable
         right: 0;
         left: 0;
         height: $shadowHeight;
