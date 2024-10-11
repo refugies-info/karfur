@@ -11,6 +11,11 @@
   position: relative;
   display: flex;
 
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global(.fr-card__title > a::after) {
+    content: none;
+  }
+
   .container {
     max-width: 100%;
 
