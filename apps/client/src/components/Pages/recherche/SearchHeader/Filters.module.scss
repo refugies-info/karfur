@@ -1,5 +1,6 @@
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/responsive";
+@import "~/scss/mixins/text";
 
 .search {
   position: relative;
@@ -38,26 +39,6 @@
     margin-bottom: 0;
   }
 
-  .filterHiddenOnMobile {
-    @container (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  .collapsedFiltersButton {
-    display: none;
-
-    @container (max-width: 768px) {
-      display: inline-flex;
-      margin-left: auto;
-
-      & button {
-        aspect-ratio: 1;
-        padding: u(3);
-      }
-    }
-  }
-
   .filtersBar {
     display: flex;
     align-items: center;
@@ -65,5 +46,79 @@
     justify-content: center;
     gap: u(2);
     width: 100%;
+  }
+
+  &.sticky {
+    gap: u(4);
+    max-width: 100%;
+
+    @media screen and (width >= 1200px) {
+      max-width: 1200px;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.sticky > .filtersBar {
+    justify-content: space-between;
+
+    @container (max-width: 1200px) {
+      @include text("small");
+
+      justify-content: center;
+    }
+
+    @media (width >= 975px) and (width <= 1140px) {
+      @include text("very-small");
+
+      gap: u(2);
+    }
+  }
+
+  &.sticky > .searchZone {
+    @media (width >= 975px) and (width <= 1140px) {
+      max-width: 960px;
+    }
+
+    @media screen and (width >= 1200px) {
+      max-width: 10rem;
+      transform: translateY(-0.25rem);
+
+      input {
+        padding-right: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &::placeholder {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.filterHiddenOnMobile {
+  @media (width <= 975px) {
+    display: none;
+  }
+}
+
+.collapsedFiltersButton {
+  display: none;
+
+  @media (width <= 975px) {
+    display: inline-flex;
+    margin-left: auto;
+
+    & button {
+      aspect-ratio: 1;
+      padding: u(3);
+    }
   }
 }

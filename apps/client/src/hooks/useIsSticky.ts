@@ -2,6 +2,7 @@ import { RefObject, useEffect, useState } from "react";
 
 const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
   const [isSticky, setIsSticky] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!ref.current) {
@@ -11,11 +12,17 @@ const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
     const cachedRef = ref.current;
     const observer = new IntersectionObserver(
       ([e]) => {
-        setIsSticky(e.intersectionRatio < 1);
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        const id = setTimeout(() => {
+          setIsSticky(e.intersectionRatio < 1);
+        }, 10);
+        setTimeoutId(id);
       },
       {
         threshold: [1],
-        rootMargin: "-10px 0px 0px 0px", // Accounts for 1px of scroll
+        rootMargin: "0px 0px 0px 0px",
       },
     );
 
@@ -23,6 +30,9 @@ const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
 
     return () => {
       observer.unobserve(cachedRef);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
   }, [ref]);
 

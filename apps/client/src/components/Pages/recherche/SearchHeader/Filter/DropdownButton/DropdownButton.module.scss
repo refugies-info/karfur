@@ -70,6 +70,25 @@
   }
 }
 
+.count {
+  @include text("very-small");
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(20%) translateY(-20%);
+  background: var(--background-action-high-blue-france-hover);
+  color: white;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0.2em;
+  min-width: 1.5em;
+  min-height: 1.5em;
+}
+
 .plus {
   margin-inline-start: u(1);
 

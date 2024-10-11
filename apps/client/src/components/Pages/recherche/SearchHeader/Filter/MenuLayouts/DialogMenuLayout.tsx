@@ -11,7 +11,7 @@ import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./DialogMenuLayout.module.scss";
 
-export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, children }: LayoutProps) {
+export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, filterCount, children }: LayoutProps) {
   const { t } = useTranslation();
   const searchResults = useSelector(searchResultsSelector);
   const totalResults = searchResults.matches.length;
@@ -42,6 +42,7 @@ export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, chi
         <DropdownButton
           label={label}
           icon={icon}
+          count={filterCount}
           value={value ?? []}
           onClear={resetOptions}
           isOpen={open}
