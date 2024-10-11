@@ -121,14 +121,14 @@ const DispositifCard = (props: Props) => {
                 )}
               </div>
 
-              {props.dispositif?.sponsor?.nom && (
-                <div className={styles.info}>
+              <div className={styles.info}>
+                {props.dispositif?.sponsor?.nom && (
                   <span>
                     <i className="fr-icon-building-line me-2" />
                     <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
                   </span>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             <div className={styles.end}>
