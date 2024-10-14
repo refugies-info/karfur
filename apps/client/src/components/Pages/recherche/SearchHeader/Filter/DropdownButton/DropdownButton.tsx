@@ -11,10 +11,11 @@ interface Props extends DropdownMenu.DropdownMenuTriggerProps {
   onClick?: () => void;
   isOpen: boolean;
   onClear: () => void;
+  count?: number | null;
 }
 
 export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(function DropdownButton(
-  { label, icon, value, onClick, isOpen, onClear, ...other },
+  { label, icon, count, value, onClick, isOpen, onClear, ...other },
   forwardedRef: React.Ref<HTMLButtonElement>,
 ) {
   const { t } = useTranslation();
@@ -22,10 +23,12 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
     <span className={styles.container}>
       <button
         onClick={onClick}
-        className={cls(styles.button, isOpen && styles.open, value.length > 0 && styles.values)}
+        className={cls(styles.button, isOpen && styles.open, value.length > 0 && !icon && styles.values)}
         ref={forwardedRef}
         {...other}
       >
+        {count && count > 0 ? <span className={styles.count}>{count}</span> : null}
+
         {icon ? <i className={icon}></i> : value[0] && label}
         {!icon && value.length > 1 && (
           <span className={styles.plus}>
