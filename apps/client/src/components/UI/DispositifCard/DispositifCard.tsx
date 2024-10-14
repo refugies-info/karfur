@@ -74,7 +74,7 @@ const DispositifCard = (props: Props) => {
 
   return (
     <div className={cls(styles.wrapper, props.className)}>
-      <div className={cls("fr-card fr-enlarge-link", styles.container)}>
+      <div className={cls("fr-card ", styles.container)}>
         <div className={cls("fr-card__body", styles.body)}>
           <div className={cls("fr-card__content", styles.content)}>
             <div className={styles.text}>
@@ -121,14 +121,14 @@ const DispositifCard = (props: Props) => {
                 )}
               </div>
 
-              <div className={styles.info}>
-                {props.dispositif?.sponsor?.nom && (
+              {props.dispositif?.sponsor?.nom && (
+                <div className={styles.info}>
                   <span>
                     <i className="fr-icon-building-line me-2" />
                     <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
                   </span>
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.end}>
@@ -171,16 +171,31 @@ const DispositifCard = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="fr-card__header">
+        <div className={cls("fr-card__header", styles.cardHeader)}>
           <div className="fr-card__img">
-            <Image
-              className="fr-responsive-img"
-              width={280}
-              height={158}
-              src={cardImageUrl}
-              alt=""
-              data-fr-js-ratio="true"
-            />
+            <Link
+              target={props.targetBlank ? "_blank" : undefined}
+              rel={props.targetBlank ? "noopener noreferrer" : undefined}
+              title={getReadableText(props.dispositif.titreInformatif || "")}
+              href={
+                props.demoCard
+                  ? "#"
+                  : {
+                      pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
+                      query: { id: props.dispositif._id.toString(), ...utmParams },
+                    }
+              }
+              className={styles.cardImageLink}
+            >
+              <Image
+                className="fr-responsive-img"
+                width={280}
+                height={158}
+                src={cardImageUrl}
+                alt=""
+                data-fr-js-ratio="true"
+              />
+            </Link>
           </div>
           <ul className="fr-badges-group">
             <li>
