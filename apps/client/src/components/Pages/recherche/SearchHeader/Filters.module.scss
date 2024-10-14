@@ -40,20 +40,24 @@
   }
 
   .filtersBar {
-    display: flex;
+    display: inline-flex;
+    width: 100%;
     align-items: center;
     flex-flow: row wrap;
     justify-content: center;
     gap: u(2);
-    width: 100%;
+
+    @include media-min("lg-limit") {
+      width: fit-content;
+    }
   }
 
   &.sticky {
     gap: u(4);
     max-width: 100%;
 
-    @media screen and (width >= 1200px) {
-      max-width: 1200px;
+    @include media-min("xl-limit") {
+      max-width: 100%;
       flex-direction: row;
       justify-content: center;
       align-items: center;
@@ -61,27 +65,31 @@
   }
 
   &.sticky > .filtersBar {
-    justify-content: space-between;
+    justify-content: start;
 
-    @container (max-width: 1200px) {
-      @include text("small");
-
-      justify-content: center;
-    }
-
-    @media (width >= 975px) and (width <= 1140px) {
+    @container (max-width: 1400px) {
       @include text("very-small");
 
+      justify-content: flex-start;
+    }
+
+    @include media-between("lg-limit", "widescreen-up") {
+      justify-content: center;
       gap: u(2);
+    }
+
+    @include media-max("lg-limit") {
+      width: 100%;
+      max-width: 768px;
     }
   }
 
   &.sticky > .searchZone {
-    @media (width >= 975px) and (width <= 1140px) {
+    @include media-between("lg-limit", "widescreen-up") {
       max-width: 960px;
     }
 
-    @media screen and (width >= 1200px) {
+    @include media-min("xl-limit") {
       max-width: 10rem;
       transform: translateY(-0.25rem);
 
@@ -104,7 +112,7 @@
 }
 
 .filterHiddenOnMobile {
-  @media (width <= 975px) {
+  @include media-max("lg-limit") {
     display: none;
   }
 }
@@ -112,13 +120,13 @@
 .collapsedFiltersButton {
   display: none;
 
-  @media (width <= 975px) {
+  @include media-max("lg-limit") {
     display: inline-flex;
     margin-left: auto;
 
     & button {
       aspect-ratio: 1;
-      padding: u(3);
+      padding: u(2);
     }
   }
 }

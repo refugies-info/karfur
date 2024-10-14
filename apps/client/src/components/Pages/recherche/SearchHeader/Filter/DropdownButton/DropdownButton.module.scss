@@ -35,10 +35,6 @@
     background: var(--background-default-grey-hover) !important;
   }
 
-  &:has(> i:only-child) {
-    padding-inline: u(5);
-  }
-
   i {
     line-height: 16px;
     height: 16px;
@@ -79,7 +75,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translateX(20%) translateY(-20%);
+  transform: translateX(35%) translateY(-35%);
   background: var(--background-action-high-blue-france-hover);
   color: white;
   aspect-ratio: 1;
