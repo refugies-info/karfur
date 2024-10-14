@@ -135,7 +135,7 @@ const DispositifCard = (props: Props) => {
               {isDispositif ? (
                 <>
                   <div className={cls(styles.info, "d-flex gap-2")}>
-                    {price !== undefined && (
+                    {price && (
                       <span className="flex-shrink-0">
                         <i className="fr-icon-money-euro-circle-line me-2" />
                         <span>{getPriceText(price, t)}</span>
