@@ -116,7 +116,9 @@ const ShareButtons = () => {
         {t("Dispositif.tooltipShareLinkedin")}
       </Tooltip>
 
-      {showToastLink && <Toast close={() => setShowToastLink(false)}>Lien copié !</Toast>}
+      <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>
+        Lien copié !
+      </Toast>
     </div>
   );
 };

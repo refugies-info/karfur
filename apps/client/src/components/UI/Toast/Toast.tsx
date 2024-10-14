@@ -1,49 +1,29 @@
-import { fr } from "@codegouvfr/react-dsfr";
-import React, { useEffect, useRef, useState } from "react";
-import { ToastBody, Toast as ToastTS } from "reactstrap";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { ToastClose, ToastDescription, Toast as ToastRoot } from "@radix-ui/react-toast";
+import React from "react";
+import { cls } from "~/lib/classname";
 import styles from "./Toast.module.scss";
 
 interface Props {
+  open: boolean;
   children: string | React.ReactNode;
-  close: () => void;
+  closeCallback: () => void;
 }
 
 const Toast = (props: Props) => {
-  const id = useRef<any | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setIsOpen(true);
-    id.current = setTimeout(() => {
-      props.close();
-    }, 5000);
-
-    return () => clearTimeout(id.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const onOpenChange = (open: boolean) => {
+    if (!open) props.closeCallback();
+  };
 
   return (
-    <ToastTS className={styles.container} isOpen={isOpen} fade={false} aria-live="polite">
-      <ToastBody className={styles.body}>
-        <EVAIcon
-          name="checkmark-circle-2"
-          fill={fr.colors.decisions.background.actionHigh.success.default}
-          size={24}
-          className="me-2"
-        />
+    <ToastRoot open={props.open} className={styles.container} onOpenChange={onOpenChange}>
+      <ToastDescription className={styles.body}>
+        <i className="fr-icon-checkbox-circle-fill me-2" aria-hidden />
         {props.children}
-      </ToastBody>
-      <button
-        onClick={(e: any) => {
-          e.preventDefault();
-          props.close();
-        }}
-        className={styles.close}
-      >
-        <EVAIcon name="close-outline" fill={fr.colors.decisions.text.mention.grey.default} size={24} />
-      </button>
-    </ToastTS>
+      </ToastDescription>
+      <ToastClose aria-label="Close" className={styles.close}>
+        <i className={cls("fr-icon-close-line", styles.icon)} aria-hidden />
+      </ToastClose>
+    </ToastRoot>
   );
 };
 

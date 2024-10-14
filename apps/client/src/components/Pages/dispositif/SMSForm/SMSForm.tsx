@@ -85,7 +85,9 @@ const SMSForm = (props: Props) => {
           <p>{error}</p>
         </div>
       )}
-      {showToast && <Toast close={() => setShowToast(false)}>{t("Dispositif.smsFormSent")}</Toast>}
+      <Toast open={showToast} closeCallback={() => setShowToast(false)}>
+        {t("Dispositif.smsFormSent")}
+      </Toast>
     </div>
   );
 };
