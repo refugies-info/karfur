@@ -3,7 +3,7 @@ import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
-import { useWindowSize } from "~/hooks";
+import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { queryDispositifsWithoutThemes } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
@@ -52,6 +52,7 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const query = useSelector(searchQuerySelector);
   const allDispositifs = useSelector(activeDispositifsSelector);
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, mobile);
+  const eventName = useSearchEventName();
 
   const [selectedThemeId, setSelectedThemeId] = useState<Id | undefined>(initialTheme);
 
@@ -63,9 +64,9 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
         if (old === themeId && mobile) return null;
         return themeId;
       });
-      Event("USE_SEARCH", "use theme filter", "click theme");
+      Event(eventName, "use theme filter", "click theme");
     },
-    [setSelectedThemeId, mobile],
+    [setSelectedThemeId, mobile, eventName],
   );
 
   // fetch dispositifs if not done already
