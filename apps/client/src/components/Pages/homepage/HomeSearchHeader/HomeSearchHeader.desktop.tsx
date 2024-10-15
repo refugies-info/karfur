@@ -8,7 +8,9 @@ import { getPath } from "routes";
 import LocationMenu from "~/components/Pages/recherche/LocationMenu";
 import ThemeMenu from "~/components/Pages/recherche/ThemeMenu";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
+import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/searchHeader.module.scss";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import SearchDropdown from "../SearchDropdown";
@@ -25,6 +27,7 @@ interface Props {
 const HomeSearchHeaderDesktop = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const eventName = useSearchEventName();
 
   const { resetDepartment, resetTheme, resetSearch, onChangeSearchInput } = props;
 
@@ -32,12 +35,28 @@ const HomeSearchHeaderDesktop = (props: Props) => {
 
   // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
-  const toggleLocation = useCallback(() => setLocationOpen((o) => !o), []);
+  const toggleLocation = useCallback(
+    (open?: boolean) =>
+      setLocationOpen((o) => {
+        const newOpen = open !== undefined ? open : !o;
+        if (newOpen) Event(eventName, "open filter", "department");
+        return !o;
+      }),
+    [eventName],
+  );
 
   // THEME
   const [themesOpen, setThemesOpen] = useState(false);
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
-  const toggleThemes = useCallback(() => setThemesOpen((o) => !o), []);
+  const toggleThemes = useCallback(
+    (open?: boolean) =>
+      setThemesOpen((o) => {
+        const newOpen = open !== undefined ? open : !o;
+        if (newOpen) Event(eventName, "open filter", "themes");
+        return newOpen;
+      }),
+    [eventName],
+  );
 
   // SEARCH
   const [searchActive, setSearchActive] = useState(false);
@@ -79,7 +98,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
           values={query.departments}
           resetFilter={resetDepartment}
           open={locationOpen}
-          setOpen={setLocationOpen}
+          setOpen={toggleLocation}
         >
           <LocationMenu />
         </SearchDropdown>
@@ -90,7 +109,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
           values={themeDisplayedValue}
           resetFilter={resetTheme}
           open={themesOpen}
-          setOpen={setThemesOpen}
+          setOpen={toggleThemes}
         >
           <ThemeMenu mobile={false} isOpen={true} />
         </SearchDropdown>
