@@ -140,7 +140,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
             />
           )}
         </TooltipProvider>
-        <ToastViewport className={toastStyles.viewport} />
+        <ToastViewport className={toastStyles.viewport} dir={isRTL ? "rtl" : "ltr"} />
       </ToastProvider>
     </DirectionProvider>
   );

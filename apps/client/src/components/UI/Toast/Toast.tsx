@@ -17,7 +17,7 @@ const Toast = (props: Props) => {
   return (
     <ToastRoot open={props.open} className={styles.container} onOpenChange={onOpenChange}>
       <ToastDescription className={styles.body}>
-        <i className="fr-icon-checkbox-circle-fill me-2" aria-hidden />
+        <i className="fr-icon-checkbox-circle-fill" aria-hidden />
         {props.children}
       </ToastDescription>
       <ToastClose aria-label="Close" className={styles.close}>
