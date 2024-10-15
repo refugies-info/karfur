@@ -465,6 +465,16 @@ exports[`should render StyledStatus Accepté structure  1`] = `
   >
     Accepté
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -490,6 +500,16 @@ exports[`should render StyledStatus Brouillon  1`] = `
     textcolor="gray90"
   >
     Brouillon
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -517,6 +537,16 @@ exports[`should render StyledStatus En attente admin  1`] = `
   >
     Relecture en cours
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -542,6 +572,16 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
     textcolor="white"
   >
     Rejeté
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -569,6 +609,16 @@ exports[`should render StyledStatus Supprimé  1`] = `
   >
     Supprimé
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -593,6 +643,16 @@ exports[`should render StyledStatus actif  1`] = `
     color="#4CAF50"
   >
     Publié
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -620,6 +680,16 @@ exports[`should render StyledStatus en attente  1`] = `
   >
     En attente
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -645,6 +715,16 @@ exports[`should render StyledStatus no corresponding status  1`] = `
     textcolor="white"
   >
     Nouveau !
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -672,6 +752,16 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
   >
     test
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -697,6 +787,16 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
     textcolor="white"
   >
     test
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

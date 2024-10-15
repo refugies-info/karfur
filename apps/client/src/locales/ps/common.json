@@ -97,18 +97,15 @@
     "keyword": "کلیدي کلمه",
     "keywordPlaceholder": "ځای ماموریت، د استوګني اجازه ...",
     "department": "یوښار یا یوه څانګه لتول",
-    "themes": "موضوعات",
     "themesPlaceholder": "په موضوعاتو کې لټون کول",
     "filters": "د لټون فلټرکول",
     "filterAge": "د عمر حد ټاکل",
     "filterFrenchLevel": "د فرانسوي ژبې کچه",
-    "filterLanguage": "ژباړل شوي فایلونه په",
     "filterPublic": "هدف لیدونکي",
     "filterStatus": "حالت",
     "all": "ټول",
     "resetFilters": "ټول فلټرونه پاک کول",
     "titleResults": "ستاسو د لټون لپاره فایلونه",
-    "noResultTitle": "اوپس، هیڅ پایلي شتون نلري",
     "noResultText": "لیږ فلټرونه وکاروئ یا د کلیدي کلمې املا له سره وګورئ",
     "seeMore": "نور وګورئ",
     "seeLess": "لیږ کتل",
@@ -181,8 +178,7 @@
     "sortView": "ترټولو ډیر لیدل شوي",
     "typeAll": "ټولې فیشونه",
     "typeDispositif": "وسایل",
-    "typeDemarche": "مراحل",
-    "typeRessource": "سرچینې"
+    "typeDemarche": "مراحل"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",

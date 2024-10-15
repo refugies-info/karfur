@@ -130,6 +130,31 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
 };
 
 /**
+ * Get the 12 top demarches to show when no result
+ * @param dispositifs - list of dispositifs
+ * @returns - list of dispositifs
+ */
+export const getTopDemarches = (dispositifs: GetDispositifsResponse[]): GetDispositifsResponse[] => {
+  return filterDispositifs(
+    {
+      type: "demarche",
+      sort: "view",
+      search: "",
+      departments: [],
+      themes: [],
+      needs: [],
+      age: [],
+      frenchLevel: [],
+      public: [],
+      status: [],
+      language: [],
+    },
+    dispositifs,
+    false,
+  ).slice(0, 12);
+};
+
+/**
  * Use the query to filter a list of dispositifs
  * @param query - search query
  * @param dispositifs - list of dispositifs

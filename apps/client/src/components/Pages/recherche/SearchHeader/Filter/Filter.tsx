@@ -28,8 +28,8 @@ type PropsBase = {
   label: string;
   icon?: string;
   gaType: string;
-  layout?: "mobile" | "desktop";
   className?: string;
+  showFilterCount?: boolean;
 };
 
 type MenuItemProps = {
@@ -57,7 +57,7 @@ type ExternalMenu = PropsBase & {
 
 type Props = MenuItems | ExternalMenu;
 
-const Filter = ({ gaType, menuItems, externalMenu, label, icon, className }: Props) => {
+const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount, className }: Props) => {
   const { t } = useTranslation() as { t: TranslationFunction };
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -120,12 +120,25 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, className }: Pro
     return null;
   }, [externalMenu, query, menuItems, t]);
 
+  const filterCount = () => {
+    if (!showFilterCount || !menuItems) return null;
+
+    let filterCount = 0;
+
+    menuItems.map((item) => {
+      filterCount = filterCount + item.selected.length;
+    });
+
+    return filterCount;
+  };
+
   return (
     <div className={cls(styles.filter, className)}>
       {isTablet ? (
         <DialogMenuLayout
           label={label}
           icon={icon}
+          filterCount={filterCount()}
           value={value as string[]}
           resetOptions={resetOptions}
           gaType={gaType}

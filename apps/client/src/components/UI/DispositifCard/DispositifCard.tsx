@@ -121,21 +121,21 @@ const DispositifCard = (props: Props) => {
                 )}
               </div>
 
-              {props.dispositif?.sponsor?.nom && (
-                <div className={styles.info}>
+              <div className={styles.info}>
+                {props.dispositif?.sponsor?.nom && (
                   <span>
                     <i className="fr-icon-building-line me-2" />
                     <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
                   </span>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             <div className={styles.end}>
               {isDispositif ? (
                 <>
                   <div className={cls(styles.info, "d-flex gap-2")}>
-                    {price !== undefined && (
+                    {price && (
                       <span className="flex-shrink-0">
                         <i className="fr-icon-money-euro-circle-line me-2" />
                         <span>{getPriceText(price, t)}</span>
@@ -156,10 +156,10 @@ const DispositifCard = (props: Props) => {
                       <span className="flex-shrink-1">
                         <i className="fr-icon-time-line me-2" />
                         <span>
-                          Mise à jour{" "}
                           {getRelativeTimeString(
                             new Date(props.dispositif.lastModificationDate),
                             router.locale || "fr",
+                            t,
                           )}
                         </span>
                       </span>

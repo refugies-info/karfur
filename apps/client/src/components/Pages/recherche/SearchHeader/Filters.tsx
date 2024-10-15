@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { cls } from "~/lib/classname";
@@ -12,7 +12,12 @@ import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
-const Filters = () => {
+
+type Props = {
+  isSticky?: boolean;
+};
+
+const Filters: React.FC<Props> = ({ isSticky }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -44,12 +49,11 @@ const Filters = () => {
   const languageOptions = useLanguagesOptions();
 
   return (
-    <Container className={cls(styles.container)}>
+    <Container className={cls(styles.container, isSticky && styles.sticky)}>
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
       <div className={styles.filtersBar}>
         <Filter
           label={t("Dispositif.Département", "Département")}
-          layout={"mobile"}
           externalMenu={{
             value: query.departments,
             reset: resetDepartment,
@@ -58,7 +62,7 @@ const Filters = () => {
           gaType="department"
         />
         <Filter
-          label={t("Recherche.themes", "Thèmes")}
+          label={t("Recherche.theme", "Thème")}
           externalMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
@@ -123,7 +127,7 @@ const Filters = () => {
           gaType="frenchLevel"
         />
         <Filter
-          label={t("Recherche.filterLanguage", "Fiches traduites en")}
+          label={t("Recherche.filterLanguage", "Traduit en")}
           menuItems={[
             {
               filterKey: "language",
@@ -140,6 +144,7 @@ const Filters = () => {
         <Filter
           label={t("Recherche.filtersAndSortModalTitle", "Filtres et tri")}
           icon="ri-equalizer-line"
+          showFilterCount={true}
           menuItems={[
             {
               label: t("Recherche.filterStatus", "Statut"),

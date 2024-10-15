@@ -21,11 +21,11 @@ const SearchHeader = (props: Props) => {
       <div className={styles.title}>
         <Container>
           <h1>{t("Recherche.title")}</h1>
-          <p>{t("Recherche.subtitle", { count: props.nbResults })}</p>
+          <p ref={stickyBarRef}>{t("Recherche.subtitle", { count: props.nbResults })}</p>
         </Container>
       </div>
-      <div ref={stickyBarRef} className={cls(styles.stickybar, isSticky && styles.sticky)}>
-        <Filters />
+      <div className={cls(styles.stickybar, isSticky && styles.sticky)}>
+        <Filters isSticky={isSticky} />
       </div>
     </>
   );

@@ -58,7 +58,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
         if (themesOpen) toggleThemes();
       }
       if (e.key === "Enter") {
-        if (locationOpen || themesOpen) {
+        if (locationOpen || themesOpen || searchActive) {
           submitForm();
         }
       }
@@ -68,7 +68,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
     return () => {
       document.removeEventListener("keyup", handleKey);
     };
-  }, [toggleLocation, toggleThemes, locationOpen, themesOpen, submitForm]);
+  }, [toggleLocation, toggleThemes, locationOpen, themesOpen, searchActive, submitForm]);
 
   return (
     <div className={styles.container}>
@@ -78,6 +78,8 @@ const HomeSearchHeaderDesktop = (props: Props) => {
           label={t("Dispositif.Département", "Département")}
           values={query.departments}
           resetFilter={resetDepartment}
+          open={locationOpen}
+          setOpen={setLocationOpen}
         >
           <LocationMenu />
         </SearchDropdown>
@@ -87,6 +89,8 @@ const HomeSearchHeaderDesktop = (props: Props) => {
           label={t("Recherche.themes", "Thèmes")}
           values={themeDisplayedValue}
           resetFilter={resetTheme}
+          open={themesOpen}
+          setOpen={setThemesOpen}
         >
           <ThemeMenu mobile={false} isOpen={true} />
         </SearchDropdown>

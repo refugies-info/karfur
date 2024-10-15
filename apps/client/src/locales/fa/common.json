@@ -97,18 +97,15 @@
     "keyword": "کلمه کلیدی",
     "keywordPlaceholder": "ماموریت محلی، اجازه اقامت ...",
     "department": "جستجوی یک شهر یا دپارتمان",
-    "themes": "موضوعات",
     "themesPlaceholder": "جستجوی موضوعات",
     "filters": "فیلتر جستجو",
     "filterAge": "رده سنی",
     "filterFrenchLevel": "سطح فرانسوی",
-    "filterLanguage": "برگه ها ترجمه شده به",
     "filterPublic": "مخاطب هدف",
     "filterStatus": "وضعیت",
     "all": "همه",
     "resetFilters": "حذف تمام فیلترها",
     "titleResults": "{{count}} برگه‌ها پیدا شد",
-    "noResultTitle": "پوزش، هیچ برگه ای وجود ندارد",
     "noResultText": "از فیلترهای کمتری استفاده کنید یا املای کلمه کلیدی را بررسی کنید",
     "seeMore": "بیشتربیبنید",
     "seeLess": "مشاهده اطلاعات کمتر",
@@ -181,8 +178,7 @@
     "sortView": "با بیشترین بازدید",
     "typeAll": "همه رکوردها",
     "typeDispositif": "دستگاه‌ها",
-    "typeDemarche": "رویه‌ها",
-    "typeRessource": "منابع"
+    "typeDemarche": "رویه‌ها"
   },
   "Status": {
     "En attente": "در انتظار",

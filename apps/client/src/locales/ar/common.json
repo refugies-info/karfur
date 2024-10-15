@@ -97,18 +97,15 @@
     "keyword": "كلمة مفتاحية",
     "keywordPlaceholder": "بطاقة اقامة, ميسيون لوكال",
     "department": "أبحث في مدينة أو في اقليم",
-    "themes": "سلسلة المواضيع",
     "themesPlaceholder": "أبحث في سلسلة المواضيع",
     "filters": "فلترة النتائج",
     "filterAge": "الفئة العمرية",
     "filterFrenchLevel": "مستوى اللغة",
-    "filterLanguage": "صفحات مترجمة ب",
     "filterPublic": "الجمهور المستهدف",
     "filterStatus": "حالة",
     "all": "كل المواضيع",
     "resetFilters": "امسح الفلاتر",
     "titleResults": "صفحات معلومات مناسبة لطلبك",
-    "noResultTitle": "عذراً, لا يوجد نتائج",
     "noResultText": "استعمل فلاتر أقل أو تحقق من كتابة الكلمة",
     "seeMore": "رؤية المزيد",
     "seeLess": "مشاهدة نتائج أقل",
@@ -181,8 +178,7 @@
     "sortView": "الصفحات الأكثر مشاهدة",
     "typeAll": "جميع الملفات",
     "typeDispositif": "الأجهزة",
-    "typeDemarche": "الإجراءات",
-    "typeRessource": "الموارد"
+    "typeDemarche": "الإجراءات"
   },
   "Status": {
     "En attente": "في الانتظار",

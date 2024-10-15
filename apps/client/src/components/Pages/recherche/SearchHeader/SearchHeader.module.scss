@@ -25,12 +25,12 @@
 }
 
 .stickybar {
-  position: sticky;
-  top: -1px;
   padding-top: u(2.5);
   padding-bottom: u(10);
   transition: 0.1s padding linear;
   clip-path: inset(0 -18px -18px -18px);
+  position: sticky;
+  top: -1px;
 
   &.sticky {
     padding-bottom: u(2.5);

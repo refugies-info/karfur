@@ -1,7 +1,6 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import Separator from "~/components/UI/Separator";
 import { useLocale } from "~/hooks";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import AllNeedsItem from "./AllNeedsItem";
@@ -14,6 +13,7 @@ const Needs: React.FC = () => {
   const { search, selectedThemeId, nbDispositifsByTheme } = useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
   const { t } = useTranslation();
+  const needsContainerRef = useRef<HTMLDivElement | null>(null);
 
   const displayedNeeds = useMemo(() => {
     if (search) {
@@ -26,11 +26,17 @@ const Needs: React.FC = () => {
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
   }, [selectedThemeId, needs, search, locale]);
 
+  useEffect(() => {
+    const firstFocusable = needsContainerRef.current?.querySelector(
+      "[tabindex], a, button, input, radio, select, textarea",
+    ) as HTMLElement;
+    firstFocusable?.focus();
+  }, [selectedThemeId]);
+
   return (
     <div className={styles.container}>
-      <AllNeedsItem />
-      <Separator />
-      <div className={styles.needs}>
+      <AllNeedsItem themeId={selectedThemeId as string} />
+      <div className={styles.needs} ref={needsContainerRef}>
         {displayedNeeds.map((need, i) => {
           return <NeedItem key={i} need={need} />;
         })}

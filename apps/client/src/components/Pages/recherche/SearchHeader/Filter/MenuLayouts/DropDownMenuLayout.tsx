@@ -33,7 +33,13 @@ export function DropDownMenuLayout({ label, value, icon, resetOptions, gaType, c
         </DropdownButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content align="start" className={styles.menu} sideOffset={4}>
+        <DropdownMenu.Content
+          align="start"
+          className={styles.menu}
+          sideOffset={4}
+          side="bottom"
+          avoidCollisions={false}
+        >
           {children}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>

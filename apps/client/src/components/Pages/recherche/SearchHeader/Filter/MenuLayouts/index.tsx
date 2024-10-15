@@ -7,6 +7,7 @@ export type LayoutProps = {
   gaType: string;
   resultsNumber?: number;
   children: React.ReactNode;
+  filterCount?: number | null;
 };
 export { DialogMenuLayout, DialogMenuLayoutTitle } from "./DialogMenuLayout";
 export { DropDownMenuLayout } from "./DropDownMenuLayout";

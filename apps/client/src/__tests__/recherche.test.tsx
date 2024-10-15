@@ -24,6 +24,7 @@ describe("recherche", () => {
             matches: [],
             suggestions: [],
           },
+          noResults: [],
           query: {
             search: "",
             departments: [],
