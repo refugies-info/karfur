@@ -118,7 +118,30 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
       Pensez à vérifiez votre courrier indésirable !
     </p>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
-exports[`auth/connexion renders null if no email 1`] = `<DocumentFragment />`;
+exports[`auth/connexion renders null if no email 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
+</DocumentFragment>
+`;

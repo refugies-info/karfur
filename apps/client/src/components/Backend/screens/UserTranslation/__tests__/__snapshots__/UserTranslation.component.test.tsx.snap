@@ -227,6 +227,16 @@ exports[`user translation should redirect if user has language but not langue in
       </dialog>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -457,6 +467,16 @@ exports[`user translation should redirect if user has no language but langue in 
       </dialog>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -560,6 +580,16 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         </div>
       </dialog>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -665,6 +695,16 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
       </dialog>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -768,6 +808,16 @@ exports[`user translation should render correctly with non expert, non admin 1`]
         </div>
       </dialog>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -998,6 +1048,16 @@ exports[`user translation should return loader langue in url = first selected la
         </div>
       </dialog>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

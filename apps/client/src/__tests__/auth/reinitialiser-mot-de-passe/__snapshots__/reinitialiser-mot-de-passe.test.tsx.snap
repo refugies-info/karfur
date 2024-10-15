@@ -57,6 +57,16 @@ exports[`auth/reinitialiser-mot-de-passe renders page if email 1`] = `
       </div>
     </form>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -116,6 +126,16 @@ exports[`auth/reinitialiser-mot-de-passe renders page if no email 1`] = `
         </button>
       </div>
     </form>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

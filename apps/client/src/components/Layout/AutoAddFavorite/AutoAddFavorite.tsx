@@ -37,9 +37,11 @@ const AutoAddFavorite = () => {
     }
   }, [favoriteContentId, isAuth, userDetails, dispatch, router]);
 
-  return showFavoriteToast ? (
-    <Toast close={() => setShowFavoriteToast(false)}>{t("Dispositif.messageAddedToFavorites")}</Toast>
-  ) : null;
+  return (
+    <Toast open={showFavoriteToast} closeCallback={() => setShowFavoriteToast(false)}>
+      {t("Dispositif.messageAddedToFavorites")}
+    </Toast>
+  );
 };
 
 export default AutoAddFavorite;

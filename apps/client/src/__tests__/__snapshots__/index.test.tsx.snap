@@ -7472,5 +7472,15 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
