@@ -117,7 +117,7 @@ const ShareButtons = () => {
       </Tooltip>
 
       <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>
-        Lien copié !
+        {t("Dispositif.toastShareCopied")}
       </Toast>
     </div>
   );

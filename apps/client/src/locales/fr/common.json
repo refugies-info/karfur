@@ -286,7 +286,8 @@
     "compris": "Ok, j’ai compris",
     "freeApp": "Application gratuite",
     "downloadAppButton": "Télécharger",
-    "more_1_year": "Mise à jour il y a plus d’un an"
+    "more_1_year": "Mise à jour il y a plus d’un an",
+    "toastShareCopied": "Lien copié !"
   },
   "Infocards": {
     "availability": "Disponibilité demandée",
