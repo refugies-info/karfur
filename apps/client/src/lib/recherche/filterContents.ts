@@ -118,7 +118,7 @@ export const countMatchingAgeOptions = (dispositif: GetDispositifsResponse, ageO
 
 export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
-  return countMatchingAgeOptions(dispositif, ageFilters) === ageFilters.length;
+  return countMatchingAgeOptions(dispositif, ageFilters) > 0;
 };
 
 const FILTER_FRENCH_LEVEL_VALUES = {
