@@ -230,33 +230,114 @@ exports[`recherche renders search results 1`] = `
         </div>
       </div>
     </div>
-    <div
-      class="no_results"
+    <section
+      class="wrapper"
     >
-      <h2>
-        Recherche.noResultTitle
-      </h2>
-      <p>
-        Recherche.noResultText
-      </p>
-      <button
-        class="fr-btn"
-        id="fr-button-:rh:"
+      <div
+        class="container container"
       >
-        Recherche.resetFilters
-      </button>
-      <img
-        alt="No results"
-        data-nimg="1"
-        decoding="async"
-        height="280"
-        loading="lazy"
-        src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-        srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-        style="color: transparent;"
-        width="420"
-      />
-    </div>
+        <div
+          class="container no_result"
+        >
+          <div
+            class="grid"
+          >
+            <div
+              class="tabsbar"
+            >
+              <button
+                class="tabitem active"
+              >
+                Filters.typeAll (0)
+              </button>
+              <button
+                class="tabitem"
+              >
+                Filters.typeDemarche (0)
+              </button>
+              <button
+                class="tabitem"
+              >
+                Filters.typeDispositif (0)
+              </button>
+              <button
+                class="tabitem"
+              >
+                Filters.typeRessource (0)
+              </button>
+            </div>
+            <button
+              aria-expanded="false"
+              aria-haspopup="true"
+              class="sort_button"
+              data-state="closed"
+              id="radix-:rh:"
+              type="button"
+            >
+              <span
+                class="sort_label"
+              >
+                Filters.sortView
+              </span>
+              <i
+                class="ri-expand-up-down-line fr-icon--sm"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="no_results"
+        >
+          <img
+            alt=""
+            data-nimg="1"
+            decoding="async"
+            height="120"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+            style="color: transparent;"
+            width="176"
+          />
+          <div>
+            <h2
+              class="mb-2"
+            >
+              Recherche.noResultTitle
+            </h2>
+            <p>
+              Recherche.noResultText
+            </p>
+          </div>
+          <button
+            class="fr-btn fr-btn--tertiary ri-eraser-line fr-btn--icon-right"
+            id="fr-button-:rj:"
+          >
+            Recherche.resetFilters
+          </button>
+        </div>
+        <div>
+          <h2
+            class="no_results_other"
+          >
+            Recherche.noResultOther
+          </h2>
+          <div
+            class="results"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

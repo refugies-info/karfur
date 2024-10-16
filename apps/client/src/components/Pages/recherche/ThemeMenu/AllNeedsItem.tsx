@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "~/components/UI/Checkbox";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
 import { Event } from "~/lib/tracking";
@@ -22,6 +23,7 @@ const AllNeedsItem: React.FC<Props> = ({ themeId }) => {
   const query = useSelector(searchQuerySelector);
   const dispatch = useDispatch();
   const allNeeds = useSelector(needsSelector);
+  const eventName = useSearchEventName();
 
   let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
   const needsFromCurrentTheme = useMemo(
@@ -40,7 +42,7 @@ const AllNeedsItem: React.FC<Props> = ({ themeId }) => {
       // if not selected, add
       allSelectedNeeds = [...new Set([...allSelectedNeeds, ...needsFromCurrentTheme])];
       setSelected(true);
-      Event("USE_SEARCH", "use theme filter", "select one need");
+      Event(eventName, "use theme filter", "select all needs");
     }
 
     const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);

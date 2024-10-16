@@ -25,6 +25,7 @@ export type SearchQuery = {
 
 export interface SearchResultsState {
   results: Results;
+  noResults: GetDispositifsResponse[];
   query: SearchQuery;
 }
 
@@ -33,6 +34,7 @@ const initialSearchResultsState: SearchResultsState = {
     matches: [],
     suggestions: [],
   },
+  noResults: [],
   query: {
     search: "",
     departments: [],
@@ -50,6 +52,7 @@ const initialSearchResultsState: SearchResultsState = {
 
 export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(initialSearchResultsState, {
   SET_RESULTS: (state, action) => ({ ...state, results: action.payload }),
+  SET_NO_RESULTS: (state, action) => ({ ...state, noResults: action.payload }),
   ADD_TO_QUERY: (state, action) => {
     const query = { ...state.query, ...action.payload };
     const rule = getDisplayRuleForQuery(query);

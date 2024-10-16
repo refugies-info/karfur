@@ -18,7 +18,7 @@ import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { generateLightResults } from "~/lib/recherche/generateLightResults";
-import { queryDispositifs, queryDispositifsWithAlgolia } from "~/lib/recherche/queryContents";
+import { getTopDemarches, queryDispositifs, queryDispositifsWithAlgolia } from "~/lib/recherche/queryContents";
 import styles from "~/scss/pages/recherche.module.scss";
 import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
@@ -27,9 +27,13 @@ import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
 import { languei18nSelector } from "~/services/Langue/langue.selectors";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
-import { addToQueryActionCreator, setSearchResultsActionCreator } from "~/services/SearchResults/searchResults.actions";
+import {
+  addToQueryActionCreator,
+  setNoResultsActionCreator,
+  setSearchResultsActionCreator,
+} from "~/services/SearchResults/searchResults.actions";
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { noResultsSelector, searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 
 export type UrlSearchQuery = {
@@ -66,6 +70,7 @@ const Recherche = () => {
   const { params } = useUtmz();
 
   const dispositifs = useSelector(activeDispositifsSelector);
+  const noResultsDemarche = useSelector(noResultsSelector);
   const languei18nCode = useSelector(languei18nSelector);
   const query = useSelector(searchQuerySelector);
   const allNeeds = useSelector(needsSelector);
@@ -108,6 +113,13 @@ const Recherche = () => {
       });
     }
   }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params]);
+
+  // generate list of demarches to show when no results
+  useEffect(() => {
+    if (noResultsDemarche.length === 0) {
+      dispatch(setNoResultsActionCreator(getTopDemarches(dispositifs)));
+    }
+  }, [noResultsDemarche, dispositifs, dispatch]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(

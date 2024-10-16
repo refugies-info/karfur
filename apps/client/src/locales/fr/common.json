@@ -109,9 +109,8 @@
     "filterPublic": "Public visé",
     "filterStatus": "Statut",
     "all": "Tous",
-    "resetFilters": "Effacer tous les filtres",
+    "resetFilters": "Effacer les filtres",
     "titleResults": "{{count}} fiches pour votre recherche",
-    "noResultTitle": "Oups, aucun résultat",
     "noResultText": "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.",
     "suggestedTitle": "Ces fiches peuvent aussi vous intéresser",
     "seeMore": "Voir plus",
@@ -122,7 +121,9 @@
     "filtersAndSortModalTitle": "Filtres et tri",
     "sortBy": "Trier par",
     "clear": "Effacer",
-    "seeAllButtonWithCount": "Voir les {{count}} fiches"
+    "seeAllButtonWithCount": "Voir les {{count}} fiches",
+    "noResultTitle": "Oups ! Il n’y a aucun résultat avec vos critères de recherche.",
+    "noResultOther": "Ces fiches peuvent aussi vous intéresser"
   },
   "Widget": {
     "fiches": "Fiches",
@@ -287,7 +288,8 @@
     "compris": "Ok, j’ai compris",
     "freeApp": "Application gratuite",
     "downloadAppButton": "Télécharger",
-    "more_1_year": "Mise à jour il y a plus d’un an"
+    "more_1_year": "Mise à jour il y a plus d’un an",
+    "toastShareCopied": "Lien copié !"
   },
   "Infocards": {
     "availability": "Disponibilité demandée",
