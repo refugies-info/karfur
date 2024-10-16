@@ -9,8 +9,8 @@ import {
   DialogMenuLayoutTitle,
   DropDownMenuLayout,
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
-import ZeroCountTooltip from "~/components/Pages/recherche/SearchHeader/Filter/ZeroCountTooltip";
 import Checkbox from "~/components/UI/Checkbox";
+import Tooltip from "~/components/UI/Tooltip";
 import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -156,8 +156,9 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                       const isSelected = currentmenu.selected.includes(option.key);
                       const isDisabled = option.count === 0;
                       return (
-                        <ZeroCountTooltip key={o} active={isDisabled}>
+                        <>
                           <Checkbox
+                            id={`MenuItemTooltip${o}`}
                             onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
                             tabIndex={0}
                             checked={isSelected}
@@ -177,7 +178,10 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                               <div className={styles.count}>{option.count ?? ""}</div>
                             </div>
                           </Checkbox>
-                        </ZeroCountTooltip>
+                          <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                            {t("Recherche.tooltipAucuneFicheCorrespondante")}
+                          </Tooltip>
+                        </>
                       );
                     })}
                   </>
@@ -234,8 +238,9 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                       disabled={isDisabled}
                       asChild
                     >
-                      <ZeroCountTooltip active={isDisabled}>
+                      <>
                         <Checkbox
+                          id={`MenuItemTooltip${o}`}
                           onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
                           tabIndex={0}
                           checked={isSelected}
@@ -248,7 +253,10 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                             <div className={styles.count}>{option.count ?? ""}</div>
                           </div>
                         </Checkbox>
-                      </ZeroCountTooltip>
+                        <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                          {t("Recherche.tooltipAucuneFicheCorrespondante")}
+                        </Tooltip>
+                      </>
                     </DropdownMenu.Item>
                   );
                 }),
