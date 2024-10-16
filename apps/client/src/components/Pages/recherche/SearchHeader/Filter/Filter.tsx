@@ -4,6 +4,7 @@ import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/search
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Balancer from "react-wrap-balancer";
 import {
   DialogMenuLayout,
   DialogMenuLayoutTitle,
@@ -179,7 +180,7 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                             </div>
                           </Checkbox>
                           <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
-                            {t("Recherche.tooltipAucuneFicheCorrespondante")}
+                            <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
                           </Tooltip>
                         </>
                       );
@@ -254,7 +255,7 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                           </div>
                         </Checkbox>
                         <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
-                          {t("Recherche.tooltipAucuneFicheCorrespondante")}
+                          <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
                         </Tooltip>
                       </>
                     </DropdownMenu.Item>
