@@ -55,7 +55,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
       <div className={styles.filtersBar}>
         <Filter
-          label={t("Dispositif.Département", "Département")}
+          label={t("Recherche.filterLocation", "Département")}
           externalMenu={{
             value: query.departments,
             reset: resetDepartment,
