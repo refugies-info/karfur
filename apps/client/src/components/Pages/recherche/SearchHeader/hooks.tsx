@@ -10,9 +10,7 @@ import { searchResultsSelector } from "~/services/SearchResults/searchResults.se
 const useFilteredDocs = () => {
   const { matches: dispositifs } = useSelector(searchResultsSelector);
 
-  return useMemo(() => {
-    return dispositifs;
-  }, [dispositifs]);
+  return dispositifs;
 };
 
 /**
