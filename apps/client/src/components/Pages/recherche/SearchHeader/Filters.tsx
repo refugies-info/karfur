@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useSearchEventName } from "~/hooks";
@@ -39,10 +39,18 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
     dispatch(addToQueryActionCreator({ needs: [], themes: [] }));
   }, [dispatch]);
 
+  const themeLabel = useMemo(() => {
+    return themeDisplayedValue.length > 0 ? themeDisplayedValue[0] : t("Recherche.theme", "Thème");
+  }, [t, themeDisplayedValue]);
+
   // LOCATION
   const resetDepartment = useCallback(() => {
     dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
   }, [dispatch]);
+
+  const locationLabel = useMemo(() => {
+    return query.departments.length === 0 ? t("Recherche.filterLocation", "Département") : query.departments[0];
+  }, [t, query.departments]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -55,7 +63,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
       <div className={styles.filtersBar}>
         <Filter
-          label={t("Recherche.filterLocation", "Département")}
+          label={locationLabel}
           externalMenu={{
             value: query.departments,
             reset: resetDepartment,
@@ -64,7 +72,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
           gaType="department"
         />
         <Filter
-          label={t("Recherche.theme", "Thème")}
+          label={themeLabel}
           externalMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
