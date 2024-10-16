@@ -10,7 +10,9 @@ import DropdownMenuMobile from "~/components/Pages/recherche/DropdownMenuMobile"
 import LocationMenu from "~/components/Pages/recherche/LocationMenu";
 import ThemeMenu from "~/components/Pages/recherche/ThemeMenu";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
+import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/searchHeader.module.scss";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import SearchInput from "../SearchInput";
@@ -26,6 +28,7 @@ interface Props {
 const HomeSearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const eventName = useSearchEventName();
 
   const { resetDepartment, resetTheme, resetSearch, onChangeSearchInput } = props;
 
@@ -36,12 +39,26 @@ const HomeSearchHeaderMobile = (props: Props) => {
 
   // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
-  const toggleLocation = useCallback(() => setLocationOpen((o) => !o), []);
+  const toggleLocation = useCallback(
+    () =>
+      setLocationOpen((o) => {
+        if (!o) Event(eventName, "open filter", "department");
+        return !o;
+      }),
+    [eventName],
+  );
 
   // THEME
   const [themesOpen, setThemesOpen] = useState(false);
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
-  const toggleThemes = useCallback(() => setThemesOpen((o) => !o), []);
+  const toggleThemes = useCallback(
+    () =>
+      setThemesOpen((o) => {
+        if (!o) Event(eventName, "open filter", "themes");
+        return !o;
+      }),
+    [eventName],
+  );
 
   return (
     <>

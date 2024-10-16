@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import Separator from "~/components/UI/Separator";
+import { useSearchEventName } from "~/hooks";
 import { getDepartmentCodeFromName } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -34,6 +35,7 @@ interface Props {
 const LocationMenu: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const eventName = useSearchEventName();
 
   const [locationSearch, setLocationSearch] = useState("");
   const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
@@ -59,8 +61,8 @@ const LocationMenu: React.FC<Props> = () => {
 
   const onSelectPrediction = useCallback(
     (id: string, name: string) => {
-      Event("USE_SEARCH", "choose location option", name);
-      Event("USE_SEARCH", "click filter", "location");
+      Event(eventName, "choose location option", name);
+      Event(eventName, "click filter", "location");
       placesService?.getDetails({ placeId: id, fields: ["address_components"] }, (placeDetails) => {
         const departement = (placeDetails?.address_components || []).find((comp) =>
           comp.types.includes("administrative_area_level_2"),
@@ -79,11 +81,12 @@ const LocationMenu: React.FC<Props> = () => {
       });
       resetLocationSearch();
     },
-    [placesService, resetLocationSearch, query.departments, dispatch],
+    [placesService, resetLocationSearch, query.departments, dispatch, eventName],
   );
 
   const onSelectCommonPlace = useCallback(
     (depName: string) => {
+      Event(eventName, "choose location suggestion", depName);
       const oldDeps = query.departments;
       dispatch(
         addToQueryActionCreator({
@@ -92,7 +95,7 @@ const LocationMenu: React.FC<Props> = () => {
         }),
       );
     },
-    [query.departments, dispatch],
+    [query.departments, dispatch, eventName],
   );
 
   useEffect(() => {

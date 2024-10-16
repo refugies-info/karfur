@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -21,14 +22,15 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const eventName = useSearchEventName();
 
   // KEYWORD
   const onChangeSearchInput = useCallback(
     (e: any) => {
       dispatch(addToQueryActionCreator({ search: e.target.value }));
-      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+      Event(eventName, "use keyword filter", "use searchbar");
     },
-    [dispatch],
+    [dispatch, eventName],
   );
 
   // THEME
@@ -82,7 +84,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
             },
           ]}
           className={cls(styles.filter, styles.filterHiddenOnMobile)}
-          gaType="age"
+          gaType="status"
         />
         <Filter
           label={t("Recherche.filterPublic", "Public visé")}
@@ -110,7 +112,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
             },
           ]}
           className={cls(styles.filter, styles.filterHiddenOnMobile)}
-          gaType="status"
+          gaType="age"
         />
         <Filter
           label={t("Recherche.filterFrenchLevel", "Niveau de français")}
@@ -153,6 +155,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
               options: statusOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "status",
             },
             {
               label: t("Recherche.filterPublic", "Public visé"),
@@ -161,6 +164,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
               options: publicOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "public",
             },
             {
               label: t("Recherche.filterAge", "Tranche d'âge"),
@@ -169,6 +173,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
               options: ageOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "age",
             },
             {
               label: t("Recherche.filterFrenchLevel", "Niveau de français"),
@@ -177,6 +182,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
               options: frenchLevelOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "frenchLevel",
             },
             {
               label: t("Recherche.filterLanguage", "Fiches traduites en"),
@@ -185,10 +191,11 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
               options: languageOptions,
               translateOptions: false,
               menuItemStyles: cls(styles.menuItem, styles.medium),
+              gaType: "language",
             },
           ]}
           className={cls(styles.collapsedFiltersButton)}
-          gaType="language"
+          gaType="mobile"
         />
       </div>
     </Container>

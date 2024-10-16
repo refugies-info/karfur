@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "~/components/UI/Checkbox";
-import { useLocale } from "~/hooks";
+import { useLocale, useSearchEventName } from "~/hooks";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
 import { Event } from "~/lib/tracking";
 import { needsSelector } from "~/services/Needs/needs.selectors";
@@ -21,6 +21,7 @@ const NeedItem: React.FC<Props> = ({ need }) => {
   const query = useSelector(searchQuerySelector);
   const allNeeds = useSelector(needsSelector);
   const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
+  const eventName = useSearchEventName();
 
   const selectNeed = (id: Id) => {
     let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
@@ -31,7 +32,7 @@ const NeedItem: React.FC<Props> = ({ need }) => {
     } else {
       // if not selected, add
       allSelectedNeeds = [...allSelectedNeeds, id];
-      Event("USE_SEARCH", "use theme filter", "select one need");
+      Event(eventName, "use theme filter", "select one need");
     }
 
     const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);

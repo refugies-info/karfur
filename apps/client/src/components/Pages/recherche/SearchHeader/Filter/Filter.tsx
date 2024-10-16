@@ -12,7 +12,7 @@ import {
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import Checkbox from "~/components/UI/Checkbox";
 import Tooltip from "~/components/UI/Tooltip";
-import { useWindowSize } from "~/hooks";
+import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -40,6 +40,7 @@ type MenuItemProps = {
   translateOptions?: boolean;
   menuItemStyles?: string;
   label?: string;
+  gaType?: string;
 };
 type MenuItems = PropsBase & {
   externalMenu?: never;
@@ -63,6 +64,7 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const themesDisplayed = useSelector(themesDisplayedSelector);
+  const eventName = useSearchEventName();
 
   const { isTablet } = useWindowSize();
 
@@ -84,7 +86,7 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
       : [...menuItem.selected, key];
 
     addToQuery({ [filterKey]: newSelected });
-    Event("USE_SEARCH", "click filter", gaType);
+    Event(eventName, "click filter", menuItem.gaType || gaType);
   };
 
   const resetOptions = () => {
@@ -104,9 +106,9 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
   const selectSort = useCallback(
     (key: SortOptions) => {
       dispatch(addToQueryActionCreator({ sort: key }));
-      Event("USE_SEARCH", "click filter", "sort");
+      Event(eventName, "click sort option", key);
     },
-    [dispatch],
+    [dispatch, eventName],
   );
 
   const value = useMemo(() => {
