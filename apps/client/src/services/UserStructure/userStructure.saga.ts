@@ -106,7 +106,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
       }
       structureId = membres.structureId;
 
-      yield call(API.updateStructureRoles, membres.structureId, query);
+      yield call(API.updateStructureMembers, membres.structureId, query);
     } else {
       throw new Error("NO_DATA");
     }

@@ -1,6 +1,6 @@
 import { PatchStructureRolesRequest, RoleName } from "@refugies-info/api-types";
 import logger from "~/logger";
-import { sendNewReponsableMailService } from "~/modules/mail/mail.service";
+import { sendNewMemberMailService } from "~/modules/mail/mail.service";
 import { getRoleByName } from "~/modules/role/role.repository";
 import { getStructureFromDB, updateStructureMember } from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
@@ -10,10 +10,14 @@ import { User } from "~/typegoose";
 import { Response } from "~/types/interface";
 import { log } from "./log";
 
-export const modifyUserRoleInStructure = async (id: string, body: PatchStructureRolesRequest, user: User): Response => {
+export const modifyUserMembershipInStructure = async (
+  id: string,
+  body: PatchStructureRolesRequest,
+  user: User,
+): Response => {
   const { membreId, action } = body;
 
-  logger.info("[modifyUserRoleInStructure] try to modify structure with id", {
+  logger.info("[modifyUserMembershipInStructure] try to modify structure with id", {
     id,
     action,
     membreId,
@@ -21,7 +25,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
 
   await checkIfUserIsAuthorizedToModifyStructure(id, user);
 
-  logger.info("[modifyUserRoleInStructure] updating stucture", {
+  logger.info("[modifyUserMembershipInStructure] updating stucture", {
     id,
   });
   let structure;
@@ -56,11 +60,11 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
     const adminRole = await getRoleByName(RoleName.ADMIN);
     const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRole._id.toString());
     if (!user || !structureData) {
-      logger.error("[modifyUserRoleInStructure] mail not sent");
+      logger.error("[modifyUserMembershipInStructure] mail not sent");
     } else if (userIsAdmin) {
-      logger.info("[modifyUserRoleInStructure] user is admin, mail not sent");
+      logger.info("[modifyUserMembershipInStructure] user is admin, mail not sent");
     } else {
-      await sendNewReponsableMailService({
+      await sendNewMemberMailService({
         userId: user._id,
         email: user.email,
         firstName: user.firstName || "",

@@ -73,7 +73,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         action: "create",
       };
 
-      await API.updateStructureRoles(props.selectedStructureId, structure);
+      await API.updateStructureMembers(props.selectedStructureId, structure);
 
       Swal.fire({
         title: "Yay...",
