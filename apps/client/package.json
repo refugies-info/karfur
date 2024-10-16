@@ -71,6 +71,7 @@
     "redux-saga": "^1.2.3",
     "remixicon": "^4.3.0",
     "remove": "^0.1.5",
+    "reselect": "^5.1.1",
     "sortablejs": "^1.15.0",
     "styled-components": "^6.1.12",
     "sweetalert2": "^11.14.2",
