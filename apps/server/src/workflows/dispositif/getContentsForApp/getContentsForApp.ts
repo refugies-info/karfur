@@ -1,5 +1,6 @@
 import {
   ContentForApp,
+  ContentType,
   GetContentsForAppRequest,
   GetContentsForAppResponse,
   Languages,
@@ -18,7 +19,10 @@ const present =
       translation = dispositif.translations.fr;
       realLocale = "fr";
     }
-    const sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
+    let sponsorUrl: string | null = null;
+    if (dispositif.typeContenu === ContentType.DISPOSITIF)
+      sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
+    if (dispositif.typeContenu === ContentType.DEMARCHE) sponsorUrl = dispositif.administrationLogo?.secure_url || null;
 
     return {
       _id: dispositif._id.toString(),

@@ -21,6 +21,7 @@ interface Props {
   stroke?: string;
   contentId: string;
   isSmall?: boolean;
+  logo?: string | null;
 }
 
 const CARD_WIDTH = 84;
@@ -78,6 +79,16 @@ export const DemarcheImage = (props: Props) => {
     const imageName = getImageNameFromContentId(props.contentId);
     return imageName ? IMAGES[imageName] : null;
   }, [props.contentId]);
+
+  if (props.logo) {
+    return (
+      <Image
+        source={{ uri: props.logo }}
+        resizeMode="contain"
+        style={{ width: cardWidth, height: cardWidth, flex: 1 }}
+      />
+    );
+  }
 
   if (imageData) {
     const height = cardWidth / imageData.ratio;

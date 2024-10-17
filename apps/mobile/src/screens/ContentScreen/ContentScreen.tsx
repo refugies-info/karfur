@@ -206,7 +206,11 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           {selectedContent.typeContenu === ContentType.DEMARCHE && (
             <>
-              <DemarcheImage contentId={selectedContent._id.toString()} isSmall={false} />
+              <DemarcheImage
+                contentId={selectedContent._id.toString()}
+                isSmall={false}
+                logo={selectedContent.administration?.logo?.secure_url}
+              />
               <Spacer height={styles.margin * 3} />
             </>
           )}
