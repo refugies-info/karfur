@@ -14,6 +14,7 @@ import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
+import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.scss";
@@ -32,6 +33,7 @@ const SearchResults = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
   const noResultsDemarche = useSelector(noResultsSelector);
+  const showSuggestions = getDisplayRuleForQuery(query, "suggestions")?.display;
 
   const [page, setPage] = useState(1);
 
@@ -150,7 +152,7 @@ const SearchResults = (props: Props) => {
             </div>
           </>
         )}
-        {filteredResults.suggestions.length > 0 && (
+        {showSuggestions && filteredResults.suggestions.length > 0 && (
           <div>
             <h2>{t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}</h2>
             <div className={styles.results}>
