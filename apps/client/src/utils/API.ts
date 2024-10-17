@@ -419,9 +419,9 @@ const API = {
     const headers = getHeaders();
     return instance.patch<any, null>(`/structures/${id}`, body, { headers }).then(() => null);
   },
-  updateStructureRoles: (id: Id, body: PatchStructureRolesRequest): Promise<null> => {
+  updateStructureMembers: (id: Id, body: PatchStructureRolesRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/structures/${id}/roles`, body, { headers }).then(() => null);
+    return instance.patch<any, null>(`/structures/${id}/members`, body, { headers }).then(() => null);
   },
   getStructureById: (id: string, locale: string, options?: RequestOptions): Promise<GetStructureResponse> => {
     const headers = getHeaders(options?.token);

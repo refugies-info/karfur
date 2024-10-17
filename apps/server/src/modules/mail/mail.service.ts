@@ -518,17 +518,17 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
   }
 };
 
-interface NewResponsableMail {
+interface NewMemberMail {
   userId: UserId;
   email: string;
   firstName: string;
   nomstructure: string;
 }
 
-export const sendNewReponsableMailService = async (data: NewResponsableMail) => {
-  if (consentsToEmail(data.userId, "newResponsable")) {
+export const sendNewMemberMailService = async (data: NewMemberMail) => {
+  if (consentsToEmail(data.userId, "newMember")) {
     try {
-      logger.info("[sendNewReponsableMailService] received");
+      logger.info("[sendNewMemberMailService] received");
 
       const dynamicData = {
         to: data.email,
@@ -542,7 +542,7 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
           nomstructure: data.nomstructure,
         },
       };
-      const templateName = "newResponsable";
+      const templateName = "newMember";
       sendMail(templateName, dynamicData, true);
       await addMailEvent({
         templateName,
@@ -551,12 +551,12 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
       });
       return;
     } catch (error) {
-      logger.error("[sendNewReponsableMailService] error", {
+      logger.error("[sendNewMemberMailService] error", {
         error: error.message,
       });
     }
   } else {
-    logger.info("[sendNewReponsableMailService] user has not consented to email", { email: data.email });
+    logger.info("[sendNewMemberMailService] user has not consented to email", { email: data.email });
   }
 };
 

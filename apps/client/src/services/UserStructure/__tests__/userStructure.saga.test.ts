@@ -150,7 +150,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
-        .call(API.updateStructureRoles, "structureId", {
+        .call(API.updateStructureMembers, "structureId", {
           membreId: "userId",
           action: "create",
         })
@@ -214,7 +214,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
-        .call(API.updateStructureRoles, "structureId", {
+        .call(API.updateStructureMembers, "structureId", {
           membreId: "userId",
           action: "delete",
         })

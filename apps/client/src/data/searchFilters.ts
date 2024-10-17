@@ -47,10 +47,10 @@ export const frenchLevelFilter: FrenchFilters = [
   { key: "c", value: "Filters.frenchLevelC", backwardCompatibility: ["bien"] },
 ];
 export const sortOptions: SortFilters = [
-  { key: "location", value: "Filters.sortLocation", backwardCompatibility: "" },
-  { key: "theme", value: "Filters.sortTheme", backwardCompatibility: "theme" },
   { key: "date", value: "Filters.sortDate", backwardCompatibility: "created_at" },
+  { key: "location", value: "Filters.sortLocation", backwardCompatibility: "" },
   { key: "view", value: "Filters.sortView", backwardCompatibility: "nbVues" },
+  { key: "theme", value: "Filters.sortTheme", backwardCompatibility: "theme" },
 ];
 export const filterType: TypeFilters = [
   { key: "all", value: "Filters.typeAll", backwardCompatibility: "" },
