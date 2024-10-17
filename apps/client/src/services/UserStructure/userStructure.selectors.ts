@@ -1,16 +1,22 @@
-import { GetStructureDispositifResponse, GetStructureResponse } from "@refugies-info/api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
+import { createSelector } from "reselect";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
 import { RootState } from "../rootReducer";
 
 export const userStructureSelector = (state: RootState): GetStructureResponse | null => state.userStructure;
 
-export const userStructureDisposAssociesSelector = (state: RootState): GetStructureDispositifResponse[] => {
-  if (!state.userStructure) return [];
-  if (areDispositifsAssociesPopulate(state.userStructure.dispositifsAssocies)) {
-    return state.userStructure.dispositifsAssocies;
-  }
-  return [];
-};
+const selectUserStructureDisposAssociesSelector = (state: RootState) => state.userStructure?.dispositifsAssocies;
+
+export const userStructureDisposAssociesSelector = createSelector(
+  [selectUserStructureDisposAssociesSelector],
+  (selectUserStructureDisposAssociesSelector) => {
+    if (!selectUserStructureDisposAssociesSelector) return [];
+    if (areDispositifsAssociesPopulate(selectUserStructureDisposAssociesSelector)) {
+      return selectUserStructureDisposAssociesSelector;
+    }
+    return [];
+  },
+);
 
 export const userStructureHasResponsibleSeenNotification = (state: RootState): boolean =>
   state.userStructure ? !!state.userStructure.hasResponsibleSeenNotification : false;
