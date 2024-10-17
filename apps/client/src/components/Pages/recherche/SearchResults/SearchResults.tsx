@@ -33,7 +33,7 @@ const SearchResults = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
   const noResultsDemarche = useSelector(noResultsSelector);
-  const showSuggestions = getDisplayRuleForQuery(query, "suggestions")?.display;
+  const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
 
   const [page, setPage] = useState(1);
 
