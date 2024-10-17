@@ -10,13 +10,13 @@
 }
 
 .container {
-  /* Layout */
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: stretch;
   padding-block: u(14);
   gap: u(14);
+  max-width: 990px;
 
   /* Style */
   background: $white;
@@ -30,13 +30,13 @@
 .results {
   display: grid;
   gap: u(6);
-  max-width: 100%;
+  grid-template-columns: 1fr;
 
   @container (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @container (min-width: 1024px) {
+  @container (min-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
   }
 

@@ -1325,7 +1325,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1473,7 +1473,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1621,7 +1621,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1769,7 +1769,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -1912,7 +1912,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2060,7 +2060,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2203,7 +2203,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2351,7 +2351,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2494,7 +2494,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2637,7 +2637,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2785,7 +2785,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -2928,7 +2928,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3076,7 +3076,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3219,7 +3219,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3362,7 +3362,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3569,7 +3569,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3704,7 +3704,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3839,7 +3839,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -3969,7 +3969,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4104,7 +4104,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4239,7 +4239,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4369,7 +4369,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4504,7 +4504,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4634,7 +4634,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4769,7 +4769,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -4904,7 +4904,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -5039,7 +5039,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -5169,7 +5169,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -5304,7 +5304,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"
@@ -5434,7 +5434,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start mb-3 position-relative"
+                      class="fr-card__start position-relative"
                     >
                       <div
                         class="sponsor"

@@ -465,7 +465,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -492,9 +492,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                       Français
                     </div>
                   </div>
-                  <div
-                    class="info"
-                  />
                 </div>
                 <div
                   class="end"
@@ -587,7 +584,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -614,9 +611,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                       Administratif
                     </div>
                   </div>
-                  <div
-                    class="info"
-                  />
                 </div>
                 <div
                   class="end"
@@ -709,7 +703,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -736,9 +730,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                       Logement
                     </div>
                   </div>
-                  <div
-                    class="info"
-                  />
                 </div>
                 <div
                   class="end"

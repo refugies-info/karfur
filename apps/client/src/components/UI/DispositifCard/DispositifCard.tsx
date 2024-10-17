@@ -104,7 +104,7 @@ const DispositifCard = (props: Props) => {
               />
             </div>
 
-            <div className="fr-card__start mb-3 position-relative">
+            <div className="fr-card__start position-relative">
               <div className={styles.sponsor}>
                 <Image
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
@@ -121,14 +121,14 @@ const DispositifCard = (props: Props) => {
                 )}
               </div>
 
-              <div className={styles.info}>
-                {props.dispositif?.sponsor?.nom && (
+              {props.dispositif?.sponsor?.nom && (
+                <div className={styles.info}>
                   <span>
                     <i className="fr-icon-building-line me-2" />
                     <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
                   </span>
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.end}>
