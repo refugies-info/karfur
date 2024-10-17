@@ -113,6 +113,7 @@
     "resetFilters": "Effacer les filtres",
     "titleResults": "{{count}} fiches pour votre recherche",
     "noResultText": "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.",
+    "suggestedTitle": "Ces fiches peuvent aussi vous intéresser",
     "seeMore": "Voir plus",
     "seeLess": "Voir moins",
     "results": "résultats",
