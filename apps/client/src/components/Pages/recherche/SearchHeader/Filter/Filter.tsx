@@ -4,12 +4,14 @@ import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/search
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Balancer from "react-wrap-balancer";
 import {
   DialogMenuLayout,
   DialogMenuLayoutTitle,
   DropDownMenuLayout,
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import Checkbox from "~/components/UI/Checkbox";
+import Tooltip from "~/components/UI/Tooltip";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -157,27 +159,32 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                       const isSelected = currentmenu.selected.includes(option.key);
                       const isDisabled = option.count === 0;
                       return (
-                        <Checkbox
-                          key={o}
-                          onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
-                          tabIndex={0}
-                          checked={isSelected}
-                          disabled={isDisabled}
-                          className={cls(styles.item, currentmenu.menuItemStyles)}
-                          aria-checked={isSelected}
-                          aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
-                        >
-                          <div
-                            className={styles.label}
-                            onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
-                            aria-controls=""
+                        <>
+                          <Checkbox
+                            id={`MenuItemTooltip${o}`}
+                            onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                            tabIndex={0}
+                            checked={isSelected}
+                            disabled={isDisabled}
+                            className={cls(styles.item, currentmenu.menuItemStyles)}
+                            aria-checked={isSelected}
+                            aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
                           >
-                            {currentmenu.translateOptions ? t(option.value) : option.value}
-                          </div>
-                          <div className={styles.countContainer}>
-                            <div className={styles.count}>{option.count ?? ""}</div>
-                          </div>
-                        </Checkbox>
+                            <div
+                              className={styles.label}
+                              onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
+                              aria-controls=""
+                            >
+                              {currentmenu.translateOptions ? t(option.value) : option.value}
+                            </div>
+                            <div className={styles.countContainer}>
+                              <div className={styles.count}>{option.count ?? ""}</div>
+                            </div>
+                          </Checkbox>
+                          <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                            <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
+                          </Tooltip>
+                        </>
                       );
                     })}
                   </>
@@ -234,19 +241,25 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
                       disabled={isDisabled}
                       asChild
                     >
-                      <Checkbox
-                        onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
-                        tabIndex={0}
-                        checked={isSelected}
-                        disabled={isDisabled}
-                      >
-                        <div className={styles.label}>
-                          {currentmenu.translateOptions ? t(option.value) : option.value}
-                        </div>
-                        <div className={styles.countContainer}>
-                          <div className={styles.count}>{option.count ?? ""}</div>
-                        </div>
-                      </Checkbox>
+                      <>
+                        <Checkbox
+                          id={`MenuItemTooltip${o}`}
+                          onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                          tabIndex={0}
+                          checked={isSelected}
+                          disabled={isDisabled}
+                        >
+                          <div className={styles.label}>
+                            {currentmenu.translateOptions ? t(option.value) : option.value}
+                          </div>
+                          <div className={styles.countContainer}>
+                            <div className={styles.count}>{option.count ?? ""}</div>
+                          </div>
+                        </Checkbox>
+                        <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                          <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
+                        </Tooltip>
+                      </>
                     </DropdownMenu.Item>
                   );
                 }),
