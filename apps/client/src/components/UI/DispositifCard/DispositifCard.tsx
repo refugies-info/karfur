@@ -48,7 +48,7 @@ const DispositifCard = (props: Props) => {
   const badge = useMemo((): { className: string; text: string | null } => {
     if (!isDispositif) return { text: "Démarche", className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
-    if (!location) return { text: null, className: styles.badge_department };
+    if (!location) return { text: "Lieu d'action", className: styles.badge_department };
     if (!Array.isArray(location)) {
       if (location === "france")
         return { text: jsUcfirst(t("Recherche.france", "toute la France")), className: styles.badge_department };
@@ -98,13 +98,10 @@ const DispositifCard = (props: Props) => {
                   ></span>
                 </Link>
               </h3>
-              <p
-                className={cls("fr-card__desc", styles.desc, props.demoCard && styles.demo)}
-                dangerouslySetInnerHTML={{ __html: safeAbstract }}
-              />
+              <p className={cls("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
             </div>
 
-            <div className="fr-card__start mb-3 position-relative">
+            <div className="fr-card__start position-relative">
               <div className={styles.sponsor}>
                 <Image
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
@@ -135,7 +132,7 @@ const DispositifCard = (props: Props) => {
               {isDispositif ? (
                 <>
                   <div className={cls(styles.info, "d-flex gap-2")}>
-                    {price !== undefined && (
+                    {price && (
                       <span className="flex-shrink-0">
                         <i className="fr-icon-money-euro-circle-line me-2" />
                         <span>{getPriceText(price, t)}</span>
@@ -156,10 +153,10 @@ const DispositifCard = (props: Props) => {
                       <span className="flex-shrink-1">
                         <i className="fr-icon-time-line me-2" />
                         <span>
-                          Mise à jour{" "}
                           {getRelativeTimeString(
                             new Date(props.dispositif.lastModificationDate),
                             router.locale || "fr",
+                            t,
                           )}
                         </span>
                       </span>
@@ -167,7 +164,7 @@ const DispositifCard = (props: Props) => {
                   )}
                 </>
               )}
-              <i className="fr-icon-arrow-right-line" />
+              {!props.demoCard && <i className="fr-icon-arrow-right-line" />}
             </div>
           </div>
         </div>
@@ -193,7 +190,7 @@ const DispositifCard = (props: Props) => {
         </div>
       </div>
 
-      <FavoriteButton contentId={props.dispositif._id} className={styles.favorite} />
+      {!props.demoCard && <FavoriteButton contentId={props.dispositif._id} className={styles.favorite} />}
     </div>
   );
 };

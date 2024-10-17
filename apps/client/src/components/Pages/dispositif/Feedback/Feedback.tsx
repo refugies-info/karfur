@@ -81,7 +81,9 @@ const Feedback = () => {
         </Button>
       </div>
 
-      {showToast && <Toast close={() => setShowToast(false)}>{t("Dispositif.feedbackThanks")}</Toast>}
+      <Toast open={showToast} closeCallback={() => setShowToast(false)}>
+        {t("Dispositif.feedbackThanks")}
+      </Toast>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 @import "~/scss/colors";
 @import "~/scss/variables";
 @import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
 @import "~/scss/mixins/responsive";
 
 .wrapper {
@@ -9,13 +10,13 @@
 }
 
 .container {
-  /* Layout */
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: stretch;
   padding-block: u(14);
   gap: u(14);
+  max-width: 990px;
 
   /* Style */
   background: $white;
@@ -29,13 +30,13 @@
 .results {
   display: grid;
   gap: u(6);
-  max-width: 100%;
+  grid-template-columns: 1fr;
 
   @container (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @container (min-width: 1024px) {
+  @container (min-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -49,8 +50,26 @@
   width: fit-content;
   display: flex;
   flex-direction: column;
-  gap: u(2);
+  gap: u(10);
   align-items: center;
   justify-content: center;
-  padding: u(8);
+  padding: u(14) 0;
+  text-align: center;
+
+  h2 {
+    @include dsfr-text("chapo");
+
+    font-weight: bold;
+  }
+
+  p {
+    @include dsfr-text("chapo");
+  }
+}
+
+.no_results_other {
+  @include dsfr-text("h2");
+
+  text-align: left;
+  margin-bottom: u(10);
 }

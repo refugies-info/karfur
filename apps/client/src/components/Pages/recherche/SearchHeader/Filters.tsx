@@ -1,7 +1,8 @@
 import { useTranslation } from "next-i18next";
-import { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -12,18 +13,24 @@ import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
-const Filters = () => {
+
+type Props = {
+  isSticky?: boolean;
+};
+
+const Filters: React.FC<Props> = ({ isSticky }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const eventName = useSearchEventName();
 
   // KEYWORD
   const onChangeSearchInput = useCallback(
     (e: any) => {
       dispatch(addToQueryActionCreator({ search: e.target.value }));
-      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+      Event(eventName, "use keyword filter", "use searchbar");
     },
-    [dispatch],
+    [dispatch, eventName],
   );
 
   // THEME
@@ -32,10 +39,18 @@ const Filters = () => {
     dispatch(addToQueryActionCreator({ needs: [], themes: [] }));
   }, [dispatch]);
 
+  const themeLabel = useMemo(() => {
+    return themeDisplayedValue.length > 0 ? themeDisplayedValue[0] : t("Recherche.theme", "Thème");
+  }, [t, themeDisplayedValue]);
+
   // LOCATION
   const resetDepartment = useCallback(() => {
     dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
   }, [dispatch]);
+
+  const locationLabel = useMemo(() => {
+    return query.departments.length === 0 ? t("Recherche.filterLocation", "Département") : query.departments[0];
+  }, [t, query.departments]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -44,12 +59,11 @@ const Filters = () => {
   const languageOptions = useLanguagesOptions();
 
   return (
-    <Container className={cls(styles.container)}>
+    <Container className={cls(styles.container, isSticky && styles.sticky)}>
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
       <div className={styles.filtersBar}>
         <Filter
-          label={t("Dispositif.Département", "Département")}
-          layout={"mobile"}
+          label={locationLabel}
           externalMenu={{
             value: query.departments,
             reset: resetDepartment,
@@ -58,7 +72,7 @@ const Filters = () => {
           gaType="department"
         />
         <Filter
-          label={t("Recherche.themes", "Thèmes")}
+          label={themeLabel}
           externalMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,
@@ -78,7 +92,7 @@ const Filters = () => {
             },
           ]}
           className={cls(styles.filter, styles.filterHiddenOnMobile)}
-          gaType="age"
+          gaType="status"
         />
         <Filter
           label={t("Recherche.filterPublic", "Public visé")}
@@ -106,7 +120,7 @@ const Filters = () => {
             },
           ]}
           className={cls(styles.filter, styles.filterHiddenOnMobile)}
-          gaType="status"
+          gaType="age"
         />
         <Filter
           label={t("Recherche.filterFrenchLevel", "Niveau de français")}
@@ -123,7 +137,7 @@ const Filters = () => {
           gaType="frenchLevel"
         />
         <Filter
-          label={t("Recherche.filterLanguage", "Fiches traduites en")}
+          label={t("Recherche.filterLanguage", "Traduit en")}
           menuItems={[
             {
               filterKey: "language",
@@ -140,6 +154,7 @@ const Filters = () => {
         <Filter
           label={t("Recherche.filtersAndSortModalTitle", "Filtres et tri")}
           icon="ri-equalizer-line"
+          showFilterCount={true}
           menuItems={[
             {
               label: t("Recherche.filterStatus", "Statut"),
@@ -148,6 +163,7 @@ const Filters = () => {
               options: statusOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "status",
             },
             {
               label: t("Recherche.filterPublic", "Public visé"),
@@ -156,6 +172,7 @@ const Filters = () => {
               options: publicOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "public",
             },
             {
               label: t("Recherche.filterAge", "Tranche d'âge"),
@@ -164,6 +181,7 @@ const Filters = () => {
               options: ageOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "age",
             },
             {
               label: t("Recherche.filterFrenchLevel", "Niveau de français"),
@@ -172,6 +190,7 @@ const Filters = () => {
               options: frenchLevelOptions,
               translateOptions: true,
               menuItemStyles: cls(styles.menuItem, styles.small),
+              gaType: "frenchLevel",
             },
             {
               label: t("Recherche.filterLanguage", "Fiches traduites en"),
@@ -180,10 +199,11 @@ const Filters = () => {
               options: languageOptions,
               translateOptions: false,
               menuItemStyles: cls(styles.menuItem, styles.medium),
+              gaType: "language",
             },
           ]}
           className={cls(styles.collapsedFiltersButton)}
-          gaType="language"
+          gaType="mobile"
         />
       </div>
     </Container>

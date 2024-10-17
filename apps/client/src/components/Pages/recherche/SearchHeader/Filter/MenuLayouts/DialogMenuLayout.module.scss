@@ -13,13 +13,13 @@
   height: 100svh;
   overflow-y: auto;
   background-color: #fff;
-  z-index: 9999999;
+  z-index: 1000000;
   will-change: transform;
 
   .dialogTitle {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,11 +33,14 @@
   }
 
   .dialogInnerContent {
+    position: relative;
+    z-index: 9;
     padding: u(4);
   }
 
   .dialogFooter {
     position: sticky;
+    z-index: 9;
     bottom: 0;
     display: flex;
     justify-content: space-between;

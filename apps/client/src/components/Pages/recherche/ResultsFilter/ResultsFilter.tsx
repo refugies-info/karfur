@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
@@ -26,6 +27,7 @@ const ResultsFilter = (): React.ReactNode => {
   const themesDisplayed = useSelector(themesDisplayedSelector);
   const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
+  const eventName = useSearchEventName();
 
   const nbDemarches = useMemo(
     () => filteredResult.matches.filter(({ typeContenu }) => typeContenu === "demarche").length,
@@ -49,14 +51,11 @@ const ResultsFilter = (): React.ReactNode => {
       case "dispositif":
         const deptCount = query.departments.length;
         switch (deptCount) {
-          case 0:
-            return `(${nbDispositifs})`;
-
           case 1:
             return `${query.departments[0]} (${nbDispositifs})`;
 
           default:
-            return `${query.departments[0]} + ${deptCount - 1} (${nbDispositifs})`;
+            return `(${nbDispositifs})`;
         }
       case "ressource":
         return `(${onlineResourceCount})`;
@@ -70,24 +69,24 @@ const ResultsFilter = (): React.ReactNode => {
   const selectType = useCallback(
     (key: TypeOptions) => {
       dispatch(addToQueryActionCreator({ type: key }));
-      Event("USE_SEARCH", "use type filter", "click type");
+      Event(eventName, "use type filter", key);
     },
-    [dispatch],
+    [dispatch, eventName],
   );
 
   const toggleSort = useCallback(() => {
     setOpen((o) => {
-      if (!o) Event("USE_SEARCH", "open filter", "sort");
+      if (!o) Event(eventName, "open filter", "sort");
       return !o;
     });
-  }, []);
+  }, [eventName]);
 
   const selectSort = useCallback(
     (key: SortOptions) => {
       dispatch(addToQueryActionCreator({ sort: key }));
-      Event("USE_SEARCH", "click filter", "sort");
+      Event(eventName, "click sort option", key);
     },
-    [dispatch],
+    [dispatch, eventName],
   );
 
   const menuItemRefs = useRef<(HTMLDivElement | null)[]>([]);

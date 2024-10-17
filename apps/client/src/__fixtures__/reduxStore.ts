@@ -57,6 +57,7 @@ const initialMockSearchReults: SearchResultsState = {
     matches: [],
     suggestions: [],
   },
+  noResults: [],
   query: {
     search: "",
     departments: [],

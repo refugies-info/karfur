@@ -123,17 +123,13 @@ const RightSidebar = () => {
             disabledOptions={disabledOptions}
             withFlag
           />
-          {showFavoriteToast && (
-            <Toast close={() => setShowFavoriteToast(null)}>
-              {showFavoriteToast === "added"
-                ? t("Dispositif.messageAddedToFavorites")
-                : t("Dispositif.messageRemovedFromFavorites")}
-            </Toast>
-          )}
-
+          <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
+            {showFavoriteToast === "added"
+              ? t("Dispositif.messageAddedToFavorites")
+              : t("Dispositif.messageRemovedFromFavorites")}
+          </Toast>
           <SMSForm disabledOptions={disabledOptions} />
           <ShareButtons />
-
           {!isAuth && (
             <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} dispositifId={dispositif?._id} />
           )}

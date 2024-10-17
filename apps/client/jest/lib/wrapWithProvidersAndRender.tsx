@@ -1,3 +1,4 @@
+import { ToastProvider, ToastViewport } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { render } from "@testing-library/react";
 import { initialMockStore } from "__fixtures__/reduxStore";
@@ -29,13 +30,16 @@ export function wrapWithProvidersAndRenderForTesting<T>({
   const store = mockStore(reduxState);
 
   const componentWithRedux = (
-    <TooltipProvider>
-      <Router>
-        <Provider store={store}>
-          <Component {...compProps} />
-        </Provider>
-      </Router>
-    </TooltipProvider>
+    <ToastProvider swipeDirection="down">
+      <TooltipProvider>
+        <Router>
+          <Provider store={store}>
+            <Component {...compProps} />
+          </Provider>
+        </Router>
+      </TooltipProvider>
+      <ToastViewport />
+    </ToastProvider>
   );
 
   return render(componentWithRedux);

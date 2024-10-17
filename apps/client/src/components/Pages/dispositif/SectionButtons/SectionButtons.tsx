@@ -131,7 +131,9 @@ const SectionButtons = (props: Props) => {
           callback={() => setShowToast(true)}
         />
       )}
-      {showToast && <Toast close={() => setShowToast(false)}>{t("Dispositif.reactFeedbackMessage")}</Toast>}
+      <Toast open={showToast} closeCallback={() => setShowToast(false)}>
+        {t("Dispositif.reactFeedbackMessage")}
+      </Toast>
     </div>
   );
 };

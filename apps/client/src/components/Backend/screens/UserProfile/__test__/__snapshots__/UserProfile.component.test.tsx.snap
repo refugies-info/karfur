@@ -719,6 +719,16 @@ exports[`UserProfile should render correctly 1`] = `
       </div>
     </dialog>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -726,6 +736,16 @@ exports[`UserProfile should render correctly when loading 1`] = `
 <DocumentFragment>
   <div>
     Une erreur est survenue, veuillez recharger la page !
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

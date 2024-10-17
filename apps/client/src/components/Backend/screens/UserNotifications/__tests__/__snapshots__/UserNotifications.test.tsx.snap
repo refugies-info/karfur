@@ -58,6 +58,16 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
       </div>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -150,6 +160,16 @@ exports[`UserNotifications should render correctly when loading 1`] = `
         <br />
       </span>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -799,6 +819,16 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         </div>
       </div>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

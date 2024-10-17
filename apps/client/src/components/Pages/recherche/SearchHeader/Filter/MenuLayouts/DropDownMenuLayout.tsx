@@ -3,17 +3,19 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
+import { useSearchEventName } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
 export function DropDownMenuLayout({ label, value, icon, resetOptions, gaType, children }: LayoutProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const eventName = useSearchEventName();
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
     if (newOpen) {
-      Event("USE_SEARCH", "open filter", gaType);
+      Event(eventName, "open filter", gaType);
     }
   };
 
@@ -33,7 +35,13 @@ export function DropDownMenuLayout({ label, value, icon, resetOptions, gaType, c
         </DropdownButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content align="start" className={styles.menu} sideOffset={4}>
+        <DropdownMenu.Content
+          align="start"
+          className={styles.menu}
+          sideOffset={4}
+          side="bottom"
+          avoidCollisions={false}
+        >
           {children}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>

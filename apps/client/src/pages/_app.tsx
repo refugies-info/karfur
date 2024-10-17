@@ -20,7 +20,9 @@ import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsen
 import { finishLoading, LoadingStatusKey, startLoading } from "~/services/LoadingStatus/loadingStatus.actions";
 
 import { DirectionProvider } from "@radix-ui/react-direction";
+import { ToastProvider, ToastViewport } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
+import toastStyles from "scss/components/toast.module.scss";
 import { useRTL } from "~/hooks";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
@@ -114,16 +116,17 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
 
   return (
     <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
-      <TooltipProvider delayDuration={250}>
-        {options.cookiesModule && <ConsentBannerAndConsentManagement />}
-        <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+      <ToastProvider swipeDirection="down">
+        <TooltipProvider delayDuration={250}>
+          {options.cookiesModule && <ConsentBannerAndConsentManagement />}
+          <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
-        {options.supportModule && (
-          <Script
-            id="crisp-widget"
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-              __html: `
+          {options.supportModule && (
+            <Script
+              id="crisp-widget"
+              strategy="lazyOnload"
+              dangerouslySetInnerHTML={{
+                __html: `
         window.$crisp=[["safe", true]];
         window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
         (function(){
@@ -133,10 +136,12 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           s.async = 1;
           d.getElementsByTagName("head")[0].appendChild(s);
         })();`,
-            }}
-          />
-        )}
-      </TooltipProvider>
+              }}
+            />
+          )}
+        </TooltipProvider>
+        <ToastViewport className={toastStyles.viewport} dir={isRTL ? "rtl" : "ltr"} />
+      </ToastProvider>
     </DirectionProvider>
   );
 };

@@ -96,8 +96,8 @@ export interface Sponsor {
 }
 
 export interface DemarcheAdministration {
-  name?: string;
-  logo?: Picture;
+  name?: string | null;
+  logo?: Picture | null;
 }
 
 // User

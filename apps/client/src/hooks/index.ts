@@ -16,6 +16,7 @@ export { default as useRTL } from "./useRTL";
 export { useSanitizedContent } from "./useSanitizedContent";
 export { useScrollDirection } from "./useScrollDirection";
 export { default as useScrolledBottomEvent } from "./useScrolledBottomEvent";
+export { default as useSearchEventName } from "./useSearchEventName";
 export { default as useSendSms } from "./useSendSms";
 export { default as useThemeIcon } from "./useThemeIcon";
 export { default as useUniqueId } from "./useUniqueId";

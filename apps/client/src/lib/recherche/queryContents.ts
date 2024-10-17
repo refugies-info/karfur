@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { GetDispositifsResponse, GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
 import algoliasearch from "algoliasearch";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
@@ -70,6 +70,7 @@ const filterDispositifs = (
 ): GetDispositifsResponse[] => {
   const filterKeys = buildFilterKeys(query);
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
+
   const filteredDispositifs = dispositifs
     .filter((dispositif) => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
     .filter((dispositif) => filterByLocations(dispositif, query.departments))
@@ -78,7 +79,57 @@ const filterDispositifs = (
     .filter((dispositif) => filterByLanguage(dispositif, query.language))
     .filter((dispositif) => filterByPublic(dispositif, query.public))
     .filter((dispositif) => filterByStatus(dispositif, query.status));
+
   return rule?.sortFunction ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b)) : filteredDispositifs;
+};
+
+const filterSuggestions = (
+  query: SearchQuery,
+  dispositifs: SimpleDispositif[],
+  matches: SimpleDispositif[],
+  allNeeds: GetNeedResponse[],
+): SimpleDispositif[] => {
+  // dispositifs which have theme in secondary themes
+  let suggestions: SimpleDispositif[] = [];
+  if (query.themes.length === 0 && query.needs.length === 0) return suggestions;
+
+  // Get all the dispositifs not selected by the main query
+  const remainingDispositifs = dispositifs.filter((dispositif) => !matches.map((d) => d._id).includes(dispositif._id));
+
+  // If themes are selected, the "suggestions" section displays all records that have any of the selected themes as a secondary or tertiary theme.
+  if (query.themes.length > 0) {
+    suggestions = remainingDispositifs.filter((dispositif) =>
+      dispositif.secondaryThemes?.some((theme) => query.themes.includes(theme)),
+    );
+    // Returns the results here to stop the filtering process
+    return suggestions.sort((a, b) => b.nbVues - a.nbVues).slice(0, 8);
+  }
+
+  // If needs are selected, the "suggestions" section displays all records
+  // that have any of the needs from the same theme except the needs inside query.needs
+  if (query.needs.length > 0) {
+    // Get the current needs data to build the logic
+    const selectedNeeds = allNeeds.filter((need) => query.needs.includes(need._id));
+    let selectedNeedsIds: Id[] = [];
+    let relatedThemesIds: Id[] = [];
+
+    // Populate 2 arrays with only needs and theme ids to ease the filtering process
+    selectedNeeds.map((need) => {
+      selectedNeedsIds.push(need._id);
+      relatedThemesIds.push(need.theme._id);
+    });
+
+    suggestions = remainingDispositifs
+      // Only the current themes
+      .filter((dispositif) => relatedThemesIds.includes(dispositif.theme as string))
+      // Only the ones that DOES NOT have the current selected needs
+      .filter((dispositif) => !dispositif.needs.some((need) => selectedNeedsIds.includes(need)));
+
+    // Returns the results here to stop the filtering process
+    return suggestions.sort((a, b) => b.nbVues - a.nbVues).slice(0, 8);
+  }
+
+  return suggestions;
 };
 
 let searchCache = "";
@@ -130,25 +181,48 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
 };
 
 /**
+ * Get the 12 top demarches to show when no result
+ * @param dispositifs - list of dispositifs
+ * @returns - list of dispositifs
+ */
+export const getTopDemarches = (dispositifs: GetDispositifsResponse[]): GetDispositifsResponse[] => {
+  return filterDispositifs(
+    {
+      type: "demarche",
+      sort: "view",
+      search: "",
+      departments: [],
+      themes: [],
+      needs: [],
+      age: [],
+      frenchLevel: [],
+      public: [],
+      status: [],
+      language: [],
+    },
+    dispositifs,
+    false,
+  ).slice(0, 12);
+};
+
+/**
  * Use the query to filter a list of dispositifs
  * @param query - search query
  * @param dispositifs - list of dispositifs
+ * @param allNeeds - all needs from store
  * @returns - results
  */
-export const queryDispositifs = (query: SearchQuery, dispositifs: GetDispositifsResponse[]): Results => {
+export const queryDispositifs = (
+  query: SearchQuery,
+  dispositifs: GetDispositifsResponse[],
+  allNeeds: GetNeedResponse[],
+): Results => {
   const matches = filterDispositifs(query, dispositifs, false);
-
-  // dispositifs which have theme in secondary themes
-  let suggestions: GetDispositifsResponse[] = [];
-  if (query.themes.length > 0) {
-    const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
-      .filter((dispositif) => !matches.map((d) => d._id).includes(dispositif._id));
-    suggestions = filterDispositifs(query, remainingDispositifs, true);
-  }
+  const suggestions = filterSuggestions(query, dispositifs, matches, allNeeds);
 
   return {
     matches: matches,
-    suggestions,
+    suggestions: suggestions,
   };
 };
 
@@ -158,15 +232,17 @@ export const queryDispositifs = (query: SearchQuery, dispositifs: GetDispositifs
  * @param query - search query
  * @param dispositifs - list of dispositifs
  * @param locale - language to use for Algolia
+ * @param needs - all needs from store
  * @returns - results
  */
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
   locale: string,
+  allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return queryDispositifs(query, filteredDispositifsByAlgolia);
+  return queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds);
 };
 
 /**

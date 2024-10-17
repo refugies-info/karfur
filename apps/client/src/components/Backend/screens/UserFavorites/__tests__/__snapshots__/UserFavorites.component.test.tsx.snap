@@ -318,6 +318,16 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
       </div>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -455,7 +465,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -521,7 +531,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   <p
                     class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
                     id="fr-badge-:r0:"
-                  />
+                  >
+                    Lieu d'action
+                  </p>
                 </li>
               </ul>
             </div>
@@ -574,7 +586,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -640,7 +652,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   <p
                     class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
                     id="fr-badge-:r1:"
-                  />
+                  >
+                    Lieu d'action
+                  </p>
                 </li>
               </ul>
             </div>
@@ -693,7 +707,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -775,6 +789,16 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         </div>
       </div>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -1041,6 +1065,16 @@ exports[`UserFavorites should render correctly when loading 1`] = `
         </div>
       </div>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;

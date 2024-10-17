@@ -2,7 +2,12 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  flex: 1 0 0;
+  background-color: #fff;
+  border-top: 6px solid #fff;
+  transform: translateY(-8px);
+  width: 100%;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-default-grey);
 }
 
 .label {

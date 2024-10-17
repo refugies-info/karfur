@@ -39,25 +39,89 @@ export const filterByLocations = (dispositif: GetDispositifsResponse, department
   return false;
 };
 
-const filterAgeValues = {
+const FILTER_AGE_VALUES: Record<AgeOptions, [number, number]> = {
   "-18": [0, 18],
   "18-25": [18, 25],
   "+25": [25, 99],
 };
 
-export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
-  if (ageFilters.length === 0) return true;
-  const audienceAge = dispositif.metadatas?.age;
-  if (!audienceAge || !audienceAge.ages[0] || !audienceAge.ages[1]) return true;
-  for (const age of ageFilters) {
-    if (audienceAge.ages[0] <= filterAgeValues[age][0] && audienceAge.ages[1] >= filterAgeValues[age][1]) {
-      return true;
-    }
-  }
-  return false;
+const isAgeRangeCompatible = (filterRange: [number, number], audienceRange: [number, number]): boolean => {
+  const [filterMin, filterMax] = filterRange;
+  const [audienceMin, audienceMax] = audienceRange;
+
+  return filterMin >= audienceMin && filterMax <= audienceMax;
 };
 
-const filterFrenchLevelValues = {
+interface AudienceAge {
+  type: "between" | "moreThan" | "lessThan";
+  ages: number[];
+}
+
+function convertAudienceAgeToRange(audienceAge: AudienceAge): [number, number] {
+  const MAX_AGE = Number.MAX_SAFE_INTEGER;
+  const MIN_AGE = 0;
+
+  switch (audienceAge.type) {
+    case "between":
+      if (audienceAge.ages.length !== 2) {
+        throw new Error("Invalid 'between' age range");
+      }
+      return [audienceAge.ages[0], audienceAge.ages[1]];
+
+    case "moreThan":
+      if (audienceAge.ages.length !== 1) {
+        throw new Error("Invalid 'moreThan' age value");
+      }
+      return [audienceAge.ages[0] + 1, MAX_AGE];
+
+    case "lessThan":
+      if (audienceAge.ages.length !== 1) {
+        throw new Error("Invalid 'lessThan' age value");
+      }
+      return [MIN_AGE, audienceAge.ages[0] - 1];
+
+    default:
+      throw new Error("Invalid audience age type");
+  }
+}
+
+export const getMatchingAgeOptions = (dispositif: GetDispositifsResponse): AgeOptions[] => {
+  const allAgeOptions = Object.keys(FILTER_AGE_VALUES) as AgeOptions[];
+  const audienceAge = dispositif.metadatas?.age;
+  if (!audienceAge || !audienceAge.ages) return allAgeOptions;
+
+  const audienceAgeRange = convertAudienceAgeToRange(audienceAge);
+
+  return allAgeOptions.reduce((acc, age) => {
+    const filterRange = FILTER_AGE_VALUES[age];
+    if (isAgeRangeCompatible(filterRange, audienceAgeRange)) {
+      return [...acc, age];
+    }
+    return acc;
+  }, [] as AgeOptions[]);
+};
+
+export const countMatchingAgeOptions = (dispositif: GetDispositifsResponse, ageOptions: AgeOptions[]): number => {
+  const audienceAge = dispositif.metadatas?.age;
+  if (!audienceAge || !audienceAge.ages) return ageOptions.length;
+
+  const audienceAgeRange = convertAudienceAgeToRange(audienceAge);
+
+  return ageOptions.reduce((count, age) => {
+    const filterRange = FILTER_AGE_VALUES[age];
+    if (isAgeRangeCompatible(filterRange, audienceAgeRange)) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
+};
+
+export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
+  if (ageFilters.length === 0) return true;
+  return countMatchingAgeOptions(dispositif, ageFilters) > 0;
+};
+
+const FILTER_FRENCH_LEVEL_VALUES = {
   a: ["A1", "A2"],
   b: ["A1", "A2", "B1", "B2"],
   c: [],
@@ -72,12 +136,12 @@ export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLe
     return true;
   } else if (frenchLevelFilters.includes("b")) {
     for (const frenchLevel of frenchLevels) {
-      if (filterFrenchLevelValues["b"].includes(frenchLevel)) return true;
+      if (FILTER_FRENCH_LEVEL_VALUES["b"].includes(frenchLevel)) return true;
     }
     return false;
   } else if (frenchLevelFilters.includes("a")) {
     for (const frenchLevel of frenchLevels) {
-      if (filterFrenchLevelValues["a"].includes(frenchLevel)) return true;
+      if (FILTER_FRENCH_LEVEL_VALUES["a"].includes(frenchLevel)) return true;
     }
     return false;
   }
