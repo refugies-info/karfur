@@ -423,7 +423,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           class="wrapper"
         >
           <div
-            class="fr-card  container"
+            class="fr-card fr-enlarge-link container"
           >
             <div
               class="fr-card__body body"
@@ -455,7 +455,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -496,29 +496,23 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               </div>
             </div>
             <div
-              class="fr-card__header cardHeader"
+              class="fr-card__header"
             >
               <div
                 class="fr-card__img"
               >
-                <a
-                  class="cardImageLink"
-                  href="/program/id1"
-                  title="tinfo1"
-                >
-                  <img
-                    alt=""
-                    class="fr-responsive-img"
-                    data-fr-js-ratio="true"
-                    data-nimg="1"
-                    decoding="async"
-                    height="158"
-                    loading="lazy"
-                    src="/images/cards/dispositif/français.svg"
-                    style="color: transparent;"
-                    width="280"
-                  />
-                </a>
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  data-fr-js-ratio="true"
+                  data-nimg="1"
+                  decoding="async"
+                  height="158"
+                  loading="lazy"
+                  src="/images/cards/dispositif/français.svg"
+                  style="color: transparent;"
+                  width="280"
+                />
               </div>
               <ul
                 class="fr-badges-group"
@@ -548,7 +542,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           class="wrapper"
         >
           <div
-            class="fr-card  container"
+            class="fr-card fr-enlarge-link container"
           >
             <div
               class="fr-card__body body"
@@ -580,7 +574,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -621,29 +615,23 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               </div>
             </div>
             <div
-              class="fr-card__header cardHeader"
+              class="fr-card__header"
             >
               <div
                 class="fr-card__img"
               >
-                <a
-                  class="cardImageLink"
-                  href="/program/id2"
-                  title="tinfo2"
-                >
-                  <img
-                    alt=""
-                    class="fr-responsive-img"
-                    data-fr-js-ratio="true"
-                    data-nimg="1"
-                    decoding="async"
-                    height="158"
-                    loading="lazy"
-                    src="/images/cards/dispositif/administratif.svg"
-                    style="color: transparent;"
-                    width="280"
-                  />
-                </a>
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  data-fr-js-ratio="true"
+                  data-nimg="1"
+                  decoding="async"
+                  height="158"
+                  loading="lazy"
+                  src="/images/cards/dispositif/administratif.svg"
+                  style="color: transparent;"
+                  width="280"
+                />
               </div>
               <ul
                 class="fr-badges-group"
@@ -673,7 +661,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           class="wrapper"
         >
           <div
-            class="fr-card  container"
+            class="fr-card fr-enlarge-link container"
           >
             <div
               class="fr-card__body body"
@@ -705,7 +693,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start mb-3 position-relative"
+                  class="fr-card__start position-relative"
                 >
                   <div
                     class="sponsor"
@@ -743,29 +731,23 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               </div>
             </div>
             <div
-              class="fr-card__header cardHeader"
+              class="fr-card__header"
             >
               <div
                 class="fr-card__img"
               >
-                <a
-                  class="cardImageLink"
-                  href="/procedure/id3"
-                  title="tinfo3"
-                >
-                  <img
-                    alt=""
-                    class="fr-responsive-img"
-                    data-fr-js-ratio="true"
-                    data-nimg="1"
-                    decoding="async"
-                    height="158"
-                    loading="lazy"
-                    src="/images/cards/demarche/logement.svg"
-                    style="color: transparent;"
-                    width="280"
-                  />
-                </a>
+                <img
+                  alt=""
+                  class="fr-responsive-img"
+                  data-fr-js-ratio="true"
+                  data-nimg="1"
+                  decoding="async"
+                  height="158"
+                  loading="lazy"
+                  src="/images/cards/demarche/logement.svg"
+                  style="color: transparent;"
+                  width="280"
+                />
               </div>
               <ul
                 class="fr-badges-group"
