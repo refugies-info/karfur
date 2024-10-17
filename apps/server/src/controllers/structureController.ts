@@ -17,7 +17,7 @@ import { getActiveStructures } from "~/workflows/structure/getActiveStructures";
 import { getAllStructures } from "~/workflows/structure/getAllStructures";
 import { getStatistics } from "~/workflows/structure/getStatistics";
 import { getStructureById } from "~/workflows/structure/getStructureById";
-import { modifyUserRoleInStructure } from "~/workflows/structure/modifyUserRoleInStructure";
+import { modifyUserMembershipInStructure } from "~/workflows/structure/modifyUserRoleInStructure";
 import { updateStructure } from "~/workflows/structure/updateStructure";
 
 @Route("structures")
@@ -80,12 +80,12 @@ export class StructureController extends Controller {
     jwt: [],
     fromSite: [],
   })
-  @Patch("{id}/roles")
-  public async updateRoles(
+  @Patch("{id}/members")
+  public async updateMembers(
     @Path() id: string,
     @Body() body: PatchStructureRolesRequest,
     @Request() request: ExRequest,
   ): Response {
-    return modifyUserRoleInStructure(id, body, request.user);
+    return modifyUserMembershipInStructure(id, body, request.user);
   }
 }
