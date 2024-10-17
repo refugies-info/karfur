@@ -19,7 +19,7 @@ export const PREFS: Record<string, Record<TemplateName, boolean>> = {
     newFicheEnAttente: false,
     publishedTradForTraductors: false,
     reviewFiche: false,
-    newResponsable: false,
+    newMember: false,
     accountDeleted: true,
   },
 };

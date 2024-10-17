@@ -5,17 +5,19 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./DialogMenuLayout.module.scss";
 
-export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, children }: LayoutProps) {
+export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, filterCount, children }: LayoutProps) {
   const { t } = useTranslation();
   const searchResults = useSelector(searchResultsSelector);
   const totalResults = searchResults.matches.length;
   const dispatch = useDispatch();
+  const eventName = useSearchEventName();
 
   const [open, setOpen] = useState(false);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
@@ -32,7 +34,7 @@ export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, chi
     }
 
     if (newOpen) {
-      Event("USE_SEARCH", "open filter", gaType);
+      Event(eventName, "open filter", gaType);
     }
   };
 
@@ -42,6 +44,7 @@ export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, chi
         <DropdownButton
           label={label}
           icon={icon}
+          count={filterCount}
           value={value ?? []}
           onClear={resetOptions}
           isOpen={open}

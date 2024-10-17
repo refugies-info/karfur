@@ -5,14 +5,27 @@
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
+$shadowHeight: 1.4rem;
+
 .wrapper {
-  width: 282px;
-  aspect-ratio: 0.62;
+  min-width: 100%;
+  height: 100%;
   position: relative;
-  display: flex;
+  display: block;
+
+  em {
+    background-color: #fbe769;
+    font-style: normal;
+  }
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global(.fr-card__title > a::after) {
+    content: none;
+  }
 
   .container {
     max-width: 100%;
+    height: 100%;
 
     --bg: 255 255 255;
 
@@ -32,6 +45,10 @@
   }
 
   .content {
+    display: grid;
+    grid-template-rows: 1fr 146px 1em;
+    grid-template-columns: 100%;
+    gap: u(4);
     padding: u(6);
     padding-bottom: u(6) !important; // override dsfr
     margin-left: 0;
@@ -39,26 +56,26 @@
   }
 
   .text {
-    $shadowHeight: 12px;
-
+    margin-top: auto;
     order: 2;
-    height: 146px + $shadowHeight;
-    overflow: hidden;
+    height: calc(146px);
+    overflow-y: clip;
     flex-shrink: 0;
-    position: relative;
-
-    .desc {
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        height: $shadowHeight;
-        background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
-      }
-    }
+    z-index: 1;
   }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.cardHeader {
+  position: static !important;
+}
+
+.cardImageLink::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
 }
 
 /* Badges */
@@ -83,22 +100,32 @@
 
 .end {
   order: 4;
-  padding-right: u(7);
-  margin-top: auto;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 16px;
+  gap: 0.3em;
 
-  > i {
+  // The gradient to mask the overflowing text above
+  &::before {
+    z-index: 2;
+    pointer-events: none !important; // to keep the whole card clickable
+    content: "";
     position: absolute;
+    top: - u(4);
     right: 0;
-    bottom: 0;
-    line-height: 20px;
+    left: -24px;
+    transform: translateY(calc(-100%));
+    width: calc(100% + 48px);
+    height: $shadowHeight;
+    background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
+  }
 
-    &::before {
-      --icon-size: 16px !important;
+  // The arrow icon
+  > i::before {
+    --icon-size: 16px !important;
 
-      line-height: 16px !important;
-      color: var(--text-action-high-blue-france);
-    }
+    line-height: 16px !important;
+    color: var(--text-action-high-blue-france);
   }
 }
 
@@ -117,14 +144,16 @@
 
 /* Info components */
 .info {
-  height: 20px; // fix for removing space after inline-block elements
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   & > span {
     @include dsfr-text("very-small");
 
-    display: inline-block;
+    display: inline;
     color: var(--text-mention-grey);
-    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -133,13 +162,6 @@
       --icon-size: 16px !important;
     }
   }
-}
-
-.demo {
-  border: 1px solid var(--border-default-grey);
-  background: var(--background-default-grey-hover);
-  margin: u(-0.5);
-  padding: u(0.5);
 }
 
 .sponsor {

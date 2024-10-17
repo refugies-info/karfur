@@ -4,12 +4,17 @@ import Image from "next/image";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
-import noResultsImage from "~/assets/no_results_alt.svg";
+import {
+  noResultsSelector,
+  searchQuerySelector,
+  searchResultsSelector,
+} from "services/SearchResults/searchResults.selector";
+import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
+import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.scss";
@@ -27,6 +32,8 @@ const SearchResults = (props: Props) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
+  const noResultsDemarche = useSelector(noResultsSelector);
+  const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
 
   const [page, setPage] = useState(1);
 
@@ -88,42 +95,81 @@ const SearchResults = (props: Props) => {
     };
   }, [page, loadMoreData]);
 
-  if (noResults) {
-    return (
-      <div className={styles.no_results}>
-        <h2>{t("Recherche.noResultTitle", "Oups, aucun résultat")}</h2>
-        <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
-
-        <Button onClick={() => dispatch(resetQueryActionCreator())}>
-          {t("Recherche.resetFilters", "Effacer tous les filtres")}
-        </Button>
-
-        <Image src={noResultsImage} width={420} height={280} alt="No results" />
-      </div>
-    );
-  }
-
   return (
     <section className={styles.wrapper}>
       <Container className={styles.container}>
         <ResultsFilter />
+        {noResults ? (
+          <>
+            <div className={styles.no_results}>
+              <Image src={TutoImg} width={176} height={120} alt="" />
+              <div>
+                <h2 className="mb-2">
+                  {t("Recherche.noResultTitle", "Oups ! Il n’y a aucun résultat avec vos critères de recherche.")}
+                </h2>
+                <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
+              </div>
 
-        {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
+              <Button
+                priority="tertiary"
+                onClick={() => dispatch(resetQueryActionCreator())}
+                iconId="ri-eraser-line"
+                iconPosition="right"
+              >
+                {t("Recherche.resetFilters", "Effacer les filtres")}
+              </Button>
+            </div>
 
-        <div className={styles.results}>
-          {dispositifs.length > 0 &&
-            dispositifs.map((d) => {
-              if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
-              return (
-                <DispositifCard
-                  key={d._id.toString()}
-                  dispositif={d}
-                  selectedDepartment={selectedDepartment}
-                  targetBlank
-                />
-              );
-            })}
-        </div>
+            <div>
+              <h2 className={styles.no_results_other}>
+                {t("Recherche.noResultOther", "Ces fiches peuvent aussi vous intéresser")}
+              </h2>
+              <div className={styles.results}>
+                {noResultsDemarche.map((d) => (
+                  <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            {isBannerVisible && (
+              <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />
+            )}
+            <div className={styles.results}>
+              {dispositifs.length > 0 &&
+                dispositifs.map((d) => {
+                  if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
+                  return (
+                    <DispositifCard
+                      key={d._id.toString()}
+                      dispositif={d}
+                      selectedDepartment={selectedDepartment}
+                      targetBlank
+                    />
+                  );
+                })}
+            </div>
+          </>
+        )}
+        {showSuggestions && filteredResults.suggestions.length > 0 && (
+          <div>
+            <h2>{t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}</h2>
+            <div className={styles.results}>
+              {filteredResults.suggestions.map((d) => {
+                if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
+                return (
+                  <DispositifCard
+                    key={d._id.toString()}
+                    dispositif={d}
+                    selectedDepartment={selectedDepartment}
+                    targetBlank
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
       </Container>
     </section>
   );

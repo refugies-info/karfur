@@ -40,15 +40,21 @@
 }
 
 .arrow {
-  position: absolute;
-  top: 82%;
-  left: 230px;
-  transform: translateY(-50px);
+  position: relative;
+  top: 50%;
+  padding: 0 u(2);
   z-index: 1;
   width: 70px;
   height: 30px;
+  display: block;
 
   img {
     max-width: 100%;
+  }
+}
+
+.card {
+  :global(.fr-card) {
+    flex-grow: 1;
   }
 }

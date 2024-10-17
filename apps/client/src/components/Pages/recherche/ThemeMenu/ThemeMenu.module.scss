@@ -1,0 +1,42 @@
+@import "~/scss/mixins/unit";
+
+.container {
+  background-color: #fff;
+  min-width: min(768px, 100vw);
+  max-height: min(488px, 100vh);
+  overflow-y: auto;
+  position: relative;
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  padding: u(2);
+  padding-top: 0;
+  gap: u(2);
+}
+
+.searchBar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: u(2);
+  background-color: #fff;
+
+  /* stylelint-disable-next-line media-feature-range-notation */
+  @media (min-width: 768px) {
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: var(--border-default-grey);
+      transform: translateY(u(2));
+    }
+  }
+}
+
+.searchBarSticky {
+  position: sticky;
+  top: 0;
+}

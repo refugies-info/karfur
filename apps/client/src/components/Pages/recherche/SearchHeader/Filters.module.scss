@@ -1,5 +1,6 @@
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/responsive";
+@import "~/scss/mixins/text";
 
 .search {
   position: relative;
@@ -38,32 +39,94 @@
     margin-bottom: 0;
   }
 
-  .filterHiddenOnMobile {
-    @container (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  .collapsedFiltersButton {
-    display: none;
-
-    @container (max-width: 768px) {
-      display: inline-flex;
-      margin-left: auto;
-
-      & button {
-        aspect-ratio: 1;
-        padding: u(3);
-      }
-    }
-  }
-
   .filtersBar {
-    display: flex;
+    display: inline-flex;
+    width: 100%;
     align-items: center;
     flex-flow: row wrap;
     justify-content: center;
     gap: u(2);
-    width: 100%;
+
+    @include media-min("lg-limit") {
+      width: fit-content;
+    }
+  }
+
+  &.sticky {
+    gap: u(4);
+    max-width: 100%;
+
+    @include media-min("xl-limit") {
+      max-width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.sticky > .filtersBar {
+    justify-content: start;
+
+    @container (max-width: 1400px) {
+      @include text("very-small");
+
+      justify-content: flex-start;
+    }
+
+    @include media-between("lg-limit", "widescreen-up") {
+      justify-content: center;
+      gap: u(2);
+    }
+
+    @include media-max("lg-limit") {
+      width: 100%;
+      max-width: 768px;
+    }
+  }
+
+  &.sticky > .searchZone {
+    @include media-between("lg-limit", "widescreen-up") {
+      max-width: 960px;
+    }
+
+    @include media-min("xl-limit") {
+      max-width: 10rem;
+      transform: translateY(-0.25rem);
+
+      input {
+        padding-right: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &::placeholder {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.filterHiddenOnMobile {
+  @include media-max("lg-limit") {
+    display: none;
+  }
+}
+
+.collapsedFiltersButton {
+  display: none;
+
+  @include media-max("lg-limit") {
+    display: inline-flex;
+    margin-left: auto;
+
+    & button {
+      aspect-ratio: 1;
+      padding: u(2);
+    }
   }
 }

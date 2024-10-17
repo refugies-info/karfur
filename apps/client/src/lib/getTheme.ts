@@ -57,12 +57,12 @@ const defaultTheme: GetThemeResponse = {
     imgId: "",
   },
   dispositifImage: {
-    secure_url: "/images/cards/dispositif/travail.png",
+    secure_url: "/images/cards/dispositif/travail.svg",
     public_id: "",
     imgId: "",
   },
   demarcheImage: {
-    secure_url: "/images/cards/demarche/travail.png",
+    secure_url: "/images/cards/demarche/travail.svg",
     public_id: "",
     imgId: "",
   },

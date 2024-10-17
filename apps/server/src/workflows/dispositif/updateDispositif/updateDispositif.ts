@@ -43,7 +43,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   } else {
     if (body.how) content.how = body.how;
     if (body.next) (content as DemarcheContent).next = body.next;
-    if (body.administration?.name) (content as DemarcheContent).administrationName = body.administration.name;
+    if (body.administration) (content as DemarcheContent).administrationName = body.administration.name;
   }
 
   return {

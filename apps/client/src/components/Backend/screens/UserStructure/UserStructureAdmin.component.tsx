@@ -54,7 +54,7 @@ export const UserStructureAdminComponent = (props: Props) => {
       action: "create",
     };
     setIsLoading(true);
-    await API.updateStructureRoles(structure._id, query);
+    await API.updateStructureMembers(structure._id, query);
     setIsLoading(false);
     toggleReload();
   };
@@ -78,7 +78,7 @@ export const UserStructureAdminComponent = (props: Props) => {
           action: "delete",
         };
         setIsLoading(true);
-        await API.updateStructureRoles(structure._id, query);
+        await API.updateStructureMembers(structure._id, query);
         setIsLoading(false);
         toggleReload();
       }

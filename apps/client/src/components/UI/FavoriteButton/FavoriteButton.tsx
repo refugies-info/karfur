@@ -52,13 +52,11 @@ export const FavoriteButton = (props: Props) => {
       {showFavoriteModal && (
         <BookmarkedModal show={true} toggle={() => setShowFavoriteModal((o) => !o)} dispositifId={props.contentId} />
       )}
-      {showFavoriteToast && (
-        <Toast close={() => setShowFavoriteToast(null)}>
-          {showFavoriteToast === "added"
-            ? t("Dispositif.messageAddedToFavorites")
-            : t("Dispositif.messageRemovedFromFavorites")}
-        </Toast>
-      )}
+      <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
+        {showFavoriteToast === "added"
+          ? t("Dispositif.messageAddedToFavorites")
+          : t("Dispositif.messageRemovedFromFavorites")}
+      </Toast>
     </>
   );
 };

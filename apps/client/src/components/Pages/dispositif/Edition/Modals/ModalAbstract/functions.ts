@@ -20,7 +20,7 @@ export const getDefaultDispositif = (
     secondaryThemes: formValues.secondaryThemes,
     sponsor,
     metadatas: {
-      location: formValues.metadatas?.location || ["Lieu"],
+      location: formValues.metadatas?.location || null,
       price: !!formValues.metadatas?.price
         ? {
             values: formValues.metadatas?.price.values || [0],

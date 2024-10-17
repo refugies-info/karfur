@@ -1,11 +1,9 @@
 .container {
   display: flex;
-  width: 752px;
-  height: 416px;
+  min-height: 416px;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   flex: 1 0 0;
   align-self: stretch;
-  overflow-y: auto;
 }

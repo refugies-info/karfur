@@ -1,5 +1,5 @@
 // @ts-nocheck
-/* import { modifyUserRoleInStructure } from "./modifyUserRoleInStructure";
+/* import { modifyUserMembershipInStructure } from "./modifyUserMembershipInStructure";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { updateStructureMember, getStructureFromDB } from "~/modules/structure/structure.repository";
 import { removeStructureOfUser, addStructureForUsers } from "~/modules/users/users.service";
@@ -45,7 +45,7 @@ jest.mock("./log", () => ({
   log: jest.fn().mockResolvedValue(undefined)
 })); */
 
-describe.skip("modifyUserRoleInStructure", () => {
+describe.skip("modifyUserMembershipInStructure", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -53,14 +53,14 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 405 if not from site", async () => {
     const req = { test: "a", fromSite: false };
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(405);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
   });
   it("should return 400 if no body", async () => {
     const req = { fromSite: true };
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
@@ -68,7 +68,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 400 if no body query", async () => {
     const req = { fromSite: true, body: { test: "s" } };
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
@@ -97,7 +97,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 402 if checkIfUserIsAuthorizedToModifyStructure throws NO_STRUCTURE_WITH_THIS_ID", async () => {
     checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(new Error("NO_STRUCTURE_WITH_THIS_ID"));
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith("structureId", "userId", ["test"]);
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -108,7 +108,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 401 if user not authorized", async () => {
     checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(new Error("USER_NOT_AUTHORIZED"));
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith("structureId", "userId", ["test"]);
     expect(addStructureForUsers).not.toHaveBeenCalled();
     expect(updateStructureMember).not.toHaveBeenCalled();
@@ -118,7 +118,7 @@ describe.skip("modifyUserRoleInStructure", () => {
   });
 
   it("should return 200 if modify to contributeur and not send email", async () => {
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", {
       _id: "structureId",
       $set: { "membres.$.roles": ["contributeur"] },
@@ -136,7 +136,7 @@ describe.skip("modifyUserRoleInStructure", () => {
     requestResponsable.body.query.role = "administrateur";
 
     getUserById.mockResolvedValueOnce(user);
-    await modifyUserRoleInStructure(requestResponsable, res);
+    await modifyUserMembershipInStructure(requestResponsable, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", {
       _id: "structureId",
       $set: { "membres.$.roles": ["administrateur"] },
@@ -159,7 +159,7 @@ describe.skip("modifyUserRoleInStructure", () => {
   });
 
   it("should return 500 if modify and no role", async () => {
-    await modifyUserRoleInStructure(
+    await modifyUserMembershipInStructure(
       {
         user: { roles: ["test"] },
         userId: "userId",
@@ -193,7 +193,7 @@ describe.skip("modifyUserRoleInStructure", () => {
     },
   };
   it("should return 200 if delete ", async () => {
-    await modifyUserRoleInStructure(reqDelete, res);
+    await modifyUserMembershipInStructure(reqDelete, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", structureDelete);
     expect(removeStructureOfUser).toHaveBeenCalledWith("membreId", "structureId");
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -205,7 +205,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 500 if updateStructureMember throws", async () => {
     updateStructureMember.mockRejectedValueOnce(new Error("erreur"));
-    await modifyUserRoleInStructure(req, res);
+    await modifyUserMembershipInStructure(req, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", {
       _id: "structureId",
       $set: { "membres.$.roles": ["contributeur"] },
@@ -220,7 +220,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 500 if delete and removeStructureOfUser throws", async () => {
     removeStructureOfUser.mockRejectedValueOnce(new Error("erreur"));
-    await modifyUserRoleInStructure(reqDelete, res);
+    await modifyUserMembershipInStructure(reqDelete, res);
     expect(updateStructureMember).toHaveBeenCalledWith("membreId", structureDelete);
     expect(removeStructureOfUser).toHaveBeenCalledWith("membreId", "structureId");
     expect(addStructureForUsers).not.toHaveBeenCalled();
@@ -262,7 +262,7 @@ describe.skip("modifyUserRoleInStructure", () => {
   jest.spyOn(global, "Date").mockImplementation(() => mockDate);
 
   it("should return 200 if create and not send email", async () => {
-    await modifyUserRoleInStructure(reqCreate, res);
+    await modifyUserMembershipInStructure(reqCreate, res);
     expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreate);
     expect(addStructureForUsers).toHaveBeenCalledWith(["membreId"], "structureId");
     expect(sendNewReponsableMailService).not.toHaveBeenCalled();
@@ -277,7 +277,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
     getUserById.mockResolvedValueOnce(user);
 
-    await modifyUserRoleInStructure(requestResponsable, res);
+    await modifyUserMembershipInStructure(requestResponsable, res);
     expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreateResponsable);
     expect(addStructureForUsers).toHaveBeenCalledWith(["membreId"], "structureId");
     expect(getUserById).toHaveBeenCalled();
@@ -295,7 +295,7 @@ describe.skip("modifyUserRoleInStructure", () => {
   });
 
   it("should return 500 if create and no role", async () => {
-    await modifyUserRoleInStructure(
+    await modifyUserMembershipInStructure(
       {
         user: { roles: ["test"] },
         userId: "userId",
@@ -320,7 +320,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
     getUserById.mockResolvedValueOnce({ ...user, roles: ["adminRole"] });
 
-    await modifyUserRoleInStructure(requestResponsable, res);
+    await modifyUserMembershipInStructure(requestResponsable, res);
     expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreateResponsable);
     expect(addStructureForUsers).toHaveBeenCalledWith(["membreId"], "structureId");
     expect(sendNewReponsableMailService).not.toHaveBeenCalled();
@@ -330,7 +330,7 @@ describe.skip("modifyUserRoleInStructure", () => {
   });
 
   it("should return 500 if create and no role", async () => {
-    await modifyUserRoleInStructure(
+    await modifyUserMembershipInStructure(
       {
         user: { roles: ["test"] },
         userId: "userId",
@@ -351,7 +351,7 @@ describe.skip("modifyUserRoleInStructure", () => {
 
   it("should return 500 if create and removeStructureOfUser throws", async () => {
     addStructureForUsers.mockRejectedValueOnce(new Error("erreur"));
-    await modifyUserRoleInStructure(reqCreate, res);
+    await modifyUserMembershipInStructure(reqCreate, res);
     expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreate);
     expect(addStructureForUsers).toHaveBeenCalledWith(["membreId"], "structureId");
     expect(removeStructureOfUser).not.toHaveBeenCalled();

@@ -645,6 +645,16 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -790,6 +800,16 @@ exports[`UserStructure should render correctly when loading 1`] = `
       </div>
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -823,6 +843,16 @@ exports[`UserStructure should render correctly when no structure 1`] = `
         Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
       </div>
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -1302,6 +1332,16 @@ exports[`UserStructure should render correctly when structure with membres when 
       <div />
     </div>
   </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -1779,6 +1819,16 @@ exports[`UserStructure should render correctly when structure with membres when 
       </div>
       <div />
     </div>
+  </div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style="pointer-events: none;"
+    tabindex="-1"
+  >
+    <ol
+      tabindex="-1"
+    />
   </div>
 </DocumentFragment>
 `;
