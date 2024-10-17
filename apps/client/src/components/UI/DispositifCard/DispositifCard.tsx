@@ -74,7 +74,7 @@ const DispositifCard = (props: Props) => {
 
   return (
     <div className={cls(styles.wrapper, props.className)}>
-      <div className={cls("fr-card ", styles.container)}>
+      <div className={cls("fr-card fr-enlarge-link", styles.container)}>
         <div className={cls("fr-card__body", styles.body)}>
           <div className={cls("fr-card__content", styles.content)}>
             <div className={styles.text}>
@@ -104,7 +104,7 @@ const DispositifCard = (props: Props) => {
               />
             </div>
 
-            <div className="fr-card__start mb-3 position-relative">
+            <div className="fr-card__start position-relative">
               <div className={styles.sponsor}>
                 <Image
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
@@ -171,31 +171,16 @@ const DispositifCard = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className={cls("fr-card__header", styles.cardHeader)}>
+        <div className="fr-card__header">
           <div className="fr-card__img">
-            <Link
-              target={props.targetBlank ? "_blank" : undefined}
-              rel={props.targetBlank ? "noopener noreferrer" : undefined}
-              title={getReadableText(props.dispositif.titreInformatif || "")}
-              href={
-                props.demoCard
-                  ? "#"
-                  : {
-                      pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
-                      query: { id: props.dispositif._id.toString(), ...utmParams },
-                    }
-              }
-              className={styles.cardImageLink}
-            >
-              <Image
-                className="fr-responsive-img"
-                width={280}
-                height={158}
-                src={cardImageUrl}
-                alt=""
-                data-fr-js-ratio="true"
-              />
-            </Link>
+            <Image
+              className="fr-responsive-img"
+              width={280}
+              height={158}
+              src={cardImageUrl}
+              alt=""
+              data-fr-js-ratio="true"
+            />
           </div>
           <ul className="fr-badges-group">
             <li>

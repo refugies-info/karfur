@@ -5,15 +5,13 @@
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
+$shadowHeight: 1.4rem;
+
 .wrapper {
   min-width: 100%;
   height: 100%;
   position: relative;
   display: block;
-
-  @include media-min("md-limit") {
-    min-width: 282px;
-  }
 
   em {
     background-color: #fbe769;
@@ -47,6 +45,10 @@
   }
 
   .content {
+    display: grid;
+    grid-template-rows: 1fr 146px 1em;
+    grid-template-columns: 100%;
+    gap: u(4);
     padding: u(6);
     padding-bottom: u(6) !important; // override dsfr
     margin-left: 0;
@@ -54,27 +56,12 @@
   }
 
   .text {
-    $shadowHeight: 1rem;
-
     margin-top: auto;
-    position: relative;
     order: 2;
-    height: calc(146px + $shadowHeight);
+    height: calc(146px);
     overflow-y: clip;
     flex-shrink: 0;
     z-index: 1;
-
-    &::before {
-      pointer-events: none !important; // to keep the whole card clickable
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left: -24px;
-      width: calc(100% + 48px);
-      height: $shadowHeight;
-      background: linear-gradient(0deg, rgb(255 255 255 / 100%) 0%, rgb(255 255 255 / 0%) 100%);
-    }
   }
 }
 
@@ -113,22 +100,32 @@
 
 .end {
   order: 4;
-  padding-right: u(7);
-  margin-top: auto;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 16px;
+  gap: 0.3em;
 
-  > i {
+  // The gradient to mask the overflowing text above
+  &::before {
+    z-index: 2;
+    pointer-events: none !important; // to keep the whole card clickable
+    content: "";
     position: absolute;
+    top: - u(4);
     right: 0;
-    bottom: 0;
-    line-height: 20px;
+    left: -24px;
+    transform: translateY(calc(-100%));
+    width: calc(100% + 48px);
+    height: $shadowHeight;
+    background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
+  }
 
-    &::before {
-      --icon-size: 16px !important;
+  // The arrow icon
+  > i::before {
+    --icon-size: 16px !important;
 
-      line-height: 16px !important;
-      color: var(--text-action-high-blue-france);
-    }
+    line-height: 16px !important;
+    color: var(--text-action-high-blue-france);
   }
 }
 
@@ -147,14 +144,16 @@
 
 /* Info components */
 .info {
-  height: 20px; // fix for removing space after inline-block elements
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   & > span {
     @include dsfr-text("very-small");
 
-    display: inline-block;
+    display: inline;
     color: var(--text-mention-grey);
-    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
