@@ -85,7 +85,7 @@
     "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.182",
-    "@types/react": "18.3.4",
+    "@types/react": "18.3.11",
     "@types/react-dom": "18.3.0",
     "@types/react-instantsearch-native": "^6.3.2",
     "@types/react-native-snap-carousel": "^3.8.5",
