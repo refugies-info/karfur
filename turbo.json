@@ -28,6 +28,7 @@
       ],
       "env": [
         "accountSid",
+        "AIRTABLE_BASE_CONTENU",
         "AIRTABLE_BASE_TRAD",
         "AIRTABLE_BASE_USERS",
         "AIRTABLE_TOKEN",
