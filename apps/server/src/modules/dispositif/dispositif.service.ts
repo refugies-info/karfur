@@ -45,6 +45,39 @@ import { log } from "./log";
 
 const url = process.env.FRONT_SITE_URL;
 
+interface DispositifToExport {
+  fields: {
+    "Titre informatif": string;
+    "Lien RI": string;
+    "Type de contenus": string;
+    "date création": string; // ISO 8601 formatted date
+    "Thème principal": string;
+    "Thème secondaire 1": string;
+    "Thème secondaire 2": string;
+  };
+}
+
+export const addDispositifToAirtable = async (dispositif: Dispositif) => {
+  const content: DispositifToExport = {
+    fields: {
+      "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
+      "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
+      "Type de contenus": dispositif.typeContenu,
+      "date création": dispositif.created_at?.toISOString() || "",
+      "Thème principal": dispositif.theme.toString() || "",
+      "Thème secondaire 1": dispositif.secondaryThemes?.length > 0 ? dispositif.secondaryThemes[0].toString() : "",
+      "Thème secondaire 2": dispositif.secondaryThemes?.length > 1 ? dispositif.secondaryThemes[1].toString() : "",
+    },
+  };
+  return airtableContentBase("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
+    if (error) {
+      logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", { error });
+      return;
+    }
+    logger.info("[addDispositifToAirtable] dispositif successfully added");
+  });
+};
+
 export enum NotifType {
   PUBLISHED = "PUBLISHED",
   DELETED = "DELETED",
@@ -355,6 +388,14 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
         error: error.message,
       });
     }
+
+    try {
+      await addDispositifToAirtable(updatedDispositif);
+    } catch (error) {
+      logger.error("[publishDispositif] error while adding to airtable", {
+        error: error.message,
+      });
+    }
   } else {
     try {
       await notifyChange(NotifType.UPDATED_AND_PUBLISHED, dispositifId, userId);
@@ -468,37 +509,4 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.location),
   ];
   return conditions.filter((c) => !c).length === 0;
-};
-
-interface DispositifToExport {
-  fields: {
-    "Titre informatif": string;
-    "Lien RI": string;
-    "Type de contenus": string;
-    "date création": string; // ISO 8601 formatted date
-    "Thème principal": string;
-    "Thème secondaire 1": string;
-    "Thème secondaire 2": string;
-  };
-}
-
-export const addDispositifToAirtable = async (dispositif: Dispositif) => {
-  const content: DispositifToExport = {
-    fields: {
-      "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
-      "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
-      "Type de contenus": dispositif.typeContenu,
-      "date création": dispositif.created_at?.toISOString() || "",
-      "Thème principal": dispositif.theme.toString() || "",
-      "Thème secondaire 1": dispositif.secondaryThemes?.length > 0 ? dispositif.secondaryThemes[0].toString() : "",
-      "Thème secondaire 2": dispositif.secondaryThemes?.length > 1 ? dispositif.secondaryThemes[1].toString() : "",
-    },
-  };
-  return airtableContentBase("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
-    if (error) {
-      logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", { error });
-      return;
-    }
-    logger.info("[addDispositifToAirtable] dispositif successfully added");
-  });
 };
