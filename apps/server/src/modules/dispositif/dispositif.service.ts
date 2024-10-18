@@ -16,6 +16,7 @@ import { airtableContentBase } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
+import { sendMailWhenDispositifPublished } from "~/modules/mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
 import {
   Dispositif,
@@ -30,7 +31,6 @@ import {
 import { TranslationContent } from "~/typegoose/Dispositif";
 import { TraductionsType } from "~/typegoose/Traductions";
 import { updateLanguagesAvancement } from "../langues/langues.service";
-import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { createStructureInDB } from "../structure/structure.repository";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 import { getUserByIdWithStructures } from "../users/users.repository";
@@ -57,16 +57,19 @@ interface DispositifToExport {
   };
 }
 
-export const addDispositifToAirtable = async (dispositif: Dispositif) => {
+export const addDispositifToAirtable = (dispositif: Dispositif) => {
+  const theme = dispositif.getTheme();
+  const secondaryThemes = dispositif.getSecondaryThemes();
+
   const content: DispositifToExport = {
     fields: {
       "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
       "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
-      "Type de contenus": dispositif.typeContenu,
+      "Type de contenus": dispositif.typeContenu.charAt(0).toUpperCase() + dispositif.typeContenu.slice(1),
       "date création": dispositif.created_at?.toISOString() || "",
-      "Thème principal": dispositif.theme.toString() || "",
-      "Thème secondaire 1": dispositif.secondaryThemes?.length > 0 ? dispositif.secondaryThemes[0].toString() : "",
-      "Thème secondaire 2": dispositif.secondaryThemes?.length > 1 ? dispositif.secondaryThemes[1].toString() : "",
+      "Thème principal": theme.short["fr"] || "",
+      "Thème secondaire 1": secondaryThemes?.length > 0 ? secondaryThemes[0].short["fr"] || "" : "",
+      "Thème secondaire 2": secondaryThemes.length > 1 ? secondaryThemes[1].short["fr"] || "" : "",
     },
   };
   return airtableContentBase("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
@@ -390,7 +393,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     }
 
     try {
-      await addDispositifToAirtable(updatedDispositif);
+      addDispositifToAirtable(updatedDispositif);
     } catch (error) {
       logger.error("[publishDispositif] error while adding to airtable", {
         error: error.message,
