@@ -153,9 +153,7 @@
     "telechargerAppel": "ብመንገዲ ናይ  ፔዲ ኤፍ ጌርና ከንውርድ ን ጻውዒት ከንውርድ  ንክእል",
     "explore": "ትዕዝብቲ ናይ ኣሰራርሓ",
     "team": "ግሩብ",
-    "the_team": "ግሩፕ ረፍጂ.ኣንፎ",
     "issues": "ጸገማት",
-    "network": "ምስዓብ ኣብ መስመር ኣብርክቶ ምግባር",
     "explore_dispositifs": "ምርኣይ መሳርሒ",
     "contribute": "ኣበርክቶ"
   },
@@ -345,7 +343,6 @@
     "Kit de communication": "ጥርኑፍ ሓበሬታ",
     "posters_leaflets": "ንኣሽቱ ፣ ፋምፍሌት",
     "Pour la presse": "ን ፕረስ ንዜና ዝኸውን",
-    "Pour les ambassadeurs": "ን ኣምባሳደራት",
     "for_ukraine": "ናይ ዩክሬን",
     "Mon espace": "ውሑድ ቦታ",
     "newsletter": "ኣብ ጋዜጣና ተመዝገቡ"
@@ -376,8 +373,7 @@
     "procedures": "ናይ ምምሕዳር ፋይላት",
     "directory": "መጠቕለሊ ኩሎም ፋይላት",
     "information_types": "ሰለስተ ዓይነት ሓበሬታታት",
-    "help_translate": "ን ምትርጓም ሓግዝ",
-    "join_network": "ንኽትሳተፉ ምስ እትደልዩ ርኸቡና"
+    "help_translate": "ን ምትርጓም ሓግዝ"
   },
   "Roles": {
     "admin": "ምምሕዳር",

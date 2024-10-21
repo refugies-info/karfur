@@ -78,10 +78,6 @@ const Navbar = () => {
             linkProps: { href: "https://kit.refugies.info/presse/", target: "_blank" },
             text: t("Toolbar.Pour la presse", "Pour la presse"),
           },
-          {
-            linkProps: { href: "https://kit.refugies.info/ambassadeurs/", target: "_blank" },
-            text: t("Toolbar.Pour les ambassadeurs", "Pour les ambassadeurs"),
-          },
         ],
       },
       {

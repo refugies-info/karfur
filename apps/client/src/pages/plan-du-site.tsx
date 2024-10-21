@@ -51,12 +51,6 @@ const PlanDuSite = () => {
                 {t("Toolbar.Pour la presse", "Pour la presse")}
               </a>
             </li>
-            <li>
-              {" "}
-              <a href="https://kit.refugies.info/ambassadeurs/" target="_blank">
-                {t("Toolbar.Pour les ambassadeurs", "Pour les ambassadeurs")}
-              </a>
-            </li>
           </ul>
         </li>
         <li>

@@ -161,9 +161,7 @@
     "telechargerAppel": "Download the call  [PDF]",
     "explore": "Explore processes",
     "team": "Team",
-    "the_team": "The Refugies.info team",
     "issues": "Issues",
-    "network": "Join the contributors' network",
     "explore_dispositifs": "Explore programs",
     "contribute": "Contribute"
   },
@@ -359,7 +357,6 @@
     "Kit de communication": "Communication kit",
     "posters_leaflets": "Posters and leaflets",
     "Pour la presse": "For the press",
-    "Pour les ambassadeurs": "For ambassadors",
     "for_ukraine": "For Ukraine",
     "Mon espace": "My account",
     "newsletter": "Subscribe to the newsletter"
@@ -390,8 +387,7 @@
     "procedures": "Procedure sheets",
     "directory": "Directory of actors",
     "information_types": "Three types of information",
-    "help_translate": "Help to translate",
-    "join_network": "Join the network of contributors"
+    "help_translate": "Help to translate"
   },
   "Roles": {
     "admin": "Admin",

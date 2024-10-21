@@ -160,9 +160,7 @@
     "telechargerAppel": "Завантажити заклик [PDF]",
     "explore": "Дізнатися про процедури",
     "team": "Команда",
-    "the_team": "Команда Réfugiés.info",
     "issues": "Проблематики",
-    "network": "Долучитися до мережі контрибуторів",
     "explore_dispositifs": "Дізнатися про рекомендації",
     "contribute": "Зробити внесок"
   },
@@ -358,7 +356,6 @@
     "Kit de communication": "Медіа і комунікація",
     "posters_leaflets": "Афіші та брошури",
     "Pour la presse": "Для преси",
-    "Pour les ambassadeurs": "Для амбасадорів",
     "for_ukraine": "Для України",
     "Mon espace": "Мій простір",
     "newsletter": "Підписатися на розсилку новин"
@@ -389,8 +386,7 @@
     "procedures": "Записи адміністративних процедур",
     "directory": "Перелік організацій",
     "information_types": "Три типи інформації",
-    "help_translate": "Допомогти з перекладом",
-    "join_network": "Приєднатися до Мережі учасників"
+    "help_translate": "Допомогти з перекладом"
   },
   "Roles": {
     "admin": "Адмін",

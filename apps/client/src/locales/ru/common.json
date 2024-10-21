@@ -160,9 +160,7 @@
     "telechargerAppel": "Скачать призыв [PDF]",
     "explore": "Посмотреть процедуры",
     "team": "Команда",
-    "the_team": "Команда Réfugiés.info",
     "issues": "Цели проекта",
-    "network": "Присоединиться к сети волонтеров",
     "explore_dispositifs": "Найти программы",
     "contribute": "Участвовать"
   },
@@ -352,7 +350,6 @@
     "Kit de communication": "Медиа-кит",
     "posters_leaflets": "Плакаты и листовки",
     "Pour la presse": "Для прессы",
-    "Pour les ambassadeurs": "Для амбассадоров",
     "for_ukraine": "Для Украины",
     "Mon espace": "Личный кабинет",
     "newsletter": "Подписаться на рассылку"
@@ -383,8 +380,7 @@
     "procedures": "Страницы административных процедур",
     "directory": "Список участвующих ассоциаций и организаций",
     "information_types": "Три типа информации",
-    "help_translate": "Помочь перевести",
-    "join_network": "Присоединиться к сети участников"
+    "help_translate": "Помочь перевести"
   },
   "Roles": {
     "admin": "Админ",
