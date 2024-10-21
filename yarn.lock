@@ -9267,10 +9267,10 @@ expo-notifications@~0.27.7:
     expo-constants "~15.4.0"
     fs-extra "^9.1.0"
 
-expo-server-sdk@^3.6.0:
-  version "3.10.0"
-  resolved "https://registry.npmjs.org/expo-server-sdk/-/expo-server-sdk-3.10.0.tgz"
-  integrity sha512-isymUVz18Syp9G+TPs2MVZ6WdMoyLw8hDLhpywOd8JqM6iGTka6Dr8Dzq7mjGQ8C8486rxLawZx/W+ps+vkjLQ==
+expo-server-sdk@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/expo-server-sdk/-/expo-server-sdk-3.11.0.tgz#80bc16e2ec103a1235e856adf0d2ae358f7f5ddc"
+  integrity sha512-EGH82ZcdAFjKq+6daDE8Xj7BjaSeP1VDvZ3Hmtn/KzEQ3ffqHkauMsgXL2wLEPlvatLq3EsYNcejXRBV54WnFQ==
   dependencies:
     node-fetch "^2.6.0"
     promise-limit "^2.7.0"
