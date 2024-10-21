@@ -1,4 +1,3 @@
-import { sanitize } from "isomorphic-dompurify";
 import HTML from "react-native-render-html";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
@@ -13,7 +12,7 @@ export const TextFromHtml = (props: Props) => {
 
   return (
     <>
-      <ReadableText text={sanitize(props.htmlContent)}>
+      <ReadableText text={props.htmlContent.replace(/<[^>]*>?/gm, "")}>
         <HTML
           source={{ html: props.htmlContent }}
           defaultTextProps={{ selectable: true }}

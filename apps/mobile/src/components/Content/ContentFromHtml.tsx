@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
-import { sanitize } from "isomorphic-dompurify";
 import * as React from "react";
 import { Text, View } from "react-native";
 import HTML from "react-native-render-html";
@@ -23,12 +22,11 @@ interface Props {
 }
 
 const sanitizeForReading = (htmlContent: string) =>
-  sanitize(
-    htmlContent
-      .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
-      .replaceAll("</ul>", ".</ul> ") // wait after reading list
-      .replaceAll(/&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/gm, ""), // remove html character entities
-  );
+  htmlContent
+    .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
+    .replaceAll("</ul>", ".</ul> ") // wait after reading list
+    .replaceAll(/&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/gm, "") // remove html character entities
+    .replaceAll(/<[^>]*>?/gm, "");
 
 export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const theme = useTheme();
