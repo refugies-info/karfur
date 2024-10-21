@@ -117,6 +117,7 @@ const Recherche = () => {
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
     getDepartmentsNotDeployed(query.departments, dispositifs),
   );
+
   useEffect(() => {
     setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
   }, [query.departments, dispositifs]);
@@ -124,8 +125,8 @@ const Recherche = () => {
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
-      <SearchHeader nbResults={dispositifs.length} />
-      <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
+      <SearchHeader nbResults={dispositifs.length} departmentsNotDeployed={departmentsNotDeployed} />
+      <SearchResults />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
-import { useSearchEventName } from "~/hooks";
+import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
@@ -22,6 +22,8 @@ type TranslationFunction = (key: string, options?: object) => string;
 
 const ResultsFilter = (): React.ReactNode => {
   const { t } = useTranslation() as { t: TranslationFunction };
+  const { isMobile } = useWindowSize();
+
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const themesDisplayed = useSelector(themesDisplayedSelector);
