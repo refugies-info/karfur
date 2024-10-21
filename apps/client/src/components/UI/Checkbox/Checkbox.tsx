@@ -8,9 +8,9 @@ type Props = {
   onChange?: () => void;
 } & Omit<CheckboxProps, "onCheckedChange">;
 
-const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ checked, children, disabled, onChange }) => {
+const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, children, disabled, onChange }) => {
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, disabled && styles.disabled)} id={id}>
       <Root
         className={cls(styles.root, checked === true && styles.checked)}
         checked={checked ?? false}
@@ -21,7 +21,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ checked, children,
           <CheckboxIcon />
         </Indicator>
       </Root>
-      <label className={styles.label}>{children}</label>
+      <label className={cls(styles.label, disabled && styles.disabled)}>{children}</label>
     </div>
   );
 };

@@ -69,7 +69,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r1:"
                 type="button"
               >
-                Dispositif.Département 
+                Recherche.filterLocation 
                 <i
                   class="ri-arrow-down-s-line"
                 />
@@ -90,7 +90,7 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r3:"
                 type="button"
               >
-                Recherche.theme
+                Français
               </button>
               <button
                 class="clear"

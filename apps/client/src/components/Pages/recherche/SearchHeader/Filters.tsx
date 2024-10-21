@@ -1,10 +1,12 @@
 import { useTranslation } from "next-i18next";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
+import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
@@ -22,7 +24,17 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
+
   const eventName = useSearchEventName();
+
+  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
+    getDepartmentsNotDeployed(query.departments, dispositifs),
+  );
+
+  useEffect(() => {
+    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
+  }, [query.departments, dispositifs]);
 
   // KEYWORD
   const onChangeSearchInput = useCallback(
@@ -39,10 +51,19 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
     dispatch(addToQueryActionCreator({ needs: [], themes: [] }));
   }, [dispatch]);
 
+  const themeLabel = useMemo(() => {
+    return themeDisplayedValue.length > 0 ? themeDisplayedValue[0] : t("Recherche.theme", "Thème");
+  }, [t, themeDisplayedValue]);
+
   // LOCATION
   const resetDepartment = useCallback(() => {
     dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
   }, [dispatch]);
+
+  const locationLabel = useMemo(() => {
+    let label = query.departments.length === 0 ? t("Recherche.filterLocation", "Département") : query.departments[0];
+    return label;
+  }, [t, query.departments]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -55,7 +76,15 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
       <div className={styles.filtersBar}>
         <Filter
-          label={t("Dispositif.Département", "Département")}
+          tooltip={
+            departmentsNotDeployed.length > 0
+              ? {
+                  trigger: "⚠️",
+                  text: t("Recherche.notDeployedText", { department: departmentsNotDeployed.join(", ") }),
+                }
+              : null
+          }
+          label={locationLabel}
           externalMenu={{
             value: query.departments,
             reset: resetDepartment,
@@ -64,7 +93,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
           gaType="department"
         />
         <Filter
-          label={t("Recherche.theme", "Thème")}
+          label={themeLabel}
           externalMenu={{
             value: themeDisplayedValue,
             reset: resetTheme,

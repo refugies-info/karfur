@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import { GetDispositifsResponse, GetNeedResponse, Id } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
 import debounce from "lodash/debounce";
 import { useTranslation } from "next-i18next";
@@ -16,7 +16,6 @@ import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";
-import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { generateLightResults } from "~/lib/recherche/generateLightResults";
 import { getTopDemarches, queryDispositifs, queryDispositifsWithAlgolia } from "~/lib/recherche/queryContents";
 import styles from "~/scss/pages/recherche.module.scss";
@@ -26,6 +25,7 @@ import { wrapper } from "~/services/configureStore";
 import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
 import { languei18nSelector } from "~/services/Langue/langue.selectors";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
+import { needsSelector } from "~/services/Needs/needs.selectors";
 import {
   addToQueryActionCreator,
   setNoResultsActionCreator,
@@ -50,8 +50,14 @@ export type UrlSearchQuery = {
 };
 
 const debouncedQuery = debounce(
-  (query: SearchQuery, dispositifs: GetDispositifsResponse[], locale: string, callback: (res: Results) => void) => {
-    return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
+  (
+    query: SearchQuery,
+    dispositifs: GetDispositifsResponse[],
+    locale: string,
+    allNeeds: GetNeedResponse[],
+    callback: (res: Results) => void,
+  ) => {
+    return queryDispositifsWithAlgolia(query, dispositifs, locale, allNeeds).then((res: Results) => callback(res));
   },
   500,
 );
@@ -66,6 +72,7 @@ const Recherche = () => {
   const noResultsDemarche = useSelector(noResultsSelector);
   const languei18nCode = useSelector(languei18nSelector);
   const query = useSelector(searchQuerySelector);
+  const allNeeds = useSelector(needsSelector);
 
   // when navigating, save state to prevent loop on search page
   const [isNavigating, setIsNavigating] = useState(false);
@@ -99,7 +106,7 @@ const Recherche = () => {
 
     // query dispositifs
     if (!isNavigating) {
-      debouncedQuery(query, dispositifs, languei18nCode, (res) => {
+      debouncedQuery(query, dispositifs, languei18nCode, allNeeds, (res) => {
         updateUrl();
         dispatch(setSearchResultsActionCreator(res));
       });
@@ -113,19 +120,10 @@ const Recherche = () => {
     }
   }, [noResultsDemarche, dispositifs, dispatch]);
 
-  // check if department deployed
-  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs),
-  );
-
-  useEffect(() => {
-    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
-  }, [query.departments, dispositifs]);
-
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
-      <SearchHeader nbResults={dispositifs.length} departmentsNotDeployed={departmentsNotDeployed} />
+      <SearchHeader nbResults={dispositifs.length} />
       <SearchResults />
     </div>
   );
@@ -145,7 +143,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
   store.dispatch(addToQueryActionCreator(initialQuery));
 
-  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs);
+  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs, store.getState().needs);
   store.dispatch(setSearchResultsActionCreator(generateLightResults(results)));
 
   return {

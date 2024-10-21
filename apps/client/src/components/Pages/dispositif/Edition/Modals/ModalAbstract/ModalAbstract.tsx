@@ -3,7 +3,6 @@ import { CreateDispositifRequest } from "@refugies-info/api-types";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { Col, Row } from "reactstrap";
 import ArrowRight from "~/assets/dispositif/arrow-right.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import DispositifCard from "~/components/UI/DispositifCard";
@@ -40,8 +39,8 @@ const ModalAbstract = (props: Props) => {
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
         <p>Le résumé doit faire moins de 110 caractères.</p>
-        <Row className="position-relative">
-          <Col>
+        <div className="d-flex">
+          <div>
             <div className={styles.text}>
               <textarea
                 onChange={(e: any) => setAbstract(e.target.value)}
@@ -61,15 +60,17 @@ const ModalAbstract = (props: Props) => {
                 {remainingChars} sur 110 caractères restants
               </p>
             </div>
-          </Col>
-          <span className={styles.arrow}>
-            <Image src={ArrowRight} width={60} height={29} alt="" />
-          </span>
+          </div>
+          <div>
+            <span className={styles.arrow}>
+              <Image src={ArrowRight} width={60} height={29} alt="" />
+            </span>
+          </div>
 
-          <Col>
+          <div className={styles.card}>
             <DispositifCard dispositif={{ ...getDefaultDispositif(values, sponsor), abstract }} demoCard />
-          </Col>
-        </Row>
+          </div>
+        </div>
 
         <SimpleFooter onValidate={validate} disabled={!abstract} />
       </div>

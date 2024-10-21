@@ -43,7 +43,7 @@
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.4",
     "expo-updates": "~0.24.13",
-    "firebase": "9.9.2",
+    "firebase": "10.14.1",
     "i18next": "^23.11.5",
     "isomorphic-dompurify": "^2.15.0",
     "lodash": "^4.17.21",

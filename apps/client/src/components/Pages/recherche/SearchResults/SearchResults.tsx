@@ -14,6 +14,7 @@ import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
+import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./SearchResults.module.scss";
 
@@ -30,6 +31,7 @@ const SearchResults = (props: Props) => {
   const searchResults = useSelector(searchResultsSelector);
   const noResultsDemarche = useSelector(noResultsSelector);
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
+  const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
 
   const [page, setPage] = useState(1);
 
@@ -78,7 +80,6 @@ const SearchResults = (props: Props) => {
     <section className={styles.wrapper}>
       <Container className={styles.container}>
         <ResultsFilter />
-
         {noResults ? (
           <>
             <div className={styles.no_results}>
@@ -128,6 +129,24 @@ const SearchResults = (props: Props) => {
                 })}
             </div>
           </>
+        )}
+        {showSuggestions && filteredResults.suggestions.length > 0 && (
+          <div>
+            <h2>{t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}</h2>
+            <div className={styles.results}>
+              {filteredResults.suggestions.map((d) => {
+                if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
+                return (
+                  <DispositifCard
+                    key={d._id.toString()}
+                    dispositif={d}
+                    selectedDepartment={selectedDepartment}
+                    targetBlank
+                  />
+                );
+              })}
+            </div>
+          </div>
         )}
       </Container>
     </section>
