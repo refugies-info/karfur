@@ -61,8 +61,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
   }, [dispatch]);
 
   const locationLabel = useMemo(() => {
-    let label = query.departments.length === 0 ? t("Recherche.filterLocation", "Département") : query.departments[0];
-    return label;
+    return query.departments.length === 0 ? t("Recherche.filterLocation", "Département") : query.departments[0];
   }, [t, query.departments]);
 
   const statusOptions = useStatusOptions();
