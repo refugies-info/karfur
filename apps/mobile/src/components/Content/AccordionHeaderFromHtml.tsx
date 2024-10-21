@@ -1,4 +1,5 @@
 import HTML from "react-native-render-html";
+import sanitizeHtml from "sanitize-html";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import { ReadableText } from "../ReadableText";
@@ -14,7 +15,12 @@ export const AccordionHeaderFromHtml = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
   return (
-    <ReadableText text={props.htmlContent.replace(/<[^>]*>?/gm, "")}>
+    <ReadableText
+      text={sanitizeHtml(props.htmlContent, {
+        allowedTags: [],
+        allowedAttributes: {},
+      })}
+    >
       <HTML
         contentWidth={props.windowWidth}
         source={{ html: props.htmlContent }}
