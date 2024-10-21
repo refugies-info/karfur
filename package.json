@@ -34,7 +34,7 @@
     "start": "yarn turbo start",
     "start:client": "yarn workspace @refugies-info/client start",
     "start:server": "yarn workspace @refugies-info/server start",
-    "start:mobile": "yarn workspace @refugies-info/server mobile",
+    "start:mobile": "yarn workspace @refugies-info/mobile start",
     "test": "yarn turbo test",
     "test:client": "yarn turbo test --filter=@refugies-info/client",
     "test:client:update-snapshots": "yarn workspace @refugies-info/client test -u",
