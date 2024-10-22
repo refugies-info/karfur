@@ -28,11 +28,13 @@
 }
 
 .results {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: u(6);
-  grid-template-columns: 1fr;
 
   @container (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -42,6 +44,14 @@
 
   @container (min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @container (max-width: 768px) {
+    width: 100%;
+
+    .dispositifCard {
+      max-width: none;
+    }
   }
 }
 

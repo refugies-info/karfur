@@ -126,7 +126,7 @@ const SearchResults = (props: Props) => {
               </h2>
               <div className={styles.results}>
                 {noResultsDemarche.map((d) => (
-                  <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
+                  <DispositifCard className={styles.dispositifCard} key={d._id.toString()} dispositif={d} targetBlank />
                 ))}
               </div>
             </div>
@@ -142,6 +142,7 @@ const SearchResults = (props: Props) => {
                   if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
                   return (
                     <DispositifCard
+                      className={styles.dispositifCard}
                       key={d._id.toString()}
                       dispositif={d}
                       selectedDepartment={selectedDepartment}
