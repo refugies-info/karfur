@@ -98,18 +98,18 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   useEffect(() => {
     if (isOpen) {
       debouncedQuery(query, matches, languei18nCode, (dispositifs) => {
-        const countDispositifsByTheme = _(dispositifs)
+        const nbDispositifsByTheme = _(dispositifs)
           .filter((dispositif) => dispositif.theme !== null && dispositif.status === "Actif")
           .countBy((dispositif) => dispositif.theme?.toString())
           .value();
 
-        const countDispositifsByNeed = _(dispositifs)
+        const nbDispositifsByNeed = _(dispositifs)
           .flatMap((dispositif) => dispositif.needs || [])
           .countBy()
           .value();
 
-        setNbDispositifsByTheme(countDispositifsByTheme);
-        setNbDispositifsByNeed(countDispositifsByNeed);
+        setNbDispositifsByTheme(nbDispositifsByTheme);
+        setNbDispositifsByNeed(nbDispositifsByNeed);
       });
     }
   }, [query, matches, needs, sortedThemes, mobile, languei18nCode, isOpen]);
