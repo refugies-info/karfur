@@ -1,4 +1,5 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import _ from "lodash";
 import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,23 +98,18 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   useEffect(() => {
     if (isOpen) {
       debouncedQuery(query, matches, languei18nCode, (dispositifs) => {
-        const newNbDispositifsByNeed: Record<string, number> = {};
-        const newNbDispositifsByTheme: Record<string, number> = {};
-        for (const dispositif of dispositifs) {
-          for (const needId of dispositif.needs || []) {
-            newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
-          }
+        const countDispositifsByTheme = _(dispositifs)
+          .filter((dispositif) => dispositif.theme !== null && dispositif.status === "Actif")
+          .countBy((dispositif) => dispositif.theme?.toString())
+          .value();
 
-          const themeId = dispositif.theme;
-          if (!themeId) continue;
-          newNbDispositifsByTheme[themeId.toString()] = (newNbDispositifsByTheme[themeId.toString()] || 0) + 1;
-          for (const theme of dispositif.secondaryThemes || []) {
-            newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
-          }
-        }
+        const countDispositifsByNeed = _(dispositifs)
+          .flatMap((dispositif) => dispositif.needs || [])
+          .countBy()
+          .value();
 
-        setNbDispositifsByTheme(newNbDispositifsByTheme);
-        setNbDispositifsByNeed(newNbDispositifsByNeed);
+        setNbDispositifsByTheme(countDispositifsByTheme);
+        setNbDispositifsByNeed(countDispositifsByNeed);
       });
     }
   }, [query, matches, needs, sortedThemes, mobile, languei18nCode, isOpen]);
