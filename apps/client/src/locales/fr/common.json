@@ -91,6 +91,7 @@
     "seeButton": "Voir les {{count}} fiches",
     "titleThemes": "Les thématiques de l'intégration",
     "positionButton": "Utiliser ma position",
+    "positionEnable": "Vous devez activer la géolocalisation pour votre navigateur",
     "notDeployedTitle": " : ce département est en cours de déploiement !",
     "notDeployedText": "Réfugiés.info est collaboratif, alimenté directement par les acteurs associatifs, les bénévoles et les intervenants sociaux. Aidez-nous à l’enrichir ! ",
     "notDeployedWriteLink": "Rédiger une fiche",
