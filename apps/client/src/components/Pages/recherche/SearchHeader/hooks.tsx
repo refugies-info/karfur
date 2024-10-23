@@ -135,7 +135,8 @@ export const useLanguagesOptions = () => {
 
   const { t } = useTranslation();
 
-  const languages = useSelector(allLanguesSelector);
+  const allLangues = useSelector(allLanguesSelector);
+  const languages = allLangues.filter((langue) => langue.i18nCode !== "fr");
   const getTranslatedLanguage = useMemo(() => {
     return (langueFr: string) => t(`Languages.${langueFr}`, langueFr) as string;
   }, [t]);
