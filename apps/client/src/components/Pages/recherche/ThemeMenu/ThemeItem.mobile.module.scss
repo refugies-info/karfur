@@ -11,7 +11,7 @@
     transition: background-color 0.1s ease-out;
     will-change: background-color;
     background-color: var(--accordion-color);
-    padding: u(2) u(4);
+    padding: u(2) 0;
 
     &:hover {
       background-color: var(--accordion-color) !important;
