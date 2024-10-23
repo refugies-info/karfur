@@ -1,5 +1,5 @@
-import { sanitize } from "isomorphic-dompurify";
 import HTML from "react-native-render-html";
+import sanitizeHtml from "sanitize-html";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import { ReadableText } from "../ReadableText";
@@ -13,7 +13,12 @@ export const TextFromHtml = (props: Props) => {
 
   return (
     <>
-      <ReadableText text={sanitize(props.htmlContent)}>
+      <ReadableText
+        text={sanitizeHtml(props.htmlContent, {
+          allowedTags: [],
+          allowedAttributes: {},
+        })}
+      >
         <HTML
           source={{ html: props.htmlContent }}
           defaultTextProps={{ selectable: true }}

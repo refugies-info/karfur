@@ -705,8 +705,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     }
                   >
-                    <Text
-                      style={{}}
+                    <View
+                      collapsable={false}
+                      style={
+                        [
+                          {
+                            "maxWidth": "100%",
+                          },
+                          {},
+                        ]
+                      }
                     >
                       <View
                         style={{}}
@@ -892,8 +900,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -3064,8 +3071,16 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -3099,8 +3114,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -3262,8 +3276,16 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -3359,8 +3381,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -3463,8 +3484,16 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -3498,8 +3527,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -3661,8 +3689,16 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -3758,8 +3794,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -3862,8 +3897,16 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -3897,8 +3940,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -4060,8 +4102,16 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -4169,8 +4219,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -4316,8 +4365,16 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -4351,8 +4408,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -4514,8 +4570,16 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -4611,8 +4675,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -9121,8 +9184,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     }
                   >
-                    <Text
-                      style={{}}
+                    <View
+                      collapsable={false}
+                      style={
+                        [
+                          {
+                            "maxWidth": "100%",
+                          },
+                          {},
+                        ]
+                      }
                     >
                       <View
                         style={{}}
@@ -9308,8 +9379,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -11480,8 +11550,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -11515,8 +11593,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -11678,8 +11755,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -11775,8 +11860,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -11879,8 +11963,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -11914,8 +12006,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -12077,8 +12168,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -12174,8 +12273,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -12278,8 +12376,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -12313,8 +12419,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -12476,8 +12581,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -12585,8 +12698,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>
@@ -12732,8 +12844,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <Text
-                            style={{}}
+                          <View
+                            collapsable={false}
+                            style={
+                              [
+                                {
+                                  "maxWidth": "100%",
+                                },
+                                {},
+                              ]
+                            }
                           >
                             <View
                               style={{}}
@@ -12767,8 +12887,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 </Text>
                               </Text>
                             </View>
-                          </Text>
-                          <View />
+                          </View>
                         </View>
                         <View
                           style={
@@ -12930,8 +13049,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                             }
                           >
-                            <Text
-                              style={{}}
+                            <View
+                              collapsable={false}
+                              style={
+                                [
+                                  {
+                                    "maxWidth": "100%",
+                                  },
+                                  {},
+                                ]
+                              }
                             >
                               <View
                                 style={{}}
@@ -13027,8 +13154,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                               </View>
-                            </Text>
-                            <View />
+                            </View>
                           </View>
                         </View>
                       </View>

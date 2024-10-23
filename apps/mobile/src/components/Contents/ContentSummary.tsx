@@ -227,7 +227,13 @@ const ContentSummaryComponent = (props: Props) => {
     >
       <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
         <ImageContainer lightColor={colors.color30}>
-          <DemarcheImage icon={theme?.icon} stroke={colors.color100} contentId={props.content._id} isSmall={true} />
+          <DemarcheImage
+            icon={theme?.icon}
+            stroke={colors.color100}
+            contentId={props.content._id}
+            isSmall={true}
+            logo={props.content.sponsorUrl}
+          />
         </ImageContainer>
 
         <TitlesContainer>
