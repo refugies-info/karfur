@@ -66,6 +66,16 @@
   }
 }
 
+.label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &.limitedWidth {
+    max-width: 9em;
+  }
+}
+
 .count {
   @include text("very-small");
 
@@ -96,10 +106,16 @@
 .clear {
   padding: 0;
   position: absolute;
-  right: u(3);
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
+  right: u(3);
+
+  :dir(rtl) & {
+    left: u(3);
+    right: auto;
+  }
+
   color: var(--background-contrast-blue-france);
   background: transparent !important;
 

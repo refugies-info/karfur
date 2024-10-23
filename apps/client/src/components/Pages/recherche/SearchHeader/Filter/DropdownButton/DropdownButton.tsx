@@ -29,7 +29,11 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
       >
         {count && count > 0 ? <span className={styles.count}>{count}</span> : null}
 
-        {icon ? <i className={icon}></i> : value[0] && label}
+        {icon ? (
+          <i className={icon}></i>
+        ) : (
+          value[0] && <span className={cls(styles.label, styles.limitedWidth)}>{label}</span>
+        )}
         {!icon && value.length > 1 && (
           <span className={styles.plus}>
             <span>+</span> {value.length - 1}
@@ -37,7 +41,8 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
         )}
         {!icon && value.length === 0 && !icon && (
           <>
-            {label} <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
+            <span className={cls(styles.label)}>{label}</span>{" "}
+            <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
           </>
         )}
       </button>
