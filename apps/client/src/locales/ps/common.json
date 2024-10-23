@@ -160,9 +160,7 @@
     "telechargerAppel": "غوښتنلیک (appel) ډاونلوډ کړئ [PDF]",
     "explore": "د پروسیجرونو او اجراآتو په هکله نور معلومات ترلاسه کړي",
     "team": "ټیم",
-    "the_team": "د ریفوجي.انفو ټیم",
     "issues": "ستونزمن",
-    "network": "د مرسته کونکو شبکې کې ګډون وکړئ",
     "explore_dispositifs": "دمختلفوپروګرامونوپه هکله معلومات ترلاسه کړئ",
     "contribute": "ونډه اخستونکی"
   },
@@ -352,7 +350,6 @@
     "Kit de communication": "داړیکو مالوماتي کټ",
     "posters_leaflets": "پوسترونه او بروشرونه",
     "Pour la presse": "د مطبوعاتو لپاره",
-    "Pour les ambassadeurs": "د استازو لپاره",
     "for_ukraine": "د یوکرین لپاره",
     "Mon espace": "زما شخصي حساب",
     "newsletter": "خبر پاڼه کې ګډون کول"
@@ -383,8 +380,7 @@
     "procedures": "د طرزالعملونو مالوماتي فایلونه",
     "directory": "د اړوند اړخونو او همکارانو لارښود",
     "information_types": "درې ډوله مالومات",
-    "help_translate": "په ژباړه کې مرسته کول",
-    "join_network": "د مرسته کونکو شبکي سره یو ځای کیدل"
+    "help_translate": "په ژباړه کې مرسته کول"
   },
   "Roles": {
     "admin": "اډمین",

@@ -160,9 +160,7 @@
     "telechargerAppel": "بروشور را بارگیری (Télécharger PDF) کنید",
     "explore": "مراحل را کاوش کنید",
     "team": "تیم",
-    "the_team": "تیم Refugies.info",
     "issues": "مسائل (مشکلات)",
-    "network": "به شبکه مشارکت کنندگان بپیوندید",
     "explore_dispositifs": "دستگاه ها را کاوش کنید",
     "contribute": "شرکت کردن"
   },
@@ -358,7 +356,6 @@
     "Kit de communication": "کیت ارتباطات",
     "posters_leaflets": "پوسترها و بروشورها",
     "Pour la presse": "برای مطبوعات",
-    "Pour les ambassadeurs": "برای سفیران",
     "for_ukraine": "برای اوکراین",
     "Mon espace": "فضای شخصی",
     "newsletter": "مشترک شدن در خبرنامه"
@@ -389,8 +386,7 @@
     "procedures": "برگه های روند اداری",
     "directory": "فهرست بازیگران",
     "information_types": "سه نوع اطلاعات",
-    "help_translate": "کمک به ترجمه",
-    "join_network": "به شبکه مشارکت کننده بپیوندید"
+    "help_translate": "کمک به ترجمه"
   },
   "Roles": {
     "admin": "مدیر",

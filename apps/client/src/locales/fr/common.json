@@ -177,9 +177,7 @@
     "telechargerAppel": "Télécharger l’appel [PDF] ",
     "explore": "Explorer les démarches",
     "team": "Équipe",
-    "the_team": "L'équipe Réfugiés.info",
     "issues": "Problématiques",
-    "network": "Rejoindre le réseau des contributeurs",
     "explore_dispositifs": "Explorer les dispositifs",
     "contribute": "Contribuer"
   },
@@ -395,7 +393,6 @@
     "Kit de communication": "Kit de communication",
     "posters_leaflets": "Affiches et dépliants",
     "Pour la presse": "Pour la presse",
-    "Pour les ambassadeurs": "Pour les ambassadeurs",
     "for_ukraine": "Pour l'Ukraine",
     "Mon espace": "Mon espace",
     "newsletter": "S'inscrire à la newsletter"
@@ -426,8 +423,7 @@
     "procedures": "Les fiches démarches",
     "directory": "L’annuaire des acteurs",
     "information_types": "Trois types d’information",
-    "help_translate": "Aider à traduire",
-    "join_network": "Rejoindre le Réseau des contributeurs"
+    "help_translate": "Aider à traduire"
   },
   "Roles": {
     "admin": "Admin",

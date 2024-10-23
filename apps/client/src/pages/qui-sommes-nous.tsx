@@ -7,7 +7,6 @@ import { Contribution } from "~/components/Pages/qui-sommes-nous/Contribution";
 import { Mission } from "~/components/Pages/qui-sommes-nous/Mission";
 import { Partners } from "~/components/Pages/qui-sommes-nous/Partners";
 import { Problematic } from "~/components/Pages/qui-sommes-nous/Problematic";
-import { Team } from "~/components/Pages/qui-sommes-nous/Team";
 import SEO from "~/components/Seo";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import styles from "~/scss/pages/qui-sommes-nous.module.scss";
@@ -69,12 +68,6 @@ const MissionContainer = styled.div`
   height: 720px;
   padding-top: 48px;
 `;
-const TeamContainer = styled.div`
-  background: #f2f2f2;
-  padding-top: 48px;
-  position: relative;
-  padding-bottom: 30px;
-`;
 const ProblematicContainer = styled.div`
   height: 720px;
   padding-top: 48px;
@@ -106,13 +99,11 @@ const QuiSommesNous: NextPage = () => {
       let visibleSection = "";
       if (720 < currentScrollPos && currentScrollPos <= 1440) {
         visibleSection = "Missions";
-      } else if (1440 < currentScrollPos && currentScrollPos <= 2290) {
-        visibleSection = "Equipe";
-      } else if (2290 < currentScrollPos && currentScrollPos <= 3010) {
+      } else if (1830 < currentScrollPos && currentScrollPos <= 2550) {
         visibleSection = "Problematiques";
-      } else if (3010 < currentScrollPos && currentScrollPos <= 3730) {
+      } else if (2550 < currentScrollPos && currentScrollPos <= 3270) {
         visibleSection = "Contribution";
-      } else if (3730 < currentScrollPos) {
+      } else if (3270 < currentScrollPos) {
         visibleSection = "Partenaires";
       }
       setIsToolbarVisible(visible);
@@ -150,9 +141,6 @@ const QuiSommesNous: NextPage = () => {
             {t("QuiSommesNous.Missions", "Missions")}
           </NavBarText>
         </a>
-        <a href="#equipe">
-          <NavBarText isVisibleSection={visibleSection === "Equipe"}>{t("QuiSommesNous.team", "Équipe")}</NavBarText>
-        </a>
         <a href="#problematic">
           <NavBarText isVisibleSection={visibleSection === "Problematiques"}>
             {t("QuiSommesNous.issues", "Problématiques")}
@@ -174,11 +162,6 @@ const QuiSommesNous: NextPage = () => {
         <SectionHeader>{t("QuiSommesNous.Missions", "Missions")}</SectionHeader>
         <Mission />
       </MissionContainer>
-      <TeamContainer className={styles.container}>
-        <span id="equipe" className={styles.anchor}></span>
-        <SectionHeader>{t("QuiSommesNous.the_team", "L'équipe Réfugiés.info")}</SectionHeader>
-        <Team />
-      </TeamContainer>
       <ProblematicContainer className={styles.container}>
         <span id="problematic" className={styles.anchor}></span>
         <SectionHeader>{t("QuiSommesNous.issues", "Problématiques")}</SectionHeader>
