@@ -50,6 +50,16 @@
     @include media-min("lg-limit") {
       width: fit-content;
     }
+
+    @include media-max("md-limit") {
+      border: 1px solid red;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+
+      > div > div {
+        max-width: 100%;
+      }
+    }
   }
 
   &.sticky {

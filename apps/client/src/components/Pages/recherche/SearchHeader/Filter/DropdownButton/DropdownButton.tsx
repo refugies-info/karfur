@@ -20,7 +20,7 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
 ) {
   const { t } = useTranslation();
   return (
-    <span className={styles.container}>
+    <div className={styles.container}>
       <button
         onClick={onClick}
         className={cls(styles.button, isOpen && styles.open, value.length > 0 && !icon && styles.values)}
@@ -52,6 +52,6 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
           <i className="ri-close-circle-fill"></i>
         </button>
       )}
-    </span>
+    </div>
   );
 });

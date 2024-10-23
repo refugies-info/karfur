@@ -22,6 +22,7 @@
   border-radius: 50px;
   color: var(--text-title-grey);
   font-weight: 500;
+  max-width: 100%;
 
   /* stylelint-disable-next-line media-feature-range-notation */
   @media screen and (max-width: 375px) {
@@ -72,7 +73,7 @@
   text-overflow: ellipsis;
 
   &.limitedWidth {
-    max-width: 9em;
+    max-width: 100%;
   }
 }
 
