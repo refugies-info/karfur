@@ -123,4 +123,8 @@
   &:hover {
     color: var(--background-contrast-blue-france-hover);
   }
+
+  &:active {
+    color: var(--background-contrast-blue-france-active);
+  }
 }
