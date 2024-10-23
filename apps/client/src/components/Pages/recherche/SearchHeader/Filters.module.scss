@@ -51,8 +51,7 @@
       width: fit-content;
     }
 
-    @include media-max("md-limit") {
-      border: 1px solid red;
+    @include media-max("phone-down") {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
 
