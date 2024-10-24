@@ -51,6 +51,11 @@ exports[`recherche renders search results 1`] = `
               value=""
             />
           </div>
+          <div
+            aria-live="polite"
+            class="fr-messages-group"
+            id="input-:r0:-messages-group"
+          />
         </div>
         <div
           class="filtersBar"

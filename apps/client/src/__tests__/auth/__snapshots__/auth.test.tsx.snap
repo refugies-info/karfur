@@ -40,6 +40,11 @@ exports[`auth renders auth 1`] = `
           type="email"
           value=""
         />
+        <div
+          aria-live="polite"
+          class="fr-messages-group"
+          id="input-:r1:-messages-group"
+        />
       </div>
       <button
         class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button"
