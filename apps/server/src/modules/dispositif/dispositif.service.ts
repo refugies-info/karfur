@@ -10,10 +10,13 @@ import {
   StructureStatus,
   UpdateDispositifRequest,
 } from "@refugies-info/api-types";
+import { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
+import { airtableContentBase } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
+import { sendMailWhenDispositifPublished } from "~/modules/mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
 import {
   Dispositif,
@@ -28,7 +31,6 @@ import {
 import { TranslationContent } from "~/typegoose/Dispositif";
 import { TraductionsType } from "~/typegoose/Traductions";
 import { updateLanguagesAvancement } from "../langues/langues.service";
-import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { createStructureInDB } from "../structure/structure.repository";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 import { getUserByIdWithStructures } from "../users/users.repository";
@@ -42,6 +44,42 @@ import {
 import { log } from "./log";
 
 const url = process.env.FRONT_SITE_URL;
+
+interface DispositifToExport {
+  fields: {
+    "Titre informatif": string;
+    "Lien RI": string;
+    "Type de contenus": string;
+    "date création": string; // ISO 8601 formatted date
+    "Thème principal": string;
+    "Thème secondaire 1": string;
+    "Thème secondaire 2": string;
+  };
+}
+
+export const addDispositifToAirtable = (dispositif: Dispositif) => {
+  const theme = dispositif.getTheme();
+  const secondaryThemes = dispositif.getSecondaryThemes();
+
+  const content: DispositifToExport = {
+    fields: {
+      "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
+      "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
+      "Type de contenus": dispositif.typeContenu.charAt(0).toUpperCase() + dispositif.typeContenu.slice(1),
+      "date création": dispositif.created_at?.toISOString() || "",
+      "Thème principal": theme.short["fr"] || "",
+      "Thème secondaire 1": secondaryThemes?.length > 0 ? secondaryThemes[0].short["fr"] || "" : "",
+      "Thème secondaire 2": secondaryThemes.length > 1 ? secondaryThemes[1].short["fr"] || "" : "",
+    },
+  };
+  return airtableContentBase("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
+    if (error) {
+      logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", { error });
+      return;
+    }
+    logger.info("[addDispositifToAirtable] dispositif successfully added");
+  });
+};
 
 export enum NotifType {
   PUBLISHED = "PUBLISHED",
@@ -350,6 +388,14 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
       await sendMailWhenDispositifPublished(updatedDispositif);
     } catch (error) {
       logger.error("[publishDispositif] error while sending email", {
+        error: error.message,
+      });
+    }
+
+    try {
+      addDispositifToAirtable(updatedDispositif);
+    } catch (error) {
+      logger.error("[publishDispositif] error while adding to airtable", {
         error: error.message,
       });
     }

@@ -121,13 +121,6 @@ const Footer = () => {
             },
             {
               linkProps: {
-                href: "https://avec.refugies.info/",
-                target: "_blank",
-              },
-              text: t("Footer.join_network", "Rejoindre le Réseau des contributeurs"),
-            },
-            {
-              linkProps: {
                 href: "/",
                 onClick: () => {
                   dispatch(toggleNewsletterModalAction());
@@ -168,13 +161,6 @@ const Footer = () => {
                 target: "_blank",
               },
               text: t("Toolbar.Pour la presse", "Pour la presse"),
-            },
-            {
-              linkProps: {
-                href: "https://kit.refugies.info/ambassadeurs/",
-                target: "_blank",
-              },
-              text: t("Toolbar.Pour les ambassadeurs", "Pour les ambassadeurs"),
             },
             {
               linkProps: {

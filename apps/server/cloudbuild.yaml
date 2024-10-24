@@ -2,49 +2,75 @@ steps:
   # Build the container image
   - name: "gcr.io/cloud-builders/docker"
     args:
-      [
-        "build",
-        "-t",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-        "-t",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
-        "-f",
-        "./apps/server/Dockerfile",
-        ".",
-      ]
+      - "build"
+      - "-t"
+      - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
+      - "-t"
+      - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest"
+      - "-f"
+      - "./apps/server/Dockerfile"
+      - "."
   # Push the container image to Container Registry
   - name: "gcr.io/cloud-builders/docker"
     args:
-      [
-        "push",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-      ]
+      - "push"
+      - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
     args:
-      [
-        "run",
-        "deploy",
-        "${_COMPONENT}-${_ENV}",
-        "--project",
-        "${_PROJECT_NAME}",
-        "--platform",
-        "managed",
-        "--region",
-        "${_REGION}",
-        "--image",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-        "--memory",
-        "1G",
-        "--set-env-vars",
-        "API_KEY=sm://refugies-info/API_KEY,API_SECRET=sm://refugies-info/API_SECRET,GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL,GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID,GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509,GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY,GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID,MONGODB_URI=sm://refugies-info/${_MONGODB_VAR},NODE_ENV=${_NODE_ENV},OVH_PASS=sm://refugies-info/OVH_PASS,REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET,SECRET=sm://refugies-info/SECRET,TTS_KEY_1=sm://refugies-info/TTS_KEY_1,accountSid=sm://refugies-info/accountSid,authToken=sm://refugies-info/authToken,CLOUD_NAME=sm://refugies-info/CLOUD_NAME,AIRTABLE_BASE_USERS=sm://refugies-info/AIRTABLE_BASE_USERS,SENDGRID_API_KEY=sm://refugies-info/SENDGRID_API_KEY,POSTMAN_SECRET=sm://refugies-info/POSTMAN_SECRET,CRON_TOKEN=sm://refugies-info/CRON_TOKEN,AIRTABLE_TOKEN=sm://refugies-info/AIRTABLE_TOKEN,AIRTABLE_BASE_TRAD=sm://refugies-info/${_AIRTABLE_BASE_TRAD_VAR},FRONT_SITE_URL=sm://refugies-info/${_FRONT_URL_VAR},ALGOLIA_API_KEY=sm://refugies-info/ALGOLIA_API_KEY,ALGOLIA_INDEX=sm://refugies-info/${_ALGOLIA_INDEX_VAR},EXPO_ACCESS_TOKEN=sm://refugies-info/EXPO_ACCESS_TOKEN,SENDINBLUE_API_KEY=sm://refugies-info/SENDINBLUE_API_KEY,SLACK_WEBHOOK_URL=sm://refugies-info/SLACK_WEBHOOK_URL,GOOGLE_CLIENT_ID=sm://refugies-info/GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET=sm://refugies-info/GOOGLE_CLIENT_SECRET,MICROSOFT_CLIENT_ID=sm://refugies-info/MICROSOFT_CLIENT_ID,MICROSOFT_CLIENT_SECRET=sm://refugies-info/MICROSOFT_CLIENT_SECRET",
-        "--set-env-vars",
-        "MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION}",
-        "--service-account",
-        "${_SA}",
-        "--allow-unauthenticated",
-      ]
+      - "run"
+      - "deploy"
+      - "${_COMPONENT}-${_ENV}"
+      - "--project"
+      - "${_PROJECT_NAME}"
+      - "--platform"
+      - "managed"
+      - "--region"
+      - "${_REGION}"
+      - "--image"
+      - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
+      - "--memory"
+      - "1G"
+      - "--set-env-vars"
+      - >-
+        accountSid=sm://refugies-info/accountSid
+        AIRTABLE_BASE_CONTENU=sm://refugies-info/${_AIRTABLE_BASE_CONTENU_VAR}
+        AIRTABLE_BASE_TRAD=sm://refugies-info/${_AIRTABLE_BASE_TRAD_VAR}
+        AIRTABLE_BASE_USERS=sm://refugies-info/AIRTABLE_BASE_USERS
+        AIRTABLE_TOKEN=sm://refugies-info/AIRTABLE_TOKEN
+        ALGOLIA_API_KEY=sm://refugies-info/ALGOLIA_API_KEY
+        ALGOLIA_INDEX=sm://refugies-info/${_ALGOLIA_INDEX_VAR}
+        API_KEY=sm://refugies-info/API_KEY
+        API_SECRET=sm://refugies-info/API_SECRET
+        authToken=sm://refugies-info/authToken
+        CLOUD_NAME=sm://refugies-info/CLOUD_NAME
+        CRON_TOKEN=sm://refugies-info/CRON_TOKEN
+        EXPO_ACCESS_TOKEN=sm://refugies-info/EXPO_ACCESS_TOKEN
+        FRONT_SITE_URL=sm://refugies-info/${_FRONT_URL_VAR}
+        GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL
+        GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID
+        GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509
+        GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY
+        GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID
+        GOOGLE_CLIENT_ID=sm://refugies-info/GOOGLE_CLIENT_ID
+        GOOGLE_CLIENT_SECRET=sm://refugies-info/GOOGLE_CLIENT_SECRET
+        MICROSOFT_CLIENT_ID=sm://refugies-info/MICROSOFT_CLIENT_ID
+        MICROSOFT_CLIENT_SECRET=sm://refugies-info/MICROSOFT_CLIENT_SECRET
+        MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION}
+        MONGODB_URI=sm://refugies-info/${_MONGODB_VAR}
+        NODE_ENV=${_NODE_ENV}
+        OVH_PASS=sm://refugies-info/OVH_PASS
+        POSTMAN_SECRET=sm://refugies-info/POSTMAN_SECRET
+        REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET
+        SECRET=sm://refugies-info/SECRET
+        SENDGRID_API_KEY=sm://refugies-info/SENDGRID_API_KEY
+        SENDINBLUE_API_KEY=sm://refugies-info/SENDINBLUE_API_KEY
+        SLACK_WEBHOOK_URL=sm://refugies-info/SLACK_WEBHOOK_URL
+        TTS_KEY_1=sm://refugies-info/TTS_KEY_1
+      - "--service-account"
+      - "${_SA}"
+      - "--allow-unauthenticated"
 
 options:
   dynamicSubstitutions: true

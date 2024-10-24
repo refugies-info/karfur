@@ -44,7 +44,7 @@ export const LegalNoticeScreen = ({ navigation }: StackScreenProps<ProfileParamL
       </P>
       <Info icon="pin-outline" text="135 Boulevard Chanzy, 93100 Montreuil" />
 
-      <P style={{ marginBottom: 0 }}>Monsieur Nour ALLAZKANI, est le responsable de publication de l’application.</P>
+      <P style={{ marginBottom: 0 }}>Monsieur Yannick Prost est le responsable de publication de l'application.</P>
 
       <Separator spacing={SeparatorSpacing.XLarge} fullWidth color={theme.colors.dsfr_purple} />
 

@@ -24,6 +24,13 @@
   }
 }
 
+.notDeployedAlert {
+  margin: u(4);
+  margin-bottom: 0;
+  width: calc(100% - u(8));
+  background-color: #fff;
+}
+
 .stickybar {
   padding-top: u(2.5);
   padding-bottom: u(10);

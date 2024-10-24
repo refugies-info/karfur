@@ -1,5 +1,5 @@
 import { Languages, TranslatorFeedback } from "@refugies-info/api-types";
-import { airtableContentBase } from "~/connectors/airtable/airtable";
+import { airtableTranslationBase } from "~/connectors/airtable/airtable";
 import { countDispositifWords, countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { Dispositif, Theme, Traductions, User } from "~/typegoose";
@@ -38,7 +38,7 @@ export const addTradToAirtable = async (
           : countDispositifWords(dispositif.translations.fr.content),
     },
   };
-  return airtableContentBase("SUIVI TRAD").create([trad], { typecast: true }, (error: Error) => {
+  return airtableTranslationBase("SUIVI TRAD").create([trad], { typecast: true }, (error: Error) => {
     if (error) {
       logger.error("[addTradToAirtable] error while adding trad to airtable", { error });
       return;
@@ -81,7 +81,7 @@ export const addFeedbackToAirtable = async (
       "Email bénévole": translator.email,
     },
   };
-  return airtableContentBase("SUIVI bénévoles").create([feedback], { typecast: true }, (error: Error) => {
+  return airtableTranslationBase("SUIVI bénévoles").create([feedback], { typecast: true }, (error: Error) => {
     if (error) {
       logger.error("[addFeedbackToAirtable] error while adding feedback to airtable", { error });
       return;

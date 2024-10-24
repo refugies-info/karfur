@@ -16,14 +16,11 @@ import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import NotDeployedBanner from "../NotDeployedBanner";
 import styles from "./SearchResults.module.scss";
 
 export const MATCHES_PER_PAGE = 24;
-const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {
-  departmentsNotDeployed: string[];
   targetBlank?: boolean;
 }
 
@@ -33,6 +30,7 @@ const SearchResults = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
   const noResultsDemarche = useSelector(noResultsSelector);
+  const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
 
   const [page, setPage] = useState(1);
@@ -44,30 +42,13 @@ const SearchResults = (props: Props) => {
     };
   }, [query.type, searchResults]);
 
-  const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
-
-  useEffect(() => {
-    const savedDepartments = localStorage.getItem(HIDDEN_DEPS_KEY);
-    if (savedDepartments) setDepartmentsMessageHidden(JSON.parse(savedDepartments));
-  }, []);
-
   const { isMobile } = useWindowSize();
   const dispositifs = useMemo(
     () => (!isMobile ? filteredResults.matches.slice(0, page * MATCHES_PER_PAGE) : filteredResults.matches),
     [filteredResults.matches, isMobile, page],
   );
 
-  const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const noResults = filteredResults.matches.length === 0;
-
-  // Banner
-  const hideBanner = () => {
-    localStorage.setItem(HIDDEN_DEPS_KEY, JSON.stringify(props.departmentsNotDeployed));
-    setDepartmentsMessageHidden(props.departmentsNotDeployed);
-  };
-  const isBannerVisible =
-    props.departmentsNotDeployed.length > 0 &&
-    props.departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
 
   const loadMoreData = useCallback(
     (page: number) => {
@@ -126,22 +107,20 @@ const SearchResults = (props: Props) => {
               </h2>
               <div className={styles.results}>
                 {noResultsDemarche.map((d) => (
-                  <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
+                  <DispositifCard className={styles.dispositifCard} key={d._id.toString()} dispositif={d} targetBlank />
                 ))}
               </div>
             </div>
           </>
         ) : (
           <>
-            {isBannerVisible && (
-              <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />
-            )}
             <div className={styles.results}>
               {dispositifs.length > 0 &&
                 dispositifs.map((d) => {
                   if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
                   return (
                     <DispositifCard
+                      className={styles.dispositifCard}
                       key={d._id.toString()}
                       dispositif={d}
                       selectedDepartment={selectedDepartment}

@@ -7,7 +7,7 @@ import { useSearchEventName } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
-export function DropDownMenuLayout({ label, value, icon, resetOptions, gaType, children }: LayoutProps) {
+export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, gaType, children }: LayoutProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
@@ -24,6 +24,7 @@ export function DropDownMenuLayout({ label, value, icon, resetOptions, gaType, c
       <DropdownMenu.Trigger asChild>
         <DropdownButton
           label={label}
+          tooltip={tooltip}
           icon={icon}
           value={value ?? []}
           onClear={resetOptions}

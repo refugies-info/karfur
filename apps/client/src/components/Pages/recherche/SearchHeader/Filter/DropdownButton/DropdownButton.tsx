@@ -1,6 +1,9 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import * as Tooltip from "@radix-ui/react-tooltip";
+
 import { useTranslation } from "next-i18next";
 import React from "react";
+import Balancer from "react-wrap-balancer";
 import { cls } from "~/lib/classname";
 import styles from "./DropdownButton.module.scss";
 
@@ -12,13 +15,15 @@ interface Props extends DropdownMenu.DropdownMenuTriggerProps {
   isOpen: boolean;
   onClear: () => void;
   count?: number | null;
+  tooltip?: { trigger: string; text: string } | null | undefined;
 }
 
 export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(function DropdownButton(
-  { label, icon, count, value, onClick, isOpen, onClear, ...other },
+  { label, tooltip, icon, count, value, onClick, isOpen, onClear, ...other },
   forwardedRef: React.Ref<HTMLButtonElement>,
 ) {
   const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <button
@@ -34,6 +39,21 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
         ) : (
           value[0] && <span className={cls(styles.label, styles.limitedWidth)}>{label}</span>
         )}
+
+        {tooltip && (
+          <Tooltip.Root>
+            <Tooltip.Portal>
+              <Tooltip.TooltipContent className={styles.tooltip} side="bottom" align="start" sideOffset={15}>
+                <Balancer>{tooltip.text}</Balancer>
+              </Tooltip.TooltipContent>
+            </Tooltip.Portal>
+
+            <Tooltip.Trigger asChild>
+              <span tabIndex={0}>{tooltip.trigger}</span>
+            </Tooltip.Trigger>
+          </Tooltip.Root>
+        )}
+
         {!icon && value.length > 1 && (
           <span className={styles.plus}>
             <span>+</span> {value.length - 1}

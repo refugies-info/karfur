@@ -16,7 +16,6 @@ import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";
-import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { generateLightResults } from "~/lib/recherche/generateLightResults";
 import { getTopDemarches, queryDispositifs, queryDispositifsWithAlgolia } from "~/lib/recherche/queryContents";
 import styles from "~/scss/pages/recherche.module.scss";
@@ -121,19 +120,11 @@ const Recherche = () => {
     }
   }, [noResultsDemarche, dispositifs, dispatch]);
 
-  // check if department deployed
-  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs),
-  );
-  useEffect(() => {
-    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
-  }, [query.departments, dispositifs]);
-
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
       <SearchHeader nbResults={dispositifs.length} />
-      <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
+      <SearchResults />
     </div>
   );
 };

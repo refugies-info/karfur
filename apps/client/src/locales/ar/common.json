@@ -88,13 +88,8 @@
     "seeButton": "مشاهدة الصفحات",
     "titleThemes": "مواضيع الاندماج",
     "positionButton": "استخدام موقعي",
-    "notDeployedTitle": "يتم تخديم هذا الاقليم تباعاً !",
-    "notDeployedText": "Réfugiés.info هي منصة تشاركية, تجد فيها معلومات تضعها الهيئات الاجتماعية و المساعدة الاجتماعيين و المتطوعين, أنت أيضاً, يُمكنك المشاركة في اغناء المنصّة !",
-    "notDeployedWriteLink": "تحرير صفحة معلومات",
-    "notDeployedOkLink": "فهمت",
     "france": "في كل فرنسا",
     "online": "على الانترنيت",
-    "keyword": "كلمة مفتاحية",
     "keywordPlaceholder": "بطاقة اقامة, ميسيون لوكال",
     "department": "أبحث في مدينة أو في اقليم",
     "themesPlaceholder": "أبحث في سلسلة المواضيع",
@@ -160,9 +155,7 @@
     "telechargerAppel": "حمّل من هنا اعلان المساهمة بصيغة PDF",
     "explore": "استكشاف المعاملات",
     "team": "فريق",
-    "the_team": "فريق عمل Réfugiés.info",
     "issues": "اشكاليات",
-    "network": "شارك معنا في شبكة المساهمين",
     "explore_dispositifs": "استكشاف البرامج",
     "contribute": "ساهم"
   },
@@ -352,7 +345,6 @@
     "Kit de communication": "أدوات اعلامية",
     "posters_leaflets": "ملصقات و منشورات اعلانية",
     "Pour la presse": "للصحافة",
-    "Pour les ambassadeurs": "لسفراء مشروعنا",
     "for_ukraine": "لأوكرانيا",
     "Mon espace": "مساحتي الشخصية",
     "newsletter": "أسجل في الرسالة الدورية"
@@ -383,8 +375,7 @@
     "procedures": "صفحات المعاملات الادارية",
     "directory": "فهرس المنظمات و المؤسسات",
     "information_types": "ثلاثة أنواع من المعلومات",
-    "help_translate": "المساعدة في الترجمة",
-    "join_network": "أنضم الى شبكة المساهمين"
+    "help_translate": "المساعدة في الترجمة"
   },
   "Roles": {
     "admin": "أدمن",

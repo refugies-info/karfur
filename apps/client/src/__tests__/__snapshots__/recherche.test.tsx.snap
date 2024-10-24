@@ -46,7 +46,7 @@ exports[`recherche renders search results 1`] = `
               aria-describedby="input-:r0:-desc-error"
               class="fr-input"
               id="input-:r0:"
-              placeholder="Recherche par mot-clé"
+              placeholder="Rechercher par mot-clé"
               type="text"
               value=""
             />
