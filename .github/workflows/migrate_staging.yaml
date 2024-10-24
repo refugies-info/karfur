@@ -3,8 +3,6 @@ name: Migrate Staging
 on:
   push:
     branches:
-      - staging-mobile
-      - staging-frontend
       - staging-backend
   workflow_dispatch:
 
