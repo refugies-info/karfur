@@ -111,7 +111,7 @@ const Recherche = () => {
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params]);
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params, allNeeds]);
 
   // generate list of demarches to show when no results
   useEffect(() => {
