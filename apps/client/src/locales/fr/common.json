@@ -91,7 +91,7 @@
     "seeButton": "Voir les {{count}} fiches",
     "titleThemes": "Les thématiques de l'intégration",
     "positionButton": "Utiliser ma position",
-    "notDeployedOkLink": "J'ai compris",
+    "notDeployedText": "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
     "france": "toute la France",
     "online": "en ligne",
     "keyword": "Recherche par mot-clé",

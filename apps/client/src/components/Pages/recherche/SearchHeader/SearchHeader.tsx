@@ -66,7 +66,7 @@ const SearchHeader = (props: Props) => {
           <div className={styles.notDeployedAlert}>
             <Alert
               closable
-              description={t("Recherche.notDeployedText", { department: selectedDepartment })}
+              description={t("Recherche.notDeployedText", { department: departmentsNotDeployed.join(", ") })}
               onClose={hideBanner}
               severity="warning"
               small
