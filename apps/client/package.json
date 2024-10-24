@@ -36,7 +36,7 @@
     "isomorphic-dompurify": "^2.15.0",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^4.0.0",
-    "lexical": "^0.16.1",
+    "lexical": "^0.18.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "next": "^14.2.10",
