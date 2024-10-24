@@ -63,24 +63,29 @@ export const getDefaultSortOption = (query: SearchQuery): SortOptions => {
  * @param secondaryThemes - boolean. Use the primary or secondary theme to filter.
  * @returns - list of dispositifs
  */
-const filterDispositifs = (
+export const filterDispositifs = (
   query: SearchQuery,
   dispositifs: GetDispositifsResponse[],
   secondaryThemes: boolean,
+  skip: FilterKey | undefined = undefined,
 ): GetDispositifsResponse[] => {
   const filterKeys = buildFilterKeys(query);
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
 
   const filteredDispositifs = dispositifs
-    .filter((dispositif) => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
-    .filter((dispositif) => filterByLocations(dispositif, query.departments))
-    .filter((dispositif) => filterByAge(dispositif, query.age))
-    .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
-    .filter((dispositif) => filterByLanguage(dispositif, query.language))
-    .filter((dispositif) => filterByPublic(dispositif, query.public))
-    .filter((dispositif) => filterByStatus(dispositif, query.status));
+    .filter(
+      (dispositif) => skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes),
+    )
+    .filter((dispositif) => skip === "location" || filterByLocations(dispositif, query.departments))
+    .filter((dispositif) => skip === "age" || filterByAge(dispositif, query.age))
+    .filter((dispositif) => skip === "frenchLevel" || filterByFrenchLevel(dispositif, query.frenchLevel))
+    .filter((dispositif) => skip === "language" || filterByLanguage(dispositif, query.language))
+    .filter((dispositif) => skip === "public" || filterByPublic(dispositif, query.public))
+    .filter((dispositif) => skip === "status" || filterByStatus(dispositif, query.status));
 
-  return rule?.sortFunction ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b)) : filteredDispositifs;
+  return rule?.sortFunction && !!skip
+    ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b))
+    : filteredDispositifs;
 };
 
 const filterSuggestions = (

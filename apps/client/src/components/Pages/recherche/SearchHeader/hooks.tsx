@@ -4,13 +4,20 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getMatchingAgeOptions } from "~/lib/recherche/filterContents";
+import { filterDispositifs } from "~/lib/recherche/queryContents";
+import { FilterKey } from "~/lib/recherche/resultsDisplayRules";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
-import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 
-const useFilteredDocs = () => {
-  const { matches: dispositifs } = useSelector(searchResultsSelector);
+const useDocsToFilter = (skip: FilterKey) => {
+  const dispositifs = useSelector(activeDispositifsSelector);
+  const query = useSelector(searchQuerySelector);
+  const matches = useMemo(() => {
+    return filterDispositifs(query, dispositifs, false, skip);
+  }, [query, dispositifs, skip]);
 
-  return dispositifs;
+  return matches;
 };
 
 /**
@@ -18,7 +25,7 @@ const useFilteredDocs = () => {
  * @returns
  */
 export const useStatusOptions = () => {
-  const docs = useFilteredDocs();
+  const docs = useDocsToFilter("status");
 
   const counts = useMemo(() => {
     return _(docs)
@@ -38,7 +45,7 @@ export const useStatusOptions = () => {
 };
 
 export const usePublicOptions = () => {
-  const docs = useFilteredDocs();
+  const docs = useDocsToFilter("public");
 
   const counts = useMemo(() => {
     return _(docs)
@@ -58,7 +65,7 @@ export const usePublicOptions = () => {
 };
 
 export const useAgeOptions = () => {
-  const docs = useFilteredDocs();
+  const docs = useDocsToFilter("age");
 
   const counts = useMemo(() => {
     return _(docs)
@@ -78,7 +85,7 @@ export const useAgeOptions = () => {
 };
 
 export const useFrenchLevelOptions = () => {
-  const docs = useFilteredDocs();
+  const docs = useDocsToFilter("frenchLevel");
 
   const counts = useMemo(() => {
     return _(docs)
@@ -124,11 +131,12 @@ export const useFrenchLevelOptions = () => {
 };
 
 export const useLanguagesOptions = () => {
-  const docs = useFilteredDocs();
+  const docs = useDocsToFilter("language");
 
   const { t } = useTranslation();
 
-  const languages = useSelector(allLanguesSelector);
+  const allLangues = useSelector(allLanguesSelector);
+  const languages = allLangues.filter((langue) => langue.i18nCode !== "fr");
   const getTranslatedLanguage = useMemo(() => {
     return (langueFr: string) => t(`Languages.${langueFr}`, langueFr) as string;
   }, [t]);
