@@ -14,7 +14,7 @@
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.14.1",
     "@hedgedoc/html-to-react": "^2.1.1",
-    "@lexical/react": "^0.16.1",
+    "@lexical/react": "^0.18.0",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -36,7 +36,7 @@
     "isomorphic-dompurify": "^2.16.0",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^4.0.0",
-    "lexical": "^0.16.1",
+    "lexical": "^0.18.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "next": "^14.2.10",
