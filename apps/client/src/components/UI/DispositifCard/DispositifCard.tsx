@@ -170,14 +170,18 @@ const DispositifCard = (props: Props) => {
         </div>
         <div className="fr-card__header">
           <div className="fr-card__img">
-            <Image
-              className="fr-responsive-img"
-              width={280}
-              height={158}
-              src={cardImageUrl}
-              alt=""
-              data-fr-js-ratio="true"
-            />
+            {cardImageUrl ? (
+              <Image
+                className="fr-responsive-img"
+                width={280}
+                height={158}
+                src={cardImageUrl}
+                alt=""
+                data-fr-js-ratio="true"
+              />
+            ) : (
+              <div className={styles.placeholder_img}></div>
+            )}
           </div>
           <ul className="fr-badges-group">
             <li>

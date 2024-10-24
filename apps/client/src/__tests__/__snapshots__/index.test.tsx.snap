@@ -1399,17 +1399,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -1546,17 +1537,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -1693,17 +1675,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -1835,17 +1808,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -1982,17 +1946,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2124,17 +2079,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2271,17 +2217,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2413,17 +2350,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2555,17 +2483,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2702,17 +2621,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2844,17 +2754,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -2991,17 +2892,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -3133,17 +3025,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -3275,17 +3158,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -3417,17 +3291,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/demarche/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -3617,17 +3482,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -3753,17 +3609,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -3884,17 +3731,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4020,17 +3858,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4156,17 +3985,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4287,17 +4107,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4423,17 +4234,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4554,17 +4356,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4690,17 +4483,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4826,17 +4610,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -4962,17 +4737,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -5093,17 +4859,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -5229,17 +4986,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -5360,17 +5108,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
@@ -5496,17 +5235,8 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     class="fr-card__img"
                   >
-                    <img
-                      alt=""
-                      class="fr-responsive-img"
-                      data-fr-js-ratio="true"
-                      data-nimg="1"
-                      decoding="async"
-                      height="158"
-                      loading="lazy"
-                      src="/images/cards/dispositif/travail.svg"
-                      style="color: transparent;"
-                      width="280"
+                    <div
+                      class="placeholder_img"
                     />
                   </div>
                   <ul
