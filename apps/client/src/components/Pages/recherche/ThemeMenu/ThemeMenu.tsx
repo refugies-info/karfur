@@ -1,11 +1,12 @@
 import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import _ from "lodash";
 import debounce from "lodash/debounce";
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
-import { queryDispositifsWithoutThemes } from "~/lib/recherche/queryContents";
+import { filterDispositifs, queryDispositifsWithoutThemes } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
 import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
@@ -50,7 +51,10 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
   const query = useSelector(searchQuerySelector);
-  const allDispositifs = useSelector(activeDispositifsSelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
+  const matches = useMemo(() => {
+    return filterDispositifs(query, dispositifs, false, "theme");
+  }, [query, dispositifs]);
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, mobile);
   const eventName = useSearchEventName();
 
@@ -73,10 +77,10 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   const hasDispositifsError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   useEffect(() => {
-    if (allDispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
+    if (matches.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
-  }, [allDispositifs.length, isDispositifsLoading, hasDispositifsError, dispatch]);
+  }, [matches.length, isDispositifsLoading, hasDispositifsError, dispatch]);
 
   // reset selected theme when popup opens
   useEffect(() => {
@@ -93,27 +97,22 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const languei18nCode = useSelector(languei18nSelector);
   useEffect(() => {
     if (isOpen) {
-      debouncedQuery(query, allDispositifs, languei18nCode, (dispositifs) => {
-        const newNbDispositifsByNeed: Record<string, number> = {};
-        const newNbDispositifsByTheme: Record<string, number> = {};
-        for (const dispositif of dispositifs) {
-          for (const needId of dispositif.needs || []) {
-            newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
-          }
+      debouncedQuery(query, matches, languei18nCode, (dispositifs) => {
+        const nbDispositifsByTheme = _(dispositifs)
+          .filter((dispositif) => dispositif.theme !== null && dispositif.status === "Actif")
+          .countBy((dispositif) => dispositif.theme?.toString())
+          .value();
 
-          const themeId = dispositif.theme;
-          if (!themeId) continue;
-          newNbDispositifsByTheme[themeId.toString()] = (newNbDispositifsByTheme[themeId.toString()] || 0) + 1;
-          for (const theme of dispositif.secondaryThemes || []) {
-            newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
-          }
-        }
+        const nbDispositifsByNeed = _(dispositifs)
+          .flatMap((dispositif) => dispositif.needs || [])
+          .countBy()
+          .value();
 
-        setNbDispositifsByTheme(newNbDispositifsByTheme);
-        setNbDispositifsByNeed(newNbDispositifsByNeed);
+        setNbDispositifsByTheme(nbDispositifsByTheme);
+        setNbDispositifsByNeed(nbDispositifsByNeed);
       });
     }
-  }, [query, allDispositifs, needs, sortedThemes, mobile, languei18nCode, isOpen]);
+  }, [query, matches, needs, sortedThemes, mobile, languei18nCode, isOpen]);
 
   return (
     <ThemeMenuContext.Provider

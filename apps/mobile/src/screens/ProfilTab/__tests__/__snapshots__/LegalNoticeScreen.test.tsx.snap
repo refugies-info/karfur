@@ -1067,7 +1067,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
             ]
           }
         >
-          Monsieur Nour ALLAZKANI, est le responsable de publication de l’application.
+          Monsieur Yannick Prost est le responsable de publication de l'application.
         </Text>
         <View
           color="#6A6AF4"

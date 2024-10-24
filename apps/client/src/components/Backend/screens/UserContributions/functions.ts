@@ -17,10 +17,15 @@ const isUserAuthorizedToDeleteDispositif = (
   // user is admin
   if (isAdmin) return true;
 
-  if (!dispositifSponsorId && isAuthor) return true; // no sponsor yet, but user is author
+  // user haven't been associated with a structure yet
+  if (!userStructure) return true;
 
+  // no sponsor yet, but user is author
+  if (!dispositifSponsorId && isAuthor) return true;
+
+  // user not in structure
   const isUserInStructure = !!dispositifSponsorId && !!userStructure && dispositifSponsorId === userStructure._id;
-  if (dispositifSponsorId && !isUserInStructure) return false; // user not in structure
+  if (dispositifSponsorId && !isUserInStructure) return false;
 
   // user is member of structure, they have the same rights as the admin
   return true;
@@ -42,6 +47,7 @@ export const formatContributions = (
     )
       ? "Moi"
       : dispositif.mainSponsor?.nom || "";
+
     const isAuthorizedToDelete = isUserAuthorizedToDeleteDispositif(
       userId,
       isAdmin,
@@ -49,6 +55,10 @@ export const formatContributions = (
       dispositif.mainSponsor?._id || null,
       userStructure,
     );
+
+    // If the user ins't authorized to delete we don't show the dispositif
+    if (!isAuthorizedToDelete) return;
+
     return formattedContribs.push({
       ...dispositif,
       responsabilite,

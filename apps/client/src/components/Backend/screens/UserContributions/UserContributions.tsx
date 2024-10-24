@@ -57,6 +57,7 @@ const UserContributions = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [showWriteModal, setShowWriteModal] = useState(false);
   const [tutoModalDisplayed, setTutoModalDisplayed] = useState("");
+  const [hasInitiallyLoaded, setHasInitiallyLoaded] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
   const dispatch = useDispatch();
@@ -73,20 +74,31 @@ const UserContributions = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Initial data fetch
   useEffect(() => {
-    dispatch(fetchUserContributionsActionCreator());
-    if (userStructure) {
-      dispatch(
-        fetchUserStructureActionCreator({
-          structureId: userStructure._id,
-          shouldRedirect: false,
-        }),
-      );
+    if (hasInitiallyLoaded) return;
+
+    const fetchData = async () => {
+      dispatch(fetchUserContributionsActionCreator());
+      if (userStructure) {
+        dispatch(
+          fetchUserStructureActionCreator({
+            structureId: userStructure._id,
+            shouldRedirect: false,
+          }),
+        );
+      }
+      window.scrollTo(0, 0);
+      setHasInitiallyLoaded(true);
+    };
+
+    if (!isLoading) {
+      fetchData();
     }
-    window.scrollTo(0, 0);
-  }, [dispatch, userStructure]);
+  }, [dispatch, userStructure, isLoading, hasInitiallyLoaded]);
 
   const { user } = useUser();
+
   const contributions = formatContributions(
     userContributions,
     userStructureContributions,

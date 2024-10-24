@@ -84,7 +84,7 @@ export const deleteMerci = (contentId: string) => makeApiRequest(`/dispositifs/$
 
 // FIXME Return type
 // export const addNeedView = (id: string) => apiCaller.post("/needs/views", id);
-export const addNeedView = (id: string) => makeApiRequest(`/needs/${id}/views`, null, "POST");
+export const addNeedView = (id: string) => makeApiRequest(`/needs/${id}/views`, {}, "POST");
 
 export const updateAppUser = async (user: AppUserRequest) =>
   makeApiRequest<AppUserRequest, ResponseWith<PostAppUserResponse>>("/appuser/", user, "POST");

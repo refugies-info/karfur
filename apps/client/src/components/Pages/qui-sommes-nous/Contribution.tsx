@@ -83,9 +83,6 @@ const ContributionTerrain = () => {
             "Seuls les acteurs locaux sont capables de recenser efficacement les actions et de nourrir une base de connaissance commune. Ainsi Réfugiés.info permet à chaque territoire de recenser et de valoriser ses initiatives tout en découvrant de nouvelles",
           )}
         </ContributionDetailDescription>
-        <FButton type="fill-dark" tag={"a"} href="https://avec.refugies.info" target="_blank" rel="noopener noreferrer">
-          {t("QuiSommesNous.network", "Rejoindre le réseau des contributeurs")}
-        </FButton>
       </TextContainer>
     </ContributionDetailContainer>
   );

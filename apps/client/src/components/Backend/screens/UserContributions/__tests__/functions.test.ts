@@ -318,7 +318,6 @@ describe("formatContributions", () => {
       formattedUserContrib3,
       formattedUserContrib4,
       formattedUserContrib5,
-      formattedUserContrib6,
       { ...formattedUserStructureContrib1, isAuthorizedToDelete: true },
       { ...formattedUserStructureContrib4, isAuthorizedToDelete: true },
     ]);

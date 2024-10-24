@@ -88,13 +88,8 @@
     "seeButton": "برگه های {{count}} را ببینید",
     "titleThemes": "موضوعات ادغام",
     "positionButton": "از موقعیت من استفاده کنید",
-    "notDeployedTitle": ": این دپارتمان در حال گسترش است",
-    "notDeployedText": "Réfugiés.info پلتفرم ای است که مستقیماً توسط انجمن ها، داوطلبان و مددکاران اجتماعی پشتیبانی می شود. به ما کمک کنید این برنامه را غنی سازیم!",
-    "notDeployedWriteLink": "برگه بنویسید",
-    "notDeployedOkLink": "فهمیده شد",
     "france": "کل فرانسه",
     "online": "آنلاین",
-    "keyword": "کلمه کلیدی",
     "keywordPlaceholder": "ماموریت محلی، اجازه اقامت ...",
     "department": "جستجوی یک شهر یا دپارتمان",
     "themesPlaceholder": "جستجوی موضوعات",
@@ -160,9 +155,7 @@
     "telechargerAppel": "بروشور را بارگیری (Télécharger PDF) کنید",
     "explore": "مراحل را کاوش کنید",
     "team": "تیم",
-    "the_team": "تیم Refugies.info",
     "issues": "مسائل (مشکلات)",
-    "network": "به شبکه مشارکت کنندگان بپیوندید",
     "explore_dispositifs": "دستگاه ها را کاوش کنید",
     "contribute": "شرکت کردن"
   },
@@ -358,7 +351,6 @@
     "Kit de communication": "کیت ارتباطات",
     "posters_leaflets": "پوسترها و بروشورها",
     "Pour la presse": "برای مطبوعات",
-    "Pour les ambassadeurs": "برای سفیران",
     "for_ukraine": "برای اوکراین",
     "Mon espace": "فضای شخصی",
     "newsletter": "مشترک شدن در خبرنامه"
@@ -389,8 +381,7 @@
     "procedures": "برگه های روند اداری",
     "directory": "فهرست بازیگران",
     "information_types": "سه نوع اطلاعات",
-    "help_translate": "کمک به ترجمه",
-    "join_network": "به شبکه مشارکت کننده بپیوندید"
+    "help_translate": "کمک به ترجمه"
   },
   "Roles": {
     "admin": "مدیر",

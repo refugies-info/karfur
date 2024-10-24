@@ -4,7 +4,6 @@ import { Container } from "reactstrap";
 import { getPath } from "routes";
 import CommunityAmbassadeurs from "~/assets/homepage/community-ambassadeurs.png";
 import CommunityCda from "~/assets/homepage/community-cda.png";
-import CommunityEquipe from "~/assets/homepage/community-equipe.png";
 import CommunityExperts from "~/assets/homepage/community-experts.png";
 import CommunityInfluenceurs from "~/assets/homepage/community-influenceurs.png";
 import CommunityRedacteurs from "~/assets/homepage/community-redacteurs.png";
@@ -107,7 +106,7 @@ const Community = (props: Props) => {
             title={t("Homepage.communityCardTitle9")}
             subtitle={t("Homepage.communityCardSubtitle9")}
             badge={t("Homepage.communityCardBadge9")}
-            image={CommunityEquipe}
+            image={CommunityTraducteurs}
             color="blue"
             countImage={9}
             cta={t("who_are_we")}
