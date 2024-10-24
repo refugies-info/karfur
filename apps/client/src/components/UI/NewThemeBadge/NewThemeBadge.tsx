@@ -1,9 +1,8 @@
-import React, { useMemo } from "react";
-import useLocale from "hooks/useLocale";
-import styles from "./NewThemeBadge.module.scss";
-import ThemeIcon from "../ThemeIcon";
-import { cls } from "lib/classname";
 import { GetThemeResponse } from "@refugies-info/api-types";
+import useLocale from "hooks/useLocale";
+import { cls } from "lib/classname";
+import { useMemo } from "react";
+import styles from "./NewThemeBadge.module.scss";
 
 interface Props {
   theme: GetThemeResponse | number; // theme or number for "+X" badge
@@ -19,7 +18,7 @@ export const NewThemeBadge = (props: Props) => {
     [isPlusTag, props.theme, locale],
   );
   const background = useMemo(
-    () => (isPlusTag ? null : (props.theme as GetThemeResponse).colors.color30),
+    () => (isPlusTag ? null : (props.theme as GetThemeResponse).colors.color40),
     [isPlusTag, props.theme],
   );
 
