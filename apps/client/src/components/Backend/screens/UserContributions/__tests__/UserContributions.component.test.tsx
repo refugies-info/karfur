@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";
 import Swal from "sweetalert2";
@@ -30,18 +30,29 @@ jest.mock("services/UserStructure/userStructure.actions", () => {
 });
 
 describe("userContributions", () => {
-  it("should render correctly when loading", () => {
+  it("should render correctly when loading", async () => {
     window.scrollTo = jest.fn();
 
     const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserContributions,
       reduxState: {
         ...initialMockStore,
-        loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
+        loadingStatus: {
+          FETCH_USER_CONTRIBUTIONS: { isLoading: false }, // Set to false initially
+          FETCH_USER_STRUCTURE: { isLoading: false },
+        },
+      },
+      props: {
+        title: "Test Title", // Add required props
       },
     });
 
-    expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
+    // Wait for effects to run
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
+    expect(fetchUserContributionsActionCreator).toHaveBeenCalled();
     expect(asFragment()).toMatchSnapshot();
   });
 

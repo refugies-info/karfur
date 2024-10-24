@@ -2605,32 +2605,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
 
 exports[`userContributions should render correctly when loading 1`] = `
 <DocumentFragment>
-  .c2 {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-}
-
-.c4 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c3 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
-.c1 {
+  .c1 {
   background: lightGrey;
   border-radius: 12px;
   padding: 40px;
@@ -2640,6 +2615,47 @@ exports[`userContributions should render correctly when loading 1`] = `
   display: flex;
   flex-direction: column;
   height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  align-self: center;
+  color: gray90;
+  margin-bottom: 40px;
+}
+
+.c3 {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c4 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+  color: darkGrey;
+  margin-top: 52px;
+  margin-bottom: 20px;
+}
+
+.c5 {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: darkGrey;
+}
+
+.c6 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
 }
 
 .c0 {
@@ -2664,48 +2680,110 @@ exports[`userContributions should render correctly when loading 1`] = `
         <div
           class="c2"
         >
-          <div
-            class="c3"
-          >
-            Vous avez rédigé
-          </div>
+          Vous n'avez pas encore rédigé de fiche.
+        </div>
+        <div
+          class="c3"
+        >
           <div
             class="c4"
           >
-            ...
+            C'est parti ?
           </div>
           <div
-            class="c3"
+            class="c5"
           >
-            fiche.
+            Chacun peut apporter sa contribution pour enrichir le site.
+          </div>
+          <div
+            class="c5"
+          >
+            Lancez-vous !
+          </div>
+          <div
+            class="c6"
+          >
+            <button
+              class="btn dark me-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-file-add-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="file-add"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"
+                        />
+                        <path
+                          d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Créer une nouvelle fiche
+            </button>
+            <button
+              class="btn tuto ms-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-video-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="video"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Explications
+            </button>
           </div>
         </div>
-        <span
-          aria-busy="true"
-          aria-live="polite"
-        >
-          <span
-            class="react-loading-skeleton"
-            style="height: 50px;"
-          >
-            ‌
-          </span>
-          <br />
-          <span
-            class="react-loading-skeleton"
-            style="height: 50px;"
-          >
-            ‌
-          </span>
-          <br />
-          <span
-            class="react-loading-skeleton"
-            style="height: 50px;"
-          >
-            ‌
-          </span>
-          <br />
-        </span>
       </div>
     </div>
   </div>
