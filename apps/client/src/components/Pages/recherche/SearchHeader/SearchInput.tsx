@@ -22,7 +22,7 @@ const SearchInput: React.FC<Props> = ({ onChange, className }) => {
       label="Url du site :"
       hintText="Saisissez une url valide, commençant par https://"
       nativeInputProps={{
-        placeholder: t("Recherche.keyword", "Recherche par mot-clé"),
+        placeholder: t("Recherche.keyword", "Rechercher par mot-clé"),
         onChange,
         value: query.search,
         className: "fr-input-wrap fr-icon-search-line",

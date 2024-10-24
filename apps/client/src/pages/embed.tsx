@@ -29,7 +29,7 @@ const Embed = () => {
     <div className={cls(styles.container, styles.embed)}>
       <Container className={styles.container_inner}>
         <EmbedHeader themes={themes} languages={query.language} departments={query.departments} />
-        <SearchResults departmentsNotDeployed={[]} targetBlank={true} />
+        <SearchResults targetBlank={true} />
 
         <footer>
           <p>

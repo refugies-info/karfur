@@ -91,13 +91,11 @@
     "seeButton": "Voir les {{count}} fiches",
     "titleThemes": "Les thématiques de l'intégration",
     "positionButton": "Utiliser ma position",
-    "notDeployedTitle": " : ce département est en cours de déploiement !",
-    "notDeployedText": "Réfugiés.info est collaboratif, alimenté directement par les acteurs associatifs, les bénévoles et les intervenants sociaux. Aidez-nous à l’enrichir ! ",
-    "notDeployedWriteLink": "Rédiger une fiche",
-    "notDeployedOkLink": "J'ai compris",
+    "positionEnable": "Vous devez activer la géolocalisation pour votre navigateur",
+    "notDeployedText": "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
     "france": "toute la France",
     "online": "en ligne",
-    "keyword": "Recherche par mot-clé",
+    "keyword": "Rechercher par mot-clé",
     "keywordPlaceholder": "Mission locale, titre de séjour...",
     "department": "Ville ou département",
     "theme": "Thème",
@@ -177,9 +175,7 @@
     "telechargerAppel": "Télécharger l’appel [PDF] ",
     "explore": "Explorer les démarches",
     "team": "Équipe",
-    "the_team": "L'équipe Réfugiés.info",
     "issues": "Problématiques",
-    "network": "Rejoindre le réseau des contributeurs",
     "explore_dispositifs": "Explorer les dispositifs",
     "contribute": "Contribuer"
   },
@@ -395,7 +391,6 @@
     "Kit de communication": "Kit de communication",
     "posters_leaflets": "Affiches et dépliants",
     "Pour la presse": "Pour la presse",
-    "Pour les ambassadeurs": "Pour les ambassadeurs",
     "for_ukraine": "Pour l'Ukraine",
     "Mon espace": "Mon espace",
     "newsletter": "S'inscrire à la newsletter"
@@ -426,8 +421,7 @@
     "procedures": "Les fiches démarches",
     "directory": "L’annuaire des acteurs",
     "information_types": "Trois types d’information",
-    "help_translate": "Aider à traduire",
-    "join_network": "Rejoindre le Réseau des contributeurs"
+    "help_translate": "Aider à traduire"
   },
   "Roles": {
     "admin": "Admin",

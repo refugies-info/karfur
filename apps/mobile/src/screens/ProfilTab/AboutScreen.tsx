@@ -1,13 +1,9 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import * as Linking from "expo-linking";
 import * as React from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
 import { Page, Rows, Title } from "~/components";
-import { RTLView } from "~/components/BasicComponents";
-import { CustomButton } from "~/components/CustomButton";
-import { TextDSFR_L, TextDSFR_L_Bold, TextDSFR_MD, TextDSFR_MD_Bold } from "~/components/StyledText";
-import { membres, partners } from "~/data/aboutUs";
+import { TextDSFR_L, TextDSFR_L_Bold, TextDSFR_MD } from "~/components/StyledText";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { initHorizontalScroll } from "~/libs/rtlHorizontalScroll";
 import { styles } from "~/theme";
@@ -23,8 +19,6 @@ import Problematique3 from "~/theme/images/aboutUs/problematique-3.png";
 import { ProfileParamList } from "~/types/navigation";
 
 const CARD_WIDTH = 280;
-const LOGO_WIDTH = 104;
-const LOGO_HEIGHT = 80;
 
 const Card = styled.View`
   width: ${CARD_WIDTH}px;
@@ -43,44 +37,6 @@ const CardTitle = styled(TextDSFR_L_Bold)`
   margin-bottom: ${styles.margin}px;
   margin-top: ${styles.margin * 2}px;
 `;
-const LogoContainer = styled.View<{ isRTL: boolean }>`
-  padding: ${styles.margin * 2}px;
-  margin-right: ${({ isRTL }) => (!isRTL ? styles.margin * 3 : 0)}px;
-  margin-left: ${({ isRTL }) => (isRTL ? styles.margin * 3 : 0)}px;
-  background-color: ${styles.colors.white};
-  border-radius: ${styles.radius * 2}px;
-`;
-const LogoImage = styled.Image`
-  width: ${LOGO_WIDTH}px;
-  height: ${LOGO_HEIGHT}px;
-`;
-const TeamContainer = styled.ScrollView`
-  padding-horizontal: ${styles.margin * 3}px;
-  margin-bottom: ${styles.margin * 3}px;
-`;
-const TeamItem = styled(RTLView)`
-  padding: ${styles.margin * 2}px;
-  border-width: 2px;
-  border-color: ${styles.colors.benevolat100};
-  background-color: ${styles.colors.benevolat30};
-  border-radius: ${styles.radius * 2}px;
-  margin-bottom: ${styles.margin * 2}px;
-`;
-const TeamDetails = styled.View<{ isRTL: boolean }>`
-  margin-right: ${({ isRTL }) => (isRTL ? styles.margin * 3 : 0)}px;
-  margin-left: ${({ isRTL }) => (!isRTL ? styles.margin * 3 : 0)}px;
-  flex-shrink: 1;
-  flex-grow: 0;
-`;
-const TeamName = styled(TextDSFR_MD_Bold)`
-  background-color: ${styles.colors.white};
-  margin-bottom: ${styles.margin}px;
-  padding: ${styles.margin / 2}px;
-  width: auto;
-`;
-const TeamRole = styled(TextDSFR_MD)`
-  flex-wrap: wrap;
-`;
 
 const stylesheet = StyleSheet.create({
   scrollview: {
@@ -89,19 +45,7 @@ const stylesheet = StyleSheet.create({
     paddingBottom: styles.margin,
     marginBottom: styles.margin,
   },
-  logoScrollview: {
-    paddingTop: styles.margin * 2,
-    paddingBottom: styles.margin,
-    marginBottom: styles.margin,
-  },
 });
-
-const sortPartners = () =>
-  partners.sort((a, b) => {
-    if (a.date === b.date) return 0;
-    if (a.date > b.date) return 1;
-    return -1;
-  });
 
 export const AboutScreen = ({}: StackScreenProps<ProfileParamList, "AboutScreen">) => {
   const { t, isRTL } = useTranslationWithRTL();
@@ -109,14 +53,9 @@ export const AboutScreen = ({}: StackScreenProps<ProfileParamList, "AboutScreen"
   const scrollviewMissions = React.useRef<ScrollView>(null);
   const scrollviewProblematiques = React.useRef<ScrollView>(null);
   const scrollviewContributif = React.useRef<ScrollView>(null);
-  const scrollviewPartners = React.useRef<ScrollView>(null);
-  const sortedPartners = sortPartners();
 
   React.useEffect(() => {
-    initHorizontalScroll(
-      [scrollviewMissions, scrollviewProblematiques, scrollviewContributif, scrollviewPartners],
-      isRTL,
-    );
+    initHorizontalScroll([scrollviewMissions, scrollviewProblematiques, scrollviewContributif], isRTL);
   }, [isRTL]);
 
   return (
@@ -247,64 +186,6 @@ export const AboutScreen = ({}: StackScreenProps<ProfileParamList, "AboutScreen"
             </View>
           </Card>
         </ScrollView>
-
-        {/* PARTENAIRES */}
-        <Title>{t("about_screen.partners")}</Title>
-        <TextDSFR_MD_Bold>{t("about_screen.call_1")}</TextDSFR_MD_Bold>
-
-        <ScrollView
-          ref={scrollviewPartners}
-          contentContainerStyle={{
-            ...stylesheet.logoScrollview,
-            flexDirection: !isRTL ? "row" : "row-reverse",
-          }}
-          horizontal={true}
-        >
-          {sortedPartners.map((partner, index) => (
-            <LogoContainer key={index} isRTL={isRTL}>
-              <LogoImage source={{ uri: partner.logo }} resizeMode="contain" />
-            </LogoContainer>
-          ))}
-        </ScrollView>
-
-        <TextDSFR_MD>{t("about_screen.call_2")}</TextDSFR_MD>
-        <RTLView>
-          <CustomButton
-            i18nKey="about_screen.download_call_button"
-            defaultText="Télécharger l’appel [PDF]"
-            backgroundColor={styles.colors.black}
-            iconName="download-outline"
-            textColor={styles.colors.white}
-            onPress={() => Linking.openURL("https://refugies.info/AMI_REFUGIE_INFO.pdf")}
-            notFullWidth={true}
-            iconFirst={true}
-            style={{
-              marginTop: styles.margin * 3,
-              marginHorizontal: styles.margin * 3,
-            }}
-          />
-        </RTLView>
-
-        {/* L'ÉQUIPE */}
-        <Title style={{ marginBottom: styles.margin * 3 }}>{t("about_screen.team")}</Title>
-        <TeamContainer>
-          {membres.map((membre, index) => (
-            <TeamItem key={index}>
-              <Image source={membre.photo} style={{ width: 80, height: 80 }} />
-              <TeamDetails isRTL={isRTL}>
-                <View
-                  style={{
-                    flexShrink: 1,
-                    flexDirection: !isRTL ? "row" : "row-reverse",
-                  }}
-                >
-                  <TeamName>{membre.name}</TeamName>
-                </View>
-                <TeamRole>{membre.roleName}</TeamRole>
-              </TeamDetails>
-            </TeamItem>
-          ))}
-        </TeamContainer>
       </Rows>
     </Page>
   );

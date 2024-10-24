@@ -46,7 +46,7 @@ exports[`recherche renders search results 1`] = `
               aria-describedby="input-:r0:-desc-error"
               class="fr-input"
               id="input-:r0:"
-              placeholder="Recherche par mot-clé"
+              placeholder="Rechercher par mot-clé"
               type="text"
               value=""
             />
@@ -58,7 +58,7 @@ exports[`recherche renders search results 1`] = `
           <div
             class="filter"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -69,17 +69,22 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r1:"
                 type="button"
               >
-                Recherche.filterLocation 
+                <span
+                  class="label"
+                >
+                  Recherche.filterLocation
+                </span>
+                 
                 <i
                   class="ri-arrow-down-s-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -90,7 +95,11 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r3:"
                 type="button"
               >
-                Français
+                <span
+                  class="label limitedWidth"
+                >
+                  Français
+                </span>
               </button>
               <button
                 class="clear"
@@ -100,12 +109,12 @@ exports[`recherche renders search results 1`] = `
                   class="ri-close-circle-fill"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -116,17 +125,22 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r5:"
                 type="button"
               >
-                Recherche.filterStatus 
+                <span
+                  class="label"
+                >
+                  Recherche.filterStatus
+                </span>
+                 
                 <i
                   class="ri-arrow-down-s-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -137,17 +151,22 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r7:"
                 type="button"
               >
-                Recherche.filterPublic 
+                <span
+                  class="label"
+                >
+                  Recherche.filterPublic
+                </span>
+                 
                 <i
                   class="ri-arrow-down-s-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -158,17 +177,22 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:r9:"
                 type="button"
               >
-                Recherche.filterAge 
+                <span
+                  class="label"
+                >
+                  Recherche.filterAge
+                </span>
+                 
                 <i
                   class="ri-arrow-down-s-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -179,17 +203,22 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:rb:"
                 type="button"
               >
-                Recherche.filterFrenchLevel 
+                <span
+                  class="label"
+                >
+                  Recherche.filterFrenchLevel
+                </span>
+                 
                 <i
                   class="ri-arrow-down-s-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -200,17 +229,22 @@ exports[`recherche renders search results 1`] = `
                 id="radix-:rd:"
                 type="button"
               >
-                Recherche.filterLanguage 
+                <span
+                  class="label"
+                >
+                  Recherche.filterLanguage
+                </span>
+                 
                 <i
                   class="ri-arrow-down-s-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
           <div
             class="filter collapsedFiltersButton"
           >
-            <span
+            <div
               class="container"
             >
               <button
@@ -225,7 +259,7 @@ exports[`recherche renders search results 1`] = `
                   class="ri-equalizer-line"
                 />
               </button>
-            </span>
+            </div>
           </div>
         </div>
       </div>
