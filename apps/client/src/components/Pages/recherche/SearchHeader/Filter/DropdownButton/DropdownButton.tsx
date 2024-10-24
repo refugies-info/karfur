@@ -25,7 +25,7 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
   const { t } = useTranslation();
 
   return (
-    <span className={styles.container}>
+    <div className={styles.container}>
       <button
         onClick={onClick}
         className={cls(styles.button, isOpen && styles.open, value.length > 0 && !icon && styles.values)}
@@ -34,7 +34,11 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
       >
         {count && count > 0 ? <span className={styles.count}>{count}</span> : null}
 
-        {icon ? <i className={icon}></i> : value[0] && label}
+        {icon ? (
+          <i className={icon}></i>
+        ) : (
+          value[0] && <span className={cls(styles.label, styles.limitedWidth)}>{label}</span>
+        )}
 
         {tooltip && (
           <Tooltip.Root>
@@ -57,7 +61,8 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
         )}
         {!icon && value.length === 0 && !icon && (
           <>
-            {label} <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
+            <span className={cls(styles.label)}>{label}</span>{" "}
+            <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
           </>
         )}
       </button>
@@ -67,6 +72,6 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
           <i className="ri-close-circle-fill"></i>
         </button>
       )}
-    </span>
+    </div>
   );
 });

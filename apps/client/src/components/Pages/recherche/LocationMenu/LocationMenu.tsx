@@ -2,7 +2,6 @@ import debounce from "lodash/debounce";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
-import Separator from "~/components/UI/Separator";
 import { useSearchEventName } from "~/hooks";
 import { getDepartmentCodeFromName } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
@@ -111,7 +110,6 @@ const LocationMenu: React.FC<Props> = () => {
   return (
     <div className={styles.container}>
       <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
-      <Separator />
 
       <div className={styles.departments}>
         {query.departments.map((depName, i) => (
@@ -122,7 +120,6 @@ const LocationMenu: React.FC<Props> = () => {
       <LocationMenuItem />
 
       <div className={styles.places}>
-        {(locationSearch === "" || placePredictions.length > 0) && <Separator />}
         {locationSearch !== "" &&
           placePredictions
             .slice(0, 5)
