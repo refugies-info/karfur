@@ -22,6 +22,7 @@ type TranslationFunction = (key: string, options?: object) => string;
 
 const ResultsFilter = (): React.ReactNode => {
   const { t } = useTranslation() as { t: TranslationFunction };
+
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const themesDisplayed = useSelector(themesDisplayedSelector);

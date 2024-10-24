@@ -107,3 +107,25 @@
     color: var(--background-contrast-blue-france-hover);
   }
 }
+
+.tooltip {
+  @include text("small");
+
+  padding: u(4);
+  background-color: #fff;
+  box-shadow: 0 4px 12px 0 rgba(0 0 18 / 16%);
+  transform: translateX(-1em);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid white;
+    transform: translate(1.2em, -100%);
+  }
+}

@@ -31,6 +31,7 @@ type PropsBase = {
   gaType: string;
   className?: string;
   showFilterCount?: boolean;
+  tooltip?: { trigger: string; text: string } | null;
 };
 
 type MenuItemProps = {
@@ -59,7 +60,7 @@ type ExternalMenu = PropsBase & {
 
 type Props = MenuItems | ExternalMenu;
 
-const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount, className }: Props) => {
+const Filter = ({ gaType, menuItems, externalMenu, label, tooltip, icon, showFilterCount, className }: Props) => {
   const { t } = useTranslation() as { t: TranslationFunction };
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -222,6 +223,7 @@ const Filter = ({ gaType, menuItems, externalMenu, label, icon, showFilterCount,
       ) : (
         <DropDownMenuLayout
           label={label}
+          tooltip={tooltip}
           icon={icon}
           value={value as string[]}
           resetOptions={resetOptions}

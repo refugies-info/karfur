@@ -1,10 +1,12 @@
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
+import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
@@ -22,7 +24,17 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
+
   const eventName = useSearchEventName();
+
+  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
+    getDepartmentsNotDeployed(query.departments, dispositifs),
+  );
+
+  useEffect(() => {
+    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
+  }, [query.departments, dispositifs]);
 
   // KEYWORD
   const onChangeSearchInput = useCallback(
@@ -63,6 +75,14 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
       <div className={styles.filtersBar}>
         <Filter
+          tooltip={
+            departmentsNotDeployed.length > 0
+              ? {
+                  trigger: "⚠️",
+                  text: t("Recherche.notDeployedText", { department: departmentsNotDeployed.join(", ") }),
+                }
+              : null
+          }
           label={locationLabel}
           externalMenu={{
             value: query.departments,

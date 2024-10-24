@@ -8,6 +8,7 @@ export type LayoutProps = {
   resultsNumber?: number;
   children: React.ReactNode;
   filterCount?: number | null;
+  tooltip?: { trigger: string; text: string } | null | undefined;
 };
 export { DialogMenuLayout, DialogMenuLayoutTitle } from "./DialogMenuLayout";
 export { DropDownMenuLayout } from "./DropDownMenuLayout";
