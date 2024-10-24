@@ -11,7 +11,7 @@ interface Props {
   [x: string]: any;
 }
 
-const FilterButton = React.forwardRef((props: Props, ref) => {
+const FilterButton = React.forwardRef<unknown, Props>((props) => {
   let { className, active, color, ...bProps } = props;
 
   const classNames = cls(styles.btn, active && styles.active, !!color && styles.colored, className || "");

@@ -64,7 +64,7 @@ interface Props extends RouteComponentProps {
   setSelectedContentIdAndToggleModal: (element: Id | null, status: string | null) => void;
 }
 
-const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: Props) => {
+const StructureDetailsModalComponent: React.FC<Props> = (props) => {
   const routerLocale = useRouterLocale();
   const router = useRouter();
   const selectedStructureId = props.selectedStructureId;
