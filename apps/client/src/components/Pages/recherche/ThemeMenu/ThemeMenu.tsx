@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import _ from "lodash";
 import debounce from "lodash/debounce";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
@@ -34,9 +34,9 @@ interface Props {
 const debouncedQuery = debounce(
   (
     query: SearchQuery,
-    dispositifs: GetDispositifsResponse[],
+    dispositifs: SimpleDispositif[],
     locale: string,
-    callback: (res: GetDispositifsResponse[]) => void,
+    callback: (res: SimpleDispositif[]) => void,
   ) => {
     return queryDispositifsWithoutThemes(query, dispositifs, locale).then((res) => callback(res));
   },

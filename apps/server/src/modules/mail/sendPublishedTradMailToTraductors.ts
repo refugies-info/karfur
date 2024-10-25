@@ -39,7 +39,8 @@ export const sendPublishedTradMailToTraductors = async (locale: Languages, dispo
               isDispositif: dispositif.typeContenu === ContentType.DISPOSITIF,
             });
           }
-        } catch (error) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (_) {
           logger.info("[sendPublishedTradMailToTraductors] error while sending mail to user", {
             userId: tradId,
           });

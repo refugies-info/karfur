@@ -3,8 +3,6 @@ name: Migrate Production
 on:
   push:
     branches:
-      - master-mobile
-      - master-frontend
       - master-backend
   workflow_dispatch:
 

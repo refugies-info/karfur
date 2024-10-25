@@ -1,5 +1,5 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +23,7 @@ import { themesSelector } from "~/services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
 
 interface Props {
-  dispositif: GetDispositifsResponse;
+  dispositif: SimpleDispositif;
   selectedDepartment?: string;
   targetBlank?: boolean;
   demoCard?: boolean;
@@ -170,14 +170,18 @@ const DispositifCard = (props: Props) => {
         </div>
         <div className="fr-card__header">
           <div className="fr-card__img">
-            <Image
-              className="fr-responsive-img"
-              width={280}
-              height={158}
-              src={cardImageUrl}
-              alt=""
-              data-fr-js-ratio="true"
-            />
+            {cardImageUrl ? (
+              <Image
+                className="fr-responsive-img"
+                width={280}
+                height={158}
+                src={cardImageUrl}
+                alt=""
+                data-fr-js-ratio="true"
+              />
+            ) : (
+              <div className={styles.placeholder_img}></div>
+            )}
           </div>
           <ul className="fr-badges-group">
             <li>

@@ -1,4 +1,4 @@
-import { ContentType, CreateDispositifRequest, GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, CreateDispositifRequest, SimpleDispositif } from "@refugies-info/api-types";
 import { useMemo } from "react";
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import { allStructuresSelector } from "~/services/AllStructures/allStructures.se
 
 export const useSponsorData = (values: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType) => {
   const structures = useSelector(allStructuresSelector);
-  const sponsor: GetDispositifsResponse["sponsor"] = useMemo(() => {
+  const sponsor: SimpleDispositif["sponsor"] = useMemo(() => {
     if (typeContenu === ContentType.DEMARCHE) {
       return {
         nom: values.administration?.name || "",

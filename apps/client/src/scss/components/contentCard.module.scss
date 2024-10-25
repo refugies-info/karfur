@@ -64,6 +64,12 @@ $shadowHeight: 1.4rem;
     flex-shrink: 0;
     z-index: 1;
   }
+
+  .placeholder_img {
+    width: 257px;
+    height: 144px;
+    background-color: var(--background-action-high-grey-hover);
+  }
 }
 
 /* Badges */

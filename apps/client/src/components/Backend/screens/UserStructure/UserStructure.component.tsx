@@ -46,7 +46,7 @@ export const UserStructureComponent = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    if (userStructure) {
+    if (userStructure?._id) {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
@@ -55,7 +55,7 @@ export const UserStructureComponent = (props: Props) => {
       );
     }
     window.scrollTo(0, 0);
-  }, [dispatch, userStructure]);
+  }, [dispatch, , userStructure?._id]);
 
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE));

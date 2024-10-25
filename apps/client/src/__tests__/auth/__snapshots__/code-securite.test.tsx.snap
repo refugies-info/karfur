@@ -47,6 +47,11 @@ exports[`auth/connexion renders code-securite if email 1`] = `
           type="text"
           value=""
         />
+        <div
+          aria-live="polite"
+          class="fr-messages-group"
+          id="input-:r1:-messages-group"
+        />
       </div>
       <button
         class="fr-btn fr-icon-check-line fr-btn--icon-right button mt mb-4"
