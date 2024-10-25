@@ -1,8 +1,8 @@
-import { GetDispositifsResponse, Id, publicStatusType, publicType } from "@refugies-info/api-types";
+import { Id, publicStatusType, publicType, SimpleDispositif } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, TypeOptions } from "data/searchFilters";
 
 export const filterByThemeOrNeed = (
-  dispositif: GetDispositifsResponse,
+  dispositif: SimpleDispositif,
   themesSelected: Id[],
   needs: Id[],
   withSecondaryTheme: boolean,
@@ -28,7 +28,7 @@ export const filterByThemeOrNeed = (
   return false;
 };
 
-export const filterByLocations = (dispositif: GetDispositifsResponse, departments: string[]) => {
+export const filterByLocations = (dispositif: SimpleDispositif, departments: string[]) => {
   if (departments.length === 0) return true;
   const location = dispositif.metadatas?.location;
   if (!Array.isArray(location)) return true; // not array = france or online -> keep result
@@ -85,7 +85,7 @@ function convertAudienceAgeToRange(audienceAge: AudienceAge): [number, number] {
   }
 }
 
-export const getMatchingAgeOptions = (dispositif: GetDispositifsResponse): AgeOptions[] => {
+export const getMatchingAgeOptions = (dispositif: SimpleDispositif): AgeOptions[] => {
   const allAgeOptions = Object.keys(FILTER_AGE_VALUES) as AgeOptions[];
   const audienceAge = dispositif.metadatas?.age;
   if (!audienceAge || !audienceAge.ages) return allAgeOptions;
@@ -101,7 +101,7 @@ export const getMatchingAgeOptions = (dispositif: GetDispositifsResponse): AgeOp
   }, [] as AgeOptions[]);
 };
 
-export const countMatchingAgeOptions = (dispositif: GetDispositifsResponse, ageOptions: AgeOptions[]): number => {
+export const countMatchingAgeOptions = (dispositif: SimpleDispositif, ageOptions: AgeOptions[]): number => {
   const audienceAge = dispositif.metadatas?.age;
   if (!audienceAge || !audienceAge.ages) return ageOptions.length;
 
@@ -116,7 +116,7 @@ export const countMatchingAgeOptions = (dispositif: GetDispositifsResponse, ageO
   }, 0);
 };
 
-export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
+export const filterByAge = (dispositif: SimpleDispositif, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
   return countMatchingAgeOptions(dispositif, ageFilters) > 0;
 };
@@ -127,7 +127,7 @@ const FILTER_FRENCH_LEVEL_VALUES = {
   c: [],
 };
 
-export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLevelFilters: FrenchOptions[]) => {
+export const filterByFrenchLevel = (dispositif: SimpleDispositif, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
   const frenchLevels = dispositif.metadatas?.frenchLevel;
   if (!frenchLevels || frenchLevels.length === 0) return true;
@@ -149,7 +149,7 @@ export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLe
   return false;
 };
 
-export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFilters: string[]) => {
+export const filterByLanguage = (dispositif: SimpleDispositif, languageFilters: string[]) => {
   if (languageFilters.length === 0) return true;
   for (const ln of languageFilters) {
     if (dispositif.availableLanguages.includes(ln)) {
@@ -159,7 +159,7 @@ export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFil
   return false;
 };
 
-export const filterByPublic = (dispositif: GetDispositifsResponse, publicFilters: publicType[]) => {
+export const filterByPublic = (dispositif: SimpleDispositif, publicFilters: publicType[]) => {
   if (publicFilters.length === 0) return true;
   for (const value of publicFilters) {
     if (dispositif.metadatas?.public?.includes(value)) {
@@ -169,7 +169,7 @@ export const filterByPublic = (dispositif: GetDispositifsResponse, publicFilters
   return false;
 };
 
-export const filterByStatus = (dispositif: GetDispositifsResponse, statusFilters: publicStatusType[]) => {
+export const filterByStatus = (dispositif: SimpleDispositif, statusFilters: publicStatusType[]) => {
   if (statusFilters.length === 0) return true;
   for (const value of statusFilters) {
     if (dispositif.metadatas?.publicStatus?.includes(value)) {
@@ -179,7 +179,7 @@ export const filterByStatus = (dispositif: GetDispositifsResponse, statusFilters
   return false;
 };
 
-export const filterByType = ({ typeContenu, metadatas }: GetDispositifsResponse, type: TypeOptions) => {
+export const filterByType = ({ typeContenu, metadatas }: SimpleDispositif, type: TypeOptions) => {
   switch (type) {
     case "all":
       return true;

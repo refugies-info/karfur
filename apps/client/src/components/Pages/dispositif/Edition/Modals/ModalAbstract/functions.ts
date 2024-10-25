@@ -1,15 +1,10 @@
-import {
-  ContentType,
-  CreateDispositifRequest,
-  DispositifStatus,
-  GetDispositifsResponse,
-} from "@refugies-info/api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, SimpleDispositif } from "@refugies-info/api-types";
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 
 export const getDefaultDispositif = (
   formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>,
-  sponsor: GetDispositifsResponse["sponsor"],
-): GetDispositifsResponse => {
+  sponsor: SimpleDispositif["sponsor"],
+): SimpleDispositif => {
   return {
     _id: "",
     titreInformatif: formValues.titreInformatif || "Titre informatif",

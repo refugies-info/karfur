@@ -43,6 +43,11 @@ exports[`auth/reinitialiser-mot-de-passe renders page if email 1`] = `
           type="email"
           value="test@example.com"
         />
+        <div
+          aria-live="polite"
+          class="fr-messages-group"
+          id="input-:r4:-messages-group"
+        />
       </div>
       <div
         class="text-end"
@@ -112,6 +117,11 @@ exports[`auth/reinitialiser-mot-de-passe renders page if no email 1`] = `
           name="email"
           type="email"
           value=""
+        />
+        <div
+          aria-live="polite"
+          class="fr-messages-group"
+          id="input-:r1:-messages-group"
         />
       </div>
       <div

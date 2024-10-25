@@ -120,6 +120,11 @@ exports[`UserProfile should render correctly 1`] = `
                   type="text"
                   value="test"
                 />
+                <div
+                  aria-live="polite"
+                  class="fr-messages-group"
+                  id="input-:r2:-messages-group"
+                />
               </div>
               <div
                 class="fr-input-group empty"
@@ -145,6 +150,11 @@ exports[`UserProfile should render correctly 1`] = `
                   type="text"
                   value="Non défini"
                 />
+                <div
+                  aria-live="polite"
+                  class="fr-messages-group"
+                  id="input-:r3:-messages-group"
+                />
               </div>
               <div
                 class="fr-input-group empty"
@@ -168,6 +178,11 @@ exports[`UserProfile should render correctly 1`] = `
                   type="text"
                   value="Non défini"
                 />
+                <div
+                  aria-live="polite"
+                  class="fr-messages-group"
+                  id="input-:r4:-messages-group"
+                />
               </div>
               <div
                 class="fr-input-group empty"
@@ -188,6 +203,11 @@ exports[`UserProfile should render correctly 1`] = `
                   type="text"
                   value="Non défini"
                 />
+                <div
+                  aria-live="polite"
+                  class="fr-messages-group"
+                  id="input-:r5:-messages-group"
+                />
               </div>
               <div
                 class="fr-input-group"
@@ -207,6 +227,11 @@ exports[`UserProfile should render correctly 1`] = `
                   title="fake-password-input"
                   type="text"
                   value="********"
+                />
+                <div
+                  aria-live="polite"
+                  class="fr-messages-group"
+                  id="input-:r6:-messages-group"
                 />
               </div>
               <button
@@ -346,6 +371,11 @@ exports[`UserProfile should render correctly 1`] = `
                               name="email"
                               type="email"
                               value=""
+                            />
+                            <div
+                              aria-live="polite"
+                              class="fr-messages-group"
+                              id="input-:r9:-messages-group"
                             />
                           </div>
                           <div

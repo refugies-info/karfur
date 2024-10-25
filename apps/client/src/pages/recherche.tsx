@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetNeedResponse, Id } from "@refugies-info/api-types";
+import { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
 import debounce from "lodash/debounce";
 import { useTranslation } from "next-i18next";
@@ -52,7 +52,7 @@ export type UrlSearchQuery = {
 const debouncedQuery = debounce(
   (
     query: SearchQuery,
-    dispositifs: GetDispositifsResponse[],
+    dispositifs: SimpleDispositif[],
     locale: string,
     allNeeds: GetNeedResponse[],
     callback: (res: Results) => void,
@@ -111,7 +111,7 @@ const Recherche = () => {
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params]);
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params, allNeeds]);
 
   // generate list of demarches to show when no results
   useEffect(() => {

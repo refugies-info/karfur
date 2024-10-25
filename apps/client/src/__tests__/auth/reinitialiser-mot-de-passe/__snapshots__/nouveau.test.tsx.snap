@@ -102,6 +102,11 @@ exports[`auth/reinitialiser-mot-de-passe/nouveau renders page 1`] = `
           name="code"
           type="text"
         />
+        <div
+          aria-live="polite"
+          class="fr-messages-group"
+          id="input-:r3:-messages-group"
+        />
       </div>
       <button
         class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt"

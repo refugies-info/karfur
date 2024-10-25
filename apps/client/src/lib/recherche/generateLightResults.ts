@@ -1,8 +1,8 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { SimpleDispositif } from "@refugies-info/api-types";
 import { MATCHES_PER_PAGE } from "~/components/Pages/recherche/SearchResults/SearchResults";
 import { Results } from "~/services/SearchResults/searchResults.reducer";
 
-const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number): GetDispositifsResponse[] => {
+const getSearchDispositifs = (dispositifs: SimpleDispositif[], max: number): SimpleDispositif[] => {
   //@ts-ignore - see comment below
   return [
     ...dispositifs.slice(0, max),
