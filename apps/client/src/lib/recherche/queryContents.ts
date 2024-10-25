@@ -1,5 +1,5 @@
 import { GetDispositifsResponse, GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
-import algoliasearch from "algoliasearch";
+import { algoliasearch, SupportedLanguage } from "algoliasearch";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
 import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
@@ -20,7 +20,6 @@ const indexName =
   process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
     ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
     : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
-const index = searchClient.initIndex(indexName || "");
 
 const buildFilterKeys = (query: SearchQuery): Array<FilterKey> => {
   let keys: Array<FilterKey> = [];
@@ -146,17 +145,21 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
       // new search
       searchCache = search; // keep search in cache to prevent useless algolia searchs
       let hits: Hit[] = [];
-      const queryLanguages: string[] = ["fr"];
+      const queryLanguages: SupportedLanguage[] = ["fr"];
       // ti not supported by Algolia
       if (!["ti", "fr"].includes(locale)) {
-        queryLanguages.push(locale);
+        queryLanguages.push(locale as SupportedLanguage);
       }
-      hits = await index
-        .search(search, {
-          restrictSearchableAttributes: getSearchableAttributes(locale),
-          analyticsTags: [`ln_${locale}`],
-          queryLanguages,
-          hitsPerPage: 600,
+      hits = await searchClient
+        .searchSingleIndex({
+          indexName: indexName!,
+          searchParams: {
+            query: search,
+            restrictSearchableAttributes: getSearchableAttributes(locale),
+            analyticsTags: [`ln_${locale}`],
+            queryLanguages,
+            hitsPerPage: 600,
+          },
         })
         .then(({ hits }) => hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult })));
 
