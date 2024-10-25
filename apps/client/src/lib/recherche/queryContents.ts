@@ -1,5 +1,5 @@
 import { searchClient as algoliasearch, SupportedLanguage } from "@algolia/client-search";
-import { GetDispositifsResponse, GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
+import { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
 import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
@@ -64,10 +64,10 @@ export const getDefaultSortOption = (query: SearchQuery): SortOptions => {
  */
 export const filterDispositifs = (
   query: SearchQuery,
-  dispositifs: GetDispositifsResponse[],
+  dispositifs: SimpleDispositif[],
   secondaryThemes: boolean,
   skip: FilterKey | undefined = undefined,
-): GetDispositifsResponse[] => {
+): SimpleDispositif[] => {
   const filterKeys = buildFilterKeys(query);
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
 
@@ -137,9 +137,10 @@ const filterSuggestions = (
 };
 
 let searchCache = "";
-let searchCacheResults: GetDispositifsResponse[] = [];
-const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsResponse[], locale: string) => {
-  let filteredDispositifsByAlgolia: GetDispositifsResponse[] = [...dispositifs];
+let searchCacheResults: SimpleDispositif[] = [];
+
+const queryOnAlgolia = async (search: string, dispositifs: SimpleDispositif[], locale: string) => {
+  let filteredDispositifsByAlgolia: SimpleDispositif[] = [...dispositifs];
   if (search) {
     if (search !== searchCache) {
       // new search
@@ -167,9 +168,7 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
         .map((hit) => {
           const dispositif = dispositifs.find((d) => d._id.toString() === hit.id);
           // deep clone object to make sure cards components re-renders
-          const newDispositif: GetDispositifsResponse | undefined = dispositif
-            ? JSON.parse(JSON.stringify(dispositif))
-            : undefined;
+          const newDispositif = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
           if (newDispositif) {
             newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
             newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
@@ -178,7 +177,7 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
           }
           return newDispositif;
         })
-        .filter((d) => !!d) as GetDispositifsResponse[];
+        .filter((d) => !!d);
       searchCacheResults = filteredDispositifsByAlgolia;
     } else {
       // same search
@@ -193,7 +192,7 @@ const queryOnAlgolia = async (search: string, dispositifs: GetDispositifsRespons
  * @param dispositifs - list of dispositifs
  * @returns - list of dispositifs
  */
-export const getTopDemarches = (dispositifs: GetDispositifsResponse[]): GetDispositifsResponse[] => {
+export const getTopDemarches = (dispositifs: SimpleDispositif[]): SimpleDispositif[] => {
   return filterDispositifs(
     {
       type: "demarche",
@@ -222,7 +221,7 @@ export const getTopDemarches = (dispositifs: GetDispositifsResponse[]): GetDispo
  */
 export const queryDispositifs = (
   query: SearchQuery,
-  dispositifs: GetDispositifsResponse[],
+  dispositifs: SimpleDispositif[],
   allNeeds: GetNeedResponse[],
 ): Results => {
   const matches = filterDispositifs(query, dispositifs, false);
@@ -245,7 +244,7 @@ export const queryDispositifs = (
  */
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
-  dispositifs: GetDispositifsResponse[],
+  dispositifs: SimpleDispositif[],
   locale: string,
   allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
@@ -263,9 +262,9 @@ export const queryDispositifsWithAlgolia = async (
  */
 export const queryDispositifsWithoutThemes = async (
   query: SearchQuery,
-  dispositifs: GetDispositifsResponse[],
+  dispositifs: SimpleDispositif[],
   locale: string,
-): Promise<GetDispositifsResponse[]> => {
+): Promise<SimpleDispositif[]> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
   return [...filteredDispositifsByAlgolia]
     .filter((dispositif) => filterByLocations(dispositif, query.departments))

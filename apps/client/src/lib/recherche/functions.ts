@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { GetNeedResponse, GetThemeResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
 
 /**
  * Get themes to display based on query filters
@@ -38,7 +38,7 @@ export const getThemesDisplayed = (
  * @param dispositifs - list of dispositifs
  * @returns number
  */
-const getCountDispositifsForDepartment = (department: string, dispositifs: GetDispositifsResponse[]): number => {
+const getCountDispositifsForDepartment = (department: string, dispositifs: SimpleDispositif[]): number => {
   return [...dispositifs].filter((dispositif) => {
     const location = dispositif.metadatas?.location;
     if (!location || !Array.isArray(location)) return false;
@@ -52,7 +52,7 @@ const getCountDispositifsForDepartment = (department: string, dispositifs: GetDi
  * @param dispositifs - dispositifs to filter
  * @returns - list of not deployed departements
  */
-export const getDepartmentsNotDeployed = (departments: string[], dispositifs: GetDispositifsResponse[]) => {
+export const getDepartmentsNotDeployed = (departments: string[], dispositifs: SimpleDispositif[]) => {
   const newDepartmentsNotDeployed: string[] = [];
   for (const dep of departments) {
     const count = getCountDispositifsForDepartment(dep, dispositifs);

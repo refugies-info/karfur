@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { ActionType, action } from "typesafe-actions";
 import {
   FETCH_ACTIVE_DISPOSITIFS,
@@ -6,8 +6,7 @@ import {
   UPDATE_DISPOSITIF_REACTION,
 } from "./activeDispositifs.actionTypes";
 
-export const setActiveDispositifsActionsCreator = (value: GetDispositifsResponse[]) =>
-  action(SET_ACTIVE_DISPOSITIFS, value);
+export const setActiveDispositifsActionsCreator = (value: SimpleDispositif[]) => action(SET_ACTIVE_DISPOSITIFS, value);
 
 export const fetchActiveDispositifsActionsCreator = () => action(FETCH_ACTIVE_DISPOSITIFS);
 

@@ -1,5 +1,5 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +23,7 @@ import { themesSelector } from "~/services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
 
 interface Props {
-  dispositif: GetDispositifsResponse;
+  dispositif: SimpleDispositif;
   selectedDepartment?: string;
   targetBlank?: boolean;
   demoCard?: boolean;

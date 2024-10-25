@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { SimpleDispositif } from "@refugies-info/api-types";
 import _ from "lodash";
 import { SortOptions, TypeOptions } from "~/data/searchFilters";
 import { noSort, sortByDate, sortByLocation, sortByTheme, sortByView } from "~/lib/recherche/sortContents";
@@ -13,7 +13,7 @@ type DisplayRule = {
     Exclude<RuleKey, "suggestions">,
     | {
         display: true;
-        sortFunction: (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => number;
+        sortFunction: (dispA: SimpleDispositif, dispB: SimpleDispositif) => number;
       }
     | {
         display: false;

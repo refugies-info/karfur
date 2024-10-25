@@ -26,7 +26,6 @@ import {
   GetDispositifResponse,
   GetDispositifsHasTextChanges,
   GetDispositifsRequest,
-  GetDispositifsResponse,
   GetDispositifsWithTranslationAvancementResponse,
   GetLanguagesResponse,
   GetLogResponse,
@@ -77,6 +76,7 @@ import {
   SendCodeRequest,
   SendFeedbackRequest,
   SendNotificationsRequest,
+  SimpleDispositif,
   StructureReceiveDispositifRequest,
   SubscriptionRequest,
   ThemeRequest,
@@ -312,9 +312,9 @@ const API = {
       >(`/dispositifs/with-translations-status?locale=${locale}`, { headers })
       .then((response) => response.data.data);
   },
-  getDispositifs: (query: GetDispositifsRequest): Promise<GetDispositifsResponse[]> => {
+  getDispositifs: (query: GetDispositifsRequest): Promise<SimpleDispositif[]> => {
     return instance
-      .get<any, APIResponse<GetDispositifsResponse[]>>("/dispositifs", { params: query })
+      .get<any, APIResponse<SimpleDispositif[]>>("/dispositifs", { params: query })
       .then((response) => response.data.data);
   },
   getAllDispositifs: (): Promise<GetAllDispositifsResponse[]> => {
