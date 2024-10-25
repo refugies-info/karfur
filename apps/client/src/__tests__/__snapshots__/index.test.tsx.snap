@@ -1347,7 +1347,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -1485,7 +1485,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -1623,7 +1623,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -1761,7 +1761,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -1894,7 +1894,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2032,7 +2032,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2165,7 +2165,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2303,7 +2303,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2436,7 +2436,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2569,7 +2569,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2707,7 +2707,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2840,7 +2840,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -2978,7 +2978,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3111,7 +3111,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3244,7 +3244,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3441,7 +3441,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3568,7 +3568,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3695,7 +3695,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3817,7 +3817,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -3944,7 +3944,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4071,7 +4071,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4193,7 +4193,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4320,7 +4320,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4442,7 +4442,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4569,7 +4569,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4696,7 +4696,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4823,7 +4823,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -4945,7 +4945,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -5072,7 +5072,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
@@ -5194,7 +5194,7 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <div
                           class="container theme-badge"
-                          style="background-color: rgb(238, 238, 238);"
+                          style="background-color: rgb(215, 250, 242);"
                         >
                           Thème
                         </div>
