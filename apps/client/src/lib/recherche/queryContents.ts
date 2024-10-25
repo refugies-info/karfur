@@ -1,5 +1,5 @@
+import { searchClient as algoliasearch, SupportedLanguage } from "@algolia/client-search";
 import { GetDispositifsResponse, GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
-import { algoliasearch, SupportedLanguage } from "algoliasearch";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
 import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
