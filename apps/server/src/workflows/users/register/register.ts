@@ -26,7 +26,8 @@ export const register = async (body: RegisterRequest): Promise<LoginResponse> =>
     if (body.subscribeNewsletter) {
       try {
         await addToNewsletter(body.email);
-      } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (_) {
         logger.error("[register] error, not added to newsletter", { email: body.email });
       }
     }

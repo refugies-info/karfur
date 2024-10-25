@@ -53,7 +53,8 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
         await log(dispositif._id, reminder);
       }),
     );
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
     logger.error("[sendDraftReminderMail] error with the recipient", {
       creatorId: recipient.creatorId,
     });

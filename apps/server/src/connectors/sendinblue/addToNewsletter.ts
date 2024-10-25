@@ -27,8 +27,8 @@ export const addToNewsletter = async (email: string) => {
     if (data.body.listUnsubscribed?.includes(RI_CONTACTS_LIST)) {
       await deleteFromNewsletterList(email);
     }
-    // eslint-disable-next-line no-empty
-  } catch (e) {}
+    // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
+  } catch (_) {}
 
   const createContactRequest = new SibApiV3Sdk.CreateContact();
   createContactRequest.email = email;

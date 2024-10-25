@@ -125,9 +125,9 @@
     "@types/sortablejs": "^1.13.0",
     "@types/styled-components": "^5.1.1",
     "@types/uuid": "^10.0.0",
-    "@types/webrtc": "^0.0.43",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
+    "@types/webrtc": "^0.0.44",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
     "add": "^2.0.6",
     "csvtojson": "^2.0.10",
     "eslint": "^8.57.0",
@@ -146,7 +146,7 @@
     "sharp": "^0.33.5",
     "ts-jest": "^29.2.2",
     "typescript": "^5.6.3",
-    "wait-on": "^7.2.0"
+    "wait-on": "^8.0.1"
   },
   "volta": {
     "node": "20.13.1",
