@@ -149,7 +149,7 @@ export interface Statistics {
   }[];
 }
 
-export interface TranslationStatisticsResponse extends Statistics {}
+export type TranslationStatisticsResponse = Statistics;
 
 export interface PublishTranslationRequest {
   dispositifId: string;
