@@ -49,7 +49,7 @@
     "lottie-react-native": "6.5.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-i18next": "^14.1.2",
+    "react-i18next": "^15.1.0",
     "react-instantsearch-native": "^6.31.0",
     "react-native": "0.73.6",
     "react-native-blob-util": "^0.19.8",
