@@ -15330,11 +15330,6 @@ react-themeable@^1.1.0:
   dependencies:
     object-assign "^3.0.0"
 
-react-to-print@^2.12.1:
-  version "2.15.1"
-  resolved "https://registry.npmjs.org/react-to-print/-/react-to-print-2.15.1.tgz"
-  integrity sha512-1foogIFbCpzAVxydkhBiDfMiFYhIMphiagDOfcG4X/EcQ+fBPqJ0rby9Wv/emzY1YLkIQy/rEgOrWQT+rBKhjw==
-
 react-transition-group@^4.4.1, react-transition-group@^4.4.2:
   version "4.4.5"
   resolved "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.5.tgz"
