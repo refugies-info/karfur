@@ -42,12 +42,12 @@ const defaultTheme: GetThemeResponse = {
     imgId: "",
   },
   appBanner: {
-    secure_url: "/images/app-banner/travail.png",
+    secure_url: "",
     public_id: "",
     imgId: "",
   },
   appImage: {
-    secure_url: "/images/app/travail.svg",
+    secure_url: "",
     public_id: "",
     imgId: "",
   },
@@ -57,12 +57,12 @@ const defaultTheme: GetThemeResponse = {
     imgId: "",
   },
   dispositifImage: {
-    secure_url: "/images/cards/dispositif/travail.svg",
+    secure_url: "",
     public_id: "",
     imgId: "",
   },
   demarcheImage: {
-    secure_url: "/images/cards/demarche/travail.svg",
+    secure_url: "",
     public_id: "",
     imgId: "",
   },

@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import DispositifCard from "~/components/UI/DispositifCard";
@@ -13,7 +13,7 @@ const BottomContainer = styled.div`
 `;
 
 interface Props {
-  dispositifsAssocies: GetDispositifsResponse[];
+  dispositifsAssocies: SimpleDispositif[];
 }
 
 export const RightAnnuaireDetails = (props: Props) => {

@@ -13,7 +13,6 @@ import {
   GetDispositifResponse,
   GetDispositifsHasTextChanges,
   GetDispositifsRequest,
-  GetDispositifsResponse,
   GetDispositifsWithTranslationAvancementResponse,
   GetNbContentsForCountyResponse,
   GetRegionStatisticsResponse,
@@ -25,6 +24,7 @@ import {
   PostDispositifsResponse,
   PublishDispositifRequest,
   ReadSuggestionDispositifRequest,
+  SimpleDispositif,
   StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
@@ -71,7 +71,7 @@ import {
 @Route("dispositifs")
 export class DispositifController extends Controller {
   @Get("/")
-  public async get(@Queries() query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> {
+  public async get(@Queries() query: GetDispositifsRequest): ResponseWithData<SimpleDispositif[]> {
     return getDispositifs(query);
   }
 

@@ -1,12 +1,12 @@
-import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
 import { createReducer } from "typesafe-actions";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { SearchResultsActions } from "./searchResults.actions";
 
 export type Results = {
-  matches: GetDispositifsResponse[];
-  suggestions: GetDispositifsResponse[];
+  matches: SimpleDispositif[];
+  suggestions: SimpleDispositif[];
 };
 
 export type SearchQuery = {
@@ -25,7 +25,7 @@ export type SearchQuery = {
 
 export interface SearchResultsState {
   results: Results;
-  noResults: GetDispositifsResponse[];
+  noResults: SimpleDispositif[];
   query: SearchQuery;
 }
 

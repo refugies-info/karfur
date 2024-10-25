@@ -67,7 +67,7 @@ const ModalAbstract = (props: Props) => {
             </span>
           </div>
 
-          <div className={styles.card}>
+          <div>
             <DispositifCard dispositif={{ ...getDefaultDispositif(values, sponsor), abstract }} demoCard />
           </div>
         </div>

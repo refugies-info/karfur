@@ -195,12 +195,12 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest {}
+export type UpdateDispositifRequest = DispositifRequest;
 
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifResponse extends DispositifResponse {}
+export type UpdateDispositifResponse = DispositifResponse;
 
 /**
  * @url PATCH /dispositifs/{id}/publish
@@ -381,9 +381,9 @@ export interface GetAllDispositifsResponse {
 /**
  * @url POST /dispositifs
  */
-export interface PostDispositifsResponse extends DispositifResponse {}
+export type PostDispositifsResponse = DispositifResponse;
 
 /**
  * @url GET /dispositifs
  */
-export type GetDispositifsResponse = SimpleDispositif;
+export type GetDispositifsResponse = SimpleDispositif[];

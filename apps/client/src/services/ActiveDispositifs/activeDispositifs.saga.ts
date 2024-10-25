@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { SimpleDispositif } from "@refugies-info/api-types";
 import { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
@@ -14,7 +14,7 @@ export function* fetchActiveDispositifs(): SagaIterator {
     yield put(startLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
 
     const langue = yield select(languei18nSelector);
-    const data: GetDispositifsResponse[] = yield call(API.getDispositifs, { locale: langue });
+    const data: SimpleDispositif[] = yield call(API.getDispositifs, { locale: langue });
 
     yield put(setActiveDispositifsActionsCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));

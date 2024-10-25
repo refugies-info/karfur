@@ -34,7 +34,7 @@ const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
         clearTimeout(timeoutId);
       }
     };
-  }, [ref]);
+  }, [ref, timeoutId]);
 
   return isSticky;
 };

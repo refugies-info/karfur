@@ -1,10 +1,10 @@
-import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import ContentSlider from "~/components/UI/ContentSlider";
 import DispositifCard from "~/components/UI/DispositifCard";
 import styles from "./CardSlider.module.scss";
 
 interface Props {
-  cards: GetDispositifsResponse[];
+  cards: SimpleDispositif[];
   type: ContentType;
 }
 

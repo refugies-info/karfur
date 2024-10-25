@@ -1,10 +1,10 @@
-import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
+import { GetDispositifsResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
 
 export const areDispositifsAssociesPopulate = (
-  toBeDetermined: GetDispositifsResponse[] | Id[],
+  toBeDetermined: SimpleDispositif[] | Id[],
 ): toBeDetermined is GetDispositifsResponse[] => {
   if (toBeDetermined && !toBeDetermined[0]) return true;
-  if (toBeDetermined && (toBeDetermined as GetDispositifsResponse[])[0].status) {
+  if (toBeDetermined && (toBeDetermined as SimpleDispositif[])[0].status) {
     return true;
   }
   return false;

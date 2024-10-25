@@ -1,8 +1,8 @@
 import {
   ContentType,
-  GetDispositifsResponse,
   GetStatisticsResponse,
   GetStructureStatisticsResponse,
+  SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
 import { logger } from "logger";
@@ -38,8 +38,8 @@ export interface Props {
   contentStatistics: GetStatisticsResponse;
   structuresStatistics: GetStructureStatisticsResponse;
   translationStatistics: TranslationStatisticsResponse;
-  demarches: GetDispositifsResponse[];
-  dispositifs: GetDispositifsResponse[];
+  demarches: SimpleDispositif[];
+  dispositifs: SimpleDispositif[];
 }
 
 const Homepage = (props: Props) => {

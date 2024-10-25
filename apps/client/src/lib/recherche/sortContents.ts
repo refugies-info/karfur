@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { SimpleDispositif } from "@refugies-info/api-types";
 import get from "lodash/get";
 
 const sortOptionsValues = {
@@ -6,7 +6,7 @@ const sortOptionsValues = {
   view: "nbVues",
 };
 
-const sortHelper = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse, sortOption: "date" | "view") => {
+const sortHelper = (dispA: SimpleDispositif, dispB: SimpleDispositif, sortOption: "date" | "view") => {
   let sortKey = sortOptionsValues[sortOption];
   let valA = get(dispA, sortKey);
   let valB = get(dispB, sortKey);
@@ -16,13 +16,11 @@ const sortHelper = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse
   return valA > valB ? -1 : valA < valB ? 1 : 0;
 };
 
-export const sortByDate = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
-  sortHelper(dispA, dispB, "date");
+export const sortByDate = (dispA: SimpleDispositif, dispB: SimpleDispositif) => sortHelper(dispA, dispB, "date");
 
-export const sortByView = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) =>
-  sortHelper(dispA, dispB, "view");
+export const sortByView = (dispA: SimpleDispositif, dispB: SimpleDispositif) => sortHelper(dispA, dispB, "view");
 
-export const sortByTheme = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => {
+export const sortByTheme = (dispA: SimpleDispositif, dispB: SimpleDispositif) => {
   const valA = get(dispA, "themeSortIndex");
   const valB = get(dispB, "themeSortIndex");
 
@@ -32,9 +30,9 @@ export const sortByTheme = (dispA: GetDispositifsResponse, dispB: GetDispositifs
   return valA > valB ? 1 : -1;
 };
 
-export const noSort = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => 0;
+export const noSort = (dispA: SimpleDispositif, dispB: SimpleDispositif) => 0;
 
-export const sortByLocation = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse) => {
+export const sortByLocation = (dispA: SimpleDispositif, dispB: SimpleDispositif) => {
   // TODO: First local contents, then french contents sort each section by view
   const locationA = get(dispA, "metadatas.location");
   const locationB = get(dispB, "metadatas.location");

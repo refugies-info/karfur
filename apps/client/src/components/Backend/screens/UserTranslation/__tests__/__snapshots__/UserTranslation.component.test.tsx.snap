@@ -210,6 +210,11 @@ exports[`user translation should redirect if user has language but not langue in
                         type="text"
                         value=""
                       />
+                      <div
+                        aria-live="polite"
+                        class="fr-messages-group"
+                        id="input-:r4:-messages-group"
+                      />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
@@ -450,6 +455,11 @@ exports[`user translation should redirect if user has no language but langue in 
                         type="text"
                         value=""
                       />
+                      <div
+                        aria-live="polite"
+                        class="fr-messages-group"
+                        id="input-:ra:-messages-group"
+                      />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
@@ -563,6 +573,11 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                         id="input-:rj:"
                         type="text"
                         value=""
+                      />
+                      <div
+                        aria-live="polite"
+                        class="fr-messages-group"
+                        id="input-:rj:-messages-group"
                       />
                     </div>
                     <button
@@ -678,6 +693,11 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                         type="text"
                         value=""
                       />
+                      <div
+                        aria-live="polite"
+                        class="fr-messages-group"
+                        id="input-:rg:-messages-group"
+                      />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
@@ -791,6 +811,11 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                         id="input-:rd:"
                         type="text"
                         value=""
+                      />
+                      <div
+                        aria-live="polite"
+                        class="fr-messages-group"
+                        id="input-:rd:-messages-group"
                       />
                     </div>
                     <button
@@ -1031,6 +1056,11 @@ exports[`user translation should return loader langue in url = first selected la
                         id="input-:r1:"
                         type="text"
                         value=""
+                      />
+                      <div
+                        aria-live="polite"
+                        class="fr-messages-group"
+                        id="input-:r1:-messages-group"
                       />
                     </div>
                     <button

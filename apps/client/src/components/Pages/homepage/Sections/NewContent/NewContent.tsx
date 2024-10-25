@@ -1,4 +1,4 @@
-import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
+import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { Button, Container } from "reactstrap";
@@ -12,8 +12,8 @@ interface Props {
   nbDemarches: number;
   nbDispositifs: number;
   nbStructures: number;
-  demarches: GetDispositifsResponse[];
-  dispositifs: GetDispositifsResponse[];
+  demarches: SimpleDispositif[];
+  dispositifs: SimpleDispositif[];
 }
 
 const NewContent = (props: Props) => {

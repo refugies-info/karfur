@@ -173,15 +173,15 @@ html body {
 }
 
 @media print {
-  .gm-style .gmnoprint,
-  .gmnoprint {
+  .gmnoprint,
+  .gm-style .gmnoprint {
     display: none;
   }
 }
 
 @media screen {
-  .gm-style .gmnoscreen,
-  .gmnoscreen {
+  .gmnoscreen,
+  .gm-style .gmnoscreen {
     display: none;
   }
 }
