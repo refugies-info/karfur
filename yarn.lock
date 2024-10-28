@@ -4680,10 +4680,10 @@
     firebase "10.12.2"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^20.0.0":
-  version "20.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-20.4.0.tgz#6e1b289feb0b907602fdd3e9ba17fd15cb92b283"
-  integrity sha512-D3j9UdLcMkRJA7Oks3l2xYIH7lhwb2hf0ZiB2djKkGwc0tJDtOLe7Cbi2gJKezzwxaaFnNI8ZNXPLkizNgtbyw==
+"@react-native-firebase/crashlytics@^21.2.0":
+  version "21.2.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-21.2.0.tgz#0bab9baf26a2c3eedbd8c4a26d201fa74c3b72fb"
+  integrity sha512-4c0jg+fyns1VEqR7Y4Jr+0w+/QePKk4fReee8oHv+FvHVJgwWNp9gkFCQC8fX2+OnAFN+N94i9eIQOBIJFukGQ==
   dependencies:
     stacktrace-js "^2.0.2"
 
