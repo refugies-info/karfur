@@ -244,9 +244,6 @@ export const AdminUsers = () => {
     if (status === "Admin") {
       return users.filter((user) => (user.roles || []).includes("Admin")).length;
     }
-    if (status === "Respo") {
-      return users.filter((user) => (user.roles || []).includes("Responsable")).length;
-    }
     if (status === "Experts") {
       return users.filter((user) => (user.roles || []).includes("ExpertTrad")).length;
     }
