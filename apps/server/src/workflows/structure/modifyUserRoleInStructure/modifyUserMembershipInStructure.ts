@@ -1,7 +1,6 @@
-import { PatchStructureRolesRequest, RoleName } from "@refugies-info/api-types";
+import { PatchStructureRolesRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { sendNewMemberMailService } from "~/modules/mail/mail.service";
-import { getRoleByName } from "~/modules/role/role.repository";
 import { getStructureFromDB, updateStructureMember } from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { getUserById } from "~/modules/users/users.repository";
@@ -57,12 +56,8 @@ export const modifyUserMembershipInStructure = async (
   const structureData = await getStructureFromDB(structure._id, { nom: 1, status: 1 });
   if (action === "create") {
     const user = await getUserById(membreId, { email: 1, firstName: 1, roles: 1 });
-    const adminRole = await getRoleByName(RoleName.ADMIN);
-    const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRole._id.toString());
     if (!user || !structureData) {
       logger.error("[modifyUserMembershipInStructure] mail not sent");
-    } else if (userIsAdmin) {
-      logger.info("[modifyUserMembershipInStructure] user is admin, mail not sent");
     } else {
       await sendNewMemberMailService({
         userId: user._id,
