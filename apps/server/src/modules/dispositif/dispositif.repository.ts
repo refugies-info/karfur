@@ -357,10 +357,65 @@ export const getDraftDispositifById = async (
   populate: any = "",
 ) => DispositifDraftModel.findById(id, neededFields).populate(populate);
 
-export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
-  await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate<{
-    mainSponsor: { _id: string; nom: string };
-  }>("mainSponsor", "nom");
+/**
+ * Get dispositifs with creatorId
+ * @param creatorId The creatorId of the dispositif
+ * @param neededFields The fields to return in the dispositif
+ * @returns A list of dispositifs with the specified fields
+ */
+export const getDispositifsWithCreatorId = async (
+  creatorId: UserId,
+  neededFields: DispositifFieldsRequest,
+): Promise<Dispositif[]> => {
+  const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
+    // Filter dispositifs with creatorId and status not equal to "Supprimé"
+    {
+      $match: {
+        creatorId: new ObjectId(creatorId),
+        status: { $ne: "Supprimé" },
+      },
+    },
+    // Populate mainSponsor with the structure
+    {
+      $lookup: {
+        from: "structures",
+        localField: "mainSponsor",
+        foreignField: "_id",
+        as: "mainSponsor",
+      },
+    },
+    // Unwind the mainSponsor array
+    {
+      $unwind: {
+        path: "$mainSponsor",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    // Filter dispositifs where the creator is a member of the mainSponsor structure
+    // or where the mainSponsor structure does not exist
+    {
+      $match: {
+        $or: [
+          { "mainSponsor.createur": "$_id" },
+          { "mainSponsor.membres.userId": "$_id" },
+          { mainSponsor: { $exists: false } },
+        ],
+      },
+    },
+    // Project the fields to return
+    {
+      $project: {
+        ...neededFields,
+        mainSponsor: {
+          _id: 1,
+          nom: 1,
+        },
+      },
+    },
+  ];
+
+  return await DispositifModel.aggregate(pipeline);
+};
 
 export const getDispositifByIdWithMainSponsor = async (
   id: DispositifId,
