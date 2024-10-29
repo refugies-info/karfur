@@ -13,12 +13,6 @@ const green = "#4CAF50";
 
 export const correspondingStatus: UserStatus[] = [
   {
-    displayedStatus: "Respo",
-    storedStatus: "Respo",
-    color: green,
-    order: 2,
-  },
-  {
     displayedStatus: "Admin",
     storedStatus: "Admin",
     color: green,
