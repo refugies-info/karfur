@@ -29,7 +29,13 @@ const SearchDropdown: React.FC<React.PropsWithChildren<Props>> = ({
     <DropdownMenu.Root open={open} onOpenChange={() => setOpen(!open)}>
       <SearchButton open={open} icon={icon} label={label} values={values} onClickCross={onClickCross} />
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className={styles.menu} avoidCollisions side="bottom" align="start" sideOffset={2}>
+        <DropdownMenu.Content
+          className={styles.menu}
+          avoidCollisions={false}
+          side="bottom"
+          align="start"
+          sideOffset={2}
+        >
           {children}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
