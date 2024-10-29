@@ -363,10 +363,7 @@ export const getDraftDispositifById = async (
  * @param neededFields The fields to return in the dispositif
  * @returns A list of dispositifs with the specified fields
  */
-export const getDispositifsWithCreatorId = async (
-  creatorId: UserId,
-  neededFields: DispositifFieldsRequest,
-): Promise<Dispositif[]> => {
+export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) => {
   const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
     // Filter dispositifs with creatorId and status not equal to "Supprimé"
     {
