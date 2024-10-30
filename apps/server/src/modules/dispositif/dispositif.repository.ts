@@ -364,33 +364,6 @@ export const getDraftDispositifById = async (
  * @returns A list of dispositifs with the specified fields
  */
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) => {
-  const user = await getUsersById([creatorId] as UserId[], {
-    _id: 1,
-    structures: 1,
-  });
-
-  // If user has NO associated structure, return all dispositifs for the creator
-  if (!user[0]?.structures?.length) {
-    return await DispositifModel.aggregate([
-      {
-        $match: {
-          creatorId: new ObjectId(creatorId),
-          status: { $ne: "Supprimé" },
-        },
-      },
-      {
-        $project: {
-          ...neededFields,
-          mainSponsor: {
-            _id: 1,
-            nom: 1,
-          },
-        },
-      },
-    ]);
-  }
-
-  // If user has an associated structure, return filtered dispositifs
   const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
     // Filter dispositifs with creatorId and status not equal to "Supprimé"
     {
