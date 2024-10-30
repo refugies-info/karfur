@@ -133,7 +133,9 @@ const SearchResults = (props: Props) => {
         )}
         {showSuggestions && filteredResults.suggestions.length > 0 && (
           <div>
-            <h2>{t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}</h2>
+            <h2 className={styles.no_results_other}>
+              {t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}
+            </h2>
             <div className={styles.results}>
               {filteredResults.suggestions.map((d) => {
                 if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults

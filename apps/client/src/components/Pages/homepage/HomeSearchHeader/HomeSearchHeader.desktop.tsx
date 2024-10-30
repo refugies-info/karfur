@@ -113,7 +113,6 @@ const HomeSearchHeaderDesktop = (props: Props) => {
         >
           <ThemeMenu mobile={false} isOpen={true} />
         </SearchDropdown>
-
         <div className={cls(commonStyles.dropdown, searchActive && "show")}>
           <Button onClick={openSearch}>
             <SearchInput

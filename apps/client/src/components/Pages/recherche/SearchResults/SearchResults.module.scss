@@ -77,8 +77,7 @@
 }
 
 .no_results_other {
-  @include dsfr-text("h2");
+  @include dsfr-text("h3");
 
   text-align: left;
-  margin-bottom: u(10);
 }
