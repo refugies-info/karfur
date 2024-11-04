@@ -1,5 +1,5 @@
 import debounce from "lodash/debounce";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchEventName } from "~/hooks";
@@ -42,11 +42,15 @@ const LocationMenu: React.FC<Props> = () => {
   const onChangeDepartmentInput = useCallback(
     (e: any) => {
       setLocationSearch(e.target.value);
+      getPlacePredictions({ input: e.target.value });
     },
     [setLocationSearch],
   );
 
-  const debouncedOnChangeDepartmentInput = useMemo(() => debounce(onChangeDepartmentInput), [onChangeDepartmentInput]);
+  const debouncedOnChangeDepartmentInput = useMemo(
+    () => debounce(onChangeDepartmentInput, 500),
+    [onChangeDepartmentInput],
+  );
 
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
@@ -96,12 +100,6 @@ const LocationMenu: React.FC<Props> = () => {
     },
     [query.departments, dispatch, eventName],
   );
-
-  useEffect(() => {
-    if (locationSearch) {
-      getPlacePredictions({ input: locationSearch });
-    }
-  }, [locationSearch, getPlacePredictions]);
 
   const queryDepartmentCodes = useMemo(() => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
