@@ -2,7 +2,6 @@ import { RefObject, useEffect, useState } from "react";
 
 const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
   const [isSticky, setIsSticky] = useState(false);
-  const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!ref.current) {
@@ -10,15 +9,16 @@ const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
     }
 
     const cachedRef = ref.current;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
     const observer = new IntersectionObserver(
       ([e]) => {
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
-        const id = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setIsSticky(e.intersectionRatio < 1);
         }, 10);
-        setTimeoutId(id);
       },
       {
         threshold: [1],
@@ -34,7 +34,7 @@ const useIsSticky = (ref: RefObject<HTMLElement>): boolean => {
         clearTimeout(timeoutId);
       }
     };
-  }, [ref, timeoutId]);
+  }, [ref]);
 
   return isSticky;
 };
