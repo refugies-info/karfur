@@ -39,19 +39,6 @@ const LocationMenu: React.FC<Props> = () => {
   const [locationSearch, setLocationSearch] = useState("");
   const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
 
-  const onChangeDepartmentInput = useCallback(
-    (e: any) => {
-      setLocationSearch(e.target.value);
-      getPlacePredictions({ input: e.target.value });
-    },
-    [setLocationSearch],
-  );
-
-  const debouncedOnChangeDepartmentInput = useMemo(
-    () => debounce(onChangeDepartmentInput, 500),
-    [onChangeDepartmentInput],
-  );
-
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
     //@ts-ignore
@@ -61,6 +48,19 @@ const LocationMenu: React.FC<Props> = () => {
       language: "fr",
     },
   });
+
+  const onChangeDepartmentInput = useCallback(
+    (e: any) => {
+      setLocationSearch(e.target.value);
+      getPlacePredictions({ input: e.target.value });
+    },
+    [setLocationSearch, getPlacePredictions],
+  );
+
+  const debouncedOnChangeDepartmentInput = useMemo(
+    () => debounce(onChangeDepartmentInput, 500),
+    [onChangeDepartmentInput],
+  );
 
   const onSelectPrediction = useCallback(
     (id: string, name: string) => {
