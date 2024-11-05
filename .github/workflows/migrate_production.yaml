@@ -1,7 +1,8 @@
 name: Migrate Production
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - master-backend
   workflow_dispatch:
