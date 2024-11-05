@@ -15,4 +15,5 @@ mongoMigrateCli({
   uri: MIGRATE_MONGO_URI,
   migrationsDir: __dirname,
   migrationsCollection: "migrations",
+  globPattern: "**/*.ts",
 });
