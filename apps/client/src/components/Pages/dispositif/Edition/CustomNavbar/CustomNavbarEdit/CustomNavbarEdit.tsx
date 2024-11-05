@@ -94,6 +94,11 @@ const CustomNavbarEdit = (props: Props) => {
   const hideValidateButton = useMemo(() => {
     return isStatus(dispositif?.status, [DispositifStatus.KO_STRUCTURE, DispositifStatus.DELETED]);
   }, [dispositif]);
+  const isValidateDisabled = useMemo(
+    () => !dispositif?.hasDraftVersion && isStatus(dispositif?.status, DispositifStatus.ACTIVE),
+    [dispositif],
+  );
+
   const handlePublish = useCallback(
     async (keepTranslations: boolean) => {
       if (!dispositif?._id) return;
@@ -184,6 +189,7 @@ const CustomNavbarEdit = (props: Props) => {
               evaIcon={progress === totalSteps ? "checkmark-circle-2" : undefined}
               iconPosition="right"
               onClick={validate}
+              disabled={isValidateDisabled}
             >
               Valider
             </Button>
