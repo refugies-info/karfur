@@ -54,7 +54,7 @@
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
     "prepare": "husky",
-    "migrate": "tsx migrations/cli.ts up"
+    "migrate": "tsx migrations/cli.ts --"
   },
   "dependencies": {},
   "engines": {
