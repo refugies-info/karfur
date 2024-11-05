@@ -72,22 +72,19 @@ export const filterDispositifs = (
   const filterKeys = buildFilterKeys(query);
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
 
-  const currentThemesInferedBySelectedNeeds: Id[] | undefined =
+  const inferedThemes: Id[] | undefined =
     query.themes.length === 0 && query.needs
-      ? allNeeds?.filter((currentNeed) => query.needs.includes(currentNeed._id)).map((need) => need.theme._id)
+      ? [
+          ...new Set(
+            allNeeds?.filter((currentNeed) => query.needs.includes(currentNeed._id)).map((need) => need.theme._id),
+          ),
+        ]
       : undefined;
 
   const filteredDispositifs = dispositifs
     .filter(
       (dispositif) =>
-        skip === "theme" ||
-        filterByThemeOrNeed(
-          dispositif,
-          query.themes,
-          query.needs,
-          secondaryThemes,
-          currentThemesInferedBySelectedNeeds,
-        ),
+        skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes, inferedThemes),
     )
     .filter((dispositif) => skip === "location" || filterByLocations(dispositif, query.departments))
     .filter((dispositif) => skip === "age" || filterByAge(dispositif, query.age))
