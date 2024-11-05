@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title snapshot test suite should render without bug 1`] = `
+<Text
+  isRTL={false}
+  selectable={true}
+  style={
+    {
+      "color": "#212121",
+      "fontFamily": "Marianne-Bold",
+      "fontSize": 24,
+      "lineHeight": 32,
+      "marginBottom": 24,
+      "textAlign": "left",
+    }
+  }
+>
+  Mon titre
+</Text>
+`;

@@ -1,0 +1,17 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/icons";
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+
+  &::before {
+    --icon-size: 1rem;
+  }
+
+  &.small::before {
+    --icon-size: 12px;
+  }
+}

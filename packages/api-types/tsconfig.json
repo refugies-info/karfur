@@ -1,0 +1,11 @@
+{
+  "extends": "@refugies-info/typescript-config/base.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

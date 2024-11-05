@@ -1,0 +1,15 @@
+{
+  "extends": "@refugies-info/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "baseUrl": "src",
+    "lib": ["es6", "dom", "ES2021.String"],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "target": "ES2022",
+    "plugins": [{ "name": "next" }]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

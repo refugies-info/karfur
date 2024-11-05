@@ -1,0 +1,2494 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LanguageChoiceScreen should render correctly 1`] = `
+<View
+  darkBackground={false}
+  style={
+    {
+      "backgroundColor": "#f5f5fe",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+    }
+  }
+>
+  <RCTScrollView
+    alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "paddingBottom": 80,
+        "paddingTop": 0,
+      }
+    }
+    scrollIndicatorInsets={
+      {
+        "right": 1,
+      }
+    }
+    style={
+      {
+        "paddingBottom": 24,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          {
+            "paddingHorizontal": 24,
+            "paddingVertical": 24,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "marginBottom": 32,
+              "marginTop": 16,
+            }
+          }
+        >
+          <Image
+            alt=""
+            height={80}
+            source={1}
+            style={
+              {
+                "height": 80,
+                "width": 80,
+              }
+            }
+            width={80}
+          />
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Français"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Français
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Français
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Ukrainien"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Українська
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Ukrainien
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Persan/Dari"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      فارسی/ دری
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Persan/Dari
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Arabe"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      العربية
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Arabe
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Anglais"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      English
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Anglais
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Pachto"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      پښتو
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Pachto
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Russe"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Русский
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Russe
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
+              "shadowOffset": {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 6,
+            }
+          }
+          testID="test-language-button-Tigrinya"
+        >
+          <View
+            RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
+            collapsable={false}
+            horizontalAlign="flex-start"
+            style={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                RTLBehaviour={true}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="center"
+              >
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#DDDDDD",
+                        "borderBottomLeftRadius": 4,
+                        "borderBottomRightRadius": 4,
+                        "borderTopLeftRadius": 4,
+                        "borderTopRightRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "width": 22,
+                      }
+                    }
+                  >
+                    <SvgMock
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Medium",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      ትግርኛ
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Tigrinya
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "transform": [
+                      {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight="24"
+                  bbWidth="24"
+                  fill="#161616"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4279637526,
+                        "type": 0,
+                      }
+                    }
+                    propList={
+                      [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                          height="24"
+                          matrix={
+                            [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x="0"
+                          y="0"
+                        />
+                        <RNSVGPath
+                          d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

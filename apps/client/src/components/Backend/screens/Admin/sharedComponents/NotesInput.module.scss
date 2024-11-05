@@ -1,0 +1,10 @@
+@import "~/scss/variables";
+@import "~/scss/colors";
+
+.input {
+  border-radius: $radius;
+  font-size: 12px;
+  padding: 16px;
+  color: $dark;
+  flex-grow: 1;
+}

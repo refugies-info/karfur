@@ -1,0 +1,13 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: u(6);
+
+  &.fill {
+    align-items: stretch;
+  }
+}

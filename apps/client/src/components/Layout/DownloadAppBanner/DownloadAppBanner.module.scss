@@ -1,0 +1,17 @@
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+
+.container {
+  @include dsfr-text("small");
+
+  background: var(--background-alt-blue-france);
+  padding: u(3) u(1) u(3) u(4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  margin-bottom: u(-1);
+  font-weight: bold;
+}

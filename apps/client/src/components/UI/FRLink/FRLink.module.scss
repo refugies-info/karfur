@@ -1,0 +1,20 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+
+.link {
+  color: var(--background-action-high-blue-france) !important;
+  background-image: var(--underline-img), var(--underline-img) !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+button.link {
+  background-position:
+    var(--underline-x) 100%,
+    var(--underline-x) calc(100% - var(--underline-thickness));
+  background-repeat: no-repeat, no-repeat;
+  transition: background-size 0s;
+  background-size:
+    var(--underline-hover-width) calc(var(--underline-thickness) * 2),
+    var(--underline-idle-width) var(--underline-thickness);
+}

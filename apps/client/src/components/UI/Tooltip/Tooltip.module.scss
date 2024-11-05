@@ -1,0 +1,29 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+
+.container {
+  :global(.tooltip) {
+    --bs-tooltip-opacity: 1;
+  }
+
+  :global(.tooltip-inner) {
+    @include dsfr-text("very-small");
+
+    color: var(--text-inverted-blue-france);
+    background-color: $darkBackgroundAltBlueFrance;
+
+    --bs-tooltip-padding-y: 2px;
+    --bs-tooltip-padding-x: 4px;
+    --bs-tooltip-border-radius: 4px;
+  }
+
+  :global(.arrow) {
+    display: none !important;
+  }
+
+  @media print {
+    display: none;
+  }
+}

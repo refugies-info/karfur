@@ -1,0 +1,27 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+
+.container {
+  background-color: white;
+  padding: u(2);
+  border-radius: u(2) u(2) 0 0;
+  border-bottom: 1px solid var(--border-default-grey);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  :global([class^="ri-"]::before) {
+    --icon-size: 1em !important;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: u(8);
+  background: var(--border-default-grey);
+  margin: 0 6px;
+}

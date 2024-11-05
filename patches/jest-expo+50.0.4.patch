@@ -1,0 +1,47 @@
+diff --git a/node_modules/jest-expo/src/preset/expoModules.js b/node_modules/jest-expo/src/preset/expoModules.js
+index aba8800..98e7091 100644
+--- a/node_modules/jest-expo/src/preset/expoModules.js
++++ b/node_modules/jest-expo/src/preset/expoModules.js
+@@ -442,6 +442,9 @@ module.exports = {
+           { name: 'getCurrentInput', argumentsCount: 0, key: 21 },
+           { name: 'startAudioRecording', argumentsCount: 0, key: 22 },
+         ],
++        ExpoCameraNext: [
++          // MISSING
++        ],
+         ExponentConstants: [
+           { name: 'getWebViewUserAgentAsync', argumentsCount: 0, key: 'getWebViewUserAgentAsync' },
+         ],
+@@ -548,6 +551,12 @@ module.exports = {
+           { name: 'getNotificationCategoriesAsync', argumentsCount: 0, key: 1 },
+           { name: 'setNotificationCategoryAsync', argumentsCount: 3, key: 2 },
+         ],
++        ExpoNotificationChannelGroupManager: [
++          // MISSING
++        ],
++        ExpoNotificationChannelManager: [
++          // MISSING
++        ],
+         ExpoNotificationPermissionsModule: [
+           { name: 'getPermissionsAsync', argumentsCount: 0, key: 0 },
+           { name: 'requestPermissionsAsync', argumentsCount: 1, key: 1 },
+@@ -960,6 +969,9 @@ module.exports = {
+     getConstants: { type: 'function' },
+     getRandomBase64: { type: 'function', functionType: 'sync' },
+   },
++  RNCDatePicker: [
++    // MISSING
++  ],
+   RNCMaskedViewManager: {},
+   RNCNetInfo: {
+     addListener: { type: 'function', functionType: 'async' },
+@@ -977,6 +989,9 @@ module.exports = {
+   RNCSafeAreaView: {},
+   RNCSegmentedControlManager: {},
+   RNCSliderManager: {},
++  RNCTimePicker: [
++    // MISSING
++  ],
+   RNCViewPager: {
+     getConstants: { type: 'function' },
+     setPage: { type: 'function', functionType: 'async' },

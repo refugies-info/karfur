@@ -1,0 +1,22 @@
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/btn";
+
+.help_text {
+  margin-top: u(6);
+  margin-bottom: 0;
+
+  @include text("large");
+
+  @include isTablet {
+    margin-top: u(4);
+  }
+}
+
+.link {
+  @include focus;
+
+  display: inline-block;
+  height: 100%;
+}

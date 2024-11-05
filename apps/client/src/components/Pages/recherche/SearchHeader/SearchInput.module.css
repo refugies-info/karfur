@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+
+  & label {
+    display: none !important;
+  }
+
+  & .fr-input-wrap {
+    width: 100%;
+  }
+
+  & > div::before {
+    left: 1rem;
+    right: auto !important;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--background-flat-blue-france);
+  }
+
+  & input {
+    padding-left: 3rem !important;
+    padding-right: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 var(--background-flat-blue-france);
+  }
+}

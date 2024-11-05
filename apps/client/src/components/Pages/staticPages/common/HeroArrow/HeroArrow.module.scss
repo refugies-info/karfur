@@ -1,0 +1,48 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+.container {
+  margin-top: u(6);
+  display: flex;
+  position: relative;
+  z-index: 2;
+
+  &.center {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  @include isTablet {
+    margin-left: inherit;
+    justify-content: center;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: $white;
+    border-radius: 50%;
+    animation: slide-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate both;
+
+    &:hover {
+      background: $gray40b;
+    }
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(30px);
+  }
+}

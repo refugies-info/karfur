@@ -1,0 +1,89 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+
+.container {
+  box-shadow: 0 6px 18px 0 #00001229;
+  background-color: white;
+  padding: u(3);
+  border-radius: u(2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container[data-state="open"] {
+  animation: slide-in 150ms ease-out;
+}
+
+.container[data-state="closed"] {
+  animation: hide 100ms ease-in;
+}
+
+.container[data-swipe="move"] {
+  transform: translateY(var(--radix-toast-swipe-move-y));
+}
+
+.container[data-swipe="cancel"] {
+  transform: translateY(0);
+  transition: transform 200ms ease-out;
+}
+
+.container[data-swipe="end"] {
+  animation: swipe-out 100ms ease-out;
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(300%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes swipe-out {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(300%);
+  }
+}
+
+.body {
+  @include dsfr-text("normal");
+
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: u(2);
+  color: var(--text-default-success);
+}
+
+.close {
+  @include ml-ltr(u(6));
+
+  width: u(6);
+  height: u(6);
+  padding: 0;
+
+  & > i::before {
+    color: var(--text-mention-grey);
+    width: u(6);
+    height: u(6);
+  }
+}

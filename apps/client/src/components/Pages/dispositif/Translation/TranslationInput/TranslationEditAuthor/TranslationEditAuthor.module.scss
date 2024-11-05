@@ -1,0 +1,38 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/icons";
+
+.delete {
+  @include iconSize(u(4));
+
+  width: u(8) !important;
+  height: u(8);
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.proposal {
+  font-weight: bold;
+  margin-left: u(2);
+
+  &.default {
+    font-weight: normal;
+    color: var(--text-mention-grey);
+  }
+
+  &.pending {
+    color: var(--text-action-high-yellow-tournesol);
+  }
+
+  &.success {
+    color: var(--text-default-success);
+  }
+}

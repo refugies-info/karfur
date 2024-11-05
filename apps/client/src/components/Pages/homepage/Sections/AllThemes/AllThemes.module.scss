@@ -1,0 +1,11 @@
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+
+.themes {
+  h2 {
+    @include isTablet {
+      @include text("h4");
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/input";
+@import "~/scss/mixins/icons";
+
+.container {
+  background-color: white;
+  border-top: 1px solid var(--border-default-grey);
+  border-bottom: 1px solid var(--border-default-grey);
+  position: sticky;
+  top: 0;
+  box-shadow: 0 12px 32px -8px #0000241f;
+  z-index: 501; // goes over menu
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: u(2) 0;
+  }
+}
+
+.warning {
+  padding: u(2) 0;
+  background: var(--background-contrast-info);
+  color: var(--background-flat-info);
+  font-weight: bold;
+}
+
+.help {
+  @include dsfr-text("small");
+
+  margin-bottom: 0;
+  color: var(--background-action-high-blue-france);
+  margin-left: u(4);
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+
+  .btn {
+    @include iconSize(u(4));
+
+    min-height: u(8);
+    padding: u(2);
+  }
+}
+
+.progress {
+  @include dsfr-text("small");
+
+  display: flex;
+  align-items: center;
+  margin-left: 80px;
+  color: var(--background-action-high-blue-france);
+
+  p {
+    margin-bottom: 0;
+    margin-left: u(2);
+  }
+}
+
+.save {
+  @include dsfr-text("small");
+
+  background: var(--background-alt-raised-grey);
+  border-radius: u(1);
+  padding: 0 u(1);
+  color: $darkBackgroundElevationContrast;
+  margin-right: u(8);
+  cursor: default;
+  display: inline-flex;
+  align-items: baseline;
+}

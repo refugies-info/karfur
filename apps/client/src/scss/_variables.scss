@@ -1,0 +1,110 @@
+/* stylelint-disable scss/dollar-variable-pattern */
+@use "sass:map";
+@import "~/scss/colors";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+// Bootstrap
+// All variables here: https://github.com/twbs/bootstrap/blob/v4.6.1/scss/_variables.scss
+$font-family-sans-serif: "Marianne", "Arial", "sans-serif";
+$body-color: $gray90;
+$body-bg: white;
+$table-bg: #0000;
+
+// Colors
+$light: $gray20;
+$dark: $gray90;
+$primary: $bleuCharte;
+$custom-colors: (
+  "primary": $primary,
+  "light-green": $greenValidate,
+);
+$theme-colors: map.merge($theme-colors, $custom-colors);
+
+// Grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+);
+
+// Headings
+$h1-font-size: 3.25rem;
+$h2-font-size: 2.5rem;
+$h3-font-size: 2.5rem;
+$h4-font-size: 1.75rem;
+$h5-font-size: 1.375rem;
+$headings-margin-bottom: 0;
+$headings-font-weight: bold;
+$headings-line-height: 1.25;
+
+// Font sizes
+$text-small: 14px;
+$text-normal: 1rem;
+$text-large: 18px;
+
+// Spacers
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: (
+    $spacer * 0.25,
+  ),
+  2: (
+    $spacer * 0.5,
+  ),
+  3: (
+    $spacer * 0.75,
+  ),
+  4: $spacer,
+  5: (
+    $spacer * 1.25,
+  ),
+  6: (
+    $spacer * 1.5,
+  ),
+  7: (
+    $spacer * 1.75,
+  ),
+  8: (
+    $spacer * 2,
+  ),
+  9: (
+    $spacer * 2.25,
+  ),
+  10: (
+    $spacer * 2.5,
+  ),
+  11: (
+    $spacer * 2.75,
+  ),
+  12: (
+    $spacer * 3,
+  ),
+  13: (
+    $spacer * 3.25,
+  ),
+  14: (
+    $spacer * 3.5,
+  ),
+  20: (
+    $spacer * 5,
+  ),
+);
+
+// Custom
+$radius: 12px;
+
+// Breakpoints
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1248px;

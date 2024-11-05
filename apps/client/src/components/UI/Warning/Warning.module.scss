@@ -1,0 +1,32 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+$breakpoint: "lg-limit";
+
+.container {
+  padding: u(2);
+  border-radius: u(2);
+  display: flex;
+
+  &.red {
+    background: #f9e8e8;
+  }
+
+  &.purple {
+    background: #efe8f4;
+  }
+
+  &.orange {
+    background: #feebde;
+  }
+}
+
+.text {
+  @include text("large");
+
+  margin-bottom: 0;
+}
