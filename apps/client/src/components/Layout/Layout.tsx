@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,7 +16,6 @@ import { allLanguesSelector, showLangModalSelector } from "~/services/Langue/lan
 import { hasErroredSelector, isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { ttsActiveSelector } from "~/services/Tts/tts.selector";
 
-import AppLoader from "~/components/Layout/AppLoader";
 import Footer from "~/components/Layout/Footer";
 import DownloadAppModal from "~/components/Modals/DownloadAppModal";
 import LanguageModal from "~/components/Modals/LanguageModal/LanguageModal";
@@ -202,11 +201,9 @@ const Layout = (props: Props) => {
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <DownloadAppBanner />
       <Navbar />
-      <Suspense fallback={<AppLoader />}>
-        <div className={styles.main}>
-          <main className={styles.content}>{props.children}</main>
-        </div>
-      </Suspense>
+      <div className={styles.main}>
+        <main className={styles.content}>{props.children}</main>
+      </div>
       <Footer />
       <AutoAddFavorite />
       <LanguageModal
