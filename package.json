@@ -8,6 +8,7 @@
   "homepage": "https://accueil-integration-refugies.fr",
   "copyright": "Copyright 2019 DiAiR",
   "license": "MIT",
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -53,7 +54,7 @@
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
     "prepare": "husky",
-    "migrate": "node migrations/cli.mjs"
+    "migrate": "tsx migrations/cli.ts up"
   },
   "dependencies": {},
   "engines": {
@@ -74,6 +75,7 @@
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "turbo": "^2.2.3"
   },
   "packageManager": "yarn@1.22.22",
