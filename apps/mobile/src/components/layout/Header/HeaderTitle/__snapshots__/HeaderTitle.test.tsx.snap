@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderTitle snapshot test suite should render without bug 1`] = `
+<Text
+  style={
+    {
+      "color": "#212121",
+      "fontFamily": "Marianne-Bold",
+      "fontSize": 25,
+      "lineHeight": 40,
+      "textAlign": "left",
+    }
+  }
+>
+  Mon titre
+</Text>
+`;

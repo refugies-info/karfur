@@ -1,0 +1,15 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+
+.title {
+  @include dsfr-text("h1");
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("h2");
+
+    margin-top: u(6);
+  }
+}

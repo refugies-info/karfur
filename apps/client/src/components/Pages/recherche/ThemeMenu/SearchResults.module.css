@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  min-height: 416px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1 0 0;
+  align-self: stretch;
+}

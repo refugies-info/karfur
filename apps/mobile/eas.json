@@ -1,0 +1,74 @@
+{
+  "build": {
+    "base": {
+      "channel": "base",
+      "ios": {
+        "image": "latest"
+      },
+      "node": "20.13.1",
+      "yarn": "1.22.22"
+    },
+    "production": {
+      "extends": "base",
+      "channel": "production"
+    },
+    "staging": {
+      "extends": "base",
+      "channel": "staging",
+      "distribution": "internal",
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Staging",
+        "EAS_BUILD_PROFILE": "staging"
+      }
+    },
+    "development": {
+      "extends": "base",
+      "developmentClient": true,
+      "channel": "staging",
+      "distribution": "internal",
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Dev",
+        "EAS_BUILD_PROFILE": "staging"
+      }
+    },
+    "development-simulator": {
+      "extends": "base",
+      "developmentClient": true,
+      "channel": "staging",
+      "distribution": "internal",
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Dev",
+        "EAS_BUILD_PROFILE": "staging"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "extends": "base",
+      "channel": "preview",
+      "distribution": "internal",
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Preview",
+        "EAS_BUILD_PROFILE": "preview"
+      }
+    }
+  },
+  "cli": {
+    "version": ">= 0.35.0",
+    "requireCommit": true
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./refugies-info-appkey.json",
+        "track": "internal",
+        "releaseStatus": "draft"
+      },
+      "ios": {
+        "ascAppId": "${EXPO_IOS_ASC_APP_ID}",
+        "appleTeamId": "${EXPO_IOS_APPLE_TEAM_ID}"
+      }
+    }
+  }
+}

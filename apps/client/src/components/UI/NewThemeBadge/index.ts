@@ -1,0 +1,1 @@
+export { NewThemeBadge } from "./NewThemeBadge"

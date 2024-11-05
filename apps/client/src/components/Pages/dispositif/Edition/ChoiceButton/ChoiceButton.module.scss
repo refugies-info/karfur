@@ -1,0 +1,77 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/input";
+
+.choice {
+  padding: u(2);
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: u(2);
+  align-items: center;
+  width: 100%;
+  border: 1px solid transparent;
+
+  &.has_image,
+  &.lg {
+    border: 1px solid var(--border-default-grey);
+    padding-right: u(6);
+    padding-left: u(6);
+  }
+
+  &.has_image {
+    padding-top: u(4);
+    padding-bottom: u(4);
+
+    &.sm {
+      padding-top: u(1);
+      padding-bottom: u(1);
+    }
+  }
+
+  &.lg {
+    padding-top: u(3);
+    padding-bottom: u(3);
+  }
+
+  .text,
+  .subtext {
+    text-align: left;
+    flex: auto;
+  }
+
+  .subtext {
+    @include dsfr-text("very-small");
+
+    display: block;
+    color: var(--text-mention-grey);
+  }
+
+  &:hover {
+    background: var(--background-alt-raised-grey);
+  }
+
+  &.selected {
+    background: var(--background-action-low-blue-france);
+    border-color: var(--background-action-low-blue-france);
+    color: var(--background-action-high-blue-france);
+
+    .subtext {
+      color: var(--background-action-high-blue-france);
+    }
+
+    &:hover {
+      background: var(--background-action-low-blue-france) !important;
+      border-color: var(--background-action-high-blue-france) !important;
+    }
+  }
+}
+
+.tooltip {
+  :global(.tooltip-inner) {
+    text-align: left;
+  }
+}

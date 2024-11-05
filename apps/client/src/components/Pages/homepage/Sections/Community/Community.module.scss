@@ -1,0 +1,27 @@
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include isTablet {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-bottom: u(4);
+  }
+}
+
+.title {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include isTablet {
+    width: 100%;
+  }
+}

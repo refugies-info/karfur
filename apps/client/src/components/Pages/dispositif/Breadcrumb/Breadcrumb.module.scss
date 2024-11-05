@@ -1,0 +1,45 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: u(10);
+
+  @include media-max("lg-limit") {
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+}
+
+.home {
+  height: 16px;
+  display: flex;
+}
+
+.link {
+  @include dsfr-text("very-small");
+
+  color: var(--text-mention-grey) !important;
+  text-decoration: underline !important;
+}
+
+.theme {
+  @include dsfr-text("very-small");
+
+  color: white !important;
+  text-decoration: underline !important;
+  padding: u(1) 6px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.current {
+  @include dsfr-text("very-small");
+}

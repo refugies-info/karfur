@@ -2,9 +2,10 @@
 
 ## Build and run the client locally
 
-Set the proper environment variables in a `client/.env` file (See [Sample](../../client/example-env-file.env)).
+Set the proper environment variables in a `client/.env` file (See [Sample](../../apps/client/example-env-file.env)).
 
 Build and start the client with docker:
+
 ```
 # docker build -t refclient --build-arg APP_SERVER_URL=<backend_url> client/
 # docker run --rm -p 127.0.0.1:3000:3000 -it refclient

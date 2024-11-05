@@ -1,0 +1,32 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/icons";
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn {
+  @include iconSize(24px);
+
+  border-radius: u(2);
+
+  &.small_icon {
+    @include iconSize(16px);
+  }
+
+  &.icon_end {
+    flex-direction: row-reverse;
+  }
+
+  .loading {
+    animation: rotate 3s infinite;
+  }
+}

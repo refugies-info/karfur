@@ -1,0 +1,30 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/responsive";
+
+.badge {
+  @include dsfr-text("large");
+  @include mr-ltr(u(4));
+
+  width: u(8);
+  height: u(8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 50%;
+  color: white;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("small");
+
+    width: u(6);
+    height: u(6);
+  }
+}

@@ -1,0 +1,14 @@
+@import "~/scss/mixins/unit";
+
+.tabitem {
+  border: 1px solid transparent;
+  border-radius: u(1);
+  color: var(--text-action-high-grey);
+  padding: u(2) u(4);
+  font-weight: 500;
+
+  &.active {
+    border: 1px solid var(--border-active-blue-france);
+    color: var(--text-active-blue-france);
+  }
+}

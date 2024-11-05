@@ -1,0 +1,39 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/rtl";
+@import "~/scss/variables";
+
+$colorOk: $vert2;
+$colorKo: $error;
+
+:export {
+  colorOk: $vert2;
+  colorKo: $error;
+}
+
+.example {
+  @include text("normal");
+
+  display: flex;
+  align-items: center;
+  margin-bottom: u(2);
+}
+
+.example_ko {
+  color: $colorKo;
+}
+
+.example_ok {
+  color: $colorOk;
+}
+
+.icon {
+  margin-right: u(2);
+
+  @include rtl {
+    margin-right: inherit;
+    margin-left: u(2);
+  }
+}

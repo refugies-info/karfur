@@ -1,0 +1,10 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/unit";
+@import "~/scss/variables";
+
+.tabsbar {
+  border: 1px solid $gray50;
+  border-radius: u(1);
+}

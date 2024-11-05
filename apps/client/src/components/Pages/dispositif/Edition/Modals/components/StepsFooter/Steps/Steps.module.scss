@@ -1,0 +1,34 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/input";
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.step {
+  @include dsfr-text("small");
+
+  width: u(6);
+  height: u(6);
+  border-radius: 50%;
+  background: $gray40;
+  color: var(--text-disabled-grey);
+  margin-right: u(2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.current {
+    background: var(--background-active-blue-france-active);
+    color: white;
+  }
+
+  &.done {
+    background: var(--background-action-high-blue-france);
+    color: white;
+  }
+}

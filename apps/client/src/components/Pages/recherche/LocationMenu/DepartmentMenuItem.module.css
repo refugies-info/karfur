@@ -1,0 +1,11 @@
+.item {
+  /* Layout */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.item:hover {
+  background: var(--background-alt-grey);
+}

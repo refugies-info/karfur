@@ -1,0 +1,44 @@
+.item {
+  /* Layout */
+  display: flex;
+  padding: 8px 10px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.item:hover {
+  /* Style */
+  background: var(--background-alt-blue-france);
+}
+
+.icon {
+  /* Layout */
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  /* Override the default button styles */
+  padding-block: 0;
+  padding-inline: 0;
+
+  /* Layout */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--background-action-high-blue-france-hover);
+}
+
+.buttonText {
+  color: var(--background-action-high-blue-france-hover);
+
+  /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Medium */
+  font-family: Marianne, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}

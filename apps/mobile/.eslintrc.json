@@ -1,0 +1,42 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true,
+    "browser": true
+  },
+  "extends": ["plugin:react/recommended", "plugin:react/jsx-runtime"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "no-debugger": "warn",
+    "no-else-return": "error",
+    "no-console": "error",
+    "no-unused-expressions": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "quotes": ["error", "double", { "avoidEscape": true }],
+    "object-shorthand": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/no-unknown-property": "off",
+    "react/jsx-no-target-blank": "off",
+    "eqeqeq": "error",
+    "no-undef": "error"
+  }
+}

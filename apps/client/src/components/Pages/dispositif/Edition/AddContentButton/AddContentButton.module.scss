@@ -1,0 +1,144 @@
+@import "~/scss/colors";
+@import "~/scss/variables";
+@import "~/scss/mixins/unit";
+@import "~/scss/mixins/rtl";
+@import "~/scss/mixins/text";
+@import "~/scss/mixins/icons";
+
+.btn {
+  &:global(.fr-btn) {
+    background-color: white;
+    box-shadow: 0 2px 6px 0 #00001229;
+    color: var(--text-disabled-grey);
+    width: 100%;
+    padding: u(4);
+    border-radius: u(2);
+    border: 1px solid transparent;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      border-color: var(--border-default-grey);
+      box-shadow: none;
+      background-color: var(--background-contrast-grey) !important;
+    }
+
+    &:active {
+      background: var(--background-alt-raised-grey);
+    }
+
+    .icon {
+      @include iconSize(24px);
+    }
+
+    &.md {
+      @include dsfr-text("h6");
+
+      font-weight: bold;
+    }
+
+    &.lg {
+      @include dsfr-text("chapo");
+
+      font-weight: bold;
+    }
+
+    &.xl {
+      @include dsfr-text("h1");
+
+      font-weight: bold;
+    }
+
+    &.has_content {
+      position: relative;
+      background: transparent;
+      box-shadow: none;
+      color: var(--text-title-grey);
+      border: 1px solid var(--border-default-grey);
+      padding-right: u(10);
+      align-items: flex-start;
+
+      .icons {
+        position: absolute;
+        top: u(4);
+        right: u(3);
+        width: u(8);
+        text-align: center;
+
+        .ok {
+          display: block;
+        }
+
+        .edit {
+          display: none;
+        }
+
+        .delete {
+          @include iconSize(16px);
+
+          padding: u(2);
+          border-radius: u(2);
+          margin-top: u(2);
+          border: 1px solid var(--border-default-grey);
+
+          &:hover:not(.disabled) {
+            background: var(--border-default-grey);
+          }
+        }
+      }
+
+      &:hover {
+        background-color: var(--background-contrast-grey);
+
+        .icons {
+          .edit {
+            display: block;
+          }
+
+          .ok {
+            display: none;
+          }
+        }
+      }
+
+      .sm {
+        @include dsfr-text("normal");
+
+        font-weight: normal;
+      }
+
+      .md {
+        @include dsfr-text("h6");
+
+        font-weight: bold;
+      }
+
+      .lg {
+        @include dsfr-text("chapo");
+
+        font-weight: bold;
+      }
+
+      .xl {
+        @include dsfr-text("h1");
+
+        font-weight: bold;
+      }
+    }
+
+    &.has_error {
+      border-color: var(--text-default-error);
+      color: var(--text-default-error);
+
+      & > span svg {
+        fill: var(--text-default-error);
+      }
+    }
+
+    .empty {
+      width: 100%;
+    }
+  }
+}
