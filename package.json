@@ -1,5 +1,6 @@
 {
   "private": true,
+  "module": "module",
   "name": "karfur",
   "version": "0.1.0",
   "description": "Plateforme dédiée aux réfugiés",
