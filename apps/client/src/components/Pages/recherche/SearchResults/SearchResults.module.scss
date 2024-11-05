@@ -21,6 +21,10 @@
   /* Style */
   background: $white;
 
+  @include media-min("tablet-up") {
+    padding-inline: 0;
+  }
+
   /* Responsive */
   @include media-min("xl-limit") {
     max-width: 1200px; /* TODO:fix this width with the future tailwind container */
