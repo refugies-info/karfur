@@ -1,4 +1,4 @@
-name: Deploy mMbile Staging
+name: Deploy Mobile Staging
 on:
   push:
     branches:
