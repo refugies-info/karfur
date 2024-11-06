@@ -4,10 +4,9 @@ import type { AppProps } from "next/app";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
-import { isRoute } from "routes";
 import "scss/index.scss";
 import Layout from "~/components/Layout/Layout";
 import { isContentPage } from "~/lib/isContentPage";
@@ -17,11 +16,10 @@ import { PageOptions } from "~/types/interface";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
 import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
-import { finishLoading, LoadingStatusKey, startLoading } from "~/services/LoadingStatus/loadingStatus.actions";
 
 import { DirectionProvider } from "@radix-ui/react-direction";
-import { ToastProvider, ToastViewport } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
+import dynamic from "next/dynamic";
 import toastStyles from "scss/components/toast.module.scss";
 import { useRTL } from "~/hooks";
 
@@ -79,24 +77,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     if (finalityConsent === undefined) Event("SESSION", "count", "first");
   });
 
-  // Loader
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      if (isRoute(url, "/recherche") && !isRoute(window.location.pathname, "/recherche")) {
-        store.dispatch(startLoading(LoadingStatusKey.NAVIGATING));
-      }
-    };
-    const routeChanged = () => {
-      store.dispatch(finishLoading(LoadingStatusKey.NAVIGATING));
-    };
-    router.events.on("routeChangeStart", handleRouteChange);
-    router.events.on("routeChangeComplete", routeChanged);
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-      router.events.off("routeChangeComplete", routeChanged);
-    };
-  }, [store, router.events]);
-
   // CRISP
   useEffect(() => {
     const toggleDataPageAttribute = (url: string) => {
@@ -113,6 +93,22 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   }, []);
 
   const isRTL = useRTL();
+
+  // These radix-ui components create hydration issues if rendered server side
+  const ToastViewport = useMemo(
+    () =>
+      dynamic(() => import("@radix-ui/react-toast").then((mod) => mod.ToastViewport), {
+        ssr: false,
+      }),
+    [],
+  );
+  const ToastProvider = useMemo(
+    () =>
+      dynamic(() => import("@radix-ui/react-toast").then((mod) => mod.ToastProvider), {
+        ssr: false,
+      }),
+    [],
+  );
 
   return (
     <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
