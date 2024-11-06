@@ -21,6 +21,10 @@
   /* Style */
   background: $white;
 
+  @include media-min("tablet-up") {
+    padding-inline: 0;
+  }
+
   /* Responsive */
   @include media-min("xl-limit") {
     max-width: 1200px; /* TODO:fix this width with the future tailwind container */
@@ -34,15 +38,15 @@
 
   @container (min-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @container (min-width: 900px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   @container (min-width: 1200px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   @container (max-width: 768px) {
