@@ -96,22 +96,22 @@ export const Structure = (props: { sponsor: GetAllDispositifsResponse["mainSpons
 };
 
 interface StyledStatusContainer {
-  disabled: boolean;
-  textColor?: string;
-  color: string;
+  $disabled: boolean;
+  $textColor?: string;
+  $color: string;
 }
 export const StyledStatusContainer = styled.div<StyledStatusContainer>`
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
-  background-color: ${(props: StyledStatusContainer) => props.color};
+  background-color: ${(props: StyledStatusContainer) => props.$color};
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
   white-space: nowrap;
-  cursor: ${(props: StyledStatusContainer) => (props.disabled ? "not-allowed" : "pointer")};
-  color: ${(props: StyledStatusContainer) => (props.textColor ? props.textColor : colors.white)};
+  cursor: ${(props: StyledStatusContainer) => (props.$disabled ? "not-allowed" : "pointer")};
+  color: ${(props: StyledStatusContainer) => (props.$textColor ? props.$textColor : colors.white)};
 `;
 export const getColorAndStatus = (text: string, isAdmin?: boolean) => {
   const correspondingStatusElement = correspondingStatus.find((element) => element.storedStatus === text);
@@ -164,7 +164,7 @@ export const StyledStatus = (props: {
   const textColor = props.overrideColor ? colors.white : props.textColor ? props.textColor : colorsAndStatus.textColor;
 
   return (
-    <StyledStatusContainer color={color} textColor={textColor} disabled={!!props.disabled}>
+    <StyledStatusContainer $color={color} $textColor={textColor} $disabled={!!props.disabled}>
       {status}
     </StyledStatusContainer>
   );
@@ -233,9 +233,9 @@ export const DeleteButton = (props: { onClick: (event: any) => void; disabled: b
   </ButtonContainer>
 );
 
-const FilterButtonContainer = styled.div<{ isSelected: boolean }>`
-  background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.gray90 : colors.white)};
-  color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};
+const FilterButtonContainer = styled.div<{ $isSelected: boolean }>`
+  background: ${(props: { $isSelected: boolean }) => (props.$isSelected ? colors.gray90 : colors.white)};
+  color: ${(props: { $isSelected: boolean }) => (props.$isSelected ? colors.white : colors.gray90)};
   border-radius: 12px;
   font-weight: normal;
   font-size: 16px;
@@ -247,7 +247,7 @@ const FilterButtonContainer = styled.div<{ isSelected: boolean }>`
   height: fit-content;
 `;
 export const FilterButton = (props: { onClick: () => void; text: string; isSelected: boolean }) => (
-  <FilterButtonContainer onClick={props.onClick} isSelected={props.isSelected} key={props.text}>
+  <FilterButtonContainer onClick={props.onClick} $isSelected={props.isSelected} key={props.text}>
     {props.text}
   </FilterButtonContainer>
 );
