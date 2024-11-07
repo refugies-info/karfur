@@ -16,7 +16,6 @@
   align-self: stretch;
   padding-block: u(14);
   gap: u(14);
-  max-width: 990px;
 
   /* Style */
   background: $white;
@@ -34,22 +33,37 @@
 .results {
   display: flex;
   flex-direction: column;
-  gap: u(6);
+  gap: 1em;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 
-  @container (min-width: 768px) {
+  @container (min-width: 48em) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    > div {
+      max-width: 100%;
+    }
   }
 
-  @container (min-width: 900px) {
+  @container (min-width: 56.25em) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    > div {
+      max-width: 100%;
+    }
   }
 
-  @container (min-width: 1200px) {
+  @container (min-width: 75em) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    > div {
+      max-width: 100%;
+    }
   }
 
-  @container (max-width: 768px) {
+  @media (width <= 768px) {
     width: 100%;
 
     .dispositifCard {
