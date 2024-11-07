@@ -11,7 +11,11 @@ import { cls } from "~/lib/classname";
 import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import styles from "./ResultsFilter.module.scss";
 
 type TranslationFunction = (key: string, options?: object) => string;
@@ -21,6 +25,7 @@ const ResultsFilter = (): React.ReactNode => {
 
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const themesDisplayed = useSelector(themesDisplayedSelector);
   const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
