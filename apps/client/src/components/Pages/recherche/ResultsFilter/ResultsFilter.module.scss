@@ -14,7 +14,7 @@
   width: 100%;
   gap: u(4);
 
-  @container (min-width: 768px) {
+  @include container-min("tablet-up") {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -27,7 +27,7 @@
   align-items: center;
   gap: u(2);
 
-  @container (min-width: 768px) {
+  @include container-min("tablet-up") {
     margin-left: auto;
     display: block;
   }
