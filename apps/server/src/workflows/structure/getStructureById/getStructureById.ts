@@ -72,7 +72,7 @@ export const getStructureById = async (
   };
 
   const structureDispositifs = await getStructureDispositifs(dbQuery, selectedLocale);
-  const result: GetStructureResponse = {
+  const result = {
     ...structure.toObject(),
     membres: structureMembers,
     dispositifsAssocies: structureDispositifs.map((dispositif) =>
@@ -82,6 +82,6 @@ export const getStructureById = async (
 
   return {
     text: "success",
-    data: result,
+    data: result as unknown as GetStructureResponse,
   };
 };
