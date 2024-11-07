@@ -67,13 +67,24 @@ export const filterDispositifs = (
   dispositifs: SimpleDispositif[],
   secondaryThemes: boolean,
   skip: FilterKey | undefined = undefined,
+  allNeeds?: GetNeedResponse[],
 ): SimpleDispositif[] => {
   const filterKeys = buildFilterKeys(query);
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
 
+  const inferedThemes: Id[] | undefined =
+    query.themes.length === 0 && query.needs
+      ? [
+          ...new Set(
+            allNeeds?.filter((currentNeed) => query.needs.includes(currentNeed._id)).map((need) => need.theme._id),
+          ),
+        ]
+      : undefined;
+
   const filteredDispositifs = dispositifs
     .filter(
-      (dispositif) => skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes),
+      (dispositif) =>
+        skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes, inferedThemes),
     )
     .filter((dispositif) => skip === "location" || filterByLocations(dispositif, query.departments))
     .filter((dispositif) => skip === "age" || filterByAge(dispositif, query.age))
@@ -82,7 +93,7 @@ export const filterDispositifs = (
     .filter((dispositif) => skip === "public" || filterByPublic(dispositif, query.public))
     .filter((dispositif) => skip === "status" || filterByStatus(dispositif, query.status));
 
-  return rule?.sortFunction && !!skip
+  return rule?.sortFunction && !skip
     ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b))
     : filteredDispositifs;
 };
@@ -224,7 +235,7 @@ export const queryDispositifs = (
   dispositifs: SimpleDispositif[],
   allNeeds: GetNeedResponse[],
 ): Results => {
-  const matches = filterDispositifs(query, dispositifs, false);
+  const matches = filterDispositifs(query, dispositifs, false, undefined, allNeeds);
   const suggestions = filterSuggestions(query, dispositifs, matches, allNeeds);
 
   return {
@@ -249,7 +260,7 @@ export const queryDispositifsWithAlgolia = async (
   allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds);
+  return { ...queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds), algolia: filteredDispositifsByAlgolia };
 };
 
 /**

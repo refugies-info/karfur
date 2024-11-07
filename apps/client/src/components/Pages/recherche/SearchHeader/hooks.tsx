@@ -8,14 +8,15 @@ import { filterDispositifs } from "~/lib/recherche/queryContents";
 import { FilterKey } from "~/lib/recherche/resultsDisplayRules";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
-import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 
 const useDocsToFilter = (skip: FilterKey) => {
   const dispositifs = useSelector(activeDispositifsSelector);
   const query = useSelector(searchQuerySelector);
+  const { algolia } = useSelector(searchResultsSelector);
   const matches = useMemo(() => {
-    return filterDispositifs(query, dispositifs, false, skip);
-  }, [query, dispositifs, skip]);
+    return filterDispositifs(query, algolia || dispositifs, false, skip);
+  }, [query, algolia, dispositifs, skip]);
 
   return matches;
 };
