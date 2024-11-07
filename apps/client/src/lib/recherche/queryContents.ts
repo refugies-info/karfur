@@ -82,7 +82,9 @@ export const filterDispositifs = (
     .filter((dispositif) => skip === "public" || filterByPublic(dispositif, query.public))
     .filter((dispositif) => skip === "status" || filterByStatus(dispositif, query.status));
 
-  return rule?.sortFunction ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b)) : filteredDispositifs;
+  return rule?.sortFunction && !skip
+    ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b))
+    : filteredDispositifs;
 };
 
 const filterSuggestions = (
