@@ -75,4 +75,4 @@ jobs:
 
       - name: Build app on both platforms
         working-directory: ./apps/mobile
-        run: eas build --platform all --profile staging --auto --non-interactive --no-wait
+        run: eas build --platform all --profile staging --non-interactive --no-wait
