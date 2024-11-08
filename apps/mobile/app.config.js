@@ -19,7 +19,6 @@ export default {
     resizeMode: "contain",
     backgroundColor: "#F6F6F6",
   },
-  owner: "refugies-info",
   updates: {
     fallbackToCacheTimeout: 0,
   },
