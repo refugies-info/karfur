@@ -51,6 +51,8 @@
     "lint:style": "yarn stylelint \"**/*.css\" \"**/*.scss\"",
     "pr:prod:client": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
+    "pr:prod:mobile": "gh pr create -B master-mobile -H staging-mobile -l release -t '[PROD-MOBILE] Release' -b ''",
+    "pr:stg:mobile": "gh pr create -B staging-mobile -H dev -l release -t '[STG-MOBILE] Release' -b ''",
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
     "prepare": "husky",
