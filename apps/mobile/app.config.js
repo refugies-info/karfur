@@ -6,6 +6,7 @@ const androidVersionCode = 33;
 
 export default {
   name: "Réfugiés.info",
+  owner: "refugies-info",
   slug: "refugies-info-app",
   version: "1.0.16",
   orientation: "portrait",
@@ -18,7 +19,6 @@ export default {
     resizeMode: "contain",
     backgroundColor: "#F6F6F6",
   },
-  owner: "refugies-info",
   updates: {
     fallbackToCacheTimeout: 0,
   },
@@ -155,8 +155,7 @@ export default {
       // package: "com.refugiesinfo.app",
       package:
         "com.refugiesinfo.app" +
-        (process.env.EAS_BUILD_PROFILE &&
-        process.env.EAS_BUILD_PROFILE !== "production"
+        (process.env.EAS_BUILD_PROFILE && process.env.EAS_BUILD_PROFILE !== "production"
           ? `.${process.env.EAS_BUILD_PROFILE}`
           : ""),
       config: {
@@ -194,10 +193,7 @@ export default {
         UIBackgroundModes: ["remote-notification"],
       },
       googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
-      associatedDomains: [
-        "applinks:refugies.info",
-        "applinks:www.refugies.info",
-      ],
+      associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
     },
     extra: {
       eas: {
