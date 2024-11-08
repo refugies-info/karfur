@@ -15,7 +15,7 @@ on:
 
 jobs:
   update:
-    name: EAS Update
+    name: EAS Update Staging
     runs-on: ubuntu-latest
     environment: staging-mobile
     env:
