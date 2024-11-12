@@ -55,21 +55,19 @@
     "pr:stg:mobile": "gh pr create -B staging-mobile -H dev -l release -t '[STG-MOBILE] Release' -b ''",
     "pr:prod:server": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg:server": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
-    "eas:build": "eas build --profile development",
-    "eas:build:android": "eas build --profile development --platform android",
-    "eas:build:ios": "eas build --profile development --platform ios",
-    "eas:update": "eas update --channel staging",
-    "eas:update:android": "eas update --channel staging --platform android",
-    "eas:update:ios": "eas update --channel staging --platform ios",
-    "eas:submit": "eas submit --profile production",
-    "eas:submit:android": "eas submit --profile production --platform android",
-    "eas:submit:ios": "eas submit --profile production --platform ios",
+    "eas:build": "cd apps/mobile && eas build --profile development",
+    "eas:build:android": "cd apps/mobile && eas build --profile development --platform android",
+    "eas:build:ios": "cd apps/mobile && eas build --profile development --platform ios",
+    "eas:update": "cd apps/mobile && eas update --channel staging",
+    "eas:update:android": "cd apps/mobile && eas update --channel staging --platform android",
+    "eas:update:ios": "cd apps/mobile && eas update --channel staging --platform ios",
+    "eas:submit": "cd apps/mobile && eas submit --profile production",
+    "eas:submit:android": "cd apps/mobile && eas submit --profile production --platform android",
+    "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts"
   },
-  "dependencies": {
-    "expo-updates": "~0.24.13"
-  },
+  "dependencies": {},
   "engines": {
     "node": "20.13.1",
     "yarn": "1.22.22"
