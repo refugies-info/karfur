@@ -658,7 +658,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/dispositif/id1"
@@ -712,7 +711,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id1"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -1309,7 +1307,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/dispositif/id1"
@@ -1363,7 +1360,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id1"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -1526,7 +1522,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/demarche/id2"
@@ -1580,7 +1575,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id2"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -1699,7 +1693,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/demarche/id3"
@@ -1753,7 +1746,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id3"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -1872,7 +1864,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/demarche/id4"
@@ -1926,7 +1917,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id4"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -2089,7 +2079,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/demarche/id5"
@@ -2143,7 +2132,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id5"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -2267,7 +2255,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/demarche/id6"
@@ -2321,7 +2308,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id6"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
@@ -2486,7 +2472,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c11"
-                        hovercolor="gray90"
                       >
                         <a
                           href="/demarche/id7"
@@ -2540,7 +2525,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <div
                         class="c12"
                         data-testid="delete-button-id7"
-                        hovercolor="error"
                       >
                         <div
                           style="margin-bottom: 4px;"
