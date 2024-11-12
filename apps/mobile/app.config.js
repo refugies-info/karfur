@@ -2,7 +2,7 @@ import deepLinks from "./androidDeepLinks";
 
 const version = "2.1.1";
 const displayVersionNumber = "2024.11.1";
-const androidVersionCode = 33;
+const androidVersionCode = 34;
 
 export default {
   name: "Réfugiés.info",
@@ -39,8 +39,8 @@ export default {
     associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
   },
   locales: {
-    en: "./src/translations/en.json",
-    fr: "./src/translations/fr.json",
+    en: "./src/translations/en/common.json",
+    fr: "./src/translations/fr/common.json",
   },
   android: {
     versionCode: 15,
@@ -107,8 +107,8 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     locales: {
-      en: "./src/translations/en.json",
-      fr: "./src/translations/fr.json",
+      en: "./src/translations/en/common.json",
+      fr: "./src/translations/fr/common.json",
     },
     description: "",
     jsEngine: "hermes",
