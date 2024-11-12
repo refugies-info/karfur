@@ -32,6 +32,12 @@ export const getStatus = (
         type: "new",
         icon: "ri-pencil-fill",
       };
+    case DispositifStatus.UPDATE_TO_VALIDATE:
+      return {
+        text: "MAJ à valider",
+        type: "new",
+        icon: "ri-time-fill",
+      };
     case DispositifStatus.KO_STRUCTURE:
       return {
         text: "Rejeté par la structure",

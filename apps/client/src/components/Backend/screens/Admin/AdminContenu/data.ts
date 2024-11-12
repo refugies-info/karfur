@@ -112,6 +112,13 @@ export const correspondingStatus: ContentStatus[] = [
     order: 7,
     textColor: colors.white,
   },
+  {
+    storedStatus: DispositifStatus.UPDATE_TO_VALIDATE,
+    displayedStatus: "MAJ à valider",
+    color: yellow,
+    order: 4,
+    textColor: colors.gray90,
+  },
 ];
 
 const darkBlue = colors.bleuCharte;
