@@ -75,6 +75,6 @@ jobs:
           mkdir -p credentials
           echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}'  | base64 --decode > credentials/refugies-info-appkey.json
 
-      - name: Build app on both platforms
+      - name: Build and update app on both platforms
         working-directory: ./apps/mobile
-        run: eas update --platform all --profile staging --non-interactive --no-wait
+        run: eas update --platform all --channel staging --non-interactive --no-wait
