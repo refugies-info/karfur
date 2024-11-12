@@ -9,7 +9,7 @@ on:
     paths:
       - yarn.lock
       - package.json
-      - .github/workflows/**
+      - .github/workflows/build_mobile_prod.yml
       - apps/mobile/**
       - packages/api-types/**
   workflow_dispatch:
