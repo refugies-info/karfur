@@ -1,4 +1,5 @@
 import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
+import { isEmpty } from "lodash";
 import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
@@ -13,9 +14,15 @@ import {
   publishDispositif as publishDispositifService,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
-import { Dispositif, User } from "~/typegoose";
+import { Dispositif, Traductions, User } from "~/typegoose";
+import { TranslationContent } from "~/typegoose/Dispositif";
 import { Response } from "~/types/interface";
 import { log } from "./log";
+
+const hasChanges = (originalContent: TranslationContent, draftContent: TranslationContent) => {
+  const traductionDiff = Traductions.diff(originalContent, draftContent);
+  return !isEmpty(traductionDiff.modified) || !isEmpty(traductionDiff.added);
+};
 
 const getWaitingStatus = async (
   dispositif: Dispositif,
@@ -93,7 +100,16 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   const editedDispositif: Partial<Dispositif> = {};
   // if editing a published dispositif => publish
   if (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion) {
-    await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
+    const isAdmin = user.isAdmin();
+    const hasTextChanges = hasChanges(oldDispositif.translations.fr, draftDispositif.translations.fr);
+
+    if (isAdmin || !hasTextChanges) {
+      // admin or no changes in translations -> publish
+      await publishDispositifService(id, user._id, isAdmin ? body.keepTranslations : false);
+    } else {
+      // else, wait for admin validation
+      await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
+    }
   } else {
     const status = await getWaitingStatus(dispositif, oldDispositif, user);
     if (status) editedDispositif.status = status;
