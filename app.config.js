@@ -39,8 +39,8 @@ export default {
     associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
   },
   locales: {
-    en: "./apps/mobile/src/translations/en.json",
-    fr: "./apps/mobile/src/translations/fr.json",
+    en: "./apps/mobile/src/translations/en/common.json",
+    fr: "./apps/mobile/src/translations/fr/common.json",
   },
   android: {
     versionCode: 15,
@@ -107,8 +107,8 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     locales: {
-      en: "./apps/mobile/src/translations/en.json",
-      fr: "./apps/mobile/src/translations/fr.json",
+      en: "./apps/mobile/src/translations/en/common.json",
+      fr: "./apps/mobile/src/translations/fr/common.json",
     },
     description: "",
     jsEngine: "hermes",
