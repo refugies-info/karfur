@@ -77,4 +77,4 @@ jobs:
 
       - name: Build and update app on both platforms
         working-directory: ./apps/mobile
-        run: eas update --platform all --channel staging --non-interactive --no-wait
+        run: eas update --platform all --channel staging --non-interactive
