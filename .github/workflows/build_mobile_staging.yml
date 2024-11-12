@@ -9,7 +9,7 @@ on:
     paths:
       - yarn.lock
       - package.json
-      - .github/workflows/**
+      - .github/workflows/build_mobile_staging.yml
       - apps/mobile/**
       - packages/api-types/**
   workflow_dispatch:
@@ -78,4 +78,4 @@ jobs:
 
       - name: Build and update app on both platforms
         working-directory: ./apps/mobile
-        run: eas update --platform all --channel staging --non-interactive --auto
+        run: eas build --platform all --profile staging --non-interactive --no-wait
