@@ -1,8 +1,8 @@
-import deepLinks from "./androidDeepLinks";
+import deepLinks from "apps/mobile/androidDeepLinks";
 
 const version = "2.1.1";
 const displayVersionNumber = "2024.11.1";
-const androidVersionCode = 33;
+const androidVersionCode = 34;
 
 export default {
   name: "Réfugiés.info",
@@ -10,12 +10,12 @@ export default {
   slug: "refugies-info-app",
   version: "1.1.1",
   orientation: "portrait",
-  icon: "./src/theme/images/app-icon-ri.png",
+  icon: "apps/mobile/src/theme/images/app-icon-ri.png",
   scheme: "refugies",
   userInterfaceStyle: "light",
   backgroundColor: "#F6F6F6",
   splash: {
-    image: "./src/theme/images/splash-screen-RI.png",
+    image: "apps/mobile/src/theme/images/splash-screen-RI.png",
     resizeMode: "contain",
     backgroundColor: "#F6F6F6",
   },
@@ -35,32 +35,32 @@ export default {
       CFBundleAllowMixedLocalizations: true,
       UIBackgroundModes: ["remote-notification"],
     },
-    googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
+    googleServicesFile: "apps/mobile/src/utils/firebase/GoogleService-Info.plist",
     associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
   },
   locales: {
-    en: "./src/translations/en.json",
-    fr: "./src/translations/fr.json",
+    en: "apps/mobile/src/translations/en.json",
+    fr: "apps/mobile/src/translations/fr.json",
   },
   android: {
     versionCode: 15,
     userInterfaceStyle: "light",
     adaptiveIcon: {
-      foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
+      foregroundImage: "apps/mobile/src/theme/images/app-icon-ri-adaptive.png",
       backgroundColor: "#0421B1",
     },
     package: "com.refugiesinfo.app",
     config: {
       googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
     },
-    googleServicesFile: "./src/utils/firebase/google-services.json",
+    googleServicesFile: "apps/mobile/src/utils/firebase/google-services.json",
     splash: {
       backgroundColor: "#F6F6F6",
-      mdpi: "./src/theme/images/splash/splash_mdpi.png",
-      hdpi: "./src/theme/images/splash/splash_hdpi.png",
-      xhdpi: "./src/theme/images/splash/splash_xhdpi.png",
-      xxhdpi: "./src/theme/images/splash/splash_xxhdpi.png",
-      xxxhdpi: "./src/theme/images/splash/splash_xxxhdpi.png",
+      mdpi: "apps/mobile/src/theme/images/splash/splash_mdpi.png",
+      hdpi: "apps/mobile/src/theme/images/splash/splash_hdpi.png",
+      xhdpi: "apps/mobile/src/theme/images/splash/splash_xhdpi.png",
+      xxhdpi: "apps/mobile/src/theme/images/splash/splash_xxhdpi.png",
+      xxxhdpi: "apps/mobile/src/theme/images/splash/splash_xxxhdpi.png",
     },
     intentFilters: [
       {
@@ -83,21 +83,21 @@ export default {
         measurementId: "G-31KEK3FGJ3",
       },
     },
-    favicon: "./src/theme/images/app-icon-ri.png",
+    favicon: "apps/mobile/src/theme/images/app-icon-ri.png",
   },
   description: "",
-  plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
+  plugins: ["apps/mobile/src/utils/withSimulatorExcludedArchitectures.js"],
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
     version,
     orientation: "portrait",
-    icon: "./src/theme/images/app-icon-ri.png",
+    icon: "apps/mobile/src/theme/images/app-icon-ri.png",
     scheme: "refugies",
     userInterfaceStyle: "light",
     backgroundColor: "#F6F6F6",
     splash: {
-      image: "./src/theme/images/splash-screen-RI.png",
+      image: "apps/mobile/src/theme/images/splash-screen-RI.png",
       resizeMode: "contain",
       backgroundColor: "#F6F6F6",
     },
@@ -107,14 +107,14 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     locales: {
-      en: "./src/translations/en.json",
-      fr: "./src/translations/fr.json",
+      en: "apps/mobile/src/translations/en.json",
+      fr: "apps/mobile/src/translations/fr.json",
     },
     description: "",
     jsEngine: "hermes",
     plugins: [
-      "./src/utils/withSimulatorExcludedArchitectures.js",
-      "./build-scripts/withGoogleMapsApiKey.js",
+      "apps/mobile/src/utils/withSimulatorExcludedArchitectures.js",
+      "apps/mobile/build-scripts/withGoogleMapsApiKey.js",
       // "./build-scripts/withM1build.js",
       [
         "expo-build-properties",
@@ -134,11 +134,11 @@ export default {
         "expo-font",
         {
           fonts: [
-            "./src/theme/fonts/Marianne-Regular.otf",
-            "./src/theme/fonts/Marianne-RegularItalic.otf",
-            "./src/theme/fonts/Marianne-Medium.otf",
-            // "./src/theme/fonts/Marianne-MediumItalic.otf",
-            "./src/theme/fonts/Marianne-Bold.otf",
+            "apps/mobile/src/theme/fonts/Marianne-Regular.otf",
+            "apps/mobile/src/theme/fonts/Marianne-RegularItalic.otf",
+            "apps/mobile/src/theme/fonts/Marianne-Medium.otf",
+            // "apps/mobile/src/theme/fonts/Marianne-MediumItalic.otf",
+            "apps/mobile/src/theme/fonts/Marianne-Bold.otf",
           ],
         },
       ],
@@ -149,7 +149,7 @@ export default {
       versionCode: androidVersionCode,
       userInterfaceStyle: "light",
       adaptiveIcon: {
-        foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
+        foregroundImage: "apps/mobile/src/theme/images/app-icon-ri-adaptive.png",
         backgroundColor: "#0421B1",
       },
       // package: "com.refugiesinfo.app",
@@ -161,14 +161,14 @@ export default {
       config: {
         googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
       },
-      googleServicesFile: "./src/utils/firebase/google-services.json",
+      googleServicesFile: "apps/mobile/src/utils/firebase/google-services.json",
       splash: {
         backgroundColor: "#F6F6F6",
-        mdpi: "./src/theme/images/splash/splash_mdpi.png",
-        hdpi: "./src/theme/images/splash/splash_hdpi.png",
-        xhdpi: "./src/theme/images/splash/splash_xhdpi.png",
-        xxhdpi: "./src/theme/images/splash/splash_xxhdpi.png",
-        xxxhdpi: "./src/theme/images/splash/splash_xxxhdpi.png",
+        mdpi: "apps/mobile/src/theme/images/splash/splash_mdpi.png",
+        hdpi: "apps/mobile/src/theme/images/splash/splash_hdpi.png",
+        xhdpi: "apps/mobile/src/theme/images/splash/splash_xhdpi.png",
+        xxhdpi: "apps/mobile/src/theme/images/splash/splash_xxhdpi.png",
+        xxxhdpi: "apps/mobile/src/theme/images/splash/splash_xxxhdpi.png",
       },
       intentFilters: [
         {
@@ -192,7 +192,7 @@ export default {
         CFBundleAllowMixedLocalizations: true,
         UIBackgroundModes: ["remote-notification"],
       },
-      googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
+      googleServicesFile: "apps/mobile/src/utils/firebase/GoogleService-Info.plist",
       associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
     },
     extra: {
