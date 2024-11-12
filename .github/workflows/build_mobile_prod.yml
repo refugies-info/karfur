@@ -9,6 +9,7 @@ on:
     paths:
       - yarn.lock
       - package.json
+      - .github/workflows/**
       - apps/mobile/**
       - packages/api-types/**
   workflow_dispatch:
