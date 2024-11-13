@@ -20,7 +20,12 @@ export const StreamlineIcon = ({ icon, size = 22, stroke = "white" }: Streamline
     <SvgXml
       width={size}
       height={size}
-      xml={(imgXml as string).replace(/stroke="((#[0-9a-f]{6})|(#[0-9a-f]{3})|([a-z]+))"/g, `stroke="${stroke}"`)}
+      xml={(imgXml as string)
+        .replace(
+          /stroke="((#[0-9a-f]{6})|(#[0-9A-F]{6})|(#[0-9a-f]{3})|(#[0-9A-F]{3})|([a-z]+))"/g,
+          `stroke="${stroke}"`,
+        )
+        .replace(/fill="((#[0-9a-f]{6})|(#[0-9A-F]{6})|(#[0-9a-f]{3})|(#[0-9A-F]{3})|([a-z]+))"/g, `fill="${stroke}"`)}
     />
   );
 };
