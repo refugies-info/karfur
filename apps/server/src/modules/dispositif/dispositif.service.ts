@@ -16,7 +16,10 @@ import { airtableContentBase } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
-import { sendMailWhenDispositifPublished } from "~/modules/mail/sendMailWhenDispositifPublished";
+import {
+  sendMailWhenDispositifPublished,
+  sendMailWhenDispositifPublishedAfterUpdate,
+} from "~/modules/mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
 import {
   Dispositif,
@@ -85,6 +88,7 @@ export enum NotifType {
   PUBLISHED = "PUBLISHED",
   DELETED = "DELETED",
   UPDATED = "UPDATED",
+  TO_VALIDATE = "TO_VALIDATE",
   UPDATED_AND_PUBLISHED = "UPDATED_AND_PUBLISHED",
 }
 export const notifyChange = async (notifType: NotifType, dispositifId: Id, userId: Id) => {
@@ -121,9 +125,13 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
         title = ":arrows_counterclockwise: Fiche mise à jour !";
         text = `La fiche ${type} *${contentTitle}* a été modifiée par _${user.username}_${structure}. À vérifier ?`;
         break;
+      case NotifType.TO_VALIDATE:
+        title = "Fiche mise à jour à valider :eyes::exclamation:";
+        text = `Le brouillon de travail de la fiche ${type} *${contentTitle}* a été envoyé pour validation par _${user.username}_${structure} --> *À valider dans le BO.*`;
+        break;
       case NotifType.UPDATED_AND_PUBLISHED:
-        title = ":arrows_counterclockwise: :new: Fiche mise à jour et publiée !";
-        text = `Le brouillon de travail de la fiche ${type} *${contentTitle}* a été validé et publié par _${user.username}_${structure}. À vérifier ?`;
+        title = ":white_check_mark: Fiche validée et publiée";
+        text = `Les modifications de la fiche ${type} *${contentTitle}* ont été validées et publiées. À valoriser ?`;
         break;
     }
     return sendSlackNotif(title, text, `${url}/fr/${dispositif.typeContenu}/${dispositifId}`);
@@ -282,7 +290,10 @@ export const saveAndOverwriteDraft = async (
   id: DispositifId,
   newDispositif: Partial<Dispositif>,
   keepTranslations?: boolean,
-): Promise<{ updatedDispositif: Dispositif; hasDraftVersion: boolean }> => {
+): Promise<{
+  updatedDispositif: Dispositif;
+  hasDraftVersion: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null;
+}> => {
   const dispositifToSave = cloneDeep(newDispositif);
   const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, translations: 1 });
 
@@ -330,7 +341,16 @@ export const saveAndOverwriteDraft = async (
 
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
   if (draftDispositif) await deleteDraftDispositif(id);
-  return { updatedDispositif, hasDraftVersion: !!draftDispositif };
+
+  let hasDraftVersion: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null = null;
+  if (draftDispositif) {
+    hasDraftVersion =
+      draftDispositif.status === DispositifStatus.UPDATE_TO_VALIDATE
+        ? DispositifStatus.UPDATE_TO_VALIDATE
+        : DispositifStatus.DRAFT;
+  }
+
+  return { updatedDispositif, hasDraftVersion };
 };
 
 export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
@@ -374,7 +394,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   }
 
   // only if first publication
-  if (!hasDraftVersion) {
+  if (hasDraftVersion === null) {
     try {
       await Promise.all([
         notifyChange(NotifType.PUBLISHED, dispositifId, userId),
@@ -400,8 +420,14 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
       });
     }
   } else {
+    // not first publication
     try {
-      await notifyChange(NotifType.UPDATED_AND_PUBLISHED, dispositifId, userId);
+      if (hasDraftVersion === DispositifStatus.UPDATE_TO_VALIDATE) {
+        await Promise.all([
+          notifyChange(NotifType.UPDATED_AND_PUBLISHED, dispositifId, userId),
+          sendMailWhenDispositifPublishedAfterUpdate(updatedDispositif),
+        ]);
+      }
     } catch (error) {
       logger.error("[publishDispositif] error while sending notifications", error);
     }

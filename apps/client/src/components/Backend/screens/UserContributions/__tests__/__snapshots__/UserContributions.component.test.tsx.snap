@@ -623,8 +623,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     >
                       <div
                         class="c10"
-                        color="#FFEB3B"
-                        textcolor="gray90"
                       >
                         Brouillon
                       </div>
@@ -1272,8 +1270,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c10"
-                        color="#FFEB3B"
-                        textcolor="gray90"
                       >
                         Brouillon
                       </div>
@@ -1487,8 +1483,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c14"
-                        color="#FF9800"
-                        textcolor="white"
                       >
                         En attente
                       </div>
@@ -1658,8 +1652,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c15"
-                        color="#8BC34A"
-                        textcolor="white"
                       >
                         Relecture en cours
                       </div>
@@ -1829,8 +1821,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c14"
-                        color="#FF9800"
-                        textcolor="white"
                       >
                         Accepté
                       </div>
@@ -2044,8 +2034,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c16"
-                        color="#F44336"
-                        textcolor="white"
                       >
                         Rejeté
                       </div>
@@ -2215,7 +2203,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c17"
-                        color="#4CAF50"
                       >
                         Publié
                       </div>
@@ -2432,7 +2419,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         class="c17"
-                        color="#4CAF50"
                       >
                         Publié
                       </div>
