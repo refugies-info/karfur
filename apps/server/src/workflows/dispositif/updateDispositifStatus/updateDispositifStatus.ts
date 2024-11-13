@@ -5,7 +5,8 @@ import {
   publishDispositif,
   saveAndOverwriteDraft,
 } from "~/modules/dispositif/dispositif.service";
-import { Dispositif, User } from "~/typegoose";
+import { sendMailWhenDispositifArchived } from "~/modules/mail/sendMailWhenDispositifArchived";
+import { Dispositif, ObjectId, User } from "~/typegoose";
 import { Response } from "~/types/interface";
 import { log } from "./log";
 
@@ -24,6 +25,10 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
 
   const updatedDispositif: Partial<Dispositif> = { status: body.status };
   await saveAndOverwriteDraft(id, updatedDispositif, true); // overwrite with draft if available
+
+  if (body.status === DispositifStatus.ARCHIVED) {
+    await sendMailWhenDispositifArchived(new ObjectId(id));
+  }
 
   return { text: "success" };
 };

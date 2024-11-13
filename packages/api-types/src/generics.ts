@@ -137,6 +137,7 @@ export enum DispositifStatus {
   WAITING_ADMIN = "En attente admin",
   OK_STRUCTURE = "Accepté structure",
   KO_STRUCTURE = "Rejeté structure",
+  ARCHIVED = "Archivé",
 }
 
 export interface InfoSection {

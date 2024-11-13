@@ -91,10 +91,17 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   }
 
   const editedDispositif: Partial<Dispositif> = {};
-  // if editing a published dispositif => publish
-  if (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion) {
-    await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
+  // if dispositif already published...
+  if (oldDispositif.status === DispositifStatus.ACTIVE) {
+    if (oldDispositif.hasDraftVersion) {
+      // with a draft version => publish
+      await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
+    } else {
+      // with no draft version (= no change) => do nothing
+      return { text: "success" };
+    }
   } else {
+    // else => find the appropriate waiting status
     const status = await getWaitingStatus(dispositif, oldDispositif, user);
     if (status) editedDispositif.status = status;
   }

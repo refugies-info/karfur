@@ -106,10 +106,17 @@ export const correspondingStatus: ContentStatus[] = [
     textColor: colors.white,
   },
   {
+    storedStatus: DispositifStatus.ARCHIVED,
+    displayedStatus: "Archivé",
+    color: red,
+    order: 7,
+    textColor: colors.white,
+  },
+  {
     storedStatus: DispositifStatus.DELETED,
     displayedStatus: "Supprimé",
     color: red,
-    order: 7,
+    order: 8,
     textColor: colors.white,
   },
 ];

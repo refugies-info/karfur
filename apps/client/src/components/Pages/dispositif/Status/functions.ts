@@ -20,6 +20,12 @@ export const getStatus = (
         type: "success",
         icon: "ri-checkbox-circle-fill",
       };
+    case DispositifStatus.ARCHIVED:
+      return {
+        text: "Fiche archivée",
+        type: "error",
+        icon: "ri-archive-fill",
+      };
     case DispositifStatus.DELETED:
       return {
         text: "Fiche supprimée",
