@@ -79,6 +79,3 @@ jobs:
       - name: Build app on both platforms
         working-directory: ./apps/mobile
         run: eas build --platform all --profile production --non-interactive --no-wait --auto-submit
-        env:
-          EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID }}
-          EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
