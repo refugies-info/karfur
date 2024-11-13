@@ -25,8 +25,6 @@ jobs:
       API_URL: ${{ vars.API_URL }}
       ENV_NAME: PROD
       EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-      EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
-      EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       SITE_SECRET: ${{ secrets.SITE_SECRET }}
       SITE_URL: ${{ vars.SITE_URL }}
