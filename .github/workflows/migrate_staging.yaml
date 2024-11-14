@@ -1,7 +1,8 @@
 name: Migrate Staging
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - staging-backend
   workflow_dispatch:

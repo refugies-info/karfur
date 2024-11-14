@@ -6,8 +6,12 @@ export const filterByThemeOrNeed = (
   themesSelected: Id[],
   needs: Id[],
   withSecondaryTheme: boolean,
+  inferedThemes?: Id[],
 ) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;
+
+  if (inferedThemes && dispositif.theme && !inferedThemes.includes(dispositif.theme)) return false;
+
   if (dispositif.needs) {
     for (const need of dispositif.needs) {
       // return true if dispositif has need

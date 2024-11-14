@@ -5,6 +5,7 @@ import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { SearchResultsActions } from "./searchResults.actions";
 
 export type Results = {
+  algolia?: SimpleDispositif[];
   matches: SimpleDispositif[];
   suggestions: SimpleDispositif[];
 };
