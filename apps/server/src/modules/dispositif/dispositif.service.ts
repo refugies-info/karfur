@@ -89,7 +89,7 @@ export enum NotifType {
   DELETED = "DELETED",
   UPDATED = "UPDATED",
   TO_VALIDATE = "TO_VALIDATE",
-  UPDATED_AND_PUBLISHED = "UPDATED_AND_PUBLISHED",
+  VALIDATED_AND_PUBLISHED = "VALIDATED_AND_PUBLISHED",
 }
 export const notifyChange = async (notifType: NotifType, dispositifId: Id, userId: Id) => {
   try {
@@ -129,7 +129,7 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
         title = "Fiche mise à jour à valider :eyes::exclamation:";
         text = `Le brouillon de travail de la fiche ${type} *${contentTitle}* a été envoyé pour validation par _${user.username}_${structure} --> *À valider dans le BO.*`;
         break;
-      case NotifType.UPDATED_AND_PUBLISHED:
+      case NotifType.VALIDATED_AND_PUBLISHED:
         title = ":white_check_mark: Fiche validée et publiée";
         text = `Les modifications de la fiche ${type} *${contentTitle}* ont été validées et publiées. À valoriser ?`;
         break;
@@ -292,7 +292,7 @@ export const saveAndOverwriteDraft = async (
   keepTranslations?: boolean,
 ): Promise<{
   updatedDispositif: Dispositif;
-  hasDraftVersion: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null;
+  draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null;
 }> => {
   const dispositifToSave = cloneDeep(newDispositif);
   const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, translations: 1 });
@@ -342,15 +342,15 @@ export const saveAndOverwriteDraft = async (
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
   if (draftDispositif) await deleteDraftDispositif(id);
 
-  let hasDraftVersion: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null = null;
+  let draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null = null;
   if (draftDispositif) {
-    hasDraftVersion =
+    draftVersionStatus =
       draftDispositif.status === DispositifStatus.UPDATE_TO_VALIDATE
         ? DispositifStatus.UPDATE_TO_VALIDATE
         : DispositifStatus.DRAFT;
   }
 
-  return { updatedDispositif, hasDraftVersion };
+  return { updatedDispositif, draftVersionStatus };
 };
 
 export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
@@ -375,7 +375,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     newDispositif.publishedAt = new Date();
     newDispositif.publishedAtAuthor = new ObjectId(userId);
   }
-  const { updatedDispositif, hasDraftVersion } = await saveAndOverwriteDraft(
+  const { updatedDispositif, draftVersionStatus } = await saveAndOverwriteDraft(
     dispositifId,
     newDispositif,
     keepTranslations,
@@ -394,7 +394,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   }
 
   // only if first publication
-  if (hasDraftVersion === null) {
+  if (draftVersionStatus === null) {
     try {
       await Promise.all([
         notifyChange(NotifType.PUBLISHED, dispositifId, userId),
@@ -422,9 +422,9 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   } else {
     // not first publication
     try {
-      if (hasDraftVersion === DispositifStatus.UPDATE_TO_VALIDATE) {
+      if (draftVersionStatus === DispositifStatus.UPDATE_TO_VALIDATE) {
         await Promise.all([
-          notifyChange(NotifType.UPDATED_AND_PUBLISHED, dispositifId, userId),
+          notifyChange(NotifType.VALIDATED_AND_PUBLISHED, dispositifId, userId),
           sendMailWhenDispositifPublishedAfterUpdate(updatedDispositif),
         ]);
       }
