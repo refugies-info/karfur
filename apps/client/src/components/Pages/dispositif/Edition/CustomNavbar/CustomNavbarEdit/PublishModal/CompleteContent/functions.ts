@@ -10,7 +10,7 @@ export const getTextContent = (
 ) => {
   if (hasDraftVersion) {
     if (isAdmin) {
-      if (hasChanges === undefined) return [{ title: "", intro: "" }];
+      if (hasChanges === undefined) return [{ title: "", intro: [""] }];
       if (hasChanges === false) return help.nochange;
     }
     return help.published;
