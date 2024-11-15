@@ -3,3 +3,12 @@
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/input";
 @import "~/scss/mixins/text";
+
+.info {
+  display: flex;
+  gap: u(2);
+
+  & > i {
+    color: var(--text-action-high-blue-france);
+  }
+}
