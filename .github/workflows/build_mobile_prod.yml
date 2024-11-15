@@ -1,17 +1,22 @@
-name: Deploy Mobile PROD
+name: Build Mobile Production
 on:
+  # We only want to run this workflow when a push is made to the
+  # master-mobile branch and the changes include a change to the
+  # mobile app or the API types.
   push:
     branches:
       - master-mobile
     paths:
       - yarn.lock
       - package.json
+      - .github/workflows/build_mobile_prod.yml
       - apps/mobile/**
       - packages/api-types/**
+  workflow_dispatch:
 
 jobs:
   update:
-    name: EAS Update PROD
+    name: Build Mobile Production
     runs-on: ubuntu-latest
     environment: master-mobile
     env:
@@ -20,8 +25,6 @@ jobs:
       API_URL: ${{ vars.API_URL }}
       ENV_NAME: PROD
       EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-      EXPO_IOS_ASC_APP_ID: ${{ secrets.EXPO_IOS_ASC_APP_ID}}
-      EXPO_IOS_APPLE_TEAM_ID: ${{ secrets.EXPO_IOS_APPLE_TEAM_ID }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       SITE_SECRET: ${{ secrets.SITE_SECRET }}
       SITE_URL: ${{ vars.SITE_URL }}
@@ -39,7 +42,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: "20.13.1"
           cache: yarn
 
       - name: Install Yarn
@@ -54,7 +57,7 @@ jobs:
 
       - name: Find yarn cache
         id: yarn-cache-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Restore cache
         uses: actions/cache@v4
@@ -66,8 +69,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      # - name: Setup GCP service account key
-      #   run: echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}'  | base64 --decode > apps/mobile/refugies-info-appkey.json
+      - name: Setup GCP service account key
+        run: |
+          mkdir -p credentials
+          echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}'  | base64 --decode > credentials/refugies-info-appkey.json
 
-      # - name: Publish update
-      #   run: eas update --auto --non-interactive
+      - name: Build app on both platforms
+        working-directory: ./apps/mobile
+        run: eas build --platform all --profile production --non-interactive --no-wait --auto-submit

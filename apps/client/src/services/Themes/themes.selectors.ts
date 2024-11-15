@@ -1,12 +1,15 @@
 import { GetThemeResponse, Id } from "@refugies-info/api-types";
+import { createSelector } from "reselect";
 import { RootState } from "../rootReducer";
 
 export const themesSelector = (state: RootState): GetThemeResponse[] => state.themes.activeThemes;
 
-export const allThemesSelector = (state: RootState): GetThemeResponse[] => [
-  ...state.themes.activeThemes,
-  ...state.themes.inactiveThemes,
-];
+const selectActiveThemes = (state: RootState): GetThemeResponse[] => state.themes.activeThemes;
+const selectInactiveThemes = (state: RootState): GetThemeResponse[] => state.themes.inactiveThemes;
+export const allThemesSelector = createSelector(
+  [selectActiveThemes, selectInactiveThemes],
+  (selectActiveThemes, selectInactiveThemes) => [...selectActiveThemes, ...selectInactiveThemes],
+);
 
 export const themeSelector = (themeId: Id | undefined) => (state: RootState) => {
   if (!themeId) return null;

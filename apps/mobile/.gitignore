@@ -1,6 +1,3 @@
-.expo/
-.expo/packager-info.json
-node_modules/
 npm-debug.*
 *.jks
 *.p8
@@ -78,6 +75,3 @@ dist/
 
 ios
 android
-
-# GCP
-refugies-info-appkey.json

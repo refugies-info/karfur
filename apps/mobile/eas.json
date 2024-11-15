@@ -61,13 +61,14 @@
   "submit": {
     "production": {
       "android": {
-        "serviceAccountKeyPath": "./refugies-info-appkey.json",
+        "serviceAccountKeyPath": "../../credentials/refugies-info-appkey.json",
         "track": "internal",
         "releaseStatus": "draft"
       },
       "ios": {
-        "ascAppId": "${EXPO_IOS_ASC_APP_ID}",
-        "appleTeamId": "${EXPO_IOS_APPLE_TEAM_ID}"
+        "appleId": "nourallazkani@gmail.com",
+        "ascAppId": "1595597429",
+        "appleTeamId": "98K762J2MM"
       }
     }
   }

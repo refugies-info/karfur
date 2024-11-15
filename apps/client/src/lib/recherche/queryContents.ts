@@ -93,7 +93,7 @@ export const filterDispositifs = (
     .filter((dispositif) => skip === "public" || filterByPublic(dispositif, query.public))
     .filter((dispositif) => skip === "status" || filterByStatus(dispositif, query.status));
 
-  return rule?.sortFunction && !!skip
+  return rule?.sortFunction && !skip
     ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b))
     : filteredDispositifs;
 };
@@ -260,7 +260,7 @@ export const queryDispositifsWithAlgolia = async (
   allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds);
+  return { ...queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds), algolia: filteredDispositifsByAlgolia };
 };
 
 /**

@@ -106,11 +106,25 @@ export const correspondingStatus: ContentStatus[] = [
     textColor: colors.white,
   },
   {
-    storedStatus: DispositifStatus.DELETED,
-    displayedStatus: "Supprimé",
+    storedStatus: DispositifStatus.ARCHIVED,
+    displayedStatus: "Archivé",
     color: red,
     order: 7,
     textColor: colors.white,
+  },
+  {
+    storedStatus: DispositifStatus.DELETED,
+    displayedStatus: "Supprimé",
+    color: red,
+    order: 8,
+    textColor: colors.white,
+  },
+  {
+    storedStatus: DispositifStatus.UPDATE_TO_VALIDATE,
+    displayedStatus: "MAJ à valider",
+    color: yellow,
+    order: 4,
+    textColor: colors.gray90,
   },
 ];
 

@@ -20,9 +20,9 @@ import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { colors } from "~/utils/colors";
 import styles from "./Admin.module.scss";
 
-const OngletText = styled.span<{ isActive: boolean }>`
-  color: ${(props: { isActive: boolean }) => (props.isActive ? colors.bleuCharte : colors.gray90)};
-  font-weight: ${(props: { isActive: boolean }) => (props.isActive ? "bold" : "normal")};
+const OngletText = styled.span<{ $isActive: boolean }>`
+  color: ${(props: { $isActive: boolean }) => (props.$isActive ? colors.bleuCharte : colors.gray90)};
+  font-weight: ${(props: { $isActive: boolean }) => (props.$isActive ? "bold" : "normal")};
 `;
 
 const OngletContainer = styled.div`
@@ -51,7 +51,7 @@ const Onglet = (props: TabProps) => {
           <EVAIcon key={2} name={props.iconNotSelected} fill={colors.gray90} />
         )}
       </div>
-      <OngletText isActive={props.isSelected}>{props.text}</OngletText>
+      <OngletText $isActive={props.isSelected}>{props.text}</OngletText>
     </OngletContainer>
   );
 };
