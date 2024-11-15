@@ -15,6 +15,7 @@ declare type templateIds = {
   resetPassword: string;
   newMember: string;
   accountDeleted: string;
+  validatedAndPublished: string;
 };
 
 export const templatesIds: templateIds = {
@@ -34,4 +35,5 @@ export const templatesIds: templateIds = {
   secondOneDraftReminder: "d-7fc299960fca4d9db6b78b494ce84689",
   secondMultipleDraftReminder: "d-d0cd2b645a194866980a3288ddfc4b27",
   accountDeleted: "d-70d86dadbdcd4f8bb02984c227c90c85",
+  validatedAndPublished: "d-579b6b2be728422d82fcefa13dfa55e6",
 };

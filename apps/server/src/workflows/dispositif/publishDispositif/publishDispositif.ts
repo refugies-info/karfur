@@ -11,6 +11,8 @@ import {
 } from "~/modules/dispositif/dispositif.repository";
 import {
   isDispositifComplete,
+  NotifType,
+  notifyChange,
   publishDispositif as publishDispositifService,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
@@ -109,6 +111,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
     } else {
       // else, wait for admin validation
       await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
+      await notifyChange(NotifType.TO_VALIDATE, id, user._id);
     }
   } else {
     const status = await getWaitingStatus(dispositif, oldDispositif, user);

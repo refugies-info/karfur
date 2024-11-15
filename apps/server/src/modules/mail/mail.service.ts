@@ -589,3 +589,49 @@ export const sendAccountDeletedMailService = async (email: string) => {
     logger.info("[sendAccountDeletedMailService] user has not consented to email", { email });
   }
 };
+
+interface ValidatedAndPublished {
+  userId: UserId;
+  email: string;
+  firstName: string;
+  titreInformatif: string;
+  titreMarque: string;
+  lien: string;
+}
+
+export const sendValidatedAndPublishedMailService = async (data: ValidatedAndPublished) => {
+  if (consentsToEmail(data.userId, "validatedAndPublished")) {
+    try {
+      logger.info("[sendValidatedAndPublishedMailService] received");
+
+      const dynamicData = {
+        to: data.email,
+        from: {
+          email: "contact@refugies.info",
+          name: "L'équipe de Réfugiés.info",
+        },
+        reply_to: "contact@email.refugies.info",
+        dynamicTemplateData: {
+          firstName: data.firstName,
+          titreInformatif: data.titreInformatif,
+          titreMarque: data.titreMarque,
+          lien: data.lien,
+        },
+      };
+      const templateName = "validatedAndPublished";
+      sendMail(templateName, dynamicData, true);
+      await addMailEvent({
+        templateName,
+        email: data.email,
+        userId: data.userId,
+      });
+      return;
+    } catch (error) {
+      logger.error("[sendValidatedAndPublishedMailService] error", {
+        error: error.message,
+      });
+    }
+  } else {
+    logger.info("[sendValidatedAndPublishedMailService] user has not consented to email", { email: data.email });
+  }
+};
