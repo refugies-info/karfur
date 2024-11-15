@@ -29,7 +29,6 @@ export enum LoadingStatusKey {
   SAVE_THEME = "SAVE_THEME",
   CREATE_THEME = "CREATE_THEME",
   DELETE_THEME = "DELETE_THEME",
-  NAVIGATING = "NAVIGATING",
 }
 
 export const startLoading = (key: LoadingStatusKey) => action("LOADING_START", { key });

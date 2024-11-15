@@ -100,20 +100,28 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   }
 
   const editedDispositif: Partial<Dispositif> = {};
-  // if editing a published dispositif => publish
-  if (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion) {
-    const isAdmin = user.isAdmin();
-    const hasTextChanges = hasChanges(oldDispositif.translations.fr, draftDispositif.translations.fr);
+  
+  // if dispositif already published...
+  if (oldDispositif.status === DispositifStatus.ACTIVE) {
+    if (oldDispositif.hasDraftVersion) {
+      // with a draft version => publish
+      const isAdmin = user.isAdmin();
+      const hasTextChanges = hasChanges(oldDispositif.translations.fr, draftDispositif.translations.fr);
 
-    if (isAdmin || !hasTextChanges) {
-      // admin or no changes in translations -> publish
-      await publishDispositifService(id, user._id, isAdmin ? body.keepTranslations : false);
+      if (isAdmin || !hasTextChanges) {
+        // admin or no changes in translations -> publish
+        await publishDispositifService(id, user._id, isAdmin ? body.keepTranslations : false);
+      } else {
+        // else, wait for admin validation
+        await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
+        await notifyChange(NotifType.TO_VALIDATE, id, user._id);
+      }
     } else {
-      // else, wait for admin validation
-      await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
-      await notifyChange(NotifType.TO_VALIDATE, id, user._id);
+      // with no draft version (= no change) => do nothing
+      return { text: "success" };
     }
   } else {
+    // else => find the appropriate waiting status
     const status = await getWaitingStatus(dispositif, oldDispositif, user);
     if (status) editedDispositif.status = status;
   }

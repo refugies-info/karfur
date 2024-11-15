@@ -590,6 +590,47 @@ export const sendAccountDeletedMailService = async (email: string) => {
   }
 };
 
+interface FicheArchivedMail {
+  firstName: string;
+  titreInformatif: string;
+  titreMarque: string;
+  lien: string;
+}
+
+export const sendFicheArchivedService = async (email: string, data: FicheArchivedMail) => {
+  if (consentsToEmail(email, "ficheArchived")) {
+    try {
+      logger.info("[sendFicheArchivedService] received");
+
+      const dynamicData = {
+        to: email,
+        from: {
+          email: "contact@refugies.info",
+          name: "L'équipe de Réfugiés.info",
+        },
+        reply_to: "contact@email.refugies.info",
+        dynamicTemplateData: {
+          ...data,
+        },
+      };
+      const templateName = "ficheArchived";
+      sendMail(templateName, dynamicData, true);
+      await addMailEvent({
+        templateName,
+        email: email,
+      });
+      return;
+    } catch (error) {
+      logger.error("[sendFicheArchivedService] error", {
+        error: error.message,
+      });
+    }
+  } else {
+    logger.info("[sendFicheArchivedService] user has not consented to email", { email });
+  }
+};
+    
+    
 interface ValidatedAndPublished {
   userId: UserId;
   email: string;

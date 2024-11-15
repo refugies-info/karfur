@@ -22,5 +22,6 @@ export const PREFS: Record<string, Record<TemplateName, boolean>> = {
     newMember: false,
     accountDeleted: true,
     validatedAndPublished: false,
+    ficheArchived: true,
   },
 };

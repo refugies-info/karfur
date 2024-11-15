@@ -138,6 +138,7 @@ export enum DispositifStatus {
   UPDATE_TO_VALIDATE = "Mise à jour à valider", // applicable only for drafts
   OK_STRUCTURE = "Accepté structure",
   KO_STRUCTURE = "Rejeté structure",
+  ARCHIVED = "Archivé",
 }
 
 export interface InfoSection {
