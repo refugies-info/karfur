@@ -163,18 +163,19 @@ const queryOnAlgolia = async (search: string, dispositifs: SimpleDispositif[], l
       if (!["ti", "fr"].includes(locale)) {
         queryLanguages.push(locale as SupportedLanguage);
       }
-      hits = await searchClient
-        .searchSingleIndex({
+      const { results } = await searchClient.searchForHits([
+        {
           indexName: indexName!,
-          searchParams: {
+          params: {
             query: search,
             restrictSearchableAttributes: getSearchableAttributes(locale),
             analyticsTags: [`ln_${locale}`],
             queryLanguages,
             hitsPerPage: 600,
           },
-        })
-        .then(({ hits }) => hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult })));
+        },
+      ]);
+      hits = results[0].hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult }));
 
       filteredDispositifsByAlgolia = hits
         .map((hit) => {
