@@ -14,6 +14,7 @@ interface Props {
 }
 
 const Highlight = ({ attribute, hit, capitalize, color, colorNotHighlighted }: Props) => {
+  // See https://github.com/algolia/instantsearch/discussions/5322#discussioncomment-3135852
   const property = getPropertyByPath(hit._highlightResult, attribute as string) || [];
   const properties = Array.isArray(property) ? property : [property];
 
