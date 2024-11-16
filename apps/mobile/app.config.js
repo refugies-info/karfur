@@ -89,6 +89,7 @@ export default {
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
+    newArchEnabled: false,
     slug: "refugies-info-app",
     version,
     orientation: "portrait",
