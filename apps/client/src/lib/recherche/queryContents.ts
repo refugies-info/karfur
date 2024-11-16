@@ -1,6 +1,6 @@
 import { SupportedLanguage } from "@algolia/client-search";
 import { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
-import algoliasearch from "algoliasearch/lite";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
 import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";

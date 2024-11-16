@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.14.2",
+    "algoliasearch": "^5.14.2",
     "@codegouvfr/react-dsfr": "^1.14.1",
     "@hedgedoc/html-to-react": "^2.1.1",
     "@lexical/react": "^0.18.0",

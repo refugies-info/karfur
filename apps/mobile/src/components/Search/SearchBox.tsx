@@ -1,5 +1,5 @@
 import React from "react";
-import { connectSearchBox } from "react-instantsearch-native";
+import { useSearchBox } from "react-instantsearch-core";
 import { TextInput, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
@@ -36,9 +36,10 @@ interface Props {
   backCallback: () => void;
 }
 
-const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback }) => {
+const SearchBox: React.FC<Omit<Props, "currentRefinement" | "refine">> = ({ backCallback }) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
+  const { query, refine } = useSearchBox();
 
   React.useEffect(() => {
     // set focus when component mounts
@@ -64,7 +65,7 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback })
           // @ts-ignore
           ref={input}
           onChangeText={(value: string) => refine(value)}
-          value={currentRefinement}
+          value={query}
           placeholder={t("search_screen.search", "Rechercher")}
           placeholderTextColor={styles.colors.darkGrey}
           isRTL={isRTL}
@@ -83,4 +84,4 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback })
   );
 };
 
-export default connectSearchBox(SearchBox);
+export default SearchBox;
