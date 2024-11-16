@@ -31,12 +31,10 @@ const StyledInput = styled.TextInput<{ isRTL: boolean }>`
 `;
 
 interface Props {
-  currentRefinement: string;
-  refine: any;
   backCallback: () => void;
 }
 
-const SearchBox: React.FC<Omit<Props, "currentRefinement" | "refine">> = ({ backCallback }) => {
+const SearchBox: React.FC<Props> = ({ backCallback }) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
   const { query, refine } = useSearchBox();
