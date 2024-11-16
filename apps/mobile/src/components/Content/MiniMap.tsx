@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import styled from "styled-components/native";
 import { styles } from "~/theme";
 import { MapGoogle } from "~/types/interface";
@@ -42,7 +42,6 @@ export const MiniMap = (props: Props) => {
       <ContentContainer>{props.children}</ContentContainer>
       <MapViewContainer>
         <MapView
-          provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
           style={{
             width: mapWidth,
             height: mapHeight,

@@ -1,9 +1,9 @@
 import BottomSheet, { BottomSheetView, useBottomSheetDynamicSnapPoints } from "@gorhom/bottom-sheet";
 import { useEffect, useMemo, useState } from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import { SharedValue } from "react-native-reanimated";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
@@ -109,7 +109,6 @@ export const Map = (props: PropsType) => {
         onPress={hideMarkerDetails}
         onMapReady={() => fitAllMarkers(markers)}
         maxZoomLevel={maxZoom}
-        provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
       >
         {markers.map((marker, key) => {
           const lat = typeof marker.latitude === "string" ? parseFloat(marker.latitude) : marker.latitude;
