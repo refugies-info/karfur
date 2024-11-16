@@ -7,7 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Linking from "expo-linking";
-import { Subscription } from "expo-modules-core";
 import * as Notifications from "expo-notifications";
 import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
@@ -46,8 +45,8 @@ import { OnboardingStackNavigator } from "./OnboardingNavigator";
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
-  const responseListener = useRef<Subscription>();
-  const notificationsListener = useRef<Subscription>();
+  const responseListener = useRef<ReturnType<typeof Notifications.addNotificationResponseReceivedListener>>();
+  const notificationsListener = useRef<ReturnType<typeof Notifications.addNotificationReceivedListener>>();
   const navigationRef = useRef<any>();
   const queryClient = useQueryClient();
   const [navigationReady, setNavigationReady] = useState(false);

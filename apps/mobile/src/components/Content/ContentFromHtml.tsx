@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import * as React from "react";
 import { Text, View } from "react-native";
-import HTML from "react-native-render-html";
+import HTML, { CustomRendererProps, TBlock, TChildrenRenderer } from "react-native-render-html";
 import sanitizeHtml from "sanitize-html";
 import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -90,7 +90,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
           tagsStyles={{
             strong: {
               fontFamily: styles.fonts.families.marianneBold,
-              fontWeight: null,
+              fontWeight: undefined,
             },
             em: {
               fontFamily: styles.fonts.families.marianneRegItalic,
@@ -98,24 +98,23 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
             b: {
               fontFamily: styles.fonts.families.marianneBold,
               textAlign: isRTL ? "right" : "left",
-              fontWeight: null,
+              fontWeight: undefined,
             },
           }}
-          baseFontStyle={{
+          baseStyle={{
             fontSize: styles.fonts.sizes.md,
             fontFamily: styles.fonts.families.marianneReg,
             textAlign: isRTL ? "right" : "left",
             lineHeight: 20,
           }}
           renderers={{
-            a: (attrs, children, _cssStyles, passProps) => (
-              <Link accessibilityRole="link" onPress={() => handleOpenUrl(attrs.href.toString())} key={passProps.key}>
-                {children}
+            a: ({ tnode }: CustomRendererProps<TBlock>) => (
+              <Link accessibilityRole="link" onPress={() => handleOpenUrl(tnode.attributes.href.toString())}>
+                <TChildrenRenderer tchildren={tnode.children} />;
               </Link>
             ),
-            ul: (_, children, _cssStyles, passProps) => (
+            ul: ({ tnode }: CustomRendererProps<TBlock>) => (
               <View
-                key={passProps.key}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -123,12 +122,11 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                   marginTop: styles.margin,
                 }}
               >
-                {children}
+                <TChildrenRenderer tchildren={tnode.children} />
               </View>
             ),
-            li: (_, children, _cssStyles, passProps) => (
+            li: ({ tnode }: CustomRendererProps<TBlock>) => (
               <RTLView
-                key={passProps.key}
                 style={{
                   marginBottom: styles.margin,
                   alignItems: "flex-start",
@@ -143,26 +141,27 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 >
                   <Text style={{ fontSize: 10 }}>{"\u25CF"}</Text>
                 </View>
-                <TextDSFR_MD style={{ flexShrink: 1 }}>{children}</TextDSFR_MD>
+                <TextDSFR_MD style={{ flexShrink: 1 }}>
+                  <TChildrenRenderer tchildren={tnode.children} />
+                </TextDSFR_MD>
               </RTLView>
             ),
-            p: (_, children, _cssStyles, passProps) => (
+            p: ({ tnode }: CustomRendererProps<TBlock>) => (
               <TextDSFR_MD
-                key={passProps.key}
                 style={{
                   marginBottom: styles.margin,
                   flexShrink: 1,
                 }}
               >
-                {children}
+                <TChildrenRenderer tchildren={tnode.children} />
               </TextDSFR_MD>
             ),
-            div: (_, children, _cssStyles, passProps) => {
-              if (_["data-callout"] === "important") {
+            div: ({ tnode }: CustomRendererProps<TBlock>) => {
+              if (tnode.attributes["data-callout"] === "important") {
                 return (
-                  <View key={passProps.key}>
-                    <Spacer key={passProps.key + "_spacer"} height={theme.margin * 3} />
-                    <Card key={passProps.key} backgroundColor={theme.colors.lightGrey}>
+                  <View>
+                    <Spacer height={theme.margin * 3} />
+                    <Card backgroundColor={theme.colors.lightGrey}>
                       <Columns layout="auto 1">
                         <View
                           style={{
@@ -175,21 +174,29 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         <View style={{ padding: 10 }}>
                           <Rows spacing={RowsSpacing.Text}>
                             <TextDSFR_MD_Bold>{t("content_screen.callout_important", "Important")}</TextDSFR_MD_Bold>
-                            {children}
+                            <TChildrenRenderer tchildren={tnode.children} />
                           </Rows>
                         </View>
                       </Columns>
                     </Card>
-                    <Spacer key={passProps.key + "_spacer_"} height={theme.margin * 3} />
+                    <Spacer height={theme.margin * 3} />
                   </View>
                 );
               }
 
-              if (_["data-callout"] === "info") {
-                return <Callout key={passProps.key}>{children}</Callout>;
+              if (tnode.attributes["data-callout"] === "info") {
+                return (
+                  <Callout>
+                    <TChildrenRenderer tchildren={tnode.children} />
+                  </Callout>
+                );
               }
 
-              return <View key={passProps.key}>{children}</View>;
+              return (
+                <View>
+                  <TChildrenRenderer tchildren={tnode.children} />
+                </View>
+              );
             },
           }}
         />

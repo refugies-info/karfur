@@ -1,4 +1,4 @@
-import HTML from "react-native-render-html";
+import HTML, { CustomRendererProps, TBlock, TChildrenRenderer, useRendererProps } from "react-native-render-html";
 import sanitizeHtml from "sanitize-html";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
@@ -11,6 +11,7 @@ interface Props {
   windowWidth: number;
   darkColor: string;
 }
+
 export const AccordionHeaderFromHtml = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
@@ -24,7 +25,7 @@ export const AccordionHeaderFromHtml = (props: Props) => {
       <HTML
         contentWidth={props.windowWidth}
         source={{ html: props.htmlContent }}
-        baseFontStyle={{
+        baseStyle={{
           fontSize: styles.fonts.sizes.md,
           fontFamily: styles.fonts.families.marianneBold,
           textAlign: isRTL ? "right" : "left",
@@ -34,19 +35,21 @@ export const AccordionHeaderFromHtml = (props: Props) => {
           color: props.darkColor,
         }}
         renderers={{
-          // eslint-disable-next-line react/display-name
-          p: (_, children, _cssStyles, passProps) => (
-            <TextDSFR_MD_Bold
-              key={passProps.key}
-              style={{
-                flexShrink: 1,
-                width: props.width,
-                color: props.darkColor,
-              }}
-            >
-              {children}
-            </TextDSFR_MD_Bold>
-          ),
+          p: ({ tnode }: CustomRendererProps<TBlock>) => {
+            const props = useRendererProps("p");
+
+            return (
+              <TextDSFR_MD_Bold
+                style={{
+                  flexShrink: 1,
+                  width: props.width,
+                  color: props.darkColor,
+                }}
+              >
+                <TChildrenRenderer tchildren={tnode.children} />
+              </TextDSFR_MD_Bold>
+            );
+          },
         }}
       />
     </ReadableText>

@@ -13,7 +13,7 @@ import { StreamlineIcon } from "../StreamlineIcon";
 import { TextDSFR_L_Bold } from "../StyledText";
 
 interface Props {
-  backgroundColor: string | Array<any>;
+  backgroundColor: string | [string, string];
   icon?: Picture;
   iconSize?: number;
   inline?: boolean;
@@ -63,7 +63,10 @@ const TagButtonComponent = ({
   textColor,
 }: Props) => {
   const gradientBackgroundColor = React.useMemo(
-    () => (isArray(backgroundColor) ? backgroundColor : [backgroundColor, backgroundColor]),
+    () =>
+      isArray(backgroundColor)
+        ? (backgroundColor as [string, string])
+        : ([backgroundColor, backgroundColor] as [string, string]),
     [backgroundColor],
   );
   return (

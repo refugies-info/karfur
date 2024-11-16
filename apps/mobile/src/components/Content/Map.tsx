@@ -1,10 +1,9 @@
-import BottomSheet, { BottomSheetView, useBottomSheetDynamicSnapPoints } from "@gorhom/bottom-sheet";
-import { useEffect, useMemo, useState } from "react";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { useEffect, useState } from "react";
 import { Dimensions } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import MapView, { Marker } from "react-native-maps";
-import { SharedValue } from "react-native-reanimated";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import { MapGoogle, MarkerGoogle } from "~/types/interface";
@@ -83,11 +82,6 @@ export const Map = (props: PropsType) => {
     }, 100);
   };
 
-  const initialSnapPoints = useMemo(() => ["CONTENT_HEIGHT"], []);
-
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight, handleContentLayout } =
-    useBottomSheetDynamicSnapPoints(initialSnapPoints);
-
   const markers = props.map.markers;
   const mapHeight = Dimensions.get("screen").height;
   const mapWidth = Dimensions.get("screen").width;
@@ -138,12 +132,10 @@ export const Map = (props: PropsType) => {
         index={0}
         ref={(ref) => (bottomSheet = ref)}
         enablePanDownToClose={true}
-        snapPoints={animatedSnapPoints as Readonly<SharedValue<(string | number)[]>>}
-        handleHeight={animatedHandleHeight}
-        contentHeight={animatedContentHeight}
+        enableDynamicSizing={true}
         onChange={onChange}
       >
-        <BottomSheetView onLayout={handleContentLayout}>
+        <BottomSheetView>
           <MapBottomBar selectedMarker={markerOpen} textColor={props.markersColor} hideSideBar={hideMarkerDetails} />
         </BottomSheetView>
       </BottomSheet>

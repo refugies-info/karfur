@@ -1,9 +1,8 @@
-import { Subscription } from "expo-modules-core";
 import * as Notifications from "expo-notifications";
 import { NotificationResponse } from "expo-notifications";
 
 let notificationDataStack: NotificationResponse[] = [];
-let notificationListener: Subscription | null = null;
+let notificationListener: ReturnType<typeof Notifications.addNotificationResponseReceivedListener> | null = null;
 
 export const enableNotificationsListener = () => {
   notificationListener = Notifications.addNotificationResponseReceivedListener((response) => {
