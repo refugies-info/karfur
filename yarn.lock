@@ -16067,11 +16067,6 @@ search-insights@^2.17.2:
   resolved "https://registry.yarnpkg.com/search-insights/-/search-insights-2.17.2.tgz#d13b2cabd44e15ade8f85f1c3b65c8c02138629a"
   integrity sha512-zFNpOpUO+tY2D85KrxJ+aqwnIfdEGi06UH2+xEb+Bp9Mwznmauqc9djbnBibJO5mpfUPPa8st6Sx65+vbeO45g==
 
-search-insights@^2.4.0:
-  version "2.16.3"
-  resolved "https://registry.yarnpkg.com/search-insights/-/search-insights-2.16.3.tgz#7128e2c6c8499fff52326dda9209b380d4ee0e0a"
-  integrity sha512-hSHy/s4Zk2xibhj9XTCACB+1PqS+CaJxepGNBhKc/OsHRpqvHAUAm5+uZ6kJJbGXn0pb3XqekHjg6JAqPExzqg==
-
 section-iterator@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/section-iterator/-/section-iterator-2.0.0.tgz"

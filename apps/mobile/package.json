@@ -70,7 +70,7 @@
     "react-use": "^17.4.0",
     "redux-saga": "^1.2.3",
     "sanitize-html": "^2.13.1",
-    "search-insights": "^2.4.0",
+    "search-insights": "^2.17.2",
     "sharp": "^0.33.4",
     "styled-components": "^6.1.12",
     "stylis": "^4.0.0",
