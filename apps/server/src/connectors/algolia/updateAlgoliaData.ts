@@ -1,17 +1,20 @@
+import { algoliasearch } from "algoliasearch";
 import logger from "~/logger";
 import { AlgoliaObject } from "~/types/interface";
 
-const algoliasearch = require("algoliasearch");
 const client = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY);
-const index = client.initIndex(process.env.ALGOLIA_INDEX);
+const indexName = process.env.ALGOLIA_INDEX;
 
 export const getAllAlgoliaObjects = async (): Promise<AlgoliaObject[]> => {
   let algoliaContents: AlgoliaObject[] = [];
 
-  await index.browseObjects({
-    query: "", // Empty query will match all records
-    batch: (batch: any) => {
-      algoliaContents = algoliaContents.concat(batch);
+  await client.browseObjects<AlgoliaObject>({
+    indexName,
+    aggregator: (response) => {
+      algoliaContents = algoliaContents.concat(response.hits);
+    },
+    browseParams: {
+      query: "", // Empty query will match all records
     },
   });
 
@@ -20,15 +23,24 @@ export const getAllAlgoliaObjects = async (): Promise<AlgoliaObject[]> => {
 
 export const addAlgoliaObjects = async (objects: AlgoliaObject[]) => {
   logger.info(`[algolia] adding ${objects.length} contents`);
-  return index.saveObjects(objects);
+  return client.saveObjects({
+    indexName,
+    objects,
+  });
 };
 
-export const deleteAlgoliaObjects = async (objectsID: string[]) => {
-  logger.info(`[algolia] deleting ${objectsID.length} contents`);
-  return index.deleteObjects(objectsID);
+export const deleteAlgoliaObjects = async (objectIDs: string[]) => {
+  logger.info(`[algolia] deleting ${objectIDs.length} contents`);
+  return client.deleteObjects({
+    indexName,
+    objectIDs,
+  });
 };
 
 export const updateAlgoliaObjects = async (objects: AlgoliaObject[]) => {
   logger.info(`[algolia] updating ${objects.length} content`);
-  return index.partialUpdateObjects(objects);
+  return client.partialUpdateObjects({
+    indexName,
+    objects,
+  });
 };

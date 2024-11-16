@@ -100,7 +100,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   }
 
   const editedDispositif: Partial<Dispositif> = {};
-  
+
   // if dispositif already published...
   if (oldDispositif.status === DispositifStatus.ACTIVE) {
     if (oldDispositif.hasDraftVersion) {

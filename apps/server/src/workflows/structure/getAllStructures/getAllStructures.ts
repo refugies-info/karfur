@@ -69,7 +69,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       email: 1,
     });
     const responsables: Record<string, SimpleUser> = users.reduce(
-      (acc: { [key: string]: SimpleUser }, user) => ({
+      (acc: { [key: string]: SimpleUser }, user: any) => ({
         ...acc,
         [user._id.toString()]: {
           ...user,

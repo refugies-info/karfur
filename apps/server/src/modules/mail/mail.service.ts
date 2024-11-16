@@ -629,8 +629,7 @@ export const sendFicheArchivedService = async (email: string, data: FicheArchive
     logger.info("[sendFicheArchivedService] user has not consented to email", { email });
   }
 };
-    
-    
+
 interface ValidatedAndPublished {
   userId: UserId;
   email: string;
