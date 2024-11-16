@@ -16,6 +16,6 @@ export const getDispositifs = async (query: GetDispositifsRequest): ResponseWith
   const result = await getSimpleDispositifs(dbQuery, selectedLocale, limit, sort ? { [sort]: -1 } : {});
   return {
     text: "success",
-    data: result,
+    data: result as SimpleDispositif[],
   };
 };

@@ -74,9 +74,9 @@ const SearchStructureResult = ({
       {onHold ? (
         <StyledStatusContainer
           className={styles.tag}
-          color={styles.orange}
-          textColor={styles.darkColor}
-          disabled={false}
+          $color={styles.orange}
+          $textColor={styles.darkColor}
+          $disabled={false}
         >
           En attente de validation
         </StyledStatusContainer>

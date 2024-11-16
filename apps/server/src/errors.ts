@@ -1,6 +1,7 @@
-import { NextFunction, Request, Response } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { ValidateError } from "tsoa";
 import logger from "~/logger";
+
 export class RefactorTodoError extends Error {
   constructor() {
     super("Refactor TODO");
@@ -54,7 +55,12 @@ export class InvalidRequestError extends APIError {
  * @param next
  * @returns
  */
-export const serverErrorHandler = (err: unknown, req: Request, res: Response, next: NextFunction): Response | void => {
+export const serverErrorHandler: ErrorRequestHandler = (
+  err: unknown,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   // eslint-disable-next-line no-console
   if (process.env.NODE_ENV !== "production") console.error(err);
 
@@ -64,10 +70,11 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
       path: req.url,
       fields: err.fields,
     });
-    return res.status(422).json({
+    res.status(422).json({
       message: "Validation Failed",
       data: err.fields,
     });
+    return;
   }
 
   if (err instanceof APIError) {
@@ -78,11 +85,12 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
       data: err.data,
     });
 
-    return res.status(err.status).json({
+    res.status(err.status).json({
       message: err.message,
       code: err.code,
       data: err.data,
     });
+    return;
   }
 
   if (err instanceof Error) {
@@ -91,9 +99,10 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
       path: req.url,
       error: err,
     });
-    return res.status(500).json({
+    res.status(500).json({
       message: err.message || "Internal Server Error",
     });
+    return;
   }
 
   next();
