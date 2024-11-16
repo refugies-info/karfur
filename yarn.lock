@@ -17459,10 +17459,10 @@ svgo@^3.0.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
-sweetalert2@^11.14.4:
-  version "11.14.4"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.14.4.tgz#0186439674ea4f15991e41cea3af203ee497853c"
-  integrity sha512-8QMzjxCuinwm18EK5AtYvuhP+lRMRxTWVXy8om9wGlULsXSI4TD29kyih3VYrSXMMBlD4EShFvNC7slhTC7j0w==
+sweetalert2@^11.14.5:
+  version "11.14.5"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.14.5.tgz#a3adf9d8c6c8eb8eacfd57e2261503f2181abb8d"
+  integrity sha512-8MWk5uc/r6bWhiJWkUXyEuApfXAhSCZT8FFX7pZXL7YwaPxq+9Ynhi2dUzWkOFn9jvLjKj22CXuccZ+IHcnjvQ==
 
 symbol-tree@^3.2.4:
   version "3.2.4"
