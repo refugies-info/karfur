@@ -53,7 +53,11 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           <Image
             alt=""
             height={80}
-            source={1}
+            source={
+              {
+                "testUri": "../../../apps/mobile/src/theme/images/onboarding/hello.png",
+              }
+            }
             style={
               {
                 "height": 80,
@@ -121,13 +125,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -150,13 +163,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -272,8 +294,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -346,8 +368,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -424,13 +446,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -453,13 +484,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -575,8 +615,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -649,8 +689,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -727,13 +767,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -756,13 +805,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -878,8 +936,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -952,8 +1010,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -1030,13 +1088,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -1059,13 +1126,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -1181,8 +1257,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -1255,8 +1331,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -1333,13 +1409,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -1362,13 +1447,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -1484,8 +1578,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -1558,8 +1652,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -1636,13 +1730,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -1665,13 +1768,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -1787,8 +1899,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -1861,8 +1973,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -1939,13 +2051,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -1968,13 +2089,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -2090,8 +2220,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -2164,8 +2294,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
@@ -2242,13 +2372,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-start"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-start"
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -2271,13 +2410,22 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                animatedStyle={
+                collapsable={false}
+                horizontalAlign="flex-start"
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                horizontalAlign="flex-start"
+                jestInlineStyle={
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
                 style={
                   {
                     "alignItems": "center",
@@ -2393,8 +2541,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#161616"
                   focusable={false}
                   height={24}
@@ -2467,8 +2615,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"
