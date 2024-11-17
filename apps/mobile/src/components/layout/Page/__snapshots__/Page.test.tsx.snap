@@ -538,28 +538,12 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
+    animatedStyle={
       {
         "value": {},
       }
     }
-    jestInlineStyle={
-      [
-        {
-          "left": 0,
-          "paddingHorizontal": 24,
-          "paddingVertical": 8,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
-        },
-        {
-          "backgroundColor": "white",
-        },
-      ]
-    }
+    collapsable={false}
     style={
       {
         "backgroundColor": "white",
@@ -584,22 +568,13 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
-        horizontalAlign="space-between"
-        jestAnimatedStyle={
+        animatedStyle={
           {
             "value": {},
           }
         }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "space-between",
-          }
-        }
+        collapsable={false}
+        horizontalAlign="space-between"
         style={
           {
             "alignItems": "center",
@@ -698,8 +673,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -772,8 +747,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -814,22 +789,13 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
-            horizontalAlign="flex-end"
-            jestAnimatedStyle={
+            animatedStyle={
               {
                 "value": {},
               }
             }
-            jestInlineStyle={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-end",
-              }
-            }
+            collapsable={false}
+            horizontalAlign="flex-end"
             style={
               {
                 "alignItems": "center",

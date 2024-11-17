@@ -140,7 +140,6 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                   ]
                 }
                 enableMergePathsAndroidForKitKatAndAbove={false}
-                enableSafeModeAndroid={false}
                 loop={true}
                 onAnimationFailure={[Function]}
                 onAnimationFinish={[Function]}
@@ -249,22 +248,13 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
-              jestAnimatedStyle={
+              animatedStyle={
                 {
                   "value": {},
                 }
               }
-              jestInlineStyle={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
-              }
+              collapsable={false}
+              horizontalAlign="flex-start"
               style={
                 {
                   "alignItems": "center",
@@ -340,8 +330,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                   >
                     <RNSVGSvgView
                       align="xMidYMid"
-                      bbHeight={24}
-                      bbWidth={24}
+                      bbHeight="24"
+                      bbWidth="24"
                       fill="#FFFFFF"
                       focusable={false}
                       height={24}
@@ -404,8 +394,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                               height="24"
                               opacity={0}
                               width="24"
-                              x={0}
-                              y={0}
+                              x="0"
+                              y="0"
                             />
                             <RNSVGPath
                               d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -479,22 +469,13 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
-              jestAnimatedStyle={
+              animatedStyle={
                 {
                   "value": {},
                 }
               }
-              jestInlineStyle={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
-              }
+              collapsable={false}
+              horizontalAlign="flex-start"
               style={
                 {
                   "alignItems": "center",

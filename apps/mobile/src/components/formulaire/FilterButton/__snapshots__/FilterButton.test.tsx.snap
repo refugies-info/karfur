@@ -59,22 +59,13 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
-    horizontalAlign="flex-start"
-    jestAnimatedStyle={
+    animatedStyle={
       {
         "value": {},
       }
     }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
+    collapsable={false}
+    horizontalAlign="flex-start"
     style={
       {
         "alignItems": "center",
@@ -159,8 +150,8 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
       >
         <RNSVGSvgView
           align="xMidYMid"
-          bbHeight={24}
-          bbWidth={24}
+          bbHeight="24"
+          bbWidth="24"
           fill="#161616"
           focusable={false}
           height={24}
@@ -223,8 +214,8 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
                   height="24"
                   opacity={0}
                   width="24"
-                  x={0}
-                  y={0}
+                  x="0"
+                  y="0"
                 />
                 <RNSVGPath
                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -296,22 +287,13 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
-    horizontalAlign="flex-start"
-    jestAnimatedStyle={
+    animatedStyle={
       {
         "value": {},
       }
     }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
+    collapsable={false}
+    horizontalAlign="flex-start"
     style={
       {
         "alignItems": "center",
@@ -461,8 +443,8 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
       >
         <RNSVGSvgView
           align="xMidYMid"
-          bbHeight={24}
-          bbWidth={24}
+          bbHeight="24"
+          bbWidth="24"
           fill="#000091"
           focusable={false}
           height={24}
@@ -525,8 +507,8 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
                   height="24"
                   opacity={0}
                   width="24"
-                  x={0}
-                  y={0}
+                  x="0"
+                  y="0"
                 />
                 <RNSVGPath
                   d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -607,22 +589,13 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
-    horizontalAlign="flex-start"
-    jestAnimatedStyle={
+    animatedStyle={
       {
         "value": {},
       }
     }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
+    collapsable={false}
+    horizontalAlign="flex-start"
     style={
       {
         "alignItems": "center",
@@ -707,8 +680,8 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
       >
         <RNSVGSvgView
           align="xMidYMid"
-          bbHeight={24}
-          bbWidth={24}
+          bbHeight="24"
+          bbWidth="24"
           fill="#000091"
           focusable={false}
           height={24}
@@ -771,8 +744,8 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
                   height="24"
                   opacity={0}
                   width="24"
-                  x={0}
-                  y={0}
+                  x="0"
+                  y="0"
                 />
                 <RNSVGPath
                   d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
