@@ -16,7 +16,7 @@
     "@react-native-community/netinfo": "11.4.0",
     "@react-native-firebase/analytics": "^20.0.0",
     "@react-native-firebase/app": "^20.0.0",
-    "@react-native-firebase/crashlytics": "^20.0.0",
+    "@react-native-firebase/crashlytics": "^21.5.0",
     "@react-navigation/bottom-tabs": "~6",
     "@react-navigation/native": "^6.0.14",
     "@react-navigation/stack": "^6.2.0",
