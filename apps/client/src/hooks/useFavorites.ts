@@ -1,18 +1,29 @@
 import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserFavoritesActionCreator } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { userFavoritesSelector } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import API from "~/utils/API";
 import useAuth from "./useAuth";
 
+/**
+ * Helper function to check if a content is in the user's favorites list
+ * @param favorites List of user's favorite content
+ * @param id Content ID to check
+ * @returns boolean indicating if the content is favorited
+ */
 export const isContentFavorite = (favorites: SimpleDispositif[], id: Id | null) => {
   if (id === null) return false;
   if (favorites.length === 0) return false;
   return !!favorites.find((c) => c._id === id);
 };
 
+/**
+ * Hook to manage user's favorites for a specific content
+ * @param contentId ID of the content to check/manage favorite status
+ * @returns Object containing favorite status and functions to add/remove from favorites
+ */
 const useFavorites = (contentId: Id | null) => {
   const favorites = useSelector(userFavoritesSelector);
   const router = useRouter();
@@ -21,12 +32,23 @@ const useFavorites = (contentId: Id | null) => {
   const dispatch = useDispatch();
   const { isAuth } = useAuth();
 
+  // Fetch favorites when the hook is initialized and user is authenticated
+  // This ensures favorites are loaded before the selector is used in the UI
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(fetchUserFavoritesActionCreator(locale));
+    }
+  }, [dispatch, locale, isAuth]);
+
+  // Memoized computation of whether the current content is favorited
   const isFavorite = useMemo(() => isContentFavorite(favorites, contentId), [favorites, contentId]);
 
+  // Callback to refresh favorites after successful API operations
   const successCallback = useCallback(() => {
     dispatch(fetchUserFavoritesActionCreator(locale));
   }, [dispatch, locale]);
 
+  // Add content to favorites if authenticated and not already favorited
   const addToFavorites = useCallback(() => {
     if (isAuth) {
       if (isFavorite || !contentId) return;
@@ -34,6 +56,7 @@ const useFavorites = (contentId: Id | null) => {
     }
   }, [contentId, isFavorite, successCallback, isAuth]);
 
+  // Remove content from favorites if authenticated and currently favorited
   const deleteFromFavorites = useCallback(() => {
     if (isAuth) {
       if (!isFavorite || !contentId) return;
