@@ -122,7 +122,7 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
         text = `La fiche ${type} *${contentTitle}* a été supprimée par _${user.username}_${structure}. À vérifier ?`;
         break;
       case NotifType.UPDATED:
-        title = ":arrows_counterclockwise: Fiche mise à jour !";
+        title = ":writing_hand: Fiche en cours de mise à jour";
         text = `La fiche ${type} *${contentTitle}* a été modifiée par _${user.username}_${structure}. À vérifier ?`;
         break;
       case NotifType.TO_VALIDATE:
