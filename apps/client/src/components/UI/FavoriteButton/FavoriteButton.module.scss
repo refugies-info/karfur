@@ -35,6 +35,10 @@
     color: var(--text-disabled-grey);
   }
 
+  & > span {
+    display: none;
+  }
+
   &.active {
     i {
       color: var(--artwork-major-blue-france-active);

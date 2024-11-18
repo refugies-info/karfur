@@ -11,7 +11,7 @@ import ThemeItem from "./ThemeItem";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import styles from "./Themes.module.css";
 
-const Themes: React.FC = () => {
+const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const { selectedThemeId } = useContext(ThemeMenuContext);
   const themes = useSelector(themesSelector);
   const sortedThemes = useMemo(() => themes.sort(sortThemes), [themes]);
@@ -42,7 +42,7 @@ const Themes: React.FC = () => {
   }, [query.needs, query.themes, themes, needs]);
 
   return (
-    <>
+    <div ref={ref}>
       {isMobile ? (
         <Accordion.Root className={styles.accordion} type="single" collapsible>
           {sortedThemes.map(({ _id, mainColor, short }, i) => {
@@ -77,8 +77,9 @@ const Themes: React.FC = () => {
           })}
         </div>
       )}
-    </>
+    </div>
   );
-};
+});
 
+Themes.displayName = "Themes";
 export default Themes;

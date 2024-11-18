@@ -8,7 +8,7 @@ import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 
-const Needs: React.FC = () => {
+const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const locale = useLocale();
   const { search, selectedThemeId, nbDispositifsByTheme } = useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
@@ -34,7 +34,7 @@ const Needs: React.FC = () => {
   }, [selectedThemeId]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={ref}>
       <AllNeedsItem themeId={selectedThemeId as string} />
       <div className={styles.needs} ref={needsContainerRef}>
         {displayedNeeds.map((need, i) => {
@@ -43,6 +43,8 @@ const Needs: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+Needs.displayName = "Needs";
 
 export default Needs;
