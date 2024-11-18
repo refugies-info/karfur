@@ -539,12 +539,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             </div>
           </div>
           <button
-            class="btn favorite btn btn-secondary"
-            title="Dispositif.addToFavorites"
+            class="btn active favorite btn btn-secondary"
+            title="Dispositif.removeFromFavorites"
             type="button"
           >
             <i
-              class="fr-icon-star-line"
+              class="fr-icon-star-fill"
             />
           </button>
         </div>
@@ -660,12 +660,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             </div>
           </div>
           <button
-            class="btn favorite btn btn-secondary"
-            title="Dispositif.addToFavorites"
+            class="btn active favorite btn btn-secondary"
+            title="Dispositif.removeFromFavorites"
             type="button"
           >
             <i
-              class="fr-icon-star-line"
+              class="fr-icon-star-fill"
             />
           </button>
         </div>
@@ -778,12 +778,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             </div>
           </div>
           <button
-            class="btn favorite btn btn-secondary"
-            title="Dispositif.addToFavorites"
+            class="btn active favorite btn btn-secondary"
+            title="Dispositif.removeFromFavorites"
             type="button"
           >
             <i
-              class="fr-icon-star-line"
+              class="fr-icon-star-fill"
             />
           </button>
         </div>
