@@ -6,6 +6,38 @@ exports[`recherche renders search results 1`] = `
     class="container"
   >
     <div
+      class="fr-notice fr-notice--info"
+      id="fr-notice-:r0:"
+    >
+      <div
+        class="fr-container"
+      >
+        <div
+          class="fr-notice__body"
+        >
+          <p
+            class="fr-notice__title"
+          >
+            Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info ! Découvrez toutes les nouveautés dans 
+            <a
+              class="text-decoration-underline"
+              href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              notre article d'aide
+            </a>
+            .
+          </p>
+          <button
+            class="fr-btn--close fr-btn"
+          >
+            Masquer le message
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       class="title"
     >
       <div
@@ -30,7 +62,7 @@ exports[`recherche renders search results 1`] = `
         >
           <label
             class="fr-label"
-            for="input-:r0:"
+            for="input-:r1:"
           >
             Url du site :
             <span
@@ -43,9 +75,9 @@ exports[`recherche renders search results 1`] = `
             class="fr-input-wrap fr-icon-search-line"
           >
             <input
-              aria-describedby="input-:r0:-desc-error"
+              aria-describedby="input-:r1:-desc-error"
               class="fr-input"
-              id="input-:r0:"
+              id="input-:r1:"
               placeholder="Rechercher par mot-clé"
               type="text"
               value=""
@@ -54,7 +86,7 @@ exports[`recherche renders search results 1`] = `
           <div
             aria-live="polite"
             class="fr-messages-group"
-            id="input-:r0:-messages-group"
+            id="input-:r1:-messages-group"
           />
         </div>
         <div
@@ -71,7 +103,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:r1:"
+                id="radix-:r2:"
                 type="button"
               >
                 <span
@@ -97,7 +129,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button values"
                 data-state="closed"
-                id="radix-:r3:"
+                id="radix-:r4:"
                 type="button"
               >
                 <span
@@ -127,7 +159,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:r5:"
+                id="radix-:r6:"
                 type="button"
               >
                 <span
@@ -153,7 +185,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:r7:"
+                id="radix-:r8:"
                 type="button"
               >
                 <span
@@ -179,7 +211,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:r9:"
+                id="radix-:ra:"
                 type="button"
               >
                 <span
@@ -205,7 +237,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:rb:"
+                id="radix-:rc:"
                 type="button"
               >
                 <span
@@ -231,7 +263,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:rd:"
+                id="radix-:re:"
                 type="button"
               >
                 <span
@@ -257,7 +289,7 @@ exports[`recherche renders search results 1`] = `
                 aria-haspopup="menu"
                 class="button"
                 data-state="closed"
-                id="radix-:rf:"
+                id="radix-:rg:"
                 type="button"
               >
                 <i
@@ -310,7 +342,7 @@ exports[`recherche renders search results 1`] = `
               aria-haspopup="true"
               class="sort_button"
               data-state="closed"
-              id="radix-:rh:"
+              id="radix-:ri:"
               type="button"
             >
               <span
@@ -350,7 +382,7 @@ exports[`recherche renders search results 1`] = `
           </div>
           <button
             class="fr-btn fr-btn--tertiary ri-eraser-line fr-btn--icon-right"
-            id="fr-button-:rj:"
+            id="fr-button-:rk:"
           >
             Recherche.resetFilters
           </button>
