@@ -241,7 +241,6 @@ const Filter = ({ gaType, menuItems, externalMenu, label, tooltip, icon, showFil
                       key={o}
                       className={cls(styles.item, currentmenu.menuItemStyles)}
                       disabled={isDisabled}
-                      asChild
                     >
                       <>
                         <Checkbox
