@@ -93,7 +93,7 @@ const SearchResults = (props: Props) => {
 
               <Button
                 priority="tertiary"
-                onClick={() => dispatch(resetFiltersActionCreator())}
+                onClick={() => dispatch(resetFiltersActionCreator(query.search))}
                 iconId="ri-eraser-line"
                 iconPosition="right"
               >

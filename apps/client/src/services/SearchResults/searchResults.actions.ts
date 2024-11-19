@@ -21,8 +21,9 @@ export const resetQueryActionCreator = () =>
     type: "all",
   });
 
-export const resetFiltersActionCreator = () =>
+export const resetFiltersActionCreator = (search: string) =>
   action(ADD_TO_QUERY, {
+    search,
     departments: [],
     themes: [],
     needs: [],
