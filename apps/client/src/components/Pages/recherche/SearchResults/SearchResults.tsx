@@ -15,7 +15,7 @@ import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
-import { resetQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { resetFiltersActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./SearchResults.module.scss";
 
 export const MATCHES_PER_PAGE = 24;
@@ -93,7 +93,7 @@ const SearchResults = (props: Props) => {
 
               <Button
                 priority="tertiary"
-                onClick={() => dispatch(resetQueryActionCreator())}
+                onClick={() => dispatch(resetFiltersActionCreator())}
                 iconId="ri-eraser-line"
                 iconPosition="right"
               >

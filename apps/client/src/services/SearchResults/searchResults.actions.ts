@@ -21,6 +21,25 @@ export const resetQueryActionCreator = () =>
     type: "all",
   });
 
-const actions = { setSearchResultsActionCreator, setNoResultsActionCreator, addToQueryActionCreator };
+export const resetFiltersActionCreator = () =>
+  action(ADD_TO_QUERY, {
+    departments: [],
+    themes: [],
+    needs: [],
+    age: [],
+    frenchLevel: [],
+    language: [],
+    public: [],
+    status: [],
+    sort: "default",
+    type: "all",
+  });
+
+const actions = {
+  setSearchResultsActionCreator,
+  setNoResultsActionCreator,
+  addToQueryActionCreator,
+  resetFiltersActionCreator,
+};
 
 export type SearchResultsActions = ActionType<typeof actions>;
