@@ -22,13 +22,18 @@ const useStylesDisabled = () => {
       }
     };
 
-    const observer = new ResizeObserver(checkStyles);
-    observer.observe(testElement);
+    let observer: ResizeObserver | null = null;
 
+    if (typeof ResizeObserver !== "undefined") {
+      observer = new ResizeObserver(checkStyles);
+      observer.observe(testElement);
+    }
     checkStyles();
 
     return () => {
-      observer.disconnect();
+      if (observer) {
+        observer.disconnect();
+      }
       instanceCount--;
 
       if (instanceCount === 0 && testElement) {
