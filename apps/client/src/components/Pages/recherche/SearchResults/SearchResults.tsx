@@ -113,7 +113,9 @@ const SearchResults = (props: Props) => {
             </div>
           </>
         ) : (
-          <>
+          <div>
+            <h2>{t("Recherche.yourResults")}</h2>
+
             <div className={styles.results}>
               {dispositifs.length > 0 &&
                 dispositifs.map((d) => {
@@ -129,7 +131,7 @@ const SearchResults = (props: Props) => {
                   );
                 })}
             </div>
-          </>
+          </div>
         )}
         {showSuggestions && filteredResults.suggestions.length > 0 && (
           <div>

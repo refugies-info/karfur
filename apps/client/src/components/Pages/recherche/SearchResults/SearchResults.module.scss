@@ -15,7 +15,7 @@
   align-items: center;
   align-self: stretch;
   padding-block: u(14);
-  gap: u(14);
+  gap: 1.5em;
 
   /* Style */
   background: $white;
@@ -27,6 +27,13 @@
   /* Responsive */
   @include media-min("xl-limit") {
     max-width: 1200px; /* TODO:fix this width with the future tailwind container */
+  }
+
+  h2 {
+    @include dsfr-text("chapo");
+
+    font-weight: bold;
+    text-align: center;
   }
 }
 
