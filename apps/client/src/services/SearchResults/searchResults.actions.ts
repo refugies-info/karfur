@@ -20,7 +20,7 @@ export const resetFiltersActionCreator = (search: string) =>
     status: [],
     sort: "default",
     type: "all",
-  });
+  } as SearchQuery);
 
 const actions = {
   setSearchResultsActionCreator,
