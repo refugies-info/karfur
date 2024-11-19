@@ -1,5 +1,6 @@
-import { searchClient as algoliasearch, SupportedLanguage } from "@algolia/client-search";
+import { SupportedLanguage } from "@algolia/client-search";
 import { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
 import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
@@ -67,13 +68,24 @@ export const filterDispositifs = (
   dispositifs: SimpleDispositif[],
   secondaryThemes: boolean,
   skip: FilterKey | undefined = undefined,
+  allNeeds?: GetNeedResponse[],
 ): SimpleDispositif[] => {
   const filterKeys = buildFilterKeys(query);
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
 
+  const inferedThemes: Id[] | undefined =
+    query.themes.length === 0 && query.needs
+      ? [
+          ...new Set(
+            allNeeds?.filter((currentNeed) => query.needs.includes(currentNeed._id)).map((need) => need.theme._id),
+          ),
+        ]
+      : undefined;
+
   const filteredDispositifs = dispositifs
     .filter(
-      (dispositif) => skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes),
+      (dispositif) =>
+        skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes, inferedThemes),
     )
     .filter((dispositif) => skip === "location" || filterByLocations(dispositif, query.departments))
     .filter((dispositif) => skip === "age" || filterByAge(dispositif, query.age))
@@ -151,18 +163,19 @@ const queryOnAlgolia = async (search: string, dispositifs: SimpleDispositif[], l
       if (!["ti", "fr"].includes(locale)) {
         queryLanguages.push(locale as SupportedLanguage);
       }
-      hits = await searchClient
-        .searchSingleIndex({
+      const { results } = await searchClient.searchForHits([
+        {
           indexName: indexName!,
-          searchParams: {
+          params: {
             query: search,
             restrictSearchableAttributes: getSearchableAttributes(locale),
             analyticsTags: [`ln_${locale}`],
             queryLanguages,
             hitsPerPage: 600,
           },
-        })
-        .then(({ hits }) => hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult })));
+        },
+      ]);
+      hits = results[0].hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult }));
 
       filteredDispositifsByAlgolia = hits
         .map((hit) => {
@@ -224,7 +237,7 @@ export const queryDispositifs = (
   dispositifs: SimpleDispositif[],
   allNeeds: GetNeedResponse[],
 ): Results => {
-  const matches = filterDispositifs(query, dispositifs, false);
+  const matches = filterDispositifs(query, dispositifs, false, undefined, allNeeds);
   const suggestions = filterSuggestions(query, dispositifs, matches, allNeeds);
 
   return {
@@ -249,7 +262,7 @@ export const queryDispositifsWithAlgolia = async (
   allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds);
+  return { ...queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds), algolia: filteredDispositifsByAlgolia };
 };
 
 /**

@@ -20,6 +20,12 @@ export const getStatus = (
         type: "success",
         icon: "ri-checkbox-circle-fill",
       };
+    case DispositifStatus.ARCHIVED:
+      return {
+        text: "Fiche archivée",
+        type: "error",
+        icon: "ri-archive-fill",
+      };
     case DispositifStatus.DELETED:
       return {
         text: "Fiche supprimée",
@@ -31,6 +37,12 @@ export const getStatus = (
         text: hasDraftVersion ? "Nouvelle version en cours" : "Brouillon",
         type: "new",
         icon: "ri-pencil-fill",
+      };
+    case DispositifStatus.UPDATE_TO_VALIDATE:
+      return {
+        text: "MAJ à valider",
+        type: "new",
+        icon: "ri-time-fill",
       };
     case DispositifStatus.KO_STRUCTURE:
       return {

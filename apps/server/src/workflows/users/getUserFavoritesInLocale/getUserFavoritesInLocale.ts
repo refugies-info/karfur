@@ -21,5 +21,5 @@ export const getUserFavoritesInLocale = async (
   const dbQuery: FilterQuery<Dispositif> = { status: "Actif", _id: { $in: favorites.map((f) => f.dispositifId) } };
   const result = await getSimpleDispositifs(dbQuery, selectedLocale);
 
-  return { text: "success", data: result };
+  return { text: "success", data: result as unknown as GetUserFavoritesResponse[] };
 };

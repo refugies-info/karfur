@@ -100,7 +100,11 @@ export const ContentDetailsModal = (props: Props) => {
     property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
   ) => {
     if (dispositif && newStatus !== dispositif[property]) {
-      if (property === "status" && newStatus === "Supprimé") {
+      if (property === "status" && newStatus === DispositifStatus.UPDATE_TO_VALIDATE) {
+        // this status cannot be set manually
+        return;
+      }
+      if (property === "status" && newStatus === DispositifStatus.DELETED) {
         await props.onDeleteClick();
         updateLogs();
         return;
@@ -126,7 +130,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const hiddenStatus = ["Rejeté structure", "Accepté structure"];
+  const hiddenStatus = [DispositifStatus.KO_STRUCTURE, DispositifStatus.OK_STRUCTURE];
 
   const sendPushNotification = async () => {
     const res = await Swal.fire({
