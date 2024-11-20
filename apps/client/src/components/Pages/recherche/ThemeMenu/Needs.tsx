@@ -38,7 +38,11 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
       <AllNeedsItem themeId={selectedThemeId as string} />
       <div className={styles.needs} ref={needsContainerRef}>
         {displayedNeeds.map((need, i) => {
-          return <NeedItem key={i} need={need} />;
+          return (
+            <>
+              <NeedItem key={i} need={need} />{" "}
+            </>
+          );
         })}
       </div>
     </div>

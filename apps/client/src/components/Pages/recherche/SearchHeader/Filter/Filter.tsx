@@ -152,25 +152,21 @@ const Filter = ({
     <div className={cls(styles.filter, className)}>
       {stylesDisabled ? (
         <div>
-          <h3>{label}</h3>
+          <b style={{ display: "inline-block!important" }}>{label}</b>
           {externalMenu ? (
             externalMenu.menu
           ) : (
             <>
               {menuItems.map((item, i) => {
                 return (
-                  <ul key={i}>
-                    {item.label && (
-                      <li>
-                        <h4>{item.label}</h4>
-                      </li>
-                    )}
+                  <div key={i}>
+                    {item.label && <b>{item.label} : </b>}
                     {item.options.map((option, o) => {
                       const currentmenu = menuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
                       const isDisabled = option.count === 0;
                       return (
-                        <li key={option.key}>
+                        <span key={option.key}>
                           <input
                             type="checkbox"
                             id={`MenuItemTooltip${o}`}
@@ -184,11 +180,14 @@ const Filter = ({
                           <span onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
                             {currentmenu.translateOptions ? t(option.value) : option.value}
                           </span>{" "}
-                          <span>{option.count ?? ""}</span>
-                        </li>
+                          <small>
+                            ({option.count ?? ""}{" "}
+                            {stylesDisabled && ` ${t("Recherche.fiches", { count: option.count })}`})
+                          </small>{" "}
+                        </span>
                       );
                     })}
-                  </ul>
+                  </div>
                 );
               })}
             </>
@@ -236,9 +235,7 @@ const Filter = ({
                                 >
                                   {currentmenu.translateOptions ? t(option.value) : option.value}
                                 </div>
-                                <div className={styles.countContainer}>
-                                  <div className={styles.count}>{option.count ?? ""}</div>
-                                </div>
+                                <div className={styles.count}>{option.count ?? ""}</div>
                               </Checkbox>
                               <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
                                 <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
@@ -309,9 +306,7 @@ const Filter = ({
                               <div className={styles.label}>
                                 {currentmenu.translateOptions ? t(option.value) : option.value}
                               </div>
-                              <div className={styles.countContainer}>
-                                <div className={styles.count}>{option.count ?? ""}</div>
-                              </div>
+                              <div className={styles.count}>{option.count ?? ""}</div>
                             </Checkbox>
                             <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
                               <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>

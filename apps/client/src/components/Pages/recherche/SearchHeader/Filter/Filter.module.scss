@@ -12,10 +12,10 @@
   text-align: left;
   display: flex;
   width: 100%;
-  align-items: flex-start;
   gap: u(2);
   align-self: stretch;
   border: none;
+  border: 1px solid pink;
 
   // Wrap text
   white-space: normal;
@@ -42,17 +42,11 @@
     }
   }
 
-  .countContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
   .count {
     @include dsfr-text("very-small");
 
     color: var(--text-mention-grey);
+    align-self: stretch;
   }
 }
 
@@ -61,8 +55,6 @@
 }
 
 .icon {
-  border: 1px solid red;
-
   &::before {
     --icon-size: 16px;
 

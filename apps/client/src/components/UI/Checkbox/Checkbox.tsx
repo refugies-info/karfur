@@ -13,7 +13,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, child
   const stylesDisabled = useStylesDisabled();
 
   return (
-    <div className={cls(styles.container, disabled && styles.disabled)} id={id}>
+    <span className={cls(styles.container, disabled && styles.disabled)} id={id}>
       <Root
         className={cls(styles.root, checked === true && styles.checked)}
         checked={checked ?? false}
@@ -33,9 +33,9 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, child
             <CheckboxIcon />
           </Indicator>
         )}
-      </Root>
+      </Root>{" "}
       <label className={cls(styles.label, disabled && styles.disabled)}>{children}</label>
-    </div>
+    </span>
   );
 };
 

@@ -65,14 +65,16 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
             const count = nbNeedsSelectedByTheme[_id.toString()];
             const selected = selectedThemeId === _id;
             return (
-              <ThemeItem
-                key={i}
-                color={mainColor}
-                id={_id.toString()}
-                label={short[locale] ?? ""}
-                needCount={count}
-                selected={selected}
-              />
+              <>
+                <ThemeItem
+                  key={i}
+                  color={mainColor}
+                  id={_id.toString()}
+                  label={short[locale] ?? ""}
+                  needCount={count}
+                  selected={selected}
+                />{" "}
+              </>
             );
           })}
         </div>

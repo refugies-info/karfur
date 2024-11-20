@@ -128,9 +128,11 @@ const ResultsFilter = (): React.ReactNode => {
       <div className={styles.grid}>
         <TabsBar>
           {filterType.map((option, i) => (
-            <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
-              {t(option.value)} {getCount(option.key)}
-            </TabItem>
+            <>
+              <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
+                {t(option.value)} {getCount(option.key)}
+              </TabItem>{" "}
+            </>
           ))}
         </TabsBar>
         {filteredSortOptions.length > 0 && (
