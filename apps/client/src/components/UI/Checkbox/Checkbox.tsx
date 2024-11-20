@@ -9,9 +9,17 @@ type Props = {
 } & Omit<CheckboxProps, "onCheckedChange">;
 
 const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, children, disabled, onChange }) => {
+  const checkboxId = id || `checkbox-${Math.random().toString(36).slice(2, 11)}`;
+  const handleLabelClick = (e: React.MouseEvent) => {
+    // Prevent triggering twice if clicking on the Root component
+    if ((e.target as HTMLElement).closest('[role="checkbox"]')) return;
+    onChange?.();
+  };
+
   return (
     <div className={cls(styles.container, disabled && styles.disabled)} id={id}>
       <Root
+        id={checkboxId}
         className={cls(styles.root, checked === true && styles.checked)}
         checked={checked ?? false}
         onCheckedChange={onChange}
@@ -21,7 +29,12 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, child
           <CheckboxIcon />
         </Indicator>
       </Root>
-      <label className={cls(styles.label, disabled && styles.disabled)}>{children}</label>
+      <span
+        className={cls(styles.label, disabled && styles.disabled)}
+        onClick={disabled ? undefined : handleLabelClick}
+      >
+        {children}
+      </span>
     </div>
   );
 };

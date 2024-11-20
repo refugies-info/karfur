@@ -5,6 +5,7 @@
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+  cursor: pointer;
 }
 
 .disabled {
