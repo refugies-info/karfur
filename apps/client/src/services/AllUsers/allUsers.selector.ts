@@ -1,10 +1,13 @@
 import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
+import { createSelector } from "reselect";
 import { RootState } from "../rootReducer";
 
 export const allUsersSelector = (state: RootState): GetAllUsersResponse[] => state.users;
 
-export const allActiveUsersSelector = (state: RootState): GetAllUsersResponse[] =>
-  state.users.filter((user) => user.status === "Actif");
+const selectAllActiveUsers = (state: RootState) => state.users;
+export const allActiveUsersSelector = createSelector([selectAllActiveUsers], (selectAllActiveUsers) =>
+  selectAllActiveUsers.filter((user) => user.status === "Actif"),
+);
 
 export const userSelector = (userId: Id | null) => (state: RootState) => {
   if (!userId) return null;

@@ -48,10 +48,8 @@ const NeedItem: React.FC<Props> = ({ need }) => {
 
   return (
     <Checkbox checked={selected} onChange={() => selectNeed(need._id)}>
-      <span className={styles.label}>{need[locale]?.text || ""}</span>
-      <div className={styles.countContainer}>
-        <div className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</div>
-      </div>
+      <span className={styles.label}>{need[locale]?.text || ""}</span>{" "}
+      <span className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</span>
     </Checkbox>
   );
 };

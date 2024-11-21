@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef, useState } from "react";
+import { browserName } from "react-device-detect";
 import { Button } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import useRTL from "~/hooks/useRTL";
@@ -55,7 +56,7 @@ const ContentSlider = (props: Props) => {
       slider.current.scroll({
         left: page * pageWidth * (isRTL ? -1 : 1),
         top: 0,
-        behavior: "smooth",
+        behavior: browserName === "Chrome" ? "instant" : "smooth",
       });
   }, [page, gap, margins, isRTL]);
 

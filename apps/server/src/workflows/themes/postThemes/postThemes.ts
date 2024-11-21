@@ -34,6 +34,6 @@ export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThem
 
   return {
     text: "success",
-    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) },
+    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) } as unknown as PostThemeResponse,
   };
 };

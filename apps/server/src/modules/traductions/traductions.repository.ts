@@ -29,7 +29,7 @@ export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages)
     language,
   });
 
-export const findTraductors = (dispositifId: DispositifId, language: Languages) =>
+export const findTraductors = (dispositifId: DispositifId, language: Languages): any =>
   TraductionsModel.find(
     {
       dispositifId,

@@ -190,7 +190,8 @@ export const filterByType = ({ typeContenu, metadatas }: SimpleDispositif, type:
     case "demarche":
       return typeContenu === "demarche";
     case "dispositif":
-      return typeContenu === "dispositif";
+      // Exclude online resources from dispositif tab
+      return typeContenu === "dispositif" && metadatas?.location !== "online";
     case "ressource":
       return metadatas?.location === "online";
   }

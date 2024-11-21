@@ -1,11 +1,11 @@
 @import "~/scss/mixins/unit";
 
 .container {
-  background-color: #fff;
-  min-width: min(768px, 100vw);
-  max-height: min(488px, 100vh);
-  overflow-y: auto;
   position: relative;
+  background-color: #fff;
+  min-width: min(52rem, 100vw);
+  max-height: min(32rem, 80vh);
+  overflow-y: auto;
 }
 
 .main {
@@ -14,7 +14,7 @@
   padding: u(2) 0;
 
   /* stylelint-disable-next-line media-feature-range-notation */
-  @media (min-width: 768px) {
+  @media (min-width: 48em) {
     padding: u(2);
   }
 
@@ -30,7 +30,7 @@
   background-color: #fff;
 
   /* stylelint-disable-next-line media-feature-range-notation */
-  @media (min-width: 768px) {
+  @media (min-width: 48em) {
     padding: u(2);
 
     &::after {
