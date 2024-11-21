@@ -5,12 +5,15 @@
 @import "~/scss/variables";
 
 .btn {
-  width: u(6);
-  height: u(6);
+  width: 1.5em;
+  height: 1.5em;
   border-radius: 50% !important;
   padding: 0 !important;
   background: $white !important;
   border: 1px solid var(--border-default-grey) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include isMobile {
     display: none !important;
@@ -22,12 +25,18 @@
     background: $white !important;
   }
 
-  & > i::before {
-    --icon-size: 16px !important;
+  & > i {
+    &::before {
+      --icon-size: 1em !important;
+    }
   }
 
   i {
     color: var(--text-disabled-grey);
+  }
+
+  & > span {
+    display: none;
   }
 
   &.active {

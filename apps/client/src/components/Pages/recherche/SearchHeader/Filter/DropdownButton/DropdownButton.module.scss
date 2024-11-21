@@ -25,11 +25,11 @@
   max-width: 100%;
 
   /* stylelint-disable-next-line media-feature-range-notation */
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 23.4375em) {
     @include text("small");
 
-    gap: u(1);
-    padding: u(2) u(4);
+    gap: 0.4em;
+    padding: 0.5em 1em;
   }
 
   &:hover {
@@ -37,11 +37,11 @@
   }
 
   i {
-    line-height: 16px;
-    height: 16px;
+    line-height: 1em;
+    height: 1em;
 
     &::before {
-      --icon-size: 16px;
+      --icon-size: 1em;
 
       vertical-align: baseline;
     }

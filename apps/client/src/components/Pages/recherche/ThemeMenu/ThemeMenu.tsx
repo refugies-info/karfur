@@ -1,7 +1,7 @@
 import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import _ from "lodash";
 import debounce from "lodash/debounce";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName, useWindowSize } from "~/hooks";
@@ -46,6 +46,10 @@ const debouncedQuery = debounce(
 const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
+
+  const themesMenuContainerRef = useRef<HTMLDivElement | null>(null);
+  const themesContainerRef = useRef<HTMLDivElement | null>(null);
+  const needsContainerRef = useRef<HTMLDivElement | null>(null);
 
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
@@ -114,11 +118,35 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
     }
   }, [query, matches, needs, sortedThemes, mobile, languei18nCode, isOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight" && themesContainerRef.current && needsContainerRef.current) {
+        const firstNeedItem = needsContainerRef.current.querySelector<HTMLElement>("button");
+        setTimeout(() => firstNeedItem?.focus(), 100);
+      } else if (event.key === "ArrowLeft" && themesContainerRef.current && needsContainerRef.current) {
+        const firstThemeItem = themesContainerRef.current.querySelector<HTMLElement>("button");
+        setTimeout(() => firstThemeItem?.focus(), 100);
+      }
+    };
+
+    const container = themesMenuContainerRef.current;
+
+    if (container) {
+      container.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+  }, []);
+
   return (
     <ThemeMenuContext.Provider
       value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
     >
-      <div className={cls(!isMobile && styles.container, className)}>
+      <div className={cls(!isMobile && styles.container, className)} ref={themesMenuContainerRef}>
         <div className={cls(styles.searchBar, isMobile ? styles.searchBarSticky : "")}>
           <SearchButton onChange={(e) => setSearch(e.target.value)} />
         </div>
@@ -127,8 +155,8 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
             <SearchResults />
           ) : (
             <>
-              <Themes />
-              {!isMobile && <Needs />}
+              <Themes ref={themesContainerRef} />
+              {!isMobile && <Needs ref={needsContainerRef} />}
             </>
           )}
         </div>

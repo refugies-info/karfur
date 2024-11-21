@@ -8,7 +8,7 @@
 $shadowHeight: 1.4rem;
 
 .wrapper {
-  max-width: 281px;
+  max-width: 17.5625em;
   width: 100%;
   height: 100%;
   position: relative;
@@ -47,7 +47,7 @@ $shadowHeight: 1.4rem;
 
   .content {
     display: grid;
-    grid-template-rows: 1fr 146px 1em;
+    grid-template-rows: 1fr 9.125em 1em;
     grid-template-columns: 100%;
     gap: u(4);
     padding: u(6);
@@ -59,15 +59,15 @@ $shadowHeight: 1.4rem;
   .text {
     margin-top: auto;
     order: 2;
-    height: calc(146px);
+    height: 9.125em;
     overflow-y: clip;
     flex-shrink: 0;
     z-index: 1;
   }
 
   .placeholder_img {
-    width: 257px;
-    height: 144px;
+    width: 100%;
+    aspect-ratio: 16/9;
     background-color: var(--background-action-high-grey-hover);
   }
 }
@@ -83,7 +83,7 @@ $shadowHeight: 1.4rem;
   color: var(--text-default-info);
 
   & > i::before {
-    --icon-size: 12px !important;
+    --icon-size: 0.75em !important;
   }
 }
 
@@ -96,8 +96,9 @@ $shadowHeight: 1.4rem;
   order: 4;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 16px;
+  grid-template-columns: 1fr 1em;
   gap: 0.3em;
+  height: 1.4em;
 
   // The gradient to mask the overflowing text above
   &::before {
@@ -107,18 +108,18 @@ $shadowHeight: 1.4rem;
     position: absolute;
     top: - u(4);
     right: 0;
-    left: -24px;
+    left: -0.75em;
     transform: translateY(calc(-100%));
-    width: calc(100% + 48px);
+    width: calc(100% + 1.5em);
     height: $shadowHeight;
     background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
   }
 
   // The arrow icon
   > i::before {
-    --icon-size: 16px !important;
+    --icon-size: 1em !important;
 
-    line-height: 16px !important;
+    line-height: 1em !important;
     color: var(--text-action-high-blue-france);
   }
 }
@@ -138,10 +139,13 @@ $shadowHeight: 1.4rem;
 
 /* Info components */
 .info {
+  display: flex;
+  align-items: center;
   max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 1.4em;
 
   & > span {
     @include dsfr-text("very-small");
@@ -153,7 +157,7 @@ $shadowHeight: 1.4rem;
     text-overflow: ellipsis;
 
     & > i::before {
-      --icon-size: 16px !important;
+      --icon-size: 1em !important;
     }
   }
 }

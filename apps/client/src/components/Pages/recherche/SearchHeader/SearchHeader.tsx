@@ -27,7 +27,6 @@ const SearchHeader = (props: Props) => {
   const { isMobile } = useWindowSize();
   const isSticky = useIsSticky(stickyBarRef);
 
-  const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
 
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(

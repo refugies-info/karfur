@@ -1309,7 +1309,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/6392ff59bcd2075a379203a9"
-                          title="Déclarer un changement de situation sur Étrangers en France"
                         >
                           <span
                             class="title three_lines"
@@ -1425,6 +1424,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -1447,7 +1449,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/63972dcb98b670cc4bae76e6"
-                          title="Faire une demande de DCEM"
                         >
                           <span
                             class="title three_lines"
@@ -1563,6 +1564,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -1585,7 +1589,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/5e1c8c0e0742580052a33972"
-                          title="Demander le RSA"
                         >
                           <span
                             class="title three_lines"
@@ -1701,6 +1704,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -1723,7 +1729,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/637781c6896812af208f3495"
-                          title="Avoir le Diplôme d’accès aux études universitaires (DAEU)"
                         >
                           <span
                             class="title three_lines"
@@ -1834,6 +1839,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -1856,7 +1864,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/6123a82c6bf6bc00148a5176"
-                          title="Faire une demande DAHO ou DALO"
                         >
                           <span
                             class="title three_lines"
@@ -1972,6 +1979,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -1994,7 +2004,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/5dd7c4b06f0ac0004c87c88d"
-                          title="Payer les impôts sur le revenu"
                         >
                           <span
                             class="title three_lines"
@@ -2105,6 +2114,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2127,7 +2139,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/63528e00976acb4f7bcd37ad"
-                          title="Faire et utiliser une e-photo"
                         >
                           <span
                             class="title three_lines"
@@ -2243,6 +2254,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2265,7 +2279,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/63401d8783f485a025e88388"
-                          title="Créer un compte personnel sur le site Étrangers en France"
                         >
                           <span
                             class="title three_lines"
@@ -2376,6 +2389,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2398,7 +2414,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/630337ddf2087e2b25ac7609"
-                          title="Avoir un Passe Navigo pour prendre les transports en Île-de-France"
                         >
                           <span
                             class="title three_lines"
@@ -2509,6 +2524,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2531,7 +2549,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/62f265d81119eede87fb1ae2"
-                          title="Demander des aides au logement"
                         >
                           <span
                             class="title three_lines"
@@ -2647,6 +2664,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2669,7 +2689,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/62b9809b796009107a932cbc"
-                          title="Demander la fabrication du permis de conduire"
                         >
                           <span
                             class="title three_lines"
@@ -2780,6 +2799,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2802,7 +2824,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/62bab2e7b47f6b02fa9783f2"
-                          title="Ouvrir un contrat de gaz ou d'électricité"
                         >
                           <span
                             class="title three_lines"
@@ -2918,6 +2939,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -2940,7 +2964,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/62b5cc16092a73346b4a9a11"
-                          title="Immatriculer une voiture"
                         >
                           <span
                             class="title three_lines"
@@ -3051,6 +3074,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -3073,7 +3099,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/62a897aceece9a373f34ee49"
-                          title="Acheter une voiture"
                         >
                           <span
                             class="title three_lines"
@@ -3184,6 +3209,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -3206,7 +3234,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/procedure/62a8ae34eece9a373f350351"
-                          title="Assurer une voiture"
                         >
                           <span
                             class="title three_lines"
@@ -3317,6 +3344,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
           </div>
@@ -3403,7 +3433,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/6317279072a7091286cfaf24"
-                          title="Être accompagné pour entrer dans la vie professionnelle"
                         >
                           <span
                             class="title three_lines"
@@ -3508,6 +3537,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -3530,7 +3562,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/638dcbbaf0b1a31177cf9602"
-                          title="Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration"
                         >
                           <span
                             class="title three_lines"
@@ -3635,6 +3666,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -3657,7 +3691,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/638613c54730d143903ca9ca"
-                          title="Trouver une formation de français en Ile-de-France"
                         >
                           <span
                             class="title three_lines"
@@ -3757,6 +3790,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -3779,7 +3815,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/63873a586fd089c3dad298f2"
-                          title="Faire une mission de service civique pour jeunes réfugiés"
                         >
                           <span
                             class="title three_lines"
@@ -3884,6 +3919,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -3906,7 +3944,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/635a71c8d43c4d1a3f25227f"
-                          title="Apprendre le français à l'université"
                         >
                           <span
                             class="title three_lines"
@@ -4011,6 +4048,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4033,7 +4073,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/6376470705f74970c5342371"
-                          title="Avoir de l'aide pour faire ses démarches"
                         >
                           <span
                             class="title three_lines"
@@ -4133,6 +4172,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4155,7 +4197,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/634d28bd9d3bda3be5cfd979"
-                          title="Apprendre le français pour le code de la route"
                         >
                           <span
                             class="title three_lines"
@@ -4260,6 +4301,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4282,7 +4326,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/6332c0e6a36f411314ba4ca3"
-                          title="Apprendre du vocabulaire avec des images"
                         >
                           <span
                             class="title three_lines"
@@ -4382,6 +4425,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4404,7 +4450,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/636cd4572c725bfbf72d6302"
-                          title="Prendre des cours de français à Pantin"
                         >
                           <span
                             class="title three_lines"
@@ -4509,6 +4554,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4531,7 +4579,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/63231e68d585c0849a9bb2b1"
-                          title="Faire un service civique à Valence"
                         >
                           <span
                             class="title three_lines"
@@ -4636,6 +4683,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4658,7 +4708,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/634e7269313f6183f3510709"
-                          title="Etre accompagné pour construire un projet professionnel"
                         >
                           <span
                             class="title three_lines"
@@ -4763,6 +4812,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4785,7 +4837,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/634fba2814dbd7acb5c4f759"
-                          title="Faire un service civique dans le Val d'Oise"
                         >
                           <span
                             class="title three_lines"
@@ -4885,6 +4936,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -4907,7 +4961,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/6317495572a7091286cfbd68"
-                          title="Être accompagné pour travailler dans la restauration"
                         >
                           <span
                             class="title three_lines"
@@ -5012,6 +5065,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -5034,7 +5090,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/6336f551bf68aaed7fe0f8b4"
-                          title="Apprendre le français avec un professeur"
                         >
                           <span
                             class="title three_lines"
@@ -5134,6 +5189,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
             <div
@@ -5156,7 +5214,6 @@ exports[`homepage renders homepage 1`] = `
                       >
                         <a
                           href="/program/63623b16a2a5bf7006723347"
-                          title="Faire une formation en développement web"
                         >
                           <span
                             class="title three_lines"
@@ -5261,6 +5318,9 @@ exports[`homepage renders homepage 1`] = `
                 <i
                   class="fr-icon-star-line"
                 />
+                <span>
+                  Dispositif.addToFavorites
+                </span>
               </button>
             </div>
           </div>
