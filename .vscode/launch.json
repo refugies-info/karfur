@@ -26,7 +26,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Current Test File",
+      "name": "Debug Mobile Test: Current File",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
         "--runInBand",
@@ -34,6 +34,42 @@
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}/apps/mobile",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Client Test: Current File",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}/apps/client",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Server Test: Current File",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}/apps/server",
+      "env": {
+        "NODE_ENV": "test"
+      }
     }
   ]
 }
