@@ -46,6 +46,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
     nbMots: 1,
     translations: 1,
     typeContenu: 1,
+    webOnly: 1,
   });
 
   const traductions = await getTraductionsByLanguage(locale, {
@@ -61,6 +62,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
   let results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
   activeDispositifs.forEach((dispositif: Dispositif) => {
+    if (dispositif.webOnly) return; // do not translate webonly content
     const correspondingTrads = traductions.filter((trad) => trad.dispositifId.toString() === dispositif._id.toString());
 
     const lastTradUpdatedAt = Math.max(

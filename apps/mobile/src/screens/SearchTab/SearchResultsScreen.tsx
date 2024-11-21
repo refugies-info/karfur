@@ -1,7 +1,8 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import algoliasearch from "algoliasearch/lite";
+import { SupportedLanguage } from "algoliasearch";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 import * as React from "react";
-import { Configure, InstantSearch } from "react-instantsearch-native";
+import { Configure, InstantSearch } from "react-instantsearch-core";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -49,7 +50,7 @@ export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParam
     setSearchableAttributes(getSearchableAttributes(currentI18nCode));
   }, [currentI18nCode]);
 
-  const queryLanguages: string[] = ["fr"];
+  const queryLanguages: SupportedLanguage[] = ["fr"];
   if (currentI18nCode && currentI18nCode !== "ti") {
     // ti not supported by Algolia
     queryLanguages.push(currentI18nCode);
@@ -61,8 +62,13 @@ export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParam
       <InstantSearch
         searchClient={searchClient}
         indexName={Config.algoliaIndex}
-        searchState={searchState}
-        onSearchStateChange={setSearchState}
+        initialUiState={{
+          [Config.algoliaIndex]: {
+            hitsPerPage: 10,
+            query: searchState.query,
+          },
+        }}
+        onStateChange={({ uiState }) => setSearchState({ query: uiState[Config.algoliaIndex].query || "" })}
       >
         <Configure
           restrictSearchableAttributes={searchableAttributes}

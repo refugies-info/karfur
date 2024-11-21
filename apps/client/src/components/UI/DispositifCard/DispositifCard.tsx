@@ -14,7 +14,6 @@ import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
 import { cls } from "~/lib/classname";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
-import { getReadableText } from "~/lib/getReadableText";
 import { getRelativeTimeString } from "~/lib/getRelativeDate";
 import { getTheme } from "~/lib/getTheme";
 import { getPath } from "~/routes";
@@ -82,7 +81,6 @@ const DispositifCard = (props: Props) => {
                 <Link
                   target={props.targetBlank ? "_blank" : undefined}
                   rel={props.targetBlank ? "noopener noreferrer" : undefined}
-                  title={getReadableText(props.dispositif.titreInformatif || "")}
                   href={
                     props.demoCard
                       ? "#"

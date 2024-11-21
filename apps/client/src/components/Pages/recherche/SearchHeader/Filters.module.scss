@@ -34,7 +34,7 @@
   container-type: inline-size;
 
   .searchZone {
-    max-width: 768px;
+    max-width: 48em;
     flex-shrink: 0;
     margin-bottom: 0;
   }
@@ -89,7 +89,7 @@
 
     @include media-max("lg-limit") {
       width: 100%;
-      max-width: 768px;
+      max-width: 48em;
     }
   }
 
@@ -135,7 +135,7 @@
 
     & button {
       aspect-ratio: 1;
-      padding: u(2);
+      padding: 0.5em;
     }
   }
 }

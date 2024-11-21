@@ -2,11 +2,9 @@ import {
   ContentType,
   DemarcheContent,
   DispositifStatus,
-  GetStructureDispositifResponse,
   Id,
   Languages,
   Picture,
-  SimpleDispositif,
   Suggestion as SuggestionAPIType,
 } from "@refugies-info/api-types";
 import { omit, pick, union, uniq } from "lodash";
@@ -26,7 +24,7 @@ import { Merci, Suggestion } from "~/typegoose/Dispositif";
 import { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
 
-export const getDispositifsFromDB = async () =>
+export const getDispositifsFromDB = async (): Promise<any[]> =>
   await DispositifModel.find({})
     .populate<{
       mainSponsor: { _id: Id; nom: string; status: string; picture: Picture };
@@ -44,7 +42,7 @@ export const getDispositifsFromDB = async () =>
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
 
-export const getDispositifsForExport = async (): Promise<Dispositif[]> => {
+export const getDispositifsForExport = async (): Promise<any[]> => {
   return DispositifModel.find({ status: "Actif" })
     .populate<{
       mainSponsor: { _id: Id; nom: string; picture: Picture };
@@ -66,7 +64,7 @@ export const getDispositifArray = async (
   populate: string = "",
   limit: number = 0,
   sort: any = {},
-) => {
+): Promise<any[]> => {
   const neededFields: DispositifFieldsRequest = {
     translations: 1,
     theme: 1,
@@ -127,7 +125,7 @@ export const getSimpleDispositifs = async (
   ).then(
     map((dispositif) => {
       const translation = dispositif.translations[locale] || dispositif.translations.fr;
-      const resDisp: SimpleDispositif = {
+      const resDisp = {
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: dispositif.metadatas,
@@ -135,6 +133,7 @@ export const getSimpleDispositifs = async (
         availableLanguages: Object.keys(dispositif.translations),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
+        sponsor: null as any,
       };
       if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
         resDisp.sponsor = dispositif.mainSponsor;
@@ -181,22 +180,24 @@ export const getStructureDispositifs = async (
       const usernames = await Promise.all(
         dispositifs.map((dispositif) =>
           dispositif.suggestions.length > 0
-            ? getUsersById(uniq(dispositif.suggestions.map((s) => s.userId).filter((id) => !!id)), { username: 1 })
+            ? getUsersById(uniq(dispositif.suggestions.map((s: any) => s.userId).filter((id: any) => !!id)), {
+                username: 1,
+              })
             : [],
         ),
       );
       return { dispositifs, usernames: union(...usernames) };
     })
-    .then(({ dispositifs, usernames }) =>
-      dispositifs.map((dispositif) => {
+    .then(({ dispositifs, usernames }: { dispositifs: any[]; usernames: any[] }) =>
+      dispositifs.map((dispositif: any) => {
         const translation = dispositif.translations[locale] || dispositif.translations.fr;
-        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
+        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s: any) => {
           return {
             ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
-            username: usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
+            username: usernames.find((u: any) => u._id.toString() === s.userId?.toString())?.username || "",
           };
         });
-        const resDisp: GetStructureDispositifResponse = {
+        const resDisp = {
           _id: dispositif._id,
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
           metadatas: dispositif.metadatas,
@@ -206,6 +207,7 @@ export const getStructureDispositifs = async (
           nbMercis: dispositif.merci.length,
           suggestions,
           themeSortIndex: dispositif.sortThemeIndex,
+          sponsor: null as any,
         };
         if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
           resDisp.sponsor = dispositif.mainSponsor;

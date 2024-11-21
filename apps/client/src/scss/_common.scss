@@ -9,6 +9,25 @@ html {
   scroll-behavior: smooth;
 }
 
+.test-styles-enabled {
+  color: red;
+  width: 0;
+  height: 0;
+}
+
+.debugForm {
+  border: 1px solid red;
+  background-color: aliceblue;
+
+  &:focus {
+    opacity: 0;
+  }
+
+  &:focus-visible {
+    opacity: 0;
+  }
+}
+
 // Titles
 main {
   h1 {

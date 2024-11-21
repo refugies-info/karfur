@@ -21,8 +21,6 @@ exports[`should render DeleteButton disabled 1`] = `
 
 <div
     class="c0"
-    disabled=""
-    hovercolor="error"
   >
     <div
       style="margin-bottom: 4px;"
@@ -86,7 +84,6 @@ exports[`should render DeleteButton not disabled 1`] = `
 
 <div
     class="c0"
-    hovercolor="error"
   >
     <div
       style="margin-bottom: 4px;"
@@ -198,7 +195,6 @@ exports[`should render SeeButton 1`] = `
 
 <div
     class="c0"
-    hovercolor="gray90"
   >
     <a
       href="test-burl"
@@ -460,8 +456,6 @@ exports[`should render StyledStatus Accepté structure  1`] = `
 
 <div
     class="c0"
-    color="#FF9800"
-    textcolor="white"
   >
     Accepté
   </div>
@@ -496,8 +490,6 @@ exports[`should render StyledStatus Brouillon  1`] = `
 
 <div
     class="c0"
-    color="#FFEB3B"
-    textcolor="gray90"
   >
     Brouillon
   </div>
@@ -532,8 +524,6 @@ exports[`should render StyledStatus En attente admin  1`] = `
 
 <div
     class="c0"
-    color="#8BC34A"
-    textcolor="white"
   >
     Relecture en cours
   </div>
@@ -568,8 +558,6 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
 
 <div
     class="c0"
-    color="#F44336"
-    textcolor="white"
   >
     Rejeté
   </div>
@@ -604,8 +592,6 @@ exports[`should render StyledStatus Supprimé  1`] = `
 
 <div
     class="c0"
-    color="#F44336"
-    textcolor="white"
   >
     Supprimé
   </div>
@@ -640,7 +626,6 @@ exports[`should render StyledStatus actif  1`] = `
 
 <div
     class="c0"
-    color="#4CAF50"
   >
     Publié
   </div>
@@ -675,8 +660,6 @@ exports[`should render StyledStatus en attente  1`] = `
 
 <div
     class="c0"
-    color="#FF9800"
-    textcolor="white"
   >
     En attente
   </div>
@@ -711,8 +694,6 @@ exports[`should render StyledStatus no corresponding status  1`] = `
 
 <div
     class="c0"
-    color="bleuCharte"
-    textcolor="white"
   >
     Nouveau !
   </div>
@@ -747,8 +728,6 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
 
 <div
     class="c0"
-    color="color"
-    textcolor="textColor"
   >
     test
   </div>
@@ -783,8 +762,6 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
 
 <div
     class="c0"
-    color="gray70"
-    textcolor="white"
   >
     test
   </div>
@@ -1085,8 +1062,6 @@ exports[`should render ValidateButton disabled 1`] = `
 <div
     class="c0"
     data-testid="validate-button"
-    disabled=""
-    hovercolor="validationHover"
   >
     <div
       style="margin-bottom: 4px;"
@@ -1151,7 +1126,6 @@ exports[`should render ValidateButton not disabled 1`] = `
 <div
     class="c0"
     data-testid="validate-button"
-    hovercolor="validationHover"
   >
     <div
       style="margin-bottom: 4px;"

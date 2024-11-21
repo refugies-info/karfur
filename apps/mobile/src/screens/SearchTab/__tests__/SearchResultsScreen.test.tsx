@@ -12,20 +12,33 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   }),
 }));
 
+// Mock Algolia client
+jest.mock("algoliasearch/lite", () => ({
+  liteClient: jest.fn().mockReturnValue({
+    search: jest.fn().mockResolvedValue({ results: [{ hits: [] }] }),
+  }),
+}));
+
 describe("Search results screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should render correctly", async () => {
+  it("should render correctly", () => {
+    const mockNavigation = {
+      goBack: jest.fn(),
+      navigate: jest.fn(),
+    };
+
     const component = wrapWithProvidersAndRender({
       Component: SearchResultsScreen,
-      compProps: { navigation: { goBack: jest.fn() } },
+      compProps: { navigation: mockNavigation },
       reduxState: {
         ...initialRootStateFactory(),
         themes: mockedThemesData,
       },
     });
+
     expect(component).toMatchSnapshot();
   });
 });
