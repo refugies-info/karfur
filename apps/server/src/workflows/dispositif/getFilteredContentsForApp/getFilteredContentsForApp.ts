@@ -137,14 +137,15 @@ const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
 
   return getActiveContentsFiltered(
     {
-      translations: 1,
-      theme: 1,
-      secondaryThemes: 1,
-      needs: 1,
-      typeContenu: 1,
+      administrationLogo: 1,
+      metadatas: 1,
       nbVues: 1,
       nbVuesMobile: 1,
-      metadatas: 1,
+      needs: 1,
+      secondaryThemes: 1,
+      theme: 1,
+      translations: 1,
+      typeContenu: 1,
     },
     {
       $and: query,
