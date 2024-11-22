@@ -1,98 +1,149 @@
-import { useRoute } from "@react-navigation/native";
-import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { useNavigation } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
+import { frenchLevelFilters } from "~/data/filtersData";
+import { wrapWithProvidersAndRender } from "~/jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "~/services/redux/reducers";
-import { saveUserFrenchLevelActionCreator } from "~/services/redux/User/user.actions";
-import { initialUserState } from "~/services/redux/User/user.reducer";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import {
+  removeUserFrenchLevelActionCreator,
+  saveUserFrenchLevelActionCreator,
+} from "~/services/redux/User/user.actions";
 import { FilterFrenchLevel } from "../FilterFrenchLevel";
 
-// jest.useFakeTimers();
-
-jest.mock("../../../hooks/useTranslationWithRTL", () => ({
-  useTranslationWithRTL: jest.fn().mockReturnValue({
-    isRTL: false,
-    t: jest.fn().mockImplementation((_, arg2) => arg2),
-  }),
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
 }));
 
-jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual("../../../services/redux/User/user.actions");
+const mockNavigate = jest.fn();
 
-  return {
-    saveUserFrenchLevelActionCreator: jest.fn(actions.saveUserFrenchLevelActionCreator),
-  };
-});
+jest.mock("~/services/redux/User/user.actions", () => ({
+  removeUserFrenchLevelActionCreator: jest.fn(() => ({ type: "REMOVE_USER_FRENCH_LEVEL" })),
+  saveUserFrenchLevelActionCreator: jest.fn((payload) => ({ type: "SAVE_USER_FRENCH_LEVEL", payload })),
+}));
 
-// jest.mock("@react-navigation/core", () => ({
-//   ...jest.requireActual("@react-navigation/core"),
-//   useRoute: jest.fn(),
-// }));
-
-describe("Filter french level", () => {
+describe("FilterFrenchLevel", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRoute as jest.Mock).mockReturnValue({
-      name: "FilterFrenchlevel",
-    });
+    mockNavigate.mockClear();
+    mockDispatch.mockClear();
+    (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
   });
 
-  it("should render correctly when no french level selected", async () => {
-    const component = await wrapWithProvidersAndRender({
+  const defaultProps = {
+    navigation: {
+      navigate: mockNavigate,
+    },
+  };
+
+  it("renders correctly", () => {
+    const initialState = initialRootStateFactory();
+    const { getByText } = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
-      compProps: { navigation: { goBack: jest.fn() } },
+      compProps: defaultProps,
+      reduxState: initialState,
     });
-    expect(component).toMatchSnapshot();
+
+    expect(getByText("onboarding_screens.french_level")).toBeTruthy();
   });
 
-  it("should render correctly when french level selected", async () => {
-    const component = wrapWithProvidersAndRender({
+  it("handles french level selection", () => {
+    const initialState = initialRootStateFactory();
+    const { getByTestId } = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
-      compProps: { navigation: { goBack: jest.fn() } },
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: {
-          ...initialUserState,
-          frenchLevel: MobileFrenchLevel["Je parle bien"],
-        },
-      },
+      compProps: defaultProps,
+      reduxState: initialState,
     });
-    expect(component).toMatchSnapshot();
+
+    const frenchLevelButton = getByTestId("test-filter-french_level_0");
+    fireEvent.press(frenchLevelButton);
+
+    const nextButton = getByTestId("test-next-button");
+    expect(nextButton.props.disabled).toBeFalsy();
   });
 
-  it.skip("should validate when clicking on rightbutton", async () => {
-    // TODO: fix test
-    const navigate = jest.fn();
-    const component = wrapWithProvidersAndRender({
+  it("toggles french level selection when pressing the same level twice", () => {
+    const initialState = initialRootStateFactory();
+    const { getByTestId } = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
-      compProps: { navigation: { goBack: jest.fn(), navigate } },
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: {
-          ...initialUserState,
-          frenchLevel: MobileFrenchLevel["Je parle bien"],
-        },
-      },
+      compProps: defaultProps,
+      reduxState: initialState,
     });
 
-    const Button = component.getByTestId("test-next-button");
-    fireEvent.press(Button);
-    expect(saveUserFrenchLevelActionCreator).toHaveBeenCalledWith({
-      frenchLevel: "Je parle bien",
-      shouldFetchContents: false,
-    });
-    expect(navigate).toHaveBeenCalledWith("FinishOnboarding");
+    const frenchLevelButton = getByTestId("test-filter-french_level_0");
+    fireEvent.press(frenchLevelButton);
+    fireEvent.press(frenchLevelButton);
+
+    const nextButton = getByTestId("test-next-button");
+    expect(nextButton).toBeDisabled();
   });
 
-  it("should select level when click on it", async () => {
-    const component = wrapWithProvidersAndRender({
+  it("navigates to next screen and saves french level on validate", () => {
+    const initialState = initialRootStateFactory();
+    const { getByTestId } = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
-      compProps: { navigation: { goBack: jest.fn() } },
+      compProps: defaultProps,
+      reduxState: initialState,
     });
 
-    const AgeButton = component.getByTestId("test-filter-french_level_b");
+    const frenchLevelButton = getByTestId("test-filter-french_level_0");
+    fireEvent.press(frenchLevelButton);
 
-    fireEvent.press(AgeButton);
-    expect(component).toMatchSnapshot();
+    const nextButton = getByTestId("test-next-button");
+    fireEvent.press(nextButton);
+
+    expect(mockDispatch).toHaveBeenCalledWith(
+      saveUserFrenchLevelActionCreator({
+        frenchLevel: frenchLevelFilters[0].key,
+        shouldFetchContents: false,
+      }),
+    );
+    expect(mockNavigate).toHaveBeenCalledWith("ActivateNotificationsScreen");
+  });
+
+  it("navigates to next screen and removes french level on skip", () => {
+    const initialState = initialRootStateFactory();
+    const { getByText } = wrapWithProvidersAndRender({
+      Component: FilterFrenchLevel,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const skipButton = getByText("onboarding_screens.skip");
+    fireEvent.press(skipButton);
+
+    expect(mockDispatch).toHaveBeenCalledWith(removeUserFrenchLevelActionCreator(false));
+    expect(mockNavigate).toHaveBeenCalledWith("ActivateNotificationsScreen");
+  });
+
+  it("navigates to previous screen when back button is pressed", () => {
+    const initialState = initialRootStateFactory();
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterFrenchLevel,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const backButton = getByTestId("test-prev-button");
+    fireEvent.press(backButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith("FilterAge");
+  });
+
+  it("loads existing french level from redux state", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      frenchLevel: frenchLevelFilters[0].key,
+    };
+
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterFrenchLevel,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const nextButton = getByTestId("test-next-button");
+    expect(nextButton.props.disabled).toBeFalsy();
   });
 });
