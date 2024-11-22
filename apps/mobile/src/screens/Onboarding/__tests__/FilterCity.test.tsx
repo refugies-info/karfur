@@ -108,7 +108,7 @@ describe("FilterCity", () => {
     expect(mockDispatch).toHaveBeenCalledWith(
       saveUserLocationActionCreator({
         city: "Paris",
-        dep: "75",
+        dep: "Paris",
         shouldFetchContents: false,
       }),
     );
