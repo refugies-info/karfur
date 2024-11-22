@@ -114,7 +114,7 @@ const PageOnboarding = ({
               onPress={onPrevious}
               priority="secondary"
               iconName="arrow-back"
-              testID="test-next-button"
+              testID="test-prev-button"
             ></ButtonDSFR>
           )}
           <ReadButtonContainer>{!noReadButton && <ReadButton bottomInset={0} white bold />}</ReadButtonContainer>
@@ -124,7 +124,7 @@ const PageOnboarding = ({
               onPress={onNext}
               priority="primary"
               iconName="arrow-forward-outline"
-              testID="test-prev-button"
+              testID="test-next-button"
               disabled={disableNext}
             ></ButtonDSFR>
           )}

@@ -16,6 +16,7 @@ interface WrapWithProvidersAndRenderParams {
 const navContext = {
   isFocused: () => true,
   addListener: jest.fn(() => jest.fn()),
+  navigate: jest.fn(),
 };
 
 /**

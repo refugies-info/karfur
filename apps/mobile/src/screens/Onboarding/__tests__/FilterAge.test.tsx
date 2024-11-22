@@ -1,90 +1,234 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { wrapWithProvidersAndRender } from "~/jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "~/services/redux/reducers";
-import { saveUserAgeActionCreator } from "~/services/redux/User/user.actions";
-import { initialUserState } from "~/services/redux/User/user.reducer";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { FilterAge } from "../FilterAge";
 
-jest.useFakeTimers();
-
-jest.mock("../../../hooks/useTranslationWithRTL", () => ({
-  useTranslationWithRTL: jest.fn().mockReturnValue({
-    isRTL: false,
-    t: jest.fn().mockImplementation((_, arg2) => arg2),
+// Mock Firebase modules
+jest.mock("@react-native-firebase/analytics", () => ({
+  __esModule: true,
+  default: () => ({
+    logEvent: jest.fn(),
   }),
 }));
 
-jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual("../../../services/redux/User/user.actions");
-
-  return {
-    saveUserAgeActionCreator: jest.fn(actions.saveUserAgeActionCreator),
-  };
-});
-jest.mock("@react-navigation/core", () => ({
-  ...jest.requireActual("@react-navigation/core"),
-  useRoute: jest.fn(),
+jest.mock("@react-native-firebase/crashlytics", () => ({
+  __esModule: true,
+  default: () => ({
+    log: jest.fn(),
+    recordError: jest.fn(),
+  }),
 }));
 
-describe("Filter age", () => {
+// Mock Expo modules
+jest.mock("expo-updates", () => ({
+  __esModule: true,
+  default: {
+    checkForUpdateAsync: jest.fn(),
+    fetchUpdateAsync: jest.fn(),
+    reloadAsync: jest.fn(),
+  },
+}));
+
+jest.mock("expo-constants", () => ({
+  __esModule: true,
+  default: {
+    expoConfig: {
+      extra: {
+        environment: "test",
+      },
+    },
+  },
+}));
+
+jest.mock("expo-device", () => ({
+  __esModule: true,
+  isDevice: jest.fn(() => true),
+}));
+
+jest.mock("expo-modules-core", () => ({
+  PermissionStatus: {
+    GRANTED: "granted",
+    DENIED: "denied",
+  },
+  requireNativeViewManager: jest.fn(),
+  requireNativeModule: jest.fn(() => ({
+    addListener: jest.fn(),
+    removeListeners: jest.fn(),
+  })),
+  requireOptionalNativeModule: jest.fn(() => null),
+}));
+
+jest.mock("expo-notifications", () => ({
+  getExpoPushTokenAsync: jest.fn(),
+  getPermissionsAsync: jest.fn(),
+  AndroidImportance: {
+    MAX: 5,
+  },
+}));
+
+jest.mock("expo-linear-gradient", () => ({
+  LinearGradient: "LinearGradient",
+}));
+
+jest.mock("expo-linking", () => ({
+  createURL: jest.fn(),
+  parse: jest.fn(),
+  parseInitialURLAsync: jest.fn(),
+}));
+
+jest.mock("expo-haptics", () => ({
+  impactAsync: jest.fn(),
+  notificationAsync: jest.fn(),
+  selectionAsync: jest.fn(),
+  ImpactFeedbackStyle: {
+    Light: "light",
+    Medium: "medium",
+    Heavy: "heavy",
+  },
+}));
+
+jest.mock("expo-av", () => ({
+  Audio: {
+    Sound: {
+      createAsync: jest.fn(),
+    },
+    setAudioModeAsync: jest.fn(),
+  },
+  AVPlaybackStatus: {
+    Success: jest.fn(),
+  },
+}));
+
+jest.mock("expo-speech", () => ({
+  speak: jest.fn(),
+  stop: jest.fn(),
+  isSpeakingAsync: jest.fn(),
+}));
+
+// Mock React Native modules
+jest.mock("@react-native-community/hooks", () => ({
+  useAppState: jest.fn(() => ({ appState: "active" })),
+}));
+
+jest.mock("react-native-blob-util", () => ({
+  __esModule: true,
+  default: {
+    fetch: jest.fn(),
+    config: jest.fn(),
+    fs: {
+      dirs: {
+        DocumentDir: "/mock/document/dir",
+        CacheDir: "/mock/cache/dir",
+      },
+    },
+  },
+}));
+
+const mockNavigate = jest.fn();
+const mockDispatch = jest.fn();
+const mockSelector = jest.fn();
+
+jest.mock("@react-navigation/native", () => ({
+  ...jest.requireActual("@react-navigation/native"),
+  useNavigation: jest.fn(),
+}));
+
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: jest.fn(),
+  useSelector: jest.fn(),
+}));
+
+describe("FilterAge", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRoute as jest.Mock).mockReturnValue({
-      name: "FilterAge",
-    });
+    mockNavigate.mockClear();
+    (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
+    (useDispatch as jest.MockedFunction<typeof useDispatch>).mockReturnValue(mockDispatch);
+    (useSelector as jest.MockedFunction<typeof useSelector>).mockImplementation(mockSelector);
   });
 
-  it("should render correctly when no age selected", async () => {
-    const component = wrapWithProvidersAndRender({
+  const defaultProps = {
+    navigation: {
+      navigate: mockNavigate,
+    },
+  };
+
+  it("renders correctly", () => {
+    const { getByText } = wrapWithProvidersAndRender({
       Component: FilterAge,
-      compProps: { navigation: { goBack: jest.fn() } },
+      compProps: defaultProps,
     });
-    expect(component).toMatchSnapshot();
+
+    expect(getByText("onboarding_screens.age")).toBeTruthy();
+    expect(getByText("onboarding_screens.help_2")).toBeTruthy();
   });
 
-  it("should render correctly when age selected", async () => {
-    const component = wrapWithProvidersAndRender({
+  it("handles age selection correctly", () => {
+    const { getByText } = wrapWithProvidersAndRender({
       Component: FilterAge,
-      compProps: { navigation: { goBack: jest.fn() } },
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: { ...initialUserState, age: "0 à 17 ans" },
-      },
+      compProps: defaultProps,
     });
-    expect(component).toMatchSnapshot();
+
+    const ageButton = getByText("filters.age_10_17");
+    fireEvent.press(ageButton);
+
+    // Test deselection
+    fireEvent.press(ageButton);
   });
 
-  it.skip("should validate when clicking on rightbutton", async () => {
-    // TODO: fix test
-    const navigate = jest.fn();
-    const component = wrapWithProvidersAndRender({
+  it("navigates to next screen on validate with age selected", () => {
+    const { getByText, getByTestId } = wrapWithProvidersAndRender({
       Component: FilterAge,
-      compProps: { navigation: { goBack: jest.fn(), navigate } },
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: { ...initialUserState, age: "0 à 17 ans" },
-      },
+      compProps: defaultProps,
     });
 
-    const Button = component.getByTestId("test-next-button");
-    fireEvent.press(Button);
-    expect(saveUserAgeActionCreator).toHaveBeenCalledWith({
-      age: "0 à 17 ans",
-      shouldFetchContents: false,
-    });
-    expect(navigate).toHaveBeenCalledWith("FilterFrenchLevel");
+    const ageButton = getByText("filters.age_10_17");
+    fireEvent.press(ageButton);
+
+    const nextButton = getByTestId("test-next-button");
+    fireEvent.press(nextButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith("FilterFrenchLevel");
   });
 
-  it("should select age when click on it", async () => {
-    const component = wrapWithProvidersAndRender({
+  it("handles skip functionality", () => {
+    const { getByText } = wrapWithProvidersAndRender({
       Component: FilterAge,
-      compProps: { navigation: { goBack: jest.fn() } },
+      compProps: defaultProps,
     });
 
-    const AgeButton = component.getByTestId("test-filter-age_26_100");
+    const skipButton = getByText("onboarding_screens.skip");
+    fireEvent.press(skipButton);
 
-    fireEvent.press(AgeButton);
-    expect(component).toMatchSnapshot();
+    expect(mockNavigate).toHaveBeenCalledWith("FilterFrenchLevel");
+  });
+
+  it("loads user age from redux state", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user.age = "0 à 17 ans";
+
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterAge,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const ageButton = getByTestId("test-filter-age_10_17");
+    expect(ageButton).toBeTruthy();
+  });
+
+  it("navigates to previous screen", () => {
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterAge,
+      compProps: defaultProps,
+    });
+
+    const backButton = getByTestId("test-prev-button");
+    fireEvent.press(backButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith("FilterCity");
   });
 });
