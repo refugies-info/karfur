@@ -65,6 +65,7 @@ export const getStructureById = async (
               DispositifStatus.WAITING_STRUCTURE,
               DispositifStatus.WAITING_ADMIN,
               DispositifStatus.ACTIVE,
+              DispositifStatus.ARCHIVED,
             ],
           }
         : DispositifStatus.ACTIVE,
