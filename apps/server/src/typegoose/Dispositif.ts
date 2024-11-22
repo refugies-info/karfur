@@ -244,8 +244,6 @@ export class Dispositif extends Base {
   @prop()
   public adminComments?: string;
   @prop()
-  public adminPercentageProgressionStatus?: string;
-  @prop()
   public adminProgressionStatus?: string;
   @prop()
   public hasDraftVersion?: boolean; // TODO: use aggregation to get that value?

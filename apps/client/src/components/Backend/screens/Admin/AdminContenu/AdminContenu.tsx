@@ -439,9 +439,6 @@ export const AdminContenu = () => {
                           <StyledStatus text={element.adminProgressionStatus} />
                         </div>
                       )}
-                      {element.adminPercentageProgressionStatus && (
-                        <StyledStatus text={element.adminPercentageProgressionStatus} />
-                      )}
                     </div>
                   </td>
                   <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
