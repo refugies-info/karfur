@@ -447,7 +447,11 @@ export const AdminContenu = () => {
                   <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     <StyledStatus
                       text={element.status}
-                      textToDisplay={element.hasDraftVersion ? "Nouvelle version en cours" : undefined}
+                      textToDisplay={
+                        element.hasDraftVersion && element.status === DispositifStatus.ACTIVE
+                          ? "Nouvelle version en cours"
+                          : undefined
+                      }
                     />
                   </td>
                   <td className="align-middle fw-bold">{element.nbMercis} 🙏</td>

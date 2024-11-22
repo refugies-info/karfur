@@ -1,3 +1,4 @@
+import { DispositifStatus } from "@refugies-info/api-types";
 import moment from "moment";
 import { Dispositif } from "../AdminStructures/StructureDetailsModal/functions";
 import styles from "./SmallDispositif.module.scss";
@@ -33,7 +34,11 @@ export const SmallDispositif = (props: Props) => {
       <div className={styles.status}>
         <StyledStatus
           text={dispositif.status}
-          textToDisplay={dispositif.hasDraftVersion ? "Nouvelle version en cours" : undefined}
+          textToDisplay={
+            dispositif.hasDraftVersion && dispositif.status === DispositifStatus.ACTIVE
+              ? "Nouvelle version en cours"
+              : undefined
+          }
         />
       </div>
     </div>
