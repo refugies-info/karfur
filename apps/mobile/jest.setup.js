@@ -1,4 +1,5 @@
 // Import built-in Jest matchers
+import "@testing-library/jest-dom";
 import "@testing-library/react-native/extend-expect";
 
 // Mock Firebase modules
