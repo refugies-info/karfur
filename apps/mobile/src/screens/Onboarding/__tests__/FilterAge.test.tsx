@@ -1,21 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
-import { useDispatch, useSelector } from "react-redux";
 import { wrapWithProvidersAndRender } from "~/jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "~/services/redux/reducers";
 import { FilterAge } from "../FilterAge";
 
 const mockNavigate = jest.fn();
-const mockDispatch = jest.fn();
-const mockSelector = jest.fn();
 
 describe("FilterAge", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockNavigate.mockClear();
     (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
-    (useDispatch as jest.MockedFunction<typeof useDispatch>).mockReturnValue(mockDispatch);
-    (useSelector as jest.MockedFunction<typeof useSelector>).mockImplementation(mockSelector);
   });
 
   const defaultProps = {
