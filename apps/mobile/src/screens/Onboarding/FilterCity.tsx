@@ -1,5 +1,5 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import React, { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { FilterCityComponent } from "~/components/Geoloc/FilterCityComponent";
 import PageOnboarding from "~/components/layout/PageOnboarding";
@@ -13,8 +13,8 @@ import { OnboardingParamList } from "~/types/navigation";
 
 export const FilterCity = ({ navigation }: StackScreenProps<OnboardingParamList, "FilterCity">) => {
   const dispatch = useDispatch();
-  const [selectedCity, setSelectedCity] = React.useState("");
-  const [selectedDepartment, setSelectedDepartment] = React.useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
 
   const navigateToNextScreen = useCallback(() => navigation.navigate("FilterAge"), [navigation]);
 

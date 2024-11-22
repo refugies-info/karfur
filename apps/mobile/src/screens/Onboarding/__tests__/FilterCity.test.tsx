@@ -64,8 +64,8 @@ describe("FilterCity", () => {
     const initialState = initialRootStateFactory();
     initialState.user = {
       ...initialState.user,
-      city: "Paris",
-      department: "75",
+      city: "",
+      department: "",
     };
 
     const { getByTestId } = wrapWithProvidersAndRender({
@@ -86,8 +86,8 @@ describe("FilterCity", () => {
     const initialState = initialRootStateFactory();
     initialState.user = {
       ...initialState.user,
-      city: "Paris",
-      department: "75",
+      city: "",
+      department: "",
     };
 
     const { getByTestId } = wrapWithProvidersAndRender({
