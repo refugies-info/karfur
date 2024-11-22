@@ -169,7 +169,7 @@ const CompleteContent = (props: Props) => {
               evaIcon="arrow-forward-outline"
               iconPosition="right"
             >
-              Envoyer pour traduction
+              Envoyer pour relecture
             </Button>
           </div>
         </>
