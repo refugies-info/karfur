@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
@@ -73,7 +73,7 @@ export const FilterCityComponent = ({
 
   const userLocation = useSelector(userLocationSelector);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (userLocation.city && userLocation.department) {
       setSelectedCity(userLocation.city);
       setSelectedDepartment(userLocation.department);
@@ -142,7 +142,7 @@ export const FilterCityComponent = ({
 
   return (
     <Rows verticalAlign="space-between">
-      <View>
+      <View testID="test-filter-city-component">
         <Title>
           <ReadableText>{t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}</ReadableText>
         </Title>

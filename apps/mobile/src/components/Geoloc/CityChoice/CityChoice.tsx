@@ -31,7 +31,11 @@ interface Props {
 
 const CityChoice = ({ city, department, onSelect }: Props) => {
   return (
-    <ButtonContainer onPress={onSelect} accessibilityRole="button">
+    <ButtonContainer
+      onPress={onSelect}
+      accessibilityRole="button"
+      testID={`test-city-choice-${city.toLowerCase().replace(/\s+/g, "-")}`}
+    >
       <CityIcon width={ICON_SIZE} height={ICON_SIZE} />
       <ReadableText text={`${city} (${department})`}>
         <RTLView>

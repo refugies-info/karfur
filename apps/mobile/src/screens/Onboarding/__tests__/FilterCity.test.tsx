@@ -1,80 +1,176 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { fireEvent } from "@testing-library/react-native";
+import { wrapWithProvidersAndRender } from "~/jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "~/services/redux/reducers";
-import { saveUserLocationActionCreator } from "~/services/redux/User/user.actions";
-import { initialUserState } from "~/services/redux/User/user.reducer";
-import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import {
+  removeUserLocalizedWarningHiddenActionCreator,
+  removeUserLocationActionCreator,
+  saveUserLocationActionCreator,
+} from "~/services/redux/User/user.actions";
 import { FilterCity } from "../FilterCity";
 
-jest.useFakeTimers();
-jest.mock("../../../hooks/useTranslationWithRTL", () => ({
-  useTranslationWithRTL: jest.fn().mockReturnValue({
-    isRTL: false,
-    t: jest.fn().mockImplementation((_, arg2) => arg2),
-  }),
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
 }));
 
-jest.mock("../../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual("../../../services/redux/User/user.actions");
+const mockNavigate = jest.fn();
 
-  return {
-    saveUserLocationActionCreator: jest.fn(actions.saveUserLocationActionCreator),
-    removeUserLocalizedWarningHiddenActionCreator: jest.fn(actions.removeUserLocalizedWarningHiddenActionCreator),
-  };
-});
-
-jest.mock("@react-navigation/core", () => ({
-  ...jest.requireActual("@react-navigation/core"),
-  useRoute: jest.fn(),
+jest.mock("~/services/redux/User/user.actions", () => ({
+  removeUserLocalizedWarningHiddenActionCreator: jest.fn(() => ({ type: "REMOVE_USER_LOCALIZED_WARNING_HIDDEN" })),
+  removeUserLocationActionCreator: jest.fn(() => ({ type: "REMOVE_USER_LOCATION" })),
+  saveUserLocationActionCreator: jest.fn((payload) => ({ type: "SAVE_USER_LOCATION", payload })),
 }));
 
-describe("Filter city", () => {
+jest.mock("expo-location", () => ({
+  requestForegroundPermissionsAsync: jest.fn(),
+  getCurrentPositionAsync: jest.fn(),
+  reverseGeocodeAsync: jest.fn(),
+}));
+
+describe("FilterCity", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRoute as jest.Mock).mockReturnValue({
-      name: "FilterCity",
-    });
-  });
-  it.skip("should render correctly when no city", async () => {
-    let component;
-    component = wrapWithProvidersAndRender({
-      Component: FilterCity,
-      compProps: { navigation: { goBack: jest.fn() } },
-    });
-    expect(component).toMatchSnapshot();
+    mockNavigate.mockClear();
+    mockDispatch.mockClear();
+    (useNavigation as jest.Mock).mockReturnValue({ navigate: mockNavigate });
   });
 
-  it.skip("should render correctly when city selected", async () => {
-    const component = wrapWithProvidersAndRender({
+  const defaultProps = {
+    navigation: {
+      navigate: mockNavigate,
+    },
+  };
+
+  it("renders correctly", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      city: "Paris",
+      department: "75",
+    };
+
+    const { getByTestId } = wrapWithProvidersAndRender({
       Component: FilterCity,
-      compProps: { navigation: { goBack: jest.fn() } },
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: { ...initialUserState, city: "city", department: "dep" },
-      },
+      compProps: defaultProps,
+      reduxState: initialState,
     });
-    expect(component).toMatchSnapshot();
+
+    expect(getByTestId("test-filter-city-component")).toBeTruthy();
   });
 
-  it.skip("should validate when clicking on rightbutton", async () => {
-    // TODO: fix test
-    const navigate = jest.fn();
-    const component = wrapWithProvidersAndRender({
+  it("handles city and department selection", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      city: "Paris",
+      department: "75",
+    };
+
+    const { getByTestId } = wrapWithProvidersAndRender({
       Component: FilterCity,
-      compProps: { navigation: { goBack: jest.fn(), navigate } },
-      reduxState: {
-        ...initialRootStateFactory(),
-        user: { ...initialUserState, city: "city", department: "dep" },
-      },
+      compProps: defaultProps,
+      reduxState: initialState,
     });
 
-    const Button = component.getByTestId("test-next-button");
-    fireEvent.press(Button);
-    expect(saveUserLocationActionCreator).toHaveBeenCalledWith({
-      city: "city",
-      dep: "dep",
-      shouldFetchContents: false,
+    // Find a city choice button and press it
+    const parisButton = getByTestId("test-city-choice-paris");
+    fireEvent.press(parisButton);
+
+    const nextButton = getByTestId("test-next-button");
+    expect(nextButton.props.disabled).toBeFalsy();
+  });
+
+  it("navigates to next screen on validate with city and department selected", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      city: "Paris",
+      department: "75",
+    };
+
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterCity,
+      compProps: defaultProps,
+      reduxState: initialState,
     });
-    expect(navigate).toHaveBeenCalledWith("FilterAge");
+
+    // Select a city
+    const parisButton = getByTestId("test-city-choice-paris");
+    fireEvent.press(parisButton);
+
+    // Press next
+    const nextButton = getByTestId("test-next-button");
+    fireEvent.press(nextButton);
+
+    expect(mockDispatch).toHaveBeenCalledWith(removeUserLocalizedWarningHiddenActionCreator());
+    expect(mockDispatch).toHaveBeenCalledWith(
+      saveUserLocationActionCreator({
+        city: "Paris",
+        dep: "75",
+        shouldFetchContents: false,
+      }),
+    );
+    expect(mockNavigate).toHaveBeenCalledWith("FilterAge");
+  });
+
+  it("handles skip functionality", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      city: "Paris",
+      department: "75",
+    };
+
+    const { getByText } = wrapWithProvidersAndRender({
+      Component: FilterCity,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const skipButton = getByText("onboarding_screens.skip");
+    fireEvent.press(skipButton);
+
+    expect(mockDispatch).toHaveBeenCalledWith(removeUserLocationActionCreator(false));
+    expect(mockNavigate).toHaveBeenCalledWith("FilterAge");
+  });
+
+  it("navigates to previous screen", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      city: "Paris",
+      department: "75",
+    };
+
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterCity,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const backButton = getByTestId("test-prev-button");
+    fireEvent.press(backButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith("OnboardingSteps");
+  });
+
+  it("disables next button when no department is selected", () => {
+    const initialState = initialRootStateFactory();
+    initialState.user = {
+      ...initialState.user,
+      city: "",
+      department: "",
+    };
+
+    const { getByTestId } = wrapWithProvidersAndRender({
+      Component: FilterCity,
+      compProps: defaultProps,
+      reduxState: initialState,
+    });
+
+    const nextButton = getByTestId("test-next-button");
+    expect(nextButton).toBeDisabled();
   });
 });
