@@ -320,6 +320,7 @@ const Filter = ({
           )}
         </>
       )}
+      {stylesDisabled && <br />}
     </div>
   );
 };

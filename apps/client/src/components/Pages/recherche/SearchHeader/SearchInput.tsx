@@ -16,23 +16,26 @@ const SearchInput: React.FC<Props> = ({ onChange, className }) => {
   const { t } = useTranslation();
   const query = useSelector(searchQuerySelector);
 
-  const styleDisabled = useStylesDisabled();
+  const stylesDisabled = useStylesDisabled();
 
-  const hintText = styleDisabled ? t("Recherche.keyword", "Rechercher par mot-clé") : "";
+  const hintText = stylesDisabled ? t("Recherche.keyword", "Rechercher par mot-clé") : "";
 
   return (
-    <Input
-      iconId="fr-icon-search-line"
-      className={cls(styles.container, className)}
-      label=""
-      hintText={hintText}
-      nativeInputProps={{
-        placeholder: t("Recherche.keyword", "Rechercher par mot-clé"),
-        onChange,
-        value: query.search,
-        className: "fr-input-wrap fr-icon-search-line",
-      }}
-    />
+    <>
+      <Input
+        iconId="fr-icon-search-line"
+        className={cls(styles.container, className)}
+        label=""
+        hintText={hintText}
+        nativeInputProps={{
+          placeholder: t("Recherche.keyword", "Rechercher par mot-clé"),
+          onChange,
+          value: query.search,
+          className: "fr-input-wrap fr-icon-search-line",
+        }}
+      />
+      {stylesDisabled && <br />}
+    </>
   );
 };
 
