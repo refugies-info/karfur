@@ -42,7 +42,7 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   }, [query.needs, query.themes, themes, needs]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} style={{ width: "100%" }}>
       {isMobile ? (
         <Accordion.Root className={styles.accordion} type="single" collapsible>
           {sortedThemes.map(({ _id, mainColor, short }, i) => {
