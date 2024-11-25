@@ -6,9 +6,10 @@ import { Results, SearchQuery } from "./searchResults.reducer";
 export const setSearchResultsActionCreator = (results: Results) => action(SET_RESULTS, results);
 export const setNoResultsActionCreator = (results: SimpleDispositif[]) => action(SET_NO_RESULTS, results);
 export const addToQueryActionCreator = (query: Partial<SearchQuery>) => action(ADD_TO_QUERY, query);
-export const resetQueryActionCreator = () =>
+
+export const resetFiltersActionCreator = (search: string) =>
   action(ADD_TO_QUERY, {
-    search: "",
+    search,
     departments: [],
     themes: [],
     needs: [],
@@ -19,8 +20,13 @@ export const resetQueryActionCreator = () =>
     status: [],
     sort: "default",
     type: "all",
-  });
+  } as SearchQuery);
 
-const actions = { setSearchResultsActionCreator, setNoResultsActionCreator, addToQueryActionCreator };
+const actions = {
+  setSearchResultsActionCreator,
+  setNoResultsActionCreator,
+  addToQueryActionCreator,
+  resetFiltersActionCreator,
+};
 
 export type SearchResultsActions = ActionType<typeof actions>;

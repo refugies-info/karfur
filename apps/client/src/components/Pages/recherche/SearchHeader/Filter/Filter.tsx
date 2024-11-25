@@ -1,5 +1,4 @@
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
@@ -13,6 +12,7 @@ import {
 import Checkbox from "~/components/UI/Checkbox";
 import Tooltip from "~/components/UI/Tooltip";
 import { useSearchEventName, useWindowSize } from "~/hooks";
+import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -32,6 +32,7 @@ type PropsBase = {
   className?: string;
   showFilterCount?: boolean;
   tooltip?: { trigger: string; text: string } | null;
+  autoFocus?: boolean;
 };
 
 type MenuItemProps = {
@@ -60,12 +61,23 @@ type ExternalMenu = PropsBase & {
 
 type Props = MenuItems | ExternalMenu;
 
-const Filter = ({ gaType, menuItems, externalMenu, label, tooltip, icon, showFilterCount, className }: Props) => {
+const Filter = ({
+  gaType,
+  menuItems,
+  externalMenu,
+  label,
+  tooltip,
+  icon,
+  showFilterCount,
+  className,
+  autoFocus,
+}: Props) => {
   const { t } = useTranslation() as { t: TranslationFunction };
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const themesDisplayed = useSelector(themesDisplayedSelector);
   const eventName = useSearchEventName();
+  const stylesDisabled = useStylesDisabled();
 
   const { isTablet } = useWindowSize();
 
@@ -138,134 +150,175 @@ const Filter = ({ gaType, menuItems, externalMenu, label, tooltip, icon, showFil
 
   return (
     <div className={cls(styles.filter, className)}>
-      {isTablet ? (
-        <DialogMenuLayout
-          label={label}
-          icon={icon}
-          filterCount={filterCount()}
-          value={value as string[]}
-          resetOptions={resetOptions}
-          gaType={gaType}
-        >
+      {stylesDisabled ? (
+        <div>
+          <b style={{ display: "inline-block!important" }}>{label}</b>
           {externalMenu ? (
             externalMenu.menu
           ) : (
             <>
               {menuItems.map((item, i) => {
                 return (
-                  <>
-                    {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
+                  <div key={i}>
+                    {item.label && <b>{item.label} : </b>}
                     {item.options.map((option, o) => {
                       const currentmenu = menuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
                       const isDisabled = option.count === 0;
                       return (
-                        <>
-                          <Checkbox
+                        <span key={option.key}>
+                          <input
+                            type="checkbox"
                             id={`MenuItemTooltip${o}`}
                             onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
                             tabIndex={0}
                             checked={isSelected}
                             disabled={isDisabled}
-                            className={cls(styles.item, currentmenu.menuItemStyles)}
                             aria-checked={isSelected}
                             aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
-                          >
-                            <div
-                              className={styles.label}
-                              onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
-                              aria-controls=""
-                            >
-                              {currentmenu.translateOptions ? t(option.value) : option.value}
-                            </div>
-                            <div className={styles.countContainer}>
-                              <div className={styles.count}>{option.count ?? ""}</div>
-                            </div>
-                          </Checkbox>
-                          <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
-                            <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
-                          </Tooltip>
-                        </>
+                          />
+                          <span onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
+                            {currentmenu.translateOptions ? t(option.value) : option.value}
+                          </span>{" "}
+                          <small>
+                            ({option.count ?? ""}{" "}
+                            {stylesDisabled && ` ${t("Recherche.fiches", { count: option.count })}`})
+                          </small>{" "}
+                        </span>
                       );
                     })}
-                  </>
+                  </div>
                 );
               })}
-              <DialogMenuLayoutTitle className={styles.menuItemLabel}>{t("Recherche.sortBy")}</DialogMenuLayoutTitle>
-
-              {sortOptions
-                .filter((option) => {
-                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                  if (query.departments.length === 0 && option.key === "location") return false;
-                  return true;
-                })
-                .map((option, i) => {
-                  const isSelected = query.sort === option.key;
-                  return (
-                    <div key={i} className={styles.radioContainer}>
-                      <RadioButtons
-                        options={[
-                          {
-                            label: t(option.value),
-                            nativeInputProps: {
-                              checked: isSelected,
-                              onChange: () => selectSort(option.key),
-                            },
-                          },
-                        ]}
-                      />
-                    </div>
-                  );
-                })}
             </>
           )}
-        </DialogMenuLayout>
+        </div>
       ) : (
-        <DropDownMenuLayout
-          label={label}
-          tooltip={tooltip}
-          icon={icon}
-          value={value as string[]}
-          resetOptions={resetOptions}
-          gaType={gaType}
-        >
-          {externalMenu
-            ? externalMenu.menu
-            : menuItems.map((item, i) =>
-                item.options.map((option, o) => {
-                  const currentmenu = menuItems[i];
-                  const isSelected = currentmenu.selected.includes(option.key);
-                  const isDisabled = option.count === 0;
-                  return (
-                    <DropdownMenu.Item
-                      key={o}
-                      className={cls(styles.item, currentmenu.menuItemStyles)}
-                      disabled={isDisabled}
-                    >
+        <>
+          {isTablet ? (
+            <DialogMenuLayout
+              label={label}
+              icon={icon}
+              filterCount={filterCount()}
+              value={value as string[]}
+              resetOptions={resetOptions}
+              gaType={gaType}
+            >
+              {externalMenu ? (
+                externalMenu.menu
+              ) : (
+                <>
+                  {menuItems.map((item, i) => {
+                    return (
                       <>
-                        <Checkbox
-                          id={`MenuItemTooltip${o}`}
-                          onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
-                          tabIndex={0}
-                          checked={isSelected}
-                          disabled={isDisabled}
-                        >
-                          <div className={styles.label}>
-                            {currentmenu.translateOptions ? t(option.value) : option.value}
-                          </div>
-                          <div className={styles.countContainer}>
-                            <div className={styles.count}>{option.count ?? ""}</div>
-                          </div>
-                        </Checkbox>
-                        <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
-                          <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
-                        </Tooltip>
+                        {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
+                        {item.options.map((option, o) => {
+                          const currentmenu = menuItems[i];
+                          const isSelected = currentmenu.selected.includes(option.key);
+                          const isDisabled = option.count === 0;
+                          return (
+                            <>
+                              <Checkbox
+                                id={`MenuItemTooltip${o}`}
+                                onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                                tabIndex={0}
+                                checked={isSelected}
+                                disabled={isDisabled}
+                                className={cls(styles.item, currentmenu.menuItemStyles)}
+                                aria-checked={isSelected}
+                                aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
+                              >
+                                <div
+                                  className={styles.label}
+                                  onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
+                                  aria-controls=""
+                                >
+                                  {currentmenu.translateOptions ? t(option.value) : option.value}
+                                </div>
+                                <div className={styles.count}>{option.count ?? ""}</div>
+                              </Checkbox>
+                              <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                                <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
+                              </Tooltip>
+                            </>
+                          );
+                        })}
                       </>
-                    </DropdownMenu.Item>
-                  );
-                }),
+                    );
+                  })}
+                  <DialogMenuLayoutTitle className={styles.menuItemLabel}>
+                    {t("Recherche.sortBy")}
+                  </DialogMenuLayoutTitle>
+
+                  {sortOptions
+                    .filter((option) => {
+                      if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                      if (query.departments.length === 0 && option.key === "location") return false;
+                      return true;
+                    })
+                    .map((option, i) => {
+                      const isSelected = query.sort === option.key;
+                      return (
+                        <div key={i} className={styles.radioContainer}>
+                          <RadioButtons
+                            options={[
+                              {
+                                label: t(option.value),
+                                nativeInputProps: {
+                                  checked: isSelected,
+                                  onChange: () => selectSort(option.key),
+                                },
+                              },
+                            ]}
+                          />
+                        </div>
+                      );
+                    })}
+                </>
               )}
-        </DropDownMenuLayout>
+            </DialogMenuLayout>
+          ) : (
+            <DropDownMenuLayout
+              label={label}
+              tooltip={tooltip}
+              icon={icon}
+              value={value as string[]}
+              resetOptions={resetOptions}
+              gaType={gaType}
+              autoFocus={autoFocus}
+            >
+              {externalMenu
+                ? externalMenu.menu
+                : menuItems.map((item, i) =>
+                    item.options.map((option, o) => {
+                      const currentmenu = menuItems[i];
+                      const isSelected = currentmenu.selected.includes(option.key);
+                      const isDisabled = option.count === 0;
+                      return (
+                        <div key={o} className={cls(styles.item, currentmenu.menuItemStyles)}>
+                          <>
+                            <Checkbox
+                              id={`MenuItemTooltip${o}`}
+                              onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
+                              checked={isSelected}
+                              disabled={isDisabled}
+                            >
+                              <div className={styles.label}>
+                                {currentmenu.translateOptions ? t(option.value) : option.value}
+                              </div>
+                              <div className={styles.count}>{option.count ?? ""}</div>
+                            </Checkbox>
+                            <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                              <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
+                            </Tooltip>
+                          </>
+                        </div>
+                      );
+                    }),
+                  )}
+            </DropDownMenuLayout>
+          )}
+        </>
       )}
     </div>
   );
