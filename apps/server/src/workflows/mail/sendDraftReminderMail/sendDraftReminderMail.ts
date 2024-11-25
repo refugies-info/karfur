@@ -16,7 +16,7 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
       logger.info(`[sendDraftReminderMail] send mail to ${recipient.email} for dispositif with id ${dispositifId} `);
       await sendOneDraftReminderMailService(
         recipient.email,
-        recipient.username,
+        recipient.firstName,
         recipient.dispositifs[0].titreInformatif,
         recipient.creatorId,
         dispositifId,
@@ -37,7 +37,7 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
 
     logger.info(`[sendDraftReminderMail] send mail to ${recipient.email} for multiple dispositifs`);
 
-    await sendMultipleDraftsReminderMailService(recipient.email, recipient.username, recipient.creatorId, reminder);
+    await sendMultipleDraftsReminderMailService(recipient.email, recipient.firstName, recipient.creatorId, reminder);
 
     await Promise.all(
       recipient.dispositifs.map(async (dispositif) => {

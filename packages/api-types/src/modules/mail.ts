@@ -3,11 +3,7 @@
  */
 export interface ImprovementsRequest {
   dispositifId: string;
-  users: {
-    username?: string;
-    _id: string;
-    email: string;
-  }[];
+  userIds: string[];
   titreInformatif: string;
   titreMarque: string;
   sections: string[];

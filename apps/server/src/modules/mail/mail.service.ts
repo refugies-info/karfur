@@ -33,8 +33,8 @@ export const sendWelcomeMail = async (email: string, firstName: string, userId: 
   }
 };
 
-export const sendResetPasswordMail = async (username: string, lien_reinitialisation: string, email: string) => {
-  if (consentsToEmail(username, "resetPassword")) {
+export const sendResetPasswordMail = async (userId: string, lien_reinitialisation: string, email: string) => {
+  if (consentsToEmail(userId, "resetPassword")) {
     try {
       logger.info("[sendResetPasswordMail] received", { email });
       const dynamicData = {
@@ -50,7 +50,7 @@ export const sendResetPasswordMail = async (username: string, lien_reinitialisat
       };
       const templateName = "resetPassword";
       sendMail(templateName, dynamicData, true);
-      await addMailEvent({ templateName, username, email });
+      await addMailEvent({ templateName, userId, email });
       return;
     } catch (error) {
       logger.error("[sendResetPasswordMail] error", {
@@ -93,7 +93,7 @@ export const sendSubscriptionReminderMailService = async (email: string) => {
 
 export const sendOneDraftReminderMailService = async (
   email: string,
-  username: string,
+  firstName: string,
   titreInformatif: string,
   userId: UserId,
   dispositifId: DispositifId,
@@ -113,13 +113,13 @@ export const sendOneDraftReminderMailService = async (
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudo: username,
+        firstName,
         titreInformatif,
       },
     };
     const templateName = reminder === "first" ? "oneDraftReminder" : "secondOneDraftReminder";
     sendMail(templateName, dynamicData);
-    await addMailEvent({ templateName, username, email, userId, dispositifId });
+    await addMailEvent({ templateName, email, userId, dispositifId });
     return;
   } catch (error) {
     logger.error("[sendOneDraftReminderMailService] error", {
@@ -131,7 +131,7 @@ export const sendOneDraftReminderMailService = async (
 
 export const sendUpdateReminderMailService = async (
   email: string,
-  username: string,
+  firstName: string,
   titreInformatif: string,
   userId: UserId,
   dispositifId: DispositifId,
@@ -152,7 +152,7 @@ export const sendUpdateReminderMailService = async (
         // cc: "contact@refugies.info",
         reply_to: "contact@email.refugies.info",
         dynamicTemplateData: {
-          Pseudonyme: username,
+          firstName,
           titreInformatif,
           lienFiche,
         },
@@ -160,7 +160,7 @@ export const sendUpdateReminderMailService = async (
       const templateName = "updateReminder";
       sendMail(templateName, dynamicData);
 
-      await addMailEvent({ templateName, username, email, userId, dispositifId });
+      await addMailEvent({ templateName, email, userId, dispositifId });
 
       return;
     } catch (error) {
@@ -176,7 +176,7 @@ export const sendUpdateReminderMailService = async (
 
 export const sendMultipleDraftsReminderMailService = async (
   email: string,
-  username: string,
+  firstName: string,
   userId: UserId,
   reminder: "first" | "second",
 ) => {
@@ -194,12 +194,12 @@ export const sendMultipleDraftsReminderMailService = async (
         // cc: "contact@refugies.info",
         reply_to: "contact@email.refugies.info",
         dynamicTemplateData: {
-          pseudo: username,
+          firstName,
         },
       };
       const templateName = reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
       sendMail(templateName, dynamicData);
-      await addMailEvent({ templateName, username, email, userId });
+      await addMailEvent({ templateName, email, userId });
       return;
     } catch (error) {
       logger.error("[sendMultipleDraftsReminderMailService] error", {
@@ -213,7 +213,7 @@ export const sendMultipleDraftsReminderMailService = async (
 };
 
 interface PublishedFicheMailToStructureMembersData {
-  pseudo: string;
+  firstName: string;
   titreInformatif: string;
   titreMarque?: string;
   lien: string;
@@ -237,7 +237,7 @@ export const sendPublishedFicheMailToStructureMembersService = async (
         },
         reply_to: "contact@email.refugies.info",
         dynamicTemplateData: {
-          pseudo: data.pseudo,
+          firstName: data.firstName,
           titreInformatif: data.titreInformatif,
           lien: data.lien,
           titreMarque: data.titreMarque,
@@ -248,7 +248,6 @@ export const sendPublishedFicheMailToStructureMembersService = async (
       sendMail(templateName, dynamicData);
       await addMailEvent({
         templateName,
-        username: data.pseudo,
         email: data.email,
         userId: data.userId,
         dispositifId: data.dispositifId,
@@ -264,7 +263,7 @@ export const sendPublishedFicheMailToStructureMembersService = async (
 };
 
 interface PublishedFicheMailToCreatorData {
-  pseudo: string;
+  firstName: string;
   titreInformatif: string;
   titreMarque?: string;
   lien: string;
@@ -285,7 +284,7 @@ export const sendPublishedFicheMailToCreatorService = async (data: PublishedFich
         },
         reply_to: "contact@email.refugies.info",
         dynamicTemplateData: {
-          pseudo: data.pseudo,
+          firstName: data.firstName,
           titreInformatif: data.titreInformatif,
           lien: data.lien,
           titreMarque: data.titreMarque,
@@ -295,7 +294,6 @@ export const sendPublishedFicheMailToCreatorService = async (data: PublishedFich
       sendMail(templateName, dynamicData);
       await addMailEvent({
         templateName,
-        username: data.pseudo,
         email: data.email,
         userId: data.userId,
         dispositifId: data.dispositifId,
@@ -319,7 +317,7 @@ interface PublishedTradMailToStructure {
   langue: string;
   lien: string;
   email: string;
-  pseudo: string;
+  firstName: string;
 }
 export const sendPublishedTradMailToStructureService = async (data: PublishedTradMailToStructure) => {
   if (consentsToEmail(data.userId, "publishedTradForStructure")) {
@@ -338,13 +336,13 @@ export const sendPublishedTradMailToStructureService = async (data: PublishedTra
           titreMarque: data.titreMarque,
           lien: data.lien,
           langue: data.langue,
+          firstName: data.firstName,
         },
       };
       const templateName = "publishedTradForStructure";
       sendMail(templateName, dynamicData);
       await addMailEvent({
         templateName,
-        username: data.pseudo,
         email: data.email,
         userId: data.userId,
         dispositifId: data.dispositifId,
@@ -368,7 +366,7 @@ interface NewFicheEnAttenteMail {
   titreMarque: string;
   lien: string;
   email: string;
-  pseudo: string;
+  firstName: string;
 }
 export const sendNewFicheEnAttenteMail = async (data: NewFicheEnAttenteMail) => {
   if (consentsToEmail(data.userId, "newFicheEnAttente")) {
@@ -386,13 +384,13 @@ export const sendNewFicheEnAttenteMail = async (data: NewFicheEnAttenteMail) => 
           titreInformatif: data.titreInformatif,
           titreMarque: data.titreMarque,
           lien: data.lien,
+          firstName: data.firstName,
         },
       };
       const templateName = "newFicheEnAttente";
       sendMail(templateName, dynamicData);
       await addMailEvent({
         templateName,
-        username: data.pseudo,
         email: data.email,
         userId: data.userId,
         dispositifId: data.dispositifId,
@@ -415,7 +413,7 @@ interface PublishedTradMailToTraductors {
   titreMarque: string;
   lien: string;
   email: string;
-  pseudo: string;
+  firstName: string;
   langue: string;
   isDispositif: boolean;
 }
@@ -437,7 +435,7 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
           lien: data.lien,
           isDispositif: data.isDispositif,
           langue: data.langue,
-          pseudo: data.pseudo,
+          firstName: data.firstName,
         },
       };
       const templateName = "publishedTradForTraductors";
@@ -445,7 +443,6 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
       sendMail(templateName, dynamicData);
       await addMailEvent({
         templateName,
-        username: data.pseudo,
         email: data.email,
         // @ts-ignore
         userId: data.userId,
@@ -470,7 +467,7 @@ interface AdminImprovementsMail {
   titreMarque: string;
   lien: string;
   email: string;
-  pseudo: string;
+  firstName: string;
   sectionsToModify: Object;
   message: string;
 }
@@ -492,7 +489,7 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
           titreInformatif: data.titreInformatif,
           titreMarque: data.titreMarque,
           lien: data.lien,
-          pseudo: data.pseudo,
+          firstName: data.firstName,
           sectionsToModify: data.sectionsToModify,
           message: data.message,
         },
@@ -502,7 +499,6 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
       sendMail(templateName, dynamicData, true);
       await addMailEvent({
         templateName,
-        username: data.pseudo,
         email: data.email,
         userId: data.userId,
         dispositifId: data.dispositifId,
