@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps, useDropdownContext } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
+import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
@@ -116,7 +117,7 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
   }, [open, setOpenDropdownId]);
 
   return (
-    <div className={styles.menuContainer}>
+    <div className={cls(styles.menuContainer, openDropdownId === label && styles.open)}>
       <DropdownButton
         label={label}
         tooltip={tooltip}
