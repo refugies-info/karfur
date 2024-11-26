@@ -10,7 +10,7 @@ interface Props {
   element: GetAllDispositifsResponse | GetAllStructuresResponse;
   status: ContentStatus[] | StructureAdminStatus[];
   publicationStatus: ProgressionStatus[];
-  progressionStatus: ProgressionStatus[];
+  progressionStatus: ProgressionStatus[] | null;
   modifyStatus: (
     newStatus: string,
     property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
@@ -76,31 +76,37 @@ export const StatusRow = (props: Props) => {
           ))}
         </div>
       </div>
-      <div>
-        <Label>Progression</Label>
-        <div className="d-flex">
-          {props.progressionStatus.map((status) => (
-            <div
-              key={status.storedStatus}
-              className="me-2"
-              onClick={() =>
-                props.modifyStatus(
-                  status.storedStatus !== props.element.adminPercentageProgressionStatus ? status.storedStatus : "",
-                  "adminPercentageProgressionStatus",
-                )
-              }
-            >
-              <StyledStatus
-                text={status.storedStatus}
-                textToDisplay={status.displayedStatus}
-                color={status.color}
-                textColor={status.textColor}
-                overrideColor={status.storedStatus !== props.element.adminPercentageProgressionStatus}
-              />
-            </div>
-          ))}
+      {props.progressionStatus !== null && (
+        <div>
+          <Label>Progression</Label>
+          <div className="d-flex">
+            {props.progressionStatus.map((status) => (
+              <div
+                key={status.storedStatus}
+                className="me-2"
+                onClick={() =>
+                  props.modifyStatus(
+                    status.storedStatus !== (props.element as GetAllStructuresResponse).adminPercentageProgressionStatus
+                      ? status.storedStatus
+                      : "",
+                    "adminPercentageProgressionStatus",
+                  )
+                }
+              >
+                <StyledStatus
+                  text={status.storedStatus}
+                  textToDisplay={status.displayedStatus}
+                  color={status.color}
+                  textColor={status.textColor}
+                  overrideColor={
+                    status.storedStatus !== (props.element as GetAllStructuresResponse).adminPercentageProgressionStatus
+                  }
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
