@@ -141,6 +141,14 @@ const CompleteContent = (props: Props) => {
                 done: true,
               },
               {
+                title: "Relecture par l’équipe éditoriale",
+                subtitle: "Nous vous contactons s’il manque des informations essentielles.",
+              },
+              {
+                title: "Publication des mises à jour 🎉",
+                notification: true,
+              },
+              {
                 title: "Traduction des modifications en 7 langues",
                 subtitle: (
                   <>
@@ -161,7 +169,7 @@ const CompleteContent = (props: Props) => {
               evaIcon="arrow-forward-outline"
               iconPosition="right"
             >
-              Envoyer pour traduction
+              Envoyer pour relecture
             </Button>
           </div>
         </>
@@ -236,7 +244,9 @@ const CompleteContent = (props: Props) => {
     <div>
       {hasChanges !== null && (
         <>
-          <p>{textContent[step].intro}</p>
+          {textContent[step].intro.map((text, index) => (
+            <p key={index}>{text}</p>
+          ))}
           {content}
         </>
       )}

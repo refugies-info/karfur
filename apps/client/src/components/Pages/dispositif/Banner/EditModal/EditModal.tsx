@@ -2,6 +2,7 @@ import Image from "next/image";
 import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
+import styles from "./EditModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -19,8 +20,14 @@ const EditModal = (props: Props) => {
     >
       <div>
         <p>
-          Vous êtes sur le point de faire des modifications sur votre fiche. Une fois terminée, pensez bien à valider
-          votre fiche pour que celles-ci soient prises en compte puis traduites en 7 langues.
+          Vous êtes sur le point de faire des modifications sur votre fiche. Une fois terminée, pensez à bien{" "}
+          <strong>valider votre fiche</strong> pour que vos modifications soient envoyées pour relecture à notre équipe
+          éditoriale puis traduites en 7 langues.
+        </p>
+        <p className={styles.info}>
+          <i className="ri-information-fill" />
+          Pensez bien à faire toutes vos modifications avant de les envoyer pour traduction. Sinon, les traducteurs
+          travaillent deux fois de suite sur votre fiche.
         </p>
         <div className="text-center mb-8">
           <Image src={TutorielImage} width={176} height={120} alt="" />

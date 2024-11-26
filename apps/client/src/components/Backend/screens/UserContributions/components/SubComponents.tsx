@@ -17,13 +17,13 @@ export const ContribContainer = styled.div`
   height: fit-content;
 `;
 
-const Container = styled.div<{ isDarkBackground: boolean }>`
+const Container = styled.div<{ $isDarkBackground: boolean }>`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props: { isDarkBackground: boolean }) => (props.isDarkBackground ? colors.white : colors.gray90)};
-  background-color: ${(props: { isDarkBackground: boolean }) =>
-    props.isDarkBackground ? colors.gray90 : colors.white};
+  color: ${(props: { $isDarkBackground: boolean }) => (props.$isDarkBackground ? colors.white : colors.gray90)};
+  background-color: ${(props: { $isDarkBackground: boolean }) =>
+    props.$isDarkBackground ? colors.gray90 : colors.white};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
@@ -34,7 +34,7 @@ const Container = styled.div<{ isDarkBackground: boolean }>`
 export const TypeContenu = (props: { type: string; isDetailedVue: boolean }) => {
   const correctedType = props.type === "dispositif" ? "Dispositif" : "Démarche";
   const isDarkBackground = props.type === "dispositif" || props.isDetailedVue;
-  return <Container isDarkBackground={isDarkBackground}>{correctedType}</Container>;
+  return <Container $isDarkBackground={isDarkBackground}>{correctedType}</Container>;
 };
 const RowContainer = styled.div`
   display: flex;
@@ -63,24 +63,24 @@ export const Responsabilite = (props: { responsable: string | null }) => {
 };
 
 interface ContribStyledStatusContainerProps {
-  size?: string;
-  textColor?: string;
-  color: string;
+  $size?: string;
+  $textColor?: string;
+  $color: string;
 }
 const ContribStyledStatusContainer = styled.div<ContribStyledStatusContainerProps>`
   display: flex;
   align-items: center;
   font-weight: bold;
-  border-radius: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "12px" : "6px")};
-  padding: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "15px" : "8px")};
-  background-color: ${(props: ContribStyledStatusContainerProps) => props.color};
-  width: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "fit-content" : "fit-content")};
-  height: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "54px" : "")};
+  border-radius: ${(props: ContribStyledStatusContainerProps) => (props.$size === "large" ? "12px" : "6px")};
+  padding: ${(props: ContribStyledStatusContainerProps) => (props.$size === "large" ? "15px" : "8px")};
+  background-color: ${(props: ContribStyledStatusContainerProps) => props.$color};
+  width: ${(props: ContribStyledStatusContainerProps) => (props.$size === "large" ? "fit-content" : "fit-content")};
+  height: ${(props: ContribStyledStatusContainerProps) => (props.$size === "large" ? "54px" : "")};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: ${(props: ContribStyledStatusContainerProps) => (props.textColor ? props.textColor : colors.white)};
+  color: ${(props: ContribStyledStatusContainerProps) => (props.$textColor ? props.$textColor : colors.white)};
 `;
 
 export const ContribStyledStatus = (props: {
@@ -95,11 +95,11 @@ export const ContribStyledStatus = (props: {
   return (
     <div style={{ width: props.size === "large" ? "" : "120px" }}>
       <ContribStyledStatusContainer
-        color={color}
-        textColor={textColor}
+        $color={color}
+        $textColor={textColor}
         onMouseEnter={() => setOnMouseHover(true)}
         onMouseLeave={() => setOnMouseHover(false)}
-        size={props.size}
+        $size={props.size}
       >
         {props.textToDisplay || status}
         {onMouseHover && <EVAIcon name={"question-mark-circle"} size={20} fill={textColor} className="ms-2" />}

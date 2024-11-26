@@ -1,27 +1,28 @@
-import { connectHighlight } from "react-instantsearch-native";
+import { Hit } from "algoliasearch";
+import { getHighlightedParts, getPropertyByPath, unescape } from "instantsearch.js/es/lib/utils";
+import {} from "react-instantsearch-core";
 import { Text } from "react-native";
 import { firstLetterUpperCase } from "~/libs";
 import { styles } from "~/theme";
 
 interface Props {
-  hit: any[];
+  hit: Hit;
   attribute: string;
-  highlight: any;
   capitalize?: boolean;
   color?: string;
   colorNotHighlighted?: string;
 }
 
-const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighlighted }: Props) => {
-  const highlights = highlight({
-    highlightProperty: "_highlightResult",
-    attribute,
-    hit,
-  });
+const Highlight = ({ attribute, hit, capitalize, color, colorNotHighlighted }: Props) => {
+  // See https://github.com/algolia/instantsearch/discussions/5322#discussioncomment-3135852
+  const property = getPropertyByPath(hit._highlightResult, attribute as string) || [];
+  const properties = Array.isArray(property) ? property : [property];
+
+  const parts = properties.map((singleValue) => getHighlightedParts(unescape(singleValue.value || "")));
 
   return (
     <Text>
-      {highlights.map(({ value, isHighlighted }: any, index: number) => {
+      {parts.map(({ value, isHighlighted }: any, index: number) => {
         const style: any = isHighlighted
           ? {
               backgroundColor: styles.colors.lightBlue,
@@ -46,4 +47,4 @@ const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighl
   );
 };
 
-export default connectHighlight(Highlight);
+export default Highlight;

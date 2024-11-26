@@ -3,10 +3,9 @@
   position: sticky;
   top: 60px;
   display: flex;
-  min-width: 216px;
-  padding: 8px 0;
+  min-width: 13.5em /*216px*/;
+  padding: 0.5em 0;
   flex-direction: column;
-  align-items: flex-start;
 
   /* Style */
   background: var(--text-inverted-grey);
