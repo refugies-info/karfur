@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSearchBox } from "react-instantsearch-core";
 import { TextInput, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
@@ -31,13 +31,28 @@ const StyledInput = styled.TextInput<{ isRTL: boolean }>`
 `;
 
 interface Props {
+  searchInputValue: string;
+  setSearchInputValue: (value: string) => void;
   backCallback: () => void;
 }
 
-const SearchBox: React.FC<Props> = ({ backCallback }) => {
+const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, backCallback }) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
   const { query, refine } = useSearchBox();
+
+  const setQuery = useCallback((newQuery: string) => {
+    setSearchInputValue(newQuery);
+    refine(newQuery);
+  }, []);
+
+  // Track when the InstantSearch query changes to synchronize it with
+  // the React state.
+  // We bypass the state update if the input is focused to avoid concurrent
+  // updates when typing.
+  if (query !== searchInputValue && !input.current?.isFocused()) {
+    setSearchInputValue(query);
+  }
 
   React.useEffect(() => {
     // set focus when component mounts
@@ -62,8 +77,8 @@ const SearchBox: React.FC<Props> = ({ backCallback }) => {
         <StyledInput
           // @ts-ignore
           ref={input}
-          onChangeText={(value: string) => refine(value)}
-          value={query}
+          onChangeText={setQuery}
+          value={searchInputValue}
           placeholder={t("search_screen.search", "Rechercher")}
           placeholderTextColor={styles.colors.darkGrey}
           isRTL={isRTL}
