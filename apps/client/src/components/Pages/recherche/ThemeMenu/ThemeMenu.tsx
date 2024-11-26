@@ -154,10 +154,10 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
           {search ? (
             <SearchResults />
           ) : (
-            <>
+            <div className={styles.menuContainer}>
               <Themes ref={themesContainerRef} />
               {!isMobile && <Needs ref={needsContainerRef} />}
-            </>
+            </div>
           )}
         </div>
       </div>
