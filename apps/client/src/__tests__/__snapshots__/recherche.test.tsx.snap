@@ -384,7 +384,9 @@ exports[`recherche renders search results 1`] = `
             Recherche.resetFilters
           </button>
         </div>
-        <div>
+        <div
+          style="width: 100%;"
+        >
           <h2
             class="no_results_other"
           >
