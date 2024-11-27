@@ -227,12 +227,9 @@ const Filter = ({
                                 className={cls(styles.item, currentmenu.menuItemStyles)}
                                 aria-checked={isSelected}
                                 aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
+                                labelClassName={styles.label}
                               >
-                                <div
-                                  className={styles.label}
-                                  onClick={() => onSelectItem(currentmenu.filterKey, option.key)}
-                                  aria-controls=""
-                                >
+                                <div onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
                                   {currentmenu.translateOptions ? t(option.value) : option.value}
                                 </div>
                                 <div className={styles.count}>{option.count ?? ""}</div>

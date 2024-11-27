@@ -21,6 +21,7 @@
   bottom: -0.5em;
   height: fit-content;
   width: fit-content;
+  min-width: 16em;
   transform: translateY(100%);
   z-index: 900;
 
@@ -36,14 +37,9 @@
   z-index: 20;
 }
 
-.menu button:active {
-  background: red;
-}
-
 .menuItemLabel {
   @include dsfr-text("large");
 
-  border: 1px solid green;
   color: var(--text-title-grey);
 
   &:not(:first-child) {
