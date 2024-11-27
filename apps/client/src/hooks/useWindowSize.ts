@@ -38,41 +38,45 @@ const useWindowSize = () => {
 
     const debouncedFontSizeChange = debounce(handleFontSizeChange, 100);
 
-    // Set up observers
-    const resizeObserver = new ResizeObserver(debouncedFontSizeChange);
-    const mutationObserver = new MutationObserver((mutations) => {
-      if (
-        mutations.some(
-          (m) =>
-            (m.type === "attributes" && ["style", "class"].includes(m.attributeName || "")) ||
-            (m.type === "childList" && m.target === document.head),
-        )
-      ) {
-        debouncedFontSizeChange();
-      }
-    });
+    // Set up observers if in browser environment
+    if (typeof window !== "undefined" && typeof ResizeObserver !== "undefined") {
+      const resizeObserver = new ResizeObserver(debouncedFontSizeChange);
+      const mutationObserver = new MutationObserver((mutations) => {
+        if (
+          mutations.some(
+            (m) =>
+              (m.type === "attributes" && ["style", "class"].includes(m.attributeName || "")) ||
+              (m.type === "childList" && m.target === document.head),
+          )
+        ) {
+          debouncedFontSizeChange();
+        }
+      });
 
-    // Attach observers and event listeners
-    resizeObserver.observe(document.documentElement);
-    mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
-    mutationObserver.observe(document.head, { childList: true, subtree: true });
+      // Attach observers and event listeners
+      resizeObserver.observe(document.documentElement);
+      mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
+      mutationObserver.observe(document.head, { childList: true, subtree: true });
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleFontSizeChange);
-    window.addEventListener("keydown", (e) => {
-      if ((e.ctrlKey || e.metaKey) && ["+", "-", "0", "="].includes(e.key)) {
-        handleFontSizeChange();
-      }
-    });
-    window.addEventListener("wheel", (e) => e.ctrlKey && handleFontSizeChange());
+      window.addEventListener("resize", handleResize);
+      window.addEventListener("load", handleFontSizeChange);
+      window.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && ["+", "-", "0", "="].includes(e.key)) {
+          handleFontSizeChange();
+        }
+      });
+      window.addEventListener("wheel", (e) => e.ctrlKey && handleFontSizeChange());
 
-    handleFontSizeChange();
+      handleFontSizeChange();
 
-    return () => {
-      [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
-      ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
-      clearTimeout(rafId);
-    };
+      return () => {
+        [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
+        ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
+        clearTimeout(rafId);
+      };
+    }
+    // Return empty cleanup function if conditions are not met
+    return () => {};
   }, [baseFontSize]);
 
   return { windowSize, isMobile, isTablet };
