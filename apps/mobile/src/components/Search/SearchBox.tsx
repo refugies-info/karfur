@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSearchBox } from "react-instantsearch-core";
 import { TextInput, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
@@ -41,10 +41,13 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
   const { t, isRTL } = useTranslationWithRTL();
   const { query, refine } = useSearchBox();
 
-  const setQuery = useCallback((newQuery: string) => {
-    setSearchInputValue(newQuery);
-    refine(newQuery);
-  }, []);
+  const setQuery = useCallback(
+    (newQuery: string) => {
+      setSearchInputValue(newQuery);
+      refine(newQuery);
+    },
+    [refine, setSearchInputValue],
+  );
 
   // Track when the InstantSearch query changes to synchronize it with
   // the React state.
@@ -54,7 +57,7 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
     setSearchInputValue(query);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     // set focus when component mounts
     setTimeout(() => {
       if (input && input.current) input.current.focus();
