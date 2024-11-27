@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { debounce } from "lodash";
+import { useEffect, useState } from "react";
 
 type WindowSize = {
   width: number | undefined;
@@ -14,14 +15,6 @@ const useWindowSize = () => {
 
   const isMobile = windowSize.width && windowSize.width <= baseFontSize * 48;
   const isTablet = windowSize.width && windowSize.width < baseFontSize * 61.5;
-
-  const debounce = useCallback((fn: Function, delay: number) => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    return (...args: any[]) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => fn(...args), delay);
-    };
-  }, []);
 
   useEffect(() => {
     let rafId: number;
@@ -80,7 +73,7 @@ const useWindowSize = () => {
       ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
       clearTimeout(rafId);
     };
-  }, [debounce, baseFontSize]);
+  }, [baseFontSize]);
 
   return { windowSize, isMobile, isTablet };
 };
