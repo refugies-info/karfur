@@ -34,32 +34,28 @@ export const sendWelcomeMail = async (email: string, firstName: string, userId: 
 };
 
 export const sendResetPasswordMail = async (userId: string, lien_reinitialisation: string, email: string) => {
-  if (consentsToEmail(userId, "resetPassword")) {
-    try {
-      logger.info("[sendResetPasswordMail] received", { email });
-      const dynamicData = {
-        to: email,
-        from: {
-          email: "contact@refugies.info",
-          name: "L'équipe de Réfugiés.info",
-        },
-        reply_to: "contact@email.refugies.info",
-        dynamicTemplateData: {
-          lien_reinitialisation: lien_reinitialisation,
-        },
-      };
-      const templateName = "resetPassword";
-      sendMail(templateName, dynamicData, true);
-      await addMailEvent({ templateName, userId, email });
-      return;
-    } catch (error) {
-      logger.error("[sendResetPasswordMail] error", {
-        email,
-        error: error.message,
-      });
-    }
-  } else {
-    logger.info("[sendResetPasswordMail] user has not consented to email", { email });
+  try {
+    logger.info("[sendResetPasswordMail] received", { email });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        lien_reinitialisation: lien_reinitialisation,
+      },
+    };
+    const templateName = "resetPassword";
+    sendMail(templateName, dynamicData, true);
+    await addMailEvent({ templateName, userId, email });
+    return;
+  } catch (error) {
+    logger.error("[sendResetPasswordMail] error", {
+      email,
+      error: error.message,
+    });
   }
 };
 

@@ -62,7 +62,7 @@ export const filterDispositifsForUpdateReminders = (dispositifs: Dispositif[], n
 
 export interface FormattedDispositif {
   creatorId: UserId;
-  firstName: string;
+  firstName: string | undefined;
   email: string;
   dispositifs: { _id: DispositifId; titreInformatif: string }[];
 }
