@@ -101,7 +101,7 @@ const SearchResults = (props: Props) => {
               </Button>
             </div>
 
-            <div>
+            <div style={{ width: "100%" }}>
               <h2 className={styles.no_results_other}>
                 {t("Recherche.noResultOther", "Ces fiches peuvent aussi vous intéresser")}
               </h2>
@@ -113,7 +113,7 @@ const SearchResults = (props: Props) => {
             </div>
           </>
         ) : (
-          <div>
+          <div style={{ width: "100%" }}>
             <h2>{t("Recherche.yourResults")}</h2>
 
             <div className={styles.results}>
@@ -134,7 +134,7 @@ const SearchResults = (props: Props) => {
           </div>
         )}
         {showSuggestions && filteredResults.suggestions.length > 0 && (
-          <div>
+          <div style={{ width: "100%" }}>
             <h2 className={styles.no_results_other}>
               {t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}
             </h2>

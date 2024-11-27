@@ -12,9 +12,6 @@ export class MailEvent extends Base {
   public email!: String;
 
   @prop()
-  public username?: String;
-
-  @prop()
   public langue?: String;
 
   @prop({ ref: () => User })

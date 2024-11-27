@@ -6,10 +6,19 @@ import styles from "./Checkbox.module.css";
 import CheckboxIcon from "./CheckboxIcon";
 
 type Props = {
+  labelClassName?: string;
   onChange?: () => void;
 } & Omit<CheckboxProps, "onCheckedChange">;
 
-const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, children, disabled, onChange }) => {
+const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
+  id,
+  checked,
+  children,
+  disabled,
+  onChange,
+  className,
+  labelClassName,
+}) => {
   const stylesDisabled = useStylesDisabled();
   const handleLabelClick = (e: React.MouseEvent) => {
     // Prevent triggering twice if clicking on the Root component
@@ -18,7 +27,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, child
   };
 
   return (
-    <span className={cls(styles.container, disabled && styles.disabled)} id={id}>
+    <span className={cls(styles.container, disabled && styles.disabled, className)} id={id}>
       <Root
         className={cls(styles.root, checked === true && styles.checked)}
         checked={checked ?? false}
@@ -39,12 +48,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({ id, checked, child
           </Indicator>
         )}
       </Root>
-      <span
-        className={cls(styles.label, disabled && styles.disabled)}
-        onClick={disabled ? undefined : handleLabelClick}
-      >
-        {children}
-      </span>
+      <label className={cls(styles.label, disabled && styles.disabled, labelClassName)}>{children}</label>
     </span>
   );
 };
