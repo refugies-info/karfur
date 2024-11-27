@@ -20,6 +20,11 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
   labelClassName,
 }) => {
   const stylesDisabled = useStylesDisabled();
+  const handleLabelClick = (e: React.MouseEvent) => {
+    // Prevent triggering twice if clicking on the Root component
+    if ((e.target as HTMLElement).closest('[role="checkbox"]')) return;
+    onChange?.();
+  };
 
   return (
     <span className={cls(styles.container, disabled && styles.disabled, className)} id={id}>
@@ -42,7 +47,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
             <CheckboxIcon />
           </Indicator>
         )}
-      </Root>{" "}
+      </Root>
       <label className={cls(styles.label, disabled && styles.disabled, labelClassName)}>{children}</label>
     </span>
   );
