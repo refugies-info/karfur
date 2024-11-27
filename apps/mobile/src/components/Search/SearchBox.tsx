@@ -88,7 +88,7 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
           testID="test-city-search"
         />
         <TouchableOpacity
-          onPress={() => refine("")}
+          onPress={() => setSearchInputValue("")}
           accessibilityRole="button"
           accessible={true}
           accessibilityLabel={t("global.clear_selection_accessibility")}
