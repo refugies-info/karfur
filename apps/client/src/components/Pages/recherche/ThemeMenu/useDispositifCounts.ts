@@ -57,13 +57,13 @@ export const useDispositifCounts = (isOpen: boolean) => {
 
   // Step 3: Count dispositifs by theme
   const nbDispositifsByTheme = _(filteredDispositifs)
-    .filter((dispositif) => dispositif.theme !== null && dispositif.status === "Actif")
+    .filter((dispositif) => dispositif.theme !== null)
     .countBy((dispositif) => dispositif.theme?.toString())
     .value();
 
   // Step 4: Count dispositifs by need, ensuring needs match the dispositif's theme
   const nbDispositifsByNeed = _(filteredDispositifs)
-    .filter((dispositif) => dispositif.theme !== null && dispositif.status === "Actif")
+    .filter((dispositif) => dispositif.theme !== null)
     .flatMap((dispositif) =>
       _(dispositif.needs)
         .filter((id) => {
