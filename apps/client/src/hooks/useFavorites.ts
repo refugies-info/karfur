@@ -1,6 +1,6 @@
 import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserFavoritesActionCreator } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { userFavoritesSelector } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
@@ -31,14 +31,6 @@ const useFavorites = (contentId: Id | null) => {
 
   const dispatch = useDispatch();
   const { isAuth } = useAuth();
-
-  // Fetch favorites when the hook is initialized and user is authenticated
-  // This ensures favorites are loaded before the selector is used in the UI
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(fetchUserFavoritesActionCreator(locale));
-    }
-  }, [dispatch, locale, isAuth]);
 
   // Memoized computation of whether the current content is favorited
   const isFavorite = useMemo(() => isContentFavorite(favorites, contentId), [favorites, contentId]);

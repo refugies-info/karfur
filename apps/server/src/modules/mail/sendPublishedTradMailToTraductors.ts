@@ -20,7 +20,7 @@ export const sendPublishedTradMailToTraductors = async (locale: Languages, dispo
       traductors.map(async (tradId) => {
         try {
           const userNeededFields = {
-            username: 1,
+            firstName: 1,
             email: 1,
             status: 1,
           };
@@ -34,7 +34,7 @@ export const sendPublishedTradMailToTraductors = async (locale: Languages, dispo
               titreMarque: dispositif.translations.fr.content.titreMarque,
               lien,
               email: membreFromDB.email,
-              pseudo: membreFromDB.username,
+              firstName: membreFromDB.firstName,
               langue,
               isDispositif: dispositif.typeContenu === ContentType.DISPOSITIF,
             });
