@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps, useDropdownContext } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
+import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
@@ -82,25 +83,41 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
     }
   }, [openDropdownId, dropdownId, open]);
 
-  // Close dropdown if the user tabs away
+  // Handle clicks outside and focus changes
   useEffect(() => {
-    const handleFocusOut = (event: FocusEvent) => {
-      if (open && dropdownRef.current && !dropdownRef.current.contains(event.relatedTarget as Node)) {
+    const dropdownNode = dropdownRef.current;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (open && dropdownNode && !dropdownNode.contains(event.target as Node)) {
         setOpen(false);
         setOpenDropdownId(null);
       }
     };
 
-    const dropdownNode = dropdownRef.current;
-    dropdownNode?.addEventListener("focusout", handleFocusOut);
+    const handleFocusChange = (event: FocusEvent) => {
+      // Only handle focus changes from tabbing, not from clicks
+      if (
+        event.relatedTarget && // Check if we have a new focus target
+        open &&
+        dropdownNode &&
+        !dropdownNode.contains(event.relatedTarget as Node)
+      ) {
+        setOpen(false);
+        setOpenDropdownId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    dropdownNode?.addEventListener("focusout", handleFocusChange);
 
     return () => {
-      dropdownNode?.removeEventListener("focusout", handleFocusOut);
+      document.removeEventListener("mousedown", handleClickOutside);
+      dropdownNode?.removeEventListener("focusout", handleFocusChange);
     };
   }, [open, setOpenDropdownId]);
 
   return (
-    <div className={styles.menuContainer}>
+    <div className={cls(styles.menuContainer, openDropdownId === label && styles.open)}>
       <DropdownButton
         label={label}
         tooltip={tooltip}

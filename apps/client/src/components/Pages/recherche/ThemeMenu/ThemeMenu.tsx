@@ -1,21 +1,18 @@
-import { Id, SimpleDispositif } from "@refugies-info/api-types";
-import _ from "lodash";
-import debounce from "lodash/debounce";
+import { Id } from "@refugies-info/api-types";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useDispositifCounts } from "~/components/Pages/recherche/ThemeMenu/useDispositifCounts";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
-import { filterDispositifs, queryDispositifsWithoutThemes } from "~/lib/recherche/queryContents";
+import { filterDispositifs } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
 import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
-import { languei18nSelector } from "~/services/Langue/langue.selectors";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { hasErroredSelector, isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { needsSelector } from "~/services/Needs/needs.selectors";
-import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import { getInitialTheme } from "./functions";
@@ -30,18 +27,6 @@ interface Props {
   isOpen: boolean;
   className?: string;
 }
-
-const debouncedQuery = debounce(
-  (
-    query: SearchQuery,
-    dispositifs: SimpleDispositif[],
-    locale: string,
-    callback: (res: SimpleDispositif[]) => void,
-  ) => {
-    return queryDispositifsWithoutThemes(query, dispositifs, locale).then((res) => callback(res));
-  },
-  500,
-);
 
 const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const dispatch = useDispatch();
@@ -94,29 +79,8 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
-  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
-
   // count dispositifs by need and theme
-  const languei18nCode = useSelector(languei18nSelector);
-  useEffect(() => {
-    if (isOpen) {
-      debouncedQuery(query, matches, languei18nCode, (dispositifs) => {
-        const nbDispositifsByTheme = _(dispositifs)
-          .filter((dispositif) => dispositif.theme !== null && dispositif.status === "Actif")
-          .countBy((dispositif) => dispositif.theme?.toString())
-          .value();
-
-        const nbDispositifsByNeed = _(dispositifs)
-          .flatMap((dispositif) => dispositif.needs || [])
-          .countBy()
-          .value();
-
-        setNbDispositifsByTheme(nbDispositifsByTheme);
-        setNbDispositifsByNeed(nbDispositifsByNeed);
-      });
-    }
-  }, [query, matches, needs, sortedThemes, mobile, languei18nCode, isOpen]);
+  const { nbDispositifsByNeed, nbDispositifsByTheme } = useDispositifCounts(isOpen);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

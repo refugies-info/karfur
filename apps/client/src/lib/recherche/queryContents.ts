@@ -151,7 +151,7 @@ const filterSuggestions = (
 let searchCache = "";
 let searchCacheResults: SimpleDispositif[] = [];
 
-const queryOnAlgolia = async (search: string, dispositifs: SimpleDispositif[], locale: string) => {
+export const queryAlgolia = async (search: string, dispositifs: SimpleDispositif[], locale: string) => {
   let filteredDispositifsByAlgolia: SimpleDispositif[] = [...dispositifs];
   if (search) {
     if (search !== searchCache) {
@@ -261,27 +261,6 @@ export const queryDispositifsWithAlgolia = async (
   locale: string,
   allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
-  const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
+  const filteredDispositifsByAlgolia = await queryAlgolia(query.search, dispositifs, locale);
   return { ...queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds), algolia: filteredDispositifsByAlgolia };
-};
-
-/**
- * Query the dispositifs with all filters except themes or needs. Useful for the theme dropdown popup.
- * @async
- * @param query - search query
- * @param dispositifs - list of dispositifs
- * @param locale - language to use for Algolia
- * @returns - results
- */
-export const queryDispositifsWithoutThemes = async (
-  query: SearchQuery,
-  dispositifs: SimpleDispositif[],
-  locale: string,
-): Promise<SimpleDispositif[]> => {
-  const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return [...filteredDispositifsByAlgolia]
-    .filter((dispositif) => filterByLocations(dispositif, query.departments))
-    .filter((dispositif) => filterByAge(dispositif, query.age))
-    .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
-    .filter((dispositif) => filterByLanguage(dispositif, query.language));
 };

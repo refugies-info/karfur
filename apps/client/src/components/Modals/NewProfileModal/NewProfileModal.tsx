@@ -1,12 +1,16 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useSelector } from "react-redux";
 import BaseModal from "~/components/UI/BaseModal";
+import FRLink from "~/components/UI/FRLink";
 import { useRegisterFlow } from "~/hooks";
+import { cls } from "~/lib/classname";
 import { hasRole } from "~/lib/hasRole";
 import { userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
+import styles from "./NewProfileModal.module.scss";
 
 const NewProfileModal = () => {
   const [show, setShow] = useState(false);
@@ -33,6 +37,16 @@ const NewProfileModal = () => {
     if (showNewProfileModal) setShow(true);
   }, [user]);
 
+  const logout = useCallback(() => {
+    API.logout();
+    window.location.href = "/";
+  }, []);
+
+  const openCrisp = useCallback((e: any) => {
+    e.preventDefault();
+    window.$crisp.push(["do", "chat:open"]);
+  }, []);
+
   return (
     <BaseModal
       show={show}
@@ -51,10 +65,20 @@ const NewProfileModal = () => {
         Pour continuer à accéder au contenu, merci de{" "}
         <strong>compléter votre profil en cliquant sur le bouton ci-dessous</strong>.
       </p>
-      <div className="text-end">
-        <Button iconId="fr-icon-arrow-right-line" iconPosition="right" onClick={() => next(null, true)}>
-          Compléter votre profil
+      <div className={cls("d-flex justify-content-between align-items-start", styles.actions)}>
+        <Button priority="secondary" onClick={logout} className={styles.danger}>
+          Me déconnecter
         </Button>
+
+        <div className="d-flex flex-column align-items-end gap-2">
+          <Button iconId="fr-icon-arrow-right-line" iconPosition="right" onClick={() => next(null, true)}>
+            Compléter votre profil
+          </Button>
+
+          <FRLink onClick={openCrisp} className={styles.link}>
+            Je n'arrive pas à compléter mon profil
+          </FRLink>
+        </div>
       </div>
     </BaseModal>
   );

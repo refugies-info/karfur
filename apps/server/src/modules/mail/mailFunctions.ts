@@ -16,7 +16,7 @@ export const sendPublishedMailToCreator = async (
   lien: string,
 ) => {
   const userNeededFields = {
-    username: 1,
+    firstName: 1,
     email: 1,
     status: 1,
   };
@@ -27,7 +27,7 @@ export const sendPublishedMailToCreator = async (
     logger.info("[publish dispositif] creator has email");
 
     await sendPublishedFicheMailToCreatorService({
-      pseudo: creator.username,
+      firstName: creator.firstName,
       titreInformatif,
       titreMarque,
       lien,
@@ -51,7 +51,7 @@ export const sendPublishedMailToStructureMembers = async (
         membreId: membre._id,
       });
       void sendPublishedFicheMailToStructureMembersService({
-        pseudo: membre.username,
+        firstName: membre.firstName,
         titreInformatif: titreInformatif,
         titreMarque: titreMarque,
         lien,

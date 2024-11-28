@@ -11,6 +11,10 @@
   background: var(--text-inverted-grey);
 }
 
+.ref {
+  width: 100%;
+}
+
 .accordion {
   width: 100%;
 }
