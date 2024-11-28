@@ -5,6 +5,7 @@
   align-items: flex-start;
   gap: 0.5em;
   align-self: stretch;
+  cursor: pointer;
   position: relative;
 }
 

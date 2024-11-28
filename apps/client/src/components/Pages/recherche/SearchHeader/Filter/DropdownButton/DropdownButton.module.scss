@@ -55,7 +55,7 @@
   &.values {
     background: var(--background-flat-blue-france);
     color: white;
-    padding-inline-end: u(11);
+    padding-inline-end: max(u(11), 2rem);
 
     &:hover {
       background: var(--background-action-high-blue-france-hover) !important;

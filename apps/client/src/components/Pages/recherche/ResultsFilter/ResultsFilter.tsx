@@ -32,7 +32,10 @@ const ResultsFilter = (): React.ReactNode => {
     [filteredResult.matches],
   );
   const nbDispositifs = useMemo(
-    () => filteredResult.matches.filter(({ typeContenu }) => typeContenu === "dispositif").length,
+    () =>
+      filteredResult.matches.filter(
+        ({ metadatas, typeContenu }) => typeContenu === "dispositif" && metadatas?.location !== "online",
+      ).length,
     [filteredResult.matches],
   );
   const onlineResourceCount = useMemo(
@@ -131,7 +134,7 @@ const ResultsFilter = (): React.ReactNode => {
             <>
               <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
                 {t(option.value)} {getCount(option.key)}
-              </TabItem>{" "}
+              </TabItem>
             </>
           ))}
         </TabsBar>

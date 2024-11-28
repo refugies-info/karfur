@@ -15,7 +15,7 @@
   z-index: 1000000;
   will-change: transform;
   display: grid;
-  grid-template-rows: fit-content(1fr) 1fr fit-content(1fr);
+  grid-template-rows: auto 1fr auto;
   grid-template-columns: 1fr;
 
   .dialogTitle {

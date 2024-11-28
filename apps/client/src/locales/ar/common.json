@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "ابحث",
+    "title": "ابحث عن صفحة معلومات",
+    "subtitle": "ابحث بين {{count}} صفحة معلومات عن معاملات ادرية و برامج محلية.",
     "updated": "تم تحديث الصفحة",
     "demarcheTitle": "صفحات المعاملات الادارية",
     "dispositifTitle": "صفحات الدورات و البرامج و الفورماسيون",
@@ -88,25 +90,42 @@
     "seeButton": "مشاهدة الصفحات",
     "titleThemes": "مواضيع الاندماج",
     "positionButton": "استخدام موقعي",
+    "positionEnable": "عليك تفعيل تحديد الموقع الجغرافي في متصفح الانترنيت",
+    "notDeployedText": "بدء ادراج البرامج المتاحة في اقليم سكنك - {{department}}. نتائج البحث قليلة.",
     "france": "في كل فرنسا",
     "online": "على الانترنيت",
+    "keyword": "البحث عبر كلمة مفتاحية",
     "keywordPlaceholder": "بطاقة اقامة, ميسيون لوكال",
     "department": "أبحث في مدينة أو في اقليم",
+    "theme": "الموضوع",
     "themesPlaceholder": "أبحث في سلسلة المواضيع",
     "filters": "فلترة النتائج",
     "filterAge": "الفئة العمرية",
     "filterFrenchLevel": "مستوى اللغة",
+    "filterLanguage": "مترجم باللغة",
+    "filterLocation": "الاقليم",
     "filterPublic": "الجمهور المستهدف",
     "filterStatus": "حالة",
     "all": "كل المواضيع",
     "resetFilters": "امسح الفلاتر",
     "titleResults": "صفحات معلومات مناسبة لطلبك",
     "noResultText": "استعمل فلاتر أقل أو تحقق من كتابة الكلمة",
+    "suggestedTitle": "هذه الصفحات يُمكن أن تهمك أيضاً",
     "seeMore": "رؤية المزيد",
     "seeLess": "مشاهدة نتائج أقل",
     "results": "نتيجة",
     "seeAllButton": "مشاهدة الجميع",
-    "fichesLanguageFilter": "صفحات معلومات ب"
+    "fichesLanguageFilter": "صفحات معلومات ب",
+    "filtersAndSortModalTitle": "فلترة و فرز",
+    "sortBy": "فرز حسب",
+    "clear": "امسح",
+    "seeAllButtonWithCount": "مشاهدة ال {{count}} صفحة",
+    "tooltipAucuneFicheCorrespondante": "لا يوجد صفحة معلومات مطابقة لهذا المعيار. اضبط عوامل التصفية الأخرى  للتصفية وفقاً لهذا المعيار المحدد.",
+    "noResultTitle": "أُووبس ! لا توجد نتائج مطابقة لمعايير البحث التي أدخلتها.",
+    "noResultOther": "قد تهمك هذه الصفحات أيضاً",
+    "Recherche.fiches_zero": "صفحة",
+    "Recherche.fiches_one": "صفحة",
+    "Recherche.fiches_other": "صفحات"
   },
   "Widget": {
     "fiches": "صفحات معلومات",
@@ -166,9 +185,14 @@
     "frenchLevelA": "مستوى مبتدىء A1/A2",
     "frenchLevelB": "مستوى متوسط B1/B2",
     "frenchLevelC": "مستوى متقدم  C1/C2",
+    "sortLocation": "الترتيب حسب الاقليم",
+    "sortTheme": "الترتيب حسب الموضوع",
+    "sortDate": "الترتيب حسب التاريخ",
+    "sortView": "الترتيب حسب الشعبية",
     "typeAll": "جميع الملفات",
     "typeDispositif": "الأجهزة",
-    "typeDemarche": "الإجراءات"
+    "typeDemarche": "الإجراءات",
+    "typeRessource": "الموارد عبر الإنترنت"
   },
   "Status": {
     "En attente": "في الانتظار",
@@ -197,10 +221,7 @@
     "not_an_email": "هذا ليس بريد الكتروني",
     "check_mail": "دقق الأخطاء الإملائية"
   },
-  "UnauthorizedAccess": {
-    "access_denied": "الوصول مرفوض",
-    "back_home": "العودة إلى الصفحة الرئيسية"
-  },
+  "UnauthorizedAccess": { "access_denied": "الوصول مرفوض", "back_home": "العودة إلى الصفحة الرئيسية" },
   "Dispositif": {
     "share": "أشارك الصفحة",
     "updated": "تم التحديث منذ",
@@ -377,11 +398,7 @@
     "information_types": "ثلاثة أنواع من المعلومات",
     "help_translate": "المساعدة في الترجمة"
   },
-  "Roles": {
-    "admin": "أدمن",
-    "redactor": "مُحرر",
-    "translator": "مُُترجم"
-  },
+  "Roles": { "admin": "أدمن", "redactor": "مُحرر", "translator": "مُُترجم" },
   "topLink": "أعلى الصفحة",
   "close": "أغلق",
   "showBreadcrumb": "شاهد دليل الموقع",
@@ -491,7 +508,9 @@
     "retry_search": "حاول توسيع بحثك بإلغاء بعض الفلاتر"
   },
   "MobileAppModal": {
-    "download": "تثبيت التطبيق"
+    "download": "تثبيت التطبيق",
+    "continue": "استمر على أي حال",
+    "description": "على هاتفك الذكي، استخدم تطبيق Réfugiés.info، فهو أسهل وأكثر ملاءمة !"
   },
   "StaticPages": {
     "helpTitle": "لست لوحدك",
