@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "Пошук",
+    "title": "Знайти інформаційний запис",
+    "subtitle": "Шукайте серед {{count}} місцевих програм і процедур.",
     "updated": "Оновлено",
     "demarcheTitle": "Записи адміністративних процедур",
     "dispositifTitle": "Записи програм",
@@ -88,25 +90,42 @@
     "seeButton": "Переглянути {{count}} записи",
     "titleThemes": "Тематики інтеграції",
     "positionButton": "Використовуйте мою позицію",
+    "positionEnable": "Вам потрібно активувати геолокацію для вашого браузера",
+    "notDeployedText": "Перелік місцевих заходів починається з департаменту – {{department}}. Ваш пошук може дати мало результатів.",
     "france": "у всій Франції",
     "online": "онлайн",
+    "keyword": "Пошук за ключовим словом",
     "keywordPlaceholder": "Місцева місія, посвідка на проживання",
     "department": "Шукати місце чи департамент",
+    "theme": "Тема",
     "themesPlaceholder": "Шукати по темам",
     "filters": "Фільтри пошуку",
     "filterAge": "Вікова категорія",
     "filterFrenchLevel": "Рівень французької мови",
+    "filterLanguage": "Перекладено",
+    "filterLocation": "Департамент",
     "filterPublic": "Цільова аудиторія",
     "filterStatus": "Статус",
     "all": "Усі",
     "resetFilters": "Відмінити усі фільтри",
     "titleResults": "{{count}} записів для вашого пошуку",
     "noResultText": "Використовуйте менше фільтрів або перевірте орфографію ключового слова.",
+    "suggestedTitle": "Ці записи також можуть бути цікавими для вас",
     "seeMore": "Дивитися більше",
     "seeLess": "Дивитися менше",
     "results": "результати",
     "seeAllButton": "Дивитися все",
-    "fichesLanguageFilter": "Записи"
+    "fichesLanguageFilter": "Записи",
+    "filtersAndSortModalTitle": "Фільтри і сортування",
+    "sortBy": "Фільтрувати",
+    "clear": "Видалити",
+    "seeAllButtonWithCount": "Переглянути {{count}} записів",
+    "tooltipAucuneFicheCorrespondante": "Жодних записів, що відповідають цьому критерію. Налаштуйте інші фільтри, щоб фільтрувати за цим критерієм.",
+    "noResultTitle": "Ой, немає результатів, що відповідають вашим критеріям пошуку.",
+    "noResultOther": "Ці записи також можуть вас зацікавити",
+    "Recherche.fiches_zero": "запис",
+    "Recherche.fiches_one": "запис",
+    "Recherche.fiches_other": "записів"
   },
   "Widget": {
     "fiches": "Записи",
@@ -166,9 +185,14 @@
     "frenchLevelA": "Початковий A1/A2",
     "frenchLevelB": "Середній B1/B2",
     "frenchLevelC": "Просунутий C1/C2",
+    "sortLocation": "Сортувати за департаментом",
+    "sortTheme": "Сортувати за тематикою",
+    "sortDate": "Сортувати за датою",
+    "sortView": "Сортувати за актуальністю",
     "typeAll": "Усі записи",
     "typeDispositif": "Схеми",
-    "typeDemarche": "Процедури"
+    "typeDemarche": "Процедури",
+    "typeRessource": "Ресурси онлайн"
   },
   "Status": {
     "En attente": "Очікування",
@@ -203,10 +227,7 @@
     "check_mail": "перевірте написання.",
     "invalid_phone_number": "Це недійсний номер телефону, перевірте введені дані."
   },
-  "UnauthorizedAccess": {
-    "access_denied": "У доступі відмовлено.",
-    "back_home": "Повернутися на головну сторінку"
-  },
+  "UnauthorizedAccess": { "access_denied": "У доступі відмовлено.", "back_home": "Повернутися на головну сторінку" },
   "Dispositif": {
     "share": "Поділитися записом",
     "updated": "Оновлено",
@@ -383,11 +404,7 @@
     "information_types": "Три типи інформації",
     "help_translate": "Допомогти з перекладом"
   },
-  "Roles": {
-    "admin": "Адмін",
-    "redactor": "Редактор",
-    "translator": "Перекладач"
-  },
+  "Roles": { "admin": "Адмін", "redactor": "Редактор", "translator": "Перекладач" },
   "topLink": "Вгору сторінки",
   "close": "Закрити",
   "showBreadcrumb": "Побачити нитку Аріадни",
@@ -498,7 +515,9 @@
     "retry_search": "Спробуйте розширити пошук, вимкнувши певні теги"
   },
   "MobileAppModal": {
-    "download": "Завантажити додаток"
+    "download": "Завантажити додаток",
+    "continue": "Все одно продовжити",
+    "description": "На вашому смартфоні використовуйте додаток Réfugiés.info – це простіше і зручніше!"
   },
   "StaticPages": {
     "helpTitle": "Ти не один",
