@@ -2,6 +2,7 @@ import { ImprovementsRequest } from "@refugies-info/api-types";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { sendAdminImprovementsMailService } from "~/modules/mail/mail.service";
+import { getUserById } from "~/modules/users/users.repository";
 import { DispositifId, UserId } from "~/typegoose";
 import { Response } from "~/types/interface";
 import { log } from "./log";
@@ -16,27 +17,33 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
     carte: body.sections.includes("Carte interactive"),
   };
 
-  await asyncForEach(body.users, async (user) => {
-    await sendAdminImprovementsMailService({
-      dispositifId: body.dispositifId as DispositifId,
-      userId: user._id as UserId,
-      titreInformatif: body.titreInformatif,
-      titreMarque: body.titreMarque,
-      lien: "https://refugies.info/dispositif/" + body.dispositifId,
-      email: user.email,
-      pseudo: user.username || "",
-      sectionsToModify: formattedSections,
-      message: body.message,
-    });
-  });
+  const users: (Awaited<ReturnType<typeof getUserById>> | null)[] = await Promise.all(
+    body.userIds.map((userId) => getUserById(userId, { email: 1, firstName: 1 }).catch(() => null)),
+  );
+
+  await asyncForEach(
+    users.filter((u) => !!u),
+    async (user) => {
+      await sendAdminImprovementsMailService({
+        dispositifId: body.dispositifId as DispositifId,
+        userId: userId as UserId,
+        titreInformatif: body.titreInformatif,
+        titreMarque: body.titreMarque,
+        lien: "https://refugies.info/dispositif/" + body.dispositifId,
+        email: user.email,
+        firstName: user.firstName,
+        sectionsToModify: formattedSections,
+        message: body.message,
+      });
+    },
+  );
 
   const options = {
     message: body.message,
     sections: body.sections,
-    users: body.users,
+    userEmails: users.map((u) => u.email),
   };
 
-  //@ts-ignore
   await log(body.dispositifId, userId, options);
 
   return { text: "success" };

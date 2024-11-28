@@ -20,7 +20,7 @@ export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, l
       });
       try {
         await sendPublishedTradMailToStructureService({
-          pseudo: membre.username,
+          firstName: membre.firstName,
           titreInformatif: dispositif.translations.fr.content.titreInformatif,
           titreMarque: dispositif.translations.fr.content.titreMarque,
           lien: "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id,

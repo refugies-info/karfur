@@ -37,7 +37,6 @@ describe("getAllDispositifs", () => {
       },
       adminComments: "comment",
       adminProgressionStatus: "comment",
-      adminPercentageProgressionStatus: "comment",
       lastAdminUpdate: new Date("2023-12-01T14:34:29.335Z"),
       draftReminderMailSentDate: new Date("2023-12-01T14:34:29.335Z"),
       draftSecondReminderMailSentDate: new Date("2023-12-01T14:34:29.335Z"),
@@ -78,7 +77,6 @@ describe("getAllDispositifs", () => {
     dispositif.lastReminderMailSentToUpdateContentDate = new Date("2023-12-01T14:34:29.335Z");
     dispositif.lastModificationDate = new Date("2023-12-01T14:34:29.335Z");
     dispositif.adminComments = "comment";
-    dispositif.adminPercentageProgressionStatus = "comment";
     dispositif.adminProgressionStatus = "comment";
     populatedDispositif.mainSponsor = {
       _id: "id",

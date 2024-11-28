@@ -69,7 +69,7 @@
   .content {
     overflow: hidden;
     padding-block: u(2);
-    padding-inline: u(4);
+    padding-right: u(4);
     position: relative;
 
     &[data-state="open"] {
