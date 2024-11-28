@@ -18,8 +18,7 @@ const Highlight = ({ attribute, hit, capitalize, color, colorNotHighlighted }: P
   const property = getPropertyByPath(hit._highlightResult, attribute as string) || [];
   const properties = Array.isArray(property) ? property : [property];
 
-  const parts = properties.map((singleValue) => getHighlightedParts(unescape(singleValue.value || "")));
-
+  const parts = properties.flatMap((singleValue) => getHighlightedParts(unescape(singleValue.value || "")));
   return (
     <Text>
       {parts.map(({ value, isHighlighted }: any, index: number) => {
