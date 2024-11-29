@@ -371,44 +371,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
     structures: 1,
   });
 
-  // If user has NO associated structure, return all dispositifs for the creator
-  if (!user[0]?.structures?.length) {
-    return await DispositifModel.aggregate([
-      {
-        $match: {
-          creatorId: new ObjectId(creatorId),
-          status: { $ne: "Supprimé" },
-        },
-      },
-      // Populate mainSponsor with the structure
-      {
-        $lookup: {
-          from: "structures",
-          localField: "mainSponsor",
-          foreignField: "_id",
-          as: "mainSponsor",
-        },
-      },
-      // Unwind the mainSponsor array
-      {
-        $unwind: {
-          path: "$mainSponsor",
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
-        $project: {
-          ...neededFields,
-          mainSponsor: {
-            _id: 1,
-            nom: 1,
-          },
-        },
-      },
-    ]);
-  }
-
-  const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
+  let pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
     // Filter dispositifs with creatorId and status not equal to "Supprimé"
     {
       $match: {
@@ -432,17 +395,25 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
         preserveNullAndEmptyArrays: true,
       },
     },
-    // Filter dispositifs where the creator is a member of the mainSponsor structure
-    // or where the mainSponsor structure does not exist
-    {
-      $match: {
-        $or: [
-          { "mainSponsor.createur": "$_id" },
-          { "mainSponsor.membres.userId": "$_id" },
-          { mainSponsor: { $exists: false } },
-        ],
+  ];
+
+  if (user[0]?.structures?.length > 0) {
+    pipeline.push(
+      // Filter dispositifs where the creator is a member of the mainSponsor structure
+      // or where the mainSponsor structure does not exist
+      {
+        $match: {
+          $or: [
+            { "mainSponsor.createur": "$_id" },
+            { "mainSponsor.membres.userId": "$_id" },
+            { mainSponsor: { $exists: false } },
+          ],
+        },
       },
-    },
+    );
+  }
+
+  pipeline.push(
     // Project the fields to return
     {
       $project: {
@@ -453,7 +424,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
         },
       },
     },
-  ];
+  );
 
   return await DispositifModel.aggregate(pipeline);
 };
