@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { userSelector } from "~/services/User/user.selectors";
-import { fetchUserContributionsActionCreator } from "~/services/UserContributions/userContributions.actions";
-import { fetchUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
+import { setUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
 import API from "~/utils/API";
 import { colors } from "~/utils/colors";
 import { UserStructureDetails } from "./components/UserStructureDetails";
@@ -62,13 +61,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     setIsLoading(false);
     toggleReload();
     if (user.userId?.toString() === userId.toString()) {
-      dispatch(fetchUserContributionsActionCreator());
-      dispatch(
-        fetchUserStructureActionCreator({
-          structureId: structure._id,
-          shouldRedirect: false,
-        }),
-      );
+      dispatch(setUserStructureActionCreator(structure));
     }
   };
 
@@ -95,13 +88,7 @@ export const UserStructureAdminComponent = (props: Props) => {
         setIsLoading(false);
         toggleReload();
         if (user.userId?.toString() === userId.toString()) {
-          dispatch(fetchUserContributionsActionCreator());
-          dispatch(
-            fetchUserStructureActionCreator({
-              structureId: structure._id,
-              shouldRedirect: false,
-            }),
-          );
+          dispatch(setUserStructureActionCreator(null));
         }
       }
     });
