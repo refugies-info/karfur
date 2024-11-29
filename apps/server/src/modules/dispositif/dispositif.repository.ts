@@ -380,6 +380,22 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
           status: { $ne: "Supprimé" },
         },
       },
+      // Populate mainSponsor with the structure
+      {
+        $lookup: {
+          from: "structures",
+          localField: "mainSponsor",
+          foreignField: "_id",
+          as: "mainSponsor",
+        },
+      },
+      // Unwind the mainSponsor array
+      {
+        $unwind: {
+          path: "$mainSponsor",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
       {
         $project: {
           ...neededFields,
