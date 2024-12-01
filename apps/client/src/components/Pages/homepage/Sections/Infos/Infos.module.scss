@@ -1,6 +1,5 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/text";
 
 .infos {
@@ -50,23 +49,22 @@
 .newsletter_input {
   input {
     block-size: 64px;
+    padding-inline: u(10) u(36);
   }
 
   & > span {
-    inset-block-start: 20px !important;
+    inset-block-start: u(5) !important;
+    inset-inline-start: u(2);
   }
 
   :global(.input-error-icon) {
-    @include r-ltr(150px);
+    inset-inline-start: 150px;
   }
 }
 
 .newsletter_submit {
   position: absolute;
   inset-inline-end: 8px;
-
-  @include r-ltr(8px);
-
   inset-block-start: 8px;
   block-size: 48px;
 }
