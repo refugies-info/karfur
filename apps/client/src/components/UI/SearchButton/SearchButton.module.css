@@ -12,7 +12,7 @@
 
 .sticky {
   position: sticky;
-  top: 0;
+  inset-block-start: 0;
 }
 
 .zone {
@@ -25,8 +25,8 @@
 .icon {
   --icon-size: 1.5em;
 
-  width: 1.5em; /* 24px */
-  height: 1.5em; /* 24px */
+  inline-size: 1.5em; /* 24px */
+  block-size: 1.5em; /* 24px */
 }
 
 .input {
@@ -34,7 +34,7 @@
 }
 
 .input[dir="rtl"] {
-  text-align: right;
+  text-align: end;
 }
 
 .input:not(:placeholder-shown) {

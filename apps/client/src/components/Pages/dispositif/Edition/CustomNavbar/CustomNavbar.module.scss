@@ -9,10 +9,10 @@
 
 .container {
   background-color: white;
-  border-top: 1px solid var(--border-default-grey);
-  border-bottom: 1px solid var(--border-default-grey);
+  border-block-start: 1px solid var(--border-default-grey);
+  border-block-end: 1px solid var(--border-default-grey);
   position: sticky;
-  top: 0;
+  inset-block-start: 0;
   box-shadow: 0 12px 32px -8px #0000241f;
   z-index: 501; // goes over menu
 
@@ -34,9 +34,9 @@
 .help {
   @include dsfr-text("small");
 
-  margin-bottom: 0;
+  margin-block-end: 0;
   color: var(--background-action-high-blue-france);
-  margin-left: u(4);
+  margin-inline-start: u(4);
 }
 
 .steps {
@@ -46,7 +46,7 @@
   .btn {
     @include iconSize(u(4));
 
-    min-height: u(8);
+    min-block-size: u(8);
     padding: u(2);
   }
 }
@@ -56,12 +56,12 @@
 
   display: flex;
   align-items: center;
-  margin-left: 80px;
+  margin-inline-start: 80px;
   color: var(--background-action-high-blue-france);
 
   p {
-    margin-bottom: 0;
-    margin-left: u(2);
+    margin-block-end: 0;
+    margin-inline-start: u(2);
   }
 }
 
@@ -72,7 +72,7 @@
   border-radius: u(1);
   padding: 0 u(1);
   color: $darkBackgroundElevationContrast;
-  margin-right: u(8);
+  margin-inline-end: u(8);
   cursor: default;
   display: inline-flex;
   align-items: baseline;

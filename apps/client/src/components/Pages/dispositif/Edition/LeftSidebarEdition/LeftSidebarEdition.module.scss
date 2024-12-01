@@ -7,8 +7,7 @@
   @include dsfr-text("h3");
 
   font-weight: bold;
-  margin-top: u(10);
-  margin-bottom: u(6);
+  margin-block: u(10) u(6);
 }
 
 .container {

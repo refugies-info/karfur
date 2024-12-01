@@ -22,7 +22,7 @@
   border-radius: 50px;
   color: var(--text-title-grey);
   font-weight: 500;
-  max-width: 100%;
+  max-inline-size: 100%;
 
   /* stylelint-disable-next-line media-feature-range-notation */
   @media screen and (max-width: 23.4375em) {
@@ -38,7 +38,7 @@
 
   i {
     line-height: 1em;
-    height: 1em;
+    block-size: 1em;
 
     &::before {
       --icon-size: 1em;
@@ -73,7 +73,7 @@
   text-overflow: ellipsis;
 
   &.limitedWidth {
-    max-width: 100%;
+    max-inline-size: 100%;
   }
 }
 
@@ -84,16 +84,16 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
-  right: 0;
+  inset-block-start: 0;
+  inset-inline-end: 0;
   transform: translateX(35%) translateY(-35%);
   background: var(--background-action-high-blue-france-hover);
   color: white;
   aspect-ratio: 1;
   border-radius: 50%;
   padding: 0.2em;
-  min-width: 1.5em;
-  min-height: 1.5em;
+  min-inline-size: 1.5em;
+  min-block-size: 1.5em;
 }
 
 .plus {
@@ -107,10 +107,10 @@
 .clear {
   padding: 0;
   position: absolute;
-  top: 50%;
+  inset-block-start: 50%;
   transform: translateY(-50%);
   z-index: 2;
-  right: u(3);
+  inset-inline-end: u(3);
 
   :dir(rtl) & {
     left: u(3);
@@ -140,13 +140,13 @@
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 7px solid white;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 0;
+    block-size: 0;
+    border-inline-start: 5px solid transparent;
+    border-inline-end: 5px solid transparent;
+    border-block-end: 7px solid white;
     transform: translate(1.2em, -100%);
   }
 }

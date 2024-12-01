@@ -8,7 +8,7 @@
   box-shadow: 0 4px 12px 0 #00001229;
   border-radius: u(2);
   padding: u(4);
-  min-width: 350px;
+  min-inline-size: 350px;
   z-index: 10;
 
   &.hidden {
@@ -18,7 +18,7 @@
   .text {
     color: var(--background-action-high-blue-france);
     font-weight: bold;
-    margin-bottom: u(2);
+    margin-block-end: u(2);
   }
 
   .url {
@@ -37,24 +37,24 @@
   padding: u(4) u(8) u(8);
   border-radius: u(2);
   box-shadow: 0 2px 6px 0 #00001229;
-  min-width: 550px;
+  min-inline-size: 550px;
 
   .title {
     @include dsfr-text("h4");
 
     font-weight: bold;
     color: var(--text-title-grey);
-    margin-bottom: u(6);
+    margin-block-end: u(6);
   }
 
   .label {
-    margin-bottom: u(2);
+    margin-block-end: u(2);
   }
 
   .input {
     display: flex;
     align-items: center;
-    width: 100%;
+    inline-size: 100%;
     background: var(--background-alt-raised-grey);
     border-radius: u(2);
     padding: u(2) u(3);
@@ -66,7 +66,7 @@
     input {
       outline: none;
       flex-grow: 1;
-      padding-left: u(2);
+      padding-inline-start: u(2);
     }
   }
 }
@@ -78,7 +78,7 @@
 
     padding: u(1) u(3);
     box-shadow: none;
-    min-height: 0;
-    margin-bottom: u(2);
+    min-block-size: 0;
+    margin-block-end: u(2);
   }
 }

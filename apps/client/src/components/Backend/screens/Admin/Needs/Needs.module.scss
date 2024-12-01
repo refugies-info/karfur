@@ -7,11 +7,11 @@
   padding: 16px;
 
   &.themes {
-    width: 350px;
+    inline-size: 350px;
   }
 
   &.scroll_column {
-    height: 730px;
+    block-size: 730px;
     overflow: scroll;
   }
 
@@ -23,7 +23,7 @@
 .subtitle {
   font-size: $text-normal;
   line-height: 20px;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 }
 
 .empty {
@@ -40,11 +40,11 @@
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  margin-left: 8px;
+  margin-inline-start: 8px;
 }
 
 .buttons {
   position: absolute;
-  top: 150px;
-  right: 40px;
+  inset-block-start: 150px;
+  inset-inline-end: 40px;
 }

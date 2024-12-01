@@ -1,7 +1,7 @@
 .container {
   /* Layout */
   display: flex;
-  width: 33%;
+  inline-size: 33%;
   padding: 8px;
   position: relative;
 
@@ -11,12 +11,12 @@
 
 .container::after {
   content: "";
-  height: 80%;
-  width: 1px;
+  block-size: 80%;
+  inline-size: 1px;
   background-color: #c6c6c6;
   position: absolute;
-  top: 10%;
-  right: 0;
+  inset-block-start: 10%;
+  inset-inline-end: 0;
 }
 
 .container:last-child::after {
@@ -29,9 +29,9 @@
   align-items: center;
   padding: 16px;
   gap: 16px;
-  height: 100%;
+  block-size: 100%;
   overflow: hidden;
-  width: 100%;
+  inline-size: 100%;
 
   /* Style */
   border-radius: 12px;
@@ -45,22 +45,22 @@
 .content {
   /* Layout */
   display: flex;
-  height: 47px;
+  block-size: 47px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 4px;
   overflow: hidden;
-  max-width: 100%;
-  width: 100%;
+  max-inline-size: 100%;
+  inline-size: 100%;
   flex-grow: 0;
 }
 
 .iconContainer {
   /* Layout */
   display: flex;
-  width: 48px;
-  height: 48px;
+  inline-size: 48px;
+  block-size: 48px;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -80,8 +80,8 @@
 
 .icon {
   /* Layout */
-  width: 24px;
-  height: 24px;
+  inline-size: 24px;
+  block-size: 24px;
   flex-shrink: 0;
 
   /* Style */
@@ -102,8 +102,8 @@
   /* Layout */
   display: flex;
   gap: 4px;
-  width: 100%;
-  max-width: 100%;
+  inline-size: 100%;
+  max-inline-size: 100%;
   justify-content: space-between;
 }
 
@@ -127,8 +127,8 @@
 }
 
 .closeButton {
-  width: 20px;
-  height: 20px;
+  inline-size: 20px;
+  block-size: 20px;
   border-radius: 50%;
 }
 

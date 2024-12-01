@@ -20,8 +20,8 @@
 }
 
 .icon {
-  width: 1.5em;
-  height: 1.5em;
+  inline-size: 1.5em;
+  block-size: 1.5em;
   color: var(--background-active-blue-france);
 }
 
@@ -42,7 +42,7 @@
 }
 
 .input[dir="rtl"] {
-  text-align: right;
+  text-align: end;
 }
 
 .input:not(:placeholder-shown) {

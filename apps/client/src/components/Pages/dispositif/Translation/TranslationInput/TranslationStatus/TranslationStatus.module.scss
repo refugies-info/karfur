@@ -9,8 +9,7 @@
   @include dsfr-text("small");
 
   text-transform: uppercase;
-  padding-left: u(2);
-  padding-right: u(1);
+  padding-inline: u(2) u(1);
   border-radius: u(1);
   font-weight: bold;
   display: inline-flex;

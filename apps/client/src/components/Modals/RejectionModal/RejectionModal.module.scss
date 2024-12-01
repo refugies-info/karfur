@@ -2,7 +2,7 @@
 @import "~/scss/variables";
 
 .modal {
-  max-width: 650px;
+  max-inline-size: 650px;
 
   .modal_content {
     background: $gray20;
@@ -36,7 +36,7 @@
     .modal_footer {
       border: none;
       padding: 0;
-      padding-top: 20px;
+      padding-block-start: 20px;
     }
   }
 }

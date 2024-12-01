@@ -7,19 +7,18 @@
 
 .sidebar {
   position: absolute;
-  top: 64px;
-  left: 0;
-  bottom: 0;
+  inset-block: 64px 0;
+  inset-inline-start: 0;
   z-index: 1;
   display: flex;
   align-items: flex-start;
 
   .list {
     background: white;
-    width: 200px;
-    height: 100%;
-    border-right: 1px solid var(--border-default-grey);
-    border-top: 1px solid var(--border-default-grey);
+    inline-size: 200px;
+    block-size: 100%;
+    border-inline-end: 1px solid var(--border-default-grey);
+    border-block-start: 1px solid var(--border-default-grey);
     border-radius: 0 u(2) 0 0;
     padding: u(2);
     overflow-y: scroll;
@@ -28,8 +27,8 @@
 
 .item {
   padding: u(2);
-  width: 100%;
-  text-align: left;
+  inline-size: 100%;
+  text-align: start;
   border-radius: u(2);
 
   &:hover,
@@ -45,20 +44,20 @@
   .title {
     @include dsfr-text("small");
 
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   .city {
     @include dsfr-text("very-small");
 
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
 .divider {
   display: block;
   margin: u(1) 0;
-  width: 100%;
-  height: 1px;
+  inline-size: 100%;
+  block-size: 1px;
   background: var(--border-default-grey);
 }

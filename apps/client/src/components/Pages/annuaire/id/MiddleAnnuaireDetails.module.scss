@@ -3,7 +3,7 @@
 
 .middle_container {
   padding: 32px;
-  padding-top: 100px;
+  padding-block-start: 100px;
   overflow: scroll;
   display: flex;
   flex: 1;
@@ -11,7 +11,7 @@
 }
 
 .title_container {
-  margin-bottom: 14px;
+  margin-block-end: 14px;
   color: $bleuCharte;
 }
 
@@ -19,15 +19,14 @@
   font-weight: bold;
   font-size: 40px;
   line-height: 51px;
-  margin-right: 8px;
+  margin-inline-end: 8px;
 }
 
 .subtitle {
   font-weight: bold;
   font-size: $text-normal;
   line-height: 20px;
-  margin-top: 24px;
-  margin-bottom: 8px;
+  margin-block: 24px 8px;
 }
 
 .line_container {
@@ -39,14 +38,14 @@
   background: $white;
   border-radius: $radius;
   padding: 16px;
-  width: fit-content;
-  margin-bottom: 8px;
+  inline-size: fit-content;
+  margin-block-end: 8px;
 }
 
 .bottom_container {
-  margin-top: 80px;
-  width: 100%;
-  height: 250px;
+  margin-block-start: 80px;
+  inline-size: 100%;
+  block-size: 250px;
   color: #e5e5e5;
 }
 
@@ -54,15 +53,15 @@
   background: $grey50b;
   border-radius: $radius;
   padding: 16px;
-  width: fit-content;
-  margin-right: 8px;
+  inline-size: fit-content;
+  margin-inline-end: 8px;
 }
 
 .blue_container {
   background: $bgfocus;
   border-radius: $radius;
   padding: 16px;
-  width: fit-content;
+  inline-size: fit-content;
   margin: 10px 0;
 }
 
@@ -85,7 +84,7 @@
 }
 
 .info_column_container {
-  margin-right: 42px;
+  margin-inline-end: 42px;
 }
 
 .activity_container {

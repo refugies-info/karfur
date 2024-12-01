@@ -1,7 +1,7 @@
 .container {
   .user_img {
-    max-width: 70px;
-    max-height: 40px;
+    max-inline-size: 70px;
+    max-block-size: 40px;
     border-radius: 50%;
   }
 
@@ -13,5 +13,5 @@
 .item_container {
   display: flex;
   flex-flow: row wrap;
-  width: 150px;
+  inline-size: 150px;
 }

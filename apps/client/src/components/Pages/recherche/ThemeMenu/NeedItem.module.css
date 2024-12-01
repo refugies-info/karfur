@@ -6,11 +6,11 @@
 }
 
 .labelWrapper {
-  width: 100%;
+  inline-size: 100%;
 }
 
 .label {
-  width: 100%;
+  inline-size: 100%;
   display: grid;
   grid-template-columns: 1fr min-content;
   color: var(--text-title-grey);
@@ -18,7 +18,7 @@
 }
 
 .count {
-  margin-left: auto;
+  margin-inline-start: auto;
   color: var(--text-mention-grey);
   display: inline-block;
   font-size: 0.75em;

@@ -5,7 +5,7 @@
 @import "~/scss/mixins/text";
 
 .container {
-  width: 240px;
+  inline-size: 240px;
   background-color: var(--background-contrast-info);
   border: 1px solid var(--background-flat-info);
   color: var(--background-flat-info);
@@ -17,8 +17,7 @@
   @include dsfr-text("h6");
 
   font-weight: bold;
-  margin-top: u(2);
-  margin-bottom: u(6);
+  margin-block: u(2) u(6);
 }
 
 .content,

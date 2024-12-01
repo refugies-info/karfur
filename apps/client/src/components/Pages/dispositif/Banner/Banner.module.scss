@@ -6,7 +6,7 @@
 @import "~/scss/mixins/responsive";
 
 .banner {
-  height: 400px;
+  block-size: 400px;
   background: url("../../../../assets/dispositif/notheme-banner.svg");
   background-size: cover;
   background-position: center center;
@@ -14,11 +14,11 @@
   z-index: 0;
 
   &.translate {
-    height: 280px;
+    block-size: 280px;
   }
 
   @include media-max("lg-limit") {
-    height: 240px;
+    block-size: 240px;
   }
 }
 
@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-top: u(4);
+  padding-block-start: u(4);
 
   @include media-max("lg-limit") {
     display: none;

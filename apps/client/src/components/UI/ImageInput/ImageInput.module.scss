@@ -24,24 +24,24 @@
   z-index: 2;
   cursor: pointer;
   display: block;
-  height: 100%;
-  width: 100%;
+  block-size: 100%;
+  inline-size: 100%;
   opacity: 0;
   position: absolute;
-  right: 0;
-  text-align: right;
-  top: 0;
+  inset-inline-end: 0;
+  text-align: end;
+  inset-block-start: 0;
 }
 
 .image_container {
-  width: 100px;
-  height: 100px;
+  inline-size: 100px;
+  block-size: 100px;
   position: relative;
 }
 
 .help {
   font-size: 12px;
-  margin-top: 8px;
+  margin-block-start: 8px;
   text-align: center;
 }
 

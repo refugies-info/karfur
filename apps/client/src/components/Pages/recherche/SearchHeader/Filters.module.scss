@@ -4,12 +4,12 @@
 
 .search {
   position: relative;
-  margin-bottom: u(10);
+  margin-block-end: u(10);
 
   i {
     position: absolute;
-    top: u(2);
-    left: u(3);
+    inset-block-start: u(2);
+    inset-inline-start: u(3);
     color: var(--background-active-blue-france);
   }
 
@@ -26,7 +26,7 @@
 
 .container {
   display: flex;
-  width: 100%;
+  inline-size: 100%;
   flex-direction: column;
   gap: u(8);
   align-items: center;
@@ -34,21 +34,21 @@
   container-type: inline-size;
 
   .searchZone {
-    max-width: 48em;
+    max-inline-size: 48em;
     flex-shrink: 0;
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   .filtersBar {
     display: inline-flex;
-    width: 100%;
+    inline-size: 100%;
     align-items: center;
     flex-flow: row wrap;
     justify-content: center;
     gap: u(2);
 
     @include media-min("lg-limit") {
-      width: fit-content;
+      inline-size: fit-content;
     }
 
     @include media-max("phone-down") {
@@ -56,17 +56,17 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
 
       > div > div {
-        max-width: 100%;
+        max-inline-size: 100%;
       }
     }
   }
 
   &.sticky {
     gap: u(4);
-    max-width: 100%;
+    max-inline-size: 100%;
 
     @include media-min("xl-limit") {
-      max-width: 100%;
+      max-inline-size: 100%;
       flex-direction: row;
       justify-content: center;
       align-items: center;
@@ -88,22 +88,22 @@
     }
 
     @include media-max("lg-limit") {
-      width: 100%;
-      max-width: 48em;
+      inline-size: 100%;
+      max-inline-size: 48em;
     }
   }
 
   &.sticky > .searchZone {
     @include media-between("lg-limit", "widescreen-up") {
-      max-width: 960px;
+      max-inline-size: 960px;
     }
 
     @include media-min("xl-limit") {
-      max-width: 10rem;
+      max-inline-size: 10rem;
       transform: translateY(-0.25rem);
 
       input {
-        padding-right: 1rem;
+        padding-inline-end: 1rem;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -113,7 +113,7 @@
           white-space: nowrap;
           overflow: hidden;
           display: inline-block;
-          width: 100%;
+          inline-size: 100%;
         }
       }
     }
@@ -131,7 +131,7 @@
 
   @include media-max("lg-limit") {
     display: inline-flex;
-    margin-left: auto;
+    margin-inline-start: auto;
 
     & button {
       aspect-ratio: 1;

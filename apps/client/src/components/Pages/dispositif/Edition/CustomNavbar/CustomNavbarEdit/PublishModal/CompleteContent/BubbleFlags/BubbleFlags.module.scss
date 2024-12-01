@@ -6,28 +6,28 @@
 .container {
   display: flex;
   align-items: center;
-  margin-top: u(4);
+  margin-block-start: u(4);
 }
 
 .item {
-  width: u(8);
-  height: u(8);
+  inline-size: u(8);
+  block-size: u(8);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: u(4);
+  margin-inline-end: u(4);
 }
 
 .background {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   z-index: 0;
 }
 
 .flag {
   z-index: 1;
   position: relative;
-  width: 20px !important;
+  inline-size: 20px !important;
 }

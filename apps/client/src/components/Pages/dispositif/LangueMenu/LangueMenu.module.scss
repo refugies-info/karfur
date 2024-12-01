@@ -23,7 +23,7 @@
       @include r-ltr(u(3));
 
       position: absolute;
-      top: u(3);
+      inset-block-start: u(3);
     }
   }
 
@@ -35,8 +35,7 @@
     box-shadow: 0 4px 12px 0 #00001229;
     padding: u(2);
     border-radius: u(2);
-    margin-top: u(2);
-    margin-bottom: u(2);
+    margin-block: u(2);
 
     .item {
       @include text("normal");
@@ -45,7 +44,7 @@
       align-items: center;
       padding: u(2) u(3);
       border-radius: u(2) !important;
-      margin-bottom: u(1);
+      margin-block-end: u(1);
       border: none;
 
       &:hover {

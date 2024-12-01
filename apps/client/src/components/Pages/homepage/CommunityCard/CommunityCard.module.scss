@@ -66,19 +66,19 @@ $light_blue: #dae0fb;
 }
 
 .container {
-  width: 265px;
+  inline-size: 265px;
   border-radius: 20px;
   padding: u(6);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align: left;
+  text-align: start;
   border: 1px solid transparent;
   margin: 0 auto u(10);
   flex-shrink: 0;
 
   @include rtl {
-    text-align: right;
+    text-align: end;
   }
 
   &:hover {
@@ -126,7 +126,7 @@ $light_blue: #dae0fb;
     padding: u(4);
     margin: 0 u(2);
     background: $white !important;
-    width: 230px;
+    inline-size: 230px;
 
     &.color_red {
       border-color: $red;
@@ -157,15 +157,15 @@ $light_blue: #dae0fb;
 
   img {
     @include isTablet {
-      width: 124px;
-      height: auto;
+      inline-size: 124px;
+      block-size: auto;
     }
   }
 }
 
 .count {
-  width: 48px;
-  height: 48px;
+  inline-size: 48px;
+  block-size: 48px;
   flex-shrink: 0;
   border-radius: 50%;
   border: 3px solid $white;
@@ -203,8 +203,8 @@ $light_blue: #dae0fb;
   @include isTablet {
     @include text("very-small");
 
-    width: 32px;
-    height: 32px;
+    inline-size: 32px;
+    block-size: 32px;
     border-width: 2px;
   }
 }
@@ -213,20 +213,19 @@ $light_blue: #dae0fb;
   @include text("h5");
 
   font-weight: bold;
-  margin-top: u(6);
-  margin-bottom: u(4);
+  margin-block: u(6) u(4);
 
   @include isTablet {
     @include text("normal");
 
-    margin-top: u(4);
+    margin-block-start: u(4);
   }
 }
 
 .subtitle {
   @include text("large");
 
-  margin-bottom: 0;
+  margin-block-end: 0;
 
   @include isTablet {
     @include text("normal");
@@ -234,10 +233,10 @@ $light_blue: #dae0fb;
 }
 
 .footer {
-  margin-top: u(8);
-  height: 28px; // prevent card height change
+  margin-block-start: u(8);
+  block-size: 28px; // prevent card height change
 
   @include isTablet {
-    margin-top: u(4);
+    margin-block-start: u(4);
   }
 }

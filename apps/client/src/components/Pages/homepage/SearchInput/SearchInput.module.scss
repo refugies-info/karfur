@@ -39,17 +39,17 @@
   }
 
   .search {
-    text-align: left;
-    min-width: 0;
+    text-align: start;
+    min-inline-size: 0;
     flex-grow: 1;
     position: relative;
 
     @include rtl {
-      text-align: right;
+      text-align: end;
     }
 
     @include isMobile {
-      height: 20px;
+      block-size: 20px;
       display: flex;
       align-items: center;
     }
@@ -58,15 +58,15 @@
   .label {
     @include text("very-small");
 
-    margin-bottom: u(2);
+    margin-block-end: u(2);
     font-weight: bold;
     color: $gray80;
     text-transform: uppercase;
     display: block;
-    text-align: left;
+    text-align: start;
 
     @include rtl {
-      text-align: right;
+      text-align: end;
     }
 
     @include isMobile {
@@ -81,8 +81,8 @@
     outline: none;
     background: transparent;
     padding: 0;
-    width: 100%;
-    height: 20px;
+    inline-size: 100%;
+    block-size: 20px;
 
     &.hidden {
       display: none;
@@ -93,28 +93,26 @@
     @include text("normal");
 
     font-weight: bold;
-    text-align: left;
+    text-align: start;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
-    padding-right: u(16);
+    padding-inline-end: u(16);
     line-height: 18px;
-    height: 20px;
+    block-size: 20px;
     color: $darkColor;
 
     @include isMobile {
-      padding-right: u(6);
+      padding-inline-end: u(6);
     }
 
     @include rtl {
-      text-align: right;
-      padding-right: 0;
-      padding-left: u(16);
+      text-align: end;
+      padding-inline: u(16) 0;
 
       @include isMobile {
-        padding-right: 0;
-        padding-left: u(6);
+        padding-inline: u(6) 0;
       }
     }
 
@@ -122,26 +120,24 @@
       font-weight: normal;
 
       @include isMobile {
-        padding-right: 0;
-        padding-left: 0;
+        padding-inline: 0;
       }
     }
   }
 
   .icon {
-    width: 48px;
-    height: 48px;
+    inline-size: 48px;
+    block-size: 48px;
     border-radius: 50%;
     background: $gray30;
-    margin-right: u(4);
+    margin-inline-end: u(4);
     display: flex;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
 
     @include rtl {
-      margin-right: 0;
-      margin-left: u(4);
+      margin-inline: u(4) 0;
     }
 
     &.active {
@@ -149,13 +145,12 @@
     }
 
     @include isMobile {
-      width: 32px;
-      height: 32px;
-      margin-right: u(2);
+      inline-size: 32px;
+      block-size: 32px;
+      margin-inline-end: u(2);
 
       @include rtl {
-        margin-right: 0;
-        margin-left: u(2);
+        margin-inline: u(2) 0;
       }
     }
   }
@@ -164,14 +159,13 @@
     .icon.small {
       @include withIcon;
 
-      width: 20px;
-      height: 20px;
-      margin-right: u(2);
+      inline-size: 20px;
+      block-size: 20px;
+      margin-inline-end: u(2);
       background: transparent !important;
 
       @include rtl {
-        margin-right: 0;
-        margin-left: u(2);
+        margin-inline: u(2) 0;
       }
     }
   }
@@ -181,18 +175,17 @@
   background: transparent;
   border: none;
   position: absolute;
-  right: 0;
-  bottom: -3px;
+  inset-inline-end: 0;
+  inset-block-end: -3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: u(6);
-  height: u(6);
+  inline-size: u(6);
+  block-size: u(6);
   border-radius: 50%;
 
   @include rtl {
-    right: inherit;
-    left: 0;
+    inset-inline: 0 inherit;
   }
 
   &:hover {
@@ -202,21 +195,19 @@
 
 .plus {
   position: absolute;
-  right: u(5);
-  width: u(10);
+  inset-inline-end: u(5);
+  inline-size: u(10);
 
   @include rtl {
-    right: auto;
-    left: u(5);
+    inset-inline: u(5) auto;
   }
 
   @include isMobile {
-    right: 0;
-    width: auto;
+    inset-inline-end: 0;
+    inline-size: auto;
 
     @include rtl {
-      right: auto;
-      left: 0;
+      inset-inline: 0 auto;
     }
   }
 }

@@ -1,14 +1,14 @@
 @import "~/scss/colors";
 
 .container {
-  width: 20px;
-  height: 20px;
+  inline-size: 20px;
+  block-size: 20px;
   background: $white;
   border: 1px solid $gray50;
   border-color: $gray50;
   box-sizing: border-box;
   border-radius: 3px;
-  margin-right: 8px;
+  margin-inline-end: 8px;
   display: flex;
   justify-content: center;
   align-items: center;

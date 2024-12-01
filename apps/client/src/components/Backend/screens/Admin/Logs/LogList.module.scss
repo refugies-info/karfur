@@ -13,10 +13,9 @@
   font-size: 12px;
   font-weight: bold;
   color: $bleuCharte;
-  margin-bottom: 8px;
-  margin-top: 16px;
+  margin-block: 16px 8px;
 
   &:first-child {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 }

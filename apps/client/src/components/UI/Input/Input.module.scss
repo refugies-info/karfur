@@ -15,19 +15,19 @@ $error: #b01917;
   position: absolute;
   display: inline-flex;
   align-items: center;
-  width: 24px;
-  height: 24px;
+  inline-size: 24px;
+  block-size: 24px;
 
   &.prepend {
     @include l-ltr(u(4));
 
-    top: u(4);
+    inset-block-start: u(4);
   }
 
   &.append {
     @include r-ltr(u(4));
 
-    top: u(4);
+    inset-block-start: u(4);
   }
 }
 
@@ -40,8 +40,8 @@ $error: #b01917;
   background: $white;
   border-radius: $radius;
   padding: u(4);
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
 
   .with_icon & {
     @include pl-ltr(44px);
@@ -56,7 +56,7 @@ $error: #b01917;
   @include text("small");
 
   display: inline-block;
-  margin-top: u(4);
+  margin-block-start: u(4);
   font-weight: bold;
   color: $error;
   background-color: $erreur;

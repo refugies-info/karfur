@@ -10,7 +10,7 @@
   @include baseInput;
 
   font-weight: bold;
-  height: 82px; // fix for firefox
+  block-size: 82px; // fix for firefox
 }
 
 .marque {
@@ -19,5 +19,5 @@
   font-weight: normal;
   display: flex;
   align-items: center;
-  margin-top: u(6);
+  margin-block-start: u(6);
 }

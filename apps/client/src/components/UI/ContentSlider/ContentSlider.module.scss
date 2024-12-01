@@ -22,14 +22,12 @@ $fadeWidth_md: 50px;
 .slider {
   display: flex;
   align-items: stretch;
-  margin-top: u(4);
-  padding-top: u(4);
+  margin-block-start: u(4);
+  padding-block-start: u(4);
   flex-wrap: nowrap;
   overflow-x: hidden;
-  margin-left: -$fadeWidth_lg;
-  margin-right: -$fadeWidth_lg;
-  padding-left: $fadeWidth_lg;
-  padding-right: $fadeWidth_lg;
+  margin-inline: -$fadeWidth_lg;
+  padding-inline: $fadeWidth_lg;
 
   & > div {
     flex-shrink: 0;
@@ -39,50 +37,45 @@ $fadeWidth_md: 50px;
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: 0;
-    width: $fadeWidth_lg;
+    inset-block: 0;
+    inline-size: $fadeWidth_lg;
     z-index: 2;
   }
 
   &::after {
-    right: -$fadeWidth_lg;
+    inset-inline-end: -$fadeWidth_lg;
     background: linear-gradient(to right, var(--gradient-start) 0%, var(--gradient-end) 60%, var(--gradient-end) 100%);
   }
 
   &::before {
-    left: -$fadeWidth_lg;
+    inset-inline-start: -$fadeWidth_lg;
     background: linear-gradient(to left, var(--gradient-start) 0%, var(--gradient-end) 60%, var(--gradient-end) 100%);
   }
 
   @include media-max("xl-limit") {
-    margin-left: -$fadeWidth_md;
-    margin-right: -$fadeWidth_md;
-    padding-left: $fadeWidth_md;
-    padding-right: $fadeWidth_md;
+    margin-inline: -$fadeWidth_md;
+    padding-inline: $fadeWidth_md;
 
     &::after,
     &::before {
-      width: $fadeWidth_md;
+      inline-size: $fadeWidth_md;
     }
 
     &::after {
-      right: -$fadeWidth_md;
+      inset-inline-end: -$fadeWidth_md;
     }
 
     &::before {
-      left: -$fadeWidth_md;
+      inset-inline-start: -$fadeWidth_md;
     }
   }
 
   @include media-max("lg-limit") {
     flex-wrap: nowrap;
     overflow-x: scroll;
-    margin-left: -12px;
-    margin-right: -12px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 12px;
+    margin-inline: -12px;
+    padding-inline: 12px;
+    padding-block-end: 12px;
 
     &::after,
     &::before {
@@ -94,10 +87,10 @@ $fadeWidth_md: 50px;
 
 .btn {
   position: absolute;
-  top: 50%;
+  inset-block-start: 50%;
   z-index: 10;
-  width: 64px;
-  height: 64px;
+  inline-size: 64px;
+  block-size: 64px;
   background: $bleuCharte;
   display: flex;
   align-items: center;
@@ -115,24 +108,22 @@ $fadeWidth_md: 50px;
   }
 
   &.prev {
-    left: -32px;
+    inset-inline-start: -32px;
 
     @include rtl {
-      left: inherit;
-      right: -32px;
+      inset-inline: inherit -32px;
       transform: rotate(180deg);
-      margin-top: -32px;
+      margin-block-start: -32px;
     }
   }
 
   &.next {
-    right: -32px;
+    inset-inline-end: -32px;
 
     @include rtl {
-      right: inherit;
-      left: -32px;
+      inset-inline: -32px inherit;
       transform: rotate(180deg);
-      margin-top: -32px;
+      margin-block-start: -32px;
     }
   }
 

@@ -23,14 +23,14 @@
   border: 1px solid var(--border-default-grey);
   background: var(--background-alt-raised-grey);
   border-radius: u(2);
-  margin-bottom: u(4);
+  margin-block-end: u(4);
 
   .status {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: u(4);
-    margin-bottom: u(4);
+    margin-block-end: u(4);
   }
 
   &:hover {
@@ -67,7 +67,7 @@
 }
 
 .edit {
-  margin-bottom: u(4);
+  margin-block-end: u(4);
 
   .input {
     border: 1px solid var(--text-title-grey);
@@ -79,7 +79,7 @@
 
     textarea {
       outline: none !important;
-      width: 100%;
+      inline-size: 100%;
       cursor: text;
     }
 
@@ -93,7 +93,7 @@
 
   .footer {
     padding: u(4);
-    border-top: 1px solid var(--border-default-grey);
+    border-block-start: 1px solid var(--border-default-grey);
     background: var(--background-contrast-grey);
     border-radius: 0 0 u(2) u(2);
     display: flex;

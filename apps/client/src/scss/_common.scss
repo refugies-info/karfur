@@ -11,8 +11,8 @@ html {
 
 .test-styles-enabled {
   color: red;
-  width: 0;
-  height: 0;
+  inline-size: 0;
+  block-size: 0;
 }
 
 .debugForm {
@@ -68,8 +68,8 @@ main {
 }
 
 html body {
-  height: 100%;
-  min-height: 100vh;
+  block-size: 100%;
+  min-block-size: 100vh;
 
   [contenteditable] {
     user-select: text;
@@ -142,16 +142,15 @@ html body {
       z-index: 2000000;
 
       @include rtl {
-        left: inherit !important;
-        right: 8px !important;
+        inset-inline: inherit 8px !important;
       }
     }
   }
 
   // Avatar
   .profile-img-pin {
-    height: 40px;
-    width: 40px;
+    block-size: 40px;
+    inline-size: 40px;
     border-radius: 50%;
   }
 
@@ -188,7 +187,7 @@ html body {
 
 // fix for: https://github.com/JustFly1984/react-google-maps-api/issues/2906
 .gm-style-moc {
-  height: unset !important;
+  block-size: unset !important;
 }
 
 @media print {
@@ -214,14 +213,14 @@ html body {
 // Crisp
 [data-page="content"] .crisp-client .cc-tlyw[data-full-view="true"] .cc-kxkl .cc-nsge {
   @include isTablet {
-    bottom: 80px !important;
+    inset-block-end: 80px !important;
   }
 }
 
 // Print
 @media print {
   body {
-    width: 1200px;
+    inline-size: 1200px;
   }
 
   .axeptio_mount {

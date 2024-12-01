@@ -8,7 +8,7 @@
 }
 
 .infos_col {
-  max-width: 430px;
+  max-inline-size: 430px;
   margin: auto;
   padding: u(20) 0;
 
@@ -17,16 +17,16 @@
   }
 
   .action {
-    margin-top: u(10);
+    margin-block-start: u(10);
 
     @include isTablet {
-      margin-top: u(6);
+      margin-block-start: u(6);
     }
   }
 
   .img {
-    max-width: 100%;
-    height: auto;
+    max-inline-size: 100%;
+    block-size: auto;
   }
 }
 
@@ -34,13 +34,13 @@
   @include text("h5");
 
   text-align: center;
-  margin-top: u(10);
+  margin-block-start: u(10);
 }
 
 .subtitle {
   @include text("large");
 
-  margin-top: u(6);
+  margin-block-start: u(6);
 }
 
 .newsletter {
@@ -49,11 +49,11 @@
 
 .newsletter_input {
   input {
-    height: 64px;
+    block-size: 64px;
   }
 
   & > span {
-    top: 20px !important;
+    inset-block-start: 20px !important;
   }
 
   :global(.input-error-icon) {
@@ -63,10 +63,10 @@
 
 .newsletter_submit {
   position: absolute;
-  right: 8px;
+  inset-inline-end: 8px;
 
   @include r-ltr(8px);
 
-  top: 8px;
-  height: 48px;
+  inset-block-start: 8px;
+  block-size: 48px;
 }

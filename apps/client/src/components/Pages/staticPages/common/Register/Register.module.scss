@@ -6,25 +6,25 @@
 @import "~/scss/variables";
 
 .register {
-  max-width: 435px;
+  max-inline-size: 435px;
 
   .btn {
-    width: 100%;
+    inline-size: 100%;
     justify-content: center;
 
     @include isTablet {
-      margin-top: u(10);
+      margin-block-start: u(10);
     }
   }
 
   .submit_btn {
-    width: 100%;
+    inline-size: 100%;
     justify-content: center;
   }
 
   // logged in
   .image {
-    margin-bottom: u(6);
+    margin-block-end: u(6);
     text-align: center;
   }
 }

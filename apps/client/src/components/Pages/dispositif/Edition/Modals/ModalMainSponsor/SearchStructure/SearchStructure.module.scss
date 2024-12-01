@@ -6,12 +6,12 @@
 
 .collapse {
   position: absolute;
-  width: 100%;
-  max-height: 240px;
+  inline-size: 100%;
+  max-block-size: 240px;
   overflow-y: scroll;
   background-color: white;
   box-shadow: 0 2px 6px 0 #00001229;
-  margin-top: u(-3);
+  margin-block-start: u(-3);
   border-radius: u(2);
   padding: u(4);
 }

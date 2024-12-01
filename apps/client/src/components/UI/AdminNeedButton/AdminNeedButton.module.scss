@@ -11,12 +11,12 @@
   cursor: pointer;
   color: $dark;
   text-decoration: none;
-  text-align: left;
+  text-align: start;
   display: flex;
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
   border: 1px solid transparent;
-  min-height: 46px;
+  min-block-size: 46px;
 
   .hoverVisible {
     display: none;
@@ -38,8 +38,8 @@
 }
 
 .edit {
-  width: 30px;
-  height: 30px;
+  inline-size: 30px;
+  block-size: 30px;
   background: $dark;
   border-radius: 8px;
   display: inline-flex;

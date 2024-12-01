@@ -5,11 +5,11 @@
   font-size: 12px;
   line-height: 15px;
   background: $gray50;
-  width: fit-content;
-  height: fit-content;
+  inline-size: fit-content;
+  block-size: fit-content;
   border-radius: 8px;
-  margin-right: 8px;
-  margin-bottom: 8px;
+  margin-inline-end: 8px;
+  margin-block-end: 8px;
   display: inline-flex;
   flex-direction: row;
 
@@ -36,10 +36,10 @@
   font-size: 12px;
   padding: 8px;
   border-radius: 8px;
-  width: fit-content;
+  inline-size: fit-content;
   line-height: 15px;
   color: $white;
-  margin-right: 8px;
+  margin-inline-end: 8px;
   background: #828282;
   display: inline-block;
 
@@ -49,7 +49,7 @@
 }
 
 .role_name {
-  margin-left: 24px;
+  margin-inline-start: 24px;
 }
 
 .role {
@@ -59,7 +59,7 @@
   font-size: 12px;
   line-height: 15px;
   padding: 8px;
-  width: fit-content;
-  margin-right: 4px;
-  margin-bottom: 4px;
+  inline-size: fit-content;
+  margin-inline-end: 4px;
+  margin-block-end: 4px;
 }

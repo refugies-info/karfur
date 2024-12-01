@@ -4,13 +4,12 @@
 @import "~/scss/mixins/btn";
 
 .help_text {
-  margin-top: u(6);
-  margin-bottom: 0;
+  margin-block: u(6) 0;
 
   @include text("large");
 
   @include isTablet {
-    margin-top: u(4);
+    margin-block-start: u(4);
   }
 }
 
@@ -18,5 +17,5 @@
   @include focus;
 
   display: inline-block;
-  height: 100%;
+  block-size: 100%;
 }

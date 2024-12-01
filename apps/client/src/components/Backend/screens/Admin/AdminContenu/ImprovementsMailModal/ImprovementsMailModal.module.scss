@@ -3,7 +3,7 @@
 @import "~/scss/mixins/responsive";
 
 .text {
-  margin-bottom: 0;
+  margin-block-end: 0;
   font-size: 12px;
   line-height: 15px;
 }
@@ -17,16 +17,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 16px;
+  margin-block-end: 16px;
 }
 
 .recap {
   background: $erreur;
-  width: 100%;
+  inline-size: 100%;
   padding: 8px;
   border-radius: 12px;
-  margin-bottom: 12px;
-  margin-top: 12px;
+  margin-block: 12px;
   font-size: 12px;
 }
 

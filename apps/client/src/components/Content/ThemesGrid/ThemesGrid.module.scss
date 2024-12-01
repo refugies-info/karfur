@@ -10,9 +10,9 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: u(3);
-  margin-top: u(16);
+  margin-block-start: u(16);
 
   @include isMobile {
-    margin-top: u(6);
+    margin-block-start: u(6);
   }
 }

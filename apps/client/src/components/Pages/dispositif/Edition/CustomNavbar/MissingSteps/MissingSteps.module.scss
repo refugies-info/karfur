@@ -6,8 +6,7 @@
 
 .missing {
   border-radius: u(2);
-  margin-top: u(6);
-  margin-bottom: u(8);
+  margin-block: u(6) u(8);
 }
 
 .step {
@@ -18,8 +17,8 @@
   align-items: center;
   justify-content: space-between;
   font-weight: bold;
-  margin-bottom: u(2);
-  width: 100%;
+  margin-block-end: u(2);
+  inline-size: 100%;
 
   & > span {
     display: flex;

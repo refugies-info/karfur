@@ -8,14 +8,14 @@
   background: $gray40;
   padding: u(2) u(3);
   border-radius: u(2);
-  margin-right: u(2);
-  margin-bottom: u(4);
+  margin-inline-end: u(2);
+  margin-block-end: u(4);
   display: inline-flex;
   align-items: center;
 
   .name {
     color: $darkBackgroundElevationContrast;
-    margin-left: u(2);
+    margin-inline-start: u(2);
     font-weight: bold;
   }
 
@@ -49,7 +49,7 @@
   font-weight: bold;
   padding: 2px u(1);
   border-radius: u(10);
-  margin-left: u(2);
+  margin-inline-start: u(2);
   display: inline-flex;
   align-items: center;
 }

@@ -8,23 +8,22 @@
 
 // DESKTOP
 .dropdown {
-  width: 33.3333%;
+  inline-size: 33.3333%;
   padding: u(2);
   flex: 1 1 0;
   position: relative;
 
   &::after {
     content: "";
-    height: 80%;
-    width: 1px;
+    block-size: 80%;
+    inline-size: 1px;
     background-color: $gray60;
     position: absolute;
-    right: 0;
-    top: 10%;
+    inset-inline-end: 0;
+    inset-block-start: 10%;
 
     @include rtl {
-      right: auto;
-      left: 0;
+      inset-inline: 0 auto;
     }
   }
 
@@ -38,7 +37,7 @@
     background: transparent !important;
     border: none;
     padding: 0;
-    width: 100%;
+    inline-size: 100%;
     position: relative;
   }
 
@@ -54,7 +53,7 @@
   margin: u(2);
   font-weight: bold;
   border-radius: $radius;
-  min-width: 190px;
+  min-inline-size: 190px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -63,7 +62,7 @@
   border: 1px solid transparent;
 
   @include media-max("xl-limit") {
-    min-width: 0;
+    min-inline-size: 0;
     justify-content: center;
 
     .label {
@@ -72,7 +71,7 @@
   }
 
   @include isMobile {
-    width: 100%;
+    inline-size: 100%;
     justify-content: center;
     margin: 0;
     padding: u(4);
@@ -89,28 +88,23 @@
   }
 
   .icon {
-    margin-right: u(4);
-    margin-left: 0;
+    margin-inline: 0 u(4);
     display: inline-flex;
     align-items: center;
 
     @include rtl {
-      margin-right: 0;
-      margin-left: u(4);
+      margin-inline: u(4) 0;
     }
 
     @include media-min("md-limit") {
-      margin-left: u(4);
-      margin-right: u(4);
+      margin-inline: u(4);
     }
 
     @include media-min("xl-limit") {
-      margin-right: u(4);
-      margin-left: 0;
+      margin-inline: 0 u(4);
 
       @include rtl {
-        margin-right: 0;
-        margin-left: u(4);
+        margin-inline: u(4) 0;
       }
     }
   }
@@ -132,12 +126,12 @@
 .menu {
   position: fixed !important;
   transform: none !important;
-  width: 100%;
-  height: 100vh;
+  inline-size: 100%;
+  block-size: 100vh;
 }
 
 .content {
-  margin-top: u(8);
+  margin-block-start: u(8);
   padding: 0 u(4);
 }
 
@@ -148,24 +142,23 @@
 
   & > span {
     position: absolute;
-    width: u(8);
-    height: u(8);
+    inline-size: u(8);
+    block-size: u(8);
     display: flex;
     align-items: center;
     justify-content: center;
-    top: u(2);
-    left: u(2);
+    inset-block-start: u(2);
+    inset-inline-start: u(2);
 
     @include rtl {
-      left: inherit;
-      right: u(2);
+      inset-inline: inherit u(2);
     }
   }
 
   & > input {
     background: $gray30;
     border-radius: $radius;
-    width: 100%;
+    inline-size: 100%;
     border: 1px solid transparent;
     line-height: u(4);
     outline: none !important;
@@ -181,34 +174,30 @@
     }
 
     @include rtl {
-      padding-left: 0;
-      padding-right: u(6);
+      padding-inline: 0 u(6);
     }
   }
 
   .empty {
     position: absolute;
-    left: inherit;
-    right: u(2);
+    inset-inline: inherit u(2);
 
     @include rtl {
-      right: inherit;
-      left: u(2);
+      inset-inline: u(2) inherit;
     }
   }
 }
 
 .separator::after {
   content: "";
-  height: 100%;
-  width: 1px;
+  block-size: 100%;
+  inline-size: 1px;
   background-color: $gray60;
   position: absolute;
-  right: 0;
-  top: 0;
+  inset-inline-end: 0;
+  inset-block-start: 0;
 
   @include rtl {
-    right: auto;
-    left: 0;
+    inset-inline: 0 auto;
   }
 }

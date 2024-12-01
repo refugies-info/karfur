@@ -3,8 +3,8 @@
 
 .container {
   display: flex;
-  margin-left: 77px;
-  height: 74px;
+  margin-inline-start: 77px;
+  block-size: 74px;
   background-color: $bleuCharte;
   filter: drop-shadow(2px 4px 6px rgb(0 0 0 / 25%));
   border-radius: $radius;
@@ -14,19 +14,19 @@
   .input,
   .btn {
     display: flex;
-    height: 50px;
+    block-size: 50px;
     background: $gray10;
     padding: 12px;
     border: 0.5px solid $white;
     border-radius: $radius;
     font-size: $text-normal;
-    margin-right: 12px;
+    margin-inline-end: 12px;
     align-items: center;
   }
 
   .btn {
     font-weight: bold;
-    padding-right: 16px;
+    padding-inline-end: 16px;
 
     &.dark {
       background: $gray90;
@@ -44,12 +44,12 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 0;
+    inset-block-start: 0;
     background: #e0e0e0;
     padding: 16px;
     border-radius: $radius;
     align-items: left;
-    width: max-content;
+    inline-size: max-content;
   }
 
   .results {
@@ -60,13 +60,13 @@
   }
 
   .type_btn {
-    height: 50px;
+    block-size: 50px;
     padding: 12px;
     border-radius: $radius;
     font-weight: bold;
     font-size: $text-normal;
     align-items: center;
-    margin-right: 12px;
+    margin-inline-end: 12px;
     border: 0.5px solid white;
     background: $white;
 

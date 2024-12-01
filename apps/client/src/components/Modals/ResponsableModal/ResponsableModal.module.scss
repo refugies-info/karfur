@@ -2,7 +2,7 @@
 @import "~/scss/variables";
 
 .modal {
-  max-width: 650px;
+  max-inline-size: 650px;
 
   .modal_content {
     background: $gray20;
@@ -41,8 +41,8 @@
       p {
         color: gray;
         align-self: center;
-        margin-bottom: 0;
-        margin-right: 10px;
+        margin-block-end: 0;
+        margin-inline-end: 10px;
       }
     }
   }

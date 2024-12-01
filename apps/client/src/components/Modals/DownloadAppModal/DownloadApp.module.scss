@@ -7,21 +7,20 @@
   .content {
     border-radius: 0;
     padding: u(6);
-    height: 100vh;
+    block-size: 100vh;
     overflow-y: scroll;
   }
 }
 
 .illu {
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
+  block-size: auto;
 }
 
 .text {
   @include dsfr-text("chapo");
 
-  margin-top: u(4);
-  margin-bottom: u(5);
+  margin-block: u(4) u(5);
   text-align: center;
 }
 
@@ -33,13 +32,13 @@
 
 .buttons > button,
 .buttons > a {
-  width: 100%;
+  inline-size: 100%;
   justify-content: center;
 }
 
 .close {
   position: absolute;
-  top: u(4);
-  right: u(4);
+  inset-block-start: u(4);
+  inset-inline-end: u(4);
   color: var(--text-disabled-grey) !important;
 }

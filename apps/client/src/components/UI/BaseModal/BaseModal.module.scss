@@ -4,10 +4,10 @@
 @import "~/scss/mixins/text";
 
 .modal {
-  max-width: 800px !important;
+  max-inline-size: 800px !important;
 
   &.small {
-    max-width: 588px !important;
+    max-inline-size: 588px !important;
   }
 
   .modal_content {
@@ -15,7 +15,7 @@
     border: none;
     box-shadow: 0 2px 6px 0 #00001229;
     border-radius: u(2);
-    height: 100%;
+    block-size: 100%;
   }
 }
 
@@ -25,7 +25,7 @@
 }
 
 .sidebar {
-  width: 204px;
+  inline-size: 204px;
   color: var(--background-flat-info);
   background-color: var(--background-contrast-info);
   padding: u(6);
@@ -36,8 +36,7 @@
     @include dsfr-text("large");
 
     font-weight: bold;
-    margin-top: u(2);
-    margin-bottom: u(6);
+    margin-block: u(2) u(6);
   }
 
   .text {
@@ -47,7 +46,7 @@
     }
 
     p {
-      margin-bottom: u(4);
+      margin-block-end: u(4);
     }
   }
 }
@@ -70,7 +69,7 @@
 
     padding: u(1) u(3);
     box-shadow: none;
-    min-height: 0;
-    margin-bottom: u(2);
+    min-block-size: 0;
+    margin-block-end: u(2);
   }
 }

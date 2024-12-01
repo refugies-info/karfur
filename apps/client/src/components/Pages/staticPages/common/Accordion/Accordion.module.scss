@@ -7,10 +7,10 @@
 
 .container {
   position: relative;
-  margin-bottom: u(8);
+  margin-block-end: u(8);
 
   @include isTablet {
-    margin-bottom: u(6);
+    margin-block-end: u(6);
   }
 }
 
@@ -22,12 +22,12 @@
   padding: u(4);
   font-weight: bold;
   box-shadow: 0 10px 30px 0 #00000026;
-  text-align: left;
+  text-align: start;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: $radius;
-  width: 100%;
+  inline-size: 100%;
 
   @include isTablet {
     @include text("large");
@@ -47,7 +47,7 @@
 .infos {
   &.with_images {
     @include media-min("lg-limit") {
-      width: 50%;
+      inline-size: 50%;
       flex-grow: 0;
       flex-basis: auto;
     }
@@ -57,10 +57,8 @@
 .text {
   @include text("large");
 
-  padding-right: u(4);
-  padding-left: u(4);
-  margin-bottom: 0;
-  margin-top: u(4);
+  padding-inline: u(4);
+  margin-block: u(4) 0;
 
   @include isTablet {
     @include text("normal");
@@ -68,46 +66,43 @@
 
   ul {
     margin: u(2) 0;
-    padding-left: u(6);
+    padding-inline-start: u(6);
 
     @include rtl {
-      padding-right: u(6);
-      padding-left: 0;
+      padding-inline: 0 u(6);
     }
 
     li {
-      margin-bottom: u(2);
+      margin-block-end: u(2);
     }
   }
 }
 
 .cta {
-  padding-right: u(4);
-  padding-left: u(4);
+  padding-inline: u(4);
 }
 
 .image {
-  max-width: 100%;
-  height: auto;
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
 .video {
-  max-width: 250px;
+  max-inline-size: 250px;
   margin: 0 auto u(6);
   text-align: center;
 
   @include isTablet {
-    margin-top: u(6);
+    margin-block-start: u(6);
   }
 }
 
 .icon {
-  margin-left: u(4);
+  margin-inline-start: u(4);
   transition: transform 0.2s ease-in-out;
 
   @include rtl {
-    margin-right: u(4);
-    margin-left: inherit;
+    margin-inline: inherit u(4);
   }
 
   .open & {
@@ -116,7 +111,7 @@
 }
 
 .media {
-  width: 50%;
+  inline-size: 50%;
   align-items: center;
   display: flex;
 
@@ -134,7 +129,7 @@
   border: 8px solid $white;
   border-radius: u(2);
   box-shadow: 0 4px 18px 0 #0000001a;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 .no_cookie {

@@ -12,34 +12,30 @@
   flex-wrap: nowrap;
   border-radius: u(2);
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
   border: 1px solid transparent;
 
   &.has_image,
   &.lg {
     border: 1px solid var(--border-default-grey);
-    padding-right: u(6);
-    padding-left: u(6);
+    padding-inline: u(6);
   }
 
   &.has_image {
-    padding-top: u(4);
-    padding-bottom: u(4);
+    padding-block: u(4);
 
     &.sm {
-      padding-top: u(1);
-      padding-bottom: u(1);
+      padding-block: u(1);
     }
   }
 
   &.lg {
-    padding-top: u(3);
-    padding-bottom: u(3);
+    padding-block: u(3);
   }
 
   .text,
   .subtext {
-    text-align: left;
+    text-align: start;
     flex: auto;
   }
 
@@ -72,6 +68,6 @@
 
 .tooltip {
   :global(.tooltip-inner) {
-    text-align: left;
+    text-align: start;
   }
 }

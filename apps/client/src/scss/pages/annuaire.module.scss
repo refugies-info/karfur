@@ -3,13 +3,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
+  block-size: auto;
   background: $gray40;
 }
 
 .content {
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 24px;
+  margin-block-end: 24px;
 }

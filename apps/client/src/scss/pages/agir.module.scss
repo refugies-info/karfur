@@ -4,18 +4,16 @@
 
 .anchor {
   position: relative;
-  top: -80px;
+  inset-block-start: -80px;
 }
 
 .hero {
   background: #071636;
   color: white;
-  padding-top: u(20);
-  padding-bottom: u(20);
+  padding-block: u(20);
 
   @include isTablet {
-    padding-top: u(10);
-    padding-bottom: u(10);
+    padding-block: u(10);
 
     .row {
       flex-direction: column-reverse;
@@ -23,7 +21,7 @@
     }
 
     a {
-      width: 100%;
+      inline-size: 100%;
       justify-content: center;
     }
   }
@@ -37,7 +35,7 @@
   @include isTablet {
     @include dsfr-text("h2");
 
-    margin-top: u(16);
+    margin-block-start: u(16);
   }
 }
 
@@ -66,11 +64,10 @@
 }
 
 .nav {
-  padding-top: u(10);
-  padding-bottom: u(10);
+  padding-block: u(10);
   position: sticky;
-  top: 0;
-  left: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   background: white;
   z-index: 2;
 
@@ -87,14 +84,14 @@
 
   color: white;
   background-color: var(--text-action-high-blue-france);
-  width: u(14);
-  height: u(14);
+  inline-size: u(14);
+  block-size: u(14);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-weight: bold;
-  margin-bottom: u(10);
+  margin-block-end: u(10);
 }
 
 .list {
@@ -105,12 +102,12 @@
   li {
     list-style-type: none;
     position: relative;
-    margin-bottom: u(6);
+    margin-block-end: u(6);
 
     i {
       position: absolute;
-      top: u(1);
-      left: u(-10);
+      inset-block-start: u(1);
+      inset-inline-start: u(-10);
       color: var(--text-action-high-blue-france);
     }
   }
@@ -119,7 +116,7 @@
 .card {
   padding: u(4) u(6) u(6);
   border: 1px solid var(--border-default-grey);
-  height: 100%;
+  block-size: 100%;
 
   h3 {
     @include dsfr-text("h6");
@@ -194,9 +191,9 @@
       color: var(--text-action-high-blue-france);
       background: white;
       border-radius: 50%;
-      margin-right: u(3);
-      width: u(10);
-      height: u(10);
+      margin-inline-end: u(3);
+      inline-size: u(10);
+      block-size: u(10);
     }
   }
   
@@ -206,7 +203,7 @@
 }
 
 .next {
-  border-top: 1px solid var(--border-default-grey);
+  border-block-start: 1px solid var(--border-default-grey);
 
   @include isTablet {
     border: none;

@@ -5,8 +5,8 @@
   font-size: $text-normal;
   line-height: 20px;
   padding: 8px;
-  width: fit-content;
+  inline-size: fit-content;
   background: $white;
   border-radius: 4px;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 }

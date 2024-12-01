@@ -8,16 +8,16 @@
   @include iconSize(u(4));
   @include dsfr-text("small");
 
-  height: u(8);
-  min-height: u(8);
+  block-size: u(8);
+  min-block-size: u(8);
 }
 
 .validate {
   @include iconSize(u(4));
 
-  width: u(8) !important;
-  height: u(8);
-  min-height: 0 !important;
+  inline-size: u(8) !important;
+  block-size: u(8);
+  min-block-size: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;

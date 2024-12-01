@@ -4,64 +4,63 @@
   background-image: url("../../../../assets/annuaire/annuaire_cover.svg");
   background-repeat: no-repeat;
   background-position: 50px 0;
-  height: 290px;
-  width: 100%;
+  block-size: 290px;
+  inline-size: 100%;
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   z-index: 2;
 }
 
 .container {
-  margin-left: 30px;
-  margin-top: 145px;
+  margin-inline-start: 30px;
+  margin-block-start: 145px;
   position: sticky;
-  top: 2rem;
+  inset-block-start: 2rem;
   z-index: 3;
 
   .title {
-    height: 74px;
+    block-size: 74px;
     padding: 4px 8px;
     background: $white;
-    width: fit-content;
-    margin-left: 72px;
+    inline-size: fit-content;
+    margin-inline-start: 72px;
     color: $bleuCharte;
     filter: drop-shadow(2px 4px 6px rgb(0 0 0 / 25%));
 
     &.rtl {
-      margin-left: 0;
-      margin-right: 72px;
+      margin-inline: 0 72px;
     }
   }
 
   .letters {
-    margin-top: 35px;
+    margin-block-start: 35px;
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 44px;
+    inline-size: 100%;
+    block-size: 44px;
     flex-direction: row;
     filter: drop-shadow(2px 4px 6px rgb(0 0 0 / 25%));
     z-index: -1;
 
     &.rtl {
-      margin-right: 72px;
+      margin-inline-end: 72px;
     }
   }
 }
 
 .grey_block {
   position: fixed;
-  width: 100%;
-  height: 400px;
-  margin-top: -175px;
+  inline-size: 100%;
+  block-size: 400px;
+  margin-block-start: -175px;
   background: linear-gradient(#e6e6e6, rgb(246 246 246 / 0%));
   z-index: 1;
 }
 
 .letter {
   border-radius: 8px;
-  width: 36px;
-  height: 36px;
+  inline-size: 36px;
+  block-size: 36px;
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;

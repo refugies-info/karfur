@@ -9,16 +9,14 @@ $breakpoint: "lg-limit";
 
 // Layout
 .main {
-  width: 100%;
+  inline-size: 100%;
 }
 
 .container {
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-inline: 2px;
 
   @include isMobile {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-inline: 12px;
   }
 }
 
@@ -27,21 +25,19 @@ $breakpoint: "lg-limit";
 }
 
 .section {
-  padding-top: u(20);
-  padding-bottom: u(20);
+  padding-block: u(20);
   position: relative;
 
   @include isTablet {
-    padding-top: u(10);
-    padding-bottom: u(10);
+    padding-block: u(10);
   }
 
   .link {
-    margin-top: u(20);
+    margin-block-start: u(20);
     text-align: center;
 
     @include isTablet {
-      margin-top: u(10);
+      margin-block-start: u(10);
     }
   }
 }
@@ -77,35 +73,35 @@ $breakpoint: "lg-limit";
 
 .anchor {
   position: absolute;
-  top: -50px;
+  inset-block-start: -50px;
 
   @include isTablet {
-    top: -100px;
+    inset-block-start: -100px;
   }
 }
 
 .top_space {
-  margin-top: u(20);
+  margin-block-start: u(20);
 
   @include isTablet {
-    margin-top: u(10);
+    margin-block-start: u(10);
   }
 }
 
 .bottom_space {
-  margin-top: u(8);
+  margin-block-start: u(8);
 }
 
 // Titles
 .title2 {
   @include text("h3");
 
-  margin-bottom: u(20);
+  margin-block-end: u(20);
 
   @include isTablet {
     @include text("h4");
 
-    margin-bottom: u(10);
+    margin-block-end: u(10);
   }
 }
 
@@ -113,20 +109,19 @@ $breakpoint: "lg-limit";
   text-align: center;
 
   @include isTablet {
-    text-align: left;
+    text-align: start;
   }
 }
 
 .subtitle {
   @include text("h5");
 
-  margin-top: u(10);
-  margin-bottom: 0;
+  margin-block: u(10) 0;
 
   @include isTablet {
     @include text("large");
 
-    margin-top: u(6);
+    margin-block-start: u(6);
   }
 }
 
@@ -147,18 +142,18 @@ $breakpoint: "lg-limit";
 
 .hero_title {
   @include media-min($breakpoint) {
-    padding-right: u(12);
+    padding-inline-end: u(12);
   }
 
   @include isTablet {
-    margin-bottom: u(13);
+    margin-block-end: u(13);
   }
 }
 
 .hero_image {
   @include isTablet {
-    text-align: right;
-    padding-left: u(4);
+    text-align: end;
+    padding-inline-start: u(4);
   }
 }
 
@@ -180,11 +175,11 @@ $breakpoint: "lg-limit";
 
   display: none;
   align-items: center;
-  margin-bottom: u(10);
+  margin-block-end: u(10);
 
   & > p {
-    margin-bottom: 0;
-    margin-left: u(4);
+    margin-block-end: 0;
+    margin-inline-start: u(4);
   }
 
   @include isTablet {
@@ -194,7 +189,7 @@ $breakpoint: "lg-limit";
 
 // Faq
 .faq {
-  max-width: 720px;
+  max-inline-size: 720px;
 }
 
 // Publier
@@ -204,7 +199,7 @@ $breakpoint: "lg-limit";
     border-width: 12px;
 
     @include isTablet {
-      width: 124px;
+      inline-size: 124px;
       border-width: 6px;
       border-radius: 18px;
     }
@@ -213,15 +208,13 @@ $breakpoint: "lg-limit";
 
 // Traduire
 .needs {
-  max-width: 720px;
+  max-inline-size: 720px;
 
   :global(.row) {
-    margin-right: -20px;
-    margin-left: -20px;
+    margin-inline: -20px;
 
     & > div {
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-inline: 20px;
     }
   }
 }

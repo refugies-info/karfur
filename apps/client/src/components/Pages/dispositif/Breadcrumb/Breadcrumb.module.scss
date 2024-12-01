@@ -7,16 +7,16 @@
 .container {
   display: flex;
   align-items: center;
-  margin-bottom: u(10);
+  margin-block-end: u(10);
 
   @include media-max("lg-limit") {
     flex-wrap: wrap;
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
 .home {
-  height: 16px;
+  block-size: 16px;
   display: flex;
 }
 

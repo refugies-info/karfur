@@ -10,18 +10,16 @@
     flex-wrap: nowrap;
     overflow-x: scroll;
     justify-content: flex-start;
-    margin-left: -12px;
-    margin-right: -12px;
-    padding-bottom: u(4);
+    margin-inline: -12px;
+    padding-block-end: u(4);
   }
 }
 
 .title {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  inline-size: 50%;
+  margin-inline: auto;
 
   @include isTablet {
-    width: 100%;
+    inline-size: 100%;
   }
 }

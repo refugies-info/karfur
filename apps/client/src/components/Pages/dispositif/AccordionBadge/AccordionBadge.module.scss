@@ -9,8 +9,8 @@
   @include dsfr-text("large");
   @include mr-ltr(u(4));
 
-  width: u(8);
-  height: u(8);
+  inline-size: u(8);
+  block-size: u(8);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@
   @include media-max("lg-limit") {
     @include dsfr-text("small");
 
-    width: u(6);
-    height: u(6);
+    inline-size: u(6);
+    block-size: u(6);
   }
 }

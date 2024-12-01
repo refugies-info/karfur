@@ -7,7 +7,7 @@
   z-index: 30;
 
   /* Style */
-  border-top: 1px solid var(--background-open-blue-france);
+  border-block-start: 1px solid var(--background-open-blue-france);
   background: var(--text-inverted-grey);
 
   /* shadow/light/$shadow-md */

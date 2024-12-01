@@ -9,11 +9,11 @@
     border: none;
     background: #fbfbfb;
     padding: 40px;
-    width: 600px;
+    inline-size: 600px;
 
     .user_img {
-      max-width: 70px;
-      max-height: 40px;
+      max-inline-size: 70px;
+      max-block-size: 40px;
       border-radius: 50%;
     }
   }

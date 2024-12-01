@@ -9,22 +9,21 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: u(8);
+  margin-block-start: u(8);
 }
 
 $image: 64px;
 
 .image {
-  width: $image;
-  height: $image;
+  inline-size: $image;
+  block-size: $image;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: u(4);
+  margin-inline-end: u(4);
   flex-shrink: 0;
 
   @include rtl {
-    margin-right: inherit;
-    margin-left: u(4);
+    margin-inline: u(4) inherit;
   }
 }
 
@@ -34,5 +33,5 @@ $image: 64px;
 
 .name {
   font-weight: bold;
-  margin-bottom: u(2);
+  margin-block-end: u(2);
 }

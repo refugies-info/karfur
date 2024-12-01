@@ -10,11 +10,11 @@
     background-color: white;
     box-shadow: 0 2px 6px 0 #00001229;
     color: var(--text-disabled-grey);
-    width: 100%;
+    inline-size: 100%;
     padding: u(4);
     border-radius: u(2);
     border: 1px solid transparent;
-    text-align: left;
+    text-align: start;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,14 +57,14 @@
       box-shadow: none;
       color: var(--text-title-grey);
       border: 1px solid var(--border-default-grey);
-      padding-right: u(10);
+      padding-inline-end: u(10);
       align-items: flex-start;
 
       .icons {
         position: absolute;
-        top: u(4);
-        right: u(3);
-        width: u(8);
+        inset-block-start: u(4);
+        inset-inline-end: u(3);
+        inline-size: u(8);
         text-align: center;
 
         .ok {
@@ -80,7 +80,7 @@
 
           padding: u(2);
           border-radius: u(2);
-          margin-top: u(2);
+          margin-block-start: u(2);
           border: 1px solid var(--border-default-grey);
 
           &:hover:not(.disabled) {
@@ -138,7 +138,7 @@
     }
 
     .empty {
-      width: 100%;
+      inline-size: 100%;
     }
   }
 }

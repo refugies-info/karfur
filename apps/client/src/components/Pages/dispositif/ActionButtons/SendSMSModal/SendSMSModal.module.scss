@@ -8,15 +8,15 @@
 .form {
   .text {
     color: var(--text-mention-grey);
-    margin-bottom: u(8);
+    margin-block-end: u(8);
   }
 
   .input {
     background: var(--background-alt-raised-grey);
     border-radius: u(2);
-    margin-bottom: u(6);
+    margin-block-end: u(6);
     padding: u(3);
-    width: 100%;
+    inline-size: 100%;
     outline: none !important;
     border: 1px solid transparent;
 
@@ -30,8 +30,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    margin-bottom: u(6);
+    inline-size: 100%;
+    margin-block-end: u(6);
     background-color: var(--background-alt-raised-grey);
     color: $gray90;
 
@@ -44,11 +44,11 @@
 
       i {
         line-height: 24px !important;
-        height: 24px !important;
+        block-size: 24px !important;
 
         svg {
-          width: 24px;
-          height: 24px;
+          inline-size: 24px;
+          block-size: 24px;
         }
       }
     }
@@ -56,20 +56,19 @@
 
   .error {
     color: var(--text-default-error);
-    margin-top: u(4);
+    margin-block-start: u(4);
     display: flex;
     align-items: center;
 
     p {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
   }
 
   .submit {
-    width: 100%;
+    inline-size: 100%;
     justify-content: center;
-    margin-top: u(4);
-    padding-top: u(3);
-    padding-bottom: u(3);
+    margin-block-start: u(4);
+    padding-block: u(3);
   }
 }

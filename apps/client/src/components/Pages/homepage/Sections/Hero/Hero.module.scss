@@ -10,17 +10,17 @@ $searchHeight: 96px;
 
 .hero {
   position: relative;
-  min-height: 470px;
-  height: calc(100vh - $navbarHeight);
+  min-block-size: 470px;
+  block-size: calc(100vh - $navbarHeight);
   background-image: url("../../../../../assets/homepage/hero/background-image.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
-  padding-top: $paddingTop;
+  padding-block-start: $paddingTop;
 
   @include isTablet {
-    padding-top: u(10);
-    height: 90vh;
+    padding-block-start: u(10);
+    block-size: 90vh;
   }
 
   h1 {
@@ -37,28 +37,28 @@ $searchHeight: 96px;
   background-repeat: no-repeat;
   background-position: bottom;
   background-image: url("../../../../../assets/homepage/hero/bottom-back.svg");
-  width: 100%;
-  height: calc(100vh - $navbarHeight - $paddingTop - $heightTitle - $searchMarginTop - $searchHeight);
-  padding-left: 20%;
-  padding-top: u(10);
+  inline-size: 100%;
+  block-size: calc(100vh - $navbarHeight - $paddingTop - $heightTitle - $searchMarginTop - $searchHeight);
+  padding-inline-start: 20%;
+  padding-block-start: u(10);
   position: absolute;
-  left: 0;
-  bottom: 0;
+  inset-inline-start: 0;
+  inset-block-end: 0;
   z-index: 1;
   display: flex;
   align-items: flex-end;
 
   img {
-    height: 100%;
-    max-height: 50vh;
-    width: auto;
+    block-size: 100%;
+    max-block-size: 50vh;
+    inline-size: auto;
   }
 
   @include media-max("lg-limit") {
-    padding-left: 10%;
+    padding-inline-start: 10%;
 
     img {
-      max-height: 30vh;
+      max-block-size: 30vh;
     }
   }
 }

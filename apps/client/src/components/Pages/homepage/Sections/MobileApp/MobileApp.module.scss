@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: u(8);
+  margin-block-start: u(8);
   z-index: 2;
 
   @include isTablet {
@@ -31,12 +31,12 @@
     @include mr-ltr(u(4));
 
     img {
-      max-width: 124px;
-      height: auto;
+      max-inline-size: 124px;
+      block-size: auto;
 
       @include isTablet {
-        max-width: inherit;
-        height: auto;
+        max-inline-size: inherit;
+        block-size: auto;
       }
     }
   }
@@ -47,7 +47,7 @@
 
   @include isTablet {
     position: absolute;
-    top: -80px;
+    inset-block-start: -80px;
     transform: translateX(70%);
 
     @include rtl {

@@ -11,10 +11,10 @@
   .step {
     display: block;
     background: $gray40;
-    width: u(4);
-    height: 6px;
+    inline-size: u(4);
+    block-size: 6px;
     border-radius: 30px;
-    margin-right: 2px;
+    margin-inline-end: 2px;
 
     &.done {
       background: var(--background-active-blue-france-active);
@@ -26,6 +26,6 @@
   @include dsfr-text("small");
 
   color: var(--text-mention-grey);
-  margin-bottom: 0;
-  margin-left: u(2);
+  margin-block-end: 0;
+  margin-inline-start: u(2);
 }

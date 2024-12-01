@@ -3,27 +3,27 @@
 @import "~/scss/mixins/responsive";
 
 .creator_img {
-  max-width: 70px;
-  max-height: 40px;
+  max-inline-size: 70px;
+  max-block-size: 40px;
   border-radius: 50%;
-  margin-right: 8px;
+  margin-inline-end: 8px;
 }
 
 .sponsor_img {
-  max-width: 140px;
-  max-height: 60px;
-  margin-right: 8px;
+  max-inline-size: 140px;
+  max-block-size: 60px;
+  margin-inline-end: 8px;
 }
 
 .label {
-  margin-bottom: 8px;
+  margin-block-end: 8px;
   font-size: 12px;
   line-height: 15px;
   font-weight: bold;
 }
 
 .text {
-  margin-bottom: 0;
+  margin-block-end: 0;
   font-size: 12px;
   line-height: 15px;
 }
@@ -32,17 +32,17 @@
   display: flex;
   flex-wrap: nowrap;
   flex-grow: 1;
-  margin-top: 16px;
+  margin-block-start: 16px;
 }
 
 .col_1 {
-  width: 450px;
-  min-width: 450px;
+  inline-size: 450px;
+  min-inline-size: 450px;
 }
 
 .col_2 {
-  width: 225px;
-  min-width: 225px;
+  inline-size: 225px;
+  min-inline-size: 225px;
   margin: 0 16px;
   display: flex;
   flex-direction: column;
@@ -56,14 +56,14 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: 435px;
+  block-size: 435px;
 }
 
 .white_container {
   display: flex;
   align-items: center;
   flex-grow: 1;
-  height: 52px;
+  block-size: 52px;
   padding: 12px;
   border-radius: $radius;
   background-color: $white;

@@ -2,25 +2,25 @@
 @import "~/scss/variables";
 
 .container {
-  width: 390px;
+  inline-size: 390px;
   background-image: url("../../../../assets/annuaire/illu_annuaire_big.svg");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 44px;
   display: flex;
-  padding-top: 100px;
+  padding-block-start: 100px;
   flex-direction: column;
 }
 
 .logo {
   background: $white;
   border-radius: $radius;
-  width: 296px;
-  height: 168px;
+  inline-size: 296px;
+  block-size: 168px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
   padding: 32px;
 }
 

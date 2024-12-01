@@ -14,8 +14,8 @@
   white-space: nowrap;
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 46px;
+  inline-size: 100%;
+  block-size: 46px;
   border: none;
 
   &:focus {
@@ -38,8 +38,8 @@
 }
 
 .edit {
-  width: 30px;
-  height: 30px;
+  inline-size: 30px;
+  block-size: 30px;
   background: $white;
   border-radius: 8px;
   display: inline-flex;
@@ -57,5 +57,5 @@
 
 .image {
   position: relative;
-  top: 6px;
+  inset-block-start: 6px;
 }

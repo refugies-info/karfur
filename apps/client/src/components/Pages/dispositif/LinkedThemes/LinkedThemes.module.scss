@@ -5,7 +5,7 @@
 @import "~/scss/mixins/responsive";
 
 .container {
-  margin-bottom: u(16);
+  margin-block-end: u(16);
   position: relative;
 }
 
@@ -26,7 +26,7 @@
   font-weight: bold;
 
   @include media-max("lg-limit") {
-    margin-bottom: u(4);
+    margin-block-end: u(4);
   }
 }
 
@@ -40,8 +40,8 @@
 
   @include media-max("lg-limit") {
     display: flex;
-    width: fit-content;
-    margin-bottom: u(2);
+    inline-size: fit-content;
+    margin-block-end: u(2);
   }
 
   &.need {

@@ -44,7 +44,7 @@
   &.filter {
     background: transparent;
     color: $white;
-    margin-right: 10px;
+    margin-inline-end: 10px;
     border-radius: $radius;
     border: 1px solid white;
     font-weight: normal;
@@ -75,7 +75,7 @@
     font-size: $text-large;
 
     &::after {
-      margin-left: 13px;
+      margin-inline-start: 13px;
     }
   }
 
@@ -89,13 +89,13 @@
     display: flex;
     white-space: nowrap;
     overflow: visible;
-    margin-top: 10px;
+    margin-block-start: 10px;
     font-weight: 600;
     padding: 10px;
-    margin-right: 0;
+    margin-inline-end: 0;
 
     &:not(:last-child) {
-      margin-right: 8px;
+      margin-inline-end: 8px;
     }
 
     &:not(&.color) {

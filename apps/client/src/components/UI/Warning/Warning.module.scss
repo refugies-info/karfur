@@ -28,5 +28,5 @@ $breakpoint: "lg-limit";
 .text {
   @include text("large");
 
-  margin-bottom: 0;
+  margin-block-end: 0;
 }

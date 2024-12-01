@@ -3,11 +3,11 @@
   align-items: flex-start;
   gap: 8px;
   background-color: #fff;
-  border-top: 6px solid #fff;
+  border-block-start: 6px solid #fff;
   transform: translateY(-8px);
-  width: 100%;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border-default-grey);
+  inline-size: 100%;
+  padding-block-end: 6px;
+  border-block-end: 1px solid var(--border-default-grey);
 }
 
 .label {
@@ -26,14 +26,14 @@
 
 .count {
   display: flex;
-  padding-top: 4px;
+  padding-block-start: 4px;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 
   /* Style */
   color: var(--text-mention-grey);
-  text-align: right;
+  text-align: end;
 
   /* 2.Corps de texte/XS - Texte mention/Desktop & Mobile - Regular */
   font-family: Marianne, sans-serif;

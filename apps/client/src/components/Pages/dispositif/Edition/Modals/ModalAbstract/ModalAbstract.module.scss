@@ -6,17 +6,17 @@
 
 .text {
   position: relative;
-  height: 100%;
+  block-size: 100%;
 }
 
 .input {
   @include baseInput;
 
-  height: 100%;
-  padding-bottom: u(12);
+  block-size: 100%;
+  padding-block-end: u(12);
   background: $gray30;
   border: 1px solid var(--border-default-grey);
-  max-width: 230px;
+  max-inline-size: 230px;
 
   &:hover {
     background: var(--background-contrast-grey);
@@ -32,23 +32,22 @@
   @include dsfr-text("very-small");
 
   position: absolute;
-  bottom: u(4);
-  left: u(4);
-  right: u(4);
-  margin-bottom: 0;
+  inset-block-end: u(4);
+  inset-inline: u(4);
+  margin-block-end: 0;
   color: var(--text-default-error);
 }
 
 .arrow {
   position: relative;
-  top: 50%;
+  inset-block-start: 50%;
   padding: 0 u(2);
   z-index: 1;
-  width: 70px;
-  height: 30px;
+  inline-size: 70px;
+  block-size: 30px;
   display: block;
 
   img {
-    max-width: 100%;
+    max-inline-size: 100%;
   }
 }

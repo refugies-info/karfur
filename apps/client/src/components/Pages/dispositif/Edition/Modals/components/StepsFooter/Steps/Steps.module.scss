@@ -12,12 +12,12 @@
 .step {
   @include dsfr-text("small");
 
-  width: u(6);
-  height: u(6);
+  inline-size: u(6);
+  block-size: u(6);
   border-radius: 50%;
   background: $gray40;
   color: var(--text-disabled-grey);
-  margin-right: u(2);
+  margin-inline-end: u(2);
   display: flex;
   align-items: center;
   justify-content: center;

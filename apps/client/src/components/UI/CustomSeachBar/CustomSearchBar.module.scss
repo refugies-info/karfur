@@ -6,14 +6,13 @@
   background: $white;
   border: 0.5px solid $white;
   border-radius: $radius;
-  padding-right: 12px;
-  padding-left: 15px;
-  margin-right: 10px;
+  padding-inline: 15px 12px;
+  margin-inline-end: 10px;
   font-size: $text-normal;
   font-weight: normal;
-  width: 18%;
-  min-width: 180px;
-  height: 52px;
+  inline-size: 18%;
+  min-inline-size: 180px;
+  block-size: 52px;
   color: #000;
   flex-direction: row;
   display: flex;
@@ -28,11 +27,11 @@
   }
 
   @include media-min("widescreen-up") {
-    width: 240px;
+    inline-size: 240px;
   }
 
   &.no_margin {
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 }
 
@@ -40,10 +39,10 @@
   background: $white;
   border: 0.5px solid $white;
   border-radius: $radius;
-  margin-right: 10px;
+  margin-inline-end: 10px;
   font-size: $text-normal;
   font-weight: normal;
-  width: 100%;
+  inline-size: 100%;
   color: #000;
 
   &:focus {

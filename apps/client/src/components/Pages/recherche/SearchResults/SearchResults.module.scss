@@ -26,7 +26,7 @@
 
   /* Responsive */
   @include media-min("xl-limit") {
-    max-width: 1200px; /* TODO:fix this width with the future tailwind container */
+    max-inline-size: 1200px; /* TODO:fix this width with the future tailwind container */
   }
 
   h2 {
@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 100%;
+  inline-size: 100%;
   justify-content: center;
   align-items: center;
 
@@ -50,7 +50,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
     > div {
-      max-width: 100%;
+      max-inline-size: 100%;
     }
   }
 
@@ -58,7 +58,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
     > div {
-      max-width: 100%;
+      max-inline-size: 100%;
     }
   }
 
@@ -66,22 +66,22 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
 
     > div {
-      max-width: 100%;
+      max-inline-size: 100%;
     }
   }
 
   @media (width <= 48em) {
-    width: 100%;
+    inline-size: 100%;
 
     .dispositifCard {
-      max-width: none;
+      max-inline-size: none;
     }
   }
 }
 
 .no_results {
   margin: auto;
-  width: fit-content;
+  inline-size: fit-content;
   display: flex;
   flex-direction: column;
   gap: u(10);
@@ -104,5 +104,5 @@
 .no_results_other {
   @include dsfr-text("h3");
 
-  text-align: left;
+  text-align: start;
 }

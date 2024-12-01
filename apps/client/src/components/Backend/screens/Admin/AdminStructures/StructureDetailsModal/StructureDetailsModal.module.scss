@@ -7,21 +7,21 @@ $containerHeight: 435px;
   display: flex;
   flex-wrap: nowrap;
   flex-grow: 1;
-  margin-top: 20px;
+  margin-block-start: 20px;
 }
 
 .col_1 {
-  width: 335px;
+  inline-size: 335px;
   display: flex;
   flex-direction: column;
 }
 
 .col_2 {
-  width: 390px;
+  inline-size: 390px;
   margin: 0 16px;
   display: flex;
   flex-direction: column;
-  height: $containerHeight;
+  block-size: $containerHeight;
 
   .scrollable {
     background: $white;
@@ -36,5 +36,5 @@ $containerHeight: 435px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: $containerHeight;
+  block-size: $containerHeight;
 }

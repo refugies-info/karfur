@@ -3,7 +3,7 @@
 @import "~/scss/mixins/unit";
 
 .container {
-  width: 940px;
+  inline-size: 940px;
   margin: u(6) auto;
 }
 
@@ -23,5 +23,5 @@
   padding: u(1) u(2);
   background-color: white;
   border-radius: u(1);
-  margin-left: u(2);
+  margin-inline-start: u(2);
 }

@@ -1,9 +1,9 @@
 .container {
   /* Layout */
   position: sticky;
-  top: 60px;
+  inset-block-start: 60px;
   display: flex;
-  min-width: 13.5em /*216px*/;
+  min-inline-size: 13.5em /*216px*/;
   padding: 0.5em 0;
   flex-direction: column;
 
@@ -12,9 +12,9 @@
 }
 
 .ref {
-  width: 100%;
+  inline-size: 100%;
 }
 
 .accordion {
-  width: 100%;
+  inline-size: 100%;
 }

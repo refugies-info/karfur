@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   gap: u(4);
-  width: fit-content;
+  inline-size: fit-content;
 
   &.border {
     border: 1px solid var(--border-default-grey);
@@ -17,7 +17,7 @@
   }
 
   & > p {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   & > span {
@@ -32,8 +32,8 @@
       color: var(--text-title-grey);
       border: 1px solid var(--border-default-grey);
       padding: u(2) u(1);
-      max-width: 72px;
-      min-width: 25px;
+      max-inline-size: 72px;
+      min-inline-size: 25px;
       text-align: center;
 
       &:hover,

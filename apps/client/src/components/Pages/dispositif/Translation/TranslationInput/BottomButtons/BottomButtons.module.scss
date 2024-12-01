@@ -3,7 +3,7 @@
 @import "~/scss/mixins/unit";
 
 .buttons {
-  margin-top: u(4);
+  margin-block-start: u(4);
   display: flex;
   align-items: center;
   justify-content: space-between;

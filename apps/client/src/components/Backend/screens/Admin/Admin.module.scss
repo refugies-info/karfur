@@ -6,7 +6,7 @@
   flex-direction: column;
   flex: 1;
   background: $gray20;
-  max-width: 100%;
+  max-inline-size: 100%;
 
   .tab_content {
     border: none;
@@ -18,15 +18,15 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
-  height: 52px;
+  block-size: 52px;
   padding: 12px;
   border-radius: $radius;
   background-color: $white;
   cursor: pointer;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 
   &:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   &:hover {
@@ -45,15 +45,15 @@
 
   .user_img {
     border-radius: 50%;
-    margin-right: 8px;
+    margin-inline-end: 8px;
   }
 
   .sponsor_img {
-    margin-right: 8px;
+    margin-inline-end: 8px;
   }
 
   &.wrap {
-    width: fit-content;
+    inline-size: fit-content;
   }
 }
 
@@ -62,18 +62,18 @@
   flex-direction: row;
 
   & > div {
-    margin-left: 8px;
+    margin-inline-start: 8px;
   }
 }
 
 .text {
-  margin-bottom: 0;
+  margin-block-end: 0;
   font-size: 12px;
   line-height: 15px;
 }
 
 .label {
-  margin-bottom: 8px;
+  margin-block-end: 8px;
   font-size: 12px;
   line-height: 15px;
   font-weight: bold;

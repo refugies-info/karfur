@@ -9,13 +9,13 @@
 
   li {
     position: relative;
-    padding-left: u(5);
-    margin-bottom: u(4);
+    padding-inline-start: u(5);
+    margin-block-end: u(4);
 
     .icon {
       position: absolute;
-      left: u(-2);
-      top: u(1);
+      inset-inline-start: u(-2);
+      inset-block-start: u(1);
     }
   }
 }

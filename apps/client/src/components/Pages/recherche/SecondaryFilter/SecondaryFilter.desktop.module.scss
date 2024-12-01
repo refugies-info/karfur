@@ -14,8 +14,8 @@
     border: none;
     padding: u(3) u(7) u(3) u(2);
     border-radius: u(2);
-    max-width: 250px;
-    height: 46px;
+    max-inline-size: 250px;
+    block-size: 46px;
     position: relative;
 
     @include rtl {
@@ -31,12 +31,11 @@
 
     .icon {
       position: absolute;
-      right: u(1);
-      top: 15px;
+      inset-inline-end: u(1);
+      inset-block-start: 15px;
 
       @include rtl {
-        right: inherit;
-        left: u(1);
+        inset-inline: u(1) inherit;
       }
     }
   }
@@ -69,7 +68,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 /* Override global style */
@@ -82,7 +81,7 @@ html body .dropdown.show > button {
   box-shadow: 0 0 40px 0 #00000040;
   padding: u(4);
   border-radius: $radius;
-  margin-top: u(2);
+  margin-block-start: u(2);
 }
 
 .item {
@@ -90,7 +89,7 @@ html body .dropdown.show > button {
 
   padding: u(3) u(2);
   border-radius: u(2) !important;
-  margin-bottom: u(1);
+  margin-block-end: u(1);
   border: none;
 
   &:hover {
@@ -104,7 +103,7 @@ html body .dropdown.show > button {
 
   & > span {
     position: relative;
-    top: -1px;
+    inset-block-start: -1px;
   }
 
   :global(.fi) {

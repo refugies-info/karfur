@@ -7,13 +7,13 @@
 
 .container {
   position: sticky;
-  top: -1px;
+  inset-block-start: -1px;
   background: $white;
   z-index: 1000;
 
   @include isTablet {
-    max-width: 100%;
-    width: 100%;
+    max-inline-size: 100%;
+    inline-size: 100%;
     overflow-x: scroll;
   }
 
@@ -40,8 +40,7 @@
   }
 
   @include isTablet {
-    padding-left: u(4);
-    padding-right: u(4);
+    padding-inline: u(4);
   }
 }
 
@@ -52,12 +51,12 @@
   align-items: center;
   white-space: nowrap;
   padding: u(3);
-  height: 46px;
+  block-size: 46px;
   border-radius: $radius;
   background: $white;
   border: 1px solid $gray70b;
   color: $gray70b;
-  margin-right: u(2);
+  margin-inline-end: u(2);
 
   &:hover {
     border-color: $dark;
@@ -72,11 +71,10 @@
     align-items: center;
 
     & > span {
-      margin-right: u(2);
+      margin-inline-end: u(2);
 
       @include rtl {
-        margin-right: inherit;
-        margin-left: u(2);
+        margin-inline: u(2) inherit;
       }
     }
 

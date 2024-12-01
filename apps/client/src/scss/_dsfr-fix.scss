@@ -7,13 +7,12 @@
   align-self: center;
 
   [dir="ltr"] & {
-    padding-right: 1rem;
+    padding-inline-end: 1rem;
   }
 
   [dir="rtl"] & {
-    padding-left: 1rem;
-    margin-left: inherit;
-    margin-right: auto;
+    padding-inline-start: 1rem;
+    margin-inline: inherit auto;
   }
 }
 
@@ -22,12 +21,11 @@
   .fr-footer__top-cat,
   .fr-nav__list > * > .fr-nav__link,
   .fr-nav__link {
-    text-align: right;
+    text-align: end;
   }
 
   [class^="ri-"].icon-left {
-    margin-right: 0;
-    margin-left: 0.5rem;
+    margin-inline: 0.5rem 0;
   }
 
   .fr-header
@@ -35,14 +33,12 @@
       [class*=" fr-btns-group--icon-"]
     )
     .fr-btn::before {
-    margin-right: -0.125rem;
-    margin-left: 0.5rem;
+    margin-inline: 0.5rem -0.125rem;
   }
 
   @media (min-width: 62em) {
     .fr-footer__content {
-      margin-right: auto;
-      margin-left: inherit;
+      margin-inline: inherit auto;
     }
   }
 }

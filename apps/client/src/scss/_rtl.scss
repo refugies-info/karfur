@@ -3,7 +3,7 @@
 @import "~/scss/mixins/rtl";
 
 html body div[dir="rtl"] {
-  text-align: right;
+  text-align: end;
 
   @each $prop, $abbrev in (margin: m, padding: p) {
     @each $size, $length in $spacers {
@@ -20,16 +20,16 @@ html body div[dir="rtl"] {
 
   // Some special margin utils
   .me-auto {
-    margin-left: auto !important;
+    margin-inline-start: auto !important;
   }
 
   .ms-auto {
-    margin-right: auto !important;
+    margin-inline-end: auto !important;
   }
 }
 
 html body div[dir="ltr"] {
-  text-align: left;
+  text-align: start;
 
   @each $prop, $abbrev in (margin: m, padding: p) {
     @each $size, $length in $spacers {
@@ -46,12 +46,10 @@ html body div[dir="ltr"] {
 
   // Some special margin utils
   .me-auto {
-    margin-right: auto !important;
-    margin-left: inherit !important;
+    margin-inline: inherit auto !important;
   }
 
   .ms-auto {
-    margin-left: auto !important;
-    margin-right: inherit !important;
+    margin-inline: auto inherit !important;
   }
 }

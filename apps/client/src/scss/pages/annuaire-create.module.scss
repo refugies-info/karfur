@@ -5,43 +5,41 @@
   background: #fbfbfb;
   display: flex;
   flex: 1;
-  margin-top: -75px;
-  padding-left: 120px;
-  padding-right: 120px;
+  margin-block-start: -75px;
+  padding-inline: 120px;
 
   .right {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-top: 112px;
+    margin-block-start: 112px;
   }
 
   .left {
     position: sticky;
-    top: 112px;
-    margin-bottom: 24px;
-    height: 650px;
-    margin-top: 112px;
+    inset-block-start: 112px;
+    margin-block: 112px 24px;
+    block-size: 650px;
   }
 
   .loader {
     display: flex;
     flex: 1;
-    margin-top: 200px;
-    margin-left: 300px;
+    margin-block-start: 200px;
+    margin-inline-start: 300px;
   }
 
   .header {
     background-image: url("../../assets/annuaire/annuaire_create.svg");
-    width: 360px;
-    height: 600px;
+    inline-size: 360px;
+    block-size: 600px;
     border-radius: $radius;
     padding: 24px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    margin-right: 40px;
-    margin-bottom: 8px;
+    margin-inline-end: 40px;
+    margin-block-end: 8px;
   }
 
   .title {
@@ -50,8 +48,8 @@
     font-size: 40px;
     line-height: 51px;
     padding: 8px 16px 13px;
-    width: fit-content;
-    margin-bottom: 13px;
+    inline-size: fit-content;
+    margin-block-end: 13px;
   }
 
   .step {

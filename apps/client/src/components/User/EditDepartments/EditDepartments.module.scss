@@ -9,13 +9,13 @@
   background: white;
   position: absolute;
   z-index: 2;
-  width: 100%;
+  inline-size: 100%;
   box-shadow: 0 6px 18px 0 #00001229;
 
   & > button {
     display: block;
-    width: 100%;
-    text-align: left;
+    inline-size: 100%;
+    text-align: start;
     padding: u(2) u(3);
   }
 }
@@ -27,13 +27,13 @@
   display: inline-flex;
   align-items: center;
   gap: u(2);
-  margin-right: u(2);
-  margin-bottom: u(2);
+  margin-inline-end: u(2);
+  margin-block-end: u(2);
 }
 
 .button {
   &.full {
-    width: 100%;
+    inline-size: 100%;
     justify-content: center;
   }
 }

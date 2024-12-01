@@ -2,11 +2,11 @@
 @mixin iconSize($size) {
   i {
     line-height: $size !important;
-    height: $size !important;
+    block-size: $size !important;
 
     svg {
-      width: $size !important;
-      height: $size !important;
+      inline-size: $size !important;
+      block-size: $size !important;
     }
   }
 
@@ -16,7 +16,7 @@
   }
 
   &::before {
-    width: $size;
-    height: $size;
+    inline-size: $size;
+    block-size: $size;
   }
 }

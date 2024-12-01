@@ -9,7 +9,7 @@
   background: var(--background-alt-raised-grey);
   border: 1px solid var(--border-default-grey);
   padding: u(4);
-  margin-bottom: u(6);
+  margin-block-end: u(6);
   border-radius: u(2);
   position: relative;
 
@@ -18,8 +18,8 @@
   }
 
   &.btn {
-    text-align: left;
-    width: 100%;
+    text-align: start;
+    inline-size: 100%;
 
     &:hover {
       background: var(--background-contrast-grey) !important;
@@ -30,7 +30,7 @@
     @include dsfr-text("h6");
 
     font-weight: bold;
-    margin-bottom: 0;
+    margin-block-end: 0;
 
     @include media-max("lg-limit") {
       @include dsfr-text("large");
@@ -54,8 +54,8 @@
 // Icon
 .status {
   position: absolute;
-  top: u(4);
-  right: u(3);
+  inset-block-start: u(4);
+  inset-inline-end: u(3);
 
   &.edit {
     display: none;
@@ -76,7 +76,7 @@
 
 .item {
   display: flex;
-  margin-top: u(6);
+  margin-block-start: u(6);
 
   .details {
     @include ml-ltr(u(3));
@@ -89,8 +89,8 @@
   }
 
   .icon {
-    width: u(8);
-    height: u(8);
+    inline-size: u(8);
+    block-size: u(8);
   }
 
   .label,

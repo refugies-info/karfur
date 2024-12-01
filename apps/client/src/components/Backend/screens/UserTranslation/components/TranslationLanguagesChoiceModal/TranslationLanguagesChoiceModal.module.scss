@@ -1,7 +1,7 @@
 @import "~/scss/colors";
 
 .modal {
-  max-width: 600px;
+  max-inline-size: 600px;
 
   .modal_content {
     box-shadow: 0 0 40px #3c3434;

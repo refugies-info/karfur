@@ -5,25 +5,24 @@
 $headerHeight: 120px;
 
 .container {
-  min-height: 100vh;
+  min-block-size: 100vh;
 }
 
 .main {
-  width: 50%;
+  inline-size: 50%;
   padding: u(6) u(38) u(20);
 
   &.full_width {
-    width: 100%;
+    inline-size: 100%;
     background-color: #fafaff;
-    padding-left: 0;
-    padding-right: 0;
-    min-height: calc(100vh - $headerHeight); // TODO: improve that
+    padding-inline: 0;
+    min-block-size: calc(100vh - $headerHeight); // TODO: improve that
   }
 }
 
 .right {
   background: var(--background-contrast-blue-france);
-  min-height: calc(100vh - $headerHeight); // TODO: improve that
+  min-block-size: calc(100vh - $headerHeight); // TODO: improve that
 }
 
 .row {
@@ -31,30 +30,30 @@ $headerHeight: 120px;
 
   .right,
   .main {
-    width: 50%;
+    inline-size: 50%;
   }
 }
 
 .illu {
-  width: 100%;
-  height: auto;
-  max-height: 33%;
+  inline-size: 100%;
+  block-size: auto;
+  max-block-size: 33%;
   margin: 0 auto;
 }
 
 .right_content {
   text-align: center;
-  width: 480px;
+  inline-size: 480px;
   margin: u(15) auto 0;
 }
 
 .chapo {
   @include dsfr-text("chapo");
 
-  margin-bottom: u(12);
+  margin-block-end: u(12);
 
   @include media-max("widescreen-up", true, true) {
-    margin-bottom: u(10);
+    margin-block-end: u(10);
   }
 }
 
@@ -70,16 +69,15 @@ $headerHeight: 120px;
 .small {
   @include dsfr-text("small");
 
-  margin-top: u(2);
-  margin-bottom: u(12);
+  margin-block: u(2) u(12);
 
   @include media-max("widescreen-up", true, true) {
-    margin-bottom: u(10);
+    margin-block-end: u(10);
   }
 }
 
 .fixed_illu {
   position: fixed;
-  bottom: u(10);
-  left: u(26);
+  inset-block-end: u(10);
+  inset-inline-start: u(26);
 }

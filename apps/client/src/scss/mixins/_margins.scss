@@ -1,18 +1,18 @@
 /* stylelint-disable scss/at-extend-no-missing-placeholder */
 @mixin responsiveMargins() {
   .mt {
-    margin-top: u(14);
+    margin-block-start: u(14);
 
     @include media-max("widescreen-up", true, true) {
-      margin-top: u(12);
+      margin-block-start: u(12);
     }
   }
 
   .mb {
-    margin-bottom: u(14);
+    margin-block-end: u(14);
 
     @include media-max("widescreen-up", true, true) {
-      margin-bottom: u(12);
+      margin-block-end: u(12);
     }
   }
 

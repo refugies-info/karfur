@@ -8,22 +8,22 @@
 .figure {
   @include text("h1");
 
-  margin-bottom: u(6);
+  margin-block-end: u(6);
   font-weight: bold;
 
   @include isTablet {
-    margin-bottom: u(4);
+    margin-block-end: u(4);
   }
 }
 
 .label {
   @include text("h5");
 
-  margin-bottom: 0;
+  margin-block-end: 0;
 
   @include isTablet {
     @include text("large");
 
-    margin-bottom: u(6);
+    margin-block-end: u(6);
   }
 }

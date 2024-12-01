@@ -5,8 +5,8 @@
   --accordion-color: red;
 
   .trigger {
-    width: 100%;
-    text-align: left;
+    inline-size: 100%;
+    text-align: start;
     display: flex;
     transition: background-color 0.1s ease-out;
     will-change: background-color;
@@ -29,7 +29,7 @@
     .label {
       @include dsfr-text("large");
 
-      width: 100%;
+      inline-size: 100%;
       font-weight: bold;
       display: flex;
       align-items: center;
@@ -53,7 +53,7 @@
       }
 
       .arrow {
-        margin-left: auto;
+        margin-inline-start: auto;
         transition: transform 0.2s ease-out;
         will-change: transform;
       }
@@ -69,7 +69,7 @@
   .content {
     overflow: hidden;
     padding-block: u(2);
-    padding-right: u(4);
+    padding-inline-end: u(4);
     position: relative;
 
     &[data-state="open"] {
@@ -84,20 +84,20 @@
 
 @keyframes slide-down {
   from {
-    height: 0;
+    block-size: 0;
   }
 
   to {
-    height: var(--radix-accordion-content-height);
+    block-size: var(--radix-accordion-content-height);
   }
 }
 
 @keyframes slide-up {
   from {
-    height: var(--radix-accordion-content-height);
+    block-size: var(--radix-accordion-content-height);
   }
 
   to {
-    height: 0;
+    block-size: 0;
   }
 }

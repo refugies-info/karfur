@@ -73,10 +73,9 @@ $green: #055e5a;
 }
 
 .icon {
-  margin-left: u(2);
+  margin-inline-start: u(2);
 
   @include rtl {
-    margin-left: inherit;
-    margin-right: u(2);
+    margin-inline: inherit u(2);
   }
 }

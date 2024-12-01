@@ -4,7 +4,7 @@
 @import "~/scss/mixins/responsive";
 
 .container {
-  width: 100%;
+  inline-size: 100%;
   background-color: var(--background-contrast-grey);
 }
 
@@ -17,8 +17,8 @@
     align-items: flex-start;
 
     & > span {
-      margin-top: u(14);
-      margin-right: u(6);
+      margin-block-start: u(14);
+      margin-inline-end: u(6);
     }
 
     & > div {
@@ -34,8 +34,8 @@
     @include dsfr-text("very-small");
 
     position: absolute;
-    top: u(4);
-    left: u(10);
+    inset-block-start: u(4);
+    inset-inline-start: u(10);
     padding: u(2);
     z-index: 1;
     border-radius: u(2);
@@ -48,8 +48,7 @@
     box-shadow: 0 6px 18px 0 #00001229;
 
     &.translation {
-      left: inherit;
-      right: u(10);
+      inset-inline: inherit u(10);
       background: var(--background-action-low-blue-france);
       border-color: var(--border-default-blue-france);
       color: var(--border-default-blue-france);
@@ -62,21 +61,20 @@
 }
 
 .col {
-  max-height: calc(100vh - 58px);
+  max-block-size: calc(100vh - 58px);
   overflow-y: scroll;
 
   &:first-child {
-    border-right: 1px solid var(--border-default-grey);
+    border-inline-end: 1px solid var(--border-default-grey);
   }
 
   &:last-child {
-    border-left: 1px solid var(--border-default-grey);
+    border-inline-start: 1px solid var(--border-default-grey);
   }
 }
 
 .top {
-  margin-top: u(10);
-  margin-bottom: u(16);
+  margin-block: u(10) u(16);
   display: inline-flex !important;
 
   @media print {

@@ -4,10 +4,10 @@
 
 .modal.show .modal-dialog.custom-modal {
   overflow: scroll;
-  height: 680px;
-  max-height: 100vh;
-  width: 650px;
-  max-width: 60vw;
+  block-size: 680px;
+  max-block-size: 100vh;
+  inline-size: 650px;
+  max-inline-size: 60vw;
   background: $gray10;
   box-shadow: 0 0 16px rgb(0 0 0 / 30%);
   border-radius: $radius;
@@ -16,19 +16,18 @@
   scrollbar-width: 0;
 
   @include media-min("tablet-up") {
-    min-width: 650px;
+    min-inline-size: 650px;
   }
 
   @include isMobile {
-    width: 100%;
-    max-width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
+    inline-size: 100%;
+    max-inline-size: 90vw;
+    margin-inline: auto;
+    block-size: auto;
   }
 
   &.auto-height {
-    height: auto;
+    block-size: auto;
   }
 
   &.bg-grey {
@@ -51,15 +50,15 @@
     .close {
       position: absolute;
       outline: 0;
-      top: 20px;
-      right: 20px;
+      inset-block-start: 20px;
+      inset-inline-end: 20px;
     }
   }
 
   .modal-body {
     background: transparent;
     padding: 20px;
-    padding-top: 0;
+    padding-block-start: 0;
     border: none;
     display: flex;
     flex-direction: column;
@@ -74,13 +73,13 @@
 .modal.show {
   *::-webkit-scrollbar {
     display: none;
-    width: 0; /* remove scrollbar space */
+    inline-size: 0; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
 
   ::-webkit-scrollbar {
     display: none;
-    width: 0; /* remove scrollbar space */
+    inline-size: 0; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
 }

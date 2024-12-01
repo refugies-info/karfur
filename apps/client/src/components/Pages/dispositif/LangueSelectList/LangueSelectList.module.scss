@@ -3,10 +3,10 @@
 @import "~/scss/mixins/unit";
 
 .btn {
-  margin-bottom: u(6);
+  margin-block-end: u(6);
   display: block;
-  width: 100%;
-  text-align: left;
+  inline-size: 100%;
+  text-align: start;
 
   &:disabled {
     color: inherit;

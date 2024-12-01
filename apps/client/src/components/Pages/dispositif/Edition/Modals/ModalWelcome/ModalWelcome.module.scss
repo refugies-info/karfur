@@ -4,7 +4,7 @@
 @import "~/scss/mixins/rtl";
 
 .modal {
-  height: 584px;
+  block-size: 584px;
 }
 
 .content {
@@ -14,7 +14,7 @@
   justify-content: space-between;
 
   p {
-    margin-bottom: u(6);
+    margin-block-end: u(6);
   }
 }
 

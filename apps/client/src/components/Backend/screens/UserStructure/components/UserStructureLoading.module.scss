@@ -1,8 +1,8 @@
 @import "~/scss/colors";
 
 .img {
-  width: 160px;
-  height: 160px;
+  inline-size: 160px;
+  block-size: 160px;
   background-color: white;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 }

@@ -20,17 +20,17 @@ $containerHeight: 450px;
   display: flex;
   flex-wrap: nowrap;
   flex-grow: 1;
-  margin-top: 20px;
+  margin-block-start: 20px;
 }
 
 .col_1 {
-  width: 335px;
+  inline-size: 335px;
   display: flex;
   flex-direction: column;
 }
 
 .col_2 {
-  width: 450px;
+  inline-size: 450px;
   margin: 0 16px;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ $containerHeight: 450px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: $containerHeight;
+  block-size: $containerHeight;
 }
 
 .stats {

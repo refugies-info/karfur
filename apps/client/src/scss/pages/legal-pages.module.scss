@@ -5,7 +5,7 @@
 .legal_pages {
   flex: 1 1;
   background: $white;
-  max-width: 100%;
+  max-inline-size: 100%;
   padding: 5% 25%;
 
   a[href] {

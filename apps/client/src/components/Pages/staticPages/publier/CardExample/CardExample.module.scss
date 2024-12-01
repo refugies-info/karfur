@@ -18,7 +18,7 @@ $colorKo: $error;
 
   display: flex;
   align-items: center;
-  margin-bottom: u(2);
+  margin-block-end: u(2);
 }
 
 .example_ko {
@@ -30,10 +30,9 @@ $colorKo: $error;
 }
 
 .icon {
-  margin-right: u(2);
+  margin-inline-end: u(2);
 
   @include rtl {
-    margin-right: inherit;
-    margin-left: u(2);
+    margin-inline: u(2) inherit;
   }
 }

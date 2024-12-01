@@ -4,7 +4,7 @@
 @import "~/scss/mixins/rtl";
 
 .modal {
-  height: 584px;
+  block-size: 584px;
 }
 
 .content {
@@ -14,7 +14,7 @@
   justify-content: space-between;
 
   p {
-    margin-bottom: u(6);
+    margin-block-end: u(6);
   }
 }
 
@@ -25,16 +25,16 @@
 
 .bubble {
   position: absolute;
-  left: 50%;
-  margin-left: 56px;
-  top: -16px;
+  inset-inline-start: 50%;
+  margin-inline-start: 56px;
+  inset-block-start: -16px;
 }
 
 .expert {
   display: inline-block;
   border-radius: 50%;
   border: 1px solid var(--text-default-grey);
-  width: 160px;
-  height: 160px;
+  inline-size: 160px;
+  block-size: 160px;
   overflow: hidden;
 }

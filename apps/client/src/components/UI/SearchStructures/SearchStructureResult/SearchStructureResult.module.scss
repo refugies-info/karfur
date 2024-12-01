@@ -7,7 +7,7 @@
 .container {
   border-radius: u(2);
   background-color: white;
-  margin-top: u(2);
+  margin-block-start: u(2);
   padding: u(2);
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@
   .name,
   .name_2 {
     color: #828282;
-    margin-left: 1rem;
+    margin-inline-start: 1rem;
 
     .highlight {
       color: #212121;
@@ -40,6 +40,6 @@
   }
 
   .tag {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 }

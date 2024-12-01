@@ -4,7 +4,7 @@
 .label_details {
   font-weight: normal;
   position: absolute;
-  right: 15px;
+  inset-inline-end: 15px;
 }
 
 .colors {
@@ -25,7 +25,7 @@
   background: $dark;
   border: none;
   font-weight: bold;
-  height: 50px;
+  block-size: 50px;
   text-align: center;
 
   &:focus {
@@ -37,7 +37,7 @@
 }
 
 .notes_col {
-  height: 100%;
+  block-size: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -47,5 +47,5 @@
 }
 
 .notes_input {
-  height: 100% !important;
+  block-size: 100% !important;
 }

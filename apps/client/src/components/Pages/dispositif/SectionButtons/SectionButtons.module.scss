@@ -13,7 +13,7 @@ $btnSize: u(8);
   @include r-ltr(-54px);
 
   position: absolute;
-  top: 0;
+  inset-block-start: 0;
 
   @media print {
     display: none;
@@ -22,7 +22,7 @@ $btnSize: u(8);
   &.open {
     background: var(--background-alt-raised-grey);
     z-index: 1;
-    padding-bottom: u(5);
+    padding-block-end: u(5);
   }
 
   @include media-max("lg-limit") {
@@ -32,9 +32,9 @@ $btnSize: u(8);
   .btn {
     @include iconSize($iconSize);
 
-    width: $btnSize;
-    height: $btnSize;
-    min-height: $btnSize;
+    inline-size: $btnSize;
+    block-size: $btnSize;
+    min-block-size: $btnSize;
     padding: 0 !important;
     display: flex;
     align-items: center;
@@ -88,11 +88,11 @@ $btnSize: u(8);
 }
 
 .tts_buttons {
-  height: 0;
+  block-size: 0;
   overflow: hidden;
   transition: height 0.15s ease-in-out;
 
   .open & {
-    height: 72px;
+    block-size: 72px;
   }
 }

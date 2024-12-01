@@ -77,13 +77,13 @@
 .close {
   @include ml-ltr(u(6));
 
-  width: u(6);
-  height: u(6);
+  inline-size: u(6);
+  block-size: u(6);
   padding: 0;
 
   & > i::before {
     color: var(--text-mention-grey);
-    width: u(6);
-    height: u(6);
+    inline-size: u(6);
+    block-size: u(6);
   }
 }

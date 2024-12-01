@@ -5,10 +5,10 @@
 @import "~/scss/variables";
 
 .modal {
-  height: auto !important;
+  block-size: auto !important;
 
   @include isMobile {
-    width: 345px !important;
+    inline-size: 345px !important;
 
     :global(.modal-body) {
       padding: 0 !important;
@@ -18,16 +18,16 @@
   .close {
     background: transparent;
     border: none;
-    width: 24px;
-    height: 24px;
+    inline-size: 24px;
+    block-size: 24px;
     position: absolute;
-    top: 0;
-    right: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
     padding: 0;
   }
 
   .cards {
-    padding-top: u(8);
+    padding-block-start: u(8);
     display: flex;
     justify-content: space-between;
 
@@ -36,7 +36,7 @@
       justify-content: center;
 
       & > button {
-        margin-bottom: u(6);
+        margin-block-end: u(6);
       }
     }
   }

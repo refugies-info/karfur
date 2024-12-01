@@ -5,8 +5,8 @@
 
 .container {
   background: $darkBackgroundElevationContrast;
-  width: 152px;
-  height: 212px;
+  inline-size: 152px;
+  block-size: 212px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,8 +15,8 @@
 }
 
 .username {
-  height: u(12);
-  margin-top: u(2);
+  block-size: u(12);
+  margin-block-start: u(2);
   display: flex;
   align-items: center;
   text-align: center;
@@ -26,7 +26,7 @@
 .role {
   @include dsfr-text("small");
 
-  margin-top: u(2);
+  margin-block-start: u(2);
   color: white;
   background: $darkBackgroundContrastGrey;
   padding: u(1) u(3);
@@ -36,8 +36,8 @@
 }
 
 .image {
-  width: u(22);
-  height: u(22);
+  inline-size: u(22);
+  block-size: u(22);
   flex-shrink: 0;
 
   &.profile {

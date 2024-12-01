@@ -5,7 +5,7 @@
 @import "~/scss/mixins/input";
 
 .structure {
-  margin-bottom: u(2);
+  margin-block-end: u(2);
 
   img {
     object-fit: contain;
@@ -13,5 +13,5 @@
 }
 
 .other {
-  min-height: 82px;
+  min-block-size: 82px;
 }

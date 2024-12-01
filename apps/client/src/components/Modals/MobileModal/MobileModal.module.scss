@@ -10,7 +10,7 @@
   :global(.modal-content) {
     --bs-modal-border-radius: 0;
 
-    height: 100vh;
+    block-size: 100vh;
   }
 
   .header {
@@ -24,13 +24,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
+      inline-size: 100%;
     }
   }
 
   .content {
     --bs-modal-padding: 24px;
 
-    padding-top: 0;
+    padding-block-start: 0;
   }
 }

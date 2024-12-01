@@ -9,9 +9,9 @@
 
 .item,
 .content {
-  margin-bottom: u(4);
+  margin-block-end: u(4);
   border-radius: u(2);
-  width: 100%;
+  inline-size: 100%;
 }
 
 .item {
@@ -25,8 +25,8 @@
   justify-content: space-between;
 
   .remove {
-    width: u(6);
-    height: u(6);
+    inline-size: u(6);
+    block-size: u(6);
 
     @include iconSize(u(5));
 
@@ -42,7 +42,7 @@
 }
 
 .title {
-  margin-bottom: u(4);
+  margin-block-end: u(4);
   display: flex;
   align-items: center;
 
@@ -55,7 +55,7 @@
 }
 
 .content {
-  padding-right: u(4);
+  padding-inline-end: u(4);
 
   .title {
     background: white;

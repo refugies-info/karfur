@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -17,8 +17,8 @@
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    block-size: 0;
+    inline-size: 0;
   }
 
   i::before {
@@ -28,7 +28,7 @@
   }
 
   .text {
-    text-align: left;
+    text-align: start;
     flex: auto;
   }
 }

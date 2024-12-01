@@ -5,7 +5,7 @@
 @import "~/scss/mixins/responsive";
 
 .container {
-  margin-top: u(10);
+  margin-block-start: u(10);
   align-items: center;
   display: flex;
   flex-wrap: wrap;
@@ -15,12 +15,12 @@
   @include mr-ltr(u(2));
 
   padding: u(2) !important;
-  margin-bottom: u(2);
+  margin-block-end: u(2);
 
   @include media-max("xl-limit") {
     @include mr-ltr(u(1));
 
-    margin-bottom: u(1);
+    margin-block-end: u(1);
   }
 
   &:last-child {

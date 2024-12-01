@@ -9,8 +9,7 @@
 * Global style for content callouts so they can be used in input or view mode
 */
 .callout {
-  margin-top: u(6);
-  margin-bottom: u(6);
+  margin-block: u(6);
 
   /* stylelint-disable-next-line selector-class-pattern */
   &.callout--info {
@@ -25,13 +24,13 @@
     }
 
     @include rtl {
-      border-right: $border;
-      border-left: none;
+      border-inline-end: $border;
+      border-inline-start: none;
     }
 
     @include ltr {
-      border-left: $border;
-      border-right: none;
+      border-inline-start: $border;
+      border-inline-end: none;
     }
 
     &::before {
@@ -39,7 +38,7 @@
 
       content: attr(data-title);
       display: block;
-      margin-bottom: u(2);
+      margin-block-end: u(2);
       font-weight: bold;
       color: var(--border-default-blue-france);
 
@@ -69,7 +68,7 @@
 
       content: attr(data-title);
       display: block;
-      margin-bottom: u(1);
+      margin-block-end: u(1);
       font-weight: bold;
 
       @include media-max("lg-limit") {
@@ -85,11 +84,10 @@
       color: white;
       text-align: center;
       font-size: 24px;
-      padding-top: u(4);
-      width: u(10);
+      padding-block-start: u(4);
+      inline-size: u(10);
       position: absolute;
-      top: 0;
-      bottom: 0;
+      inset-block: 0;
       background: var(--border-default-blue-france);
     }
   }

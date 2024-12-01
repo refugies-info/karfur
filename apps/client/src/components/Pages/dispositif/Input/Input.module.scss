@@ -11,7 +11,7 @@
   background: var(--background-alt-raised-grey);
   border-radius: u(2);
   padding: u(2) u(4);
-  width: 100%;
+  inline-size: 100%;
 
   &:focus {
     border-color: var(--text-title-grey);
@@ -32,13 +32,13 @@
 
   .valid &,
   .error & {
-    padding-right: u(11) !important;
+    padding-inline-end: u(11) !important;
   }
 }
 
 .container {
   label {
-    margin-bottom: u(2);
+    margin-block-end: u(2);
     color: var(--text-title-grey);
   }
 
@@ -65,9 +65,9 @@
   position: absolute;
   display: inline-flex;
   align-items: center;
-  width: 24px;
-  height: 24px;
-  top: 9px;
+  inline-size: 24px;
+  block-size: 24px;
+  inset-block-start: 9px;
 
   &.prepend {
     @include l-ltr(u(4));
@@ -88,7 +88,7 @@
   @include dsfr-text("very-small");
 
   display: inline-block;
-  margin-top: u(2);
+  margin-block-start: u(2);
   color: var(--text-default-error);
 }
 
@@ -97,18 +97,17 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  right: u(2);
-  top: 10px;
+  inset-inline-end: u(2);
+  inset-block-start: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: u(6);
-  height: u(6);
+  inline-size: u(6);
+  block-size: u(6);
   border-radius: 50%;
 
   @include rtl {
-    right: inherit;
-    left: 0;
+    inset-inline: 0 inherit;
   }
 
   &:hover {

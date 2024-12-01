@@ -36,13 +36,12 @@
 
   color: white;
   font-weight: bold;
-  margin-bottom: u(20);
+  margin-block-end: u(20);
 
   @include media-max("lg-limit") {
     @include dsfr-text("chapo");
 
-    margin-bottom: u(10);
-    margin-left: u(10);
-    margin-right: u(10);
+    margin-block-end: u(10);
+    margin-inline: u(10);
   }
 }

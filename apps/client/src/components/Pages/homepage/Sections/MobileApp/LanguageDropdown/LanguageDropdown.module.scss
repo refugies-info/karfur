@@ -13,7 +13,7 @@
     border: none;
     padding: u(3) u(9) u(3) u(3);
     border-radius: 10px;
-    height: 48px;
+    block-size: 48px;
     position: relative;
 
     @include rtl {
@@ -24,8 +24,8 @@
       @include r-ltr(u(3));
 
       position: absolute;
-      right: u(3);
-      top: u(3);
+      inset-inline-end: u(3);
+      inset-block-start: u(3);
     }
   }
 }
@@ -36,7 +36,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-inline-size: 100%;
 
   @include text("normal");
 
@@ -47,7 +47,7 @@
   box-shadow: 0 0 40px 0 #00000040;
   padding: u(4);
   border-radius: u(2);
-  margin-top: u(2);
+  margin-block-start: u(2);
 }
 
 .item {
@@ -55,7 +55,7 @@
   align-items: center;
   padding: u(3) u(2);
   border-radius: u(2) !important;
-  margin-bottom: u(1);
+  margin-block-end: u(1);
   border: none;
 
   @include text("normal");

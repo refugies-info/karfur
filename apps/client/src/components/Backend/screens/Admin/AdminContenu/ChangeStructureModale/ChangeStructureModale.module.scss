@@ -9,8 +9,8 @@
     border: none;
     background: $gray20;
     padding: 16px;
-    width: 748px;
-    height: 550px;
+    inline-size: 748px;
+    block-size: 550px;
 
     :global(.search-bar) {
       /* stylelint-disable-next-line selector-class-pattern */
@@ -18,12 +18,11 @@
         background: $white;
         border: 0.5px solid $white;
         border-radius: $radius;
-        padding-right: 42px;
-        padding-left: 15px;
+        padding-inline: 15px 42px;
         font-size: $text-normal;
         font-weight: normal;
-        height: 40px;
-        width: 100%;
+        block-size: 40px;
+        inline-size: 100%;
       }
     }
   }

@@ -3,10 +3,10 @@
 @import "~/scss/mixins/unit";
 
 .modal {
-  max-width: 400px !important;
+  max-inline-size: 400px !important;
 }
 
 .button {
-  width: 100%;
+  inline-size: 100%;
   justify-content: center;
 }

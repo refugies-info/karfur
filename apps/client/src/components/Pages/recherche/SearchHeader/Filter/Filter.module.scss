@@ -8,8 +8,8 @@
 .item {
   @include text("normal");
 
-  text-align: left;
-  width: 100%;
+  text-align: start;
+  inline-size: 100%;
   gap: u(2);
   align-self: stretch;
 
@@ -27,7 +27,7 @@
 
   & > span {
     position: relative;
-    top: -1px;
+    inset-block-start: -1px;
   }
 
   :global(.fi) {
@@ -48,7 +48,7 @@
 
 .label {
   white-space: wrap;
-  width: 100%;
+  inline-size: 100%;
   display: grid;
   grid-template-columns: 1fr min-content;
   color: var(--text-title-grey);
@@ -66,8 +66,8 @@
   background: rgb(0 0 0 / 0%);
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  inline-size: 100vw;
+  block-size: 100vh;
   z-index: 10;
 }
 

@@ -4,8 +4,8 @@
 @import "~/scss/mixins/input";
 
 .footer {
-  margin-top: u(8);
-  text-align: right;
+  margin-block-start: u(8);
+  text-align: end;
 }
 
 .textarea {
@@ -13,7 +13,7 @@
 
   background: $gray30;
   border: 1px solid var(--border-default-grey);
-  min-height: 240px;
+  min-block-size: 240px;
 
   &:hover {
     background: var(--background-contrast-grey);

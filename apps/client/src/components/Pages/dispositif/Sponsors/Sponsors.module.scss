@@ -24,7 +24,7 @@
   @include media-max("lg-limit") {
     @include dsfr-text("normal");
 
-    margin-bottom: u(4);
+    margin-block-end: u(4);
   }
 }
 
@@ -40,13 +40,13 @@
 
   display: flex;
   align-items: center;
-  width: 220px;
+  inline-size: 220px;
   padding: u(1) u(2);
   border-radius: u(2);
-  min-height: 70px;
+  min-block-size: 70px;
 
   @include media-max("lg-limit") {
-    width: auto;
+    inline-size: auto;
   }
 
   &.edit {
@@ -62,11 +62,11 @@
   @include iconSize(u(4));
 
   padding: u(2) !important;
-  min-height: u(8) !important;
-  margin-left: auto !important;
+  min-block-size: u(8) !important;
+  margin-inline-start: auto !important;
 
   @include media-max("lg-limit") {
-    margin-left: u(2) !important;
+    margin-inline-start: u(2) !important;
   }
 }
 

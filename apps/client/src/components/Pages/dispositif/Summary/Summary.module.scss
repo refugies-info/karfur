@@ -10,8 +10,7 @@
   background: var(--background-contrast-grey);
   border: 1px solid var(--border-default-grey);
   padding: u(4);
-  margin-bottom: u(6);
-  margin-top: u(6);
+  margin-block: u(6);
   border-radius: u(2);
 
   @include media-max("lg-limit") {
@@ -29,17 +28,17 @@
   @include dsfr-text("small");
 
   font-weight: bold;
-  margin-bottom: u(4);
+  margin-block-end: u(4);
   text-transform: uppercase;
 }
 
 .item {
   @include dsfr-text("small");
 
-  padding-bottom: u(4);
+  padding-block-end: u(4);
   text-decoration: underline;
 
   &:last-child {
-    padding-bottom: 0;
+    padding-block-end: 0;
   }
 }

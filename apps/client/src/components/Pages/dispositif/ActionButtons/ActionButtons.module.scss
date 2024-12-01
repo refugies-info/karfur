@@ -4,9 +4,9 @@
 
 .container {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
   padding: u(4);
   z-index: 1050;
 }
@@ -16,7 +16,7 @@
   box-shadow: 0 6px 18px 0 #00001229;
   border-radius: u(2);
   padding: u(2) 0;
-  max-width: 350px;
+  max-inline-size: 350px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -24,8 +24,8 @@
 }
 
 .divider {
-  width: 1px;
-  height: 24px;
+  inline-size: 1px;
+  block-size: 24px;
   background: var(--border-default-grey);
   display: block;
 }

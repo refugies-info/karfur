@@ -4,11 +4,11 @@
   font-weight: normal;
 
   :global(.fi) {
-    margin-right: 8px;
+    margin-inline-end: 8px;
   }
 
   & > span {
     font-weight: bold;
-    margin-right: 4px;
+    margin-inline-end: 4px;
   }
 }

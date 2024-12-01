@@ -4,8 +4,8 @@
 @import "~/scss/mixins/text";
 
 .container {
-  width: 28px;
-  height: 28px;
+  inline-size: 28px;
+  block-size: 28px;
   border-radius: 50%;
   border: 1px solid var(--background-active-blue-france-active);
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .progress {
-  width: 20px;
-  height: 20px;
+  inline-size: 20px;
+  block-size: 20px;
   border-radius: 50%;
 }

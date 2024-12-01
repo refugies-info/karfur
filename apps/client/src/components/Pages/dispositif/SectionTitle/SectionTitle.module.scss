@@ -7,7 +7,7 @@
   @include dsfr-text("h2");
 
   font-weight: bold;
-  margin-bottom: u(6);
+  margin-block-end: u(6);
 
   @include media-max("lg-limit") {
     @include dsfr-text("h3");

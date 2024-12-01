@@ -1,8 +1,8 @@
 @import "~/scss/colors";
 
 .flag {
-  width: 20px;
-  height: 15px;
+  inline-size: 20px;
+  block-size: 15px;
   border-radius: 2px;
   outline: 1px solid $white;
   background-size: cover;

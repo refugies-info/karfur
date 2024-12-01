@@ -4,11 +4,11 @@
 @import "~/scss/mixins/responsive";
 
 .container {
-  width: 100%;
+  inline-size: 100%;
   background-color: var(--background-contrast-grey);
 
   :global(.toolbar-plugin-container) {
-    top: 56px;
+    inset-block-start: 56px;
   }
 }
 
@@ -26,14 +26,14 @@
     box-shadow: 0 4px 12px 0 #00001229;
     border-radius: u(2) u(2) 0 0;
     padding: u(4);
-    margin-top: -30px;
+    margin-block-start: -30px;
     position: relative;
     z-index: 1;
   }
 }
 
 .left {
-  width: 320px;
+  inline-size: 320px;
   padding: u(10);
 
   @include media-max("xl-limit") {
@@ -41,38 +41,38 @@
   }
 
   @include media-max("lg-limit") {
-    width: 100%;
+    inline-size: 100%;
     padding: 0;
   }
 }
 
 .main {
-  min-width: 700px;
-  width: 50%;
+  min-inline-size: 700px;
+  inline-size: 50%;
   background: $gray30;
   border: 1px solid var(--border-default-grey);
   border-radius: u(2) u(2) 0 0;
   padding: u(10) u(20);
-  margin-top: -142px;
+  margin-block-start: -142px;
   z-index: 1;
 
   @include media-max("xl-limit") {
-    min-width: 580px;
+    min-inline-size: 580px;
   }
 
   @include media-max("lg-limit") {
-    min-width: 0;
-    width: auto;
+    min-inline-size: 0;
+    inline-size: auto;
     background: transparent;
     border: none;
     box-shadow: none;
     border-radius: 0;
     padding: 0;
-    margin-top: u(10);
+    margin-block-start: u(10);
   }
 
   @media print {
-    margin-right: u(10);
+    margin-inline-end: u(10);
 
     :global(.collapse:not(.show)) {
       display: block !important;
@@ -81,7 +81,7 @@
 }
 
 .right {
-  width: 320px;
+  inline-size: 320px;
   z-index: 1;
 
   @include media-max("lg-limit") {
@@ -91,7 +91,7 @@
   & > div {
     padding: u(10);
     position: sticky;
-    top: 0;
+    inset-block-start: 0;
 
     @include media-max("xl-limit") {
       padding: u(5);
@@ -110,11 +110,11 @@
   }
 
   .main {
-    min-width: 0;
+    min-inline-size: 0;
   }
 
   .right > div {
-    top: 56px;
+    inset-block-start: 56px;
   }
 }
 
@@ -125,7 +125,7 @@
 }
 
 .top {
-  margin-bottom: u(16);
+  margin-block-end: u(16);
   display: inline-flex !important;
 
   @media print {
@@ -135,8 +135,8 @@
 
 .divider {
   display: block;
-  width: 100%;
-  height: 1px;
+  inline-size: 100%;
+  block-size: 1px;
   background-color: var(--border-default-grey);
-  margin-bottom: u(10);
+  margin-block-end: u(10);
 }

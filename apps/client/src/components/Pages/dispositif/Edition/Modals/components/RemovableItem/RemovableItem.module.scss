@@ -8,9 +8,9 @@
   background-color: var(--background-action-low-blue-france);
   border-radius: u(2);
   color: var(--background-action-high-blue-france);
-  margin-right: u(1);
-  margin-bottom: u(1);
-  text-align: left;
+  margin-inline-end: u(1);
+  margin-block-end: u(1);
+  text-align: start;
 
   &:hover {
     background: var(--background-action-low-blue-france-hover) !important;

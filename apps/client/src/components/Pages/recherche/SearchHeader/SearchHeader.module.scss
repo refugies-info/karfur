@@ -12,8 +12,7 @@
 
 .title {
   text-align: center;
-  padding-top: u(14);
-  padding-bottom: u(1);
+  padding-block: u(14) u(1);
 
   h1 {
     @include dsfr-text("h1");
@@ -26,24 +25,23 @@
 
 .notDeployedAlert {
   margin: u(4);
-  margin-bottom: 0;
-  width: calc(100% - u(8));
+  margin-block-end: 0;
+  inline-size: calc(100% - u(8));
   background-color: #fff;
 }
 
 .stickybar {
-  padding-top: u(2.5);
-  padding-bottom: u(10);
+  padding-block: u(2.5) u(10);
   transition: 0.1s padding linear;
   clip-path: inset(0 -18px -100vh -18px);
   position: sticky;
-  top: -1px;
+  inset-block-start: -1px;
   z-index: 90;
 
   &.sticky {
-    padding-bottom: u(2.5);
+    padding-block-end: u(2.5);
     z-index: 20;
-    width: 100%;
+    inline-size: 100%;
     box-shadow: 0 4px 18px 0 #0000001a;
   }
 }

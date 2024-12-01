@@ -17,10 +17,10 @@
 .container {
   @include zoom-controls;
 
-  height: 620px;
+  block-size: 620px;
   position: relative;
   border-radius: u(2);
   border: 1px solid var(--border-default-grey);
   overflow: hidden;
-  margin-bottom: u(14);
+  margin-block-end: u(14);
 }

@@ -5,11 +5,11 @@
 
 .react-autosuggest__container {
   position: relative;
-  width: 100%;
+  inline-size: 100%;
 
   .react-autosuggest__input {
-    width: 240px;
-    height: 30px;
+    inline-size: 240px;
+    block-size: 30px;
     padding: 10px 20px;
     font-size: $text-normal;
     border: 1px solid #aaa;
@@ -32,8 +32,8 @@
   }
 
   .react-autosuggest__input--open {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
   }
 
   .react-autosuggest__suggestions-container {
@@ -43,8 +43,8 @@
   .react-autosuggest__suggestions-container--open {
     display: block;
     position: absolute;
-    top: 51px;
-    width: 100%;
+    inset-block-start: 51px;
+    inline-size: 100%;
     font-size: $text-normal;
     z-index: 2;
     border-radius: $radius;
@@ -57,9 +57,9 @@
     padding: 0;
     list-style-type: none;
     overflow: scroll;
-    height: 300px;
-    max-height: 100%;
-    text-align: left;
+    block-size: 300px;
+    max-block-size: 100%;
+    text-align: start;
     background-color: $gray20;
   }
 
@@ -73,12 +73,12 @@
   }
 
   .react-autosuggest__section-container {
-    border-top: 1px dashed #ccc;
+    border-block-start: 1px dashed #ccc;
     overflow: scroll;
   }
 
   .react-autosuggest__section-container--first {
-    border-top: 0;
+    border-block-start: 0;
   }
 
   .react-autosuggest__section-title {
@@ -119,12 +119,11 @@
     background: $white;
     border: 0.5px solid $white;
     border-radius: $radius;
-    padding-right: 42px;
-    padding-left: 15px;
+    padding-inline: 15px 42px;
     font-size: $text-normal;
     font-weight: normal;
-    height: 40px;
-    width: 100%;
+    block-size: 40px;
+    inline-size: 100%;
 
     &:hover {
       background-color: $gray20;
@@ -161,7 +160,7 @@
       box-shadow: none;
       border-radius: $radius;
       position: relative;
-      top: 0;
+      inset-block-start: 0;
     }
 
     .react-autosuggest__suggestions-list {
@@ -173,7 +172,7 @@
       padding: 10px 15px;
       background: $white;
       border-radius: $radius;
-      margin-top: 10px;
+      margin-block-start: 10px;
       border: 2px solid transparent;
 
       &:hover {
@@ -186,8 +185,8 @@
     }
 
     .selection-logo {
-      max-width: 40px;
-      max-height: 40px;
+      max-inline-size: 40px;
+      max-block-size: 40px;
     }
   }
 
@@ -197,8 +196,7 @@
     align-items: center;
 
     & > * {
-      margin-left: 0.4rem;
-      margin-right: 0.4rem;
+      margin-inline: 0.4rem;
     }
   }
 

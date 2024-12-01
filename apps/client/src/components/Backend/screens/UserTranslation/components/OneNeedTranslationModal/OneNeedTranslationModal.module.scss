@@ -9,8 +9,8 @@
   font-weight: bold;
   padding: u(2) u(3);
   border-radius: u(2);
-  width: fit-content;
-  margin-bottom: u(6);
+  inline-size: fit-content;
+  margin-block-end: u(6);
   display: flex;
   align-items: center;
 }
@@ -19,35 +19,33 @@
   @include dsfr-text("h4");
 
   font-weight: bold;
-  margin-bottom: u(4);
+  margin-block-end: u(4);
 }
 
 .flag_input {
   position: relative;
-  margin-bottom: u(4);
+  margin-block-end: u(4);
 
   .flag {
     position: absolute;
-    top: u(2);
-    margin-top: 6px;
-    left: u(4);
+    inset-block-start: u(2);
+    margin-block-start: 6px;
+    inset-inline-start: u(4);
   }
 
   .input {
     @include styledInput;
 
-    padding-left: 44px;
+    padding-inline-start: 44px;
   }
 
   &[dir="rtl"] {
     .input {
-      padding-left: inherit;
-      padding-right: 44px;
+      padding-inline: inherit 44px;
     }
 
     .flag {
-      left: inherit;
-      right: u(4);
+      inset-inline: inherit u(4);
     }
   }
 }

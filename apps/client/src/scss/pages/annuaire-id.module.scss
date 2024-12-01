@@ -9,7 +9,7 @@
 .container {
   display: flex;
   flex: 1;
-  max-height: 105vh;
-  margin-top: -75px;
+  max-block-size: 105vh;
+  margin-block-start: -75px;
   background-color: $gray20;
 }

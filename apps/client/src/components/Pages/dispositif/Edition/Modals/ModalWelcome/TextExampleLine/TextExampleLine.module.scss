@@ -5,7 +5,7 @@
 .container {
   display: flex;
   align-items: center;
-  margin-bottom: u(6);
+  margin-block-end: u(6);
 
   &.fill {
     align-items: stretch;

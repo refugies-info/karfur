@@ -1,8 +1,8 @@
 .container {
   .sponsor_img {
-    width: 100%;
-    max-width: 235px;
-    max-height: 115px;
+    inline-size: 100%;
+    max-inline-size: 235px;
+    max-block-size: 115px;
     align-self: center;
     object-fit: contain;
   }

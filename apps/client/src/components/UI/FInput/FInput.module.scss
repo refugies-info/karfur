@@ -13,16 +13,16 @@ $borderRadius: 12px;
     font-size: inherit;
     position: absolute;
     z-index: 10;
-    top: 50%;
+    inset-block-start: 50%;
     transform: translateY(-50%);
   }
 
   .prepend {
-    left: 15px;
+    inset-inline-start: 15px;
   }
 
   .append {
-    right: 15px;
+    inset-inline-end: 15px;
     cursor: pointer;
   }
 
@@ -39,14 +39,14 @@ $borderRadius: 12px;
     }
 
     &.new_size {
-      height: 52px;
+      block-size: 52px;
     }
 
     &.has_prepend {
-      padding-left: 45px;
+      padding-inline-start: 45px;
 
       &.new_size {
-        height: 52px;
+        block-size: 52px;
       }
     }
 

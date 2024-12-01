@@ -7,9 +7,8 @@
 
 .sidebar {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  inset-block: 0;
+  inset-inline-start: 0;
   z-index: 1;
   display: flex;
   align-items: flex-start;
@@ -19,9 +18,9 @@
     @include iconSize(u(4));
     @include dsfr-text("small");
 
-    width: u(8);
-    height: u(8);
-    min-height: u(8) !important;
+    inline-size: u(8);
+    block-size: u(8);
+    min-block-size: u(8) !important;
     box-shadow: 0 6px 18px 0 #00001229;
     background-color: white;
     color: var(--background-action-high-blue-france);
@@ -35,21 +34,21 @@
     transform: translateX(-200px);
 
     .btn {
-      width: fit-content;
+      inline-size: fit-content;
     }
   }
 
   @include media-max("lg-limit") {
     transform: none !important;
-    top: inherit;
-    max-width: 100%;
+    inset-block-start: inherit;
+    max-inline-size: 100%;
   }
 
   .list {
     background: white;
-    width: 200px;
-    height: 100%;
-    border-right: 1px solid var(--border-default-grey);
+    inline-size: 200px;
+    block-size: 100%;
+    border-inline-end: 1px solid var(--border-default-grey);
     padding: u(2);
     overflow-y: scroll;
 
@@ -57,8 +56,8 @@
       background: transparent;
       display: flex;
       overflow: scroll hidden;
-      width: auto;
-      height: auto;
+      inline-size: auto;
+      block-size: auto;
       border: none;
 
       & > span {
@@ -70,15 +69,14 @@
 
 .item {
   padding: u(2);
-  width: 100%;
-  text-align: left;
+  inline-size: 100%;
+  text-align: start;
   border-radius: u(2);
 
   @include media-max("lg-limit") {
-    width: 200px;
+    inline-size: 200px;
     background: white;
-    margin-right: u(2);
-    margin-left: u(2);
+    margin-inline: u(2);
     box-shadow: 0 6px 18px 0 #00001229;
     border: 1px solid transparent;
   }
@@ -100,26 +98,26 @@
   .title {
     @include dsfr-text("small");
 
-    margin-bottom: 0;
+    margin-block-end: 0;
 
     @include media-max("lg-limit") {
-      min-height: 36px;
-      margin-bottom: u(2);
+      min-block-size: 36px;
+      margin-block-end: u(2);
     }
   }
 
   .city {
     @include dsfr-text("very-small");
 
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
 .divider {
   display: block;
   margin: u(1) 0;
-  width: 100%;
-  height: 1px;
+  inline-size: 100%;
+  block-size: 1px;
   background: var(--border-default-grey);
 
   @include media-max("lg-limit") {

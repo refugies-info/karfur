@@ -7,7 +7,7 @@
 .input {
   display: flex;
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
   background: var(--background-alt-raised-grey);
   border-radius: u(2);
   padding: u(2) u(3);
@@ -15,7 +15,7 @@
   input {
     outline: none !important;
     flex-grow: 1;
-    padding-left: u(2);
+    padding-inline-start: u(2);
   }
 }
 
@@ -24,21 +24,21 @@
   background: white;
   border-radius: u(2);
   padding: u(4);
-  width: 100%;
+  inline-size: 100%;
   position: absolute;
-  margin-top: u(2);
+  margin-block-start: u(2);
 
   .btn {
     border-radius: u(2);
     padding: u(2);
-    text-align: left;
-    width: 100%;
+    text-align: start;
+    inline-size: 100%;
   }
 }
 
 .selected {
-  min-height: 180px;
-  margin-top: u(6);
+  min-block-size: 180px;
+  margin-block-start: u(6);
 }
 
 .dep_btn {
@@ -46,9 +46,9 @@
   background-color: var(--background-action-low-blue-france);
   border-radius: u(2);
   color: var(--background-action-high-blue-france);
-  margin-right: u(1);
-  margin-bottom: u(1);
-  text-align: left;
+  margin-inline-end: u(1);
+  margin-block-end: u(1);
+  text-align: start;
 
   &:hover {
     background: var(--background-action-low-blue-france-hover) !important;

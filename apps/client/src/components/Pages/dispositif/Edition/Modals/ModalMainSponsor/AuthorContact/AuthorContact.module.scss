@@ -5,5 +5,5 @@
 @import "~/scss/mixins/input";
 
 .textarea textarea {
-  min-height: 100px;
+  min-block-size: 100px;
 }

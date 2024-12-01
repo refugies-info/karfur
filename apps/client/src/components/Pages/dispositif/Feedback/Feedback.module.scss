@@ -12,7 +12,7 @@
   border-radius: u(3);
   overflow: hidden;
   position: relative;
-  margin-bottom: u(20);
+  margin-block-end: u(20);
 
   @media print {
     display: none;
@@ -25,15 +25,15 @@
 
 .illu {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: auto;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  block-size: 100%;
+  inline-size: auto;
 
   @include media-max("xl-limit") {
     position: relative;
-    height: 240px;
-    width: 120%;
+    block-size: 240px;
+    inline-size: 120%;
   }
 }
 
@@ -51,7 +51,7 @@
   @include dsfr-text("h6");
 
   font-weight: bold;
-  margin-bottom: u(4);
+  margin-block-end: u(4);
 
   @include media-max("xl-limit") {
     @include dsfr-text("large");
