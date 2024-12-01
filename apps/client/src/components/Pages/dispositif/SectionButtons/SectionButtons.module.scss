@@ -10,10 +10,9 @@ $iconSize: u(4);
 $btnSize: u(8);
 
 .container {
-  @include r-ltr(-54px);
-
   position: absolute;
   inset-block-start: 0;
+  inset-inline-end: u(-14);
 
   @media print {
     display: none;
