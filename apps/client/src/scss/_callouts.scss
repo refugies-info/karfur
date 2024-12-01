@@ -2,7 +2,6 @@
 @import "variables";
 @import "mixins/unit";
 @import "mixins/text";
-@import "mixins/rtl";
 @import "mixins/responsive";
 
 /**
@@ -13,24 +12,14 @@
 
   /* stylelint-disable-next-line selector-class-pattern */
   &.callout--info {
-    @include pl-ltr(u(8));
-    @include ml-ltr(u(8));
+    padding-block-start: u(8);
+    margin-inline-start: u(8);
 
     $border: 4px solid var(--border-default-blue-france);
 
     @include media-max("lg-limit") {
       @include pl-ltr(u(4));
       @include ml-ltr(u(2));
-    }
-
-    @include rtl {
-      border-inline-end: $border;
-      border-inline-start: none;
-    }
-
-    @include ltr {
-      border-inline-start: $border;
-      border-inline-end: none;
     }
 
     &::before {
@@ -54,14 +43,8 @@
     position: relative;
     border-radius: u(2);
     overflow: hidden;
-
-    @include rtl {
-      padding: u(4) u(14) u(4) u(2);
-    }
-
-    @include ltr {
-      padding: u(4) u(2) u(4) u(14);
-    }
+    padding-inline: u(14) u(2);
+    padding-block: u(4);
 
     &::before {
       @include dsfr-text("h6");
@@ -77,8 +60,6 @@
     }
 
     &::after {
-      @include l-ltr(0);
-
       content: "\ea20";
       font-family: remixicon, sans-serif !important;
       color: white;
@@ -88,6 +69,7 @@
       inline-size: u(10);
       position: absolute;
       inset-block: 0;
+      inset-inline-start: 0;
       background: var(--border-default-blue-france);
     }
   }
