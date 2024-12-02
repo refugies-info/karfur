@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/btn";
 @import "~/scss/variables";
 
@@ -74,8 +73,4 @@ $green: #055e5a;
 
 .icon {
   margin-inline-start: u(2);
-
-  @include rtl {
-    margin-inline: inherit u(2);
-  }
 }

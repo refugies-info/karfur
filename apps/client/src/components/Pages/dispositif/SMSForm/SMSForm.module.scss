@@ -2,7 +2,6 @@
 @import "~/scss/variables";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 
 .container {
   margin-block-start: u(10);
@@ -49,11 +48,6 @@
     justify-content: center;
     border-radius: u(2);
     background: var(--background-alt-raised-grey) !important;
-    text-align: start;
-
-    @include rtl {
-      text-align: end;
-    }
   }
 }
 

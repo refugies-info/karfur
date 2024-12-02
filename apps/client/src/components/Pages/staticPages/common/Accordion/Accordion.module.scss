@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .container {
@@ -68,10 +67,6 @@
     margin: u(2) 0;
     padding-inline-start: u(6);
 
-    @include rtl {
-      padding-inline: 0 u(6);
-    }
-
     li {
       margin-block-end: u(2);
     }
@@ -100,10 +95,6 @@
 .icon {
   margin-inline-start: u(4);
   transition: transform 0.2s ease-in-out;
-
-  @include rtl {
-    margin-inline: inherit u(4);
-  }
 
   .open & {
     transform: rotate(180deg);

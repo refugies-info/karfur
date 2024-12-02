@@ -36,7 +36,7 @@ $light_blue: #dae0fb;
   align-items: center;
 
   .icon {
-    @include mr-ltr(u(1));
+    margin-inline-end: u(1);
   }
 
   .color_red & {
@@ -72,14 +72,9 @@ $light_blue: #dae0fb;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align: start;
   border: 1px solid transparent;
   margin: 0 auto u(10);
   flex-shrink: 0;
-
-  @include rtl {
-    text-align: end;
-  }
 
   &:hover {
     &.color_red {

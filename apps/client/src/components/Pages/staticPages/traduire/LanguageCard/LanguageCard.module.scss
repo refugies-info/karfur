@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .container {
@@ -43,10 +42,6 @@
   font-weight: bold;
   border-radius: u(1);
   margin-inline-start: u(2);
-
-  @include rtl {
-    margin-inline: inherit u(2);
-  }
 
   &.strong {
     background: rgba(#e8140f, 0.1);

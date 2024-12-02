@@ -1,7 +1,6 @@
 @import "~/scss/colors";
 @import "~/scss/variables";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/responsive";
 
@@ -59,8 +58,7 @@
 }
 
 .icon {
-  @include ml-ltr(u(4));
-
+  margin-inline-start: u(4);
   transition: transform 0.2s ease-in-out;
 
   .open & {

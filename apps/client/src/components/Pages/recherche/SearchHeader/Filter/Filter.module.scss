@@ -1,7 +1,6 @@
 @import "~/scss/colors";
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
@@ -31,11 +30,8 @@
   }
 
   :global(.fi) {
-    margin: 0 u(2) 0 0;
-
-    @include rtl {
-      margin: 0 0 0 u(2);
-    }
+    margin-block: 0;
+    margin-inline: u(2) 0;
   }
 
   .count {

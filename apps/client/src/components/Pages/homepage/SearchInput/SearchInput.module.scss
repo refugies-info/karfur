@@ -3,7 +3,6 @@
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/btn";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .filter {
@@ -39,14 +38,9 @@
   }
 
   .search {
-    text-align: start;
     min-inline-size: 0;
     flex-grow: 1;
     position: relative;
-
-    @include rtl {
-      text-align: end;
-    }
 
     @include isMobile {
       block-size: 20px;
@@ -63,11 +57,6 @@
     color: $gray80;
     text-transform: uppercase;
     display: block;
-    text-align: start;
-
-    @include rtl {
-      text-align: end;
-    }
 
     @include isMobile {
       display: none;
@@ -93,7 +82,6 @@
     @include text("normal");
 
     font-weight: bold;
-    text-align: start;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -105,15 +93,6 @@
 
     @include isMobile {
       padding-inline-end: u(6);
-    }
-
-    @include rtl {
-      text-align: end;
-      padding-inline: u(16) 0;
-
-      @include isMobile {
-        padding-inline: u(6) 0;
-      }
     }
 
     &.empty {
@@ -136,10 +115,6 @@
     justify-content: center;
     align-items: center;
 
-    @include rtl {
-      margin-inline: u(4) 0;
-    }
-
     &.active {
       background: $bleuCharte;
     }
@@ -148,10 +123,6 @@
       inline-size: 32px;
       block-size: 32px;
       margin-inline-end: u(2);
-
-      @include rtl {
-        margin-inline: u(2) 0;
-      }
     }
   }
 
@@ -163,10 +134,6 @@
       block-size: 20px;
       margin-inline-end: u(2);
       background: transparent !important;
-
-      @include rtl {
-        margin-inline: u(2) 0;
-      }
     }
   }
 }
@@ -184,10 +151,6 @@
   block-size: u(6);
   border-radius: 50%;
 
-  @include rtl {
-    inset-inline: 0 inherit;
-  }
-
   &:hover {
     background: $gray30;
   }
@@ -198,16 +161,8 @@
   inset-inline-end: u(5);
   inline-size: u(10);
 
-  @include rtl {
-    inset-inline: u(5) auto;
-  }
-
   @include isMobile {
     inset-inline-end: 0;
     inline-size: auto;
-
-    @include rtl {
-      inset-inline: 0 auto;
-    }
   }
 }

@@ -30,26 +30,20 @@ $purple: #3d2884;
   @include isTablet {
     position: relative;
     flex-direction: column-reverse;
-
-    @include pl-ltr(u(4));
+    padding-inline-start: u(4);
   }
 }
 
 $borderWidth: 4px;
 
 .content {
-  @include pl-ltr(60px);
-
   max-inline-size: 480px;
   order: 2;
   padding-block-end: 100px;
+  padding-inline-start: 60px;
   border-inline-start: $borderWidth solid $dark;
+  border-inline-end: none;
   position: relative;
-
-  @include rtl {
-    border-inline-start: none;
-    border-inline-end: $borderWidth solid $dark;
-  }
 
   .orange & {
     border-color: $orange;
@@ -69,21 +63,12 @@ $borderWidth: 4px;
 
   @include isTablet {
     max-inline-size: none;
-    padding-inline-start: u(8);
+    padding-inline: u(8) 0;
     padding-block-end: u(9);
-
-    @include rtl {
-      padding-inline: 0 u(8);
-    }
   }
 
   .dotted & {
-    border-inline-start-style: dashed;
-
-    @include rtl {
-      border-inline-start-style: none;
-      border-inline-end-style: dashed;
-    }
+    border-inline-style: dashed none;
 
     @include media-min("lg-limit") {
       @include fadeBorder;
@@ -107,15 +92,10 @@ $borderWidth: 4px;
 
   @include isTablet {
     border-inline-start: $borderWidth solid $dark;
-    padding-inline-start: u(8);
+    border-inline-end: none;
+    padding-inline: u(8) 0;
     padding-block-end: 60px;
     inline-size: auto;
-
-    @include rtl {
-      border-inline-start: none;
-      padding-inline: 0 u(8);
-      border-inline-end: $borderWidth solid $dark;
-    }
 
     .orange & {
       border-color: $orange;
@@ -126,14 +106,9 @@ $borderWidth: 4px;
     }
 
     .dotted & {
-      border-inline-start-style: dashed;
+      border-inline-style: dashed none;
 
       @include fadeBorder;
-
-      @include rtl {
-        border-inline-start-style: none;
-        border-inline-end-style: dashed;
-      }
     }
   }
 
@@ -199,10 +174,6 @@ $borderWidth: 4px;
     }
   }
 
-  @include rtl {
-    inset-inline: inherit -22px;
-  }
-
   .orange & {
     background: $orange;
   }
@@ -218,10 +189,6 @@ $borderWidth: 4px;
     block-size: 24px;
     inset-inline-start: -14px;
     inset-block-start: -1px;
-
-    @include rtl {
-      inset-inline: inherit -14px;
-    }
   }
 }
 
@@ -239,7 +206,6 @@ $borderWidth: 4px;
   transform: translateX(-50%);
 
   @include rtl {
-    inset-inline: inherit 0;
     transform: translateX(50%);
   }
 
@@ -260,10 +226,5 @@ $borderWidth: 4px;
     inset-inline-start: 0;
     inset-block-end: 60px;
     inline-size: 100%;
-
-    @include rtl {
-      transform: none;
-      inset-inline: inherit 0;
-    }
   }
 }

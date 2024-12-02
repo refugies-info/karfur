@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .container {
@@ -21,10 +20,6 @@ $image: 64px;
   overflow: hidden;
   margin-inline-end: u(4);
   flex-shrink: 0;
-
-  @include rtl {
-    margin-inline: u(4) inherit;
-  }
 }
 
 .infos {

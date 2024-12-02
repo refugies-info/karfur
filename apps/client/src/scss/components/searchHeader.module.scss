@@ -21,10 +21,6 @@
     position: absolute;
     inset-inline-end: 0;
     inset-block-start: 10%;
-
-    @include rtl {
-      inset-inline: 0 auto;
-    }
   }
 
   &:last-child::after {
@@ -92,20 +88,12 @@
     display: inline-flex;
     align-items: center;
 
-    @include rtl {
-      margin-inline: u(4) 0;
-    }
-
     @include media-min("md-limit") {
       margin-inline: u(4);
     }
 
     @include media-min("xl-limit") {
       margin-inline: 0 u(4);
-
-      @include rtl {
-        margin-inline: u(4) 0;
-      }
     }
   }
 
@@ -149,10 +137,6 @@
     justify-content: center;
     inset-block-start: u(2);
     inset-inline-start: u(2);
-
-    @include rtl {
-      inset-inline: inherit u(2);
-    }
   }
 
   & > input {
@@ -181,10 +165,6 @@
   .empty {
     position: absolute;
     inset-inline: inherit u(2);
-
-    @include rtl {
-      inset-inline: u(2) inherit;
-    }
   }
 }
 

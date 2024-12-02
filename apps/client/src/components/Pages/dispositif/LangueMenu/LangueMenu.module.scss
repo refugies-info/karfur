@@ -2,7 +2,6 @@
 @import "~/scss/variables";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 
 .dropdown {
   & > button {
@@ -20,8 +19,7 @@
     }
 
     .icon {
-      @include r-ltr(u(3));
-
+      inset-inline-end: u(3);
       position: absolute;
       inset-block-start: u(3);
     }
@@ -57,11 +55,8 @@
       }
 
       :global(.fi) {
-        margin: 0 u(2) 0 0;
-
-        @include rtl {
-          margin: 0 0 0 u(2);
-        }
+        margin-block: 0;
+        margin-inline: u(2) 0;
       }
 
       &.selected {
@@ -71,7 +66,7 @@
     }
 
     .item_locale {
-      @include mr-ltr(u(1));
+      margin-inline-end: u(1);
     }
   }
 }

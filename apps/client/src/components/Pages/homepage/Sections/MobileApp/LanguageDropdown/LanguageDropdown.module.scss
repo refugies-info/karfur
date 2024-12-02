@@ -1,6 +1,5 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/text";
 @import "~/scss/colors";
 @import "~/scss/variables";
@@ -11,18 +10,13 @@
     color: $gray90;
     box-shadow: 0 0 40px 0 #00000040;
     border: none;
-    padding: u(3) u(9) u(3) u(3);
+    padding-block: u(3);
+    padding-inline: u(9) u(3);
     border-radius: 10px;
     block-size: 48px;
     position: relative;
 
-    @include rtl {
-      padding: u(3) u(3) u(3) u(9);
-    }
-
     .icon {
-      @include r-ltr(u(3));
-
       position: absolute;
       inset-inline-end: u(3);
       inset-block-start: u(3);
@@ -70,11 +64,8 @@
   }
 
   :global(.fi) {
-    margin: 0 u(2) 0 0;
-
-    @include rtl {
-      margin: 0 0 0 u(2);
-    }
+    margin-block: 0;
+    margin-inline: u(2) 0;
   }
 
   &.selected {
@@ -84,7 +75,6 @@
 }
 
 .item_locale {
-  @include mr-ltr(u(1));
-
+  margin-inline-end: u(1);
   font-weight: bold;
 }

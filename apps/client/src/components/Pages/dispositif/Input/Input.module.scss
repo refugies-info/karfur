@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .input {
@@ -97,7 +96,7 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  inset-inline-end: u(2);
+  inset-inline: 0 u(2);
   inset-block-start: 10px;
   display: flex;
   align-items: center;
@@ -105,10 +104,6 @@
   inline-size: u(6);
   block-size: u(6);
   border-radius: 50%;
-
-  @include rtl {
-    inset-inline: 0 inherit;
-  }
 
   &:hover {
     background: $gray30;

@@ -18,8 +18,8 @@
     $border: 4px solid var(--border-default-blue-france);
 
     @include media-max("lg-limit") {
-      @include pl-ltr(u(4));
-      @include ml-ltr(u(2));
+      padding-inline-start: u(4);
+      margin-inline-start: u(2);
     }
 
     &::before {

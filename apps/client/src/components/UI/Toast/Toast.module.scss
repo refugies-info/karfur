@@ -75,8 +75,7 @@
 }
 
 .close {
-  @include ml-ltr(u(6));
-
+  margin-inline-start: u(6);
   inline-size: u(6);
   block-size: u(6);
   padding: 0;

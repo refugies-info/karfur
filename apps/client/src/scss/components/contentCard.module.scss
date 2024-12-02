@@ -1,7 +1,6 @@
 @import "~/scss/colors";
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
@@ -127,10 +126,6 @@ $shadowHeight: 1.4rem;
   inset-block-start: u(2);
   inset-inline-end: u(3);
   z-index: 5;
-
-  @include rtl {
-    inset-inline: u(3) inherit;
-  }
 }
 
 /* Info components */

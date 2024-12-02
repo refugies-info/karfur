@@ -1,14 +1,13 @@
 @import "~/scss/colors";
 @import "~/scss/variables";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/responsive";
 
 .badge {
   @include dsfr-text("large");
-  @include mr-ltr(u(4));
 
+  margin-inline-end: u(4);
   inline-size: u(8);
   block-size: u(8);
   display: inline-flex;

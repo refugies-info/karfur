@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .container {
@@ -27,10 +26,6 @@
   justify-content: center;
   align-items: center;
   margin-inline-end: u(2);
-
-  @include rtl {
-    margin-inline: u(2) 0;
-  }
 }
 
 .close {

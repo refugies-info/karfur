@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 .container {
@@ -72,10 +71,6 @@
 
     & > span {
       margin-inline-end: u(2);
-
-      @include rtl {
-        margin-inline: u(2) inherit;
-      }
     }
 
     &.green {

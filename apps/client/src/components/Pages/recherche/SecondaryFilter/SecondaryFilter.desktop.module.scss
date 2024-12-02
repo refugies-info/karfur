@@ -1,7 +1,6 @@
 @import "~/scss/colors";
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
@@ -12,15 +11,12 @@
     background: $gray30;
     color: $gray80;
     border: none;
-    padding: u(3) u(7) u(3) u(2);
+    padding-block: u(3);
+    padding-inline: u(7) u(2);
     border-radius: u(2);
     max-inline-size: 250px;
     block-size: 46px;
     position: relative;
-
-    @include rtl {
-      padding: u(3) u(2) u(3) u(6);
-    }
 
     &:hover,
     &:focus,
@@ -33,10 +29,6 @@
       position: absolute;
       inset-inline-end: u(1);
       inset-block-start: 15px;
-
-      @include rtl {
-        inset-inline: u(1) inherit;
-      }
     }
   }
 
@@ -108,10 +100,8 @@ html body .dropdown.show > button {
 
   :global(.fi) {
     margin: 0 u(2) 0 0;
-
-    @include rtl {
-      margin: 0 0 0 u(2);
-    }
+    margin-block: 0;
+    margin-inline: u(2) 0;
   }
 
   &.selected {

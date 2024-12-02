@@ -6,8 +6,7 @@
 @import "~/scss/variables";
 
 .container {
-  @include pr-ltr(u(10));
-
+  padding-inline-end: u(10);
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -49,8 +48,8 @@
   flex: 0 0 auto;
 
   @include rtl {
-    inset-inline: inherit -80px;
-    margin-inline: -115px inherit;
+    inset-inline-end: -80px;
+    margin-inline-start: -115px;
   }
 
   @include isTablet {
@@ -60,7 +59,7 @@
     inset-inline-start: -40px;
 
     @include rtl {
-      inset-inline: inherit -60px;
+      inset-inline-end: -60px;
     }
   }
 }
