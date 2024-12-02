@@ -19,7 +19,9 @@ import { useLanguageItem } from "./NavbarItems";
 import useSpeekToolItem from "./NavbarItems/SpeekToolItem/useSpeekToolItem";
 import useSubscribeToolItem from "./NavbarItems/SubscribeToolItem/useSubscribeToolItem";
 import useUserToolItem from "./NavbarItems/UserToolItem/useUserToolItem";
-
+const Huhu = () => {
+  return <div>lol</div>;
+};
 const Navbar = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -33,7 +35,9 @@ const Navbar = () => {
   const languageItem = useLanguageItem();
 
   const quickAccessItems: HeaderProps.QuickAccessItem[] = useMemo(() => {
-    return [speekItem, subscribeItem, userItem, languageItem].filter(
+    const huhuItem = <Huhu key="huhu" />;
+
+    return [speekItem, subscribeItem, userItem, languageItem, huhuItem].filter(
       (n) => n !== null,
     ) as HeaderProps.QuickAccessItem[];
   }, [speekItem, subscribeItem, userItem, languageItem]);
@@ -125,20 +129,25 @@ const Navbar = () => {
 
   if (isEditionMode) return null;
   return (
-    <Header
-      brandTop="GOUVERNEMENT"
-      homeLinkProps={{
-        href: "/",
-        title: "Accueil - Réfugiés.info",
-      }}
-      operatorLogo={{
-        alt: "Réfugiés.info",
-        imgUrl: "/images/logoRI.svg",
-        orientation: "horizontal",
-      }}
-      quickAccessItems={quickAccessItems}
-      navigation={navigationItems}
-    />
+    <>
+      <Header
+        brandTop="GOUVERNEMENT"
+        homeLinkProps={{
+          href: "/",
+          title: "Accueil - Réfugiés.info",
+        }}
+        operatorLogo={{
+          alt: "Réfugiés.info",
+          imgUrl: "/images/logoRI.svg",
+          orientation: "horizontal",
+        }}
+        serviceTitle={t("Header.serviceName", "Réfugiés.info")}
+        serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
+        quickAccessItems={quickAccessItems}
+        // quickAccessItems={[<Huhu key="huhu" />]}
+        navigation={navigationItems}
+      />
+    </>
   );
 };
 

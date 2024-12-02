@@ -1,4 +1,8 @@
 {
+  "Header": {
+    "serviceName": "Réfugiés.info",
+    "serviceTagline": "L’information pour les étrangers en France"
+  },
   "Homepage": {
     "title": "L’information simple et traduite pour les personnes réfugiées en France",
     "Choisir une langue": "Choisir une langue",
