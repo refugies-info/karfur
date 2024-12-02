@@ -2,7 +2,6 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
 @import "~/scss/mixins/text";
-@import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
 $error: #b01917;
@@ -19,14 +18,12 @@ $error: #b01917;
   block-size: 24px;
 
   &.prepend {
-    @include l-ltr(u(4));
-
+    inset-inline-start: u(4);
     inset-block-start: u(4);
   }
 
   &.append {
-    @include r-ltr(u(4));
-
+    inset-inline-end: u(4);
     inset-block-start: u(4);
   }
 }
@@ -44,7 +41,7 @@ $error: #b01917;
   block-size: 100%;
 
   .with_icon & {
-    @include pl-ltr(44px);
+    padding-inline-start: u(11);
   }
 
   .error & {

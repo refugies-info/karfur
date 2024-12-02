@@ -1,6 +1,5 @@
 @import "~/scss/mixins/responsive";
 @import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
 @import "~/scss/mixins/text";
 @import "~/scss/colors";
 @import "~/scss/variables";
@@ -27,17 +26,13 @@
 .input {
   input {
     block-size: 64px;
-    padding-inline-end: 50%;
-
-    @include rtl {
-      padding-inline: 50% u(4);
-    }
+    padding-inline-start: u(4);
   }
 }
 
 .options {
-  @include r-ltr(8px);
-
+  inset-inline-start: inherit;
+  inset-inline-end: u(2);
   display: flex;
   align-items: center;
   position: absolute;
@@ -45,8 +40,8 @@
 }
 
 .submit {
-  @include ml-ltr(u(2));
-
+  margin-inline-start: u(2);
+  margin-inline-end: inherit;
   block-size: 48px;
 }
 
