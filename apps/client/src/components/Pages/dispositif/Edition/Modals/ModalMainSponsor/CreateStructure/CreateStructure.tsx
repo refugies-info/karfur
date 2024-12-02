@@ -25,6 +25,8 @@ const CreateStructure = (props: Props) => {
           },
         })
       }
+      linkOptional
+      logoOptional
     />
   );
 };

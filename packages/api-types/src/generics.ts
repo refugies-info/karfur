@@ -79,14 +79,14 @@ export interface UserStructure {
 export interface ContentStructure {
   _id: Id;
   nom: string;
-  picture: Picture;
+  picture?: Picture;
   status?: string;
 }
 
 export interface MainSponsor {
   name: string;
-  logo: Picture;
-  link: string;
+  logo?: Picture;
+  link?: string;
 }
 
 export interface Sponsor {
@@ -234,7 +234,7 @@ export interface SimpleDispositif {
   nbVuesMobile: number;
   sponsor?: {
     nom: string;
-    picture: Picture;
+    picture?: Picture;
   };
   availableLanguages: string[];
   hasDraftVersion: boolean;
