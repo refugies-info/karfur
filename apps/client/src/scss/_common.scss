@@ -228,3 +228,8 @@ html body {
     display: none;
   }
 }
+
+// Bootstrap / Tailwind conflicts fix
+.collapse {
+  visibility: inherit !important;
+}
