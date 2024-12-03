@@ -31,7 +31,7 @@ steps:
       - "--image"
       - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
       - "--memory"
-      - "1G"
+      - "${'2G' if '${_ENV}' == 'prod' else '1G'}"
       - "--set-env-vars"
       - >-
         accountSid=sm://refugies-info/accountSid,

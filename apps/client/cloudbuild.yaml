@@ -56,7 +56,7 @@ steps:
         "--port",
         "3000",
         "--memory",
-        "1G",
+        "${'3G' if '${_ENV}' == 'prod' else '1G'}",
         "--allow-unauthenticated",
       ]
 
