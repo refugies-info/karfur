@@ -30,4 +30,5 @@ const useSpeekToolItem = (): HeaderProps.QuickAccessItem | null => {
   };
 };
 
+export { useSpeekToolItem };
 export default useSpeekToolItem;

@@ -1,4 +1,4 @@
-import { Header, HeaderProps } from "@codegouvfr/react-dsfr/Header";
+import { Header } from "@codegouvfr/react-dsfr/Header";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
@@ -11,36 +11,18 @@ import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
+import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccess/QuickAccessMenu/QuickAccessMenu";
 import { useEditionMode } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
-import { useLanguageItem } from "./NavbarItems";
-import useSpeekToolItem from "./NavbarItems/SpeekToolItem/useSpeekToolItem";
-import useSubscribeToolItem from "./NavbarItems/SubscribeToolItem/useSubscribeToolItem";
-import useUserToolItem from "./NavbarItems/UserToolItem/useUserToolItem";
-const Huhu = () => {
-  return <div>lol</div>;
-};
+
 const Navbar = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useDispatch();
   const isEditionMode = useEditionMode();
   const backendNavigation = useBackendNavigation();
-
-  const speekItem = useSpeekToolItem();
-  const subscribeItem = useSubscribeToolItem();
-  const userItem = useUserToolItem();
-  const languageItem = useLanguageItem();
-
-  const quickAccessItems: HeaderProps.QuickAccessItem[] = useMemo(() => {
-    const huhuItem = <Huhu key="huhu" />;
-
-    return [speekItem, subscribeItem, userItem, languageItem, huhuItem].filter(
-      (n) => n !== null,
-    ) as HeaderProps.QuickAccessItem[];
-  }, [speekItem, subscribeItem, userItem, languageItem]);
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const locale: Languages = (router.locale || "fr") as Languages;
@@ -143,8 +125,7 @@ const Navbar = () => {
         }}
         serviceTitle={t("Header.serviceName", "Réfugiés.info")}
         serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
-        quickAccessItems={quickAccessItems}
-        // quickAccessItems={[<Huhu key="huhu" />]}
+        quickAccessItems={[<QuickAccessMenu key="huhu" />]}
         navigation={navigationItems}
       />
     </>
