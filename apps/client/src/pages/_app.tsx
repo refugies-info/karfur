@@ -7,6 +7,7 @@ import Script from "next/script";
 import { ReactElement, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
+import "scss/index.css";
 import "scss/index.scss";
 import Layout from "~/components/Layout/Layout";
 import { isContentPage } from "~/lib/isContentPage";
