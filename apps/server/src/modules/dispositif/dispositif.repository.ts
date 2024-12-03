@@ -178,12 +178,13 @@ export const getStructureDispositifs = async (
   )
     .then(async (dispositifs) => {
       const usernames = await Promise.all(
-        dispositifs.map((dispositif) =>
-          dispositif.suggestions.length > 0
-            ? getUsersById(uniq(dispositif.suggestions.map((s: any) => s.userId).filter((id: any) => !!id)), {
-                username: 1,
-              })
-            : [],
+        dispositifs.map(
+          async (dispositif): Promise<string[]> =>
+            dispositif.suggestions.length > 0
+              ? await getUsersById(uniq(dispositif.suggestions.map((s: any) => s.userId).filter((id: any) => !!id)), {
+                  username: 1,
+                })
+              : [],
         ),
       );
       return { dispositifs, usernames: union(...usernames) };

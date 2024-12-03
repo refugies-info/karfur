@@ -26,14 +26,16 @@ jobs:
         with:
           node-version: "20.13.1"
 
-      - name: Install expected yarn version
-        run: sudo npm install --force --global yarn@1.22.22
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.4
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint, Check Types and Test
-        run: yarn turbo lint check:types test && yarn lint:style
+        run: turbo lint check:types test && pnpm lint:style
         env:
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}

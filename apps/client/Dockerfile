@@ -2,8 +2,8 @@
 FROM node:20.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
-# Install yarn
-RUN npm install --force --global yarn@1.22.22
+# Install pnpm
+RUN npm install -g pnpm@9.14.4
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -12,10 +12,10 @@ WORKDIR /usr/src/app
 COPY ./ ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
-# Delete the cache folder after `yarn install` is done.
-RUN rm -rf .yarn/cache
+# Delete the pnpm store after installation is done
+RUN rm -rf .pnpm-store
 
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
@@ -30,8 +30,8 @@ RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> ./apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> ./apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> ./apps/client/.env
 
-RUN yarn build:client
+RUN pnpm build:client
 
 EXPOSE 3000
 
-CMD ["yarn", "start:client"]
+CMD ["pnpm", "start:client"]
