@@ -143,6 +143,8 @@ $dsfr-texts: (
   }
 
   h3 {
-    margin-block: u(8) u(6);
+    margin-block: u(6) u(2);
+
+    @include dsfr-text("h6");
   }
 }

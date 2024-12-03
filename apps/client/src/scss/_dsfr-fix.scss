@@ -5,6 +5,9 @@
 // mobile menu button
 .fr-header .fr-header__navbar {
   align-self: center;
+  padding-inline-end: 1rem;
+  margin-inline-start: inherit;
+  margin-inline-end: auto;
 
   [dir="ltr"] & {
     padding-inline-end: 1rem;
