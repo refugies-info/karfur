@@ -31,8 +31,7 @@
 }
 
 .options {
-  inset-inline-start: inherit;
-  inset-inline-end: u(2);
+  inset-inline: inherit u(2);
   display: flex;
   align-items: center;
   position: absolute;
@@ -40,8 +39,7 @@
 }
 
 .submit {
-  margin-inline-start: u(2);
-  margin-inline-end: inherit;
+  margin-inline: u(2) inherit;
   block-size: 48px;
 }
 

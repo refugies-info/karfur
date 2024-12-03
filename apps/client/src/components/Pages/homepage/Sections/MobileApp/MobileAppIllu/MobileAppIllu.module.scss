@@ -48,8 +48,8 @@
   flex: 0 0 auto;
 
   @include rtl {
-    inset-inline-end: -80px;
-    margin-inline-start: -115px;
+    inset-inline: -80px inherit;
+    margin-inline: inherit -115px;
   }
 
   @include isTablet {
@@ -59,7 +59,7 @@
     inset-inline-start: -40px;
 
     @include rtl {
-      inset-inline-end: -60px;
+      inset-inline: -60px inherit;
     }
   }
 }

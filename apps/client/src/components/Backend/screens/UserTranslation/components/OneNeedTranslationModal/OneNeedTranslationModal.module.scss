@@ -37,14 +37,4 @@
 
     padding-inline-start: 44px;
   }
-
-  &[dir="rtl"] {
-    .input {
-      padding-inline-end: 44px;
-    }
-
-    .flag {
-      inset-inline-end: u(4);
-    }
-  }
 }
