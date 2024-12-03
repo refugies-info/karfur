@@ -109,7 +109,7 @@ const OneNeedTranslationModal = (props: Props) => {
           </div>
         </>
       ) : (
-        <p className="fw-bold mb-1">Une erreur est survenue</p>
+        <p className="font-bold mb-1">Une erreur est survenue</p>
       )}
       <div className="text-end mt-6">
         <Button

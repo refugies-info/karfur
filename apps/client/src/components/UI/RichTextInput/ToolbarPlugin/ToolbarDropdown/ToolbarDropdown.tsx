@@ -43,7 +43,7 @@ const ToolbarDropdown = (props: Props) => {
             hasSelectedIcon={true}
             icon={item.icon}
             text={item.text}
-            className={"w-100 mb-1"}
+            className={"w-full mb-1"}
           ></ToolbarButton>
         ))}
       </DropdownMenu>

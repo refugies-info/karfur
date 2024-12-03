@@ -39,7 +39,7 @@ const ModalAbstract = (props: Props) => {
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
         <p>Le résumé doit faire moins de 110 caractères.</p>
-        <div className="d-flex">
+        <div className="flex">
           <div>
             <div className={styles.text}>
               <textarea

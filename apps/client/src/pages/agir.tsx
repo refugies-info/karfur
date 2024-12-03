@@ -58,7 +58,7 @@ const Agir = () => {
   }, []);
 
   return (
-    <div className="w-100">
+    <div className="w-full">
       <SEO
         title="AGIR pour le logement et l’emploi des personnes réfugiées"
         description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
@@ -96,7 +96,7 @@ const Agir = () => {
                 Trouver mon opérateur
               </Button>
             </Col>
-            <Col className="d-flex justify-content-center justify-lg-content-end">
+            <Col className="flex justify-center justify-lg-content-end">
               <Image src={AgirLogos} width={400} height={280} alt="" />
             </Col>
           </Row>
@@ -280,7 +280,7 @@ const Agir = () => {
           <span id="map" className={styles.anchor} />
           <div className="mt-10 mt-lg-20">
             <h3 className={styles.h3}>Trouver l’opérateur de mon territoire</h3>
-            <p className="w-lg-50 fst-italic">
+            <p className="w-lg-50 italic">
               Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre
               territoire.
             </p>
@@ -290,7 +290,7 @@ const Agir = () => {
                   <MapFrance />
                 </MapContext.Provider>
               </Col>
-              <Col lg="4" className="d-flex align-items-center">
+              <Col lg="4" className="flex items-center">
                 {selectedDepartment && (
                   <div className={styles.operator}>
                     <div className={styles.head}>
@@ -364,7 +364,7 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full100"
                 />
               </Col>
               <Col lg="3" className="mb-4 mb-lg-0">
@@ -381,7 +381,7 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full100"
                 />
               </Col>
               <Col lg="3" className="mb-4 mb-lg-0">
@@ -398,7 +398,7 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full100"
                 />
               </Col>
               <Col lg="3" className="mb-4 mb-lg-0">
@@ -416,7 +416,7 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full100"
                 />
               </Col>
             </Row>

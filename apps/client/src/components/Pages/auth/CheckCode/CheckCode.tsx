@@ -98,11 +98,7 @@ const CheckCode = (props: Props) => {
             {props.type === "login" && <h1>Entrez le code reçu</h1>}
             <p className={styles.subtitle}>
               Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
-              <Link
-                href={props.notYouCallback ? "#" : "/auth"}
-                onClick={props.notYouCallback}
-                className="text-decoration-underline"
-              >
+              <Link href={props.notYouCallback ? "#" : "/auth"} onClick={props.notYouCallback} className="underline">
                 Ce n'est pas vous&nbsp;?
               </Link>
             </p>

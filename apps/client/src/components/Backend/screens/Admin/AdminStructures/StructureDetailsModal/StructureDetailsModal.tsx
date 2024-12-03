@@ -224,7 +224,7 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
         <div className={styles.details_row}>
           <div className={styles.col_1}>
             <div className="mb-5">
-              <div className="d-flex justify-content-between">
+              <div className="flex justify-between">
                 <Label>Création</Label>
                 <Date date={structure.created_at} />
               </div>

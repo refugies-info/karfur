@@ -100,7 +100,7 @@ const AccordionItem = (props: Props) => {
           hasError={!!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))}
         >
           <span className={styles.button_inner}>
-            <span className="d-flex align-items-center">
+            <span className="flex items-center">
               <AccordionBadge
                 index={props.index + 1}
                 sectionKey={props.id}

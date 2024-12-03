@@ -22,8 +22,8 @@ const NotationInput = (props: Props) => {
 
   return (
     <div className={styles.item}>
-      <div className="d-flex align-items-center justify-content-between">
-        <div className="d-flex align-items-center">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <Image
             className={cls(styles.avatar, "me-2")}
             src={avatar}
@@ -35,7 +35,7 @@ const NotationInput = (props: Props) => {
           {props.author?.username || ""}
         </div>
 
-        <div className="d-flex gap-2">
+        <div className="flex gap-2">
           {STARS.map((_, i) => {
             const checked = props.feedback.note && props.feedback.note >= i + 1;
             return (

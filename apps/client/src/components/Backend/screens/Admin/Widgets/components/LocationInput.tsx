@@ -26,7 +26,7 @@ export const LocationInput = (props: Props) => {
   const handleChange = (e: any) => setSearch(e.target.value);
 
   return (
-    <div className={cls(parentStyles.form_block, "d-flex align-items-center")}>
+    <div className={cls(parentStyles.form_block, "flex items-center")}>
       <label className={cls(parentStyles.label, "me-4")}>Département</label>
 
       {/* maps autocomplete field */}

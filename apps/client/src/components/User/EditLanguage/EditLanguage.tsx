@@ -85,7 +85,7 @@ const EditDepartments = (props: Props) => {
               illuComponent={<Flag langueCode={language?.langueCode} />}
               checked={checked}
               onSelect={() => setSelectedLanguages((ln) => (checked ? ln.filter((l) => l !== id) : [...ln, id]))}
-              className="mb-4 rounded-0"
+              className="mb-4 rounded-none"
             />
           );
         })}

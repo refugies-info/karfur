@@ -265,7 +265,7 @@ const RecensezVotreAction = (props: Props) => {
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
             <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <Row className={cls(styles.top_space, "justify-content-center")}>
+            <Row className={cls(styles.top_space, "justify-center")}>
               <Col sm="12" lg="4" className="mb-lg-0 mb-5">
                 <Card
                   image={HelpIcon1}
