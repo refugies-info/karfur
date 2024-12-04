@@ -30,7 +30,7 @@ import { StatusRow } from "../../sharedComponents/StatusRow";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { Date, Label, TypeContenu } from "../../sharedComponents/SubComponents";
 import { UserButton } from "../../sharedComponents/UserButton";
-import { correspondingStatus, progressionData, publicationData } from "../data";
+import { correspondingStatus, publicationData } from "../data";
 import styles from "./ContentDetailsModal.module.scss";
 import { findUser } from "./functions";
 
@@ -99,8 +99,13 @@ export const ContentDetailsModal = (props: Props) => {
     newStatus: DispositifStatus | string,
     property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
   ) => {
+    if (property === "adminPercentageProgressionStatus") return; // deactivated for dispositifs
     if (dispositif && newStatus !== dispositif[property]) {
-      if (property === "status" && newStatus === "Supprimé") {
+      if (property === "status" && newStatus === DispositifStatus.UPDATE_TO_VALIDATE) {
+        // this status cannot be set manually
+        return;
+      }
+      if (property === "status" && newStatus === DispositifStatus.DELETED) {
         await props.onDeleteClick();
         updateLogs();
         return;
@@ -110,7 +115,7 @@ export const ContentDetailsModal = (props: Props) => {
         await API.updateDispositifStatus(dispositif._id, { status: newStatus as DispositifStatus });
       } else {
         const body: AdminCommentsRequest = {
-          [property]: newStatus,
+          adminProgressionStatus: newStatus,
         };
         await API.updateDispositifAdminComments(dispositif._id.toString(), body);
       }
@@ -126,7 +131,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const hiddenStatus = ["Rejeté structure", "Accepté structure"];
+  const hiddenStatus = [DispositifStatus.KO_STRUCTURE, DispositifStatus.OK_STRUCTURE];
 
   const sendPushNotification = async () => {
     const res = await Swal.fire({
@@ -230,7 +235,7 @@ export const ContentDetailsModal = (props: Props) => {
             element={dispositif}
             status={correspondingStatus}
             publicationStatus={publicationData}
-            progressionStatus={progressionData}
+            progressionStatus={null}
             modifyStatus={modifyStatus}
             hiddenStatus={hiddenStatus}
           />

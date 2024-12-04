@@ -106,7 +106,6 @@ export interface GetStatisticsRequest {
 export interface AdminCommentsRequest {
   adminComments?: string;
   adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
 }
 
 /**
@@ -366,7 +365,6 @@ export interface GetAllDispositifsResponse {
   nbMercis: number;
   adminComments?: string;
   adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
   draftReminderMailSentDate?: Date;
   draftSecondReminderMailSentDate?: Date;
   lastReminderMailSentToUpdateContentDate?: Date;

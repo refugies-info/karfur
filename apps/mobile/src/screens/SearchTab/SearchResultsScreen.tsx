@@ -1,7 +1,8 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import algoliasearch from "algoliasearch/lite";
+import { SupportedLanguage } from "algoliasearch";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 import * as React from "react";
-import { Configure, InstantSearch } from "react-instantsearch-native";
+import { Configure, InstantSearch } from "react-instantsearch-core";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -28,7 +29,8 @@ const searchClient = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY || 
 
 export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
   const insets = useSafeAreaInsets();
-  const [searchState, setSearchState] = React.useState({ query: "" });
+
+  const [searchInputValue, setSearchInputValue] = React.useState("");
   const currentI18nCode = useSelector(currentI18nCodeSelector);
   const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));
   const groupedContents = useSelector(groupedContentsSelector);
@@ -49,7 +51,7 @@ export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParam
     setSearchableAttributes(getSearchableAttributes(currentI18nCode));
   }, [currentI18nCode]);
 
-  const queryLanguages: string[] = ["fr"];
+  const queryLanguages: SupportedLanguage[] = ["fr"];
   if (currentI18nCode && currentI18nCode !== "ti") {
     // ti not supported by Algolia
     queryLanguages.push(currentI18nCode);
@@ -61,8 +63,12 @@ export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParam
       <InstantSearch
         searchClient={searchClient}
         indexName={Config.algoliaIndex}
-        searchState={searchState}
-        onSearchStateChange={setSearchState}
+        initialUiState={{
+          [Config.algoliaIndex]: {
+            hitsPerPage: 10,
+            query: searchInputValue,
+          },
+        }}
       >
         <Configure
           restrictSearchableAttributes={searchableAttributes}
@@ -72,14 +78,18 @@ export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParam
           analyticsTags={[`ln_${currentI18nCode}`]}
         />
         <SearchBoxContainer style={{ paddingTop: insets.top + styles.margin * 3 }}>
-          <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
+          <SearchBox
+            searchInputValue={searchInputValue}
+            setSearchInputValue={setSearchInputValue}
+            backCallback={() => navigation.navigate("SearchScreen")}
+          />
         </SearchBoxContainer>
-        {searchState.query !== "" ? (
+        {searchInputValue !== "" ? (
           <View style={{ paddingBottom: insets.bottom + 100 }}>
             <InfiniteHits
               navigation={navigation}
               selectedLanguage={currentI18nCode}
-              query={searchState.query}
+              query={searchInputValue}
               nbContents={nbContents}
             />
           </View>

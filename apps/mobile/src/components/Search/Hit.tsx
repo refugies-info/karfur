@@ -1,10 +1,8 @@
 import { useCallback } from "react";
 import { View } from "react-native";
+import aa from "search-insights";
 import { styles } from "~/theme";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
-//@ts-ignore: not exported by algolia types
-import { connectHitInsights } from "react-instantsearch-native";
-import aa from "search-insights";
 
 const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   const props = Object.keys(hit._highlightResult);
@@ -23,13 +21,13 @@ interface Props {
   navigation: any;
   selectedLanguage: string | null;
   nbContents: any;
-  insights: any;
 }
 
-const Hit = ({ hit, navigation, selectedLanguage, nbContents, insights }: Props) => {
-  const sendAlgoliaEvent = useCallback(() => {
-    insights("clickedObjectIDsAfterSearch", {
+export const HitWithInsights = ({ hit, navigation, selectedLanguage, nbContents }: Props) => {
+  const sendAlgoliaEvent = useCallback(async () => {
+    await aa("clickedObjectIDsAfterSearch", {
       eventName: "Card clicked",
+      index: hit.__index,
       queryID: hit.__queryID,
       positions: [hit.__position],
       objectIDs: [hit.objectID],
@@ -55,5 +53,3 @@ const Hit = ({ hit, navigation, selectedLanguage, nbContents, insights }: Props)
     </View>
   );
 };
-
-export const HitWithInsights = connectHitInsights(aa)(Hit);

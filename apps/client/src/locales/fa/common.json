@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "جستجو",
+    "title": "پیدا کردن معلومات",
+    "subtitle": "جستجو در میان {{count}} برگه درباره مراحل اداری و خدمات محلی   \n",
     "updated": "به روز شد",
     "demarcheTitle": "برگه های روند اداری",
     "dispositifTitle": "برگه‌های برنامه",
@@ -88,25 +90,42 @@
     "seeButton": "برگه های {{count}} را ببینید",
     "titleThemes": "موضوعات ادغام",
     "positionButton": "از موقعیت من استفاده کنید",
+    "positionEnable": "باید مکان‌یابی دستگاه یا مرورگر خود را روشن کنید تا موقعیت شما مشخص شود",
+    "notDeployedText": "معلومات محلی از {{department}} شروع می‌شود. شاید جستجوی شما نتیجه کمی داشته باشد",
     "france": "کل فرانسه",
     "online": "آنلاین",
+    "keyword": "جستجو با کلمه کلیدی",
     "keywordPlaceholder": "ماموریت محلی، اجازه اقامت ...",
     "department": "جستجوی یک شهر یا دپارتمان",
+    "theme": "موضوع",
     "themesPlaceholder": "جستجوی موضوعات",
     "filters": "فیلتر جستجو",
     "filterAge": "رده سنی",
     "filterFrenchLevel": "سطح فرانسوی",
+    "filterLanguage": "ترجمه به",
+    "filterLocation": "دپارتمان",
     "filterPublic": "مخاطب هدف",
     "filterStatus": "وضعیت",
     "all": "همه",
     "resetFilters": "حذف تمام فیلترها",
     "titleResults": "{{count}} برگه‌ها پیدا شد",
     "noResultText": "از فیلترهای کمتری استفاده کنید یا املای کلمه کلیدی را بررسی کنید",
+    "suggestedTitle": "این برگه‌ها ممکن است برای شما مفید باشد",
     "seeMore": "بیشتربیبنید",
     "seeLess": "مشاهده اطلاعات کمتر",
     "results": "نتایج",
     "seeAllButton": "مشاهده همه",
-    "fichesLanguageFilter": "برگه در"
+    "fichesLanguageFilter": "برگه در",
+    "filtersAndSortModalTitle": "فیلترها و تنظیم",
+    "sortBy": "تنظیم بر اساس",
+    "clear": "تنظیم مجدد",
+    "seeAllButtonWithCount": "مشاهده همه {{count}} برگه",
+    "tooltipAucuneFicheCorrespondante": "هیچ برگه‌ای با این شرایط پیدا نشد. فیلترهای خود را تغییر دهید تا بهتری پیدا کنید",
+    "noResultTitle": "متأسفم! هیچ نتیجه‌ای برای جستجوی شما پیدا نشد",
+    "noResultOther": "این برگه‌ها ممکن است برای شما مفید باشد",
+    "Recherche.fiches_zero": "برگه ها",
+    "Recherche.fiches_one": "برگه ها",
+    "Recherche.fiches_other": "برگه ها"
   },
   "Widget": {
     "fiches": "برگه ها",
@@ -166,9 +185,14 @@
     "frenchLevelA": "سطح مبتدی A1/A2",
     "frenchLevelB": "سطح متوسط ​​B1/B2",
     "frenchLevelC": "سطح پیشرفته C1/C2",
+    "sortLocation": "تنظیم بر اساس دپارتمان",
+    "sortTheme": "تنظیم بر اساس موضوع",
+    "sortDate": "تنظیم بر اساس تاریخ",
+    "sortView": "تنظیم بر اساس محبوبیت",
     "typeAll": "همه رکوردها",
     "typeDispositif": "دستگاه‌ها",
-    "typeDemarche": "رویه‌ها"
+    "typeDemarche": "رویه‌ها",
+    "typeRessource": "منابع آنلاین"
   },
   "Status": {
     "En attente": "در انتظار",
@@ -203,10 +227,7 @@
     "check_mail": "املا خود را بررسی کنید.",
     "invalid_phone_number": "این یک شماره تلفن معتبر نیست ، ورودی خود را بررسی کنید."
   },
-  "UnauthorizedAccess": {
-    "access_denied": "دسترسی رد شد",
-    "back_home": "بازگشت به صفحه اصلی"
-  },
+  "UnauthorizedAccess": { "access_denied": "دسترسی رد شد", "back_home": "بازگشت به صفحه اصلی" },
   "Dispositif": {
     "share": "اشتراک گذاری برگه",
     "updated": "به روز شده",
@@ -383,11 +404,7 @@
     "information_types": "سه نوع اطلاعات",
     "help_translate": "کمک به ترجمه"
   },
-  "Roles": {
-    "admin": "مدیر",
-    "redactor": "ویرایشگر",
-    "translator": "مترجم"
-  },
+  "Roles": { "admin": "مدیر", "redactor": "ویرایشگر", "translator": "مترجم" },
   "topLink": "بالای صفحه",
   "close": "بستن",
   "showBreadcrumb": "راهنمای سایت را ببینید",
@@ -498,7 +515,9 @@
     "retry_search": "برای گسترده ی ساختن جستجو خود کوشش نمایید برخی از تگ ها را خاموش کنید"
   },
   "MobileAppModal": {
-    "download": "برنامه را دانلود کنید"
+    "download": "برنامه را دانلود کنید",
+    "continue": "به هر حال ادامه دهید",
+    "description": "در گوشی خود، از برنامه Réfugiés.info استفاده کنید. این کار راحت‌تر و مناسب‌تر است!"
   },
   "StaticPages": {
     "helpTitle": "تو تنها نیستی",

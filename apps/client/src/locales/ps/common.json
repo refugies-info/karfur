@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "لټون",
+    "title": "یو معلوماتي فایل موندل",
+    "subtitle": "زموږ د {{count}} ځايي برنامو او طرزالعملونو فایلونو له منځه لټون وکړئ.",
     "updated": "تازه شوي",
     "demarcheTitle": "د طرزالعملونو فایلونه",
     "dispositifTitle": "د برنامو فایلونه",
@@ -88,25 +90,42 @@
     "seeButton": "د فایلونو کتل",
     "titleThemes": "د ادغام موضوعات",
     "positionButton": "زما موقعیت وکاروئ",
+    "positionEnable": "تاسو باید د خپل براوزر جیولوکیشن فعال کړئ",
+    "notDeployedText": "ځایي فعالیتونو د څانګي په کچه لیست شوي- {{department}}. ستاسو لټون ممکن لږ پایلې ولري.",
     "france": "ټوله فرانسه",
     "online": "آنلاین",
+    "keyword": "د کلیدي کلمې په لیکلو سره لټون کول",
     "keywordPlaceholder": "ځای ماموریت، د استوګني اجازه ...",
     "department": "یوښار یا یوه څانګه لتول",
+    "theme": "موضوع",
     "themesPlaceholder": "په موضوعاتو کې لټون کول",
     "filters": "د لټون فلټرکول",
     "filterAge": "د عمر حد ټاکل",
     "filterFrenchLevel": "د فرانسوي ژبې کچه",
+    "filterLanguage": "ژباړه",
+    "filterLocation": "څانګه",
     "filterPublic": "هدف لیدونکي",
     "filterStatus": "حالت",
     "all": "ټول",
     "resetFilters": "ټول فلټرونه پاک کول",
     "titleResults": "ستاسو د لټون لپاره فایلونه",
     "noResultText": "لیږ فلټرونه وکاروئ یا د کلیدي کلمې املا له سره وګورئ",
+    "suggestedTitle": "تاسو ممکن دا فایلونه هم په زړه پورې ومومئ",
     "seeMore": "نور وګورئ",
     "seeLess": "لیږ کتل",
     "results": "نتیجه",
     "seeAllButton": "ټول کتل",
-    "fichesLanguageFilter": "فایلونه په"
+    "fichesLanguageFilter": "فایلونه په",
+    "filtersAndSortModalTitle": "فلټرونه او ترتیب",
+    "sortBy": "ترتیب پر بنسټ د",
+    "clear": "حذف کول",
+    "seeAllButtonWithCount": "{{count}} فایلونه وګورئ",
+    "tooltipAucuneFicheCorrespondante": "هیڅ فایل د دې معیار او انتخاب سره سمون نه لري. ستاسو نور فلټرونه د دې ځانګړي معیار د فلټر کولو لپاره تنظیم کړئ.",
+    "noResultTitle": "اوپس! هیڅ نتیحه ستاسو د لټون معیارونو مطابق ونه موندل شوه.",
+    "noResultOther": "تاسو ممکن دا فایلونه هم په زړه پورې ومومئ",
+    "Recherche.fiches_zero": "فایلونه",
+    "Recherche.fiches_one": "فایلونه",
+    "Recherche.fiches_other": "فایلونه"
   },
   "Widget": {
     "fiches": "فایلونه",
@@ -166,9 +185,14 @@
     "frenchLevelA": "پيل کونکي کچه  A1/A2",
     "frenchLevelB": "متوسطه کچه B1/B2",
     "frenchLevelC": "پرمختللي کچه C1/C2",
+    "sortLocation": "ترتیب پر بنسټ د څانګې",
+    "sortTheme": "ترتیب پر بنسټ د موضوع",
+    "sortDate": "ترتیب پر بنسټ د نیټې",
+    "sortView": "ترتیب پر بنسټ د محبوبیت",
     "typeAll": "ټولې فیشونه",
     "typeDispositif": "وسایل",
-    "typeDemarche": "مراحل"
+    "typeDemarche": "مراحل",
+    "typeRessource": "آنلاین سرچینې"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",
@@ -197,10 +221,7 @@
     "not_an_email": "دا بریښنالیک نه دی",
     "check_mail": "لیکدود چک کړئ"
   },
-  "UnauthorizedAccess": {
-    "access_denied": "لاسرسی رد شو",
-    "back_home": "اصلي صفحی ته بیرته راستنیدل"
-  },
+  "UnauthorizedAccess": { "access_denied": "لاسرسی رد شو", "back_home": "اصلي صفحی ته بیرته راستنیدل" },
   "Dispositif": {
     "share": "فایل شریک کړئ",
     "updated": "...میاشي کیږي چې نوي شوي",
@@ -377,11 +398,7 @@
     "information_types": "درې ډوله مالومات",
     "help_translate": "په ژباړه کې مرسته کول"
   },
-  "Roles": {
-    "admin": "اډمین",
-    "redactor": "ایډیټر او کره کتونکی",
-    "translator": "د صفحي پورته برخه"
-  },
+  "Roles": { "admin": "اډمین", "redactor": "ایډیټر او کره کتونکی", "translator": "د صفحي پورته برخه" },
   "topLink": "د پاڼې سر",
   "close": "بندول",
   "showBreadcrumb": "د اضافي معلوماتو لست وګورئ",
@@ -492,7 +509,9 @@
     "retry_search": "د ځینې بخشونو(ٹاګونو) په خاموشه کولو سره د لټون د پراخه کولو هڅه وکړئ"
   },
   "MobileAppModal": {
-    "download": "اپلیکیشن راښکته کړئ"
+    "download": "اپلیکیشن راښکته کړئ",
+    "continue": "په هرصورت دوام ورکول",
+    "description": "په خپل سمارټ تلیفون کې د Réfugiés.info اپلیکیشن وکاروئ، دا ډیر اسانه او مناسب دی!"
   },
   "StaticPages": {
     "helpTitle": "تاسو پدې کار کي یوازي نه یاست",

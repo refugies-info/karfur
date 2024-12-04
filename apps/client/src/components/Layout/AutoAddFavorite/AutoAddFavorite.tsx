@@ -7,7 +7,7 @@ import Toast from "~/components/UI/Toast";
 import { useAuth } from "~/hooks";
 import { isContentFavorite } from "~/hooks/useFavorites";
 import { fetchUserActionCreator } from "~/services/User/user.actions";
-import { userDetailsSelector } from "~/services/User/user.selectors";
+import { userFavoritesSelector } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import API from "~/utils/API";
 
 const AutoAddFavorite = () => {
@@ -16,12 +16,12 @@ const AutoAddFavorite = () => {
   const dispatch = useDispatch();
   const { isAuth } = useAuth();
   const favoriteContentId = router.query.addFavorite as string;
-  const userDetails = useSelector(userDetailsSelector);
+  const favorites = useSelector(userFavoritesSelector);
   const [showFavoriteToast, setShowFavoriteToast] = useState<boolean>(false);
 
   useEffect(() => {
-    if (favoriteContentId && isAuth && userDetails) {
-      const isAlreadyFavorite = isContentFavorite(userDetails, favoriteContentId);
+    if (favoriteContentId && isAuth && favorites) {
+      const isAlreadyFavorite = isContentFavorite(favorites, favoriteContentId);
       if (isAlreadyFavorite) return;
 
       API.addUserFavorite({ dispositifId: favoriteContentId }).then(() => {
@@ -35,7 +35,7 @@ const AutoAddFavorite = () => {
       params.delete("addFavorite");
       router.replace({ pathname, query: params.toString() }, undefined, { shallow: true });
     }
-  }, [favoriteContentId, isAuth, userDetails, dispatch, router]);
+  }, [favoriteContentId, isAuth, favorites, dispatch, router]);
 
   return (
     <Toast open={showFavoriteToast} closeCallback={() => setShowFavoriteToast(false)}>

@@ -1,5 +1,5 @@
-import React from "react";
-import { connectSearchBox } from "react-instantsearch-native";
+import React, { useEffect } from "react";
+import { useSearchBox } from "react-instantsearch-core";
 import { TextInput, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
@@ -31,16 +31,30 @@ const StyledInput = styled.TextInput<{ isRTL: boolean }>`
 `;
 
 interface Props {
-  currentRefinement: string;
-  refine: any;
+  searchInputValue: string;
+  setSearchInputValue: (value: string) => void;
   backCallback: () => void;
 }
 
-const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback }) => {
+const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, backCallback }) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
+  const { query, refine } = useSearchBox();
 
-  React.useEffect(() => {
+  const setQuery = (newQuery: string) => {
+    setSearchInputValue(newQuery);
+    refine(newQuery);
+  };
+
+  // Track when the InstantSearch query changes to synchronize it with
+  // the React state.
+  // We bypass the state update if the input is focused to avoid concurrent
+  // updates when typing.
+  if (query !== searchInputValue && !input.current?.isFocused()) {
+    setSearchInputValue(query);
+  }
+
+  useEffect(() => {
     // set focus when component mounts
     setTimeout(() => {
       if (input && input.current) input.current.focus();
@@ -63,15 +77,15 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback })
         <StyledInput
           // @ts-ignore
           ref={input}
-          onChangeText={(value: string) => refine(value)}
-          value={currentRefinement}
+          onChangeText={setQuery}
+          value={searchInputValue}
           placeholder={t("search_screen.search", "Rechercher")}
           placeholderTextColor={styles.colors.darkGrey}
           isRTL={isRTL}
           testID="test-city-search"
         />
         <TouchableOpacity
-          onPress={() => refine("")}
+          onPress={() => setQuery("")}
           accessibilityRole="button"
           accessible={true}
           accessibilityLabel={t("global.clear_selection_accessibility")}
@@ -83,4 +97,4 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine, backCallback })
   );
 };
 
-export default connectSearchBox(SearchBox);
+export default SearchBox;

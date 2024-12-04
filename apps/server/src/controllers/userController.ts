@@ -184,7 +184,7 @@ export class UserController extends Controller {
           "departments",
         ]),
         sso: !request.user.password,
-      },
+      } as unknown as GetUserInfoResponse,
     };
   }
 

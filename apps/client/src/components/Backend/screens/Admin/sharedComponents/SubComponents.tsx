@@ -8,12 +8,12 @@ import { colors } from "~/utils/colors";
 import styles from "../Admin.module.scss";
 import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
 
-const Container = styled.div<{ isDarkBackground: boolean }>`
+const Container = styled.div<{ $isDarkBackground: boolean }>`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props: { isDarkBackground: boolean }) => (props.isDarkBackground ? colors.white : colors.gray90)};
-  background-color: ${(props) => (props.isDarkBackground ? colors.gray90 : colors.white)};
+  color: ${(props: { $isDarkBackground: boolean }) => (props.$isDarkBackground ? colors.white : colors.gray90)};
+  background-color: ${(props) => (props.$isDarkBackground ? colors.gray90 : colors.white)};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
@@ -23,7 +23,7 @@ const Container = styled.div<{ isDarkBackground: boolean }>`
 export const TypeContenu = (props: { type: string; isDetailedVue: boolean }) => {
   const correctedType = props.type === "dispositif" ? "Dispositif" : "Démarche";
   const isDarkBackground = props.type === "dispositif" || props.isDetailedVue;
-  return <Container isDarkBackground={isDarkBackground}>{correctedType}</Container>;
+  return <Container $isDarkBackground={isDarkBackground}>{correctedType}</Container>;
 };
 
 const TitleContainer = styled.div`
@@ -96,22 +96,22 @@ export const Structure = (props: { sponsor: GetAllDispositifsResponse["mainSpons
 };
 
 interface StyledStatusContainer {
-  disabled: boolean;
-  textColor?: string;
-  color: string;
+  $disabled: boolean;
+  $textColor?: string;
+  $color: string;
 }
 export const StyledStatusContainer = styled.div<StyledStatusContainer>`
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
-  background-color: ${(props: StyledStatusContainer) => props.color};
+  background-color: ${(props: StyledStatusContainer) => props.$color};
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
   white-space: nowrap;
-  cursor: ${(props: StyledStatusContainer) => (props.disabled ? "not-allowed" : "pointer")};
-  color: ${(props: StyledStatusContainer) => (props.textColor ? props.textColor : colors.white)};
+  cursor: ${(props: StyledStatusContainer) => (props.$disabled ? "not-allowed" : "pointer")};
+  color: ${(props: StyledStatusContainer) => (props.$textColor ? props.$textColor : colors.white)};
 `;
 export const getColorAndStatus = (text: string, isAdmin?: boolean) => {
   const correspondingStatusElement = correspondingStatus.find((element) => element.storedStatus === text);
@@ -164,15 +164,15 @@ export const StyledStatus = (props: {
   const textColor = props.overrideColor ? colors.white : props.textColor ? props.textColor : colorsAndStatus.textColor;
 
   return (
-    <StyledStatusContainer color={color} textColor={textColor} disabled={!!props.disabled}>
+    <StyledStatusContainer $color={color} $textColor={textColor} $disabled={!!props.disabled}>
       {status}
     </StyledStatusContainer>
   );
 };
 
 interface ButtonContainerProps {
-  disabled?: boolean;
-  hoverColor?: string;
+  $disabled?: boolean;
+  $hoverColor?: string;
 }
 const ButtonContainer = styled.div<ButtonContainerProps>`
   width: 40px;
@@ -184,16 +184,16 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
-  cursor: ${(props: ButtonContainerProps) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props: ButtonContainerProps) => (props.$disabled ? "not-allowed" : "pointer")};
   &:hover {
-    background-color: ${(props: ButtonContainerProps) => (props.disabled ? colors.gray70 : props.hoverColor)};
+    background-color: ${(props: ButtonContainerProps) => (props.$disabled ? colors.gray70 : props.$hoverColor)};
   }
 `;
 export const ValidateButton = (props: { onClick: () => void; disabled: boolean }) => (
   <ButtonContainer
     onClick={props.onClick}
-    disabled={props.disabled}
-    hoverColor={colors.validationHover}
+    $disabled={props.disabled}
+    $hoverColor={colors.validationHover}
     data-testid="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
@@ -203,7 +203,7 @@ export const ValidateButton = (props: { onClick: () => void; disabled: boolean }
 );
 
 export const SeeButton = (props: { burl: string }) => (
-  <ButtonContainer hoverColor={colors.gray90}>
+  <ButtonContainer $hoverColor={colors.gray90}>
     <a href={props.burl} target="_blank" rel="noopener noreferrer">
       <div style={{ marginBottom: "4px" }}>
         <EVAIcon name="eye" fill={colors.white} size={20} />
@@ -213,7 +213,7 @@ export const SeeButton = (props: { burl: string }) => (
 );
 
 export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId?: string }) => (
-  <ButtonContainer hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
+  <ButtonContainer $hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="edit" fill={colors.white} size={20} />
     </div>
@@ -223,8 +223,8 @@ export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId
 export const DeleteButton = (props: { onClick: (event: any) => void; disabled: boolean; testId?: string }) => (
   <ButtonContainer
     onClick={props.disabled ? undefined : props.onClick}
-    hoverColor={colors.error}
-    disabled={props.disabled}
+    $hoverColor={colors.error}
+    $disabled={props.disabled}
     data-testid={props.testId}
   >
     <div style={{ marginBottom: "4px" }}>
@@ -233,9 +233,9 @@ export const DeleteButton = (props: { onClick: (event: any) => void; disabled: b
   </ButtonContainer>
 );
 
-const FilterButtonContainer = styled.div<{ isSelected: boolean }>`
-  background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.gray90 : colors.white)};
-  color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};
+const FilterButtonContainer = styled.div<{ $isSelected: boolean }>`
+  background: ${(props: { $isSelected: boolean }) => (props.$isSelected ? colors.gray90 : colors.white)};
+  color: ${(props: { $isSelected: boolean }) => (props.$isSelected ? colors.white : colors.gray90)};
   border-radius: 12px;
   font-weight: normal;
   font-size: 16px;
@@ -247,7 +247,7 @@ const FilterButtonContainer = styled.div<{ isSelected: boolean }>`
   height: fit-content;
 `;
 export const FilterButton = (props: { onClick: () => void; text: string; isSelected: boolean }) => (
-  <FilterButtonContainer onClick={props.onClick} isSelected={props.isSelected} key={props.text}>
+  <FilterButtonContainer onClick={props.onClick} $isSelected={props.isSelected} key={props.text}>
     {props.text}
   </FilterButtonContainer>
 );

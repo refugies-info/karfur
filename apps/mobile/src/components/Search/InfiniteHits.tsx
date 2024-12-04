@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { connectInfiniteHits } from "react-instantsearch-native";
+import { useInfiniteHits } from "react-instantsearch-core";
 import { FlatList, Keyboard, Platform, View } from "react-native";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -17,16 +17,13 @@ const ErrorContainer = styled.View`
 `;
 
 interface Props {
-  hits: any[];
-  hasMore: boolean;
-  refineNext: any;
   navigation: any;
   selectedLanguage: string | null;
   query: string;
   nbContents: Record<string, number>;
 }
 
-const InfiniteHits = ({ hits, hasMore, refineNext, navigation, selectedLanguage, query, nbContents }: Props) => {
+const InfiniteHits = ({ navigation, selectedLanguage, query, nbContents }: Props) => {
   const { t } = useTranslationWithRTL();
   const dismissMode: "on-drag" | "none" = "on-drag";
   const keyboardDismissProp =
@@ -35,6 +32,8 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation, selectedLanguage,
   const contents = useSelector(contentsSelector);
   const contentIds = useMemo(() => contents.map((c) => c._id.toString()), [contents]);
   const groupedContents = useSelector(groupedContentsSelector);
+
+  const { hits, isLastPage, showMore } = useInfiniteHits();
 
   const nbResults = React.useMemo(() => {
     return (hits || []).filter((hit) => {
@@ -71,7 +70,7 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation, selectedLanguage,
       <FlatList
         data={hits}
         keyExtractor={(item) => item.objectID}
-        onEndReached={() => hasMore && refineNext()}
+        onEndReached={() => !isLastPage && showMore()}
         contentContainerStyle={{ paddingBottom: styles.margin * 6 }}
         {...keyboardDismissProp}
         ListHeaderComponent={<NbResults nbResults={nbResults} />}
@@ -88,4 +87,4 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation, selectedLanguage,
   );
 };
 
-export default connectInfiniteHits(InfiniteHits);
+export default InfiniteHits;

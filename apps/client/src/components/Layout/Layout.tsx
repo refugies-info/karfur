@@ -31,6 +31,8 @@ import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import { toggleSpinner } from "~/services/Tts/tts.actions";
 import { userDetailsSelector } from "~/services/User/user.selectors";
+import { fetchUserFavoritesActionCreator } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { userFavoritesSelector } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import locale from "~/utils/locale";
 import AutoAddFavorite from "./AutoAddFavorite";
 import DownloadAppBanner from "./DownloadAppBanner";
@@ -169,6 +171,16 @@ const Layout = (props: Props) => {
       dispatch(fetchLanguesActionCreator());
     }
   }, [langues.length, isLanguagesLoading, hasLanguagesError, dispatch]);
+
+  // USER FAVORITES
+  const userFavorites = useSelector(userFavoritesSelector);
+  const isUserFavoritesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
+  const hasUserFavoritesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
+  useEffect(() => {
+    if (user && userFavorites.length === 0 && !isUserFavoritesLoading && !hasUserFavoritesError) {
+      dispatch(fetchUserFavoritesActionCreator(router.locale || "fr"));
+    }
+  }, [user, userFavorites.length, isUserFavoritesLoading, hasUserFavoritesError, dispatch, router.locale]);
 
   const computeFullSentence = (nodeList: any) => {
     let sentence = "";

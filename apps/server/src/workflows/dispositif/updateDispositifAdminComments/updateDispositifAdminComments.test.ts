@@ -64,7 +64,6 @@ describe.skip("updateDispositifAdminComments", () => {
           dispositifId: "id",
           adminComments: "adminComments",
           adminProgressionStatus: "adminProgressionStatus",
-          adminPercentageProgressionStatus: "adminPercentageProgressionStatus",
         },
       },
       user: { _id: "userId" },
@@ -78,7 +77,6 @@ describe.skip("updateDispositifAdminComments", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       adminComments: "adminComments",
       adminProgressionStatus: "adminProgressionStatus",
-      adminPercentageProgressionStatus: "adminPercentageProgressionStatus",
       lastAdminUpdate: date,
     });
 
