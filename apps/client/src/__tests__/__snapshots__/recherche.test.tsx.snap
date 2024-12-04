@@ -6,6 +6,38 @@ exports[`recherche renders search results 1`] = `
     class="container"
   >
     <div
+      class="fr-notice fr-notice--info"
+      id="fr-notice-:r0:"
+    >
+      <div
+        class="fr-container"
+      >
+        <div
+          class="fr-notice__body"
+        >
+          <p
+            class="fr-notice__title"
+          >
+            Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info ! Découvrez toutes les nouveautés dans 
+            <a
+              class="text-decoration-underline"
+              href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              notre article d'aide
+            </a>
+            .
+          </p>
+          <button
+            class="fr-btn--close fr-btn"
+          >
+            Masquer le message
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       class="title"
     >
       <div
@@ -28,24 +60,13 @@ exports[`recherche renders search results 1`] = `
         <div
           class="fr-input-group container searchZone"
         >
-          <label
-            class="fr-label"
-            for="input-:r0:"
-          >
-            Url du site :
-            <span
-              class="fr-hint-text"
-            >
-              Saisissez une url valide, commençant par https://
-            </span>
-          </label>
           <div
             class="fr-input-wrap fr-icon-search-line"
           >
             <input
-              aria-describedby="input-:r0:-desc-error"
+              aria-describedby="input-:r1:-desc-error"
               class="fr-input"
-              id="input-:r0:"
+              id="input-:r1:"
               placeholder="Rechercher par mot-clé"
               type="text"
               value=""
@@ -54,7 +75,7 @@ exports[`recherche renders search results 1`] = `
           <div
             aria-live="polite"
             class="fr-messages-group"
-            id="input-:r0:-messages-group"
+            id="input-:r1:-messages-group"
           />
         </div>
         <div
@@ -64,206 +85,214 @@ exports[`recherche renders search results 1`] = `
             class="filter"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r1:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
                 >
-                  Recherche.filterLocation
-                </span>
-                 
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
+                  <span
+                    class="label"
+                  >
+                    Recherche.filterLocation
+                  </span>
+                   
+                  <i
+                    class="ri-arrow-down-s-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button values"
-                data-state="closed"
-                id="radix-:r3:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label limitedWidth"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button values"
                 >
-                  Français
-                </span>
-              </button>
-              <button
-                class="clear"
-                title="Recherche.resetButton"
-              >
-                <i
-                  class="ri-close-circle-fill"
-                />
-              </button>
+                  <span
+                    class="label limitedWidth"
+                  >
+                    Français
+                  </span>
+                </button>
+                <button
+                  class="clear"
+                  title="Recherche.resetButton"
+                >
+                  <i
+                    class="ri-close-circle-fill"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r5:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
                 >
-                  Recherche.filterStatus
-                </span>
-                 
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
+                  <span
+                    class="label"
+                  >
+                    Recherche.filterStatus
+                  </span>
+                   
+                  <i
+                    class="ri-arrow-down-s-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r7:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
                 >
-                  Recherche.filterPublic
-                </span>
-                 
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
+                  <span
+                    class="label"
+                  >
+                    Recherche.filterPublic
+                  </span>
+                   
+                  <i
+                    class="ri-arrow-down-s-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:r9:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
                 >
-                  Recherche.filterAge
-                </span>
-                 
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
+                  <span
+                    class="label"
+                  >
+                    Recherche.filterAge
+                  </span>
+                   
+                  <i
+                    class="ri-arrow-down-s-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:rb:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
                 >
-                  Recherche.filterFrenchLevel
-                </span>
-                 
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
+                  <span
+                    class="label"
+                  >
+                    Recherche.filterFrenchLevel
+                  </span>
+                   
+                  <i
+                    class="ri-arrow-down-s-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter filter filterHiddenOnMobile"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:rd:"
-                type="button"
+              <div
+                class="container"
               >
-                <span
-                  class="label"
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
                 >
-                  Recherche.filterLanguage
-                </span>
-                 
-                <i
-                  class="ri-arrow-down-s-line"
-                />
-              </button>
+                  <span
+                    class="label"
+                  >
+                    Recherche.filterLanguage
+                  </span>
+                   
+                  <i
+                    class="ri-arrow-down-s-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div
             class="filter collapsedFiltersButton"
           >
             <div
-              class="container"
+              class="menuContainer"
             >
-              <button
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="button"
-                data-state="closed"
-                id="radix-:rf:"
-                type="button"
+              <div
+                class="container"
               >
-                <i
-                  class="ri-equalizer-line"
-                />
-              </button>
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="button"
+                >
+                  <i
+                    class="ri-equalizer-line"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -310,7 +339,7 @@ exports[`recherche renders search results 1`] = `
               aria-haspopup="true"
               class="sort_button"
               data-state="closed"
-              id="radix-:rh:"
+              id="radix-:r2:"
               type="button"
             >
               <span
@@ -350,12 +379,14 @@ exports[`recherche renders search results 1`] = `
           </div>
           <button
             class="fr-btn fr-btn--tertiary ri-eraser-line fr-btn--icon-right"
-            id="fr-button-:rj:"
+            id="fr-button-:r4:"
           >
             Recherche.resetFilters
           </button>
         </div>
-        <div>
+        <div
+          style="width: 100%;"
+        >
           <h2
             class="no_results_other"
           >

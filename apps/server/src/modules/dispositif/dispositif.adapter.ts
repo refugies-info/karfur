@@ -62,7 +62,7 @@ export const filterDispositifsForUpdateReminders = (dispositifs: Dispositif[], n
 
 export interface FormattedDispositif {
   creatorId: UserId;
-  username: string;
+  firstName: string | undefined;
   email: string;
   dispositifs: { _id: DispositifId; titreInformatif: string }[];
 }
@@ -80,7 +80,7 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
     if (!isCreatorIdInArray && dispositif.getCreator()?.email) {
       formattedArray.push({
         creatorId: dispositif.creatorId._id,
-        username: dispositif.getCreator()?.username,
+        firstName: dispositif.getCreator()?.firstName,
         email: dispositif.getCreator()?.email,
         dispositifs: [{ _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") }],
       });
@@ -106,7 +106,7 @@ interface Result {
   region: string | null;
 }
 
-const getRegionName = (regionData: RegionData | undefined, department: string) => {
+const getRegionName = (regionData: RegionData, department: string) => {
   if (department === "All") return "France";
   return regionData.region || null;
 };
@@ -126,12 +126,14 @@ export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] 
     } else {
       for (const department of departments) {
         const regionData = departmentRegionCorrespondency.find((data) => data.department === department);
-        const region = getRegionName(regionData, department);
-        result.push({
-          _id: dispositif._id,
-          department,
-          region,
-        });
+        if (regionData) {
+          const region = getRegionName(regionData, department);
+          result.push({
+            _id: dispositif._id,
+            department,
+            region,
+          });
+        }
       }
     }
   }

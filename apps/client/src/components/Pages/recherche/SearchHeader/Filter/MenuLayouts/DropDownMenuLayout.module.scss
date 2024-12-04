@@ -5,13 +5,25 @@
 @import "~/scss/mixins/text";
 @import "~/scss/variables";
 
+.menuContainer {
+  position: relative;
+  z-index: 30;
+  min-width: max-content;
+}
+
 .menu {
   // Layout
   display: flex;
   padding: 8px;
   flex-direction: column;
   align-items: flex-start;
-  z-index: 30;
+  position: absolute;
+  bottom: -0.5em;
+  height: fit-content;
+  width: fit-content;
+  min-width: 16em;
+  transform: translateY(100%);
+  z-index: 900;
 
   // Style
   border-top: 1px solid var(--background-open-blue-france);
@@ -21,14 +33,13 @@
   box-shadow: 0 4px 12px 0 rgb(0 0 18 / 16%);
 }
 
-.menu button:active {
-  background: red;
+.open {
+  z-index: 20;
 }
 
 .menuItemLabel {
   @include dsfr-text("large");
 
-  border: 1px solid green;
   color: var(--text-title-grey);
 
   &:not(:first-child) {

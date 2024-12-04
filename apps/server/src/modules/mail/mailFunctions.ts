@@ -6,6 +6,7 @@ import { getUserById } from "../users/users.repository";
 import {
   sendPublishedFicheMailToCreatorService,
   sendPublishedFicheMailToStructureMembersService,
+  sendValidatedAndPublishedMailService,
 } from "./mail.service";
 
 export const sendPublishedMailToCreator = async (
@@ -15,7 +16,7 @@ export const sendPublishedMailToCreator = async (
   lien: string,
 ) => {
   const userNeededFields = {
-    username: 1,
+    firstName: 1,
     email: 1,
     status: 1,
   };
@@ -26,7 +27,7 @@ export const sendPublishedMailToCreator = async (
     logger.info("[publish dispositif] creator has email");
 
     await sendPublishedFicheMailToCreatorService({
-      pseudo: creator.username,
+      firstName: creator.firstName,
       titreInformatif,
       titreMarque,
       lien,
@@ -50,7 +51,7 @@ export const sendPublishedMailToStructureMembers = async (
         membreId: membre._id,
       });
       void sendPublishedFicheMailToStructureMembersService({
-        pseudo: membre.username,
+        firstName: membre.firstName,
         titreInformatif: titreInformatif,
         titreMarque: titreMarque,
         lien,
@@ -58,6 +59,28 @@ export const sendPublishedMailToStructureMembers = async (
         email: membre.email,
         dispositifId,
         userId: membre._id,
+      });
+    }),
+  );
+
+export const sendValidatedAndPublishedMail = async (
+  membres: User[],
+  titreInformatif: string,
+  titreMarque: string,
+  lien: string,
+) =>
+  Promise.all(
+    membres.map((membre) => {
+      logger.info("[sendValidatedAndPublishedMail] send mail to members", {
+        membreId: membre._id,
+      });
+      return sendValidatedAndPublishedMailService({
+        userId: membre._id,
+        email: membre.email,
+        firstName: membre.firstName,
+        titreInformatif: titreInformatif,
+        titreMarque: titreMarque,
+        lien,
       });
     }),
   );

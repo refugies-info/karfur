@@ -32,7 +32,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f34de63124662360642",
     department: "07 - Ardèche",
     operator: "Forum Réfugiés",
-    email: "direction@forumrefugies.org ",
+    email: "direction@forumrefugies.org",
     phone: "04 78 03 74 45",
   },
   {
@@ -78,7 +78,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f35de63124662360643",
     department: "15 - Cantal",
     operator: "Forum Réfugiés",
-    email: "direction@forumrefugies.org ",
+    email: "direction@forumrefugies.org",
     phone: "04 78 03 74 45",
   },
   {
@@ -129,6 +129,7 @@ export const operators: Operator[] = [
   {
     department: "25 - Doubs",
     operator: "Coallia",
+    email: "agir25@coallia.org",
   },
   {
     dispositifId: "660d1f35de63124662360644",
@@ -141,6 +142,13 @@ export const operators: Operator[] = [
     operator: "YSOS, SOS Solidarités",
     email: "siege@ysos.fr",
     phone: "02 32 62 35 38",
+  },
+  {
+    dispositifId: "660d1f36de63124662360664",
+    department: "28 - Eure-et-Loir",
+    operator: "Coallia",
+    email: "agir.28@coallia.org",
+    phone: "06 28 97 87 83",
   },
   {
     dispositifId: "660d1f37de63124662360672",
@@ -185,14 +193,14 @@ export const operators: Operator[] = [
     department: "35 - Ille-et-Vilaine",
     operator: "Coallia",
     email: "agir35@coallia.org",
-    phone: "07 77 37 38 27",
+    phone: "06 17 34 19 84",
   },
   {
     dispositifId: "660d1f34de6312466236063d",
     department: "36 - Indre",
     operator: "Coallia",
-    email: "aline.brecheliere-morel@coallia.org",
-    phone: "05,49,92,29,23",
+    email: "agir36@coallia.org",
+    phone: "05 49 92 29 23",
   },
   {
     dispositifId: "660d1f35de63124662360645",
@@ -269,8 +277,9 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f37de6312466236066a",
     department: "49 - Maine-et-Loire",
-    operator: "INALTA Formation",
+    operator: "Corylus Form@tions",
     email: "maine.et.loire@agir495372.fr",
+    phone: "02 41 67 71 45",
   },
   {
     dispositifId: "660d1f37de63124662360678",
@@ -288,8 +297,9 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f36de63124662360665",
     department: "53 - Mayenne",
-    operator: "INALTA Formation",
+    operator: "Corylus Form@tions",
     email: "mayenne@agir495372.fr",
+    phone: "07 64 75 60 03",
   },
   {
     dispositifId: "660d1f38de6312466236067e",
@@ -302,13 +312,13 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de6312466236066c",
     department: "56 - Morbihan",
     operator: "Coallia",
-    email: "laurent.denouel@collia.org",
+    email: "agir56@coallia.org",
   },
   {
     dispositifId: "660d1f35de6312466236064c",
     department: "57 - Moselle",
     operator: "AMLI",
-    email: "amli.agir@batigere.fr ",
+    email: "amli.agir@batigere.fr",
     phone: "03 87 16 33 00",
   },
   {
@@ -332,10 +342,15 @@ export const operators: Operator[] = [
     email: "agir.60@coallia.org",
   },
   {
+    department: "61 - Orne",
+    operator: "Coallia",
+    email: "agir61@coallia.org",
+  },
+  {
     dispositifId: "660d18e9684cbc7e836f00d5",
     department: "63 - Puy-de-Dôme",
     operator: "Cécler",
-    phone: "04 77 30 32 95",
+    phone: "04 28 70 18 64",
   },
   {
     dispositifId: "660d1f36de6312466236065c",
@@ -369,7 +384,7 @@ export const operators: Operator[] = [
     dispositifId: "660d18ea684cbc7e836f00d6",
     department: "69 - Rhône",
     operator: "Forum Réfugiés",
-    email: "direction@forumrefugies.org ",
+    email: "direction@forumrefugies.org",
     phone: "04 78 03 74 45",
   },
   {
@@ -382,13 +397,14 @@ export const operators: Operator[] = [
   {
     department: "71 - Saône-et-Loire",
     operator: "Coallia",
-    email: "pas encore communiqué",
+    email: "agir.71@coallia.org",
   },
   {
     dispositifId: "660d1f36de63124662360663",
     department: "72 - Sarthe",
-    operator: "INALTA Formation",
+    operator: "Corylus Form@tions",
     email: "sarthe@agir495372.fr",
+    phone: "02 72 16 46 10",
   },
   {
     dispositifId: "660d1f35de63124662360648",
@@ -408,6 +424,13 @@ export const operators: Operator[] = [
     operator: "FTDA",
     email: "votchoumou@france-terre-asile.org",
     phone: "01 40 40 27 20",
+  },
+  {
+    dispositifId: "660d1f36de63124662360662",
+    department: "78 - Yvelines",
+    operator: "Coallia",
+    email: "agir78@coallia.org",
+    phone: "07 79 27 77 91",
   },
   {
     dispositifId: "660d1f38de63124662360682",
@@ -451,8 +474,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f38de6312466236067b",
     department: "86 - Vienne",
     operator: "Coallia",
-    email: "aline.brecheliere-morel@coallia.org",
-    phone: "05 49 92 29 23",
+    email: "agir86@coallia.org",
   },
   {
     dispositifId: "660d1f36de6312466236065a",
@@ -462,6 +484,7 @@ export const operators: Operator[] = [
     phone: "05 55 77 57 77",
   },
   {
+    dispositifId: "660d1f38de63124662360681",
     department: "88 - Vosges",
     operator: "Coallia",
     email: "contact-vosges@coallia.org",
@@ -497,7 +520,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f38de6312466236067a",
     department: "95 - Val-d'Oise",
     operator: "Coallia",
-    email: "contact@coallia.org",
+    email: "agirvaldoise@coallia.org",
   },
 ];
 

@@ -1,5 +1,6 @@
-import { searchClient as algoliasearch, SupportedLanguage } from "@algolia/client-search";
+import { SupportedLanguage } from "@algolia/client-search";
 import { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { SortOptions } from "~/data/searchFilters";
 import { FilterKey, getDisplayRule, RuleKey } from "~/lib/recherche/resultsDisplayRules";
 import { sortByDate, sortByLocation, sortByTheme } from "~/lib/recherche/sortContents";
@@ -150,7 +151,7 @@ const filterSuggestions = (
 let searchCache = "";
 let searchCacheResults: SimpleDispositif[] = [];
 
-const queryOnAlgolia = async (search: string, dispositifs: SimpleDispositif[], locale: string) => {
+export const queryAlgolia = async (search: string, dispositifs: SimpleDispositif[], locale: string) => {
   let filteredDispositifsByAlgolia: SimpleDispositif[] = [...dispositifs];
   if (search) {
     if (search !== searchCache) {
@@ -162,18 +163,19 @@ const queryOnAlgolia = async (search: string, dispositifs: SimpleDispositif[], l
       if (!["ti", "fr"].includes(locale)) {
         queryLanguages.push(locale as SupportedLanguage);
       }
-      hits = await searchClient
-        .searchSingleIndex({
+      const { results } = await searchClient.searchForHits([
+        {
           indexName: indexName!,
-          searchParams: {
+          params: {
             query: search,
             restrictSearchableAttributes: getSearchableAttributes(locale),
             analyticsTags: [`ln_${locale}`],
             queryLanguages,
             hitsPerPage: 600,
           },
-        })
-        .then(({ hits }) => hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult })));
+        },
+      ]);
+      hits = results[0].hits.map((h) => ({ id: h.objectID, highlight: h._highlightResult }));
 
       filteredDispositifsByAlgolia = hits
         .map((hit) => {
@@ -259,27 +261,6 @@ export const queryDispositifsWithAlgolia = async (
   locale: string,
   allNeeds: GetNeedResponse[],
 ): Promise<Results> => {
-  const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
+  const filteredDispositifsByAlgolia = await queryAlgolia(query.search, dispositifs, locale);
   return { ...queryDispositifs(query, filteredDispositifsByAlgolia, allNeeds), algolia: filteredDispositifsByAlgolia };
-};
-
-/**
- * Query the dispositifs with all filters except themes or needs. Useful for the theme dropdown popup.
- * @async
- * @param query - search query
- * @param dispositifs - list of dispositifs
- * @param locale - language to use for Algolia
- * @returns - results
- */
-export const queryDispositifsWithoutThemes = async (
-  query: SearchQuery,
-  dispositifs: SimpleDispositif[],
-  locale: string,
-): Promise<SimpleDispositif[]> => {
-  const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
-  return [...filteredDispositifsByAlgolia]
-    .filter((dispositif) => filterByLocations(dispositif, query.departments))
-    .filter((dispositif) => filterByAge(dispositif, query.age))
-    .filter((dispositif) => filterByFrenchLevel(dispositif, query.frenchLevel))
-    .filter((dispositif) => filterByLanguage(dispositif, query.language));
 };

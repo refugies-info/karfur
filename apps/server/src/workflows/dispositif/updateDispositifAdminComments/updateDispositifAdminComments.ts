@@ -6,19 +6,17 @@ import { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const updateDispositifAdminComments = async (id: string, body: AdminCommentsRequest, userId: any): Response => {
-  const { adminComments, adminProgressionStatus, adminPercentageProgressionStatus } = body;
+  const { adminComments, adminProgressionStatus } = body;
 
   logger.info("[updateDispositifAdminComments] data", {
     id,
     adminComments,
     adminProgressionStatus,
-    adminPercentageProgressionStatus,
   });
 
   const modifiedDispositif: Partial<Dispositif> = {
     adminComments,
     adminProgressionStatus,
-    adminPercentageProgressionStatus,
     lastAdminUpdate: new Date(),
   };
 

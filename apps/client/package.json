@@ -12,7 +12,8 @@
     "url": "git@github.com:entrepreneur-interet-general/karfur.git"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.10.2",
+    "@algolia/client-search": "^5.14.2",
+    "algoliasearch": "^5.14.2",
     "@codegouvfr/react-dsfr": "^1.14.1",
     "@hedgedoc/html-to-react": "^2.1.1",
     "@lexical/react": "^0.18.0",
@@ -77,7 +78,7 @@
     "sweetalert2": "^11.14.4",
     "typesafe-actions": "^5.1.0",
     "typescript-plugin-css-modules": "^5.1.0",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.3"
   },
   "scripts": {
     "build": "NEXT_SHARP_PATH=../../node_modules/.bin/sharp next build",
@@ -114,7 +115,7 @@
     "@types/file-saver": "^2.0.1",
     "@types/html-to-draftjs": "^1.4.0",
     "@types/jest": "^29.5.14",
-    "@types/lodash": "^4.17.12",
+    "@types/lodash": "^4.17.13",
     "@types/react": "18.3.12",
     "@types/react-autosuggest": "^10.1.5",
     "@types/react-dom": "18.3.1",
@@ -126,13 +127,13 @@
     "@types/styled-components": "^5.1.1",
     "@types/uuid": "^10.0.0",
     "@types/webrtc": "^0.0.44",
-    "@typescript-eslint/eslint-plugin": "^8.11.0",
-    "@typescript-eslint/parser": "^8.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
     "add": "^2.0.6",
     "csvtojson": "^2.0.10",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
-    "eslint-config-turbo": "^2.2.3",
+    "eslint-config-turbo": "^2.3.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.3.1",
     "jest-mock-axios": "^4.7.0-beta2",

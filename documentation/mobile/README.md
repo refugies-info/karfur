@@ -42,8 +42,8 @@ The environment variables are defined at 2 different places:
 - For **development** and **staging**, in `.env` file.
   If you change a variable here, rebuild the project after emptying the cache (`npx expo run:[ios/android]`)
 - For **production**:
-  - in `src/libs/getEnvironment.ts` for non-sensitive variables.  
-    We need a unique place to define these variables so they are accessible after a build (`eas build --platform all`) and a publication (`expo submit`).  
+  - in `src/libs/getEnvironment.ts` for non-sensitive variables.
+    We need a unique place to define these variables so they are accessible after a build (`eas build --platform all`) and a publication (`expo submit`).
     See [expo documentation](https://docs.expo.dev/build-reference/variables/#can-i-share-environment-variables-defined-in).
   - in Expo.dev (https://expo.dev/accounts/refugies-info/projects/refugies-info-app/secrets) for sensitive variables (API keys, secrets ...)
 
@@ -51,14 +51,11 @@ The environment variables are defined at 2 different places:
 
 1. Develop all the features on a specific branch.
 2. Update tests or create new one. See section [Tests](#tests)
-3. When done, merge your changes to `dev` branch. A Github Action will automatically publish the new app on `staging` environment for tests. If you want to deploy it manually, see [how to deploy on staging](#staging)
-4. When the features are validated, merge your changes to `main` branch.  
+3. When done, merge your changes to `dev` branch.
+4. When you are ready to create a staging build, use the `yarn pr:stg:mobile` command to create a PR that merges the `dev` branch to the `staging-mobile` branch. A Github Action will automatically publish the new app on `staging` environment for tests. If you want to deploy it manually, see [how to deploy on staging](#staging)
+5. When the features are validated, use the `yarn pr:prod:mobile` command to merge the `staging-mobie` branch to the `master-mobile` branch.
    Don't forget to increment the version number. See the [Version numbers](#version-numbers) section.
-5. [Deploy on production](#production). For this, you have 2 options:
-   - For bug fixes or minor updates, [publish](#publish-changes) changes to update apps automatically.  
-     On _iOS_, the update is downloaded before the app is launched.  
-     On _Android_, it's downloaded in the background and installed the second time the app is opened.
-   - For config changes or major updates (ie. change to native code), create a [build](#build-app) and submit on the stores.
+6. [Deploy on production](#production). Run the `yarn eas:submit` command to create a production build on eas and push to the app stores.  Use the app store consoles respectively to fullfill publication requirements and submit the builds for review.
 
 # Deploy
 
@@ -68,8 +65,8 @@ The main difference: we use `dev` branch as `staging`.
 
 ## Key concepts
 
-With EAS, we can create a **build** based on a **profile**. All **profiles** are described `eas.json`.  
-Each **build** targets a **channel**. A **channel** can be linked to different **branches**.  
+With EAS, we can create a **build** based on a **profile**. All **profiles** are described `eas.json`.
+Each **build** targets a **channel**. A **channel** can be linked to different **branches**.
 A **branch** accepts instant updates.
 
 This is the setup we use:
@@ -191,10 +188,6 @@ How:
 - `android.versionCode` is just an incremental id.
 
 # Development
-
-## Font
-
-We use a non open source font. The repo is private so that we can commit the font in the repo.
 
 ## Translation
 

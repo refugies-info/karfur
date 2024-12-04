@@ -1,10 +1,12 @@
 .container {
   display: flex;
-  padding: 8px 8px 8px 10px;
+  padding: 0.5em 0.5em 0.5em 10px;
   width: 100%;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5em;
   align-self: stretch;
+  cursor: pointer;
+  position: relative;
 }
 
 .disabled {
@@ -16,8 +18,8 @@
   display: flex;
   flex-wrap: wrap;
   place-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5em;
+  height: 1.5em;
   flex-shrink: 0;
 
   /* Style */
@@ -48,8 +50,9 @@
 .label {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5em;
   flex: 1 0 0;
+  white-space: nowrap;
 
   /* Style */
   color: var(--text-title-grey);
@@ -60,4 +63,11 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
+}
+
+.realCheckBox {
+  position: "absolute";
+  opacity: 0;
+  width: 0;
+  height: 0;
 }

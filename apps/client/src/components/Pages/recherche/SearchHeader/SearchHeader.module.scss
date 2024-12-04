@@ -35,9 +35,10 @@
   padding-top: u(2.5);
   padding-bottom: u(10);
   transition: 0.1s padding linear;
-  clip-path: inset(0 -18px -18px -18px);
+  clip-path: inset(0 -18px -100vh -18px);
   position: sticky;
   top: -1px;
+  z-index: 90;
 
   &.sticky {
     padding-bottom: u(2.5);

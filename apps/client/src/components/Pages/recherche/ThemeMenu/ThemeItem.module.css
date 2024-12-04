@@ -5,6 +5,7 @@
   align-items: center;
   gap: 8px;
   align-self: stretch;
+  white-space: nowrap;
 
   /* Style */
   border-radius: 4px;

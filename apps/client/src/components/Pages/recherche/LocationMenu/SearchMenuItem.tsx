@@ -18,8 +18,8 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   }, []);
 
   return (
-    <div className={styles.item} onClick={(e) => e.preventDefault()}>
-      <div className={styles.zone}>
+    <span className={styles.item} onClick={(e) => e.preventDefault()}>
+      <span className={styles.zone}>
         <i className={cls("fr-icon-search-line", styles.icon)} />
         <input
           type="text"
@@ -29,8 +29,8 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
           placeholder={t("Rechercher", "Rechercher")}
           onChange={onChange}
         />
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
 

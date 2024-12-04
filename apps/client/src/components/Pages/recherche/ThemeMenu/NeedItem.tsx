@@ -47,11 +47,14 @@ const NeedItem: React.FC<Props> = ({ need }) => {
   const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
 
   return (
-    <Checkbox checked={selected} onChange={() => selectNeed(need._id)}>
-      <span className={styles.label}>{need[locale]?.text || ""}</span>
-      <div className={styles.countContainer}>
-        <div className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</div>
-      </div>
+    <Checkbox
+      checked={selected}
+      onChange={() => selectNeed(need._id)}
+      className={styles.container}
+      labelClassName={styles.labelWrapper}
+    >
+      <span className={styles.label}>{need[locale]?.text || ""}</span>{" "}
+      <span className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</span>
     </Checkbox>
   );
 };

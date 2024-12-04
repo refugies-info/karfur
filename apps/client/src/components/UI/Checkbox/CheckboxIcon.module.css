@@ -1,7 +1,8 @@
 .container {
   display: flex;
   place-content: center;
-  width: 16px;
-  height: 16px;
+  width: 1em;
+  height: 1em;
   flex-shrink: 0;
+  position: relative;
 }

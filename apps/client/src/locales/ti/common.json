@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "መድለዪ",
+    "title": "ፋይል ናይ ሓበሬታ ርኸቡ",
+    "subtitle": "ካብ መንጎ {{count}} ፋይላት ናይ ምሕዳራትን ኣከባብያውያን ኣገልግሎት ዝሕብሩ ርኸቡ",
     "updated": "መሐበሪ",
     "demarcheTitle": "ናይ ምምሕዳር ፋይላት",
     "dispositifTitle": "ድሉዋት ፋይላት",
@@ -88,26 +90,42 @@
     "seeButton": "ንምርኣይ (ሓጸርቲ) ምልክታት",
     "titleThemes": "ን ምውህሃድ ዝሕግዙ ዛዕባታት",
     "positionButton": "ኣቀማምጣይ ተጠቐመሉ",
-    "notDeployedOkLink": "ተረዲኡኒ  ወይ ርዱእ",
+    "positionEnable": "ንዳይሰሳ ክጥዕም ፣ ዘለኽሞ ኣድራሻ ዳይሳሲ ናቪጋቶር ክትሕብሩ ይግባእ",
+    "notDeployedText": "መወክሶ ናይዚ ሓበሬታ {{department}} ከባቢኣን ዝተወሰነ ስለ ዝኾነ፣ ምድላይኩም ውጽኢት ከይህብ ይኽእል እዩ",
     "france": "ኣብ ኵሉ ሃገረ ፈረንሳይ",
     "online": "ብ ኦንላይን",
+    "keyword": "ብ ኣገዳሲ ቃል ተሓጊዝኩም ድለዩ",
     "keywordPlaceholder": "ሚስዮን ሎካል፣ መንነት ካርድ ወይ ታሴራ",
     "department": "ክተማ ወይ ዞባ",
+    "theme": "ዛዕባ",
     "themesPlaceholder": "ብኣርእስታ ድለ",
     "filters": "ምድላይኩም ኣጻርዩ",
     "filterAge": "በብዕድመ ዝተኸፋፈለ",
     "filterFrenchLevel": "ደረጃ ምልከት ቋንቋ ፈረንሳ",
+    "filterLanguage": "ተተርጎመ ናብ",
+    "filterLocation": "ዞባ",
     "filterPublic": "ዕላማ ዝገበሩ ተዓዘብቲ",
     "filterStatus": "ኩነታት",
     "all": "ኩሉ",
     "resetFilters": "ኩሉ መጻረዪ ይደምሰስ",
     "titleResults": "{{count}} ፋይላት ንእትደልይዎ ፈትሹ",
     "noResultText": "ሓጺር ቃላት፣ ሓባሪ ወይ መፍትሒ ቃል ተጠቐሙ",
+    "suggestedTitle": "እዚ ፋይል'ዚ እውን የገድሰኩም ይኸውን'ዩ",
     "seeMore": "ተወሳኺ ርእይቶ",
     "seeLess": "ብውሱን ንምርኣይ",
     "results": "ውጽኢት",
     "seeAllButton": "ኩሉ ንምርኣይ",
-    "fichesLanguageFilter": "ፋይልላት ኣብ"
+    "fichesLanguageFilter": "ፋይልላት ኣብ",
+    "filtersAndSortModalTitle": "ዝተጻረየን ዝተኸፋፈለን",
+    "sortBy": "ተኸፍለ በብ",
+    "clear": "ደምስስዎ፣ ወይ መደምሰስ",
+    "seeAllButtonWithCount": "ነቶም {{count}} ፋይላት ረአይዎም",
+    "tooltipAucuneFicheCorrespondante": "ንጠለብኩም ዝሰምማዕ ፋይል ኣይተረኽበን፣ ንዝያዳ ነጸርታ ካልእ ፍሉይ ሓበሬታ ግዳ ወስኹሉ ንምድላይኩም",
+    "noResultTitle": "ኦህ እቕሬታ ! ን ጠለብኩም ዝሰማማዕ ፋይል ኣይተረኽበን",
+    "noResultOther": "እዚ ፋይል'ዚ እውን የገድሰኩም ይኸውን'ዩ",
+    "Recherche.fiches_zero": "ፋይላት",
+    "Recherche.fiches_one": "ፋይላት",
+    "Recherche.fiches_other": "ፋይላት"
   },
   "UserFavorites": {
     "Comment ajouter": "ንፋይል ኣብ ፋቮሪ\\ተመራጺ, ብኸመይ ክንውስኽ ወይ ክንደግም ንኽእል",
@@ -160,9 +178,14 @@
     "frenchLevelA": "ንፈለምቲ A1/A2",
     "frenchLevelB": "ንማእከላይ ደረጃ B1/B2",
     "frenchLevelC": "ንዝማዕበለ ደረጃ C1/C2",
+    "sortLocation": "ብብዞባ ዝተፈልየ",
+    "sortTheme": "በብዛዕባ ዝተፈልየ",
+    "sortDate": "በብዕለት ዝተፈልየ",
+    "sortView": "በብ ህቡብነቱ ዝተፈልየ",
     "typeAll": "ኩሉ መዝገቦች",
     "typeDispositif": "መሳርያታት",
-    "typeDemarche": "ኣካላት"
+    "typeDemarche": "ኣካላት",
+    "typeRessource": "ምንጪ ኣብ ኦንላይን ዘሎ"
   },
   "Status": {
     "En attente": "መጻንሒ",
@@ -191,10 +214,7 @@
     "not_an_email": "እዚ ኢመይል ኣይኮነን",
     "check_mail": "ኣብ ፊደል ኣረጋግጽ\\ጺ"
   },
-  "UnauthorizedAccess": {
-    "access_denied": "ኣብ  ምንጻግ በጺሑ",
-    "back_home": "ናብ መቀበሊ ምምጻእ"
-  },
+  "UnauthorizedAccess": { "access_denied": "ኣብ  ምንጻግ በጺሑ", "back_home": "ናብ መቀበሊ ምምጻእ" },
   "Dispositif": {
     "share": "ኣብጽሑ ሼር ግበሩ",
     "updated": "ኣቐድዲሙ ዝነበረ",
@@ -371,11 +391,7 @@
     "information_types": "ሰለስተ ዓይነት ሓበሬታታት",
     "help_translate": "ን ምትርጓም ሓግዝ"
   },
-  "Roles": {
-    "admin": "ምምሕዳር",
-    "redactor": "ኢዝዲተር ወይ ኣርታዒ",
-    "translator": "ተርጓሚ/ሚት"
-  },
+  "Roles": { "admin": "ምምሕዳር", "redactor": "ኢዝዲተር ወይ ኣርታዒ", "translator": "ተርጓሚ/ሚት" },
   "topLink": "ኣብ ላዕሊ ገጽ",
   "close": "ዕጸዉ",
   "showBreadcrumb": "ኣብ ዝርዝራት ተዐዘቡ",
@@ -486,7 +502,9 @@
     "retry_search": "ፈትን ከትማዕብሎ ናይ ምድላይ ንጥፈታት ን ብዝኾነ ምልክታት"
   },
   "MobileAppModal": {
-    "download": "እዚ መርበብ ሓበሬታ ወይ ኣፕሌኬሽን ኣብ ስልክኹም ጸዓንዎ፣"
+    "download": "እዚ መርበብ ሓበሬታ ወይ ኣፕሌኬሽን ኣብ ስልክኹም ጸዓንዎ፣",
+    "continue": "ቀጽልዎ እምበር",
+    "description": "ኣብ ስማርትፎንኩም፣ ምጥቃም ኣፕሊኬሽን   Réfugiés.info ቀሊል'ዩ"
   },
   "StaticPages": {
     "helpTitle": "ን በይንኹም ኣይኮንኩምን",

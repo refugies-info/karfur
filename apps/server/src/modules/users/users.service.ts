@@ -56,7 +56,7 @@ export const getUsersFromStructureMembres = async (structureMembres: Membre[]): 
   let result: User[] = [];
   try {
     const userNeededFields = {
-      username: 1,
+      firstName: 1,
       email: 1,
       status: 1,
     };
