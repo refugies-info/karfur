@@ -21,7 +21,9 @@
 
     /* stylelint-disable-next-line selector-no-vendor-prefix */
     &:focus::placeholder,
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
     &:focus::-webkit-input-placeholder,
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
     &:focus::-moz-placeholder {
       color: transparent;
     }
@@ -132,6 +134,7 @@
 
     /* stylelint-disable-next-line selector-no-vendor-prefix */
     &:focus::-webkit-input-placeholder,
+    /* stylelint-disable-next-line selector-no-vendor-prefix */
     &:focus:-moz-placeholder {
       color: transparent;
     }
