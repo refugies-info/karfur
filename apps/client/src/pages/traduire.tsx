@@ -94,7 +94,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className="text-white">{t("Translate.title")}</h1>
+              <h1 className={styles.white}>{t("Translate.title")}</h1>
               <p className={styles.subtitle}>
                 {t("Translate.subtitle", {
                   nbBenevoles: props.translationStatistics?.nbTranslators || 0,
@@ -174,7 +174,7 @@ const RecensezVotreAction = (props: Props) => {
         {/* NEED */}
         <div className={cls(styles.section, styles.bg_green)}>
           <Container className={cls(styles.container, styles.needs)}>
-            <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
+            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Translate.needTitle")}</h2>
             <Row>
               {needKeys.map((needKey, i) => (
                 <Col key={i} sm="12" lg="4">
@@ -248,7 +248,7 @@ const RecensezVotreAction = (props: Props) => {
           <Container className={cls(styles.container)}>
             <Row>
               <Col lg="6" sm="12">
-                <h2 className={cls(styles.title2, styles.bottom_space, "mb-0 text-white")}>
+                <h2 className={cls(styles.title2, styles.bottom_space, styles.white, "mb-0")}>
                   {t("Translate.nextTitle")}
                 </h2>
                 <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>

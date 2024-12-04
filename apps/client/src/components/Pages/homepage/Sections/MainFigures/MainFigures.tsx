@@ -16,7 +16,7 @@ const MainFigures = (props: Props) => {
   return (
     <div className={cls(commonStyles.section, commonStyles.bg_green)}>
       <Container className={cls(commonStyles.container, "text-center")}>
-        <h2 className={cls(commonStyles.title2, "text-center text-white")}>{t("Homepage.figuresTitle")}</h2>
+        <h2 className={cls(commonStyles.title2, commonStyles.white, "text-center")}>{t("Homepage.figuresTitle")}</h2>
         <Row>
           <Col sm="12" lg="4">
             <CountUpFigure number={props.nbVues} text={t("Homepage.figuresSubtitle1")} />

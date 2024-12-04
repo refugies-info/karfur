@@ -95,7 +95,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className="text-white">{t("Publish.title")}</h1>
+              <h1 className={styles.white}>{t("Publish.title")}</h1>
               <p className={styles.subtitle}>{t("Publish.subtitle")}</p>
               <HeroArrow target="why" />
             </Col>
@@ -374,7 +374,7 @@ const RecensezVotreAction = (props: Props) => {
         {/* FIGURES */}
         <div className={cls(styles.section, styles.bg_red)}>
           <Container className={cls(styles.container, "text-center")}>
-            <h2 className={cls(styles.title2, "text-center text-white")}>{t("Publish.figuresTitle")}</h2>
+            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Publish.figuresTitle")}</h2>
             <Row>
               <Col sm="12" lg="4">
                 <CountUpFigure number={props.nbFiches} text={t("Publish.figuresSubtitle1")} />

@@ -65,7 +65,7 @@ const MobileApp = () => {
           </Col>
 
           <Col sm="12" lg={{ size: "6", order: 1 }}>
-            <h2 className={cls(commonStyles.title2, "text-white mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
+            <h2 className={cls(commonStyles.title2, commonStyles.white, "mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
             <p className={cls(commonStyles.subtitle)}>{t("Homepage.mobileAppSubtitle")}</p>
 
             <MobileAppSmsForm />

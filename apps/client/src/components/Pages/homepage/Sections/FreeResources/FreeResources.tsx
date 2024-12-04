@@ -16,7 +16,7 @@ const FreeResources = () => {
       <Container className={commonStyles.container}>
         <Row>
           <Col sm="12" lg={{ size: "6", order: 1 }}>
-            <h2 className={cls(commonStyles.title2, "text-white mb-0")}>{t("Homepage.resourcesTitle")}</h2>
+            <h2 className={cls(commonStyles.title2, commonStyles.white, "mb-0")}>{t("Homepage.resourcesTitle")}</h2>
             <p className={cls(commonStyles.subtitle, commonStyles.bottom_space)}>{t("Homepage.resourcesText")}</p>
             <div className={commonStyles.bottom_space}>
               <InlineLink text={t("Homepage.resourcesCTA")} link="https://kit.refugies.info/" color="white" />
