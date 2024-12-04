@@ -354,7 +354,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <div
                       class="c11"
                       data-testid="delete-button-id2"
-                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -450,7 +449,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <div
                       class="c11"
                       data-testid="delete-button-id1"
-                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1186,7 +1184,6 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c11"
                       data-testid="delete-button-id1"
-                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1282,7 +1279,6 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c11"
                       data-testid="delete-button-id2"
-                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1674,7 +1670,6 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c11"
                       data-testid="delete-button-id2"
-                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"
@@ -1770,7 +1765,6 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <div
                       class="c11"
                       data-testid="delete-button-id1"
-                      hovercolor="error"
                     >
                       <div
                         style="margin-bottom: 4px;"

@@ -39,13 +39,13 @@ export const sendReminderMailToUpdateContents = async (): Response => {
               dispositif.getMainSponsor().membres.map(async (membre) => {
                 try {
                   let user = await getUserById(membre.userId.toString(), {
-                    username: 1,
+                    firstName: 1,
                     email: 1,
                   });
                   if (user.email) {
                     await sendUpdateReminderMailService(
                       user.email,
-                      user.username,
+                      user.firstName,
                       dispositif.titreInformatif,
                       user._id,
                       dispositif._id,

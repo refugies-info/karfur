@@ -23,7 +23,7 @@ export const resetPassword = async (body: ResetPasswordRequest): ResponseWithDat
         reset_password_expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
       });
       const newUrl = url + "/auth/reinitialiser-mot-de-passe/nouveau?token=" + token;
-      await sendResetPasswordMail(user.username, newUrl, user.email);
+      await sendResetPasswordMail(user._id.toString(), newUrl, user.email);
       resolve(true);
     });
   });

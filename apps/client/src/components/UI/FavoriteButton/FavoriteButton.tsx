@@ -47,6 +47,7 @@ export const FavoriteButton = (props: Props) => {
         title={isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}
       >
         <i className={isFavorite ? "fr-icon-star-fill" : "fr-icon-star-line"} />
+        <span>{isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}</span>
       </Button>
 
       {showFavoriteModal && (

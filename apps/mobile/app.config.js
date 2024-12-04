@@ -1,13 +1,14 @@
 import deepLinks from "./androidDeepLinks";
 
-const version = "2.0.11";
-const displayVersionNumber = "2024.07.2";
-const androidVersionCode = 33;
+const version = "2.1.1";
+const displayVersionNumber = "2024.11.1";
+const androidVersionCode = 34;
 
 export default {
   name: "Réfugiés.info",
+  owner: "refugies-info",
   slug: "refugies-info-app",
-  version: "1.0.16",
+  version: "1.1.1",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -18,13 +19,12 @@ export default {
     resizeMode: "contain",
     backgroundColor: "#F6F6F6",
   },
-  owner: "refugies-info",
   updates: {
     fallbackToCacheTimeout: 0,
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.16",
+    buildNumber: "1.1.1",
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -39,11 +39,11 @@ export default {
     associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
   },
   locales: {
-    en: "./src/translations/en.json",
-    fr: "./src/translations/fr.json",
+    en: "./src/translations/en/common.json",
+    fr: "./src/translations/fr/common.json",
   },
   android: {
-    versionCode: 14,
+    versionCode: 15,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
@@ -107,8 +107,8 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     locales: {
-      en: "./src/translations/en.json",
-      fr: "./src/translations/fr.json",
+      en: "./src/translations/en/common.json",
+      fr: "./src/translations/fr/common.json",
     },
     description: "",
     jsEngine: "hermes",
@@ -155,8 +155,7 @@ export default {
       // package: "com.refugiesinfo.app",
       package:
         "com.refugiesinfo.app" +
-        (process.env.EAS_BUILD_PROFILE &&
-        process.env.EAS_BUILD_PROFILE !== "production"
+        (process.env.EAS_BUILD_PROFILE && process.env.EAS_BUILD_PROFILE !== "production"
           ? `.${process.env.EAS_BUILD_PROFILE}`
           : ""),
       config: {
@@ -194,10 +193,7 @@ export default {
         UIBackgroundModes: ["remote-notification"],
       },
       googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
-      associatedDomains: [
-        "applinks:refugies.info",
-        "applinks:www.refugies.info",
-      ],
+      associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
     },
     extra: {
       eas: {

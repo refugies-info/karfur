@@ -319,7 +319,7 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    jwt: ["admin"],
+    jwt: [],
     fromSite: [],
   })
   @Get("/{id}/has-text-changes")

@@ -94,7 +94,7 @@ export interface Need {
   updatedAt: Moment;
 }
 
-export interface AlgoliaObject {
+export interface AlgoliaObject extends Record<string, unknown> {
   objectID: Types.ObjectId | string;
   title_fr: string;
   title_ru?: string;

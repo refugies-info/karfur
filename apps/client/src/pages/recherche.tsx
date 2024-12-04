@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { getPath, isRoute } from "routes";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SearchHeader from "~/components/Pages/recherche/SearchHeader";
 import SearchResults from "~/components/Pages/recherche/SearchResults";
 import SEO from "~/components/Seo";
@@ -123,6 +124,8 @@ const Recherche = () => {
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
+
+      <HelpNotice />
       <SearchHeader nbResults={dispositifs.length} />
       <SearchResults />
     </div>

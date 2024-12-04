@@ -8,14 +8,10 @@
 .item {
   @include text("normal");
 
-  place-items: center;
   text-align: left;
-  display: flex;
   width: 100%;
-  align-items: flex-start;
   gap: u(2);
   align-self: stretch;
-  border: none;
 
   // Wrap text
   white-space: normal;
@@ -42,27 +38,23 @@
     }
   }
 
-  .countContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
   .count {
     @include dsfr-text("very-small");
 
     color: var(--text-mention-grey);
+    align-self: stretch;
   }
 }
 
 .label {
-  flex: 1 0 0;
+  white-space: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  color: var(--text-title-grey);
 }
 
 .icon {
-  border: 1px solid red;
-
   &::before {
     --icon-size: 16px;
 

@@ -16,7 +16,7 @@ export const sendMailToStructureMembersWhenDispositifEnAttente = async (disposit
         membreId: membre._id,
       });
       return sendNewFicheEnAttenteMail({
-        pseudo: membre.username,
+        firstName: membre.firstName,
         titreInformatif: dispositif.translations.fr.content.titreInformatif,
         titreMarque: dispositif.translations.fr.content.titreMarque,
         lien,
