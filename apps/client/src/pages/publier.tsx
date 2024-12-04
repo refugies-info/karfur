@@ -198,7 +198,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <h2 className={cls(styles.title2, styles.center)}>{t("Publish.requiredTitle")}</h2>
           <Row>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
               <Card
                 image={RequiredIcon1}
                 title={t("Publish.requiredSubtitle1")}
@@ -212,7 +212,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className="mb-0">{t("Publish.requiredText1")}</p>
               </Card>
             </Col>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
               <Card
                 image={RequiredIcon2}
                 title={t("Publish.requiredSubtitle2")}
@@ -226,7 +226,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className="mb-0">{t("Publish.requiredText2")}</p>
               </Card>
             </Col>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
               <Card
                 image={RequiredIcon3}
                 title={t("Publish.requiredSubtitle3")}
@@ -324,7 +324,7 @@ const RecensezVotreAction = (props: Props) => {
             <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
             <p className={cls(styles.subtitle, styles.center)}>{t("Publish.helpSubtitle")}</p>
             <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon1}
                   title={t("Publish.helpTileTitle1")}
@@ -339,7 +339,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p>{t("Publish.helpTileText1")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon2}
                   title={t("Publish.helpTileTitle2")}
@@ -350,7 +350,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p>{t("Publish.helpTileText2")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon3}
                   title={t("StaticPages.helpTileTitle3")}
