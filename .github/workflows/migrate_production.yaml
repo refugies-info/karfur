@@ -30,7 +30,9 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm add -g turbo
+          pnpm install --frozen-lockfile
 
       - name: Apply pending migrations
         run: pnpm migrate up

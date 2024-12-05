@@ -30,7 +30,9 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm add -g turbo
+          pnpm install --frozen-lockfile
 
       - name: Lint, Check Types and Test
         run: turbo lint check:types test && pnpm lint:style
