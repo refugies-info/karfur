@@ -14,7 +14,7 @@
   width: 100%;
   gap: u(4);
 
-  @container (min-width: 768px) {
+  @container (min-width: 48em) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -27,15 +27,16 @@
   align-items: center;
   gap: u(2);
 
-  @container (min-width: 768px) {
-    margin-left: auto;
-    display: block;
+  @container (min-width: 48em) {
+    margin-inline-start: auto;
+    display: flex;
   }
 
   /* Style */
   border: 1px solid $gray50;
   background: var(--text-inverted-grey);
-  padding: u(2) u(4);
+  padding-block: u(2);
+  padding-inline: u(4);
   min-width: fit-content;
   justify-content: space-between;
 }

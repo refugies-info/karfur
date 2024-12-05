@@ -449,7 +449,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   >
                     <a
                       href="/program/id1"
-                      title="tinfo1"
                     >
                       <span
                         class="title three_lines"
@@ -546,6 +545,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             <i
               class="fr-icon-star-fill"
             />
+            <span>
+              Dispositif.removeFromFavorites
+            </span>
           </button>
         </div>
       </div>
@@ -570,7 +572,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   >
                     <a
                       href="/program/id2"
-                      title="tinfo2"
                     >
                       <span
                         class="title three_lines"
@@ -667,6 +668,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             <i
               class="fr-icon-star-fill"
             />
+            <span>
+              Dispositif.removeFromFavorites
+            </span>
           </button>
         </div>
       </div>
@@ -691,7 +695,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   >
                     <a
                       href="/procedure/id3"
-                      title="tinfo3"
                     >
                       <span
                         class="title three_lines"
@@ -785,6 +788,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             <i
               class="fr-icon-star-fill"
             />
+            <span>
+              Dispositif.removeFromFavorites
+            </span>
           </button>
         </div>
       </div>

@@ -22,7 +22,7 @@ const commonPlaces = [
   { placeName: "Dijon", deptNo: "21" },
   { placeName: "Bordeaux", deptNo: "33" },
   { placeName: "Grenoble", deptNo: "38" },
-  { placeName: "Toulouse", deptNo: "34" },
+  { placeName: "Toulouse", deptNo: "31" },
   { placeName: "Rennes", deptNo: "35" },
   { placeName: "Marseille", deptNo: "13" },
 ];

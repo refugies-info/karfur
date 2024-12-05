@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "Search",
+    "title": "Find an information sheet",
+    "subtitle": "Search through our {{count}} information sheets about local initiatives and programmes.",
     "updated": "updated",
     "demarcheTitle": "Procedure sheets",
     "dispositifTitle": "Scheme sheets",
@@ -88,26 +90,42 @@
     "seeButton": "See the sheets",
     "titleThemes": "Themes of integration",
     "positionButton": "Use my position",
+    "positionEnable": "You must activate geolocation for your browser",
+    "notDeployedText": "The listing of local initiatives begins in the department - {{department}}. Your search may produce few results.",
     "france": "all over France",
     "online": "online",
+    "keyword": "Search by keyword",
     "keywordPlaceholder": "Local mission, residence permit...",
     "department": "Search for a town or a department",
-    "themes": "Topic",
+    "theme": "Topic",
     "themesPlaceholder": "Search in themes",
     "filters": "Search filters",
     "filterAge": "Age range",
     "filterFrenchLevel": "Level of French",
+    "filterLanguage": "Translated into",
+    "filterLocation": "Department",
     "filterPublic": "Target audience",
     "filterStatus": "Status",
     "all": "All",
     "resetFilters": "Clear filters",
     "titleResults": "sheets for your search",
     "noResultText": "Use fewer filters or check the spelling of the keyword.",
+    "suggestedTitle": "You may also be interested in these information sheets",
     "seeMore": "See more",
     "seeLess": "See less",
     "results": "results",
     "seeAllButton": "See all",
-    "fichesLanguageFilter": "Sheets in"
+    "fichesLanguageFilter": "Sheets in",
+    "filtersAndSortModalTitle": "Filters and sorting",
+    "sortBy": "Sort by",
+    "clear": "Delete",
+    "seeAllButtonWithCount": "See all {{count}} information sheets",
+    "tooltipAucuneFicheCorrespondante": "No sheets match this criterion. Adjust your other filters to filter by this specific criterion.",
+    "noResultTitle": "Oops! There are no results matching your search criteria.",
+    "noResultOther": "You may also be interested in these information sheets",
+    "Recherche.fiches_zero": "information sheet",
+    "Recherche.fiches_one": "information sheets",
+    "Recherche.fiches_other": "information sheets"
   },
   "Widget": {
     "fiches": "Sheets",
@@ -167,9 +185,14 @@
     "frenchLevelA": "Beginner A1/A2",
     "frenchLevelB": "Intermediate B1/B2",
     "frenchLevelC": "Advanced C1/C2",
+    "sortLocation": "Sort by department",
+    "sortTheme": "Sort by topic",
+    "sortDate": "Sort by date",
+    "sortView": "Sort by popularity",
     "typeAll": "All records",
     "typeDispositif": "Schemes",
-    "typeDemarche": "Procedures"
+    "typeDemarche": "Procedures",
+    "typeRessource": "Online resources"
   },
   "Status": {
     "En attente": "Pending",
@@ -204,10 +227,7 @@
     "check_mail": "check your spelling.",
     "invalid_phone_number": "This is not a valid phone number, check your entry."
   },
-  "UnauthorizedAccess": {
-    "access_denied": "Access denied",
-    "back_home": "Return to home"
-  },
+  "UnauthorizedAccess": { "access_denied": "Access denied", "back_home": "Return to home" },
   "Dispositif": {
     "share": "Share this sheet",
     "updated": "Updated on",
@@ -384,11 +404,7 @@
     "information_types": "Three types of information",
     "help_translate": "Help to translate"
   },
-  "Roles": {
-    "admin": "Admin",
-    "redactor": "Writer",
-    "translator": "Translator"
-  },
+  "Roles": { "admin": "Admin", "redactor": "Writer", "translator": "Translator" },
   "topLink": "Top of the page",
   "close": "Close",
   "showBreadcrumb": "See the breadcrumb trail",
@@ -498,7 +514,9 @@
     "retry_search": "Try to expand your search by removing some tags"
   },
   "MobileAppModal": {
-    "download": "Download the application"
+    "download": "Download the application",
+    "continue": "Continue anyway",
+    "description": "On your smartphone, use the Réfugiés.info application - it's easier and more convenient!"
   },
   "StaticPages": {
     "helpTitle": "You are not alone",

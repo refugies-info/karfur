@@ -11,13 +11,15 @@ interface Props {
 
 const CommonPlaceMenuItem: React.FC<Props> = ({ deptNo, placeName, onSelectCommonPlace }) => {
   return (
-    <div className={styles.item}>
-      <Checkbox className={styles.item} onChange={() => onSelectCommonPlace(getDepartmentNameFromCode(deptNo))}>
-        <span>
-          {placeName} {deptNo}
-        </span>
-      </Checkbox>
-    </div>
+    <>
+      <span className={styles.item}>
+        <Checkbox className={styles.item} onChange={() => onSelectCommonPlace(getDepartmentNameFromCode(deptNo))}>
+          <span>
+            {placeName} {deptNo}
+          </span>
+        </Checkbox>
+      </span>{" "}
+    </>
   );
 };
 

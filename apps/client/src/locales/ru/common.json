@@ -80,6 +80,8 @@
   },
   "Recherche": {
     "pageTitle": "Поиск",
+    "title": "Найти страницу с информацией",
+    "subtitle": "Ищите среди наших {{count}} страниц с процедурами и местными программами.",
     "updated": "обновлено",
     "demarcheTitle": "Страницы административных процедур",
     "dispositifTitle": "Страницы программ",
@@ -88,25 +90,42 @@
     "seeButton": "Показать {{count}} страниц",
     "titleThemes": "Темы интеграции",
     "positionButton": "Используйте мою позицию",
+    "positionEnable": "Для поиска вам необходимо активировать геолокализацию вашего браузера",
+    "notDeployedText": "Информация для департамента - {{department}} еще в процессе добавления, поэтому результатов поиска может быть не очень много.",
     "france": "Вся Франция",
     "online": "онлайн",
+    "keyword": "Поиск по ключевым словам",
     "keywordPlaceholder": "Локальная миссия, вид на жительство",
     "department": "Найти город или департамент",
+    "theme": "Тема",
     "themesPlaceholder": "Искать в темах",
     "filters": "Фильтры поиска",
     "filterAge": "Возрастная группа",
     "filterFrenchLevel": "Уроверь французского",
+    "filterLanguage": "Переведено на",
+    "filterLocation": "Департамент",
     "filterPublic": "Целевая аудитория",
     "filterStatus": "Статус",
     "all": "Все",
     "resetFilters": "Удалить все фильтры",
     "titleResults": "Найдено {{count}} страниц(а)",
     "noResultText": "Используйте меньше фильтров и проверьте написание ключевого слова",
+    "suggestedTitle": "Эти страницы могут вас заинтересовать",
     "seeMore": "Посмотреть больше",
     "seeLess": "Показать меньше",
     "results": "результаты",
     "seeAllButton": "посмотреть все",
-    "fichesLanguageFilter": "Страниц на"
+    "fichesLanguageFilter": "Страниц на",
+    "filtersAndSortModalTitle": "Фильтры и сортировка",
+    "sortBy": "Сортировать по",
+    "clear": "Стереть",
+    "seeAllButtonWithCount": "Посмотреть {{count}} страниц",
+    "tooltipAucuneFicheCorrespondante": "Ни одна страница не соответствует этому критерию. Измените другие параметры, чтобы фильтровать по этому конкретному критерию.",
+    "noResultTitle": "Ой, ничего не найдено.",
+    "noResultOther": "Эти страницы могут вас заинтересовать",
+    "Recherche.fiches_zero": "страница",
+    "Recherche.fiches_one": "страница",
+    "Recherche.fiches_other": "страниц"
   },
   "Widget": {
     "fiches": "Страницы",
@@ -166,9 +185,14 @@
     "frenchLevelA": "Начальный уровень A1/A2",
     "frenchLevelB": "Средний уровень B1/B2",
     "frenchLevelC": "Продвинутый уровень C1/C2",
+    "sortLocation": "Сортировать по департаменту",
+    "sortTheme": "Сортировать по теме",
+    "sortDate": "Сортировать по дате",
+    "sortView": "Сортировать по популярности",
     "typeAll": "Все записи",
     "typeDispositif": "Устройства",
-    "typeDemarche": "Процедуры"
+    "typeDemarche": "Процедуры",
+    "typeRessource": "Онлайн ресурсы"
   },
   "Status": {
     "En attente": "На проверке",
@@ -197,10 +221,7 @@
     "not_an_email": "Неверный email,",
     "check_mail": "проверьте написание."
   },
-  "UnauthorizedAccess": {
-    "access_denied": "Доступ запрещен",
-    "back_home": "Вернуться на главную"
-  },
+  "UnauthorizedAccess": { "access_denied": "Доступ запрещен", "back_home": "Вернуться на главную" },
   "Dispositif": {
     "share": "поделиться страницей",
     "updated": "информация обновлена",
@@ -377,11 +398,7 @@
     "information_types": "Три типа информации",
     "help_translate": "Помочь перевести"
   },
-  "Roles": {
-    "admin": "Админ",
-    "redactor": "Редактор",
-    "translator": "Переводчик"
-  },
+  "Roles": { "admin": "Админ", "redactor": "Редактор", "translator": "Переводчик" },
   "topLink": "Верх страницы",
   "close": "Закрыть",
   "showBreadcrumb": "Посмотреть цепочку навигации",
@@ -492,7 +509,9 @@
     "retry_search": "Попробуйте расширить поиск, отключив некоторые теги."
   },
   "MobileAppModal": {
-    "download": "Скачать мобильное приложение"
+    "download": "Скачать мобильное приложение",
+    "continue": "Все равно продолжить",
+    "description": "На своем смартфоне используйте приложение Réfugiés.info, это проще и удобнее!"
   },
   "StaticPages": {
     "helpTitle": "Вы получите поддержку",

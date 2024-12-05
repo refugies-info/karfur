@@ -35,7 +35,6 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
           "publishedAtAuthor",
           "adminComments",
           "adminProgressionStatus",
-          "adminPercentageProgressionStatus",
           "lastAdminUpdate",
           "draftReminderMailSentDate",
           "draftSecondReminderMailSentDate",

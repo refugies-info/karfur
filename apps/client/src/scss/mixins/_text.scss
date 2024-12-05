@@ -4,40 +4,58 @@
 
 $texts: (
   "very-small": (
-    12px,
-    15px,
+    0.75rem,
+    // 12px
+    0.9375rem,
+    // 15px
   ),
   "small": (
-    14px,
-    19px,
+    0.875rem,
+    // 14px
+    1.1875rem,
+    // 19px
   ),
   "normal": (
-    16px,
-    22px,
+    1rem,
+    // 16px
+    1.375rem,
+    // 22px
   ),
   "large": (
-    18px,
-    23px,
+    1.125rem,
+    // 18px
+    1.4375rem,
+    // 23px
   ),
   "h5": (
-    22px,
-    28px,
+    1.375rem,
+    // 22px
+    1.75rem,
+    // 28px
   ),
   "h4": (
-    28px,
-    35px,
+    1.75rem,
+    // 28px
+    2.1875rem,
+    // 35px
   ),
   "h3": (
-    40px,
-    51px,
+    2.5rem,
+    // 40px
+    3.1875rem,
+    // 51px
   ),
   "h2": (
-    40px,
-    51px,
+    2.5rem,
+    // 40px
+    3.1875rem,
+    // 51px
   ),
   "h1": (
-    52px,
-    66px,
+    3.25rem,
+    // 52px
+    4.125rem,
+    // 66px
   ),
 );
 
@@ -125,7 +143,9 @@ $dsfr-texts: (
   }
 
   h3 {
-    margin-top: u(8);
-    margin-bottom: u(6);
+    margin-top: u(6);
+    margin-bottom: u(2);
+
+    @include dsfr-text("h6");
   }
 }
