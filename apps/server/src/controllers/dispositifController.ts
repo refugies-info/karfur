@@ -323,7 +323,7 @@ export class DispositifController extends Controller {
     jwt: ["newsletter"],
   })
   @Get("/recent-demarches")
-  public async getRecentDemarches(): ResponseWithData<{ title: string; url: string }[]> {
+  public async getRecentDemarches(): ResponseWithData<{ titre: string; url: string }[]> {
     return getRecentDemarches();
   }
 
