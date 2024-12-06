@@ -17,6 +17,7 @@ export { getHasTextChanges } from "./getHasTextChanges";
 export { default as getNbContentsForCounty } from "./getNbContentsForCounty";
 export { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
 export { getRecentDemarches } from "./getRecentDemarches";
+export { getRecentDispositifsByDepartement } from "./getRecentDispositifsByDepartement";
 export { getStatistics } from "./getStatistics";
 export { getUserContributions } from "./getUserContributions";
 export { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
