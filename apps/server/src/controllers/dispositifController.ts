@@ -54,6 +54,7 @@ import {
   getHasTextChanges,
   getNbContentsForCounty,
   getNbDispositifsByRegion,
+  getRecentDemarches,
   getStatistics,
   getUserContributions,
   modifyDispositifMainSponsor,
@@ -316,6 +317,14 @@ export class DispositifController extends Controller {
   @Delete("/{id}/suggestion/{suggestionId}")
   public async deleteSuggestion(@Path() id: string, @Path() suggestionId: string): Response {
     return deleteSuggestion(id, suggestionId);
+  }
+
+  @Security({
+    jwt: ["newsletter"],
+  })
+  @Get("/recent-demarches")
+  public async getRecentDemarches(): ResponseWithData<{ title: string; url: string }[]> {
+    return getRecentDemarches();
   }
 
   @Security({
