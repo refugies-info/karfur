@@ -10,6 +10,7 @@ import {
 import { omit, pick, union, uniq } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { LatestDispositifResult } from "~/modules/dispositif/types";
 import {
   Dispositif,
   DispositifDraftModel,
@@ -532,4 +533,23 @@ export const deleteNeedFromDispositifs = async (needId: string) => {
 export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial<Dispositif>) => {
   const dispositif = await DispositifModel.findById(id).lean();
   return DispositifDraftModel.create({ ...dispositif, ...newData });
+};
+
+export const getLatestDispositifs = async (
+  query: FilterQuery<Dispositif>,
+  limit: number = 3,
+  sort: any = { updatedAt: -1 },
+): Promise<LatestDispositifResult[]> => {
+  return DispositifModel.aggregate([
+    { $match: query },
+    { $sort: sort },
+    { $limit: limit },
+    {
+      $project: {
+        _id: 1,
+        typeContenu: 1,
+        titreInformatif: "$translations.fr.content.titreInformatif",
+      },
+    },
+  ]);
 };
