@@ -322,6 +322,7 @@ export class DispositifController extends Controller {
 
   @Security({
     jwt: ["newsletter", "admin"],
+    fromSite: [],
   })
   @Get("/recent-demarches")
   public async getRecentDemarches(): ResponseWithData<{ titre: string; url: string }[]> {
@@ -330,6 +331,7 @@ export class DispositifController extends Controller {
 
   @Security({
     jwt: ["newsletter", "admin"],
+    fromSite: [],
   })
   @Get("/recent-dispositifs/:departement")
   public async getRecentDispositifsByDepartement(
