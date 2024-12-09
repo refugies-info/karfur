@@ -99,7 +99,7 @@ export const UserProfile = (props: Props) => {
         </Row>
 
         <Row>
-          <Col className="grow-0">
+          <Col className="!grow-0">
             <h2>Photo de profil</h2>
             <div className={styles.block}>
               <EditAvatar />

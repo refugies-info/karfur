@@ -15,14 +15,14 @@ const FreeResources = () => {
     <div className={cls(commonStyles.section, commonStyles.bg_red)}>
       <Container className={commonStyles.container}>
         <Row>
-          <Col sm="12" lg={{ size: "6", order: 1 }}>
+          <Col sm="12" lg="6" className="lg:order-1">
             <h2 className={cls(commonStyles.title2, commonStyles.white, "mb-0")}>{t("Homepage.resourcesTitle")}</h2>
             <p className={cls(commonStyles.subtitle, commonStyles.bottom_space)}>{t("Homepage.resourcesText")}</p>
             <div className={commonStyles.bottom_space}>
               <InlineLink text={t("Homepage.resourcesCTA")} link="https://kit.refugies.info/" color="white" />
             </div>
           </Col>
-          <Col sm="12" lg={{ size: "6", order: 0 }}>
+          <Col sm="12" lg="6" className="lg:order-0">
             <Link href="https://kit.refugies.info/" target="_blank" rel="noopener noreferrer">
               <Image
                 src={FreeResourcesImg}

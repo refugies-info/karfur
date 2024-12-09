@@ -321,7 +321,7 @@ const RecensezVotreAction = (props: Props) => {
         {/* HELP */}
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
-            <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
+            <h2 className={cls(styles.title2, styles.center, "!mb-0")}>{t("StaticPages.helpTitle")}</h2>
             <p className={cls(styles.subtitle, styles.center)}>{t("Publish.helpSubtitle")}</p>
             <Row className={styles.top_space}>
               <Col sm="12" lg="4" className="lg:mb-0 mb-5">

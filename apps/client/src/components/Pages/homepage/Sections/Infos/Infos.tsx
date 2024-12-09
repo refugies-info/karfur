@@ -46,7 +46,7 @@ const Infos = () => {
   };
 
   return (
-    <div className={cls(commonStyles.section, styles.infos, "py-0")}>
+    <div className={cls(commonStyles.section, styles.infos, "!py-0")}>
       <Container fluid className={cls(commonStyles.container, "text-center")}>
         <Row>
           <Col sm="12" lg="6" className={commonStyles.bg_blue}>

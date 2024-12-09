@@ -56,7 +56,7 @@ const MobileApp = () => {
     <div id="application" className={cls(commonStyles.section, commonStyles.bg_blue)}>
       <Container className={cls(commonStyles.container)}>
         <Row className="items-center">
-          <Col sm="12" lg={{ size: "6", order: 2 }}>
+          <Col sm="12" lg="6" className="lg:order-2">
             <MobileAppIllu />
             <div className={styles.store}>
               {!isTablet && storeLinks}
@@ -64,8 +64,8 @@ const MobileApp = () => {
             </div>
           </Col>
 
-          <Col sm="12" lg={{ size: "6", order: 1 }}>
-            <h2 className={cls(commonStyles.title2, commonStyles.white, "mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
+          <Col sm="12" lg="6" className="lg:order-1">
+            <h2 className={cls(commonStyles.title2, commonStyles.white, "!mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
             <p className={cls(commonStyles.subtitle)}>{t("Homepage.mobileAppSubtitle")}</p>
 
             <MobileAppSmsForm />
