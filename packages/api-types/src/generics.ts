@@ -33,6 +33,7 @@ export enum RoleName {
   CAREGIVER = "Aidant",
   STRUCTURE = "hasStructure",
   USER = "User",
+  NEWSLETTER = "Newsletter",
 }
 
 // Theme

@@ -85,7 +85,6 @@
     "prettier-plugin-organize-imports": "^4.1.0",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
-    "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "turbo": "^2.2.3"
   },
@@ -98,6 +97,5 @@
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
-  "resolutions": {
-  }
+  "resolutions": {}
 }
