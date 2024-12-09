@@ -1,8 +1,8 @@
 # WARNING: using root folder as current context to make this dockerfile work
 FROM node:20.13.1-alpine
 
-# Install yarn
-RUN npm install --force --global yarn@1.22.22
+# Install pnpm
+RUN npm install -g pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -11,15 +11,15 @@ WORKDIR /usr/src/app
 COPY ./ ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
-# Delete the cache folder after `yarn install` is done.
-RUN rm -rf .yarn/cache
+# Delete the pnpm store after installation is done
+RUN rm -rf .pnpm-store
 
 # Build app
-RUN yarn build:server
+RUN pnpm build:server
 
 # Install berglas
 COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:latest /bin/berglas /bin/berglas
 
-ENTRYPOINT exec /bin/berglas exec -- yarn start:server
+ENTRYPOINT exec /bin/berglas exec -- pnpm start:server
