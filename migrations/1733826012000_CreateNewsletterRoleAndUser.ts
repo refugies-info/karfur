@@ -16,7 +16,7 @@ export class Migration1733826012000 implements MigrationInterface {
     const newsletterUser = {
       _id: new ObjectId(),
       username: "newsletter",
-      email: "dev@refugies.info",
+      email: "",
       password: "",
       roles: [newsletterRole._id],
       created_at: new Date(),
