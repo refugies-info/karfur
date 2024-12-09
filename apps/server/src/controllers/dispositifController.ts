@@ -333,7 +333,7 @@ export class DispositifController extends Controller {
     jwt: ["newsletter"],
     fromSite: [],
   })
-  @Get("/recent-dispositifs/:departement")
+  @Get("/recent-dispositifs/{departement}")
   public async getRecentDispositifsByDepartement(
     @Path() departement: string,
   ): ResponseWithData<{ titre: string; url: string }[]> {
