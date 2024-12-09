@@ -12,6 +12,6 @@ const payload = {
   username: "Newsletter Test User",
 };
 
-const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1y" });
+const token = jwt.sign(payload, JWT_SECRET);
 console.log("Generated JWT Token:");
 console.log(token);
