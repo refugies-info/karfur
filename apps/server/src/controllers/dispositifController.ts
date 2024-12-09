@@ -321,7 +321,7 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    jwt: ["newsletter", "admin"],
+    jwt: ["newsletter"],
     fromSite: [],
   })
   @Get("/recent-demarches")
@@ -330,7 +330,7 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    jwt: ["newsletter", "admin"],
+    jwt: ["newsletter"],
     fromSite: [],
   })
   @Get("/recent-dispositifs/:departement")
