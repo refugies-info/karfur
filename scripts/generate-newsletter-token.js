@@ -11,8 +11,13 @@ if (process.argv.length < 3) {
 
 const userId = process.argv[2];
 
-// Replace this with your actual JWT secret from your environment variables
-const JWT_SECRET = process.env.JWT_SECRET || "your-jwt-secret";
+if (!process.env.JWT_SECRET) {
+  console.error("Error: The JWT_SECRET env var is required");
+  console.log("Usage: node generate-newsletter-token.js <user_id>");
+  process.exit(1);
+}
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const payload = {
   roles: ["newsletter"],
