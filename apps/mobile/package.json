@@ -4,7 +4,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "check:types": "tsc --noEmit",
-    "test": "yarn node --experimental-vm-modules $(yarn bin jest --runInBand --detectOpenHandles)",
+    "test": "jest --runInBand --detectOpenHandles",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache  --ignore-pattern dist"
   },
   "dependencies": {
@@ -17,11 +17,11 @@
     "@react-native-firebase/analytics": "^20.0.0",
     "@react-native-firebase/app": "^20.0.0",
     "@react-native-firebase/crashlytics": "^20.0.0",
-    "@react-navigation/bottom-tabs": "~6",
-    "@react-navigation/native": "^6.0.14",
-    "@react-navigation/stack": "^6.2.0",
-    "@refugies-info/api-types": "*",
-    "@refugies-info/typescript-config": "*",
+    "@react-navigation/bottom-tabs": "^6.5.11",
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/stack": "^6.3.20",
+    "@refugies-info/api-types": "workspace:*",
+    "@refugies-info/typescript-config": "workspace:*",
     "algoliasearch": "^5.14.2",
     "axios": "^1.7.7",
     "babel-plugin-inline-dotenv": "^1.7.0",
@@ -37,6 +37,7 @@
     "expo-linear-gradient": "~12.7.2",
     "expo-linking": "~6.2.2",
     "expo-location": "~16.5.5",
+    "expo-modules-core": "^1.11.13",
     "expo-notifications": "~0.27.7",
     "expo-speech": "~11.7.0",
     "expo-splash-screen": "~0.26.5",
@@ -68,6 +69,8 @@
     "react-query": "^3.39.3",
     "react-redux": "^9.1.2",
     "react-use": "^17.4.0",
+    "redux": "^5.0.0",
+    "redux-devtools-extension": "^2.13.9",
     "redux-saga": "^1.2.3",
     "sanitize-html": "^2.13.1",
     "search-insights": "^2.17.2",
@@ -82,7 +85,9 @@
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
-    "@testing-library/react-native": "12.5.3",
+    "@react-navigation/core": "^6.4.10",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/react-native": "^12.4.3",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.9.0",
@@ -102,7 +107,6 @@
     "jest-expo": "50.0.4",
     "papaparse": "^5.3.2",
     "react-native-svg-transformer": "^1.4.0",
-    "redux-devtools-extension": "^2.13.9",
     "redux-saga-test-plan": "^4.0.5",
     "typescript": "^5.6.3"
   },
@@ -110,11 +114,10 @@
   "version": "0.0.0",
   "name": "@refugies-info/mobile",
   "engines": {
-    "node": "20.13.1",
-    "yarn": "1.22.22"
+    "node": "20.13.1"
   },
   "volta": {
     "node": "20.13.1",
-    "yarn": "1.22.22"
+    "pnpm": "9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
   }
 }
