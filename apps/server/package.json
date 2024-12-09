@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@azure/msal-node": "^2.16.1",
+    "@getbrevo/brevo": "^2.2.0",
     "@google-cloud/translate": "^8.5.0",
     "@refugies-info/api-types": "*",
     "@sendgrid/mail": "^8.1.4",
