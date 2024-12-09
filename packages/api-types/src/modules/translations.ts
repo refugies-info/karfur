@@ -66,6 +66,11 @@ export interface TranslateRequest {
   language: Languages;
 }
 
+type PartialTranslatedContent = {
+  title?: string;
+  text?: string;
+};
+
 export interface SaveTranslationRequest {
   dispositifId: string;
   language: Languages;
@@ -73,11 +78,15 @@ export interface SaveTranslationRequest {
   toFinish: string[];
   toReview: string[];
   translated: Partial<{
-    content: Partial<Content> & {
+    content: {
+      // Partial<Content> & not working, see: https://github.com/lukeautry/tsoa/issues/1425
+      titreInformatif?: string;
+      titreMarque?: string;
+      abstract?: string;
       what?: RichText;
-      why?: { [key: string]: Partial<InfoSection> };
-      how?: { [key: string]: Partial<InfoSection> };
-      next?: { [key: string]: Partial<InfoSection> };
+      why?: { [key: string]: PartialTranslatedContent }; // Partial<InfoSection> not working, see: https://github.com/lukeautry/tsoa/issues/1515
+      how?: { [key: string]: PartialTranslatedContent };
+      next?: { [key: string]: PartialTranslatedContent };
       administrationName?: string;
     };
   }>;
