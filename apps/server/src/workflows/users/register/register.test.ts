@@ -1,5 +1,5 @@
 import { RoleName } from "@refugies-info/api-types";
-import { addToNewsletter } from "~/connectors/sendinblue/addToNewsletter";
+import { addToNewsletter } from "~/connectors/brevo/addToNewsletter";
 import * as password from "~/libs/validatePassword";
 import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
