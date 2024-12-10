@@ -56,7 +56,7 @@ steps:
         "--port",
         "3000",
         "--memory",
-        "1G",
+        "${_MEMORY}",
         "--allow-unauthenticated",
       ]
 

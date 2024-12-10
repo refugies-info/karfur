@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
-import { useSearchEventName } from "~/hooks";
+import { useSearchEventName, useWindowSize } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
@@ -63,9 +63,15 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
     dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
   }, [dispatch]);
 
+  const { isTablet } = useWindowSize();
+
   const locationLabel = useMemo(() => {
-    return query.departments.length === 0 ? t("Recherche.filterLocation", "Département") : query.departments[0];
-  }, [t, query.departments]);
+    return query.departments.length === 0
+      ? t("Recherche.filterLocation", "Département")
+      : departmentsNotDeployed.length > 0 && isTablet
+        ? `${query.departments[0]} ⚠️`
+        : query.departments[0];
+  }, [t, query.departments, departmentsNotDeployed, isTablet]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();

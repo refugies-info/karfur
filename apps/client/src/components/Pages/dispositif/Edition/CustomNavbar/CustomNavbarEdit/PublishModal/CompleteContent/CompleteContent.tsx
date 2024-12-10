@@ -35,15 +35,13 @@ const CompleteContent = (props: Props) => {
   const [keepTranslations, setKeepTranslations] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
   const [textContent, setTextContent] = useState<Content[]>(
-    getTextContent(status, !!dispositif?.hasDraftVersion, undefined, user.admin),
+    getTextContent(status, !!dispositif?.hasDraftVersion, undefined),
   );
   const values = useWatch();
 
-  const [hasChanges, setHasChanges] = useState<boolean | null>(user.admin ? null : false); // check changes only for admins
+  const [hasChanges, setHasChanges] = useState<boolean | null>(null);
   const [{ loading }, getHasChanges] = useAsyncFn(() =>
-    dispositif?._id && user.admin
-      ? API.getDispositifHasTextChanges(dispositif?._id.toString())
-      : Promise.resolve(false),
+    dispositif?._id ? API.getDispositifHasTextChanges(dispositif?._id.toString()) : Promise.resolve(false),
   );
 
   const contentType = useContentType();
@@ -51,8 +49,8 @@ const CompleteContent = (props: Props) => {
 
   // when form changes, reset hasChange
   useEffect(() => {
-    setHasChanges(user.admin ? null : false);
-  }, [values, user.admin]);
+    setHasChanges(null);
+  }, [values]);
 
   useEffect(() => {
     if (!loading && hasChanges === null) getHasChanges().then((res) => setHasChanges(res));
@@ -60,18 +58,19 @@ const CompleteContent = (props: Props) => {
 
   useEffect(() => {
     if (hasChanges !== null) {
-      const textContent = getTextContent(status, !!dispositif?.hasDraftVersion, hasChanges, user.admin);
+      const textContent = getTextContent(status, !!dispositif?.hasDraftVersion, hasChanges);
       setTitle(textContent[step].title);
       setTextContent(textContent);
     }
-  }, [status, step, setTitle, hasChanges, dispositif, user.admin]);
+  }, [status, step, setTitle, hasChanges, dispositif]);
 
   const content = useMemo(() => {
     // status === ACTIVE
     if (dispositif?.hasDraftVersion) {
-      // role === admin and changes
-      if (user.admin) {
-        return hasChanges ? (
+      // if changes
+      if (hasChanges) {
+        // for admin = ask to keep trads
+        return user.admin ? (
           <>
             <ChoiceButton
               text="Traduire les modifications"
@@ -102,15 +101,39 @@ const CompleteContent = (props: Props) => {
             </div>
           </>
         ) : (
+          // for user = show steps
           <>
             <StepBar
               total={totalSteps}
               progress={totalSteps}
               text={`${totalSteps} étapes complétées sur ${totalSteps}`}
             />
-            <div className="text-center mb-8 mt-6">
-              <Image src={PublishImage} width={345} height={240} alt="" />
-            </div>
+            <PublicationSteps
+              items={[
+                {
+                  title: "Modification de la fiche",
+                  done: true,
+                },
+                {
+                  title: "Relecture par l’équipe éditoriale",
+                  subtitle: "Nous vous contactons s’il manque des informations essentielles.",
+                },
+                {
+                  title: "Publication des mises à jour 🎉",
+                  notification: true,
+                },
+                {
+                  title: "Traduction des modifications en 7 langues",
+                  subtitle: (
+                    <>
+                      Votre fiche est traduite gratuitement par des experts linguistes en anglais, arabe, pachto,
+                      persan, tigrinya, ukrainien et russe.
+                      <BubbleFlags />
+                    </>
+                  ),
+                },
+              ]}
+            />
             <div className="text-end">
               <Button
                 onClick={(e: any) => {
@@ -120,13 +143,14 @@ const CompleteContent = (props: Props) => {
                 evaIcon="arrow-forward-outline"
                 iconPosition="right"
               >
-                Publier
+                Envoyer pour relecture
               </Button>
             </div>
           </>
         );
       }
-      // role === user
+
+      // no change
       return (
         <>
           <StepBar
@@ -134,32 +158,9 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <PublicationSteps
-            items={[
-              {
-                title: "Modification de la fiche",
-                done: true,
-              },
-              {
-                title: "Relecture par l’équipe éditoriale",
-                subtitle: "Nous vous contactons s’il manque des informations essentielles.",
-              },
-              {
-                title: "Publication des mises à jour 🎉",
-                notification: true,
-              },
-              {
-                title: "Traduction des modifications en 7 langues",
-                subtitle: (
-                  <>
-                    Votre fiche est traduite gratuitement par des experts linguistes en anglais, arabe, pachto, persan,
-                    tigrinya, ukrainien et russe.
-                    <BubbleFlags />
-                  </>
-                ),
-              },
-            ]}
-          />
+          <div className="text-center mb-8 mt-6">
+            <Image src={PublishImage} width={345} height={240} alt="" />
+          </div>
           <div className="text-end">
             <Button
               onClick={(e: any) => {
@@ -169,7 +170,7 @@ const CompleteContent = (props: Props) => {
               evaIcon="arrow-forward-outline"
               iconPosition="right"
             >
-              Envoyer pour relecture
+              Publier
             </Button>
           </div>
         </>

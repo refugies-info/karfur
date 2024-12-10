@@ -54,6 +54,8 @@ import {
   getHasTextChanges,
   getNbContentsForCounty,
   getNbDispositifsByRegion,
+  getRecentDemarches,
+  getRecentDispositifsByDepartement,
   getStatistics,
   getUserContributions,
   modifyDispositifMainSponsor,
@@ -319,7 +321,27 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    jwt: ["admin"],
+    jwt: ["newsletter"],
+    fromSite: [],
+  })
+  @Get("/recent-demarches")
+  public async getRecentDemarches(): ResponseWithData<{ titre: string; url: string }[]> {
+    return getRecentDemarches();
+  }
+
+  @Security({
+    jwt: ["newsletter"],
+    fromSite: [],
+  })
+  @Get("/recent-dispositifs/{departement}")
+  public async getRecentDispositifsByDepartement(
+    @Path() departement: string,
+  ): ResponseWithData<{ titre: string; url: string }[]> {
+    return getRecentDispositifsByDepartement(departement);
+  }
+
+  @Security({
+    jwt: [],
     fromSite: [],
   })
   @Get("/{id}/has-text-changes")

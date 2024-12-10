@@ -9,7 +9,7 @@ const customJestConfig = {
   testEnvironment: "jest-environment-jsdom",
   rootDir: "./",
   setupFilesAfterEnv: ["./jest/setup.js"],
-  transformIgnorePatterns: ["node_modules/(?!@codegouvfr/react-dsfr)"],
+  // transformIgnorePatterns: ["node_modules/(?!@codegouvfr/react-dsfr)"],
 };
 
 module.exports = createJestConfig(customJestConfig);

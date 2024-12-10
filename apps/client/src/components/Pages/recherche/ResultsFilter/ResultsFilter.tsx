@@ -46,7 +46,7 @@ const ResultsFilter = (): React.ReactNode => {
   const getCount = (type: TypeOptions) => {
     switch (type) {
       case "all":
-        return `(${nbDemarches + nbDispositifs})`;
+        return `(${filteredResult.matches.length})`;
       case "demarche":
         return `(${nbDemarches})`;
       case "dispositif":
