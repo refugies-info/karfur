@@ -4,11 +4,11 @@ import {
   AccessibleNavigation,
   AccessibleNavigationItem,
 } from "~/components/UI/AccessibleNavigation/AccessibleNavigation";
-import { LanguageItem } from "~/components/UI/LanguageSelect/LanguageItem";
+import { LanguageItem } from "~/components/UI/LanguageSelector/LanguageItem";
 
 interface LanguageSelectProps {}
 
-const LanguageSelect = forwardRef<HTMLDivElement, LanguageSelectProps>((props, ref) => {
+const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>((props, ref) => {
   return (
     <AccessibleNavigation ref={ref} {...props} orientation="vertical" aria-label="Languages">
       {activatedLanguages.map((lang, index) => {
@@ -22,6 +22,6 @@ const LanguageSelect = forwardRef<HTMLDivElement, LanguageSelectProps>((props, r
   );
 });
 
-LanguageSelect.displayName = "LanguageSelect";
+LanguageSelector.displayName = "LanguageSelector";
 
-export { LanguageSelect };
+export { LanguageSelector };

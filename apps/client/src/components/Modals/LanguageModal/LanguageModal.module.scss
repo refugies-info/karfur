@@ -18,7 +18,7 @@
   .modal_content {
     background: $white;
     box-shadow: 0 0 16px rgb(0 0 0 / 30%);
-    border-radius: $radius;
+    border-radius: 0;
     border: none;
   }
 
@@ -72,9 +72,7 @@
 
   .list_group_item {
     padding: 15px;
-    border: 0.5px solid $gray90 !important;
-    color: $gray90;
-    border-radius: 12px !important;
+    border-radius: 0;
     margin-bottom: 10px !important;
     cursor: pointer;
 
@@ -88,15 +86,13 @@
     border-color: $gray50;
   } */
     &.unavailable {
-      background: $gray70;
+      background: var(--background-alt-grey);
       border: none;
-      color: $white;
       padding: 10px;
       box-shadow: none;
     }
 
     &.active {
-      color: $white;
       background-color: $bleuCharte;
       border: 0.5px solid $bleuCharte;
     }

@@ -4,7 +4,7 @@ import { activatedLanguages } from "data/activatedLanguages";
 import router from "next/router";
 import { useState } from "react";
 import { DropdownContent, DropdownRoot, DropdownTrigger } from "~/components/UI/DropDown/DropDown";
-import { LanguageSelect } from "~/components/UI/LanguageSelect/LanguageSelect";
+import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
@@ -27,7 +27,7 @@ const LanguageMenu = () => {
       }
       className={styles.langAccordion}
     >
-      <LanguageSelect />
+      <LanguageSelector />
     </Accordion>
   ) : (
     <DropdownRoot key="language" onOpenChange={(open) => setLangMenuOpened(open)}>
@@ -38,7 +38,7 @@ const LanguageMenu = () => {
         </Button>
       </DropdownTrigger>
       <DropdownContent position="right">
-        <LanguageSelect />
+        <LanguageSelector />
       </DropdownContent>
     </DropdownRoot>
   );

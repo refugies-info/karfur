@@ -7,7 +7,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { memo, useMemo } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
-import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
@@ -19,7 +18,6 @@ import styles from "./Navbar.module.scss";
 const Navbar = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const dispatch = useDispatch();
   const isEditionMode = useEditionMode();
   const backendNavigation = useBackendNavigation();
 
@@ -101,6 +99,13 @@ const Navbar = () => {
         },
         text: t("Toolbar.shareApplication", "Partager l'application"),
       },
+      {
+        linkProps: {
+          href: "https://help.refugies.info",
+          target: "_blank",
+        },
+        text: t("Toolbar.helpCenter", "Centre d'aide"),
+      },
 
       isMobileOnly
         ? {
@@ -110,9 +115,21 @@ const Navbar = () => {
               className: "px-0",
             },
             text: isIOS ? (
-              <Image src={appStoreBadge} alt="Get it on App Store" width={120} height={40} className="mt-3" />
+              <Image
+                src={appStoreBadge}
+                alt={t("Toolbar.getItOnAppStore", "Téléchager sur l'App Store")}
+                width={120}
+                height={40}
+                className="mt-3"
+              />
             ) : (
-              <Image src={playStoreBadge} alt="Get it on Play Store" width={134} height={40} className="mt-3" />
+              <Image
+                src={playStoreBadge}
+                alt={t("Toolbar.getItOnPlayStore", "Téléchager sur le Play Store")}
+                width={134}
+                height={40}
+                className="mt-3"
+              />
             ),
           }
         : null,
