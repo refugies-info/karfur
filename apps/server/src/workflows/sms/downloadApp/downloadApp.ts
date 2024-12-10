@@ -1,5 +1,5 @@
 import { DownloadAppRequest } from "@refugies-info/api-types";
-import { sendSMS } from "~/connectors/twilio/sendSMS";
+import { sendSMS } from "~/connectors/twilio";
 import { InvalidRequestError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
