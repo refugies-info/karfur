@@ -1,11 +1,10 @@
 import logger from "~/logger";
+import { SendSMSResult } from "~/services";
 
 const { accountSid, authToken, SMS_SENDER } = process.env;
 const client = require("twilio")(accountSid, authToken);
 
-type Res = { status: number; sent: boolean };
-
-export const sendSMS = async (text: string, phone: string): Promise<Res> => {
+export const sendSMS = async (text: string, phone: string): Promise<SendSMSResult> => {
   if (!text || !phone) return { status: 400, sent: false };
 
   return client.messages
