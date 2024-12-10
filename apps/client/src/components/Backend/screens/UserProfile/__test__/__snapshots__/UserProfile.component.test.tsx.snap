@@ -9,7 +9,7 @@ exports[`UserProfile should render correctly 1`] = `
       class="wrapper"
     >
       <div
-        class="mb-10 align-items-center row"
+        class="mb-10 items-center row"
       >
         <div
           class="col"
@@ -33,7 +33,7 @@ exports[`UserProfile should render correctly 1`] = `
         class="row"
       >
         <div
-          class="flex-grow-0 col"
+          class="!grow-0 col"
         >
           <h2>
             Photo de profil
@@ -65,7 +65,7 @@ exports[`UserProfile should render correctly 1`] = `
                 Votre photo apparaît sur les fiches auxquelles vous contribuez.
               </p>
               <button
-                class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative"
+                class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right relative"
               >
                 Modifier ma photo
                 <input
@@ -80,7 +80,7 @@ exports[`UserProfile should render correctly 1`] = `
           class="col"
         >
           <div
-            class="d-flex align-items-center justify-content-between"
+            class="flex items-center justify-between"
           >
             <h2>
               Informations personnelles
@@ -404,7 +404,7 @@ exports[`UserProfile should render correctly 1`] = `
             class="block mb-4"
           >
             <div
-              class="d-flex justify-content-between mb-3"
+              class="flex justify-between mb-3"
             >
               <label
                 class="label"
@@ -537,7 +537,7 @@ exports[`UserProfile should render correctly 1`] = `
                     </span>
                   </label>
                   <div
-                    class="position-relative"
+                    class="relative"
                   >
                     <div />
                   </div>
@@ -617,7 +617,7 @@ exports[`UserProfile should render correctly 1`] = `
                 </h1>
                 <form>
                   <label
-                    class="choice mb-4 rounded-0"
+                    class="choice mb-4 rounded-none"
                     for="language"
                   >
                     <input

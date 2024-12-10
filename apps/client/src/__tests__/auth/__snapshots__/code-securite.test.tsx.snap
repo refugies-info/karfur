@@ -22,7 +22,7 @@ exports[`auth/connexion renders code-securite if email 1`] = `
       >
         Un code temporaire à 6 chiffres vous a été envoyé à test@example.com. 
         <a
-          class="text-decoration-underline"
+          class="underline"
           href="/auth"
         >
           Ce n'est pas vous ?
