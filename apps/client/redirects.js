@@ -18,6 +18,7 @@ const urlTranslations = [
 ];
 
 const oldPathsRedirects = [
+  ["/fr/qui-sommes-nous", "/fr/mission-impact"],
   ["/fr/advanced-search", "/fr/recherche"],
   ["/fr/annuaire-create", "/fr/annuaire-creation"],
   [`/:lang${ln}?/annuaire-create`, "/:lang/directory-create"],

@@ -51,9 +51,21 @@ export const backendRoutes: BackendRouteType[] = [
   },
   {
     path: "/backend/user-profile",
+    name: "User Profile - Réfugiés.info",
+    component: UserProfile,
+    restriction: [RoleName.USER, RoleName.ADMIN],
+  },
+  {
+    path: "/backend/user-profile",
     name: "Mon profil - Réfugiés.info",
     component: UserProfile,
     restriction: [RoleName.USER, RoleName.TRAD, RoleName.EXPERT_TRAD, RoleName.ADMIN],
+  },
+  {
+    path: "/backend/user-profile",
+    name: "User Profile - Réfugiés.info",
+    component: UserProfile,
+    restriction: [RoleName.USER, RoleName.ADMIN],
   },
   {
     path: "/backend/user-dash-notifications",
