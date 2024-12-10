@@ -1,9 +1,9 @@
 import { ContentLinkRequest, Languages } from "@refugies-info/api-types";
-import { sendSMS } from "~/connectors/twilio";
 import { InvalidRequestError, NotFoundError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { getDispositifByIdWithAllFields } from "~/modules/dispositif/dispositif.repository";
+import { sendSMS } from "~/services";
 import { Response } from "~/types/interface";
 
 export const contentLink = async (body: ContentLinkRequest): Response => {
