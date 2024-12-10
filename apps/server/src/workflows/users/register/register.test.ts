@@ -16,7 +16,7 @@ jest.mock("password-hash", () => ({
 jest.mock("../../../modules/users/auth", () => ({
   loginExceptionsManager: jest.fn(),
 }));
-jest.mock("../../../connectors/sendinblue/addToNewsletter", () => ({
+jest.mock("../../../connectors/brevo/addToNewsletter", () => ({
   addToNewsletter: jest.fn(),
 }));
 jest.mock("../../../modules/users/users.service", () => ({

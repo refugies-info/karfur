@@ -9,6 +9,13 @@ jest.mock("@getbrevo/brevo", () => ({
   ContactsApiApiKeys: {
     apiKey: "",
   },
+  TransactionalSMSApi: jest.fn().mockReturnValue({
+    setApiKey: jest.fn(),
+  }),
+  TransactionalSMSApiApiKeys: {
+    apiKey: "",
+  },
+  SendTransacSms: jest.fn(),
 }));
 
 describe("isInNewsletterList", () => {
