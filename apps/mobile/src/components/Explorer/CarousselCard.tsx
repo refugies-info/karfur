@@ -75,7 +75,7 @@ const CarousselCardComponent = (props: Props) => {
         height={props.cardHeight}
       >
         <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
-          <TagImage theme={props.theme} />
+          <TagImage appImage={props.theme.appImage} />
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
           <StyledText>{firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}</StyledText>

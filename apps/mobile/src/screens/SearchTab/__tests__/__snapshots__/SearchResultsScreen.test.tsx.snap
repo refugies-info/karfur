@@ -659,36 +659,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -800,36 +789,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -941,36 +919,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1082,36 +1049,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1223,36 +1179,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1364,36 +1309,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1505,36 +1439,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1646,36 +1569,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1787,36 +1699,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
@@ -1928,36 +1829,25 @@ exports[`Search results screen should render correctly 1`] = `
                   </Text>
                   <View />
                 </Text>
-                <RNSVGSvgView
-                  bbHeight="20"
-                  bbWidth="20"
-                  focusable={false}
-                  height={20}
+                <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 20,
-                        "width": 20,
-                      },
-                    ]
+                    {
+                      "height": 32,
+                      "overflow": "hidden",
+                      "width": 32,
+                    }
                   }
-                  width={20}
-                  xml="<svg></svg>"
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "height": 44.8,
                       }
                     }
-                  />
-                </RNSVGSvgView>
+                  >
+                    <View />
+                  </View>
+                </View>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
           </View>
