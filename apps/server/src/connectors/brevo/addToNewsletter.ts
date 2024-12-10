@@ -1,11 +1,12 @@
-const brevo = require("@getbrevo/brevo");
+import { ContactsApi, ContactsApiApiKeys, CreateContact } from "@getbrevo/brevo";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 
-let apiInstance = new brevo.TransactionalEmailsApi();
+let apiInstance = new ContactsApi();
 
-let apiKey = apiInstance.authentications["apiKey"];
-apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
+const { BREVO_API_KEY } = process.env;
+
+apiInstance.setApiKey(ContactsApiApiKeys.apiKey, BREVO_API_KEY);
 
 const RI_CONTACTS_LIST = 57;
 
@@ -32,7 +33,7 @@ export const addToNewsletter = async (email: string) => {
     // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
   } catch (_) {}
 
-  const createContactRequest = new brevo.CreateContact();
+  const createContactRequest = new CreateContact();
   createContactRequest.email = email;
   createContactRequest.listIds = [RI_CONTACTS_LIST];
 
