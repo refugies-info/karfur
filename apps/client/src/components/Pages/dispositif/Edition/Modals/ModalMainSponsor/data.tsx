@@ -164,10 +164,4 @@ export const defaultContact: ContactInfos = {
 
 export const defaultSponsor: MainSponsor = {
   name: "",
-  link: "",
-  logo: {
-    imgId: "",
-    public_id: "",
-    secure_url: "",
-  },
 };

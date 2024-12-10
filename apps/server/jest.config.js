@@ -4,7 +4,7 @@ module.exports = {
   preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js", "d.ts"],
   transform: {
-    "^.+\\.(js)$": "../../node_modules/babel-jest",
+    "^.+\\.(js)$": "babel-jest",
     "\\.(ts|tsx)$": "ts-jest",
   },
   transformIgnorePatterns: ["node_modules/?!(static-container)"],

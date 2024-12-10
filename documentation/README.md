@@ -42,10 +42,10 @@ For all the new features, you must follow this process:
 - open a pull request to `dev`. Add the `bug` or `enhancement` tag. Add the ticket link to the PR, and the PR link in the ticket.
 - once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.
   Name it `[STG-FRONT|BACK]` and add the `release` tag.
-  You can also use the command `yarn pr:stg` from the right folder to create it automatically (needs `gh` installed locally)
+  You can also use the command `pnpm pr:stg` from the right folder to create it automatically (needs `gh` installed locally)
 - once it's validated, open a pull request to `master-\[frontend|backend\]` to deploy the feature.
   Name it `[PROD-FRONT|BACK]` and add the `release` tag.
-  You can also use the command `yarn pr:prod` from the right folder to create it automatically (needs `gh` installed locally)
+  You can also use the command `pnpm pr:prod` from the right folder to create it automatically (needs `gh` installed locally)
 
 _Note: before opening a pull request, make sure to run the tests in client and server folders: `npm run test`_
 

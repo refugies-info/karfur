@@ -2,56 +2,27 @@
 @import "~/scss/variables";
 @import "~/scss/mixins/rtl";
 
-html body div[dir="rtl"] {
-  text-align: right;
-
-  @each $prop, $abbrev in (margin: m, padding: p) {
-    @each $size, $length in $spacers {
-      .#{$abbrev}e-#{$size} {
-        #{$prop}-right: 0 !important;
-        #{$prop}-left: $length !important;
-      }
-      .#{$abbrev}s-#{$size} {
-        #{$prop}-right: $length !important;
-        #{$prop}-left: 0 !important;
-      }
+// Margin and padding utilities that work in both LTR and RTL
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $size, $length in $spacers {
+    .#{$abbrev}e-#{$size} {
+      #{$prop}-inline-end: $length !important;
+      #{$prop}-inline-start: 0 !important;
     }
-  }
-
-  // Some special margin utils
-  .me-auto {
-    margin-left: auto !important;
-  }
-
-  .ms-auto {
-    margin-right: auto !important;
+    .#{$abbrev}s-#{$size} {
+      #{$prop}-inline-start: $length !important;
+      #{$prop}-inline-end: 0 !important;
+    }
   }
 }
 
-html body div[dir="ltr"] {
-  text-align: left;
+// Special margin utilities
+.me-auto {
+  margin-inline-end: auto !important;
+  margin-inline-start: inherit !important;
+}
 
-  @each $prop, $abbrev in (margin: m, padding: p) {
-    @each $size, $length in $spacers {
-      .#{$abbrev}e-#{$size} {
-        #{$prop}-left: 0 !important;
-        #{$prop}-right: $length !important;
-      }
-      .#{$abbrev}s-#{$size} {
-        #{$prop}-left: $length !important;
-        #{$prop}-right: 0 !important;
-      }
-    }
-  }
-
-  // Some special margin utils
-  .me-auto {
-    margin-right: auto !important;
-    margin-left: inherit !important;
-  }
-
-  .ms-auto {
-    margin-left: auto !important;
-    margin-right: inherit !important;
-  }
+.ms-auto {
+  margin-inline-start: auto !important;
+  margin-inline-end: inherit !important;
 }

@@ -1,14 +1,14 @@
 import deepLinks from "./androidDeepLinks";
 
-const version = "2.1.1";
-const displayVersionNumber = "2024.11.1";
-const androidVersionCode = 34;
+const version = "2.1.2";
+const displayVersionNumber = "2024.12.1";
+const androidVersionCode = 35;
 
 export default {
   name: "Réfugiés.info",
   owner: "refugies-info",
   slug: "refugies-info-app",
-  version: "1.1.1",
+  version,
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -24,7 +24,7 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.1.1",
+    buildNumber: version,
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -43,7 +43,7 @@ export default {
     fr: "./src/translations/fr/common.json",
   },
   android: {
-    versionCode: 15,
+    versionCode: androidVersionCode,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",

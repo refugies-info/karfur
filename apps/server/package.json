@@ -8,10 +8,10 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "build": "yarn gen:tsoa && ncc build src/server.ts -o dist",
-    "build:dev": "yarn gen:tsoa && tsc",
-    "check:types": "yarn gen:tsoa && tsc --noEmit",
-    "dev": "yarn build:dev && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "build": "pnpm gen:tsoa && ncc build src/server.ts -o dist",
+    "build:dev": "pnpm gen:tsoa && tsc",
+    "check:types": "pnpm gen:tsoa && tsc --noEmit",
+    "dev": "pnpm build:dev && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "gen:tsoa": "tsoa spec-and-routes",
     "lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "lint:fix": "eslint --fix",
@@ -23,10 +23,11 @@
   "dependencies": {
     "@azure/msal-node": "^2.16.1",
     "@google-cloud/translate": "^8.5.0",
-    "@refugies-info/api-types": "*",
+    "@refugies-info/api-types": "workspace:*",
     "@sendgrid/mail": "^8.1.4",
     "@sendinblue/client": "^3.2.2",
     "@slack/webhook": "^7.0.1",
+    "@tsoa/runtime": "^6.5.1",
     "@typegoose/typegoose": "^12.9.0",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.14.2",
@@ -47,14 +48,14 @@
     "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
     "ts-node": "^10.9.2",
-    "tsoa": "^6.5.1",
+    "tsoa": "^6.6.0",
     "twilio": "^5.3.6",
     "uniqid": "^5.0.3",
     "uuid": "^11.0.3",
     "winston": "^3.17.0"
   },
   "devDependencies": {
-    "@refugies-info/typescript-config": "*",
+    "@refugies-info/typescript-config": "workspace:*",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^5.0.0",
@@ -68,6 +69,7 @@
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typescript-eslint/parser": "^8.14.0",
     "@vercel/ncc": "^0.38.3",
+    "babel-jest": "^29.7.0",
     "concurrently": "^9.1.0",
     "eslint": "^8.57.0",
     "eslint-config-turbo": "^2.3.0",
@@ -80,11 +82,10 @@
     "typescript": "^5.6.3"
   },
   "engines": {
-    "node": "20.13.1",
-    "yarn": "1.22.22"
+    "node": "20.13.1"
   },
   "volta": {
     "node": "20.13.1",
-    "yarn": "1.22.22"
+    "pnpm": "9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
   }
 }
