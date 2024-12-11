@@ -453,6 +453,9 @@ importers:
       '@react-native-firebase/crashlytics':
         specifier: ^20.0.0
         version: 20.5.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.21.0(react-native@0.73.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@18.3.1)))(expo@50.0.21(@babel/core@7.26.0)(@react-native/babel-preset@0.73.21(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))))(react-native@0.73.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@18.3.1))(react@18.3.1))(expo@50.0.21(@babel/core@7.26.0)(@react-native/babel-preset@0.73.21(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))))
+      '@react-native/assets-registry':
+        specifier: ^0.73.1
+        version: 0.73.1
       '@react-navigation/bottom-tabs':
         specifier: ^6.5.11
         version: 6.6.1(@react-navigation/native@6.1.18(react-native@0.73.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@4.8.2(react-native@0.73.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@18.3.1))(react@18.3.1))(react-native-screens@3.29.0(react-native@0.73.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@18.3.1))(react@18.3.1))(react-native@0.73.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@18.3.1))(react@18.3.1)
