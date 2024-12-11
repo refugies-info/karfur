@@ -2,7 +2,7 @@ import { ContactsApi, ContactsApiApiKeys, CreateContact } from "@getbrevo/brevo"
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 
-let apiInstance = new ContactsApi();
+const apiInstance = new ContactsApi();
 
 const { BREVO_API_KEY } = process.env;
 
