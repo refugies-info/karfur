@@ -62,12 +62,6 @@ export const backendRoutes: BackendRouteType[] = [
     restriction: [RoleName.USER, RoleName.TRAD, RoleName.EXPERT_TRAD, RoleName.ADMIN],
   },
   {
-    path: "/backend/user-profile",
-    name: "User Profile - Réfugiés.info",
-    component: UserProfile,
-    restriction: [RoleName.USER, RoleName.ADMIN],
-  },
-  {
     path: "/backend/user-dash-notifications",
     name: "Mes notifications - Réfugiés.info",
     component: UserNotifications,

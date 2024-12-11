@@ -10,8 +10,7 @@ import styles from "./LoginButton.module.scss";
 const LoginButton = () => {
   const { user } = useSelector(userSelector);
   const { t } = useTranslation();
-  // eslint-disable-next-line no-console
-  console.log(user);
+
   return (
     <>
       {user ? (
@@ -19,8 +18,7 @@ const LoginButton = () => {
           key="login"
           priority="primary"
           linkProps={{
-            // @ts-ignore
-            href: getPath("/backend/user-profile", router.locale), // TODO : fix the type route error here
+            href: "/backend/user-profile",
             prefetch: false,
             className: styles.forcedPrimaryButton,
           }}
