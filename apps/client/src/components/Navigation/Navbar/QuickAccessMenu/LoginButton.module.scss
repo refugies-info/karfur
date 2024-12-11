@@ -1,6 +1,8 @@
 .forcedPrimaryButton {
   background-color: var(--background-action-high-blue-france) !important;
+  padding-inline: 1em !important;
   color: var(--text-inverted-blue-france) !important;
+  max-width: fit-content;
 
   &:hover {
     background-color: var(--background-action-high-blue-france-hover) !important;

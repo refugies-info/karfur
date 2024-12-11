@@ -18,8 +18,6 @@ interface LanguageItemProps {
 
 const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, ...props }, ref) => {
-    // eslint-disable-next-line no-console
-    // console.log(item);
     const { t } = useTranslation();
 
     const { changeLanguage } = useChangeLanguage();
