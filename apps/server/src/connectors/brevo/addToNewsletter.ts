@@ -1,9 +1,12 @@
-import * as SibApiV3Sdk from "@sendinblue/client";
+import { ContactsApi, ContactsApiApiKeys, CreateContact } from "@getbrevo/brevo";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 
-let apiInstance = new SibApiV3Sdk.ContactsApi();
-apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.SENDINBLUE_API_KEY);
+const apiInstance = new ContactsApi();
+
+const { BREVO_API_KEY } = process.env;
+
+apiInstance.setApiKey(ContactsApiApiKeys.apiKey, BREVO_API_KEY);
 
 const RI_CONTACTS_LIST = 57;
 
@@ -30,7 +33,7 @@ export const addToNewsletter = async (email: string) => {
     // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
   } catch (_) {}
 
-  const createContactRequest = new SibApiV3Sdk.CreateContact();
+  const createContactRequest = new CreateContact();
   createContactRequest.email = email;
   createContactRequest.listIds = [RI_CONTACTS_LIST];
 
@@ -38,7 +41,7 @@ export const addToNewsletter = async (email: string) => {
     function () {
       logger.info("[setMail] API called successfully.");
     },
-    function (error) {
+    function (error: any) {
       logger.error("[setMail] Error while creating contact", error);
       if (error.response.statusCode === 400 && error.response.body?.message === "Contact already exist")
         throw new InvalidRequestError("This email is already in the list.", "CONTACT_ALREADY_EXIST");
