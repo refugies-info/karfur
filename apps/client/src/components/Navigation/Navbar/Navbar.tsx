@@ -83,11 +83,12 @@ const Navbar = () => {
           },
           {
             linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
-            text: t("Toolbar.posters_leaflets", "Affiches et dépliants"),
+            text: t("Toolbar.posters_leaflets", "Commander des affiches et dépliants"),
           },
+
           {
-            linkProps: { href: "https://kit.refugies.info/presse/", target: "_blank" },
-            text: t("Toolbar.Pour la presse", "Pour la presse"),
+            linkProps: { href: "https://kit.refugies.info/agir", target: "_blank" },
+            text: t("Toolbar.forAgirOperators", "Pour les opérateurs AGIR"),
           },
         ],
       },
