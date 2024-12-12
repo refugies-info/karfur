@@ -66,7 +66,8 @@
     "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
-    "storybook": "pnpm --filter @refugies-info/storybook storybook"
+    "storybook": "pnpm --filter @refugies-info/storybook storybook",
+    "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish"
   },
   "dependencies": {},
   "engines": {
