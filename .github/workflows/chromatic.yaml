@@ -1,4 +1,4 @@
-name: Checks
+name: Chromatic
 
 on:
   pull_request:
@@ -34,9 +34,9 @@ jobs:
           pnpm add -g turbo
           pnpm install --frozen-lockfile
 
-      - name: Lint, Check Types and Test
-        run: turbo lint check:types test && pnpm lint:style
-        env:
-          NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
-          NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}
-          NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG }}
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: apps/storybook
