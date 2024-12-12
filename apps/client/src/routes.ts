@@ -16,8 +16,9 @@ export type PathNames =
   | "/qui-sommes-nous"
   | "/mentions-legales"
   | "/declaration-accessibilite"
-  | "/politique-de-confidentialite"
   | "/plan-du-site"
+  | "/politique-de-confidentialite"
+  | "/mission-impact"
   | "/backend/[...backend]"
   | "/auth"
   | "/auth/connexion"
@@ -57,6 +58,7 @@ const routes: Routes = {
   "/declaration-accessibilite": "/accessibility-statement",
   "/plan-du-site": "/sitemap",
   "/politique-de-confidentialite": "/privacy-policy",
+  "/mission-impact": "/mission-impact",
   "/backend/[...backend]": "/backend/[...backend]",
   "/auth": "/auth",
   "/auth/connexion": "/auth/connexion",

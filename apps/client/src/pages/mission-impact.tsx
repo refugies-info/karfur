@@ -3,13 +3,13 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { assetsOnServer } from "~/assets/assetsOnServer";
-import { Contribution } from "~/components/Pages/qui-sommes-nous/Contribution";
-import { Mission } from "~/components/Pages/qui-sommes-nous/Mission";
-import { Partners } from "~/components/Pages/qui-sommes-nous/Partners";
-import { Problematic } from "~/components/Pages/qui-sommes-nous/Problematic";
+import { Contribution } from "~/components/Pages/mission-impact/Contribution";
+import { Mission } from "~/components/Pages/mission-impact/Mission";
+import { Partners } from "~/components/Pages/mission-impact/Partners";
+import { Problematic } from "~/components/Pages/mission-impact/Problematic";
 import SEO from "~/components/Seo";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
-import styles from "~/scss/pages/qui-sommes-nous.module.scss";
+import styles from "~/scss/pages/mission-impact.module.scss";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -85,7 +85,7 @@ const PartnersContainer = styled.div`
   padding-right: 32px;
 `;
 
-const QuiSommesNous: NextPage = () => {
+const MissionImpact: NextPage = () => {
   const [isToolbarVisible, setIsToolbarVisible] = useState(true);
   const [visibleSection, setVisibleSection] = useState("");
 
@@ -183,4 +183,4 @@ const QuiSommesNous: NextPage = () => {
 
 export const getStaticProps = defaultStaticProps;
 
-export default QuiSommesNous;
+export default MissionImpact;
