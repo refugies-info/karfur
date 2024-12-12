@@ -40,3 +40,4 @@ jobs:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: apps/storybook
+          skip: "dependabot/**" # 👈 Option to skip Chromatic for certain branches
