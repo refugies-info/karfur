@@ -37,6 +37,7 @@ const AccessibleNavigation = forwardRef<HTMLDivElement, AccessibleNavigationProp
     const navRef = useRef<HTMLDivElement | null>(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
+    // Here we can't use ref directly if we want the querySelector to work
     useImperativeHandle(ref, () => navRef.current as HTMLDivElement);
 
     const focusItem = useCallback((index: number) => {
