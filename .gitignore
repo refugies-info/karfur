@@ -45,3 +45,6 @@ npm-debug.log*
 # EAS
 .expo/
 credentials/
+
+# Storybook
+*storybook.log
