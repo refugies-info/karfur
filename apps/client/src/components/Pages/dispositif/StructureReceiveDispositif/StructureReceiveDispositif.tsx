@@ -86,7 +86,7 @@ const StructureReceiveDispositif = () => {
           onClick={submit}
           evaIcon="checkmark-circle-2"
           iconPosition="right"
-          className="w-100 justify-content-center"
+          className="w-full justify-center"
           disabled={receiveDispositif === null}
         >
           Valider

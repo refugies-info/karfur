@@ -67,7 +67,7 @@ const AdminThemeButton = (props: Props) => {
         <Col className={styles.col}>
           <div className={props.labelNoBackground ? "bg-transparent" : ""}>
             <div>
-              <FButton type="fill-dark" name="upload-outline" className="position-relative">
+              <FButton type="fill-dark" name="upload-outline" className="relative">
                 <Input
                   className={styles.file_input}
                   type="file"

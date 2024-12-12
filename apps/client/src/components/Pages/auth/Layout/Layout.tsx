@@ -41,7 +41,7 @@ const Layout = (props: Props) => {
                 href="https://help.refugies.info/fr/article/je-narrive-pas-a-me-connecter-a-mon-compte-refugiesinfo-1n02al9/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-decoration-underline"
+                className="underline"
               >
                 article d'aide
               </a>{" "}
@@ -50,7 +50,7 @@ const Layout = (props: Props) => {
                 href="https://go.crisp.chat/chat/embed/?website_id=74e04b98-ef6b-4cb0-9daf-f8a2b643e121"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-decoration-underline"
+                className="underline"
               >
                 via notre livechat
               </a>

@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
-import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Progress, Row } from "reactstrap";
+import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { getPath } from "routes";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
+import { Progress } from "~/components/UI/Progress";
 import { Event } from "~/lib/tracking";
 import styles from "./LanguageModal.module.scss";
 
@@ -88,11 +89,12 @@ const LanguageModal = (props: Props) => {
                       {props.isLanguagesLoading === false && (
                         <>
                           <Progress
-                            color={isSelected ? "light-green" : "primary"}
+                            color={isSelected ? "bg-green-200" : "bg-primary"}
                             value={getAvancementTrad(ln.i18nCode) * 100}
-                            className={styles.progress}
+                            className="w-24 me-3"
+                            small
                           />
-                          <span className={isSelected ? "text-light-green" : "text-primary"}>
+                          <span className={isSelected ? "text-green-200" : "text-primary"}>
                             <b>{Math.round(getAvancementTrad(ln.i18nCode) * 100) + " %"}</b>
                           </span>
                         </>

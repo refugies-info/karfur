@@ -34,7 +34,7 @@ const DispositifPage = (props: Props) => {
   return (
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
-        <div className="w-100">
+        <div className="w-full">
           <form onKeyDown={dispositifFormContext.preventSubmissionOnEnter}>
             <Dispositif typeContenu={ContentType.DISPOSITIF} />
           </form>

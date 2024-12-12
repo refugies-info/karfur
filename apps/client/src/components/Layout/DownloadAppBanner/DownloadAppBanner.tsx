@@ -30,7 +30,7 @@ const DownloadAppBanner = () => {
   if (!show) return null;
   return (
     <div className={styles.container}>
-      <div className="d-flex align-items-center">
+      <div className="flex items-center">
         <Image src="/images/logo-navbar-ri.svg" width="40" height="40" alt="" />
         <div className="ms-2">
           <div className={styles.brand}>Réfugiés.info</div>
@@ -38,7 +38,7 @@ const DownloadAppBanner = () => {
         </div>
       </div>
 
-      <div className="d-flex align-items-center">
+      <div className="flex items-center">
         <Button
           size="small"
           className="me-1"
