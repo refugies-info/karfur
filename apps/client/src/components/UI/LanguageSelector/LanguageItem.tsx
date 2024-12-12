@@ -6,6 +6,7 @@ import { forwardRef, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useChangeLanguage } from "~/hooks";
+import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
@@ -19,6 +20,7 @@ interface LanguageItemProps {
 const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, ...props }, ref) => {
     const { t } = useTranslation();
+    const stylesDisabled = useStylesDisabled();
 
     const { changeLanguage } = useChangeLanguage();
     const currentLanguage = router.locale || "fr";
@@ -68,9 +70,13 @@ const LanguageItem = memo(
         {item.langueCode && notListenableLanguages.includes(item.langueCode) && (
           <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
         )}{" "}
-        <Badge noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
-          {Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}
-        </Badge>
+        {stylesDisabled ? (
+          <>{Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}</>
+        ) : (
+          <Badge noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
+            {Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}
+          </Badge>
+        )}
       </button>
     );
   }),
