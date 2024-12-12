@@ -3,7 +3,7 @@
 exports[`agir renders traduire 1`] = `
 <DocumentFragment>
   <div
-    class="w-100"
+    class="w-full"
   >
     <div
       class="hero"
@@ -23,7 +23,7 @@ exports[`agir renders traduire 1`] = `
               Le programme AGIR en bref
             </h1>
             <p
-              class="subtitle mb-10"
+              class="subtitle !mb-10"
             >
               Ce programme interministériel est piloté par la Direction générale des étrangers en France (DGEF) en partenariat avec la DIHAL, la DIAIR, l’OFII et la DGEFP.
             </p>
@@ -43,7 +43,7 @@ exports[`agir renders traduire 1`] = `
             </a>
           </div>
           <div
-            class="d-flex justify-content-center justify-lg-content-end col"
+            class="flex justify-center lg:justify-end col"
           >
             <img
               alt=""
@@ -133,7 +133,7 @@ exports[`agir renders traduire 1`] = `
         id="program"
       />
       <div
-        class="py-10 py-lg-20"
+        class="py-10 lg:py-20"
       >
         <span
           class="step"
@@ -141,11 +141,9 @@ exports[`agir renders traduire 1`] = `
           1
         </span>
         <div
-          class="gx-20 row"
+          class="grid lg:grid-cols-2 gap-x-20"
         >
-          <div
-            class="col-lg-6"
-          >
+          <div>
             <h2
               class="blue fr-display--xs"
             >
@@ -157,9 +155,7 @@ exports[`agir renders traduire 1`] = `
               Le programme AGIR vise à systématiser l’accompagnement global des bénéficiaires de la protection internationale (BPI) vers l’emploi, le logement et l’accès aux droits.
             </p>
           </div>
-          <div
-            class="col-lg-6"
-          >
+          <div>
             <ul
               class="list"
             >
@@ -203,10 +199,10 @@ exports[`agir renders traduire 1`] = `
           </div>
         </div>
         <div
-          class="mt-10 mt-lg-20 row"
+          class="grid lg:grid-cols-3 gap-10 mt-10 lg:mt-20"
         >
           <div
-            class="mb-10 mb-lg-0 col-lg-4"
+            class="mb-10 lg:mb-0"
           >
             <div
               class="card"
@@ -257,7 +253,7 @@ exports[`agir renders traduire 1`] = `
             </div>
           </div>
           <div
-            class="mb-10 mb-lg-0 col-lg-4"
+            class="mb-10 lg:mb-0"
           >
             <div
               class="card"
@@ -285,7 +281,7 @@ exports[`agir renders traduire 1`] = `
             </div>
           </div>
           <div
-            class="mb-10 mb-lg-0 col-lg-4"
+            class="mb-10 lg:mb-0"
           >
             <div
               class="card"
@@ -334,7 +330,7 @@ exports[`agir renders traduire 1`] = `
         id="operators"
       />
       <div
-        class="py-10 py-lg-20"
+        class="py-10 lg:py-20"
       >
         <span
           class="step"
@@ -342,11 +338,9 @@ exports[`agir renders traduire 1`] = `
           2
         </span>
         <div
-          class="gx-20 row"
+          class="grid lg:grid-cols-2 gap-x-20"
         >
-          <div
-            class="col-lg-6"
-          >
+          <div>
             <h2
               class="blue fr-display--xs"
             >
@@ -358,9 +352,7 @@ exports[`agir renders traduire 1`] = `
               L’objectif du programme AGIR est de proposer un guichet unique par département pour favoriser l’intégration des BPI, pour des parcours adaptés et sans ruptures.
             </p>
           </div>
-          <div
-            class="col-lg-6"
-          >
+          <div>
             <ul
               class="list"
             >
@@ -396,7 +388,7 @@ exports[`agir renders traduire 1`] = `
           id="map"
         />
         <div
-          class="mt-10 mt-lg-20"
+          class="mt-10 lg:mt-20"
         >
           <h3
             class="h3"
@@ -404,15 +396,15 @@ exports[`agir renders traduire 1`] = `
             Trouver l’opérateur de mon territoire
           </h3>
           <p
-            class="w-lg-50 fst-italic"
+            class="lg:w-1/2 italic"
           >
             Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre territoire.
           </p>
           <div
-            class="row"
+            class="grid lg:grid-cols-3"
           >
             <div
-              class="col-lg-8"
+              class="lg:col-span-2"
             >
               <svg
                 height="544px"
@@ -1171,7 +1163,7 @@ exports[`agir renders traduire 1`] = `
               </svg>
             </div>
             <div
-              class="d-flex align-items-center col-lg-4"
+              class="lg:col-span-1 flex items-center"
             />
           </div>
         </div>
@@ -1182,7 +1174,7 @@ exports[`agir renders traduire 1`] = `
       id="next"
     />
     <div
-      class="next py-10 py-lg-20"
+      class="next py-10 lg:py-20"
     >
       <div
         class="container"
@@ -1198,16 +1190,16 @@ exports[`agir renders traduire 1`] = `
           Découvrez Réfugiés.info et comment l’utiliser au quotidien avec vos bénéficiaires.
         </p>
         <div
-          class="mt-10 mt-lg-20 cards"
+          class="mt-10 lg:mt-20 cards"
         >
           <div
-            class="gx-6 row"
+            class="grid lg:grid-cols-4 gap-6"
           >
             <div
-              class="mb-4 mb-lg-0 col-lg-3"
+              class="mb-4 lg:mb-0"
             >
               <div
-                class="fr-card fr-enlarge-link fr-card--sm h-100"
+                class="fr-card fr-enlarge-link fr-card--sm h-full"
                 id="fr-card-:r11:"
               >
                 <div
@@ -1255,10 +1247,10 @@ exports[`agir renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="mb-4 mb-lg-0 col-lg-3"
+              class="mb-4 lg:mb-0"
             >
               <div
-                class="fr-card fr-enlarge-link fr-card--sm h-100"
+                class="fr-card fr-enlarge-link fr-card--sm h-full"
                 id="fr-card-:r12:"
               >
                 <div
@@ -1306,10 +1298,10 @@ exports[`agir renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="mb-4 mb-lg-0 col-lg-3"
+              class="mb-4 lg:mb-0"
             >
               <div
-                class="fr-card fr-enlarge-link fr-card--sm h-100"
+                class="fr-card fr-enlarge-link fr-card--sm h-full"
                 id="fr-card-:r13:"
               >
                 <div
@@ -1357,10 +1349,10 @@ exports[`agir renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="mb-4 mb-lg-0 col-lg-3"
+              class="mb-4 lg:mb-0"
             >
               <div
-                class="fr-card fr-enlarge-link fr-card--sm h-100"
+                class="fr-card fr-enlarge-link fr-card--sm h-full"
                 id="fr-card-:r14:"
               >
                 <div

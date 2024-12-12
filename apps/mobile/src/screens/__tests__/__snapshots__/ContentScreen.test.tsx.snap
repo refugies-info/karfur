@@ -6867,36 +6867,25 @@ exports[`ContentScreen should render correctly 1`] = `
                       </Text>
                       <View />
                     </Text>
-                    <RNSVGSvgView
-                      bbHeight="60"
-                      bbWidth="60"
-                      focusable={false}
-                      height={60}
+                    <View
                       style={
-                        [
-                          {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          {
-                            "flex": 0,
-                            "height": 60,
-                            "width": 60,
-                          },
-                        ]
+                        {
+                          "height": 60,
+                          "overflow": "hidden",
+                          "width": 60,
+                        }
                       }
-                      width={60}
-                      xml="<svg></svg>"
                     >
-                      <RNSVGGroup
-                        fill={
+                      <View
+                        style={
                           {
-                            "payload": 4278190080,
-                            "type": 0,
+                            "height": 84,
                           }
                         }
-                      />
-                    </RNSVGSvgView>
+                      >
+                        <View />
+                      </View>
+                    </View>
                   </View>
                 </ViewManagerAdapter_ExpoLinearGradient>
               </View>
@@ -15853,36 +15842,25 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </Text>
                       <View />
                     </Text>
-                    <RNSVGSvgView
-                      bbHeight="60"
-                      bbWidth="60"
-                      focusable={false}
-                      height={60}
+                    <View
                       style={
-                        [
-                          {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          {
-                            "flex": 0,
-                            "height": 60,
-                            "width": 60,
-                          },
-                        ]
+                        {
+                          "height": 60,
+                          "overflow": "hidden",
+                          "width": 60,
+                        }
                       }
-                      width={60}
-                      xml="<svg></svg>"
                     >
-                      <RNSVGGroup
-                        fill={
+                      <View
+                        style={
                           {
-                            "payload": 4278190080,
-                            "type": 0,
+                            "height": 84,
                           }
                         }
-                      />
-                    </RNSVGSvgView>
+                      >
+                        <View />
+                      </View>
+                    </View>
                   </View>
                 </ViewManagerAdapter_ExpoLinearGradient>
               </View>

@@ -770,10 +770,10 @@ exports[`homepage renders homepage 1`] = `
         class="container container"
       >
         <div
-          class="align-items-center row"
+          class="items-center row"
         >
           <div
-            class="col-sm-12 col-lg-6 order-lg-2"
+            class="lg:order-2 col-sm-12 col-lg-6"
           >
             <div
               class="container"
@@ -1027,10 +1027,10 @@ exports[`homepage renders homepage 1`] = `
             </div>
           </div>
           <div
-            class="col-sm-12 col-lg-6 order-lg-1"
+            class="lg:order-1 col-sm-12 col-lg-6"
           >
             <h2
-              class="title2 text-white mb-0"
+              class="title2 white !mb-0"
             >
               Homepage.mobileAppTitle
             </h2>
@@ -1230,9 +1230,7 @@ exports[`homepage renders homepage 1`] = `
         <div
           class="title"
         >
-          <h2
-            class="h4"
-          >
+          <h2>
             Homepage.infoTypeDemarche
           </h2>
           <button
@@ -1324,7 +1322,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1342,7 +1340,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1376,7 +1374,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1464,7 +1462,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1482,7 +1480,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1516,7 +1514,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1604,7 +1602,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1622,7 +1620,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1656,7 +1654,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1744,7 +1742,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1762,7 +1760,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1791,7 +1789,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1879,7 +1877,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1897,7 +1895,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1931,7 +1929,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2019,7 +2017,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2037,7 +2035,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2066,7 +2064,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2154,7 +2152,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2172,7 +2170,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2206,7 +2204,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2294,7 +2292,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2312,7 +2310,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2341,7 +2339,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2429,7 +2427,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2447,7 +2445,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2476,7 +2474,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2564,7 +2562,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2582,7 +2580,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2616,7 +2614,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2704,7 +2702,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2722,7 +2720,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2751,7 +2749,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2839,7 +2837,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2857,7 +2855,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2891,7 +2889,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2979,7 +2977,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2997,7 +2995,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3026,7 +3024,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -3114,7 +3112,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3132,7 +3130,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3161,7 +3159,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -3249,7 +3247,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3267,7 +3265,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3296,7 +3294,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -3354,9 +3352,7 @@ exports[`homepage renders homepage 1`] = `
         <div
           class="title"
         >
-          <h2
-            class="h4"
-          >
+          <h2>
             Homepage.infoTypeDispositif
           </h2>
           <button
@@ -3448,7 +3444,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3466,7 +3462,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3497,7 +3493,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3577,7 +3573,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3595,7 +3591,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3626,7 +3622,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3706,7 +3702,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3724,7 +3720,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3750,7 +3746,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3830,7 +3826,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3848,7 +3844,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3879,7 +3875,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3959,7 +3955,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3977,7 +3973,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4008,7 +4004,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4088,7 +4084,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4106,7 +4102,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4132,7 +4128,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4212,7 +4208,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4230,7 +4226,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4261,7 +4257,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4341,7 +4337,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4359,7 +4355,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4385,7 +4381,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4465,7 +4461,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4483,7 +4479,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4514,7 +4510,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4594,7 +4590,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4612,7 +4608,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4643,7 +4639,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4723,7 +4719,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4741,7 +4737,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4772,7 +4768,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4852,7 +4848,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4870,7 +4866,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4896,7 +4892,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4976,7 +4972,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4994,7 +4990,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -5025,7 +5021,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -5105,7 +5101,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -5123,7 +5119,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -5149,7 +5145,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -5229,7 +5225,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -5247,7 +5243,7 @@ exports[`homepage renders homepage 1`] = `
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -5278,7 +5274,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -5581,10 +5577,10 @@ exports[`homepage renders homepage 1`] = `
           class="row"
         >
           <div
-            class="col-sm-12 col-lg-6 order-lg-1"
+            class="lg:order-1 col-sm-12 col-lg-6"
           >
             <h2
-              class="title2 text-white mb-0"
+              class="title2 white mb-0"
             >
               Homepage.resourcesTitle
             </h2>
@@ -5643,7 +5639,7 @@ exports[`homepage renders homepage 1`] = `
             </div>
           </div>
           <div
-            class="col-sm-12 col-lg-6 order-lg-0"
+            class="lg:order-0 col-sm-12 col-lg-6"
           >
             <a
               href="https://kit.refugies.info/"
@@ -5687,7 +5683,7 @@ exports[`homepage renders homepage 1`] = `
           class="top_space row"
         >
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <a
               class="link"
@@ -5784,7 +5780,7 @@ exports[`homepage renders homepage 1`] = `
             </a>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <a
               class="link"
@@ -5933,7 +5929,7 @@ exports[`homepage renders homepage 1`] = `
             </a>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <a
               class="link"
@@ -6041,7 +6037,7 @@ exports[`homepage renders homepage 1`] = `
         class="container text-center container"
       >
         <h2
-          class="title2 text-center text-white"
+          class="title2 white text-center"
         >
           Homepage.figuresTitle
         </h2>
@@ -7050,7 +7046,7 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
     <div
-      class="section infos py-0"
+      class="section infos !py-0"
     >
       <div
         class="container text-center container-fluid"
@@ -7077,7 +7073,7 @@ exports[`homepage renders homepage 1`] = `
                 width="246"
               />
               <h2
-                class="title2 text-white"
+                class="title2 white"
               >
                 Homepage.newsletterTitle
               </h2>

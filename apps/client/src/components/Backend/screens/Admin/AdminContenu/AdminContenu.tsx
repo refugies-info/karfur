@@ -451,8 +451,8 @@ export const AdminContenu = () => {
                       }
                     />
                   </td>
-                  <td className="align-middle fw-bold">{element.nbMercis} 🙏</td>
-                  <td className="align-middle fw-bold">{element.nbVues || 0} 📈</td>
+                  <td className="align-middle font-bold">{element.nbMercis} 🙏</td>
+                  <td className="align-middle font-bold">{element.nbVues || 0} 📈</td>
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />

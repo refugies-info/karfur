@@ -34,12 +34,12 @@ const NewContent = (props: Props) => {
       <Container className={commonStyles.container}>
         <h2 className={commonStyles.title2}>{t("Homepage.infoTypeTitle")}</h2>
         <div className={styles.title}>
-          <h2 className="h4">{t("Homepage.infoTypeDemarche", { count: props.nbDemarches })}</h2>
+          <h2>{t("Homepage.infoTypeDemarche", { count: props.nbDemarches })}</h2>
           <Button onClick={() => navigateType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
         </div>
         <CardSlider cards={props.demarches} type={ContentType.DEMARCHE} />
         <div className={styles.title}>
-          <h2 className="h4">
+          <h2>
             {t("Homepage.infoTypeDispositif", {
               countDispositifs: props.nbDispositifs,
               countStructures: props.nbStructures,

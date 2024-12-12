@@ -165,7 +165,7 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="flex items-center justify-between">
         <h2>Informations personnelles</h2>
         {edition ? (
           <Button

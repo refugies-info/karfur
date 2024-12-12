@@ -163,7 +163,7 @@ export const NewStructureModal = (props: Props) => {
           />
         </div>
         <div className={styles.right}>
-          <FButton className="position-relative" type="theme" name="upload-outline">
+          <FButton className="relative" type="theme" name="upload-outline">
             <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Ajouter un logo</span>}
 

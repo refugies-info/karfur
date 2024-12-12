@@ -38,7 +38,7 @@ export const UserButton = (props: {
           </p>
         )}
         {text && (
-          <p className={cls(styles.text, "w-100 text-center")}>
+          <p className={cls(styles.text, "w-full text-center")}>
             <strong>{text}</strong>
           </p>
         )}

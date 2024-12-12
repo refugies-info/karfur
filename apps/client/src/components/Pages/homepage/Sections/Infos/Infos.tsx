@@ -46,13 +46,13 @@ const Infos = () => {
   };
 
   return (
-    <div className={cls(commonStyles.section, styles.infos, "py-0")}>
+    <div className={cls(commonStyles.section, styles.infos, "!py-0")}>
       <Container fluid className={cls(commonStyles.container, "text-center")}>
         <Row>
           <Col sm="12" lg="6" className={commonStyles.bg_blue}>
             <div className={styles.infos_col}>
               <Image src={NewsletterIllu} alt="" width={246} height={160} className={styles.img} />
-              <h2 className={cls(styles.title2, "text-white")}>{t("Homepage.newsletterTitle")}</h2>
+              <h2 className={cls(styles.title2, commonStyles.white)}>{t("Homepage.newsletterTitle")}</h2>
               <p className={styles.subtitle}>{t("Homepage.newsletterSubtitle")}</p>
               <div className={styles.action}>
                 <div className={styles.newsletter}>

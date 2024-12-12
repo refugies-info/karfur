@@ -148,7 +148,7 @@ export const Step1 = (props: Props) => {
           )}
         </LogoWrapper>
         <RightLogoContainer>
-          <FButton type="fill-dark" name="upload-outline" className="position-relative">
+          <FButton type="fill-dark" name="upload-outline" className="relative">
             <FileInput type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Choisir</span>}
 

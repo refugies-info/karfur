@@ -43,7 +43,7 @@ const Register = (props: Props) => {
   };
 
   const title = useMemo(
-    () => <h2 className={cls(commonStyles.title2, "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
+    () => <h2 className={cls(commonStyles.title2, "!mb-0")}>{t("StaticPages.registerTitle")}</h2>,
     [t],
   );
 
@@ -74,7 +74,7 @@ const Register = (props: Props) => {
       ) : (
         <>
           {title}
-          <p className={cls(commonStyles.subtitle, "mb-14")}>{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
+          <p className={cls(commonStyles.subtitle, "!mb-14")}>{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
           {isAuth ? (
             <Button
               onClick={props.onClickLoggedIn}

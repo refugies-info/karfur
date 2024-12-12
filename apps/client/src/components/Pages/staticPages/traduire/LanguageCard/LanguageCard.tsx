@@ -21,7 +21,7 @@ const LanguageCard = (props: Props) => {
   return (
     <Link href={props.href} className={styles.container} onClick={smoothScroll}>
       <div className={styles.title}>
-        <Flag langueCode={language?.langueCode} className="d-block me-2" />
+        <Flag langueCode={language?.langueCode} className="block me-2" />
         {language?.langueFr}
       </div>
       <p className={styles.subtitle}>

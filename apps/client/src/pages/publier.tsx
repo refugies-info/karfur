@@ -95,7 +95,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className="text-white">{t("Publish.title")}</h1>
+              <h1 className={styles.white}>{t("Publish.title")}</h1>
               <p className={styles.subtitle}>{t("Publish.subtitle")}</p>
               <HeroArrow target="why" />
             </Col>
@@ -198,7 +198,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <h2 className={cls(styles.title2, styles.center)}>{t("Publish.requiredTitle")}</h2>
           <Row>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
               <Card
                 image={RequiredIcon1}
                 title={t("Publish.requiredSubtitle1")}
@@ -212,7 +212,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className="mb-0">{t("Publish.requiredText1")}</p>
               </Card>
             </Col>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
               <Card
                 image={RequiredIcon2}
                 title={t("Publish.requiredSubtitle2")}
@@ -226,7 +226,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className="mb-0">{t("Publish.requiredText2")}</p>
               </Card>
             </Col>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
               <Card
                 image={RequiredIcon3}
                 title={t("Publish.requiredSubtitle3")}
@@ -321,10 +321,10 @@ const RecensezVotreAction = (props: Props) => {
         {/* HELP */}
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
-            <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
+            <h2 className={cls(styles.title2, styles.center, "!mb-0")}>{t("StaticPages.helpTitle")}</h2>
             <p className={cls(styles.subtitle, styles.center)}>{t("Publish.helpSubtitle")}</p>
             <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon1}
                   title={t("Publish.helpTileTitle1")}
@@ -339,7 +339,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p>{t("Publish.helpTileText1")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon2}
                   title={t("Publish.helpTileTitle2")}
@@ -350,7 +350,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p>{t("Publish.helpTileText2")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon3}
                   title={t("StaticPages.helpTileTitle3")}
@@ -374,7 +374,7 @@ const RecensezVotreAction = (props: Props) => {
         {/* FIGURES */}
         <div className={cls(styles.section, styles.bg_red)}>
           <Container className={cls(styles.container, "text-center")}>
-            <h2 className={cls(styles.title2, "text-center text-white")}>{t("Publish.figuresTitle")}</h2>
+            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Publish.figuresTitle")}</h2>
             <Row>
               <Col sm="12" lg="4">
                 <CountUpFigure number={props.nbFiches} text={t("Publish.figuresSubtitle1")} />

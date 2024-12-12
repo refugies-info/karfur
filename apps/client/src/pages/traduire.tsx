@@ -94,7 +94,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className="text-white">{t("Translate.title")}</h1>
+              <h1 className={styles.white}>{t("Translate.title")}</h1>
               <p className={styles.subtitle}>
                 {t("Translate.subtitle", {
                   nbBenevoles: props.translationStatistics?.nbTranslators || 0,
@@ -134,7 +134,7 @@ const RecensezVotreAction = (props: Props) => {
             <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
             <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
             <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   header={
                     <>
@@ -153,7 +153,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p className="mb-0">{t("Translate.whoCardText1")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   header={<LanguageIcon language="fr" size={56} />}
                   title={t("Translate.whoCardTitle2")}
@@ -162,7 +162,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p className="mb-0">{t("Translate.whoCardText2")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")} greyBackground>
                   <p className="mb-0">{t("Translate.whoCardText3")}</p>
                 </Card>
@@ -174,7 +174,7 @@ const RecensezVotreAction = (props: Props) => {
         {/* NEED */}
         <div className={cls(styles.section, styles.bg_green)}>
           <Container className={cls(styles.container, styles.needs)}>
-            <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
+            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Translate.needTitle")}</h2>
             <Row>
               {needKeys.map((needKey, i) => (
                 <Col key={i} sm="12" lg="4">
@@ -248,7 +248,7 @@ const RecensezVotreAction = (props: Props) => {
           <Container className={cls(styles.container)}>
             <Row>
               <Col lg="6" sm="12">
-                <h2 className={cls(styles.title2, styles.bottom_space, "mb-0 text-white")}>
+                <h2 className={cls(styles.title2, styles.bottom_space, styles.white, "mb-0")}>
                   {t("Translate.nextTitle")}
                 </h2>
                 <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
@@ -265,8 +265,8 @@ const RecensezVotreAction = (props: Props) => {
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
             <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <Row className={cls(styles.top_space, "justify-content-center")}>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+            <Row className={cls(styles.top_space, "justify-center")}>
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon1}
                   title={t("Translate.helpTileTitle1")}
@@ -281,7 +281,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p>{t("Translate.helpTileText1")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
                   image={HelpIcon2}
                   title={t("StaticPages.helpTileTitle3")}

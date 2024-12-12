@@ -21,7 +21,7 @@ export const LanguageInput = (props: Props) => {
   };
   return (
     <div className={parentStyles.form_block}>
-      <label className={cls(parentStyles.label, "d-block mb-4")}>Fiches traduites en...</label>
+      <label className={cls(parentStyles.label, "block mb-4")}>Fiches traduites en...</label>
       <div>
         {props.languages.map((item, index: number) => (
           <FilterButton

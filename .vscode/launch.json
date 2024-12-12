@@ -15,7 +15,7 @@
       "name": "Next.js: debug full stack",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm dev",
+      "command": "pnpm dev --filter @refugies-info/server --filter @refugies-info/client",
       "serverReadyAction": {
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
@@ -27,10 +27,10 @@
       "name": "Debug server",
       "type": "node-terminal",
       "request": "launch",
-      "command": "yarn dev:server",
+      "command": "pnpm dev:server",
       "env": {
         "NODE_ENV": "development"
-      },
+      }
     },
     {
       "type": "node",

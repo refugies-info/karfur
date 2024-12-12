@@ -25,7 +25,7 @@ const DispositifPage = (props: Props) => {
   return (
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
-        <div className="w-100">
+        <div className="w-full">
           <form>
             <DispositifTranslate
               traductions={props.traductions}
