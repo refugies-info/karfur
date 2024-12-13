@@ -122,7 +122,9 @@ export class Traductions extends Base {
     const originKeys = keys(origin);
     const compareToKeys = keys(compareTo);
     // ces champs devront être traduits impérativement => to review
-    const added = difference(compareToKeys, originKeys);
+    const added = difference(compareToKeys, originKeys).filter(
+      (key: keyof TranslationContent) => get(compareTo, key) !== null,
+    );
     // les champs supprimés peuvent être traités automatiquement sans re-traduction
     const removed = difference(originKeys, compareToKeys);
 
