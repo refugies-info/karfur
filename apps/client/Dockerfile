@@ -2,8 +2,8 @@
 FROM node:20.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
-# Install yarn
-RUN npm install --force --global yarn@1.22.22
+# Install pnpm
+RUN npm install -g pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -12,10 +12,14 @@ WORKDIR /usr/src/app
 COPY ./ ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="${PNPM_HOME}:${PATH}"
+RUN mkdir -p "$PNPM_HOME" && \
+    pnpm add -g turbo && \
+    pnpm install --frozen-lockfile
 
-# Delete the cache folder after `yarn install` is done.
-RUN rm -rf .yarn/cache
+# Delete the pnpm store after installation is done
+RUN rm -rf .pnpm-store
 
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
@@ -30,8 +34,8 @@ RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> ./apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> ./apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> ./apps/client/.env
 
-RUN yarn build:client
+RUN pnpm build:client
 
 EXPOSE 3000
 
-CMD ["yarn", "start:client"]
+CMD ["pnpm", "start:client"]

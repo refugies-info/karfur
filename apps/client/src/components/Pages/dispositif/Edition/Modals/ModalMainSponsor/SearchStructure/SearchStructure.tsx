@@ -60,7 +60,7 @@ const SearchStructure = (props: Props) => {
   const onFocus = useCallback(() => setShowCreateButton(true), []);
 
   return (
-    <div className="position-relative">
+    <div className="relative">
       <p>Indiquez le nom de la structure</p>
       <Input
         id="search-structure-input"

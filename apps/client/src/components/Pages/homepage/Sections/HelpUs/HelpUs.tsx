@@ -21,7 +21,7 @@ const HelpUs = () => {
         <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("Homepage.helpUsTitle")}</h2>
         <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Homepage.helpUsSubtitle")}</p>
         <Row className={commonStyles.top_space}>
-          <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+          <Col sm="12" lg="4" className="lg:mb-0 mb-5">
             <Link
               href={getPath("/publier", router.locale)}
               prefetch={false}
@@ -40,7 +40,7 @@ const HelpUs = () => {
             </Link>
           </Col>
 
-          <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+          <Col sm="12" lg="4" className="lg:mb-0 mb-5">
             <Link
               href={getPath("/traduire", router.locale)}
               prefetch={false}
@@ -69,7 +69,7 @@ const HelpUs = () => {
             </Link>
           </Col>
 
-          <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+          <Col sm="12" lg="4" className="lg:mb-0 mb-5">
             <Link
               href="https://help.refugies.info/fr/article/commenter-une-fiche-rkuwpn/?bust=1670576881639"
               target="_blank"

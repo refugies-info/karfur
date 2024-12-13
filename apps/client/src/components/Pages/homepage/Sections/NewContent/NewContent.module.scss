@@ -15,6 +15,10 @@
     align-items: center;
     justify-content: space-between;
 
+    h2 {
+      @include text("h4");
+    }
+
     button {
       @include text("large");
 

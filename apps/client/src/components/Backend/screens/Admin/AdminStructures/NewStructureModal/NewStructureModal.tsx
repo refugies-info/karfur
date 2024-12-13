@@ -7,7 +7,6 @@ import {
 } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Modal, Spinner } from "reactstrap";
@@ -15,6 +14,7 @@ import Swal from "sweetalert2";
 import noStructure from "~/assets/noStructure.png";
 import FButton from "~/components/UI/FButton/FButton";
 import FInput from "~/components/UI/FInput/FInput";
+import Image from "~/components/UI/Image";
 import { handleApiDefaultError, handleApiError } from "~/lib/handleApiErrors";
 import { statusCompare } from "~/lib/statusCompare";
 import { fetchAllDispositifsActionsCreator } from "~/services/AllDispositifs/allDispositifs.actions";
@@ -163,7 +163,7 @@ export const NewStructureModal = (props: Props) => {
           />
         </div>
         <div className={styles.right}>
-          <FButton className="position-relative" type="theme" name="upload-outline">
+          <FButton className="relative" type="theme" name="upload-outline">
             <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Ajouter un logo</span>}
 

@@ -464,7 +464,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start position-relative"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
@@ -482,7 +482,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     />
                   </div>
                   <div
-                    class="d-flex gap-2 mb-2"
+                    class="flex gap-2 mb-2"
                   >
                     <div
                       class="container theme-badge"
@@ -496,7 +496,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="end"
                 >
                   <div
-                    class="info d-flex gap-2"
+                    class="info flex gap-2"
                   />
                   <i
                     class="fr-icon-arrow-right-line"
@@ -587,7 +587,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start position-relative"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
@@ -605,7 +605,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     />
                   </div>
                   <div
-                    class="d-flex gap-2 mb-2"
+                    class="flex gap-2 mb-2"
                   >
                     <div
                       class="container theme-badge"
@@ -619,7 +619,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="end"
                 >
                   <div
-                    class="info d-flex gap-2"
+                    class="info flex gap-2"
                   />
                   <i
                     class="fr-icon-arrow-right-line"
@@ -710,7 +710,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start position-relative"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
@@ -728,7 +728,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     />
                   </div>
                   <div
-                    class="d-flex gap-2 mb-2"
+                    class="flex gap-2 mb-2"
                   >
                     <div
                       class="container theme-badge"

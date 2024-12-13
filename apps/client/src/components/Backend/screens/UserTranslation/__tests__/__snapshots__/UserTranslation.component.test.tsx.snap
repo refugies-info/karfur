@@ -150,7 +150,6 @@ exports[`user translation should redirect if user has language but not langue in
         class="fr-modal"
         data-fr-concealing-backdrop="true"
         id="user-pseudo-modal"
-        role="dialog"
       >
         <div
           class="fr-container fr-container--fluid fr-container-md"
@@ -204,7 +203,6 @@ exports[`user translation should redirect if user has language but not langue in
                         </span>
                       </label>
                       <input
-                        aria-describedby="input-:r4:-desc-error"
                         class="fr-input"
                         id="input-:r4:"
                         type="text"
@@ -395,7 +393,6 @@ exports[`user translation should redirect if user has no language but langue in 
         class="fr-modal"
         data-fr-concealing-backdrop="true"
         id="user-pseudo-modal"
-        role="dialog"
       >
         <div
           class="fr-container fr-container--fluid fr-container-md"
@@ -449,7 +446,6 @@ exports[`user translation should redirect if user has no language but langue in 
                         </span>
                       </label>
                       <input
-                        aria-describedby="input-:ra:-desc-error"
                         class="fr-input"
                         id="input-:ra:"
                         type="text"
@@ -514,7 +510,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         class="fr-modal"
         data-fr-concealing-backdrop="true"
         id="user-pseudo-modal"
-        role="dialog"
       >
         <div
           class="fr-container fr-container--fluid fr-container-md"
@@ -568,7 +563,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                         </span>
                       </label>
                       <input
-                        aria-describedby="input-:rj:-desc-error"
                         class="fr-input"
                         id="input-:rj:"
                         type="text"
@@ -633,7 +627,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
         class="fr-modal"
         data-fr-concealing-backdrop="true"
         id="user-pseudo-modal"
-        role="dialog"
       >
         <div
           class="fr-container fr-container--fluid fr-container-md"
@@ -687,7 +680,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                         </span>
                       </label>
                       <input
-                        aria-describedby="input-:rg:-desc-error"
                         class="fr-input"
                         id="input-:rg:"
                         type="text"
@@ -752,7 +744,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
         class="fr-modal"
         data-fr-concealing-backdrop="true"
         id="user-pseudo-modal"
-        role="dialog"
       >
         <div
           class="fr-container fr-container--fluid fr-container-md"
@@ -806,7 +797,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                         </span>
                       </label>
                       <input
-                        aria-describedby="input-:rd:-desc-error"
                         class="fr-input"
                         id="input-:rd:"
                         type="text"
@@ -997,7 +987,6 @@ exports[`user translation should return loader langue in url = first selected la
         class="fr-modal"
         data-fr-concealing-backdrop="true"
         id="user-pseudo-modal"
-        role="dialog"
       >
         <div
           class="fr-container fr-container--fluid fr-container-md"
@@ -1051,7 +1040,6 @@ exports[`user translation should return loader langue in url = first selected la
                         </span>
                       </label>
                       <input
-                        aria-describedby="input-:r1:-desc-error"
                         class="fr-input"
                         id="input-:r1:"
                         type="text"

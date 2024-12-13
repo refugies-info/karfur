@@ -19,7 +19,7 @@ export const TypeContenuInput = (props: Props) => {
     }
   };
   return (
-    <div className={cls(parentStyles.form_block, "d-flex align-items-center")}>
+    <div className={cls(parentStyles.form_block, "flex items-center")}>
       <label className={cls(parentStyles.label, "me-4")}>Type(s)</label>
       <FilterButton
         onClick={(e: any) => {

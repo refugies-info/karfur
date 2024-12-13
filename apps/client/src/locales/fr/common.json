@@ -1,4 +1,10 @@
 {
+  "Header": {
+    "serviceName": "Réfugiés.info",
+    "serviceTagline": "L’information pour les étrangers en France",
+    "logIn": "Se connecter",
+    "monEspace": "Mon espace"
+  },
   "Homepage": {
     "title": "L’information simple et traduite pour les personnes réfugiées en France",
     "Choisir une langue": "Choisir une langue",
@@ -391,13 +397,22 @@
     "find_information": "Trouver de l'information",
     "Publier une fiche": "Publier une fiche",
     "Traduire": "Traduire",
+    "Langue": "Langue :",
     "Parler de nous": "Parler de nous",
     "Kit de communication": "Kit de communication",
-    "posters_leaflets": "Affiches et dépliants",
-    "Pour la presse": "Pour la presse",
-    "for_ukraine": "Pour l'Ukraine",
+    "posters_leaflets": "Commander des affiches et dépliants",
+    "forAgirOperators": "Pour les opérateurs AGIR",
     "Mon espace": "Mon espace",
-    "newsletter": "S'inscrire à la newsletter"
+    "newsletter": "S'inscrire à la newsletter",
+    "fichesDemarches": "Fiches démarches",
+    "dispositifsLocaux": "Dispositifs locaux",
+    "agir": "AGIR",
+    "missionImpact": "Mission et imapact",
+    "partagerProjet": "Partager le projet",
+    "centreAide": "Centre d'aide",
+    "getItOnAppStore": "Téléchager sur l'App Store",
+    "getItOnPlayStore": "Téléchager sur le Play Store",
+    "helpCenter": "Centre d'aide"
   },
   "Footer": {
     "Le projet": "Le projet",
@@ -440,7 +455,8 @@
     "en_tigrinya": "en tigrinya",
     "en_arabe": "en arabe",
     "en_anglais": "en anglais",
-    "en_ukrainien": "en ukrainien"
+    "en_ukrainien": "en ukrainien",
+    "not_listenable": "Non écoutable"
   },
   "topLink": "Haut de page",
   "close": "Fermer",
@@ -733,5 +749,10 @@
     "Russe": "Russe",
     "Tigrinya": "Tigrinya",
     "Ukrainien": "Ukrainien"
+  },
+  "SkipLinks": {
+    "PiedDePage": "Pied de page",
+    "Menu": "Menu",
+    "Contenu": "Contenu"
   }
 }

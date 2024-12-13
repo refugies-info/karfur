@@ -29,7 +29,7 @@ export const NotesInput = (props: Props) => {
         id="note"
         className={styles.input}
       />
-      <FButton name="save-outline" type={getButtonColor()} onClick={props.saveAdminComments} className="mt-1 w-100">
+      <FButton name="save-outline" type={getButtonColor()} onClick={props.saveAdminComments} className="mt-1 w-full">
         {!props.adminCommentsSaved ? "Enregistrer" : "Enregistré !"}
       </FButton>
     </>

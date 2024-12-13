@@ -1,14 +1,12 @@
+import { Button } from "@codegouvfr/react-dsfr/Button";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
-import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Progress, Row } from "reactstrap";
+import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { getPath } from "routes";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import FButton from "~/components/UI/FButton/FButton";
+import { LanguageSelector } from "~/components/UI/LanguageSelector";
 import { Event } from "~/lib/tracking";
 import styles from "./LanguageModal.module.scss";
 
@@ -62,50 +60,7 @@ const LanguageModal = (props: Props) => {
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <ListGroup>
-          {activatedLanguages.map((ln) => {
-            const isSelected = ln.i18nCode === props.currentLanguage;
-            return (
-              <ListGroupItem
-                action
-                key={ln.i18nCode}
-                onClick={() => changeLanguage(ln.i18nCode)}
-                onKeyDown={(e) => pressSpace(e, ln.i18nCode)}
-                className={styles.list_group_item + "  " + (isSelected && styles.active)}
-                role="button"
-                tabIndex={0}
-              >
-                <Row>
-                  <Col xs="1">
-                    <span className={`fi fi-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode}></span>
-                  </Col>
-                  <Col xs="5" className={styles.ln_col}>
-                    <span>
-                      <b>{ln.langueFr}</b> - {ln.langueLoc}
-                    </span>
-                  </Col>
-                  {!isMobile && (
-                    <Col xs="5" className={styles.progress_col}>
-                      {props.isLanguagesLoading === false && (
-                        <>
-                          <Progress
-                            color={isSelected ? "light-green" : "primary"}
-                            value={getAvancementTrad(ln.i18nCode) * 100}
-                            className={styles.progress}
-                          />
-                          <span className={isSelected ? "text-light-green" : "text-primary"}>
-                            <b>{Math.round(getAvancementTrad(ln.i18nCode) * 100) + " %"}</b>
-                          </span>
-                        </>
-                      )}
-                    </Col>
-                  )}
-                  <Col xs="1" className={styles.icon_col}>
-                    {isSelected && <EVAIcon name="checkmark-circle-2" fill="#FFFFFF" size="large" />}
-                  </Col>
-                </Row>
-              </ListGroupItem>
-            );
-          })}
+          <LanguageSelector />
 
           {!isMobile && (
             <ListGroupItem action key="unavailable" className={styles.list_group_item + " " + styles.unavailable}>
@@ -114,11 +69,18 @@ const LanguageModal = (props: Props) => {
                   <b>{t("Homepage.traduire", "Aidez-nous à traduire !")}</b>
                 </Col>
                 <Col xs="4" className={styles.button_col}>
-                  <Link legacyBehavior href={getPath("/traduire", router.locale)} passHref prefetch={false}>
-                    <FButton tag="a" onClick={props.toggle} type="outline">
-                      {t("Homepage.btn_translate", "Je traduis")}
-                    </FButton>
-                  </Link>
+                  <Button
+                    onClick={() => {
+                      props.toggle();
+                      setTimeout(() => {
+                        router.push({
+                          pathname: getPath("/traduire", router.locale),
+                        });
+                      }, 100);
+                    }}
+                  >
+                    {t("Homepage.btn_translate", "Je traduis")}
+                  </Button>
                 </Col>
               </Row>
             </ListGroupItem>

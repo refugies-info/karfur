@@ -2,7 +2,6 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { operatorsPerDepartment } from "data/agirOperators";
-import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
@@ -16,6 +15,7 @@ import IlluAccompagnement from "~/assets/agir/illu-accompagnement-social.svg";
 import IlluEmploi from "~/assets/agir/illu-emploi.svg";
 import IlluLogement from "~/assets/agir/illu-logement.svg";
 import SEO from "~/components/Seo";
+import Image from "~/components/UI/Image";
 import MapFrance from "~/components/UI/MapFrance";
 import { MapContext } from "~/components/UI/MapFrance/MapContext";
 import { cls } from "~/lib/classname";
@@ -58,7 +58,7 @@ const Agir = () => {
   }, []);
 
   return (
-    <div className="w-100">
+    <div className="w-full">
       <SEO
         title="AGIR pour le logement et l’emploi des personnes réfugiées"
         description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
@@ -68,7 +68,7 @@ const Agir = () => {
           <Row className={styles.row}>
             <Col>
               <h1 className={styles.title}>Le programme AGIR en bref</h1>
-              <p className={cls(styles.subtitle, "mb-10")}>
+              <p className={cls(styles.subtitle, "!mb-10")}>
                 Ce programme interministériel est piloté par la Direction générale des étrangers en France (DGEF) en
                 partenariat avec la DIHAL, la DIAIR, l’OFII et la DGEFP.
               </p>
@@ -96,7 +96,7 @@ const Agir = () => {
                 Trouver mon opérateur
               </Button>
             </Col>
-            <Col className="d-flex justify-content-center justify-lg-content-end">
+            <Col className="flex justify-center lg:justify-end">
               <Image src={AgirLogos} width={400} height={280} alt="" />
             </Col>
           </Row>
@@ -139,17 +139,17 @@ const Agir = () => {
 
       <Container>
         <span id="program" className={styles.anchor} />
-        <div className="py-10 py-lg-20" ref={refProgram}>
+        <div className="py-10 lg:py-20" ref={refProgram}>
           <span className={styles.step}>1</span>
-          <Row className="gx-20">
-            <Col lg="6">
+          <div className="grid lg:grid-cols-2 gap-x-20">
+            <div>
               <h2 className={cls(styles.blue, "fr-display--xs")}>Accompagner les bénéficiaires</h2>
               <p className={cls(styles.subtitle, styles.blue)}>
                 Le programme AGIR vise à systématiser l’accompagnement global des bénéficiaires de la protection
                 internationale (BPI) vers l’emploi, le logement et l’accès aux droits.
               </p>
-            </Col>
-            <Col lg="6">
+            </div>
+            <div>
               <ul className={styles.list}>
                 <li>
                   <i className="fr-icon-arrow-right-line" />
@@ -179,11 +179,11 @@ const Agir = () => {
                   Un entretien de suivi tous les deux mois est obligatoire.
                 </li>
               </ul>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          <Row className="mt-10 mt-lg-20">
-            <Col lg="4" className="mb-10 mb-lg-0">
+          <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:mt-20">
+            <div className="mb-10 lg:mb-0">
               <div className={styles.card}>
                 <Image src={IlluAccompagnement} width={80} height={80} alt="" className="mb-8" />
                 <h3 className="mb-4">L’accompagnement social</h3>
@@ -206,8 +206,8 @@ const Agir = () => {
                   <strong>Accès à l’assurance maladie</strong> : PUMA et CMU-C
                 </p>
               </div>
-            </Col>
-            <Col lg="4" className="mb-10 mb-lg-0">
+            </div>
+            <div className="mb-10 lg:mb-0">
               <div className={styles.card}>
                 <Image src={IlluLogement} width={80} height={80} alt="" className="mb-8" />
                 <h3 className="mb-4">Le logement</h3>
@@ -217,8 +217,8 @@ const Agir = () => {
                   dans leur environnement.
                 </p>
               </div>
-            </Col>
-            <Col lg="4" className="mb-10 mb-lg-0">
+            </div>
+            <div className="mb-10 lg:mb-0">
               <div className={styles.card}>
                 <Image src={IlluEmploi} width={80} height={80} alt="" className="mb-8" />
                 <h3 className="mb-4">L’emploi</h3>
@@ -235,23 +235,23 @@ const Agir = () => {
                   requis (A2) avec mobilisation de l’offre de service SPE
                 </p>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
 
         <span id="operators" className={styles.anchor} />
-        <div className="py-10 py-lg-20" ref={refOperators}>
+        <div className="py-10 lg:py-20" ref={refOperators}>
           <span className={styles.step}>2</span>
 
-          <Row className="gx-20">
-            <Col lg="6">
+          <div className="grid lg:grid-cols-2 gap-x-20">
+            <div>
               <h2 className={cls(styles.blue, "fr-display--xs")}>Coordonner les acteurs de l’intégration</h2>
               <p className={cls(styles.subtitle, styles.blue)}>
                 L’objectif du programme AGIR est de proposer un guichet unique par département pour favoriser
                 l’intégration des BPI, pour des parcours adaptés et sans ruptures.
               </p>
-            </Col>
-            <Col lg="6">
+            </div>
+            <div>
               <ul className={styles.list}>
                 <li>
                   <i className="fr-icon-arrow-right-line" />
@@ -274,23 +274,23 @@ const Agir = () => {
                   l’écosystème.
                 </li>
               </ul>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
           <span id="map" className={styles.anchor} />
-          <div className="mt-10 mt-lg-20">
+          <div className="mt-10 lg:mt-20">
             <h3 className={styles.h3}>Trouver l’opérateur de mon territoire</h3>
-            <p className="w-lg-50 fst-italic">
+            <p className="lg:w-1/2 italic">
               Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre
               territoire.
             </p>
-            <Row>
-              <Col lg="8">
+            <div className="grid lg:grid-cols-3">
+              <div className="lg:col-span-2">
                 <MapContext.Provider value={{ selectedDepartment, setSelectedDepartment }}>
                   <MapFrance />
                 </MapContext.Provider>
-              </Col>
-              <Col lg="4" className="d-flex align-items-center">
+              </div>
+              <div className="lg:col-span-1 flex items-center">
                 {selectedDepartment && (
                   <div className={styles.operator}>
                     <div className={styles.head}>
@@ -335,22 +335,22 @@ const Agir = () => {
                     )}
                   </div>
                 )}
-              </Col>
-            </Row>
+              </div>
+            </div>
           </div>
         </div>
       </Container>
       <span id="next" className={styles.anchor} />
-      <div className={cls(styles.next, "py-10 py-lg-20")} ref={refNext}>
+      <div className={cls(styles.next, "py-10 lg:py-20")} ref={refNext}>
         <Container>
           <h3 className={styles.h2}>Vous êtes acteur de l’intégration ?</h3>
           <p className={styles.subtitle}>
             Découvrez Réfugiés.info et comment l’utiliser au quotidien avec vos bénéficiaires.
           </p>
 
-          <div className={cls("mt-10 mt-lg-20", styles.cards)}>
-            <Row className="gx-6">
-              <Col lg="3" className="mb-4 mb-lg-0">
+          <div className={cls("mt-10 lg:mt-20", styles.cards)}>
+            <div className="grid lg:grid-cols-4 gap-6">
+              <div className="mb-4 lg:mb-0">
                 <Card
                   background
                   border
@@ -364,10 +364,10 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full"
                 />
-              </Col>
-              <Col lg="3" className="mb-4 mb-lg-0">
+              </div>
+              <div className="mb-4 lg:mb-0">
                 <Card
                   background
                   border
@@ -381,10 +381,10 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full"
                 />
-              </Col>
-              <Col lg="3" className="mb-4 mb-lg-0">
+              </div>
+              <div className="mb-4 lg:mb-0">
                 <Card
                   background
                   border
@@ -398,10 +398,10 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full"
                 />
-              </Col>
-              <Col lg="3" className="mb-4 mb-lg-0">
+              </div>
+              <div className="mb-4 lg:mb-0">
                 <Card
                   background
                   border
@@ -416,10 +416,10 @@ const Agir = () => {
                   }}
                   size="small"
                   titleAs="h4"
-                  className="h-100"
+                  className="h-full"
                 />
-              </Col>
-            </Row>
+              </div>
+            </div>
           </div>
         </Container>
       </div>

@@ -1,11 +1,11 @@
 import { GetStructureResponse } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Input, Spinner } from "reactstrap";
 import styled from "styled-components";
 import PlaceholderLogo from "~/assets/Placeholder_logo.png";
 import FButton from "~/components/UI/FButton/FButton";
 import FInput from "~/components/UI/FInput/FInput";
+import Image from "~/components/UI/Image";
 import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import API from "~/utils/API";
 
@@ -148,7 +148,7 @@ export const Step1 = (props: Props) => {
           )}
         </LogoWrapper>
         <RightLogoContainer>
-          <FButton type="fill-dark" name="upload-outline" className="position-relative">
+          <FButton type="fill-dark" name="upload-outline" className="relative">
             <FileInput type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Choisir</span>}
 

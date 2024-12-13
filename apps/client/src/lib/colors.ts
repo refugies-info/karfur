@@ -1,12 +1,12 @@
-const colorAvancement = (avancement: number) => {
+const colorAvancement = (avancement: number, type: "text" | "bg") => {
   if (avancement > 0.75) {
-    return "success";
+    return type === "bg" ? "bg-green-500" : "text-green-500";
   } else if (avancement > 0.5) {
-    return "info";
+    return type === "bg" ? "bg-blue-500" : "text-blue-500";
   } else if (avancement > 0.25) {
-    return "warning";
+    return type === "bg" ? "bg-yellow-500" : "text-yellow-500";
   }
-  return "danger";
+  return type === "bg" ? "bg-red-500" : "text-red-500";
 };
 
 const fColorAvancement = (avancement: number) => {

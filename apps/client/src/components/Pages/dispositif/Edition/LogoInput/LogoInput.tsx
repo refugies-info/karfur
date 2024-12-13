@@ -1,10 +1,10 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Picture } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useState } from "react";
 import { Input, Spinner } from "reactstrap";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import API from "~/utils/API";
 import styles from "./LogoInput.module.scss";
@@ -82,7 +82,7 @@ const LogoInput = (props: Props) => {
           </div>
         ) : (
           <>
-            <Button evaIcon="download-outline" iconPosition="right" className="position-relative">
+            <Button evaIcon="download-outline" iconPosition="right" className="relative">
               <Input
                 className={styles.file_input}
                 type="file"

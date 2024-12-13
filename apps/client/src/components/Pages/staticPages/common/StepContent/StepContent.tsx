@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ReactElement, useMemo } from "react";
+import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";

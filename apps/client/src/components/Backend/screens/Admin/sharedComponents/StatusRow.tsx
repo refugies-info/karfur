@@ -23,7 +23,7 @@ export const StatusRow = (props: Props) => {
     <div className={styles.status_row}>
       <div>
         <Label>{props.title}</Label>
-        <div className="d-flex">
+        <div className="flex">
           {props.status.sort(statusCompare).map((status) => {
             if (
               props.hiddenStatus &&
@@ -53,7 +53,7 @@ export const StatusRow = (props: Props) => {
 
       <div>
         <Label>Statut de publication</Label>
-        <div className="d-flex">
+        <div className="flex">
           {props.publicationStatus.map((status) => (
             <div
               key={status.storedStatus}
@@ -79,7 +79,7 @@ export const StatusRow = (props: Props) => {
       {props.progressionStatus !== null && (
         <div>
           <Label>Progression</Label>
-          <div className="d-flex">
+          <div className="flex">
             {props.progressionStatus.map((status) => (
               <div
                 key={status.storedStatus}

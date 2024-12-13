@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { ChangeEventHandler, useCallback, useMemo, useState } from "react";
 import { Row } from "reactstrap";
 import styled from "styled-components";
+import Image from "~/components/UI/Image";
 
 import { useTranslation } from "next-i18next";
 import NoResultImage from "~/assets/no_results.svg";

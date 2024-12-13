@@ -2,14 +2,14 @@ import { Picture } from "@refugies-info/api-types";
 import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
 import isArray from "lodash/isArray";
 import * as React from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
+import { TagImage } from "~/components/Explorer/TagImage";
 import { firstLetterUpperCase } from "~/libs";
 import { styles } from "~/theme";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { ReadableText } from "../ReadableText";
 import Highlight from "../Search/Highlight";
-import { StreamlineIcon } from "../StreamlineIcon";
 import { TextDSFR_L_Bold } from "../StyledText";
 
 interface Props {
@@ -53,7 +53,7 @@ const GRADIENT_END: LinearGradientPoint = [1, 0];
 const TagButtonComponent = ({
   backgroundColor,
   icon,
-  iconSize = 20,
+  iconSize = 32,
   inline,
   name,
   onPress = () => null,
@@ -91,7 +91,14 @@ const TagButtonComponent = ({
             <ReadableText>{firstLetterUpperCase(name || "")}</ReadableText>
           )}
         </StyledText>
-        {icon && <StreamlineIcon icon={icon} size={iconSize} />}
+        {icon && (
+          <View style={{ width: iconSize, height: iconSize, overflow: "hidden" }}>
+            {/* view below manually centers the image to remove the empty space at the bottom */}
+            <View style={{ height: iconSize * 1.4 }}>
+              <TagImage appImage={icon} />
+            </View>
+          </View>
+        )}
       </RTLButton>
     </StyledContainer>
   );

@@ -37,7 +37,7 @@ exports[`CheckCode should render the component with the correct title and subtit
       >
         Un code temporaire à 6 chiffres vous a été envoyé à test@example.com. 
         <a
-          class="text-decoration-underline"
+          class="underline"
           href="/auth"
         >
           Ce n'est pas vous ?
@@ -55,7 +55,6 @@ exports[`CheckCode should render the component with the correct title and subtit
           Code d'authentification
         </label>
         <input
-          aria-describedby="input-:r1:-desc-error"
           class="fr-input"
           id="input-:r1:"
           name="code"

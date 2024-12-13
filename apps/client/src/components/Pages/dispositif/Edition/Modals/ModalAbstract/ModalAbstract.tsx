@@ -1,12 +1,12 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { CreateDispositifRequest } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import ArrowRight from "~/assets/dispositif/arrow-right.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import DispositifCard from "~/components/UI/DispositifCard";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { useContentType } from "~/hooks/dispositif";
 import { SimpleFooter } from "../components";
 import { help } from "./data";
@@ -39,7 +39,7 @@ const ModalAbstract = (props: Props) => {
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
         <p>Le résumé doit faire moins de 110 caractères.</p>
-        <div className="d-flex">
+        <div className="flex">
           <div>
             <div className={styles.text}>
               <textarea

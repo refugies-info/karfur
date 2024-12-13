@@ -1,5 +1,5 @@
 import { RoleName } from "@refugies-info/api-types";
-import { addToNewsletter } from "~/connectors/sendinblue/addToNewsletter";
+import { addToNewsletter } from "~/connectors/brevo";
 import * as password from "~/libs/validatePassword";
 import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
@@ -16,7 +16,7 @@ jest.mock("password-hash", () => ({
 jest.mock("../../../modules/users/auth", () => ({
   loginExceptionsManager: jest.fn(),
 }));
-jest.mock("../../../connectors/sendinblue/addToNewsletter", () => ({
+jest.mock("../../../connectors/brevo/addToNewsletter", () => ({
   addToNewsletter: jest.fn(),
 }));
 jest.mock("../../../modules/users/users.service", () => ({

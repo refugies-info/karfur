@@ -18,7 +18,7 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
   };
 
   const users: (Awaited<ReturnType<typeof getUserById>> | null)[] = await Promise.all(
-    body.userIds.map((userId) => getUserById(userId, { email: 1, firstName: 1 }).catch(() => null)),
+    body.userIds.map((userId) => getUserById(userId, { email: 1, firstName: 1 }).catch((): null => null)),
   );
 
   await asyncForEach(
