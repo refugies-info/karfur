@@ -45,8 +45,8 @@ const UserFavorites = (props: Props) => {
   const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_USER_FAVORITES));
   const favorites = useSelector(userFavoritesSelector);
   const isLoading = useMemo(
-    () => (isLoadingFetch || isLoadingUpdate) && favorites.length === 0,
-    [isLoadingFetch, isLoadingUpdate, favorites.length],
+    () => (isLoadingFetch || isLoadingUpdate) && favorites === null,
+    [isLoadingFetch, isLoadingUpdate, favorites],
   );
 
   const [showDeleteToast, setShowDeleteToast] = useState(false);
@@ -65,7 +65,7 @@ const UserFavorites = (props: Props) => {
     <>
       {isLoading ? (
         <FavoritesLoading t={t} />
-      ) : favorites.length === 0 ? (
+      ) : favorites === null || favorites.length === 0 ? (
         <NoFavorites t={t} toggleTutoModal={toggleTutoModal} />
       ) : (
         <>
