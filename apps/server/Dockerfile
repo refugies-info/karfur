@@ -11,7 +11,8 @@ WORKDIR /usr/src/app
 COPY ./ ./
 
 # Install dependencies
-RUN pnpm install --frozen-lockfile
+RUN pnpm add -g turbo && \
+    pnpm install --frozen-lockfile
 
 # Delete the pnpm store after installation is done
 RUN rm -rf .pnpm-store
