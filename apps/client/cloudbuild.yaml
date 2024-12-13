@@ -58,6 +58,8 @@ steps:
         "--memory",
         "${_MEMORY}",
         "--allow-unauthenticated",
+        "--concurrency",
+        "160",
       ]
 
 options:
