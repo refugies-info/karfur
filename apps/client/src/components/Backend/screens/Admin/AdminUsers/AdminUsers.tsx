@@ -1,7 +1,6 @@
 import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +9,7 @@ import Swal from "sweetalert2";
 import marioProfile from "~/assets/mario-profile.jpg";
 import CustomSearchBar from "~/components/UI/CustomSeachBar";
 import FButton from "~/components/UI/FButton/FButton";
+import Image from "~/components/UI/Image";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { removeAccents } from "~/lib";
 import { getAdminUrlParams, getInitialFilters } from "~/lib/getAdminUrlParams";

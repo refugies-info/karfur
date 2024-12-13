@@ -1,9 +1,9 @@
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import FRLink from "~/components/UI/FRLink";
+import Image from "~/components/UI/Image";
 import { Event } from "~/lib/tracking";
 import Card from "./BaseCard";
 import CardAvailability from "./CardAvailability";

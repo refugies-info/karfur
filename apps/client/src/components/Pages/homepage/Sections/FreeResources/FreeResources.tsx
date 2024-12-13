@@ -1,9 +1,9 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
 import { Col, Container, Row } from "reactstrap";
 import FreeResourcesImg from "~/assets/homepage/free-resources.png";
 import { InlineLink } from "~/components/Pages/staticPages/common";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import commonStyles from "~/scss/components/staticPages.module.scss";
 import styles from "./FreeResources.module.scss";

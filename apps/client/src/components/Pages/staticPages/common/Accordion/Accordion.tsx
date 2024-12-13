@@ -1,8 +1,8 @@
 import { sanitize } from "isomorphic-dompurify";
-import Image from "next/image";
 import { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { useConsent } from "~/hooks/useConsentContext";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";

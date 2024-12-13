@@ -1,10 +1,10 @@
 import { GetStructureResponse, Picture } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { getPath, isRoute } from "routes";
 import placeholder from "~/assets/no_results_alt.svg";
 import FButton from "~/components/UI/FButton/FButton";
+import Image from "~/components/UI/Image";
 import styles from "./LeftAnnuaireDetail.module.scss";
 import { SocialsLink } from "./SocialsLink";
 import { StructureType } from "./StructureType";

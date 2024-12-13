@@ -1,6 +1,6 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./WriteContentCard.module.scss";
 

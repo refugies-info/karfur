@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "~/components/UI/Image";
 import styles from "./TestimonyAuthor.module.scss";
 
 interface Props {

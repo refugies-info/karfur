@@ -1,6 +1,5 @@
 import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import defaultStructureImage from "~/assets/recherche/default-structure-image.sv
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FRLink from "~/components/UI/FRLink";
+import Image from "~/components/UI/Image";
 import Tooltip from "~/components/UI/Tooltip";
 import { cls } from "~/lib/classname";
 import { isStatus } from "~/lib/dispositif";

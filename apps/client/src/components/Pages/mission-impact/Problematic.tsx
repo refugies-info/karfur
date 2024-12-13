@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import styled from "styled-components";
 import { assetsOnServer } from "~/assets/assetsOnServer";
+import Image from "~/components/UI/Image";
 
 const ProblematicContentContainer = styled.div`
   display: flex;

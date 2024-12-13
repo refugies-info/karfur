@@ -1,8 +1,8 @@
 import { Picture } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useState } from "react";
 import { Col, Input, Row, Spinner } from "reactstrap";
 import emptyImage from "~/assets/empty-image.svg";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import API from "~/utils/API";
