@@ -10,13 +10,22 @@ export const cloudinaryLoader: ImageLoader = ({ src, width, quality }) => {
   return `${parts[0]}/upload/${params.join(",")}/${parts[1]}`;
 };
 
+const isCloudinaryUrl = (src: string): boolean => {
+  if (!src || typeof src !== "string" || !src.startsWith("http")) {
+    return false;
+  }
+
+  try {
+    const url = new URL(src);
+    return url.hostname === "res.cloudinary.com";
+  } catch {
+    return false;
+  }
+};
+
 export const Image: typeof NextImage = forwardRef(({ src, loader, ...props }, ref) => {
   const realLoader =
-    typeof loader !== "undefined"
-      ? loader
-      : typeof src === "string" && src.startsWith("http") && new URL(src).hostname === "res.cloudinary.com"
-        ? cloudinaryLoader
-        : undefined; // Use default loader
+    typeof loader !== "undefined" ? loader : isCloudinaryUrl(src as string) ? cloudinaryLoader : undefined; // Use default loader
   return <NextImage src={src} loader={realLoader} {...props} ref={ref} />;
 });
 
