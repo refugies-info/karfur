@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import Image from "~/components/UI/Image";
 import { responsableFiche } from "../../../assets/figma";
 import FButton from "../../UI/FButton/FButton";
 import styles from "./ResponsableModal.module.scss";

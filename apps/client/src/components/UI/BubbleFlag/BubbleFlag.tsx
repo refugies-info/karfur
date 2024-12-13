@@ -1,8 +1,8 @@
 import { Languages } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useMemo } from "react";
 import BubbleFlagBack from "~/assets/dispositif/bubble-flag.svg";
 import Flag from "~/components/UI/Flag";
+import Image from "~/components/UI/Image";
 import { useLanguages } from "~/hooks";
 import { cls } from "~/lib/classname";
 import styles from "./BubbleFlag.module.scss";

@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 import { InlineLink } from "~/components/Pages/staticPages/common";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./CommunityCard.module.scss";
 

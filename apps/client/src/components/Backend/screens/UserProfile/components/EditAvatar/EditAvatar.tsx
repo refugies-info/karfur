@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "reactstrap";
 import marioProfile from "~/assets/mario-profile.jpg";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import { fetchUserActionCreator } from "~/services/User/user.actions";

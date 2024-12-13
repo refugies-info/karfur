@@ -1,6 +1,6 @@
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "~/components/UI/Image";
 import BaseCard from "../BaseCard";
 import { getConditionImage } from "../functions";
 

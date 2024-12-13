@@ -1,6 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Languages } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useContext, useMemo } from "react";
 import { Col, Row } from "reactstrap";
 import PublishImage from "~/assets/dispositif/publish-image.svg";
@@ -8,6 +7,7 @@ import QuitImage from "~/assets/dispositif/quit-image.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { useLanguages, useUser } from "~/hooks";
 import { Step } from "~/hooks/dispositif";
 import PageContext from "~/utils/pageContext";

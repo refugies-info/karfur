@@ -1,10 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { GetTraductionsForReview, TranslatorFeedback } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useState } from "react";
 import marioProfile from "~/assets/mario-profile.jpg";
 import EVAIcon from "~/components/UI/EVAIcon";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./NotationInput.module.scss";
 
