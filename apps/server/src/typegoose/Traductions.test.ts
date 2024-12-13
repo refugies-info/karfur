@@ -120,6 +120,25 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
+const trad_added_adminName: TranslationContent = {
+  //@ts-ignore
+  content: {
+    titreInformatif: "abc",
+    titreMarque: "def",
+    abstract: "tyui",
+    what: "WHAT",
+    how: { "my-uuid-v4-key": { title: "title", text: "text" } },
+    next: {
+      "my-uuid-v4-key": { title: "title", text: "text" },
+      "my-uuid-v4-key-2": { title: "title", text: "text" },
+      "my-uuid-v4-key-3": { title: "title", text: "text" },
+    },
+  },
+
+  created_at: new Date(),
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
+};
+
 describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
@@ -151,6 +170,15 @@ describe("Traductions", () => {
         modified: ["content.titreMarque", "content.next.my-uuid-v4-key-2.title", "content.next.my-uuid-v4-key-2.text"],
         added: ["content.how.my-uuid-v4-key-2.title", "content.how.my-uuid-v4-key-2.text"],
         removed: ["content.next.my-uuid-v4-key.title", "content.next.my-uuid-v4-key.text"],
+      });
+    });
+    it("should not return administrationName ", () => {
+      const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
+      newTradAdded.content = { ...newTradAdded.content, administrationName: null };
+      expect(Traductions.diff(trad_added_adminName, newTradAdded)).toEqual({
+        modified: [],
+        added: [],
+        removed: [],
       });
     });
   });
