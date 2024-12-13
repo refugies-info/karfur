@@ -1,5 +1,4 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Image from "next/image";
 import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
@@ -8,6 +7,7 @@ import LogoDiair from "~/assets/embed/logo-diair.png";
 import LogoRI from "~/assets/embed/logo-ri-inline.png";
 import EmbedHeader from "~/components/Pages/embed/EmbedHeader";
 import SearchResults from "~/components/Pages/recherche/SearchResults";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";

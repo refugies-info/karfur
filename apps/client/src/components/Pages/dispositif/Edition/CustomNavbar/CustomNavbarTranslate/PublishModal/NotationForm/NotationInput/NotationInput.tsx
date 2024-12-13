@@ -1,10 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { GetTraductionsForReview, TranslatorFeedback } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useState } from "react";
 import marioProfile from "~/assets/mario-profile.jpg";
 import EVAIcon from "~/components/UI/EVAIcon";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./NotationInput.module.scss";
 
@@ -22,8 +22,8 @@ const NotationInput = (props: Props) => {
 
   return (
     <div className={styles.item}>
-      <div className="d-flex align-items-center justify-content-between">
-        <div className="d-flex align-items-center">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <Image
             className={cls(styles.avatar, "me-2")}
             src={avatar}
@@ -35,7 +35,7 @@ const NotationInput = (props: Props) => {
           {props.author?.username || ""}
         </div>
 
-        <div className="d-flex gap-2">
+        <div className="flex gap-2">
           {STARS.map((_, i) => {
             const checked = props.feedback.note && props.feedback.note >= i + 1;
             return (

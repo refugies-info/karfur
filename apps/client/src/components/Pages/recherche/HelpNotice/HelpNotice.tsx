@@ -11,7 +11,7 @@ export const HelpNotice = () => (
           href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-decoration-underline"
+          className="underline"
         >
           notre article d'aide
         </a>

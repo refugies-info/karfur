@@ -51,7 +51,7 @@ Please note that you need mongo, the server and the client to run concurrently i
 2. Install the dependencies
 
 ```bash
-> yarn install --frozen-lockfile
+> pnpm install --frozen-lockfile
 ```
 
 3. Copy the `/example-env-file.env` to `.env` and replace `demo` with the right values.
@@ -105,7 +105,7 @@ Open a new terminal tab and launch the server:
 
 ```bash
 > cd karfur/apps/server                # go into app's directory
-> yarn dev                     # serve at localhost:8000
+> pnpm dev                     # serve at localhost:8000
 ```
 
 If you need to develop on `server` and `api-types`, you may need to made some change in `server/package.json` :
@@ -144,7 +144,7 @@ You can use this fonctionnality in case of breaking changes in API.
 To launch the tests, run:
 
 ```bash
-> yarn test
+> pnpm test
 ```
 
 It will execute:
@@ -180,17 +180,17 @@ Follow the [technical standards](general.md) to keep the codebase clean.
 
 ```bash
 # to launch server (without live reload)
-> yarn start
+> pnpm start
 
 # to transpile ts code
-> yarn build
+> pnpm build
 
 # - starts the unit test runner
-> yarn test
+> pnpm test
 
 # launch linter tests
-> yarn lint
+> pnpm lint
 
 # launch test types
-> yarn check:types
+> pnpm check:types
 ```

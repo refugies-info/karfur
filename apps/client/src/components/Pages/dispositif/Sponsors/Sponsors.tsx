@@ -1,8 +1,8 @@
 import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useCallback } from "react";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { sanitizeUrl } from "~/lib/sanitizeUrl";
 import styles from "./Sponsors.module.scss";

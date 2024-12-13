@@ -1,7 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useMemo } from "react";
@@ -9,6 +8,7 @@ import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import FavoriteButton from "~/components/UI/FavoriteButton";
+import Image from "~/components/UI/Image";
 import { useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
@@ -99,7 +99,7 @@ const DispositifCard = (props: Props) => {
               <p className={cls("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
             </div>
 
-            <div className="fr-card__start position-relative">
+            <div className="fr-card__start relative">
               <div className={styles.sponsor}>
                 <Image
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
@@ -109,7 +109,7 @@ const DispositifCard = (props: Props) => {
                   style={{ objectFit: "contain" }}
                 />
               </div>
-              <div className="d-flex gap-2 mb-2">
+              <div className="flex gap-2 mb-2">
                 <NewThemeBadge theme={theme} />
                 {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
                   <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
@@ -129,15 +129,15 @@ const DispositifCard = (props: Props) => {
             <div className={styles.end}>
               {isDispositif ? (
                 <>
-                  <div className={cls(styles.info, "d-flex gap-2")}>
+                  <div className={cls(styles.info, "flex gap-2")}>
                     {price && (
-                      <span className="flex-shrink-0">
+                      <span className="shrink-0">
                         <i className="fr-icon-money-euro-circle-line me-2" />
                         <span>{getPriceText(price, t)}</span>
                       </span>
                     )}
                     {commitment && (
-                      <span className="flex-shrink-1">
+                      <span className="shrink">
                         <i className="fr-icon-time-line me-2" />
                         <span>{getCommitmentText(commitment, t, true)}</span>
                       </span>
@@ -148,7 +148,7 @@ const DispositifCard = (props: Props) => {
                 <>
                   {props.dispositif.lastModificationDate && (
                     <div className={styles.info}>
-                      <span className="flex-shrink-1">
+                      <span className="shrink">
                         <i className="fr-icon-time-line me-2" />
                         <span>
                           {getRelativeTimeString(

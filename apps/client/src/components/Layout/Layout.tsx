@@ -213,7 +213,7 @@ const Layout = (props: Props) => {
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <DownloadAppBanner />
       <Navbar />
-      <div className={styles.main}>
+      <div id="contenu" className={styles.main}>
         <main className={styles.content}>{props.children}</main>
       </div>
       <Footer />

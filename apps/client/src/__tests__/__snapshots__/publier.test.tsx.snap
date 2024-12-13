@@ -18,7 +18,7 @@ exports[`publier renders publier 1`] = `
             class="hero_title col-sm-12 col-lg-6"
           >
             <h1
-              class="text-white"
+              class="white"
             >
               Publish.title
             </h1>
@@ -606,7 +606,7 @@ exports[`publier renders publier 1`] = `
           class="row"
         >
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <div
               class="container"
@@ -726,7 +726,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <div
               class="container"
@@ -846,7 +846,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <div
               class="container"
@@ -1445,7 +1445,7 @@ exports[`publier renders publier 1`] = `
           class="container container"
         >
           <h2
-            class="title2 center mb-0"
+            class="title2 center !mb-0"
           >
             StaticPages.helpTitle
           </h2>
@@ -1458,7 +1458,7 @@ exports[`publier renders publier 1`] = `
             class="top_space row"
           >
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container"
@@ -1541,7 +1541,7 @@ exports[`publier renders publier 1`] = `
               </div>
             </div>
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container"
@@ -1624,7 +1624,7 @@ exports[`publier renders publier 1`] = `
               </div>
             </div>
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container"
@@ -1713,7 +1713,7 @@ exports[`publier renders publier 1`] = `
           class="container text-center container"
         >
           <h2
-            class="title2 text-center text-white"
+            class="title2 white text-center"
           >
             Publish.figuresTitle
           </h2>
@@ -2116,12 +2116,12 @@ exports[`publier renders publier 1`] = `
         class="register container"
       >
         <h2
-          class="title2 mb-0"
+          class="title2 !mb-0"
         >
           StaticPages.registerTitle
         </h2>
         <p
-          class="subtitle mb-14"
+          class="subtitle !mb-14"
         >
           Publish.registerSubtitle
         </p>

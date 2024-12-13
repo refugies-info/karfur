@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { rejectionFiche } from "~/assets/figma";
 import FButton from "~/components/UI/FButton/FButton";
+import Image from "~/components/UI/Image";
 import styles from "./RejectionModal.module.scss";
 
 interface Props {

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ReactElement } from "react";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./Card.module.scss";
 

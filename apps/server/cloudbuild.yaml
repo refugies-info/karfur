@@ -31,7 +31,7 @@ steps:
       - "--image"
       - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
       - "--memory"
-      - "1G"
+      - "${_MEMORY}"
       - "--set-env-vars"
       - >-
         accountSid=sm://refugies-info/accountSid,
@@ -44,6 +44,7 @@ steps:
         API_KEY=sm://refugies-info/API_KEY,
         API_SECRET=sm://refugies-info/API_SECRET,
         authToken=sm://refugies-info/authToken,
+        BREVO_API_KEY=sm://refugies-info/BREVO_API_KEY,
         CLOUD_NAME=sm://refugies-info/CLOUD_NAME,
         CRON_TOKEN=sm://refugies-info/CRON_TOKEN,
         EXPO_ACCESS_TOKEN=sm://refugies-info/EXPO_ACCESS_TOKEN,
@@ -65,7 +66,6 @@ steps:
         REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET,
         SECRET=sm://refugies-info/SECRET,
         SENDGRID_API_KEY=sm://refugies-info/SENDGRID_API_KEY,
-        SENDINBLUE_API_KEY=sm://refugies-info/SENDINBLUE_API_KEY,
         SLACK_WEBHOOK_URL=sm://refugies-info/SLACK_WEBHOOK_URL,
         TTS_KEY_1=sm://refugies-info/TTS_KEY_1
       - "--service-account"

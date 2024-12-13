@@ -1,9 +1,9 @@
 import { GoogleMap, Libraries, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { CreateDispositifRequest, Poi } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import MapIcon from "~/assets/dispositif/map-icon.png";
+import Image from "~/components/UI/Image";
 import PageContext from "~/utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import DeleteModal from "./DeleteModal";

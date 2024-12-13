@@ -752,7 +752,8 @@ exports[`homepage renders homepage 1`] = `
                   decoding="async"
                   height="90"
                   loading="lazy"
-                  src="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg"
+                  src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_256,q_auto/v1662999880/pictures/ot6qwuszncts5ppxusds.svg"
+                  srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662999880/pictures/ot6qwuszncts5ppxusds.svg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_256,q_auto/v1662999880/pictures/ot6qwuszncts5ppxusds.svg 2x"
                   style="color: transparent;"
                   width="65"
                 />
@@ -770,10 +771,10 @@ exports[`homepage renders homepage 1`] = `
         class="container container"
       >
         <div
-          class="align-items-center row"
+          class="items-center row"
         >
           <div
-            class="col-sm-12 col-lg-6 order-lg-2"
+            class="lg:order-2 col-sm-12 col-lg-6"
           >
             <div
               class="container"
@@ -1027,10 +1028,10 @@ exports[`homepage renders homepage 1`] = `
             </div>
           </div>
           <div
-            class="col-sm-12 col-lg-6 order-lg-1"
+            class="lg:order-1 col-sm-12 col-lg-6"
           >
             <h2
-              class="title2 text-white mb-0"
+              class="title2 white !mb-0"
             >
               Homepage.mobileAppTitle
             </h2>
@@ -1230,9 +1231,7 @@ exports[`homepage renders homepage 1`] = `
         <div
           class="title"
         >
-          <h2
-            class="h4"
-          >
+          <h2>
             Homepage.infoTypeDemarche
           </h2>
           <button
@@ -1324,7 +1323,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1335,14 +1334,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1376,7 +1375,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1464,7 +1463,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1475,14 +1474,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1516,7 +1515,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1604,7 +1603,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1615,14 +1614,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1656,7 +1655,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1744,7 +1743,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1755,14 +1754,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1791,7 +1790,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -1879,7 +1878,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -1890,14 +1889,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -1931,7 +1930,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2019,7 +2018,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2030,14 +2029,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2066,7 +2065,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2154,7 +2153,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2165,14 +2164,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2206,7 +2205,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2294,7 +2293,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2305,14 +2304,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2341,7 +2340,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2429,7 +2428,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2440,14 +2439,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2476,7 +2475,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2564,7 +2563,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2575,14 +2574,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2616,7 +2615,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2704,7 +2703,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2715,14 +2714,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2751,7 +2750,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2839,7 +2838,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2850,14 +2849,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -2891,7 +2890,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -2979,7 +2978,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -2990,14 +2989,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3026,7 +3025,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -3114,7 +3113,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3125,14 +3124,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3161,7 +3160,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -3249,7 +3248,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3260,14 +3259,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1575628927%2Fpictures%2Fk4rjgxympwzo3acblwqv.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3296,7 +3295,7 @@ exports[`homepage renders homepage 1`] = `
                         class="info"
                       >
                         <span
-                          class="flex-shrink-1"
+                          class="shrink"
                         >
                           <i
                             class="fr-icon-time-line me-2"
@@ -3354,9 +3353,7 @@ exports[`homepage renders homepage 1`] = `
         <div
           class="title"
         >
-          <h2
-            class="h4"
-          >
+          <h2>
             Homepage.infoTypeDispositif
           </h2>
           <button
@@ -3448,7 +3445,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3459,14 +3456,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1662462003%2Fpictures%2Fao6iemtrsywhm6g1l1iu.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1662462003%2Fpictures%2Fao6iemtrsywhm6g1l1iu.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1662462003%2Fpictures%2Fao6iemtrsywhm6g1l1iu.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3497,7 +3494,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3577,7 +3574,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3588,14 +3585,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1670237766%2Fpictures%2Fjdivlio5x1iasjnawmun.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1670237766%2Fpictures%2Fjdivlio5x1iasjnawmun.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1670237766%2Fpictures%2Fjdivlio5x1iasjnawmun.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3626,7 +3623,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3706,7 +3703,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3717,14 +3714,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1669735095%2Fpictures%2Fubtkqdpxwd5nvfi3ubvy.jpg&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1669735095%2Fpictures%2Fubtkqdpxwd5nvfi3ubvy.jpg&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1669735095%2Fpictures%2Fubtkqdpxwd5nvfi3ubvy.jpg&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3750,7 +3747,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3830,7 +3827,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3841,14 +3838,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1669902286%2Fpictures%2Frdx992fstuftcndifsb3.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1669902286%2Fpictures%2Frdx992fstuftcndifsb3.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1669902286%2Fpictures%2Frdx992fstuftcndifsb3.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -3879,7 +3876,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -3959,7 +3956,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -3970,14 +3967,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1666944740%2Fpictures%2Fxxghuad89ajpbnszvrwg.jpg&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1666944740%2Fpictures%2Fxxghuad89ajpbnszvrwg.jpg&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1666944740%2Fpictures%2Fxxghuad89ajpbnszvrwg.jpg&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4008,7 +4005,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4088,7 +4085,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4099,14 +4096,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1668696619%2Fpictures%2Fcmaptk8tl4s0qc0ksgfb.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1668696619%2Fpictures%2Fcmaptk8tl4s0qc0ksgfb.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1668696619%2Fpictures%2Fcmaptk8tl4s0qc0ksgfb.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4132,7 +4129,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4212,7 +4209,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4223,14 +4220,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1568654761%2Fpictures%2Fap1cbvvlzt96nphtnntx.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1568654761%2Fpictures%2Fap1cbvvlzt96nphtnntx.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1568654761%2Fpictures%2Fap1cbvvlzt96nphtnntx.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4261,7 +4258,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4341,7 +4338,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4352,14 +4349,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1665386364%2Fpictures%2Flqntfdymui845jb5jc2y.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1665386364%2Fpictures%2Flqntfdymui845jb5jc2y.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1665386364%2Fpictures%2Flqntfdymui845jb5jc2y.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4385,7 +4382,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4465,7 +4462,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4476,14 +4473,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1668078132%2Fpictures%2Fetoivbrifagwdyzycckz.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1668078132%2Fpictures%2Fetoivbrifagwdyzycckz.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1668078132%2Fpictures%2Fetoivbrifagwdyzycckz.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4514,7 +4511,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4594,7 +4591,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4605,14 +4602,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1612364200%2Fpictures%2Fubiccrsqtmoieqlq3kqm.jpg&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1612364200%2Fpictures%2Fubiccrsqtmoieqlq3kqm.jpg&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1612364200%2Fpictures%2Fubiccrsqtmoieqlq3kqm.jpg&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4643,7 +4640,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4723,7 +4720,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4734,14 +4731,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1666086444%2Fpictures%2Fpipug1eqzjxsgjcanxmn.jpg&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1666086444%2Fpictures%2Fpipug1eqzjxsgjcanxmn.jpg&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1666086444%2Fpictures%2Fpipug1eqzjxsgjcanxmn.jpg&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4772,7 +4769,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4852,7 +4849,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4863,14 +4860,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1612364200%2Fpictures%2Fubiccrsqtmoieqlq3kqm.jpg&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1612364200%2Fpictures%2Fubiccrsqtmoieqlq3kqm.jpg&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1612364200%2Fpictures%2Fubiccrsqtmoieqlq3kqm.jpg&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -4896,7 +4893,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -4976,7 +4973,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -4987,14 +4984,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1662471553%2Fpictures%2Fs5hx7wi8snvkqeut50rw.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1662471553%2Fpictures%2Fs5hx7wi8snvkqeut50rw.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1662471553%2Fpictures%2Fs5hx7wi8snvkqeut50rw.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -5025,7 +5022,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -5105,7 +5102,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -5116,14 +5113,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1657536045%2Fpictures%2Fzmxm1zthcuqd4mchdrs2.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1657536045%2Fpictures%2Fzmxm1zthcuqd4mchdrs2.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1657536045%2Fpictures%2Fzmxm1zthcuqd4mchdrs2.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -5149,7 +5146,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -5229,7 +5226,7 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start position-relative"
+                      class="fr-card__start relative"
                     >
                       <div
                         class="sponsor"
@@ -5240,14 +5237,14 @@ exports[`homepage renders homepage 1`] = `
                           decoding="async"
                           height="48"
                           loading="lazy"
-                          src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1570439852%2Fpictures%2Fxblmdsm8aly06enczcrx.png&w=96&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1570439852%2Fpictures%2Fxblmdsm8aly06enczcrx.png&w=48&q=75 1x, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdlmqnnhp6%2Fimage%2Fupload%2Fv1570439852%2Fpictures%2Fxblmdsm8aly06enczcrx.png&w=96&q=75 2x"
+                          src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png"
+                          srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png 2x"
                           style="color: transparent; object-fit: contain;"
                           width="48"
                         />
                       </div>
                       <div
-                        class="d-flex gap-2 mb-2"
+                        class="flex gap-2 mb-2"
                       >
                         <div
                           class="container theme-badge"
@@ -5278,7 +5275,7 @@ exports[`homepage renders homepage 1`] = `
                       class="end"
                     >
                       <div
-                        class="info d-flex gap-2"
+                        class="info flex gap-2"
                       />
                       <i
                         class="fr-icon-arrow-right-line"
@@ -5581,10 +5578,10 @@ exports[`homepage renders homepage 1`] = `
           class="row"
         >
           <div
-            class="col-sm-12 col-lg-6 order-lg-1"
+            class="lg:order-1 col-sm-12 col-lg-6"
           >
             <h2
-              class="title2 text-white mb-0"
+              class="title2 white mb-0"
             >
               Homepage.resourcesTitle
             </h2>
@@ -5643,7 +5640,7 @@ exports[`homepage renders homepage 1`] = `
             </div>
           </div>
           <div
-            class="col-sm-12 col-lg-6 order-lg-0"
+            class="lg:order-0 col-sm-12 col-lg-6"
           >
             <a
               href="https://kit.refugies.info/"
@@ -5687,7 +5684,7 @@ exports[`homepage renders homepage 1`] = `
           class="top_space row"
         >
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <a
               class="link"
@@ -5784,7 +5781,7 @@ exports[`homepage renders homepage 1`] = `
             </a>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <a
               class="link"
@@ -5933,7 +5930,7 @@ exports[`homepage renders homepage 1`] = `
             </a>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
           >
             <a
               class="link"
@@ -6041,7 +6038,7 @@ exports[`homepage renders homepage 1`] = `
         class="container text-center container"
       >
         <h2
-          class="title2 text-center text-white"
+          class="title2 white text-center"
         >
           Homepage.figuresTitle
         </h2>
@@ -7050,7 +7047,7 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
     <div
-      class="section infos py-0"
+      class="section infos !py-0"
     >
       <div
         class="container text-center container-fluid"
@@ -7077,7 +7074,7 @@ exports[`homepage renders homepage 1`] = `
                 width="246"
               />
               <h2
-                class="title2 text-white"
+                class="title2 white"
               >
                 Homepage.newsletterTitle
               </h2>

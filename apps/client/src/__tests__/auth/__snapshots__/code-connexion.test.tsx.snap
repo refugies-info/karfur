@@ -22,7 +22,7 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
       >
         Un code temporaire à 6 chiffres vous a été envoyé à test@example.com. 
         <a
-          class="text-decoration-underline"
+          class="underline"
           href="/auth"
         >
           Ce n'est pas vous ?
@@ -40,7 +40,6 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
           Code de connexion temporaire
         </label>
         <input
-          aria-describedby="input-:r1:-desc-error"
           class="fr-input"
           id="input-:r1:"
           name="code"

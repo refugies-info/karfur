@@ -1,6 +1,6 @@
 import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useContext, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getDispositifSectionTitle } from "~/lib/getDispositifSectionTitle";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -50,7 +50,11 @@ const Section = ({ sectionKey, contentType }: Props) => {
   );
 
   return (
-    <section className={styles.container} id={`anchor-${sectionKey}`}>
+    <section
+      className={styles.container}
+      id={`anchor-${sectionKey}`}
+      style={{ "--theme-color": colors.color100 } as React.CSSProperties}
+    >
       <SectionTitle titleKey={sectionKey} />
       {contentHtml !== undefined ? (
         <>

@@ -1,8 +1,9 @@
 import { GetStructureResponse, Id, PatchStructureRolesRequest } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { userSelector } from "~/services/User/user.selectors";
+import { setUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
 import API from "~/utils/API";
 import { colors } from "~/utils/colors";
 import { UserStructureDetails } from "./components/UserStructureDetails";
@@ -22,6 +23,8 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   const toggleReload = () => setReload(!reload);
   const user = useSelector(userSelector);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = props.title;
@@ -57,6 +60,9 @@ export const UserStructureAdminComponent = (props: Props) => {
     await API.updateStructureMembers(structure._id, query);
     setIsLoading(false);
     toggleReload();
+    if (user.userId?.toString() === userId.toString()) {
+      dispatch(setUserStructureActionCreator(structure));
+    }
   };
 
   const deleteUserFromStructure = async (userId: Id) => {
@@ -81,6 +87,9 @@ export const UserStructureAdminComponent = (props: Props) => {
         await API.updateStructureMembers(structure._id, query);
         setIsLoading(false);
         toggleReload();
+        if (user.userId?.toString() === userId.toString()) {
+          dispatch(setUserStructureActionCreator(null));
+        }
       }
     });
   };

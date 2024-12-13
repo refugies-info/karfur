@@ -1,7 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import FeedbackIllu from "~/assets/dispositif/feedback-illu.svg";
@@ -9,6 +8,7 @@ import ThumbDownIcon from "~/assets/dispositif/thumb-down.svg";
 import ThumbUpFillIcon from "~/assets/dispositif/thumb-up-fill.svg";
 import ThumbUpIcon from "~/assets/dispositif/thumb-up.svg";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import Toast from "~/components/UI/Toast";
 import { cls } from "~/lib/classname";
 import isInBrowser from "~/lib/isInBrowser";

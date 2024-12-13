@@ -1,13 +1,13 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
 import { Container } from "reactstrap";
 import { getPath } from "routes";
 import MobileRegisterImg from "~/assets/staticPages/publier/mobile-register.png";
 import { ReceiveInvitationMailModal } from "~/components/Modals";
+import Image from "~/components/UI/Image";
 import { useAuth, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { setLoginRedirect, setRegisterInfos } from "~/lib/loginRedirect";
@@ -43,7 +43,7 @@ const Register = (props: Props) => {
   };
 
   const title = useMemo(
-    () => <h2 className={cls(commonStyles.title2, "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
+    () => <h2 className={cls(commonStyles.title2, "!mb-0")}>{t("StaticPages.registerTitle")}</h2>,
     [t],
   );
 
@@ -74,7 +74,7 @@ const Register = (props: Props) => {
       ) : (
         <>
           {title}
-          <p className={cls(commonStyles.subtitle, "mb-14")}>{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
+          <p className={cls(commonStyles.subtitle, "!mb-14")}>{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
           {isAuth ? (
             <Button
               onClick={props.onClickLoggedIn}

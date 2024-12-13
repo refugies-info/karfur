@@ -1,5 +1,4 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -9,6 +8,7 @@ import PublishImage from "~/assets/dispositif/publish-image.svg";
 import YesIcon from "~/assets/dispositif/yes-icon.svg";
 import ChoiceButton from "~/components/Pages/dispositif/Edition/ChoiceButton";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { useContentType } from "~/hooks/dispositif";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "~/services/User/user.selectors";

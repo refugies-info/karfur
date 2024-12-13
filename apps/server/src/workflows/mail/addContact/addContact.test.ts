@@ -9,7 +9,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("@sendinblue/client", () => ({
+jest.mock("@getbrevo/brevo", () => ({
   ContactsApi: jest.fn().mockReturnValue({
     setApiKey: jest.fn(),
     createContact: jest.fn().mockResolvedValue({}),

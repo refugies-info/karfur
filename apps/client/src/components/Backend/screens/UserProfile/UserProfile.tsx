@@ -79,7 +79,7 @@ export const UserProfile = (props: Props) => {
   return (
     <div className={cls(styles.container, edition && styles.edit)}>
       <div className={styles.wrapper}>
-        <Row className="mb-10 align-items-center">
+        <Row className="mb-10 items-center">
           <Col>
             <h1>Mon profil</h1>
           </Col>
@@ -99,7 +99,7 @@ export const UserProfile = (props: Props) => {
         </Row>
 
         <Row>
-          <Col className="flex-grow-0">
+          <Col className="!grow-0">
             <h2>Photo de profil</h2>
             <div className={styles.block}>
               <EditAvatar />
@@ -133,8 +133,8 @@ export const UserProfile = (props: Props) => {
             {(user.admin || user.expertTrad) && (
               <div className={styles.info}>
                 <label className="mb-2">Rôles exceptionnels</label>
-                {user.admin && <Tag className="w-100 mb-2">Administrateur</Tag>}
-                {user.expertTrad && <Tag className="w-100">Expert en traduction</Tag>}
+                {user.admin && <Tag className="w-full mb-2">Administrateur</Tag>}
+                {user.expertTrad && <Tag className="w-full">Expert en traduction</Tag>}
               </div>
             )}
           </Col>
@@ -144,7 +144,7 @@ export const UserProfile = (props: Props) => {
 
             <h2>Préférences</h2>
             <div className={cls(styles.block, "mb-4")}>
-              <div className="d-flex justify-content-between mb-3">
+              <div className="flex justify-between mb-3">
                 <label className={styles.label}>Départements pour la recherche</label>
                 <EditButton icon="map" onClick={() => modalDepartments.open()} />
               </div>
@@ -161,7 +161,7 @@ export const UserProfile = (props: Props) => {
 
             {(user.traducteur || user.expertTrad) && (
               <div className={cls(styles.block, "mb-4")}>
-                <div className="d-flex justify-content-between mb-4">
+                <div className="flex justify-between mb-4">
                   <label className={styles.label}>Langues de traduction</label>
                   <EditButton icon="translate" onClick={() => modalLanguage.open()} />
                 </div>

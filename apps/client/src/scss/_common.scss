@@ -90,16 +90,17 @@ html body {
     @include text("very-small");
   }
 
-  .cursor-pointer {
-    cursor: pointer;
+  label {
+    display: inline-block;
   }
 
   // Links and buttons
   a {
+    text-decoration: none;
+
     &:not([class^="fr-"]),
     &:not([class^="fr-"])[href],
     &:not([class^="fr-"]):hover {
-      text-decoration: none;
       color: inherit;
       background-image: none;
     }
@@ -107,17 +108,6 @@ html body {
 
   :not([class^="fr-link"])[target="_blank"]::after {
     content: none;
-  }
-
-  .reset-btn {
-    border: none;
-    background: none;
-    padding: 0;
-    appearance: unset;
-
-    &:focus {
-      outline: none;
-    }
   }
 
   .btn-group:focus {
@@ -146,25 +136,6 @@ html body {
         right: 8px !important;
       }
     }
-  }
-
-  // Avatar
-  .profile-img-pin {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-  }
-
-  // Backgrounds
-  .bg-focus {
-    background: $focus;
-  }
-
-  // Aligns
-  .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   // Inputs
@@ -227,4 +198,9 @@ html body {
   .axeptio_mount {
     display: none;
   }
+}
+
+// Bootstrap / Tailwind conflicts fix
+.collapse {
+  visibility: inherit !important;
 }

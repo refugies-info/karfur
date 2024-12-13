@@ -3,29 +3,16 @@
   "tasks": {
     "//#update-icons": {
       "cache": false,
-      "outputs": [
-        "node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"
-      ]
+      "outputs": ["node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"]
     },
     "@refugies-info/client#build": {
-      "dependsOn": [
-        "//#update-icons"
-      ],
-      "env": [
-        "NEXT_PUBLIC_*"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**"
-      ]
+      "dependsOn": ["//#update-icons"],
+      "env": ["NEXT_PUBLIC_*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "@refugies-info/server#build": {
-      "dependsOn": [
-      ],
+      "dependsOn": [],
       "env": [
         "accountSid",
         "AIRTABLE_BASE_CONTENU",
@@ -37,6 +24,7 @@
         "API_KEY",
         "API_SECRET",
         "authToken",
+        "BREVO_API_KEY",
         "CLOUD_NAME",
         "CRON_TOKEN",
         "EXPO_ACCESS_TOKEN",
@@ -58,68 +46,42 @@
         "REACT_APP_SITE_SECRET",
         "SECRET",
         "SENDGRID_API_KEY",
-        "SENDINBLUE_API_KEY",
         "SLACK_WEBHOOK_URL",
+        "SMS_SENDER",
         "TTS_KEY_1"
       ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ],
-      "outputs": [
-        ".dist/**"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "outputs": [".dist/**"]
     },
     "check:types": {
-      "dependsOn": [
-        "^check:types"
-      ]
+      "dependsOn": ["^check:types"]
     },
     "@refugies-info/client#dev": {
-      "dependsOn": [
-        "//#update-icons"
-      ],
+      "dependsOn": ["//#update-icons"],
       "persistent": true,
       "cache": false,
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
     "dev": {
       "persistent": true,
       "cache": false,
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
     "start": {
       "persistent": true,
       "cache": false,
-      "dependsOn": [
-        "^start"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
+      "dependsOn": ["^start"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
     "test": {
       "cache": false,
-      "dependsOn": [
-        "^test"
-      ]
+      "dependsOn": ["^test"]
     },
     "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
+      "dependsOn": ["^lint"]
     },
     "lint:fix": {
-      "dependsOn": [
-        "^lint:fix"
-      ]
+      "dependsOn": ["^lint:fix"]
     }
   }
 }
