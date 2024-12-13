@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React from "react";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./RichCheckbox.module.scss";
 

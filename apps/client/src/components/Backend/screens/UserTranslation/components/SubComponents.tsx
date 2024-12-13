@@ -1,6 +1,6 @@
 import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
-import { Progress } from "reactstrap";
 import styled from "styled-components";
+import { Progress } from "~/components/UI/Progress";
 import { colorAvancement } from "~/lib/colors";
 import { colors } from "~/utils/colors";
 import styles from "./SubComponents.module.scss";
@@ -76,16 +76,15 @@ const getAvancement = (avancementTrad: number) => {
   return Math.ceil((avancementTrad || 0) * 100);
 };
 export const ProgressWithValue = (props: ProgressProps) => {
-  const color = colorAvancement(props.avancementTrad);
   return (
     <ProgressContainer>
       {!props.isExpert && (
         <div style={{ width: "100%" }}>
-          <Progress color={color} value={props.avancementTrad * 100} />
+          <Progress color={colorAvancement(props.avancementTrad, "bg")} value={props.avancementTrad * 100} />
         </div>
       )}
       <TextProgress>
-        <div className={"text-" + color}>{getAvancement(props.avancementTrad)} %</div>
+        <div className={colorAvancement(props.avancementTrad, "text")}>{getAvancement(props.avancementTrad)} %</div>
       </TextProgress>
     </ProgressContainer>
   );

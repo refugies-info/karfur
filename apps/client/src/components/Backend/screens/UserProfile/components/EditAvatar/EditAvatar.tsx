@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "reactstrap";
 import marioProfile from "~/assets/mario-profile.jpg";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import { fetchUserActionCreator } from "~/services/User/user.actions";
@@ -45,7 +45,7 @@ const EditAvatar = (props: Props) => {
         <Image src={user?.picture?.secure_url || marioProfile} width="160" height="160" alt="user picture" />
       </div>
       <p className={cls(styles.small, "my-4")}>Votre photo apparaît sur les fiches auxquelles vous contribuez.</p>
-      <button className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative">
+      <button className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right relative">
         Modifier ma photo
         <input type="file" id="avatar" onChange={handleFileInputChange} />
       </button>

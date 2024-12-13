@@ -26,7 +26,7 @@ const SuggestionsNavButtons = ({
   validateSuggestion,
 }: Props) => {
   return (
-    <div className="d-flex">
+    <div className="flex">
       {index >= 0 && (hasOwnSuggestion || !isExpert) && (
         // previous
         <Button

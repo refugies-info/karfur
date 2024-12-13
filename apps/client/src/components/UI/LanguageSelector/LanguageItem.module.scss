@@ -1,0 +1,50 @@
+.item {
+  --inline-padding: 1em;
+  --block-padding: 0.8em;
+
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  background-color: white;
+  padding-inline: var(--inline-padding);
+  padding-block: var(--block-padding);
+  position: relative;
+  white-space: nowrap;
+
+  &:focus-visible {
+    z-index: 2;
+    background-color: var(--background-overlap-grey-active);
+  }
+
+  &:hover {
+    background-color: var(--background-overlap-grey-hover);
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - var(--inline-padding) * 2);
+    height: 1px;
+    background: var(--border-default-grey);
+  }
+
+  &.selected {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: calc(100% - var(--block-padding) * 2);
+      width: 2px;
+      background: var(--text-title-blue-france);
+    }
+  }
+}

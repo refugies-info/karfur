@@ -1,9 +1,9 @@
 import { SimpleUser } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useMemo } from "react";
 import AdminIcon from "~/assets/dispositif/crown.svg";
 import DefaultAvatar from "~/assets/dispositif/default-avatar.png";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./ContributorCard.module.scss";
 import { getRole } from "./functions";

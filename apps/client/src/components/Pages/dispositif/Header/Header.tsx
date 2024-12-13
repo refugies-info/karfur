@@ -36,7 +36,7 @@ const Header = (props: Props) => {
   return (
     <header className={styles.container}>
       {pageContext.mode === "view" && <Breadcrumb dispositif={dispositif} />}
-      <div className="position-relative">
+      <div className="relative">
         <Title />
         {pageContext.mode === "view" && (
           <>

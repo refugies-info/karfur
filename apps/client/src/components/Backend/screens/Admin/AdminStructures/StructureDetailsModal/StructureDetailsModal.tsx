@@ -1,7 +1,6 @@
 import { GetLogResponse, Id, PatchStructureRequest } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +9,7 @@ import { useToggle } from "react-use";
 import Swal from "sweetalert2";
 import noStructure from "~/assets/noStructure.png";
 import FButton from "~/components/UI/FButton/FButton";
+import Image from "~/components/UI/Image";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { fetchActiveStructuresActionCreator } from "~/services/ActiveStructures/activeStructures.actions";
 import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
@@ -224,7 +224,7 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
         <div className={styles.details_row}>
           <div className={styles.col_1}>
             <div className="mb-5">
-              <div className="d-flex justify-content-between">
+              <div className="flex justify-between">
                 <Label>Création</Label>
                 <Date date={structure.created_at} />
               </div>

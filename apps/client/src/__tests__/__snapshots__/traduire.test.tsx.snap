@@ -18,7 +18,7 @@ exports[`traduire renders traduire 1`] = `
             class="hero_title col-sm-12 col-lg-6"
           >
             <h1
-              class="text-white"
+              class="white"
             >
               Translate.title
             </h1>
@@ -192,7 +192,7 @@ exports[`traduire renders traduire 1`] = `
             class="top_space row"
           >
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container grey"
@@ -284,7 +284,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container grey"
@@ -322,7 +322,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container grey"
@@ -371,7 +371,7 @@ exports[`traduire renders traduire 1`] = `
           class="container needs container"
         >
           <h2
-            class="title2 text-center text-white"
+            class="title2 white text-center"
           >
             Translate.needTitle
           </h2>
@@ -411,7 +411,7 @@ exports[`traduire renders traduire 1`] = `
                   class="title"
                 >
                   <span
-                    class="flag fi fi-en d-block me-2"
+                    class="flag fi fi-en block me-2"
                     title="en"
                   />
                   Anglais
@@ -751,7 +751,7 @@ exports[`traduire renders traduire 1`] = `
               class="col-sm-12 col-lg-6"
             >
               <h2
-                class="title2 bottom_space mb-0 text-white"
+                class="title2 bottom_space white mb-0"
               >
                 Translate.nextTitle
               </h2>
@@ -795,10 +795,10 @@ exports[`traduire renders traduire 1`] = `
             StaticPages.helpTitle
           </h2>
           <div
-            class="top_space justify-content-center row"
+            class="top_space justify-center row"
           >
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container"
@@ -881,7 +881,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
                 class="container"
@@ -1308,12 +1308,12 @@ exports[`traduire renders traduire 1`] = `
         class="register container"
       >
         <h2
-          class="title2 mb-0"
+          class="title2 !mb-0"
         >
           StaticPages.registerTitle
         </h2>
         <p
-          class="subtitle mb-14"
+          class="subtitle !mb-14"
         >
           Translate.registerSubtitle
         </p>

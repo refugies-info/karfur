@@ -1,0 +1,30 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
+
+.dropdownRoot {
+  width: fit-content;
+  display: inline-block;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  z-index: 1000;
+
+  // Left alignment (default)
+  &.left {
+    left: 0;
+  }
+
+  // Right alignment
+  &.right {
+    right: 0;
+  }
+
+  // Center alignment
+  &.center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -56,8 +56,10 @@ steps:
         "--port",
         "3000",
         "--memory",
-        "1G",
+        "${_MEMORY}",
         "--allow-unauthenticated",
+        "--concurrency",
+        "160",
       ]
 
 options:

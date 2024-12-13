@@ -230,7 +230,7 @@ const ModalPublic = (props: Props) => {
 
         {step === 3 && (
           <div>
-            <div className="d-flex justify-content-between">
+            <div className="flex justify-between">
               {entries<Record<ageType, string>>(ageOptions).map(([key, text]) => (
                 <div key={key}>
                   <ChoiceButton

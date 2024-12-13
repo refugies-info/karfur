@@ -1,5 +1,4 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Swal from "sweetalert2";
@@ -7,6 +6,7 @@ import NewsletterIllu from "~/assets/homepage/newsletter-illu.svg";
 import FormationPhoto from "~/assets/homepage/photo-formation.jpg";
 import { InlineLink } from "~/components/Pages/staticPages/common";
 import FButton from "~/components/UI/FButton";
+import Image from "~/components/UI/Image";
 import Input from "~/components/UI/Input";
 import { cls } from "~/lib/classname";
 import commonStyles from "~/scss/components/staticPages.module.scss";
@@ -46,13 +46,13 @@ const Infos = () => {
   };
 
   return (
-    <div className={cls(commonStyles.section, styles.infos, "py-0")}>
+    <div className={cls(commonStyles.section, styles.infos, "!py-0")}>
       <Container fluid className={cls(commonStyles.container, "text-center")}>
         <Row>
           <Col sm="12" lg="6" className={commonStyles.bg_blue}>
             <div className={styles.infos_col}>
               <Image src={NewsletterIllu} alt="" width={246} height={160} className={styles.img} />
-              <h2 className={cls(styles.title2, "text-white")}>{t("Homepage.newsletterTitle")}</h2>
+              <h2 className={cls(styles.title2, commonStyles.white)}>{t("Homepage.newsletterTitle")}</h2>
               <p className={styles.subtitle}>{t("Homepage.newsletterSubtitle")}</p>
               <div className={styles.action}>
                 <div className={styles.newsletter}>

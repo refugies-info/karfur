@@ -1,9 +1,9 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
 import styled from "styled-components";
+import Image from "~/components/UI/Image";
 import SearchThemeButton from "~/components/UI/SearchThemeButton";
 import { useLocale } from "~/hooks";
 import { cls } from "~/lib/classname";

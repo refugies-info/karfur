@@ -1,27 +1,27 @@
+import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
+import { DirectionProvider } from "@radix-ui/react-direction";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { NextPage } from "next";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { ReactElement, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
-import "scss/index.scss";
+import toastStyles from "scss/components/toast.module.scss";
 import Layout from "~/components/Layout/Layout";
+import { useRTL } from "~/hooks";
+import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
 import { wrapper } from "~/services/configureStore";
 import { PageOptions } from "~/types/interface";
 
-import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
-import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
-
-import { DirectionProvider } from "@radix-ui/react-direction";
-import { TooltipProvider } from "@radix-ui/react-tooltip";
-import dynamic from "next/dynamic";
-import toastStyles from "scss/components/toast.module.scss";
-import { useRTL } from "~/hooks";
+import "scss/index.css";
+import "scss/index.scss";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",

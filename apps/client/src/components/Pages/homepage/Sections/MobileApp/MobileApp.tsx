@@ -1,11 +1,11 @@
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import commonStyles from "~/scss/components/staticPages.module.scss";
@@ -55,8 +55,8 @@ const MobileApp = () => {
   return (
     <div id="application" className={cls(commonStyles.section, commonStyles.bg_blue)}>
       <Container className={cls(commonStyles.container)}>
-        <Row className="align-items-center">
-          <Col sm="12" lg={{ size: "6", order: 2 }}>
+        <Row className="items-center">
+          <Col sm="12" lg="6" className="lg:order-2">
             <MobileAppIllu />
             <div className={styles.store}>
               {!isTablet && storeLinks}
@@ -64,8 +64,8 @@ const MobileApp = () => {
             </div>
           </Col>
 
-          <Col sm="12" lg={{ size: "6", order: 1 }}>
-            <h2 className={cls(commonStyles.title2, "text-white mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
+          <Col sm="12" lg="6" className="lg:order-1">
+            <h2 className={cls(commonStyles.title2, commonStyles.white, "!mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
             <p className={cls(commonStyles.subtitle)}>{t("Homepage.mobileAppSubtitle")}</p>
 
             <MobileAppSmsForm />
