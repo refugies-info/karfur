@@ -17,7 +17,7 @@ export const Image: typeof NextImage = forwardRef(({ src, loader, ...props }, re
   const realLoader =
     typeof loader !== "undefined"
       ? loader
-      : typeof src === "string" && new URL(src).hostname === "res.cloudinary.com"
+      : typeof src === "string" && src.startsWith("http") && new URL(src).hostname === "res.cloudinary.com"
         ? cloudinaryLoader
         : undefined; // Use default loader
   return <NextImage src={src} loader={realLoader} {...props} ref={ref} />;
