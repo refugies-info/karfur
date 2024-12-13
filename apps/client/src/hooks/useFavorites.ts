@@ -33,7 +33,10 @@ const useFavorites = (contentId: Id | null) => {
   const { isAuth } = useAuth();
 
   // Memoized computation of whether the current content is favorited
-  const isFavorite = useMemo(() => isContentFavorite(favorites, contentId), [favorites, contentId]);
+  const isFavorite = useMemo(
+    () => favorites !== null && isContentFavorite(favorites, contentId),
+    [favorites, contentId],
+  );
 
   // Callback to refresh favorites after successful API operations
   const successCallback = useCallback(() => {
