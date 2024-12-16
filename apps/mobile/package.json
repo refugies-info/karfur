@@ -40,7 +40,7 @@
     "expo-location": "~16.5.5",
     "expo-modules-core": "^1.11.13",
     "expo-notifications": "~0.27.7",
-    "expo-speech": "~11.7.0",
+    "expo-speech": "~13.0.0",
     "expo-splash-screen": "~0.26.5",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.4",
