@@ -1,3 +1,5 @@
+"use client";
+
 import { useHistory } from "react-router-dom";
 
 const useParamsFromHistory = () => {

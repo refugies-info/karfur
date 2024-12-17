@@ -1,5 +1,7 @@
-import { useRouter } from "next/router";
+"use client";
+
 import { useEffect, useState } from "react";
+import { usePathname } from "~/i18n/routing";
 
 const checkIsEditionMode = (pathname: string) =>
   [
@@ -12,12 +14,12 @@ const checkIsEditionMode = (pathname: string) =>
   ].includes(pathname);
 
 const useEditionMode = () => {
-  const router = useRouter();
-  const [isEditionMode, setIsEditionMode] = useState(checkIsEditionMode(router.pathname));
+  const pathname = usePathname();
+  const [isEditionMode, setIsEditionMode] = useState(checkIsEditionMode(pathname));
 
   useEffect(() => {
-    setIsEditionMode(checkIsEditionMode(router.pathname));
-  }, [router.pathname]);
+    setIsEditionMode(checkIsEditionMode(pathname));
+  }, [pathname]);
 
   return isEditionMode;
 };

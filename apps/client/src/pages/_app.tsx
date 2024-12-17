@@ -2,7 +2,7 @@ import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesd
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { NextPage } from "next";
-import { appWithTranslation } from "next-i18next";
+import { NextIntlClientProvider } from "next-intl";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import Layout from "~/components/Layout/Layout";
+import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
 import { useRTL } from "~/hooks";
 import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
@@ -111,18 +112,20 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   );
 
   return (
-    <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
-      <ToastProvider swipeDirection="down">
-        <TooltipProvider delayDuration={250}>
-          {options.cookiesModule && <ConsentBannerAndConsentManagement />}
-          <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+    <NextIntlClientProvider locale={router.locale || "fr"} messages={props.pageProps.messages}>
+      <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
+        <ToastProvider swipeDirection="down">
+          <TooltipProvider delayDuration={250}>
+            <SkipLinksNavigation />
+            {options.cookiesModule && <ConsentBannerAndConsentManagement />}
+            <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
-          {options.supportModule && (
-            <Script
-              id="crisp-widget"
-              strategy="lazyOnload"
-              dangerouslySetInnerHTML={{
-                __html: `
+            {options.supportModule && (
+              <Script
+                id="crisp-widget"
+                strategy="lazyOnload"
+                dangerouslySetInnerHTML={{
+                  __html: `
         window.$crisp=[["safe", true]];
         window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
         (function(){
@@ -132,14 +135,15 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           s.async = 1;
           d.getElementsByTagName("head")[0].appendChild(s);
         })();`,
-              }}
-            />
-          )}
-        </TooltipProvider>
-        <ToastViewport className={toastStyles.viewport} dir={isRTL ? "rtl" : "ltr"} />
-      </ToastProvider>
-    </DirectionProvider>
+                }}
+              />
+            )}
+          </TooltipProvider>
+          <ToastViewport className={toastStyles.viewport} dir={isRTL ? "rtl" : "ltr"} />
+        </ToastProvider>
+      </DirectionProvider>
+    </NextIntlClientProvider>
   );
 };
 
-export default withDsfr(appWithTranslation(App));
+export default withDsfr(App);

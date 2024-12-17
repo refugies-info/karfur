@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { Container } from "reactstrap";
 import Character from "~/assets/homepage/hero/character.svg";
 import { HeroArrow } from "~/components/Pages/staticPages/common";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Hero = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={styles.hero}>

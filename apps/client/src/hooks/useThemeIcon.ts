@@ -1,3 +1,5 @@
+"use client";
+
 import { GetThemeResponse } from "@refugies-info/api-types";
 import axios from "axios";
 import { useEffect, useState } from "react";

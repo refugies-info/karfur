@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
@@ -23,7 +23,7 @@ type Props = {
 };
 
 const Filters: React.FC<Props> = ({ isSticky }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const dispositifs = useSelector(activeDispositifsSelector);

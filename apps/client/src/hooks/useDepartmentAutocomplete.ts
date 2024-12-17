@@ -1,3 +1,5 @@
+"use client";
+
 import uniqBy from "lodash/uniqBy";
 import { useEffect, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";

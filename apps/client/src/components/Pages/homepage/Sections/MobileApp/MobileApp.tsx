@@ -1,5 +1,5 @@
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { Col, Container, Row } from "reactstrap";
@@ -15,7 +15,7 @@ import MobileAppIllu from "./MobileAppIllu";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
 const MobileApp = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const { isTablet } = useWindowSize();
   const locale: AvailableLanguageI18nCode = (router.locale || "fr") as AvailableLanguageI18nCode;

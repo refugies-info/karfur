@@ -1,5 +1,5 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import ThemeIcon from "~/components/UI/ThemeIcon";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const EmbedHeader = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const isRTL = useRTL();
   const languages = useSelector(allLanguesSelector);

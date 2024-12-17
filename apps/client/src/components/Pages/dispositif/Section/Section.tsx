@@ -1,5 +1,5 @@
 import { ContentType, InfoSections } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getDispositifSectionTitle } from "~/lib/getDispositifSectionTitle";
@@ -24,7 +24,7 @@ const DEFAULT_COLOR_30 = "#ccc";
  * Shows a section of a dispositif. Can display a rich text or InfoSections. Can be used in VIEW or EDIT mode.
  */
 const Section = ({ sectionKey, contentType }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);

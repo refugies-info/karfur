@@ -1,5 +1,5 @@
 import { SimpleUser } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 import AdminIcon from "~/assets/dispositif/crown.svg";
 import DefaultAvatar from "~/assets/dispositif/default-avatar.png";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ContributorCard = ({ user }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const role = useMemo(() => getRole(user.roles), [user]);
   const hasProfilePicture = useMemo(() => !!user.picture?.secure_url, [user]);
 

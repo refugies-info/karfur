@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const Breadcrumb = ({ dispositif }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [showBreadcrumb, setShowBreadcrumb] = useState(false);
   const { isTablet } = useWindowSize();
 

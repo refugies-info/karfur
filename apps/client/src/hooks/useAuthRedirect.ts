@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/router";
 import { useEffectOnce } from "react-use";
 import API from "~/utils/API";

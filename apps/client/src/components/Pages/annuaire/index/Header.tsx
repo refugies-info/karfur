@@ -1,5 +1,5 @@
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
@@ -29,7 +29,7 @@ interface Props {
 
 export const Header = (props: Props) => {
   const isRTL = useRTL();
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   return (

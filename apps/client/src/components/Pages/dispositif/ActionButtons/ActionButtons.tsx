@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "~/components/UI/Button";
@@ -13,7 +13,7 @@ import SendSMSModal from "./SendSMSModal";
  * Floating action buttons for mobile version
  */
 const ActionButtons = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const locale = useLocale();
   const languages = useSelector(allLanguesSelector);
   const [showSMSModal, setShowSMSModal] = useState(false);

@@ -1,6 +1,6 @@
 import { Notice } from "@codegouvfr/react-dsfr/Notice";
 import { ContentType, DispositifStatus, Id } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -25,7 +25,7 @@ interface Props {
  * Top level banner with theme image or default one. Includes edit button and status if logged in
  */
 const Banner = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const theme = useSelector(themeSelector(props.themeId));
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);

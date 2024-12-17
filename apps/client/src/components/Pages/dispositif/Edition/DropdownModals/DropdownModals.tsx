@@ -5,7 +5,7 @@ import {
   priceDetails,
   timeUnitType,
 } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -28,7 +28,7 @@ interface Props<T extends Options> {
  */
 function DropdownModals<T extends Options>(props: Props<T>) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const count = useMemo(() => (props.count === undefined ? 2 : Number.parseInt(props.count.toString())), [props.count]);
 

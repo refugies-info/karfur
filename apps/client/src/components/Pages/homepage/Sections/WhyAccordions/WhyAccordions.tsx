@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { Container } from "reactstrap";
 import { Accordion } from "~/components/Pages/staticPages/common";
 import { useWindowSize } from "~/hooks";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const WhyAccordions = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { isTablet } = useWindowSize();
 
   return (

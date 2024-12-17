@@ -1,5 +1,5 @@
 import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback } from "react";
 import Button from "~/components/UI/Button";
 import Image from "~/components/UI/Image";
@@ -19,7 +19,7 @@ interface Props {
  * Show secondary sponsors of a dispositif.
  */
 const Sponsors = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const hasSponsors = props.sponsors && props.sponsors.length > 0;
 
   const getSponsorContent = useCallback(

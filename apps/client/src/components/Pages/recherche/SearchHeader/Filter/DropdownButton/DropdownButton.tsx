@@ -1,7 +1,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Tooltip from "@radix-ui/react-tooltip";
 
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React from "react";
 import Balancer from "react-wrap-balancer";
 import { cls } from "~/lib/classname";
@@ -22,7 +22,7 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
   { label, tooltip, icon, count, value, onClick, isOpen, onClear, ...other },
   forwardedRef: React.Ref<HTMLButtonElement>,
 ) {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={styles.container}>

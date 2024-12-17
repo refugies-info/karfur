@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
@@ -44,7 +44,7 @@ const FooterText = styled.div`
 `;
 
 const MissionDispositif = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   return (
@@ -69,7 +69,7 @@ const MissionDispositif = () => {
 };
 
 const MissionDemarche = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   return (
@@ -96,7 +96,7 @@ const MissionDemarche = () => {
 };
 
 const MissionParcours = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <MissionDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.parcours} width={326} height={160} alt="parcours" />

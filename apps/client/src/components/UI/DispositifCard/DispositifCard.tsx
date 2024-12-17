@@ -1,6 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useMemo } from "react";
@@ -30,7 +30,7 @@ interface Props {
 }
 
 const DispositifCard = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const themes = useSelector(themesSelector);
   const isDispositif = useMemo(

@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
@@ -30,7 +30,7 @@ const LinkNeed = styled(Link)<LinkNeedProps>`
 `;
 
 const LinkedThemes = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const locale = useLocale();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);

@@ -1,5 +1,5 @@
 import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const WriteContentModal = ({ show, close }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const user = useSelector(userSelector);
   const isPseudoModalOpen = useIsModalOpen(pseudoModal);

@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Swal from "sweetalert2";
@@ -14,7 +14,7 @@ import API from "~/utils/API";
 import styles from "./Infos.module.scss";
 
 const Infos = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const [email, setEmail] = useState("");
   const [newsletterError, setNewsletterError] = useState("");

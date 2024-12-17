@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const WriteContentCard = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <button

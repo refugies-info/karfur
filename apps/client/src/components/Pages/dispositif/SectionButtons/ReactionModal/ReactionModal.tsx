@@ -1,5 +1,5 @@
 import { Id } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const ReactionModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const { dispositifId, sectionKey, callback, toggle } = props;
 

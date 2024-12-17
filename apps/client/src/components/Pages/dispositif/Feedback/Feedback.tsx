@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { logger } from "logger";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import FeedbackIllu from "~/assets/dispositif/feedback-illu.svg";
@@ -19,7 +19,7 @@ import API from "~/utils/API";
 import styles from "./Feedback.module.scss";
 
 const Feedback = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const mercis = useMemo(() => dispositif?.merci || [], [dispositif]);
   const [didThank, setDidThank] = useState(false);

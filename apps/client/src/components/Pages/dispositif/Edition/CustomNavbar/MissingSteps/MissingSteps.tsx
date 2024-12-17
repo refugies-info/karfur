@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useContext } from "react";
 import { UserTradStatus } from "~/components/Pages/dispositif/Translation/TranslationInput/functions";
 import TranslationStatus from "~/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const MissingSteps = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const pageContext = useContext(PageContext);
 
   const goToStep = useCallback(

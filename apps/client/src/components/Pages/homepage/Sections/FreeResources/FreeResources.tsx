@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Col, Container, Row } from "reactstrap";
 import FreeResourcesImg from "~/assets/homepage/free-resources.png";
@@ -9,7 +9,7 @@ import commonStyles from "~/scss/components/staticPages.module.scss";
 import styles from "./FreeResources.module.scss";
 
 const FreeResources = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={cls(commonStyles.section, commonStyles.bg_red)}>

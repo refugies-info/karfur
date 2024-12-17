@@ -1,5 +1,5 @@
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useContext, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useToggle } from "react-use";
@@ -31,7 +31,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 
 const Dispositif = (props: Props) => {
   const { defaultTraduction, traductions } = props;
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const typeContenu = useMemo(

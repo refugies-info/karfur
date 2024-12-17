@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (

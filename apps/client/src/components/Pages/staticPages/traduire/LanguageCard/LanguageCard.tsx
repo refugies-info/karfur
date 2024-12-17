@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Flag from "~/components/UI/Flag";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const LanguageCard = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const language = useSelector(langueSelector(props.languageId));
 
   return (

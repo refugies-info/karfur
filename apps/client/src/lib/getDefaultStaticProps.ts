@@ -1,4 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { END } from "redux-saga";
 import { wrapper } from "~/services/configureStore";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
@@ -7,7 +6,7 @@ import { getLanguageFromLocale } from "./getLanguageFromLocale";
 export const defaultStaticProps = wrapper.getStaticProps(() => async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      messages: (await import(`~/locales/${getLanguageFromLocale(locale)}/common.json`)).default,
     },
   };
 });
@@ -20,7 +19,7 @@ export const defaultStaticPropsWithThemes = wrapper.getStaticProps((store) => as
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      messages: (await import(`~/locales/${getLanguageFromLocale(locale)}/common.json`)).default,
     },
     revalidate: 60 * 10, // need to rebuild the page every 10 mins to update themes
   };

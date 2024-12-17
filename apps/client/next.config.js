@@ -1,9 +1,10 @@
-const { i18n } = require("./next-i18next.config");
 const { translatedRedirects, oldPathsRedirects, partnersRedirect, rewrites } = require("./redirects.js");
+const createNextIntlPlugin = require("next-intl/plugin");
 
-module.exports = {
+const withNextIntl = createNextIntlPlugin();
+
+module.exports = withNextIntl({
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
-  i18n,
   images: {
     remotePatterns: [
       {
@@ -57,4 +58,4 @@ module.exports = {
       },
     ];
   },
-};
+});

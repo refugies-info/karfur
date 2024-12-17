@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { Button } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SeeMoreButton = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={cls(styles.container, props.visible && styles.visible)}>
       <Button onClick={props.onClick} className={styles.btn}>

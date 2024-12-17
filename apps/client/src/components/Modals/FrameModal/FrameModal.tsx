@@ -1,5 +1,5 @@
 import find from "lodash/find";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { Modal } from "reactstrap";
 import { colors } from "~/utils/colors";
 
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const FrameModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const getTutoUrl = () => {
     const defaultUrl = "https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7";

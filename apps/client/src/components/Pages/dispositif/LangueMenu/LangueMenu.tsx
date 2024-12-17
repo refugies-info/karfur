@@ -1,6 +1,6 @@
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import uniqueId from "lodash/uniqueId";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -24,7 +24,7 @@ interface Props {
  * Dropdown showing a list of languages. Can be used at different places across the page.
  */
 const LangueMenu = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);
   const [tooltipId] = useState(uniqueId("tooltip_"));

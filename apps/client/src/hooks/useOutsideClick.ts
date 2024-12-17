@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 
 const useOutsideClick = (ref: React.MutableRefObject<Element | undefined | null>, callback: () => void) => {

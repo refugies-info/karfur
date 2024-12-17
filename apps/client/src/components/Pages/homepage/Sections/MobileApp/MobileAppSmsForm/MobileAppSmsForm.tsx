@@ -1,5 +1,5 @@
 import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -13,7 +13,7 @@ import LanguageDropdown from "../LanguageDropdown";
 import styles from "./MobileAppSmsForm.module.scss";
 
 const MobileAppSmsForm = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");

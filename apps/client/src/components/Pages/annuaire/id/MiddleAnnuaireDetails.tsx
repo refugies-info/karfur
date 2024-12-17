@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Skeleton from "react-loading-skeleton";
@@ -56,7 +56,7 @@ const HoursPrecisions = (props: { text: string }) => (
 );
 
 const Departement = (props: { departement: string }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={styles.white_container}>
@@ -67,7 +67,7 @@ const Departement = (props: { departement: string }) => {
 };
 
 const Placeholder = (props: { iconName: string; text: string; i18nKey: string }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={styles.red_container}>
@@ -111,7 +111,7 @@ const sortStructureActivities = (structure: GetStructureResponse | null, themes:
 };
 
 export const MiddleAnnuaireDetail = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const structure = props.structure;
   const admin = useSelector(userSelector).admin;

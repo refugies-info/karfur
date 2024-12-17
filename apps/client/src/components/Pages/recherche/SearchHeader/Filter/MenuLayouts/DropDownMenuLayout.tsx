@@ -1,5 +1,5 @@
+import { useTranslations } from "next-intl";
 import { KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps, useDropdownContext } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
@@ -8,7 +8,7 @@ import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
 export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, gaType, children }: LayoutProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
   const dropdownRef = useRef<HTMLDivElement>(null);

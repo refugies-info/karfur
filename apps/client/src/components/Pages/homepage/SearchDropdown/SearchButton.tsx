@@ -1,6 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useTranslations } from "next-intl";
 import React, { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import EVAIcon from "~/components/UI/EVAIcon";
 import { cls } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const SearchButton: React.FC<Props> = ({ icon, label, open, values, onClickCross }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const active = useMemo(() => {
     return open || values.length > 0;

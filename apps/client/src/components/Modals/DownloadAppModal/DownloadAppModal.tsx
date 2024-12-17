@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback } from "react";
 import { isIOS } from "react-device-detect";
 import { Modal } from "reactstrap";
@@ -18,7 +18,7 @@ interface Props {
 const STORE_LINK = isIOS ? iosStoreLink : androidStoreLink;
 
 const DownloadAppModal = ({ show, toggle }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const goToStore = useCallback(() => window.open(STORE_LINK), []);
 
   return (

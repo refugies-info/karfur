@@ -1,6 +1,6 @@
 import { InfoSection } from "@refugies-info/api-types";
 import { hasTTSAvailable } from "data/activatedLanguages";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "~/components/UI/Button";
@@ -25,7 +25,7 @@ interface Props {
  * Suggestion and TTS buttons
  */
 const SectionButtons = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const locale = useLocale();
 
   // tts

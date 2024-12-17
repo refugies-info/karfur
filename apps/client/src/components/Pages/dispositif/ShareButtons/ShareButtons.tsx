@@ -1,5 +1,5 @@
 import { ContentType } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "~/components/UI/Button";
@@ -10,7 +10,7 @@ import { selectedDispositifSelector } from "~/services/SelectedDispositif/select
 import styles from "./ShareButtons.module.scss";
 
 const ShareButtons = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
 
   const shareEmail = useCallback(() => {

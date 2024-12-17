@@ -1,3 +1,5 @@
+"use client";
+
 import { RoleName } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";

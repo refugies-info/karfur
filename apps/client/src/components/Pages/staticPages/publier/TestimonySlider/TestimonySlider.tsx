@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Button, Col } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";

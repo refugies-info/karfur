@@ -1,5 +1,5 @@
 import { SubscriptionRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { ChangeEvent, useState } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -26,7 +26,7 @@ interface EmailProps {
 }
 
 const EmailField = (props: EmailProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <>
@@ -84,7 +84,7 @@ const CloseIconContainer = styled.div`
 `;
 
 export const ReceiveInvitationMailModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);

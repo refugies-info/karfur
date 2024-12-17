@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Event } from "~/lib/tracking";
 import styles from "./Summary.module.scss";
@@ -7,7 +7,7 @@ import styles from "./Summary.module.scss";
  * Summary for mobile version
  */
 const Summary = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={styles.card}>
       <p className={styles.title}>{t("Dispositif.summary")}</p>

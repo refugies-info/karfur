@@ -1,5 +1,5 @@
 import { Metadatas } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import FreeIcon from "~/assets/dispositif/metadatas/Free";
 import PriceIcon from "~/assets/dispositif/metadatas/Price";
 import BaseCard from "../BaseCard";
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const CardPrice = ({ data, color, onClick }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <BaseCard

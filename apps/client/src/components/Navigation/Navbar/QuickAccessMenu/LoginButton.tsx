@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useTranslations } from "next-intl";
 import router from "next/router";
 import { memo } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getPath } from "~/routes";
 import { userSelector } from "~/services/User/user.selectors";
@@ -9,7 +9,7 @@ import styles from "./LoginButton.module.scss";
 
 const LoginButton = () => {
   const { user } = useSelector(userSelector);
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <>

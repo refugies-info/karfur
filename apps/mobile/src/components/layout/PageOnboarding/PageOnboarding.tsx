@@ -1,5 +1,5 @@
+import { useTranslations } from "next-intl";
 import React, { ReactNode, useCallback, useEffect, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -67,7 +67,7 @@ const PageOnboarding = ({
   disableNext,
 }: PageProps) => {
   const insets = useSafeAreaInsets();
-  const { t } = useTranslation();
+  const t = useTranslations();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   // Voiceover

@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Id } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getPath } from "routes";
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const BookmarkedModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const { show, toggle } = props;
 

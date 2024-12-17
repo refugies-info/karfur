@@ -1,11 +1,11 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import NoResultsBackgroundImage from "~/assets/no_results.svg";
 import FButton from "~/components/UI/FButton/FButton";
 import Image from "~/components/UI/Image";
 import styles from "./NoResult.module.scss";
 
 export const NoResult = (props: any) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={styles.container}>
       <div className={styles.image}>

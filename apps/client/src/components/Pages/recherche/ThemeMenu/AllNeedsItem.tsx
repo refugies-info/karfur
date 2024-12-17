@@ -1,6 +1,6 @@
 import { Id } from "@refugies-info/api-types";
+import { useTranslations } from "next-intl";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "~/components/UI/Checkbox";
@@ -18,7 +18,7 @@ type Props = {
 };
 
 const AllNeedsItem: React.FC<Props> = ({ themeId }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { selectedThemeId, nbDispositifsByTheme } = useContext(ThemeMenuContext);
   const query = useSelector(searchQuerySelector);
   const dispatch = useDispatch();

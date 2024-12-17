@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import FButton from "~/components/UI/FButton/FButton";
 import styles from "./SocialLinks.module.scss";
 
@@ -15,7 +15,7 @@ const getLink = (link: string | undefined) => {
 };
 
 export const SocialsLink = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div>

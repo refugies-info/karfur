@@ -1,5 +1,5 @@
 import { CreateDispositifRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -15,7 +15,7 @@ interface TitleProps {
   color: string;
 }
 const Title = (props: TitleProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <p className={styles.title} style={{ color: props.color }}>
       {props.titleKey === "abstract" && (

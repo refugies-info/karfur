@@ -2,7 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { UpdateUserRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
@@ -26,7 +26,7 @@ interface Props {
 
 const UserProfileForm = ({ edition, setEdition }: Props) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const t = useTranslations();
   const user = useSelector(userSelector);
   const userDetails = useSelector(userDetailsSelector);
 

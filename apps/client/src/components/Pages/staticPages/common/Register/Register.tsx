@@ -1,6 +1,8 @@
+"use client";
+
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
 import { Container } from "reactstrap";
@@ -19,13 +21,13 @@ interface Props {
   subtitleForm: string;
   subtitleLoggedIn: string;
   btnLoggedIn: string;
-  onClickLoggedIn: () => void;
+  onClickLoggedIn?: () => void;
   subtitleMobile: string;
   associatedRole: RoleName.TRAD | RoleName.CONTRIB;
 }
 
 const Register = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const { isTablet } = useWindowSize();
   const { isAuth } = useAuth();

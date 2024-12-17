@@ -1,5 +1,5 @@
 import { conditionType, CreateDispositifRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const ModalConditions = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [selected, setSelected] = useState<conditionType[] | null>( // if undefined, nothing selected. Else, data or null
     getValues("metadatas.conditions") === undefined ? [] : getValues("metadatas.conditions") || null,

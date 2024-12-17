@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ReadLanguageModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
   const dispositif = useSelector(selectedDispositifSelector);

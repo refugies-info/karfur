@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement, useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";

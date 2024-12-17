@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";

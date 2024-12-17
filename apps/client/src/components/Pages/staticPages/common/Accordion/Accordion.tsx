@@ -1,3 +1,5 @@
+"use client";
+
 import { sanitize } from "isomorphic-dompurify";
 import { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";

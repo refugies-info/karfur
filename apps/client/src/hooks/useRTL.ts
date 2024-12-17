@@ -1,15 +1,16 @@
-import { useRouter } from "next/router";
+"use client";
+
 import { useEffect, useState } from "react";
 
 export const checkIsRTL = (locale: string | undefined) => ["ar", "ps", "fa"].includes(locale || "fr");
 
 const useRTL = () => {
-  const router = useRouter();
-  const [isRTL, setIsRTL] = useState<boolean>(checkIsRTL(router.locale));
+  const locale = "fr"; // useLocale();
+  const [isRTL, setIsRTL] = useState<boolean>(checkIsRTL(locale));
 
   useEffect(() => {
-    setIsRTL(checkIsRTL(router.locale));
-  }, [router.locale]);
+    setIsRTL(checkIsRTL(locale));
+  }, [locale]);
 
   return isRTL;
 };

@@ -7,7 +7,7 @@ import {
   timeSlotType,
   timeUnitType,
 } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
@@ -35,7 +35,7 @@ interface Props {
 const MAX_STEP = 3;
 
 const ModalAvailability = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [step, setStep] = useState<number>(1);
 

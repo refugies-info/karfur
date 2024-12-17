@@ -1,5 +1,5 @@
 import { ContentType, Metadatas } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useContext, useMemo } from "react";
 import LocationIcon from "~/assets/dispositif/metadatas/Location";
 import FRLink from "~/components/UI/FRLink";
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
 

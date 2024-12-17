@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import useLocale from "~/hooks/useLocale";
@@ -15,7 +15,7 @@ import { secondaryThemesSelector, themeSelector } from "~/services/Themes/themes
 const useDispositifTts = () => {
   const locale = useLocale();
 
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));

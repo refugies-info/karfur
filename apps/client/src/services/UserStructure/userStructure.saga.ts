@@ -1,6 +1,5 @@
 import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "@refugies-info/api-types";
 import pick from "lodash/pick";
-import Router from "next/router";
 import { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { UserState } from "~/services/User/user.reducer";
@@ -31,7 +30,7 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     const isUserAdmin = userInStructure.length > 0;
 
     if (shouldRedirect && !isUserAdmin) {
-      yield call(Router.push, "/");
+      // yield call(Router.push, "/"); // TODO
     }
 
     logger.info("[fetchUserStructure] successfully fetched user structure");

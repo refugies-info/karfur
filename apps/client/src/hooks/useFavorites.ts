@@ -1,3 +1,5 @@
+"use client";
+
 import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";

@@ -1,5 +1,5 @@
 import { Metadatas } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import DurationIcon from "~/assets/dispositif/metadatas/Durations";
 import BaseCard from "../BaseCard";
 import { getCommitment, getFrequency, getTimeSlots } from "../functions";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, color, onClick }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <BaseCard

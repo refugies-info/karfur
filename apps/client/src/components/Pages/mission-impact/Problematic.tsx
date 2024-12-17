@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import styled from "styled-components";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import Image from "~/components/UI/Image";
@@ -39,7 +39,7 @@ const ProblematicDetailDescription = styled.div`
 `;
 
 const Statut = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <ProblematicDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.statutRefugie} alt="statut-refugie" width={320} height={220} />
@@ -59,7 +59,7 @@ const Statut = () => {
 };
 
 const Information = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <ProblematicDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.information} alt="info" width={320} height={220} />
@@ -79,7 +79,7 @@ const Information = () => {
 };
 
 const Accompagnement = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <ProblematicDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.accompagnement} alt="accompagnement" width={320} height={160} />

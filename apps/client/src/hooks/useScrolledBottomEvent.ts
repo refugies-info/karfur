@@ -1,3 +1,5 @@
+"use client";
+
 import throttle from "lodash/throttle";
 import { useCallback, useEffect, useState } from "react";
 import { Event } from "~/lib/tracking";

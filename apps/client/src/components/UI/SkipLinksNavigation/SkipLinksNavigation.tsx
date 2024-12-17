@@ -1,22 +1,22 @@
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
 
 const SkipLinksNavigation = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <SkipLinks
       links={[
         {
           anchor: "#contenu",
-          label: t("SkipLinks.Contenu", "Contenu"),
+          label: t("SkipLinks.Contenu"),
         },
         {
           anchor: "#fr-header-main-navigation",
-          label: t("SkipLinks.Menu", "Menu"),
+          label: t("SkipLinks.Menu"),
         },
         {
           anchor: "#fr-footer",
-          label: t("SkipLinks.PiedDePage", "Pied de page"),
+          label: t("SkipLinks.PiedDePage"),
         },
       ]}
     />

@@ -1,3 +1,5 @@
+"use client";
+
 import uniqueId from "lodash/uniqueId";
 import { useEffect, useState } from "react";
 

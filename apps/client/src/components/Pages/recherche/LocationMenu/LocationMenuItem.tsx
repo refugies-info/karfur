@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Separator from "~/components/UI/Separator";
@@ -9,7 +9,7 @@ import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.
 import styles from "./LocationMenuItem.module.css";
 
 const LocationMenuItem: React.FC = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const [geolocationSupported, setGeolocationSupported] = useState(false);
   const [permissionDenied, setPermissionDenied] = useState(false);

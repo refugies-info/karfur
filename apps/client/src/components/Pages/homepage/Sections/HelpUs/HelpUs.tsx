@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "reactstrap";
@@ -12,7 +12,7 @@ import commonStyles from "~/scss/components/staticPages.module.scss";
 import styles from "./HelpUs.module.scss";
 
 const HelpUs = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   return (

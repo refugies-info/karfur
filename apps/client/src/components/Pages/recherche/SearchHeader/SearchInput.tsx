@@ -1,6 +1,6 @@
 import Input from "@codegouvfr/react-dsfr/Input";
+import { useTranslations } from "next-intl";
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const SearchInput: React.FC<Props> = ({ onChange, className }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const query = useSelector(searchQuerySelector);
 
   const stylesDisabled = useStylesDisabled();

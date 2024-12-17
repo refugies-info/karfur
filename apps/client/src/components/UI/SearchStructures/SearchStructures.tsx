@@ -3,7 +3,7 @@ import { Row } from "reactstrap";
 import styled from "styled-components";
 import Image from "~/components/UI/Image";
 
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import NoResultImage from "~/assets/no_results.svg";
 import { removeAccents } from "~/lib";
 import { escapeRegexCharacters } from "~/lib/search";
@@ -44,7 +44,7 @@ const SearchStructures = ({
   selectedStructure,
   structures = [],
 }: SearchStructuresProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [needle, setNeedle] = useState<string>("");
 
   const onChangeNeedle: ChangeEventHandler<HTMLInputElement> = useCallback(

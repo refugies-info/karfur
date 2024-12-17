@@ -1,5 +1,5 @@
 import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const { setValue } = useFormContext();

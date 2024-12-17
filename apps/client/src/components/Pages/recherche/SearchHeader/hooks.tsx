@@ -1,7 +1,7 @@
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import _ from "lodash";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getMatchingAgeOptions } from "~/lib/recherche/filterContents";
 import { filterDispositifs } from "~/lib/recherche/queryContents";
@@ -134,7 +134,7 @@ export const useFrenchLevelOptions = () => {
 export const useLanguagesOptions = () => {
   const docs = useDocsToFilter("language");
 
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const allLangues = useSelector(allLanguesSelector);
   const languages = allLangues.filter((langue) => langue.i18nCode !== "fr");

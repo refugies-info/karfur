@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useContext } from "react";
 import { useSanitizedContent } from "~/hooks";
 import { cls } from "~/lib/classname";
@@ -16,7 +16,7 @@ interface Props {
  * Displays a text (string or HTML) which can be highlighted
  */
 const Text = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const pageContext = useContext(PageContext);
 
   const convertedContent = props.html

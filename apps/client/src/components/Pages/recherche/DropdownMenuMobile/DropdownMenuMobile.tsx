@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { Button } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { colors } from "~/utils/colors";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const DropdownMenuMobile = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={styles.container}>
       <div className={styles.header}>

@@ -1,5 +1,5 @@
 import { GetStructureResponse, Picture } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { getPath, isRoute } from "routes";
 import placeholder from "~/assets/no_results_alt.svg";
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const LeftAnnuaireDetail = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   const getSecureUrl = (picture: Picture | undefined) => {

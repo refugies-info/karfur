@@ -1,5 +1,5 @@
 import { Metadatas } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useContext, useMemo } from "react";
 import AgeIcon from "~/assets/dispositif/metadatas/Age";
 import FrenchLevelIcon from "~/assets/dispositif/metadatas/FrenchLevel";
@@ -29,7 +29,7 @@ interface Props {
 }
 
 const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
 

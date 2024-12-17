@@ -1,5 +1,4 @@
 import { DocumentProps, Head, Html, Main, NextScript } from "next/document";
-import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
 import { dsfrDocumentApi } from "./_app";
 
 const { getColorSchemeHtmlAttributes, augmentDocumentForDsfr } = dsfrDocumentApi;
@@ -15,7 +14,6 @@ export default function Document(props: DocumentProps) {
         <script defer data-domain="refugies.info" src="https://plausible.io/js/script.tagged-events.js"></script>
       </Head>
       <body>
-        <SkipLinksNavigation />
         <Main />
         <NextScript />
       </body>

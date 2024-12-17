@@ -1,6 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const LanguageModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   const getAvancementTrad = (i18nCode: string) => {

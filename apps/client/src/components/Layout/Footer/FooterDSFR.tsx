@@ -1,5 +1,7 @@
+"use client";
+
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +14,7 @@ import { themesSelector } from "~/services/Themes/themes.selectors";
 
 const Footer = () => {
   const router = useRouter();
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const isEditionMode = useEditionMode();
 

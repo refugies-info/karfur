@@ -1,6 +1,6 @@
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import FRLink from "~/components/UI/FRLink";
 import Image from "~/components/UI/Image";
@@ -26,7 +26,7 @@ interface Props {
  * Shows the metadatas of a dispositif, with Cards, in VIEW mode
  */
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   if (!metadatas) return <></>;
   return (

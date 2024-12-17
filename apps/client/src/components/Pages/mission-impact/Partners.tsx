@@ -1,5 +1,5 @@
 import { partners } from "data/partners";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import styled from "styled-components";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import FButton from "~/components/UI/FButton/FButton";
@@ -39,7 +39,7 @@ const sortPartners = () =>
 
 export const Partners = () => {
   const sortedPartners = sortPartners();
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <MainContainer>

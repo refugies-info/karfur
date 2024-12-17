@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import styled from "styled-components";
 import { assetsOnServer } from "~/assets/assetsOnServer";
@@ -41,7 +41,7 @@ const TextContainer = styled.div`
 `;
 
 const ContributionCode = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <ContributionDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.codeOuvert} alt="code ouvert" width={400} height={200} />
@@ -69,7 +69,7 @@ const ContributionCode = () => {
 };
 
 const ContributionTerrain = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <ContributionDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.terrain} alt="terrain" width={400} height={200} />
@@ -89,7 +89,7 @@ const ContributionTerrain = () => {
 };
 
 const ContributionEngagement = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <ContributionDetailContainer>
       <Image src={assetsOnServer.quiSommesNous.microEngagement} alt="micro-engagement" width={320} height={183} />

@@ -1,9 +1,9 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
+import { useTranslations } from "next-intl";
 import router from "next/router";
 import { forwardRef, memo, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useChangeLanguage } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
@@ -19,7 +19,7 @@ interface LanguageItemProps {
 
 const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, ...props }, ref) => {
-    const { t } = useTranslation();
+    const t = useTranslations();
     const stylesDisabled = useStylesDisabled();
 
     const { changeLanguage } = useChangeLanguage();

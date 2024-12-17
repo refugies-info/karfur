@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
 import styled from "styled-components/native";
 import { Columns, ColumnsSpacing } from "~/components";
 import { TabBarItem } from "./TabBarItem";
@@ -14,7 +14,7 @@ const FakeTabBarContainer = styled.View<{ width: number }>`
 `;
 
 export const FakeTabBar = (props: TabBarProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <FakeTabBarContainer width={props.width}>
       <Columns spacing={ColumnsSpacing.NoSpace}>

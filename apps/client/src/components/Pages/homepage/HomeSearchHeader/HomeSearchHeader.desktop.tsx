@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import qs from "query-string";
 import { useCallback, useEffect, useState } from "react";
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const HomeSearchHeaderDesktop = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const eventName = useSearchEventName();
 

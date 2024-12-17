@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { Col, Container, Row } from "reactstrap";
 import { CountUpFigure } from "~/components/Pages/staticPages/common";
 import { cls } from "~/lib/classname";
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const MainFigures = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={cls(commonStyles.section, commonStyles.bg_green)}>

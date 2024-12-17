@@ -1,5 +1,5 @@
 import { Id } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import { Button } from "reactstrap";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const FavoriteButton = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(props.contentId);
   const { isAuth } = useAuth();
   const [showFavoriteModal, setShowFavoriteModal] = useState(false);

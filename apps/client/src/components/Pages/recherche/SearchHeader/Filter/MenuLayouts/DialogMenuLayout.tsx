@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
@@ -13,7 +13,7 @@ import { searchResultsSelector } from "~/services/SearchResults/searchResults.se
 import styles from "./DialogMenuLayout.module.scss";
 
 export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, filterCount, children }: LayoutProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const searchResults = useSelector(searchResultsSelector);
   const totalResults = searchResults.matches.length;
   const dispatch = useDispatch();

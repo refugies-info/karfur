@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { ChangeEventHandler, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
@@ -70,7 +70,7 @@ const CloseIconContainer = styled.div`
 `;
 
 const EmailField = (props: EmailProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <>
       <FInput
@@ -93,7 +93,7 @@ export const SubscribeNewsletterModal = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const show = useSelector(showNewsletterModalSelector);
   const toggle = () => dispatch(toggleNewsletterModalAction(false));

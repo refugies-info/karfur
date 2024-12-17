@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { hasTTSAvailable } from "data/activatedLanguages";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
@@ -17,7 +17,7 @@ import { selectedDispositifSelector } from "~/services/SelectedDispositif/select
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   const { contentLocale } = useContentLocale();

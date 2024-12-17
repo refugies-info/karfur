@@ -1,3 +1,5 @@
+"use client";
+
 import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import keyBy from "lodash/keyBy";
 import { useRouter } from "next/router";

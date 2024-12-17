@@ -1,5 +1,5 @@
 import { Metadatas } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Image from "~/components/UI/Image";
 import BaseCard from "../BaseCard";
 import { getConditionImage } from "../functions";
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const CardConditions = ({ data, color, onClick }: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <BaseCard

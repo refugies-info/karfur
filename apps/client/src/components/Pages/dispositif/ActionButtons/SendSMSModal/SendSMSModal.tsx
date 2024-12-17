@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const SendSMSModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const locale = useLocale();
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const [lnListOpen, setLnListOpen] = useState(false);

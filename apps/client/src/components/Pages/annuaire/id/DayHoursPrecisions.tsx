@@ -1,5 +1,5 @@
 import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import styles from "./DayHoursPrecisions.module.scss";
 
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Closed = (props: { day: string }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={styles.container}>
@@ -41,7 +41,7 @@ const getOpeningHours = (
 };
 
 const Opened = (props: { day: string; details: DetailedOpeningHours }) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { day, details } = props;
 
   return (

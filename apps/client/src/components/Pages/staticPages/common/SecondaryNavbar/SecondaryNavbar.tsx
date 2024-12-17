@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Container } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
-import { smoothScroll } from "~/lib/smoothScroll";
 import styles from "./SecondaryNavbar.module.scss";
 
 type LinkNavbar = {
@@ -29,7 +28,7 @@ const SecondaryNavbar = (props: Props) => {
             <Link
               key={link.id}
               href={`#${link.id}`}
-              onClick={smoothScroll}
+              /* onClick={smoothScroll} */
               className={cls(styles.btn, styles[link.color], isActive(link.id) && styles.active)}
             >
               {link.text}
@@ -38,7 +37,7 @@ const SecondaryNavbar = (props: Props) => {
         </div>
         <Link
           href={`#${props.rightLink.id}`}
-          onClick={smoothScroll}
+          /* onClick={smoothScroll} */
           className={cls(styles.btn, styles[props.rightLink.color], isActive(props.rightLink.id) && styles.active)}
         >
           <EVAIcon name="plus-circle-outline" size={20} />

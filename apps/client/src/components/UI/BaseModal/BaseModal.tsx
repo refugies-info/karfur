@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { Modal } from "reactstrap";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
@@ -23,7 +23,7 @@ interface Props {
 }
 
 const BaseModal = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { isRTL } = useContentLocale();
 
   return (

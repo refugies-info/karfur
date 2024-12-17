@@ -1,5 +1,5 @@
 import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
@@ -12,7 +12,7 @@ import styles from "./Contributors.module.scss";
  * List of contributors of the dispositif
  */
 const Contributors = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const participants = useMemo(() => {
     return (dispositif?.participants || []).sort((a, b) => {

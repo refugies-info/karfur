@@ -1,5 +1,5 @@
 import Alert from "@codegouvfr/react-dsfr/Alert";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const SearchHeader = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const stickyBarRef = useRef<HTMLDivElement>(null);
   const query = useSelector(searchQuerySelector);
   const dispositifs = useSelector(activeDispositifsSelector);

@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
@@ -11,7 +11,7 @@ const STORE_LINK = isIOS ? iosStoreLink : androidStoreLink;
 
 const DownloadAppBanner = () => {
   const [show, setShow] = useState(false);
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   useEffect(() => {

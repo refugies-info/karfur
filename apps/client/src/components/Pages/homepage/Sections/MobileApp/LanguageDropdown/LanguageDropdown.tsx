@@ -1,5 +1,5 @@
 import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const LanguageDropdown = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { languageSelected, onSelectItem } = props;
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);

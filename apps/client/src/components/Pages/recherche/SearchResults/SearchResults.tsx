@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const SearchResults = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);

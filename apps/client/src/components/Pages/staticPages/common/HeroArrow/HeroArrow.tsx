@@ -1,8 +1,7 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
-import { smoothScroll } from "~/lib/smoothScroll";
 import { colors } from "~/utils/colors";
 import styles from "./HeroArrow.module.scss";
 
@@ -12,10 +11,10 @@ interface Props {
 }
 
 const HeroArrow = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={cls(styles.container, props.center && styles.center)}>
-      <Link href={`#${props.target}`} className={styles.btn} onClick={smoothScroll} title={t("Suivant")}>
+      <Link href={`#${props.target}`} className={styles.btn} /* onClick={smoothScroll} */ title={t("Suivant")}>
         <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
       </Link>
     </div>

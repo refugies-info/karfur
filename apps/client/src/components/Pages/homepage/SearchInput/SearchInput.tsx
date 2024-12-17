@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import useWindowSize from "~/hooks/useWindowSize";
@@ -27,7 +27,7 @@ interface Props {
 }
 
 const SearchInput = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { active, setActive, resetFilter } = props;
   const ref = useRef<HTMLInputElement | null>(null);
   const valueRef = useRef<HTMLDivElement | null>(null);

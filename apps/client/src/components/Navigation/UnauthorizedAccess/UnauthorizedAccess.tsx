@@ -1,11 +1,11 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import FButton from "~/components/UI/FButton/FButton";
 import { colors } from "~/utils/colors";
 import styles from "./UnauthorizedAccess.module.scss";
 
 const UnauthorizedAccess = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={styles.container}>
       <h3>{t("UnauthorizedAccess.access_denied", "Accès refusé")}</h3>

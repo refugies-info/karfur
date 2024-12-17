@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 import { browserName } from "react-device-detect";
 import { Button } from "reactstrap";
@@ -19,7 +19,7 @@ const NEGATIVE_MARGINS_MD = 50 * 2;
 const RESPONSIVE_WIDTH_LIMIT = 1200;
 
 const ContentSlider = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const isRTL = useRTL();
   const slider = useRef<HTMLDivElement | null>(null);
   const [page, setPage] = useState(0);

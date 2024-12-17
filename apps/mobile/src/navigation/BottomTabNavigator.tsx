@@ -5,8 +5,8 @@
 
 import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslations } from "next-intl";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -104,7 +104,7 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
 }
 
 export default function BottomTabNavigator() {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
 

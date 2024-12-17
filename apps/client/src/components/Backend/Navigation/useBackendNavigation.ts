@@ -1,9 +1,9 @@
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+import { useTranslations } from "next-intl";
 import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
+import { useRouter } from "~/i18n/routing";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
@@ -13,7 +13,7 @@ import { getNbNewNotifications } from "../screens/UserNotifications/lib";
 import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
 
 const useBackendNavigation = (): MainNavigationProps.Item[] => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
 
   // notifs

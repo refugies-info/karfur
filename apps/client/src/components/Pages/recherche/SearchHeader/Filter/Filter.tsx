@@ -1,6 +1,5 @@
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
 import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
-import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Balancer from "react-wrap-balancer";

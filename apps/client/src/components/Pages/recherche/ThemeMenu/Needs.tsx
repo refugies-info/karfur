@@ -1,5 +1,5 @@
+import { useTranslations } from "next-intl";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocale } from "~/hooks";
 import { needsSelector } from "~/services/Needs/needs.selectors";
@@ -12,7 +12,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const locale = useLocale();
   const { search, selectedThemeId, nbDispositifsByTheme } = useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
-  const { t } = useTranslation();
+  const t = useTranslations();
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
 
   const displayedNeeds = useMemo(() => {

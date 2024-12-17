@@ -1,9 +1,10 @@
+"use client";
+
 import { Header } from "@codegouvfr/react-dsfr/Header";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+import { useLocale, useTranslations } from "next-intl";
 import { memo, useMemo } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
 import { getPath } from "routes";
@@ -12,21 +13,24 @@ import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavi
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
 import { useEditionMode } from "~/hooks";
+import { usePathname, useRouter } from "~/i18n/routing";
 import isInBrowser from "~/lib/isInBrowser";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
+  const locale = useLocale();
+  const pathname = usePathname();
   const isEditionMode = useEditionMode();
   const backendNavigation = useBackendNavigation();
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
-    const locale: Languages = (router.locale || "fr") as Languages;
+    const currentLocale: Languages = (locale || "fr") as Languages;
     const isCurrent = (href: string, paramCheck?: { param: string; value: string }) => {
       if (!isInBrowser()) return false;
       const currentPath = window?.location?.pathname || "";
-      const isPathMatching = currentPath === "/" + router.locale + href;
+      const isPathMatching = currentPath === "/" + currentLocale + href;
 
       if (paramCheck) {
         const urlParams = new URLSearchParams(window?.location?.search || "");
@@ -35,44 +39,45 @@ const Navbar = () => {
 
       return isPathMatching;
     };
-    const isBackend = router.pathname.includes("/backend");
-    const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
-    const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
+    const isBackend = pathname.includes("/backend");
+    const appStoreBadge = assetsOnServer.storeBadges.appStore[currentLocale] || assetsOnServer.storeBadges.appStore.en;
+    const playStoreBadge =
+      assetsOnServer.storeBadges.playStore[currentLocale] || assetsOnServer.storeBadges.playStore.en;
 
     if (isBackend) return backendNavigation;
     return [
       {
         linkProps: {
-          href: getPath("/recherche", router.locale, "?search=&sort=default&type=demarche"),
+          href: getPath("/recherche", locale, "?search=&sort=default&type=demarche"),
           className: styles.navLinkWithSearchIcon,
         },
         text: t("Toolbar.fichesDemarches", "Fiches démarches"),
-        isActive: isCurrent(getPath("/recherche", router.locale), {
+        isActive: isCurrent(getPath("/recherche", locale), {
           param: "type",
           value: "demarche",
         }),
       },
       {
         linkProps: {
-          href: getPath("/recherche", router.locale, "?search=&sort=default&type=dispositif"),
+          href: getPath("/recherche", locale, "?search=&sort=default&type=dispositif"),
           prefetch: false,
           className: styles.navLinkWithSearchIcon,
         },
         text: t("Toolbar.dispositifsLocaux", "Dispositifs locaux"),
-        isActive: isCurrent(getPath("/recherche", router.locale), {
+        isActive: isCurrent(getPath("/recherche", locale), {
           param: "type",
           value: "dispositif",
         }),
       },
       {
-        linkProps: { href: getPath("/agir", router.locale), prefetch: false },
+        linkProps: { href: getPath("/agir", locale), prefetch: false },
         text: t("Toolbar.agir", "AGIR"),
-        isActive: isCurrent(getPath("/agir", router.locale)),
+        isActive: isCurrent(getPath("/agir", locale)),
       },
       {
-        linkProps: { href: getPath("/mission-impact", router.locale), prefetch: false },
+        linkProps: { href: getPath("/mission-impact", locale), prefetch: false },
         text: t("Toolbar.missionImpact", "Mission et imapact"),
-        isActive: isCurrent(getPath("/mission-impact", router.locale)),
+        isActive: isCurrent(getPath("/mission-impact", locale)),
       },
       {
         text: t("Toolbar.partagerProjet", "Partager le projet"),
@@ -95,7 +100,7 @@ const Navbar = () => {
 
       !isMobileOnly && {
         linkProps: {
-          href: getPath("/", router.locale, "#application"),
+          href: getPath("/", locale, "#application"),
           className: styles.navLinkWithAppIcon,
         },
         text: t("Toolbar.shareApplication", "Partager l'application"),
@@ -135,7 +140,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t]);
+  }, [locale, pathname, backendNavigation, t]);
 
   if (isEditionMode) return null;
   return (

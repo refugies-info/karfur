@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useTranslations } from "next-intl";
 import router from "next/router";
-import { useTranslation } from "react-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
 import { getPath } from "~/routes";
@@ -14,7 +14,7 @@ import { getPath } from "~/routes";
 // - Evaluate if this approach adds unnecessary complexity
 
 const QuickAccessMenu = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const menuItems = [
     <Button

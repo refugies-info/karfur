@@ -1,3 +1,4 @@
+"use client";
 import * as eva from "eva-icons";
 import { useEffect, useState } from "react";
 import { cls } from "~/lib/classname";

@@ -1,5 +1,5 @@
 import { SimpleDispositif } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import styled from "styled-components";
 import DispositifCard from "~/components/UI/DispositifCard";
 import styles from "./RightAnnuaireDetails.module.scss";
@@ -21,7 +21,7 @@ export const RightAnnuaireDetails = (props: Props) => {
     (dispositif) => dispositif.status === "Actif",
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className={styles.container}>

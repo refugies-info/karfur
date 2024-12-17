@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { encode } from "querystring";
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ import { userFavoritesSelector } from "~/services/UserFavoritesInLocale/UserFavo
 import API from "~/utils/API";
 
 const AutoAddFavorite = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const router = useRouter();
   const dispatch = useDispatch();
   const { isAuth } = useAuth();

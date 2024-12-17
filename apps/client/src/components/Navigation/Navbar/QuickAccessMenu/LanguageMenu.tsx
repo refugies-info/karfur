@@ -1,9 +1,9 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { activatedLanguages } from "data/activatedLanguages";
+import { useTranslations } from "next-intl";
 import router from "next/router";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { DropdownContent, DropdownRoot, DropdownTrigger } from "~/components/UI/DropDown/DropDown";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
@@ -19,7 +19,7 @@ const LanguageMenu = () => {
 
   const { isMobile } = useWindowSize();
   const stylesDisabled = useStylesDisabled();
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <>

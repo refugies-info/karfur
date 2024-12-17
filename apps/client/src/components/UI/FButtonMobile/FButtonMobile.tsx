@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import useRTL from "~/hooks/useRTL";
 import { colors } from "~/utils/colors";
@@ -16,7 +16,7 @@ interface Props {
 
 export const FButtonMobile = (props: Props) => {
   const isRTL = useRTL();
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <button

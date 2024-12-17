@@ -5,7 +5,7 @@ import "moment/locale/fa";
 import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Badge from "~/components/UI/Badge";
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const Header = (props: Props) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   useEffect(() => {
