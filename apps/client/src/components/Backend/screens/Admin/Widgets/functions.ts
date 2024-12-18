@@ -1,7 +1,7 @@
 import { GetWidgetResponse } from "@refugies-info/api-types";
 import qs from "query-string";
 import { getBaseUrl } from "~/lib/getBaseUrl";
-import type { UrlSearchQuery } from "~/pages/recherche";
+import type { UrlSearchQuery } from "~/pages/[locale]/recherche";
 
 export const generateIframe = (widget: GetWidgetResponse) => {
   const query: UrlSearchQuery = { type: "all" };

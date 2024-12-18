@@ -1,7 +1,9 @@
+"use client";
+
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/compat/router";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
 import { useEditionMode } from "~/hooks";
@@ -23,11 +25,12 @@ const Footer = () => {
   };
 
   if (isEditionMode) return null;
+  const locale = router?.locale || "fr";
 
   return (
     <DSFRFooter
       accessibility="non compliant"
-      accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale), prefetch: false }}
+      accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", locale), prefetch: false }}
       brandTop="GOUVERNEMENT"
       operatorLogo={{
         alt: "Logo DIAIR",
@@ -56,12 +59,12 @@ const Footer = () => {
         </Link>,
       ]}
       termsLinkProps={{
-        href: getPath("/mentions-legales", router.locale),
+        href: getPath("/mentions-legales", locale),
         title: t("Footer.legal_terms", "Mentions légales"),
         prefetch: false,
       }}
       websiteMapLinkProps={{
-        href: getPath("/plan-du-site", router.locale),
+        href: getPath("/plan-du-site", locale),
         title: t("Footer.Plan du site", "Plan du site"),
         prefetch: false,
       }}
@@ -70,9 +73,9 @@ const Footer = () => {
           categoryName: "Chercher par thématique",
           links: themes.map((theme) => ({
             linkProps: {
-              href: `${getPath("/recherche", router.locale)}?themes=${theme._id}`,
+              href: `${getPath("/recherche", locale)}?themes=${theme._id}`,
             },
-            text: theme.short[router.locale || "fr"],
+            text: theme.short[locale || "fr"],
           })) as FooterProps.LinkList.Links,
         },
         {
@@ -80,22 +83,22 @@ const Footer = () => {
           links: [
             {
               linkProps: {
-                href: getPath("/recherche", router.locale, "?type=dispositif"),
-                hrefLang: router.locale,
+                href: getPath("/recherche", locale, "?type=dispositif"),
+                hrefLang: locale,
               },
               text: t("Footer.Les fiches actions", "Les fiches actions"),
             },
             {
               linkProps: {
-                href: getPath("/recherche", router.locale, "?type=demarche"),
-                hrefLang: router.locale,
+                href: getPath("/recherche", locale, "?type=demarche"),
+                hrefLang: locale,
               },
               text: t("Footer.procedures", "Les fiches démarches"),
             },
             {
               linkProps: {
-                href: getPath("/annuaire", router.locale),
-                hrefLang: router.locale,
+                href: getPath("/annuaire", locale),
+                hrefLang: locale,
                 prefetch: false,
               },
               text: t("Footer.directory", "L’annuaire des acteurs"),
@@ -107,14 +110,14 @@ const Footer = () => {
           links: [
             {
               linkProps: {
-                href: getPath("/publier", router.locale),
+                href: getPath("/publier", locale),
                 prefetch: false,
               },
               text: t("Footer.Recenser mon action", "Recenser mon action"),
             },
             {
               linkProps: {
-                href: getPath("/traduire", router.locale),
+                href: getPath("/traduire", locale),
                 prefetch: false,
               },
               text: t("Footer.help_translate", "Aider à traduire"),
@@ -190,7 +193,7 @@ const Footer = () => {
           links: [
             {
               linkProps: {
-                href: getPath("/qui-sommes-nous", router.locale),
+                href: getPath("/qui-sommes-nous", locale),
                 prefetch: false,
               },
               text: t("Footer.Le projet", "Le projet"),

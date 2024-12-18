@@ -1,7 +1,7 @@
 import "jest-styled-components";
 import { initialMockStore } from "~/__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
-import agir from "../pages/agir";
+import agir from "../pages/[locale]/agir";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

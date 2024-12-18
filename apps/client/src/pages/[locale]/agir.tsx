@@ -2,6 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { operatorsPerDepartment } from "data/agirOperators";
+import { GetStaticPaths } from "next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
@@ -21,6 +22,7 @@ import { MapContext } from "~/components/UI/MapFrance/MapContext";
 import { cls } from "~/lib/classname";
 import { getDepartmentFromNumber } from "~/lib/departments";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { locales } from "~/lib/i18nConfig";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { isValidEmail } from "~/lib/validateFields";
 import styles from "~/scss/pages/agir.module.scss";
@@ -426,6 +428,13 @@ const Agir = () => {
     </div>
   );
 };
+
+export const getStaticPaths = (async () => {
+  return {
+    paths: locales.map((locale) => ({ params: { locale } })),
+    fallback: true,
+  };
+}) satisfies GetStaticPaths;
 
 export const getStaticProps = defaultStaticProps;
 

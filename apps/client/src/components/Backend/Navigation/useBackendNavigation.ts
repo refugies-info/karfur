@@ -1,7 +1,7 @@
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
 import {
@@ -31,7 +31,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     useBackendNavItem({
       access: "all",
       iconName: "search-outline",
-      onClick: () => router.push(getPath("/recherche", router.locale)),
+      onClick: () => router?.push(getPath("/recherche", router?.locale)),
       title: t("Toolbar.find_information"),
     }),
     useBackendNavItem({

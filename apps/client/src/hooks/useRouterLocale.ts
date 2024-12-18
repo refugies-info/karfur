@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { useEffect, useState } from "react";
 
 const getRouterLocale = (locale: string | undefined) => {
@@ -7,11 +7,11 @@ const getRouterLocale = (locale: string | undefined) => {
 
 const useRouterLocale = () => {
   const router = useRouter();
-  const [locale, setLocale] = useState<string>(getRouterLocale(router.locale));
+  const [locale, setLocale] = useState<string>(getRouterLocale(router?.locale));
 
   useEffect(() => {
-    setLocale(getRouterLocale(router.locale));
-  }, [router.locale]);
+    setLocale(getRouterLocale(router?.locale));
+  }, [router?.locale]);
 
   return locale;
 };

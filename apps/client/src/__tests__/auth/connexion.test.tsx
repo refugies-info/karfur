@@ -3,7 +3,7 @@ import mockRouter from "next-router-mock";
 import { initialMockStore } from "~/__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../jest/lib/wrapWithProvidersAndRender";
 import { setupGoogleMock } from "../../__mocks__/react-google-autocomplete";
-import connexion from "../../pages/auth/connexion";
+import connexion from "../../pages/[locale]/auth/connexion";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

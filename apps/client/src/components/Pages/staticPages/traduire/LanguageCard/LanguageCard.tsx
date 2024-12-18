@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Flag from "~/components/UI/Flag";
 import { cls } from "~/lib/classname";
 import { smoothScroll } from "~/lib/smoothScroll";
-import { NeedKey } from "~/pages/traduire";
+import { NeedKey } from "~/pages/[locale]/traduire";
 import { langueSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LanguageCard.module.scss";
 

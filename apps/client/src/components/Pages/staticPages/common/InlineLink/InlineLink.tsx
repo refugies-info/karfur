@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { useRTL } from "~/hooks";
 import { cls } from "~/lib/classname";
 import styles from "./InlineLink.module.scss";
 
@@ -15,7 +14,7 @@ interface Props {
 
 const InlineLink = (props: Props) => {
   const isExternalLink = props.link.startsWith("http");
-  const isRTL = useRTL();
+  const isRTL = false; // useRTL();
 
   const content = useMemo(
     () => (

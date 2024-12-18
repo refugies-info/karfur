@@ -1,23 +1,25 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { useEffect, useState } from "react";
 
-const checkIsEditionMode = (pathname: string) =>
-  [
-    "/dispositif",
-    "/demarche",
-    "/dispositif/[id]/edit",
-    "/demarche/[id]/edit",
-    "/dispositif/[id]/translate",
-    "/demarche/[id]/translate",
-  ].includes(pathname);
+const checkIsEditionMode = (pathname: string | undefined) =>
+  pathname
+    ? [
+        "/dispositif",
+        "/demarche",
+        "/dispositif/[id]/edit",
+        "/demarche/[id]/edit",
+        "/dispositif/[id]/translate",
+        "/demarche/[id]/translate",
+      ].includes(pathname)
+    : false;
 
 const useEditionMode = () => {
   const router = useRouter();
-  const [isEditionMode, setIsEditionMode] = useState(checkIsEditionMode(router.pathname));
+  const [isEditionMode, setIsEditionMode] = useState(checkIsEditionMode(router?.pathname));
 
   useEffect(() => {
-    setIsEditionMode(checkIsEditionMode(router.pathname));
-  }, [router.pathname]);
+    setIsEditionMode(checkIsEditionMode(router?.pathname));
+  }, [router?.pathname]);
 
   return isEditionMode;
 };

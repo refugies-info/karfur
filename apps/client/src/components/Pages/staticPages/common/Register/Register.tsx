@@ -1,10 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { useCallback, useMemo, useState } from "react";
 import { Container } from "reactstrap";
 import { getPath } from "routes";
+import { useTranslation } from "~/app/i18n/client";
 import MobileRegisterImg from "~/assets/staticPages/publier/mobile-register.png";
 import { ReceiveInvitationMailModal } from "~/components/Modals";
 import Image from "~/components/UI/Image";
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const Register = (props: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("fr");
   const router = useRouter();
   const { isTablet } = useWindowSize();
   const { isAuth } = useAuth();
@@ -39,7 +39,7 @@ const Register = (props: Props) => {
     setLoginRedirect("#register");
     setRegisterInfos({ role: props.associatedRole });
     Event("AUTH", "start", props.associatedRole === RoleName.TRAD ? "translate_page" : "publish_page");
-    router.push(getPath("/auth", "fr"));
+    router?.push(getPath("/auth", "fr"));
   };
 
   const title = useMemo(

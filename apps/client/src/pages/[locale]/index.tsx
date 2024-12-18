@@ -6,6 +6,7 @@ import {
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
 import { logger } from "logger";
+import { GetStaticPaths } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
@@ -25,6 +26,7 @@ import {
 } from "~/components/Pages/homepage/Sections";
 import SEO from "~/components/Seo";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { locales } from "~/lib/i18nConfig";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/staticPages.module.scss";
@@ -98,6 +100,13 @@ const Homepage = (props: Props) => {
     </div>
   );
 };
+
+export const getStaticPaths = (async () => {
+  return {
+    paths: locales.map((locale) => ({ params: { locale } })),
+    fallback: true,
+  };
+}) satisfies GetStaticPaths;
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
   const action = fetchThemesActionCreator();

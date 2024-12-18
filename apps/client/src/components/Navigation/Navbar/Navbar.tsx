@@ -1,10 +1,12 @@
+"use client";
+
 import { Header } from "@codegouvfr/react-dsfr/Header";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
-import { memo, useMemo } from "react";
+import { useRouter } from "next/compat/router";
+import { useMemo } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
 import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
@@ -22,11 +24,11 @@ const Navbar = () => {
   const backendNavigation = useBackendNavigation();
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
-    const locale: Languages = (router.locale || "fr") as Languages;
+    const locale: Languages = (router?.locale || "fr") as Languages;
     const isCurrent = (href: string, paramCheck?: { param: string; value: string }) => {
       if (!isInBrowser()) return false;
       const currentPath = window?.location?.pathname || "";
-      const isPathMatching = currentPath === "/" + router.locale + href;
+      const isPathMatching = currentPath === "/" + router?.locale + href;
 
       if (paramCheck) {
         const urlParams = new URLSearchParams(window?.location?.search || "");
@@ -35,7 +37,7 @@ const Navbar = () => {
 
       return isPathMatching;
     };
-    const isBackend = router.pathname.includes("/backend");
+    const isBackend = router?.pathname.includes("/backend");
     const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
     const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
@@ -43,36 +45,36 @@ const Navbar = () => {
     return [
       {
         linkProps: {
-          href: getPath("/recherche", router.locale, "?search=&sort=default&type=demarche"),
+          href: getPath("/recherche", router?.locale, "?search=&sort=default&type=demarche"),
           className: styles.navLinkWithSearchIcon,
         },
         text: t("Toolbar.fichesDemarches", "Fiches démarches"),
-        isActive: isCurrent(getPath("/recherche", router.locale), {
+        isActive: isCurrent(getPath("/recherche", router?.locale), {
           param: "type",
           value: "demarche",
         }),
       },
       {
         linkProps: {
-          href: getPath("/recherche", router.locale, "?search=&sort=default&type=dispositif"),
+          href: getPath("/recherche", router?.locale, "?search=&sort=default&type=dispositif"),
           prefetch: false,
           className: styles.navLinkWithSearchIcon,
         },
         text: t("Toolbar.dispositifsLocaux", "Dispositifs locaux"),
-        isActive: isCurrent(getPath("/recherche", router.locale), {
+        isActive: isCurrent(getPath("/recherche", router?.locale), {
           param: "type",
           value: "dispositif",
         }),
       },
       {
-        linkProps: { href: getPath("/agir", router.locale), prefetch: false },
+        linkProps: { href: getPath("/agir", router?.locale), prefetch: false },
         text: t("Toolbar.agir", "AGIR"),
-        isActive: isCurrent(getPath("/agir", router.locale)),
+        isActive: isCurrent(getPath("/agir", router?.locale)),
       },
       {
-        linkProps: { href: getPath("/mission-impact", router.locale), prefetch: false },
+        linkProps: { href: getPath("/mission-impact", router?.locale), prefetch: false },
         text: t("Toolbar.missionImpact", "Mission et imapact"),
-        isActive: isCurrent(getPath("/mission-impact", router.locale)),
+        isActive: isCurrent(getPath("/mission-impact", router?.locale)),
       },
       {
         text: t("Toolbar.partagerProjet", "Partager le projet"),
@@ -95,7 +97,7 @@ const Navbar = () => {
 
       !isMobileOnly && {
         linkProps: {
-          href: getPath("/", router.locale, "#application"),
+          href: getPath("/", router?.locale, "#application"),
           className: styles.navLinkWithAppIcon,
         },
         text: t("Toolbar.shareApplication", "Partager l'application"),
@@ -135,7 +137,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t]);
+  }, [router?.locale, router?.pathname, backendNavigation, t]);
 
   if (isEditionMode) return null;
   return (
@@ -160,4 +162,4 @@ const Navbar = () => {
   );
 };
 
-export default memo(Navbar);
+export default Navbar;

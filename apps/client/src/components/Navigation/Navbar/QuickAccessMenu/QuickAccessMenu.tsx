@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import router from "next/router";
+import { useRouter } from "next/compat/router";
 import { useTranslation } from "react-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
@@ -15,12 +15,13 @@ import { getPath } from "~/routes";
 
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const menuItems = [
     <Button
       key="publish"
       linkProps={{
-        href: getPath("/publier", router.locale),
+        href: getPath("/publier", router?.locale),
         prefetch: false,
       }}
       iconId="fr-icon-file-add-line"
@@ -31,7 +32,7 @@ const QuickAccessMenu = () => {
     <Button
       key="translate"
       linkProps={{
-        href: getPath("/traduire", router.locale),
+        href: getPath("/traduire", router?.locale),
         prefetch: false,
       }}
       iconId="fr-icon-message-2-line"

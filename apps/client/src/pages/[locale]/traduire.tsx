@@ -1,9 +1,10 @@
 import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
-import { useTranslation } from "next-i18next";
+import { GetStaticPaths } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-crisp.svg";
@@ -28,6 +29,7 @@ import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { locales } from "~/lib/i18nConfig";
 import styles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
@@ -340,6 +342,13 @@ const RecensezVotreAction = (props: Props) => {
     </div>
   );
 };
+
+export const getStaticPaths = (async () => {
+  return {
+    paths: locales.map((locale) => ({ params: { locale } })),
+    fallback: true,
+  };
+}) satisfies GetStaticPaths;
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
   let translationStatistics: TranslationStatisticsResponse = {};

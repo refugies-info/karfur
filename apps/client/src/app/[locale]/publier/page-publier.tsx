@@ -1,9 +1,10 @@
+"use client";
+
 import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
+import { useTranslation } from "~/app/i18n/client";
 import HelpIcon3 from "~/assets/staticPages/publier/help-icon-crisp.svg";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutoriel.svg";
 import HelpIcon1 from "~/assets/staticPages/publier/help-icon-visio.svg";
@@ -20,7 +21,6 @@ import TestimonyLogo2 from "~/assets/staticPages/publier/testimony-icon-2.png";
 import TestimonyLogo3 from "~/assets/staticPages/publier/testimony-icon-3.png";
 import WhyImage1 from "~/assets/staticPages/publier/why-image-1.png";
 import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
-import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
 import {
   Accordion,
   Card,
@@ -32,15 +32,11 @@ import {
   StepContent,
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
-import SEO from "~/components/Seo";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
-import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import styles from "~/scss/components/staticPages.module.scss";
-import { wrapper } from "~/services/configureStore";
-import API from "~/utils/API";
 
 export type View = "why" | "required" | "steps" | "faq" | "register";
 
@@ -48,10 +44,11 @@ interface Props {
   nbVues: number;
   nbFiches: number;
   nbStructures: number;
+  locale: string;
 }
 
-const RecensezVotreAction = (props: Props) => {
-  const { t } = useTranslation();
+const PublierPage = (props: Props) => {
+  const { t } = useTranslation(props.locale);
   const { isTablet } = useWindowSize();
 
   // write modal
@@ -88,7 +85,7 @@ const RecensezVotreAction = (props: Props) => {
 
   return (
     <div className={styles.main}>
-      <SEO title={t("Publish.title")} />
+      {/* <SEO title={t("Publish.title")} /> */}
 
       {/* HERO */}
       <div ref={refHero} className={cls(styles.section, styles.bg_blue, "mb-4")}>
@@ -131,7 +128,7 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refWhy} className={styles.scrollspy_section}>
         <span id="why" className={styles.anchor}></span>
-        {/* WHY */}
+
         <div className={cls(styles.section)}>
           <Container className={styles.container}>
             <h2 className={styles.title2}>{t("Publish.whyTitle")}</h2>
@@ -163,7 +160,6 @@ const RecensezVotreAction = (props: Props) => {
           </Container>
         </div>
 
-        {/* TESTIMONY */}
         <div className={cls(styles.section, styles.bg_green)}>
           <Container className={styles.container}>
             <TestimonySlider
@@ -192,7 +188,6 @@ const RecensezVotreAction = (props: Props) => {
         </div>
       </div>
 
-      {/* REQUIRED */}
       <div ref={refRequired} className={cls(styles.section, styles.bg_grey, styles.scrollspy_section)}>
         <span id="required" className={styles.anchor}></span>
         <Container className={styles.container}>
@@ -253,7 +248,7 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refSteps} className={styles.scrollspy_section}>
         <span id="steps" className={styles.anchor}></span>
-        {/* STEPS */}
+
         <div className={cls(styles.section)}>
           <Container className={styles.container}>
             <h2 className={styles.title2}>{t("Publish.stepsTitle")}</h2>
@@ -318,7 +313,6 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div ref={refFaq} className={styles.scrollspy_section}>
-        {/* HELP */}
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
             <h2 className={cls(styles.title2, styles.center, "!mb-0")}>{t("StaticPages.helpTitle")}</h2>
@@ -371,7 +365,6 @@ const RecensezVotreAction = (props: Props) => {
           </Container>
         </div>
 
-        {/* FIGURES */}
         <div className={cls(styles.section, styles.bg_red)}>
           <Container className={cls(styles.container, "text-center")}>
             <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Publish.figuresTitle")}</h2>
@@ -389,7 +382,6 @@ const RecensezVotreAction = (props: Props) => {
           </Container>
         </div>
 
-        {/* FAQ */}
         <div className={cls(styles.section)}>
           <span id="faq" className={styles.anchor}></span>
           <Container className={cls(styles.container, styles.faq)}>
@@ -411,7 +403,6 @@ const RecensezVotreAction = (props: Props) => {
         </div>
       </div>
 
-      {/* REGISTER */}
       <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
         <span id="register" className={styles.anchor}></span>
         <Register
@@ -424,26 +415,9 @@ const RecensezVotreAction = (props: Props) => {
         />
       </div>
 
-      <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
+      {/* <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} /> */}
     </div>
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const dispStatistics = await API.getDispositifsStatistics({
-    facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"],
-  });
-  const structStatistics = await API.getStructuresStatistics({ facets: ["nbStructures"] });
-
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-      nbVues: (dispStatistics.nbVues || 0) + (dispStatistics.nbVuesMobile || 0),
-      nbFiches: (dispStatistics.nbDispositifs || 0) + (dispStatistics.nbDemarches || 0),
-      nbStructures: structStatistics.nbStructures,
-    },
-    revalidate: 60,
-  };
-});
-
-export default RecensezVotreAction;
+export default PublierPage;
