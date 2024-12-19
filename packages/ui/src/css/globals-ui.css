@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+@source "../components/";
+
+@theme {
+  /* custom config goes here */
+
+  /* Breakpoints */
+  --breakpoint-sm: 36em; /* 576px */
+  --breakpoint-md: 48em; /* 768px */
+  --breakpoint-lg: 62em; /* 992px */
+  --breakpoint-xl: 75em; /* 1200px */
+
+  /* Colors */
+  --color-light: #f2f2f2;
+  --color-dark: #212121;
+  --color-primary: #0421b1;
+
+  /* Fonts */
+  --font-sans: "Marianne", "Arial", "sans-serif";
+}

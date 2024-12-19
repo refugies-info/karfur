@@ -62,6 +62,10 @@
       "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
+    "@refugies-info/ui#dev": {
+      "cache": false,
+      "persistent": true
+    },
     "dev": {
       "persistent": true,
       "cache": false,
