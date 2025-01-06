@@ -97,6 +97,18 @@ $breakpoint: "lg-limit";
 }
 
 // Titles
+.title {
+  @include dsfr_text("alt-title");
+
+  @include isMobile {
+    @include dsfr_text("h1");
+  }
+}
+
+.title_sub {
+  @include dsfr_text("chapo");
+}
+
 .title2 {
   @include text("h3");
 

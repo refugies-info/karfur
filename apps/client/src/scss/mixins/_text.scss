@@ -107,6 +107,10 @@ $dsfr-texts: (
     40px,
     48px,
   ),
+  "alt-title": (
+    48px,
+    56px,
+  ),
 );
 
 @mixin dsfr-text($_key) {

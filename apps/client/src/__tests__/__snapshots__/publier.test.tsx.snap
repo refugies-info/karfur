@@ -6,73 +6,37 @@ exports[`publier renders publier 1`] = `
     class="main"
   >
     <div
-      class="section bg_blue mb-4"
+      class="py-10 md:py-20 mb-4 bg-blue-france"
     >
       <div
-        class="container container"
+        class="fr-container"
       >
         <div
-          class="hero row"
+          class="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20"
         >
           <div
-            class="hero_title col-sm-12 col-lg-6"
+            class="flex-1 text-center md:text-left"
           >
             <h1
-              class="white"
+              class="title !text-white mb-6"
             >
               Publish.title
             </h1>
             <p
-              class="subtitle"
+              class="title_sub text-white !mb-0"
             >
               Publish.subtitle
             </p>
-            <div
-              class="container"
+            <a
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse mt-10 !w-full justify-center md:!w-auto"
+              href="#register"
+              id="fr-button-:r0:"
             >
-              <a
-                class="btn"
-                href="/undefined#why"
-                title="Suivant"
-              >
-                <span
-                  class="icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-downward-outline"
-                      fill="bleuCharte"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </a>
-            </div>
+              Publish.navbarItem5
+            </a>
           </div>
           <div
-            class="col-sm-12 col-lg-6"
+            class="flex-1"
           >
             <img
               alt=""
@@ -2127,7 +2091,7 @@ exports[`publier renders publier 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r0:"
+          id="fr-button-:r1:"
         >
           login_or_signup
         </button>
