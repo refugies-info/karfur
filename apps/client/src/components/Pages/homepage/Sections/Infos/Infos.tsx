@@ -3,8 +3,6 @@ import { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Swal from "sweetalert2";
 import NewsletterIllu from "~/assets/homepage/newsletter-illu.svg";
-import FormationPhoto from "~/assets/homepage/photo-formation.jpg";
-import { InlineLink } from "~/components/Pages/staticPages/common";
 import FButton from "~/components/UI/FButton";
 import Image from "~/components/UI/Image";
 import Input from "~/components/UI/Input";
@@ -78,16 +76,7 @@ const Infos = () => {
               </div>
             </div>
           </Col>
-          <Col sm="12" lg="6" className={commonStyles.bg_grey}>
-            <div className={styles.infos_col}>
-              <Image src={FormationPhoto} alt="" width={246} height={160} className={styles.img} />
-              <h2 className={cls(styles.title2)}>{t("Homepage.trainingTitle")}</h2>
-              <p className={styles.subtitle}>{t("Homepage.trainingSubtitle")}</p>
-              <div className={styles.action}>
-                <InlineLink text={t("Homepage.trainingCTA")} link="https://kit.refugies.info/formation/" color="blue" />
-              </div>
-            </div>
-          </Col>
+          <Col sm="12" lg="6" className={commonStyles.bg_grey}></Col>
         </Row>
       </Container>
     </div>
