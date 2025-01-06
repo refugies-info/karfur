@@ -1,6 +1,5 @@
 export { default as Community } from "./Community";
 export { default as FreeResources } from "./FreeResources";
-export { default as HelpUs } from "./HelpUs";
 export { default as Hero } from "./Hero";
 export { default as Infos } from "./Infos";
 export { default as MainFigures } from "./MainFigures";

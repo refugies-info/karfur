@@ -14,7 +14,6 @@ import { END } from "redux-saga";
 import {
   Community,
   FreeResources,
-  HelpUs,
   Hero,
   Infos,
   MainFigures,
@@ -75,8 +74,6 @@ const Homepage = (props: Props) => {
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
       <FreeResources />
-
-      <HelpUs />
 
       <MainFigures
         nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
