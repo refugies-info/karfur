@@ -1,4 +1,3 @@
-export { default as Community } from "./Community";
 export { default as FreeResources } from "./FreeResources";
 export { default as Hero } from "./Hero";
 export { default as Infos } from "./Infos";

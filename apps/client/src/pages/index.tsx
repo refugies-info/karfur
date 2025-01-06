@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
 import {
-  Community,
   FreeResources,
   Hero,
   Infos,
@@ -79,13 +78,6 @@ const Homepage = (props: Props) => {
         nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
         nbMercis={props.contentStatistics.nbMercis || 0}
         nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
-      />
-
-      <Community
-        nbRedactors={props.translationStatistics.nbRedactors || 0}
-        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
-        nbCDA={props.structuresStatistics.nbCDA || 0}
-        nbTranslators={props.translationStatistics.nbTranslators || 0}
       />
 
       <Infos />
