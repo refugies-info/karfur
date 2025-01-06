@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { cls } from "~/lib/classname";
 
 interface Props {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
   className?: string;
 }
 

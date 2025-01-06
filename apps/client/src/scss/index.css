@@ -16,6 +16,9 @@
   --color-primary: #0421b1;
   --color-blue-france: #000091;
   --color-light-alt-blue: #f5f5fe;
+  --color-border: #ddd;
+  --color-success: #18753c;
+  --color-error: #ce0500;
 
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
@@ -31,6 +34,8 @@
   --text-large--line-height: 28px;
   --text-chapo: 20px;
   --text-chapo--line-height: 32px;
+  --text-h5: 22px;
+  --text-h5--line-height: 28px;
   --text-h6: 20px;
   --text-h6--line-height: 28px;
   --text-h4: 24px;

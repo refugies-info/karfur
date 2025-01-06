@@ -148,22 +148,17 @@ const RecensezVotreAction = (props: Props) => {
                     </>
                   }
                   title={t("Translate.whoCardTitle1")}
-                  greyBackground
                 >
                   <p className="mb-0">{t("Translate.whoCardText1")}</p>
                 </Card>
               </Col>
               <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  header={<LanguageIcon language="fr" size={56} />}
-                  title={t("Translate.whoCardTitle2")}
-                  greyBackground
-                >
+                <Card header={<LanguageIcon language="fr" size={56} />} title={t("Translate.whoCardTitle2")}>
                   <p className="mb-0">{t("Translate.whoCardText2")}</p>
                 </Card>
               </Col>
               <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")} greyBackground>
+                <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")}>
                   <p className="mb-0">{t("Translate.whoCardText3")}</p>
                 </Card>
               </Col>
