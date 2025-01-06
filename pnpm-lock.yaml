@@ -630,6 +630,9 @@ importers:
       redux-saga:
         specifier: ^1.2.3
         version: 1.3.0
+      reselect:
+        specifier: ^5.1.1
+        version: 5.1.1
       sanitize-html:
         specifier: ^2.13.1
         version: 2.13.1
