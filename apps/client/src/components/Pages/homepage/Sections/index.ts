@@ -1,4 +1,3 @@
-export { default as AllThemes } from "./AllThemes";
 export { default as Community } from "./Community";
 export { default as FreeResources } from "./FreeResources";
 export { default as HelpUs } from "./HelpUs";

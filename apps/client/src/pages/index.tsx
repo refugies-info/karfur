@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
 import {
-  AllThemes,
   Community,
   FreeResources,
   HelpUs,
@@ -62,8 +61,6 @@ const Homepage = (props: Props) => {
       <SEO title="Accueil" description={t("Homepage.title")} />
 
       <Hero targetArrow="themes" />
-
-      <AllThemes id="themes" />
 
       <MobileApp />
 
