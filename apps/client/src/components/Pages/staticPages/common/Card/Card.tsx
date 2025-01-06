@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
 import Image from "~/components/UI/Image";
-import { cls } from "~/lib/classname";
-import styles from "./Card.module.scss";
 
 interface Props {
   title: string;
@@ -9,21 +7,17 @@ interface Props {
   image?: any;
   header?: ReactElement;
   footer?: ReactElement;
-  greyBackground?: boolean;
-  withShadow?: boolean;
 }
 
 const Card = (props: Props) => {
   return (
-    <div className={cls(styles.container, props.greyBackground && styles.grey, props.withShadow && styles.shadow)}>
+    <div className="p-6 md:p-8 flex-1 border border-border">
       <div>
-        <div className={styles.header}>
-          {props.header}
-          {props.image && <Image src={props.image} alt="" width={56} height={56} style={{ objectFit: "contain" }} />}
-        </div>
-        <h3 className={styles.title}>{props.title}</h3>
-        <div className={cls(styles.text, !props.footer && "mb-0")}>{props.children}</div>
+        {props.header}
+        {props.image && <Image src={props.image} alt="" width={80} height={80} style={{ objectFit: "contain" }} />}
       </div>
+      <h3 className="!text-h6 md:!text-h5 !my-3 !text-blue-france">{props.title}</h3>
+      <div className="!text-large">{props.children}</div>
       <div>{props.footer}</div>
     </div>
   );

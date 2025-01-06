@@ -8,10 +8,10 @@ import { Col, Container, Row } from "reactstrap";
 import HelpIcon3 from "~/assets/staticPages/publier/help-icon-crisp.svg";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutoriel.svg";
 import HelpIcon1 from "~/assets/staticPages/publier/help-icon-visio.svg";
+import RequiredIcon1 from "~/assets/staticPages/publier/icon-calendar.svg";
+import RequiredIcon3 from "~/assets/staticPages/publier/icon-hands.svg";
+import RequiredIcon2 from "~/assets/staticPages/publier/icon-money.svg";
 import MockupsRI from "~/assets/staticPages/publier/mockups-ri.png";
-import RequiredIcon1 from "~/assets/staticPages/publier/required-icon-1.png";
-import RequiredIcon2 from "~/assets/staticPages/publier/required-icon-2.png";
-import RequiredIcon3 from "~/assets/staticPages/publier/required-icon-3.png";
 import StepImage4 from "~/assets/staticPages/publier/step-image-4.svg";
 import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
 import StepImage6 from "~/assets/staticPages/publier/step-image-6.svg";
@@ -191,63 +191,65 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* REQUIRED */}
-      <div ref={refRequired} className={cls(styles.section, styles.bg_grey, "relative")}>
+      <Section ref={refRequired} className="relative">
         <span id="required" className={styles.anchor}></span>
-        <Container className={styles.container}>
-          <h2 className={cls(styles.title2, styles.center)}>{t("Publish.requiredTitle")}</h2>
-          <Row>
-            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-              <Card
-                image={RequiredIcon1}
-                title={t("Publish.requiredSubtitle1")}
-                footer={
-                  <CardExample
-                    exampleKo={t("Publish.requiredTextExample1Ko")}
-                    exampleOk={t("Publish.requiredTextExample1Ok")}
-                  />
-                }
-              >
-                <p className="mb-0">{t("Publish.requiredText1")}</p>
-              </Card>
-            </Col>
-            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-              <Card
-                image={RequiredIcon2}
-                title={t("Publish.requiredSubtitle2")}
-                footer={
-                  <CardExample
-                    exampleKo={t("Publish.requiredTextExample2Ko")}
-                    exampleOk={t("Publish.requiredTextExample2Ok")}
-                  />
-                }
-              >
-                <p className="mb-0">{t("Publish.requiredText2")}</p>
-              </Card>
-            </Col>
-            <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-              <Card
-                image={RequiredIcon3}
-                title={t("Publish.requiredSubtitle3")}
-                footer={
-                  <CardExample
-                    exampleKo={t("Publish.requiredTextExample3Ko")}
-                    exampleOk={t("Publish.requiredTextExample3Ok")}
-                  />
-                }
-              >
-                <p className="mb-0">{t("Publish.requiredText3")}</p>
-              </Card>
-            </Col>
-          </Row>
-          <div className={styles.link}>
-            <InlineLink
-              link="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-              text={t("Publish.requiredCTA")}
-              color="purple"
-            />
+        <div className="fr-container">
+          <Title2>{t("Publish.requiredTitle")}</Title2>
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
+            <Card
+              image={RequiredIcon1}
+              title={t("Publish.requiredSubtitle1")}
+              footer={
+                <CardExample
+                  exampleKo={t("Publish.requiredTextExample1Ko")}
+                  exampleOk={t("Publish.requiredTextExample1Ok")}
+                />
+              }
+            >
+              <p className="mb-0">{t("Publish.requiredText1")}</p>
+            </Card>
+
+            <Card
+              image={RequiredIcon2}
+              title={t("Publish.requiredSubtitle2")}
+              footer={
+                <CardExample
+                  exampleKo={t("Publish.requiredTextExample2Ko")}
+                  exampleOk={t("Publish.requiredTextExample2Ok")}
+                />
+              }
+            >
+              <p className="mb-0">{t("Publish.requiredText2")}</p>
+            </Card>
+
+            <Card
+              image={RequiredIcon3}
+              title={t("Publish.requiredSubtitle3")}
+              footer={
+                <CardExample
+                  exampleKo={t("Publish.requiredTextExample3Ko")}
+                  exampleOk={t("Publish.requiredTextExample3Ok")}
+                />
+              }
+            >
+              <p className="mb-0">{t("Publish.requiredText3")}</p>
+            </Card>
           </div>
-        </Container>
-      </div>
+          <div className="mt-10 lg:mt-20 text-center">
+            <Button
+              priority="tertiary no outline"
+              linkProps={{
+                href: "https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/",
+              }}
+              iconId="fr-icon-arrow-right-line"
+              iconPosition="right"
+              size="large"
+            >
+              {t("Publish.requiredCTA")}
+            </Button>
+          </div>
+        </div>
+      </Section>
 
       <div ref={refSteps} className={"relative"}>
         <span id="steps" className={styles.anchor}></span>

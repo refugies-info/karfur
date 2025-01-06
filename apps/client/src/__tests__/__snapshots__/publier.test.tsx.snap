@@ -490,430 +490,192 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey relative"
+      class="py-10 md:py-20 relative"
     >
       <span
         class="anchor"
         id="required"
       />
       <div
-        class="container container"
+        class="fr-container"
       >
         <h2
-          class="title2 center"
+          class="!text-h3 md:!text-h2 !mb-10 md:!mb-20 md:text-center"
         >
           Publish.requiredTitle
         </h2>
         <div
-          class="row"
+          class="flex flex-col lg:flex-row gap-4 lg:gap-10"
         >
           <div
-            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            class="p-6 md:p-8 flex-1 border border-border"
           >
-            <div
-              class="container"
+            <div>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="80"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="80"
+              />
+            </div>
+            <h3
+              class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
             >
-              <div>
-                <div
-                  class="header"
+              Publish.requiredSubtitle1
+            </h3>
+            <div
+              class="!text-large"
+            >
+              <p
+                class="mb-0"
+              >
+                Publish.requiredText1
+              </p>
+            </div>
+            <div>
+              <div
+                class="text-normal !space-y-3"
+              >
+                <p
+                  class="flex"
                 >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
+                  <i
+                    class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
                   />
-                </div>
-                <h3
-                  class="title"
+                  Publish.requiredTextExample1Ko
+                </p>
+                <p
+                  class="flex !mb-0"
                 >
-                  Publish.requiredSubtitle1
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText1
-                  </p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p
-                    class="example example_ko"
-                  >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample1Ko
-                  </p>
-                  <p
-                    class="example example_ok"
-                  >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample1Ok
-                  </p>
-                </div>
+                  <i
+                    class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                  />
+                  Publish.requiredTextExample1Ok
+                </p>
               </div>
             </div>
           </div>
           <div
-            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            class="p-6 md:p-8 flex-1 border border-border"
           >
-            <div
-              class="container"
+            <div>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="80"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="80"
+              />
+            </div>
+            <h3
+              class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
             >
-              <div>
-                <div
-                  class="header"
+              Publish.requiredSubtitle2
+            </h3>
+            <div
+              class="!text-large"
+            >
+              <p
+                class="mb-0"
+              >
+                Publish.requiredText2
+              </p>
+            </div>
+            <div>
+              <div
+                class="text-normal !space-y-3"
+              >
+                <p
+                  class="flex"
                 >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
+                  <i
+                    class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
                   />
-                </div>
-                <h3
-                  class="title"
+                  Publish.requiredTextExample2Ko
+                </p>
+                <p
+                  class="flex !mb-0"
                 >
-                  Publish.requiredSubtitle2
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText2
-                  </p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p
-                    class="example example_ko"
-                  >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample2Ko
-                  </p>
-                  <p
-                    class="example example_ok"
-                  >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample2Ok
-                  </p>
-                </div>
+                  <i
+                    class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                  />
+                  Publish.requiredTextExample2Ok
+                </p>
               </div>
             </div>
           </div>
           <div
-            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            class="p-6 md:p-8 flex-1 border border-border"
           >
-            <div
-              class="container"
+            <div>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="80"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="80"
+              />
+            </div>
+            <h3
+              class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
             >
-              <div>
-                <div
-                  class="header"
+              Publish.requiredSubtitle3
+            </h3>
+            <div
+              class="!text-large"
+            >
+              <p
+                class="mb-0"
+              >
+                Publish.requiredText3
+              </p>
+            </div>
+            <div>
+              <div
+                class="text-normal !space-y-3"
+              >
+                <p
+                  class="flex"
                 >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
+                  <i
+                    class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
                   />
-                </div>
-                <h3
-                  class="title"
+                  Publish.requiredTextExample3Ko
+                </p>
+                <p
+                  class="flex !mb-0"
                 >
-                  Publish.requiredSubtitle3
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText3
-                  </p>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p
-                    class="example example_ko"
-                  >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample3Ko
-                  </p>
-                  <p
-                    class="example example_ok"
-                  >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample3Ok
-                  </p>
-                </div>
+                  <i
+                    class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                  />
+                  Publish.requiredTextExample3Ok
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div
-          class="link"
+          class="mt-10 lg:mt-20 text-center"
         >
           <a
-            class="link color_purple"
+            class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-            rel="noopener noreferrer"
-            target="_blank"
+            id="fr-button-:r1:"
           >
-            <span>
-              Publish.requiredCTA
-            </span>
-            <span
-              class="icon icon"
-            >
-              <i
-                style="height: 24px; line-height: 24px;"
-              >
-                <svg
-                  class="eva eva-arrow-forward-outline"
-                  fill="purple"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  width="24px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="arrow-forward"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(-90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
+            Publish.requiredCTA
           </a>
         </div>
       </div>
@@ -1363,36 +1125,32 @@ exports[`publier renders publier 1`] = `
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="container"
+                class="p-6 md:p-8 flex-1 border border-border"
               >
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Publish.helpTileTitle1
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Publish.helpTileText1
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Publish.helpTileTitle1
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    Publish.helpTileText1
+                  </p>
                 </div>
                 <div>
                   <a
@@ -1446,36 +1204,32 @@ exports[`publier renders publier 1`] = `
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="container"
+                class="p-6 md:p-8 flex-1 border border-border"
               >
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Publish.helpTileTitle2
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Publish.helpTileText2
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Publish.helpTileTitle2
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    Publish.helpTileText2
+                  </p>
                 </div>
                 <div>
                   <a
@@ -1529,36 +1283,32 @@ exports[`publier renders publier 1`] = `
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="container"
+                class="p-6 md:p-8 flex-1 border border-border"
               >
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    StaticPages.helpTileTitle3
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      StaticPages.helpTileText3
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  StaticPages.helpTileTitle3
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    StaticPages.helpTileText3
+                  </p>
                 </div>
                 <div>
                   <button
@@ -2029,7 +1779,7 @@ exports[`publier renders publier 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r1:"
+          id="fr-button-:r2:"
         >
           login_or_signup
         </button>

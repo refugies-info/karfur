@@ -32,7 +32,6 @@ const HelpUs = () => {
                 image={HelpUsIcon1}
                 title={t("Homepage.helpUsCardTitle1")}
                 footer={<InlineLink link="#" text={t("Homepage.helpUsCardCTA1")} color="purple" type="span" />}
-                withShadow
               >
                 <Warning text={t("Homepage.helpUsCardHelp1")} color="purple" />
                 <p className={styles.help_text}>{t("Homepage.helpUsCardText1")}</p>
@@ -61,7 +60,6 @@ const HelpUs = () => {
                   </>
                 }
                 footer={<InlineLink link="#" text={t("Homepage.helpUsCardCTA2")} color="red" type="span" />}
-                withShadow
               >
                 <Warning text={t("Homepage.helpUsCardHelp2")} color="red" />
                 <p className={styles.help_text}>{t("Homepage.helpUsCardText2")}</p>
@@ -81,7 +79,6 @@ const HelpUs = () => {
                 image={HelpUsIcon3}
                 title={t("Homepage.helpUsCardTitle3")}
                 footer={<InlineLink link="#" text={t("Homepage.helpUsCardCTA3")} color="orange" type="span" />}
-                withShadow
               >
                 <Warning text={t("Homepage.helpUsCardHelp3")} color="orange" />
                 <p className={styles.help_text}>{t("Homepage.helpUsCardText3")}</p>
