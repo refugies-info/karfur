@@ -75,7 +75,7 @@ const Agir = () => {
               <Button
                 iconId="fr-icon-arrow-right-line"
                 iconPosition="right"
-                className={cls(styles.colored, "mb-4")}
+                className="fr-button-reverse mb-4"
                 size="large"
                 linkProps={{
                   href: "#program",
@@ -88,7 +88,7 @@ const Agir = () => {
                 iconPosition="right"
                 size="large"
                 priority="secondary"
-                className={styles.colored}
+                className="fr-button-reverse"
                 linkProps={{
                   href: "#map",
                 }}

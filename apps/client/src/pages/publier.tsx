@@ -1,3 +1,4 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,7 +8,6 @@ import { Col, Container, Row } from "reactstrap";
 import HelpIcon3 from "~/assets/staticPages/publier/help-icon-crisp.svg";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutoriel.svg";
 import HelpIcon1 from "~/assets/staticPages/publier/help-icon-visio.svg";
-import MockupsRIMobile from "~/assets/staticPages/publier/mockups-ri-mobile.png";
 import MockupsRI from "~/assets/staticPages/publier/mockups-ri.png";
 import RequiredIcon1 from "~/assets/staticPages/publier/required-icon-1.png";
 import RequiredIcon2 from "~/assets/staticPages/publier/required-icon-2.png";
@@ -25,7 +25,6 @@ import {
   Accordion,
   Card,
   CountUpFigure,
-  HeroArrow,
   InlineLink,
   Register,
   SecondaryNavbar,
@@ -91,26 +90,28 @@ const RecensezVotreAction = (props: Props) => {
       <SEO title={t("Publish.title")} />
 
       {/* HERO */}
-      <div ref={refHero} className={cls(styles.section, styles.bg_blue, "mb-4")}>
-        <Container className={styles.container}>
-          <Row className={styles.hero}>
-            <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className={styles.white}>{t("Publish.title")}</h1>
-              <p className={styles.subtitle}>{t("Publish.subtitle")}</p>
-              <HeroArrow target="why" />
-            </Col>
-            {!isTablet && (
-              <Col sm="12" lg="6">
-                <Image src={MockupsRI} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-              </Col>
-            )}
-          </Row>
-        </Container>
-        {isTablet && (
-          <div className={styles.hero_image}>
-            <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
+      <div ref={refHero} className={cls("py-10 md:py-20 mb-4 bg-blue-france")}>
+        <div className="fr-container">
+          <div className="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20">
+            <div className="flex-1 text-center md:text-left">
+              <h1 className={cls(styles.title, "!text-white mb-6")}>{t("Publish.title")}</h1>
+              <p className={cls(styles.title_sub, "text-white !mb-0")}>{t("Publish.subtitle")}</p>
+              <Button
+                iconId="fr-icon-arrow-right-line"
+                iconPosition="right"
+                className="fr-button-reverse mt-10 !w-full justify-center md:!w-auto"
+                linkProps={{
+                  href: "#register",
+                }}
+              >
+                {t("Publish.navbarItem5")}
+              </Button>
+            </div>
+            <div className="flex-1">
+              <Image src={MockupsRI} alt="" style={{ maxWidth: "100%", height: "auto" }} />
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
       <SecondaryNavbar
