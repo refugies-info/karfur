@@ -6,7 +6,7 @@ exports[`publier renders publier 1`] = `
     class="main"
   >
     <div
-      class="py-10 md:py-20 mb-4 bg-blue-france"
+      class="py-10 md:py-20 bg-blue-france mb-4"
     >
       <div
         class="fr-container"
@@ -130,7 +130,7 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <span
         class="anchor"
@@ -382,168 +382,106 @@ exports[`publier renders publier 1`] = `
         </div>
       </div>
       <div
-        class="section bg_green"
+        class="py-10 md:py-20 bg-light-alt-blue"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
-          <div
-            class="container"
+          <h2
+            class="!text-h3 md:!text-h2 !mb-10 md:!mb-20 md:text-center"
           >
-            <button
-              class="btn next btn btn-secondary"
-              type="button"
-            >
-              <span
-                class="icon"
-              >
-                <i
-                  style="height: 24px; line-height: 24px;"
-                >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="#055e5a"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-            </button>
+            Publish.testimonies_title
+          </h2>
+          <div
+            class="flex flex-col md:flex-row gap-10"
+          >
             <div
-              class="slider"
+              class="flex-1 md:px-8 space-y-6"
             >
-              <div
-                class="testimony col"
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony1
-                </p>
+                Publish.testimony1
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="font-bold mb-2"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Vincent Le Lann"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Vincent Le Lann
-                    </div>
-                    <div>
-                      Compagnons du Tour de France à Nantes
-                    </div>
-                  </div>
+                  Vincent Le Lann
+                </div>
+                <div>
+                  Compagnons du Tour de France à Nantes
                 </div>
               </div>
-              <div
-                class="testimony col"
+            </div>
+            <div
+              class="flex-1 md:px-8 space-y-6"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony2
-                </p>
+                Publish.testimony2
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="font-bold mb-2"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Rémi Crouzel"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Rémi Crouzel
-                    </div>
-                    <div>
-                      Mission Locale de Dijon & Conseiller IPeRACTIFS21
-                    </div>
-                  </div>
+                  Rémi Crouzel
+                </div>
+                <div>
+                  Mission Locale de Dijon & Conseiller IPeRACTIFS21
                 </div>
               </div>
-              <div
-                class="testimony col"
+            </div>
+            <div
+              class="flex-1 md:px-8 space-y-6"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony3
-                </p>
+                Publish.testimony3
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="font-bold mb-2"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Paola Salazar"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Paola Salazar
-                    </div>
-                    <div>
-                      Directrice adjointe UniR
-                    </div>
-                  </div>
+                  Paola Salazar
+                </div>
+                <div>
+                  Directrice adjointe UniR
                 </div>
               </div>
             </div>
@@ -552,7 +490,7 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey scrollspy_section"
+      class="section bg_grey relative"
     >
       <span
         class="anchor"
@@ -981,7 +919,7 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <span
         class="anchor"
@@ -1400,7 +1338,7 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <div
         class="section bg_grey"
