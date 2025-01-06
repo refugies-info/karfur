@@ -5,6 +5,7 @@ import {
   SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
+import { DemoComponent } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -60,6 +61,7 @@ const Homepage = (props: Props) => {
   return (
     <div className={commonStyles.main}>
       <SEO title="Accueil" description={t("Homepage.title")} />
+      <DemoComponent className="!bg-red-500 uppercase">Test</DemoComponent>
 
       <Hero targetArrow="themes" />
 

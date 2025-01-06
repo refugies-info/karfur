@@ -31,12 +31,23 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
+
+// src/lib/classname.ts
+var cls = (...classNames) => classNames.filter((className) => !!className).join(" ");
 function DemoComponent(_a) {
-  var _b = _a, { children } = _b, other = __objRest(_b, ["children"]);
-  return /* @__PURE__ */ jsxs("button", __spreadProps(__spreadValues({ className: " bg-slate-500 hover:bg-slate-600 p-4 font-bold flex gap-11", type: "button" }, other), { children: [
-    /* @__PURE__ */ jsx("span", { children: "huhu" }),
-    children
-  ] }));
+  var _b = _a, { children, className } = _b, other = __objRest(_b, ["children", "className"]);
+  return /* @__PURE__ */ jsxs(
+    "button",
+    __spreadProps(__spreadValues({
+      className: cls(" bg-slate-500 hover:bg-slate-600 p-4 font-bold flex gap-11", className),
+      type: "button"
+    }, other), {
+      children: [
+        /* @__PURE__ */ jsx("span", { children: "huhu" }),
+        children
+      ]
+    })
+  );
 }
 DemoComponent.displayName = "DemoComponent";
 

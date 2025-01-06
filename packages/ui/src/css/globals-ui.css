@@ -1,5 +1,5 @@
+@layer theme, base, dsfr, components, utilities;
 @import "tailwindcss";
-@config "../../tailwind.config.js";
 @source "../components/";
 
 @theme {
