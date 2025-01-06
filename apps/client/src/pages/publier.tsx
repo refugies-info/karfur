@@ -15,9 +15,6 @@ import RequiredIcon3 from "~/assets/staticPages/publier/required-icon-3.png";
 import StepImage4 from "~/assets/staticPages/publier/step-image-4.svg";
 import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
 import StepImage6 from "~/assets/staticPages/publier/step-image-6.svg";
-import TestimonyLogo1 from "~/assets/staticPages/publier/testimony-icon-1.png";
-import TestimonyLogo2 from "~/assets/staticPages/publier/testimony-icon-2.png";
-import TestimonyLogo3 from "~/assets/staticPages/publier/testimony-icon-3.png";
 import WhyImage1 from "~/assets/staticPages/publier/why-image-1.png";
 import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
 import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
@@ -28,7 +25,9 @@ import {
   InlineLink,
   Register,
   SecondaryNavbar,
+  Section,
   StepContent,
+  Title2,
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
@@ -90,7 +89,7 @@ const RecensezVotreAction = (props: Props) => {
       <SEO title={t("Publish.title")} />
 
       {/* HERO */}
-      <div ref={refHero} className={cls("py-10 md:py-20 mb-4 bg-blue-france")}>
+      <Section ref={refHero} className="bg-blue-france mb-4">
         <div className="fr-container">
           <div className="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20">
             <div className="flex-1 text-center md:text-left">
@@ -112,7 +111,7 @@ const RecensezVotreAction = (props: Props) => {
             </div>
           </div>
         </div>
-      </div>
+      </Section>
 
       <SecondaryNavbar
         leftLinks={[
@@ -130,7 +129,7 @@ const RecensezVotreAction = (props: Props) => {
         isSticky={!inViewHero}
       />
 
-      <div ref={refWhy} className={styles.scrollspy_section}>
+      <div ref={refWhy} className="relative">
         <span id="why" className={styles.anchor}></span>
         {/* WHY */}
         <div className={cls(styles.section)}>
@@ -165,36 +164,34 @@ const RecensezVotreAction = (props: Props) => {
         </div>
 
         {/* TESTIMONY */}
-        <div className={cls(styles.section, styles.bg_green)}>
-          <Container className={styles.container}>
+        <Section className="bg-light-alt-blue">
+          <div className="fr-container">
+            <Title2>{t("Publish.testimonies_title")}</Title2>
             <TestimonySlider
               testimonies={[
                 {
                   text: t("Publish.testimony1"),
-                  image: TestimonyLogo1,
                   name: "Vincent Le Lann",
                   position: "Compagnons du Tour de France à Nantes",
                 },
                 {
                   text: t("Publish.testimony2"),
-                  image: TestimonyLogo2,
                   name: "Rémi Crouzel",
                   position: "Mission Locale de Dijon & Conseiller IPeRACTIFS21",
                 },
                 {
                   text: t("Publish.testimony3"),
-                  image: TestimonyLogo3,
                   name: "Paola Salazar",
                   position: "Directrice adjointe UniR",
                 },
               ]}
             />
-          </Container>
-        </div>
+          </div>
+        </Section>
       </div>
 
       {/* REQUIRED */}
-      <div ref={refRequired} className={cls(styles.section, styles.bg_grey, styles.scrollspy_section)}>
+      <div ref={refRequired} className={cls(styles.section, styles.bg_grey, "relative")}>
         <span id="required" className={styles.anchor}></span>
         <Container className={styles.container}>
           <h2 className={cls(styles.title2, styles.center)}>{t("Publish.requiredTitle")}</h2>
@@ -252,7 +249,7 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div ref={refSteps} className={styles.scrollspy_section}>
+      <div ref={refSteps} className={"relative"}>
         <span id="steps" className={styles.anchor}></span>
         {/* STEPS */}
         <div className={cls(styles.section)}>
@@ -318,7 +315,7 @@ const RecensezVotreAction = (props: Props) => {
         </div>
       </div>
 
-      <div ref={refFaq} className={styles.scrollspy_section}>
+      <div ref={refFaq} className="relative">
         {/* HELP */}
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
