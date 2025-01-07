@@ -214,7 +214,10 @@
     "not_an_email": "እዚ ኢመይል ኣይኮነን",
     "check_mail": "ኣብ ፊደል ኣረጋግጽ\\ጺ"
   },
-  "UnauthorizedAccess": { "access_denied": "ኣብ  ምንጻግ በጺሑ", "back_home": "ናብ መቀበሊ ምምጻእ" },
+  "UnauthorizedAccess": {
+    "access_denied": "ኣብ  ምንጻግ በጺሑ",
+    "back_home": "ናብ መቀበሊ ምምጻእ"
+  },
   "Dispositif": {
     "share": "ኣብጽሑ ሼር ግበሩ",
     "updated": "ኣቐድዲሙ ዝነበረ",
@@ -391,7 +394,11 @@
     "information_types": "ሰለስተ ዓይነት ሓበሬታታት",
     "help_translate": "ን ምትርጓም ሓግዝ"
   },
-  "Roles": { "admin": "ምምሕዳር", "redactor": "ኢዝዲተር ወይ ኣርታዒ", "translator": "ተርጓሚ/ሚት" },
+  "Roles": {
+    "admin": "ምምሕዳር",
+    "redactor": "ኢዝዲተር ወይ ኣርታዒ",
+    "translator": "ተርጓሚ/ሚት"
+  },
   "topLink": "ኣብ ላዕሊ ገጽ",
   "close": "ዕጸዉ",
   "showBreadcrumb": "ኣብ ዝርዝራት ተዐዘቡ",
@@ -550,7 +557,6 @@
     "requiredTextExample3Ok": "ናይ ቋንቋ ፈረንሳ ስልጠና",
     "requiredCTA": "እቲ ቻርተር ናይ ቅዋምና ኣንብቡ",
     "stepsTitle": "ን ሓበሬታይብኸመይ መስርሕ እየ ከም ዝዝርግሓለይ ዝገብር?",
-    "stepsWarningMobile": "ንጠንቀቕ! ን ኽዝርግሓልኩም እትደልይዎ ሓበሬታ ብ ኮምፑተር ጥራይ ኢኹም እትሰድዎ",
     "stepsSubtitle1": "ብ ቐዳምነት ድማ ኣብ ፍረንችህ ኢንፎ ኣካውንት <strong> ይሃልኹምኣብቲ ናይ </strong> ዝብል ይሃልኹም",
     "stepsText1": "ነፍሲ ወከፍ ሰብ ነናቱ ሕሳብ ክገብር ይግባእ፣ መሳርሕትኹም እውን ዝገብዎ ምስትኽኻል ከእእሎም ምእንቲ",
     "stepsCTA1": "ኣካውን ወይ ሕሳብ ክፈቱ",

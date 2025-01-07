@@ -1,10 +1,10 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { ReactElement, useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
-import InlineLink from "../InlineLink";
 import styles from "./StepContent.module.scss";
 
 interface Props {
@@ -60,7 +60,17 @@ const StepContent = (props: Props) => {
             {text}
           </p>
         ))}
-        {props.cta && <InlineLink link={props.cta.link} text={props.cta.text} color={props.color} />}
+        {props.cta && (
+          <Button
+            priority="tertiary"
+            size="large"
+            linkProps={{ href: props.cta.link }}
+            iconId="fr-icon-arrow-right-line"
+            iconPosition="right"
+          >
+            {props.cta.text}
+          </Button>
+        )}
         {props.footer}
         {!isTablet && props.buttonStep && buttonStep}
       </div>

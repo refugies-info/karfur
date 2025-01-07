@@ -6,7 +6,6 @@
 @import "~/scss/variables";
 
 $orange: #cd5605;
-$purple: #3d2884;
 
 @mixin fadeBorder() {
   &::after {
@@ -61,7 +60,7 @@ $borderWidth: 4px;
   }
 
   .purple & {
-    border-color: $purple;
+    border-color: var(--artwork-minor-blue-france);
   }
 
   .has_btn_step & {
@@ -129,7 +128,7 @@ $borderWidth: 4px;
     }
 
     .purple & {
-      border-color: $purple;
+      border-color: var(--artwork-minor-blue-france);
     }
 
     .dotted & {
@@ -153,33 +152,23 @@ $borderWidth: 4px;
 
 // text
 .title {
-  @include text("h4");
+  @include dsfr_text("h3");
 
-  font-weight: normal;
-  margin-bottom: u(8);
+  margin-bottom: u(6);
 
   @include isTablet {
-    @include text("large");
-
-    margin-bottom: u(4);
+    @include dsfr_text("h4");
   }
 }
 
 .text {
-  @include text("large");
+  @include dsfr_text("large");
 
-  color: $gray80;
-  margin-bottom: u(8);
-
-  @include isTablet {
-    @include text("normal");
-
-    margin-bottom: u(4);
-  }
+  margin-bottom: u(6);
 }
 
 .step {
-  @include text("h5");
+  @include dsfr_text("h4");
 
   width: 40px;
   height: 40px;
@@ -189,11 +178,9 @@ $borderWidth: 4px;
   align-items: center;
   justify-content: center;
   color: white;
-  border: 1.3px solid $white;
   position: absolute;
   top: 0;
   left: -22px;
-  box-shadow: 1.3px 1.3px 11px 0 #2121213d;
 
   // fix vertical align
   span {
@@ -216,20 +203,20 @@ $borderWidth: 4px;
   }
 
   .purple & {
-    background: $purple;
+    background: var(--artwork-minor-blue-france);
   }
 
   @include isTablet {
-    @include text("normal");
+    @include dsfr_text("h5");
 
-    width: 24px;
-    height: 24px;
-    left: -14px;
+    width: 32px;
+    height: 32px;
+    left: -16px;
     top: -1px;
 
     @include rtl {
       left: inherit;
-      right: -14px;
+      right: -16px;
     }
   }
 }
@@ -238,7 +225,7 @@ $borderWidth: 4px;
   @include text("large");
 
   padding: u(4);
-  border-radius: $radius;
+  border-radius: 100px;
   color: $white;
   font-weight: bold;
   text-align: center;
@@ -258,7 +245,7 @@ $borderWidth: 4px;
   }
 
   .purple & {
-    background: $purple;
+    background: var(--artwork-minor-blue-france);
   }
 
   &.last {
