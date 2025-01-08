@@ -14,7 +14,6 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "clean:branches": "npx git-removed-branches --prune --force",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
@@ -85,7 +84,6 @@
     "lint-staged": ">=15",
     "mongo-migrate-ts": "^1.6.2",
     "mongodb": "^6.10.0",
-    "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
