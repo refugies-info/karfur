@@ -59,7 +59,7 @@ const Layout = (props: Props) => {
           }
         />
       )}
-      <div className={styles.row}>
+      <div className={cls(!props.fullWidth && styles.row)}>
         <main className={cls(styles.main, props.fullWidth && styles.full_width)}>{props.children}</main>
 
         {!props.fullWidth && (
@@ -81,7 +81,6 @@ const Layout = (props: Props) => {
           </div>
         )}
       </div>
-
       {props.fullWidth && (
         <div className={styles.fixed_illu}>
           <Image src={PersosIllu} width={127} height={200} alt="" />
