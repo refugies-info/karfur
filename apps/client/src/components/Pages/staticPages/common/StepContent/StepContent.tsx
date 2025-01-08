@@ -1,11 +1,10 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { ReactElement, useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
-import InlineLink from "../InlineLink";
-import styles from "./StepContent.module.scss";
 
 interface Props {
   step: number;
@@ -30,8 +29,19 @@ const StepContent = (props: Props) => {
   const { isTablet } = useWindowSize();
 
   const buttonStep = useMemo(
-    () => <div className={cls(styles.btn_step, props.buttonStepEnd && styles.last)}>{props.buttonStep}</div>,
-    [props.buttonStep, props.buttonStepEnd],
+    () => (
+      <div
+        className={cls(
+          "!text-large p-4 text-white rounded-full font-bold text-center z-10",
+          "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
+          `bg-${props.color}-france`,
+          props.buttonStepEnd && "bottom-0",
+        )}
+      >
+        {props.buttonStep}
+      </div>
+    ),
+    [props.buttonStep, props.buttonStepEnd, props.color],
   );
 
   const safeTitle = useSanitizedContent(props.title);
@@ -39,33 +49,72 @@ const StepContent = (props: Props) => {
   return (
     <div
       className={cls(
-        styles.row,
-        styles[props.color],
-        props.dottedLine && styles.dotted,
-        !!props.buttonStep && styles.has_btn_step,
+        "flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]",
       )}
     >
-      <div className={cls(styles.content)}>
-        <div className={styles.step}>
-          <span>{props.step}</span>
+      <div
+        className={cls(
+          "ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative",
+          `border-${props.color}-france`,
+          props.dottedLine && "border-dashed",
+          !!props.buttonStep && "!pb-0 lg:!pb-[250px]",
+        )}
+      >
+        <div
+          className={cls(
+            "w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px]",
+            "!text-h5 lg:!text-h4 text-white font-bold rounded-full",
+            "flex items-center justify-center",
+            `bg-${props.color}-france`,
+          )}
+        >
+          <span className={cls("h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]")}>{props.step}</span>
         </div>
         <h3
-          className={styles.title}
+          className="!text-h4 lg:!text-h3 !mb-6"
           dangerouslySetInnerHTML={{
             __html: safeTitle,
           }}
         ></h3>
         {props.texts.map((text, i) => (
-          <p key={i} className={styles.text}>
+          <p key={i} className="!text-large !mb-6">
             {text}
           </p>
         ))}
-        {props.cta && <InlineLink link={props.cta.link} text={props.cta.text} color={props.color} />}
+        {props.cta && (
+          <Button
+            priority="tertiary"
+            size="large"
+            linkProps={{ href: props.cta.link }}
+            iconId="fr-icon-arrow-right-line"
+            iconPosition="right"
+          >
+            {props.cta.text}
+          </Button>
+        )}
         {props.footer}
         {!isTablet && props.buttonStep && buttonStep}
+
+        {/* fade border */}
+        {props.dottedLine && (
+          <span
+            className={cls(
+              "hidden lg:block",
+              "w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige",
+            )}
+          ></span>
+        )}
       </div>
 
-      <div className={styles.media}>
+      <div
+        className={cls(
+          "relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px]",
+          "border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0",
+          `border-${props.color}-france`,
+          props.dottedLine && "border-dashed",
+          !!props.buttonStep && "!pb-[150px] lg:!pb-0",
+        )}
+      >
         {props.image && (
           <Image
             src={props.image}
@@ -76,6 +125,15 @@ const StepContent = (props: Props) => {
           />
         )}
         {props.video && <AutoplayVideo src={props.video} width={props.width} height={props.height || 320} />}
+        {/* fade border */}
+        {props.dottedLine && (
+          <span
+            className={cls(
+              "lg:hidden",
+              "w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige",
+            )}
+          ></span>
+        )}
       </div>
       {isTablet && props.buttonStep && buttonStep}
     </div>

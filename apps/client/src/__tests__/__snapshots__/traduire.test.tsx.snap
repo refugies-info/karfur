@@ -487,74 +487,40 @@ exports[`traduire renders traduire 1`] = `
           </p>
         </div>
         <div
-          class="row orange"
+          class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
         >
           <div
-            class="content"
+            class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-orange-france"
           >
             <div
-              class="step"
+              class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-orange-france"
             >
-              <span>
+              <span
+                class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+              >
                 1
               </span>
             </div>
             <h3
-              class="title"
+              class="!text-h4 lg:!text-h3 !mb-6"
             >
               Translate.stepsSubtitle1
             </h3>
             <p
-              class="text"
+              class="!text-large !mb-6"
             >
               Translate.stepsText1
             </p>
             <a
-              class="link color_orange"
-              href="/undefined#register"
-              rel="noopener noreferrer"
+              class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
+              href="#register"
+              id="fr-button-:r0:"
             >
-              <span>
-                Translate.stepsCTA1
-              </span>
-              <span
-                class="icon icon"
-              >
-                <i
-                  style="height: 24px; line-height: 24px;"
-                >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="orange"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
+              Translate.stepsCTA1
             </a>
           </div>
           <div
-            class="media"
+            class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-orange-france"
           >
             <video
               class="video autoplay-video"
@@ -569,31 +535,33 @@ exports[`traduire renders traduire 1`] = `
           </div>
         </div>
         <div
-          class="row orange"
+          class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
         >
           <div
-            class="content"
+            class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-orange-france"
           >
             <div
-              class="step"
+              class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-orange-france"
             >
-              <span>
+              <span
+                class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+              >
                 2
               </span>
             </div>
             <h3
-              class="title"
+              class="!text-h4 lg:!text-h3 !mb-6"
             >
               Translate.stepsSubtitle2
             </h3>
             <p
-              class="text"
+              class="!text-large !mb-6"
             >
               Translate.stepsText2
             </p>
           </div>
           <div
-            class="media"
+            class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-orange-france"
           >
             <video
               class="video autoplay-video"
@@ -608,25 +576,27 @@ exports[`traduire renders traduire 1`] = `
           </div>
         </div>
         <div
-          class="row orange"
+          class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
         >
           <div
-            class="content"
+            class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-orange-france"
           >
             <div
-              class="step"
+              class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-orange-france"
             >
-              <span>
+              <span
+                class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+              >
                 3
               </span>
             </div>
             <h3
-              class="title"
+              class="!text-h4 lg:!text-h3 !mb-6"
             >
               Translate.stepsSubtitle3
             </h3>
             <p
-              class="text"
+              class="!text-large !mb-6"
             >
               Translate.stepsText3
             </p>
@@ -653,7 +623,7 @@ exports[`traduire renders traduire 1`] = `
             </div>
           </div>
           <div
-            class="media"
+            class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-orange-france"
           >
             <video
               class="video autoplay-video"
@@ -668,41 +638,43 @@ exports[`traduire renders traduire 1`] = `
           </div>
         </div>
         <div
-          class="row orange has_btn_step"
+          class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
         >
           <div
-            class="content"
+            class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-orange-france !pb-0 lg:!pb-[250px]"
           >
             <div
-              class="step"
+              class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-orange-france"
             >
-              <span>
+              <span
+                class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+              >
                 4
               </span>
             </div>
             <h3
-              class="title"
+              class="!text-h4 lg:!text-h3 !mb-6"
             >
               Translate.stepsSubtitle4
             </h3>
             <p
-              class="text"
+              class="!text-large !mb-6"
             >
               Translate.stepsText4a
             </p>
             <p
-              class="text"
+              class="!text-large !mb-6"
             >
               Translate.stepsText4b
             </p>
             <div
-              class="btn_step last"
+              class="!text-large p-4 text-white rounded-full font-bold text-center z-10 absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 bg-orange-france bottom-0"
             >
               Translate.stepsButton
             </div>
           </div>
           <div
-            class="media"
+            class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-orange-france !pb-[150px] lg:!pb-0"
           >
             <img
               alt=""
@@ -1299,7 +1271,7 @@ exports[`traduire renders traduire 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r0:"
+          id="fr-button-:r1:"
         >
           login_or_signup
         </button>

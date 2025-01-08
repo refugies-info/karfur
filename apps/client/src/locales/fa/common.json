@@ -227,7 +227,10 @@
     "check_mail": "املا خود را بررسی کنید.",
     "invalid_phone_number": "این یک شماره تلفن معتبر نیست ، ورودی خود را بررسی کنید."
   },
-  "UnauthorizedAccess": { "access_denied": "دسترسی رد شد", "back_home": "بازگشت به صفحه اصلی" },
+  "UnauthorizedAccess": {
+    "access_denied": "دسترسی رد شد",
+    "back_home": "بازگشت به صفحه اصلی"
+  },
   "Dispositif": {
     "share": "اشتراک گذاری برگه",
     "updated": "به روز شده",
@@ -404,7 +407,11 @@
     "information_types": "سه نوع اطلاعات",
     "help_translate": "کمک به ترجمه"
   },
-  "Roles": { "admin": "مدیر", "redactor": "ویرایشگر", "translator": "مترجم" },
+  "Roles": {
+    "admin": "مدیر",
+    "redactor": "ویرایشگر",
+    "translator": "مترجم"
+  },
   "topLink": "بالای صفحه",
   "close": "بستن",
   "showBreadcrumb": "راهنمای سایت را ببینید",
@@ -563,7 +570,6 @@
     "requiredTextExample3Ok": "آموزش با درس های فرانسوی",
     "requiredCTA": "منشور سرمقاله کامل را بخوانید",
     "stepsTitle": "مراحل انتشار ورق چیست؟",
-    "stepsWarningMobile": "لطفا توجه داشته باشید ، نوشتن یک برگه فقط در رایانه امکان پذیر است.",
     "stepsSubtitle1": "<strong> حساب خود را ایجاد کنید </strong> پناهندگان. info",
     "stepsText1": "هر حساب شخصی است. همکاران شما همچنین می توانند حساب خود را برای تغییر پرونده های ساختار شما ایجاد کنند.",
     "stepsCTA1": "ایجاد حساب کاربری من",

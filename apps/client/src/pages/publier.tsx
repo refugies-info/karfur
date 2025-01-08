@@ -12,9 +12,12 @@ import RequiredIcon1 from "~/assets/staticPages/publier/icon-calendar.svg";
 import RequiredIcon3 from "~/assets/staticPages/publier/icon-hands.svg";
 import RequiredIcon2 from "~/assets/staticPages/publier/icon-money.svg";
 import MockupsRI from "~/assets/staticPages/publier/mockups-ri.png";
-import StepImage4 from "~/assets/staticPages/publier/step-image-4.svg";
+import StepImage1 from "~/assets/staticPages/publier/step-image-1.png";
+import StepImage2 from "~/assets/staticPages/publier/step-image-2.png";
+import StepImage3 from "~/assets/staticPages/publier/step-image-3.png";
+import StepImage4 from "~/assets/staticPages/publier/step-image-4.png";
 import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
-import StepImage6 from "~/assets/staticPages/publier/step-image-6.svg";
+import StepImage6 from "~/assets/staticPages/publier/step-image-6.png";
 import WhyImage1 from "~/assets/staticPages/publier/why-image-1.png";
 import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
 import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
@@ -31,7 +34,6 @@ import {
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
@@ -254,67 +256,66 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refSteps} className={"relative"}>
         <span id="steps" className={styles.anchor}></span>
         {/* STEPS */}
-        <div className={cls(styles.section)}>
-          <Container className={styles.container}>
-            <h2 className={styles.title2}>{t("Publish.stepsTitle")}</h2>
-            <div className={styles.warning_mobile}>
-              <EVAIcon name="alert-circle-outline" size={24} fill="black" />
-              <p>{t("Publish.stepsWarningMobile")}</p>
-            </div>
+        <Section className="bg-beige">
+          <div className="fr-container">
+            <Title2>{t("Publish.stepsTitle")}</Title2>
             <StepContent
               step={1}
-              color="orange"
+              color="purple"
               title={t("Publish.stepsSubtitle1")}
               texts={[t("Publish.stepsText1")]}
               cta={{ text: t("Publish.stepsCTA1"), link: "#register" }}
-              video="/video/publier-video-step1.mp4"
+              image={StepImage1}
+              width={440}
             />
             <StepContent
               step={2}
-              color="orange"
+              color="purple"
               title={t("Publish.stepsSubtitle2")}
               texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
               cta={{
                 text: t("Publish.stepsCTA2"),
                 link: "https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/",
               }}
-              video="/video/publier-video-step2.mp4"
+              image={StepImage2}
+              width={440}
             />
             <StepContent
               step={3}
-              color="orange"
+              color="purple"
               title={t("Publish.stepsSubtitle3")}
               texts={[t("Publish.stepsText3")]}
-              video="/video/publier-video-step3.mp4"
-              width={340}
-              height={320}
+              image={StepImage3}
+              width={440}
             />
             <StepContent
               step={4}
-              color="orange"
+              color="purple"
               title={t("Publish.stepsSubtitle4")}
               texts={[t("Publish.stepsText4a"), t("Publish.stepsText4b")]}
               image={StepImage4}
               buttonStep={t("Publish.stepsButton")}
+              width={440}
             />
             <StepContent
               step={5}
-              color="orange"
+              color="purple"
               title={t("Publish.stepsSubtitle5")}
               texts={[t("Publish.stepsText5a"), t("Publish.stepsText5b")]}
               image={StepImage5}
-              height={415}
+              width={440}
             />
             <StepContent
               step={6}
-              color="orange"
+              color="purple"
               title={t("Publish.stepsSubtitle6")}
               texts={[t("Publish.stepsText6a"), t("Publish.stepsText6b")]}
               image={StepImage6}
               dottedLine
+              width={336}
             />
-          </Container>
-        </div>
+          </div>
+        </Section>
       </div>
 
       <div ref={refFaq} className="relative">
