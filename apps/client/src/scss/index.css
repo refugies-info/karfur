@@ -1,5 +1,7 @@
 /* stylelint-disable custom-property-pattern */
 @import "tailwindcss";
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@source "./tailwind-safelist.txt";
 
 @theme {
   /* custom config goes here */
@@ -20,6 +22,8 @@
   --color-success: #18753c;
   --color-error: #ce0500;
   --color-beige: #f9f6f2;
+  --color-purple-france: #6a6af4;
+  --color-orange-france: #cd5605;
 
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
