@@ -688,411 +688,310 @@ exports[`publier renders publier 1`] = `
         id="steps"
       />
       <div
-        class="section"
+        class="py-10 md:py-20 bg-beige"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
           <h2
-            class="title2"
+            class="!text-h3 md:!text-h2 !mb-10 md:!mb-20 md:text-center"
           >
             Publish.stepsTitle
           </h2>
           <div
-            class="warning_mobile"
-          >
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 24px; line-height: 24px;"
-              >
-                <svg
-                  class="eva eva-alert-circle-outline"
-                  fill="black"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  width="24px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="alert-circle"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                      />
-                      <circle
-                        cx="12"
-                        cy="16"
-                        r="1"
-                      />
-                      <path
-                        d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            <p>
-              Publish.stepsWarningMobile
-            </p>
-          </div>
-          <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   1
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle1
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText1
               </p>
               <a
-                class="link color_orange"
-                href="/undefined#register"
-                rel="noopener noreferrer"
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
+                href="#register"
+                id="fr-button-:r2:"
               >
-                <span>
-                  Publish.stepsCTA1
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="orange"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
+                Publish.stepsCTA1
               </a>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/publier-video-step1.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   2
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle2
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText2a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText2b
               </p>
               <a
-                class="link color_orange"
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-                rel="noopener noreferrer"
-                target="_blank"
+                id="fr-button-:r3:"
               >
-                <span>
-                  Publish.stepsCTA2
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="orange"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
+                Publish.stepsCTA2
               </a>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/publier-video-step2.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   3
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle3
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText3
               </p>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-                width="340"
-              >
-                <source
-                  src="/video/publier-video-step3.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange has_btn_step"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   4
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle4
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText4a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText4b
               </p>
               <div
-                class="btn_step"
+                class="!text-large p-4 text-white rounded-full font-bold text-center z-10 absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 bg-purple-france"
               >
                 Publish.stepsButton
               </div>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france !pb-[150px] lg:!pb-0"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="550"
+                height="440"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="440"
               />
             </div>
           </div>
           <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   5
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle5
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText5a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText5b
               </p>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="415"
+                height="440"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="440"
               />
             </div>
           </div>
           <div
-            class="row orange dotted"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france border-dashed"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   6
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle6
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText6a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText6b
               </p>
+              <span
+                class="hidden lg:block w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige"
+              />
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france border-dashed"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="550"
+                height="336"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=750&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=384&q=75 1x, /_next/image?url=%2Fimg.jpg&w=750&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="336"
+              />
+              <span
+                class="lg:hidden w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige"
               />
             </div>
           </div>
@@ -1779,7 +1678,7 @@ exports[`publier renders publier 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r2:"
+          id="fr-button-:r4:"
         >
           login_or_signup
         </button>
