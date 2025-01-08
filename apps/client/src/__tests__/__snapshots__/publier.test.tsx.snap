@@ -28,7 +28,7 @@ exports[`publier renders publier 1`] = `
               Publish.subtitle
             </p>
             <a
-              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse mt-10 !w-full justify-center md:!w-auto"
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
               href="#register"
               id="fr-button-:r0:"
             >
@@ -388,7 +388,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 !mb-10 md:!mb-20 md:text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
             Publish.testimonies_title
           </h2>
@@ -500,7 +500,7 @@ exports[`publier renders publier 1`] = `
         class="fr-container"
       >
         <h2
-          class="!text-h3 md:!text-h2 !mb-10 md:!mb-20 md:text-center"
+          class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
         >
           Publish.requiredTitle
         </h2>
@@ -508,161 +508,167 @@ exports[`publier renders publier 1`] = `
           class="flex flex-col lg:flex-row gap-4 lg:gap-10"
         >
           <div
-            class="p-6 md:p-8 flex-1 border border-border"
+            class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
             <div>
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height="80"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                style="color: transparent; object-fit: contain;"
-                width="80"
-              />
-            </div>
-            <h3
-              class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-            >
-              Publish.requiredSubtitle1
-            </h3>
-            <div
-              class="!text-large"
-            >
-              <p
-                class="mb-0"
+              <div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
               >
-                Publish.requiredText1
-              </p>
-            </div>
-            <div>
+                Publish.requiredSubtitle1
+              </h3>
               <div
-                class="text-normal !space-y-3"
+                class="!text-large"
               >
                 <p
-                  class="flex"
+                  class="mb-0"
                 >
-                  <i
-                    class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
-                  />
-                  Publish.requiredTextExample1Ko
+                  Publish.requiredText1
                 </p>
-                <p
-                  class="flex !mb-0"
+              </div>
+              <div>
+                <div
+                  class="text-normal !space-y-3"
                 >
-                  <i
-                    class="fr-icon-success-fill h-6 w-6 me-2 text-success"
-                  />
-                  Publish.requiredTextExample1Ok
-                </p>
+                  <p
+                    class="flex"
+                  >
+                    <i
+                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                    />
+                    Publish.requiredTextExample1Ko
+                  </p>
+                  <p
+                    class="flex !mb-0"
+                  >
+                    <i
+                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                    />
+                    Publish.requiredTextExample1Ok
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div
-            class="p-6 md:p-8 flex-1 border border-border"
+            class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
             <div>
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height="80"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                style="color: transparent; object-fit: contain;"
-                width="80"
-              />
-            </div>
-            <h3
-              class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-            >
-              Publish.requiredSubtitle2
-            </h3>
-            <div
-              class="!text-large"
-            >
-              <p
-                class="mb-0"
+              <div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
               >
-                Publish.requiredText2
-              </p>
-            </div>
-            <div>
+                Publish.requiredSubtitle2
+              </h3>
               <div
-                class="text-normal !space-y-3"
+                class="!text-large"
               >
                 <p
-                  class="flex"
+                  class="mb-0"
                 >
-                  <i
-                    class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
-                  />
-                  Publish.requiredTextExample2Ko
+                  Publish.requiredText2
                 </p>
-                <p
-                  class="flex !mb-0"
+              </div>
+              <div>
+                <div
+                  class="text-normal !space-y-3"
                 >
-                  <i
-                    class="fr-icon-success-fill h-6 w-6 me-2 text-success"
-                  />
-                  Publish.requiredTextExample2Ok
-                </p>
+                  <p
+                    class="flex"
+                  >
+                    <i
+                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                    />
+                    Publish.requiredTextExample2Ko
+                  </p>
+                  <p
+                    class="flex !mb-0"
+                  >
+                    <i
+                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                    />
+                    Publish.requiredTextExample2Ok
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div
-            class="p-6 md:p-8 flex-1 border border-border"
+            class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
             <div>
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height="80"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                style="color: transparent; object-fit: contain;"
-                width="80"
-              />
-            </div>
-            <h3
-              class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-            >
-              Publish.requiredSubtitle3
-            </h3>
-            <div
-              class="!text-large"
-            >
-              <p
-                class="mb-0"
+              <div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
               >
-                Publish.requiredText3
-              </p>
-            </div>
-            <div>
+                Publish.requiredSubtitle3
+              </h3>
               <div
-                class="text-normal !space-y-3"
+                class="!text-large"
               >
                 <p
-                  class="flex"
+                  class="mb-0"
                 >
-                  <i
-                    class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
-                  />
-                  Publish.requiredTextExample3Ko
+                  Publish.requiredText3
                 </p>
-                <p
-                  class="flex !mb-0"
+              </div>
+              <div>
+                <div
+                  class="text-normal !space-y-3"
                 >
-                  <i
-                    class="fr-icon-success-fill h-6 w-6 me-2 text-success"
-                  />
-                  Publish.requiredTextExample3Ok
-                </p>
+                  <p
+                    class="flex"
+                  >
+                    <i
+                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                    />
+                    Publish.requiredTextExample3Ko
+                  </p>
+                  <p
+                    class="flex !mb-0"
+                  >
+                    <i
+                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                    />
+                    Publish.requiredTextExample3Ok
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -694,7 +700,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 !mb-10 md:!mb-20 md:text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
             Publish.stepsTitle
           </h2>
@@ -1002,30 +1008,36 @@ exports[`publier renders publier 1`] = `
       class="relative"
     >
       <div
-        class="section bg_grey"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
-          <h2
-            class="title2 center !mb-0"
-          >
-            StaticPages.helpTitle
-          </h2>
-          <p
-            class="subtitle center"
-          >
-            Publish.helpSubtitle
-          </p>
           <div
-            class="top_space row"
+            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
           >
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            <h2
+              class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              <div
-                class="p-6 md:p-8 flex-1 border border-border"
-              >
+              StaticPages.helpTitle
+            </h2>
+            <p
+              class="!text-chapo md:text-center !mb-0"
+            >
+              Publish.helpSubtitle
+            </p>
+          </div>
+          <div
+            class="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+          >
+            <a
+              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Publish.helpTileTitle1"
+            >
+              <div>
                 <div>
                   <img
                     alt=""
@@ -1047,64 +1059,29 @@ exports[`publier renders publier 1`] = `
                 <div
                   class="!text-large"
                 >
-                  <p>
+                  <p
+                    class="!mb-0"
+                  >
                     Publish.helpTileText1
                   </p>
                 </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <span>
-                      Publish.helpTileCTA1
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
-                </div>
               </div>
-            </div>
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
-            >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="mt-6 pt-2 w-full text-right"
               >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </a>
+            <a
+              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              href="https://help.refugies.info/fr/"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Publish.helpTileTitle2"
+            >
+              <div>
                 <div>
                   <img
                     alt=""
@@ -1126,64 +1103,26 @@ exports[`publier renders publier 1`] = `
                 <div
                   class="!text-large"
                 >
-                  <p>
+                  <p
+                    class="!mb-0"
+                  >
                     Publish.helpTileText2
                   </p>
                 </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://help.refugies.info/fr/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <span>
-                      Publish.helpTileCTA2
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
-                </div>
               </div>
-            </div>
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
-            >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="mt-6 pt-2 w-full text-right"
               >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </a>
+            <button
+              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
+              title="StaticPages.helpTileTitle3"
+            >
+              <div>
                 <div>
                   <img
                     alt=""
@@ -1205,55 +1144,21 @@ exports[`publier renders publier 1`] = `
                 <div
                   class="!text-large"
                 >
-                  <p>
+                  <p
+                    class="!mb-0"
+                  >
                     StaticPages.helpTileText3
                   </p>
                 </div>
-                <div>
-                  <button
-                    class="link color_red"
-                  >
-                    <span>
-                      StaticPages.helpTileCTA3
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </button>
-                </div>
               </div>
-            </div>
+              <div
+                class="mt-6 pt-2 w-full text-right"
+              >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </button>
           </div>
         </div>
       </div>

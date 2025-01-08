@@ -5692,86 +5692,88 @@ exports[`homepage renders homepage 1`] = `
               title="Homepage.helpUsCardTitle1"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="80"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="80"
-                  />
-                </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Homepage.helpUsCardTitle1
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <div
-                    class="container purple"
+                  <div>
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="80"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="80"
+                    />
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    <p
-                      class="text"
+                    Homepage.helpUsCardTitle1
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <div
+                      class="container purple"
                     >
-                      Homepage.helpUsCardHelp1
+                      <p
+                        class="text"
+                      >
+                        Homepage.helpUsCardHelp1
+                      </p>
+                    </div>
+                    <p
+                      class="help_text"
+                    >
+                      Homepage.helpUsCardText1
                     </p>
                   </div>
-                  <p
-                    class="help_text"
-                  >
-                    Homepage.helpUsCardText1
-                  </p>
-                </div>
-                <div>
-                  <span
-                    class="link color_purple"
-                  >
-                    <span>
-                      Homepage.helpUsCardCTA1
-                    </span>
+                  <div>
                     <span
-                      class="icon icon"
+                      class="link color_purple"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
+                      <span>
+                        Homepage.helpUsCardCTA1
+                      </span>
+                      <span
+                        class="icon icon"
                       >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="purple"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <i
+                          style="height: 24px; line-height: 24px;"
                         >
-                          <g
-                            data-name="Layer 2"
+                          <svg
+                            class="eva eva-arrow-forward-outline"
+                            fill="purple"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
-                              data-name="arrow-forward"
+                              data-name="Layer 2"
                             >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
+                              <g
+                                data-name="arrow-forward"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  transform="rotate(-90 12 12)"
+                                  width="24"
+                                />
+                                <path
+                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                                />
+                              </g>
                             </g>
-                          </g>
-                        </svg>
-                      </i>
+                          </svg>
+                        </i>
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </div>
               </div>
             </a>
@@ -5785,138 +5787,140 @@ exports[`homepage renders homepage 1`] = `
               title="Homepage.helpUsCardTitle2"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-ua"
-                      title="ua"
-                    />
-                  </div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-ir"
-                      title="ir"
-                    />
-                  </div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-sa"
-                      title="sa"
-                    />
-                  </div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-gb"
-                      title="gb"
-                    />
-                  </div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-af"
-                      title="af"
-                    />
-                  </div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-ru"
-                      title="ru"
-                    />
-                  </div>
-                  <div
-                    class="container red"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-er"
-                      title="er"
-                    />
-                  </div>
-                </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Homepage.helpUsCardTitle2
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <div
-                    class="container red"
-                  >
-                    <p
-                      class="text"
+                  <div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
                     >
-                      Homepage.helpUsCardHelp2
+                      <span
+                        class="flag fi fi-ua"
+                        title="ua"
+                      />
+                    </div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ir"
+                        title="ir"
+                      />
+                    </div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-sa"
+                        title="sa"
+                      />
+                    </div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-gb"
+                        title="gb"
+                      />
+                    </div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-af"
+                        title="af"
+                      />
+                    </div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ru"
+                        title="ru"
+                      />
+                    </div>
+                    <div
+                      class="container red"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-er"
+                        title="er"
+                      />
+                    </div>
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                  >
+                    Homepage.helpUsCardTitle2
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <div
+                      class="container red"
+                    >
+                      <p
+                        class="text"
+                      >
+                        Homepage.helpUsCardHelp2
+                      </p>
+                    </div>
+                    <p
+                      class="help_text"
+                    >
+                      Homepage.helpUsCardText2
                     </p>
                   </div>
-                  <p
-                    class="help_text"
-                  >
-                    Homepage.helpUsCardText2
-                  </p>
-                </div>
-                <div>
-                  <span
-                    class="link color_red"
-                  >
-                    <span>
-                      Homepage.helpUsCardCTA2
-                    </span>
+                  <div>
                     <span
-                      class="icon icon"
+                      class="link color_red"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
+                      <span>
+                        Homepage.helpUsCardCTA2
+                      </span>
+                      <span
+                        class="icon icon"
                       >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <i
+                          style="height: 24px; line-height: 24px;"
                         >
-                          <g
-                            data-name="Layer 2"
+                          <svg
+                            class="eva eva-arrow-forward-outline"
+                            fill="red"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
-                              data-name="arrow-forward"
+                              data-name="Layer 2"
                             >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
+                              <g
+                                data-name="arrow-forward"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  transform="rotate(-90 12 12)"
+                                  width="24"
+                                />
+                                <path
+                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                                />
+                              </g>
                             </g>
-                          </g>
-                        </svg>
-                      </i>
+                          </svg>
+                        </i>
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </div>
               </div>
             </a>
@@ -5932,86 +5936,88 @@ exports[`homepage renders homepage 1`] = `
               title="Homepage.helpUsCardTitle3"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="80"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="80"
-                  />
-                </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Homepage.helpUsCardTitle3
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <div
-                    class="container orange"
+                  <div>
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="80"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="80"
+                    />
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    <p
-                      class="text"
+                    Homepage.helpUsCardTitle3
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <div
+                      class="container orange"
                     >
-                      Homepage.helpUsCardHelp3
+                      <p
+                        class="text"
+                      >
+                        Homepage.helpUsCardHelp3
+                      </p>
+                    </div>
+                    <p
+                      class="help_text"
+                    >
+                      Homepage.helpUsCardText3
                     </p>
                   </div>
-                  <p
-                    class="help_text"
-                  >
-                    Homepage.helpUsCardText3
-                  </p>
-                </div>
-                <div>
-                  <span
-                    class="link color_orange"
-                  >
-                    <span>
-                      Homepage.helpUsCardCTA3
-                    </span>
+                  <div>
                     <span
-                      class="icon icon"
+                      class="link color_orange"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
+                      <span>
+                        Homepage.helpUsCardCTA3
+                      </span>
+                      <span
+                        class="icon icon"
                       >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="orange"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <i
+                          style="height: 24px; line-height: 24px;"
                         >
-                          <g
-                            data-name="Layer 2"
+                          <svg
+                            class="eva eva-arrow-forward-outline"
+                            fill="orange"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
-                              data-name="arrow-forward"
+                              data-name="Layer 2"
                             >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
+                              <g
+                                data-name="arrow-forward"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  transform="rotate(-90 12 12)"
+                                  width="24"
+                                />
+                                <path
+                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                                />
+                              </g>
                             </g>
-                          </g>
-                        </svg>
-                      </i>
+                          </svg>
+                        </i>
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </div>
               </div>
             </a>
