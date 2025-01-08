@@ -48,3 +48,6 @@ credentials/
 
 # Storybook
 *storybook.log
+
+# Ui
+/packages/ui/dist

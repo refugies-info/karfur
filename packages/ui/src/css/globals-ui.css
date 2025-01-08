@@ -1,4 +1,3 @@
-@layer theme, base, dsfr, components, utilities;
 @import "tailwindcss";
 @source "../components/";
 

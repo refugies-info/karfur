@@ -1,1 +1,2 @@
+@layer theme, base, dsfr, components, utilities;
 @import "@refugies-info/ui/src/css/globals-ui.css";
