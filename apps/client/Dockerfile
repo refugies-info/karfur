@@ -12,7 +12,11 @@ WORKDIR /usr/src/app
 COPY ./ ./
 
 # Install dependencies
-RUN pnpm install --frozen-lockfile
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="${PNPM_HOME}:${PATH}"
+RUN mkdir -p "$PNPM_HOME" && \
+    pnpm add -g turbo && \
+    pnpm install --frozen-lockfile
 
 # Delete the pnpm store after installation is done
 RUN rm -rf .pnpm-store

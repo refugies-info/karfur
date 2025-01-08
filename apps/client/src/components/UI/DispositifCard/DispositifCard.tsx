@@ -1,7 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useMemo } from "react";
@@ -9,6 +8,7 @@ import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import FavoriteButton from "~/components/UI/FavoriteButton";
+import Image from "~/components/UI/Image";
 import { useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";

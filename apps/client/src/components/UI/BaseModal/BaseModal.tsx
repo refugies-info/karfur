@@ -1,9 +1,9 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import React from "react";
 import { Modal } from "reactstrap";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { useContentLocale } from "~/hooks";
 import { cls } from "~/lib/classname";
 import styles from "./BaseModal.module.scss";

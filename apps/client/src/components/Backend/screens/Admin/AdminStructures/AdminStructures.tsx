@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from "reactstrap";
+import Image from "~/components/UI/Image";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { allStructuresSelector } from "~/services/AllStructures/allStructures.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";

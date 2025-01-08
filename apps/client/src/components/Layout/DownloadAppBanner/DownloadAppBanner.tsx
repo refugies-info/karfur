@@ -1,10 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
+import Image from "~/components/UI/Image";
 import styles from "./DownloadAppBanner.module.scss";
 
 const STORE_LINK = isIOS ? iosStoreLink : androidStoreLink;

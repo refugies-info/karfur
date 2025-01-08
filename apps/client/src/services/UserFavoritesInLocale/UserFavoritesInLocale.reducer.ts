@@ -3,11 +3,11 @@ import { createReducer } from "typesafe-actions";
 import { UserFavoritesActions } from "./UserFavoritesInLocale.actions";
 
 export type UserFavoritesState = {
-  favorites: GetUserFavoritesResponse[];
+  favorites: GetUserFavoritesResponse[] | null;
 };
 
 const initialUserFavoritesState: UserFavoritesState = {
-  favorites: [],
+  favorites: null,
 };
 
 export const userFavoritesReducer = createReducer<UserFavoritesState, UserFavoritesActions>(initialUserFavoritesState, {

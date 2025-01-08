@@ -2,7 +2,6 @@ import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-type
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -26,6 +25,7 @@ import {
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import styles from "~/scss/components/staticPages.module.scss";

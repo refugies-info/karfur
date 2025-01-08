@@ -41,9 +41,6 @@ importers:
       mongodb:
         specifier: ^6.10.0
         version: 6.11.0(socks@2.8.3)
-      postinstall-postinstall:
-        specifier: ^2.1.0
-        version: 2.1.0
       prettier:
         specifier: ^3.3.3
         version: 3.4.1
@@ -645,6 +642,9 @@ importers:
       redux-saga:
         specifier: ^1.2.3
         version: 1.3.0
+      reselect:
+        specifier: ^5.1.1
+        version: 5.1.1
       sanitize-html:
         specifier: ^2.13.1
         version: 2.13.1
@@ -784,6 +784,9 @@ importers:
       algoliasearch:
         specifier: ^5.14.2
         version: 5.15.0
+      axios:
+        specifier: ^1.7.7
+        version: 1.7.8
       cloudinary:
         specifier: ^2.5.1
         version: 2.5.1
@@ -2375,7 +2378,7 @@ packages:
 
   '@expo/bunyan@4.0.1':
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
-    engines: {'0': node >=0.10.0}
+    engines: {node: '>=0.10.0'}
 
   '@expo/cli@0.17.13':
     resolution: {integrity: sha512-n13yxOmI3I0JidzMdFCH68tYKGDtK4XlDFk1vysZX7AIRKeDVRsSbHhma5jCla2bDt25RKmJBHA9KtzielwzAA==}
@@ -10204,9 +10207,6 @@ packages:
   postcss@8.4.49:
     resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
     engines: {node: ^10 || ^12 || >=14}
-
-  postinstall-postinstall@2.1.0:
-    resolution: {integrity: sha512-7hQX6ZlZXIoRiWNrbMQaLzUUfH+sSx39u8EJ9HYuDc1kLo9IXKWjM5RSquZN1ad5GnH8CGFM78fsAAQi3OKEEQ==}
 
   preact@10.25.1:
     resolution: {integrity: sha512-frxeZV2vhQSohQwJ7FvlqC40ze89+8friponWUFeVEkaCfhC6Eu4V0iND5C9CXz8JLndV07QRDeXzH1+Anz5Og==}
@@ -24102,8 +24102,6 @@ snapshots:
       nanoid: 3.3.8
       picocolors: 1.1.1
       source-map-js: 1.2.1
-
-  postinstall-postinstall@2.1.0: {}
 
   preact@10.25.1: {}
 

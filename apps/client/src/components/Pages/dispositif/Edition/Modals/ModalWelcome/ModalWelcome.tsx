@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { useState } from "react";
 import WelcomeStep1 from "~/assets/dispositif/welcome-step-1.svg";
 import WelcomeStep2 from "~/assets/dispositif/welcome-step-2.svg";
 import WelcomeStep5 from "~/assets/dispositif/welcome-step-5.png";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { Event } from "~/lib/tracking";
 import { StepsFooter } from "../components";
 import { modalTitles } from "./data";

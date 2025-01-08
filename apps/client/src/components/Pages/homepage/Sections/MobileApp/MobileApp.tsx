@@ -1,11 +1,11 @@
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import commonStyles from "~/scss/components/staticPages.module.scss";

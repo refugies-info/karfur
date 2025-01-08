@@ -2,7 +2,6 @@ import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id, RoleNa
 import { logger } from "logger";
 import moment from "moment";
 import "moment/locale/fr";
-import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Spinner } from "reactstrap";
@@ -10,6 +9,7 @@ import Swal from "sweetalert2";
 import marioProfile from "~/assets/mario-profile.jpg";
 import FButton from "~/components/UI/FButton/FButton";
 import FInput from "~/components/UI/FInput/FInput";
+import Image from "~/components/UI/Image";
 import { handleApiError } from "~/lib/handleApiErrors";
 import { isValidEmail, isValidPhone } from "~/lib/validateFields";
 import { setAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions";
