@@ -5,6 +5,14 @@
       "cache": false,
       "outputs": ["node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"]
     },
+    "@refugies-info/ui#build": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "@refugies-info/storybook#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
+    },
     "@refugies-info/client#build": {
       "dependsOn": ["//#update-icons"],
       "env": ["NEXT_PUBLIC_*"],

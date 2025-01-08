@@ -19,6 +19,7 @@
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
     "build:server": "turbo build --filter=@refugies-info/server",
+    "build:storybook": "turbo build --filter=@refugies-info/storybook",
     "build:mobile:android": "cd apps/mobile && eas build --profile development --platform android",
     "build:mobile:ios": "cd apps/mobile && eas build --profile development --platform ios",
     "check:dependency-version-consistency": "pnpm check-dependency-version-consistency .",

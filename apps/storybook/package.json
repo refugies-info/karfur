@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "chromatic": "pnpm dlx chromatic --build-script-name storybook:build --exit-zero-on-changes",
+    "build": "storybook build",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build",
+    "storybook:build": "turbo build --filter=@refugies-info/storybook",
     "storybook:publish": "dotenv-run-script chromatic"
   },
   "dependencies": {
