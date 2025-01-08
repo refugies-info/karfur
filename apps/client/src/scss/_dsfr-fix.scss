@@ -61,8 +61,8 @@
 
 // white button
 .fr-button-reverse {
-  &:global(.fr-btn--secondary) {
-    color: var(--text-inverted-blue-france);
+  &.fr-btn--secondary {
+    color: var(--text-inverted-blue-france) !important;
     box-shadow: inset 0 0 0 1px var(--border-open-blue-france) !important;
 
     &:hover {
@@ -74,9 +74,9 @@
     }
   }
 
-  &:global(:not(.fr-btn--secondary)) {
-    background-color: var(--background-contrast-blue-france);
-    color: var(--text-action-high-blue-france);
+  &:not(.fr-btn--secondary) {
+    background-color: var(--background-contrast-blue-france) !important;
+    color: var(--text-action-high-blue-france) !important;
 
     &:hover {
       background-color: var(--background-contrast-blue-france-hover) !important;

@@ -195,158 +195,161 @@ exports[`traduire renders traduire 1`] = `
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-ua"
-                      title="ua"
-                    />
+                  <div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ua"
+                        title="ua"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ir"
+                        title="ir"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-sa"
+                        title="sa"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-gb"
+                        title="gb"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-af"
+                        title="af"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-ru"
+                        title="ru"
+                      />
+                    </div>
+                    <div
+                      class="container"
+                      style="width: 40px; height: 40px;"
+                    >
+                      <span
+                        class="flag fi fi-er"
+                        title="er"
+                      />
+                    </div>
                   </div>
-                  <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    <span
-                      class="flag fi fi-ir"
-                      title="ir"
-                    />
-                  </div>
+                    Translate.whoCardTitle1
+                  </h3>
                   <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
+                    class="!text-large"
                   >
-                    <span
-                      class="flag fi fi-sa"
-                      title="sa"
-                    />
-                  </div>
-                  <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-gb"
-                      title="gb"
-                    />
-                  </div>
-                  <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-af"
-                      title="af"
-                    />
-                  </div>
-                  <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-ru"
-                      title="ru"
-                    />
-                  </div>
-                  <div
-                    class="container"
-                    style="width: 40px; height: 40px;"
-                  >
-                    <span
-                      class="flag fi fi-er"
-                      title="er"
-                    />
+                    <p
+                      class="mb-0"
+                    >
+                      Translate.whoCardText1
+                    </p>
                   </div>
                 </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Translate.whoCardTitle1
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Translate.whoCardText1
-                  </p>
-                </div>
-                <div />
               </div>
             </div>
             <div
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <div
-                    class="container"
-                    style="width: 56px; height: 56px;"
+                  <div>
+                    <div
+                      class="container"
+                      style="width: 56px; height: 56px;"
+                    >
+                      <span
+                        class="flag fi fi-fr"
+                        title="fr"
+                      />
+                    </div>
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    <span
-                      class="flag fi fi-fr"
-                      title="fr"
-                    />
+                    Translate.whoCardTitle2
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <p
+                      class="mb-0"
+                    >
+                      Translate.whoCardText2
+                    </p>
                   </div>
                 </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Translate.whoCardTitle2
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Translate.whoCardText2
-                  </p>
-                </div>
-                <div />
               </div>
             </div>
             <div
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="80"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="80"
-                  />
-                </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Translate.whoCardTitle3
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <p
-                    class="mb-0"
+                  <div>
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="80"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="80"
+                    />
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    Translate.whoCardText3
-                  </p>
+                    Translate.whoCardTitle3
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <p
+                      class="mb-0"
+                    >
+                      Translate.whoCardText3
+                    </p>
+                  </div>
                 </div>
-                <div />
               </div>
             </div>
           </div>
@@ -761,78 +764,80 @@ exports[`traduire renders traduire 1`] = `
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="80"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="80"
-                  />
-                </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  Translate.helpTileTitle1
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <p>
-                    Translate.helpTileText1
-                  </p>
-                </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                    rel="noopener noreferrer"
-                    target="_blank"
+                  <div>
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="80"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="80"
+                    />
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    <span>
-                      Translate.helpTileCTA1
-                    </span>
-                    <span
-                      class="icon icon"
+                    Translate.helpTileTitle1
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <p>
+                      Translate.helpTileText1
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      class="link color_red"
+                      href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
+                      <span>
+                        Translate.helpTileCTA1
+                      </span>
+                      <span
+                        class="icon icon"
                       >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <i
+                          style="height: 24px; line-height: 24px;"
                         >
-                          <g
-                            data-name="Layer 2"
+                          <svg
+                            class="eva eva-arrow-forward-outline"
+                            fill="red"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
-                              data-name="arrow-forward"
+                              data-name="Layer 2"
                             >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
+                              <g
+                                data-name="arrow-forward"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  transform="rotate(-90 12 12)"
+                                  width="24"
+                                />
+                                <path
+                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                                />
+                              </g>
                             </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
+                          </svg>
+                        </i>
+                      </span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -840,75 +845,77 @@ exports[`traduire renders traduire 1`] = `
               class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
             >
               <div
-                class="p-6 md:p-8 flex-1 border border-border"
+                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="80"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="80"
-                  />
-                </div>
-                <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                >
-                  StaticPages.helpTileTitle3
-                </h3>
-                <div
-                  class="!text-large"
-                >
-                  <p>
-                    StaticPages.helpTileText3
-                  </p>
-                </div>
-                <div>
-                  <button
-                    class="link color_red"
+                  <div>
+                    <img
+                      alt=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="80"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                      style="color: transparent; object-fit: contain;"
+                      width="80"
+                    />
+                  </div>
+                  <h3
+                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
                   >
-                    <span>
-                      StaticPages.helpTileCTA3
-                    </span>
-                    <span
-                      class="icon icon"
+                    StaticPages.helpTileTitle3
+                  </h3>
+                  <div
+                    class="!text-large"
+                  >
+                    <p>
+                      StaticPages.helpTileText3
+                    </p>
+                  </div>
+                  <div>
+                    <button
+                      class="link color_red"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
+                      <span>
+                        StaticPages.helpTileCTA3
+                      </span>
+                      <span
+                        class="icon icon"
                       >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <i
+                          style="height: 24px; line-height: 24px;"
                         >
-                          <g
-                            data-name="Layer 2"
+                          <svg
+                            class="eva eva-arrow-forward-outline"
+                            fill="red"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
                             <g
-                              data-name="arrow-forward"
+                              data-name="Layer 2"
                             >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
+                              <g
+                                data-name="arrow-forward"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  transform="rotate(-90 12 12)"
+                                  width="24"
+                                />
+                                <path
+                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                                />
+                              </g>
                             </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </button>
+                          </svg>
+                        </i>
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

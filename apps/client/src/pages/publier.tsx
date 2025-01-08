@@ -5,9 +5,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
-import HelpIcon3 from "~/assets/staticPages/publier/help-icon-crisp.svg";
-import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutoriel.svg";
-import HelpIcon1 from "~/assets/staticPages/publier/help-icon-visio.svg";
+import HelpIcon3 from "~/assets/staticPages/publier/help-icon-chat.svg";
+import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutos.svg";
+import HelpIcon1 from "~/assets/staticPages/publier/help-icon-webinar.svg";
 import RequiredIcon1 from "~/assets/staticPages/publier/icon-calendar.svg";
 import RequiredIcon3 from "~/assets/staticPages/publier/icon-hands.svg";
 import RequiredIcon2 from "~/assets/staticPages/publier/icon-money.svg";
@@ -100,7 +100,7 @@ const RecensezVotreAction = (props: Props) => {
               <Button
                 iconId="fr-icon-arrow-right-line"
                 iconPosition="right"
-                className="fr-button-reverse mt-10 !w-full justify-center md:!w-auto"
+                className="mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
                 linkProps={{
                   href: "#register",
                 }}
@@ -320,57 +320,35 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refFaq} className="relative">
         {/* HELP */}
-        <div className={cls(styles.section, styles.bg_grey)}>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, styles.center, "!mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <p className={cls(styles.subtitle, styles.center)}>{t("Publish.helpSubtitle")}</p>
-            <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={HelpIcon1}
-                  title={t("Publish.helpTileTitle1")}
-                  footer={
-                    <InlineLink
-                      link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
-                      text={t("Publish.helpTileCTA1")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("Publish.helpTileText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={HelpIcon2}
-                  title={t("Publish.helpTileTitle2")}
-                  footer={
-                    <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.helpTileCTA2")} color="red" />
-                  }
-                >
-                  <p>{t("Publish.helpTileText2")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={HelpIcon3}
-                  title={t("StaticPages.helpTileTitle3")}
-                  footer={
-                    <InlineLink
-                      link="#"
-                      type="button"
-                      onClick={() => window.$crisp.push(["do", "chat:open"])}
-                      text={t("StaticPages.helpTileCTA3")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("StaticPages.helpTileText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        <Section>
+          <div className="fr-container">
+            <div className="max-w-[720px] mb-10 lg:mb-20 mx-auto">
+              <Title2 smallMb>{t("StaticPages.helpTitle")}</Title2>
+              <p className="!text-chapo md:text-center !mb-0">{t("Publish.helpSubtitle")}</p>
+            </div>
+            <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-10">
+              <Card
+                image={HelpIcon1}
+                title={t("Publish.helpTileTitle1")}
+                link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
+              >
+                <p className="!mb-0">{t("Publish.helpTileText1")}</p>
+              </Card>
+
+              <Card image={HelpIcon2} title={t("Publish.helpTileTitle2")} link="https://help.refugies.info/fr/">
+                <p className="!mb-0">{t("Publish.helpTileText2")}</p>
+              </Card>
+
+              <Card
+                image={HelpIcon3}
+                title={t("StaticPages.helpTileTitle3")}
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
+              >
+                <p className="!mb-0">{t("StaticPages.helpTileText3")}</p>
+              </Card>
+            </div>
+          </div>
+        </Section>
 
         {/* FIGURES */}
         <div className={cls(styles.section, styles.bg_red)}>
