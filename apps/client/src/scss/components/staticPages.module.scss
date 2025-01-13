@@ -213,20 +213,6 @@ $breakpoint: "lg-limit";
   max-width: 720px;
 }
 
-// Publier
-.video2 {
-  :global(.autoplay-video) {
-    border-radius: 26px;
-    border-width: 12px;
-
-    @include isTablet {
-      width: 124px;
-      border-width: 6px;
-      border-radius: 18px;
-    }
-  }
-}
-
 // Traduire
 .needs {
   max-width: 720px;

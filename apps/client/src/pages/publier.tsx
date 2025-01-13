@@ -27,7 +27,6 @@ import {
   Accordion,
   Card,
   CountUpFigure,
-  InlineLink,
   Register,
   SecondaryNavbar,
   Section,
@@ -382,25 +381,37 @@ const RecensezVotreAction = (props: Props) => {
         </div>
 
         {/* FAQ */}
-        <div className={cls(styles.section)}>
+        <Section className="relative">
           <span id="faq" className={styles.anchor}></span>
-          <Container className={cls(styles.container, styles.faq)}>
-            <h2 className={cls(styles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
-            <Accordion
-              items={[
-                { title: t("Publish.faqAccordionTitle1"), text: t("Publish.faqAccordionText1") },
-                { title: t("Publish.faqAccordionTitle2"), text: t("Publish.faqAccordionText2") },
-                { title: t("Publish.faqAccordionTitle3"), text: t("Publish.faqAccordionText3") },
-                { title: t("Publish.faqAccordionTitle4"), text: t("Publish.faqAccordionText4") },
-                { title: t("Publish.faqAccordionTitle5"), text: t("Publish.faqAccordionText5") },
-              ]}
-              multiOpen
-            />
-            <div className={styles.link}>
-              <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.faqCTA")} color="red" />
+          <div className="fr-container max-w-">
+            <Title2>{t("StaticPages.faqTitle")}</Title2>
+            <div className="max-w-[720px] mx-auto">
+              <Accordion
+                items={[
+                  { title: t("Publish.faqAccordionTitle1"), text: t("Publish.faqAccordionText1") },
+                  { title: t("Publish.faqAccordionTitle2"), text: t("Publish.faqAccordionText2") },
+                  { title: t("Publish.faqAccordionTitle3"), text: t("Publish.faqAccordionText3") },
+                  { title: t("Publish.faqAccordionTitle4"), text: t("Publish.faqAccordionText4") },
+                  { title: t("Publish.faqAccordionTitle5"), text: t("Publish.faqAccordionText5") },
+                ]}
+                multiOpen
+              />
             </div>
-          </Container>
-        </div>
+            <div className="mt-10 lg:mt-20 text-center">
+              <Button
+                priority="tertiary no outline"
+                linkProps={{
+                  href: "https://help.refugies.info/fr/",
+                }}
+                iconId="fr-icon-arrow-right-line"
+                iconPosition="right"
+                size="large"
+              >
+                {t("Publish.faqCTA")}
+              </Button>
+            </div>
+          </div>
+        </Section>
       </div>
 
       {/* REGISTER */}
