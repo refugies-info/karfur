@@ -177,12 +177,12 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-primary"
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-blue-france"
                       >
                         Publish.whyAccordionTitle1
                       </span>
                       <i
-                        class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-primary"
+                        class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-blue-france"
                       />
                     </button>
                   </h3>
@@ -1123,63 +1123,63 @@ exports[`publier renders publier 1`] = `
         </div>
       </div>
       <div
-        class="section bg_red"
+        class="py-10 md:py-20 bg-light-alt-blue"
       >
         <div
-          class="container text-center container"
+          class="fr-container"
         >
           <h2
-            class="title2 white text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
           >
             Publish.figuresTitle
           </h2>
           <div
-            class="row"
+            class="flex flex-col lg:flex-row gap-10 lg:gap-20 justify-center"
           >
             <div
-              class="col-sm-12 col-lg-4"
+              class="text-center flex-1"
             >
               <div
-                class="figure"
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
                 <div>
                   0
                 </div>
               </div>
               <p
-                class="label"
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
               >
                 Publish.figuresSubtitle1
               </p>
             </div>
             <div
-              class="col-sm-12 col-lg-4"
+              class="text-center flex-1"
             >
               <div
-                class="figure"
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
                 <div>
                   0
                 </div>
               </div>
               <p
-                class="label"
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
               >
                 Publish.figuresSubtitle2
               </p>
             </div>
             <div
-              class="col-sm-12 col-lg-4"
+              class="text-center flex-1"
             >
               <div
-                class="figure"
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
                 <div>
                   0
                 </div>
               </div>
               <p
-                class="label"
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
               >
                 Publish.figuresSubtitle3
               </p>
@@ -1195,7 +1195,7 @@ exports[`publier renders publier 1`] = `
           id="faq"
         />
         <div
-          class="fr-container max-w-"
+          class="fr-container"
         >
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"

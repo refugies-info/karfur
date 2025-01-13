@@ -5365,12 +5365,12 @@ exports[`homepage renders homepage 1`] = `
                     type="button"
                   >
                     <span
-                      class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-primary"
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-blue-france"
                     >
                       Homepage.whyAccordionTitle1
                     </span>
                     <i
-                      class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-primary"
+                      class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-blue-france"
                     />
                   </button>
                 </h3>
@@ -6003,49 +6003,61 @@ exports[`homepage renders homepage 1`] = `
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="figure"
+              class="text-center flex-1"
             >
-              <div>
-                0
+              <div
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
               </div>
+              <p
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+              >
+                Homepage.figuresSubtitle1
+              </p>
             </div>
-            <p
-              class="label"
-            >
-              Homepage.figuresSubtitle1
-            </p>
           </div>
           <div
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="figure"
+              class="text-center flex-1"
             >
-              <div>
-                0
+              <div
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
               </div>
+              <p
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+              >
+                Homepage.figuresSubtitle2
+              </p>
             </div>
-            <p
-              class="label"
-            >
-              Homepage.figuresSubtitle2
-            </p>
           </div>
           <div
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="figure"
+              class="text-center flex-1"
             >
-              <div>
-                0
+              <div
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
               </div>
+              <p
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+              >
+                Homepage.figuresSubtitle3
+              </p>
             </div>
-            <p
-              class="label"
-            >
-              Homepage.figuresSubtitle3
-            </p>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Col, Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import HelpIcon3 from "~/assets/staticPages/publier/help-icon-chat.svg";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutos.svg";
 import HelpIcon1 from "~/assets/staticPages/publier/help-icon-webinar.svg";
@@ -363,27 +363,21 @@ const RecensezVotreAction = (props: Props) => {
         </Section>
 
         {/* FIGURES */}
-        <div className={cls(styles.section, styles.bg_red)}>
-          <Container className={cls(styles.container, "text-center")}>
-            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Publish.figuresTitle")}</h2>
-            <Row>
-              <Col sm="12" lg="4">
-                <CountUpFigure number={props.nbFiches} text={t("Publish.figuresSubtitle1")} />
-              </Col>
-              <Col sm="12" lg="4">
-                <CountUpFigure number={props.nbStructures} text={t("Publish.figuresSubtitle2")} />
-              </Col>
-              <Col sm="12" lg="4">
-                <CountUpFigure number={props.nbVues} text={t("Publish.figuresSubtitle3")} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        <Section className="bg-light-alt-blue">
+          <div className="fr-container">
+            <Title2 className="text-center">{t("Publish.figuresTitle")}</Title2>
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 justify-center">
+              <CountUpFigure number={props.nbFiches} text={t("Publish.figuresSubtitle1")} />
+              <CountUpFigure number={props.nbStructures} text={t("Publish.figuresSubtitle2")} />
+              <CountUpFigure number={props.nbVues} text={t("Publish.figuresSubtitle3")} />
+            </div>
+          </div>
+        </Section>
 
         {/* FAQ */}
         <Section className="relative">
           <span id="faq" className={styles.anchor}></span>
-          <div className="fr-container max-w-">
+          <div className="fr-container">
             <Title2>{t("StaticPages.faqTitle")}</Title2>
             <div className="max-w-[720px] mx-auto">
               <Accordion
