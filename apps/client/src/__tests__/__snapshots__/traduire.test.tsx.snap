@@ -939,317 +939,218 @@ exports[`traduire renders traduire 1`] = `
           StaticPages.faqTitle
         </h2>
         <div
-          class="row"
+          class="flex gap-20"
         >
           <div
-            class="infos col"
+            class=""
           >
             <div
-              class="container"
+              data-orientation="vertical"
             >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle1
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
               <div
-                class="collapse"
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
               >
-                <p
-                  class="text"
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  Translate.faqAccordionText1
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle2
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
+                  <button
+                    aria-controls="radix-:r2:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r1:"
+                    type="button"
                   >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText2
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle3
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText3
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle4
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText4
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle5
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText5
-                </p>
-                <div
-                  class="cta"
-                >
-                  <a
-                    class="link color_blue"
-                    href="https://airtable.com/shrQxPHedgZ5PuXot"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <span>
-                      Translate.faqAccordionCTA5
-                    </span>
                     <span
-                      class="icon icon"
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="blue"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
+                      Translate.faqAccordionTitle1
                     </span>
-                  </a>
-                </div>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r1:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r2:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
+              </div>
+              <div
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <button
+                    aria-controls="radix-:r4:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r3:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Translate.faqAccordionTitle2
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r3:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r4:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
+              </div>
+              <div
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <button
+                    aria-controls="radix-:r6:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r5:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Translate.faqAccordionTitle3
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r5:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r6:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
+              </div>
+              <div
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <button
+                    aria-controls="radix-:r8:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r7:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Translate.faqAccordionTitle4
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r7:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r8:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
+              </div>
+              <div
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <button
+                    aria-controls="radix-:ra:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r9:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Translate.faqAccordionTitle5
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r9:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:ra:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
               </div>
             </div>
           </div>
@@ -1278,7 +1179,7 @@ exports[`traduire renders traduire 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r1:"
+          id="fr-button-:rb:"
         >
           login_or_signup
         </button>

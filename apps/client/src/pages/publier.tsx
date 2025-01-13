@@ -19,6 +19,8 @@ import StepImage4 from "~/assets/staticPages/publier/step-image-4.png";
 import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
 import StepImage6 from "~/assets/staticPages/publier/step-image-6.png";
 import WhyImage1 from "~/assets/staticPages/publier/why-image-1.png";
+import WhyImage2 from "~/assets/staticPages/publier/why-image-2.png";
+import WhyImage3 from "~/assets/staticPages/publier/why-image-3.png";
 import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
 import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
 import {
@@ -139,23 +141,34 @@ const RecensezVotreAction = (props: Props) => {
             <h2 className={styles.title2}>{t("Publish.whyTitle")}</h2>
             <Accordion
               items={[
-                { title: t("Publish.whyAccordionTitle1"), text: t("Publish.whyAccordionText1"), image: WhyImage1 },
+                {
+                  title: t("Publish.whyAccordionTitle1"),
+                  text: t("Publish.whyAccordionText1"),
+                  image: WhyImage1,
+                  mediaWidth: 400,
+                  mediaHeight: 320,
+                },
                 {
                   title: t("Publish.whyAccordionTitle2"),
                   text: t("Publish.whyAccordionText2"),
-                  video: "/video/publier-video-why2.mp4",
-                  mediaWidth: 217,
-                  mediaHeight: 442,
-                  className: styles.video2,
+                  image: WhyImage2,
+                  mediaWidth: 400,
+                  mediaHeight: 320,
                 },
                 {
                   title: t("Publish.whyAccordionTitle3"),
                   text: t("Publish.whyAccordionText3"),
-                  video: "/video/publier-video-why3.mp4",
-                  mediaWidth: 350,
-                  noShadow: true,
+                  image: WhyImage3,
+                  mediaWidth: 400,
+                  mediaHeight: 320,
                 },
-                { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 },
+                {
+                  title: t("Publish.whyAccordionTitle4"),
+                  text: t("Publish.whyAccordionText4"),
+                  image: WhyImage4,
+                  mediaWidth: 400,
+                  mediaHeight: 320,
+                },
               ]}
               withImages
               initOpen
