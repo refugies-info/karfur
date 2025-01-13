@@ -1188,283 +1188,250 @@ exports[`publier renders publier 1`] = `
         </div>
       </div>
       <div
-        class="section"
+        class="py-10 md:py-20 relative"
       >
         <span
           class="anchor"
           id="faq"
         />
         <div
-          class="container faq container"
+          class="fr-container max-w-"
         >
           <h2
-            class="title2 text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
             StaticPages.faqTitle
           </h2>
           <div
-            class="flex gap-20"
+            class="max-w-[720px] mx-auto"
           >
             <div
-              class=""
+              class="flex gap-20"
             >
               <div
-                data-orientation="vertical"
+                class=""
               >
                 <div
-                  class=""
                   data-orientation="vertical"
-                  data-state="closed"
                 >
-                  <h3
-                    class="!mb-0"
+                  <div
+                    class=""
                     data-orientation="vertical"
                     data-state="closed"
                   >
-                    <button
-                      aria-controls="radix-:rd:"
-                      aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    <h3
+                      class="!mb-0"
                       data-orientation="vertical"
-                      data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:rc:"
-                      type="button"
                     >
-                      <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      <button
+                        aria-controls="radix-:rd:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rc:"
+                        type="button"
                       >
-                        Publish.faqAccordionTitle1
-                      </span>
-                      <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
-                      />
-                    </button>
-                  </h3>
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        >
+                          Publish.faqAccordionTitle1
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rc:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rd:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
                   <div
-                    aria-labelledby="radix-:rc:"
-                    class="content mt-4 px-4 pb-8"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-:rd:"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
-                </div>
-                <div
-                  class=""
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <h3
-                    class="!mb-0"
+                    class=""
                     data-orientation="vertical"
                     data-state="closed"
                   >
-                    <button
-                      aria-controls="radix-:rf:"
-                      aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    <h3
+                      class="!mb-0"
                       data-orientation="vertical"
-                      data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:re:"
-                      type="button"
                     >
-                      <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      <button
+                        aria-controls="radix-:rf:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:re:"
+                        type="button"
                       >
-                        Publish.faqAccordionTitle2
-                      </span>
-                      <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
-                      />
-                    </button>
-                  </h3>
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        >
+                          Publish.faqAccordionTitle2
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:re:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rf:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
                   <div
-                    aria-labelledby="radix-:re:"
-                    class="content mt-4 px-4 pb-8"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-:rf:"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
-                </div>
-                <div
-                  class=""
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <h3
-                    class="!mb-0"
+                    class=""
                     data-orientation="vertical"
                     data-state="closed"
                   >
-                    <button
-                      aria-controls="radix-:rh:"
-                      aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    <h3
+                      class="!mb-0"
                       data-orientation="vertical"
-                      data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:rg:"
-                      type="button"
                     >
-                      <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      <button
+                        aria-controls="radix-:rh:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rg:"
+                        type="button"
                       >
-                        Publish.faqAccordionTitle3
-                      </span>
-                      <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
-                      />
-                    </button>
-                  </h3>
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        >
+                          Publish.faqAccordionTitle3
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rg:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rh:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
                   <div
-                    aria-labelledby="radix-:rg:"
-                    class="content mt-4 px-4 pb-8"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-:rh:"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
-                </div>
-                <div
-                  class=""
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <h3
-                    class="!mb-0"
+                    class=""
                     data-orientation="vertical"
                     data-state="closed"
                   >
-                    <button
-                      aria-controls="radix-:rj:"
-                      aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    <h3
+                      class="!mb-0"
                       data-orientation="vertical"
-                      data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:ri:"
-                      type="button"
                     >
-                      <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      <button
+                        aria-controls="radix-:rj:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:ri:"
+                        type="button"
                       >
-                        Publish.faqAccordionTitle4
-                      </span>
-                      <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
-                      />
-                    </button>
-                  </h3>
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        >
+                          Publish.faqAccordionTitle4
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:ri:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rj:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
                   <div
-                    aria-labelledby="radix-:ri:"
-                    class="content mt-4 px-4 pb-8"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-:rj:"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
-                </div>
-                <div
-                  class=""
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <h3
-                    class="!mb-0"
+                    class=""
                     data-orientation="vertical"
                     data-state="closed"
                   >
-                    <button
-                      aria-controls="radix-:rl:"
-                      aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    <h3
+                      class="!mb-0"
                       data-orientation="vertical"
-                      data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:rk:"
-                      type="button"
                     >
-                      <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      <button
+                        aria-controls="radix-:rl:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rk:"
+                        type="button"
                       >
-                        Publish.faqAccordionTitle5
-                      </span>
-                      <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
-                      />
-                    </button>
-                  </h3>
-                  <div
-                    aria-labelledby="radix-:rk:"
-                    class="content mt-4 px-4 pb-8"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-:rl:"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        >
+                          Publish.faqAccordionTitle5
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rk:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rl:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="link"
+            class="mt-10 lg:mt-20 text-center"
           >
             <a
-              class="link color_red"
+              class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
               href="https://help.refugies.info/fr/"
-              rel="noopener noreferrer"
-              target="_blank"
+              id="fr-button-:rm:"
             >
-              <span>
-                Publish.faqCTA
-              </span>
-              <span
-                class="icon icon"
-              >
-                <i
-                  style="height: 24px; line-height: 24px;"
-                >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="red"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
+              Publish.faqCTA
             </a>
           </div>
         </div>
@@ -1492,7 +1459,7 @@ exports[`publier renders publier 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:rm:"
+          id="fr-button-:rn:"
         >
           login_or_signup
         </button>
