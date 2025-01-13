@@ -5,75 +5,10 @@
 @import "~/scss/mixins/rtl";
 @import "~/scss/variables";
 
-.container {
-  position: relative;
-  margin-bottom: u(8);
-
-  @include isTablet {
-    margin-bottom: u(6);
-  }
-}
-
-.btn {
-  @include text("h5");
-
-  background: $white;
-  border-color: $white;
-  padding: u(4);
-  font-weight: bold;
-  box-shadow: 0 10px 30px 0 #00000026;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: $radius;
-  width: 100%;
-
-  @include isTablet {
-    @include text("large");
-  }
-
-  &:hover,
-  &.open {
-    background: $gray40b !important;
-    border-color: $darkColor;
-  }
-
-  &.open {
-    box-shadow: none;
-  }
-}
-
-.infos {
-  &.with_images {
-    @include media-min("lg-limit") {
-      width: 50%;
-      flex-grow: 0;
-      flex-basis: auto;
-    }
-  }
-}
-
 .text {
-  @include text("large");
-
-  padding-right: u(4);
-  padding-left: u(4);
-  margin-bottom: 0;
-  margin-top: u(4);
-
-  @include isTablet {
-    @include text("normal");
-  }
-
   ul {
     margin: u(2) 0;
-    padding-left: u(6);
-
-    @include rtl {
-      padding-right: u(6);
-      padding-left: 0;
-    }
+    padding-inline-start: u(6);
 
     li {
       margin-bottom: u(2);
@@ -81,54 +16,39 @@
   }
 }
 
-.cta {
-  padding-right: u(4);
-  padding-left: u(4);
-}
+.content {
+  overflow: hidden;
 
-.image {
-  max-width: 100%;
-  height: auto;
-}
+  &[data-state="open"] {
+    animation: slide-down 300ms ease-out;
+  }
 
-.video {
-  max-width: 250px;
-  margin: 0 auto u(6);
-  text-align: center;
-
-  @include isTablet {
-    margin-top: u(6);
+  &[data-state="closed"] {
+    animation: slide-up 300ms ease-out;
   }
 }
 
-.icon {
-  margin-left: u(4);
-  transition: transform 0.2s ease-in-out;
-
-  @include rtl {
-    margin-right: u(4);
-    margin-left: inherit;
+@keyframes slide-down {
+  from {
+    height: 0;
   }
 
-  .open & {
-    transform: rotate(180deg);
+  to {
+    height: var(--radix-accordion-content-height);
   }
 }
 
-.media {
-  width: 50%;
-  align-items: center;
-  display: flex;
-
-  &.center {
-    justify-content: center;
+@keyframes slide-up {
+  from {
+    height: var(--radix-accordion-content-height);
   }
 
-  &.right {
-    justify-content: flex-end;
+  to {
+    height: 0;
   }
 }
 
+/* TODO: delete when useless */
 .youtube,
 .no_cookie {
   border: 8px solid $white;
