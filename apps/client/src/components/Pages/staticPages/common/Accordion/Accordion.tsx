@@ -105,7 +105,10 @@ const Accordion = (props: Props) => {
                     )}
                   >
                     <span
-                      className={cls("!text-chapo !text-left !font-medium !mb-0 grow-1", isItemOpen && "!text-primary")}
+                      className={cls(
+                        "!text-chapo !text-left !font-medium !mb-0 grow-1",
+                        isItemOpen && "!text-blue-france",
+                      )}
                     >
                       {item.title}
                     </span>
@@ -113,7 +116,7 @@ const Accordion = (props: Props) => {
                       className={cls(
                         isItemOpen ? "fr-icon-subtract-line" : "fr-icon-add-line",
                         "before:!w-4 before:!h-4 flex",
-                        isItemOpen && "before:!bg-primary",
+                        isItemOpen && "before:!bg-blue-france",
                       )}
                     />
                   </AccordionRadix.Trigger>
