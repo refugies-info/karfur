@@ -143,7 +143,13 @@ const Navbar = () => {
   return (
     <>
       <Header
-        brandTop="GOUVERNEMENT"
+        brandTop={
+          <>
+            République
+            <br />
+            Française
+          </>
+        }
         homeLinkProps={{
           href: "/",
           title: "Accueil - Réfugiés.info",
