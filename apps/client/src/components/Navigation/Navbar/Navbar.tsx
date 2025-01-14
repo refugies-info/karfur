@@ -4,7 +4,7 @@ import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { memo, useMemo } from "react";
+import { memo, MouseEvent, useMemo } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
@@ -107,7 +107,7 @@ const Navbar = () => {
       {
         linkProps: {
           href: "#",
-          onClick: (e) => {
+          onClick: (e: MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
             dispatch(toggleNewsletterModalAction(true));
             Event("NEWSLETTER", "open modal", "header");
