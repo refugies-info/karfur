@@ -5347,20 +5347,21 @@ exports[`homepage renders homepage 1`] = `
               <div
                 class=""
                 data-orientation="vertical"
-                data-state="closed"
+                data-state="open"
               >
                 <h3
                   class="!mb-0"
                   data-orientation="vertical"
-                  data-state="closed"
+                  data-state="open"
                 >
                   <button
                     aria-controls="radix-:r13:"
-                    aria-expanded="false"
+                    aria-disabled="true"
+                    aria-expanded="true"
                     class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
                     data-orientation="vertical"
                     data-radix-collection-item=""
-                    data-state="closed"
+                    data-state="open"
                     id="radix-:r12:"
                     type="button"
                   >
@@ -5378,12 +5379,17 @@ exports[`homepage renders homepage 1`] = `
                   aria-labelledby="radix-:r12:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
+                  data-state="open"
                   id="radix-:r13:"
                   role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
+                >
+                  <p
+                    class="text !text-large !mb-0"
+                  >
+                    Homepage.whyAccordionText1
+                  </p>
+                </div>
               </div>
               <div
                 class=""
