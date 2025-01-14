@@ -18,9 +18,6 @@ const QuickAccessMenu = () => {
   const { t } = useTranslation();
   const { isMobile } = useWindowSize();
 
-  // eslint-disable-next-line no-console
-  console.log(isMobile);
-
   const menuItems = [
     <Button
       key="publish"

@@ -5,7 +5,7 @@ import router from "next/router";
 import { forwardRef, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useChangeLanguage } from "~/hooks";
+import { useChangeLanguage, useWindowSize } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -21,6 +21,7 @@ const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, ...props }, ref) => {
     const { t } = useTranslation();
     const stylesDisabled = useStylesDisabled();
+    const { isMobile } = useWindowSize();
 
     const { changeLanguage } = useChangeLanguage();
     const currentLanguage = router.locale || "fr";
@@ -65,7 +66,7 @@ const LanguageItem = memo(
         {...props}
       >
         <b>
-          {item.langueFr} - {item.langueLoc}
+          {isMobile ? item.i18nCode.toLocaleUpperCase() : item.langueFr} - {item.langueLoc}
         </b>{" "}
         {item.langueCode && notListenableLanguages.includes(item.langueCode) && (
           <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
