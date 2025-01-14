@@ -224,7 +224,7 @@
   },
   "Register": {
     "Votre email": "Votre email",
-    "Rendez-vous sur votre ordinateur": "Rendez-vous sur votre ordinateur",
+    "register_on_desktop": "Rendez-vous sur votre ordinateur",
     "email_reminder": "Me le rappeler par email",
     "Recevoir une invitation": "Recevoir une invitation",
     "create_a_new_account": "create_a_new_account",
@@ -581,7 +581,9 @@
     "helpTileCTA3": "Ouvrir le live chat",
     "faqTitle": "Il vous reste des questions ?",
     "registerTitle": "C’est parti !",
-    "registerMobileCTA": "Me le rappeler par email"
+    "registerMobileCTA": "Recevoir un mail",
+    "sendLink": "Envoyer le lien",
+    "linkSent": "Lien envoyé !"
   },
   "Publish": {
     "title": "Recensez votre action !",
@@ -659,7 +661,7 @@
     "faqCTA": "Voir le centre d’aide",
     "registerSubtitle": "Connectez-vous ou créez votre compte pour démarrer la rédaction de votre fiche.",
     "registerLoggedIn": "Vous savez tout, vous pouvez rédiger votre première fiche.",
-    "registerMobile": "Rendez-vous sur votre ordinateur pour créer votre compte et démarrer la rédaction de votre fiche.",
+    "registerMobile": "La rédaction d’une fiche n’est possible que depuis un ordinateur. Nous pouvons vous envoyer un mail pour vous inscrire !",
     "writeModalTitle": "Rédiger une fiche",
     "writeModalTypeDispositif": "Dispositif",
     "writeModalDescDispositif": "Programme, atelier, formation, cours en ligne, permanence d’accueil ou tout autre dispositif directement accessible par les personnes réfugiées.",

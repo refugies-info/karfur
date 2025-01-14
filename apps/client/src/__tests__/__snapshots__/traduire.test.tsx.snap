@@ -1165,20 +1165,32 @@ exports[`traduire renders traduire 1`] = `
         id="register"
       />
       <div
-        class="register container"
+        class="max-w-[480px] mx-auto text-center"
       >
+        <img
+          alt=""
+          class="mx-auto mb-10"
+          data-nimg="1"
+          decoding="async"
+          height="160"
+          loading="lazy"
+          src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+          srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+          style="color: transparent;"
+          width="175"
+        />
         <h2
-          class="title2 !mb-0"
+          class="!text-h3 md:!text-h2 md:text-center !mb-6"
         >
           StaticPages.registerTitle
         </h2>
         <p
-          class="subtitle !mb-14"
+          class="!text-chapo !mb-6"
         >
           Translate.registerSubtitle
         </p>
         <button
-          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
+          class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
           id="fr-button-:rb:"
         >
           login_or_signup
