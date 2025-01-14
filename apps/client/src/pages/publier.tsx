@@ -24,6 +24,7 @@ import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
 import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
 import {
   Accordion,
+  Anchor,
   Card,
   CountUpFigure,
   Register,
@@ -36,9 +37,7 @@ import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/pub
 import SEO from "~/components/Seo";
 import Image from "~/components/UI/Image";
 import useWindowSize from "~/hooks/useWindowSize";
-import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import styles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
 
@@ -63,11 +62,11 @@ const RecensezVotreAction = (props: Props) => {
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
   const [refHero, inViewHero] = useInView({ threshold: 0 });
-  const [refWhy, inViewWhy] = useInView({ threshold: 0.1 });
-  const [refRequired, inViewRequired] = useInView({ threshold: 0.5 });
-  const [refSteps, inViewSteps] = useInView({ threshold: 0.05 });
-  const [refFaq, inViewFaq] = useInView({ threshold: 0.1 });
-  const [refRegister, inViewRegister] = useInView({ threshold: 0.5 });
+  const [refWhy, inViewWhy] = useInView({ threshold: 0.2 });
+  const [refRequired, inViewRequired] = useInView({ threshold: 0.9 });
+  const [refSteps, inViewSteps] = useInView({ threshold: 0.1 });
+  const [refFaq, inViewFaq] = useInView({ threshold: 0.4 });
+  const [refRegister, inViewRegister] = useInView({ threshold: 0.7 });
 
   useEffect(() => {
     const views: { inView: boolean; id: View }[] = [
@@ -87,16 +86,16 @@ const RecensezVotreAction = (props: Props) => {
   }, [inViewWhy, inViewRequired, inViewSteps, inViewFaq, inViewRegister]);
 
   return (
-    <div className={styles.main}>
+    <div className="w-full">
       <SEO title={t("Publish.title")} />
 
       {/* HERO */}
-      <Section ref={refHero} className="bg-blue-france mb-4">
+      <Section ref={refHero} className="bg-blue-france">
         <div className="fr-container">
           <div className="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20">
             <div className="flex-1 text-center md:text-left">
-              <h1 className={cls(styles.title, "!text-white mb-6")}>{t("Publish.title")}</h1>
-              <p className={cls(styles.title_sub, "text-white !mb-0")}>{t("Publish.subtitle")}</p>
+              <h1 className="!text-h1 md:!text-alt-title !text-white mb-6">{t("Publish.title")}</h1>
+              <p className="!text-chapo text-white !mb-0">{t("Publish.subtitle")}</p>
               <Button
                 iconId="fr-icon-arrow-right-line"
                 iconPosition="right"
@@ -132,7 +131,7 @@ const RecensezVotreAction = (props: Props) => {
       />
 
       <div ref={refWhy} className="relative">
-        <span id="why" className={styles.anchor}></span>
+        <Anchor id="why" />
         {/* WHY */}
         <Section>
           <div className="fr-container">
@@ -205,7 +204,7 @@ const RecensezVotreAction = (props: Props) => {
 
       {/* REQUIRED */}
       <Section ref={refRequired} className="relative">
-        <span id="required" className={styles.anchor}></span>
+        <Anchor id="required" />
         <div className="fr-container">
           <Title2>{t("Publish.requiredTitle")}</Title2>
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
@@ -265,7 +264,7 @@ const RecensezVotreAction = (props: Props) => {
       </Section>
 
       <div ref={refSteps} className={"relative"}>
-        <span id="steps" className={styles.anchor}></span>
+        <Anchor id="steps" />
         {/* STEPS */}
         <Section className="bg-beige">
           <div className="fr-container">
@@ -375,7 +374,7 @@ const RecensezVotreAction = (props: Props) => {
 
         {/* FAQ */}
         <Section className="relative">
-          <span id="faq" className={styles.anchor}></span>
+          <Anchor id="faq" />
           <div className="fr-container">
             <Title2 className="text-center">{t("StaticPages.faqTitle")}</Title2>
             <div className="max-w-[720px] mx-auto">
@@ -409,7 +408,7 @@ const RecensezVotreAction = (props: Props) => {
 
       {/* REGISTER */}
       <Section ref={refRegister} className="relative bg-beige">
-        <span id="register" className={styles.anchor}></span>
+        <Anchor id="register" />
         <div className="fr-container">
           <Register
             onClickLoggedIn={toggleWriteModal}
