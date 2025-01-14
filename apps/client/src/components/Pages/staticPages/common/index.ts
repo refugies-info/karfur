@@ -1,4 +1,5 @@
 export { default as Accordion } from "./Accordion";
+export { Anchor } from "./Anchor";
 export { default as AutoplayVideo } from "./AutoplayVideo";
 export { default as Card } from "./Card";
 export { default as CountUpFigure } from "./CountUpFigure";
