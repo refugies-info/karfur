@@ -42,7 +42,7 @@ const QuickAccessMenu = () => {
       {isMobile ? t("Toolbar.TraduireUneFiche", "Traduire une fiche") : t("Toolbar.Traduire", "Traduire")}
     </Button>,
     <LanguageMenu key="language" />,
-    <LoginButton key="login" />,
+    !isMobile ? <LoginButton key="login" /> : null,
   ];
 
   return [...menuItems];
