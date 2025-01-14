@@ -5,13 +5,13 @@ import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { memo, useMemo } from "react";
-import { isIOS, isMobileOnly } from "react-device-detect";
+import { isIOS } from "react-device-detect";
 import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
-import { useEditionMode } from "~/hooks";
+import { useEditionMode, useWindowSize } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
 import styles from "./Navbar.module.scss";
 
@@ -20,6 +20,7 @@ const Navbar = () => {
   const router = useRouter();
   const isEditionMode = useEditionMode();
   const backendNavigation = useBackendNavigation();
+  const { isMobile } = useWindowSize();
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const locale: Languages = (router.locale || "fr") as Languages;
@@ -93,13 +94,16 @@ const Navbar = () => {
         ],
       },
 
-      !isMobileOnly && {
-        linkProps: {
-          href: getPath("/", router.locale, "#application"),
-          className: styles.navLinkWithAppIcon,
-        },
-        text: t("Toolbar.shareApplication", "Partager l'application"),
-      },
+      !isMobile
+        ? {
+            linkProps: {
+              href: getPath("/", router.locale, "#application"),
+              className: styles.navLinkWithAppIcon,
+            },
+            text: t("Toolbar.shareApplication", "Partager l'application"),
+          }
+        : null,
+
       {
         linkProps: {
           href: "https://help.refugies.info",
@@ -108,7 +112,7 @@ const Navbar = () => {
         text: t("Toolbar.helpCenter", "Centre d'aide"),
       },
 
-      isMobileOnly
+      isMobile
         ? {
             linkProps: {
               href: isIOS ? iosStoreLink : androidStoreLink,
@@ -135,7 +139,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t]);
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile]);
 
   const quickAccessMenu = QuickAccessMenu();
 
