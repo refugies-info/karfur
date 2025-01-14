@@ -137,6 +137,8 @@ const Navbar = () => {
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
   }, [router.locale, router.pathname, backendNavigation, t]);
 
+  const quickAccessMenu = QuickAccessMenu();
+
   if (isEditionMode) return null;
   return (
     <>
@@ -153,7 +155,7 @@ const Navbar = () => {
         }}
         serviceTitle={t("Header.serviceName", "Réfugiés.info")}
         serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
-        quickAccessItems={QuickAccessMenu()}
+        quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
       />
     </>
