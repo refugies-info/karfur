@@ -36,6 +36,10 @@
   &.selected {
     position: relative;
 
+    b {
+      color: var(--text-title-blue-france);
+    }
+
     &::before {
       content: "";
       position: absolute;
