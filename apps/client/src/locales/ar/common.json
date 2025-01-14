@@ -213,7 +213,7 @@
   },
   "Register": {
     "Votre email": "بريدك الالكتروني",
-    "Rendez-vous sur votre ordinateur": "اتجه الى جهاز الكمبيوتر",
+    "register_on_desktop": "اتجه الى جهاز الكمبيوتر",
     "email_reminder": "أرسل لي اشعار تذكير عبر الايميل الالكتروني",
     "Recevoir une invitation": "تلقي دعوة",
     "create_a_new_account": "أنشأ حساباً لك, من خلال جهاز الكمبيوتر, للمشاركة",
@@ -518,8 +518,7 @@
     "helpTileText3": "زاوية الدردرشة المباشرة متاحة في أيمن الأسفل للشاشة. يمكنك طرح أسئلتك مباشرة, و سيجيب شخص يعمل على الرد عليها مباشرة, فلا تتردد !",
     "helpTileCTA3": "افتح زاوية الدردشة المباشرة",
     "faqTitle": "هل ما يزال لديك أسئلة ؟",
-    "registerTitle": "هيا بنا لنبدأ !",
-    "registerMobileCTA": "ابعث لي تذكير عبر الايميل"
+    "registerTitle": "هيا بنا لنبدأ !"
   },
   "Publish": {
     "writeModalTitle": "شارك بانشاء موضوع",

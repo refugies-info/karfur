@@ -4,7 +4,6 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Container } from "reactstrap";
 import HelpIcon3 from "~/assets/staticPages/publier/help-icon-chat.svg";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutos.svg";
 import HelpIcon1 from "~/assets/staticPages/publier/help-icon-webinar.svg";
@@ -135,9 +134,9 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refWhy} className="relative">
         <span id="why" className={styles.anchor}></span>
         {/* WHY */}
-        <div className={cls(styles.section)}>
-          <Container className={styles.container}>
-            <h2 className={styles.title2}>{t("Publish.whyTitle")}</h2>
+        <Section>
+          <div className="fr-container">
+            <Title2 className="!text-left">{t("Publish.whyTitle")}</Title2>
             <Accordion
               items={[
                 {
@@ -174,8 +173,8 @@ const RecensezVotreAction = (props: Props) => {
               multiOpen={!!isTablet}
               mediaAlign="center"
             />
-          </Container>
-        </div>
+          </div>
+        </Section>
 
         {/* TESTIMONY */}
         <Section className="bg-light-alt-blue">
@@ -378,7 +377,7 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="relative">
           <span id="faq" className={styles.anchor}></span>
           <div className="fr-container">
-            <Title2>{t("StaticPages.faqTitle")}</Title2>
+            <Title2 className="text-center">{t("StaticPages.faqTitle")}</Title2>
             <div className="max-w-[720px] mx-auto">
               <Accordion
                 items={[
@@ -409,17 +408,19 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* REGISTER */}
-      <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
+      <Section ref={refRegister} className="relative bg-beige">
         <span id="register" className={styles.anchor}></span>
-        <Register
-          onClickLoggedIn={toggleWriteModal}
-          subtitleForm={t("Publish.registerSubtitle")}
-          subtitleLoggedIn={t("Publish.registerLoggedIn")}
-          btnLoggedIn={t("Publish.navbarItem5")}
-          subtitleMobile={t("Publish.registerMobile")}
-          associatedRole={RoleName.CONTRIB}
-        />
-      </div>
+        <div className="fr-container">
+          <Register
+            onClickLoggedIn={toggleWriteModal}
+            subtitleForm={t("Publish.registerSubtitle")}
+            subtitleLoggedIn={t("Publish.registerLoggedIn")}
+            btnLoggedIn={t("Publish.navbarItem5")}
+            subtitleMobile={t("Publish.registerMobile")}
+            associatedRole={RoleName.CONTRIB}
+          />
+        </div>
+      </Section>
 
       <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>

@@ -137,13 +137,13 @@ exports[`publier renders publier 1`] = `
         id="why"
       />
       <div
-        class="section"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
           <h2
-            class="title2"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 !text-left"
           >
             Publish.whyTitle
           </h2>
@@ -1198,7 +1198,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
           >
             StaticPages.faqTitle
           </h2>
@@ -1438,31 +1438,47 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey"
+      class="py-10 md:py-20 relative bg-beige"
     >
       <span
         class="anchor"
         id="register"
       />
       <div
-        class="register container"
+        class="fr-container"
       >
-        <h2
-          class="title2 !mb-0"
+        <div
+          class="max-w-[480px] mx-auto text-center"
         >
-          StaticPages.registerTitle
-        </h2>
-        <p
-          class="subtitle !mb-14"
-        >
-          Publish.registerSubtitle
-        </p>
-        <button
-          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:rn:"
-        >
-          login_or_signup
-        </button>
+          <img
+            alt=""
+            class="mx-auto mb-10"
+            data-nimg="1"
+            decoding="async"
+            height="160"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+            style="color: transparent;"
+            width="175"
+          />
+          <h2
+            class="!text-h3 md:!text-h2 md:text-center !mb-6"
+          >
+            StaticPages.registerTitle
+          </h2>
+          <p
+            class="!text-chapo !mb-6"
+          >
+            Publish.registerSubtitle
+          </p>
+          <button
+            class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
+            id="fr-button-:rn:"
+          >
+            login_or_signup
+          </button>
+        </div>
       </div>
     </div>
   </div>

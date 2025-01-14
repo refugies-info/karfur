@@ -213,7 +213,7 @@
   },
   "Register": {
     "Votre email": "Your email",
-    "Rendez-vous sur votre ordinateur": "Go to your PC",
+    "register_on_desktop": "Go to your PC",
     "email_reminder": "Remind me by e-mail",
     "Recevoir une invitation": "Receive an invitation",
     "create_a_new_account": "Create an account from your computer to participate",
@@ -524,8 +524,7 @@
     "helpTileText3": "Live chat is available at the bottom right of your screen. Ask all your questions: we're quick to respond and it's a real human being who deals with your requests!",
     "helpTileCTA3": "Open the live chat",
     "faqTitle": "Still have questions?",
-    "registerTitle": "Here we go!",
-    "registerMobileCTA": "Remind me by email"
+    "registerTitle": "Here we go!"
   },
   "Publish": {
     "writeModalTitle": "Write an entry",
