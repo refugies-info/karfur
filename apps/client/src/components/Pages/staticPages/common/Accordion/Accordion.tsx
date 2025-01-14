@@ -1,6 +1,7 @@
 import * as AccordionRadix from "@radix-ui/react-accordion";
 import { sanitize } from "isomorphic-dompurify";
 import { useState } from "react";
+import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
 import Image from "~/components/UI/Image";
 import { useConsent } from "~/hooks/useConsentContext";
 import useWindowSize from "~/hooks/useWindowSize";
@@ -86,13 +87,7 @@ const Accordion = (props: Props) => {
   return (
     <div className="flex gap-20">
       <div className={cls(props.withImages && "w-1/2 grow-1 basis-auto")}>
-        <AccordionRadix.Root
-          type={!props.multiOpen ? "single" : "multiple"}
-          collapsible={props.multiOpen}
-          onValueChange={(value: string | string[]) =>
-            setOpen(Array.isArray(value) ? value.map((n) => Number.parseInt(n)) : [Number.parseInt(value)])
-          }
-        >
+        <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
           {props.items.map((item, i) => {
             const isItemOpen = isOpen(i);
             return (
@@ -147,7 +142,7 @@ const Accordion = (props: Props) => {
               </AccordionRadix.Item>
             );
           })}
-        </AccordionRadix.Root>
+        </AccordionRoot>
       </div>
       {!isTablet && props.withImages && open.length > 0 && (
         <div
