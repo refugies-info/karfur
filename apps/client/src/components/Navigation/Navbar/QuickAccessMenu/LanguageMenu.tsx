@@ -29,7 +29,7 @@ const LanguageMenu = () => {
           label={
             <>
               <i className="fr-icon-translate-2" />
-              {currentLanguage?.i18nCode.toLocaleUpperCase()} - {currentLanguage?.langueLoc}
+              {currentLanguage?.langueFr} - {currentLanguage?.langueLoc}
             </>
           }
           className={styles.langAccordion}
