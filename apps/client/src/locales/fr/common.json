@@ -457,7 +457,8 @@
     "en_arabe": "en arabe",
     "en_anglais": "en anglais",
     "en_ukrainien": "en ukrainien",
-    "not_listenable": "Non écoutable"
+    "not_listenable": "Non écoutable",
+    "loading": "Chargement de la langue"
   },
   "topLink": "Haut de page",
   "close": "Fermer",
