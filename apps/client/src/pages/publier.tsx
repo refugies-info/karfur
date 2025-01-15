@@ -257,7 +257,6 @@ const RecensezVotreAction = (props: Props) => {
             <Title2>{t("Publish.stepsTitle")}</Title2>
             <StepContent
               step={1}
-              color="purple"
               title={t("Publish.stepsSubtitle1")}
               texts={[t("Publish.stepsText1")]}
               cta={{ text: t("Publish.stepsCTA1"), link: "#register" }}
@@ -266,7 +265,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={2}
-              color="purple"
               title={t("Publish.stepsSubtitle2")}
               texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
               cta={{
@@ -278,7 +276,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={3}
-              color="purple"
               title={t("Publish.stepsSubtitle3")}
               texts={[t("Publish.stepsText3")]}
               image={StepImage3}
@@ -286,7 +283,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={4}
-              color="purple"
               title={t("Publish.stepsSubtitle4")}
               texts={[t("Publish.stepsText4a"), t("Publish.stepsText4b")]}
               image={StepImage4}
@@ -295,7 +291,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={5}
-              color="purple"
               title={t("Publish.stepsSubtitle5")}
               texts={[t("Publish.stepsText5a"), t("Publish.stepsText5b")]}
               image={StepImage5}
@@ -303,7 +298,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={6}
-              color="purple"
               title={t("Publish.stepsSubtitle6")}
               texts={[t("Publish.stepsText6a"), t("Publish.stepsText6b")]}
               image={StepImage6}

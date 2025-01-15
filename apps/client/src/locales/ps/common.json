@@ -221,7 +221,10 @@
     "not_an_email": "دا بریښنالیک نه دی",
     "check_mail": "لیکدود چک کړئ"
   },
-  "UnauthorizedAccess": { "access_denied": "لاسرسی رد شو", "back_home": "اصلي صفحی ته بیرته راستنیدل" },
+  "UnauthorizedAccess": {
+    "access_denied": "لاسرسی رد شو",
+    "back_home": "اصلي صفحی ته بیرته راستنیدل"
+  },
   "Dispositif": {
     "share": "فایل شریک کړئ",
     "updated": "...میاشي کیږي چې نوي شوي",
@@ -398,7 +401,11 @@
     "information_types": "درې ډوله مالومات",
     "help_translate": "په ژباړه کې مرسته کول"
   },
-  "Roles": { "admin": "اډمین", "redactor": "ایډیټر او کره کتونکی", "translator": "د صفحي پورته برخه" },
+  "Roles": {
+    "admin": "اډمین",
+    "redactor": "ایډیټر او کره کتونکی",
+    "translator": "د صفحي پورته برخه"
+  },
   "topLink": "د پاڼې سر",
   "close": "بندول",
   "showBreadcrumb": "د اضافي معلوماتو لست وګورئ",
@@ -584,7 +591,6 @@
     "medium": "درمیانه",
     "weak": "کمه",
     "stepsTitle": "د معلوماتي فایل د ژباړلو مرحلې کومې دي؟",
-    "stepsWarningMobile": "یادونه: د معلوماتي فایل ژباړه یوازې د کمپیوټرله لارې ممکنه ده.",
     "stepsSubtitle1": "په Réfugiés.info کې خپل حساب جوړ کړئ",
     "stepsText1": "خپل بریښنالیک ادرس او پاس ورډ دننه کړئ، تاسو چمتو یاست چې د ژباړې پرګرام وکاروئ.",
     "stepsCTA1": "خپل حساب جوړول",

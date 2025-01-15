@@ -227,7 +227,10 @@
     "check_mail": "check your spelling.",
     "invalid_phone_number": "This is not a valid phone number, check your entry."
   },
-  "UnauthorizedAccess": { "access_denied": "Access denied", "back_home": "Return to home" },
+  "UnauthorizedAccess": {
+    "access_denied": "Access denied",
+    "back_home": "Return to home"
+  },
   "Dispositif": {
     "share": "Share this sheet",
     "updated": "Updated on",
@@ -404,7 +407,11 @@
     "information_types": "Three types of information",
     "help_translate": "Help to translate"
   },
-  "Roles": { "admin": "Admin", "redactor": "Writer", "translator": "Translator" },
+  "Roles": {
+    "admin": "Admin",
+    "redactor": "Writer",
+    "translator": "Translator"
+  },
   "topLink": "Top of the page",
   "close": "Close",
   "showBreadcrumb": "See the breadcrumb trail",
@@ -555,7 +562,6 @@
     "medium": "medium",
     "weak": "low",
     "stepsTitle": "What are the steps involved in translating a form?",
-    "stepsWarningMobile": "Please note that you can only translate a form on a computer.",
     "stepsSubtitle1": "Create your Réfugiés.info account",
     "stepsText1": "Enter your email address and password, and you're ready to use the translation tool.",
     "stepsCTA1": "Create my account",

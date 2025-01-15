@@ -8,8 +8,11 @@ import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
 import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
 import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
-import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
+import StepImage1 from "~/assets/staticPages/publier/step-image-1.png";
+import StepImage4 from "~/assets/staticPages/publier/step-image-5.png";
 import MockupRI from "~/assets/staticPages/traduire/mockup-ri.png";
+import StepImage2 from "~/assets/staticPages/traduire/step-image-2.svg";
+import StepImage3 from "~/assets/staticPages/traduire/step-image-3.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
 import {
   Accordion,
@@ -24,10 +27,10 @@ import {
   Section,
   SectionHead,
   StepContent,
+  Title2,
 } from "~/components/Pages/staticPages/common";
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import styles from "~/scss/components/staticPages.module.scss";
@@ -160,56 +163,47 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* STEPS */}
-      <div ref={refSteps} className={cls(styles.section)}>
-        <span id="steps" className={styles.anchor}></span>
-        <Container className={styles.container}>
-          <h2 className={styles.title2}>{t("Translate.stepsTitle")}</h2>
-          <div className={styles.warning_mobile}>
-            <EVAIcon name="alert-circle-outline" size={24} fill="black" />
-            <p>{t("Translate.stepsWarningMobile")}</p>
+      <div ref={refSteps} className="relative">
+        <Anchor id="steps" />
+        <Section className="bg-beige">
+          <div className="fr-container">
+            <Title2>{t("Translate.stepsTitle")}</Title2>
+            <StepContent
+              step={1}
+              title={t("Translate.stepsSubtitle1")}
+              texts={[t("Translate.stepsText1")]}
+              cta={{ text: t("Translate.stepsCTA1"), link: "#register" }}
+              image={StepImage1}
+              width={440}
+            />
+            <StepContent
+              step={2}
+              title={t("Translate.stepsSubtitle2")}
+              texts={[t("Translate.stepsText2")]}
+              image={StepImage2}
+              width={480}
+            />
+            <StepContent
+              step={3}
+              title={t("Translate.stepsSubtitle3")}
+              texts={[
+                t("Translate.stepsText3"),
+                [t("Translate.stepsList3Item1"), t("Translate.stepsList3Item2"), t("Translate.stepsList3Item3")],
+              ]}
+              image={StepImage3}
+              width={440}
+            />
+            <StepContent
+              step={4}
+              title={t("Translate.stepsSubtitle4")}
+              texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
+              image={StepImage4}
+              width={440}
+              buttonStep={t("Translate.stepsButton")}
+              buttonStepEnd
+            />
           </div>
-          <StepContent
-            step={1}
-            color="orange"
-            title={t("Translate.stepsSubtitle1")}
-            texts={[t("Translate.stepsText1")]}
-            cta={{ text: t("Translate.stepsCTA1"), link: "#register" }}
-            video="/video/publier-video-step1.mp4"
-          />
-          <StepContent
-            step={2}
-            color="orange"
-            title={t("Translate.stepsSubtitle2")}
-            texts={[t("Translate.stepsText2")]}
-            video="/video/translate-video-step2.mp4"
-          />
-          <StepContent
-            step={3}
-            color="orange"
-            title={t("Translate.stepsSubtitle3")}
-            texts={[t("Translate.stepsText3")]}
-            video="/video/translate-video-step3.mp4"
-            footer={
-              <div className={styles.warning}>
-                <ul className="mb-0">
-                  <li className="mb-2">{t("Translate.stepsList3Item1")}</li>
-                  <li className="mb-2">{t("Translate.stepsList3Item2")}</li>
-                  <li>{t("Translate.stepsList3Item3")}</li>
-                </ul>
-              </div>
-            }
-          />
-          <StepContent
-            step={4}
-            color="orange"
-            title={t("Translate.stepsSubtitle4")}
-            texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
-            image={StepImage5}
-            height={415}
-            buttonStep={t("Translate.stepsButton")}
-            buttonStepEnd
-          />
-        </Container>
+        </Section>
       </div>
 
       {/* NEXT */}

@@ -178,36 +178,6 @@ $breakpoint: "lg-limit";
   }
 }
 
-// Steps
-.warning {
-  @include text("large");
-
-  padding: u(4);
-  background: $attention;
-  border-radius: $radius;
-
-  @include isTablet {
-    @include text("normal");
-  }
-}
-
-.warning_mobile {
-  @extend .warning;
-
-  display: none;
-  align-items: center;
-  margin-bottom: u(10);
-
-  & > p {
-    margin-bottom: 0;
-    margin-left: u(4);
-  }
-
-  @include isTablet {
-    display: flex;
-  }
-}
-
 // Faq
 .faq {
   max-width: 720px;
