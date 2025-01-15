@@ -275,8 +275,8 @@ const RecensezVotreAction = (props: Props) => {
       </Section>
 
       {/* REGISTER */}
-      <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
-        <span id="register" className={styles.anchor}></span>
+      <Section ref={refRegister} className="relative bg-beige">
+        <Anchor id="register" />
         <Register
           onClickLoggedIn={navigateToTranslations}
           subtitleForm={t("Translate.registerSubtitle")}
@@ -285,7 +285,7 @@ const RecensezVotreAction = (props: Props) => {
           subtitleMobile={t("Translate.registerMobile")}
           associatedRole={RoleName.TRAD}
         />
-      </div>
+      </Section>
     </div>
   );
 };

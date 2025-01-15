@@ -975,10 +975,10 @@ exports[`traduire renders traduire 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey"
+      class="py-10 md:py-20 relative bg-beige"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="register"
       />
       <div
