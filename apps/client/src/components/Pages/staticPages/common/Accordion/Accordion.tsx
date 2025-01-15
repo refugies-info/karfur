@@ -1,3 +1,4 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import * as AccordionRadix from "@radix-ui/react-accordion";
 import { sanitize } from "isomorphic-dompurify";
 import { useState } from "react";
@@ -7,7 +8,6 @@ import { useConsent } from "~/hooks/useConsentContext";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
-import InlineLink from "../InlineLink";
 import styles from "./Accordion.module.scss";
 
 type Item = {
@@ -134,9 +134,17 @@ const Accordion = (props: Props) => {
                     </>
                   )}
                   {item.cta && (
-                    <div className="px-4">
-                      <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />
-                    </div>
+                    <Button
+                      priority="tertiary"
+                      iconId="fr-icon-arrow-right-line"
+                      iconPosition="right"
+                      linkProps={{
+                        href: item.cta.link,
+                      }}
+                      className="mt-4"
+                    >
+                      {item.cta.text}
+                    </Button>
                   )}
                 </AccordionRadix.Content>
               </AccordionRadix.Item>
