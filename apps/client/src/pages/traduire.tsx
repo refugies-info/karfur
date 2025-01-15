@@ -6,20 +6,23 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Col, Container, Row } from "reactstrap";
-import HelpIcon2 from "~/assets/staticPages/publier/help-icon-crisp.svg";
+import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
+import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
 import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
-import HelpIcon1 from "~/assets/staticPages/traduire/help-icon-tutoriel.svg";
 import MockupRI from "~/assets/staticPages/traduire/mockup-ri.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
 import {
   Accordion,
+  Anchor,
   AutoplayVideo,
   Card,
   Hero,
   InlineLink,
-  LanguageIcon,
   Register,
+  RowCards,
   SecondaryNavbar,
+  Section,
+  SectionHead,
   StepContent,
 } from "~/components/Pages/staticPages/common";
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
@@ -118,44 +121,26 @@ const RecensezVotreAction = (props: Props) => {
       />
 
       {/* WHO */}
-      <div ref={refWho} className={styles.scrollspy_section}>
-        <div className={cls(styles.section)}>
-          <span id="who" className={styles.anchor}></span>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
-            <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
-            <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  header={
-                    <>
-                      <LanguageIcon language="ua" size={40} />
-                      <LanguageIcon language="ir" size={40} />
-                      <LanguageIcon language="sa" size={40} />
-                      <LanguageIcon language="gb" size={40} />
-                      <LanguageIcon language="af" size={40} />
-                      <LanguageIcon language="ru" size={40} />
-                      <LanguageIcon language="er" size={40} />
-                    </>
-                  }
-                  title={t("Translate.whoCardTitle1")}
-                >
-                  <p className="mb-0">{t("Translate.whoCardText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card header={<LanguageIcon language="fr" size={56} />} title={t("Translate.whoCardTitle2")}>
-                  <p className="mb-0">{t("Translate.whoCardText2")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")}>
-                  <p className="mb-0">{t("Translate.whoCardText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+      <div ref={refWho} className="relative">
+        <Section>
+          <Anchor id="who" />
+          <div className="fr-container">
+            <SectionHead title={t("Translate.whoTitle")} subtitle={t("Translate.whoSubtitle")} />
+            <RowCards>
+              <Card image={WhoIcon1} title={t("Translate.whoCardTitle1")}>
+                <p className="!mb-0">{t("Translate.whoCardText1")}</p>
+              </Card>
+
+              <Card image={CardIconCheck} title={t("Translate.whoCardTitle2")}>
+                <p className="!mb-0">{t("Translate.whoCardText2")}</p>
+              </Card>
+
+              <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")}>
+                <p className="!mb-0">{t("Translate.whoCardText3")}</p>
+              </Card>
+            </RowCards>
+          </div>
+        </Section>
 
         {/* NEED */}
         <div className={cls(styles.section, styles.bg_green)}>
@@ -228,7 +213,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* NEXT */}
-      <div ref={refNext} className={styles.scrollspy_section}>
+      <div ref={refNext} className="relative">
         <div className={cls(styles.section, styles.bg_purple)}>
           <span id="next" className={styles.anchor}></span>
           <Container className={cls(styles.container)}>
@@ -254,7 +239,7 @@ const RecensezVotreAction = (props: Props) => {
             <Row className={cls(styles.top_space, "justify-center")}>
               <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
-                  image={HelpIcon1}
+                  image={CardIconCheck}
                   title={t("Translate.helpTileTitle1")}
                   footer={
                     <InlineLink
@@ -269,7 +254,7 @@ const RecensezVotreAction = (props: Props) => {
               </Col>
               <Col sm="12" lg="4" className="lg:mb-0 mb-5">
                 <Card
-                  image={HelpIcon2}
+                  image={CardIconCheck}
                   title={t("StaticPages.helpTileTitle3")}
                   footer={
                     <InlineLink

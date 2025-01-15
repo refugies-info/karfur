@@ -4,10 +4,9 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import HelpIcon3 from "~/assets/staticPages/publier/help-icon-chat.svg";
-import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutos.svg";
-import HelpIcon1 from "~/assets/staticPages/publier/help-icon-webinar.svg";
-import RequiredIcon1 from "~/assets/staticPages/publier/icon-calendar.svg";
+import HelpIcon3 from "~/assets/staticPages/common/card-icon-bubble.svg";
+import CardIconCalendar from "~/assets/staticPages/common/card-icon-calendar.svg";
+import HelpIcon2 from "~/assets/staticPages/common/card-icon-check.svg";
 import RequiredIcon3 from "~/assets/staticPages/publier/icon-hands.svg";
 import RequiredIcon2 from "~/assets/staticPages/publier/icon-money.svg";
 import MockupsRI from "~/assets/staticPages/publier/mockups-ri.png";
@@ -29,8 +28,10 @@ import {
   CountUpFigure,
   Hero,
   Register,
+  RowCards,
   SecondaryNavbar,
   Section,
+  SectionHead,
   StepContent,
   Title2,
 } from "~/components/Pages/staticPages/common";
@@ -192,9 +193,9 @@ const RecensezVotreAction = (props: Props) => {
         <Anchor id="required" />
         <div className="fr-container">
           <Title2>{t("Publish.requiredTitle")}</Title2>
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
+          <RowCards>
             <Card
-              image={RequiredIcon1}
+              image={CardIconCalendar}
               title={t("Publish.requiredSubtitle1")}
               footer={
                 <CardExample
@@ -231,7 +232,7 @@ const RecensezVotreAction = (props: Props) => {
             >
               <p className="mb-0">{t("Publish.requiredText3")}</p>
             </Card>
-          </div>
+          </RowCards>
           <div className="mt-10 lg:mt-20 text-center">
             <Button
               priority="tertiary no outline"
@@ -317,13 +318,10 @@ const RecensezVotreAction = (props: Props) => {
         {/* HELP */}
         <Section>
           <div className="fr-container">
-            <div className="max-w-[720px] mb-10 lg:mb-20 mx-auto">
-              <Title2 smallMb>{t("StaticPages.helpTitle")}</Title2>
-              <p className="!text-chapo md:text-center !mb-0">{t("Publish.helpSubtitle")}</p>
-            </div>
-            <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-10">
+            <SectionHead title={t("StaticPages.helpTitle")} subtitle={t("Publish.helpSubtitle")} />
+            <RowCards>
               <Card
-                image={HelpIcon1}
+                image={CardIconCalendar}
                 title={t("Publish.helpTileTitle1")}
                 link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
               >
@@ -341,7 +339,7 @@ const RecensezVotreAction = (props: Props) => {
               >
                 <p className="!mb-0">{t("StaticPages.helpTileText3")}</p>
               </Card>
-            </div>
+            </RowCards>
           </div>
         </Section>
 
