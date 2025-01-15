@@ -9,13 +9,13 @@ import { Col, Container, Row } from "reactstrap";
 import HelpIcon2 from "~/assets/staticPages/publier/help-icon-crisp.svg";
 import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
 import HelpIcon1 from "~/assets/staticPages/traduire/help-icon-tutoriel.svg";
-import MockupsRIMobile from "~/assets/staticPages/traduire/mockupMobileRI.png";
+import MockupRI from "~/assets/staticPages/traduire/mockup-ri.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
 import {
   Accordion,
   AutoplayVideo,
   Card,
-  HeroArrow,
+  Hero,
   InlineLink,
   LanguageIcon,
   Register,
@@ -25,7 +25,6 @@ import {
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import styles from "~/scss/components/staticPages.module.scss";
@@ -86,29 +85,21 @@ const RecensezVotreAction = (props: Props) => {
   }, []);
 
   return (
-    <div className={styles.main}>
+    <div className="w-full">
       <SEO title={t("Translate.title")} />
 
       {/* HERO */}
-      <div ref={refHero} className={cls(styles.section, styles.bg_blue, "mb-4")}>
-        <Container className={styles.container}>
-          <Row className={styles.hero}>
-            <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className={styles.white}>{t("Translate.title")}</h1>
-              <p className={styles.subtitle}>
-                {t("Translate.subtitle", {
-                  nbBenevoles: props.translationStatistics?.nbTranslators || 0,
-                  nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0),
-                })}
-              </p>
-              <HeroArrow target="who" />
-            </Col>
-            <Col sm="12" lg="6">
-              <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Hero
+        ref={refHero}
+        title={t("Translate.title")}
+        subtitle={t("Translate.subtitle", {
+          nbBenevoles: props.translationStatistics?.nbTranslators || 0,
+          nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0),
+        })}
+        buttonTitle={t("Translate.navbarItem5")}
+        image={MockupRI}
+        imageWidth={448}
+      />
 
       <SecondaryNavbar
         leftLinks={[

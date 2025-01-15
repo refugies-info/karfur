@@ -3,87 +3,52 @@
 exports[`traduire renders traduire 1`] = `
 <DocumentFragment>
   <div
-    class="main"
+    class="w-full"
   >
     <div
-      class="section bg_blue mb-4"
+      class="py-10 md:py-20 bg-blue-france"
     >
       <div
-        class="container container"
+        class="fr-container"
       >
         <div
-          class="hero row"
+          class="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20"
         >
           <div
-            class="hero_title col-sm-12 col-lg-6"
+            class="flex-1 text-center md:text-left"
           >
             <h1
-              class="white"
+              class="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6"
             >
               Translate.title
             </h1>
             <p
-              class="subtitle"
+              class="!text-chapo !text-light-alt-blue !mb-0"
             >
               Translate.subtitle
             </p>
-            <div
-              class="container"
+            <a
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
+              href="#register"
+              id="fr-button-:r0:"
             >
-              <a
-                class="btn"
-                href="/undefined#who"
-                title="Suivant"
-              >
-                <span
-                  class="icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-downward-outline"
-                      fill="bleuCharte"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </a>
-            </div>
+              Translate.navbarItem5
+            </a>
           </div>
           <div
-            class="col-sm-12 col-lg-6"
+            class="flex-1"
           >
             <img
               alt=""
+              class="max-w-full h-auto mx-auto"
               data-nimg="1"
               decoding="async"
-              height="40"
+              height="448"
               loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style="color: transparent; max-width: 100%; height: auto;"
-              width="40"
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="448"
             />
           </div>
         </div>
@@ -100,7 +65,7 @@ exports[`traduire renders traduire 1`] = `
         >
           <fieldset
             class="fr-segmented fr-segmented--no-legend"
-            id="fr-segmented-:r0:"
+            id="fr-segmented-:r1:"
           >
             <div
               class="fr-segmented__elements"
@@ -109,14 +74,14 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r0:-0"
-                  name="segmented-name-:r1:"
+                  id="fr-segmented-:r1:-0"
+                  name="segmented-name-:r2:"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r0:-0"
+                  for="fr-segmented-:r1:-0"
                 >
                   Translate.navbarItem1
                 </label>
@@ -125,14 +90,14 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r0:-1"
-                  name="segmented-name-:r1:"
+                  id="fr-segmented-:r1:-1"
+                  name="segmented-name-:r2:"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r0:-1"
+                  for="fr-segmented-:r1:-1"
                 >
                   Translate.navbarItem2
                 </label>
@@ -141,14 +106,14 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r0:-2"
-                  name="segmented-name-:r1:"
+                  id="fr-segmented-:r1:-2"
+                  name="segmented-name-:r2:"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r0:-2"
+                  for="fr-segmented-:r1:-2"
                 >
                   Translate.navbarItem3
                 </label>
@@ -157,14 +122,14 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r0:-3"
-                  name="segmented-name-:r1:"
+                  id="fr-segmented-:r1:-3"
+                  name="segmented-name-:r2:"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r0:-3"
+                  for="fr-segmented-:r1:-3"
                 >
                   Translate.navbarItem4
                 </label>
@@ -178,7 +143,7 @@ exports[`traduire renders traduire 1`] = `
           <a
             class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
             href="#register"
-            id="fr-button-:r2:"
+            id="fr-button-:r3:"
           >
             Translate.navbarItem5
           </a>
@@ -537,7 +502,7 @@ exports[`traduire renders traduire 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
               href="#register"
-              id="fr-button-:r3:"
+              id="fr-button-:r4:"
             >
               Translate.stepsCTA1
             </a>
@@ -978,13 +943,13 @@ exports[`traduire renders traduire 1`] = `
                   data-state="closed"
                 >
                   <button
-                    aria-controls="radix-:r5:"
+                    aria-controls="radix-:r6:"
                     aria-expanded="false"
                     class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
-                    id="radix-:r4:"
+                    id="radix-:r5:"
                     type="button"
                   >
                     <span
@@ -998,12 +963,12 @@ exports[`traduire renders traduire 1`] = `
                   </button>
                 </h3>
                 <div
-                  aria-labelledby="radix-:r4:"
+                  aria-labelledby="radix-:r5:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
                   data-state="closed"
                   hidden=""
-                  id="radix-:r5:"
+                  id="radix-:r6:"
                   role="region"
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                 />
@@ -1019,13 +984,13 @@ exports[`traduire renders traduire 1`] = `
                   data-state="closed"
                 >
                   <button
-                    aria-controls="radix-:r7:"
+                    aria-controls="radix-:r8:"
                     aria-expanded="false"
                     class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
-                    id="radix-:r6:"
+                    id="radix-:r7:"
                     type="button"
                   >
                     <span
@@ -1039,12 +1004,12 @@ exports[`traduire renders traduire 1`] = `
                   </button>
                 </h3>
                 <div
-                  aria-labelledby="radix-:r6:"
+                  aria-labelledby="radix-:r7:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
                   data-state="closed"
                   hidden=""
-                  id="radix-:r7:"
+                  id="radix-:r8:"
                   role="region"
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                 />
@@ -1060,13 +1025,13 @@ exports[`traduire renders traduire 1`] = `
                   data-state="closed"
                 >
                   <button
-                    aria-controls="radix-:r9:"
+                    aria-controls="radix-:ra:"
                     aria-expanded="false"
                     class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
-                    id="radix-:r8:"
+                    id="radix-:r9:"
                     type="button"
                   >
                     <span
@@ -1080,12 +1045,12 @@ exports[`traduire renders traduire 1`] = `
                   </button>
                 </h3>
                 <div
-                  aria-labelledby="radix-:r8:"
+                  aria-labelledby="radix-:r9:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
                   data-state="closed"
                   hidden=""
-                  id="radix-:r9:"
+                  id="radix-:ra:"
                   role="region"
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                 />
@@ -1101,13 +1066,13 @@ exports[`traduire renders traduire 1`] = `
                   data-state="closed"
                 >
                   <button
-                    aria-controls="radix-:rb:"
+                    aria-controls="radix-:rc:"
                     aria-expanded="false"
                     class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
-                    id="radix-:ra:"
+                    id="radix-:rb:"
                     type="button"
                   >
                     <span
@@ -1121,12 +1086,12 @@ exports[`traduire renders traduire 1`] = `
                   </button>
                 </h3>
                 <div
-                  aria-labelledby="radix-:ra:"
+                  aria-labelledby="radix-:rb:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
                   data-state="closed"
                   hidden=""
-                  id="radix-:rb:"
+                  id="radix-:rc:"
                   role="region"
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                 />
@@ -1142,13 +1107,13 @@ exports[`traduire renders traduire 1`] = `
                   data-state="closed"
                 >
                   <button
-                    aria-controls="radix-:rd:"
+                    aria-controls="radix-:re:"
                     aria-expanded="false"
                     class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
-                    id="radix-:rc:"
+                    id="radix-:rd:"
                     type="button"
                   >
                     <span
@@ -1162,12 +1127,12 @@ exports[`traduire renders traduire 1`] = `
                   </button>
                 </h3>
                 <div
-                  aria-labelledby="radix-:rc:"
+                  aria-labelledby="radix-:rd:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
                   data-state="closed"
                   hidden=""
-                  id="radix-:rd:"
+                  id="radix-:re:"
                   role="region"
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                 />
@@ -1211,7 +1176,7 @@ exports[`traduire renders traduire 1`] = `
         </p>
         <button
           class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
-          id="fr-button-:re:"
+          id="fr-button-:rf:"
         >
           login_or_signup
         </button>

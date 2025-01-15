@@ -3,6 +3,7 @@ export { Anchor } from "./Anchor";
 export { default as AutoplayVideo } from "./AutoplayVideo";
 export { default as Card } from "./Card";
 export { default as CountUpFigure } from "./CountUpFigure";
+export { Hero } from "./Hero";
 export { default as HeroArrow } from "./HeroArrow";
 export { default as InlineLink } from "./InlineLink";
 export { default as LanguageIcon } from "./LanguageIcon";

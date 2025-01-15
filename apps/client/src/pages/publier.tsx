@@ -27,6 +27,7 @@ import {
   Anchor,
   Card,
   CountUpFigure,
+  Hero,
   Register,
   SecondaryNavbar,
   Section,
@@ -35,7 +36,6 @@ import {
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import Image from "~/components/UI/Image";
 import useWindowSize from "~/hooks/useWindowSize";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
@@ -90,29 +90,14 @@ const RecensezVotreAction = (props: Props) => {
       <SEO title={t("Publish.title")} />
 
       {/* HERO */}
-      <Section ref={refHero} className="bg-blue-france">
-        <div className="fr-container">
-          <div className="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20">
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="!text-h1 md:!text-alt-title !text-white mb-6">{t("Publish.title")}</h1>
-              <p className="!text-chapo text-white !mb-0">{t("Publish.subtitle")}</p>
-              <Button
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                className="mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
-                linkProps={{
-                  href: "#register",
-                }}
-              >
-                {t("Publish.navbarItem5")}
-              </Button>
-            </div>
-            <div className="flex-1">
-              <Image src={MockupsRI} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-            </div>
-          </div>
-        </div>
-      </Section>
+      <Hero
+        ref={refHero}
+        title={t("Publish.title")}
+        subtitle={t("Publish.subtitle")}
+        buttonTitle={t("Publish.navbarItem5")}
+        image={MockupsRI}
+        imageWidth={540}
+      />
 
       <SecondaryNavbar
         leftLinks={[

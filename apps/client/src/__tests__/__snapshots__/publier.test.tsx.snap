@@ -18,12 +18,12 @@ exports[`publier renders publier 1`] = `
             class="flex-1 text-center md:text-left"
           >
             <h1
-              class="!text-h1 md:!text-alt-title !text-white mb-6"
+              class="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6"
             >
               Publish.title
             </h1>
             <p
-              class="!text-chapo text-white !mb-0"
+              class="!text-chapo !text-light-alt-blue !mb-0"
             >
               Publish.subtitle
             </p>
@@ -40,14 +40,15 @@ exports[`publier renders publier 1`] = `
           >
             <img
               alt=""
+              class="max-w-full h-auto mx-auto"
               data-nimg="1"
               decoding="async"
-              height="40"
+              height="540"
               loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style="color: transparent; max-width: 100%; height: auto;"
-              width="40"
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="540"
             />
           </div>
         </div>
