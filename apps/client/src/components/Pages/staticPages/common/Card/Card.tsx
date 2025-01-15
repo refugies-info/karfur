@@ -13,7 +13,8 @@ interface Props {
   onClick?: () => void;
 }
 
-const CARD_CLASSNAME = "p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left";
+const CARD_CLASSNAME =
+  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left";
 const CARD_HOVER_CLASSNAME = "hover:!bg-hover active:!bg-active";
 
 const ArrowRight = () => (

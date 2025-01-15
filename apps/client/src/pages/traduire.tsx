@@ -20,7 +20,6 @@ import {
   AutoplayVideo,
   Card,
   Hero,
-  InlineLink,
   Register,
   RowCards,
   SecondaryNavbar,
@@ -227,45 +226,28 @@ const RecensezVotreAction = (props: Props) => {
         </div>
 
         {/* HELP */}
-        <div className={cls(styles.section, styles.bg_grey)}>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <Row className={cls(styles.top_space, "justify-center")}>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={CardIconCheck}
-                  title={t("Translate.helpTileTitle1")}
-                  footer={
-                    <InlineLink
-                      link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                      text={t("Translate.helpTileCTA1")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("Translate.helpTileText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={CardIconCheck}
-                  title={t("StaticPages.helpTileTitle3")}
-                  footer={
-                    <InlineLink
-                      link="#"
-                      type="button"
-                      onClick={() => window.$crisp.push(["do", "chat:open"])}
-                      text={t("StaticPages.helpTileCTA3")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("StaticPages.helpTileText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        <Section>
+          <div className="fr-container">
+            <SectionHead title={t("StaticPages.helpTitle")} subtitle={t("Translate.helpSubtitle")} />
+            <RowCards>
+              <Card
+                image={CardIconCheck}
+                title={t("Translate.helpTileTitle1")}
+                link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+              >
+                <p>{t("Translate.helpTileText1")}</p>
+              </Card>
+
+              <Card
+                image={CardIconCheck}
+                title={t("StaticPages.helpTileTitle3")}
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
+              >
+                <p>{t("StaticPages.helpTileText3")}</p>
+              </Card>
+            </RowCards>
+          </div>
+        </Section>
       </div>
 
       {/* FAQ */}
