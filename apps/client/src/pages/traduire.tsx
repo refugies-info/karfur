@@ -251,26 +251,28 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* FAQ */}
-      <div ref={refFaq} className={cls(styles.section)}>
-        <span id="faq" className={styles.anchor}></span>
-        <Container className={cls(styles.container, styles.faq)}>
-          <h2 className={cls(styles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
-          <Accordion
-            items={[
-              { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
-              { title: t("Translate.faqAccordionTitle2"), text: t("Translate.faqAccordionText2") },
-              { title: t("Translate.faqAccordionTitle3"), text: t("Translate.faqAccordionText3") },
-              { title: t("Translate.faqAccordionTitle4"), text: t("Translate.faqAccordionText4") },
-              {
-                title: t("Translate.faqAccordionTitle5"),
-                text: t("Translate.faqAccordionText5"),
-                cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" },
-              },
-            ]}
-            multiOpen
-          />
-        </Container>
-      </div>
+      <Section ref={refFaq} className="relative">
+        <Anchor id="faq" />
+        <div className="fr-container">
+          <Title2 className="text-center">{t("StaticPages.faqTitle")}</Title2>
+          <div className="max-w-[720px] mx-auto">
+            <Accordion
+              items={[
+                { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
+                { title: t("Translate.faqAccordionTitle2"), text: t("Translate.faqAccordionText2") },
+                { title: t("Translate.faqAccordionTitle3"), text: t("Translate.faqAccordionText3") },
+                { title: t("Translate.faqAccordionTitle4"), text: t("Translate.faqAccordionText4") },
+                {
+                  title: t("Translate.faqAccordionTitle5"),
+                  text: t("Translate.faqAccordionText5"),
+                  cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" },
+                },
+              ]}
+              multiOpen
+            />
+          </div>
+        </div>
+      </Section>
 
       {/* REGISTER */}
       <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
