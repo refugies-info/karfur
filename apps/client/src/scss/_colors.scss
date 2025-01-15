@@ -1,5 +1,4 @@
 // RI colors
-$attention: #f9ef99;
 $bgfocus: #d2edfc;
 $bleuCharte: #0421b1;
 $blue: #0a54bf;
@@ -53,7 +52,6 @@ $darkBorderPlainError: #ff5655;
 
 // RI colors used in TypeScript
 :export {
-  attention: $attention;
   bleuCharte: $bleuCharte;
   blue: $blue;
   darkColor: $darkColor;
