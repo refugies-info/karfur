@@ -178,10 +178,10 @@ exports[`traduire renders traduire 1`] = `
             </p>
           </div>
           <div
-            class="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
           >
             <div
-              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
             >
               <div>
                 <div>
@@ -214,7 +214,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
             >
               <div>
                 <div>
@@ -247,7 +247,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
             >
               <div>
                 <div>
@@ -629,178 +629,109 @@ exports[`traduire renders traduire 1`] = `
         </div>
       </div>
       <div
-        class="section bg_grey"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
-          <h2
-            class="title2 center mb-0"
-          >
-            StaticPages.helpTitle
-          </h2>
           <div
-            class="top_space justify-center row"
+            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
           >
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            <h2
+              class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              <div
-                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
-              >
+              StaticPages.helpTitle
+            </h2>
+            <p
+              class="!text-chapo md:text-center !mb-0"
+            >
+              Translate.helpSubtitle
+            </p>
+          </div>
+          <div
+            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+          >
+            <a
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Translate.helpTileTitle1"
+            >
+              <div>
                 <div>
-                  <div>
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="80"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="80"
-                    />
-                  </div>
-                  <h3
-                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                  >
-                    Translate.helpTileTitle1
-                  </h3>
-                  <div
-                    class="!text-large"
-                  >
-                    <p>
-                      Translate.helpTileText1
-                    </p>
-                  </div>
-                  <div>
-                    <a
-                      class="link color_red"
-                      href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span>
-                        Translate.helpTileCTA1
-                      </span>
-                      <span
-                        class="icon icon"
-                      >
-                        <i
-                          style="height: 24px; line-height: 24px;"
-                        >
-                          <svg
-                            class="eva eva-arrow-forward-outline"
-                            fill="red"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            width="24px"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              data-name="Layer 2"
-                            >
-                              <g
-                                data-name="arrow-forward"
-                              >
-                                <rect
-                                  height="24"
-                                  opacity="0"
-                                  transform="rotate(-90 12 12)"
-                                  width="24"
-                                />
-                                <path
-                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                                />
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                      </span>
-                    </a>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Translate.helpTileTitle1
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    Translate.helpTileText1
+                  </p>
                 </div>
               </div>
-            </div>
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
-            >
               <div
-                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+                class="mt-6 pt-2 w-full text-right"
               >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </a>
+            <button
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
+              title="StaticPages.helpTileTitle3"
+            >
+              <div>
                 <div>
-                  <div>
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="80"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="80"
-                    />
-                  </div>
-                  <h3
-                    class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
-                  >
-                    StaticPages.helpTileTitle3
-                  </h3>
-                  <div
-                    class="!text-large"
-                  >
-                    <p>
-                      StaticPages.helpTileText3
-                    </p>
-                  </div>
-                  <div>
-                    <button
-                      class="link color_red"
-                    >
-                      <span>
-                        StaticPages.helpTileCTA3
-                      </span>
-                      <span
-                        class="icon icon"
-                      >
-                        <i
-                          style="height: 24px; line-height: 24px;"
-                        >
-                          <svg
-                            class="eva eva-arrow-forward-outline"
-                            fill="red"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            width="24px"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              data-name="Layer 2"
-                            >
-                              <g
-                                data-name="arrow-forward"
-                              >
-                                <rect
-                                  height="24"
-                                  opacity="0"
-                                  transform="rotate(-90 12 12)"
-                                  width="24"
-                                />
-                                <path
-                                  d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                                />
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                      </span>
-                    </button>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  StaticPages.helpTileTitle3
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    StaticPages.helpTileText3
+                  </p>
                 </div>
               </div>
-            </div>
+              <div
+                class="mt-6 pt-2 w-full text-right"
+              >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </button>
           </div>
         </div>
       </div>
