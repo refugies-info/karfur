@@ -36,6 +36,10 @@
   &.selected {
     position: relative;
 
+    b {
+      color: var(--text-title-blue-france);
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -45,6 +49,31 @@
       height: calc(100% - var(--block-padding) * 2);
       width: 2px;
       background: var(--text-title-blue-france);
+    }
+  }
+
+  & .loader {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(255 255 255 / 90%);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  & .loader b {
+    animation: loading 0.5s ease-in-out infinite alternate;
+
+    @keyframes loading {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0.5;
+      }
     }
   }
 }
