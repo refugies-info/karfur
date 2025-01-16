@@ -14,12 +14,12 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "clean:branches": "npx git-removed-branches --prune --force",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
     "build:server": "turbo build --filter=@refugies-info/server",
+    "build:storybook": "turbo build --filter=@refugies-info/storybook",
     "build:mobile:android": "cd apps/mobile && eas build --profile development --platform android",
     "build:mobile:ios": "cd apps/mobile && eas build --profile development --platform ios",
     "check:dependency-version-consistency": "pnpm check-dependency-version-consistency .",
@@ -29,6 +29,7 @@
     "check:types:server": "turbo check:types --filter=@refugies-info/server",
     "check:types:mobile": "turbo check:types --filter=@refugies-info/mobile",
     "dev": "turbo dev",
+    "dev:ui": "turbo dev --filter=@refugies-info/ui",
     "dev:client": "turbo dev --filter=@refugies-info/client",
     "dev:server": "turbo dev --filter=@refugies-info/server",
     "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
@@ -69,20 +70,21 @@
     "storybook": "pnpm --filter @refugies-info/storybook storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@refugies-info/ui": "workspace:*"
+  },
   "engines": {
     "node": "20.13.1"
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "^1.14.1",
+    "@types/node": "^22.10.2",
     "check-dependency-version-consistency": "^4.1.0",
     "dotenv": "^16.4.5",
     "husky": ">=9.1.6",
     "lint-staged": ">=15",
     "mongo-migrate-ts": "^1.6.2",
     "mongodb": "^6.10.0",
-    "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "stylelint": "^16.10.0",
@@ -99,5 +101,10 @@
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
   "resolutions": {},
-  "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
+  "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab",
+  "pnpm": {
+    "patchedDependencies": {
+      "@codegouvfr/react-dsfr@1.15.0": "patches/@codegouvfr__react-dsfr@1.15.0.patch"
+    }
+  }
 }

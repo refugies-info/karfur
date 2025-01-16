@@ -6,7 +6,8 @@
     "monEspace": "Mon espace"
   },
   "Homepage": {
-    "title": "L’information simple et traduite pour les personnes réfugiées en France",
+    "title": "Le service public d'information pour les étrangers en France",
+    "searchButton": "Chercher une information",
     "Choisir une langue": "Choisir une langue",
     "Ma langue": "Ma langue",
     "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
@@ -83,7 +84,12 @@
     "newsletterSubtitle": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
     "trainingTitle": "Participez à nos formations",
     "trainingSubtitle": "Venez découvrir le projet en ligne ou en présentiel et poser toutes vos questions.",
-    "trainingCTA": "Découvrir les formations"
+    "trainingCTA": "Découvrir les formations",
+    "imageDescription": "Illustration colorée et minimaliste montrant une ville accueillante avec des bâtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
+    "subtitle1": "Des ressources claires et traduites",
+    "subtitle2": "pour accompagner les étrangers en France",
+    "donwloadAppButton": "Télécharger l'application",
+    "subtitleMobile": "Des informations claires et traduites pour les étrangers"
   },
   "Recherche": {
     "pageTitle": "Recherche",

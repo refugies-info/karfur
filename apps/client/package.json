@@ -118,6 +118,7 @@
     "@next/eslint-plugin-next": "^14.2.5",
     "@redux-devtools/extension": "^3.2.1",
     "@refugies-info/typescript-config": "workspace:*",
+    "@refugies-info/ui": "workspace:*",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",

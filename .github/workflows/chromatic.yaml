@@ -34,11 +34,14 @@ jobs:
           pnpm add -g turbo
           pnpm install --frozen-lockfile
 
+      - name: Build
+        run: pnpm build:storybook
+
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: storybook:build
+          buildScriptName: build
           workingDir: apps/storybook
           skip: "dependabot/**" # 👈 Option to skip Chromatic for certain branches
