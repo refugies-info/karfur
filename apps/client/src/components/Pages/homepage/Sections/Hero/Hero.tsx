@@ -1,10 +1,12 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
+import { isIOS } from "react-device-detect";
 import HeroBackground from "~/assets/homepage/hero/background-image.svg";
 import Character from "~/assets/homepage/hero/character.svg";
 import WhiteWave from "~/assets/homepage/hero/white-wave.svg";
 
 import Image from "~/components/UI/Image";
+import { useWindowSize } from "~/hooks";
 
 interface Props {
   targetArrow: string;
@@ -12,18 +14,51 @@ interface Props {
 
 const Hero = (props: Props) => {
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
+  const mobileButtonIcon = isIOS ? "ri-app-store-line" : "ri-android-line";
+  const buttonIconName = isMobile ? mobileButtonIcon : "fr-icon-smartphone-line";
 
   return (
-    <div className="relative flex flex-col-reverse md:min-h-[480px] 2xl:min-h-[600px]">
-      <div className="relative z-10 m-auto inline-flex w-full flex-col items-center gap-10 bg-white/80 p-6 backdrop-blur-lg md:max-w-[30rem] lg:max-w-[42.5rem]">
-        <h1 className="mb-0 text-center !text-[2.5rem] !leading-[3rem]">{t("Homepage.title")}</h1>
-        <Button
-          linkProps={{
-            href: "/recherche",
-          }}
-        >
-          {t("Homepage.searchButton", "Chercher une information")}
-        </Button>
+    <div className="relative flex flex-col-reverse md:min-h-[480px] 2xl:min-h-[504px]">
+      <div className="md:border-gray relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 p-10 backdrop-blur-lg max-sm:px-4 md:max-w-[30rem] md:border lg:max-w-[48rem]">
+        <h1 className="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]">
+          {t("Homepage.title", "Le service public d'information pour les étrangers en France")}
+        </h1>
+
+        {isMobile ? (
+          <p className="mb-0 text-center text-xl">
+            {t("Homepage.subtitleMobile", "Des informations claires et traduites pour les étrangers")}
+          </p>
+        ) : (
+          <p className="mb-0 flex flex-col items-center text-xl">
+            <span>{t("Homepage.subtitle1", "Des ressources claires et traduites")}</span>
+            <span>{t("Homepage.subtitle2", "pour accompagner les étrangers en France")}</span>
+          </p>
+        )}
+
+        <div className="flex w-full items-center justify-center gap-4 max-sm:flex-col max-sm:justify-stretch">
+          <Button
+            linkProps={{
+              href: "/recherche",
+            }}
+            iconId="fr-icon-search-line"
+            iconPosition="right"
+            className="max-sm:w-full max-sm:justify-center"
+          >
+            {t("Homepage.searchButton", "Chercher une information")}
+          </Button>
+          <Button
+            linkProps={{
+              href: "#application",
+            }}
+            priority="secondary"
+            iconId={buttonIconName}
+            iconPosition="right"
+            className="max-sm:w-full max-sm:justify-center"
+          >
+            {t("Homepage.donwloadAppButton", "Télécharger l'application")}
+          </Button>
+        </div>
       </div>
       <div className="relative h-[50vh] w-full overflow-hidden md:absolute md:inset-0 md:z-0 md:h-auto">
         <Image
