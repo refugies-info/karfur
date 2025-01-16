@@ -175,6 +175,7 @@ const Navbar = () => {
         serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
         quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
+        className={styles.navBar}
       />
     </>
   );

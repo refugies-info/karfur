@@ -1,5 +1,14 @@
 @import "~/scss/mixins/responsive";
 
+.navBar {
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global .fr-btn--menu {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.25rem;
+  }
+}
+
 a.navLinkWithSearchIcon,
 a.navLinkWithAppIcon {
   display: flex;
