@@ -714,5 +714,9 @@
     "PiedDePage": "Pied de page",
     "Menu": "Menu",
     "Contenu": "Contenu"
+  },
+  "MissionImpact": {
+    "title": "Le service public d’information pour les personnes réfugiées en France",
+    "subtitle": "Réfugiés.info est un projet porté par la Délégation interministérielle à l’accueil et l’intégration des réfugiés (DIAIR). Lancé en 2019, il s’est imposé comme un service public incontournable pour l'intégration des personnes réfugiées et l'outillage de leurs accompagnements."
   }
 }
