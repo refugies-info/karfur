@@ -25,7 +25,7 @@ export const StructureButton = (props: {
           alt={props.sponsor.nom}
           width={95}
           height={30}
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "contain", height: "30px" }}
         />
       ) : (
         <Image className={styles.sponsor_img} src={noStructure} alt="no structure" />
