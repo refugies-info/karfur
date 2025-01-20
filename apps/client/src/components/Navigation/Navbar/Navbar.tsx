@@ -70,9 +70,9 @@ const Navbar = () => {
         isActive: isCurrent(getPath("/agir", router.locale)),
       },
       {
-        linkProps: { href: getPath("/mission-impact", router.locale), prefetch: false },
-        text: t("Toolbar.missionImpact", "Mission et imapact"),
-        isActive: isCurrent(getPath("/mission-impact", router.locale)),
+        linkProps: { href: getPath("/mission-et-impact", router.locale), prefetch: false },
+        text: t("Toolbar.missionImpact", "Mission et impact"),
+        isActive: isCurrent(getPath("/mission-et-impact", router.locale)),
       },
       {
         text: t("Toolbar.partagerProjet", "Partager le projet"),
