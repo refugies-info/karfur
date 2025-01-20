@@ -274,14 +274,16 @@ const RecensezVotreAction = (props: Props) => {
       {/* REGISTER */}
       <Section ref={refRegister} className="relative bg-beige">
         <Anchor id="register" />
-        <Register
-          onClickLoggedIn={navigateToTranslations}
-          subtitleForm={t("Translate.registerSubtitle")}
-          subtitleLoggedIn={t("Translate.registerLoggedIn")}
-          btnLoggedIn={t("Translate.registerBtnLoggedIn")}
-          subtitleMobile={t("Translate.registerMobile")}
-          associatedRole={RoleName.TRAD}
-        />
+        <div className="fr-container">
+          <Register
+            onClickLoggedIn={navigateToTranslations}
+            subtitleForm={t("Translate.registerSubtitle")}
+            subtitleLoggedIn={t("Translate.registerLoggedIn")}
+            btnLoggedIn={t("Translate.registerBtnLoggedIn")}
+            subtitleMobile={t("Translate.registerMobile")}
+            associatedRole={RoleName.TRAD}
+          />
+        </div>
       </Section>
     </div>
   );
