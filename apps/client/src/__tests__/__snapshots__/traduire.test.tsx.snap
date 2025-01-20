@@ -561,50 +561,50 @@ exports[`traduire renders traduire 1`] = `
       class="relative"
     >
       <div
-        class="section bg_purple"
+        class="py-10 md:py-20 bg-light-alt-blue"
       >
         <span
-          class="anchor"
+          class="absolute -top-[96px] md:-top-[120px]"
           id="next"
         />
         <div
-          class="container container"
+          class="fr-container"
         >
           <div
-            class="row"
+            class="flex gap-10 lg:gap-20 items-center flex-col md:flex-row"
           >
             <div
-              class="col-sm-12 col-lg-6"
+              class="flex-1"
             >
               <h2
-                class="title2 bottom_space white mb-0"
+                class="!text-h3 md:!text-h2 md:text-center !mb-6 !text-left"
               >
                 Translate.nextTitle
               </h2>
-              <p
-                class="p bottom_space"
-              >
+              <p>
                 Translate.nextText1
               </p>
               <p
-                class="p"
+                class="!mb-0"
               >
                 Translate.nextText2
               </p>
             </div>
             <div
-              class="text-end col-sm-12 col-lg-6"
+              class="flex-1"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/translate-video-next.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                class="object-contain mx-auto"
+                data-nimg="1"
+                decoding="async"
+                height="287"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent;"
+                width="440"
+              />
             </div>
           </div>
         </div>

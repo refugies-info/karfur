@@ -2,22 +2,22 @@ import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-type
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Col, Container, Row } from "reactstrap";
 import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
 import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
 import StepImage1 from "~/assets/staticPages/publier/step-image-1.png";
 import StepImage4 from "~/assets/staticPages/publier/step-image-5.png";
 import MockupRI from "~/assets/staticPages/traduire/mockup-ri.png";
+import ShareImage from "~/assets/staticPages/traduire/share-image.svg";
 import StepImage2 from "~/assets/staticPages/traduire/step-image-2.svg";
 import StepImage3 from "~/assets/staticPages/traduire/step-image-3.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
 import {
   Accordion,
   Anchor,
-  AutoplayVideo,
   Card,
   Hero,
   Register,
@@ -30,9 +30,7 @@ import {
 } from "~/components/Pages/staticPages/common";
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
-import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import styles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
 
@@ -206,23 +204,23 @@ const RecensezVotreAction = (props: Props) => {
 
       {/* NEXT */}
       <div ref={refNext} className="relative">
-        <div className={cls(styles.section, styles.bg_purple)}>
-          <span id="next" className={styles.anchor}></span>
-          <Container className={cls(styles.container)}>
-            <Row>
-              <Col lg="6" sm="12">
-                <h2 className={cls(styles.title2, styles.bottom_space, styles.white, "mb-0")}>
+        <Section className="bg-light-alt-blue">
+          <Anchor id="next" />
+          <div className="fr-container">
+            <div className="flex gap-10 lg:gap-20 items-center flex-col md:flex-row">
+              <div className="flex-1">
+                <Title2 className="!text-left" smallMb>
                   {t("Translate.nextTitle")}
-                </h2>
-                <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
-                <p className={styles.p}>{t("Translate.nextText2")}</p>
-              </Col>
-              <Col lg="6" sm="12" className="text-end">
-                <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                </Title2>
+                <p>{t("Translate.nextText1")}</p>
+                <p className="!mb-0">{t("Translate.nextText2")}</p>
+              </div>
+              <div className="flex-1">
+                <Image src={ShareImage} alt="" width={440} height={287} className="object-contain mx-auto" />
+              </div>
+            </div>
+          </div>
+        </Section>
 
         {/* HELP */}
         <Section>
