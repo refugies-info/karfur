@@ -403,16 +403,17 @@
     "posters_leaflets": "Commander des affiches et dépliants",
     "forAgirOperators": "Pour les opérateurs AGIR",
     "Mon espace": "Mon espace",
-    "newsletter": "S'inscrire à la newsletter",
+    "newsletter": "Newsletter",
     "fichesDemarches": "Fiches démarches",
     "dispositifsLocaux": "Dispositifs locaux",
     "agir": "AGIR",
-    "missionImpact": "Mission et imapact",
+    "missionImpact": "Mission et impact",
     "partagerProjet": "Partager le projet",
     "centreAide": "Centre d'aide",
     "getItOnAppStore": "Téléchager sur l'App Store",
     "getItOnPlayStore": "Téléchager sur le Play Store",
-    "helpCenter": "Centre d'aide"
+    "helpCenter": "Centre d'aide",
+    "TraduireUneFiche": "Traduire une fiche"
   },
   "Footer": {
     "Le projet": "Le projet",
@@ -456,7 +457,8 @@
     "en_arabe": "en arabe",
     "en_anglais": "en anglais",
     "en_ukrainien": "en ukrainien",
-    "not_listenable": "Non écoutable"
+    "not_listenable": "Non écoutable",
+    "loading": "Chargement de la langue"
   },
   "topLink": "Haut de page",
   "close": "Fermer",

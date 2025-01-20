@@ -4,15 +4,18 @@ import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { memo, useMemo } from "react";
-import { isIOS, isMobileOnly } from "react-device-detect";
+import { memo, MouseEvent, useMemo } from "react";
+import { isIOS } from "react-device-detect";
+import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
-import { useEditionMode } from "~/hooks";
+import { useEditionMode, useWindowSize } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
@@ -20,6 +23,8 @@ const Navbar = () => {
   const router = useRouter();
   const isEditionMode = useEditionMode();
   const backendNavigation = useBackendNavigation();
+  const dispatch = useDispatch();
+  const { isMobile } = useWindowSize();
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const locale: Languages = (router.locale || "fr") as Languages;
@@ -71,7 +76,7 @@ const Navbar = () => {
       },
       {
         linkProps: { href: getPath("/mission-impact", router.locale), prefetch: false },
-        text: t("Toolbar.missionImpact", "Mission et imapact"),
+        text: t("Toolbar.missionImpact", "Mission et impact"),
         isActive: isCurrent(getPath("/mission-impact", router.locale)),
       },
       {
@@ -93,22 +98,29 @@ const Navbar = () => {
         ],
       },
 
-      !isMobileOnly && {
-        linkProps: {
-          href: getPath("/", router.locale, "#application"),
-          className: styles.navLinkWithAppIcon,
-        },
-        text: t("Toolbar.shareApplication", "Partager l'application"),
-      },
+      !isMobile
+        ? {
+            linkProps: {
+              href: getPath("/", router.locale, "#application"),
+              className: styles.navLinkWithAppIcon,
+            },
+            text: t("Toolbar.shareApplication", "Partager l'application"),
+          }
+        : null,
+
       {
         linkProps: {
-          href: "https://help.refugies.info",
-          target: "_blank",
+          href: "#",
+          onClick: (e: MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault();
+            dispatch(toggleNewsletterModalAction(true));
+            Event("NEWSLETTER", "open modal", "header");
+          },
         },
-        text: t("Toolbar.helpCenter", "Centre d'aide"),
+        text: t("Toolbar.newsletter", "Newsletter"),
       },
 
-      isMobileOnly
+      isMobile
         ? {
             linkProps: {
               href: isIOS ? iosStoreLink : androidStoreLink,
@@ -135,13 +147,21 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t]);
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile, dispatch]);
+
+  const quickAccessMenu = QuickAccessMenu();
 
   if (isEditionMode) return null;
   return (
     <>
       <Header
-        brandTop="GOUVERNEMENT"
+        brandTop={
+          <>
+            République
+            <br />
+            Française
+          </>
+        }
         homeLinkProps={{
           href: "/",
           title: "Accueil - Réfugiés.info",
@@ -153,8 +173,9 @@ const Navbar = () => {
         }}
         serviceTitle={t("Header.serviceName", "Réfugiés.info")}
         serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
-        quickAccessItems={QuickAccessMenu()}
+        quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
+        className={styles.navBar}
       />
     </>
   );

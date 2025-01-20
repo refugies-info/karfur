@@ -3,7 +3,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { getPath, PathNames } from "routes";
+import { PathNames } from "routes";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
@@ -28,12 +28,6 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
   };
 
   return [
-    useBackendNavItem({
-      access: "all",
-      iconName: "search-outline",
-      onClick: () => router.push(getPath("/recherche", router.locale)),
-      title: t("Toolbar.find_information"),
-    }),
     useBackendNavItem({
       access: RoleName.STRUCTURE,
       iconName: nbNewNotifications > 0 ? "bell" : "bell-outline",
