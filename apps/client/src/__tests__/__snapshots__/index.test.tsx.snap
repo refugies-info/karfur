@@ -5658,7 +5658,7 @@ exports[`homepage renders homepage 1`] = `
               title="Homepage.helpUsCardTitle1"
             >
               <div
-                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+                class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
                   <div>
@@ -5753,7 +5753,7 @@ exports[`homepage renders homepage 1`] = `
               title="Homepage.helpUsCardTitle2"
             >
               <div
-                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+                class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
                   <div>
@@ -5902,7 +5902,7 @@ exports[`homepage renders homepage 1`] = `
               title="Homepage.helpUsCardTitle3"
             >
               <div
-                class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+                class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
               >
                 <div>
                   <div>

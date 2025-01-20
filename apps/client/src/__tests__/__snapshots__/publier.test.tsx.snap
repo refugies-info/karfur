@@ -18,12 +18,12 @@ exports[`publier renders publier 1`] = `
             class="flex-1 text-center md:text-left"
           >
             <h1
-              class="!text-h1 md:!text-alt-title !text-white mb-6"
+              class="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6"
             >
               Publish.title
             </h1>
             <p
-              class="!text-chapo text-white !mb-0"
+              class="!text-chapo !text-light-alt-blue !mb-0"
             >
               Publish.subtitle
             </p>
@@ -40,14 +40,15 @@ exports[`publier renders publier 1`] = `
           >
             <img
               alt=""
+              class="max-w-full h-auto mx-auto"
               data-nimg="1"
               decoding="async"
-              height="40"
+              height="540"
               loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style="color: transparent; max-width: 100%; height: auto;"
-              width="40"
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="540"
             />
           </div>
         </div>
@@ -491,10 +492,10 @@ exports[`publier renders publier 1`] = `
           Publish.requiredTitle
         </h2>
         <div
-          class="flex flex-col lg:flex-row gap-4 lg:gap-10"
+          class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
         >
           <div
-            class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
             <div>
               <div>
@@ -518,9 +519,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="!text-large"
               >
-                <p
-                  class="mb-0"
-                >
+                <p>
                   Publish.requiredText1
                 </p>
               </div>
@@ -549,7 +548,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
             <div>
               <div>
@@ -573,9 +572,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="!text-large"
               >
-                <p
-                  class="mb-0"
-                >
+                <p>
                   Publish.requiredText2
                 </p>
               </div>
@@ -604,7 +601,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
             <div>
               <div>
@@ -628,9 +625,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="!text-large"
               >
-                <p
-                  class="mb-0"
-                >
+                <p>
                   Publish.requiredText3
                 </p>
               </div>
@@ -691,13 +686,13 @@ exports[`publier renders publier 1`] = `
             Publish.stepsTitle
           </h2>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
@@ -724,7 +719,7 @@ exports[`publier renders publier 1`] = `
               </a>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
               <img
                 alt=""
@@ -740,13 +735,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
@@ -778,7 +773,7 @@ exports[`publier renders publier 1`] = `
               </a>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
               <img
                 alt=""
@@ -794,13 +789,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
@@ -820,7 +815,7 @@ exports[`publier renders publier 1`] = `
               </p>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
               <img
                 alt=""
@@ -836,13 +831,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
@@ -866,13 +861,13 @@ exports[`publier renders publier 1`] = `
                 Publish.stepsText4b
               </p>
               <div
-                class="!text-large p-4 text-white rounded-full font-bold text-center z-10 absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 bg-purple-france"
+                class="!text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
                 Publish.stepsButton
               </div>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france !pb-[150px] lg:!pb-0"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 !pb-[150px] lg:!pb-0"
             >
               <img
                 alt=""
@@ -888,13 +883,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
@@ -919,7 +914,7 @@ exports[`publier renders publier 1`] = `
               </p>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
               <img
                 alt=""
@@ -935,13 +930,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative min-h-[420px]"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-0 max-w-none order-2 border-s-4 relative border-purple-france border-dashed"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france border-dashed"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full flex items-center justify-center bg-purple-france"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
@@ -969,7 +964,7 @@ exports[`publier renders publier 1`] = `
               />
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-purple-france border-dashed"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-dashed"
             >
               <img
                 alt=""
@@ -1014,10 +1009,10 @@ exports[`publier renders publier 1`] = `
             </p>
           </div>
           <div
-            class="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
           >
             <a
-              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
               href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
               rel="noopener noreferrer"
               target="_blank"
@@ -1061,7 +1056,7 @@ exports[`publier renders publier 1`] = `
               </div>
             </a>
             <a
-              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
@@ -1105,7 +1100,7 @@ exports[`publier renders publier 1`] = `
               </div>
             </a>
             <button
-              class="p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
               title="StaticPages.helpTileTitle3"
             >
               <div>

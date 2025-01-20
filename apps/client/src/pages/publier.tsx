@@ -4,10 +4,9 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import HelpIcon3 from "~/assets/staticPages/publier/help-icon-chat.svg";
-import HelpIcon2 from "~/assets/staticPages/publier/help-icon-tutos.svg";
-import HelpIcon1 from "~/assets/staticPages/publier/help-icon-webinar.svg";
-import RequiredIcon1 from "~/assets/staticPages/publier/icon-calendar.svg";
+import HelpIcon3 from "~/assets/staticPages/common/card-icon-bubble.svg";
+import CardIconCalendar from "~/assets/staticPages/common/card-icon-calendar.svg";
+import HelpIcon2 from "~/assets/staticPages/common/card-icon-check.svg";
 import RequiredIcon3 from "~/assets/staticPages/publier/icon-hands.svg";
 import RequiredIcon2 from "~/assets/staticPages/publier/icon-money.svg";
 import MockupsRI from "~/assets/staticPages/publier/mockups-ri.png";
@@ -27,15 +26,17 @@ import {
   Anchor,
   Card,
   CountUpFigure,
+  Hero,
   Register,
+  RowCards,
   SecondaryNavbar,
   Section,
+  SectionHead,
   StepContent,
   Title2,
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import Image from "~/components/UI/Image";
 import useWindowSize from "~/hooks/useWindowSize";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
@@ -90,29 +91,14 @@ const RecensezVotreAction = (props: Props) => {
       <SEO title={t("Publish.title")} />
 
       {/* HERO */}
-      <Section ref={refHero} className="bg-blue-france">
-        <div className="fr-container">
-          <div className="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20">
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="!text-h1 md:!text-alt-title !text-white mb-6">{t("Publish.title")}</h1>
-              <p className="!text-chapo text-white !mb-0">{t("Publish.subtitle")}</p>
-              <Button
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                className="mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
-                linkProps={{
-                  href: "#register",
-                }}
-              >
-                {t("Publish.navbarItem5")}
-              </Button>
-            </div>
-            <div className="flex-1">
-              <Image src={MockupsRI} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-            </div>
-          </div>
-        </div>
-      </Section>
+      <Hero
+        ref={refHero}
+        title={t("Publish.title")}
+        subtitle={t("Publish.subtitle")}
+        buttonTitle={t("Publish.navbarItem5")}
+        image={MockupsRI}
+        imageWidth={540}
+      />
 
       <SecondaryNavbar
         leftLinks={[
@@ -207,9 +193,9 @@ const RecensezVotreAction = (props: Props) => {
         <Anchor id="required" />
         <div className="fr-container">
           <Title2>{t("Publish.requiredTitle")}</Title2>
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
+          <RowCards>
             <Card
-              image={RequiredIcon1}
+              image={CardIconCalendar}
               title={t("Publish.requiredSubtitle1")}
               footer={
                 <CardExample
@@ -218,7 +204,7 @@ const RecensezVotreAction = (props: Props) => {
                 />
               }
             >
-              <p className="mb-0">{t("Publish.requiredText1")}</p>
+              <p>{t("Publish.requiredText1")}</p>
             </Card>
 
             <Card
@@ -231,7 +217,7 @@ const RecensezVotreAction = (props: Props) => {
                 />
               }
             >
-              <p className="mb-0">{t("Publish.requiredText2")}</p>
+              <p>{t("Publish.requiredText2")}</p>
             </Card>
 
             <Card
@@ -244,9 +230,9 @@ const RecensezVotreAction = (props: Props) => {
                 />
               }
             >
-              <p className="mb-0">{t("Publish.requiredText3")}</p>
+              <p>{t("Publish.requiredText3")}</p>
             </Card>
-          </div>
+          </RowCards>
           <div className="mt-10 lg:mt-20 text-center">
             <Button
               priority="tertiary no outline"
@@ -271,7 +257,6 @@ const RecensezVotreAction = (props: Props) => {
             <Title2>{t("Publish.stepsTitle")}</Title2>
             <StepContent
               step={1}
-              color="purple"
               title={t("Publish.stepsSubtitle1")}
               texts={[t("Publish.stepsText1")]}
               cta={{ text: t("Publish.stepsCTA1"), link: "#register" }}
@@ -280,7 +265,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={2}
-              color="purple"
               title={t("Publish.stepsSubtitle2")}
               texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
               cta={{
@@ -292,7 +276,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={3}
-              color="purple"
               title={t("Publish.stepsSubtitle3")}
               texts={[t("Publish.stepsText3")]}
               image={StepImage3}
@@ -300,7 +283,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={4}
-              color="purple"
               title={t("Publish.stepsSubtitle4")}
               texts={[t("Publish.stepsText4a"), t("Publish.stepsText4b")]}
               image={StepImage4}
@@ -309,7 +291,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={5}
-              color="purple"
               title={t("Publish.stepsSubtitle5")}
               texts={[t("Publish.stepsText5a"), t("Publish.stepsText5b")]}
               image={StepImage5}
@@ -317,7 +298,6 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={6}
-              color="purple"
               title={t("Publish.stepsSubtitle6")}
               texts={[t("Publish.stepsText6a"), t("Publish.stepsText6b")]}
               image={StepImage6}
@@ -332,13 +312,10 @@ const RecensezVotreAction = (props: Props) => {
         {/* HELP */}
         <Section>
           <div className="fr-container">
-            <div className="max-w-[720px] mb-10 lg:mb-20 mx-auto">
-              <Title2 smallMb>{t("StaticPages.helpTitle")}</Title2>
-              <p className="!text-chapo md:text-center !mb-0">{t("Publish.helpSubtitle")}</p>
-            </div>
-            <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-10">
+            <SectionHead title={t("StaticPages.helpTitle")} subtitle={t("Publish.helpSubtitle")} />
+            <RowCards>
               <Card
-                image={HelpIcon1}
+                image={CardIconCalendar}
                 title={t("Publish.helpTileTitle1")}
                 link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
               >
@@ -356,7 +333,7 @@ const RecensezVotreAction = (props: Props) => {
               >
                 <p className="!mb-0">{t("StaticPages.helpTileText3")}</p>
               </Card>
-            </div>
+            </RowCards>
           </div>
         </Section>
 

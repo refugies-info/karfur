@@ -227,7 +227,10 @@
     "check_mail": "check your spelling.",
     "invalid_phone_number": "This is not a valid phone number, check your entry."
   },
-  "UnauthorizedAccess": { "access_denied": "Access denied", "back_home": "Return to home" },
+  "UnauthorizedAccess": {
+    "access_denied": "Access denied",
+    "back_home": "Return to home"
+  },
   "Dispositif": {
     "share": "Share this sheet",
     "updated": "Updated on",
@@ -404,7 +407,11 @@
     "information_types": "Three types of information",
     "help_translate": "Help to translate"
   },
-  "Roles": { "admin": "Admin", "redactor": "Writer", "translator": "Translator" },
+  "Roles": {
+    "admin": "Admin",
+    "redactor": "Writer",
+    "translator": "Translator"
+  },
   "topLink": "Top of the page",
   "close": "Close",
   "showBreadcrumb": "See the breadcrumb trail",
@@ -522,7 +529,6 @@
     "helpTitle": "You are not alone",
     "helpTileTitle3": "Live chat",
     "helpTileText3": "Live chat is available at the bottom right of your screen. Ask all your questions: we're quick to respond and it's a real human being who deals with your requests!",
-    "helpTileCTA3": "Open the live chat",
     "faqTitle": "Still have questions?",
     "registerTitle": "Here we go!"
   },
@@ -555,7 +561,6 @@
     "medium": "medium",
     "weak": "low",
     "stepsTitle": "What are the steps involved in translating a form?",
-    "stepsWarningMobile": "Please note that you can only translate a form on a computer.",
     "stepsSubtitle1": "Create your Réfugiés.info account",
     "stepsText1": "Enter your email address and password, and you're ready to use the translation tool.",
     "stepsCTA1": "Create my account",
@@ -575,7 +580,6 @@
     "nextText2": "Don't hesitate to share them with your friends and family, they might find them useful.",
     "helpTileTitle1": "Tutorial videos",
     "helpTileText1": "In the help centre, you'll find videos and articles to help you translate your entry.",
-    "helpTileCTA1": "See the help centre",
     "faqAccordionTitle1": "What level of education do I need to become a translator?",
     "faqAccordionText1": "No qualifications are required to become a translator, but it is preferable to have a good command of the language you are translating into. If it is not your mother tongue, it is advisable to be a language student or to already have experience in translation. You need to be able to read and write well in French to understand the original text and not distort the message.",
     "faqAccordionTitle2": "How many sheets do I have to translate?",
