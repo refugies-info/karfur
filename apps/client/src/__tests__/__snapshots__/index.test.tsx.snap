@@ -6890,7 +6890,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
           <a
             class="container link color_blue"
-            href="/who-are-we"
+            href="/mission-and-impact"
           >
             <div>
               <div
