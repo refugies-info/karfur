@@ -20,7 +20,9 @@ import {
   NewContent,
   WhyAccordions,
 } from "~/components/Pages/homepage/Sections";
+import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import SEO from "~/components/Seo";
+import { useWindowSize } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
@@ -42,6 +44,7 @@ export interface Props {
 const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -60,7 +63,7 @@ const Homepage = (props: Props) => {
 
       <Hero targetArrow="themes" />
 
-      <MobileApp />
+      {!isMobile && <StructuresLogos />}
 
       <NewContent
         nbDemarches={props.contentStatistics.nbDemarches || 0}
@@ -69,6 +72,8 @@ const Homepage = (props: Props) => {
         demarches={props.demarches}
         dispositifs={props.dispositifs}
       />
+
+      <MobileApp />
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 

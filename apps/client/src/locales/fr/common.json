@@ -89,7 +89,20 @@
     "subtitle1": "Des ressources claires et traduites",
     "subtitle2": "pour accompagner les étrangers en France",
     "donwloadAppButton": "Télécharger l'application",
-    "subtitleMobile": "Des informations claires et traduites pour les étrangers"
+    "subtitleMobile": "Des informations claires et traduites pour les étrangers",
+    "StructuresLogos": {
+      "FTDA": "Logo de France Terre d'Asile",
+      "SOS": "Logo du Groupe SOS",
+      "FranceTravail": "Logo France Travail",
+      "COS": "Logo Fondation COS",
+      "FH": "Logo France Horizon",
+      "Coalia": "Logo Coallia",
+      "PierreValdo": "Logo Entraide Pierre Valdo",
+      "HIS": "Logo GIP Habitat et Interventions Sociales",
+      "ForumRefugie": "Logo Forum Réfugiés",
+      "FederationActeurs": "Logo Fédération des Acteurs de la Solidarité",
+      "Text": "Plus de 300 000 professionnels ont déjà adopé Réfugiés.info pour accompagner leurs bénéficiaires !"
+    }
   },
   "Recherche": {
     "pageTitle": "Recherche",
