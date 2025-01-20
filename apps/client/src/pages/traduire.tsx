@@ -38,6 +38,8 @@ import API from "~/utils/API";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 export type NeedKey = "strong" | "medium" | "weak";
+const NEED_ORDER: Record<NeedKey, number> = { strong: 0, medium: 1, weak: 2 };
+
 interface Props {
   translationStatistics: TranslationStatisticsResponse;
 }
@@ -73,14 +75,15 @@ const RecensezVotreAction = (props: Props) => {
   }, [inViewWho, inViewNext, inViewSteps, inViewFaq, inViewRegister]);
 
   // stats
-  const needKeys: NeedKey[] = ["strong", "medium", "weak"];
-  const translationNeeds: Record<NeedKey, { languageId: string; count: number }[]> = useMemo(
-    () => ({
-      strong: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count <= 2) || [],
-      medium:
-        props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 2 && item.count <= 5) || [],
-      weak: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 5) || [],
-    }),
+  const translationNeeds: { languageId: string; count: number; need: NeedKey }[] = useMemo(
+    () =>
+      (props.translationStatistics?.nbActiveTranslators || [])
+        .map((stat) => {
+          if (stat.count <= 2) return { ...stat, need: "strong" as NeedKey };
+          if (stat.count > 2 && stat.count <= 5) return { ...stat, need: "medium" as NeedKey };
+          return { ...stat, need: "weak" as NeedKey };
+        })
+        .sort((a, b) => NEED_ORDER[a.need] - NEED_ORDER[b.need]),
     [props],
   );
 
@@ -145,20 +148,16 @@ const RecensezVotreAction = (props: Props) => {
         </Section>
 
         {/* NEED */}
-        <div className={cls(styles.section, styles.bg_green)}>
-          <Container className={cls(styles.container, styles.needs)}>
-            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Translate.needTitle")}</h2>
-            <Row>
-              {needKeys.map((needKey, i) => (
-                <Col key={i} sm="12" lg="4">
-                  {translationNeeds[needKey].map((item, i) => (
-                    <LanguageCard href="#register" key={i} languageId={item.languageId} need={needKey} />
-                  ))}
-                </Col>
+        <Section className="bg-light-alt-blue">
+          <div className="fr-container">
+            <Title2>{t("Translate.needTitle")}</Title2>
+            <div className="flex gap-6 md:justify-center flex-wrap">
+              {translationNeeds.map((item, i) => (
+                <LanguageCard href="#register" key={i} languageId={item.languageId} need={item.need} />
               ))}
-            </Row>
-          </Container>
-        </div>
+            </div>
+          </div>
+        </Section>
       </div>
 
       {/* STEPS */}
