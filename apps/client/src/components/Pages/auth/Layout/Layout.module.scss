@@ -81,5 +81,5 @@ $headerHeight: 120px;
 .fixed_illu {
   position: fixed;
   bottom: u(10);
-  left: u(26);
+  left: max(8vw, 10px);
 }
