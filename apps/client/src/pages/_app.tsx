@@ -1,3 +1,6 @@
+import "scss/index.css";
+import "scss/index.scss";
+
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
@@ -19,9 +22,6 @@ import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
 import { wrapper } from "~/services/configureStore";
 import { PageOptions } from "~/types/interface";
-
-import "scss/index.css";
-import "scss/index.scss";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",

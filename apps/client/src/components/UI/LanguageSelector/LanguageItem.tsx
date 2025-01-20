@@ -22,7 +22,7 @@ const LanguageItem = memo(
     const { t } = useTranslation();
     const stylesDisabled = useStylesDisabled();
 
-    const { changeLanguage } = useChangeLanguage();
+    const { changeLanguage, loading } = useChangeLanguage();
     const currentLanguage = router.locale || "fr";
 
     const langues = useSelector(allLanguesSelector);
@@ -64,6 +64,11 @@ const LanguageItem = memo(
         tabIndex={0}
         {...props}
       >
+        {loading && (
+          <span className={styles.loader}>
+            <b>{t("LanguageDropdown.loading", "Chargement de la langue")}</b>
+          </span>
+        )}
         <b>
           {item.langueFr} - {item.langueLoc}
         </b>{" "}
