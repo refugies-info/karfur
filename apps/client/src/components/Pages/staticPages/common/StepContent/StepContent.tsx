@@ -1,10 +1,9 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { ReactElement, useMemo } from "react";
+import { useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
 import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
-import AutoplayVideo from "../AutoplayVideo";
 
 interface Props {
   step: number;
@@ -15,13 +14,10 @@ interface Props {
     link: string;
   };
   image?: any;
-  video?: string;
   dottedLine?: boolean;
   width?: number;
-  height?: number;
   buttonStep?: string;
   buttonStepEnd?: boolean;
-  footer?: ReactElement;
 }
 
 const StepContent = (props: Props) => {
@@ -96,7 +92,6 @@ const StepContent = (props: Props) => {
             {props.cta.text}
           </Button>
         )}
-        {props.footer}
         {!isTablet && props.buttonStep && buttonStep}
 
         {/* fade border */}
@@ -118,16 +113,7 @@ const StepContent = (props: Props) => {
           !!props.buttonStep && "!pb-[150px] lg:!pb-0",
         )}
       >
-        {props.image && (
-          <Image
-            src={props.image}
-            alt=""
-            width={props.width || 550}
-            height={props.height}
-            style={{ objectFit: "contain" }}
-          />
-        )}
-        {props.video && <AutoplayVideo src={props.video} width={props.width} height={props.height || 320} />}
+        {props.image && <Image src={props.image} alt="" width={props.width || 550} style={{ objectFit: "contain" }} />}
         {/* fade border */}
         {props.dottedLine && (
           <span

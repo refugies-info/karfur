@@ -204,7 +204,7 @@ const RecensezVotreAction = (props: Props) => {
                 />
               }
             >
-              <p className="mb-0">{t("Publish.requiredText1")}</p>
+              <p>{t("Publish.requiredText1")}</p>
             </Card>
 
             <Card
@@ -217,7 +217,7 @@ const RecensezVotreAction = (props: Props) => {
                 />
               }
             >
-              <p className="mb-0">{t("Publish.requiredText2")}</p>
+              <p>{t("Publish.requiredText2")}</p>
             </Card>
 
             <Card
@@ -230,7 +230,7 @@ const RecensezVotreAction = (props: Props) => {
                 />
               }
             >
-              <p className="mb-0">{t("Publish.requiredText3")}</p>
+              <p>{t("Publish.requiredText3")}</p>
             </Card>
           </RowCards>
           <div className="mt-10 lg:mt-20 text-center">

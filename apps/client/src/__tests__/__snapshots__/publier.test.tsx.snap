@@ -519,9 +519,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="!text-large"
               >
-                <p
-                  class="mb-0"
-                >
+                <p>
                   Publish.requiredText1
                 </p>
               </div>
@@ -574,9 +572,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="!text-large"
               >
-                <p
-                  class="mb-0"
-                >
+                <p>
                   Publish.requiredText2
                 </p>
               </div>
@@ -629,9 +625,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="!text-large"
               >
-                <p
-                  class="mb-0"
-                >
+                <p>
                   Publish.requiredText3
                 </p>
               </div>

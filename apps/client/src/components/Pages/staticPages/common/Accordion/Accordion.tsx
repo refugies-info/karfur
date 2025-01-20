@@ -18,7 +18,6 @@ type Item = {
   youtube?: string;
   mediaWidth?: number;
   mediaHeight?: number;
-  noShadow?: boolean;
   cta?: {
     text: string;
     link: string;
@@ -56,14 +55,7 @@ const Accordion = (props: Props) => {
           />
         );
       case "video":
-        return (
-          <AutoplayVideo
-            src={item.video}
-            height={item.mediaHeight || 420}
-            width={item.mediaWidth}
-            noShadow={item.noShadow}
-          />
-        );
+        return <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />;
       case "youtube":
         return !!finalityConsent?.youtube ? (
           <iframe
