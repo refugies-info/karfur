@@ -18,3 +18,8 @@
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
 }
+
+body {
+  min-width: 100vw;
+  overflow-x: hidden;
+}
