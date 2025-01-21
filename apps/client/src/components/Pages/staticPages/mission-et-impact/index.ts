@@ -1,0 +1,1 @@
+export { ImpactCol } from "./ImpactCol";

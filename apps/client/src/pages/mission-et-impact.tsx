@@ -6,6 +6,7 @@ import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.
 import AlainRegnier from "~/assets/staticPages/mission-et-impact/photo-alain-regnier.png";
 import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.png";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
+import { ImpactCol } from "~/components/Pages/staticPages/mission-et-impact";
 import SEO from "~/components/Seo";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 
@@ -56,6 +57,51 @@ const MissionImpact: NextPage = () => {
               </div>
             </div>
           </div>
+        </div>
+      </Section>
+
+      <Section className="bg-light-alt-blue">
+        <div className="fr-container">
+          <div className="flex gap-10 md:gap-20 flex-col md:flex-row mb-10 md:mb-20">
+            <div className="flex-1">
+              <Title2 smallMb className="!text-left">
+                {t("MissionImpact.impact_title")}
+              </Title2>
+              <p className="!text-h4 md:!text-h3 text-purple-france !mb-0">{t("MissionImpact.impact_subtitle")}</p>
+            </div>
+            <div className="flex-1">
+              <p className="!text-large">{t("MissionImpact.impact_p1")}</p>
+              <p className="!text-large">{t("MissionImpact.impact_p2")}</p>
+              <p
+                className="!text-large !mb-0"
+                dangerouslySetInnerHTML={{
+                  __html: t("MissionImpact.impact_p3"),
+                }}
+              ></p>
+            </div>
+          </div>
+
+          <div className="flex gap-10 md:gap-20 flex-col md:flex-row pt-10">
+            <ImpactCol
+              title={t("MissionImpact.impact_arguments_title_1")}
+              badge={t("MissionImpact.impact_arguments_badge_1")}
+              text={t("MissionImpact.impact_arguments_text_1")}
+              figureText={t("MissionImpact.impact_arguments_figures_1")}
+            />
+            <ImpactCol
+              title={t("MissionImpact.impact_arguments_title_2")}
+              badge={t("MissionImpact.impact_arguments_badge_2")}
+              text={t("MissionImpact.impact_arguments_text_2")}
+              figureText={t("MissionImpact.impact_arguments_figures_2")}
+            />
+            <ImpactCol
+              title={t("MissionImpact.impact_arguments_title_3")}
+              badge={t("MissionImpact.impact_arguments_badge_3")}
+              text={t("MissionImpact.impact_arguments_text_3")}
+              figureText={t("MissionImpact.impact_arguments_figures_3")}
+            />
+          </div>
+          <p className="!text-small text-center !mt-20">{t("MissionImpact.impact_arguments_legend")}</p>
         </div>
       </Section>
     </div>
