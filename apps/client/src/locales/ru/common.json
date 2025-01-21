@@ -11,8 +11,6 @@
     "mobileAppFormLabel": "Номер телефона",
     "mobileAppFormInstructions": "Вы получите сообщение со ссылкой на скачивание. Не переживайте, мы не сохраняем ваш номер в базе.",
     "mobileAppReviews": "Более 100 оценок и мнений",
-    "infoTypeTitle": "Два вида информации",
-    "infoTypeDemarche": "{{count}} административных процедур",
     "infoTypeDispositif": "предложено {{countDispositifs}} программ от {{countStructures}} организаций",
     "whyTitle": "Зачем и в каких случаях использовать Réfugiés.info?",
     "whyAccordionTitle1": "Найдите информацию обо всех административных процедурах",

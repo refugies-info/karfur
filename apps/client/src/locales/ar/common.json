@@ -11,8 +11,6 @@
     "mobileAppFormLabel": "رقم هاتفك",
     "mobileAppFormInstructions": "سيصلك رسالة تحتوي رابطاً تضغط عليه لتنزيل التطبيق على هاتفك. لا داعٍ للقلق, لن نحتفظ برقم هاتفك !",
     "mobileAppReviews": "أكثر من 100 تقييم و رأي",
-    "infoTypeTitle": "نوعين من المعلومات",
-    "infoTypeDemarche": "{{count}} معاملة ادارية",
     "infoTypeDispositif": "{{countDispositifs}} فورماسيون يعرضها {{countStructures}} منظمة",
     "whyTitle": "ما فائدة تطبيق Réfugiés.info و متى أستعمله",
     "whyAccordionTitle1": "أجد معلومات وافية عن كل المعاملات الادارية",

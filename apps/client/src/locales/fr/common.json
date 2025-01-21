@@ -19,8 +19,7 @@
     "mobileAppFormLabel": "N° de téléphone",
     "mobileAppFormInstructions": "Vous recevrez le lien pour télécharger l’application par message. Pas d’inquiétude, on ne garde pas votre numéro !",
     "mobileAppReviews": "100+ notes et avis",
-    "infoTypeTitle": "Deux types d’information",
-    "infoTypeDemarche": "{{count}} démarches",
+    "infoTypeDemarche": "démarches en lien avec l'intégation",
     "infoTypeDispositif": "{{countDispositifs}} actions proposées par {{countStructures}} structures",
     "whyTitle": "Pourquoi et quand utiliser Réfugiés.info ?",
     "whyAccordionTitle1": "Trouvez de l’information sur toutes les démarches administratives",
@@ -775,5 +774,10 @@
     "PiedDePage": "Pied de page",
     "Menu": "Menu",
     "Contenu": "Contenu"
+  },
+  "ui": {
+    "cardSlider": {
+      "seeAll": "Voir tout"
+    }
   }
 }

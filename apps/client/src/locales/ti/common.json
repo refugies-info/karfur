@@ -11,8 +11,6 @@
     "mobileAppFormLabel": "ቁጽሪ ቴለፎን",
     "mobileAppFormInstructions": "ንኣፕሊኬሽንና ንምውራድ ዝሕግዝ ሊንክ ብመልእኽቲ ኣብ ቴለፎንኩም ክትመጽኣኩም እዩ። ኣይትሻቐሉ ቁጽርኹም ኣይዕቕቦን  ኢና!",
     "mobileAppReviews": "ልዕሊ 100 ሓበሬታን ምልክታን",
-    "infoTypeTitle": "ክልተ ዓይነት ሓበሬታትታ",
-    "infoTypeDemarche": "{{count}} ናይ ቤት ጽሕፈታት መስርሕ",
     "infoTypeDispositif": "{{countDispositifs}}ን ተግባር {{countStructures}}ሓባሪ",
     "whyTitle": "ብ ኸመይን መዓስን ን ረፉጂኣንፎ ትጥቐምሉ ?",
     "whyAccordionTitle1": "ሓበሬታ ብዛዕባ ፣ ናይ ምምሕዳራዊ ቤት-ጽሕፈት እነሀለኩም",

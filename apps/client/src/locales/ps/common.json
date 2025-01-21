@@ -11,8 +11,6 @@
     "mobileAppFormLabel": "د تلیفون شمیره",
     "mobileAppFormInstructions": "تاسو به د پیغام له لارې د اپلیکیشن ډاونلوډ کولو لینک ترلاسه کړئ. اندیښنه مه کوئ، موږ ستاسو شمیره نه ساتو!",
     "mobileAppReviews": "100+ درجه بندي او بیاکتنې",
-    "infoTypeTitle": "دوه ډوله معلومات",
-    "infoTypeDemarche": "{{count}} طرزالعملونه",
     "infoTypeDispositif": "{{countDispositifs}} فعالیتونه چې د {{countStructures}} جوړښتونو او بنسټونو لخوا وړاندیز شوي",
     "whyTitle": "ولې او کله Réfugiés.info وکاروئ؟",
     "whyAccordionTitle1": "د ټولو اداري طرزالعملونو په اړه معلومات ومومئ",

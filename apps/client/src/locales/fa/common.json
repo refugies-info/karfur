@@ -11,8 +11,6 @@
     "mobileAppFormLabel": "شماره تلفن شما",
     "mobileAppFormInstructions": "پیامی حاوی پیوندی برای دانلود برنامه دریافت خواهید کرد، نگران نباشید، ما شماره تلفن شما را حفظ نمی کنیم!",
     "mobileAppReviews": "بیش از 100 رتبه بندی و نظر",
-    "infoTypeTitle": "دو نوع اطلاعات",
-    "infoTypeDemarche": "{{count}} روند اداری",
     "infoTypeDispositif": "{{countDispositifs}} موضوع ترتیب شده توسط {{countStructures}} سازمان",
     "whyTitle": "کاربرد Réfugiés.info چیست و چه زمانی باید از آن استفاده کنید؟",
     "whyAccordionTitle1": "اطلاعات جامعی در مورد تمام روندهای اداری پیدا کنید",

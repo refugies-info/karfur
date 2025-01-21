@@ -5,6 +5,7 @@ import {
   SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
+import { CardSlider, CardSliderHeader, CardSliderWrapper } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -17,7 +18,6 @@ import {
   Infos,
   MainFigures,
   MobileApp,
-  NewContent,
   WhyAccordions,
 } from "~/components/Pages/homepage/Sections";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
@@ -65,13 +65,26 @@ const Homepage = (props: Props) => {
 
       {!isMobile && <StructuresLogos />}
 
-      <NewContent
+      {/* <ContentSlider
         nbDemarches={props.contentStatistics.nbDemarches || 0}
         nbDispositifs={props.contentStatistics.nbDispositifs || 0}
         nbStructures={props.structuresStatistics.nbStructures || 0}
         demarches={props.demarches}
         dispositifs={props.dispositifs}
-      />
+      /> */}
+
+      <CardSliderWrapper>
+        <CardSliderHeader>
+          <h2 className="!text-[2rem]">{`{${112}}`} démarches adminstratives expliquées</h2>
+        </CardSliderHeader>
+        <CardSlider>
+          {[...Array(30)].map((_, index) => (
+            <div key={index} className="w-[300px] bg-red-500">
+              huhu
+            </div>
+          ))}
+        </CardSlider>
+      </CardSliderWrapper>
 
       <MobileApp />
 
