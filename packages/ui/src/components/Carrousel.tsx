@@ -91,19 +91,26 @@ const CarrouselBase = forwardRef<HTMLElement, Omit<CarrouselProps, "ref">>(
       const container = scrollContainerRef.current;
       if (!container) return;
 
-      const observer = new ResizeObserver(() => {
+      const handleResize = () => {
         handleScroll();
         checkScrollability();
-      });
-      observer.observe(container);
-      container.addEventListener("scroll", () => {
-        handleScroll();
-        checkScrollability();
-      });
+      };
+
+      // Only use ResizeObserver if it's available in the browser
+      let observer: ResizeObserver | undefined;
+      if (typeof window !== "undefined" && typeof ResizeObserver !== "undefined") {
+        observer = new ResizeObserver(handleResize);
+        observer.observe(container);
+      }
+
+      // Fallback to window resize event
+      window.addEventListener("resize", handleResize);
+      container.addEventListener("scroll", handleResize);
 
       return () => {
-        observer.disconnect();
-        container.removeEventListener("scroll", handleScroll);
+        observer?.disconnect();
+        window.removeEventListener("resize", handleResize);
+        container.removeEventListener("scroll", handleResize);
       };
     }, [handleScroll, checkScrollability]);
 
