@@ -12,10 +12,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
 import {
-  AllThemes,
-  Community,
   FreeResources,
-  HelpUs,
   Hero,
   Infos,
   MainFigures,
@@ -23,7 +20,9 @@ import {
   NewContent,
   WhyAccordions,
 } from "~/components/Pages/homepage/Sections";
+import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import SEO from "~/components/Seo";
+import { useWindowSize } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
@@ -45,6 +44,7 @@ export interface Props {
 const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -63,9 +63,7 @@ const Homepage = (props: Props) => {
 
       <Hero targetArrow="themes" />
 
-      <AllThemes id="themes" />
-
-      <MobileApp />
+      {!isMobile && <StructuresLogos />}
 
       <NewContent
         nbDemarches={props.contentStatistics.nbDemarches || 0}
@@ -75,23 +73,16 @@ const Homepage = (props: Props) => {
         dispositifs={props.dispositifs}
       />
 
+      <MobileApp />
+
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
       <FreeResources />
-
-      <HelpUs />
 
       <MainFigures
         nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
         nbMercis={props.contentStatistics.nbMercis || 0}
         nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
-      />
-
-      <Community
-        nbRedactors={props.translationStatistics.nbRedactors || 0}
-        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
-        nbCDA={props.structuresStatistics.nbCDA || 0}
-        nbTranslators={props.translationStatistics.nbTranslators || 0}
       />
 
       <Infos />
