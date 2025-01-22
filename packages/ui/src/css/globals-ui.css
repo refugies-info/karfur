@@ -1,3 +1,5 @@
+/* stylelint-disable media-feature-range-notation */
+/* stylelint-disable scss/at-rule-no-unknown */
 @import "tailwindcss";
 @source "../components/";
 
