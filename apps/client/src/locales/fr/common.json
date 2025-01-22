@@ -19,9 +19,8 @@
     "mobileAppFormLabel": "N° de téléphone",
     "mobileAppFormInstructions": "Vous recevrez le lien pour télécharger l’application par message. Pas d’inquiétude, on ne garde pas votre numéro !",
     "mobileAppReviews": "100+ notes et avis",
-    "infoTypeTitle": "Deux types d’information",
-    "infoTypeDemarche": "{{count}} démarches",
-    "infoTypeDispositif": "{{countDispositifs}} actions proposées par {{countStructures}} structures",
+    "infoTypeDemarche": "{{count}} démarches administratives expliquées",
+    "infoTypeDispositif": "{{count}} dispositifs dans toute la France",
     "whyTitle": "Pourquoi et quand utiliser Réfugiés.info ?",
     "whyAccordionTitle1": "Trouvez de l’information sur toutes les démarches administratives",
     "whyAccordionText1": "Une fois la protection internationale obtenue, de nombreuses démarches administratives doivent être enclenchées. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches. Aujourd’hui, il en existe {{count}}, réparties sur l’ensemble des thématiques de l’intégration.",
@@ -775,5 +774,12 @@
     "PiedDePage": "Pied de page",
     "Menu": "Menu",
     "Contenu": "Contenu"
+  },
+  "ui": {
+    "carrousel": {
+      "seeMore": "Voir plus",
+      "prev": "Faire défiler à gauche",
+      "next": "Faire défiler à droite"
+    }
   }
 }
