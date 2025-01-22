@@ -18,7 +18,7 @@
     width: 2.5rem;
     height: 2.5rem;
     min-height: 2.5rem;
-    
+
     &::before {
       margin: 0;
     }
@@ -57,4 +57,20 @@
 [class^="ri-"],
 [class*=" ri-"] {
   font-family: inherit !important;
+}
+
+// links
+a:not(.underline) {
+  text-decoration: none;
+
+  &:not([class^="fr-"]),
+  &:not([class^="fr-"])[href],
+  &:not([class^="fr-"]):hover {
+    color: inherit;
+    background-image: none;
+  }
+}
+
+:not([class^="fr-link"])[target="_blank"]::after {
+  content: none;
 }
