@@ -723,6 +723,25 @@
     "mission_p1": "« Axe du Comité interministériel pour l’intégration de 2018, ce projet numérique répond à la <strong>double problématique de l’accès à l’information et du non-recours aux droits des personnes réfugiées</strong>, désorientées face à une information éparpillée auprès de nombreuses sources peu fiables, non traduites et non accessibles.",
     "mission_p2": "Selon une étude de la Direction de la recherche, des études, de l’évaluation et des statistiques (DREES) de 2021, le non-recours aux droits est principalement dû au manque d’information (40%) et à la complexité des démarches (20%) – un phénomène encore plus prononcé chez les personnes réfugiées.",
     "mission_p3": "Réfugiés.info contribue donc directement à combler ce manque en proposant une information claire, simple, traduite et accessible. »",
-    "mission_alain_position": "Préfet, Délégué interministériel à l’accueil et l’intégration des réfugiés"
+    "mission_alain_position": "Préfet, Délégué interministériel à l’accueil et l’intégration des réfugiés",
+    "impact_title": "La bonne information au bon endroit génère un impact positif pour tout le secteur !",
+    "impact_subtitle": "Fluidification du travail des administrations, facilitation du travail des professionnels de l’intégration et autonomisation des bénéficiaires",
+    "impact_p1": "Sur Réfugiés.info, une information est considérée comme adaptée lorsqu’elle est fiable, à jour, claire, spécifique, traduite, écoutable, et actionnable.",
+    "impact_p2": "Une fois produite, cette information doit être ensuite diffusée auprès des usagers afin qu’ils puissent l’utiliser. Réfugiés.info est désormais un medium reconnu, fréquenté chaque mois par environ 100 000 étrangers primo-arrivants et réfugiés, ainsi que 30 000 à 40 000 professionnels.",
+    "impact_p3": "La délivrance d’une information adaptée est la <strong>première brique pour le bon fonctionnement des administrations</strong> et <strong>la bonne mise en œuvre de la politique d’intégration des étrangers</strong> en France.",
+    "impact_arguments_figures_title": "En chiffres",
+    "impact_arguments_title_1": "Réfugiés.info fluidifie le travail des administrations",
+    "impact_arguments_badge_1": "Impact pour l’État",
+    "impact_arguments_text_1": "Lorsqu’une personne réfugiée est bien informée, cela limite les sollicitations auprès des services préfectoraux ou d’accueil social. L’envoi de dossiers complets et donc recevables accélère l’intégration et allège la facture de gestion pour l’État.",
+    "impact_arguments_figures_1": "70% des personnes réfugiées interrogées disent avoir trouvé une information grâce à Réfugiés.info au lieu de la demander à l’administration concernée*",
+    "impact_arguments_title_2": "Réfugiés.info aide les professionnels à autonomiser leurs bénéficiaires",
+    "impact_arguments_badge_2": "Impact pour le secteur",
+    "impact_arguments_text_2": "Grâce à l’information délivrée par Réfugiés.info, les bénéficiaires sont plus vigilants et gagnent en autonomie.",
+    "impact_arguments_figures_2": "80% des personnes réfugiées interrogées disent avoir gagné du temps pour faire leurs démarches grâce à Réfugiés.info (jusqu’à plusieurs mois pour certains)*",
+    "impact_arguments_title_3": "Réfugiés.info accélère le parcours d’intégration",
+    "impact_arguments_badge_3": "Impact pour les bpi",
+    "impact_arguments_text_3": "Réfugiés.info sert d’outil de médiation pour faciliter la compréhension des démarches, libérant ainsi du temps pour se concentrer sur les sujets de fond et à l’accompagnement en lui-même.",
+    "impact_arguments_figures_3": "60% des personnes réfugiées interrogées disent avoir pu être autonomes pour réaliser une démarche au moins une fois grâce à Réfugiés.info*",
+    "impact_arguments_legend": "* Enquête de satisfaction auprès des utilisateurs, avril 2024"
   }
 }
