@@ -1,8 +1,10 @@
+import Card from "@codegouvfr/react-dsfr/Card";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import HeroBack from "~/assets/staticPages/mission-et-impact/hero-back.svg";
 import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.svg";
+import PDFScreenshot from "~/assets/staticPages/mission-et-impact/pdf-screenshot.png";
 import AlainRegnier from "~/assets/staticPages/mission-et-impact/photo-alain-regnier.png";
 import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.png";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
@@ -68,6 +70,20 @@ const MissionImpact: NextPage = () => {
                 {t("MissionImpact.impact_title")}
               </Title2>
               <p className="!text-h4 md:!text-h3 text-purple-france !mb-0">{t("MissionImpact.impact_subtitle")}</p>
+
+              <Card
+                enlargeLink
+                imageUrl={PDFScreenshot.src}
+                horizontal
+                linkProps={{
+                  href: "#",
+                }}
+                imageAlt=""
+                title="Livret d'impact"
+                desc="Mai 2024"
+                endDetail="PDF - 61,88 Ko"
+                className="max-w-[384px] fr-card--download mt-10 md:mt-14"
+              />
             </div>
             <div className="flex-1">
               <p className="!text-large">{t("MissionImpact.impact_p1")}</p>
