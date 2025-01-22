@@ -34,6 +34,9 @@ jobs:
           pnpm add -g turbo
           pnpm install --frozen-lockfile
 
+      - name: Build UI Package
+        run: turbo build --filter=@refugies-info/ui
+
       - name: Lint, Check Types and Test
         run: turbo lint check:types test && pnpm lint:style
         env:
