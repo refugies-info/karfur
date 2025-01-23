@@ -1,6 +1,7 @@
 @import "~/scss/colors";
 @import "~/scss/mixins/responsive";
 @import "~/scss/variables";
+@import "~/scss/mixins/rtl";
 
 .dropdownRoot {
   width: fit-content;
@@ -13,13 +14,25 @@
   z-index: 1000;
 
   // Left alignment (default)
-  &.left {
-    left: 0;
+  &.start {
+    @include rtl {
+      left: 0;
+    }
+
+    @include ltr {
+      right: 0;
+    }
   }
 
   // Right alignment
-  &.right {
-    right: 0;
+  &.end {
+    @include ltr {
+      right: 0;
+    }
+
+    @include rtl {
+      left: 0;
+    }
   }
 
   // Center alignment
