@@ -42,7 +42,7 @@
       [class*=" fr-btns-group--icon-"]
     )
     .fr-btn::before {
-    margin-inline: -0.125rem 0.5rem;
+    margin-inline: -0.125rem 0.5rem !important;
   }
 
   @media (min-width: 62em) {
