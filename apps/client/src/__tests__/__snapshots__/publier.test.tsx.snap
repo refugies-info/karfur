@@ -3,407 +3,390 @@
 exports[`publier renders publier 1`] = `
 <DocumentFragment>
   <div
-    class="main"
+    class="w-full"
   >
     <div
-      class="section bg_blue mb-4"
+      class="py-10 md:py-20 bg-blue-france"
     >
       <div
-        class="container container"
+        class="fr-container"
       >
         <div
-          class="hero row"
+          class="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20"
         >
           <div
-            class="hero_title col-sm-12 col-lg-6"
+            class="flex-1 text-center md:text-left"
           >
             <h1
-              class="white"
+              class="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6"
             >
               Publish.title
             </h1>
             <p
-              class="subtitle"
+              class="!text-chapo !text-light-alt-blue !mb-0"
             >
               Publish.subtitle
             </p>
-            <div
-              class="container"
+            <a
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
+              href="#register"
+              id="fr-button-:r0:"
             >
-              <a
-                class="btn"
-                href="/undefined#why"
-                title="Suivant"
-              >
-                <span
-                  class="icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-downward-outline"
-                      fill="bleuCharte"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </a>
-            </div>
+              Publish.navbarItem5
+            </a>
           </div>
           <div
-            class="col-sm-12 col-lg-6"
+            class="flex-1"
           >
             <img
               alt=""
+              class="max-w-full h-auto mx-auto"
               data-nimg="1"
               decoding="async"
-              height="40"
+              height="540"
               loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style="color: transparent; max-width: 100%; height: auto;"
-              width="40"
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="540"
             />
           </div>
         </div>
       </div>
     </div>
     <div
-      class="container shadow"
+      class="sticky top-0 bg-white z-20"
     >
       <div
-        class="inner container"
+        class="fr-container flex gap-10 justify-between items-start flex-nowrap py-4 md:py-10"
       >
-        <div>
-          <a
-            class="btn green"
-            href="/undefined#why"
+        <div
+          class="nav"
+        >
+          <fieldset
+            class="fr-segmented fr-segmented--no-legend"
+            id="fr-segmented-:r1:"
           >
-            Publish.navbarItem1
-          </a>
+            <div
+              class="fr-segmented__elements"
+            >
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-0"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-0"
+                >
+                  Publish.navbarItem1
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-1"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-1"
+                >
+                  Publish.navbarItem2
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-2"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-2"
+                >
+                  Publish.navbarItem3
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-3"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-3"
+                >
+                  Publish.navbarItem4
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div
+          class="hidden md:block"
+        >
           <a
-            class="btn purple"
-            href="/undefined#required"
+            class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
+            href="#register"
+            id="fr-button-:r3:"
           >
-            Publish.navbarItem2
-          </a>
-          <a
-            class="btn orange"
-            href="/undefined#steps"
-          >
-            Publish.navbarItem3
-          </a>
-          <a
-            class="btn red"
-            href="/undefined#faq"
-          >
-            Publish.navbarItem4
+            Publish.navbarItem5
           </a>
         </div>
-        <a
-          class="btn blue"
-          href="/undefined#register"
-        >
-          <span
-            class="icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-plus-circle-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="plus-circle"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                    />
-                    <path
-                      d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Publish.navbarItem5
-        </a>
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="why"
       />
       <div
-        class="section"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
           <h2
-            class="title2"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 !text-left"
           >
             Publish.whyTitle
           </h2>
           <div
-            class="row"
+            class="flex gap-20"
           >
             <div
-              class="infos with_images col"
+              class="w-1/2 grow-1 basis-auto"
             >
               <div
-                class="container"
+                data-orientation="vertical"
               >
-                <button
-                  class="btn open btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle1
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse show"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="open"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="open"
                   >
-                    Publish.whyAccordionText1
-                  </p>
+                    <button
+                      aria-controls="radix-:r5:"
+                      aria-disabled="true"
+                      aria-expanded="true"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="open"
+                      id="radix-:r4:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-blue-france"
+                      >
+                        Publish.whyAccordionTitle1
+                      </span>
+                      <i
+                        class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-blue-france"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r4:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="open"
+                    id="radix-:r5:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
+                  >
+                    <p
+                      class="text !text-large !mb-0"
+                    >
+                      Publish.whyAccordionText1
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div
-                class="container video2"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle2
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.whyAccordionText2
-                  </p>
+                    <button
+                      aria-controls="radix-:r7:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:r6:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Publish.whyAccordionTitle2
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r6:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:r7:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle3
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.whyAccordionText3
-                  </p>
+                    <button
+                      aria-controls="radix-:r9:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:r8:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Publish.whyAccordionTitle3
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r8:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:r9:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle4
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.whyAccordionText4
-                  </p>
+                    <button
+                      aria-controls="radix-:rb:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:ra:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Publish.whyAccordionTitle4
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:ra:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:rb:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
               </div>
             </div>
             <div
-              class="media center col"
+              class="w-1/2 flex items-center justify-center"
             >
               <img
                 alt=""
-                class="image"
+                class="max-w-full h-auto mx-auto mt-6 lg:mt-0"
+                data-nimg="1"
+                decoding="async"
+                height="320"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+                style="color: transparent;"
+                width="400"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="py-10 md:py-20 bg-light-alt-blue"
+      >
+        <div
+          class="fr-container"
+        >
+          <h2
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+          >
+            Publish.testimonies_title
+          </h2>
+          <div
+            class="flex flex-col md:flex-row gap-10"
+          >
+            <div
+              class="flex-1 md:px-8 space-y-6"
+            >
+              <img
+                alt=""
                 data-nimg="1"
                 decoding="async"
                 height="40"
@@ -413,173 +396,79 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
+              <p
+                class="!text-large !mb-6"
+              >
+                Publish.testimony1
+              </p>
+              <div>
+                <div
+                  class="font-bold mb-2"
+                >
+                  Vincent Le Lann
+                </div>
+                <div>
+                  Compagnons du Tour de France à Nantes
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="section bg_green"
-      >
-        <div
-          class="container container"
-        >
-          <div
-            class="container"
-          >
-            <button
-              class="btn next btn btn-secondary"
-              type="button"
-            >
-              <span
-                class="icon"
-              >
-                <i
-                  style="height: 24px; line-height: 24px;"
-                >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="#055e5a"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-            </button>
             <div
-              class="slider"
+              class="flex-1 md:px-8 space-y-6"
             >
-              <div
-                class="testimony col"
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony1
-                </p>
+                Publish.testimony2
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="font-bold mb-2"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Vincent Le Lann"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Vincent Le Lann
-                    </div>
-                    <div>
-                      Compagnons du Tour de France à Nantes
-                    </div>
-                  </div>
+                  Rémi Crouzel
+                </div>
+                <div>
+                  Mission Locale de Dijon & Conseiller IPeRACTIFS21
                 </div>
               </div>
-              <div
-                class="testimony col"
+            </div>
+            <div
+              class="flex-1 md:px-8 space-y-6"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony2
-                </p>
+                Publish.testimony3
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="font-bold mb-2"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Rémi Crouzel"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Rémi Crouzel
-                    </div>
-                    <div>
-                      Mission Locale de Dijon & Conseiller IPeRACTIFS21
-                    </div>
-                  </div>
+                  Paola Salazar
                 </div>
-              </div>
-              <div
-                class="testimony col"
-              >
-                <p>
-                  Publish.testimony3
-                </p>
-                <div
-                  class="container"
-                >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Paola Salazar"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Paola Salazar
-                    </div>
-                    <div>
-                      Directrice adjointe UniR
-                    </div>
-                  </div>
+                <div>
+                  Directrice adjointe UniR
                 </div>
               </div>
             </div>
@@ -588,137 +477,70 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey scrollspy_section"
+      class="py-10 md:py-20 relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="required"
       />
       <div
-        class="container container"
+        class="fr-container"
       >
         <h2
-          class="title2 center"
+          class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
         >
           Publish.requiredTitle
         </h2>
         <div
-          class="row"
+          class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
         >
           <div
-            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
-            <div
-              class="container"
-            >
+            <div>
               <div>
-                <div
-                  class="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
-                  />
-                </div>
-                <h3
-                  class="title"
-                >
-                  Publish.requiredSubtitle1
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText1
-                  </p>
-                </div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+              >
+                Publish.requiredSubtitle1
+              </h3>
+              <div
+                class="!text-large"
+              >
+                <p>
+                  Publish.requiredText1
+                </p>
               </div>
               <div>
-                <div>
+                <div
+                  class="text-normal !space-y-3"
+                >
                   <p
-                    class="example example_ko"
+                    class="flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
+                    <i
+                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                    />
                     Publish.requiredTextExample1Ko
                   </p>
                   <p
-                    class="example example_ok"
+                    class="flex !mb-0"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
+                    <i
+                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                    />
                     Publish.requiredTextExample1Ok
                   </p>
                 </div>
@@ -726,119 +548,52 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
-            <div
-              class="container"
-            >
+            <div>
               <div>
-                <div
-                  class="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
-                  />
-                </div>
-                <h3
-                  class="title"
-                >
-                  Publish.requiredSubtitle2
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText2
-                  </p>
-                </div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+              >
+                Publish.requiredSubtitle2
+              </h3>
+              <div
+                class="!text-large"
+              >
+                <p>
+                  Publish.requiredText2
+                </p>
               </div>
               <div>
-                <div>
+                <div
+                  class="text-normal !space-y-3"
+                >
                   <p
-                    class="example example_ko"
+                    class="flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
+                    <i
+                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                    />
                     Publish.requiredTextExample2Ko
                   </p>
                   <p
-                    class="example example_ok"
+                    class="flex !mb-0"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
+                    <i
+                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                    />
                     Publish.requiredTextExample2Ok
                   </p>
                 </div>
@@ -846,119 +601,52 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
           >
-            <div
-              class="container"
-            >
+            <div>
               <div>
-                <div
-                  class="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
-                  />
-                </div>
-                <h3
-                  class="title"
-                >
-                  Publish.requiredSubtitle3
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText3
-                  </p>
-                </div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+              >
+                Publish.requiredSubtitle3
+              </h3>
+              <div
+                class="!text-large"
+              >
+                <p>
+                  Publish.requiredText3
+                </p>
               </div>
               <div>
-                <div>
+                <div
+                  class="text-normal !space-y-3"
+                >
                   <p
-                    class="example example_ko"
+                    class="flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
+                    <i
+                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                    />
                     Publish.requiredTextExample3Ko
                   </p>
                   <p
-                    class="example example_ok"
+                    class="flex !mb-0"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
+                    <i
+                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                    />
                     Publish.requiredTextExample3Ok
                   </p>
                 </div>
@@ -967,468 +655,330 @@ exports[`publier renders publier 1`] = `
           </div>
         </div>
         <div
-          class="link"
+          class="mt-10 lg:mt-20 text-center"
         >
           <a
-            class="link color_purple"
+            class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-            rel="noopener noreferrer"
-            target="_blank"
+            id="fr-button-:rc:"
           >
-            <span>
-              Publish.requiredCTA
-            </span>
-            <span
-              class="icon icon"
-            >
-              <i
-                style="height: 24px; line-height: 24px;"
-              >
-                <svg
-                  class="eva eva-arrow-forward-outline"
-                  fill="purple"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  width="24px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="arrow-forward"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(-90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
+            Publish.requiredCTA
           </a>
         </div>
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="steps"
       />
       <div
-        class="section"
+        class="py-10 md:py-20 bg-beige"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
           <h2
-            class="title2"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
             Publish.stepsTitle
           </h2>
           <div
-            class="warning_mobile"
-          >
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 24px; line-height: 24px;"
-              >
-                <svg
-                  class="eva eva-alert-circle-outline"
-                  fill="black"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  width="24px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="alert-circle"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                      />
-                      <circle
-                        cx="12"
-                        cy="16"
-                        r="1"
-                      />
-                      <path
-                        d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            <p>
-              Publish.stepsWarningMobile
-            </p>
-          </div>
-          <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   1
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle1
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText1
               </p>
               <a
-                class="link color_orange"
-                href="/undefined#register"
-                rel="noopener noreferrer"
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
+                href="#register"
+                id="fr-button-:rd:"
               >
-                <span>
-                  Publish.stepsCTA1
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="orange"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
+                Publish.stepsCTA1
               </a>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/publier-video-step1.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   2
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle2
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText2a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText2b
               </p>
               <a
-                class="link color_orange"
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-                rel="noopener noreferrer"
-                target="_blank"
+                id="fr-button-:re:"
               >
-                <span>
-                  Publish.stepsCTA2
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="orange"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
+                Publish.stepsCTA2
               </a>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/publier-video-step2.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   3
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle3
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText3
               </p>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-                width="340"
-              >
-                <source
-                  src="/video/publier-video-step3.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange has_btn_step"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   4
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle4
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText4a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText4b
               </p>
               <div
-                class="btn_step"
+                class="!text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
                 Publish.stepsButton
               </div>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 !pb-[150px] lg:!pb-0"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="550"
+                height="440"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="440"
               />
             </div>
           </div>
           <div
-            class="row orange"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   5
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle5
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText5a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText5b
               </p>
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="415"
+                height="440"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="440"
               />
             </div>
           </div>
           <div
-            class="row orange dotted"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="content"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france border-dashed"
             >
               <div
-                class="step"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
                   6
                 </span>
               </div>
               <h3
-                class="title"
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
                 Publish.stepsSubtitle6
               </h3>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText6a
               </p>
               <p
-                class="text"
+                class="!text-large !mb-6"
               >
                 Publish.stepsText6b
               </p>
+              <span
+                class="hidden lg:block w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige"
+              />
             </div>
             <div
-              class="media"
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-dashed"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="550"
+                height="336"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=750&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=384&q=75 1x, /_next/image?url=%2Fimg.jpg&w=750&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="336"
+              />
+              <span
+                class="lg:hidden w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige"
               />
             </div>
           </div>
@@ -1436,334 +986,221 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <div
-        class="section bg_grey"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
-          <h2
-            class="title2 center !mb-0"
-          >
-            StaticPages.helpTitle
-          </h2>
-          <p
-            class="subtitle center"
-          >
-            Publish.helpSubtitle
-          </p>
           <div
-            class="top_space row"
+            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
           >
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            <h2
+              class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              <div
-                class="container"
-              >
+              StaticPages.helpTitle
+            </h2>
+            <p
+              class="!text-chapo md:text-center !mb-0"
+            >
+              Publish.helpSubtitle
+            </p>
+          </div>
+          <div
+            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+          >
+            <a
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Publish.helpTileTitle1"
+            >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Publish.helpTileTitle1
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Publish.helpTileText1
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
-                    rel="noopener noreferrer"
-                    target="_blank"
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Publish.helpTileTitle1
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p
+                    class="!mb-0"
                   >
-                    <span>
-                      Publish.helpTileCTA1
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
+                    Publish.helpTileText1
+                  </p>
                 </div>
               </div>
-            </div>
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
-            >
               <div
-                class="container"
+                class="mt-6 pt-2 w-full text-right"
               >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </a>
+            <a
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              href="https://help.refugies.info/fr/"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Publish.helpTileTitle2"
+            >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Publish.helpTileTitle2
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Publish.helpTileText2
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://help.refugies.info/fr/"
-                    rel="noopener noreferrer"
-                    target="_blank"
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Publish.helpTileTitle2
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p
+                    class="!mb-0"
                   >
-                    <span>
-                      Publish.helpTileCTA2
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
+                    Publish.helpTileText2
+                  </p>
                 </div>
               </div>
-            </div>
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
-            >
               <div
-                class="container"
+                class="mt-6 pt-2 w-full text-right"
               >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </a>
+            <button
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
+              title="StaticPages.helpTileTitle3"
+            >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    StaticPages.helpTileTitle3
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      StaticPages.helpTileText3
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div>
-                  <button
-                    class="link color_red"
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  StaticPages.helpTileTitle3
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p
+                    class="!mb-0"
                   >
-                    <span>
-                      StaticPages.helpTileCTA3
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </button>
+                    StaticPages.helpTileText3
+                  </p>
                 </div>
               </div>
-            </div>
+              <div
+                class="mt-6 pt-2 w-full text-right"
+              >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </button>
           </div>
         </div>
       </div>
       <div
-        class="section bg_red"
+        class="py-10 md:py-20 bg-light-alt-blue"
       >
         <div
-          class="container text-center container"
+          class="fr-container"
         >
           <h2
-            class="title2 white text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
           >
             Publish.figuresTitle
           </h2>
           <div
-            class="row"
+            class="flex flex-col lg:flex-row gap-10 lg:gap-20 justify-center"
           >
             <div
-              class="col-sm-12 col-lg-4"
+              class="text-center flex-1"
             >
               <div
-                class="figure"
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
                 <div>
                   0
                 </div>
               </div>
               <p
-                class="label"
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
               >
                 Publish.figuresSubtitle1
               </p>
             </div>
             <div
-              class="col-sm-12 col-lg-4"
+              class="text-center flex-1"
             >
               <div
-                class="figure"
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
                 <div>
                   0
                 </div>
               </div>
               <p
-                class="label"
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
               >
                 Publish.figuresSubtitle2
               </p>
             </div>
             <div
-              class="col-sm-12 col-lg-4"
+              class="text-center flex-1"
             >
               <div
-                class="figure"
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
                 <div>
                   0
                 </div>
               </div>
               <p
-                class="label"
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
               >
                 Publish.figuresSubtitle3
               </p>
@@ -1772,365 +1209,297 @@ exports[`publier renders publier 1`] = `
         </div>
       </div>
       <div
-        class="section"
+        class="py-10 md:py-20 relative"
       >
         <span
-          class="anchor"
+          class="absolute -top-[96px] md:-top-[120px]"
           id="faq"
         />
         <div
-          class="container faq container"
+          class="fr-container"
         >
           <h2
-            class="title2 text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
           >
             StaticPages.faqTitle
           </h2>
           <div
-            class="row"
+            class="max-w-[720px] mx-auto"
           >
             <div
-              class="infos col"
+              class="flex gap-20"
             >
               <div
-                class="container"
+                class=""
               >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle1
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  data-orientation="vertical"
                 >
-                  <p
-                    class="text"
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.faqAccordionText1
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle2
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
                     >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        aria-controls="radix-:rg:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rf:"
+                        type="button"
                       >
-                        <g
-                          data-name="Layer 2"
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
                         >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
+                          Publish.faqAccordionTitle1
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rf:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rg:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.faqAccordionText2
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle3
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
                     >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        aria-controls="radix-:ri:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rh:"
+                        type="button"
                       >
-                        <g
-                          data-name="Layer 2"
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
                         >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
+                          Publish.faqAccordionTitle2
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rh:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:ri:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.faqAccordionText3
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle4
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
                     >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        aria-controls="radix-:rk:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rj:"
+                        type="button"
                       >
-                        <g
-                          data-name="Layer 2"
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
                         >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
+                          Publish.faqAccordionTitle3
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rj:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rk:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.faqAccordionText4
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle5
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
                     >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        aria-controls="radix-:rm:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rl:"
+                        type="button"
                       >
-                        <g
-                          data-name="Layer 2"
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
                         >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
+                          Publish.faqAccordionTitle4
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rl:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rm:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.faqAccordionText5
-                  </p>
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:ro:"
+                        aria-expanded="false"
+                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rn:"
+                        type="button"
+                      >
+                        <span
+                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        >
+                          Publish.faqAccordionTitle5
+                        </span>
+                        <i
+                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rn:"
+                      class="content mt-4 px-4 pb-8"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:ro:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="link"
+            class="mt-10 lg:mt-20 text-center"
           >
             <a
-              class="link color_red"
+              class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
               href="https://help.refugies.info/fr/"
-              rel="noopener noreferrer"
-              target="_blank"
+              id="fr-button-:rp:"
             >
-              <span>
-                Publish.faqCTA
-              </span>
-              <span
-                class="icon icon"
-              >
-                <i
-                  style="height: 24px; line-height: 24px;"
-                >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="red"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
+              Publish.faqCTA
             </a>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="section bg_grey"
+      class="py-10 md:py-20 relative bg-beige"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="register"
       />
       <div
-        class="register container"
+        class="fr-container"
       >
-        <h2
-          class="title2 !mb-0"
+        <div
+          class="max-w-[480px] mx-auto text-center"
         >
-          StaticPages.registerTitle
-        </h2>
-        <p
-          class="subtitle !mb-14"
-        >
-          Publish.registerSubtitle
-        </p>
-        <button
-          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r0:"
-        >
-          login_or_signup
-        </button>
+          <img
+            alt=""
+            class="mx-auto mb-10"
+            data-nimg="1"
+            decoding="async"
+            height="160"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+            style="color: transparent;"
+            width="175"
+          />
+          <h2
+            class="!text-h3 md:!text-h2 md:text-center !mb-6"
+          >
+            StaticPages.registerTitle
+          </h2>
+          <p
+            class="!text-chapo !mb-6"
+          >
+            Publish.registerSubtitle
+          </p>
+          <button
+            class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
+            id="fr-button-:rq:"
+          >
+            login_or_signup
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -1,10 +1,16 @@
 export { default as Accordion } from "./Accordion";
+export { Anchor } from "./Anchor";
 export { default as AutoplayVideo } from "./AutoplayVideo";
 export { default as Card } from "./Card";
 export { default as CountUpFigure } from "./CountUpFigure";
+export { Hero } from "./Hero";
 export { default as HeroArrow } from "./HeroArrow";
 export { default as InlineLink } from "./InlineLink";
 export { default as LanguageIcon } from "./LanguageIcon";
 export { default as Register } from "./Register";
+export { RowCards } from "./RowCards";
 export { default as SecondaryNavbar } from "./SecondaryNavbar";
+export { Section } from "./Section";
+export { SectionHead } from "./SectionHead";
 export { default as StepContent } from "./StepContent";
+export { Title2 } from "./Title2";

@@ -20,15 +20,14 @@ export const StructureButton = (props: {
     <div className={styles.details_button} onClick={props.onClick}>
       {props.sponsor?.picture?.secure_url ? (
         <Image
-          className={styles.sponsor_img}
+          className="object-contain mr-2 h-[1.875rem]"
           src={(props.sponsor.picture || {}).secure_url || ""}
           alt={props.sponsor.nom}
           width={95}
           height={30}
-          style={{ objectFit: "contain" }}
         />
       ) : (
-        <Image className={styles.sponsor_img} src={noStructure} alt="no structure" />
+        <Image className="mr-2" src={noStructure} alt="no structure" />
       )}
       <p className={cls(styles.text, "ms-1")}>{props.sponsor ? props.sponsor.nom : "Aucune structure définie !"}</p>
       {props.sponsor && (
