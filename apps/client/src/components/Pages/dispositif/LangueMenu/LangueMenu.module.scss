@@ -37,6 +37,8 @@
     border-radius: u(2);
     margin-top: u(2);
     margin-bottom: u(2);
+    background: $white;
+    border: none;
 
     .item {
       @include text("normal");
@@ -47,6 +49,7 @@
       border-radius: u(2) !important;
       margin-bottom: u(1);
       border: none;
+      background: transparent;
 
       &:hover {
         background: $gray40b;
