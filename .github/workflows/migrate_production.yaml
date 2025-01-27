@@ -14,14 +14,16 @@ jobs:
     concurrency:
       group: master-migrate
       cancel-in-progress: false
+    env:
+      MONGODB_ATLAS_PUBLIC_API_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_API_KEY }}
+      MONGODB_ATLAS_PRIVATE_API_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_API_KEY }}
+      MONGODB_ATLAS_ORG_ID: ${{ secrets.MONGODB_ATLAS_ORG_ID }}
+      MONGODB_ATLAS_PROJECT_ID: ${{ secrets.MONGODB_ATLAS_PROJECT_ID }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Setup AtlasCLI
-        uses: mongodb/atlas-github-action@v0.2.0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -37,7 +39,18 @@ jobs:
           pnpm add -g turbo
           pnpm install --frozen-lockfile
 
+      - name: Setup AtlasCLI
+        uses: mongodb/atlas-github-action@v0.2.0
+
+      - name: Allow temporary access from current IP
+        run: |
+          IP=$(curl -s https://api.ipify.org)
+          atlas accessList create $IP/32 --comment "GitHub Actions temporary access" --projectId ${{ secrets.MONGODB_ATLAS_PROJECT_ID }} --deleteAfter $(date -u -d "+1 hour" +"%Y-%m-%dT%H:%M:%SZ")
+
       - name: Apply pending migrations
         run: pnpm migrate up
         env:
           MIGRATE_MONGO_URI: ${{ secrets.MIGRATE_MONGO_URI }}
+
+      - name: Remove temporary access
+        run: atlas accessList delete $IP/32 --projectId ${{ secrets.MONGODB_ATLAS_PROJECT_ID }} --force
