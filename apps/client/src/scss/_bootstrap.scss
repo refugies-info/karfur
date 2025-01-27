@@ -50,7 +50,7 @@
 // scss-docs-end import-stack
 
 // Custom vars
-:root {
+.modal-content {
   --bs-border-width: 1px;
-  --bs-modal-bg: white;
+  --bs-modal-bg: white !important;
 }
