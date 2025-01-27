@@ -3,1293 +3,951 @@
 exports[`traduire renders traduire 1`] = `
 <DocumentFragment>
   <div
-    class="main"
+    class="w-full"
   >
     <div
-      class="section bg_blue mb-4"
+      class="py-10 md:py-20 bg-blue-france"
     >
       <div
-        class="container container"
+        class="fr-container"
       >
         <div
-          class="hero row"
+          class="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20"
         >
           <div
-            class="hero_title col-sm-12 col-lg-6"
+            class="flex-1 text-center md:text-left"
           >
             <h1
-              class="white"
+              class="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6"
             >
               Translate.title
             </h1>
             <p
-              class="subtitle"
+              class="!text-chapo !text-light-alt-blue !mb-0"
             >
               Translate.subtitle
             </p>
-            <div
-              class="container"
+            <a
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
+              href="#register"
+              id="fr-button-:r0:"
             >
-              <a
-                class="btn"
-                href="/undefined#who"
-                title="Suivant"
-              >
-                <span
-                  class="icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-downward-outline"
-                      fill="bleuCharte"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </a>
-            </div>
+              Translate.navbarItem5
+            </a>
           </div>
           <div
-            class="col-sm-12 col-lg-6"
+            class="flex-1"
           >
             <img
               alt=""
+              class="max-w-full h-auto mx-auto"
               data-nimg="1"
               decoding="async"
-              height="40"
+              height="448"
               loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style="color: transparent; max-width: 100%; height: auto;"
-              width="40"
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="448"
             />
           </div>
         </div>
       </div>
     </div>
     <div
-      class="container shadow"
+      class="sticky top-0 bg-white z-20"
     >
       <div
-        class="inner container"
+        class="fr-container flex gap-10 justify-between items-start flex-nowrap py-4 md:py-10"
       >
-        <div>
-          <a
-            class="btn green"
-            href="/undefined#who"
+        <div
+          class="nav"
+        >
+          <fieldset
+            class="fr-segmented fr-segmented--no-legend"
+            id="fr-segmented-:r1:"
           >
-            Translate.navbarItem1
-          </a>
+            <div
+              class="fr-segmented__elements"
+            >
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-0"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-0"
+                >
+                  Translate.navbarItem1
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-1"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-1"
+                >
+                  Translate.navbarItem2
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-2"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-2"
+                >
+                  Translate.navbarItem3
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r1:-3"
+                  name="segmented-name-:r2:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r1:-3"
+                >
+                  Translate.navbarItem4
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div
+          class="hidden md:block"
+        >
           <a
-            class="btn orange"
-            href="/undefined#steps"
+            class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
+            href="#register"
+            id="fr-button-:r3:"
           >
-            Translate.navbarItem2
-          </a>
-          <a
-            class="btn purple"
-            href="/undefined#next"
-          >
-            Translate.navbarItem3
-          </a>
-          <a
-            class="btn red"
-            href="/undefined#faq"
-          >
-            Translate.navbarItem4
+            Translate.navbarItem5
           </a>
         </div>
-        <a
-          class="btn blue"
-          href="/undefined#register"
-        >
-          <span
-            class="icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-plus-circle-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="plus-circle"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                    />
-                    <path
-                      d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Translate.navbarItem5
-        </a>
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <div
-        class="section"
+        class="py-10 md:py-20"
       >
         <span
-          class="anchor"
+          class="absolute -top-[96px] md:-top-[120px]"
           id="who"
         />
         <div
-          class="container container"
+          class="fr-container"
         >
-          <h2
-            class="title2 mb-0"
-          >
-            Translate.whoTitle
-          </h2>
-          <p
-            class="subtitle"
-          >
-            Translate.whoSubtitle
-          </p>
           <div
-            class="top_space row"
+            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
+          >
+            <h2
+              class="!text-h3 md:!text-h2 md:text-center !mb-6"
+            >
+              Translate.whoTitle
+            </h2>
+            <p
+              class="!text-chapo md:text-center !mb-0"
+            >
+              Translate.whoSubtitle
+            </p>
+          </div>
+          <div
+            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
           >
             <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
             >
-              <div
-                class="container grey"
-              >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-ua"
-                        title="ua"
-                      />
-                    </div>
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-ir"
-                        title="ir"
-                      />
-                    </div>
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-sa"
-                        title="sa"
-                      />
-                    </div>
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-gb"
-                        title="gb"
-                      />
-                    </div>
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-af"
-                        title="af"
-                      />
-                    </div>
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-ru"
-                        title="ru"
-                      />
-                    </div>
-                    <div
-                      class="container"
-                      style="width: 40px; height: 40px;"
-                    >
-                      <span
-                        class="flag fi fi-er"
-                        title="er"
-                      />
-                    </div>
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Translate.whoCardTitle1
-                  </h3>
-                  <div
-                    class="text mb-0"
-                  >
-                    <p
-                      class="mb-0"
-                    >
-                      Translate.whoCardText1
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div />
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Translate.whoCardTitle1
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p
+                    class="!mb-0"
+                  >
+                    Translate.whoCardText1
+                  </p>
+                </div>
               </div>
             </div>
             <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
             >
-              <div
-                class="container grey"
-              >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <div
-                      class="container"
-                      style="width: 56px; height: 56px;"
-                    >
-                      <span
-                        class="flag fi fi-fr"
-                        title="fr"
-                      />
-                    </div>
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Translate.whoCardTitle2
-                  </h3>
-                  <div
-                    class="text mb-0"
-                  >
-                    <p
-                      class="mb-0"
-                    >
-                      Translate.whoCardText2
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div />
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Translate.whoCardTitle2
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p
+                    class="!mb-0"
+                  >
+                    Translate.whoCardText2
+                  </p>
+                </div>
               </div>
             </div>
             <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
             >
-              <div
-                class="container grey"
-              >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Translate.whoCardTitle3
-                  </h3>
-                  <div
-                    class="text mb-0"
-                  >
-                    <p
-                      class="mb-0"
-                    >
-                      Translate.whoCardText3
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div />
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Translate.whoCardTitle3
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p
+                    class="!mb-0"
+                  >
+                    Translate.whoCardText3
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        class="section bg_green"
+        class="py-10 md:py-20 bg-light-alt-blue"
       >
         <div
-          class="container needs container"
+          class="fr-container"
         >
           <h2
-            class="title2 white text-center"
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
             Translate.needTitle
           </h2>
           <div
-            class="row"
+            class="flex gap-6 md:justify-center flex-wrap"
           >
-            <div
-              class="col-sm-12 col-lg-4"
+            <a
+              class="p-3 md:p-4 border border-border inline-flex items-center gap-2 bg-white hover:!bg-hover"
+              href="/undefined#register"
             >
-              <a
-                class="container"
-                href="/undefined#register"
+              <span
+                class="text-h6 md:text-h5 font-bold"
+              />
+              <p
+                class="fr-badge fr-badge--warning fr-badge--no-icon"
+                id="fr-badge-:r4:"
               >
-                <div
-                  class="title"
-                />
-                <p
-                  class="subtitle"
-                >
-                  Translate.need 
-                  <span
-                    class="need strong"
-                  >
-                    Translate.strong
-                  </span>
-                </p>
-              </a>
-            </div>
-            <div
-              class="col-sm-12 col-lg-4"
+                Translate.need Translate.strong
+              </p>
+            </a>
+            <a
+              class="p-3 md:p-4 border border-border inline-flex items-center gap-2 bg-white hover:!bg-hover"
+              href="/undefined#register"
             >
-              <a
-                class="container"
-                href="/undefined#register"
+              <span
+                class="flag fi fi-en"
+                title="en"
+              />
+              <span
+                class="text-h6 md:text-h5 font-bold"
               >
-                <div
-                  class="title"
-                >
-                  <span
-                    class="flag fi fi-en block me-2"
-                    title="en"
-                  />
-                  Anglais
-                </div>
-                <p
-                  class="subtitle"
-                >
-                  Translate.need 
-                  <span
-                    class="need medium"
-                  >
-                    Translate.medium
-                  </span>
-                </p>
-              </a>
-            </div>
-            <div
-              class="col-sm-12 col-lg-4"
-            />
+                Anglais
+              </span>
+              <p
+                class="fr-badge fr-badge--new fr-badge--no-icon"
+                id="fr-badge-:r5:"
+              >
+                Translate.need Translate.medium
+              </p>
+            </a>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="section"
+      class="relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="steps"
       />
       <div
-        class="container container"
+        class="py-10 md:py-20 bg-beige"
       >
-        <h2
-          class="title2"
-        >
-          Translate.stepsTitle
-        </h2>
         <div
-          class="warning_mobile"
+          class="fr-container"
         >
-          <span
-            class="icon"
+          <h2
+            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            <i
-              style="height: 24px; line-height: 24px;"
-            >
-              <svg
-                class="eva eva-alert-circle-outline"
-                fill="black"
-                height="24px"
-                viewBox="0 0 24 24"
-                width="24px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="alert-circle"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                    />
-                    <circle
-                      cx="12"
-                      cy="16"
-                      r="1"
-                    />
-                    <path
-                      d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          <p>
-            Translate.stepsWarningMobile
-          </p>
-        </div>
-        <div
-          class="row orange"
-        >
+            Translate.stepsTitle
+          </h2>
           <div
-            class="content"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
             <div
-              class="step"
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
-              <span>
-                1
-              </span>
-            </div>
-            <h3
-              class="title"
-            >
-              Translate.stepsSubtitle1
-            </h3>
-            <p
-              class="text"
-            >
-              Translate.stepsText1
-            </p>
-            <a
-              class="link color_orange"
-              href="/undefined#register"
-              rel="noopener noreferrer"
-            >
-              <span>
+              <div
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+              >
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
+                  1
+                </span>
+              </div>
+              <h3
+                class="!text-h4 lg:!text-h3 !mb-6"
+              >
+                Translate.stepsSubtitle1
+              </h3>
+              <p
+                class="!text-large !mb-6"
+              >
+                Translate.stepsText1
+              </p>
+              <a
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
+                href="#register"
+                id="fr-button-:r6:"
+              >
                 Translate.stepsCTA1
-              </span>
-              <span
-                class="icon icon"
+              </a>
+            </div>
+            <div
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+          >
+            <div
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+            >
+              <div
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
-                <i
-                  style="height: 24px; line-height: 24px;"
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
                 >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="orange"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-            </a>
-          </div>
-          <div
-            class="media"
-          >
-            <video
-              class="video autoplay-video"
-              height="320"
-              loop=""
-            >
-              <source
-                src="/video/publier-video-step1.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-        <div
-          class="row orange"
-        >
-          <div
-            class="content"
-          >
-            <div
-              class="step"
-            >
-              <span>
-                2
-              </span>
-            </div>
-            <h3
-              class="title"
-            >
-              Translate.stepsSubtitle2
-            </h3>
-            <p
-              class="text"
-            >
-              Translate.stepsText2
-            </p>
-          </div>
-          <div
-            class="media"
-          >
-            <video
-              class="video autoplay-video"
-              height="320"
-              loop=""
-            >
-              <source
-                src="/video/translate-video-step2.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-        <div
-          class="row orange"
-        >
-          <div
-            class="content"
-          >
-            <div
-              class="step"
-            >
-              <span>
-                3
-              </span>
-            </div>
-            <h3
-              class="title"
-            >
-              Translate.stepsSubtitle3
-            </h3>
-            <p
-              class="text"
-            >
-              Translate.stepsText3
-            </p>
-            <div
-              class="warning"
-            >
-              <ul
-                class="mb-0"
+                  2
+                </span>
+              </div>
+              <h3
+                class="!text-h4 lg:!text-h3 !mb-6"
               >
-                <li
-                  class="mb-2"
-                >
-                  Translate.stepsList3Item1
-                </li>
-                <li
-                  class="mb-2"
-                >
-                  Translate.stepsList3Item2
-                </li>
-                <li>
-                  Translate.stepsList3Item3
-                </li>
-              </ul>
+                Translate.stepsSubtitle2
+              </h3>
+              <p
+                class="!text-large !mb-6"
+              >
+                Translate.stepsText2
+              </p>
             </div>
-          </div>
-          <div
-            class="media"
-          >
-            <video
-              class="video autoplay-video"
-              height="320"
-              loop=""
+            <div
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
             >
-              <source
-                src="/video/translate-video-step3.mp4"
-                type="video/mp4"
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="480"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="480"
               />
-            </video>
-          </div>
-        </div>
-        <div
-          class="row orange has_btn_step"
-        >
-          <div
-            class="content"
-          >
-            <div
-              class="step"
-            >
-              <span>
-                4
-              </span>
-            </div>
-            <h3
-              class="title"
-            >
-              Translate.stepsSubtitle4
-            </h3>
-            <p
-              class="text"
-            >
-              Translate.stepsText4a
-            </p>
-            <p
-              class="text"
-            >
-              Translate.stepsText4b
-            </p>
-            <div
-              class="btn_step last"
-            >
-              Translate.stepsButton
             </div>
           </div>
           <div
-            class="media"
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
           >
-            <img
-              alt=""
-              data-nimg="1"
-              decoding="async"
-              height="415"
-              loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-              style="color: transparent; object-fit: contain;"
-              width="550"
-            />
+            <div
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+            >
+              <div
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+              >
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
+                  3
+                </span>
+              </div>
+              <h3
+                class="!text-h4 lg:!text-h3 !mb-6"
+              >
+                Translate.stepsSubtitle3
+              </h3>
+              <p
+                class="!text-large !mb-6"
+              >
+                Translate.stepsText3
+              </p>
+              <div
+                class="bg-beige-accent border border-border p-4 !mb-6"
+              >
+                <ul
+                  class="!my-0 space-y-2"
+                >
+                  <li>
+                    Translate.stepsList3Item1
+                  </li>
+                  <li>
+                    Translate.stepsList3Item2
+                  </li>
+                  <li>
+                    Translate.stepsList3Item3
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+          >
+            <div
+              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
+            >
+              <div
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+              >
+                <span
+                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                >
+                  4
+                </span>
+              </div>
+              <h3
+                class="!text-h4 lg:!text-h3 !mb-6"
+              >
+                Translate.stepsSubtitle4
+              </h3>
+              <p
+                class="!text-large !mb-6"
+              >
+                Translate.stepsText4a
+              </p>
+              <p
+                class="!text-large !mb-6"
+              >
+                Translate.stepsText4b
+              </p>
+              <div
+                class="!text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
+              >
+                Translate.stepsButton
+              </div>
+            </div>
+            <div
+              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 !pb-[150px] lg:!pb-0"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <div
-        class="section bg_purple"
+        class="py-10 md:py-20 bg-light-alt-blue"
       >
         <span
-          class="anchor"
+          class="absolute -top-[96px] md:-top-[120px]"
           id="next"
         />
         <div
-          class="container container"
+          class="fr-container"
         >
           <div
-            class="row"
+            class="flex gap-10 lg:gap-20 items-center flex-col md:flex-row"
           >
             <div
-              class="col-sm-12 col-lg-6"
+              class="flex-1"
             >
               <h2
-                class="title2 bottom_space white mb-0"
+                class="!text-h3 md:!text-h2 md:text-center !mb-6 !text-left"
               >
                 Translate.nextTitle
               </h2>
-              <p
-                class="p bottom_space"
-              >
+              <p>
                 Translate.nextText1
               </p>
               <p
-                class="p"
+                class="!mb-0"
               >
                 Translate.nextText2
               </p>
             </div>
             <div
-              class="text-end col-sm-12 col-lg-6"
+              class="flex-1"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/translate-video-next.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                class="object-contain mx-auto"
+                data-nimg="1"
+                decoding="async"
+                height="287"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent;"
+                width="440"
+              />
             </div>
           </div>
         </div>
       </div>
       <div
-        class="section bg_grey"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
-          <h2
-            class="title2 center mb-0"
-          >
-            StaticPages.helpTitle
-          </h2>
           <div
-            class="top_space justify-center row"
+            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
           >
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
+            <h2
+              class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              <div
-                class="container"
-              >
+              StaticPages.helpTitle
+            </h2>
+            <p
+              class="!text-chapo md:text-center !mb-0"
+            >
+              Translate.helpSubtitle
+            </p>
+          </div>
+          <div
+            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+          >
+            <a
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Translate.helpTileTitle1"
+            >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Translate.helpTileTitle1
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Translate.helpTileText1
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <span>
-                      Translate.helpTileCTA1
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  Translate.helpTileTitle1
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    Translate.helpTileText1
+                  </p>
                 </div>
               </div>
-            </div>
-            <div
-              class="lg:mb-0 mb-5 col-sm-12 col-lg-4"
-            >
               <div
-                class="container"
+                class="mt-6 pt-2 w-full text-right"
               >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </a>
+            <button
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
+              title="StaticPages.helpTileTitle3"
+            >
+              <div>
                 <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    StaticPages.helpTileTitle3
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      StaticPages.helpTileText3
-                    </p>
-                  </div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
                 </div>
-                <div>
-                  <button
-                    class="link color_red"
-                  >
-                    <span>
-                      StaticPages.helpTileCTA3
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </button>
+                <h3
+                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                >
+                  StaticPages.helpTileTitle3
+                </h3>
+                <div
+                  class="!text-large"
+                >
+                  <p>
+                    StaticPages.helpTileText3
+                  </p>
                 </div>
               </div>
-            </div>
+              <div
+                class="mt-6 pt-2 w-full text-right"
+              >
+                <i
+                  class="fr-icon-arrow-right-line !text-blue-france"
+                />
+              </div>
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="section"
+      class="py-10 md:py-20 relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="faq"
       />
       <div
-        class="container faq container"
+        class="fr-container"
       >
         <h2
-          class="title2 text-center"
+          class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
         >
           StaticPages.faqTitle
         </h2>
         <div
-          class="row"
+          class="max-w-[720px] mx-auto"
         >
           <div
-            class="infos col"
+            class="flex gap-20"
           >
             <div
-              class="container"
+              class=""
             >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle1
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
               <div
-                class="collapse"
+                data-orientation="vertical"
               >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText1
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle2
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText2
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle3
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText3
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle4
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText4
-                </p>
-              </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Translate.faqAccordionTitle5
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
-              <div
-                class="collapse"
-              >
-                <p
-                  class="text"
-                >
-                  Translate.faqAccordionText5
-                </p>
                 <div
-                  class="cta"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <a
-                    class="link color_blue"
-                    href="https://airtable.com/shrQxPHedgZ5PuXot"
-                    rel="noopener noreferrer"
-                    target="_blank"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    <span>
-                      Translate.faqAccordionCTA5
-                    </span>
-                    <span
-                      class="icon icon"
+                    <button
+                      aria-controls="radix-:r8:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:r7:"
+                      type="button"
                     >
-                      <i
-                        style="height: 24px; line-height: 24px;"
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
                       >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="blue"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
+                        Translate.faqAccordionTitle1
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r7:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:r8:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
+                </div>
+                <div
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <button
+                      aria-controls="radix-:ra:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:r9:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Translate.faqAccordionTitle2
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r9:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:ra:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
+                </div>
+                <div
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <button
+                      aria-controls="radix-:rc:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:rb:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Translate.faqAccordionTitle3
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:rb:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:rc:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
+                </div>
+                <div
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <button
+                      aria-controls="radix-:re:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:rd:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Translate.faqAccordionTitle4
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:rd:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:re:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
+                </div>
+                <div
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <button
+                      aria-controls="radix-:rg:"
+                      aria-expanded="false"
+                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:rf:"
+                      type="button"
+                    >
+                      <span
+                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      >
+                        Translate.faqAccordionTitle5
+                      </span>
+                      <i
+                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:rf:"
+                    class="content mt-4 px-4 pb-8"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:rg:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
               </div>
             </div>
@@ -1298,31 +956,47 @@ exports[`traduire renders traduire 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey"
+      class="py-10 md:py-20 relative bg-beige"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="register"
       />
       <div
-        class="register container"
+        class="fr-container"
       >
-        <h2
-          class="title2 !mb-0"
+        <div
+          class="max-w-[480px] mx-auto text-center"
         >
-          StaticPages.registerTitle
-        </h2>
-        <p
-          class="subtitle !mb-14"
-        >
-          Translate.registerSubtitle
-        </p>
-        <button
-          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r0:"
-        >
-          login_or_signup
-        </button>
+          <img
+            alt=""
+            class="mx-auto mb-10"
+            data-nimg="1"
+            decoding="async"
+            height="160"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+            style="color: transparent;"
+            width="175"
+          />
+          <h2
+            class="!text-h3 md:!text-h2 md:text-center !mb-6"
+          >
+            StaticPages.registerTitle
+          </h2>
+          <p
+            class="!text-chapo !mb-6"
+          >
+            Translate.registerSubtitle
+          </p>
+          <button
+            class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
+            id="fr-button-:rh:"
+          >
+            login_or_signup
+          </button>
+        </div>
       </div>
     </div>
   </div>

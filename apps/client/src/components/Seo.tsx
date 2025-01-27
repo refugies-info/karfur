@@ -34,7 +34,7 @@ const SEO = (props: Props) => {
 
   return (
     <Head>
-      <meta name="viewport" content="width=device-width" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       <title>{prefixTitle + defaultTitle}</title>
       {props.description && <meta name="description" content={props.description} />}
       <link rel="canonical" href={getFullPath(router, router.locale || "fr")} />

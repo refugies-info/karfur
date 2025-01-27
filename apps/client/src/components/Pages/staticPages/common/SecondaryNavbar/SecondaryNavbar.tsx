@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { Container } from "reactstrap";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { cls } from "~/lib/classname";
+import Button from "@codegouvfr/react-dsfr/Button";
+import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
+import { useCallback } from "react";
 import { smoothScroll } from "~/lib/smoothScroll";
 import styles from "./SecondaryNavbar.module.scss";
 
@@ -21,30 +20,42 @@ interface Props {
 const SecondaryNavbar = (props: Props) => {
   const isActive = (view: string) => props.activeView === view;
 
+  const scrollTo = useCallback((id: string) => {
+    document.querySelector(`#${id}`)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
-    <div className={cls(styles.container, props.isSticky && styles.shadow)}>
-      <Container className={styles.inner}>
-        <div>
-          {props.leftLinks.map((link) => (
-            <Link
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={smoothScroll}
-              className={cls(styles.btn, styles[link.color], isActive(link.id) && styles.active)}
-            >
-              {link.text}
-            </Link>
-          ))}
+    <div className="sticky top-0 bg-white z-20">
+      <div className="fr-container flex gap-10 justify-between items-start flex-nowrap py-4 md:py-10">
+        <div className={styles.nav}>
+          <SegmentedControl
+            hideLegend
+            //@ts-ignore
+            segments={props.leftLinks.map((link) => ({
+              label: link.text,
+              nativeInputProps: {
+                checked: isActive(link.id),
+                onClick: () => scrollTo(link.id),
+                readOnly: true,
+              },
+            }))}
+          />
         </div>
-        <Link
-          href={`#${props.rightLink.id}`}
-          onClick={smoothScroll}
-          className={cls(styles.btn, styles[props.rightLink.color], isActive(props.rightLink.id) && styles.active)}
-        >
-          <EVAIcon name="plus-circle-outline" size={20} />
-          {props.rightLink.text}
-        </Link>
-      </Container>
+        <div className="hidden md:block">
+          <Button
+            iconId="fr-icon-arrow-right-line"
+            iconPosition="right"
+            linkProps={{
+              onClick: smoothScroll,
+              href: `#${props.rightLink.id}`,
+            }}
+          >
+            {props.rightLink.text}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

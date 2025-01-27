@@ -14,17 +14,23 @@
   }
 
   &.full {
-    width: 720px;
+    max-width: 48rem;
     margin: auto;
 
     .container_inner {
-      padding: 0 u(38);
-      position: relative;
+      padding: 0 u(4);
+      margin-bottom: 170px; /* To compensate the illustration height */
+      /* stylelint-disable-next-line media-feature-range-notation */
+      @media (min-width: 48em) {
+        padding: 0 9.5rem;
+        margin-bottom: 0;
+        position: relative;
 
-      .back_button {
-        position: absolute;
-        top: 0;
-        left: 0;
+        .back_button {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
       }
     }
   }

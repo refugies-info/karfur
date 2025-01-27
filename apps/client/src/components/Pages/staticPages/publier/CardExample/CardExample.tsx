@@ -1,7 +1,3 @@
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { cls } from "~/lib/classname";
-import styles from "./CardExample.module.scss";
-
 interface Props {
   exampleOk: string;
   exampleKo: string;
@@ -9,13 +5,13 @@ interface Props {
 
 const CardExample = (props: Props) => {
   return (
-    <div>
-      <p className={cls(styles.example, styles.example_ko)}>
-        <EVAIcon name="close-outline" size={20} fill={styles.colorKo} className={styles.icon} />
+    <div className="text-normal !space-y-3">
+      <p className="flex">
+        <i className="fr-icon-close-circle-fill h-6 w-6 me-2 text-error" />
         {props.exampleKo}
       </p>
-      <p className={cls(styles.example, styles.example_ok)}>
-        <EVAIcon name="checkmark-outline" size={20} fill={styles.colorOk} className={styles.icon} />
+      <p className="flex !mb-0">
+        <i className="fr-icon-success-fill h-6 w-6 me-2 text-success" />
         {props.exampleOk}
       </p>
     </div>
