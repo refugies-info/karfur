@@ -48,6 +48,7 @@
     "mongoose": "8.9.5",
     "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
+    "path-to-regexp": "^0.1.12",
     "phone": "^3.1.55",
     "ts-node": "^10.9.2",
     "tsoa": "^6.6.0",
