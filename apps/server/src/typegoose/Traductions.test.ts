@@ -231,9 +231,9 @@ describe("Traductions", () => {
       ).toEqual(false);
     });
     it("should return true", () => {
-      // @ts-ignore because we inject a partial Dispositif & partial Traductions
       expect(
         Traductions.computeFinished(
+          // @ts-ignore because we inject a partial Dispositif & partial Traductions
           { translations: { fr: trad_adminNameNull } },
           { translated: trad_adminNameNull_en },
         ),
