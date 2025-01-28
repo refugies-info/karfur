@@ -28,14 +28,14 @@ exports[`agir renders traduire 1`] = `
               Ce programme interministériel est piloté par la Direction générale des étrangers en France (DGEF) en partenariat avec la DIHAL, la DIAIR, l’OFII et la DGEFP.
             </p>
             <a
-              class="fr-btn fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right colored mb-4"
+              class="fr-btn fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse mb-4"
               href="#program"
               id="fr-button-:r0:"
             >
               Découvrir le programme
             </a>
             <a
-              class="fr-btn fr-btn--secondary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right colored"
+              class="fr-btn fr-btn--secondary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse"
               href="#map"
               id="fr-button-:r1:"
             >

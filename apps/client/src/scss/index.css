@@ -1,2 +1,63 @@
 @layer theme, base, refugies-info, dsfr, components, utilities;
 @import "@refugies-info/ui/src/css/globals-ui.css";
+
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@source "./tailwind-safelist.txt";
+
+@theme {
+  /* custom config goes here */
+
+  /* Breakpoints */
+  --breakpoint-sm: 36em; /* 576px */
+  --breakpoint-md: 48em; /* 768px */
+  --breakpoint-lg: 62em; /* 992px */
+  --breakpoint-xl: 75em; /* 1200px */
+
+  /* Colors */
+  --color-light: #f2f2f2;
+  --color-dark: #212121;
+  --color-primary: #0421b1;
+  --color-hover: #f6f6f6;
+  --color-active: #ededed;
+  --color-blue-france: #000091;
+  --color-light-alt-blue: #f5f5fe;
+  --color-border: #ddd;
+  --color-success: #18753c;
+  --color-error: #ce0500;
+  --color-beige: #f9f6f2;
+  --color-beige-accent: #f3ede5;
+  --color-purple-france: #6a6af4;
+  --color-light-low-blue-france: #e3e3fd;
+
+  /* Fonts */
+  --font-sans: "Marianne", "Arial", "sans-serif";
+
+  /* Fonts sizes */
+  --text-very-small: 12px;
+  --text-very-small--line-height: 20px;
+  --text-small: 14px;
+  --text-small--line-height: 24px;
+  --text-normal: 16px;
+  --text-normal--line-height: 24px;
+  --text-large: 18px;
+  --text-large--line-height: 28px;
+  --text-chapo: 20px;
+  --text-chapo--line-height: 32px;
+  --text-h5: 22px;
+  --text-h5--line-height: 28px;
+  --text-h6: 20px;
+  --text-h6--line-height: 28px;
+  --text-h4: 24px;
+  --text-h4--line-height: 32px;
+  --text-h3: 28px;
+  --text-h3--line-height: 36px;
+  --text-h2: 32px;
+  --text-h2--line-height: 40px;
+  --text-h1: 40px;
+  --text-h1--line-height: 48px;
+  --text-alt-title: 48px;
+  --text-alt-title--line-height: 56px;
+  --text-alt-title-big: 56px;
+  --text-alt-title-big--line-height: 64px;
+}
