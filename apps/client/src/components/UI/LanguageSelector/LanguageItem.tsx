@@ -54,7 +54,10 @@ const LanguageItem = memo(
         key={item.langueCode}
         id={item.langueCode}
         title={className}
-        onClick={() => handleChangeLanguage(item)}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleChangeLanguage(item);
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
