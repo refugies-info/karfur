@@ -99,14 +99,14 @@ const DispositifCard = (props: Props) => {
               <p className={cls("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
             </div>
 
-            <div className="fr-card__start relative">
+            <div className="relative fr-card__start">
               <div className={styles.sponsor}>
                 <Image
+                  className="object-contain h-[3rem]"
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
                   alt={props.dispositif?.sponsor?.nom || ""}
                   width={48}
                   height={48}
-                  style={{ objectFit: "contain" }}
                 />
               </div>
               <div className="flex gap-2 mb-2">

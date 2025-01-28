@@ -3,6 +3,7 @@ import router from "next/router";
 import { useTranslation } from "react-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
+import { useWindowSize } from "~/hooks";
 import { getPath } from "~/routes";
 
 // This component retunrs an array of JSX items specifically for the DSFR Header component
@@ -15,6 +16,7 @@ import { getPath } from "~/routes";
 
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
 
   const menuItems = [
     <Button
@@ -37,10 +39,10 @@ const QuickAccessMenu = () => {
       iconId="fr-icon-message-2-line"
       priority="tertiary no outline"
     >
-      {t("Toolbar.Traduire", "Traduire")}
+      {isMobile ? t("Toolbar.TraduireUneFiche", "Traduire une fiche") : t("Toolbar.Traduire", "Traduire")}
     </Button>,
     <LanguageMenu key="language" />,
-    <LoginButton key="login" />,
+    !isMobile ? <LoginButton key="login" /> : null,
   ];
 
   return [...menuItems];
