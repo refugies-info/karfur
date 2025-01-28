@@ -95,21 +95,6 @@ html body {
   }
 
   // Links and buttons
-  a {
-    text-decoration: none;
-
-    &:not([class^="fr-"]),
-    &:not([class^="fr-"])[href],
-    &:not([class^="fr-"]):hover {
-      color: inherit;
-      background-image: none;
-    }
-  }
-
-  :not([class^="fr-link"])[target="_blank"]::after {
-    content: none;
-  }
-
   .btn-group:focus {
     outline: none;
     box-shadow: none;
