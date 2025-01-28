@@ -42,9 +42,11 @@ jobs:
       - name: Setup AtlasCLI
         uses: mongodb/atlas-github-action@v0.2.0
 
+      - name: Setup IP environment variable
+        run: echo "IP=$(curl -s https://api.ipify.org)" >> $GITHUB_ENV
+
       - name: Allow temporary access from current IP
         run: |
-          IP=$(curl -s https://api.ipify.org)
           atlas accessList create $IP/32 --comment "GitHub Actions temporary access" --projectId ${{ secrets.MONGODB_ATLAS_PROJECT_ID }} --deleteAfter $(date -u -d "+1 hour" +"%Y-%m-%dT%H:%M:%SZ")
 
       - name: Wait 1 minute for Atlas to apply the access list
