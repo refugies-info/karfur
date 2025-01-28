@@ -1,4 +1,4 @@
-@layer theme, base, dsfr, components, utilities;
+@layer theme, base, refugies-info, dsfr, components, utilities;
 @import "@refugies-info/ui/src/css/globals-ui.css";
 
 /* stylelint-disable custom-property-pattern */

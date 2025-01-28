@@ -42,7 +42,7 @@
       [class*=" fr-btns-group--icon-"]
     )
     .fr-btn::before {
-    margin-inline: -0.125rem 0.5rem;
+    margin-inline: -0.125rem 0.5rem !important;
   }
 
   @media (min-width: 62em) {
@@ -57,6 +57,22 @@
 [class^="ri-"],
 [class*=" ri-"] {
   font-family: inherit !important;
+}
+
+// links
+a:not(.underline) {
+  text-decoration: none;
+
+  &:not([class^="fr-"]),
+  &:not([class^="fr-"])[href],
+  &:not([class^="fr-"]):hover {
+    color: inherit;
+    background-image: none;
+  }
+}
+
+:not([class^="fr-link"])[target="_blank"]::after {
+  content: none;
 }
 
 // white button

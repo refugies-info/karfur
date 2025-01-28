@@ -464,20 +464,21 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start relative"
+                  class="relative fr-card__start"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
+                      class="object-contain h-[3rem]"
                       data-nimg="1"
                       decoding="async"
                       height="48"
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
+                      style="color: transparent;"
                       width="48"
                     />
                   </div>
@@ -587,20 +588,21 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start relative"
+                  class="relative fr-card__start"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
+                      class="object-contain h-[3rem]"
                       data-nimg="1"
                       decoding="async"
                       height="48"
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
+                      style="color: transparent;"
                       width="48"
                     />
                   </div>
@@ -710,20 +712,21 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start relative"
+                  class="relative fr-card__start"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
+                      class="object-contain h-[3rem]"
                       data-nimg="1"
                       decoding="async"
                       height="48"
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
+                      style="color: transparent;"
                       width="48"
                     />
                   </div>
