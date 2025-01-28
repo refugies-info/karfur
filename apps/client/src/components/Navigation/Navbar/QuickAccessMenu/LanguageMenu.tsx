@@ -44,7 +44,7 @@ const LanguageMenu = () => {
               <i className={cls(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </DropdownTrigger>
-          <DropdownContent position="right">
+          <DropdownContent position="start">
             <LanguageSelector />
           </DropdownContent>
         </DropdownRoot>

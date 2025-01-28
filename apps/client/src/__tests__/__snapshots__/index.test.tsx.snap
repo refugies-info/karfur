@@ -1323,20 +1323,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -1463,20 +1464,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -1603,20 +1605,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -1743,20 +1746,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -1878,20 +1882,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2018,20 +2023,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2153,20 +2159,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2293,20 +2300,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2428,20 +2436,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2563,20 +2572,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2703,20 +2713,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2838,20 +2849,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -2978,20 +2990,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3113,20 +3126,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3248,20 +3262,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Comité de la Démarche Accessible"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3445,20 +3460,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="FACE GRAND LYON"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3574,20 +3590,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="ABC FORMATION"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3703,20 +3720,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Réseau Alpha"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3827,20 +3845,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="AIME ONG"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -3956,20 +3975,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Université fédérale de Toulouse"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4085,20 +4105,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="FACE Vendée"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4209,20 +4230,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Habitat et Humanisme"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4338,20 +4360,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="fable-Lab"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4462,20 +4485,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Habitat-Cité"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4591,20 +4615,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Unis-Cité"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4720,20 +4745,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="BSB(Re)Connect"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4849,20 +4875,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Unis-Cité"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -4973,20 +5000,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Stamtish"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -5102,20 +5130,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher "
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>
@@ -5226,20 +5255,21 @@ exports[`homepage renders homepage 1`] = `
                       </p>
                     </div>
                     <div
-                      class="fr-card__start relative"
+                      class="relative fr-card__start"
                     >
                       <div
                         class="sponsor"
                       >
                         <img
                           alt="Simplon.co"
+                          class="object-contain h-[3rem]"
                           data-nimg="1"
                           decoding="async"
                           height="48"
                           loading="lazy"
                           src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png"
                           srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png 2x"
-                          style="color: transparent; object-fit: contain;"
+                          style="color: transparent;"
                           width="48"
                         />
                       </div>

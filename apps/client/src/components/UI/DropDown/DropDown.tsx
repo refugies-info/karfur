@@ -196,12 +196,12 @@ type DropdownContentProps = {
   className?: string;
   style?: CSSProperties;
   autoFocusFirst?: boolean;
-  position?: "center" | "left" | "right";
+  position?: "center" | "start" | "end";
 };
 
 export const DropdownContent = memo(
   forwardRef<HTMLDivElement | null, DropdownContentProps>(
-    ({ children, asChild, className, style, autoFocusFirst = true, position = "left", ...props }, ref) => {
+    ({ children, asChild, className, style, autoFocusFirst = true, position = "start", ...props }, ref) => {
       const context = useContext(DropdownContext);
       if (!context) throw new Error("DropdownContent must be used within DropdownRoot");
       const { isOpen, contentId, triggerId } = context;
