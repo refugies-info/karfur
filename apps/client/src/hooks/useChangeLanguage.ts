@@ -21,8 +21,10 @@ const useChangeLanguage = () => {
         setLoading(true);
         router.push(url, undefined, { locale: selectedLn }).then(() => {
           if (callback) {
-            setTimeout(() => callback?.(), 50);
-            setLoading(false);
+            setTimeout(() => {
+              callback();
+              setLoading(false);
+            }, 50);
           } else {
             setLoading(false);
           }
@@ -31,8 +33,10 @@ const useChangeLanguage = () => {
         setLoading(true);
         router.replace(url, undefined, { locale: selectedLn }).then(() => {
           if (callback) {
-            setTimeout(() => callback?.(), 50);
-            setLoading(false);
+            setTimeout(() => {
+              callback();
+              setLoading(false);
+            }, 50);
           } else {
             setLoading(false);
           }

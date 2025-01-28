@@ -29,8 +29,6 @@ const LanguageMenu = () => {
     const dsfrMenu = document.getElementById("header-menu-modal-fr-header");
     const dsrfMenuButton = document.getElementById("fr-header-menu-button");
     const bodyTag = document.querySelector("body");
-    // eslint-disable-next-line no-console
-    console.log(dsrfMenuButton);
 
     dsfrMenu?.classList.remove("fr-modal--opened");
     dsrfMenuButton?.setAttribute("data-fr-opened", "false");
