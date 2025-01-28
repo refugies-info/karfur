@@ -139,6 +139,36 @@ const trad_added_adminName: TranslationContent = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
+const trad_adminNameNull: TranslationContent = {
+  content: {
+    titreInformatif: "abc",
+    titreMarque: "def",
+    abstract: "tyui",
+    what: "WHAT",
+    how: { "my-uuid-v4-key": { title: "title", text: "text" } },
+    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    administrationName: null,
+  },
+
+  created_at: new Date(),
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
+};
+
+const trad_adminNameNull_en: TranslationContent = {
+  content: {
+    titreInformatif: "abc",
+    titreMarque: "def",
+    abstract: "tyui",
+    what: "WHAT",
+    why: {},
+    how: { "my-uuid-v4-key": { title: "title", text: "text" } },
+    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+  },
+
+  created_at: new Date(),
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
+};
+
 describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
@@ -199,6 +229,15 @@ describe("Traductions", () => {
         // @ts-ignore because we inject a partial Dispositif & partial Traductions
         Traductions.computeFinished({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
       ).toEqual(false);
+    });
+    it("should return true", () => {
+      expect(
+        Traductions.computeFinished(
+          // @ts-ignore because we inject a partial Dispositif & partial Traductions
+          { translations: { fr: trad_adminNameNull } },
+          { translated: trad_adminNameNull_en },
+        ),
+      ).toEqual(true);
     });
   });
 });
