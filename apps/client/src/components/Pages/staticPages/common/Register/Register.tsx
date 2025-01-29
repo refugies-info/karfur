@@ -76,6 +76,7 @@ const Register = (props: Props) => {
               iconId="fr-icon-mail-line"
               iconPosition="right"
               className="w-full justify-center"
+              size="large"
             >
               {t("StaticPages.registerMobileCTA")}
             </Button>
@@ -100,6 +101,7 @@ const Register = (props: Props) => {
                   iconPosition="right"
                   disabled={emailSent}
                   className="w-full justify-center"
+                  size="large"
                 >
                   {emailSent ? t("StaticPages.linkSent") : t("StaticPages.sendLink")}
                 </Button>

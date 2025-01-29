@@ -21,7 +21,7 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className="mt-10 w-full justify-center md:w-auto fr-button-reverse"
+            className="mt-10 w-full justify-center md:w-auto fr-button-reverse max-md:text-large max-md:min-h-[48px]"
             linkProps={{
               href: "#register",
             }}

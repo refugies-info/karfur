@@ -32,7 +32,7 @@ const Card = (props: Props) => {
           {props.image && <Image src={props.image} alt="" width={80} height={80} style={{ objectFit: "contain" }} />}
         </div>
         <h3 className="text-h6 md:text-h5 my-3 text-blue-france">{props.title}</h3>
-        <div className="text-large">{props.children}</div>
+        <div className="[&_p]:text-large">{props.children}</div>
         {props.footer && <div>{props.footer}</div>}
       </div>
     ),
