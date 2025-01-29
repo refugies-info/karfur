@@ -16,7 +16,7 @@ import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import Layout from "~/components/Layout/Layout";
-import { useRTL } from "~/hooks";
+import { useRTL, useScrollToAnchor } from "~/hooks";
 import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
@@ -44,11 +44,14 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const { store, props } = wrapper.useWrappedStore(pageProps);
   const defaultLayout = (page: ReactElement) => <Layout history={history}>{page}</Layout>;
   const getLayout = Component.getLayout ?? defaultLayout;
+  const router = useRouter();
+
+  useScrollToAnchor();
+
   const options: PageOptions = Component.options || {
     cookiesModule: true,
     supportModule: true,
   };
-  const router = useRouter();
 
   const handleRouteChange = useCallback((url: string, { shallow }: { shallow: boolean }) => {
     setHistory((prevHistory) => {
