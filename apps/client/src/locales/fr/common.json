@@ -577,14 +577,14 @@
     "description": "Sur votre smartphone, utilisez l’application Réfugiés.info, c’est plus facile et adapté !"
   },
   "StaticPages": {
-    "helpTitle": "Vous n’êtes pas seul",
+    "helpTitle": "Vous n’êtes pas seul !",
     "helpTileTitle3": "Live chat",
-    "helpTileText3": "Le live chat est accessible en bas à droite de votre écran. Posez toutes vos questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !",
     "faqTitle": "Il vous reste des questions ?",
     "registerTitle": "C’est parti !",
     "registerMobileCTA": "Recevoir un mail",
     "sendLink": "Envoyer le lien",
-    "linkSent": "Lien envoyé !"
+    "linkSent": "Lien envoyé !",
+    "helpTileText3": "Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !"
   },
   "Publish": {
     "title": "Recensez votre action !",
@@ -644,7 +644,6 @@
     "helpTileTitle1": "Séances découverte",
     "helpTileText1": "Profitez d’un webinaire de présentation de la plateforme.",
     "helpTileTitle2": "Tutoriels et centre d’aide",
-    "helpTileText2": "L’interface propose des vidéos explicatives et le centre d’aide contient de nombreux articles pour vous accompagner pendant la rédaction de votre fiche.",
     "figuresTitle": "Rejoignez un projet collaboratif de grande envergure",
     "figuresSubtitle1": "fiches publiées",
     "figuresSubtitle2": "structures inscrites",
@@ -668,7 +667,8 @@
     "writeModalDescDispositif": "Programme, atelier, formation, cours en ligne, permanence d’accueil ou tout autre dispositif directement accessible par les personnes réfugiées.",
     "writeModalTypeDemarche": "Démarche",
     "writeModalDescDemarche": "Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées.",
-    "testimonies_title": "La parole aux porteurs de dispositifs"
+    "testimonies_title": "La parole aux porteurs de dispositifs",
+    "helpTileText2": "L’interface propose des tutoriels explicatifs et le centre d’aide contient de nombreux articles pour vous accompagner pendant la rédaction de votre fiche."
   },
   "Translate": {
     "title": "Aidez-nous à traduire !",
