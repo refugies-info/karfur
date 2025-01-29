@@ -69,13 +69,13 @@ const Register = (props: Props) => {
             className="mx-auto mb-10"
           />
           <Title2 smallMb>{t("Register.register_on_desktop")}</Title2>
-          <p className="!text-chapo !mb-6">{props.subtitleMobile}</p>
+          <p className="text-chapo mb-6">{props.subtitleMobile}</p>
           {!showReceiveMailForm ? (
             <Button
               onClick={() => setShowReceiveMailForm(true)}
               iconId="fr-icon-mail-line"
               iconPosition="right"
-              className="!w-full justify-center"
+              className="w-full justify-center"
             >
               {t("StaticPages.registerMobileCTA")}
             </Button>
@@ -99,7 +99,7 @@ const Register = (props: Props) => {
                   iconId={emailSent ? "fr-icon-check-line" : "fr-icon-send-plane-fill"}
                   iconPosition="right"
                   disabled={emailSent}
-                  className="!w-full justify-center"
+                  className="w-full justify-center"
                 >
                   {emailSent ? t("StaticPages.linkSent") : t("StaticPages.sendLink")}
                 </Button>
@@ -111,7 +111,7 @@ const Register = (props: Props) => {
         <>
           <Image src={DesktopRegisterImg} alt="" width={175} height={160} className="mx-auto mb-10" />
           <Title2 smallMb>{t("StaticPages.registerTitle")}</Title2>
-          <p className="!text-chapo !mb-6">{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
+          <p className="text-chapo mb-6">{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
           {isAuth ? (
             <Button onClick={props.onClickLoggedIn} iconId="fr-icon-add-circle-line" iconPosition="right">
               {props.btnLoggedIn}

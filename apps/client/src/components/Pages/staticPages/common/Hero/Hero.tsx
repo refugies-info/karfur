@@ -16,12 +16,12 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
     <div className="fr-container">
       <div className="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20">
         <div className="flex-1 text-center md:text-left">
-          <h1 className="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6">{props.title}</h1>
-          <p className="!text-chapo !text-light-alt-blue !mb-0">{props.subtitle}</p>
+          <h1 className="text-h1 text-light-alt-blue md:text-alt-title mb-6">{props.title}</h1>
+          <p className="text-chapo text-light-alt-blue mb-0">{props.subtitle}</p>
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className="mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
+            className="mt-10 w-full justify-center md:w-auto fr-button-reverse"
             linkProps={{
               href: "#register",
             }}

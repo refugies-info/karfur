@@ -319,11 +319,11 @@ const RecensezVotreAction = (props: Props) => {
                 title={t("Publish.helpTileTitle1")}
                 link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
               >
-                <p className="!mb-0">{t("Publish.helpTileText1")}</p>
+                <p className="mb-0">{t("Publish.helpTileText1")}</p>
               </Card>
 
               <Card image={HelpIcon2} title={t("Publish.helpTileTitle2")} link="https://help.refugies.info/fr/">
-                <p className="!mb-0">{t("Publish.helpTileText2")}</p>
+                <p className="mb-0">{t("Publish.helpTileText2")}</p>
               </Card>
 
               <Card
@@ -331,7 +331,7 @@ const RecensezVotreAction = (props: Props) => {
                 title={t("StaticPages.helpTileTitle3")}
                 onClick={() => window.$crisp.push(["do", "chat:open"])}
               >
-                <p className="!mb-0">{t("StaticPages.helpTileText3")}</p>
+                <p className="mb-0">{t("StaticPages.helpTileText3")}</p>
               </Card>
             </RowCards>
           </div>
