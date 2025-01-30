@@ -1,11 +1,13 @@
 @import "~/scss/mixins/responsive";
 
-.navBar {
-  /* stylelint-disable-next-line selector-class-pattern */
-  :global .fr-btn--menu {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.25rem;
+@layer components {
+  .navBar {
+    /* stylelint-disable-next-line selector-class-pattern */
+    :global .fr-btn--menu {
+      position: absolute;
+      top: 0.75rem;
+      margin-inline: -0.5rem;
+    }
   }
 }
 

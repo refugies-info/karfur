@@ -297,20 +297,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -446,20 +447,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -595,20 +597,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -744,20 +747,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -888,20 +892,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1037,20 +1042,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1181,20 +1187,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1330,20 +1337,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1474,20 +1482,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1618,20 +1627,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1767,20 +1777,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -1911,20 +1922,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2060,20 +2072,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2204,20 +2217,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2348,20 +2362,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1575628927/pictures/k4rjgxympwzo3acblwqv.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2540,20 +2555,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="FACE GRAND LYON"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2678,20 +2694,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="ABC FORMATION"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1670237766/pictures/jdivlio5x1iasjnawmun.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2816,20 +2833,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Réseau Alpha"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -2949,20 +2967,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="AIME ONG"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1669902286/pictures/rdx992fstuftcndifsb3.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3087,20 +3106,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Université fédérale de Toulouse"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3225,20 +3245,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="FACE Vendée"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3358,20 +3379,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Habitat et Humanisme"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3496,20 +3518,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="fable-Lab"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1665386364/pictures/lqntfdymui845jb5jc2y.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3629,20 +3652,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Habitat-Cité"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1668078132/pictures/etoivbrifagwdyzycckz.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3767,20 +3791,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Unis-Cité"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -3905,20 +3930,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="BSB(Re)Connect"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -4043,20 +4069,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Unis-Cité"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -4176,20 +4203,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Stamtish"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -4314,20 +4342,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher "
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -4447,20 +4476,21 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="fr-card__start relative"
+                    class="relative fr-card__start"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Simplon.co"
+                        class="object-contain h-[3rem]"
                         data-nimg="1"
                         decoding="async"
                         height="48"
                         loading="lazy"
                         src="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png"
                         srcset="https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_48,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/f_auto,c_limit,w_96,q_auto/v1570439852/pictures/xblmdsm8aly06enczcrx.png 2x"
-                        style="color: transparent; object-fit: contain;"
+                        style="color: transparent;"
                         width="48"
                       />
                     </div>
@@ -5010,222 +5040,188 @@ exports[`homepage renders homepage 1`] = `
           Homepage.whyTitle
         </h2>
         <div
-          class="row"
+          class="flex gap-20"
         >
           <div
-            class="infos with_images col"
+            class="w-1/2 grow-1 basis-auto"
           >
             <div
-              class="container"
+              data-orientation="vertical"
             >
-              <button
-                class="btn open btn btn-secondary"
-                type="button"
-              >
-                Homepage.whyAccordionTitle1
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
               <div
-                class="collapse show"
+                class=""
+                data-orientation="vertical"
+                data-state="open"
               >
-                <p
-                  class="text"
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="open"
                 >
-                  Homepage.whyAccordionText1
-                </p>
+                  <button
+                    aria-controls="radix-:r17:"
+                    aria-disabled="true"
+                    aria-expanded="true"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="open"
+                    id="radix-:r16:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-blue-france"
+                    >
+                      Homepage.whyAccordionTitle1
+                    </span>
+                    <i
+                      class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-blue-france"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r16:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="open"
+                  id="radix-:r17:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
+                >
+                  <p
+                    class="text !text-large !mb-0"
+                  >
+                    Homepage.whyAccordionText1
+                  </p>
+                </div>
               </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Homepage.whyAccordionTitle2
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
               <div
-                class="collapse"
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
               >
-                <p
-                  class="text"
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  Homepage.whyAccordionText2
-                </p>
+                  <button
+                    aria-controls="radix-:r19:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r18:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Homepage.whyAccordionTitle2
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r18:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r19:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
               </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Homepage.whyAccordionTitle3
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
               <div
-                class="collapse"
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
               >
-                <p
-                  class="text"
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  Homepage.whyAccordionText3
-                </p>
+                  <button
+                    aria-controls="radix-:r1b:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r1a:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Homepage.whyAccordionTitle3
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r1a:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r1b:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
               </div>
-            </div>
-            <div
-              class="container"
-            >
-              <button
-                class="btn btn btn-secondary"
-                type="button"
-              >
-                Homepage.whyAccordionTitle4
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 32px; line-height: 32px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-ios-downward-outline"
-                      fill="black"
-                      height="32px"
-                      viewBox="0 0 24 24"
-                      width="32px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-ios-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </button>
               <div
-                class="collapse"
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
               >
-                <p
-                  class="text"
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  Homepage.whyAccordionText4
-                </p>
+                  <button
+                    aria-controls="radix-:r1d:"
+                    aria-expanded="false"
+                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r1c:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                    >
+                      Homepage.whyAccordionTitle4
+                    </span>
+                    <i
+                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r1c:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r1d:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
               </div>
             </div>
           </div>
           <div
-            class="media right col"
+            class="w-1/2 flex items-center justify-end"
           >
             <video
               class="video autoplay-video"
@@ -5356,49 +5352,61 @@ exports[`homepage renders homepage 1`] = `
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="figure"
+              class="text-center flex-1"
             >
-              <div>
-                0
+              <div
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
               </div>
+              <p
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+              >
+                Homepage.figuresSubtitle1
+              </p>
             </div>
-            <p
-              class="label"
-            >
-              Homepage.figuresSubtitle1
-            </p>
           </div>
           <div
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="figure"
+              class="text-center flex-1"
             >
-              <div>
-                0
+              <div
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
               </div>
+              <p
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+              >
+                Homepage.figuresSubtitle2
+              </p>
             </div>
-            <p
-              class="label"
-            >
-              Homepage.figuresSubtitle2
-            </p>
           </div>
           <div
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="figure"
+              class="text-center flex-1"
             >
-              <div>
-                0
+              <div
+                class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
               </div>
+              <p
+                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+              >
+                Homepage.figuresSubtitle3
+              </p>
             </div>
-            <p
-              class="label"
-            >
-              Homepage.figuresSubtitle3
-            </p>
           </div>
         </div>
       </div>

@@ -102,14 +102,14 @@ const DispositifCard = (props: Props) => {
             <div className="fr-card__start relative">
               <div className={styles.sponsor}>
                 <Image
+                  className="h-[3rem] object-contain"
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
                   alt={props.dispositif?.sponsor?.nom || ""}
                   width={48}
                   height={48}
-                  style={{ objectFit: "contain" }}
                 />
               </div>
-              <div className="flex gap-2 mb-2">
+              <div className="mb-2 flex gap-2">
                 <NewThemeBadge theme={theme} />
                 {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
                   <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />

@@ -68,6 +68,10 @@
 
   .modal_body {
     padding: 0 1.25rem 1.25rem;
+
+    :global .fr-tag {
+      font-size: 0.7em;
+    }
   }
 
   .list_group_item {

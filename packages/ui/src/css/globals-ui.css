@@ -21,3 +21,7 @@
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
 }
+
+body {
+  overflow-x: hidden;
+}

@@ -75,7 +75,7 @@ const Agir = () => {
               <Button
                 iconId="fr-icon-arrow-right-line"
                 iconPosition="right"
-                className={cls(styles.colored, "mb-4")}
+                className="fr-button-reverse mb-4"
                 size="large"
                 linkProps={{
                   href: "#program",
@@ -88,7 +88,7 @@ const Agir = () => {
                 iconPosition="right"
                 size="large"
                 priority="secondary"
-                className={styles.colored}
+                className="fr-button-reverse"
                 linkProps={{
                   href: "#map",
                 }}
@@ -141,7 +141,7 @@ const Agir = () => {
         <span id="program" className={styles.anchor} />
         <div className="py-10 lg:py-20" ref={refProgram}>
           <span className={styles.step}>1</span>
-          <div className="grid lg:grid-cols-2 gap-x-20">
+          <div className="grid gap-x-20 lg:grid-cols-2">
             <div>
               <h2 className={cls(styles.blue, "fr-display--xs")}>Accompagner les bénéficiaires</h2>
               <p className={cls(styles.subtitle, styles.blue)}>
@@ -182,7 +182,7 @@ const Agir = () => {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:mt-20">
+          <div className="mt-10 grid gap-10 lg:mt-20 lg:grid-cols-3">
             <div className="mb-10 lg:mb-0">
               <div className={styles.card}>
                 <Image src={IlluAccompagnement} width={80} height={80} alt="" className="mb-8" />
@@ -243,7 +243,7 @@ const Agir = () => {
         <div className="py-10 lg:py-20" ref={refOperators}>
           <span className={styles.step}>2</span>
 
-          <div className="grid lg:grid-cols-2 gap-x-20">
+          <div className="grid gap-x-20 lg:grid-cols-2">
             <div>
               <h2 className={cls(styles.blue, "fr-display--xs")}>Coordonner les acteurs de l’intégration</h2>
               <p className={cls(styles.subtitle, styles.blue)}>
@@ -280,7 +280,7 @@ const Agir = () => {
           <span id="map" className={styles.anchor} />
           <div className="mt-10 lg:mt-20">
             <h3 className={styles.h3}>Trouver l’opérateur de mon territoire</h3>
-            <p className="lg:w-1/2 italic">
+            <p className="italic lg:w-1/2">
               Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre
               territoire.
             </p>
@@ -290,7 +290,7 @@ const Agir = () => {
                   <MapFrance />
                 </MapContext.Provider>
               </div>
-              <div className="lg:col-span-1 flex items-center">
+              <div className="flex items-center lg:col-span-1">
                 {selectedDepartment && (
                   <div className={styles.operator}>
                     <div className={styles.head}>
@@ -349,7 +349,7 @@ const Agir = () => {
           </p>
 
           <div className={cls("mt-10 lg:mt-20", styles.cards)}>
-            <div className="grid lg:grid-cols-4 gap-6">
+            <div className="grid gap-6 lg:grid-cols-4">
               <div className="mb-4 lg:mb-0">
                 <Card
                   background

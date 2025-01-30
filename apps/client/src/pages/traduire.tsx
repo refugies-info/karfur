@@ -2,38 +2,42 @@ import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-type
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Col, Container, Row } from "reactstrap";
-import HelpIcon2 from "~/assets/staticPages/publier/help-icon-crisp.svg";
-import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
-import HelpIcon1 from "~/assets/staticPages/traduire/help-icon-tutoriel.svg";
-import MockupsRIMobile from "~/assets/staticPages/traduire/mockupMobileRI.png";
+import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
+import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
+import StepImage1 from "~/assets/staticPages/publier/step-image-1.png";
+import StepImage4 from "~/assets/staticPages/publier/step-image-5.png";
+import MockupRI from "~/assets/staticPages/traduire/mockup-ri.png";
+import ShareImage from "~/assets/staticPages/traduire/share-image.svg";
+import StepImage2 from "~/assets/staticPages/traduire/step-image-2.svg";
+import StepImage3 from "~/assets/staticPages/traduire/step-image-3.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
 import {
   Accordion,
-  AutoplayVideo,
+  Anchor,
   Card,
-  HeroArrow,
-  InlineLink,
-  LanguageIcon,
+  Hero,
   Register,
+  RowCards,
   SecondaryNavbar,
+  Section,
+  SectionHead,
   StepContent,
+  Title2,
 } from "~/components/Pages/staticPages/common";
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import Image from "~/components/UI/Image";
-import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import styles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 export type NeedKey = "strong" | "medium" | "weak";
+const NEED_ORDER: Record<NeedKey, number> = { strong: 0, medium: 1, weak: 2 };
+
 interface Props {
   translationStatistics: TranslationStatisticsResponse;
 }
@@ -69,14 +73,15 @@ const RecensezVotreAction = (props: Props) => {
   }, [inViewWho, inViewNext, inViewSteps, inViewFaq, inViewRegister]);
 
   // stats
-  const needKeys: NeedKey[] = ["strong", "medium", "weak"];
-  const translationNeeds: Record<NeedKey, { languageId: string; count: number }[]> = useMemo(
-    () => ({
-      strong: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count <= 2) || [],
-      medium:
-        props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 2 && item.count <= 5) || [],
-      weak: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 5) || [],
-    }),
+  const translationNeeds: { languageId: string; count: number; need: NeedKey }[] = useMemo(
+    () =>
+      (props.translationStatistics?.nbActiveTranslators || [])
+        .map((stat) => {
+          if (stat.count <= 2) return { ...stat, need: "strong" as NeedKey };
+          if (stat.count > 2 && stat.count <= 5) return { ...stat, need: "medium" as NeedKey };
+          return { ...stat, need: "weak" as NeedKey };
+        })
+        .sort((a, b) => NEED_ORDER[a.need] - NEED_ORDER[b.need]),
     [props],
   );
 
@@ -86,29 +91,21 @@ const RecensezVotreAction = (props: Props) => {
   }, []);
 
   return (
-    <div className={styles.main}>
+    <div className="w-full">
       <SEO title={t("Translate.title")} />
 
       {/* HERO */}
-      <div ref={refHero} className={cls(styles.section, styles.bg_blue, "mb-4")}>
-        <Container className={styles.container}>
-          <Row className={styles.hero}>
-            <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className={styles.white}>{t("Translate.title")}</h1>
-              <p className={styles.subtitle}>
-                {t("Translate.subtitle", {
-                  nbBenevoles: props.translationStatistics?.nbTranslators || 0,
-                  nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0),
-                })}
-              </p>
-              <HeroArrow target="who" />
-            </Col>
-            <Col sm="12" lg="6">
-              <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Hero
+        ref={refHero}
+        title={t("Translate.title")}
+        subtitle={t("Translate.subtitle", {
+          nbBenevoles: props.translationStatistics?.nbTranslators || 0,
+          nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0),
+        })}
+        buttonTitle={t("Translate.navbarItem5")}
+        image={MockupRI}
+        imageWidth={448}
+      />
 
       <SecondaryNavbar
         leftLinks={[
@@ -127,216 +124,167 @@ const RecensezVotreAction = (props: Props) => {
       />
 
       {/* WHO */}
-      <div ref={refWho} className={styles.scrollspy_section}>
-        <div className={cls(styles.section)}>
-          <span id="who" className={styles.anchor}></span>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
-            <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
-            <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  header={
-                    <>
-                      <LanguageIcon language="ua" size={40} />
-                      <LanguageIcon language="ir" size={40} />
-                      <LanguageIcon language="sa" size={40} />
-                      <LanguageIcon language="gb" size={40} />
-                      <LanguageIcon language="af" size={40} />
-                      <LanguageIcon language="ru" size={40} />
-                      <LanguageIcon language="er" size={40} />
-                    </>
-                  }
-                  title={t("Translate.whoCardTitle1")}
-                  greyBackground
-                >
-                  <p className="mb-0">{t("Translate.whoCardText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  header={<LanguageIcon language="fr" size={56} />}
-                  title={t("Translate.whoCardTitle2")}
-                  greyBackground
-                >
-                  <p className="mb-0">{t("Translate.whoCardText2")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")} greyBackground>
-                  <p className="mb-0">{t("Translate.whoCardText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+      <div ref={refWho} className="relative">
+        <Section>
+          <Anchor id="who" />
+          <div className="fr-container">
+            <SectionHead title={t("Translate.whoTitle")} subtitle={t("Translate.whoSubtitle")} />
+            <RowCards>
+              <Card image={WhoIcon1} title={t("Translate.whoCardTitle1")}>
+                <p className="!mb-0">{t("Translate.whoCardText1")}</p>
+              </Card>
+
+              <Card image={CardIconCheck} title={t("Translate.whoCardTitle2")}>
+                <p className="!mb-0">{t("Translate.whoCardText2")}</p>
+              </Card>
+
+              <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")}>
+                <p className="!mb-0">{t("Translate.whoCardText3")}</p>
+              </Card>
+            </RowCards>
+          </div>
+        </Section>
 
         {/* NEED */}
-        <div className={cls(styles.section, styles.bg_green)}>
-          <Container className={cls(styles.container, styles.needs)}>
-            <h2 className={cls(styles.title2, styles.white, "text-center")}>{t("Translate.needTitle")}</h2>
-            <Row>
-              {needKeys.map((needKey, i) => (
-                <Col key={i} sm="12" lg="4">
-                  {translationNeeds[needKey].map((item, i) => (
-                    <LanguageCard href="#register" key={i} languageId={item.languageId} need={needKey} />
-                  ))}
-                </Col>
+        <Section className="bg-light-alt-blue">
+          <div className="fr-container">
+            <Title2>{t("Translate.needTitle")}</Title2>
+            <div className="flex flex-wrap gap-6 md:justify-center">
+              {translationNeeds.map((item, i) => (
+                <LanguageCard href="#register" key={i} languageId={item.languageId} need={item.need} />
               ))}
-            </Row>
-          </Container>
-        </div>
+            </div>
+          </div>
+        </Section>
       </div>
 
       {/* STEPS */}
-      <div ref={refSteps} className={cls(styles.section)}>
-        <span id="steps" className={styles.anchor}></span>
-        <Container className={styles.container}>
-          <h2 className={styles.title2}>{t("Translate.stepsTitle")}</h2>
-          <div className={styles.warning_mobile}>
-            <EVAIcon name="alert-circle-outline" size={24} fill="black" />
-            <p>{t("Translate.stepsWarningMobile")}</p>
+      <div ref={refSteps} className="relative">
+        <Anchor id="steps" />
+        <Section className="bg-beige">
+          <div className="fr-container">
+            <Title2>{t("Translate.stepsTitle")}</Title2>
+            <StepContent
+              step={1}
+              title={t("Translate.stepsSubtitle1")}
+              texts={[t("Translate.stepsText1")]}
+              cta={{ text: t("Translate.stepsCTA1"), link: "#register" }}
+              image={StepImage1}
+              width={440}
+            />
+            <StepContent
+              step={2}
+              title={t("Translate.stepsSubtitle2")}
+              texts={[t("Translate.stepsText2")]}
+              image={StepImage2}
+              width={480}
+            />
+            <StepContent
+              step={3}
+              title={t("Translate.stepsSubtitle3")}
+              texts={[
+                t("Translate.stepsText3"),
+                [t("Translate.stepsList3Item1"), t("Translate.stepsList3Item2"), t("Translate.stepsList3Item3")],
+              ]}
+              image={StepImage3}
+              width={440}
+            />
+            <StepContent
+              step={4}
+              title={t("Translate.stepsSubtitle4")}
+              texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
+              image={StepImage4}
+              width={440}
+              buttonStep={t("Translate.stepsButton")}
+              buttonStepEnd
+            />
           </div>
-          <StepContent
-            step={1}
-            color="orange"
-            title={t("Translate.stepsSubtitle1")}
-            texts={[t("Translate.stepsText1")]}
-            cta={{ text: t("Translate.stepsCTA1"), link: "#register" }}
-            video="/video/publier-video-step1.mp4"
-          />
-          <StepContent
-            step={2}
-            color="orange"
-            title={t("Translate.stepsSubtitle2")}
-            texts={[t("Translate.stepsText2")]}
-            video="/video/translate-video-step2.mp4"
-          />
-          <StepContent
-            step={3}
-            color="orange"
-            title={t("Translate.stepsSubtitle3")}
-            texts={[t("Translate.stepsText3")]}
-            video="/video/translate-video-step3.mp4"
-            footer={
-              <div className={styles.warning}>
-                <ul className="mb-0">
-                  <li className="mb-2">{t("Translate.stepsList3Item1")}</li>
-                  <li className="mb-2">{t("Translate.stepsList3Item2")}</li>
-                  <li>{t("Translate.stepsList3Item3")}</li>
-                </ul>
-              </div>
-            }
-          />
-          <StepContent
-            step={4}
-            color="orange"
-            title={t("Translate.stepsSubtitle4")}
-            texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
-            image={StepImage5}
-            height={415}
-            buttonStep={t("Translate.stepsButton")}
-            buttonStepEnd
-          />
-        </Container>
+        </Section>
       </div>
 
       {/* NEXT */}
-      <div ref={refNext} className={styles.scrollspy_section}>
-        <div className={cls(styles.section, styles.bg_purple)}>
-          <span id="next" className={styles.anchor}></span>
-          <Container className={cls(styles.container)}>
-            <Row>
-              <Col lg="6" sm="12">
-                <h2 className={cls(styles.title2, styles.bottom_space, styles.white, "mb-0")}>
+      <div ref={refNext} className="relative">
+        <Section className="bg-light-alt-blue">
+          <Anchor id="next" />
+          <div className="fr-container">
+            <div className="flex flex-col items-center gap-10 md:flex-row lg:gap-20">
+              <div className="flex-1">
+                <Title2 className="!text-left" smallMb>
                   {t("Translate.nextTitle")}
-                </h2>
-                <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
-                <p className={styles.p}>{t("Translate.nextText2")}</p>
-              </Col>
-              <Col lg="6" sm="12" className="text-end">
-                <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                </Title2>
+                <p>{t("Translate.nextText1")}</p>
+                <p className="!mb-0">{t("Translate.nextText2")}</p>
+              </div>
+              <div className="flex-1">
+                <Image src={ShareImage} alt="" width={440} height={287} className="mx-auto object-contain" />
+              </div>
+            </div>
+          </div>
+        </Section>
 
         {/* HELP */}
-        <div className={cls(styles.section, styles.bg_grey)}>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <Row className={cls(styles.top_space, "justify-center")}>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={HelpIcon1}
-                  title={t("Translate.helpTileTitle1")}
-                  footer={
-                    <InlineLink
-                      link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                      text={t("Translate.helpTileCTA1")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("Translate.helpTileText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="lg:mb-0 mb-5">
-                <Card
-                  image={HelpIcon2}
-                  title={t("StaticPages.helpTileTitle3")}
-                  footer={
-                    <InlineLink
-                      link="#"
-                      type="button"
-                      onClick={() => window.$crisp.push(["do", "chat:open"])}
-                      text={t("StaticPages.helpTileCTA3")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("StaticPages.helpTileText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        <Section>
+          <div className="fr-container">
+            <SectionHead title={t("StaticPages.helpTitle")} subtitle={t("Translate.helpSubtitle")} />
+            <RowCards>
+              <Card
+                image={CardIconCheck}
+                title={t("Translate.helpTileTitle1")}
+                link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+              >
+                <p>{t("Translate.helpTileText1")}</p>
+              </Card>
+
+              <Card
+                image={CardIconCheck}
+                title={t("StaticPages.helpTileTitle3")}
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
+              >
+                <p>{t("StaticPages.helpTileText3")}</p>
+              </Card>
+            </RowCards>
+          </div>
+        </Section>
       </div>
 
       {/* FAQ */}
-      <div ref={refFaq} className={cls(styles.section)}>
-        <span id="faq" className={styles.anchor}></span>
-        <Container className={cls(styles.container, styles.faq)}>
-          <h2 className={cls(styles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
-          <Accordion
-            items={[
-              { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
-              { title: t("Translate.faqAccordionTitle2"), text: t("Translate.faqAccordionText2") },
-              { title: t("Translate.faqAccordionTitle3"), text: t("Translate.faqAccordionText3") },
-              { title: t("Translate.faqAccordionTitle4"), text: t("Translate.faqAccordionText4") },
-              {
-                title: t("Translate.faqAccordionTitle5"),
-                text: t("Translate.faqAccordionText5"),
-                cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" },
-              },
-            ]}
-            multiOpen
-          />
-        </Container>
-      </div>
+      <Section ref={refFaq} className="relative">
+        <Anchor id="faq" />
+        <div className="fr-container">
+          <Title2 className="text-center">{t("StaticPages.faqTitle")}</Title2>
+          <div className="mx-auto max-w-[720px]">
+            <Accordion
+              items={[
+                { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
+                { title: t("Translate.faqAccordionTitle2"), text: t("Translate.faqAccordionText2") },
+                { title: t("Translate.faqAccordionTitle3"), text: t("Translate.faqAccordionText3") },
+                { title: t("Translate.faqAccordionTitle4"), text: t("Translate.faqAccordionText4") },
+                {
+                  title: t("Translate.faqAccordionTitle5"),
+                  text: t("Translate.faqAccordionText5"),
+                  cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" },
+                },
+              ]}
+              multiOpen
+            />
+          </div>
+        </div>
+      </Section>
 
       {/* REGISTER */}
-      <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
-        <span id="register" className={styles.anchor}></span>
-        <Register
-          onClickLoggedIn={navigateToTranslations}
-          subtitleForm={t("Translate.registerSubtitle")}
-          subtitleLoggedIn={t("Translate.registerLoggedIn")}
-          btnLoggedIn={t("Translate.registerBtnLoggedIn")}
-          subtitleMobile={t("Translate.registerMobile")}
-          associatedRole={RoleName.TRAD}
-        />
-      </div>
+      <Section ref={refRegister} className="bg-beige relative">
+        <Anchor id="register" />
+        <div className="fr-container">
+          <Register
+            onClickLoggedIn={navigateToTranslations}
+            subtitleForm={t("Translate.registerSubtitle")}
+            subtitleLoggedIn={t("Translate.registerLoggedIn")}
+            btnLoggedIn={t("Translate.registerBtnLoggedIn")}
+            subtitleMobile={t("Translate.registerMobile")}
+            associatedRole={RoleName.TRAD}
+          />
+        </div>
+      </Section>
     </div>
   );
 };
