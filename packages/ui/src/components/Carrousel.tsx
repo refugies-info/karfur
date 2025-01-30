@@ -221,7 +221,7 @@ const CarrouselBase = forwardRef<HTMLElement, Omit<CarrouselProps, "ref">>(
 
         <div
           ref={scrollContainerRef}
-          className="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-71.25rem)/2+0.5rem))] xl:pl-[max(0.75rem,calc((100vw-71.25rem)/2+0.5rem))] [&::-webkit-scrollbar]:hidden"
+          className="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-78rem)/2+1rem))] xl:pl-[max(0.75rem,calc((100vw-78rem)/2+1rem))] [&::-webkit-scrollbar]:hidden"
           aria-live="polite"
           aria-atomic="true"
           style={{
