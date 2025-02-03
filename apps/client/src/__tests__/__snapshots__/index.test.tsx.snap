@@ -250,7 +250,7 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-71.25rem)/2+0.5rem))] xl:pl-[max(0.75rem,calc((100vw-71.25rem)/2+0.5rem))] [&::-webkit-scrollbar]:hidden"
+        class="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-78rem)/2+1rem))] xl:pl-[max(0.75rem,calc((100vw-78rem)/2+1rem))] [&::-webkit-scrollbar]:hidden"
         style="will-change: transform;"
       >
         <div
@@ -297,14 +297,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -316,7 +316,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -447,14 +447,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -466,7 +466,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -597,14 +597,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -616,7 +616,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -747,14 +747,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -766,7 +766,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -892,14 +892,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -911,7 +911,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1042,14 +1042,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1061,7 +1061,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1187,14 +1187,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1206,7 +1206,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1337,14 +1337,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1356,7 +1356,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1482,14 +1482,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1501,7 +1501,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1627,14 +1627,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1646,7 +1646,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1777,14 +1777,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1796,7 +1796,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -1922,14 +1922,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -1941,7 +1941,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2072,14 +2072,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2091,7 +2091,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2217,14 +2217,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2236,7 +2236,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2362,14 +2362,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Comité de la Démarche Accessible"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2381,7 +2381,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2508,7 +2508,7 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-71.25rem)/2+0.5rem))] xl:pl-[max(0.75rem,calc((100vw-71.25rem)/2+0.5rem))] [&::-webkit-scrollbar]:hidden"
+        class="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-78rem)/2+1rem))] xl:pl-[max(0.75rem,calc((100vw-78rem)/2+1rem))] [&::-webkit-scrollbar]:hidden"
         style="will-change: transform;"
       >
         <div
@@ -2555,14 +2555,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="FACE GRAND LYON"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2574,7 +2574,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2694,14 +2694,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="ABC FORMATION"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2713,7 +2713,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2833,14 +2833,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Réseau Alpha"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2852,7 +2852,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -2967,14 +2967,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="AIME ONG"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -2986,7 +2986,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3106,14 +3106,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Université fédérale de Toulouse"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3125,7 +3125,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3245,14 +3245,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="FACE Vendée"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3264,7 +3264,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3379,14 +3379,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Habitat et Humanisme"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3398,7 +3398,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3518,14 +3518,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="fable-Lab"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3537,7 +3537,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3652,14 +3652,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Habitat-Cité"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3671,7 +3671,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3791,14 +3791,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Unis-Cité"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3810,7 +3810,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -3930,14 +3930,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="BSB(Re)Connect"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -3949,7 +3949,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -4069,14 +4069,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Unis-Cité"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -4088,7 +4088,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -4203,14 +4203,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Stamtish"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -4222,7 +4222,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -4342,14 +4342,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher "
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -4361,7 +4361,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -4476,14 +4476,14 @@ exports[`homepage renders homepage 1`] = `
                     </p>
                   </div>
                   <div
-                    class="relative fr-card__start"
+                    class="fr-card__start relative"
                   >
                     <div
                       class="sponsor"
                     >
                       <img
                         alt="Simplon.co"
-                        class="object-contain h-[3rem]"
+                        class="h-[3rem] object-contain"
                         data-nimg="1"
                         decoding="async"
                         height="48"
@@ -4495,7 +4495,7 @@ exports[`homepage renders homepage 1`] = `
                       />
                     </div>
                     <div
-                      class="flex gap-2 mb-2"
+                      class="mb-2 flex gap-2"
                     >
                       <div
                         class="container theme-badge"
@@ -4574,6 +4574,73 @@ exports[`homepage renders homepage 1`] = `
         </div>
       </div>
     </section>
+    <div
+      class="bg-light-alt-blue w-full py-20"
+    >
+      <div
+        class="container grid grid-cols-2 items-center gap-10"
+      >
+        <img
+          alt="NewsletterForm.imgAlt"
+          class="m-auto max-w-full"
+          data-nimg="1"
+          decoding="async"
+          height="320"
+          loading="lazy"
+          src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+          srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+          style="color: transparent;"
+          width="433"
+        />
+        <div
+          class="stacked relative grid h-full grid-cols-1 grid-rows-1 items-center"
+        >
+          <form
+            class="col-start-1 row-start-1 overflow-y-clip transition-all duration-200 ease-in max-h-full opacity-100 transition-all"
+          >
+            <h2>
+              NewsletterForm.title
+            </h2>
+            <p>
+              NewsletterForm.description
+            </p>
+            <div
+              class="fr-input-group"
+            >
+              <label
+                class="fr-label"
+                for="newsletter-email"
+              >
+                NewsletterForm.label
+              </label>
+              <div
+                class="fr-input-wrap fr-input-wrap--addon"
+              >
+                <input
+                  class="fr-input"
+                  id="newsletter-email"
+                  name="email"
+                  type="email"
+                  value=""
+                />
+                <button
+                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
+                  id="fr-button-:r17:"
+                  type="submit"
+                >
+                  ok
+                </button>
+              </div>
+              <div
+                aria-live="polite"
+                class="fr-messages-group"
+                id="newsletter-email-messages-group"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <div
       class="section bg_blue"
       id="application"
@@ -5059,32 +5126,32 @@ exports[`homepage renders homepage 1`] = `
                   data-state="open"
                 >
                   <button
-                    aria-controls="radix-:r17:"
+                    aria-controls="radix-:r19:"
                     aria-disabled="true"
                     aria-expanded="true"
-                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
+                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="open"
-                    id="radix-:r16:"
+                    id="radix-:r18:"
                     type="button"
                   >
                     <span
-                      class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-blue-france"
+                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
                     >
                       Homepage.whyAccordionTitle1
                     </span>
                     <i
-                      class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-blue-france"
+                      class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
                     />
                   </button>
                 </h3>
                 <div
-                  aria-labelledby="radix-:r16:"
+                  aria-labelledby="radix-:r18:"
                   class="content mt-4 px-4 pb-8"
                   data-orientation="vertical"
                   data-state="open"
-                  id="radix-:r17:"
+                  id="radix-:r19:"
                   role="region"
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
                 >
@@ -5106,50 +5173,9 @@ exports[`homepage renders homepage 1`] = `
                   data-state="closed"
                 >
                   <button
-                    aria-controls="radix-:r19:"
-                    aria-expanded="false"
-                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r18:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
-                    >
-                      Homepage.whyAccordionTitle2
-                    </span>
-                    <i
-                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r18:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r19:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
-              </div>
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <button
                     aria-controls="radix-:r1b:"
                     aria-expanded="false"
-                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
@@ -5157,12 +5183,12 @@ exports[`homepage renders homepage 1`] = `
                     type="button"
                   >
                     <span
-                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                     >
-                      Homepage.whyAccordionTitle3
+                      Homepage.whyAccordionTitle2
                     </span>
                     <i
-                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
                     />
                   </button>
                 </h3>
@@ -5190,7 +5216,7 @@ exports[`homepage renders homepage 1`] = `
                   <button
                     aria-controls="radix-:r1d:"
                     aria-expanded="false"
-                    class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                     data-orientation="vertical"
                     data-radix-collection-item=""
                     data-state="closed"
@@ -5198,12 +5224,12 @@ exports[`homepage renders homepage 1`] = `
                     type="button"
                   >
                     <span
-                      class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                     >
-                      Homepage.whyAccordionTitle4
+                      Homepage.whyAccordionTitle3
                     </span>
                     <i
-                      class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
                     />
                   </button>
                 </h3>
@@ -5218,10 +5244,51 @@ exports[`homepage renders homepage 1`] = `
                   style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                 />
               </div>
+              <div
+                class=""
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <h3
+                  class="!mb-0"
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <button
+                    aria-controls="radix-:r1f:"
+                    aria-expanded="false"
+                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-state="closed"
+                    id="radix-:r1e:"
+                    type="button"
+                  >
+                    <span
+                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                    >
+                      Homepage.whyAccordionTitle4
+                    </span>
+                    <i
+                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                    />
+                  </button>
+                </h3>
+                <div
+                  aria-labelledby="radix-:r1e:"
+                  class="content mt-4 px-4 pb-8"
+                  data-orientation="vertical"
+                  data-state="closed"
+                  hidden=""
+                  id="radix-:r1f:"
+                  role="region"
+                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                />
+              </div>
             </div>
           </div>
           <div
-            class="w-1/2 flex items-center justify-end"
+            class="flex w-1/2 items-center justify-end"
           >
             <video
               class="video autoplay-video"
@@ -5352,7 +5419,7 @@ exports[`homepage renders homepage 1`] = `
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="text-center flex-1"
+              class="flex-1 text-center"
             >
               <div
                 class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
@@ -5362,7 +5429,7 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
               <p
-                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+                class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
                 Homepage.figuresSubtitle1
               </p>
@@ -5372,7 +5439,7 @@ exports[`homepage renders homepage 1`] = `
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="text-center flex-1"
+              class="flex-1 text-center"
             >
               <div
                 class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
@@ -5382,7 +5449,7 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
               <p
-                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+                class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
                 Homepage.figuresSubtitle2
               </p>
@@ -5392,7 +5459,7 @@ exports[`homepage renders homepage 1`] = `
             class="col-sm-12 col-lg-4"
           >
             <div
-              class="text-center flex-1"
+              class="flex-1 text-center"
             >
               <div
                 class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
@@ -5402,149 +5469,12 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
               <p
-                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+                class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
                 Homepage.figuresSubtitle3
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="section infos !py-0"
-    >
-      <div
-        class="container text-center container-fluid"
-      >
-        <div
-          class="row"
-        >
-          <div
-            class="bg_blue col-sm-12 col-lg-6"
-          >
-            <div
-              class="infos_col"
-            >
-              <img
-                alt=""
-                class="img"
-                data-nimg="1"
-                decoding="async"
-                height="160"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
-                style="color: transparent;"
-                width="246"
-              />
-              <h2
-                class="title2 white"
-              >
-                Homepage.newsletterTitle
-              </h2>
-              <p
-                class="subtitle"
-              >
-                Homepage.newsletterSubtitle
-              </p>
-              <div
-                class="action"
-              >
-                <div
-                  class="newsletter"
-                >
-                  <div>
-                    <div
-                      class="container with_icon newsletter_input"
-                    >
-                      <span
-                        class="icon prepend icon"
-                      >
-                        <i
-                          style="height: 24px; line-height: 24px;"
-                        >
-                          <svg
-                            class="eva eva-email-outline"
-                            fill="gray80"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            width="24px"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              data-name="Layer 2"
-                            >
-                              <g
-                                data-name="email"
-                              >
-                                <rect
-                                  height="24"
-                                  opacity="0"
-                                  width="24"
-                                />
-                                <path
-                                  d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
-                                />
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                      </span>
-                      <input
-                        class="input"
-                        placeholder="Register.Votre email"
-                        type="email"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                  <button
-                    class="btn validate newsletter_submit"
-                    disabled=""
-                  >
-                    <span
-                      class="me-2 icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="#fff"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Envoyer
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="bg_grey col-sm-12 col-lg-6"
-          />
         </div>
       </div>
     </div>
