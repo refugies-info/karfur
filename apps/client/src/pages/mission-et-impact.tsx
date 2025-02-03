@@ -8,10 +8,13 @@ import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.
 import PDFScreenshot from "~/assets/staticPages/mission-et-impact/pdf-screenshot.png";
 import AlainRegnier from "~/assets/staticPages/mission-et-impact/photo-alain-regnier.png";
 import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.png";
+import StatGraph from "~/assets/staticPages/mission-et-impact/stat-graph.svg";
+import StatPodium from "~/assets/staticPages/mission-et-impact/stat-podium.svg";
+import StatStars from "~/assets/staticPages/mission-et-impact/stat-stars.svg";
 import UsersGraph1 from "~/assets/staticPages/mission-et-impact/users-graph-1.png";
 import UsersGraph2 from "~/assets/staticPages/mission-et-impact/users-graph-2.svg";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
-import { ImpactCol } from "~/components/Pages/staticPages/mission-et-impact";
+import { Figure, ImpactCol } from "~/components/Pages/staticPages/mission-et-impact";
 import SEO from "~/components/Seo";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 
@@ -174,6 +177,17 @@ const MissionImpact: NextPage = () => {
               />
               <p className="text-small text-center text-gray italic">{t("MissionImpact.users_legend_2")}</p>
             </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-blue-france">
+        <div className="fr-container">
+          <Title2 className="text-light-alt-blue">{t("MissionImpact.figures_title")}</Title2>
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center lg:items-start justify-center">
+            <Figure title="1,3M" text={t("MissionImpact.figures_text_1")} image={StatGraph} />
+            <Figure title="n°1" text={t("MissionImpact.figures_text_2")} image={StatPodium} />
+            <Figure title="4,6/5" text={t("MissionImpact.figures_text_3")} image={StatStars} />
           </div>
         </div>
       </Section>
