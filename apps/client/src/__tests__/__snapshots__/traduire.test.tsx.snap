@@ -533,7 +533,7 @@ exports[`traduire renders traduire 1`] = `
                 Translate.stepsText4b
               </p>
               <div
-                class="text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 bottom-0"
+                class="text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >
                 Translate.stepsButton
               </div>
