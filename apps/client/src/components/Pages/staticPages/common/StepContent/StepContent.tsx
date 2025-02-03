@@ -29,7 +29,7 @@ const StepContent = (props: Props) => {
         className={cls(
           "text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france",
           "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
-          props.buttonStepEnd && "bottom-0",
+          props.buttonStepEnd && "!bottom-0",
         )}
       >
         {props.buttonStep}
