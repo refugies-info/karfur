@@ -96,9 +96,9 @@ const Homepage = (props: Props) => {
 
       <Newsletter />
 
-      <MobileApp />
-
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
+
+      <MobileApp />
 
       <FreeResources />
 
