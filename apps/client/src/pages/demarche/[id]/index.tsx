@@ -44,7 +44,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     return { notFound: true };
   }
 
-  await updateNbViews(dispositif);
+  const isPrefetch = req.headers["purpose"] === "prefetch";
+
+  if (!isPrefetch) {
+    await updateNbViews(dispositif);
+  }
 
   // 200
   return {
