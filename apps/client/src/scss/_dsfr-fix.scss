@@ -71,6 +71,10 @@ a:not(.underline) {
   }
 }
 
+:not([class^="fr-link"]):not([class^="fr-btn"])[target="_blank"]::after {
+  content: none;
+}
+
 // white button
 .fr-button-reverse {
   &.fr-btn--secondary {
