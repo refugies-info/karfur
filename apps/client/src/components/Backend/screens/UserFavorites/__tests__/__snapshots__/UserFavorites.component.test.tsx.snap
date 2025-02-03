@@ -464,14 +464,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="relative fr-card__start"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
-                      class="object-contain h-[3rem]"
+                      class="h-[3rem] object-contain"
                       data-nimg="1"
                       decoding="async"
                       height="48"
@@ -483,7 +483,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     />
                   </div>
                   <div
-                    class="flex gap-2 mb-2"
+                    class="mb-2 flex gap-2"
                   >
                     <div
                       class="container theme-badge"
@@ -588,14 +588,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="relative fr-card__start"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
-                      class="object-contain h-[3rem]"
+                      class="h-[3rem] object-contain"
                       data-nimg="1"
                       decoding="async"
                       height="48"
@@ -607,7 +607,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     />
                   </div>
                   <div
-                    class="flex gap-2 mb-2"
+                    class="mb-2 flex gap-2"
                   >
                     <div
                       class="container theme-badge"
@@ -712,14 +712,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="relative fr-card__start"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
-                      class="object-contain h-[3rem]"
+                      class="h-[3rem] object-contain"
                       data-nimg="1"
                       decoding="async"
                       height="48"
@@ -731,7 +731,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     />
                   </div>
                   <div
-                    class="flex gap-2 mb-2"
+                    class="mb-2 flex gap-2"
                   >
                     <div
                       class="container theme-badge"
