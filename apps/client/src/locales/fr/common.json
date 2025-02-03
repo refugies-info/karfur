@@ -744,6 +744,18 @@
     "impact_arguments_badge_3": "Impact pour les bpi",
     "impact_arguments_text_3": "Réfugiés.info sert d’outil de médiation pour faciliter la compréhension des démarches, libérant ainsi du temps pour se concentrer sur les sujets de fond et à l’accompagnement en lui-même.",
     "impact_arguments_figures_3": "60% des personnes réfugiées interrogées disent avoir pu être autonomes pour réaliser une démarche au moins une fois grâce à Réfugiés.info*",
-    "impact_arguments_legend": "* Enquête de satisfaction auprès des utilisateurs, avril 2024"
+    "impact_arguments_legend": "* Enquête de satisfaction auprès des utilisateurs, avril 2024",
+    "users_title": "Les usagers de Réfugiés.info",
+    "users_subtitle_1": "Les personnes étrangères",
+    "users_text_1": "Les usagers du service sont principalement les personnes réfugiées (motif humanitaire), mais nous observons également la présence des autres motifs, arrivés sur le service grâce à la communication partenariale et au référencement naturel.",
+    "users_testimony_1": "« L’application résume pour nous toutes les bases du pays afin que nous puissions les comprendre. » (Un usager BPI)",
+    "users_subtitle_2": "Les professionnels",
+    "users_text_2": "Travailleurs sociaux en association, à la Mission locale, aux opérateurs du programme AGIR ou encore agents de France Travail, de la  préfecture, du CCAS... de nombreux professionnels en lien avec le public concerné utilisent également le service pour se former eux-mêmes ou le partager à leurs bénéficiaires.",
+    "users_testimony_2": "« Réfugiés.info, c’est ma bible sur les droits des personnes réfugiées ! » (Une responsable partenariat AGIR)",
+    "users_legend_1": "Répartition des 3,8M personnes étrangères en 2022",
+    "users_legend_2": "Les 1,1M usagers de Réfugiés.info en 2024",
+    "users_badges1_badge1": "Application",
+    "users_badges1_badge2": "Site mobile",
+    "users_badges2_badge": "Site Desktop"
   }
 }
