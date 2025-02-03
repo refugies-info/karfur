@@ -12,14 +12,8 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
-import {
-  FreeResources,
-  Hero,
-  Infos,
-  MainFigures,
-  MobileApp,
-  WhyAccordions,
-} from "~/components/Pages/homepage/Sections";
+import { FreeResources, Hero, MainFigures, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
+import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
@@ -100,6 +94,8 @@ const Homepage = (props: Props) => {
         ))}
       </Carrousel>
 
+      <Newsletter />
+
       <MobileApp />
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
@@ -111,8 +107,6 @@ const Homepage = (props: Props) => {
         nbMercis={props.contentStatistics.nbMercis || 0}
         nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
       />
-
-      <Infos />
     </div>
   );
 };

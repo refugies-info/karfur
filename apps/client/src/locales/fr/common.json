@@ -79,8 +79,6 @@
     "communityCardTitle9": "L’équipe Réfugiés.info",
     "communityCardSubtitle9": "Coordonne l’ensemble des communautés de contributeurs et organise le bon fonctionnement du  projet.",
     "communityCardBadge9": "équipe",
-    "newsletterTitle": "Inscrivez-vous à notre lettre d’information",
-    "newsletterSubtitle": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
     "trainingTitle": "Participez à nos formations",
     "trainingSubtitle": "Venez découvrir le projet en ligne ou en présentiel et poser toutes vos questions.",
     "trainingCTA": "Découvrir les formations",
@@ -768,6 +766,21 @@
     "Tigrinya": "Tigrinya",
     "Ukrainien": "Ukrainien"
   },
+  "NewsletterForm": {
+    "title": "Inscrivez-vous à notre lettre d’information",
+    "description": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
+    "imgAlt": "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
+    "label": "Adresse email",
+    "confirmMessage": {
+      "title": "Yay...",
+      "text": "Mail <b>{{email}}</b> correctement enregistré !"
+    },
+    "errors": {
+      "emailNotValid": "Ceci n'est pas un email, vérifiez l'orthographe.",
+      "alreadyExists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
+      "systemError": "Une erreur s'est produite"
+    }
+  },
   "SkipLinks": {
     "PiedDePage": "Pied de page",
     "Menu": "Menu",
@@ -779,5 +792,6 @@
       "prev": "Faire défiler à gauche",
       "next": "Faire défiler à droite"
     }
-  }
+  },
+  "ok": "Ok"
 }
