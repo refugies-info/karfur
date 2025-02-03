@@ -4576,6 +4576,7 @@ exports[`homepage renders homepage 1`] = `
     </section>
     <div
       class="bg-light-alt-blue w-full py-20"
+      id="newsletter"
     >
       <div
         class="container grid grid-cols-2 items-center gap-10"

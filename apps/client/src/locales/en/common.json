@@ -525,7 +525,6 @@
   "StaticPages": {
     "helpTitle": "You are not alone",
     "helpTileTitle3": "Live chat",
-    "helpTileText3": "Live chat is available at the bottom right of your screen. Ask all your questions: we're quick to respond and it's a real human being who deals with your requests!",
     "faqTitle": "Still have questions?",
     "registerTitle": "Here we go!"
   },
@@ -589,8 +588,7 @@
     "faqAccordionText5": "Translating Réfugiés.info into a new language is possible. The decision depends on current events and the number of people who might be interested in this new language. If you speak another language and would like to translate content to make it accessible to your community, please fill in this form.",
     "faqAccordionCTA5": "Fill in the form",
     "registerLoggedIn": "Now you know everything, you can translate your first sheet.",
-    "registerBtnLoggedIn": "Translate a sheet",
-    "registerMobile": "Go to your computer to create your account and start translating your sheets."
+    "registerBtnLoggedIn": "Translate a sheet"
   },
   "who_are_we": "Who are we?",
   "no_result": "No results",

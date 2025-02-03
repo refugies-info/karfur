@@ -27,7 +27,7 @@ const StepContent = (props: Props) => {
     () => (
       <div
         className={cls(
-          "!text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white",
+          "text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white",
           "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
           props.buttonStepEnd && "!bottom-0",
         )}
@@ -54,29 +54,29 @@ const StepContent = (props: Props) => {
         <div
           className={cls(
             "absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10",
-            "!text-h5 lg:!text-h4 bg-purple-france rounded-full font-bold text-white",
+            "text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white",
             "flex items-center justify-center",
           )}
         >
           <span className={cls("h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]")}>{props.step}</span>
         </div>
         <h3
-          className="!text-h4 lg:!text-h3 !mb-6"
+          className="text-h4 lg:text-h3 mb-6"
           dangerouslySetInnerHTML={{
             __html: safeTitle,
           }}
         ></h3>
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
-            <div key={i} className="bg-beige-accent border-border !mb-6 border p-4">
-              <ul className="!my-0 space-y-2">
+            <div key={i} className="bg-beige-accent border-border mb-6 border p-4">
+              <ul className="my-0 space-y-2">
                 {text.map((li, j) => (
                   <li key={j}>{li}</li>
                 ))}
               </ul>
             </div>
           ) : (
-            <p key={i} className="!text-large !mb-6">
+            <p key={i} className="text-large mb-6">
               {text}
             </p>
           ),
@@ -110,7 +110,7 @@ const StepContent = (props: Props) => {
           "relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px]",
           "border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0",
           props.dottedLine && "border-dashed",
-          !!props.buttonStep && "!pb-[150px] lg:!pb-0",
+          !!props.buttonStep && "pb-[150px] lg:pb-0",
         )}
       >
         {props.image && <Image src={props.image} alt="" width={props.width || 550} style={{ objectFit: "contain" }} />}
