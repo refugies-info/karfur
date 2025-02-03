@@ -224,7 +224,7 @@
   },
   "Register": {
     "Votre email": "Votre email",
-    "register_on_desktop": "Rendez-vous sur votre ordinateur",
+    "register_on_desktop": "Rendez-vous sur votre ordinateur !",
     "email_reminder": "Me le rappeler par email",
     "Recevoir une invitation": "Recevoir une invitation",
     "create_a_new_account": "create_a_new_account",
@@ -676,10 +676,10 @@
     "navbarItem1": "Qui peut traduire ?",
     "navbarItem2": "Comment faire ?",
     "navbarItem3": "Et après ?",
-    "navbarItem4": "Questions",
+    "navbarItem4": "Foire aux questions",
     "navbarItem5": "Aider à traduire",
     "whoTitle": "Est-ce que je peux traduire ?",
-    "whoSubtitle": "Vous êtes réfugiés, travailleur social, citoyen français, bénévole dans une association ? Vous pouvez nous aider à traduire ! Voici les conditions à remplir :",
+    "whoSubtitle": "Vous êtes réfugié, travailleur social, citoyen français, bénévole dans une association ? Vous pouvez nous aider à traduire ! Voici les conditions à remplir :",
     "whoCardTitle1": "Maîtriser sa langue d’origine",
     "whoCardText1": "Aucun justificatif n’est demandé, mais il est préférable de très bien maîtriser l'écrit de votre langue d'origine : ukrainien, persan/dari, arabe, anglais, pachto, russe, tigrinya.",
     "whoCardTitle2": "Avoir le niveau B1 en français",
@@ -725,8 +725,8 @@
     "registerSubtitle": "Connectez-vous ou créez votre compte pour commencer à traduire les fiches.",
     "registerLoggedIn": "Vous savez tout, vous pouvez traduire votre première fiche.",
     "registerBtnLoggedIn": "Traduire une fiche",
-    "registerMobile": "Rendez-vous sur votre ordinateur pour créer votre compte et démarrer la traduction des fiches.",
-    "helpSubtitle": "Nous sommes là pour vous accompagner dans la prise en main de Réfugiés.info et dans la traduction des fiches."
+    "helpSubtitle": "Nous sommes là pour vous accompagner dans la prise en main de Réfugiés.info et dans la traduction des fiches.",
+    "registerMobile": "La traduction d’une fiche n’est possible que depuis un ordinateur. Nous pouvons vous envoyer un mail pour vous inscrire !"
   },
   "who_are_we": "Qui sommes-nous ?",
   "no_result": "Aucun résultat",
