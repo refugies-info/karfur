@@ -14,12 +14,12 @@ interface Props {
 }
 
 const CARD_CLASSNAME =
-  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left";
-const CARD_HOVER_CLASSNAME = "hover:!bg-hover active:!bg-active";
+  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left";
+const CARD_HOVER_CLASSNAME = "hover:bg-hover active:bg-active";
 
 const ArrowRight = () => (
   <div className="mt-6 pt-2 w-full text-right">
-    <i className="fr-icon-arrow-right-line !text-blue-france" />
+    <i className="fr-icon-arrow-right-line text-blue-france" />
   </div>
 );
 
@@ -31,8 +31,8 @@ const Card = (props: Props) => {
           {props.header}
           {props.image && <Image src={props.image} alt="" width={80} height={80} style={{ objectFit: "contain" }} />}
         </div>
-        <h3 className="!text-h6 md:!text-h5 !my-3 !text-blue-france">{props.title}</h3>
-        <div className="!text-large">{props.children}</div>
+        <h3 className="text-h6 md:text-h5 my-3 text-blue-france">{props.title}</h3>
+        <div className="[&_p]:text-large">{props.children}</div>
         {props.footer && <div>{props.footer}</div>}
       </div>
     ),
