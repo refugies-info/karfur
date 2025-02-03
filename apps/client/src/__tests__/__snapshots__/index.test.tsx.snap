@@ -4643,6 +4643,211 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
     <div
+      class="container md:py-20"
+    >
+      <h2>
+        Homepage.whyTitle
+      </h2>
+      <div
+        class="flex gap-20"
+      >
+        <div
+          class="w-1/2 grow-1 basis-auto"
+        >
+          <div
+            data-orientation="vertical"
+          >
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="open"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="open"
+              >
+                <button
+                  aria-controls="radix-:r19:"
+                  aria-disabled="true"
+                  aria-expanded="true"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="open"
+                  id="radix-:r18:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
+                  >
+                    Homepage.accordionItems.desktop.title1
+                  </span>
+                  <i
+                    class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r18:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="open"
+                id="radix-:r19:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
+              >
+                <p
+                  class="text !text-large !mb-0"
+                >
+                  Homepage.accordionItems.desktop.title1
+                </p>
+              </div>
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1b:"
+                  aria-expanded="false"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1a:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                  >
+                    Homepage.accordionItems.desktop.title2
+                  </span>
+                  <i
+                    class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1a:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1b:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1d:"
+                  aria-expanded="false"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1c:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                  >
+                    Homepage.accordionItems.desktop.title3
+                  </span>
+                  <i
+                    class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1c:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1d:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1f:"
+                  aria-expanded="false"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1e:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                  >
+                    Homepage.accordionItems.desktop.title4
+                  </span>
+                  <i
+                    class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1e:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1f:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex w-1/2 items-center justify-end"
+        >
+          <img
+            alt=""
+            class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
+            data-nimg="1"
+            decoding="async"
+            height="327"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+            style="color: transparent;"
+            width="400"
+          />
+        </div>
+      </div>
+    </div>
+    <div
       class="section bg_blue"
       id="application"
     >
@@ -5092,216 +5297,6 @@ exports[`homepage renders homepage 1`] = `
             <div
               class="store"
             />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="section"
-    >
-      <div
-        class="container container"
-      >
-        <h2
-          class="title2"
-        >
-          Homepage.whyTitle
-        </h2>
-        <div
-          class="flex gap-20"
-        >
-          <div
-            class="w-1/2 grow-1 basis-auto"
-          >
-            <div
-              data-orientation="vertical"
-            >
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="open"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="open"
-                >
-                  <button
-                    aria-controls="radix-:r19:"
-                    aria-disabled="true"
-                    aria-expanded="true"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="open"
-                    id="radix-:r18:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
-                    >
-                      Homepage.whyAccordionTitle1
-                    </span>
-                    <i
-                      class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r18:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="open"
-                  id="radix-:r19:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
-                >
-                  <p
-                    class="text !text-large !mb-0"
-                  >
-                    Homepage.whyAccordionText1
-                  </p>
-                </div>
-              </div>
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <button
-                    aria-controls="radix-:r1b:"
-                    aria-expanded="false"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r1a:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
-                    >
-                      Homepage.whyAccordionTitle2
-                    </span>
-                    <i
-                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r1a:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r1b:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
-              </div>
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <button
-                    aria-controls="radix-:r1d:"
-                    aria-expanded="false"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r1c:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
-                    >
-                      Homepage.whyAccordionTitle3
-                    </span>
-                    <i
-                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r1c:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r1d:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
-              </div>
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <button
-                    aria-controls="radix-:r1f:"
-                    aria-expanded="false"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r1e:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
-                    >
-                      Homepage.whyAccordionTitle4
-                    </span>
-                    <i
-                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r1e:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r1f:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            class="flex w-1/2 items-center justify-end"
-          >
-            <video
-              class="video autoplay-video"
-              height="320"
-              loop=""
-              width="442"
-            >
-              <source
-                src="/video/home-video-1.mp4"
-                type="video/mp4"
-              />
-            </video>
           </div>
         </div>
       </div>
