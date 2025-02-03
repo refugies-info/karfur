@@ -157,6 +157,7 @@ const RecensezVotreAction = (props: Props) => {
               initOpen
               multiOpen={!!isTablet}
               mediaAlign="center"
+              className="min-h-[480px]"
             />
           </div>
         </Section>
