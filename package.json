@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "clean:branches": "npx git-removed-branches --prune --force",
+    "clean:modules": "rm -rf ./node_modules ./packages/*/node_modules ./apps/*/node_modules",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
