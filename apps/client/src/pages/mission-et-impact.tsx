@@ -14,12 +14,14 @@ import StatStars from "~/assets/staticPages/mission-et-impact/stat-stars.svg";
 import UsersGraph1 from "~/assets/staticPages/mission-et-impact/users-graph-1.png";
 import UsersGraph2 from "~/assets/staticPages/mission-et-impact/users-graph-2.svg";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
-import { Figure, ImpactCol } from "~/components/Pages/staticPages/mission-et-impact";
+import { Figure, ImpactCol, TeamCard } from "~/components/Pages/staticPages/mission-et-impact";
 import SEO from "~/components/Seo";
+import { useTeamData } from "~/data/useTeamData";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 
 const MissionImpact: NextPage = () => {
   const { t } = useTranslation();
+  const teamData = useTeamData();
   return (
     <div className="w-full">
       <SEO title="Qui sommes nous ?" />
@@ -188,6 +190,17 @@ const MissionImpact: NextPage = () => {
             <Figure title="1,3M" text={t("MissionImpact.figures_text_1")} image={StatGraph} />
             <Figure title="n°1" text={t("MissionImpact.figures_text_2")} image={StatPodium} />
             <Figure title="4,6/5" text={t("MissionImpact.figures_text_3")} image={StatStars} />
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="fr-container">
+          <Title2>{t("MissionImpact.team_title")}</Title2>
+          <div className="flex sm:px-20 gap-4 sm:gap-10 flex-wrap justify-center">
+            {teamData.map((team) => (
+              <TeamCard key={team.name} {...team} />
+            ))}
           </div>
         </div>
       </Section>

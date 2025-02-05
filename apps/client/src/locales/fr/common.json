@@ -760,6 +760,22 @@
     "figures_title": "Réfugiés.info, c’est plus d’un million d’usagers par an !",
     "figures_text_1": "Réfugiés.info compte plus d’un million de visiteurs uniques en 2024, un chiffre qui double chaque année !",
     "figures_text_2": "Réfugiés.info est le premier résultat sur les moteurs de recherches sur les sujets d’intégration",
-    "figures_text_3": "Le service est plébiscité par ses usagers avec une application dans le top 3 des applications publiques les mieux notées"
+    "figures_text_3": "Le service est plébiscité par ses usagers avec une application dans le top 3 des applications publiques les mieux notées",
+    "team_title": "Une équipe pluridisciplinaire engagée",
+    "team_pole_edito": "Pôle éditorial",
+    "team_pole_deploiement": "Pôle déploiement",
+    "team_pole_partenariat": "Pôle partenariat",
+    "team_pole_produit": "Pôle produit",
+    "team_pole_pilotage": "Pôle pilotage",
+    "team_position_resp_edito": "Responsable éditoriale",
+    "team_position_resp_com": "Responsable de communication et de déploiement",
+    "team_position_chargee_edito": "Chargée de rédaction",
+    "team_position_resp_partenariats": "Responsable des partenariats",
+    "team_position_dev": "Développeur",
+    "team_position_cto": "CTO",
+    "team_position_designer": "Designer",
+    "team_position_product_manager": "Cheffe de produit",
+    "team_position_project_manager": "Chef de projet",
+    "team_position_resp_support": "Responsable du support et chargé de rédaction"
   }
 }
