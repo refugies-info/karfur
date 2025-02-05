@@ -11,9 +11,16 @@ import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.p
 import StatGraph from "~/assets/staticPages/mission-et-impact/stat-graph.svg";
 import StatPodium from "~/assets/staticPages/mission-et-impact/stat-podium.svg";
 import StatStars from "~/assets/staticPages/mission-et-impact/stat-stars.svg";
+import StepIllu1 from "~/assets/staticPages/mission-et-impact/steps-illu-1.png";
+import StepIllu2 from "~/assets/staticPages/mission-et-impact/steps-illu-2.png";
+import StepIllu3 from "~/assets/staticPages/mission-et-impact/steps-illu-3.png";
+import StepIllu4 from "~/assets/staticPages/mission-et-impact/steps-illu-4.png";
+import StepIllu5 from "~/assets/staticPages/mission-et-impact/steps-illu-5.png";
+import StepIllu6 from "~/assets/staticPages/mission-et-impact/steps-illu-6.png";
+import StepIllu7 from "~/assets/staticPages/mission-et-impact/steps-illu-7.png";
 import UsersGraph1 from "~/assets/staticPages/mission-et-impact/users-graph-1.png";
 import UsersGraph2 from "~/assets/staticPages/mission-et-impact/users-graph-2.svg";
-import { Section, Title2 } from "~/components/Pages/staticPages/common";
+import { Section, StepContent, Title2 } from "~/components/Pages/staticPages/common";
 import { Figure, ImpactCol, TeamCard } from "~/components/Pages/staticPages/mission-et-impact";
 import SEO from "~/components/Seo";
 import { useTeamData } from "~/data/useTeamData";
@@ -202,6 +209,75 @@ const MissionImpact: NextPage = () => {
               <TeamCard key={team.name} {...team} />
             ))}
           </div>
+        </div>
+      </Section>
+
+      <Section className="bg-beige">
+        <div className="fr-container">
+          <Title2>{t("MissionImpact.stepsTitle")}</Title2>
+          <StepContent
+            step={1}
+            title={t("MissionImpact.steps_title_1")}
+            texts={[t("MissionImpact.steps_text_1")]}
+            badge={t("MissionImpact.steps_date_1")}
+            image={StepIllu1}
+            width={440}
+          />
+          <StepContent
+            step={2}
+            title={t("MissionImpact.steps_title_2")}
+            texts={[t("MissionImpact.steps_text_2")]}
+            badge={t("MissionImpact.steps_date_2")}
+            image={StepIllu2}
+            width={440}
+          />
+          <StepContent
+            step={3}
+            title={t("MissionImpact.steps_title_3")}
+            texts={[t("MissionImpact.steps_text_3")]}
+            badge={t("MissionImpact.steps_date_3")}
+            image={StepIllu3}
+            width={440}
+          />
+          <StepContent
+            step={4}
+            title={t("MissionImpact.steps_title_4")}
+            texts={[t("MissionImpact.steps_text_4")]}
+            badge={t("MissionImpact.steps_date_4")}
+            image={StepIllu4}
+            width={440}
+          />
+          <StepContent
+            step={5}
+            title={t("MissionImpact.steps_title_5")}
+            texts={[t("MissionImpact.steps_text_5")]}
+            badge={t("MissionImpact.steps_date_5")}
+            image={StepIllu5}
+            width={440}
+          />
+          <StepContent
+            step={6}
+            title={t("MissionImpact.steps_title_6")}
+            texts={[t("MissionImpact.steps_text_6")]}
+            badge={t("MissionImpact.steps_date_6")}
+            image={StepIllu6}
+            width={440}
+          />
+          <StepContent
+            step={7}
+            title={t("MissionImpact.steps_title_7")}
+            texts={[
+              t("MissionImpact.steps_text_7"),
+              <ul key="list_7">
+                <li>{t("MissionImpact.steps_text_7_item1")}</li>
+                <li>{t("MissionImpact.steps_text_7_item2")}</li>
+              </ul>,
+            ]}
+            badge={t("MissionImpact.steps_date_7")}
+            image={StepIllu7}
+            dottedLine
+            width={440}
+          />
         </div>
       </Section>
     </div>

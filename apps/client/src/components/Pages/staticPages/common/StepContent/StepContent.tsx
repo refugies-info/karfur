@@ -1,5 +1,6 @@
+import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
 import useWindowSize from "~/hooks/useWindowSize";
@@ -8,7 +9,7 @@ import { cls } from "~/lib/classname";
 interface Props {
   step: number;
   title: string;
-  texts: (string | string[])[];
+  texts: (string | React.ReactNode | string[])[];
   cta?: {
     text: string;
     link: string;
@@ -18,6 +19,7 @@ interface Props {
   width?: number;
   buttonStep?: string;
   buttonStepEnd?: boolean;
+  badge?: string;
 }
 
 const StepContent = (props: Props) => {
@@ -61,11 +63,16 @@ const StepContent = (props: Props) => {
           <span className={cls("h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]")}>{props.step}</span>
         </div>
         <h3
-          className="!text-h4 lg:!text-h3 !mb-6"
+          className={cls("text-h4 lg:text-h3", props.badge ? "mb-3" : "mb-6")}
           dangerouslySetInnerHTML={{
             __html: safeTitle,
           }}
         ></h3>
+        {props.badge && (
+          <Badge small severity="info" noIcon className="mb-6">
+            {props.badge}
+          </Badge>
+        )}
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
             <div key={i} className="bg-beige-accent border border-border p-4 !mb-6">

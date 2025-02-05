@@ -701,7 +701,7 @@ exports[`publier renders publier 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Publish.stepsSubtitle1
               </h3>
@@ -750,7 +750,7 @@ exports[`publier renders publier 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Publish.stepsSubtitle2
               </h3>
@@ -804,7 +804,7 @@ exports[`publier renders publier 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Publish.stepsSubtitle3
               </h3>
@@ -846,7 +846,7 @@ exports[`publier renders publier 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Publish.stepsSubtitle4
               </h3>
@@ -898,7 +898,7 @@ exports[`publier renders publier 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Publish.stepsSubtitle5
               </h3>
@@ -945,7 +945,7 @@ exports[`publier renders publier 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Publish.stepsSubtitle6
               </h3>
