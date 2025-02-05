@@ -368,7 +368,7 @@ exports[`traduire renders traduire 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Translate.stepsSubtitle1
               </h3>
@@ -417,7 +417,7 @@ exports[`traduire renders traduire 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Translate.stepsSubtitle2
               </h3>
@@ -459,7 +459,7 @@ exports[`traduire renders traduire 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Translate.stepsSubtitle3
               </h3>
@@ -518,7 +518,7 @@ exports[`traduire renders traduire 1`] = `
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
                 Translate.stepsSubtitle4
               </h3>
