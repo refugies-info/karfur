@@ -82,13 +82,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -120,15 +120,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {
                       "width": "0%",
                     },
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -160,13 +160,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -224,13 +224,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View
               RTLBehaviour={true}
-              animatedStyle={
+              collapsable={false}
+              horizontalAlign="flex-start"
+              jestAnimatedStyle={
                 {
                   "value": {},
                 }
               }
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
                 {
                   "alignItems": "center",
@@ -359,13 +359,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -443,8 +443,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#000091"
                           focusable={false}
                           height={24}
@@ -507,8 +507,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -594,13 +594,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -678,8 +678,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -742,8 +742,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -820,13 +820,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -904,8 +904,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -968,8 +968,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -1061,13 +1061,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="flex-start"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="flex-start"
         style={
           {
             "alignItems": "center",
@@ -1111,8 +1111,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#000091"
                 focusable={false}
                 height={24}
@@ -1185,8 +1185,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -1311,8 +1311,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="20"
-                bbWidth="20"
+                bbHeight={20}
+                bbWidth={20}
                 focusable={false}
                 height={20}
                 meetOrSlice={0}
@@ -1380,7 +1380,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           </View>
         </View>
         <View
-          animatedStyle={
+          collapsable={false}
+          jestAnimatedStyle={
             {
               "value": {
                 "transform": [
@@ -1391,7 +1392,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
               },
             }
           }
-          collapsable={false}
           style={
             {
               "bottom": 48,
@@ -1569,8 +1569,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -1643,8 +1643,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -1737,8 +1737,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -1811,8 +1811,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -1896,8 +1896,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -1970,8 +1970,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -2037,13 +2037,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="flex-start"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="flex-start"
         style={
           {
             "alignItems": "center",
@@ -2087,8 +2087,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -2161,8 +2161,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -2268,13 +2268,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2306,15 +2306,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {
                       "width": "0%",
                     },
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2346,13 +2346,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2410,13 +2410,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View
               RTLBehaviour={true}
-              animatedStyle={
+              collapsable={false}
+              horizontalAlign="flex-start"
+              jestAnimatedStyle={
                 {
                   "value": {},
                 }
               }
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
                 {
                   "alignItems": "center",
@@ -2553,13 +2553,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -2637,8 +2637,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -2701,8 +2701,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -2779,13 +2779,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -2863,8 +2863,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -2927,8 +2927,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -3005,13 +3005,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -3089,8 +3089,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -3153,8 +3153,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -3246,13 +3246,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="flex-start"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="flex-start"
         style={
           {
             "alignItems": "center",
@@ -3296,8 +3296,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#000091"
                 focusable={false}
                 height={24}
@@ -3370,8 +3370,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -3496,8 +3496,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="20"
-                bbWidth="20"
+                bbHeight={20}
+                bbWidth={20}
                 focusable={false}
                 height={20}
                 meetOrSlice={0}
@@ -3565,7 +3565,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           </View>
         </View>
         <View
-          animatedStyle={
+          collapsable={false}
+          jestAnimatedStyle={
             {
               "value": {
                 "transform": [
@@ -3576,7 +3577,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               },
             }
           }
-          collapsable={false}
           style={
             {
               "bottom": 48,
@@ -3754,8 +3754,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -3828,8 +3828,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -3922,8 +3922,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -3996,8 +3996,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -4081,8 +4081,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -4155,8 +4155,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -4222,13 +4222,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="flex-start"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="flex-start"
         style={
           {
             "alignItems": "center",
@@ -4272,8 +4272,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -4346,8 +4346,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -4453,13 +4453,13 @@ exports[`Filter age should select age when click on it 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4491,15 +4491,15 @@ exports[`Filter age should select age when click on it 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {
                       "width": "0%",
                     },
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4531,13 +4531,13 @@ exports[`Filter age should select age when click on it 1`] = `
               }
             >
               <View
-                animatedStyle={
+                collapsable={false}
+                isRTL={false}
+                jestAnimatedStyle={
                   {
                     "value": {},
                   }
                 }
-                collapsable={false}
-                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4595,13 +4595,13 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View
               RTLBehaviour={true}
-              animatedStyle={
+              collapsable={false}
+              horizontalAlign="flex-start"
+              jestAnimatedStyle={
                 {
                   "value": {},
                 }
               }
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
                 {
                   "alignItems": "center",
@@ -4738,13 +4738,13 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -4822,8 +4822,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -4886,8 +4886,8 @@ exports[`Filter age should select age when click on it 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -4964,13 +4964,13 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -5048,8 +5048,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#161616"
                           focusable={false}
                           height={24}
@@ -5112,8 +5112,8 @@ exports[`Filter age should select age when click on it 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
@@ -5182,13 +5182,13 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
+                    collapsable={false}
+                    horizontalAlign="flex-start"
+                    jestAnimatedStyle={
                       {
                         "value": {},
                       }
                     }
-                    collapsable={false}
-                    horizontalAlign="flex-start"
                     style={
                       {
                         "alignItems": "center",
@@ -5266,8 +5266,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="24"
-                          bbWidth="24"
+                          bbHeight={24}
+                          bbWidth={24}
                           fill="#000091"
                           focusable={false}
                           height={24}
@@ -5330,8 +5330,8 @@ exports[`Filter age should select age when click on it 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGPath
                                   d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -5432,13 +5432,13 @@ exports[`Filter age should select age when click on it 1`] = `
     >
       <View
         RTLBehaviour={true}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="flex-start"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="flex-start"
         style={
           {
             "alignItems": "center",
@@ -5482,8 +5482,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#000091"
                 focusable={false}
                 height={24}
@@ -5556,8 +5556,8 @@ exports[`Filter age should select age when click on it 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -5682,8 +5682,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="20"
-                bbWidth="20"
+                bbHeight={20}
+                bbWidth={20}
                 focusable={false}
                 height={20}
                 meetOrSlice={0}
@@ -5751,7 +5751,8 @@ exports[`Filter age should select age when click on it 1`] = `
           </View>
         </View>
         <View
-          animatedStyle={
+          collapsable={false}
+          jestAnimatedStyle={
             {
               "value": {
                 "transform": [
@@ -5762,7 +5763,6 @@ exports[`Filter age should select age when click on it 1`] = `
               },
             }
           }
-          collapsable={false}
           style={
             {
               "bottom": 48,
@@ -5940,8 +5940,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -6014,8 +6014,8 @@ exports[`Filter age should select age when click on it 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -6108,8 +6108,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -6182,8 +6182,8 @@ exports[`Filter age should select age when click on it 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -6267,8 +6267,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -6341,8 +6341,8 @@ exports[`Filter age should select age when click on it 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -6408,13 +6408,13 @@ exports[`Filter age should select age when click on it 1`] = `
     >
       <View
         RTLBehaviour={true}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="flex-start"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="flex-start"
         style={
           {
             "alignItems": "center",
@@ -6458,8 +6458,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -6532,8 +6532,8 @@ exports[`Filter age should select age when click on it 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
