@@ -78,20 +78,20 @@
     "node": "20.13.1"
   },
   "devDependencies": {
-    "@codegouvfr/react-dsfr": "^1.14.1",
-    "@types/node": "^22.10.2",
-    "check-dependency-version-consistency": "^4.1.0",
-    "dotenv": "^16.4.5",
+    "@codegouvfr/react-dsfr": "^1.18.0",
+    "@types/node": "^22.13.1",
+    "check-dependency-version-consistency": "^4.1.1",
+    "dotenv": "^16.4.7",
     "husky": ">=9.1.6",
-    "lint-staged": ">=15",
+    "lint-staged": "^15.4.3",
     "mongo-migrate-ts": "^1.6.2",
-    "mongodb": "^6.10.0",
-    "prettier": "^3.3.3",
+    "mongodb": "^6.13.0",
+    "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "stylelint": "^16.10.0",
+    "stylelint": "^16.14.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
-    "turbo": "^2.2.3"
+    "turbo": "^2.4.0"
   },
   "volta": {
     "node": "20.13.1",
