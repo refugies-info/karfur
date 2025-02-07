@@ -36,15 +36,15 @@
     "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
     "start": "turbo start",
-    "start:client": "pnpm --filter @refugies-info/client start",
-    "start:server": "pnpm --filter @refugies-info/server start",
-    "start:mobile": "pnpm --filter @refugies-info/mobile start",
+    "start:client": "turbo --filter @refugies-info/client start",
+    "start:server": "turbo --filter @refugies-info/server start",
+    "start:mobile": "turbo --filter @refugies-info/mobile start",
     "test": "turbo test",
     "test:client": "turbo test --filter=@refugies-info/client",
-    "test:client:update-snapshots": "pnpm --filter @refugies-info/client test -- -u",
+    "test:client:update-snapshots": "turbo --filter @refugies-info/client test -- -u",
     "test:server": "turbo test --filter=@refugies-info/server",
     "test:mobile": "turbo test --filter=@refugies-info/mobile",
-    "test:mobile:update-snapshots": "pnpm --filter @refugies-info/mobile test -- -u",
+    "test:mobile:update-snapshots": "turbo --filter @refugies-info/mobile test -- -u",
     "lint": "turbo lint",
     "lint:api-types": "turbo lint --filter=@refugies-info/api-types",
     "lint:client": "turbo lint --filter=@refugies-info/client",
@@ -68,8 +68,8 @@
     "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
-    "storybook": "pnpm --filter @refugies-info/storybook storybook",
-    "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish"
+    "storybook": "turbo --filter @refugies-info/storybook storybook",
+    "storybook:publish": "turbo --filter @refugies-info/storybook storybook:publish"
   },
   "dependencies": {
     "@refugies-info/ui": "workspace:*"
