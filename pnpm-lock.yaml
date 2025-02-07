@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.15.0':
-    hash: g2jokdpsm4cbdmsiv6urc4qo2a
+    hash: 5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca
     path: patches/@codegouvfr__react-dsfr@1.15.0.patch
 
 importers:
@@ -19,7 +19,7 @@ importers:
     devDependencies:
       '@codegouvfr/react-dsfr':
         specifier: ^1.14.1
-        version: 1.15.0(patch_hash=g2jokdpsm4cbdmsiv6urc4qo2a)
+        version: 1.15.0(patch_hash=5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca)
       '@types/node':
         specifier: ^22.10.2
         version: 22.10.2
@@ -67,7 +67,7 @@ importers:
         version: 5.15.0
       '@codegouvfr/react-dsfr':
         specifier: ^1.14.1
-        version: 1.15.0(patch_hash=g2jokdpsm4cbdmsiv6urc4qo2a)
+        version: 1.15.0(patch_hash=5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca)
       '@hedgedoc/html-to-react':
         specifier: ^2.1.1
         version: 2.1.1(react@18.3.1)
@@ -13904,7 +13904,7 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@codegouvfr/react-dsfr@1.15.0(patch_hash=g2jokdpsm4cbdmsiv6urc4qo2a)':
+  '@codegouvfr/react-dsfr@1.15.0(patch_hash=5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
