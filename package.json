@@ -95,14 +95,14 @@
   },
   "volta": {
     "node": "20.13.1",
-    "pnpm": "9.15.4"
+    "pnpm": "10.2.1"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
   "resolutions": {},
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.2.1",
   "pnpm": {
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.15.0": "patches/@codegouvfr__react-dsfr@1.15.0.patch"
