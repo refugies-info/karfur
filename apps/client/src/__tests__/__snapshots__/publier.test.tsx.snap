@@ -519,7 +519,7 @@ exports[`publier renders publier 1`] = `
                 Publish.requiredSubtitle1
               </h3>
               <div
-                class="!text-large"
+                class="[&_p]:text-large"
               >
                 <p>
                   Publish.requiredText1
@@ -574,7 +574,7 @@ exports[`publier renders publier 1`] = `
                 Publish.requiredSubtitle2
               </h3>
               <div
-                class="!text-large"
+                class="[&_p]:text-large"
               >
                 <p>
                   Publish.requiredText2
@@ -629,7 +629,7 @@ exports[`publier renders publier 1`] = `
                 Publish.requiredSubtitle3
               </h3>
               <div
-                class="!text-large"
+                class="[&_p]:text-large"
               >
                 <p>
                   Publish.requiredText3
@@ -1046,7 +1046,7 @@ exports[`publier renders publier 1`] = `
                   Publish.helpTileTitle1
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
@@ -1092,7 +1092,7 @@ exports[`publier renders publier 1`] = `
                   Publish.helpTileTitle2
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
@@ -1135,7 +1135,7 @@ exports[`publier renders publier 1`] = `
                   StaticPages.helpTileTitle3
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"

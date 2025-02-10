@@ -1,4 +1,5 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
+import Button from "@codegouvfr/react-dsfr/Button";
 import Card from "@codegouvfr/react-dsfr/Card";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
@@ -14,6 +15,12 @@ import CommunityIlluTesteurs from "~/assets/staticPages/mission-et-impact/commun
 import CommunityIlluTraducteurs from "~/assets/staticPages/mission-et-impact/community-traducteurs.png";
 import HeroBack from "~/assets/staticPages/mission-et-impact/hero-back.svg";
 import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.svg";
+import IconAdministration from "~/assets/staticPages/mission-et-impact/icon-administration.svg";
+import IconAgir from "~/assets/staticPages/mission-et-impact/icon-agir.png";
+import IconOperators from "~/assets/staticPages/mission-et-impact/icon-operators.png";
+import IconStructure from "~/assets/staticPages/mission-et-impact/icon-structure.svg";
+import IconTranslator from "~/assets/staticPages/mission-et-impact/icon-translator.svg";
+import IconTs from "~/assets/staticPages/mission-et-impact/icon-ts.svg";
 import PDFScreenshot from "~/assets/staticPages/mission-et-impact/pdf-screenshot.png";
 import AlainRegnier from "~/assets/staticPages/mission-et-impact/photo-alain-regnier.png";
 import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.png";
@@ -410,6 +417,147 @@ const MissionImpact: NextPage = () => {
             dottedLine
             width={440}
           />
+        </div>
+      </Section>
+
+      <Section>
+        <div className="fr-container">
+          <Title2 className="!text-center">{t("MissionImpact.community_title")}</Title2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <RICard
+              image={IconTs}
+              title={t("MissionImpact.join_ts_title")}
+              footer={
+                <Button
+                  priority="tertiary"
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  className="fr-default"
+                  linkProps={{
+                    href: "https://airtable.com/shrrkFuyeG0BpKKT7",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                  }}
+                >
+                  {t("MissionImpact.join_ts_cta")}
+                </Button>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.join_ts_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={IconAgir}
+              title={t("MissionImpact.join_agir_title")}
+              footer={
+                <Button
+                  priority="tertiary"
+                  iconId="fr-icon-calendar-event-line"
+                  iconPosition="right"
+                  className="fr-default"
+                  linkProps={{
+                    href: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                  }}
+                >
+                  {t("MissionImpact.join_meeting_cta")}
+                </Button>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.join_agir_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={IconOperators}
+              imageWidth={240}
+              title={t("MissionImpact.join_etat_title")}
+              footer={
+                <Button
+                  priority="tertiary"
+                  iconId="fr-icon-calendar-event-line"
+                  iconPosition="right"
+                  className="fr-default"
+                  linkProps={{
+                    href: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                  }}
+                >
+                  {t("MissionImpact.join_meeting_cta")}
+                </Button>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.join_etat_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={IconAdministration}
+              title={t("MissionImpact.join_administration_title")}
+              footer={
+                <Button
+                  priority="tertiary"
+                  iconId="fr-icon-calendar-event-line"
+                  iconPosition="right"
+                  className="fr-default"
+                  linkProps={{
+                    href: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                  }}
+                >
+                  {t("MissionImpact.join_meeting_cta")}
+                </Button>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.join_administration_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={IconStructure}
+              title={t("MissionImpact.join_structure_title")}
+              footer={
+                <Button
+                  priority="tertiary"
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  className="fr-default"
+                  linkProps={{
+                    href: "https://refugies.info/fr/publier",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                  }}
+                >
+                  {t("MissionImpact.join_structure_cta")}
+                </Button>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.join_structure_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={IconTranslator}
+              title={t("MissionImpact.join_traducteur_title")}
+              footer={
+                <Button
+                  priority="tertiary"
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  className="fr-default"
+                  linkProps={{
+                    href: "https://refugies.info/fr/traduire",
+                    rel: "noopener noreferrer",
+                    target: "_blank",
+                  }}
+                >
+                  {t("MissionImpact.join_traducteur_cta")}
+                </Button>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.join_traducteur_subtitle")}</p>
+            </RICard>
+          </div>
         </div>
       </Section>
     </div>

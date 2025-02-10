@@ -5712,7 +5712,7 @@ exports[`homepage renders homepage 1`] = `
                     Homepage.helpUsCardTitle1
                   </h3>
                   <div
-                    class="!text-large"
+                    class="[&_p]:text-large"
                   >
                     <div
                       class="container purple"
@@ -5861,7 +5861,7 @@ exports[`homepage renders homepage 1`] = `
                     Homepage.helpUsCardTitle2
                   </h3>
                   <div
-                    class="!text-large"
+                    class="[&_p]:text-large"
                   >
                     <div
                       class="container red"
@@ -5960,7 +5960,7 @@ exports[`homepage renders homepage 1`] = `
                     Homepage.helpUsCardTitle3
                   </h3>
                   <div
-                    class="!text-large"
+                    class="[&_p]:text-large"
                   >
                     <div
                       class="container orange"
