@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.15.0':
-    hash: 5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca
+    hash: g2jokdpsm4cbdmsiv6urc4qo2a
     path: patches/@codegouvfr__react-dsfr@1.15.0.patch
 
 importers:
@@ -46,14 +46,10 @@ importers:
         version: 3.5.0
       prettier-plugin-organize-imports:
         specifier: ^4.1.0
-<<<<<<< HEAD
-        version: 4.1.0(prettier@3.4.1)(typescript@5.7.2)
+        version: 4.1.0(prettier@3.5.0)(typescript@5.7.2)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.10
-        version: 0.6.10(prettier-plugin-organize-imports@4.1.0(prettier@3.4.1)(typescript@5.7.2))(prettier@3.4.1)
-=======
-        version: 4.1.0(prettier@3.5.0)(typescript@5.7.2)
->>>>>>> dev
+        version: 0.6.10(prettier-plugin-organize-imports@4.1.0(prettier@3.5.0)(typescript@5.7.2))(prettier@3.5.0)
       stylelint:
         specifier: ^16.14.1
         version: 16.14.1(typescript@5.7.2)
@@ -74,7 +70,7 @@ importers:
         version: 5.15.0
       '@codegouvfr/react-dsfr':
         specifier: ^1.14.1
-        version: 1.15.0(patch_hash=5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca)
+        version: 1.15.0(patch_hash=g2jokdpsm4cbdmsiv6urc4qo2a)
       '@hedgedoc/html-to-react':
         specifier: ^2.1.1
         version: 2.1.1(react@18.2.0)
@@ -1155,19 +1151,14 @@ importers:
         specifier: 18.2.0
         version: 18.2.0
       '@types/react-dom':
-<<<<<<< HEAD
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 18.2.0
+        version: 18.2.0
       prettier:
         specifier: ^3.3.3
         version: 3.4.1
       prettier-plugin-tailwindcss:
         specifier: ^0.6.10
         version: 0.6.10(prettier-plugin-organize-imports@4.1.0(prettier@3.4.1)(typescript@5.7.2))(prettier@3.4.1)
-=======
-        specifier: 18.2.0
-        version: 18.2.0
->>>>>>> dev
       tsup:
         specifier: ^8.0.0
         version: 8.3.5(jiti@2.4.1)(postcss@8.5.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.0)
@@ -10603,7 +10594,6 @@ packages:
       vue-tsc:
         optional: true
 
-<<<<<<< HEAD
   prettier-plugin-tailwindcss@0.6.10:
     resolution: {integrity: sha512-ndj2WLDaMzACnr1gAYZiZZLs5ZdOeBYgOsbBmHj3nvW/6q8h8PymsXiEnKvj/9qgCCAoHyvLOisoQdIcsDvIgw==}
     engines: {node: '>=14.21.3'}
@@ -10661,10 +10651,11 @@ packages:
 
   prettier@3.4.1:
     resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
-=======
+    engines: {node: '>=14'}
+    hasBin: true
+
   prettier@3.5.0:
     resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
->>>>>>> dev
     engines: {node: '>=14'}
     hasBin: true
 
@@ -14592,7 +14583,7 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@codegouvfr/react-dsfr@1.15.0(patch_hash=5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca)':
+  '@codegouvfr/react-dsfr@1.15.0(patch_hash=g2jokdpsm4cbdmsiv6urc4qo2a)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
@@ -21267,7 +21258,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -21300,7 +21291,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -25416,22 +25407,32 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
+  prettier-plugin-organize-imports@4.1.0(prettier@3.4.1)(typescript@5.7.2):
+    dependencies:
+      prettier: 3.4.1
+      typescript: 5.7.2
+    optional: true
+
   prettier-plugin-organize-imports@4.1.0(prettier@3.5.0)(typescript@5.7.2):
     dependencies:
       prettier: 3.5.0
       typescript: 5.7.2
 
-<<<<<<< HEAD
   prettier-plugin-tailwindcss@0.6.10(prettier-plugin-organize-imports@4.1.0(prettier@3.4.1)(typescript@5.7.2))(prettier@3.4.1):
     dependencies:
       prettier: 3.4.1
     optionalDependencies:
       prettier-plugin-organize-imports: 4.1.0(prettier@3.4.1)(typescript@5.7.2)
 
+  prettier-plugin-tailwindcss@0.6.10(prettier-plugin-organize-imports@4.1.0(prettier@3.5.0)(typescript@5.7.2))(prettier@3.5.0):
+    dependencies:
+      prettier: 3.5.0
+    optionalDependencies:
+      prettier-plugin-organize-imports: 4.1.0(prettier@3.5.0)(typescript@5.7.2)
+
   prettier@3.4.1: {}
-=======
+
   prettier@3.5.0: {}
->>>>>>> dev
 
   pretty-bytes@5.6.0: {}
 
