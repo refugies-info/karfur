@@ -187,16 +187,16 @@ importers:
         version: 2.30.1
       next:
         specifier: ^14.2.10
-        version: 14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
+        version: 14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.0(i18next@23.16.8)(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 15.4.0(i18next@23.16.8)(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       next-redux-wrapper:
         specifier: ^8.0.0
-        version: 8.1.0(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.2.0)(redux@5.0.1))(react@18.2.0)
+        version: 8.1.0(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.2.0)(redux@5.0.1))(react@18.2.0)
       next-sitemap:
         specifier: ^4.2.3
-        version: 4.2.3(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))
+        version: 4.2.3(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))
       postcss-loader:
         specifier: ^8.1.1
         version: 8.1.1(postcss@8.4.49)(typescript@5.7.2)(webpack@5.97.0)
@@ -389,7 +389,7 @@ importers:
         version: 7.2.0(styled-components@6.1.13(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       next-router-mock:
         specifier: ^0.9.13
-        version: 0.9.13(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react@18.2.0)
+        version: 0.9.13(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react@18.2.0)
       papaparse:
         specifier: ^5.3.2
         version: 5.4.1
@@ -987,39 +987,6 @@ importers:
 
   packages/api-types:
     dependencies:
-      base64-js:
-        specifier: ^1.5.1
-        version: 1.5.1
-      bowser:
-        specifier: ^2.11.0
-        version: 2.11.0
-      bson:
-        specifier: ^6.8.0
-        version: 6.10.0
-      buffer:
-        specifier: ^6.0.3
-        version: 6.0.3
-      debug:
-        specifier: ^4.3.4
-        version: 4.3.7(supports-color@5.5.0)
-      fast-xml-parser:
-        specifier: ^4.1.2
-        version: 4.5.0
-      ieee754:
-        specifier: ^1.2.1
-        version: 1.2.1
-      kareem:
-        specifier: ^2.5.1
-        version: 2.6.3
-      memory-pager:
-        specifier: ^1.5.0
-        version: 1.5.0
-      mongodb:
-        specifier: ^6.10.0
-        version: 6.11.0(socks@2.8.3)
-      mongodb-connection-string-url:
-        specifier: ^3.0.1
-        version: 3.0.1
       mongoose:
         specifier: 8.9.5
         version: 8.9.5(socks@2.8.3)
@@ -5911,9 +5878,6 @@ packages:
     resolution: {integrity: sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==}
     peerDependencies:
       '@popperjs/core': ^2.11.8
-
-  bowser@2.11.0:
-    resolution: {integrity: sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==}
 
   bplist-creator@0.0.7:
     resolution: {integrity: sha512-xp/tcaV3T5PCiaY04mXga7o/TE+t95gqeLmADeBI1CvZtdWTbgBt3uLpvh4UWtenKeBhCV6oVxGk38yZr2uYEA==}
@@ -19469,8 +19433,6 @@ snapshots:
     dependencies:
       '@popperjs/core': 2.11.8
 
-  bowser@2.11.0: {}
-
   bplist-creator@0.0.7:
     dependencies:
       stream-buffers: 2.2.0
@@ -24562,7 +24524,7 @@ snapshots:
 
   nested-error-stacks@2.0.1: {}
 
-  next-i18next@15.4.0(i18next@23.16.8)(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
+  next-i18next@15.4.0(i18next@23.16.8)(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.26.0
       '@types/hoist-non-react-statics': 3.3.5
@@ -24570,30 +24532,30 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       i18next: 23.16.8
       i18next-fs-backend: 2.6.0
-      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
+      next: 14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
       react: 18.2.0
       react-i18next: 15.1.3(i18next@23.16.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
-  next-redux-wrapper@8.1.0(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.2.0)(redux@5.0.1))(react@18.2.0):
+  next-redux-wrapper@8.1.0(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.2.0)(redux@5.0.1))(react@18.2.0):
     dependencies:
-      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
+      next: 14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
       react: 18.2.0
       react-redux: 9.1.2(@types/react@18.3.12)(react@18.2.0)(redux@5.0.1)
 
-  next-router-mock@0.9.13(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react@18.2.0):
+  next-router-mock@0.9.13(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))(react@18.2.0):
     dependencies:
-      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
+      next: 14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
       react: 18.2.0
 
-  next-sitemap@4.2.3(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)):
+  next-sitemap@4.2.3(next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.7
       fast-glob: 3.3.2
       minimist: 1.2.8
-      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
+      next: 14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1)
 
-  next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1):
+  next@14.2.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1):
     dependencies:
       '@next/env': 14.2.18
       '@swc/helpers': 0.5.5

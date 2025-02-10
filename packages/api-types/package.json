@@ -20,17 +20,6 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "base64-js": "^1.5.1",
-    "bowser": "^2.11.0",
-    "bson": "^6.8.0",
-    "buffer": "^6.0.3",
-    "debug": "^4.3.4",
-    "fast-xml-parser": "^4.1.2",
-    "ieee754": "^1.2.1",
-    "kareem": "^2.5.1",
-    "memory-pager": "^1.5.0",
-    "mongodb": "^6.10.0",
-    "mongodb-connection-string-url": "^3.0.1",
     "mongoose": "8.9.5"
   },
   "repository": {
