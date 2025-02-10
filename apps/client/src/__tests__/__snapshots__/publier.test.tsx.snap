@@ -686,10 +686,10 @@ exports[`publier renders publier 1`] = `
             Publish.stepsTitle
           </h2>
           <div
-            class="align-stretch lg:gap-30 relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:ps-0"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="border-purple-france lg:pb-26 relative order-2 max-w-none border-s-4 pb-9 ps-8 lg:min-h-[420px] lg:ps-[80px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
                 class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
@@ -719,7 +719,7 @@ exports[`publier renders publier 1`] = `
               </a>
             </div>
             <div
-              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 pb-[60px] ps-8 lg:border-none lg:pb-0 lg:ps-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -735,10 +735,10 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="align-stretch lg:gap-30 relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:ps-0"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="border-purple-france lg:pb-26 relative order-2 max-w-none border-s-4 pb-9 ps-8 lg:min-h-[420px] lg:ps-[80px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
                 class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
@@ -773,7 +773,7 @@ exports[`publier renders publier 1`] = `
               </a>
             </div>
             <div
-              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 pb-[60px] ps-8 lg:border-none lg:pb-0 lg:ps-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -789,10 +789,10 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="align-stretch lg:gap-30 relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:ps-0"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="border-purple-france lg:pb-26 relative order-2 max-w-none border-s-4 pb-9 ps-8 lg:min-h-[420px] lg:ps-[80px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
                 class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
@@ -815,7 +815,7 @@ exports[`publier renders publier 1`] = `
               </p>
             </div>
             <div
-              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 pb-[60px] ps-8 lg:border-none lg:pb-0 lg:ps-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -831,10 +831,10 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="align-stretch lg:gap-30 relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:ps-0"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="border-purple-france lg:pb-26 relative order-2 max-w-none border-s-4 pb-9 ps-8 lg:min-h-[420px] lg:ps-[80px] !pb-0 lg:!pb-[250px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 !pb-0 lg:!pb-[250px]"
             >
               <div
                 class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
@@ -861,13 +861,13 @@ exports[`publier renders publier 1`] = `
                 Publish.stepsText4b
               </p>
               <div
-                class="text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white absolute bottom-[60px] start-0 lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
+                class="text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
                 Publish.stepsButton
               </div>
             </div>
             <div
-              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 pb-[60px] ps-8 lg:border-none lg:pb-0 lg:ps-0 pb-[150px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 pb-[150px] lg:pb-0"
             >
               <img
                 alt=""
@@ -883,10 +883,10 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="align-stretch lg:gap-30 relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:ps-0"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="border-purple-france lg:pb-26 relative order-2 max-w-none border-s-4 pb-9 ps-8 lg:min-h-[420px] lg:ps-[80px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
                 class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
@@ -914,7 +914,7 @@ exports[`publier renders publier 1`] = `
               </p>
             </div>
             <div
-              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 pb-[60px] ps-8 lg:border-none lg:pb-0 lg:ps-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -930,10 +930,10 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="align-stretch lg:gap-30 relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:ps-0"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="border-purple-france lg:pb-26 relative order-2 max-w-none border-s-4 pb-9 ps-8 lg:min-h-[420px] lg:ps-[80px] border-dashed"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 border-dashed"
             >
               <div
                 class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
@@ -964,7 +964,7 @@ exports[`publier renders publier 1`] = `
               />
             </div>
             <div
-              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 pb-[60px] ps-8 lg:border-none lg:pb-0 lg:ps-0 border-dashed"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 border-dashed"
             >
               <img
                 alt=""

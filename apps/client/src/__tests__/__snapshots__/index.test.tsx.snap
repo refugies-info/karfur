@@ -4574,7 +4574,7 @@ exports[`homepage renders homepage 1`] = `
         </div>
       </div>
     </section>
-    <div
+    <section
       class="bg-light-alt-blue w-full py-20"
       id="newsletter"
     >
@@ -4641,7 +4641,7 @@ exports[`homepage renders homepage 1`] = `
           </form>
         </div>
       </div>
-    </div>
+    </section>
     <div
       class="container md:py-20"
     >
@@ -5021,102 +5021,50 @@ exports[`homepage renders homepage 1`] = `
         </form>
       </div>
     </section>
-    <div
-      class="section bg_red"
+    <section
+      class="bg-light-alt-blue w-full py-20"
+      id="free-ressources"
     >
       <div
-        class="container container"
+        class="container grid grid-cols-2 items-center gap-10"
       >
-        <div
-          class="row"
-        >
-          <div
-            class="lg:order-1 col-sm-12 col-lg-6"
-          >
-            <h2
-              class="title2 white mb-0"
+        <div>
+          <h2>
+            Homepage.resourcesTitle
+          </h2>
+          <p>
+            Homepage.resourcesText
+          </p>
+          <div>
+            <button
+              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
+              id="fr-button-:r1l:"
             >
-              Homepage.resourcesTitle
-            </h2>
-            <p
-              class="subtitle bottom_space"
-            >
-              Homepage.resourcesText
-            </p>
-            <div
-              class="bottom_space"
-            >
-              <a
-                class="link color_white"
-                href="https://kit.refugies.info/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span>
-                  Homepage.resourcesCTA
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="white"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div
-            class="lg:order-0 col-sm-12 col-lg-6"
-          >
-            <a
-              href="https://kit.refugies.info/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="Homepage.resourcesTitle"
-                class="resources_image bottom_space"
-                data-nimg="1"
-                decoding="async"
-                height="272"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-                style="color: transparent;"
-                width="500"
-              />
-            </a>
+              Homepage.resourcesCTA
+            </button>
           </div>
         </div>
+        <div>
+          <a
+            href="https://kit.refugies.info/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Homepage.resourcesTitle"
+              data-nimg="1"
+              decoding="async"
+              height="362"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+              style="color: transparent;"
+              width="576"
+            />
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
     <div
       class="section bg_green"
     >
