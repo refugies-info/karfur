@@ -100,7 +100,7 @@ const Homepage = (props: Props) => {
 
       <MobileApp />
 
-      <FreeResources />
+      {!isMobile && <FreeResources />}
 
       <MainFigures
         nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
