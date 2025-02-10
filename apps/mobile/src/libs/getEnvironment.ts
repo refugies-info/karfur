@@ -12,18 +12,13 @@ let Config = {
 };
 
 // Env variables for staging or production here
-if (
-  Updates.releaseChannel === "staging" ||
-  Updates.channel === "staging" ||
-  Updates.channel === "development" ||
-  Updates.channel === "preview"
-) {
+if (Updates.channel === "staging" || Updates.channel === "development" || Updates.channel === "preview") {
   Config.envName = "STAGING";
   Config.siteUrl = "https://staging.refugies.info";
   Config.dbUrl = "https://backend-stag-4rok5wopuq-ew.a.run.app";
   Config.debugModeFirebase = true;
   Config.algoliaIndex = "staging_refugies";
-} else if (Updates.releaseChannel === "production" || Updates.channel === "production") {
+} else if (Updates.channel === "production") {
   Config.envName = "PROD";
   Config.siteUrl = "https://refugies.info";
   Config.dbUrl = "https://api.refugies.info";
