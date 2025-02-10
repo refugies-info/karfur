@@ -3,6 +3,7 @@
   "workspaces": {
     "apps/storybook": {
       "ignoreDependencies": [
+        "@storybook/blocks",
         "postcss",
         "tailwindcss"
       ]
