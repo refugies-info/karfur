@@ -390,9 +390,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.14.0
         version: 8.17.0(eslint@8.57.1)(typescript@5.7.2)
-      add:
-        specifier: ^2.0.6
-        version: 2.0.6
       csvtojson:
         specifier: ^2.0.10
         version: 2.0.10
@@ -5568,9 +5565,6 @@ packages:
 
   add-dom-event-listener@1.1.0:
     resolution: {integrity: sha512-WCxx1ixHT0GQU9hb0KI/mhgRQhnU+U3GvwY6ZvVjYq8rsihIGoaIOUbY0yMPBxLH5MDtr0kz3fisWGNcbWW7Jw==}
-
-  add@2.0.6:
-    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
 
   adjust-sourcemap-loader@4.0.0:
     resolution: {integrity: sha512-OXwN5b9pCUXNQHJpwwD2qP40byEmSgzj8B4ydSN0uMNYWiFmJ6x6KwUllMmfk8Rwu/HJDFR7U8ubsWBoN0Xp0A==}
@@ -19039,8 +19033,6 @@ snapshots:
   add-dom-event-listener@1.1.0:
     dependencies:
       object-assign: 4.1.1
-
-  add@2.0.6: {}
 
   adjust-sourcemap-loader@4.0.0:
     dependencies:

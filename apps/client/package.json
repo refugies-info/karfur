@@ -143,7 +143,6 @@
     "@types/webrtc": "^0.0.44",
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typescript-eslint/parser": "^8.14.0",
-    "add": "^2.0.6",
     "csvtojson": "^2.0.10",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
