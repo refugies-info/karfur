@@ -13,12 +13,6 @@
     "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
     "traduire": "Aidez-nous à traduire !",
     "btn_translate": "Je traduis",
-    "mobileAppTitle": "Téléchargez l’application Réfugiés.info !",
-    "mobileAppSubtitle": "Gratuite et accessible à tous, elle s’adresse aux personnes réfugiées mais aussi à leurs accompagnants. Vous y trouverez de l’information simplifiée, traduite en 7 langues, écoutable et facilement partageable.",
-    "mobileAppFormLabelDetails": "Envoyez le lien de téléchargement par SMS",
-    "mobileAppFormLabel": "N° de téléphone",
-    "mobileAppFormInstructions": "Vous recevrez le lien pour télécharger l’application par message. Pas d’inquiétude, on ne garde pas votre numéro !",
-    "mobileAppReviews": "100+ notes et avis",
     "infoTypeDemarche": "{{count}} démarches administratives expliquées",
     "infoTypeDispositif": "{{count}} dispositifs dans toute la France",
     "whyTitle": "Pourquoi et quand utiliser Réfugiés.info ?",
@@ -790,6 +784,20 @@
       "alreadyExists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
       "systemError": "Une erreur s'est produite"
     }
+  },
+  "MobileApp": {
+    "imageAlt": "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
+    "logoAlt": "Logo Réfugiés.info",
+    "rankingText": "Top 3 des applications publiques",
+    "rankingLabel": "Note : 5 sur 5",
+    "title": "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+    "subtitle": "Gratuite, l’application a été conçue <em>avec</em> et <em>pour</em> les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
+    "titleMobile": "Télécharge l’application !",
+    "subTitleMobile": "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info t’aide à construire ta vie en France !",
+    "phoneLabel": "Numéro de téléphone",
+    "langLabel": "Envoyer par SMS en :",
+    "buttonText": "Envoyer le lien",
+    "downloadButtonText": "Je télécharge l’application"
   },
   "SkipLinks": {
     "PiedDePage": "Pied de page",
