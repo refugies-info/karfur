@@ -7,8 +7,14 @@
         "src/locales/interfaceTranslation/*.js"
       ],
       "ignoreDependencies": [
+        "@refugies-info/ui",
+        "flag-icons",
         "postcss",
-        "sharp"
+        "react-anchor-link-smooth-scroll",
+        "remixicon",
+        "sharp",
+        "tailwindcss",
+        "typescript-plugin-css-modules"
       ]
     },
     "apps/mobile": {

@@ -70,9 +70,6 @@ importers:
       '@codegouvfr/react-dsfr':
         specifier: ^1.14.1
         version: 1.15.0(patch_hash=5ef671fe4973680b75fb1fcc94418a12705b96d549c0b96cadc87a060faaf7ca)
-      '@hedgedoc/html-to-react':
-        specifier: ^2.1.1
-        version: 2.1.1(react@18.2.0)
       '@lexical/html':
         specifier: ^0.18.0
         version: 0.18.0
@@ -142,9 +139,6 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.8
-      bootstrap:
-        specifier: ^5.2.3
-        version: 5.3.3(@popperjs/core@2.11.8)
       eva-icons:
         specifier: ^1.1.3
         version: 1.1.3
@@ -169,9 +163,6 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
-      jwt-decode:
-        specifier: ^4.0.0
-        version: 4.0.0
       lexical:
         specifier: ^0.18.0
         version: 0.18.0
@@ -193,12 +184,6 @@ importers:
       next-sitemap:
         specifier: ^4.2.3
         version: 4.2.3(next@14.2.18(@babel/core@7.26.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.81.1))
-      postcss-loader:
-        specifier: ^8.1.1
-        version: 8.1.1(postcss@8.4.49)(typescript@5.7.2)(webpack@5.97.0)
-      process:
-        specifier: ^0.11.10
-        version: 0.11.10
       query-string:
         specifier: ^9.1.1
         version: 9.1.1
@@ -250,9 +235,6 @@ importers:
       react-router-dom:
         specifier: ^5.3.4
         version: 5.3.4(react@18.2.0)
-      react-router-hash-link:
-        specifier: ^2.4.3
-        version: 2.4.3(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       react-sortablejs:
         specifier: ^6.1.4
         version: 6.1.4(@types/sortablejs@1.15.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sortablejs@1.15.6)
@@ -274,9 +256,6 @@ importers:
       remixicon:
         specifier: ^4.4.0
         version: 4.5.0
-      remove:
-        specifier: ^0.1.5
-        version: 0.1.5
       reselect:
         specifier: ^5.1.1
         version: 5.1.1
@@ -295,9 +274,6 @@ importers:
       typesafe-actions:
         specifier: ^5.1.0
         version: 5.1.0
-      typescript-plugin-css-modules:
-        specifier: ^5.1.0
-        version: 5.1.0(ts-node@10.9.2(@types/node@22.13.1)(typescript@5.7.2))(typescript@5.7.2)
       uuid:
         specifier: ^11.0.3
         version: 11.0.3
@@ -407,6 +383,9 @@ importers:
       typescript:
         specifier: ^5.6.3
         version: 5.7.2
+      typescript-plugin-css-modules:
+        specifier: ^5.1.0
+        version: 5.1.0(ts-node@10.9.2(@types/node@22.13.1)(typescript@5.7.2))(typescript@5.7.2)
       wait-on:
         specifier: ^8.0.1
         version: 8.0.1
@@ -2799,12 +2778,6 @@ packages:
 
   '@hapi/wreck@18.1.0':
     resolution: {integrity: sha512-0z6ZRCmFEfV/MQqkQomJ7sl/hyxvcZM7LtuVqN3vdAO4vM9eBbowl0kaqQj9EJJQab+3Uuh1GxbGIBFy4NfJ4w==}
-
-  '@hedgedoc/html-to-react@2.1.1':
-    resolution: {integrity: sha512-jZQYG8XWi7CmhUo5F3YcnDjwlTIaY3PwuCSRgcP01CXEVHz8+dYKtHwaP7Fpu9qMRMoMQSWLgHXIKaGgbch/bA==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      react: '>=16.0'
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -5711,11 +5684,6 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  bootstrap@5.3.3:
-    resolution: {integrity: sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.8
-
   bplist-creator@0.0.7:
     resolution: {integrity: sha512-xp/tcaV3T5PCiaY04mXga7o/TE+t95gqeLmADeBI1CvZtdWTbgBt3uLpvh4UWtenKeBhCV6oVxGk38yZr2uYEA==}
 
@@ -5914,9 +5882,6 @@ packages:
   chai@5.1.2:
     resolution: {integrity: sha512-aGtmf24DW6MLHHG5gCx4zaI3uBq3KRtxeVs0DjFH6Z0rDNbsvTxFASFvdj79pxjxZ8/5u3PIiN3IwEIQkiiuPw==}
     engines: {node: '>=12'}
-
-  chainsaw@0.0.9:
-    resolution: {integrity: sha512-nG8PYH+/4xB+8zkV4G844EtfvZ5tTiLFoX3dZ4nhF4t3OCKIb9UvaFyNmeZO2zOSmRWzBoTD+napN6hiL+EgcA==}
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -7844,9 +7809,6 @@ packages:
   hash.js@1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
 
-  hashish@0.0.4:
-    resolution: {integrity: sha512-xyD4XgslstNAs72ENaoFvgMwtv8xhiDtC2AtzCG+8yF7W/Knxxm9BX+e2s25mm+HxMKh0rBmXVOEGF3zNImXvA==}
-
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
@@ -7947,9 +7909,6 @@ packages:
 
   htmlparser2@8.0.2:
     resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
-
-  htmlparser2@9.1.0:
-    resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
 
   http-errors@1.7.3:
     resolution: {integrity: sha512-ZTTX0MWrsQ2ZAhA1cejAwDLycFsd7I7nVtnkT3Ol0aqodaKW+0CTZDQ1uBv5whptCnc8e8HeRRJxRs0kmm/Qfw==}
@@ -8821,10 +8780,6 @@ packages:
 
   jws@4.0.0:
     resolution: {integrity: sha512-KDncfTmOZoOMTFG4mBlG0qUIOlc03fmzH+ru6RgYVZhPkyiy/92Owlt/8UEN+a4TXR1FQetfIpJE8ApdvdVxTg==}
-
-  jwt-decode@4.0.0:
-    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
-    engines: {node: '>=18'}
 
   jwt-simple@0.5.6:
     resolution: {integrity: sha512-40aUybvhH9t2h71ncA1/1SbtTNCVZHgsTsTgqPUxGWDmUDrXyDf2wMNQKEbdBjbf4AI+fQhbECNTV6lWxQKUzg==}
@@ -10823,12 +10778,6 @@ packages:
     peerDependencies:
       react: '>=15'
 
-  react-router-hash-link@2.4.3:
-    resolution: {integrity: sha512-NU7GWc265m92xh/aYD79Vr1W+zAIXDWp3L2YZOYP4rCqPnJ6LI6vh3+rKgkidtYijozHclaEQTAHaAaMWPVI4A==}
-    peerDependencies:
-      react: '>=15'
-      react-router-dom: '>=4'
-
   react-router@5.3.4:
     resolution: {integrity: sha512-Ys9K+ppnJah3QuaRiLxk+jDWOR1MekYQrlytiXxC1RyfbdsZkS5pvKAzCCr031xHixZwpnsYNT5xysdFHQaYsA==}
     peerDependencies:
@@ -11028,9 +10977,6 @@ packages:
 
   remove-trailing-slash@0.1.1:
     resolution: {integrity: sha512-o4S4Qh6L2jpnCy83ysZDau+VORNvnFw07CKSAymkd6ICNVEPisMyzlc00KlvvicsxKck94SEwhDnMNdICzO+tA==}
-
-  remove@0.1.5:
-    resolution: {integrity: sha512-AJMA9oWvJzdTjwIGwSQZsjGQiRx73YTmiOWmfCp1fpLa/D4n7jKcpoA+CZiVLJqKcEKUuh1Suq80c5wF+L/qVQ==}
 
   renderkid@3.0.0:
     resolution: {integrity: sha512-q/7VIQA8lmM1hF+jn+sFSPWGlMkSAeNYcPLmDQx2zzuiDfaLrOmumR8iaUKlenFgh0XRPIUeSPlH3A+AW3Z5pg==}
@@ -11292,9 +11238,6 @@ packages:
   send@0.19.0:
     resolution: {integrity: sha512-dW41u5VfLXu8SJh5bwRmyYUbAoSB3c9uQh6L8h/KtsFREPWpbX1lrljJo186Jc4nmci/sGUZ9a0a0J2zgfq2hw==}
     engines: {node: '>= 0.8.0'}
-
-  seq@0.3.5:
-    resolution: {integrity: sha512-sisY2Ln1fj43KBkRtXkesnRHYNdswIkIibvNe/0UKm2GZxjMbqmccpiatoKr/k2qX5VKiLU8xm+tz/74LAho4g==}
 
   serialize-error@2.1.0:
     resolution: {integrity: sha512-ghgmKt5o4Tly5yEG/UJp8qTd0AN7Xalw4XBtDEKP655B699qMEtra1WlXeE6WIvdEG481JvRxULKsInq/iNysw==}
@@ -12104,9 +12047,6 @@ packages:
   tr46@5.0.0:
     resolution: {integrity: sha512-tk2G5R2KRwBd+ZN0zaEXpmzdKyOYksXwywulIX95MBODjSzMIuQnQ3m8JxgbhnL1LeVo7lqQKsYa1O3Htl7K5g==}
     engines: {node: '>=18'}
-
-  traverse@0.3.9:
-    resolution: {integrity: sha512-iawgk0hLP3SxGKDfnDJf8wTz4p2qImnyihM5Hh/sGvQ3K37dPi/w8sRhdNIxYA1TwFwc5mDhIJq+O0RsvXBKdQ==}
 
   traverse@0.6.10:
     resolution: {integrity: sha512-hN4uFRxbK+PX56DxYiGHsTn2dME3TVr9vbNqlQGcGcPhJAn+tdP126iA+TArMpI4YSgnTkMWyoLl5bf81Hi5TA==}
@@ -15320,13 +15260,6 @@ snapshots:
       '@hapi/boom': 10.0.1
       '@hapi/bourne': 3.0.0
       '@hapi/hoek': 11.0.7
-
-  '@hedgedoc/html-to-react@2.1.1(react@18.2.0)':
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      htmlparser2: 9.1.0
-      react: 18.2.0
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -18956,10 +18889,6 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  bootstrap@5.3.3(@popperjs/core@2.11.8):
-    dependencies:
-      '@popperjs/core': 2.11.8
-
   bplist-creator@0.0.7:
     dependencies:
       stream-buffers: 2.2.0
@@ -19202,10 +19131,6 @@ snapshots:
       deep-eql: 5.0.2
       loupe: 3.1.2
       pathval: 2.0.0
-
-  chainsaw@0.0.9:
-    dependencies:
-      traverse: 0.3.9
 
   chalk@2.4.2:
     dependencies:
@@ -21769,10 +21694,6 @@ snapshots:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
 
-  hashish@0.0.4:
-    dependencies:
-      traverse: 0.6.10
-
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
@@ -21890,13 +21811,6 @@ snapshots:
       entities: 2.2.0
 
   htmlparser2@8.0.2:
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      domutils: 3.1.0
-      entities: 4.5.0
-
-  htmlparser2@9.1.0:
     dependencies:
       domelementtype: 2.3.0
       domhandler: 5.0.3
@@ -23172,8 +23086,6 @@ snapshots:
     dependencies:
       jwa: 2.0.0
       safe-buffer: 5.2.1
-
-  jwt-decode@4.0.0: {}
 
   jwt-simple@0.5.6: {}
 
@@ -24610,17 +24522,6 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  postcss-loader@8.1.1(postcss@8.4.49)(typescript@5.7.2)(webpack@5.97.0):
-    dependencies:
-      cosmiconfig: 9.0.0(typescript@5.7.2)
-      jiti: 1.21.6
-      postcss: 8.4.49
-      semver: 7.6.3
-    optionalDependencies:
-      webpack: 5.97.0
-    transitivePeerDependencies:
-      - typescript
-
   postcss-media-query-parser@0.2.3: {}
 
   postcss-modules-extract-imports@3.1.0(postcss@8.4.49):
@@ -25316,12 +25217,6 @@ snapshots:
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
 
-  react-router-hash-link@2.4.3(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-router-dom: 5.3.4(react@18.2.0)
-
   react-router@5.3.4(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.26.7
@@ -25593,10 +25488,6 @@ snapshots:
   remove-accents@0.5.0: {}
 
   remove-trailing-slash@0.1.1: {}
-
-  remove@0.1.5:
-    dependencies:
-      seq: 0.3.5
 
   renderkid@3.0.0:
     dependencies:
@@ -25926,11 +25817,6 @@ snapshots:
       statuses: 2.0.1
     transitivePeerDependencies:
       - supports-color
-
-  seq@0.3.5:
-    dependencies:
-      chainsaw: 0.0.9
-      hashish: 0.0.4
 
   serialize-error@2.1.0: {}
 
@@ -26749,16 +26635,6 @@ snapshots:
     optionalDependencies:
       esbuild: 0.24.0
 
-  terser-webpack-plugin@5.3.10(webpack@5.97.0):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.36.0
-      webpack: 5.97.0
-    optional: true
-
   terser@5.36.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
@@ -26873,8 +26749,6 @@ snapshots:
   tr46@5.0.0:
     dependencies:
       punycode: 2.3.1
-
-  traverse@0.3.9: {}
 
   traverse@0.6.10:
     dependencies:
@@ -27482,37 +27356,6 @@ snapshots:
   webpack-sources@3.2.3: {}
 
   webpack-virtual-modules@0.6.2: {}
-
-  webpack@5.97.0:
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.6
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.14.0
-      browserslist: 4.24.2
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.17.1
-      es-module-lexer: 1.5.4
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.97.0)
-      watchpack: 2.4.2
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-    optional: true
 
   webpack@5.97.0(esbuild@0.24.0):
     dependencies:
