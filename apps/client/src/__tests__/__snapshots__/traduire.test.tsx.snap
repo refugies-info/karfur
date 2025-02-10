@@ -181,9 +181,11 @@ exports[`traduire renders traduire 1`] = `
             class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
           >
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -214,9 +216,11 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -247,9 +251,11 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -633,13 +639,15 @@ exports[`traduire renders traduire 1`] = `
             class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
           >
             <a
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left bg-white hover:!bg-hover active:!bg-active block"
               href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
               rel="noopener noreferrer"
               target="_blank"
               title="Translate.helpTileTitle1"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -675,10 +683,12 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </a>
             <button
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left bg-white hover:!bg-hover active:!bg-active"
               title="StaticPages.helpTileTitle3"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""

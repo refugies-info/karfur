@@ -3,6 +3,15 @@ import Card from "@codegouvfr/react-dsfr/Card";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import CommunityIlluAmbassadeurs from "~/assets/staticPages/mission-et-impact/community-ambassadeurs.png";
+import CommunityIlluCda from "~/assets/staticPages/mission-et-impact/community-cda.png";
+import CommunityIlluDinum from "~/assets/staticPages/mission-et-impact/community-dinum.png";
+import CommunityIlluDispositifs from "~/assets/staticPages/mission-et-impact/community-dispositifs.png";
+import CommunityIlluExperts from "~/assets/staticPages/mission-et-impact/community-experts.png";
+import CommunityIlluInfluenceurs from "~/assets/staticPages/mission-et-impact/community-influenceurs.png";
+import CommunityIlluPartenaires from "~/assets/staticPages/mission-et-impact/community-partenaires.png";
+import CommunityIlluTesteurs from "~/assets/staticPages/mission-et-impact/community-testeurs.png";
+import CommunityIlluTraducteurs from "~/assets/staticPages/mission-et-impact/community-traducteurs.png";
 import HeroBack from "~/assets/staticPages/mission-et-impact/hero-back.svg";
 import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.svg";
 import PDFScreenshot from "~/assets/staticPages/mission-et-impact/pdf-screenshot.png";
@@ -20,7 +29,7 @@ import StepIllu6 from "~/assets/staticPages/mission-et-impact/steps-illu-6.png";
 import StepIllu7 from "~/assets/staticPages/mission-et-impact/steps-illu-7.png";
 import UsersGraph1 from "~/assets/staticPages/mission-et-impact/users-graph-1.png";
 import UsersGraph2 from "~/assets/staticPages/mission-et-impact/users-graph-2.svg";
-import { Section, StepContent, Title2 } from "~/components/Pages/staticPages/common";
+import { Card as RICard, Section, StepContent, Title2 } from "~/components/Pages/staticPages/common";
 import { Figure, ImpactCol, TeamCard } from "~/components/Pages/staticPages/mission-et-impact";
 import SEO from "~/components/Seo";
 import { useTeamData } from "~/data/useTeamData";
@@ -139,7 +148,6 @@ const MissionImpact: NextPage = () => {
       <Section>
         <div className="fr-container">
           <Title2>{t("MissionImpact.users_title")}</Title2>
-
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:px-30 mn-10 lg:mb-20">
             <div className="flex-1">
               <h3>{t("MissionImpact.users_subtitle_1")}</h3>
@@ -208,6 +216,130 @@ const MissionImpact: NextPage = () => {
             {teamData.map((team) => (
               <TeamCard key={team.name} {...team} />
             ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-light-low-blue-france">
+        <div className="fr-container">
+          <Title2 className="!text-center">{t("MissionImpact.community_title")}</Title2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <RICard
+              image={CommunityIlluDispositifs}
+              imageWidth={240}
+              title={t("MissionImpact.community_dispositifs_title")}
+              footer={
+                <Badge severity="new" noIcon>
+                  {t("MissionImpact.community_tag_redaction")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_dispositifs_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluCda}
+              imageWidth={240}
+              title={t("MissionImpact.community_cda_title")}
+              footer={
+                <Badge severity="new" noIcon>
+                  {t("MissionImpact.community_tag_redaction")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_cda_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluTraducteurs}
+              imageWidth={232}
+              title={t("MissionImpact.community_traducteurs_title")}
+              footer={
+                <Badge severity="info" noIcon>
+                  {t("MissionImpact.community_tag_traduction")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_traducteurs_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluExperts}
+              imageWidth={240}
+              title={t("MissionImpact.community_experts_title")}
+              footer={
+                <Badge severity="info" noIcon>
+                  {t("MissionImpact.community_tag_traduction")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_experts_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluAmbassadeurs}
+              imageWidth={232}
+              title={t("MissionImpact.community_ambassadeurs_title")}
+              footer={
+                <Badge noIcon className="bg-pink-background text-pink-foreground">
+                  {t("MissionImpact.community_tag_deploiement")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_ambassadeurs_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluInfluenceurs}
+              imageWidth={232}
+              title={t("MissionImpact.community_influenceurs_title")}
+              footer={
+                <Badge noIcon className="bg-pink-background text-pink-foreground">
+                  {t("MissionImpact.community_tag_deploiement")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_influenceurs_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluPartenaires}
+              imageWidth={240}
+              title={t("MissionImpact.community_partenaires_title")}
+              footer={
+                <Badge noIcon className="bg-pink-background text-pink-foreground">
+                  {t("MissionImpact.community_tag_deploiement")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_partenaires_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluTesteurs}
+              imageWidth={232}
+              title={t("MissionImpact.community_testeurs_title")}
+              footer={
+                <Badge severity="success" noIcon>
+                  {t("MissionImpact.community_tag_produit")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_testeurs_subtitle")}</p>
+            </RICard>
+            <RICard
+              image={CommunityIlluDinum}
+              title={t("MissionImpact.community_dinum_title")}
+              footer={
+                <Badge severity="warning" noIcon>
+                  {t("MissionImpact.community_tag_pilotage")}
+                </Badge>
+              }
+              footerBottom
+            >
+              <p>{t("MissionImpact.community_dinum_subtitle")}</p>
+            </RICard>
           </div>
         </div>
       </Section>
