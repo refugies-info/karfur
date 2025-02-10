@@ -34,6 +34,12 @@
         "postcss",
         "tailwindcss"
       ]
+    },
+    "packages/ui": {
+      "ignoreDependencies": [
+        "@tailwindcss/postcss",
+        "react-dom"
+      ]
     }
   }
 }
