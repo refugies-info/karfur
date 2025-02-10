@@ -26,9 +26,11 @@
         "src/server.ts"
       ],
       "ignoreDependencies": [
-        "@types/*",
+        "@tsoa/runtime",
         "nodemon",
-        "tsconfig-paths"
+        "path-to-regexp",
+        "tsconfig-paths",
+        "ts-node"
       ]
     },
     "apps/storybook": {

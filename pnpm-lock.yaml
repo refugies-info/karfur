@@ -735,9 +735,6 @@ importers:
       '@slack/webhook':
         specifier: ^7.0.4
         version: 7.0.4
-      '@tsoa/runtime':
-        specifier: ^6.5.1
-        version: 6.5.1
       '@typegoose/typegoose':
         specifier: ^12.9.0
         version: 12.9.1(mongoose@8.9.5(socks@2.8.3))
@@ -816,9 +813,6 @@ importers:
       uniqid:
         specifier: ^5.0.3
         version: 5.4.0
-      uuid:
-        specifier: ^11.0.3
-        version: 11.0.3
       winston:
         specifier: ^3.17.0
         version: 3.17.0
@@ -826,6 +820,9 @@ importers:
       '@refugies-info/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      '@tsoa/runtime':
+        specifier: ^6.5.1
+        version: 6.5.1
       '@types/compression':
         specifier: ^1.7.2
         version: 1.7.5

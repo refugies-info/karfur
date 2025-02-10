@@ -27,7 +27,6 @@
     "@refugies-info/api-types": "workspace:*",
     "@sendgrid/mail": "^8.1.4",
     "@slack/webhook": "^7.0.4",
-    "@tsoa/runtime": "^6.5.1",
     "@typegoose/typegoose": "^12.9.0",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.14.2",
@@ -54,11 +53,11 @@
     "tsoa": "^6.6.0",
     "twilio": "^5.3.6",
     "uniqid": "^5.0.3",
-    "uuid": "^11.0.3",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
+    "@tsoa/runtime": "^6.5.1",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^5.0.0",
