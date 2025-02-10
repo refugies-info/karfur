@@ -824,6 +824,22 @@
     "steps_text_7": "Deux projets intégrant l’intelligence artificielle d’État Albert sont en cours d’expérimentation :",
     "steps_text_7_item1": "Un agent conversationnel pour suggérer des réponses à des questions posées dans une interface dédiée.",
     "steps_text_7_item2": "Un assistant de rédaction pour accompagner les porteurs de dispositifs dans la rédaction de leur fiche.",
-    "stepsTitle": "Les moments clés !"
+    "stepsTitle": "Les moments clés !",
+    "join_ts_title": "Travailleurs sociaux ou chefs de centre ?",
+    "join_ts_subtitle": "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux.",
+    "join_ts_cta": "Participez à un webinaire",
+    "join_agir_title": "Opérateurs du programme AGIR ?",
+    "join_agir_subtitle": "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien.",
+    "join_etat_title": "Opérateurs d’État ?",
+    "join_etat_subtitle": "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion.",
+    "join_administration_title": "Administration ou institution publique ?",
+    "join_administration_subtitle": "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible.",
+    "join_structure_title": "Structures porteuses de dispositifs ?",
+    "join_structure_subtitle": "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
+    "join_structure_cta": "Publier votre fiche",
+    "join_traducteur_title": "Polyglottes bénévoles ?",
+    "join_traducteur_subtitle": "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
+    "join_traducteur_cta": "Traduire une fiche",
+    "join_meeting_cta": "Prendre rendez-vous"
   }
 }

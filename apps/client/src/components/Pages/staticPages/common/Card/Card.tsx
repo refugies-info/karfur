@@ -44,7 +44,7 @@ const Card = (props: Props) => {
           )}
         </div>
         <h3 className="!text-h6 md:!text-h5 !my-3 !text-blue-france">{props.title}</h3>
-        <div className={cls("!text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
+        <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
         {props.footer && <div>{props.footer}</div>}
       </div>
     ),

@@ -205,7 +205,7 @@ exports[`traduire renders traduire 1`] = `
                   Translate.whoCardTitle1
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
@@ -240,7 +240,7 @@ exports[`traduire renders traduire 1`] = `
                   Translate.whoCardTitle2
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
@@ -275,7 +275,7 @@ exports[`traduire renders traduire 1`] = `
                   Translate.whoCardTitle3
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
@@ -667,7 +667,7 @@ exports[`traduire renders traduire 1`] = `
                   Translate.helpTileTitle1
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p>
                     Translate.helpTileText1
@@ -708,7 +708,7 @@ exports[`traduire renders traduire 1`] = `
                   StaticPages.helpTileTitle3
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p>
                     StaticPages.helpTileText3
