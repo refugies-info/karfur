@@ -384,12 +384,6 @@ importers:
       '@types/webrtc':
         specifier: ^0.0.44
         version: 0.0.44
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.14.0
-        version: 8.17.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)
-      '@typescript-eslint/parser':
-        specifier: ^8.14.0
-        version: 8.17.0(eslint@8.57.1)(typescript@5.7.2)
       csvtojson:
         specifier: ^2.0.10
         version: 2.0.10
