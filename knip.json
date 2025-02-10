@@ -13,12 +13,16 @@
     },
     "apps/mobile": {
       "entry": [
-        "src/translations/scripts/*.js"
+        "build-scripts/*.js",
+        "src/translations/scripts/*.js",
+        "src/utils/*.js"
       ],
       "ignoreDependencies": [
         "@babel/preset-env",
         "@babel/runtime",
-        "@types/styled-components-react-native"
+        "@react-native/assets-registry",
+        "@types/styled-components-react-native",
+        "use-sync-external-store"
       ]
     },
     "apps/server": {
