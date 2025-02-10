@@ -469,8 +469,8 @@ importers:
         specifier: ^20.0.0
         version: 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@react-native-firebase/crashlytics':
-        specifier: ^20.0.0
-        version: 20.5.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
+        specifier: ^21.7.4
+        version: 21.7.4(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
       '@react-native/assets-registry':
         specifier: ^0.73.1
         version: 0.73.1
@@ -4140,10 +4140,10 @@ packages:
       expo:
         optional: true
 
-  '@react-native-firebase/crashlytics@20.5.0':
-    resolution: {integrity: sha512-HXnxv5XrLW4zMWIGBbQZqyHKEqimvr4SULtk9J694WHOvPnXClibwXTAYzHV7WmZ3ypwUwbVJFrGJ1IdOb+Aaw==}
+  '@react-native-firebase/crashlytics@21.7.4':
+    resolution: {integrity: sha512-CrLDXAPXv6lEYepii64sZhSqjobJsj+22+4aGqpueh5diqqlCRZX0j8j28zbFe2Dy04ujvK6qX0B9aAP9cBFPg==}
     peerDependencies:
-      '@react-native-firebase/app': 20.5.0
+      '@react-native-firebase/app': 21.7.4
       expo: '>=47.0.0'
     peerDependenciesMeta:
       expo:
@@ -17188,7 +17188,7 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
-  '@react-native-firebase/crashlytics@20.5.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))':
+  '@react-native-firebase/crashlytics@21.7.4(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))':
     dependencies:
       '@react-native-firebase/app': 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       stacktrace-js: 2.0.2
@@ -21132,7 +21132,7 @@ snapshots:
       '@typescript-eslint/parser': 8.23.0(eslint@8.57.1)(typescript@5.7.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1)
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.4(eslint@8.57.1)
@@ -21154,22 +21154,6 @@ snapshots:
       debug: 3.2.7
       is-core-module: 2.15.1
       resolve: 1.22.8
-    transitivePeerDependencies:
-      - supports-color
-
-  eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint@8.57.1):
-    dependencies:
-      '@nolyfill/is-core-module': 1.0.39
-      debug: 4.3.7(supports-color@5.5.0)
-      enhanced-resolve: 5.17.1
-      eslint: 8.57.1
-      fast-glob: 3.3.2
-      get-tsconfig: 4.8.1
-      is-bun-module: 1.3.0
-      is-glob: 4.0.3
-      stable-hash: 0.0.4
-    optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -21200,14 +21184,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.23.0(eslint@8.57.1)(typescript@5.7.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -21251,7 +21235,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.23.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
