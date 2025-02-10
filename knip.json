@@ -1,6 +1,17 @@
 {
-  "include": ["dependencies", "devDependencies"],
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "include": ["dependencies"],
   "workspaces": {
+    "apps/mobile": {
+      "entry": [
+        "src/translations/scripts/*.js"
+      ],
+      "ignoreDependencies": [
+        "@babel/preset-env",
+        "@babel/runtime",
+        "@types/styled-components-react-native"
+      ]
+    },
     "apps/server": {
       "ignoreDependencies": [
         "@types/*",
