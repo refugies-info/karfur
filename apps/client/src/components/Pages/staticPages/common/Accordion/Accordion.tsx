@@ -31,6 +31,7 @@ interface Props {
   multiOpen?: boolean;
   initOpen?: boolean;
   mediaAlign?: "right" | "center";
+  className?: string;
 }
 
 const Accordion = (props: Props) => {
@@ -77,7 +78,7 @@ const Accordion = (props: Props) => {
   };
 
   return (
-    <div className="flex gap-20">
+    <div className={cls("flex gap-20", props.className)}>
       <div className={cls(props.withImages && "w-1/2 grow-1 basis-auto")}>
         <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
           {props.items.map((item, i) => {

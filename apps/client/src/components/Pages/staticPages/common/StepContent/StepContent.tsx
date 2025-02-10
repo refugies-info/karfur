@@ -29,7 +29,7 @@ const StepContent = (props: Props) => {
     () => (
       <div
         className={cls(
-          "!text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france",
+          "text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france",
           "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
           props.buttonStepEnd && "!bottom-0",
         )}
@@ -56,7 +56,7 @@ const StepContent = (props: Props) => {
         <div
           className={cls(
             "w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px]",
-            "!text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france",
+            "text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france",
             "flex items-center justify-center",
           )}
         >
@@ -75,15 +75,15 @@ const StepContent = (props: Props) => {
         )}
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
-            <div key={i} className="bg-beige-accent border border-border p-4 !mb-6">
-              <ul className="!my-0 space-y-2">
+            <div key={i} className="bg-beige-accent border border-border p-4 mb-6">
+              <ul className="my-0 space-y-2">
                 {text.map((li, j) => (
                   <li key={j}>{li}</li>
                 ))}
               </ul>
             </div>
           ) : (
-            <p key={i} className="!text-large !mb-6">
+            <p key={i} className="text-large mb-6">
               {text}
             </p>
           ),
@@ -117,7 +117,7 @@ const StepContent = (props: Props) => {
           "relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px]",
           "border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0",
           props.dottedLine && "border-dashed",
-          !!props.buttonStep && "!pb-[150px] lg:!pb-0",
+          !!props.buttonStep && "pb-[150px] lg:pb-0",
         )}
       >
         {props.image && <Image src={props.image} alt="" width={props.width || 550} style={{ objectFit: "contain" }} />}

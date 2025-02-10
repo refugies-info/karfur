@@ -15,14 +15,14 @@ exports[`Search Screen should render correctly 1`] = `
   }
 >
   <View
-    animatedStyle={
+    collapsable={false}
+    jestAnimatedStyle={
       {
         "value": {
           "backgroundColor": "rgba(255, 255, 255, 0)",
         },
       }
     }
-    collapsable={false}
     style={
       {
         "backgroundColor": "rgba(255, 255, 255, 0)",
@@ -47,13 +47,13 @@ exports[`Search Screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
-        animatedStyle={
+        collapsable={false}
+        horizontalAlign="space-between"
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
-        horizontalAlign="space-between"
         style={
           {
             "alignItems": "center",
@@ -86,13 +86,13 @@ exports[`Search Screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
-            animatedStyle={
+            collapsable={false}
+            horizontalAlign="flex-end"
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
-            horizontalAlign="flex-end"
             style={
               {
                 "alignItems": "center",
@@ -229,8 +229,8 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#5E5E5E"
                 focusable={false}
                 height={24}
@@ -293,8 +293,8 @@ exports[`Search Screen should render correctly 1`] = `
                         height="24"
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"

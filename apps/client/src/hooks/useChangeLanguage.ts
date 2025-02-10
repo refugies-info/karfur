@@ -20,14 +20,26 @@ const useChangeLanguage = () => {
       if (navigationType === "push") {
         setLoading(true);
         router.push(url, undefined, { locale: selectedLn }).then(() => {
-          callback?.();
-          setLoading(false);
+          if (callback) {
+            setTimeout(() => {
+              callback();
+              setLoading(false);
+            }, 50);
+          } else {
+            setLoading(false);
+          }
         });
       } else {
         setLoading(true);
         router.replace(url, undefined, { locale: selectedLn }).then(() => {
-          callback?.();
-          setLoading(false);
+          if (callback) {
+            setTimeout(() => {
+              callback();
+              setLoading(false);
+            }, 50);
+          } else {
+            setLoading(false);
+          }
         });
       }
     },

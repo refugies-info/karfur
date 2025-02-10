@@ -18,12 +18,12 @@ interface Props {
 }
 
 const CARD_CLASSNAME =
-  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left bg-white";
-const CARD_HOVER_CLASSNAME = "hover:!bg-hover active:!bg-active";
+  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white";
+const CARD_HOVER_CLASSNAME = "hover:bg-hover active:bg-active";
 
 const ArrowRight = () => (
   <div className="mt-6 pt-2 w-full text-right">
-    <i className="fr-icon-arrow-right-line !text-blue-france" />
+    <i className="fr-icon-arrow-right-line text-blue-france" />
   </div>
 );
 
@@ -43,7 +43,7 @@ const Card = (props: Props) => {
             />
           )}
         </div>
-        <h3 className="!text-h6 md:!text-h5 !my-3 !text-blue-france">{props.title}</h3>
+        <h3 className="text-h6 md:text-h5 my-3 text-blue-france">{props.title}</h3>
         <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
         {props.footer && <div>{props.footer}</div>}
       </div>

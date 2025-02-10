@@ -37,7 +37,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "expo-server-sdk": "^3.12.0",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-form-data": "^2.0.18",
     "google-auth-library": "^9.15.0",
     "jwt-simple": "^0.5.5",
@@ -48,7 +48,7 @@
     "mongoose": "8.9.5",
     "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
-    "path-to-regexp": "^0.1.12",
+    "path-to-regexp": ">=0.1.12",
     "phone": "^3.1.55",
     "ts-node": "^10.9.2",
     "tsoa": "^6.6.0",
@@ -89,6 +89,6 @@
   },
   "volta": {
     "node": "20.13.1",
-    "pnpm": "9.15.4"
+    "pnpm": "10.2.1"
   }
 }

@@ -71,7 +71,7 @@ a:not(.underline):not(.fr-default) {
   }
 }
 
-:not([class^="fr-link"])[target="_blank"]::after {
+:not([class^="fr-link"]):not([class^="fr-btn"])[target="_blank"]::after {
   content: none;
 }
 
