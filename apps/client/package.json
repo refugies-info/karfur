@@ -60,7 +60,6 @@
     "rc-time-picker": "^3.7.3",
     "react": "18.3.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-app-env": "^1.2.3",
     "react-autosuggest": "^10.1.0",
     "react-countup": "^6.4.0",
     "react-device-detect": "^2.2.2",
