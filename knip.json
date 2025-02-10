@@ -1,6 +1,13 @@
 {
   "include": ["dependencies", "devDependencies"],
   "workspaces": {
+    "apps/server": {
+      "ignoreDependencies": [
+        "@types/*",
+        "nodemon",
+        "tsconfig-paths"
+      ]
+    },
     "apps/storybook": {
       "ignoreDependencies": [
         "@storybook/blocks",
