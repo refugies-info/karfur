@@ -4643,669 +4643,384 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
     <div
-      class="section bg_blue"
-      id="application"
+      class="container md:py-20"
     >
+      <h2>
+        Homepage.whyTitle
+      </h2>
       <div
-        class="container container"
+        class="flex gap-20"
       >
         <div
-          class="items-center row"
+          class="w-1/2 grow-1 basis-auto"
         >
           <div
-            class="lg:order-2 col-sm-12 col-lg-6"
+            data-orientation="vertical"
           >
             <div
-              class="container"
-            >
-              <div
-                class="front"
-              >
-                <video
-                  class="video autoplay-video"
-                  height="442"
-                  loop=""
-                  style="border-radius: 26px;"
-                >
-                  <source
-                    src="/video/home-app-video.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-              <img
-                alt="Mobile app mockup"
-                class="back"
-                data-nimg="1"
-                decoding="async"
-                height="510"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-                style="color: transparent;"
-                width="510"
-              />
-            </div>
-            <div
-              class="store"
-            >
-              <a
-                class="links"
-                href="https://apps.apple.com/app/id1595597429"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <img
-                  alt="Get it on App Store"
-                  data-nimg="1"
-                  decoding="async"
-                  height="50"
-                  loading="lazy"
-                  src="https://storage.googleapis.com/refugies-info-assets/store-badges/app-store-fr.svg"
-                  style="color: transparent;"
-                  width="160"
-                />
-              </a>
-              <a
-                class="links"
-                href="https://play.google.com/store/apps/details?id=com.refugiesinfo.app"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <img
-                  alt="Get it on Play Store"
-                  data-nimg="1"
-                  decoding="async"
-                  height="50"
-                  loading="lazy"
-                  src="https://storage.googleapis.com/refugies-info-assets/store-badges/google-play-fr.svg"
-                  style="color: transparent;"
-                  width="160"
-                />
-              </a>
-              <div
-                class="reviews"
-              >
-                <div>
-                  <span
-                    class="icon"
-                  >
-                    <i
-                      style="height: 20px; line-height: 20px;"
-                    >
-                      <svg
-                        class="eva eva-star"
-                        fill="#FCBF35"
-                        height="20px"
-                        viewBox="0 0 24 24"
-                        width="20px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="star"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              transform="rotate(90 12 12)"
-                              width="24"
-                            />
-                            <path
-                              d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                  <span
-                    class="icon"
-                  >
-                    <i
-                      style="height: 20px; line-height: 20px;"
-                    >
-                      <svg
-                        class="eva eva-star"
-                        fill="#FCBF35"
-                        height="20px"
-                        viewBox="0 0 24 24"
-                        width="20px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="star"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              transform="rotate(90 12 12)"
-                              width="24"
-                            />
-                            <path
-                              d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                  <span
-                    class="icon"
-                  >
-                    <i
-                      style="height: 20px; line-height: 20px;"
-                    >
-                      <svg
-                        class="eva eva-star"
-                        fill="#FCBF35"
-                        height="20px"
-                        viewBox="0 0 24 24"
-                        width="20px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="star"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              transform="rotate(90 12 12)"
-                              width="24"
-                            />
-                            <path
-                              d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                  <span
-                    class="icon"
-                  >
-                    <i
-                      style="height: 20px; line-height: 20px;"
-                    >
-                      <svg
-                        class="eva eva-star"
-                        fill="#FCBF35"
-                        height="20px"
-                        viewBox="0 0 24 24"
-                        width="20px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="star"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              transform="rotate(90 12 12)"
-                              width="24"
-                            />
-                            <path
-                              d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                  <span
-                    class="icon"
-                  >
-                    <i
-                      style="height: 20px; line-height: 20px;"
-                    >
-                      <svg
-                        class="eva eva-star"
-                        fill="#FCBF35"
-                        height="20px"
-                        viewBox="0 0 24 24"
-                        width="20px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="star"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              transform="rotate(90 12 12)"
-                              width="24"
-                            />
-                            <path
-                              d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </div>
-                <p
-                  class="mb-0"
-                >
-                  Homepage.mobileAppReviews
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="lg:order-1 col-sm-12 col-lg-6"
-          >
-            <h2
-              class="title2 white !mb-0"
-            >
-              Homepage.mobileAppTitle
-            </h2>
-            <p
-              class="subtitle"
-            >
-              Homepage.mobileAppSubtitle
-            </p>
-            <div
-              class="container"
-            >
-              <label>
-                Homepage.mobileAppFormLabelDetails
-              </label>
-              <div
-                class="sms_form"
-              >
-                <div>
-                  <div
-                    class="container input"
-                  >
-                    <input
-                      class="input"
-                      placeholder="Homepage.mobileAppFormLabel"
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div
-                  class="options"
-                >
-                  <div
-                    class="dropdown dropdown"
-                  >
-                    <button
-                      aria-expanded="false"
-                      aria-haspopup="true"
-                      class="btn btn-secondary"
-                      type="button"
-                    >
-                      <span
-                        class="value"
-                      >
-                        LanguageDropdown.en_français
-                        <span
-                          class="flag fi fi-fr mx-2"
-                          title="fr"
-                        />
-                      </span>
-                      <span
-                        class="icon icon"
-                      >
-                        <i
-                          style="height: 24px; line-height: 24px;"
-                        >
-                          <svg
-                            class="eva eva-chevron-down-outline"
-                            fill="dark"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            width="24px"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              data-name="Layer 2"
-                            >
-                              <g
-                                data-name="chevron-down"
-                              >
-                                <rect
-                                  height="24"
-                                  opacity="0"
-                                  width="24"
-                                />
-                                <path
-                                  d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
-                                />
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                      </span>
-                    </button>
-                    <div
-                      aria-hidden="true"
-                      class="menu dropdown-menu"
-                      data-bs-popper="static"
-                      role="menu"
-                      tabindex="-1"
-                    >
-                      <button
-                        class="item selected dropdown-item"
-                        role="menuitem"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <span
-                          class="flag fi fi-fr mx-2"
-                          title="fr"
-                        />
-                        <span
-                          class="item_locale"
-                        >
-                          Français -
-                        </span>
-                        <span>
-                          Français
-                        </span>
-                      </button>
-                      <button
-                        class="item dropdown-item"
-                        role="menuitem"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <span
-                          class="flag fi fi-en mx-2"
-                          title="en"
-                        />
-                        <span
-                          class="item_locale"
-                        >
-                          Anglais -
-                        </span>
-                        <span>
-                          English
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <button
-                    class="btn validate submit"
-                    disabled=""
-                  >
-                    <span
-                      class="me-2 icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="#fff"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Ok
-                  </button>
-                </div>
-              </div>
-              <p
-                class="instructions"
-              >
-                Homepage.mobileAppFormInstructions
-              </p>
-            </div>
-            <div
-              class="store"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="section"
-    >
-      <div
-        class="container container"
-      >
-        <h2
-          class="title2"
-        >
-          Homepage.whyTitle
-        </h2>
-        <div
-          class="flex gap-20"
-        >
-          <div
-            class="w-1/2 grow-1 basis-auto"
-          >
-            <div
+              class=""
               data-orientation="vertical"
+              data-state="open"
             >
-              <div
-                class=""
+              <h3
+                class="!mb-0"
                 data-orientation="vertical"
                 data-state="open"
               >
-                <h3
-                  class="!mb-0"
+                <button
+                  aria-controls="radix-:r19:"
+                  aria-disabled="true"
+                  aria-expanded="true"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
                   data-orientation="vertical"
+                  data-radix-collection-item=""
                   data-state="open"
+                  id="radix-:r18:"
+                  type="button"
                 >
-                  <button
-                    aria-controls="radix-:r19:"
-                    aria-disabled="true"
-                    aria-expanded="true"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="open"
-                    id="radix-:r18:"
-                    type="button"
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
                   >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
-                    >
-                      Homepage.whyAccordionTitle1
-                    </span>
-                    <i
-                      class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r18:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="open"
-                  id="radix-:r19:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
-                >
-                  <p
-                    class="text !text-large !mb-0"
-                  >
-                    Homepage.whyAccordionText1
-                  </p>
-                </div>
-              </div>
+                    Homepage.accordionItems.desktop.title1
+                  </span>
+                  <i
+                    class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
+                  />
+                </button>
+              </h3>
               <div
-                class=""
+                aria-labelledby="radix-:r18:"
+                class="content mt-4 px-4 pb-8"
                 data-orientation="vertical"
-                data-state="closed"
+                data-state="open"
+                id="radix-:r19:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
               >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
+                <p
+                  class="text !text-large !mb-0"
                 >
-                  <button
-                    aria-controls="radix-:r1b:"
-                    aria-expanded="false"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r1a:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
-                    >
-                      Homepage.whyAccordionTitle2
-                    </span>
-                    <i
-                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r1a:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r1b:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
-              </div>
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <button
-                    aria-controls="radix-:r1d:"
-                    aria-expanded="false"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r1c:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
-                    >
-                      Homepage.whyAccordionTitle3
-                    </span>
-                    <i
-                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r1c:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r1d:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
-              </div>
-              <div
-                class=""
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <h3
-                  class="!mb-0"
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <button
-                    aria-controls="radix-:r1f:"
-                    aria-expanded="false"
-                    class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
-                    data-orientation="vertical"
-                    data-radix-collection-item=""
-                    data-state="closed"
-                    id="radix-:r1e:"
-                    type="button"
-                  >
-                    <span
-                      class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
-                    >
-                      Homepage.whyAccordionTitle4
-                    </span>
-                    <i
-                      class="fr-icon-add-line flex before:!h-4 before:!w-4"
-                    />
-                  </button>
-                </h3>
-                <div
-                  aria-labelledby="radix-:r1e:"
-                  class="content mt-4 px-4 pb-8"
-                  data-orientation="vertical"
-                  data-state="closed"
-                  hidden=""
-                  id="radix-:r1f:"
-                  role="region"
-                  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                />
+                  Homepage.accordionItems.desktop.title1
+                </p>
               </div>
             </div>
-          </div>
-          <div
-            class="flex w-1/2 items-center justify-end"
-          >
-            <video
-              class="video autoplay-video"
-              height="320"
-              loop=""
-              width="442"
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
             >
-              <source
-                src="/video/home-video-1.mp4"
-                type="video/mp4"
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1b:"
+                  aria-expanded="false"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1a:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                  >
+                    Homepage.accordionItems.desktop.title2
+                  </span>
+                  <i
+                    class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1a:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1b:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
               />
-            </video>
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1d:"
+                  aria-expanded="false"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1c:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                  >
+                    Homepage.accordionItems.desktop.title3
+                  </span>
+                  <i
+                    class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1c:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1d:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1f:"
+                  aria-expanded="false"
+                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1e:"
+                  type="button"
+                >
+                  <span
+                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                  >
+                    Homepage.accordionItems.desktop.title4
+                  </span>
+                  <i
+                    class="fr-icon-add-line flex before:!h-4 before:!w-4"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1e:"
+                class="content mt-4 px-4 pb-8"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1f:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
           </div>
+        </div>
+        <div
+          class="flex w-1/2 items-center justify-end"
+        >
+          <img
+            alt=""
+            class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
+            data-nimg="1"
+            decoding="async"
+            height="327"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+            style="color: transparent;"
+            width="400"
+          />
         </div>
       </div>
     </div>
+    <section
+      class="container flex flex-col gap-10 py-10 lg:grid lg:grid-cols-2 lg:py-20 2xl:gap-20"
+    >
+      <div
+        class="flex h-full flex-col items-center justify-center gap-10"
+      >
+        <span
+          class="relative block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
+        >
+          <img
+            alt="MobileApp.imageAlt"
+            class="object-contain"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2Fimg.jpg&w=3840&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 640w, /_next/image?url=%2Fimg.jpg&w=750&q=75 750w, /_next/image?url=%2Fimg.jpg&w=828&q=75 828w, /_next/image?url=%2Fimg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fimg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fimg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fimg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fimg.jpg&w=3840&q=75 3840w"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </span>
+        <p
+          class="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4"
+        >
+          <a
+            class="relative h-10 w-30"
+            href="https://apps.apple.com/app/id1595597429"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Get it on App Store"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://storage.googleapis.com/refugies-info-assets/store-badges/app-store-fr.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </a>
+          <a
+            class="relative h-10 w-32"
+            href="https://play.google.com/store/apps/details?id=com.refugiesinfo.app"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Get it on Play Store"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://storage.googleapis.com/refugies-info-assets/store-badges/google-play-fr.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </a>
+        </p>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class="mb-6 flex items-center gap-6"
+        >
+          <img
+            alt="MobileApp.logoAlt"
+            data-nimg="1"
+            decoding="async"
+            height="72"
+            loading="lazy"
+            src="/images/logoRI.svg"
+            style="color: transparent;"
+            width="72"
+          />
+          <p
+            class="m-0 flex flex-col gap-2 font-medium"
+          >
+            <span
+              aria-label="MobileApp.rankingLabel"
+              class="inline-flex gap-3"
+              role="img"
+            >
+              <i
+                class="fr-icon-star-fill text-theme-famille-clair h-4 w-4"
+              />
+              <i
+                class="fr-icon-star-fill text-theme-famille-clair h-4 w-4"
+              />
+              <i
+                class="fr-icon-star-fill text-theme-famille-clair h-4 w-4"
+              />
+              <i
+                class="fr-icon-star-fill text-theme-famille-clair h-4 w-4"
+              />
+              <i
+                class="fr-icon-star-fill text-theme-famille-clair h-4 w-4"
+              />
+            </span>
+            MobileApp.rankingText
+          </p>
+        </div>
+        <h2>
+          MobileApp.title
+        </h2>
+        <p
+          class="mb-10"
+        >
+          MobileApp.subtitle
+        </p>
+        <form
+          class="md:w-1/2"
+        >
+          <div
+            class="fr-input-group mb-4"
+          >
+            <label
+              class="fr-label"
+              for="input-:r1g:"
+            >
+              MobileApp.phoneLabel
+            </label>
+            <input
+              class="fr-input"
+              id="input-:r1g:"
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="polite"
+              class="fr-messages-group"
+              id="input-:r1g:-messages-group"
+            />
+          </div>
+          <div
+            class="fr-select-group"
+            id="fr-select-group-:r1h:"
+          >
+            <label
+              class="fr-label"
+              for="select-:r1i:"
+            >
+              MobileApp.langLabel
+            </label>
+            <select
+              aria-describedby="select-:r1j:-desc"
+              class="fr-select"
+              id="select-:r1i:"
+              name="languageSelected"
+            >
+              <option
+                value="fr"
+              >
+                Français 
+              </option>
+              <option
+                value="en"
+              >
+                English  - Anglais
+              </option>
+            </select>
+            <div
+              aria-live="polite"
+              class="fr-messages-group"
+              id="select-:r1i:-messages-group"
+            />
+          </div>
+          <button
+            class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
+            id="fr-button-:r1k:"
+            type="submit"
+          >
+            MobileApp.buttonText
+          </button>
+        </form>
+      </div>
+    </section>
     <div
       class="section bg_red"
     >
