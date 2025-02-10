@@ -163,9 +163,6 @@
     "typescript": "^5.6.3",
     "wait-on": "^8.0.1"
   },
-  "resolutions": {
-    "path-to-regexp": ">=0.1.12"
-  },
   "volta": {
     "node": "20.13.1",
     "pnpm": "10.2.1"
