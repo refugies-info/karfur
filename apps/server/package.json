@@ -37,7 +37,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "expo-server-sdk": "^3.12.0",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-form-data": "^2.0.18",
     "google-auth-library": "^9.15.0",
     "jwt-simple": "^0.5.5",
