@@ -1,3 +1,11 @@
 {
-  "include": ["dependencies", "devDependencies"]
+  "include": ["dependencies", "devDependencies"],
+  "workspaces": {
+    "apps/storybook": {
+      "ignoreDependencies": [
+        "postcss",
+        "tailwindcss"
+      ]
+    }
+  }
 }
