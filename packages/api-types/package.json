@@ -31,22 +31,7 @@
     "memory-pager": "^1.5.0",
     "mongodb": "^6.10.0",
     "mongodb-connection-string-url": "^3.0.1",
-    "mongoose": "8.9.5",
-    "mpath": "^0.9.0",
-    "mquery": "^5.0.0",
-    "ms": "^2.1.3",
-    "punycode": "^2.3.0",
-    "saslprep": "^1.0.3",
-    "sift": "^17.1.3",
-    "smart-buffer": "^4.2.0",
-    "socks": "^2.7.1",
-    "sparse-bitfield": "^3.0.3",
-    "strnum": "^1.0.5",
-    "tr46": "^5.0.0",
-    "tslib": "^2.5.0",
-    "uuid": "^11.0.3",
-    "webidl-conversions": "^7.0.0",
-    "whatwg-url": "^14.0.0"
+    "mongoose": "8.9.5"
   },
   "repository": {
     "type": "git",
