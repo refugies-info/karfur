@@ -22,6 +22,9 @@
       ]
     },
     "apps/server": {
+      "entry": [
+        "src/server.ts"
+      ],
       "ignoreDependencies": [
         "@types/*",
         "nodemon",
