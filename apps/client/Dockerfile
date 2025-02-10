@@ -1,5 +1,5 @@
 # WARNING: using root folder as current context to make this dockerfile work
-FROM node:20.13.1-alpine AS deps
+FROM node:22.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
 # Install pnpm

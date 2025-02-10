@@ -76,7 +76,7 @@
     "@refugies-info/ui": "workspace:*"
   },
   "engines": {
-    "node": "20.13.1"
+    "node": "22.13.1"
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "^1.18.0",
@@ -97,7 +97,7 @@
     "typescript": "^5.6.3"
   },
   "volta": {
-    "node": "20.13.1",
+    "node": "22.13.1",
     "pnpm": "10.2.1"
   },
   "lint-staged": {
