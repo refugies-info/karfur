@@ -1,9 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import React from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -64,10 +63,10 @@ export const LocationWarningModal = (props: Props) => {
 
   return (
     <Modal
-      isVisible={props.isVisible}
+      visible={props.isVisible}
       statusBarTranslucent={true}
       backdropColor={styles.colors.greyF7}
-      backdropOpacity={1}
+      transparent={false}
     >
       <FixSafeAreaView style={{ flex: 1, justifyContent: "center" }}>
         <CloseButton onPress={props.closeModal} />
