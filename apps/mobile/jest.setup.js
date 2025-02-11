@@ -78,6 +78,11 @@ jest.mock("expo-notifications", () => ({
   getExpoPushTokenAsync: jest.fn().mockResolvedValue({ data: "data" }),
   setNotificationChannelAsync: jest.fn(),
   AndroidImportance: { Max: 7 },
+  PermissionStatus: {
+    GRANTED: "granted",
+    UNDETERMINED: "undetermined",
+    DENIED: "denied",
+  },
 }));
 
 jest.mock("@react-native-async-storage/async-storage", () =>
