@@ -174,16 +174,16 @@ importers:
         version: 2.30.1
       next:
         specifier: ^14.2.10
-        version: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
+        version: 14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.0(i18next@23.16.8)(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 15.4.0(i18next@23.16.8)(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next-redux-wrapper:
         specifier: ^8.0.0
-        version: 8.1.0(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
+        version: 8.1.0(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
       next-sitemap:
         specifier: ^4.2.3
-        version: 4.2.3(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))
+        version: 4.2.3(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))
       query-string:
         specifier: ^9.1.1
         version: 9.1.1
@@ -361,7 +361,7 @@ importers:
         version: 7.2.0(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       next-router-mock:
         specifier: ^0.9.13
-        version: 0.9.13(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react@18.3.1)
+        version: 0.9.13(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react@18.3.1)
       papaparse:
         specifier: ^5.3.2
         version: 5.4.1
@@ -530,9 +530,6 @@ importers:
       react-native-maps:
         specifier: 1.18.0
         version: 1.18.0(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
-      react-native-modal:
-        specifier: ^13.0.0
-        version: 13.0.1(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       react-native-reanimated:
         specifier: ~3.16.7
         version: 3.16.7(@babel/core@7.26.8)(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -10434,9 +10431,6 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react-native-animatable@1.3.3:
-    resolution: {integrity: sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==}
-
   react-native-blob-util@0.19.11:
     resolution: {integrity: sha512-lxaeDzFLYffR6lbRiOce0oTYO6pE3/PyT8Sa7qiz8B+IT9oe4G85SlVCdl5F9xMJh/Zer2onBLw7u+B1AS+GFA==}
     peerDependencies:
@@ -10470,12 +10464,6 @@ packages:
     peerDependenciesMeta:
       react-native-web:
         optional: true
-
-  react-native-modal@13.0.1:
-    resolution: {integrity: sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw==}
-    peerDependencies:
-      react: '*'
-      react-native: '>=0.65.0'
 
   react-native-reanimated-carousel@3.5.1:
     resolution: {integrity: sha512-9BBQV6JAYSQm2lV7MFtT4mzapXmW4IZO6s38gfiJL84Jg23ivGB1UykcNQauKgtHyhtW2NuZJzItb1s42lM+hA==}
@@ -23478,7 +23466,7 @@ snapshots:
 
   nested-error-stacks@2.0.1: {}
 
-  next-i18next@15.4.0(i18next@23.16.8)(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-i18next@15.4.0(i18next@23.16.8)(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-i18next@15.1.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
       '@types/hoist-non-react-statics': 3.3.5
@@ -23486,30 +23474,30 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       i18next: 23.16.8
       i18next-fs-backend: 2.6.0
-      next: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
+      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
       react: 18.3.1
       react-i18next: 15.1.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  next-redux-wrapper@8.1.0(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1):
+  next-redux-wrapper@8.1.0(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react-redux@9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1):
     dependencies:
-      next: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
+      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
       react: 18.3.1
       react-redux: 9.1.2(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1)
 
-  next-router-mock@0.9.13(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react@18.3.1):
+  next-router-mock@0.9.13(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react@18.3.1):
     dependencies:
-      next: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
+      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
       react: 18.3.1
 
-  next-sitemap@4.2.3(next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)):
+  next-sitemap@4.2.3(next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.7
       fast-glob: 3.3.2
       minimist: 1.2.8
-      next: 14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
+      next: 14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1)
 
-  next@14.2.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1):
+  next@14.2.18(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1):
     dependencies:
       '@next/env': 14.2.18
       '@swc/helpers': 0.5.5
@@ -24533,10 +24521,6 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-native-animatable@1.3.3:
-    dependencies:
-      prop-types: 15.8.1
-
   react-native-blob-util@0.19.11(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
     dependencies:
       base-64: 0.1.0
@@ -24567,13 +24551,6 @@ snapshots:
       '@types/geojson': 7946.0.14
       react: 18.3.1
       react-native: 0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1)
-
-  react-native-modal@13.0.1(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.3.1
-      react-native: 0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1)
-      react-native-animatable: 1.3.3
 
   react-native-reanimated-carousel@3.5.1(react-native-gesture-handler@2.22.1(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-reanimated@3.16.7(@babel/core@7.26.8)(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
     dependencies:

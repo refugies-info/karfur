@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import { Modal, TextInput, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import Modal from "react-native-modal";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -89,11 +88,11 @@ export const SearchBarCity = (props: Props) => {
 
       {/* @ts-ignore (see https://github.com/react-native-modal/react-native-modal/issues/696) */}
       <TextModal
-        isVisible={modalOpened}
-        onBackdropPress={() => setModalOpened(false)}
+        visible={modalOpened}
+        onDismiss={() => setModalOpened(false)}
         statusBarTranslucent={true}
         backdropColor={styles.colors.greyF7}
-        backdropOpacity={1}
+        transparent={false}
       >
         <SafeAreaView>
           <MainContainer>
