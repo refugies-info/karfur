@@ -15,19 +15,21 @@ exports[`recherche renders search results 1`] = `
         <div
           class="fr-notice__body"
         >
-          <p
-            class="fr-notice__title"
-          >
-            Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info ! Découvrez toutes les nouveautés dans 
-            <a
-              class="underline"
-              href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
-              rel="noopener noreferrer"
-              target="_blank"
+          <p>
+            <span
+              class="fr-notice__title"
             >
-              notre article d'aide
-            </a>
-            .
+              Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info ! Découvrez toutes les nouveautés dans 
+              <a
+                class="underline"
+                href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                notre article d'aide
+              </a>
+              .
+            </span>
           </p>
           <button
             class="fr-btn--close fr-btn"
