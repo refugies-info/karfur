@@ -417,8 +417,8 @@ importers:
         specifier: ^20.0.0
         version: 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@react-native-firebase/crashlytics':
-        specifier: ^20.0.0
-        version: 20.5.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
+        specifier: ^21.8.0
+        version: 21.8.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
       '@react-navigation/bottom-tabs':
         specifier: ^6.5.11
         version: 6.6.1(@react-navigation/native@6.1.18(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native-safe-area-context@4.10.5(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native-screens@3.31.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -3851,10 +3851,10 @@ packages:
       expo:
         optional: true
 
-  '@react-native-firebase/crashlytics@20.5.0':
-    resolution: {integrity: sha512-HXnxv5XrLW4zMWIGBbQZqyHKEqimvr4SULtk9J694WHOvPnXClibwXTAYzHV7WmZ3ypwUwbVJFrGJ1IdOb+Aaw==}
+  '@react-native-firebase/crashlytics@21.8.0':
+    resolution: {integrity: sha512-JK+zBFe0dDtT7u+K6FveeZXPsj+RjGG/QHFtCjJVKywPWeeRhdvc0dzcCq4ZWJrcDzZ7YEjmappWEKwSexFUsg==}
     peerDependencies:
-      '@react-native-firebase/app': 20.5.0
+      '@react-native-firebase/app': 21.8.0
       expo: '>=47.0.0'
     peerDependenciesMeta:
       expo:
@@ -16533,7 +16533,7 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
-  '@react-native-firebase/crashlytics@20.5.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))':
+  '@react-native-firebase/crashlytics@21.8.0(@react-native-firebase/app@20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))':
     dependencies:
       '@react-native-firebase/app': 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0)))(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))(react-native@0.74.5(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       stacktrace-js: 2.0.2
