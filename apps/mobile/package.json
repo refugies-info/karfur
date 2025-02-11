@@ -35,7 +35,6 @@
     "expo-linear-gradient": "~14.0.2",
     "expo-linking": "~7.0.5",
     "expo-location": "~18.0.6",
-    "expo-modules-core": "^2.2.1",
     "expo-notifications": "~0.29.13",
     "expo-speech": "~13.0.1",
     "expo-status-bar": "~2.0.1",

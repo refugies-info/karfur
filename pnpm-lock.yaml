@@ -473,9 +473,6 @@ importers:
       expo-location:
         specifier: ~18.0.6
         version: 18.0.6(expo@52.0.32(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(graphql@15.8.0)(react-native@0.76.7(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
-      expo-modules-core:
-        specifier: ^2.2.1
-        version: 2.2.1
       expo-notifications:
         specifier: ~0.29.13
         version: 0.29.13(expo@52.0.32(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(graphql@15.8.0)(react-native@0.76.7(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.7(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@react-native-community/cli-server-api@13.6.9)(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
