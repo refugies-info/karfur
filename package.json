@@ -68,14 +68,12 @@
     "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
-    "storybook": "turbo --filter @refugies-info/storybook storybook",
-    "storybook:publish": "turbo --filter @refugies-info/storybook storybook:publish"
-  },
-  "dependencies": {
-    "@refugies-info/ui": "workspace:*"
+    "storybook": "pnpm --filter @refugies-info/storybook storybook",
+    "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
+    "knip": "knip"
   },
   "engines": {
-    "node": "20.13.1"
+    "node": "22.13.1"
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "^1.18.0",
@@ -83,6 +81,7 @@
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",
     "husky": ">=9.1.6",
+    "knip": "^5.43.6",
     "lint-staged": "^15.4.3",
     "mongo-migrate-ts": "^1.6.2",
     "mongodb": "^6.13.0",
@@ -92,10 +91,11 @@
     "stylelint": "^16.14.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
-    "turbo": "^2.4.0"
+    "turbo": "^2.4.0",
+    "typescript": "^5.6.3"
   },
   "volta": {
-    "node": "20.13.1",
+    "node": "22.13.1",
     "pnpm": "10.2.1"
   },
   "lint-staged": {
