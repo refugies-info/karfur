@@ -66,6 +66,15 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -93,6 +102,15 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "flex-start",
           }
         }
         style={
@@ -357,6 +375,15 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -384,6 +411,15 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "flex-start",
           }
         }
         style={
@@ -657,6 +693,15 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -684,6 +729,15 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "flex-start",
           }
         }
         style={
@@ -843,6 +897,15 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -870,6 +933,15 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "flex-start",
           }
         }
         style={

@@ -21,6 +21,22 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
+    }
     style={
       {
         "backgroundColor": "#f5f5fe",
@@ -50,6 +66,15 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
         style={
@@ -272,6 +297,15 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 "value": {},
               }
             }
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -375,6 +409,15 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             jestAnimatedStyle={
               {
                 "value": {},
+              }
+            }
+            jestInlineStyle={
+              {
+                "alignItems": "top",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               }
             }
             style={
@@ -1405,6 +1448,21 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 24,
+                },
+              ]
+            }
             style={
               {
                 "alignItems": "center",
@@ -1533,7 +1591,11 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/profile/illu-mascotte.png",
+                  }
+                }
                 style={
                   {
                     "height": 96,
@@ -4518,6 +4580,22 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
+    }
     style={
       {
         "backgroundColor": "#f5f5fe",
@@ -4547,6 +4625,15 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
         style={
@@ -4769,6 +4856,15 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 "value": {},
               }
             }
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -4872,6 +4968,15 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             jestAnimatedStyle={
               {
                 "value": {},
+              }
+            }
+            jestInlineStyle={
+              {
+                "alignItems": "top",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               }
             }
             style={
@@ -5875,6 +5980,21 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 24,
+                },
+              ]
+            }
             style={
               {
                 "alignItems": "center",
@@ -6003,7 +6123,11 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/profile/illu-mascotte.png",
+                  }
+                }
                 style={
                   {
                     "height": 96,

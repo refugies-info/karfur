@@ -21,6 +21,22 @@ exports[`About screen should render correctly 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "white",
+        },
+      ]
+    }
     style={
       {
         "backgroundColor": "white",
@@ -50,6 +66,15 @@ exports[`About screen should render correctly 1`] = `
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
         style={
@@ -272,6 +297,15 @@ exports[`About screen should render correctly 1`] = `
                 "value": {},
               }
             }
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -467,7 +501,11 @@ exports[`About screen should render correctly 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      {
+                        "testUri": "../../../apps/mobile/src/theme/images/aboutUs/mission-1.png",
+                      }
+                    }
                     style={
                       {
                         "alignSelf": "center",
@@ -538,7 +576,11 @@ exports[`About screen should render correctly 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      {
+                        "testUri": "../../../apps/mobile/src/theme/images/aboutUs/mission-2.png",
+                      }
+                    }
                     style={
                       {
                         "alignSelf": "center",
@@ -602,7 +644,11 @@ exports[`About screen should render correctly 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      {
+                        "testUri": "../../../apps/mobile/src/theme/images/aboutUs/mission-3.png",
+                      }
+                    }
                     style={
                       {
                         "alignSelf": "center",
@@ -721,7 +767,11 @@ exports[`About screen should render correctly 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      {
+                        "testUri": "../../../apps/mobile/src/theme/images/aboutUs/problematique-1.png",
+                      }
+                    }
                     style={
                       {
                         "alignSelf": "center",
@@ -791,7 +841,11 @@ exports[`About screen should render correctly 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      {
+                        "testUri": "../../../apps/mobile/src/theme/images/aboutUs/problematique-2.png",
+                      }
+                    }
                     style={
                       {
                         "alignSelf": "center",
@@ -855,7 +909,11 @@ exports[`About screen should render correctly 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      {
+                        "testUri": "../../../apps/mobile/src/theme/images/aboutUs/problematique-3.png",
+                      }
+                    }
                     style={
                       {
                         "alignSelf": "center",
@@ -975,7 +1033,11 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View>
                     <Image
-                      source={1}
+                      source={
+                        {
+                          "testUri": "../../../apps/mobile/src/theme/images/aboutUs/contributif-1.png",
+                        }
+                      }
                       style={
                         {
                           "alignSelf": "center",
@@ -1048,7 +1110,11 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View>
                     <Image
-                      source={1}
+                      source={
+                        {
+                          "testUri": "../../../apps/mobile/src/theme/images/aboutUs/contributif-2.png",
+                        }
+                      }
                       style={
                         {
                           "alignSelf": "center",
@@ -1119,7 +1185,11 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View>
                     <Image
-                      source={1}
+                      source={
+                        {
+                          "testUri": "../../../apps/mobile/src/theme/images/aboutUs/contributif-3.png",
+                        }
+                      }
                       style={
                         {
                           "alignSelf": "center",

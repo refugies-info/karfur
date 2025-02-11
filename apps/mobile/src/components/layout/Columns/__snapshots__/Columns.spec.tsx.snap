@@ -10,6 +10,15 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
       "value": {},
     }
   }
+  jestInlineStyle={
+    {
+      "alignItems": "center",
+      "flexBasis": "auto",
+      "flexDirection": "row",
+      "flexGrow": 1,
+      "justifyContent": "space-between",
+    }
+  }
   style={
     {
       "alignItems": "center",
@@ -83,6 +92,15 @@ exports[`Columns snapshot test suite should render without bug 1`] = `
   jestAnimatedStyle={
     {
       "value": {},
+    }
+  }
+  jestInlineStyle={
+    {
+      "alignItems": "flex-start",
+      "flexBasis": "auto",
+      "flexDirection": "row",
+      "flexGrow": 1,
+      "justifyContent": "flex-start",
     }
   }
   style={

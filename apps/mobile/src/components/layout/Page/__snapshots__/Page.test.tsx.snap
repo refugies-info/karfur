@@ -544,6 +544,22 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "white",
+        },
+      ]
+    }
     style={
       {
         "backgroundColor": "white",
@@ -573,6 +589,15 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
         style={
@@ -794,6 +819,15 @@ exports[`Page snapshot test suite should render without bug 1`] = `
             jestAnimatedStyle={
               {
                 "value": {},
+              }
+            }
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
               }
             }
             style={

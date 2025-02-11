@@ -66,6 +66,15 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -292,6 +301,15 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
     jestAnimatedStyle={
       {
         "value": {},
+      }
+    }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
       }
     }
     style={
@@ -594,6 +612,15 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
     jestAnimatedStyle={
       {
         "value": {},
+      }
+    }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
       }
     }
     style={

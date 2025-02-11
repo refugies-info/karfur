@@ -21,6 +21,22 @@ exports[`LegalNotice screen should render correctly 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
+    }
     style={
       {
         "backgroundColor": "#f5f5fe",
@@ -50,6 +66,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
         jestAnimatedStyle={
           {
             "value": {},
+          }
+        }
+        jestInlineStyle={
+          {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
         style={
@@ -262,6 +287,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 "value": {},
               }
             }
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "center",
+              }
+            }
             style={
               {
                 "alignItems": "center",
@@ -413,6 +447,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
             jestAnimatedStyle={
               {
                 "value": {},
+              }
+            }
+            jestInlineStyle={
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
               }
             }
             style={
@@ -1646,6 +1689,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   "value": {},
                 }
               }
+              jestInlineStyle={
+                {
+                  "alignItems": "flex-start",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
+              }
               style={
                 {
                   "alignItems": "flex-start",
@@ -2065,6 +2117,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
               jestAnimatedStyle={
                 {
                   "value": {},
+                }
+              }
+              jestInlineStyle={
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
                 }
               }
               style={
@@ -3203,6 +3264,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
               jestAnimatedStyle={
                 {
                   "value": {},
+                }
+              }
+              jestInlineStyle={
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
                 }
               }
               style={

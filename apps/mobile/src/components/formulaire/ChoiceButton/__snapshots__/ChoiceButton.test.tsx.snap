@@ -66,6 +66,15 @@ exports[`ChoiceButton snapshot test suite should render not selected 1`] = `
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -255,6 +264,15 @@ exports[`ChoiceButton snapshot test suite should render with flatStyle 1`] = `
     jestAnimatedStyle={
       {
         "value": {},
+      }
+    }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
       }
     }
     style={
@@ -457,6 +475,15 @@ exports[`ChoiceButton snapshot test suite should render with without radio 1`] =
         "value": {},
       }
     }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
     style={
       {
         "alignItems": "center",
@@ -541,6 +568,15 @@ exports[`ChoiceButton snapshot test suite should render without bug 1`] = `
     jestAnimatedStyle={
       {
         "value": {},
+      }
+    }
+    jestInlineStyle={
+      {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
       }
     }
     style={
