@@ -480,8 +480,8 @@ importers:
         specifier: ~0.28.19
         version: 0.28.19(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
       expo-speech:
-        specifier: ~12.0.2
-        version: 12.0.2(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
+        specifier: ~13.0.1
+        version: 13.0.1(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8)))
       expo-status-bar:
         specifier: ~1.12.1
         version: 1.12.1
@@ -7241,8 +7241,8 @@ packages:
   expo-server-sdk@3.13.0:
     resolution: {integrity: sha512-EeGs8PlXmnP2uDpjVhnclQmlua3A0swEj3BzqoRiHfU4WPsN5v3eHhqjjwl+Lf2rleKW2L9lhWp6sCL1vPMnAg==}
 
-  expo-speech@12.0.2:
-    resolution: {integrity: sha512-voWNz69hvtLEA2jipAbM5XJBIbKCusQsDZ/G/vAKKkP5AUTzAmcdRDWGcmESPRKK0JUtQZ8WetujgLCn2kl83w==}
+  expo-speech@13.0.1:
+    resolution: {integrity: sha512-J7tvFzORsFpIKihMnayeY5lCPc15giDrlN+ws2uUNo0MvLv1HCYEu/5p3+aMmZXXsY5I1QlconD4CwRWw3JFig==}
     peerDependencies:
       expo: '*'
 
@@ -20938,7 +20938,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  expo-speech@12.0.2(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))):
+  expo-speech@13.0.1(expo@51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))):
     dependencies:
       expo: 51.0.39(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))
 
