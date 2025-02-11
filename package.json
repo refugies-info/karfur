@@ -106,7 +106,7 @@
   "packageManager": "pnpm@10.2.1",
   "pnpm": {
     "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.15.0": "patches/@codegouvfr__react-dsfr@1.15.0.patch"
+      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
     }
   }
 }
