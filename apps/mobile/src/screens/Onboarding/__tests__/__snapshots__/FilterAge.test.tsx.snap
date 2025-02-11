@@ -82,62 +82,20 @@ exports[`Filter age should render correctly when age selected 1`] = `
               }
             >
               <View
-                collapsable={false}
                 isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": "100%",
-                  }
-                }
-              />
-            </View>
-            <View
-              style={
-                {
-                  "backgroundColor": "#e5e5e5",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "height": 4,
-                  "marginHorizontal": 8,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
-              }
-            >
-              <View
-                collapsable={false}
-                isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {
-                      "width": "0%",
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
                     },
-                  }
-                }
-                style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": "0%",
-                  }
+                    {
+                      "width": "100%",
+                    },
+                  ]
                 }
               />
             </View>
@@ -160,22 +118,56 @@ exports[`Filter age should render correctly when age selected 1`] = `
               }
             >
               <View
-                collapsable={false}
                 isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": 0,
-                  }
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                    },
+                    {
+                      "style": {},
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View
+              style={
+                {
+                  "backgroundColor": "#e5e5e5",
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "height": 4,
+                  "marginHorizontal": 8,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                isRTL={false}
+                style={
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                    },
+                    {
+                      "width": 0,
+                    },
+                  ]
                 }
               />
             </View>
@@ -224,13 +216,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",
@@ -359,13 +345,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -594,13 +574,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -820,13 +794,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -1061,13 +1029,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -1380,37 +1342,25 @@ exports[`Filter age should render correctly when age selected 1`] = `
           </View>
         </View>
         <View
-          collapsable={false}
-          jestAnimatedStyle={
-            {
-              "value": {
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-              },
-            }
-          }
           style={
-            {
-              "bottom": 48,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "space-between",
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "position": "absolute",
-              "transform": [
-                {
-                  "scale": 0,
-                },
-              ],
-              "zIndex": 1,
-            }
+            [
+              {
+                "bottom": 48,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 8,
+                "position": "absolute",
+                "zIndex": 1,
+              },
+              {
+                "style": {},
+              },
+            ]
           }
         >
           <View
@@ -1424,7 +1374,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                {
+                  "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                }
+              }
               style={
                 {
                   "marginLeft": -8,
@@ -2037,13 +1991,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -2268,62 +2216,20 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               }
             >
               <View
-                collapsable={false}
                 isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": "100%",
-                  }
-                }
-              />
-            </View>
-            <View
-              style={
-                {
-                  "backgroundColor": "#e5e5e5",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "height": 4,
-                  "marginHorizontal": 8,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
-              }
-            >
-              <View
-                collapsable={false}
-                isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {
-                      "width": "0%",
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
                     },
-                  }
-                }
-                style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": "0%",
-                  }
+                    {
+                      "width": "100%",
+                    },
+                  ]
                 }
               />
             </View>
@@ -2346,22 +2252,56 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               }
             >
               <View
-                collapsable={false}
                 isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": 0,
-                  }
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                    },
+                    {
+                      "style": {},
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View
+              style={
+                {
+                  "backgroundColor": "#e5e5e5",
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "height": 4,
+                  "marginHorizontal": 8,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                isRTL={false}
+                style={
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                    },
+                    {
+                      "width": 0,
+                    },
+                  ]
                 }
               />
             </View>
@@ -2410,13 +2350,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",
@@ -2553,13 +2487,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -2779,13 +2707,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -3005,13 +2927,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -3246,13 +3162,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -3565,37 +3475,25 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           </View>
         </View>
         <View
-          collapsable={false}
-          jestAnimatedStyle={
-            {
-              "value": {
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-              },
-            }
-          }
           style={
-            {
-              "bottom": 48,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "space-between",
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "position": "absolute",
-              "transform": [
-                {
-                  "scale": 0,
-                },
-              ],
-              "zIndex": 1,
-            }
+            [
+              {
+                "bottom": 48,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 8,
+                "position": "absolute",
+                "zIndex": 1,
+              },
+              {
+                "style": {},
+              },
+            ]
           }
         >
           <View
@@ -3609,7 +3507,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                {
+                  "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                }
+              }
               style={
                 {
                   "marginLeft": -8,
@@ -4222,13 +4124,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -4453,62 +4349,20 @@ exports[`Filter age should select age when click on it 1`] = `
               }
             >
               <View
-                collapsable={false}
                 isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": "100%",
-                  }
-                }
-              />
-            </View>
-            <View
-              style={
-                {
-                  "backgroundColor": "#e5e5e5",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "height": 4,
-                  "marginHorizontal": 8,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
-              }
-            >
-              <View
-                collapsable={false}
-                isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {
-                      "width": "0%",
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
                     },
-                  }
-                }
-                style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": "0%",
-                  }
+                    {
+                      "width": "100%",
+                    },
+                  ]
                 }
               />
             </View>
@@ -4531,22 +4385,56 @@ exports[`Filter age should select age when click on it 1`] = `
               }
             >
               <View
-                collapsable={false}
                 isRTL={false}
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
-                  {
-                    "backgroundColor": "#2323FF",
-                    "height": "100%",
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": 0,
-                  }
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                    },
+                    {
+                      "style": {},
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View
+              style={
+                {
+                  "backgroundColor": "#e5e5e5",
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "height": 4,
+                  "marginHorizontal": 8,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                isRTL={false}
+                style={
+                  [
+                    {
+                      "backgroundColor": "#2323FF",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                    },
+                    {
+                      "width": 0,
+                    },
+                  ]
                 }
               />
             </View>
@@ -4595,13 +4483,7 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",
@@ -4738,13 +4620,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -4964,13 +4840,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -5182,13 +5052,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -5432,13 +5296,7 @@ exports[`Filter age should select age when click on it 1`] = `
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -5751,37 +5609,25 @@ exports[`Filter age should select age when click on it 1`] = `
           </View>
         </View>
         <View
-          collapsable={false}
-          jestAnimatedStyle={
-            {
-              "value": {
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-              },
-            }
-          }
           style={
-            {
-              "bottom": 48,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "space-between",
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "position": "absolute",
-              "transform": [
-                {
-                  "scale": 0,
-                },
-              ],
-              "zIndex": 1,
-            }
+            [
+              {
+                "bottom": 48,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 8,
+                "position": "absolute",
+                "zIndex": 1,
+              },
+              {
+                "style": {},
+              },
+            ]
           }
         >
           <View
@@ -5795,7 +5641,11 @@ exports[`Filter age should select age when click on it 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                {
+                  "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                }
+              }
               style={
                 {
                   "marginLeft": -8,
@@ -6408,13 +6258,7 @@ exports[`Filter age should select age when click on it 1`] = `
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",

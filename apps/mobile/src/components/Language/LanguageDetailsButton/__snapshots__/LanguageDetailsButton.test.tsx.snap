@@ -59,22 +59,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
     horizontalAlign="flex-start"
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
     style={
       {
         "alignItems": "center",
@@ -97,22 +82,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "flex-start",
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -368,22 +338,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
     horizontalAlign="flex-start"
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
     style={
       {
         "alignItems": "center",
@@ -406,22 +361,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "flex-start",
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -686,22 +626,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
     horizontalAlign="flex-start"
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
     style={
       {
         "alignItems": "center",
@@ -724,22 +649,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "flex-start",
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -890,22 +800,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
 >
   <View
     RTLBehaviour={true}
-    collapsable={false}
     horizontalAlign="flex-start"
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
     style={
       {
         "alignItems": "center",
@@ -928,22 +823,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
     >
       <View
         RTLBehaviour={true}
-        collapsable={false}
         horizontalAlign="flex-start"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "flex-start",
-          }
-        }
         style={
           {
             "alignItems": "center",

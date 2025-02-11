@@ -30,22 +30,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
 >
   <View
     RTLBehaviour={false}
-    collapsable={false}
     horizontalAlign="flex-start"
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
-      {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      }
-    }
     style={
       {
         "alignItems": "center",
@@ -99,22 +84,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
       >
         <View
           RTLBehaviour={false}
-          collapsable={false}
           horizontalAlign="flex-start"
-          jestAnimatedStyle={
-            {
-              "value": {},
-            }
-          }
-          jestInlineStyle={
-            {
-              "alignItems": "center",
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
-            }
-          }
           style={
             {
               "alignItems": "center",

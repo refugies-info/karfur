@@ -15,13 +15,7 @@ exports[`About screen should render correctly 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
+    style={
       [
         {
           "left": 0,
@@ -37,18 +31,6 @@ exports[`About screen should render correctly 1`] = `
         },
       ]
     }
-    style={
-      {
-        "backgroundColor": "white",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
-    }
   >
     <RCTSafeAreaView
       style={
@@ -61,22 +43,7 @@ exports[`About screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "space-between",
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -290,22 +257,7 @@ exports[`About screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
-            jestInlineStyle={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-end",
-              }
-            }
             style={
               {
                 "alignItems": "center",

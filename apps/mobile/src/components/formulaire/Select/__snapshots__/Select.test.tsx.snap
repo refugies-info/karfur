@@ -75,22 +75,7 @@ exports[`Select snapshot test suite should render with label 1`] = `
   >
     <View
       RTLBehaviour={true}
-      collapsable={false}
       horizontalAlign="flex-start"
-      jestAnimatedStyle={
-        {
-          "value": {},
-        }
-      }
-      jestInlineStyle={
-        {
-          "alignItems": "center",
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 1,
-          "justifyContent": "flex-start",
-        }
-      }
       style={
         {
           "alignItems": "center",
@@ -298,22 +283,7 @@ exports[`Select snapshot test suite should render without bug 1`] = `
   >
     <View
       RTLBehaviour={true}
-      collapsable={false}
       horizontalAlign="flex-start"
-      jestAnimatedStyle={
-        {
-          "value": {},
-        }
-      }
-      jestInlineStyle={
-        {
-          "alignItems": "center",
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 1,
-          "justifyContent": "flex-start",
-        }
-      }
       style={
         {
           "alignItems": "center",

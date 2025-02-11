@@ -15,23 +15,21 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
     style={
-      {
-        "backgroundColor": "white",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "white",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -45,13 +43,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -266,13 +258,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -332,29 +318,17 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       }
     >
       <View
-        collapsable={false}
-        jestAnimatedStyle={
-          {
-            "value": {
-              "transform": [
-                {
-                  "translateX": 0,
-                },
-              ],
-            },
-          }
-        }
         style={
-          {
-            "height": "100%",
-            "position": "absolute",
-            "transform": [
-              {
-                "translateX": 0,
-              },
-            ],
-            "width": "100%",
-          }
+          [
+            {
+              "height": "100%",
+              "position": "absolute",
+              "width": "100%",
+            },
+            {
+              "style": {},
+            },
+          ]
         }
       >
         <ViewManagerAdapter_ExpoLinearGradient
@@ -399,29 +373,17 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       }
     >
       <View
-        collapsable={false}
-        jestAnimatedStyle={
-          {
-            "value": {
-              "transform": [
-                {
-                  "translateX": 0,
-                },
-              ],
-            },
-          }
-        }
         style={
-          {
-            "height": "100%",
-            "position": "absolute",
-            "transform": [
-              {
-                "translateX": 0,
-              },
-            ],
-            "width": "100%",
-          }
+          [
+            {
+              "height": "100%",
+              "position": "absolute",
+              "width": "100%",
+            },
+            {
+              "style": {},
+            },
+          ]
         }
       >
         <ViewManagerAdapter_ExpoLinearGradient
@@ -466,29 +428,17 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       }
     >
       <View
-        collapsable={false}
-        jestAnimatedStyle={
-          {
-            "value": {
-              "transform": [
-                {
-                  "translateX": 0,
-                },
-              ],
-            },
-          }
-        }
         style={
-          {
-            "height": "100%",
-            "position": "absolute",
-            "transform": [
-              {
-                "translateX": 0,
-              },
-            ],
-            "width": "100%",
-          }
+          [
+            {
+              "height": "100%",
+              "position": "absolute",
+              "width": "100%",
+            },
+            {
+              "style": {},
+            },
+          ]
         }
       >
         <ViewManagerAdapter_ExpoLinearGradient
@@ -538,13 +488,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
-    jestInlineStyle={
+    style={
       [
         {
           "left": 0,
@@ -560,18 +504,6 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         },
       ]
     }
-    style={
-      {
-        "backgroundColor": "white",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
-    }
   >
     <RCTSafeAreaView
       style={
@@ -584,22 +516,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
-        jestInlineStyle={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "space-between",
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -814,22 +731,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
-            jestInlineStyle={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-end",
-              }
-            }
             style={
               {
                 "alignItems": "center",

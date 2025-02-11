@@ -4,6 +4,8 @@
 // Import built-in Jest matchers
 import "@testing-library/react-native/extend-expect";
 
+require("react-native-reanimated").setUpTests();
+
 jest.useFakeTimers();
 
 // jest.mock("react-native/Libraries/EventEmitter/NativeEventEmitter.js", () => {
@@ -91,3 +93,35 @@ jest.mock("@react-native-async-storage/async-storage", () =>
 
 // Mock all SVG imports
 jest.mock("*.svg", () => "SvgMock");
+
+jest.mock("react-native-reanimated", () => {
+  const View = require("react-native").View;
+  const createAnimatedComponent = (Component) => Component;
+
+  return {
+    ...jest.requireActual("react-native-reanimated"),
+    useAnimatedStyle: jest.fn().mockImplementation(() => ({ style: {} })),
+    createAnimatedComponent,
+    default: {
+      View,
+      createAnimatedComponent,
+    },
+    Animated: {
+      View,
+      createAnimatedComponent,
+    },
+    View,
+  };
+});
+
+jest.mock("@gorhom/bottom-sheet", () => ({
+  __esModule: true,
+  default: "BottomSheet",
+  BottomSheetView: "BottomSheetView",
+  useBottomSheetDynamicSnapPoints: jest.fn().mockReturnValue({
+    animatedHandleHeight: { value: 0 },
+    animatedSnapPoints: [0],
+    animatedContentHeight: { value: 0 },
+    handleContentLayout: jest.fn(),
+  }),
+}));

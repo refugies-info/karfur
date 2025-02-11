@@ -240,37 +240,25 @@ exports[`PageOnboarding snapshot test suite should render in loading state 1`] =
           </View>
         </View>
         <View
-          collapsable={false}
-          jestAnimatedStyle={
-            {
-              "value": {
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-              },
-            }
-          }
           style={
-            {
-              "bottom": 48,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "space-between",
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "position": "absolute",
-              "transform": [
-                {
-                  "scale": 0,
-                },
-              ],
-              "zIndex": 1,
-            }
+            [
+              {
+                "bottom": 48,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 8,
+                "position": "absolute",
+                "zIndex": 1,
+              },
+              {
+                "style": {},
+              },
+            ]
           }
         >
           <View
@@ -284,7 +272,11 @@ exports[`PageOnboarding snapshot test suite should render in loading state 1`] =
             }
           >
             <Image
-              source={1}
+              source={
+                {
+                  "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                }
+              }
               style={
                 {
                   "marginLeft": -8,
@@ -1095,37 +1087,25 @@ exports[`PageOnboarding snapshot test suite should render without bug 1`] = `
           </View>
         </View>
         <View
-          collapsable={false}
-          jestAnimatedStyle={
-            {
-              "value": {
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-              },
-            }
-          }
           style={
-            {
-              "bottom": 48,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "space-between",
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "position": "absolute",
-              "transform": [
-                {
-                  "scale": 0,
-                },
-              ],
-              "zIndex": 1,
-            }
+            [
+              {
+                "bottom": 48,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "paddingBottom": 8,
+                "paddingLeft": 8,
+                "paddingRight": 8,
+                "paddingTop": 8,
+                "position": "absolute",
+                "zIndex": 1,
+              },
+              {
+                "style": {},
+              },
+            ]
           }
         >
           <View
@@ -1139,7 +1119,11 @@ exports[`PageOnboarding snapshot test suite should render without bug 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                {
+                  "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                }
+              }
               style={
                 {
                   "marginLeft": -8,
