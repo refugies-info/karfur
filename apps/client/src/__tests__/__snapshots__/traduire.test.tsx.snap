@@ -365,10 +365,10 @@ exports[`traduire renders traduire 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   1
                 </span>
@@ -414,10 +414,10 @@ exports[`traduire renders traduire 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   2
                 </span>
@@ -456,10 +456,10 @@ exports[`traduire renders traduire 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   3
                 </span>
@@ -515,10 +515,10 @@ exports[`traduire renders traduire 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   4
                 </span>
