@@ -10,6 +10,7 @@ interface Props {
   image?: any;
   imageWidth?: number;
   imageHeight?: number;
+  imageComponent?: ReactElement;
   header?: ReactElement;
   footer?: ReactElement;
   footerBottom?: boolean;
@@ -42,6 +43,7 @@ const Card = (props: Props) => {
               style={{ objectFit: "contain" }}
             />
           )}
+          {props.imageComponent}
         </div>
         <h3 className="text-h6 md:text-h5 my-3 text-blue-france">{props.title}</h3>
         <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
@@ -57,6 +59,7 @@ const Card = (props: Props) => {
       props.footerBottom,
       props.imageWidth,
       props.imageHeight,
+      props.imageComponent,
     ],
   );
 

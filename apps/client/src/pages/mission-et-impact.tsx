@@ -1,11 +1,13 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Card from "@codegouvfr/react-dsfr/Card";
-import { NextPage } from "next";
+import { GetStructureStatisticsResponse, TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { END } from "redux-saga";
 import CommunityIlluAmbassadeurs from "~/assets/staticPages/mission-et-impact/community-ambassadeurs.png";
 import CommunityIlluCda from "~/assets/staticPages/mission-et-impact/community-cda.png";
 import CommunityIlluDinum from "~/assets/staticPages/mission-et-impact/community-dinum.png";
@@ -46,14 +48,23 @@ import {
   StepContent,
   Title2,
 } from "~/components/Pages/staticPages/common";
-import { Figure, ImpactCol, TeamCard } from "~/components/Pages/staticPages/mission-et-impact";
+import { Figure, ImageCustomFigure, ImpactCol, TeamCard } from "~/components/Pages/staticPages/mission-et-impact";
 import SEO from "~/components/Seo";
 import { useTeamData } from "~/data/useTeamData";
-import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { logger } from "~/logger";
+import { wrapper } from "~/services/configureStore";
+import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import API from "~/utils/API";
 
 export type View = "mission" | "impact" | "users" | "figures" | "team" | "contributors" | "steps";
 
-const MissionImpact: NextPage = () => {
+interface Props {
+  structuresStatistics: GetStructureStatisticsResponse;
+  translationStatistics: TranslationStatisticsResponse;
+}
+
+const MissionImpact = (props: Props) => {
   const { t } = useTranslation();
   const teamData = useTeamData();
 
@@ -308,8 +319,21 @@ const MissionImpact: NextPage = () => {
             <Title2 className="!text-center">{t("MissionImpact.community_title")}</Title2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               <RICard
-                image={CommunityIlluDispositifs}
-                imageWidth={240}
+                imageComponent={
+                  <div className="relative inline-block">
+                    <Image
+                      src={CommunityIlluDispositifs}
+                      alt=""
+                      width={240}
+                      height={80}
+                      style={{ objectFit: "contain" }}
+                    />
+                    <ImageCustomFigure>
+                      {(props.translationStatistics.nbRedactors || 0) +
+                        (props.structuresStatistics.nbStructureAdmins || 0)}
+                    </ImageCustomFigure>
+                  </div>
+                }
                 title={t("MissionImpact.community_dispositifs_title")}
                 footer={
                   <Badge severity="new" noIcon>
@@ -321,8 +345,12 @@ const MissionImpact: NextPage = () => {
                 <p>{t("MissionImpact.community_dispositifs_subtitle")}</p>
               </RICard>
               <RICard
-                image={CommunityIlluCda}
-                imageWidth={240}
+                imageComponent={
+                  <div className="relative inline-block">
+                    <Image src={CommunityIlluCda} alt="" width={240} height={80} style={{ objectFit: "contain" }} />
+                    <ImageCustomFigure>{props.structuresStatistics.nbCDA || 0}</ImageCustomFigure>
+                  </div>
+                }
                 title={t("MissionImpact.community_cda_title")}
                 footer={
                   <Badge severity="new" noIcon>
@@ -334,8 +362,18 @@ const MissionImpact: NextPage = () => {
                 <p>{t("MissionImpact.community_cda_subtitle")}</p>
               </RICard>
               <RICard
-                image={CommunityIlluTraducteurs}
-                imageWidth={232}
+                imageComponent={
+                  <div className="relative inline-block">
+                    <Image
+                      src={CommunityIlluTraducteurs}
+                      alt=""
+                      width={232}
+                      height={80}
+                      style={{ objectFit: "contain" }}
+                    />
+                    <ImageCustomFigure>{props.translationStatistics.nbTranslators || 0}</ImageCustomFigure>
+                  </div>
+                }
                 title={t("MissionImpact.community_traducteurs_title")}
                 footer={
                   <Badge severity="info" noIcon>
@@ -644,6 +682,32 @@ const MissionImpact: NextPage = () => {
   );
 };
 
-export const getStaticProps = defaultStaticProps;
+export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
+  const action = fetchThemesActionCreator();
+  store.dispatch(action);
+  store.dispatch(END);
+  await store.sagaTask?.toPromise();
+
+  let translationStatistics: TranslationStatisticsResponse = {};
+  let structuresStatistics: GetStructureStatisticsResponse = {};
+
+  try {
+    structuresStatistics = await API.getStructuresStatistics({
+      facets: ["nbCDA", "nbStructureAdmins"],
+    });
+    translationStatistics = await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] });
+  } catch (e) {
+    logger.error("[index] build page", e);
+  }
+
+  return {
+    props: {
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      structuresStatistics,
+      translationStatistics,
+    },
+    revalidate: 60 * 10,
+  };
+});
 
 export default MissionImpact;
