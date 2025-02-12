@@ -55,12 +55,12 @@ const StepContent = (props: Props) => {
       >
         <div
           className={cls(
-            "w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px]",
+            "w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem]",
             "text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france",
             "flex items-center justify-center",
           )}
         >
-          <span className={cls("h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]")}>{props.step}</span>
+          <span className={cls("h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]")}>{props.step}</span>
         </div>
         <h3
           className={cls("text-h4 lg:text-h3", props.badge ? "mb-3" : "mb-6")}
