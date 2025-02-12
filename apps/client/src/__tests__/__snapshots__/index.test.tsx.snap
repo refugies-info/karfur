@@ -5065,6 +5065,245 @@ exports[`homepage renders homepage 1`] = `
         </div>
       </div>
     </section>
+    <section
+      class="flex flex-col gap-20 py-20"
+      id="work-together"
+    >
+      <h2
+        class="mb-0 text-center"
+      >
+        WorkTogether.title
+      </h2>
+      <div
+        class="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3"
+      >
+        <div
+          class="border-gray h-full border p-8"
+        >
+          <div
+            class="flex h-full flex-col gap-4"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent;"
+              width="40"
+            />
+            <h3
+              class="text-blue-france mb-0 text-lg"
+            >
+              WorkTogether.cards.ts.title
+            </h3>
+            <p
+              class="mb-0"
+            >
+              WorkTogether.cards.ts.description
+            </p>
+            <a
+              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
+              href=" https://airtable.com/shrrkFuyeG0BpKKT7"
+              id="fr-button-:r1m:"
+              target="_blank"
+            >
+              WorkTogether.bookAppointment
+            </a>
+          </div>
+        </div>
+        <div
+          class="border-gray h-full border p-8"
+        >
+          <div
+            class="flex h-full flex-col gap-4"
+          >
+            <span
+              class="flex h-20 w-20 items-center justify-center bg-black p-1"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+               
+            </span>
+            <h3
+              class="text-blue-france mb-0 text-lg"
+            >
+              WorkTogether.cards.agir.title
+            </h3>
+            <p
+              class="mb-0"
+            >
+              WorkTogether.cards.agir.description
+            </p>
+            <a
+              class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
+              href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
+              id="fr-button-:r1n:"
+              target="_blank"
+            >
+              WorkTogether.participateWebinar
+            </a>
+          </div>
+        </div>
+        <div
+          class="border-gray h-full border p-8"
+        >
+          <div
+            class="flex h-full flex-col gap-4"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="80"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
+              style="color: transparent;"
+              width="240"
+            />
+            <h3
+              class="text-blue-france mb-0 text-lg"
+            >
+              WorkTogether.cards.operators.title
+            </h3>
+            <p
+              class="mb-0"
+            >
+              WorkTogether.cards.operators.description
+            </p>
+            <a
+              class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
+              href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
+              id="fr-button-:r1o:"
+              target="_blank"
+            >
+              WorkTogether.bookAppointment
+            </a>
+          </div>
+        </div>
+        <div
+          class="border-gray h-full border p-8"
+        >
+          <div
+            class="flex h-full flex-col gap-4"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent;"
+              width="40"
+            />
+            <h3
+              class="text-blue-france mb-0 text-lg"
+            >
+              WorkTogether.cards.administration.title
+            </h3>
+            <p
+              class="mb-0"
+            >
+              WorkTogether.cards.administration.description
+            </p>
+            <a
+              class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
+              href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
+              id="fr-button-:r1p:"
+              target="_blank"
+            >
+              WorkTogether.bookAppointment
+            </a>
+          </div>
+        </div>
+        <div
+          class="border-gray h-full border p-8"
+        >
+          <div
+            class="flex h-full flex-col gap-4"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent;"
+              width="40"
+            />
+            <h3
+              class="text-blue-france mb-0 text-lg"
+            >
+              WorkTogether.cards.structures.title
+            </h3>
+            <p
+              class="mb-0"
+            >
+              WorkTogether.cards.structures.description
+            </p>
+            <a
+              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
+              href="https://refugies.info/publier"
+              id="fr-button-:r1q:"
+            >
+              WorkTogether.translateContent
+            </a>
+          </div>
+        </div>
+        <div
+          class="border-gray h-full border p-8"
+        >
+          <div
+            class="flex h-full flex-col gap-4"
+          >
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent;"
+              width="40"
+            />
+            <h3
+              class="text-blue-france mb-0 text-lg"
+            >
+              WorkTogether.cards.polyglots.title
+            </h3>
+            <p
+              class="mb-0"
+            >
+              WorkTogether.cards.polyglots.description
+            </p>
+            <a
+              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
+              href="https://refugies.info/traduire"
+              id="fr-button-:r1r:"
+            >
+              WorkTogether.participateWebinar
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
     <div
       class="section bg_green"
     >
