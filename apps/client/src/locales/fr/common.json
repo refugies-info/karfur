@@ -799,6 +799,38 @@
     "buttonText": "Envoyer le lien",
     "downloadButtonText": "Je télécharge l’application"
   },
+  "WorkTogether": {
+    "title": "Travaillons ensemble ! Vous êtes... ?",
+    "bookAppointment": "Prendre rendez-vous",
+    "participateWebinar": "Participez à un webinaire",
+    "translateContent": "Traduire une fiche",
+    "cards": {
+      "ts": {
+        "title": "Travailleurs sociaux ou chefs de centre ?",
+        "description": "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux."
+      },
+      "agir": {
+        "title": "Opérateurs du programme AGIR ?",
+        "description": "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien."
+      },
+      "operators": {
+        "title": "Opérateurs d’État ?",
+        "description": "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion."
+      },
+      "administration": {
+        "title": "Administration ou institution publique ?",
+        "description": "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible."
+      },
+      "structures": {
+        "title": "Structures porteuses de dispositifs ?",
+        "description": "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme."
+      },
+      "polyglots": {
+        "title": "Polyglottes bénévoles ?",
+        "description": "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles."
+      }
+    }
+  },
   "SkipLinks": {
     "PiedDePage": "Pied de page",
     "Menu": "Menu",
