@@ -15,6 +15,7 @@ import { END } from "redux-saga";
 import { FreeResources, Hero, MainFigures, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
 import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
+import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
@@ -101,6 +102,8 @@ const Homepage = (props: Props) => {
       <MobileApp />
 
       {!isMobile && <FreeResources />}
+
+      {!isMobile && <WorkTogether />}
 
       <MainFigures
         nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
