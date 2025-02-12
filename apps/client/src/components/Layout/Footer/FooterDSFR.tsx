@@ -193,7 +193,7 @@ const Footer = () => {
                 href: getPath("/mission-et-impact", router.locale),
                 prefetch: false,
               },
-              text: t("Footer.Le projet", "Le projet"),
+              text: t("Footer.mission_impact", "Mission et impact"),
             },
             {
               linkProps: {

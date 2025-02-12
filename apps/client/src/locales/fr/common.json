@@ -378,7 +378,6 @@
     "TraduireUneFiche": "Traduire une fiche"
   },
   "Footer": {
-    "Le projet": "Le projet",
     "Newsletter": "Newsletter",
     "help_center": "Consulter le centre d'aide",
     "accessibility_link": "Accessibilité : non conforme",
@@ -403,7 +402,8 @@
     "procedures": "Les fiches démarches",
     "directory": "L’annuaire des acteurs",
     "information_types": "Trois types d’information",
-    "help_translate": "Aider à traduire"
+    "help_translate": "Aider à traduire",
+    "mission_impact": "Mission et impact"
   },
   "Roles": {
     "admin": "Admin",
