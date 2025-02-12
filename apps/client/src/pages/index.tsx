@@ -12,7 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
-import { FreeResources, Hero, MainFigures, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
+import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
 import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
@@ -104,12 +104,6 @@ const Homepage = (props: Props) => {
       {!isMobile && <FreeResources />}
 
       {!isMobile && <WorkTogether />}
-
-      <MainFigures
-        nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
-        nbMercis={props.contentStatistics.nbMercis || 0}
-        nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
-      />
     </div>
   );
 };
