@@ -6,15 +6,15 @@
     "monEspace": "Mon espace"
   },
   "Homepage": {
-    "title": "Le service public d'information pour les étrangers en France",
+    "title": "Le service public d’information pour les personnes réfugiées",
     "searchButton": "Chercher une information",
     "Choisir une langue": "Choisir une langue",
     "Ma langue": "Ma langue",
     "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
     "imageDescription": "Illustration colorée et minimaliste montrant une ville accueillante avec des bâtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
     "subtitle1": "Des ressources claires et traduites",
-    "subtitle2": "pour accompagner les étrangers en France",
-    "subtitleMobile": "Des informations claires et traduites pour les étrangers",
+    "subtitle2": "pour accompagner les personnes réfugiées en France",
+    "subtitleMobile": "Des informations claires et traduites pour construire votre vie en France",
     "donwloadAppButton": "Télécharger l'application",
     "traduire": "Aidez-nous à traduire !",
     "btn_translate": "Je traduis",
@@ -25,22 +25,28 @@
       "mobile": {
         "title1": "Pour avoir des explications sur toutes les démarches administratives",
         "text1": "Après la réponse positive pour votre statut, il faut faire des démarches administratives dans plusieurs domaines (papiers, santé, travail, famille...). Réfugiés.info propose des textes en français facile et des traductions pour comprendre comment faire les démarches.",
+        "alt1": "Illustration représentant quatre cartes empilées en éventail : une carte de séjour, un passeport, une carte bancaire et une carte Vitale. Chaque carte affiche une photo d'identité du même individu.",
         "title2": "Pour trouver des actions et un accompagnement à côté de chez vous",
-        "text2": "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres."
+        "text2": "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres.",
+        "alt2": "Illustration représentant deux mains tenant une carte avec un plan stylisé en bleu et un marqueur de localisation rouge. Cette image illustre la fonctionnalité de Réfugiés.info permettant d’orienter les bénéficiaires en fonction de leur territoire. En renseignant un département, les utilisateurs peuvent accéder à une liste d’actions locales pour accueillir et accompagner les personnes réfugiées."
       },
       "desktop": {
         "title1": "Pour trouver de l’information sur toutes les démarches administratives",
         "text1": "Une fois la protection internationale obtenue, de nombreuses démarches administratives doivent être enclenchées. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches. Aujourd’hui, il en existe {{count}}, réparties sur l’ensemble des thématiques de la vie quotidienne.",
+        "alt1": "Capture d'écran du site Réfugiés.info présentant des fiches pratiques sur différentes démarches administratives en France. Chaque fiche contient un titre, une catégorie (administratif, logement, travail, etc.), une icône associée, une courte description et une date de mise à jour. Les fiches visibles concernent la création d'un compte ANEF, le renouvellement d'une carte de séjour, l'échange d'un permis de conduire, la demande de logement social, l'inscription à Pôle emploi, la gestion d'un budget logement, la déclaration des impôts et la compréhension du droit du travail.",
         "title2": "Découvrez les actions de votre territoire",
         "text2": "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres.",
+        "alt2": "Capture d'écran du site Réfugiés.info affichant des fiches pratiques sur des formations, services et accompagnements accessibles aux réfugiés en France. Chaque fiche contient un titre, une catégorie (formation, travail, santé, logement, etc.), une icône associée, une courte description et des informations sur la gratuité et la durée. Les fiches visibles concernent : une formation pour devenir cuisinier, l’apprentissage du français pour le code de la route, un accompagnement pour trouver un travail, l’accès à un psychologue, la pratique du sport, l’apprentissage du français pour le travail, un accompagnement scolaire et la recherche d’un logement hors Île-de-France",
         "title3": "Partagez facilement l’information à vos bénéficiaires",
         "text3": "Lors d’un rendez-vous, vous pouvez envoyer une fiche intéressante directement sur le téléphone de la personne que vous accompagnez. Votre numéro personnel reste anonyme.",
+        "alt3": "Interface de partage d’une fiche via SMS sur le site Réfugiés.info. À gauche, une boîte contenant trois options : partager par SMS, copier le lien et imprimer. Une flèche bleue pointe vers une nouvelle fenêtre de dialogue affichant un formulaire avec un champ pour saisir un numéro de téléphone, un menu déroulant pour sélectionner la langue du SMS et un bouton bleu avec une icône d’envoi.",
         "title4": "Bénéficiez d'un outil de médiation",
         "text4": "Sur Réfugiés.info, l’information est simplifiée, traduite en 7 langues et écoutable. Les fiches peuvent servir de support pour communiquer ou expliquer une information. Cet outil peut ainsi faciliter le travail d’accompagnement social."
       }
     },
     "resourcesTitle": "Des ressources gratuites à votre disposition",
     "resourcesText": "Nous vous fournissons un ensemble d’outils numériques et physiques pour découvrir le projet et en parler autour de vous : vidéos animées, flyers multilangues, brochures de présentation, visuels, etc.",
+    "ressourcesImgAlt": "Capture d'écran du kit de communication de Réfugiés.info. L'interface affiche un site web avec une vidéo de présentation, un message d'accueil expliquant l'objectif du kit et une section d'accès rapide contenant des boutons vers différentes ressources. À droite, une série de flyers multilingues est disposée en éventail, représentant les supports physiques disponibles pour informer sur le projet.",
     "resourcesCTA": "Voir les outils",
     "StructuresLogos": {
       "FTDA": "Logo de France Terre d'Asile",
@@ -722,7 +728,7 @@
     "Ukrainien": "Ukrainien"
   },
   "NewsletterForm": {
-    "title": "Inscrivez-vous à notre lettre d’information",
+    "title": "Inscrivez-vous à notre lettre d’information mensuelle",
     "description": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
     "imgAlt": "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
     "label": "Adresse email",
@@ -758,27 +764,33 @@
     "cards": {
       "ts": {
         "title": "Travailleurs sociaux ou chefs de centre ?",
-        "description": "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux."
+        "description": "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux.",
+        "alt": "Icône représentant un personnage stylisé en bleu, entouré d’un cercle rouge partiellement ouvert, avec de petits points violets autour. Cette image illustre l’accompagnement des travailleurs sociaux et chefs de centre dans la découverte du service Réfugiés.info pour faciliter l’orientation des bénéficiaires."
       },
       "agir": {
         "title": "Opérateurs du programme <br>AGIR ?",
-        "description": "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien."
+        "description": "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien.",
+        "alt": "\"Logo du programme AGIR sur fond noir, avec le slogan 'pour le logement et l'emploi des personnes réfugiées'. En dessous, un encart blanc contient le logo du Parcours d’Intégration Républicaine et le drapeau de l’Union européenne, indiquant le soutien européen au programme\""
       },
       "operators": {
         "title": "Opérateurs d’État ?",
-        "description": "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion."
+        "description": "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion.",
+        "alt": "Illustration affichant les logos de trois organisations partenaires : France Terre d'Asile, Fondation COS Alexandre Glasberg et Coallia. Un cercle bleu à droite indique '+11', représentant un total de 14 opérateurs ayant signé un partenariat avec Réfugiés.info."
       },
       "administration": {
         "title": "Administration ou institution publique ?",
-        "description": "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible."
+        "description": "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible.",
+        "alt": "Icône stylisée représentant un bâtiment administratif en bleu avec des éléments rouges sur la façade et le toit. Cette image illustre l'accompagnement des administrations et institutions publiques dans la cartographie des acteurs locaux et la diffusion d’informations accessibles via Réfugiés.info."
       },
       "structures": {
         "title": "Structures porteuses de <br>dispositifs ?",
-        "description": "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme."
+        "description": "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
+        "alt": "Icône stylisée représentant la carte de la France en bleu, avec plusieurs marqueurs de localisation rouges répartis sur le territoire. Cette image illustre la possibilité pour les structures porteuses de dispositifs de référencer leurs actions sur Réfugiés.info pour les rendre accessibles aux bénéficiaires."
       },
       "polyglots": {
         "title": "Polyglottes bénévoles ?",
-        "description": "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles."
+        "description": "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
+        "alt": "Icône stylisée représentant deux bulles de dialogue en bleu avec du texte rouge à l’intérieur, ainsi qu’une petite bulle avec trois points. Cette image illustre la possibilité pour les bénévoles polyglottes de contribuer à la traduction collaborative des contenus sur Réfugiés.info."
       }
     }
   },
@@ -789,7 +801,7 @@
   },
   "ui": {
     "carrousel": {
-      "seeMore": "Voir plus",
+      "seeMore": "Voir tout",
       "prev": "Faire défiler à gauche",
       "next": "Faire défiler à droite"
     }

@@ -14,6 +14,7 @@ type Item = {
   title: string;
   text: string;
   image?: any;
+  alt?: string;
   video?: string;
   youtube?: string;
   mediaWidth?: number;
@@ -49,7 +50,7 @@ const Accordion = (props: Props) => {
         return (
           <Image
             src={item?.image}
-            alt=""
+            alt={item?.alt ? item.alt : ""}
             height={item.mediaHeight}
             width={item.mediaWidth}
             className="mx-auto mt-6 h-auto max-w-full lg:mt-0"

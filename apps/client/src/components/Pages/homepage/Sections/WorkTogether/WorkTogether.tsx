@@ -31,7 +31,15 @@ const WorkTogether = () => {
       link: " https://airtable.com/shrrkFuyeG0BpKKT7",
       cta: t("WorkTogether.bookAppointment", "Prendre rendez-vous"),
       icon: "fr-icon-arrow-right-line",
-      image: <Image src={Avatar} alt="" />,
+      image: (
+        <Image
+          src={Avatar}
+          alt={t(
+            "WorkTogether.cards.ts.alt",
+            "Icône représentant un personnage stylisé en bleu, entouré d’un cercle rouge partiellement ouvert, avec de petits points violets autour. Cette image illustre l’accompagnement des travailleurs sociaux et chefs de centre dans la découverte du service Réfugiés.info pour faciliter l’orientation des bénéficiaires.",
+          )}
+        />
+      ),
     },
     {
       title: t("WorkTogether.cards.agir.title", "Opérateurs du programme AGIR ?"),
@@ -44,7 +52,13 @@ const WorkTogether = () => {
       icon: "fr-icon-calendar-event-line",
       image: (
         <span className="flex h-20 w-20 items-center justify-center bg-black p-1">
-          <Image src={AgirLogos} alt="" />{" "}
+          <Image
+            src={AgirLogos}
+            alt={t(
+              "WorkTogether.cards.agir.alt",
+              "Logo du programme AGIR sur fond noir, avec le slogan 'pour le logement et l'emploi des personnes réfugiées'. En dessous, un encart blanc contient le logo du Parcours d’Intégration Républicaine et le drapeau de l’Union européenne, indiquant le soutien européen au programme",
+            )}
+          />
         </span>
       ),
     },
@@ -57,7 +71,17 @@ const WorkTogether = () => {
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
       cta: t("WorkTogether.bookAppointment", "Prendre rendez-vous"),
       icon: "fr-icon-calendar-event-line",
-      image: <Image src={Structures} alt="" width={240} height={80} />,
+      image: (
+        <Image
+          src={Structures}
+          alt={t(
+            "WorkTogether.cards.operators.alt",
+            "Illustration affichant les logos de trois organisations partenaires : France Terre d'Asile, Fondation COS Alexandre Glasberg et Coallia. Un cercle bleu à droite indique '+11', représentant un total de 14 opérateurs ayant signé un partenariat avec Réfugiés.info.",
+          )}
+          width={240}
+          height={80}
+        />
+      ),
     },
     {
       title: t("WorkTogether.cards.administration.title", "Administration ou institution publique ?"),
@@ -68,7 +92,15 @@ const WorkTogether = () => {
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
       cta: t("WorkTogether.bookAppointment", "Prendre rendez-vous"),
       icon: "fr-icon-calendar-event-line",
-      image: <Image src={CityHall} alt="" />,
+      image: (
+        <Image
+          src={CityHall}
+          alt={t(
+            "WorkTogether.cards.administration.alt",
+            "Icône stylisée représentant un bâtiment administratif en bleu avec des éléments rouges sur la façade et le toit. Cette image illustre l'accompagnement des administrations et institutions publiques dans la cartographie des acteurs locaux et la diffusion d’informations accessibles via Réfugiés.info.",
+          )}
+        />
+      ),
     },
     {
       title: t("WorkTogether.cards.structures.title", "Structures porteuses de dispositifs ?"),
@@ -79,7 +111,15 @@ const WorkTogether = () => {
       link: "https://refugies.info/publier",
       cta: t("WorkTogether.translateContent", "Traduire une fiche"),
       icon: "fr-icon-arrow-right-line",
-      image: <Image src={LocationFrance} alt="" />,
+      image: (
+        <Image
+          src={LocationFrance}
+          alt={t(
+            "WorkTogether.cards.structures.alt",
+            "Icône stylisée représentant la carte de la France en bleu, avec plusieurs marqueurs de localisation rouges répartis sur le territoire. Cette image illustre la possibilité pour les structures porteuses de dispositifs de référencer leurs actions sur Réfugiés.info pour les rendre accessibles aux bénéficiaires.",
+          )}
+        />
+      ),
     },
     {
       title: t("WorkTogether.cards.polyglots.title", "Polyglottes bénévoles ?"),
@@ -90,7 +130,15 @@ const WorkTogether = () => {
       link: "https://refugies.info/traduire",
       cta: t("WorkTogether.participateWebinar", "Participez à un webinaire"),
       icon: "fr-icon-arrow-right-line",
-      image: <Image src={Community} alt="" />,
+      image: (
+        <Image
+          src={Community}
+          alt={t(
+            "WorkTogether.cards.polyglots.alt",
+            "Icône stylisée représentant deux bulles de dialogue en bleu avec du texte rouge à l’intérieur, ainsi qu’une petite bulle avec trois points. Cette image illustre la possibilité pour les bénévoles polyglottes de contribuer à la traduction collaborative des contenus sur Réfugiés.info.",
+          )}
+        />
+      ),
     },
   ];
 

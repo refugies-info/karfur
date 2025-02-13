@@ -67,7 +67,7 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
           }),
-          seeMore: t("ui.carrousel.seeMore", "Voir plus"),
+          seeMore: t("ui.carrousel.seeMore", "Voir tout"),
           prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
           next: t("ui.carrousel.next", "Faire défiler à droite"),
         }}

@@ -92,7 +92,7 @@ const Newsletter = () => {
               newsletterFormState === "success" ? "z-10 max-h-0 opacity-0" : "max-h-full opacity-100 transition-all",
             )}
           >
-            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information")}</h2>
+            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle")}</h2>
             <p>
               {t(
                 "NewsletterForm.description",
