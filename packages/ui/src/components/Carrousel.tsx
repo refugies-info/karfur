@@ -26,7 +26,7 @@ type CarrouselProps = {
   seeMoreUrl?: string;
 };
 
-const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselProps) => {
+export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -246,5 +246,3 @@ const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselProps) =
 };
 
 Carrousel.displayName = "Carrousel";
-
-export { Carrousel };
