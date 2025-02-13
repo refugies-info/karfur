@@ -16,25 +16,21 @@ exports[`ContentScreen should render correctly 1`] = `
     }
   >
     <View
-      collapsable={false}
-      jestAnimatedStyle={
-        {
-          "value": {
-            "backgroundColor": "rgba(255, 255, 255, 0)",
-          },
-        }
-      }
       style={
-        {
-          "backgroundColor": "rgba(255, 255, 255, 0)",
-          "left": 0,
-          "paddingHorizontal": 24,
-          "paddingVertical": 8,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
-        }
+        [
+          {
+            "left": 0,
+            "paddingHorizontal": 24,
+            "paddingVertical": 8,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "zIndex": 2,
+          },
+          {
+            "style": {},
+          },
+        ]
       }
     >
       <RCTSafeAreaView
@@ -48,13 +44,7 @@ exports[`ContentScreen should render correctly 1`] = `
       >
         <View
           RTLBehaviour={false}
-          collapsable={false}
           horizontalAlign="space-between"
-          jestAnimatedStyle={
-            {
-              "value": {},
-            }
-          }
           style={
             {
               "alignItems": "center",
@@ -269,13 +259,7 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={false}
-              collapsable={false}
               horizontalAlign="flex-end"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",
@@ -504,13 +488,7 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={false}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "flex-start",
@@ -1020,22 +998,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -1634,22 +1610,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -1939,22 +1913,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -2628,22 +2600,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -2854,13 +2824,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
                               {
                                 "alignItems": "flex-start",
@@ -3044,13 +3008,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -3233,20 +3191,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -3457,13 +3411,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -3646,20 +3594,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -3870,13 +3814,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -4059,20 +3997,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -4338,13 +4272,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -4527,20 +4455,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -6466,13 +6390,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       >
                         <View
                           RTLBehaviour={false}
-                          collapsable={false}
                           horizontalAlign="center"
-                          jestAnimatedStyle={
-                            {
-                              "value": {},
-                            }
-                          }
                           style={
                             {
                               "alignItems": "flex-start",
@@ -6553,13 +6471,7 @@ exports[`ContentScreen should render correctly 1`] = `
                               >
                                 <View
                                   RTLBehaviour={false}
-                                  collapsable={false}
                                   horizontalAlign="flex-start"
-                                  jestAnimatedStyle={
-                                    {
-                                      "value": {},
-                                    }
-                                  }
                                   style={
                                     {
                                       "alignItems": "flex-start",
@@ -6959,13 +6871,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -7649,37 +7555,25 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
           <View
-            collapsable={false}
-            jestAnimatedStyle={
-              {
-                "value": {
-                  "transform": [
-                    {
-                      "scale": 0,
-                    },
-                  ],
-                },
-              }
-            }
             style={
-              {
-                "bottom": 48,
-                "display": "flex",
-                "flexDirection": "row",
-                "height": 56,
-                "justifyContent": "space-between",
-                "paddingBottom": 8,
-                "paddingLeft": 8,
-                "paddingRight": 8,
-                "paddingTop": 8,
-                "position": "absolute",
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-                "zIndex": 1,
-              }
+              [
+                {
+                  "bottom": 48,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "height": 56,
+                  "justifyContent": "space-between",
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                  "position": "absolute",
+                  "zIndex": 1,
+                },
+                {
+                  "style": {},
+                },
+              ]
             }
           >
             <View
@@ -7693,7 +7587,11 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                  }
+                }
                 style={
                   {
                     "marginLeft": -8,
@@ -8362,6 +8260,13 @@ exports[`ContentScreen should render correctly 1`] = `
                 },
               ]
             }
+            transform={
+              [
+                {
+                  "scaleX": -1,
+                },
+              ]
+            }
             vbHeight={24}
             vbWidth={24}
             width={24}
@@ -8484,25 +8389,21 @@ exports[`ContentScreen should toggle map modal 1`] = `
     }
   >
     <View
-      collapsable={false}
-      jestAnimatedStyle={
-        {
-          "value": {
-            "backgroundColor": "rgba(255, 255, 255, 0)",
-          },
-        }
-      }
       style={
-        {
-          "backgroundColor": "rgba(255, 255, 255, 0)",
-          "left": 0,
-          "paddingHorizontal": 24,
-          "paddingVertical": 8,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
-        }
+        [
+          {
+            "left": 0,
+            "paddingHorizontal": 24,
+            "paddingVertical": 8,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "zIndex": 2,
+          },
+          {
+            "style": {},
+          },
+        ]
       }
     >
       <RCTSafeAreaView
@@ -8516,13 +8417,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
       >
         <View
           RTLBehaviour={false}
-          collapsable={false}
           horizontalAlign="space-between"
-          jestAnimatedStyle={
-            {
-              "value": {},
-            }
-          }
           style={
             {
               "alignItems": "center",
@@ -8737,13 +8632,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View
               RTLBehaviour={false}
-              collapsable={false}
               horizontalAlign="flex-end"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",
@@ -8972,13 +8861,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <View
                 RTLBehaviour={false}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "flex-start",
@@ -9488,22 +9371,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -10102,22 +9983,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -10407,22 +10286,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -11096,22 +10973,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -11322,13 +11197,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            collapsable={false}
                             horizontalAlign="space-between"
-                            jestAnimatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
                             style={
                               {
                                 "alignItems": "flex-start",
@@ -11512,13 +11381,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -11701,20 +11564,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -11925,13 +11784,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -12114,20 +11967,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -12338,13 +12187,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -12527,20 +12370,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -12806,13 +12645,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        collapsable={false}
                         horizontalAlign="flex-start"
-                        jestAnimatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
                         style={
                           {
                             "alignItems": "center",
@@ -12995,20 +12828,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      collapsable={false}
-                      jestAnimatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -15441,13 +15270,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       >
                         <View
                           RTLBehaviour={false}
-                          collapsable={false}
                           horizontalAlign="center"
-                          jestAnimatedStyle={
-                            {
-                              "value": {},
-                            }
-                          }
                           style={
                             {
                               "alignItems": "flex-start",
@@ -15528,13 +15351,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               >
                                 <View
                                   RTLBehaviour={false}
-                                  collapsable={false}
                                   horizontalAlign="flex-start"
-                                  jestAnimatedStyle={
-                                    {
-                                      "value": {},
-                                    }
-                                  }
                                   style={
                                     {
                                       "alignItems": "flex-start",
@@ -15934,13 +15751,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    collapsable={false}
                     horizontalAlign="flex-start"
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
                     style={
                       {
                         "alignItems": "center",
@@ -16624,37 +16435,25 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
           <View
-            collapsable={false}
-            jestAnimatedStyle={
-              {
-                "value": {
-                  "transform": [
-                    {
-                      "scale": 0,
-                    },
-                  ],
-                },
-              }
-            }
             style={
-              {
-                "bottom": 48,
-                "display": "flex",
-                "flexDirection": "row",
-                "height": 56,
-                "justifyContent": "space-between",
-                "paddingBottom": 8,
-                "paddingLeft": 8,
-                "paddingRight": 8,
-                "paddingTop": 8,
-                "position": "absolute",
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-                "zIndex": 1,
-              }
+              [
+                {
+                  "bottom": 48,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "height": 56,
+                  "justifyContent": "space-between",
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                  "position": "absolute",
+                  "zIndex": 1,
+                },
+                {
+                  "style": {},
+                },
+              ]
             }
           >
             <View
@@ -16668,7 +16467,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                  }
+                }
                 style={
                   {
                     "marginLeft": -8,
@@ -17334,6 +17137,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "flex": 0,
                   "height": 24,
                   "width": 24,
+                },
+              ]
+            }
+            transform={
+              [
+                {
+                  "scaleX": -1,
                 },
               ]
             }

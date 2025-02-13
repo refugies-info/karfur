@@ -15,25 +15,21 @@ exports[`Search Screen should render correctly 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {
-          "backgroundColor": "rgba(255, 255, 255, 0)",
-        },
-      }
-    }
     style={
-      {
-        "backgroundColor": "rgba(255, 255, 255, 0)",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "style": {},
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -47,13 +43,7 @@ exports[`Search Screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -86,13 +76,7 @@ exports[`Search Screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",

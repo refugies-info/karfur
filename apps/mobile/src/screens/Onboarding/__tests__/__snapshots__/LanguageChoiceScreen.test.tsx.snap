@@ -53,7 +53,11 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           <Image
             alt=""
             height={80}
-            source={1}
+            source={
+              {
+                "testUri": "../../../apps/mobile/src/theme/images/onboarding/hello.png",
+              }
+            }
             style={
               {
                 "height": 80,
@@ -121,13 +125,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -150,13 +148,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -424,13 +416,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -453,13 +439,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -727,13 +707,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -756,13 +730,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -1030,13 +998,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -1059,13 +1021,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -1333,13 +1289,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -1362,13 +1312,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -1636,13 +1580,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -1665,13 +1603,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -1939,13 +1871,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -1968,13 +1894,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",
@@ -2242,13 +2162,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -2271,13 +2185,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={true}
-                collapsable={false}
                 horizontalAlign="flex-start"
-                jestAnimatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
                 style={
                   {
                     "alignItems": "center",

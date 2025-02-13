@@ -15,23 +15,21 @@ exports[`Profil screen should render correctly when data in store 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -45,13 +43,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -265,13 +257,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -370,13 +356,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "top",
@@ -1398,23 +1378,21 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           </View>
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-                "marginBottom": 40,
-                "marginTop": 24,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 24,
+                },
+              ]
             }
             verticalAlign="center"
           >
@@ -1533,7 +1511,11 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/profile/illu-mascotte.png",
+                  }
+                }
                 style={
                   {
                     "height": 96,
@@ -4512,23 +4494,21 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -4542,13 +4522,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -4762,13 +4736,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -4867,13 +4835,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "top",
@@ -5868,23 +5830,21 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           </View>
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-                "marginBottom": 40,
-                "marginTop": 24,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 24,
+                },
+              ]
             }
             verticalAlign="center"
           >
@@ -6003,7 +5963,11 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/profile/illu-mascotte.png",
+                  }
+                }
                 style={
                   {
                     "height": 96,
