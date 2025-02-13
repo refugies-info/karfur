@@ -6,15 +6,20 @@ import { cls } from "~/lib/classname";
 interface Props {
   title: string;
   children: any;
+  className?: string;
   image?: any;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageComponent?: ReactElement;
   header?: ReactElement;
   footer?: ReactElement;
+  footerBottom?: boolean;
   link?: string;
   onClick?: () => void;
 }
 
 const CARD_CLASSNAME =
-  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left";
+  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white";
 const CARD_HOVER_CLASSNAME = "hover:bg-hover active:bg-active";
 
 const ArrowRight = () => (
@@ -26,24 +31,43 @@ const ArrowRight = () => (
 const Card = (props: Props) => {
   const content = useMemo(
     () => (
-      <div>
+      <div className="flex flex-col h-full">
         <div>
           {props.header}
-          {props.image && <Image src={props.image} alt="" width={80} height={80} style={{ objectFit: "contain" }} />}
+          {props.image && (
+            <Image
+              src={props.image}
+              alt=""
+              width={props.imageWidth || 80}
+              height={props.imageHeight || 80}
+              style={{ objectFit: "contain" }}
+            />
+          )}
+          {props.imageComponent}
         </div>
         <h3 className="text-h6 md:text-h5 my-3 text-blue-france">{props.title}</h3>
-        <div className="[&_p]:text-large">{props.children}</div>
+        <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
         {props.footer && <div>{props.footer}</div>}
       </div>
     ),
-    [props.title, props.children, props.image, props.header, props.footer],
+    [
+      props.title,
+      props.children,
+      props.image,
+      props.header,
+      props.footer,
+      props.footerBottom,
+      props.imageWidth,
+      props.imageHeight,
+      props.imageComponent,
+    ],
   );
 
   if (props.link) {
     return (
       <Link
         href={props.link}
-        className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, "block")}
+        className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, props.className, "block")}
         title={props.title}
         target="_blank"
         rel="noopener noreferrer"
@@ -56,14 +80,18 @@ const Card = (props: Props) => {
 
   if (props.onClick) {
     return (
-      <button className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME)} onClick={props.onClick} title={props.title}>
+      <button
+        className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, props.className)}
+        onClick={props.onClick}
+        title={props.title}
+      >
         {content}
         <ArrowRight />
       </button>
     );
   }
 
-  return <div className={CARD_CLASSNAME}>{content}</div>;
+  return <div className={cls(CARD_CLASSNAME, props.className)}>{content}</div>;
 };
 
 export default Card;

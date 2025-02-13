@@ -495,9 +495,11 @@ exports[`publier renders publier 1`] = `
           class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
         >
           <div
-            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
-            <div>
+            <div
+              class="flex flex-col h-full"
+            >
               <div>
                 <img
                   alt=""
@@ -548,9 +550,11 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
-            <div>
+            <div
+              class="flex flex-col h-full"
+            >
               <div>
                 <img
                   alt=""
@@ -601,9 +605,11 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
-            <div>
+            <div
+              class="flex flex-col h-full"
+            >
               <div>
                 <img
                   alt=""
@@ -692,10 +698,10 @@ exports[`publier renders publier 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   1
                 </span>
@@ -741,10 +747,10 @@ exports[`publier renders publier 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   2
                 </span>
@@ -795,10 +801,10 @@ exports[`publier renders publier 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   3
                 </span>
@@ -837,10 +843,10 @@ exports[`publier renders publier 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   4
                 </span>
@@ -889,10 +895,10 @@ exports[`publier renders publier 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   5
                 </span>
@@ -936,10 +942,10 @@ exports[`publier renders publier 1`] = `
               class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france border-dashed"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   6
                 </span>
@@ -1012,13 +1018,15 @@ exports[`publier renders publier 1`] = `
             class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
           >
             <a
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left hover:bg-hover active:bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active block"
               href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
               rel="noopener noreferrer"
               target="_blank"
               title="Publish.helpTileTitle1"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -1056,13 +1064,15 @@ exports[`publier renders publier 1`] = `
               </div>
             </a>
             <a
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left hover:bg-hover active:bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active block"
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
               title="Publish.helpTileTitle2"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -1100,10 +1110,12 @@ exports[`publier renders publier 1`] = `
               </div>
             </a>
             <button
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left hover:bg-hover active:bg-active"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active"
               title="StaticPages.helpTileTitle3"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""

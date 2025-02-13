@@ -14,7 +14,8 @@
         "remixicon",
         "sharp",
         "tailwindcss",
-        "typescript-plugin-css-modules"
+        "typescript-plugin-css-modules",
+        "bootstrap"
       ]
     },
     "apps/mobile": {
