@@ -13,8 +13,8 @@
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-viewport": "^8.4.7",
     "next": "14.2.19",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
@@ -28,7 +28,7 @@
     "@tailwindcss/postcss": "4.0.0-beta.7",
     "@types/node": "^20.17.9",
     "@types/react": "18.3.12",
-    "@types/react-dom": "18.2.0",
+    "@types/react-dom": "18.3.1",
     "chromatic": "^11.20.2",
     "dotenv-run-script": "^0.4.1",
     "eslint": "^8.57.0",

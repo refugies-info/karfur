@@ -102,18 +102,16 @@ const RecensezVotreAction = (props: Props) => {
 
       <SecondaryNavbar
         leftLinks={[
-          { id: "why", color: "green", text: t("Publish.navbarItem1") },
-          { id: "required", color: "purple", text: t("Publish.navbarItem2") },
-          { id: "steps", color: "orange", text: t("Publish.navbarItem3") },
-          { id: "faq", color: "red", text: t("Publish.navbarItem4") },
+          { id: "why", text: t("Publish.navbarItem1") },
+          { id: "required", text: t("Publish.navbarItem2") },
+          { id: "steps", text: t("Publish.navbarItem3") },
+          { id: "faq", text: t("Publish.navbarItem4") },
         ]}
         rightLink={{
           id: "register",
-          color: "blue",
           text: t("Publish.navbarItem5"),
         }}
         activeView={activeView}
-        isSticky={!inViewHero}
       />
 
       <div ref={refWhy} className="relative">

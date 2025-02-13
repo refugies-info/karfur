@@ -28,7 +28,14 @@
     },
     "apps/server": {
       "entry": ["src/server.ts"],
-      "ignoreDependencies": ["@tsoa/runtime", "nodemon", "path-to-regexp", "tsconfig-paths", "ts-node"]
+      "ignoreDependencies": [
+        "@tsoa/runtime",
+        "nodemon",
+        "path-to-regexp",
+        "tsconfig-paths",
+        "ts-node",
+        "@types/mongoose"
+      ]
     },
     "apps/storybook": {
       "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]

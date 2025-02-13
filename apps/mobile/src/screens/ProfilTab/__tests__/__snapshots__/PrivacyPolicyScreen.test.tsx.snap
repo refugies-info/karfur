@@ -15,23 +15,21 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -45,13 +43,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -255,13 +247,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="center"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -399,13 +385,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -750,7 +730,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           Quand tu ouvres l’application réfugiés.info pour la première fois ou quand tu vas dans l’onglet “Moi”, nous te demandons de nous partager quelques informations sur toi, par exemple la ville dans laquelle tu habites.
         </Text>
         <Image
-          source={1}
+          source={
+            {
+              "testUri": "../../../apps/mobile/src/theme/images/privacyPolicy/screenshots.png",
+            }
+          }
           style={
             {
               "alignSelf": "center",
@@ -787,13 +771,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={false}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "flex-start",
@@ -1621,13 +1599,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={false}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "flex-start",
@@ -1946,7 +1918,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           Quand tu navigues dans l’application réfugiés.info, nous récoltons automatiquement des informations sur ta navigation, par exemple combien de temps tu passes sur une de nos fiches.
         </Text>
         <Image
-          source={1}
+          source={
+            {
+              "testUri": "../../../apps/mobile/src/theme/images/privacyPolicy/statistics.png",
+            }
+          }
           style={
             {
               "alignSelf": "center",
@@ -2362,13 +2338,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -2760,13 +2730,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="flex-start"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -3099,13 +3063,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",

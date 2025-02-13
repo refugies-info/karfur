@@ -13,7 +13,7 @@ import Highlight from "../Search/Highlight";
 import { TextDSFR_L_Bold } from "../StyledText";
 
 interface Props {
-  backgroundColor: string | Array<any>;
+  backgroundColor: string | [string, string];
   icon?: Picture;
   iconSize?: number;
   inline?: boolean;
@@ -62,7 +62,7 @@ const TagButtonComponent = ({
   style = {},
   textColor,
 }: Props) => {
-  const gradientBackgroundColor = React.useMemo(
+  const gradientBackgroundColor = React.useMemo<[string, string]>(
     () => (isArray(backgroundColor) ? backgroundColor : [backgroundColor, backgroundColor]),
     [backgroundColor],
   );

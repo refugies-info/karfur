@@ -1,28 +1,10 @@
 const bucketUrl = "https://storage.googleapis.com/refugies-info-assets/";
-const bucketUrlQSN = bucketUrl + "qui-sommes-nous/";
 const bucketUrlPublier = bucketUrl + "comment-contribuer/";
 const bucketUrlAnnuaireActivites = bucketUrl + "annuaire/activit%C3%A9s/";
-const bucketUrlPartners = bucketUrl + "logosPartenaires/";
 const bucketUrlMiddleOffice = bucketUrl + "middle-office/";
 const bucketUrlStoreBadges = bucketUrl + "store-badges/";
 
 export const assetsOnServer = {
-  quiSommesNous: {
-    codeOuvert: bucketUrlQSN + "code_ouvert.svg",
-    microEngagement: bucketUrlQSN + "micro_engagement.svg",
-    recenserDispositif: bucketUrlQSN + "QuiSommesNous_dispositif.svg",
-    vulgariserDemarche: bucketUrlQSN + "demarche_light.svg",
-    statutRefugie: bucketUrlQSN + "QuiSommesNous_refugies.svg",
-    information: bucketUrlQSN + "plein_dinfos.svg",
-    accompagnement: bucketUrlQSN + "QuiSommesNous_accompagnement.svg",
-    header: bucketUrlQSN + "QuiSommesNous_header.svg",
-    parcours: bucketUrlQSN + "QuiSommesNous_parcours.svg",
-    terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
-    pdfAMI: bucketUrlQSN + "AMI-structures-2022.pdf",
-  },
-  homepage: {
-    CarteDeploiement: bucketUrl + "home/Carte_deploiement_septembre2022.svg",
-  },
   publier: {
     demarche: bucketUrlPublier + "demarche.svg",
     dispositif: bucketUrlPublier + "dispositif.svg",
@@ -97,34 +79,6 @@ export const assetsOnServer = {
         parrainage: bucketUrlAnnuaireActivites + "Rencontre/Parrainage.svg",
       },
     },
-  },
-  partners: {
-    Coallia: bucketUrlPartners + "coallia.png",
-    Aurore: bucketUrlPartners + "aurore.png",
-    AER: bucketUrlPartners + "action_emploi_refugies.png",
-    Benenova: bucketUrlPartners + "benenova.png",
-    CASP: bucketUrlPartners + "casp.png",
-    Causons: bucketUrlPartners + "causons.png",
-    CESAM: bucketUrlPartners + "cesam.png",
-    Duo: bucketUrlPartners + "duo_for_a_job.png",
-    COS: bucketUrlPartners + "fondation_cos.png",
-    ForumRefugies: bucketUrlPartners + "forum_refugies.png",
-    FranceHorizon: bucketUrlPartners + "france_horizon.png",
-    FTDA: bucketUrlPartners + "france_terre_asile.png",
-    SOS: bucketUrlPartners + "groupe_sos.png",
-    Habitat: bucketUrlPartners + "habitat_humanisme.png",
-    IFRI: bucketUrlPartners + "ifri.png",
-    JRS: bucketUrlPartners + "jrs_france.png",
-    Konexio: bucketUrlPartners + "konexio.png",
-    Puy: bucketUrlPartners + "puy_de_dome.png",
-    Simplon: bucketUrlPartners + "simplon.png",
-    Singa: bucketUrlPartners + "singa.png",
-    MissionLocale: bucketUrlPartners + "unml.png",
-    WERO: bucketUrlPartners + "wero.png",
-    CNAM: bucketUrlPartners + "CNAM.png",
-    CRF: bucketUrlPartners + "CRF.png",
-    EachOne: bucketUrlPartners + "each_one.png",
-    INALCO: bucketUrlPartners + "inalco.png",
   },
   middleOffice: {
     noNotification: bucketUrlMiddleOffice + "aucune_notification.svg",

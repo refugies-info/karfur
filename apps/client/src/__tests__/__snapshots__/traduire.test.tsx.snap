@@ -181,9 +181,11 @@ exports[`traduire renders traduire 1`] = `
             class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -198,7 +200,7 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 text-blue-france my-3"
+                  class="text-h6 md:text-h5 my-3 text-blue-france"
                 >
                   Translate.whoCardTitle1
                 </h3>
@@ -214,9 +216,11 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -231,7 +235,7 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 text-blue-france my-3"
+                  class="text-h6 md:text-h5 my-3 text-blue-france"
                 >
                   Translate.whoCardTitle2
                 </h3>
@@ -247,9 +251,11 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -264,7 +270,7 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 text-blue-france my-3"
+                  class="text-h6 md:text-h5 my-3 text-blue-france"
                 >
                   Translate.whoCardTitle3
                 </h3>
@@ -359,10 +365,10 @@ exports[`traduire renders traduire 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   1
                 </span>
@@ -408,10 +414,10 @@ exports[`traduire renders traduire 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   2
                 </span>
@@ -450,10 +456,10 @@ exports[`traduire renders traduire 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   3
                 </span>
@@ -509,10 +515,10 @@ exports[`traduire renders traduire 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="absolute -start-[16px] top-0 h-8 w-8 lg:-start-[22px] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
+                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   4
                 </span>
@@ -633,13 +639,15 @@ exports[`traduire renders traduire 1`] = `
             class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <a
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left hover:bg-hover active:bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active block"
               href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
               rel="noopener noreferrer"
               target="_blank"
               title="Translate.helpTileTitle1"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -654,7 +662,7 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 text-blue-france my-3"
+                  class="text-h6 md:text-h5 my-3 text-blue-france"
                 >
                   Translate.helpTileTitle1
                 </h3>
@@ -675,10 +683,12 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </a>
             <button
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left hover:bg-hover active:bg-active"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active"
               title="StaticPages.helpTileTitle3"
             >
-              <div>
+              <div
+                class="flex flex-col h-full"
+              >
                 <div>
                   <img
                     alt=""
@@ -693,7 +703,7 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 text-blue-france my-3"
+                  class="text-h6 md:text-h5 my-3 text-blue-france"
                 >
                   StaticPages.helpTileTitle3
                 </h3>

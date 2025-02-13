@@ -15,23 +15,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
   }
 >
   <View
-    collapsable={false}
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -45,13 +43,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
-        collapsable={false}
         horizontalAlign="space-between"
-        jestAnimatedStyle={
-          {
-            "value": {},
-          }
-        }
         style={
           {
             "alignItems": "center",
@@ -255,13 +247,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            collapsable={false}
             horizontalAlign="center"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -408,13 +394,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
-            collapsable={false}
             horizontalAlign="flex-end"
-            jestAnimatedStyle={
-              {
-                "value": {},
-              }
-            }
             style={
               {
                 "alignItems": "center",
@@ -1639,13 +1619,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={false}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "flex-start",
@@ -2060,13 +2034,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",
@@ -3198,13 +3166,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={true}
-              collapsable={false}
               horizontalAlign="flex-start"
-              jestAnimatedStyle={
-                {
-                  "value": {},
-                }
-              }
               style={
                 {
                   "alignItems": "center",

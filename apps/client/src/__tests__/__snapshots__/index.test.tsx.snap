@@ -4700,7 +4700,7 @@ exports[`homepage renders homepage 1`] = `
                 <p
                   class="text !text-large !mb-0"
                 >
-                  Homepage.accordionItems.desktop.title1
+                  Homepage.accordionItems.desktop.text1
                 </p>
               </div>
             </div>
@@ -4833,7 +4833,7 @@ exports[`homepage renders homepage 1`] = `
           class="flex w-1/2 items-center justify-end"
         >
           <img
-            alt=""
+            alt="Homepage.accordionItems.desktop.alt1"
             class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
             data-nimg="1"
             decoding="async"
@@ -5051,7 +5051,7 @@ exports[`homepage renders homepage 1`] = `
             target="_blank"
           >
             <img
-              alt="Homepage.resourcesTitle"
+              alt="Homepage.ressourcesImgAlt"
               data-nimg="1"
               decoding="async"
               height="362"
@@ -5084,7 +5084,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt=""
+              alt="WorkTogether.cards.ts.alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5124,7 +5124,7 @@ exports[`homepage renders homepage 1`] = `
               class="flex h-20 w-20 items-center justify-center bg-black p-1"
             >
               <img
-                alt=""
+                alt="WorkTogether.cards.agir.alt"
                 data-nimg="1"
                 decoding="async"
                 height="40"
@@ -5134,7 +5134,6 @@ exports[`homepage renders homepage 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-               
             </span>
             <h3
               class="text-blue-france mb-0 text-lg"
@@ -5163,7 +5162,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt=""
+              alt="WorkTogether.cards.operators.alt"
               data-nimg="1"
               decoding="async"
               height="80"
@@ -5200,7 +5199,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt=""
+              alt="WorkTogether.cards.administration.alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5237,7 +5236,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt=""
+              alt="WorkTogether.cards.structures.alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5273,7 +5272,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt=""
+              alt="WorkTogether.cards.polyglots.alt"
               data-nimg="1"
               decoding="async"
               height="40"

@@ -60,7 +60,7 @@
 }
 
 // links
-a:not(.underline) {
+a:not(.underline):not(.fr-default) {
   text-decoration: none;
 
   &:not([class^="fr-"]),

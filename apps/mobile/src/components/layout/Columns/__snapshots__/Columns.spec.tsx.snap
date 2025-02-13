@@ -3,13 +3,7 @@
 exports[`Columns snapshot test suite should be able to control flex layout 1`] = `
 <View
   RTLBehaviour={false}
-  collapsable={false}
   horizontalAlign="space-between"
-  jestAnimatedStyle={
-    {
-      "value": {},
-    }
-  }
   style={
     {
       "alignItems": "center",
@@ -78,13 +72,7 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
 exports[`Columns snapshot test suite should render without bug 1`] = `
 <View
   RTLBehaviour={false}
-  collapsable={false}
   horizontalAlign="flex-start"
-  jestAnimatedStyle={
-    {
-      "value": {},
-    }
-  }
   style={
     {
       "alignItems": "flex-start",
