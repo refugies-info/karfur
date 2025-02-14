@@ -12,7 +12,7 @@ export const getRecentDispositifsByDepartement = async (
   const dispositifs = await getLatestDispositifs({
     "typeContenu": "dispositif",
     "status": "Actif",
-    "metadatas.departments": { $regex: `^${departement}\\s-` },
+    "metadatas.location": { $regex: `^${departement}\\s-` },
   });
 
   const result = dispositifs.map((d) => ({
