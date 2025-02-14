@@ -69,16 +69,16 @@ const MissionImpact = (props: Props) => {
       <SEO title="Qui sommes nous ?" />
 
       <Section
-        className="bg-light-low-blue-france px-4 md:min-h-[520px] bg-contain bg-no-repeat bg-bottom max-lg:!bg-none"
+        className="bg-light-low-blue-france bg-contain bg-bottom bg-no-repeat px-4 max-lg:!bg-none md:min-h-[520px]"
         style={{
           backgroundImage: `url(${HeroBack.src})`,
         }}
       >
-        <div className="md:max-w-[720px] lg:max-w-[600px] xl:max-w-[720px] mx-auto">
+        <div className="mx-auto md:max-w-[720px] lg:max-w-[600px] xl:max-w-[720px]">
           <h1 className="!text-h1 md:!text-alt-title mb-6">{t("MissionImpact.title")}</h1>
           <p className="!text-chapo !mb-0">{t("MissionImpact.subtitle")}</p>
         </div>
-        <Image src={HeroMobile} alt="" width={343} className="lg:hidden mt-10 mx-auto max-w-full" />
+        <Image src={HeroMobile} alt="" width={343} className="mx-auto mt-10 max-w-full lg:hidden" />
       </Section>
 
       <SecondaryNavbar

@@ -1,12 +1,12 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
-import { Container } from "reactstrap";
+import { isIOS } from "react-device-detect";
+import HeroBackground from "~/assets/homepage/hero/background-image.svg";
 import Character from "~/assets/homepage/hero/character.svg";
-import { HeroArrow } from "~/components/Pages/staticPages/common";
+import WhiteWave from "~/assets/homepage/hero/white-wave.svg";
+
 import Image from "~/components/UI/Image";
-import { cls } from "~/lib/classname";
-import commonStyles from "~/scss/components/staticPages.module.scss";
-import HomeSearchHeader from "../../HomeSearchHeader";
-import styles from "./Hero.module.scss";
+import { useWindowSize } from "~/hooks";
 
 interface Props {
   targetArrow: string;
@@ -14,16 +14,76 @@ interface Props {
 
 const Hero = (props: Props) => {
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
+  const mobileButtonIcon = isIOS ? "ri-app-store-line" : "ri-android-line";
+  const buttonIconName = isMobile ? mobileButtonIcon : "fr-icon-smartphone-line";
 
   return (
-    <div className={styles.hero}>
-      <Container className={cls(commonStyles.container)}>
-        <h1>{t("Homepage.title")}</h1>
-        <HomeSearchHeader />
-      </Container>
-      <HeroArrow center target={props.targetArrow} />
-      <div className={styles.bottom_img}>
-        <Image src={Character} width={207} height={274} alt="" />
+    <div className="relative flex flex-col-reverse md:min-h-[504px]">
+      <div className="md:border-gray relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 p-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border lg:max-w-[40rem] xl:max-w-[48rem]">
+        <h1 className="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]">
+          {t("Homepage.title", "Le service public d'information pour les étrangers en France")}
+        </h1>
+
+        {isMobile ? (
+          <p className="mb-0 text-center text-xl">
+            {t("Homepage.subtitleMobile", "Des informations claires et traduites pour les étrangers")}
+          </p>
+        ) : (
+          <p className="mb-0 flex flex-col items-center text-xl">
+            <span>{t("Homepage.subtitle1", "Des ressources claires et traduites")}</span>
+            <span>{t("Homepage.subtitle2", "pour accompagner les étrangers en France")}</span>
+          </p>
+        )}
+
+        <div className="flex w-full items-center justify-center gap-4 max-lg:flex-col">
+          <Button
+            linkProps={{
+              href: "/recherche",
+            }}
+            iconId="fr-icon-search-line"
+            iconPosition="right"
+            className="justify-center max-md:w-full"
+          >
+            {t("Homepage.searchButton", "Chercher une information")}
+          </Button>
+          <Button
+            linkProps={{
+              href: "#application",
+            }}
+            priority="secondary"
+            iconId={buttonIconName}
+            iconPosition="right"
+            className="justify-center max-md:w-full"
+          >
+            {t("Homepage.donwloadAppButton", "Télécharger l'application")}
+          </Button>
+        </div>
+      </div>
+      <div className="relative h-[50vh] w-full overflow-hidden md:absolute md:inset-0 md:z-0 md:h-auto">
+        <Image
+          src={HeroBackground}
+          fill={true}
+          className="-z-1 -translate-y-6 object-cover md:object-[0_80%]"
+          alt={t(
+            "Homepage.imageDescription",
+            "Illustration colorée et minimaliste montrant une ville accueillante avec des bâtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
+          )}
+        />
+        <Image
+          src={WhiteWave}
+          width={100}
+          height={121}
+          className="object-fit absolute bottom-1/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
+          alt=""
+        />
+        <Image
+          src={Character}
+          width={207}
+          height={274}
+          alt=""
+          className="absolute bottom-0 left-4 z-10 max-w-[33vw] max-md:left-1/2 max-md:-translate-x-1/2 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
+        />
       </div>
     </div>
   );

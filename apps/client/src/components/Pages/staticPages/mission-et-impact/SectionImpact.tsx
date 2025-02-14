@@ -9,7 +9,7 @@ export const SectionImpact = () => {
   return (
     <Section className="bg-light-alt-blue">
       <div className="fr-container">
-        <div className="flex flex-col gap-10 mb-10 md:gap-20 md:flex-row md:mb-20">
+        <div className="mb-10 flex flex-col gap-10 md:mb-20 md:flex-row md:gap-20">
           <div className="flex-1">
             <Title2 smallMb className="!text-left">
               {t("MissionImpact.impact_title")}
@@ -31,8 +31,8 @@ export const SectionImpact = () => {
               imageAlt=""
               title="Livret d'impact"
               desc="Mai 2024"
-              endDetail="PDF - 766 Ko"
-              className="max-w-[384px] fr-card--download mt-10 md:mt-14"
+              endDetail="PDF - 61,88 Ko"
+              className="fr-card--download mt-10 max-w-[384px] md:mt-14"
             />
           </div>
           <div className="flex-1">
@@ -47,7 +47,7 @@ export const SectionImpact = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-10 pt-10 md:gap-20 md:flex-row">
+        <div className="flex flex-col gap-10 pt-10 md:flex-row md:gap-20">
           <ImpactCol
             title={t("MissionImpact.impact_arguments_title_1")}
             badge={t("MissionImpact.impact_arguments_badge_1")}
@@ -67,7 +67,7 @@ export const SectionImpact = () => {
             figureText={t("MissionImpact.impact_arguments_figures_3")}
           />
         </div>
-        <p className="!text-small text-center !mt-20">{t("MissionImpact.impact_arguments_legend")}</p>
+        <p className="!text-small !mt-20 text-center">{t("MissionImpact.impact_arguments_legend")}</p>
       </div>
     </Section>
   );

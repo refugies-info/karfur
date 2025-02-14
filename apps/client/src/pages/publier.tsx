@@ -232,7 +232,7 @@ const RecensezVotreAction = (props: Props) => {
               <p>{t("Publish.requiredText3")}</p>
             </Card>
           </RowCards>
-          <div className="mt-10 lg:mt-20 text-center">
+          <div className="mt-10 text-center lg:mt-20">
             <Button
               priority="tertiary no outline"
               linkProps={{
@@ -340,7 +340,7 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-light-alt-blue">
           <div className="fr-container">
             <Title2 className="text-center">{t("Publish.figuresTitle")}</Title2>
-            <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 justify-center">
+            <div className="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20">
               <CountUpFigure number={props.nbFiches} text={t("Publish.figuresSubtitle1")} />
               <CountUpFigure number={props.nbStructures} text={t("Publish.figuresSubtitle2")} />
               <CountUpFigure number={props.nbVues} text={t("Publish.figuresSubtitle3")} />
@@ -353,7 +353,7 @@ const RecensezVotreAction = (props: Props) => {
           <Anchor id="faq" />
           <div className="fr-container">
             <Title2 className="text-center">{t("StaticPages.faqTitle")}</Title2>
-            <div className="max-w-[720px] mx-auto">
+            <div className="mx-auto max-w-[720px]">
               <Accordion
                 items={[
                   { title: t("Publish.faqAccordionTitle1"), text: t("Publish.faqAccordionText1") },
@@ -365,7 +365,7 @@ const RecensezVotreAction = (props: Props) => {
                 multiOpen
               />
             </div>
-            <div className="mt-10 lg:mt-20 text-center">
+            <div className="mt-10 text-center lg:mt-20">
               <Button
                 priority="tertiary no outline"
                 linkProps={{
@@ -383,7 +383,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* REGISTER */}
-      <Section ref={refRegister} className="relative bg-beige">
+      <Section ref={refRegister} className="bg-beige relative">
         <Anchor id="register" />
         <div className="fr-container">
           <Register

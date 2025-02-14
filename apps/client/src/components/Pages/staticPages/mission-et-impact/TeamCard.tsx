@@ -12,12 +12,12 @@ interface Props {
 
 export const TeamCard = (props: Props) => {
   return (
-    <div className={cls("fr-card fr-enlarge-link fr-card--horizontal", "w-full sm:w-[478px] flex-row")}>
+    <div className={cls("fr-card fr-enlarge-link fr-card--horizontal", "w-full flex-row sm:w-[478px]")}>
       <div className={cls("fr-card__body", "px-0")}>
         <div
           className={cls(
             "fr-card__content",
-            "px-4 pt-4 pb-[52px] sm:px-6 sm:pt-6 sm:pb-[68px] mx-0 max-h-[196px] sm:max-h-none",
+            "mx-0 max-h-[196px] px-4 pt-4 pb-[52px] sm:max-h-none sm:px-6 sm:pt-6 sm:pb-[68px]",
           )}
         >
           <h3 className={cls("fr-card__title", "text-large sm:text-chapo")}>
@@ -25,14 +25,14 @@ export const TeamCard = (props: Props) => {
               {props.name}
             </a>
           </h3>
-          <p className={cls("fr-card__desc", "line-clamp-2 mt-2")}>{props.position}</p>
-          <div className={cls("fr-card__start", "h-6 mb-4")}>
+          <p className={cls("fr-card__desc", "mt-2 line-clamp-2")}>{props.position}</p>
+          <div className={cls("fr-card__start", "mb-4 h-6")}>
             <Tag small>{props.tag}</Tag>
           </div>
         </div>
-        <i className="fr-icon-arrow-right-line absolute right-4 bottom-4 sm:right-6 sm:bottom-6 before:w-4 before:h-4 text-blue-france" />
+        <i className="fr-icon-arrow-right-line text-blue-france absolute right-4 bottom-4 before:h-4 before:w-4 sm:right-6 sm:bottom-6" />
       </div>
-      <div className={cls("fr-card__header", "w-[160px] h-[196px] sm:w-[220px] sm:h-[220px] flex-none")}>
+      <div className={cls("fr-card__header", "h-[196px] w-[160px] flex-none sm:h-[220px] sm:w-[220px]")}>
         <div className={cls("fr-card__img", "h-full")}>
           <Image
             src={props.image}

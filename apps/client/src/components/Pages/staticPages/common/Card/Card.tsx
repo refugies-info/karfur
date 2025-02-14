@@ -23,7 +23,7 @@ const CARD_CLASSNAME =
 const CARD_HOVER_CLASSNAME = "hover:bg-hover active:bg-active";
 
 const ArrowRight = () => (
-  <div className="mt-6 pt-2 w-full text-right">
+  <div className="mt-6 w-full pt-2 text-right">
     <i className="fr-icon-arrow-right-line text-blue-france" />
   </div>
 );
@@ -31,7 +31,7 @@ const ArrowRight = () => (
 const Card = (props: Props) => {
   const content = useMemo(
     () => (
-      <div className="flex flex-col h-full">
+      <div className="flex h-full flex-col">
         <div>
           {props.header}
           {props.image && (
@@ -45,7 +45,7 @@ const Card = (props: Props) => {
           )}
           {props.imageComponent}
         </div>
-        <h3 className="text-h6 md:text-h5 my-3 text-blue-france">{props.title}</h3>
+        <h3 className="text-h6 md:text-h5 text-blue-france my-3">{props.title}</h3>
         <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
         {props.footer && <div>{props.footer}</div>}
       </div>

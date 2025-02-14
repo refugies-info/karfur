@@ -29,7 +29,7 @@ const StepContent = (props: Props) => {
     () => (
       <div
         className={cls(
-          "text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france",
+          "text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white",
           "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
           props.buttonStepEnd && "!bottom-0",
         )}
@@ -44,19 +44,19 @@ const StepContent = (props: Props) => {
 
   return (
     <div
-      className={cls("flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative")}
+      className={cls("align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0")}
     >
       <div
         className={cls(
-          "ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france",
+          "border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26",
           props.dottedLine && "border-dashed",
           !!props.buttonStep && "!pb-0 lg:!pb-[250px]",
         )}
       >
         <div
           className={cls(
-            "w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem]",
-            "text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france",
+            "absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10",
+            "text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white",
             "flex items-center justify-center",
           )}
         >
@@ -75,7 +75,7 @@ const StepContent = (props: Props) => {
         )}
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
-            <div key={i} className="bg-beige-accent border border-border p-4 mb-6">
+            <div key={i} className="bg-beige-accent border-border mb-6 border p-4">
               <ul className="my-0 space-y-2">
                 {text.map((li, j) => (
                   <li key={j}>{li}</li>
@@ -106,7 +106,7 @@ const StepContent = (props: Props) => {
           <span
             className={cls(
               "hidden lg:block",
-              "w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige",
+              "from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b",
             )}
           ></span>
         )}
@@ -114,8 +114,8 @@ const StepContent = (props: Props) => {
 
       <div
         className={cls(
-          "relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px]",
-          "border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0",
+          "relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px]",
+          "border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0",
           props.dottedLine && "border-dashed",
           !!props.buttonStep && "pb-[150px] lg:pb-0",
         )}
@@ -126,7 +126,7 @@ const StepContent = (props: Props) => {
           <span
             className={cls(
               "lg:hidden",
-              "w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige",
+              "from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b",
             )}
           ></span>
         )}

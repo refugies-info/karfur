@@ -11,7 +11,7 @@ export const SectionTeam = () => {
     <Section>
       <div className="fr-container">
         <Title2>{t("MissionImpact.team_title")}</Title2>
-        <div className="flex sm:px-20 gap-4 sm:gap-10 flex-wrap justify-center">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-10 sm:px-20">
           {teamData.map((team) => (
             <TeamCard key={team.name} {...team} />
           ))}

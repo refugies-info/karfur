@@ -8,7 +8,7 @@ interface Props {
 
 export const Figure = (props: Props) => {
   return (
-    <div className="flex-1 space-y-6 text-center max-w-[304px]">
+    <div className="max-w-[304px] flex-1 space-y-6 text-center">
       <Image src={props.image} alt="" width={304} height={224} className="h-[224px]" />
       <h3 className="text-alt-title-big text-light-alt-blue">{props.title}</h3>
       <p className="text-large text-light-alt-blue">{props.text}</p>

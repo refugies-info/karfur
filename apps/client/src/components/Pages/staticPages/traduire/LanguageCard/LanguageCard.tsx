@@ -28,7 +28,7 @@ const LanguageCard = (props: Props) => {
     <Link
       href={props.href}
       onClick={smoothScroll}
-      className="p-3 md:p-4 border border-border inline-flex items-center gap-2 bg-white hover:!bg-hover"
+      className="border-border hover:!bg-hover inline-flex items-center gap-2 border bg-white p-3 md:p-4"
     >
       <Flag langueCode={language?.langueCode} />
       <span className="text-h6 md:text-h5 font-bold">{language?.langueFr}</span>

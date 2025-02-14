@@ -70,7 +70,7 @@
     "reselect": "^5.1.1",
     "sanitize-html": "^2.14.0",
     "search-insights": "^2.17.2",
-    "styled-components": "^6.1.15",
+    "styled-components": "6.1.13",
     "typesafe-actions": "^5.1.0",
     "use-sync-external-store": "1.2.0",
     "uuid": "^11.0.5"
@@ -90,7 +90,7 @@
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.5",
     "@types/sanitize-html": "^2.13.0",
-    "@types/styled-components-react-native": "^5.1.3",
+    "@types/styled-components-react-native": "^5.2.5",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.23.0",
     "@typescript-eslint/parser": "^8.23.0",

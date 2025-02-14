@@ -29,7 +29,7 @@ const EditModal = (props: Props) => {
           Pensez bien à faire toutes vos modifications avant de les envoyer pour traduction. Sinon, les traducteurs
           travaillent deux fois de suite sur votre fiche.
         </p>
-        <div className="flex justify-center mb-8">
+        <div className="mb-8 flex justify-center">
           <Image src={TutorielImage} width={176} height={120} alt="" />
         </div>
         <div className="text-end">

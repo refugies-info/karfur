@@ -141,7 +141,7 @@ exports[`agir renders traduire 1`] = `
           1
         </span>
         <div
-          class="grid lg:grid-cols-2 gap-x-20"
+          class="grid gap-x-20 lg:grid-cols-2"
         >
           <div>
             <h2
@@ -199,7 +199,7 @@ exports[`agir renders traduire 1`] = `
           </div>
         </div>
         <div
-          class="grid lg:grid-cols-3 gap-10 mt-10 lg:mt-20"
+          class="mt-10 grid gap-10 lg:mt-20 lg:grid-cols-3"
         >
           <div
             class="mb-10 lg:mb-0"
@@ -338,7 +338,7 @@ exports[`agir renders traduire 1`] = `
           2
         </span>
         <div
-          class="grid lg:grid-cols-2 gap-x-20"
+          class="grid gap-x-20 lg:grid-cols-2"
         >
           <div>
             <h2
@@ -396,7 +396,7 @@ exports[`agir renders traduire 1`] = `
             Trouver l’opérateur de mon territoire
           </h3>
           <p
-            class="lg:w-1/2 italic"
+            class="italic lg:w-1/2"
           >
             Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre territoire.
           </p>
@@ -1163,7 +1163,7 @@ exports[`agir renders traduire 1`] = `
               </svg>
             </div>
             <div
-              class="lg:col-span-1 flex items-center"
+              class="flex items-center lg:col-span-1"
             />
           </div>
         </div>
@@ -1193,7 +1193,7 @@ exports[`agir renders traduire 1`] = `
           class="mt-10 lg:mt-20 cards"
         >
           <div
-            class="grid lg:grid-cols-4 gap-6"
+            class="grid gap-6 lg:grid-cols-4"
           >
             <div
               class="mb-4 lg:mb-0"

@@ -25,8 +25,8 @@ const SecondaryNavbar = (props: Props) => {
   }, []);
 
   return (
-    <div className="sticky top-0 bg-white z-20">
-      <div className="fr-container flex gap-10 justify-between items-start flex-nowrap py-4 md:py-10">
+    <div className="sticky top-0 z-20 bg-white">
+      <div className="fr-container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
         <div className={styles.nav}>
           <SegmentedControl
             hideLegend

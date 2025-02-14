@@ -58,7 +58,7 @@ const Register = (props: Props) => {
   };
 
   return (
-    <div className="max-w-[480px] mx-auto text-center">
+    <div className="mx-auto max-w-[480px] text-center">
       {isTablet ? (
         <>
           <Image

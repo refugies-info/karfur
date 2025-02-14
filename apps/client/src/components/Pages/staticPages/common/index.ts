@@ -6,7 +6,6 @@ export { default as CountUpFigure } from "./CountUpFigure";
 export { Hero } from "./Hero";
 export { default as HeroArrow } from "./HeroArrow";
 export { default as InlineLink } from "./InlineLink";
-export { default as LanguageIcon } from "./LanguageIcon";
 export { default as Register } from "./Register";
 export { RowCards } from "./RowCards";
 export { default as SecondaryNavbar } from "./SecondaryNavbar";
