@@ -74,7 +74,7 @@
     "node": "22.13.1"
   },
   "devDependencies": {
-    "@codegouvfr/react-dsfr": "^1.18.0",
+    "@codegouvfr/react-dsfr": "^1.19.0",
     "@types/node": "^22.13.1",
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.14.2",
-    "@codegouvfr/react-dsfr": "^1.14.1",
+    "@codegouvfr/react-dsfr": "^1.19.0",
     "@lexical/html": "^0.18.0",
     "@lexical/link": "^0.18.0",
     "@lexical/list": "^0.18.0",
