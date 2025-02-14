@@ -74,7 +74,7 @@
     "node": "22.13.1"
   },
   "devDependencies": {
-    "@codegouvfr/react-dsfr": "^1.18.0",
+    "@codegouvfr/react-dsfr": "^1.19.0",
     "@types/node": "^22.13.1",
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",
@@ -85,6 +85,7 @@
     "mongodb": "^6.13.0",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.10",
     "stylelint": "^16.14.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
@@ -103,7 +104,7 @@
   "packageManager": "pnpm@10.2.1",
   "pnpm": {
     "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.15.0": "patches/@codegouvfr__react-dsfr@1.15.0.patch"
+      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
     }
   }
 }

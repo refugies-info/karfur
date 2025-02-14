@@ -11,7 +11,7 @@ export const SectionUsers = () => {
     <Section>
       <div className="fr-container">
         <Title2>{t("MissionImpact.users_title")}</Title2>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:px-30 mn-10 lg:mb-20">
+        <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
           <div className="flex-1">
             <h3>{t("MissionImpact.users_subtitle_1")}</h3>
             <p className="text-large">{t("MissionImpact.users_text_1")}</p>
@@ -25,7 +25,7 @@ export const SectionUsers = () => {
               </Badge>
             </div>
           </div>
-          <div className="flex-1 flex flex-col gap-8 justify-center">
+          <div className="flex flex-1 flex-col justify-center gap-8">
             <Image
               src={UsersGraph1}
               alt={t("MissionImpact.users_legend_1")}
@@ -33,10 +33,10 @@ export const SectionUsers = () => {
               width={416}
               height={271}
             />
-            <p className="text-small text-center text-gray italic">{t("MissionImpact.users_legend_1")}</p>
+            <p className="text-small text-gray text-center italic">{t("MissionImpact.users_legend_1")}</p>
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:px-30 mn-10 lg:mb-20">
+        <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
           <div className="flex-1">
             <h3>{t("MissionImpact.users_subtitle_2")}</h3>
             <p className="text-large">{t("MissionImpact.users_text_2")}</p>
@@ -47,7 +47,7 @@ export const SectionUsers = () => {
               </Badge>
             </div>
           </div>
-          <div className="flex-1 flex flex-col gap-8 justify-center">
+          <div className="flex flex-1 flex-col justify-center gap-8">
             <Image
               src={UsersGraph2}
               alt={t("MissionImpact.users_legend_2")}
@@ -55,7 +55,7 @@ export const SectionUsers = () => {
               width={376}
               height={191}
             />
-            <p className="text-small text-center text-gray italic">{t("MissionImpact.users_legend_2")}</p>
+            <p className="text-small text-gray text-center italic">{t("MissionImpact.users_legend_2")}</p>
           </div>
         </div>
       </div>

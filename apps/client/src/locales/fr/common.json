@@ -6,10 +6,16 @@
     "monEspace": "Mon espace"
   },
   "Homepage": {
-    "title": "L’information simple et traduite pour les personnes réfugiées en France",
+    "title": "Le service public d’information pour les personnes réfugiées",
+    "searchButton": "Chercher une information",
     "Choisir une langue": "Choisir une langue",
     "Ma langue": "Ma langue",
     "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
+    "imageDescription": "Illustration colorée et minimaliste montrant une ville accueillante avec des bâtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
+    "subtitle1": "Des ressources claires et traduites",
+    "subtitle2": "pour accompagner les personnes réfugiées en France",
+    "subtitleMobile": "Des informations claires et traduites pour construire votre vie en France",
+    "donwloadAppButton": "Télécharger l'application",
     "traduire": "Aidez-nous à traduire !",
     "btn_translate": "Je traduis",
     "mobileAppTitle": "Téléchargez l’application Réfugiés.info !",
@@ -32,6 +38,7 @@
     "whyAccordionText4": "Sur Réfugiés.info, l’information est simplifiée, traduite en 7 langues et écoutable. Les fiches peuvent servir de support pour communiquer ou expliquer une information. Cet outil peut ainsi faciliter le travail d’accompagnement social.",
     "resourcesTitle": "Des ressources gratuites à votre disposition",
     "resourcesText": "Nous vous fournissons un ensemble d’outils numériques et physiques pour découvrir le projet et en parler autour de vous : vidéos animées, flyers multilangues, brochures de présentation, visuels, etc.",
+    "ressourcesImgAlt": "Capture d'écran du kit de communication de Réfugiés.info. L'interface affiche un site web avec une vidéo de présentation, un message d'accueil expliquant l'objectif du kit et une section d'accès rapide contenant des boutons vers différentes ressources. À droite, une série de flyers multilingues est disposée en éventail, représentant les supports physiques disponibles pour informer sur le projet.",
     "resourcesCTA": "Voir les outils",
     "helpUsTitle": "Aidez-nous à enrichir la plateforme !",
     "helpUsSubtitle": "Réfugiés.info est un projet collaboratif, tout le monde peut participer, comme sur Wikipédia. Ensemble, nous pouvons créer un grand nombre de fiches et faire connaître le projet.",
@@ -712,6 +719,73 @@
     "Tigrinya": "Tigrinya",
     "Ukrainien": "Ukrainien"
   },
+  "NewsletterForm": {
+    "title": "Inscrivez-vous à notre lettre d’information mensuelle",
+    "description": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
+    "imgAlt": "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
+    "label": "Adresse email",
+    "confirmMessage": {
+      "title": "Yay...",
+      "text": "Mail <b>{{email}}</b> correctement enregistré !"
+    },
+    "errors": {
+      "emailNotValid": "Ceci n'est pas un email, vérifiez l'orthographe.",
+      "alreadyExists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
+      "systemError": "Une erreur s'est produite"
+    }
+  },
+  "MobileApp": {
+    "imageAlt": "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
+    "logoAlt": "Logo Réfugiés.info",
+    "rankingText": "Top 3 des applications publiques",
+    "rankingLabel": "Note : 5 sur 5",
+    "title": "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+    "subtitle": "Gratuite, l’application a été conçue <em>avec</em> et <em>pour</em> les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
+    "titleMobile": "Télécharge l’application !",
+    "subTitleMobile": "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info t’aide à construire ta vie en France !",
+    "phoneLabel": "Numéro de téléphone",
+    "langLabel": "Envoyer par SMS en :",
+    "buttonText": "Envoyer le lien",
+    "downloadButtonText": "Je télécharge l’application"
+  },
+  "WorkTogether": {
+    "title": "Travaillons ensemble ! Vous êtes... ?",
+    "bookAppointment": "Prendre rendez-vous",
+    "participateWebinar": "Participez à un webinaire",
+    "translateContent": "Traduire une fiche",
+    "cards": {
+      "ts": {
+        "title": "Travailleurs sociaux ou chefs de centre ?",
+        "description": "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux.",
+        "alt": "Icône représentant un personnage stylisé en bleu, entouré d’un cercle rouge partiellement ouvert, avec de petits points violets autour. Cette image illustre l’accompagnement des travailleurs sociaux et chefs de centre dans la découverte du service Réfugiés.info pour faciliter l’orientation des bénéficiaires."
+      },
+      "agir": {
+        "title": "Opérateurs du programme <br>AGIR ?",
+        "description": "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien.",
+        "alt": "\"Logo du programme AGIR sur fond noir, avec le slogan 'pour le logement et l'emploi des personnes réfugiées'. En dessous, un encart blanc contient le logo du Parcours d’Intégration Républicaine et le drapeau de l’Union européenne, indiquant le soutien européen au programme\""
+      },
+      "operators": {
+        "title": "Opérateurs d’État ?",
+        "description": "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion.",
+        "alt": "Illustration affichant les logos de trois organisations partenaires : France Terre d'Asile, Fondation COS Alexandre Glasberg et Coallia. Un cercle bleu à droite indique '+11', représentant un total de 14 opérateurs ayant signé un partenariat avec Réfugiés.info."
+      },
+      "administration": {
+        "title": "Administration ou institution publique ?",
+        "description": "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible.",
+        "alt": "Icône stylisée représentant un bâtiment administratif en bleu avec des éléments rouges sur la façade et le toit. Cette image illustre l'accompagnement des administrations et institutions publiques dans la cartographie des acteurs locaux et la diffusion d’informations accessibles via Réfugiés.info."
+      },
+      "structures": {
+        "title": "Structures porteuses de <br>dispositifs ?",
+        "description": "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
+        "alt": "Icône stylisée représentant la carte de la France en bleu, avec plusieurs marqueurs de localisation rouges répartis sur le territoire. Cette image illustre la possibilité pour les structures porteuses de dispositifs de référencer leurs actions sur Réfugiés.info pour les rendre accessibles aux bénéficiaires."
+      },
+      "polyglots": {
+        "title": "Polyglottes bénévoles ?",
+        "description": "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
+        "alt": "Icône stylisée représentant deux bulles de dialogue en bleu avec du texte rouge à l’intérieur, ainsi qu’une petite bulle avec trois points. Cette image illustre la possibilité pour les bénévoles polyglottes de contribuer à la traduction collaborative des contenus sur Réfugiés.info."
+      }
+    }
+  },
   "SkipLinks": {
     "PiedDePage": "Pied de page",
     "Menu": "Menu",
@@ -849,5 +923,13 @@
     "navbarItem6": "Les contributeurs",
     "navbarItem7": "Les moments clés",
     "join_title": "Travaillons ensemble ! Vous êtes... ? "
-  }
+  },
+  "ui": {
+    "carrousel": {
+      "seeMore": "Voir tout",
+      "prev": "Faire défiler à gauche",
+      "next": "Faire défiler à droite"
+    }
+  },
+  "ok": "Ok"
 }

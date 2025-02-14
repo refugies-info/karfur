@@ -84,7 +84,7 @@ const SendSMSModal = (props: Props) => {
         >
           <input
             type="tel"
-            placeholder={t("Homepage.mobileAppFormLabel")}
+            placeholder={t("MobileApp.phoneLabel", "Numéro de téléphone")}
             value={tel}
             onChange={(e: any) => setTel(e.target.value)}
             className={cls(styles.input, !!error && styles.input_error)}

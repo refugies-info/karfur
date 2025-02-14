@@ -147,7 +147,7 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-light-alt-blue">
           <div className="fr-container">
             <Title2>{t("Translate.needTitle")}</Title2>
-            <div className="flex gap-6 md:justify-center flex-wrap">
+            <div className="flex flex-wrap gap-6 md:justify-center">
               {translationNeeds.map((item, i) => (
                 <LanguageCard href="#register" key={i} languageId={item.languageId} need={item.need} />
               ))}
@@ -205,7 +205,7 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-light-alt-blue">
           <Anchor id="next" />
           <div className="fr-container">
-            <div className="flex gap-10 lg:gap-20 items-center flex-col md:flex-row">
+            <div className="flex flex-col items-center gap-10 md:flex-row lg:gap-20">
               <div className="flex-1">
                 <Title2 className="!text-left" smallMb>
                   {t("Translate.nextTitle")}
@@ -214,7 +214,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className="!mb-0">{t("Translate.nextText2")}</p>
               </div>
               <div className="flex-1">
-                <Image src={ShareImage} alt="" width={440} height={287} className="object-contain mx-auto" />
+                <Image src={ShareImage} alt="" width={440} height={287} className="mx-auto object-contain" />
               </div>
             </div>
           </div>
@@ -250,7 +250,7 @@ const RecensezVotreAction = (props: Props) => {
         <Anchor id="faq" />
         <div className="fr-container">
           <Title2 className="text-center">{t("StaticPages.faqTitle")}</Title2>
-          <div className="max-w-[720px] mx-auto">
+          <div className="mx-auto max-w-[720px]">
             <Accordion
               items={[
                 { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
@@ -270,7 +270,7 @@ const RecensezVotreAction = (props: Props) => {
       </Section>
 
       {/* REGISTER */}
-      <Section ref={refRegister} className="relative bg-beige">
+      <Section ref={refRegister} className="bg-beige relative">
         <Anchor id="register" />
         <div className="fr-container">
           <Register

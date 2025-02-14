@@ -12,7 +12,7 @@ exports[`publier renders publier 1`] = `
         class="fr-container"
       >
         <div
-          class="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20"
+          class="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20"
         >
           <div
             class="flex-1 text-center md:text-left"
@@ -28,7 +28,7 @@ exports[`publier renders publier 1`] = `
               Publish.subtitle
             </p>
             <a
-              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right mt-10 w-full justify-center md:w-auto fr-button-reverse max-md:text-large max-md:min-h-[48px]"
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
               href="#register"
               id="fr-button-:r0:"
             >
@@ -40,7 +40,7 @@ exports[`publier renders publier 1`] = `
           >
             <img
               alt=""
-              class="max-w-full h-auto mx-auto"
+              class="mx-auto h-auto max-w-full"
               data-nimg="1"
               decoding="async"
               height="540"
@@ -55,10 +55,10 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="sticky top-0 bg-white z-20"
+      class="sticky top-0 z-20 bg-white"
     >
       <div
-        class="fr-container flex gap-10 justify-between items-start flex-nowrap py-4 md:py-10"
+        class="fr-container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10"
       >
         <div
           class="nav"
@@ -191,7 +191,7 @@ exports[`publier renders publier 1`] = `
                       aria-controls="radix-:r5:"
                       aria-disabled="true"
                       aria-expanded="true"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="open"
@@ -199,12 +199,12 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1 !text-blue-france"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
                       >
                         Publish.whyAccordionTitle1
                       </span>
                       <i
-                        class="fr-icon-subtract-line before:!w-4 before:!h-4 flex before:!bg-blue-france"
+                        class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
                       />
                     </button>
                   </h3>
@@ -237,7 +237,7 @@ exports[`publier renders publier 1`] = `
                     <button
                       aria-controls="radix-:r7:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -245,12 +245,12 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
                         Publish.whyAccordionTitle2
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -278,7 +278,7 @@ exports[`publier renders publier 1`] = `
                     <button
                       aria-controls="radix-:r9:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -286,12 +286,12 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
                         Publish.whyAccordionTitle3
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -319,7 +319,7 @@ exports[`publier renders publier 1`] = `
                     <button
                       aria-controls="radix-:rb:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -327,12 +327,12 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
                         Publish.whyAccordionTitle4
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -350,11 +350,11 @@ exports[`publier renders publier 1`] = `
               </div>
             </div>
             <div
-              class="w-1/2 flex items-center justify-center"
+              class="flex w-1/2 items-center justify-center"
             >
               <img
                 alt=""
-                class="max-w-full h-auto mx-auto mt-6 lg:mt-0"
+                class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
                 data-nimg="1"
                 decoding="async"
                 height="320"
@@ -380,10 +380,10 @@ exports[`publier renders publier 1`] = `
             Publish.testimonies_title
           </h2>
           <div
-            class="flex flex-col md:flex-row gap-10"
+            class="flex flex-col gap-10 md:flex-row"
           >
             <div
-              class="flex-1 md:px-8 space-y-6"
+              class="flex-1 space-y-6 md:px-8"
             >
               <img
                 alt=""
@@ -403,7 +403,7 @@ exports[`publier renders publier 1`] = `
               </p>
               <div>
                 <div
-                  class="font-bold mb-2"
+                  class="mb-2 font-bold"
                 >
                   Vincent Le Lann
                 </div>
@@ -413,7 +413,7 @@ exports[`publier renders publier 1`] = `
               </div>
             </div>
             <div
-              class="flex-1 md:px-8 space-y-6"
+              class="flex-1 space-y-6 md:px-8"
             >
               <img
                 alt=""
@@ -433,7 +433,7 @@ exports[`publier renders publier 1`] = `
               </p>
               <div>
                 <div
-                  class="font-bold mb-2"
+                  class="mb-2 font-bold"
                 >
                   Rémi Crouzel
                 </div>
@@ -443,7 +443,7 @@ exports[`publier renders publier 1`] = `
               </div>
             </div>
             <div
-              class="flex-1 md:px-8 space-y-6"
+              class="flex-1 space-y-6 md:px-8"
             >
               <img
                 alt=""
@@ -463,7 +463,7 @@ exports[`publier renders publier 1`] = `
               </p>
               <div>
                 <div
-                  class="font-bold mb-2"
+                  class="mb-2 font-bold"
                 >
                   Paola Salazar
                 </div>
@@ -492,13 +492,13 @@ exports[`publier renders publier 1`] = `
           Publish.requiredTitle
         </h2>
         <div
-          class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+          class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
         >
           <div
             class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
             <div
-              class="flex flex-col h-full"
+              class="flex h-full flex-col"
             >
               <div>
                 <img
@@ -514,7 +514,7 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
               <h3
-                class="text-h6 md:text-h5 my-3 text-blue-france"
+                class="text-h6 md:text-h5 text-blue-france my-3"
               >
                 Publish.requiredSubtitle1
               </h3>
@@ -533,15 +533,15 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
-                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                      class="fr-icon-close-circle-fill text-error me-2 h-6 w-6"
                     />
                     Publish.requiredTextExample1Ko
                   </p>
                   <p
-                    class="flex !mb-0"
+                    class="!mb-0 flex"
                   >
                     <i
-                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                      class="fr-icon-success-fill text-success me-2 h-6 w-6"
                     />
                     Publish.requiredTextExample1Ok
                   </p>
@@ -553,7 +553,7 @@ exports[`publier renders publier 1`] = `
             class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
             <div
-              class="flex flex-col h-full"
+              class="flex h-full flex-col"
             >
               <div>
                 <img
@@ -569,7 +569,7 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
               <h3
-                class="text-h6 md:text-h5 my-3 text-blue-france"
+                class="text-h6 md:text-h5 text-blue-france my-3"
               >
                 Publish.requiredSubtitle2
               </h3>
@@ -588,15 +588,15 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
-                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                      class="fr-icon-close-circle-fill text-error me-2 h-6 w-6"
                     />
                     Publish.requiredTextExample2Ko
                   </p>
                   <p
-                    class="flex !mb-0"
+                    class="!mb-0 flex"
                   >
                     <i
-                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                      class="fr-icon-success-fill text-success me-2 h-6 w-6"
                     />
                     Publish.requiredTextExample2Ok
                   </p>
@@ -608,7 +608,7 @@ exports[`publier renders publier 1`] = `
             class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
             <div
-              class="flex flex-col h-full"
+              class="flex h-full flex-col"
             >
               <div>
                 <img
@@ -624,7 +624,7 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
               <h3
-                class="text-h6 md:text-h5 my-3 text-blue-france"
+                class="text-h6 md:text-h5 text-blue-france my-3"
               >
                 Publish.requiredSubtitle3
               </h3>
@@ -643,15 +643,15 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
-                      class="fr-icon-close-circle-fill h-6 w-6 me-2 text-error"
+                      class="fr-icon-close-circle-fill text-error me-2 h-6 w-6"
                     />
                     Publish.requiredTextExample3Ko
                   </p>
                   <p
-                    class="flex !mb-0"
+                    class="!mb-0 flex"
                   >
                     <i
-                      class="fr-icon-success-fill h-6 w-6 me-2 text-success"
+                      class="fr-icon-success-fill text-success me-2 h-6 w-6"
                     />
                     Publish.requiredTextExample3Ok
                   </p>
@@ -661,7 +661,7 @@ exports[`publier renders publier 1`] = `
           </div>
         </div>
         <div
-          class="mt-10 lg:mt-20 text-center"
+          class="mt-10 text-center lg:mt-20"
         >
           <a
             class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
@@ -692,13 +692,13 @@ exports[`publier renders publier 1`] = `
             Publish.stepsTitle
           </h2>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -725,7 +725,7 @@ exports[`publier renders publier 1`] = `
               </a>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -741,13 +741,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -779,7 +779,7 @@ exports[`publier renders publier 1`] = `
               </a>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -795,13 +795,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -821,7 +821,7 @@ exports[`publier renders publier 1`] = `
               </p>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -837,13 +837,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -867,13 +867,13 @@ exports[`publier renders publier 1`] = `
                 Publish.stepsText4b
               </p>
               <div
-                class="text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
+                class="text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
                 Publish.stepsButton
               </div>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 pb-[150px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 pb-[150px] lg:pb-0"
             >
               <img
                 alt=""
@@ -889,13 +889,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -920,7 +920,7 @@ exports[`publier renders publier 1`] = `
               </p>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -936,13 +936,13 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france border-dashed"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 border-dashed"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -966,11 +966,11 @@ exports[`publier renders publier 1`] = `
                 Publish.stepsText6b
               </p>
               <span
-                class="hidden lg:block w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige"
+                class="hidden lg:block from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
               />
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 border-dashed"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 border-dashed"
             >
               <img
                 alt=""
@@ -984,7 +984,7 @@ exports[`publier renders publier 1`] = `
                 width="336"
               />
               <span
-                class="lg:hidden w-1 absolute h-[200px] bottom-0 -start-1 bg-gradient-to-b from-beige/0 to-beige"
+                class="lg:hidden from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
               />
             </div>
           </div>
@@ -1001,7 +1001,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <div
-            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
+            class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
             <h2
               class="!text-h3 md:!text-h2 md:text-center !mb-6"
@@ -1009,13 +1009,13 @@ exports[`publier renders publier 1`] = `
               StaticPages.helpTitle
             </h2>
             <p
-              class="text-chapo md:text-center mb-0"
+              class="text-chapo mb-0 md:text-center"
             >
               Publish.helpSubtitle
             </p>
           </div>
           <div
-            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+            class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <a
               class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active block"
@@ -1025,7 +1025,7 @@ exports[`publier renders publier 1`] = `
               title="Publish.helpTileTitle1"
             >
               <div
-                class="flex flex-col h-full"
+                class="flex h-full flex-col"
               >
                 <div>
                   <img
@@ -1041,7 +1041,7 @@ exports[`publier renders publier 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 my-3 text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
                   Publish.helpTileTitle1
                 </h3>
@@ -1056,7 +1056,7 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <div
-                class="mt-6 pt-2 w-full text-right"
+                class="mt-6 w-full pt-2 text-right"
               >
                 <i
                   class="fr-icon-arrow-right-line text-blue-france"
@@ -1071,7 +1071,7 @@ exports[`publier renders publier 1`] = `
               title="Publish.helpTileTitle2"
             >
               <div
-                class="flex flex-col h-full"
+                class="flex h-full flex-col"
               >
                 <div>
                   <img
@@ -1087,7 +1087,7 @@ exports[`publier renders publier 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 my-3 text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
                   Publish.helpTileTitle2
                 </h3>
@@ -1102,7 +1102,7 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <div
-                class="mt-6 pt-2 w-full text-right"
+                class="mt-6 w-full pt-2 text-right"
               >
                 <i
                   class="fr-icon-arrow-right-line text-blue-france"
@@ -1114,7 +1114,7 @@ exports[`publier renders publier 1`] = `
               title="StaticPages.helpTileTitle3"
             >
               <div
-                class="flex flex-col h-full"
+                class="flex h-full flex-col"
               >
                 <div>
                   <img
@@ -1130,7 +1130,7 @@ exports[`publier renders publier 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 my-3 text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
                   StaticPages.helpTileTitle3
                 </h3>
@@ -1145,7 +1145,7 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <div
-                class="mt-6 pt-2 w-full text-right"
+                class="mt-6 w-full pt-2 text-right"
               >
                 <i
                   class="fr-icon-arrow-right-line text-blue-france"
@@ -1167,10 +1167,10 @@ exports[`publier renders publier 1`] = `
             Publish.figuresTitle
           </h2>
           <div
-            class="flex flex-col lg:flex-row gap-10 lg:gap-20 justify-center"
+            class="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20"
           >
             <div
-              class="text-center flex-1"
+              class="flex-1 text-center"
             >
               <div
                 class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
@@ -1180,13 +1180,13 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <p
-                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+                class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
                 Publish.figuresSubtitle1
               </p>
             </div>
             <div
-              class="text-center flex-1"
+              class="flex-1 text-center"
             >
               <div
                 class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
@@ -1196,13 +1196,13 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <p
-                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+                class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
                 Publish.figuresSubtitle2
               </p>
             </div>
             <div
-              class="text-center flex-1"
+              class="flex-1 text-center"
             >
               <div
                 class="text-blue-france text-alt-title lg:text-alt-title-big font-bold"
@@ -1212,7 +1212,7 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <p
-                class="mt-6 mb-0 text-blue-france text-chapo font-bold"
+                class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
                 Publish.figuresSubtitle3
               </p>
@@ -1236,7 +1236,7 @@ exports[`publier renders publier 1`] = `
             StaticPages.faqTitle
           </h2>
           <div
-            class="max-w-[720px] mx-auto"
+            class="mx-auto max-w-[720px]"
           >
             <div
               class="flex gap-20"
@@ -1260,7 +1260,7 @@ exports[`publier renders publier 1`] = `
                       <button
                         aria-controls="radix-:rg:"
                         aria-expanded="false"
-                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
@@ -1268,12 +1268,12 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                          class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
                           Publish.faqAccordionTitle1
                         </span>
                         <i
-                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                          class="fr-icon-add-line flex before:!h-4 before:!w-4"
                         />
                       </button>
                     </h3>
@@ -1301,7 +1301,7 @@ exports[`publier renders publier 1`] = `
                       <button
                         aria-controls="radix-:ri:"
                         aria-expanded="false"
-                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
@@ -1309,12 +1309,12 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                          class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
                           Publish.faqAccordionTitle2
                         </span>
                         <i
-                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                          class="fr-icon-add-line flex before:!h-4 before:!w-4"
                         />
                       </button>
                     </h3>
@@ -1342,7 +1342,7 @@ exports[`publier renders publier 1`] = `
                       <button
                         aria-controls="radix-:rk:"
                         aria-expanded="false"
-                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
@@ -1350,12 +1350,12 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                          class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
                           Publish.faqAccordionTitle3
                         </span>
                         <i
-                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                          class="fr-icon-add-line flex before:!h-4 before:!w-4"
                         />
                       </button>
                     </h3>
@@ -1383,7 +1383,7 @@ exports[`publier renders publier 1`] = `
                       <button
                         aria-controls="radix-:rm:"
                         aria-expanded="false"
-                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
@@ -1391,12 +1391,12 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                          class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
                           Publish.faqAccordionTitle4
                         </span>
                         <i
-                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                          class="fr-icon-add-line flex before:!h-4 before:!w-4"
                         />
                       </button>
                     </h3>
@@ -1424,7 +1424,7 @@ exports[`publier renders publier 1`] = `
                       <button
                         aria-controls="radix-:ro:"
                         aria-expanded="false"
-                        class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                        class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
@@ -1432,12 +1432,12 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                          class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
                           Publish.faqAccordionTitle5
                         </span>
                         <i
-                          class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                          class="fr-icon-add-line flex before:!h-4 before:!w-4"
                         />
                       </button>
                     </h3>
@@ -1457,7 +1457,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            class="mt-10 lg:mt-20 text-center"
+            class="mt-10 text-center lg:mt-20"
           >
             <a
               class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
@@ -1471,7 +1471,7 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="py-10 md:py-20 relative bg-beige"
+      class="py-10 md:py-20 bg-beige relative"
     >
       <span
         class="absolute -top-[96px] md:-top-[120px]"
@@ -1481,7 +1481,7 @@ exports[`publier renders publier 1`] = `
         class="fr-container"
       >
         <div
-          class="max-w-[480px] mx-auto text-center"
+          class="mx-auto max-w-[480px] text-center"
         >
           <img
             alt=""

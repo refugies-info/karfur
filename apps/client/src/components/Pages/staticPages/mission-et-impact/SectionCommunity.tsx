@@ -14,7 +14,7 @@ export const SectionCommunity = () => {
     <Section>
       <div className="fr-container">
         <Title2 className="!text-center">{t("MissionImpact.join_title")}</Title2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           <Card
             image={IconTs}
             title={t("MissionImpact.join_ts_title")}

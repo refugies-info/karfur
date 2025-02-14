@@ -13,13 +13,13 @@ interface Props {
 
 const TestimonySlider = (props: Props) => {
   return (
-    <div className="flex flex-col md:flex-row gap-10">
+    <div className="flex flex-col gap-10 md:flex-row">
       {props.testimonies.map((testimony, i) => (
-        <div key={i} className="flex-1 md:px-8 space-y-6">
+        <div key={i} className="flex-1 space-y-6 md:px-8">
           <Image src={TestimonyIcon} width={40} height={40} alt="" />
           <p className="!text-large !mb-6">{testimony.text}</p>
           <div>
-            <div className="font-bold mb-2">{testimony.name}</div>
+            <div className="mb-2 font-bold">{testimony.name}</div>
             <div>{testimony.position}</div>
           </div>
         </div>

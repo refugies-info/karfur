@@ -1,5 +1,4 @@
 import i18n from "i18next";
-import React from "react";
 import { initReactI18next } from "react-i18next";
 import { TextDecoder, TextEncoder } from "util";
 
@@ -105,3 +104,16 @@ export class IntersectionObserver {
 }
 window.IntersectionObserver = IntersectionObserver;
 global.IntersectionObserver = IntersectionObserver;
+
+// Mock ResizeObserver
+class ResizeObserver {
+  constructor(callback) {
+    this.callback = callback;
+  }
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+window.ResizeObserver = ResizeObserver;
+global.ResizeObserver = ResizeObserver;

@@ -87,7 +87,7 @@ const CompleteContent = (props: Props) => {
               onSelect={() => setKeepTranslations(true)}
               image={NoIcon}
             />
-            <div className="text-end mt-8">
+            <div className="mt-8 text-end">
               <Button
                 onClick={(e: any) => {
                   e.preventDefault();
@@ -158,7 +158,7 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <div className="flex justify-center text-center mb-8 mt-6">
+          <div className="mt-6 mb-8 flex justify-center text-center">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">
@@ -186,7 +186,7 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <div className="flex justify-center text-center mb-8 mt-6">
+          <div className="mt-6 mb-8 flex justify-center text-center">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">

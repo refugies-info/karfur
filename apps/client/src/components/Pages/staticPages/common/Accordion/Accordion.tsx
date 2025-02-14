@@ -14,6 +14,7 @@ type Item = {
   title: string;
   text: string;
   image?: any;
+  alt?: string;
   video?: string;
   youtube?: string;
   mediaWidth?: number;
@@ -49,10 +50,10 @@ const Accordion = (props: Props) => {
         return (
           <Image
             src={item?.image}
-            alt=""
+            alt={item?.alt ? item.alt : ""}
             height={item.mediaHeight}
             width={item.mediaWidth}
-            className="max-w-full h-auto mx-auto mt-6 lg:mt-0"
+            className="mx-auto mt-6 h-auto max-w-full lg:mt-0"
           />
         );
       case "video":
@@ -88,13 +89,13 @@ const Accordion = (props: Props) => {
                 <AccordionRadix.Header className="!mb-0">
                   <AccordionRadix.Trigger
                     className={cls(
-                      "py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue",
+                      "!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3",
                       isItemOpen && "!bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france",
                     )}
                   >
                     <span
                       className={cls(
-                        "!text-chapo !text-left !font-medium !mb-0 grow-1",
+                        "!text-chapo !mb-0 grow-1 !text-left !font-medium",
                         isItemOpen && "!text-blue-france",
                       )}
                     >
@@ -103,7 +104,7 @@ const Accordion = (props: Props) => {
                     <i
                       className={cls(
                         isItemOpen ? "fr-icon-subtract-line" : "fr-icon-add-line",
-                        "before:!w-4 before:!h-4 flex",
+                        "flex before:!h-4 before:!w-4",
                         isItemOpen && "before:!bg-blue-france",
                       )}
                     />
@@ -121,7 +122,7 @@ const Accordion = (props: Props) => {
                     <>
                       {item?.image && getMedia("image", item)}
                       {item?.video && (
-                        <div className="max-w-[250px] mx-auto mt-0 mb-6 !text-center">{getMedia("video", item)}</div>
+                        <div className="mx-auto mt-0 mb-6 max-w-[250px] !text-center">{getMedia("video", item)}</div>
                       )}
                       {item?.youtube && getMedia("youtube", item)}
                     </>
@@ -148,7 +149,7 @@ const Accordion = (props: Props) => {
       {!isTablet && props.withImages && open.length > 0 && (
         <div
           className={cls(
-            "w-1/2 flex items-center",
+            "flex w-1/2 items-center",
             props.mediaAlign === "center" ? "justify-center" : "justify-end",
             props.items[open[0]]?.className,
           )}

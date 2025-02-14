@@ -87,7 +87,7 @@
     },
     "test": {
       "cache": false,
-      "dependsOn": ["^test"]
+      "dependsOn": ["@refugies-info/ui#build", "^test"]
     },
     "lint": {
       "dependsOn": ["^lint"]

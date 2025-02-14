@@ -9,13 +9,13 @@ export const SectionMission = () => {
   return (
     <Section>
       <div className="fr-container">
-        <div className="flex gap-10 md:gap-20 flex-col md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row md:gap-20">
           <div className="flex-1">
             <Title2 smallMb className="!text-left">
               {t("MissionImpact.mission_title")}
             </Title2>
             <p className="!text-h4 md:!text-h3 text-purple-france !mb-0">{t("MissionImpact.mission_subtitle")}</p>
-            <Image src={ScreenshotRI} alt="" width={540} height={357} className="mt-10 md:mt-14 mx-auto max-w-full" />
+            <Image src={ScreenshotRI} alt="" width={540} height={357} className="mx-auto mt-10 max-w-full md:mt-14" />
           </div>
           <div className="flex-1">
             <p
@@ -26,7 +26,7 @@ export const SectionMission = () => {
             />
             <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
             <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>
-            <div className="mt-10 flex gap-6 items-center">
+            <div className="mt-10 flex items-center gap-6">
               <Image src={AlainRegnier} alt="Alain Regnier - Photo" width={120} height={120} />
               <p className="!text-large !mb-0">
                 <strong className="block">Alain Régnier</strong>

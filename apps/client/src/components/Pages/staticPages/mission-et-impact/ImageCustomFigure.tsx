@@ -4,7 +4,7 @@ interface Props {
 
 export const ImageCustomFigure = (props: Props) => {
   return (
-    <span className="absolute w-[48px] h-[48px] right-0 top-[16px] flex items-center justify-center text-white text-small font-bold leading-none">
+    <span className="text-small absolute top-[16px] right-0 flex h-[48px] w-[48px] items-center justify-center leading-none font-bold text-white">
       +{props.children}
     </span>
   );

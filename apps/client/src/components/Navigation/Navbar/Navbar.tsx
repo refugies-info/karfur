@@ -4,7 +4,7 @@ import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { memo, MouseEvent, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { isIOS } from "react-device-detect";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
@@ -14,8 +14,6 @@ import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/
 import Image from "~/components/UI/Image";
 import { useEditionMode, useWindowSize } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
-import { Event } from "~/lib/tracking";
-import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
@@ -110,12 +108,7 @@ const Navbar = () => {
 
       {
         linkProps: {
-          href: "#",
-          onClick: (e: MouseEvent<HTMLAnchorElement>) => {
-            e.preventDefault();
-            dispatch(toggleNewsletterModalAction(true));
-            Event("NEWSLETTER", "open modal", "header");
-          },
+          href: getPath("/", router.locale, "#newsletter"),
         },
         text: t("Toolbar.newsletter", "Newsletter"),
       },
