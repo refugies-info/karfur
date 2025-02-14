@@ -9,7 +9,7 @@ export const SectionImpact = () => {
   return (
     <Section className="bg-light-alt-blue">
       <div className="fr-container">
-        <div className="flex gap-10 md:gap-20 flex-col md:flex-row mb-10 md:mb-20">
+        <div className="flex flex-col gap-10 mb-10 md:gap-20 md:flex-row md:mb-20">
           <div className="flex-1">
             <Title2 smallMb className="!text-left">
               {t("MissionImpact.impact_title")}
@@ -21,12 +21,17 @@ export const SectionImpact = () => {
               imageUrl={PDFScreenshot.src}
               horizontal
               linkProps={{
-                href: "#",
+                href:
+                  typeof window !== "undefined"
+                    ? `${window.location.origin}/Livret-Impact-Refugies.infos-2024.pdf`
+                    : "#",
+                target: "_blank",
+                rel: "noopener noreferrer",
               }}
               imageAlt=""
               title="Livret d'impact"
               desc="Mai 2024"
-              endDetail="PDF - 61,88 Ko"
+              endDetail="PDF - 766 Ko"
               className="max-w-[384px] fr-card--download mt-10 md:mt-14"
             />
           </div>
@@ -42,7 +47,7 @@ export const SectionImpact = () => {
           </div>
         </div>
 
-        <div className="flex gap-10 md:gap-20 flex-col md:flex-row pt-10">
+        <div className="flex flex-col gap-10 pt-10 md:gap-20 md:flex-row">
           <ImpactCol
             title={t("MissionImpact.impact_arguments_title_1")}
             badge={t("MissionImpact.impact_arguments_badge_1")}
