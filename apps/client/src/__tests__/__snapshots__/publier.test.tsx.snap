@@ -498,7 +498,7 @@ exports[`publier renders publier 1`] = `
             class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
             <div
-              class="flex flex-col h-full"
+              class="flex h-full flex-col"
             >
               <div>
                 <img
@@ -514,7 +514,7 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
               <h3
-                class="text-h6 md:text-h5 my-3 text-blue-france"
+                class="text-h6 md:text-h5 text-blue-france my-3"
               >
                 Publish.requiredSubtitle1
               </h3>
@@ -553,7 +553,7 @@ exports[`publier renders publier 1`] = `
             class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
             <div
-              class="flex flex-col h-full"
+              class="flex h-full flex-col"
             >
               <div>
                 <img
@@ -569,7 +569,7 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
               <h3
-                class="text-h6 md:text-h5 my-3 text-blue-france"
+                class="text-h6 md:text-h5 text-blue-france my-3"
               >
                 Publish.requiredSubtitle2
               </h3>
@@ -608,7 +608,7 @@ exports[`publier renders publier 1`] = `
             class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
           >
             <div
-              class="flex flex-col h-full"
+              class="flex h-full flex-col"
             >
               <div>
                 <img
@@ -624,7 +624,7 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
               <h3
-                class="text-h6 md:text-h5 my-3 text-blue-france"
+                class="text-h6 md:text-h5 text-blue-france my-3"
               >
                 Publish.requiredSubtitle3
               </h3>
@@ -698,7 +698,7 @@ exports[`publier renders publier 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -747,7 +747,7 @@ exports[`publier renders publier 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -801,7 +801,7 @@ exports[`publier renders publier 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -843,7 +843,7 @@ exports[`publier renders publier 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -895,7 +895,7 @@ exports[`publier renders publier 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -942,7 +942,7 @@ exports[`publier renders publier 1`] = `
               class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 border-dashed"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[1rem] lg:-start-[1.375rem] text-h5 lg:text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
                   class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
@@ -1025,7 +1025,7 @@ exports[`publier renders publier 1`] = `
               title="Publish.helpTileTitle1"
             >
               <div
-                class="flex flex-col h-full"
+                class="flex h-full flex-col"
               >
                 <div>
                   <img
@@ -1041,7 +1041,7 @@ exports[`publier renders publier 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 my-3 text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
                   Publish.helpTileTitle1
                 </h3>
@@ -1071,7 +1071,7 @@ exports[`publier renders publier 1`] = `
               title="Publish.helpTileTitle2"
             >
               <div
-                class="flex flex-col h-full"
+                class="flex h-full flex-col"
               >
                 <div>
                   <img
@@ -1087,7 +1087,7 @@ exports[`publier renders publier 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 my-3 text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
                   Publish.helpTileTitle2
                 </h3>
@@ -1114,7 +1114,7 @@ exports[`publier renders publier 1`] = `
               title="StaticPages.helpTileTitle3"
             >
               <div
-                class="flex flex-col h-full"
+                class="flex h-full flex-col"
               >
                 <div>
                   <img
@@ -1130,7 +1130,7 @@ exports[`publier renders publier 1`] = `
                   />
                 </div>
                 <h3
-                  class="text-h6 md:text-h5 my-3 text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
                   StaticPages.helpTileTitle3
                 </h3>
