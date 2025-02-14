@@ -21,7 +21,12 @@ export const SectionImpact = () => {
               imageUrl={PDFScreenshot.src}
               horizontal
               linkProps={{
-                href: "#",
+                href:
+                  typeof window !== "undefined"
+                    ? `${window.location.origin}/Livret-Impact-Refugies.infos-2024.pdf`
+                    : "#",
+                target: "_blank",
+                rel: "noopener noreferrer",
               }}
               imageAlt=""
               title="Livret d'impact"

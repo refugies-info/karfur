@@ -23,6 +23,7 @@
         "@babel/runtime",
         "@react-native/assets-registry",
         "@types/styled-components-react-native",
+        "react-native-webview",
         "use-sync-external-store"
       ]
     },
