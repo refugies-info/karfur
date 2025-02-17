@@ -1,4 +1,4 @@
-import { Expo, ExpoPushMessage } from "expo-server-sdk";
+import { Expo, ExpoPushMessage, ExpoPushTicket } from "expo-server-sdk";
 import uniq from "lodash/uniq";
 
 import { getAllAppUsers } from "~/modules/appusers/appusers.repository";
@@ -101,23 +101,25 @@ export const markNotificationAsSeen = async (notificationId: string, uid: string
 };
 
 export const sendNotifications = async (messages: ExpoPushMessage[]) => {
+  const pushTickets: ExpoPushTicket[] = [];
   const notificationActive = await isNotificationsActive();
+
   // already added in sendNotificationsForDispositif but replicated here
   // to be more secure if new feature in the future
   if (notificationActive) {
     const chunks = expo.chunkPushNotifications(messages);
 
-    await Promise.all(
-      chunks.map(async (chunk) => {
-        try {
-          const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-          return ticketChunk;
-        } catch (error) {
-          logger.error("[sendNotifications]", error);
-        }
-      }),
-    );
+    for (const chunk of chunks) {
+      try {
+        const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+        pushTickets.push(...ticketChunk);
+      } catch (error) {
+        logger.error("[sendNotifications]", error);
+      }
+    }
   }
+
+  return pushTickets;
 };
 
 export const sendNotificationsForDispositif = async (dispositifId: DispositifId, lang: Languages) => {
