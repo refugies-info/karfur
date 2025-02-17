@@ -1,4 +1,4 @@
-import { Expo, ExpoPushMessage } from "expo-server-sdk";
+import { Expo, ExpoPushMessage, ExpoPushTicket } from "expo-server-sdk";
 import uniq from "lodash/uniq";
 
 import { getAllAppUsers } from "~/modules/appusers/appusers.repository";
@@ -101,7 +101,7 @@ export const markNotificationAsSeen = async (notificationId: string, uid: string
 };
 
 export const sendNotifications = async (messages: ExpoPushMessage[]) => {
-  const pushTickets = [];
+  const pushTickets: ExpoPushTicket[] = [];
   const notificationActive = await isNotificationsActive();
 
   // already added in sendNotificationsForDispositif but replicated here
@@ -112,7 +112,7 @@ export const sendNotifications = async (messages: ExpoPushMessage[]) => {
     for (const chunk of chunks) {
       try {
         const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-        pushTickets.push(ticketChunk);
+        pushTickets.push(...ticketChunk);
       } catch (error) {
         logger.error("[sendNotifications]", error);
       }
