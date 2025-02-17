@@ -701,7 +701,7 @@ importers:
         version: 7.0.4
       '@typegoose/typegoose':
         specifier: ^12.9.0
-        version: 12.11.0(mongoose@8.10.0)
+        version: 12.11.0(mongoose@8.10.1)
       airtable:
         specifier: ^0.12.2
         version: 0.12.2
@@ -751,8 +751,8 @@ importers:
         specifier: ^6.10.0
         version: 6.13.0
       mongoose:
-        specifier: 8.10.0
-        version: 8.10.0
+        specifier: 8.10.1
+        version: 8.10.1
       node-cache:
         specifier: ^5.1.2
         version: 5.1.2
@@ -945,8 +945,8 @@ importers:
   packages/api-types:
     dependencies:
       mongoose:
-        specifier: 8.10.0
-        version: 8.10.0
+        specifier: 8.10.1
+        version: 8.10.1
     devDependencies:
       '@refugies-info/typescript-config':
         specifier: workspace:*
@@ -1118,6 +1118,10 @@ packages:
     resolution: {integrity: sha512-ef383X5++iZHWAXX0SXQR6ZyQhw/0KtTkrTz61WXRhFM6dhpHulO/RJz79L8S6ugZHJkOOkUrUdxgdF2YiPFnA==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/generator@7.26.9':
+    resolution: {integrity: sha512-kEWdzjOAUMW4hAyrzJ0ZaTOu9OmpyDIQicIh0zg0EEcEkYXZb2TjtBhnHi2ViX7PKwZqF4xwqfAm299/QMP3lg==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-annotate-as-pure@7.25.9':
     resolution: {integrity: sha512-gv7320KBUFJz1RnylIg5WWYPRXKZ884AGkYpgpWW02TH66Dl+HaC1t1CKd0z3R4b6hdYEcmrNZHUmfCP+1u3/g==}
     engines: {node: '>=6.9.0'}
@@ -1207,6 +1211,11 @@ packages:
 
   '@babel/parser@7.26.8':
     resolution: {integrity: sha512-TZIQ25pkSoaKEYYaHbbxkfL36GNsQ6iFiBbeuzAkLnXayKR1yP1zFe+NxuZWWsUyvt8icPU9CCq0sgWGXR1GEw==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
+  '@babel/parser@7.26.9':
+    resolution: {integrity: sha512-81NWa1njQblgZbQHxWHpxxCzNsa3ZwvFqpUg7P+NNUU6f3UU2jBEg4OlF/J6rl8+PQGh1q6/zWScd001YwcA5A==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1802,12 +1811,24 @@ packages:
     resolution: {integrity: sha512-iNKaX3ZebKIsCvJ+0jd6embf+Aulaa3vNBqZ41kM7iTWjx5qzWKXGHiJUW3+nTpQ18SG11hdF8OAzKrpXkb96Q==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/template@7.26.9':
+    resolution: {integrity: sha512-qyRplbeIpNZhmzOysF/wFMuP9sctmh2cFzRAZOn1YapxBsE1i9bJIY586R/WBLfLcmcBlM8ROBiQURnnNy+zfA==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/traverse@7.26.8':
     resolution: {integrity: sha512-nic9tRkjYH0oB2dzr/JoGIm+4Q6SuYeLEiIiZDwBscRMYFJ+tMAz98fuel9ZnbXViA2I0HVSSRRK8DW5fjXStA==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/traverse@7.26.9':
+    resolution: {integrity: sha512-ZYW7L+pL8ahU5fXmNbPF+iZFHCv5scFak7MZ9bwaRPLUhHh7QQEMjZUg0HevihoqCM5iSYHN61EyCoZvqC+bxg==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/types@7.26.8':
     resolution: {integrity: sha512-eUuWapzEGWFEpHFxgEaBG8e3n6S8L3MSu0oda755rOfabWPnh0Our1AozNFVUxGFIhbKgd1ksprsoDGMinTOTA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/types@7.26.9':
+    resolution: {integrity: sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==}
     engines: {node: '>=6.9.0'}
 
   '@bcoe/v8-coverage@0.2.3':
@@ -8872,8 +8893,8 @@ packages:
       socks:
         optional: true
 
-  mongoose@8.10.0:
-    resolution: {integrity: sha512-nLhk3Qrv6q/HpD2k1O7kbBqsq+/kmKpdv5KJ+LLhQlII3e1p/SSLoLP6jMuSiU6+iLK7zFw4T1niAk3mA3QVug==}
+  mongoose@8.10.1:
+    resolution: {integrity: sha512-5beTeBZnJNndRXU9rxPol0JmTWZMAtgkPbooROkGilswvrZALDERY4cJrGZmgGwDS9dl0mxiB7si+Mv9Yms2fg==}
     engines: {node: '>=16.20.1'}
 
   mpath@0.9.0:
@@ -12210,6 +12231,14 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.25
       jsesc: 3.1.0
 
+  '@babel/generator@7.26.9':
+    dependencies:
+      '@babel/parser': 7.26.9
+      '@babel/types': 7.26.9
+      '@jridgewell/gen-mapping': 0.3.8
+      '@jridgewell/trace-mapping': 0.3.25
+      jsesc: 3.1.0
+
   '@babel/helper-annotate-as-pure@7.25.9':
     dependencies:
       '@babel/types': 7.26.8
@@ -12336,6 +12365,10 @@ snapshots:
   '@babel/parser@7.26.8':
     dependencies:
       '@babel/types': 7.26.8
+
+  '@babel/parser@7.26.9':
+    dependencies:
+      '@babel/types': 7.26.9
 
   '@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.25.9(@babel/core@7.26.8)':
     dependencies:
@@ -13047,6 +13080,12 @@ snapshots:
       '@babel/parser': 7.26.8
       '@babel/types': 7.26.8
 
+  '@babel/template@7.26.9':
+    dependencies:
+      '@babel/code-frame': 7.26.2
+      '@babel/parser': 7.26.9
+      '@babel/types': 7.26.9
+
   '@babel/traverse@7.26.8':
     dependencies:
       '@babel/code-frame': 7.26.2
@@ -13059,7 +13098,24 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@babel/traverse@7.26.9':
+    dependencies:
+      '@babel/code-frame': 7.26.2
+      '@babel/generator': 7.26.9
+      '@babel/parser': 7.26.9
+      '@babel/template': 7.26.9
+      '@babel/types': 7.26.9
+      debug: 4.4.0(supports-color@5.5.0)
+      globals: 11.12.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@babel/types@7.26.8':
+    dependencies:
+      '@babel/helper-string-parser': 7.25.9
+      '@babel/helper-validator-identifier': 7.25.9
+
+  '@babel/types@7.26.9':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
@@ -15342,7 +15398,7 @@ snapshots:
       '@babel/plugin-transform-sticky-regex': 7.25.9(@babel/core@7.26.8)
       '@babel/plugin-transform-typescript': 7.26.8(@babel/core@7.26.8)
       '@babel/plugin-transform-unicode-regex': 7.25.9(@babel/core@7.26.8)
-      '@babel/template': 7.26.8
+      '@babel/template': 7.26.9
       '@react-native/babel-plugin-codegen': 0.77.0(@babel/preset-env@7.26.8(@babel/core@7.26.8))
       babel-plugin-syntax-hermes-parser: 0.25.1
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.26.8)
@@ -15353,7 +15409,7 @@ snapshots:
 
   '@react-native/codegen@0.76.7(@babel/preset-env@7.26.8(@babel/core@7.26.8))':
     dependencies:
-      '@babel/parser': 7.26.8
+      '@babel/parser': 7.26.9
       '@babel/preset-env': 7.26.8(@babel/core@7.26.8)
       glob: 7.2.3
       hermes-parser: 0.23.1
@@ -16286,11 +16342,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typegoose/typegoose@12.11.0(mongoose@8.10.0)':
+  '@typegoose/typegoose@12.11.0(mongoose@8.10.1)':
     dependencies:
       lodash: 4.17.21
       loglevel: 1.9.2
-      mongoose: 8.10.0
+      mongoose: 8.10.1
       reflect-metadata: 0.2.2
       semver: 7.7.1
       tslib: 2.8.1
@@ -16472,7 +16528,7 @@ snapshots:
 
   '@types/mongoose@5.11.97':
     dependencies:
-      mongoose: 8.10.0
+      mongoose: 8.10.1
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
       - '@mongodb-js/zstd'
@@ -20939,7 +20995,7 @@ snapshots:
   jscodeshift@0.14.0(@babel/preset-env@7.26.8(@babel/core@7.26.8)):
     dependencies:
       '@babel/core': 7.26.8
-      '@babel/parser': 7.26.8
+      '@babel/parser': 7.26.9
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.26.8)
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.26.8)
       '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.26.8)
@@ -21624,7 +21680,7 @@ snapshots:
   metro-source-map@0.81.1:
     dependencies:
       '@babel/traverse': 7.26.8
-      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.26.8'
+      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.26.9'
       '@babel/types': 7.26.8
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
@@ -21650,8 +21706,8 @@ snapshots:
   metro-transform-plugins@0.81.1:
     dependencies:
       '@babel/core': 7.26.8
-      '@babel/generator': 7.26.8
-      '@babel/template': 7.26.8
+      '@babel/generator': 7.26.9
+      '@babel/template': 7.26.9
       '@babel/traverse': 7.26.8
       flow-enums-runtime: 0.0.6
       nullthrows: 1.1.1
@@ -21661,9 +21717,9 @@ snapshots:
   metro-transform-worker@0.81.1:
     dependencies:
       '@babel/core': 7.26.8
-      '@babel/generator': 7.26.8
-      '@babel/parser': 7.26.8
-      '@babel/types': 7.26.8
+      '@babel/generator': 7.26.9
+      '@babel/parser': 7.26.9
+      '@babel/types': 7.26.9
       flow-enums-runtime: 0.0.6
       metro: 0.81.1
       metro-babel-transformer: 0.81.1
@@ -21851,7 +21907,7 @@ snapshots:
       bson: 6.10.2
       mongodb-connection-string-url: 3.0.2
 
-  mongoose@8.10.0:
+  mongoose@8.10.1:
     dependencies:
       bson: 6.10.2
       kareem: 2.6.3
