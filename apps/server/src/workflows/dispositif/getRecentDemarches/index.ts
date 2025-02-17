@@ -1,1 +1,0 @@
-export { getRecentDemarches } from "./getRecentDemarches";
