@@ -1,6 +1,8 @@
 import "scss/index.css";
 import "scss/index.scss";
 
+import { Caveat } from "next/font/google";
+
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
@@ -38,6 +40,13 @@ type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+export const caveat = Caveat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-caveat",
+  weight: "700",
+});
 
 const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const [history, setHistory] = useState<string[]>([]);
