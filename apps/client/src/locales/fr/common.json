@@ -746,7 +746,15 @@
     "phoneLabel": "Numéro de téléphone",
     "langLabel": "Envoyer par SMS en :",
     "buttonText": "Envoyer le lien",
-    "downloadButtonText": "Je télécharge l’application"
+    "downloadButtonText": "Je télécharge l’application",
+    "Annotations": {
+      "share": "Partage",
+      "langChange": "Changement de langue",
+      "langSimple": "Langage clair",
+      "easyFrench": "Français facile",
+      "vocalize": "Vocalisation des contenus",
+      "listen": "Écoute"
+    }
   },
   "WorkTogether": {
     "title": "Travaillons ensemble ! Vous êtes... ?",

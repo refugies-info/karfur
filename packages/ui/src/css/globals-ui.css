@@ -22,6 +22,7 @@
 
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
+  --font-caveat: var(--font-caveat);
 
   /* Font sizes */
 }

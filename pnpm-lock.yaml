@@ -996,6 +996,9 @@ importers:
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
+      next:
+        specifier: ^14.0.0
+        version: 14.2.19(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
       prettier:
         specifier: ^3.3.3
         version: 3.5.1

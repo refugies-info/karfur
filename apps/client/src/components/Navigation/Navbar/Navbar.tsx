@@ -140,7 +140,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t, isMobile, dispatch]);
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile]);
 
   const quickAccessMenu = QuickAccessMenu();
 

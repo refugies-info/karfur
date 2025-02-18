@@ -1,11 +1,11 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { AnnotationsOverlay } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
-import applicationMobile from "~/assets/homepage/application-mobile.png";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
@@ -44,9 +44,30 @@ const MobileApp = () => {
   return (
     <section className="container flex flex-col gap-10 py-10 lg:grid lg:grid-cols-2 lg:py-20 2xl:gap-20">
       <div className="flex h-full flex-col items-center justify-center gap-10">
-        <span className="relative block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]">
+        <AnnotationsOverlay
+          className="block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
+          annotations={[
+            { text: t("MobileApp.Annotations.share", "Partage"), className: "top-[4%] left-[66%]" },
+            {
+              text: t("MobileApp.Annotations.langChange", "Changement de langue"),
+              className: "top-[25%] left-[72%] max-w-[5em]",
+            },
+            {
+              text: isMobile
+                ? t("MobileApp.Annotations.easyFrench", "Français facile")
+                : t("MobileApp.Annotations.langSimple", "Langage clair"),
+              className: "top-[53%] left-[79%] ",
+            },
+            {
+              text: isMobile
+                ? t("MobileApp.Annotations.listen", "Écoute")
+                : t("MobileApp.Annotations.vocalize", "Vocalisation des contenus"),
+              className: "bottom-[8%] left-[65%] ",
+            },
+          ]}
+        >
           <Image
-            src={isMobile ? applicationMobile : application}
+            src={application}
             fill
             className="object-contain"
             alt={t(
@@ -54,7 +75,7 @@ const MobileApp = () => {
               "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
             )}
           />
-        </span>
+        </AnnotationsOverlay>
         {storeLinks}
       </div>
       <div className="">
