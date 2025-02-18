@@ -5,10 +5,10 @@ export type DispositifDesc = {
 };
 
 export type DemarchesData = {
-  newest: DispositifDesc;
-  updated: DispositifDesc[];
+  publications: DispositifDesc;
+  updates: DispositifDesc[];
 };
 
 export type DispositifsData = {
-  newest: DispositifDesc[];
+  publications: DispositifDesc[];
 };
