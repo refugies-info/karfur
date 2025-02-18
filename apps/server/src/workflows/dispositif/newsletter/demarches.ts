@@ -4,51 +4,60 @@ import { ResponseWithData } from "~/types/interface";
 import { frontUrl } from "~/workflows/dispositif/newsletter/constants";
 import { DemarchesData, DispositifDesc } from "~/workflows/dispositif/newsletter/types";
 
-const getNewestDemarche = async (): Promise<DispositifDesc> => {
+const getLatestPublications = async (): Promise<DispositifDesc> => {
   logger.info("[getNewestDemarche] called");
 
   const dispositifs = await getDispositifAbstracts(
     {
       typeContenu: "demarche",
       status: "Actif",
-      lastModificationDate: { $exists: false },
+      publishedAt: { $exists: true },
     },
-    1,
+    3,
+    {
+      publishedAt: -1,
+    },
   );
 
-  const newest = {
+  const publications = {
     titre: dispositifs[0].titreInformatif,
     url: `${frontUrl}/fr/${dispositifs[0].typeContenu}/${dispositifs[0]._id}`,
     abstract: dispositifs[0].abstract,
   };
 
-  return newest;
+  return publications;
 };
 
-const getUpdatedDemarches = async (): Promise<DispositifDesc[]> => {
+const getLatestUpdates = async (): Promise<DispositifDesc[]> => {
   logger.info("[getUpdatedDemarches] called");
 
-  const dispositifs = await getDispositifAbstracts({
-    typeContenu: "demarche",
-    status: "Actif",
-    lastModificationDate: { $exists: true },
-  });
+  const dispositifs = await getDispositifAbstracts(
+    {
+      typeContenu: "demarche",
+      status: "Actif",
+      lastModificationDate: { $exists: true },
+    },
+    3,
+    {
+      lastModificationDate: -1,
+    },
+  );
 
-  const updated = dispositifs.map((d) => ({
+  const updates = dispositifs.map((d) => ({
     titre: d.titreInformatif,
     url: `${frontUrl}/fr/${d.typeContenu}/${d._id}`,
     abstract: d.abstract,
   }));
 
-  return updated;
+  return updates;
 };
 
 export const getNewsletterDemarches = async (): ResponseWithData<DemarchesData> => {
   logger.info("[getDemarchesForNewsletter] called");
 
-  const newest = await getNewestDemarche();
+  const publications = await getLatestPublications();
 
-  const updated = await getUpdatedDemarches();
+  const updates = await getLatestUpdates();
 
-  return { text: "success", data: { newest, updated } };
+  return { text: "success", data: { publications, updates } };
 };
