@@ -5,7 +5,7 @@ export type DispositifDesc = {
 };
 
 export type DemarchesData = {
-  publications: DispositifDesc;
+  publications: DispositifDesc[];
   updates: DispositifDesc[];
 };
 

@@ -1,13 +1,10 @@
-import logger from "~/logger";
 import { getDispositifAbstracts } from "~/modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "~/types/interface";
 import { frontUrl } from "~/workflows/dispositif/newsletter/constants";
 import { DispositifsData } from "~/workflows/dispositif/newsletter/types";
 
-export const getLatestPublications = async (departement: string): ResponseWithData<DispositifsData> => {
-  logger.info(`[getDispositifsForNewsletter] called for departement ${departement}`);
-
-  const dispositifs = await getDispositifAbstracts(
+export const getPublications = async (departement: string): ResponseWithData<DispositifsData> => {
+  const results = await getDispositifAbstracts(
     {
       "typeContenu": "dispositif",
       "status": "Actif",
@@ -20,7 +17,7 @@ export const getLatestPublications = async (departement: string): ResponseWithDa
     },
   );
 
-  const publications = dispositifs.map((d) => ({
+  const publications = results.map((d) => ({
     titre: d.titreInformatif,
     url: `${frontUrl}/fr/${d.typeContenu}/${d._id}`,
     abstract: d.abstract,
