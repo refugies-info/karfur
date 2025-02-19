@@ -20,19 +20,19 @@ exports[`publier renders publier 1`] = `
             <h1
               class="text-h1 text-light-alt-blue md:text-alt-title mb-6"
             >
-              Publish.title
+              Recensez votre action !
             </h1>
             <p
               class="text-chapo text-light-alt-blue mb-0"
             >
-              Publish.subtitle
+              Participez à la création d’un outil de référence pour les professionnels de l’accompagnement social et partagez des informations utiles aux personnes réfugiées en France.
             </p>
             <a
               class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
               href="#register"
               id="fr-button-:r0:"
             >
-              Publish.navbarItem5
+              Rédiger une fiche
             </a>
           </div>
           <div
@@ -83,7 +83,7 @@ exports[`publier renders publier 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-0"
                 >
-                  Publish.navbarItem1
+                  Pourquoi ?
                 </label>
               </div>
               <div
@@ -99,7 +99,7 @@ exports[`publier renders publier 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-1"
                 >
-                  Publish.navbarItem2
+                  Quels critères ?
                 </label>
               </div>
               <div
@@ -115,7 +115,7 @@ exports[`publier renders publier 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-2"
                 >
-                  Publish.navbarItem3
+                  Comment faire ?
                 </label>
               </div>
               <div
@@ -131,7 +131,7 @@ exports[`publier renders publier 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-3"
                 >
-                  Publish.navbarItem4
+                  Foire aux questions
                 </label>
               </div>
             </div>
@@ -145,7 +145,7 @@ exports[`publier renders publier 1`] = `
             href="#register"
             id="fr-button-:r3:"
           >
-            Publish.navbarItem5
+            Rédiger une fiche
           </a>
         </div>
       </div>
@@ -166,7 +166,7 @@ exports[`publier renders publier 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 !text-left"
           >
-            Publish.whyTitle
+            Pourquoi recenser mon action sur Réfugiés.info ?
           </h2>
           <div
             class="flex gap-20 min-h-[480px]"
@@ -201,7 +201,7 @@ exports[`publier renders publier 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
                       >
-                        Publish.whyAccordionTitle1
+                        Bénéficiez d'un outil gratuit et traduit
                       </span>
                       <i
                         class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
@@ -220,7 +220,7 @@ exports[`publier renders publier 1`] = `
                     <p
                       class="text !text-large !mb-0"
                     >
-                      Publish.whyAccordionText1
+                      Une fois rédigée, la fiche de votre action sera relue et simplifiée, traduite gratuitement en 7 langues, vocalisée et facilement partageable. Elle sera visible dans une application adaptée aux usages numériques des personnes réfugiées.
                     </p>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ exports[`publier renders publier 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Publish.whyAccordionTitle2
+                        Donnez de la visibilité à votre action
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -288,7 +288,7 @@ exports[`publier renders publier 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Publish.whyAccordionTitle3
+                        Recevez des candidatures adaptées
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -329,7 +329,7 @@ exports[`publier renders publier 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Publish.whyAccordionTitle4
+                        Participez à un service public ouvert
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -377,7 +377,7 @@ exports[`publier renders publier 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            Publish.testimonies_title
+            La parole aux porteurs de dispositifs
           </h2>
           <div
             class="flex flex-col gap-10 md:flex-row"
@@ -399,7 +399,7 @@ exports[`publier renders publier 1`] = `
               <p
                 class="!text-large !mb-6"
               >
-                Publish.testimony1
+                « J’ai eu le plaisir de découvrir Réfugiés.info en 2021 et d’en constater toute l’étendue et l’utilité pour les personnes que nous accompagnons dans le cadre de notre dispositif sur le département de Loire-Atlantique. Le résultat final est impressionnant ! »
               </p>
               <div>
                 <div
@@ -429,7 +429,7 @@ exports[`publier renders publier 1`] = `
               <p
                 class="!text-large !mb-6"
               >
-                Publish.testimony2
+                « Réfugiés.info est un très bon site ressource, très complet, qui balaye de nombreuses thématiques, facile d’accès et intuitif. Un bon complément à mes connaissances actuelles. Les acteurs sont bien accompagnés dans la construction de fiches. »
               </p>
               <div>
                 <div
@@ -459,7 +459,7 @@ exports[`publier renders publier 1`] = `
               <p
                 class="!text-large !mb-6"
               >
-                Publish.testimony3
+                « UniR partage toutes ses actions sur la plateforme Réfugiés.info. C'est très intuitif à utiliser et ça permet de mettre en avant les informations clés sur chaque programme. À chaque nouvelle session, nous mettons à jour seulement les cases concernées et cela maintient nos informations accessibles à toutes et tous ! »
               </p>
               <div>
                 <div
@@ -489,7 +489,7 @@ exports[`publier renders publier 1`] = `
         <h2
           class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
         >
-          Publish.requiredTitle
+          Mon action peut-elle être recensée ?
         </h2>
         <div
           class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
@@ -516,13 +516,13 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h6 md:text-h5 text-blue-france my-3"
               >
-                Publish.requiredSubtitle1
+                Pérenne
               </h3>
               <div
                 class="[&_p]:text-large"
               >
                 <p>
-                  Publish.requiredText1
+                  Votre action doit être accessible tout le temps ou de façon récurrente. Elle ne doit pas avoir lieu une seule et unique fois.
                 </p>
               </div>
               <div>
@@ -535,7 +535,7 @@ exports[`publier renders publier 1`] = `
                     <i
                       class="fr-icon-close-circle-fill text-error me-2 h-6 w-6"
                     />
-                    Publish.requiredTextExample1Ko
+                    Une journée porte ouverte
                   </p>
                   <p
                     class="!mb-0 flex"
@@ -543,7 +543,7 @@ exports[`publier renders publier 1`] = `
                     <i
                       class="fr-icon-success-fill text-success me-2 h-6 w-6"
                     />
-                    Publish.requiredTextExample1Ok
+                    Des sessions annuelles de formation
                   </p>
                 </div>
               </div>
@@ -571,13 +571,13 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h6 md:text-h5 text-blue-france my-3"
               >
-                Publish.requiredSubtitle2
+                À but non lucratif
               </h3>
               <div
                 class="[&_p]:text-large"
               >
                 <p>
-                  Publish.requiredText2
+                  L’action peut être payante à l’inscription, mais ne doit pas vendre des services ou des objets à but lucratif.
                 </p>
               </div>
               <div>
@@ -590,7 +590,7 @@ exports[`publier renders publier 1`] = `
                     <i
                       class="fr-icon-close-circle-fill text-error me-2 h-6 w-6"
                     />
-                    Publish.requiredTextExample2Ko
+                    Un service qui génère des bénéfices
                   </p>
                   <p
                     class="!mb-0 flex"
@@ -598,7 +598,7 @@ exports[`publier renders publier 1`] = `
                     <i
                       class="fr-icon-success-fill text-success me-2 h-6 w-6"
                     />
-                    Publish.requiredTextExample2Ok
+                    Une formation certifiante
                   </p>
                 </div>
               </div>
@@ -626,13 +626,13 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h6 md:text-h5 text-blue-france my-3"
               >
-                Publish.requiredSubtitle3
+                Adaptée au public
               </h3>
               <div
                 class="[&_p]:text-large"
               >
                 <p>
-                  Publish.requiredText3
+                  L’action doit prendre en compte les spécificités du public : la langue, la situation administrative personnelle, la disponibilité...
                 </p>
               </div>
               <div>
@@ -645,7 +645,7 @@ exports[`publier renders publier 1`] = `
                     <i
                       class="fr-icon-close-circle-fill text-error me-2 h-6 w-6"
                     />
-                    Publish.requiredTextExample3Ko
+                    Une formation généraliste
                   </p>
                   <p
                     class="!mb-0 flex"
@@ -653,7 +653,7 @@ exports[`publier renders publier 1`] = `
                     <i
                       class="fr-icon-success-fill text-success me-2 h-6 w-6"
                     />
-                    Publish.requiredTextExample3Ok
+                    Une formation avec cours de français
                   </p>
                 </div>
               </div>
@@ -668,7 +668,7 @@ exports[`publier renders publier 1`] = `
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
             id="fr-button-:rc:"
           >
-            Publish.requiredCTA
+            Lire la charte éditoriale complète
           </a>
         </div>
       </div>
@@ -689,7 +689,7 @@ exports[`publier renders publier 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            Publish.stepsTitle
+            Quelles sont les étapes pour publier une fiche ?
           </h2>
           <div
             class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
@@ -709,19 +709,23 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle1
+                Créez 
+                <strong>
+                  votre compte
+                </strong>
+                 Réfugiés.info
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText1
+                Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.
               </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
                 id="fr-button-:rd:"
               >
-                Publish.stepsCTA1
+                Créer mon compte
               </a>
             </div>
             <div
@@ -758,24 +762,27 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle2
+                <strong>
+                  Rédigez
+                </strong>
+                 votre fiche
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText2a
+                Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.
               </p>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText2b
+                Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.
               </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
                 id="fr-button-:re:"
               >
-                Publish.stepsCTA2
+                Voir les bonnes pratiques
               </a>
             </div>
             <div
@@ -812,12 +819,15 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle3
+                Ajoutez la 
+                <strong>
+                  structure responsable
+                </strong>
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText3
+                À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.
               </p>
             </div>
             <div
@@ -854,22 +864,26 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle4
+                L’équipe éditoriale de Réfugiés.info 
+                <strong>
+                  relit et publie
+                </strong>
+                 votre fiche
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText4a
+                Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.
               </p>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText4b
+                Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.
               </p>
               <div
                 class="text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
-                Publish.stepsButton
+                Votre fiche est publiée ! 🎉
               </div>
             </div>
             <div
@@ -906,17 +920,20 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle5
+                <strong>
+                  Traduction en 7 langues
+                </strong>
+                 de votre fiche
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText5a
+                Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.
               </p>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText5b
+                Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.
               </p>
             </div>
             <div
@@ -953,17 +970,20 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle6
+                <strong>
+                  Mettez à jour
+                </strong>
+                 votre action régulièrement
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText6a
+                Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.
               </p>
               <p
                 class="text-large mb-6"
               >
-                Publish.stepsText6b
+                Attention, une action obsolète sera supprimée par l’équipe éditoriale.
               </p>
               <span
                 class="hidden lg:block from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
@@ -1006,12 +1026,12 @@ exports[`publier renders publier 1`] = `
             <h2
               class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              StaticPages.helpTitle
+              Vous n’êtes pas seul !
             </h2>
             <p
               class="text-chapo mb-0 md:text-center"
             >
-              Publish.helpSubtitle
+              Nous sommes là pour vous accompagner dans la rédaction et la mise à jour de votre fiche.
             </p>
           </div>
           <div
@@ -1022,7 +1042,7 @@ exports[`publier renders publier 1`] = `
               href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
               rel="noopener noreferrer"
               target="_blank"
-              title="Publish.helpTileTitle1"
+              title="Séances découverte"
             >
               <div
                 class="flex h-full flex-col"
@@ -1043,7 +1063,7 @@ exports[`publier renders publier 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Publish.helpTileTitle1
+                  Séances découverte
                 </h3>
                 <div
                   class="[&_p]:text-large"
@@ -1051,7 +1071,7 @@ exports[`publier renders publier 1`] = `
                   <p
                     class="mb-0"
                   >
-                    Publish.helpTileText1
+                    Profitez d’un webinaire de présentation de la plateforme.
                   </p>
                 </div>
               </div>
@@ -1068,7 +1088,7 @@ exports[`publier renders publier 1`] = `
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
-              title="Publish.helpTileTitle2"
+              title="Tutoriels et centre d’aide"
             >
               <div
                 class="flex h-full flex-col"
@@ -1089,7 +1109,7 @@ exports[`publier renders publier 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Publish.helpTileTitle2
+                  Tutoriels et centre d’aide
                 </h3>
                 <div
                   class="[&_p]:text-large"
@@ -1097,7 +1117,7 @@ exports[`publier renders publier 1`] = `
                   <p
                     class="mb-0"
                   >
-                    Publish.helpTileText2
+                    L’interface propose des tutoriels explicatifs et le centre d’aide contient de nombreux articles pour vous accompagner pendant la rédaction de votre fiche.
                   </p>
                 </div>
               </div>
@@ -1111,7 +1131,7 @@ exports[`publier renders publier 1`] = `
             </a>
             <button
               class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active"
-              title="StaticPages.helpTileTitle3"
+              title="Live chat"
             >
               <div
                 class="flex h-full flex-col"
@@ -1132,7 +1152,7 @@ exports[`publier renders publier 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  StaticPages.helpTileTitle3
+                  Live chat
                 </h3>
                 <div
                   class="[&_p]:text-large"
@@ -1140,7 +1160,7 @@ exports[`publier renders publier 1`] = `
                   <p
                     class="mb-0"
                   >
-                    StaticPages.helpTileText3
+                    Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
                   </p>
                 </div>
               </div>
@@ -1164,7 +1184,7 @@ exports[`publier renders publier 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
           >
-            Publish.figuresTitle
+            Rejoignez un projet collaboratif de grande envergure
           </h2>
           <div
             class="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20"
@@ -1182,7 +1202,7 @@ exports[`publier renders publier 1`] = `
               <p
                 class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
-                Publish.figuresSubtitle1
+                fiches publiées
               </p>
             </div>
             <div
@@ -1198,7 +1218,7 @@ exports[`publier renders publier 1`] = `
               <p
                 class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
-                Publish.figuresSubtitle2
+                structures inscrites
               </p>
             </div>
             <div
@@ -1214,7 +1234,7 @@ exports[`publier renders publier 1`] = `
               <p
                 class="text-blue-france text-chapo mt-6 mb-0 font-bold"
               >
-                Publish.figuresSubtitle3
+                vues sur les fiches
               </p>
             </div>
           </div>
@@ -1233,7 +1253,7 @@ exports[`publier renders publier 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
           >
-            StaticPages.faqTitle
+            Il vous reste des questions ?
           </h2>
           <div
             class="mx-auto max-w-[720px]"
@@ -1270,7 +1290,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
-                          Publish.faqAccordionTitle1
+                          Pourquoi je dois écrire moi-même la fiche ?
                         </span>
                         <i
                           class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -1311,7 +1331,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
-                          Publish.faqAccordionTitle2
+                          Je ne suis pas à l'aise avec le numérique, est-ce facile ?
                         </span>
                         <i
                           class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -1352,7 +1372,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
-                          Publish.faqAccordionTitle3
+                          En combien de temps ma fiche sera publiée ?
                         </span>
                         <i
                           class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -1393,7 +1413,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
-                          Publish.faqAccordionTitle4
+                          Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
                         </span>
                         <i
                           class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -1434,7 +1454,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                         >
-                          Publish.faqAccordionTitle5
+                          Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
                         </span>
                         <i
                           class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -1464,7 +1484,7 @@ exports[`publier renders publier 1`] = `
               href="https://help.refugies.info/fr/"
               id="fr-button-:rp:"
             >
-              Publish.faqCTA
+              Voir le centre d’aide
             </a>
           </div>
         </div>
@@ -1498,18 +1518,18 @@ exports[`publier renders publier 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-6"
           >
-            StaticPages.registerTitle
+            C’est parti !
           </h2>
           <p
             class="text-chapo mb-6"
           >
-            Publish.registerSubtitle
+            Connectez-vous ou créez votre compte pour démarrer la rédaction de votre fiche.
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
             id="fr-button-:rq:"
           >
-            login_or_signup
+            Me connecter ou m'inscrire
           </button>
         </div>
       </div>
