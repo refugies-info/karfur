@@ -20,19 +20,19 @@ exports[`traduire renders traduire 1`] = `
             <h1
               class="text-h1 text-light-alt-blue md:text-alt-title mb-6"
             >
-              Translate.title
+              Aidez-nous à traduire !
             </h1>
             <p
               class="text-chapo text-light-alt-blue mb-0"
             >
-              Translate.subtitle
+              12 bénévoles nous ont déjà aidé à traduire 156 mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.
             </p>
             <a
               class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
               href="#register"
               id="fr-button-:r0:"
             >
-              Translate.navbarItem5
+              Aider à traduire
             </a>
           </div>
           <div
@@ -83,7 +83,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-0"
                 >
-                  Translate.navbarItem1
+                  Qui peut traduire ?
                 </label>
               </div>
               <div
@@ -99,7 +99,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-1"
                 >
-                  Translate.navbarItem2
+                  Comment faire ?
                 </label>
               </div>
               <div
@@ -115,7 +115,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-2"
                 >
-                  Translate.navbarItem3
+                  Et après ?
                 </label>
               </div>
               <div
@@ -131,7 +131,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-3"
                 >
-                  Translate.navbarItem4
+                  Foire aux questions
                 </label>
               </div>
             </div>
@@ -145,7 +145,7 @@ exports[`traduire renders traduire 1`] = `
             href="#register"
             id="fr-button-:r3:"
           >
-            Translate.navbarItem5
+            Aider à traduire
           </a>
         </div>
       </div>
@@ -169,12 +169,12 @@ exports[`traduire renders traduire 1`] = `
             <h2
               class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              Translate.whoTitle
+              Est-ce que je peux traduire ?
             </h2>
             <p
               class="text-chapo mb-0 md:text-center"
             >
-              Translate.whoSubtitle
+              Vous êtes réfugié, travailleur social, citoyen français, bénévole dans une association ? Vous pouvez nous aider à traduire ! Voici les conditions à remplir :
             </p>
           </div>
           <div
@@ -202,7 +202,7 @@ exports[`traduire renders traduire 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.whoCardTitle1
+                  Maîtriser sa langue d’origine
                 </h3>
                 <div
                   class="[&_p]:text-large"
@@ -210,7 +210,7 @@ exports[`traduire renders traduire 1`] = `
                   <p
                     class="!mb-0"
                   >
-                    Translate.whoCardText1
+                    Aucun justificatif n’est demandé, mais il est préférable de très bien maîtriser l'écrit de votre langue d'origine : ukrainien, persan/dari, arabe, anglais, pachto, russe, tigrinya.
                   </p>
                 </div>
               </div>
@@ -237,7 +237,7 @@ exports[`traduire renders traduire 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.whoCardTitle2
+                  Avoir le niveau B1 en français
                 </h3>
                 <div
                   class="[&_p]:text-large"
@@ -245,7 +245,7 @@ exports[`traduire renders traduire 1`] = `
                   <p
                     class="!mb-0"
                   >
-                    Translate.whoCardText2
+                    Il est nécessaire de bien savoir lire et écrire en français pour comprendre le texte d'origine et ne pas déformer le message.
                   </p>
                 </div>
               </div>
@@ -272,7 +272,7 @@ exports[`traduire renders traduire 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.whoCardTitle3
+                  Avoir accès à un ordinateur
                 </h3>
                 <div
                   class="[&_p]:text-large"
@@ -280,7 +280,7 @@ exports[`traduire renders traduire 1`] = `
                   <p
                     class="!mb-0"
                   >
-                    Translate.whoCardText3
+                    L’outil de traduction est disponible uniquement sur un ordinateur connecté à internet, vous ne pouvez pas y accéder avec votre téléphone.
                   </p>
                 </div>
               </div>
@@ -297,7 +297,7 @@ exports[`traduire renders traduire 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            Translate.needTitle
+            On cherche des traducteurs en :
           </h2>
           <div
             class="flex flex-wrap gap-6 md:justify-center"
@@ -313,7 +313,7 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-badge fr-badge--warning fr-badge--no-icon"
                 id="fr-badge-:r4:"
               >
-                Translate.need Translate.strong
+                Besoin fort
               </p>
             </a>
             <a
@@ -333,7 +333,7 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-badge fr-badge--new fr-badge--no-icon"
                 id="fr-badge-:r5:"
               >
-                Translate.need Translate.medium
+                Besoin moyen
               </p>
             </a>
           </div>
@@ -356,7 +356,7 @@ exports[`traduire renders traduire 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            Translate.stepsTitle
+            Quelles sont les étapes pour traduire une fiche ?
           </h2>
           <div
             class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
@@ -376,19 +376,23 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle1
+                Créez 
+                <strong>
+                  votre compte
+                </strong>
+                 Réfugiés.info
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Translate.stepsText1
+                Indiquez votre adresse mail et un mot de passe, vous êtes prêt à utiliser l'outil de traduction.
               </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
                 id="fr-button-:r6:"
               >
-                Translate.stepsCTA1
+                Créer mon compte
               </a>
             </div>
             <div
@@ -425,12 +429,16 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle2
+                Choisissez 
+                <strong>
+                  votre langue
+                </strong>
+                 de traduction
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Translate.stepsText2
+                Une fois votre langue choisie, vous accédez à toutes les fiches à traduire. Cliquez sur une fiche pour commencer à la traduire.
               </p>
             </div>
             <div
@@ -467,12 +475,15 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle3
+                <strong>
+                  Traduisez la fiche
+                </strong>
+                 à partir de la proposition automatique
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Translate.stepsText3
+                Quand vous arrivez sur une fiche, vous trouverez une première traduction. Attention, elle est automatique. Il faut la retravailler et la corriger !
               </p>
               <div
                 class="bg-beige-accent border-border mb-6 border p-4"
@@ -481,13 +492,13 @@ exports[`traduire renders traduire 1`] = `
                   class="my-0 space-y-2"
                 >
                   <li>
-                    Translate.stepsList3Item1
+                    Faites des phrases simples et sans utiliser de dialecte.
                   </li>
                   <li>
-                    Translate.stepsList3Item2
+                    Expliquez les idées spécifiques à la culture et à l'administration française (attestation, renouvellement...) mais gardez les mots importants s'il n'y a pas de traduction dans votre langue.
                   </li>
                   <li>
-                    Translate.stepsList3Item3
+                    Évitez la traduction mot à mot, n’hésitez pas à corriger la traduction automatique.
                   </li>
                 </ul>
               </div>
@@ -526,22 +537,26 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle4
+                Un 
+                <strong>
+                  expert relit et valide
+                </strong>
+                 votre traduction
               </h3>
               <p
                 class="text-large mb-6"
               >
-                Translate.stepsText4a
+                Un expert va relire votre traduction avant de publier la fiche.
               </p>
               <p
                 class="text-large mb-6"
               >
-                Translate.stepsText4b
+                Vous allez recevoir un mail dès que la fiche que vous avez traduite sera visible sur le site Réfugiés.info et sur l'application mobile.
               </p>
               <div
                 class="text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >
-                Translate.stepsButton
+                La traduction est publiée 🎉
               </div>
             </div>
             <div
@@ -585,15 +600,15 @@ exports[`traduire renders traduire 1`] = `
               <h2
                 class="!text-h3 md:!text-h2 md:text-center !mb-6 !text-left"
               >
-                Translate.nextTitle
+                Soyez fier de votre traduction et partagez la !
               </h2>
               <p>
-                Translate.nextText1
+                Votre nom et votre photo sont visibles en bas de votre fiche, avec les autres contributeurs qui ont aidé à traduire.
               </p>
               <p
                 class="!mb-0"
               >
-                Translate.nextText2
+                N’hésitez pas à les partager à vos amis et vos proches, ça peut leur être utile.
               </p>
             </div>
             <div
@@ -627,12 +642,12 @@ exports[`traduire renders traduire 1`] = `
             <h2
               class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              StaticPages.helpTitle
+              Vous n’êtes pas seul !
             </h2>
             <p
               class="text-chapo mb-0 md:text-center"
             >
-              Translate.helpSubtitle
+              Nous sommes là pour vous accompagner dans la prise en main de Réfugiés.info et dans la traduction des fiches.
             </p>
           </div>
           <div
@@ -643,7 +658,7 @@ exports[`traduire renders traduire 1`] = `
               href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
               rel="noopener noreferrer"
               target="_blank"
-              title="Translate.helpTileTitle1"
+              title="Vidéos tutoriels"
             >
               <div
                 class="flex h-full flex-col"
@@ -664,13 +679,13 @@ exports[`traduire renders traduire 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.helpTileTitle1
+                  Vidéos tutoriels
                 </h3>
                 <div
                   class="[&_p]:text-large"
                 >
                   <p>
-                    Translate.helpTileText1
+                    Dans le centre d’aide, vous trouverez des vidéos et articles pour vous accompagner dans la traduction de votre fiche.
                   </p>
                 </div>
               </div>
@@ -684,7 +699,7 @@ exports[`traduire renders traduire 1`] = `
             </a>
             <button
               class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active"
-              title="StaticPages.helpTileTitle3"
+              title="Live chat"
             >
               <div
                 class="flex h-full flex-col"
@@ -705,13 +720,13 @@ exports[`traduire renders traduire 1`] = `
                 <h3
                   class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  StaticPages.helpTileTitle3
+                  Live chat
                 </h3>
                 <div
                   class="[&_p]:text-large"
                 >
                   <p>
-                    StaticPages.helpTileText3
+                    Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
                   </p>
                 </div>
               </div>
@@ -740,7 +755,7 @@ exports[`traduire renders traduire 1`] = `
         <h2
           class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
         >
-          StaticPages.faqTitle
+          Il vous reste des questions ?
         </h2>
         <div
           class="mx-auto max-w-[720px]"
@@ -777,7 +792,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle1
+                        Quel niveau je dois avoir pour devenir traducteur ?
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -818,7 +833,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle2
+                        Combien de fiches je dois traduire ?
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -859,7 +874,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle3
+                        Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -900,7 +915,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle4
+                        Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -941,7 +956,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle5
+                        Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>
                       <i
                         class="fr-icon-add-line flex before:!h-4 before:!w-4"
@@ -993,18 +1008,18 @@ exports[`traduire renders traduire 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-6"
           >
-            StaticPages.registerTitle
+            C’est parti !
           </h2>
           <p
             class="text-chapo mb-6"
           >
-            Translate.registerSubtitle
+            Connectez-vous ou créez votre compte pour commencer à traduire les fiches.
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
             id="fr-button-:rh:"
           >
-            login_or_signup
+            Me connecter ou m'inscrire
           </button>
         </div>
       </div>
