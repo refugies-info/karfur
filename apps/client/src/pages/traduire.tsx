@@ -26,6 +26,7 @@ import {
   SectionHead,
   StepContent,
   Title2,
+  TranslationNotice,
 } from "~/components/Pages/staticPages/common";
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
@@ -91,6 +92,7 @@ const RecensezVotreAction = (props: Props) => {
   return (
     <div className="w-full">
       <SEO title="Aidez-nous à traduire !" />
+      <TranslationNotice />
 
       {/* HERO */}
       <Hero

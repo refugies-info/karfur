@@ -33,6 +33,7 @@ import {
   SectionHead,
   StepContent,
   Title2,
+  TranslationNotice,
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
@@ -87,6 +88,7 @@ const RecensezVotreAction = (props: Props) => {
   return (
     <div className="w-full">
       <SEO title="Recensez votre action !" />
+      <TranslationNotice />
 
       {/* HERO */}
       <Hero
