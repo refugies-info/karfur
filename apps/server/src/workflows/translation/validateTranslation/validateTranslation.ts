@@ -6,7 +6,7 @@ import { getLanguageByCode } from "~/modules/langues/langues.repository";
 import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedTradMailToTraductors";
-import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
+import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { deleteTradsInDB } from "~/modules/traductions/traductions.repository";
 import { addTradToAirtable } from "~/modules/traductions/traductions.service";
 import { Dispositif, DispositifModel, ErrorModel, Traductions, UserId } from "~/typegoose";
@@ -54,7 +54,7 @@ const validateTranslation = (
         getLanguageByCode(language).then((langue) => log(dispositif._id, translation.userId as UserId, langue._id)),
         isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
         isFirstValidation
-          ? sendNotificationsForDispositif(dispositif._id, language).catch((error) => {
+          ? sendDispositifNotifications(dispositif._id, language).catch((error) => {
               logger.error("[validateTranslations] error while sending notifications", error);
             })
           : null,

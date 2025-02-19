@@ -130,7 +130,7 @@ describe("sendNotifications", () => {
   });
 });
 
-describe("sendNotificationsForDispositif", () => {
+describe("sendDispositifNotifications", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -190,7 +190,7 @@ describe("sendNotificationsForDispositif", () => {
     updateDispositifInDBMock.mockResolvedValue(dispositif);
 
     // Call the function
-    await notifications.sendNotificationsForDispositif(dispositifId, lang);
+    await notifications.sendDispositifNotifications(dispositifId, lang);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalledWith(
@@ -253,7 +253,7 @@ describe("sendNotificationsForDispositif", () => {
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(demarche));
 
     // Call the function
-    await notifications.sendNotificationsForDispositif(dispositifId, lang);
+    await notifications.sendDispositifNotifications(dispositifId, lang);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -288,7 +288,7 @@ describe("sendNotificationsForDispositif", () => {
     getDispositifByIdMock.mockResolvedValue(new DispositifModel({ ...dispositif, notificationsSent: { fr: true } }));
 
     // Call the function
-    await notifications.sendNotificationsForDispositif(dispositifId, lang);
+    await notifications.sendDispositifNotifications(dispositifId, lang);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -302,7 +302,7 @@ describe("sendNotificationsForDispositif", () => {
     expect(sendNotifications).not.toHaveBeenCalled();
   });
 });
-describe("sendNotificationsForDemarche", () => {
+describe("sendDemarcheNotifications", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -363,7 +363,7 @@ describe("sendNotificationsForDemarche", () => {
     updateDispositifInDBMock.mockResolvedValue(dispositif);
 
     // Call the function
-    await notifications.sendNotificationsForDemarche(dispositifId);
+    await notifications.sendDemarcheNotifications(dispositifId);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalledWith(
