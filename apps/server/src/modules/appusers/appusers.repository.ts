@@ -2,6 +2,16 @@ import { AppUser, AppUserModel, NotificationsSettings } from "~/typegoose";
 
 export const getAllAppUsers = async () => AppUserModel.find();
 
+export const processAppUsersByBatch = async (batchSize: number, processor: (users: AppUser[]) => Promise<void>) => {
+  let skip = 0;
+  for (;;) {
+    const users: AppUser[] = await AppUserModel.find().skip(skip).limit(batchSize);
+    if (users.length === 0) break;
+    await processor(users);
+    skip += batchSize;
+  }
+};
+
 export const getNotificationsSettings = async (uid: string) => {
   const appUser = await AppUserModel.findOne({ uid });
   if (!appUser) {
