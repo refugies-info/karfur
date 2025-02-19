@@ -1,13 +1,10 @@
-import logger from "~/logger";
 import { getDispositifAbstracts } from "~/modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "~/types/interface";
 import { frontUrl } from "~/workflows/dispositif/newsletter/constants";
 import { DemarchesData, DispositifDesc } from "~/workflows/dispositif/newsletter/types";
 
-const getLatestPublications = async (): Promise<DispositifDesc> => {
-  logger.info("[getNewestDemarche] called");
-
-  const dispositifs = await getDispositifAbstracts(
+const getPublications = async (): Promise<DispositifDesc[]> => {
+  const results = await getDispositifAbstracts(
     {
       typeContenu: "demarche",
       status: "Actif",
@@ -19,19 +16,17 @@ const getLatestPublications = async (): Promise<DispositifDesc> => {
     },
   );
 
-  const publications = {
-    titre: dispositifs[0].titreInformatif,
-    url: `${frontUrl}/fr/${dispositifs[0].typeContenu}/${dispositifs[0]._id}`,
-    abstract: dispositifs[0].abstract,
-  };
+  const publications = results.map((d) => ({
+    titre: d.titreInformatif,
+    url: `${frontUrl}/fr/${d.typeContenu}/${d._id}`,
+    abstract: d.abstract,
+  }));
 
   return publications;
 };
 
-const getLatestUpdates = async (): Promise<DispositifDesc[]> => {
-  logger.info("[getUpdatedDemarches] called");
-
-  const dispositifs = await getDispositifAbstracts(
+const getUpdates = async (): Promise<DispositifDesc[]> => {
+  const results = await getDispositifAbstracts(
     {
       typeContenu: "demarche",
       status: "Actif",
@@ -43,7 +38,7 @@ const getLatestUpdates = async (): Promise<DispositifDesc[]> => {
     },
   );
 
-  const updates = dispositifs.map((d) => ({
+  const updates = results.map((d) => ({
     titre: d.titreInformatif,
     url: `${frontUrl}/fr/${d.typeContenu}/${d._id}`,
     abstract: d.abstract,
@@ -53,11 +48,9 @@ const getLatestUpdates = async (): Promise<DispositifDesc[]> => {
 };
 
 export const getNewsletterDemarches = async (): ResponseWithData<DemarchesData> => {
-  logger.info("[getDemarchesForNewsletter] called");
+  const publications = await getPublications();
 
-  const publications = await getLatestPublications();
-
-  const updates = await getLatestUpdates();
+  const updates = await getUpdates();
 
   return { text: "success", data: { publications, updates } };
 };
