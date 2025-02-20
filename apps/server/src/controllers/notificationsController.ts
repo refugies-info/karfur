@@ -29,6 +29,11 @@ export class NotificationController extends Controller {
   })
   @Post("/send")
   public async send(@Body() body: SendNotificationsRequest, @Request() request: express.Request): Response {
-    return sendNotifications(body, request.userId);
+    setImmediate(() => {
+      sendNotifications(body, request.userId)
+        .then(() => {})
+        .catch(() => {});
+    });
+    return { text: "success", code: "200" };
   }
 }
