@@ -54,7 +54,7 @@ jest.mock("src/typegoose/Error", () => ({
 }));
 
 jest.mock("../../../modules/notifications/notifications.service", () => ({
-  sendNotificationsForDispositif: jest.fn(),
+  sendDispositifNotifications: jest.fn(),
 })); */
 
 describe.skip("validateTranslations", () => {
