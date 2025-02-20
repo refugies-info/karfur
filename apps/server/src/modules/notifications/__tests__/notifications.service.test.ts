@@ -130,7 +130,7 @@ describe("sendNotifications", () => {
   });
 });
 
-describe("sendNotificationsForDispositif", () => {
+describe("sendDispositifNotifications", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -139,7 +139,7 @@ describe("sendNotificationsForDispositif", () => {
     // Mock dependencies
     const getDispositifByIdMock = jest.spyOn(dispositifRepository, "getDispositifById");
     const getAdminOptionMock = jest.spyOn(adminOptionsRepository, "getAdminOption");
-    const getAllAppUsersMock = jest.spyOn(appusersRepository, "getAllAppUsers");
+    const getAppUsersBatchMock = jest.spyOn(appusersRepository, "getAppUsersBatch");
     const filterTargetsMock = jest.spyOn(notificationsService, "filterTargets");
     const getNotificationEmojiMock = jest.spyOn(notificationsService, "getNotificationEmoji");
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, "updateDispositifInDB");
@@ -148,7 +148,7 @@ describe("sendNotificationsForDispositif", () => {
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
 
     // Mock data
-    const dispositifId = "dispositifId";
+    const dispositifId = dispositif._id;
     const lang = "fr";
     const requirements = {
       age: {
@@ -182,7 +182,7 @@ describe("sendNotificationsForDispositif", () => {
     // Mock function implementations
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(dispositif));
-    getAllAppUsersMock.mockResolvedValue(targetUsers.map((t) => new AppUserModel(t)));
+    getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
     insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
@@ -190,7 +190,7 @@ describe("sendNotificationsForDispositif", () => {
     updateDispositifInDBMock.mockResolvedValue(dispositif);
 
     // Call the function
-    await notifications.sendNotificationsForDispositif(dispositifId, lang);
+    await notifications.sendDispositifNotifications(dispositifId, lang);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalledWith(
@@ -206,7 +206,7 @@ describe("sendNotificationsForDispositif", () => {
       "theme",
     );
     expect(getAdminOptionMock).toHaveBeenCalled();
-    expect(getAllAppUsersMock).toHaveBeenCalled();
+    expect(getAppUsersBatchMock).toHaveBeenCalledWith(0, 100);
     expect(filterTargetsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => expect.objectContaining(omit(t, "_id"))),
       requirements,
@@ -253,7 +253,7 @@ describe("sendNotificationsForDispositif", () => {
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(demarche));
 
     // Call the function
-    await notifications.sendNotificationsForDispositif(dispositifId, lang);
+    await notifications.sendDispositifNotifications(dispositifId, lang);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -288,7 +288,7 @@ describe("sendNotificationsForDispositif", () => {
     getDispositifByIdMock.mockResolvedValue(new DispositifModel({ ...dispositif, notificationsSent: { fr: true } }));
 
     // Call the function
-    await notifications.sendNotificationsForDispositif(dispositifId, lang);
+    await notifications.sendDispositifNotifications(dispositifId, lang);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -302,7 +302,7 @@ describe("sendNotificationsForDispositif", () => {
     expect(sendNotifications).not.toHaveBeenCalled();
   });
 });
-describe("sendNotificationsForDemarche", () => {
+describe("sendDemarcheNotifications", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -311,7 +311,7 @@ describe("sendNotificationsForDemarche", () => {
     // Mock dependencies
     const getDispositifByIdMock = jest.spyOn(dispositifRepository, "getDispositifById");
     const getAdminOptionMock = jest.spyOn(adminOptionsRepository, "getAdminOption");
-    const getAllAppUsersMock = jest.spyOn(appusersRepository, "getAllAppUsers");
+    const getAppUsersBatchMock = jest.spyOn(appusersRepository, "getAppUsersBatch");
     const filterTargetsMock = jest.spyOn(notificationsService, "filterTargetsForDemarche");
     const getNotificationEmojiMock = jest.spyOn(notificationsService, "getNotificationEmoji");
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, "updateDispositifInDB");
@@ -320,7 +320,7 @@ describe("sendNotificationsForDemarche", () => {
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
 
     // Mock data
-    const dispositifId = "dispositifId";
+    const dispositifId = demarche._id;
     const lang = "fr";
     const requirements = {
       age: {
@@ -355,7 +355,7 @@ describe("sendNotificationsForDemarche", () => {
     const demarcheModel = new DispositifModel(demarche);
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(demarcheModel);
-    getAllAppUsersMock.mockResolvedValue(targetUsers.map((t) => new AppUserModel(t)));
+    getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
     insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
@@ -363,7 +363,7 @@ describe("sendNotificationsForDemarche", () => {
     updateDispositifInDBMock.mockResolvedValue(dispositif);
 
     // Call the function
-    await notifications.sendNotificationsForDemarche(dispositifId);
+    await notifications.sendDemarcheNotifications(dispositifId);
 
     // Assertions
     expect(getDispositifByIdMock).toHaveBeenCalledWith(
@@ -379,7 +379,7 @@ describe("sendNotificationsForDemarche", () => {
       "theme",
     );
     expect(getAdminOptionMock).toHaveBeenCalled();
-    expect(getAllAppUsersMock).toHaveBeenCalled();
+    expect(getAppUsersBatchMock).toHaveBeenCalledWith(0, 100);
     expect(filterTargetsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => expect.objectContaining(omit(t, "_id"))),
       requirements,
