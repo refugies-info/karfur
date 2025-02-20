@@ -139,7 +139,7 @@ describe("sendDispositifNotifications", () => {
     // Mock dependencies
     const getDispositifByIdMock = jest.spyOn(dispositifRepository, "getDispositifById");
     const getAdminOptionMock = jest.spyOn(adminOptionsRepository, "getAdminOption");
-    const getAllAppUsersMock = jest.spyOn(appusersRepository, "getAllAppUsers");
+    const getAppUsersBatchMock = jest.spyOn(appusersRepository, "getAppUsersBatch");
     const filterTargetsMock = jest.spyOn(notificationsService, "filterTargets");
     const getNotificationEmojiMock = jest.spyOn(notificationsService, "getNotificationEmoji");
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, "updateDispositifInDB");
@@ -148,7 +148,7 @@ describe("sendDispositifNotifications", () => {
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
 
     // Mock data
-    const dispositifId = "dispositifId";
+    const dispositifId = dispositif._id;
     const lang = "fr";
     const requirements = {
       age: {
@@ -182,7 +182,7 @@ describe("sendDispositifNotifications", () => {
     // Mock function implementations
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(dispositif));
-    getAllAppUsersMock.mockResolvedValue(targetUsers.map((t) => new AppUserModel(t)));
+    getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
     insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
@@ -206,7 +206,7 @@ describe("sendDispositifNotifications", () => {
       "theme",
     );
     expect(getAdminOptionMock).toHaveBeenCalled();
-    expect(getAllAppUsersMock).toHaveBeenCalled();
+    expect(getAppUsersBatchMock).toHaveBeenCalledWith(0, 100);
     expect(filterTargetsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => expect.objectContaining(omit(t, "_id"))),
       requirements,
@@ -311,7 +311,7 @@ describe("sendDemarcheNotifications", () => {
     // Mock dependencies
     const getDispositifByIdMock = jest.spyOn(dispositifRepository, "getDispositifById");
     const getAdminOptionMock = jest.spyOn(adminOptionsRepository, "getAdminOption");
-    const getAllAppUsersMock = jest.spyOn(appusersRepository, "getAllAppUsers");
+    const getAppUsersBatchMock = jest.spyOn(appusersRepository, "getAppUsersBatch");
     const filterTargetsMock = jest.spyOn(notificationsService, "filterTargetsForDemarche");
     const getNotificationEmojiMock = jest.spyOn(notificationsService, "getNotificationEmoji");
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, "updateDispositifInDB");
@@ -320,7 +320,7 @@ describe("sendDemarcheNotifications", () => {
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
 
     // Mock data
-    const dispositifId = "dispositifId";
+    const dispositifId = demarche._id;
     const lang = "fr";
     const requirements = {
       age: {
@@ -355,7 +355,7 @@ describe("sendDemarcheNotifications", () => {
     const demarcheModel = new DispositifModel(demarche);
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(demarcheModel);
-    getAllAppUsersMock.mockResolvedValue(targetUsers.map((t) => new AppUserModel(t)));
+    getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
     insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
@@ -379,7 +379,7 @@ describe("sendDemarcheNotifications", () => {
       "theme",
     );
     expect(getAdminOptionMock).toHaveBeenCalled();
-    expect(getAllAppUsersMock).toHaveBeenCalled();
+    expect(getAppUsersBatchMock).toHaveBeenCalledWith(0, 100);
     expect(filterTargetsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => expect.objectContaining(omit(t, "_id"))),
       requirements,
