@@ -1,5 +1,5 @@
 import * as languesService from "~/modules/langues/langues.service";
-import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
+import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { demarche, dispositif } from "../../../__fixtures__";
 import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
 import * as repository from "../dispositif.repository";
@@ -68,7 +68,7 @@ describe.skip("publish dispositif", () => {
     });
     expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
     expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
-    expect(sendNotificationsForDispositif).toHaveBeenCalled();
+    expect(sendDispositifNotifications).toHaveBeenCalled();
   });
 
   it("should return a 200 when new status is actif and a demarche ", async () => {
@@ -87,6 +87,6 @@ describe.skip("publish dispositif", () => {
     });
     expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
     expect(sendMailWhenDispositifPublished).toHaveBeenCalled();
-    expect(sendNotificationsForDispositif).toHaveBeenCalled();
+    expect(sendDispositifNotifications).toHaveBeenCalled();
   });
 });

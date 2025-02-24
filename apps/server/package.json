@@ -27,7 +27,6 @@
     "@refugies-info/api-types": "workspace:*",
     "@sendgrid/mail": "^8.1.4",
     "@slack/webhook": "^7.0.4",
-    "@tsoa/runtime": "^6.5.1",
     "@typegoose/typegoose": "^12.9.0",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.14.2",
@@ -37,7 +36,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "expo-server-sdk": "^3.12.0",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-form-data": "^2.0.18",
     "google-auth-library": "^9.15.0",
     "jwt-simple": "^0.5.5",
@@ -45,20 +44,20 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.41.0",
     "moment": "^2.29.4",
     "mongodb": "^6.10.0",
-    "mongoose": "8.9.5",
+    "mongoose": "8.10.0",
     "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
-    "path-to-regexp": "^0.1.12",
+    "path-to-regexp": ">=0.1.12",
     "phone": "^3.1.55",
     "ts-node": "^10.9.2",
     "tsoa": "^6.6.0",
     "twilio": "^5.3.6",
     "uniqid": "^5.0.3",
-    "uuid": "^11.0.3",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
+    "@tsoa/runtime": "^6.5.1",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^5.0.0",
@@ -81,14 +80,13 @@
     "nodemon": "^3.1.7",
     "ts-jest": "^29.2.2",
     "tsconfig-paths": "^4.2.0",
-    "turbo": "^2.3.0",
     "typescript": "^5.6.3"
   },
   "engines": {
-    "node": "20.13.1"
+    "node": "22.13.1"
   },
   "volta": {
-    "node": "20.13.1",
-    "pnpm": "9.15.4"
+    "node": "22.13.1",
+    "pnpm": "10.2.1"
   }
 }

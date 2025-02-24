@@ -56,7 +56,7 @@ const SMSForm = (props: Props) => {
       <Input
         id="sms-phone-input"
         type="tel"
-        label={t("Homepage.mobileAppFormLabel")}
+        label={t("MobileApp.phoneLabel", "Numéro de téléphone")}
         icon="phone-outline"
         value={tel}
         onChange={(e: any) => setTel(e.target.value)}

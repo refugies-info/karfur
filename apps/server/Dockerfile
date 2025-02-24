@@ -1,8 +1,8 @@
 # WARNING: using root folder as current context to make this dockerfile work
-FROM node:20.13.1-alpine
+FROM node:22.13.1-alpine
 
 # Install pnpm
-RUN npm install -g pnpm@9.15.4
+RUN npm install -g pnpm@10.2.1
 
 # Create app directory
 WORKDIR /usr/src/app

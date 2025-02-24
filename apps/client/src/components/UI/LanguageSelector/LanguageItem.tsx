@@ -15,10 +15,11 @@ import styles from "./LanguageItem.module.scss";
 interface LanguageItemProps {
   item: GetLanguagesResponse;
   className?: string;
+  onChangeLang?: () => void;
 }
 
 const LanguageItem = memo(
-  forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, ...props }, ref) => {
+  forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, onChangeLang, ...props }, ref) => {
     const { t } = useTranslation();
     const stylesDisabled = useStylesDisabled();
 
@@ -31,9 +32,9 @@ const LanguageItem = memo(
     const handleChangeLanguage = useCallback(
       (lang: GetLanguagesResponse) => {
         Event("CHANGE_LANGUAGE", lang.i18nCode, "Global Modal");
-        changeLanguage(lang.i18nCode);
+        changeLanguage(lang.i18nCode, "replace", onChangeLang);
       },
-      [changeLanguage],
+      [changeLanguage, onChangeLang],
     );
 
     const getAvancementTrad = useCallback(
@@ -53,7 +54,10 @@ const LanguageItem = memo(
         key={item.langueCode}
         id={item.langueCode}
         title={className}
-        onClick={() => handleChangeLanguage(item)}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleChangeLanguage(item);
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();

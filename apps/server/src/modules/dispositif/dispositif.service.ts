@@ -20,7 +20,7 @@ import {
   sendMailWhenDispositifPublished,
   sendMailWhenDispositifPublishedAfterUpdate,
 } from "~/modules/mail/sendMailWhenDispositifPublished";
-import { sendNotificationsForDispositif } from "~/modules/notifications/notifications.service";
+import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import {
   Dispositif,
   DispositifId,
@@ -398,7 +398,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     try {
       await Promise.all([
         notifyChange(NotifType.PUBLISHED, dispositifId, userId),
-        sendNotificationsForDispositif(dispositifId, "fr"),
+        sendDispositifNotifications(dispositifId, "fr"),
       ]);
     } catch (error) {
       logger.error("[publishDispositif] error while sending notifications", error);

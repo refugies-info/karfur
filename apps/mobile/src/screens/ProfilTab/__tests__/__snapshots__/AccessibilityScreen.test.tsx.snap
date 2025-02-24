@@ -15,23 +15,21 @@ exports[`Accessibility screen should render correctly 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {},
-      }
-    }
-    collapsable={false}
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -45,12 +43,6 @@ exports[`Accessibility screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
-        animatedStyle={
-          {
-            "value": {},
-          }
-        }
-        collapsable={false}
         horizontalAlign="space-between"
         style={
           {
@@ -149,8 +141,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -223,8 +215,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -255,12 +247,6 @@ exports[`Accessibility screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="center"
             style={
               {
@@ -296,8 +282,8 @@ exports[`Accessibility screen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -360,8 +346,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
@@ -436,12 +422,6 @@ exports[`Accessibility screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-end"
             style={
               {
@@ -618,8 +598,8 @@ exports[`Accessibility screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="16"
-                bbWidth="16"
+                bbHeight={16}
+                bbWidth={16}
                 fill="#716043"
                 focusable={false}
                 height={16}
@@ -692,8 +672,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm4 11h-4a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0v3h3a1 1 0 0 1 0 2z"
@@ -999,7 +979,11 @@ exports[`Accessibility screen should render correctly 1`] = `
           <Image
             alt="24 critères"
             resizeMode="contain"
-            source={1}
+            source={
+              {
+                "testUri": "../../../apps/mobile/src/theme/images/accessibility/accessibility-ios.png",
+              }
+            }
             style={
               {
                 "alignSelf": "center",
@@ -6426,12 +6410,6 @@ exports[`Accessibility screen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={true}
-              animatedStyle={
-                {
-                  "value": {},
-                }
-              }
-              collapsable={false}
               horizontalAlign="flex-start"
               style={
                 {
@@ -6476,8 +6454,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                   >
                     <RNSVGSvgView
                       align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
+                      bbHeight={24}
+                      bbWidth={24}
                       fill="#FFFFFF"
                       focusable={false}
                       height={24}
@@ -6540,8 +6518,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                               height="24"
                               opacity={0}
                               width="24"
-                              x="0"
-                              y="0"
+                              x={0}
+                              y={0}
                             />
                             <RNSVGPath
                               d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
@@ -6900,8 +6878,8 @@ exports[`Accessibility screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -6964,8 +6942,8 @@ exports[`Accessibility screen should render correctly 1`] = `
                         height="24"
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
@@ -7065,8 +7043,8 @@ Libre réponse 71120
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="16"
-                bbWidth="16"
+                bbHeight={16}
+                bbWidth={16}
                 fill="#0063CB"
                 focusable={false}
                 height={16}
@@ -7139,8 +7117,8 @@ Libre réponse 71120
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"

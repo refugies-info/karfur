@@ -1,3 +1,1 @@
-import MobileApp from "./MobileApp";
-
-export default MobileApp;
+export { default } from "./MobileApp";

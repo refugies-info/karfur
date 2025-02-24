@@ -121,9 +121,9 @@ export const Admin = (props: Props) => {
 
   return (
     <div className={styles.admin + " animated fadeIn"}>
-      <Nav>
-        <NavItem>
-          <NavLink active={activeTab === "contenus"} onClick={() => toggleTab("contenus")}>
+      <Nav className="m-0 flex list-none p-0 pl-4">
+        <NavItem className="list-none">
+          <NavLink className="mr-4 p-0" active={activeTab === "contenus"} onClick={() => toggleTab("contenus")}>
             <Onglet
               iconSelected="file-add"
               iconNotSelected="file-add-outline"
@@ -132,8 +132,8 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink active={activeTab === "structures"} onClick={() => toggleTab("structures")}>
+        <NavItem className="list-none">
+          <NavLink className="mr-4 p-0" active={activeTab === "structures"} onClick={() => toggleTab("structures")}>
             <Onglet
               iconSelected="shopping-bag"
               iconNotSelected="shopping-bag-outline"
@@ -142,8 +142,8 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink active={activeTab === "utilisateurs"} onClick={() => toggleTab("utilisateurs")}>
+        <NavItem className="list-none">
+          <NavLink className="mr-4 p-0" active={activeTab === "utilisateurs"} onClick={() => toggleTab("utilisateurs")}>
             <Onglet
               iconSelected="person"
               iconNotSelected="person-outline"
@@ -152,8 +152,8 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink active={activeTab === "categories"} onClick={() => toggleTab("categories")}>
+        <NavItem className="list-none">
+          <NavLink className="mr-4 p-0" active={activeTab === "categories"} onClick={() => toggleTab("categories")}>
             <Onglet
               iconSelected="settings-2"
               iconNotSelected="settings-2-outline"
@@ -162,8 +162,8 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink active={activeTab === "divers"} onClick={() => toggleTab("divers")}>
+        <NavItem className="list-none">
+          <NavLink className="mr-4 p-0" active={activeTab === "divers"} onClick={() => toggleTab("divers")}>
             <Onglet
               iconSelected="pie-chart"
               iconNotSelected="pie-chart-outline"
@@ -172,8 +172,8 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink active={activeTab === "widgets"} onClick={() => toggleTab("widgets")}>
+        <NavItem className="list-none">
+          <NavLink className="mr-4 p-0" active={activeTab === "widgets"} onClick={() => toggleTab("widgets")}>
             <Onglet
               iconSelected="code"
               iconNotSelected="code-outline"

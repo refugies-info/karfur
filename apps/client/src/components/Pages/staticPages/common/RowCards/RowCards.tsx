@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const RowCards = (props: Props) => (
-  <div className="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10">{props.children}</div>
+  <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10">{props.children}</div>
 );

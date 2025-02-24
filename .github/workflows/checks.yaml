@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.13.1"
+          node-version: "22.13.1"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -33,6 +33,9 @@ jobs:
         run: |
           pnpm add -g turbo
           pnpm install --frozen-lockfile
+
+      - name: Build UI Package
+        run: turbo build --filter=@refugies-info/ui
 
       - name: Lint, Check Types and Test
         run: turbo lint check:types test && pnpm lint:style

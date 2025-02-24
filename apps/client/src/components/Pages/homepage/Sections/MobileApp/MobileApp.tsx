@@ -1,80 +1,131 @@
+import Button from "@codegouvfr/react-dsfr/Button";
+import { AnnotationsOverlay } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
-import { Col, Container, Row } from "reactstrap";
+import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
-import commonStyles from "~/scss/components/staticPages.module.scss";
 import { AvailableLanguageI18nCode } from "~/types/interface";
-import styles from "./MobileApp.module.scss";
-import MobileAppIllu from "./MobileAppIllu";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
 const MobileApp = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const { isTablet } = useWindowSize();
   const locale: AvailableLanguageI18nCode = (router.locale || "fr") as AvailableLanguageI18nCode;
+
+  const { isMobile } = useWindowSize();
 
   const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
   const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
   const storeLinks = useMemo(
     () => (
-      <>
-        <a className={styles.links} href={iosStoreLink} rel="noopener noreferrer" target="_blank">
-          <Image src={appStoreBadge} alt="Get it on App Store" width={160} height={50} />
+      <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
+        <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
+          <Image src={appStoreBadge} alt="Get it on App Store" fill />
         </a>
-        <a className={styles.links} href={androidStoreLink} rel="noopener noreferrer" target="_blank">
-          <Image src={playStoreBadge} alt="Get it on Play Store" width={160} height={50} />
+        <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
+          <Image src={playStoreBadge} alt="Get it on Play Store" fill />
         </a>
-      </>
+      </p>
     ),
     [appStoreBadge, playStoreBadge],
   );
 
-  const review = useMemo(() => {
-    return (
-      <div className={styles.reviews}>
-        <div>
-          <EVAIcon name="star" fill="#FCBF35" size={20} />
-          <EVAIcon name="star" fill="#FCBF35" size={20} />
-          <EVAIcon name="star" fill="#FCBF35" size={20} />
-          <EVAIcon name="star" fill="#FCBF35" size={20} />
-          <EVAIcon name="star" fill="#FCBF35" size={20} />
-        </div>
-        <p className="mb-0">{t("Homepage.mobileAppReviews")}</p>
-      </div>
-    );
-  }, [t]);
+  const handleOpenStoreLink = (storelink: string) => {
+    window.open(storelink, "_blank");
+  };
 
   return (
-    <div id="application" className={cls(commonStyles.section, commonStyles.bg_blue)}>
-      <Container className={cls(commonStyles.container)}>
-        <Row className="items-center">
-          <Col sm="12" lg="6" className="lg:order-2">
-            <MobileAppIllu />
-            <div className={styles.store}>
-              {!isTablet && storeLinks}
-              {review}
-            </div>
-          </Col>
-
-          <Col sm="12" lg="6" className="lg:order-1">
-            <h2 className={cls(commonStyles.title2, commonStyles.white, "!mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
-            <p className={cls(commonStyles.subtitle)}>{t("Homepage.mobileAppSubtitle")}</p>
-
-            <MobileAppSmsForm />
-
-            <div className={styles.store}>{isTablet && storeLinks}</div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <section className="container flex flex-col gap-10 py-10 lg:grid lg:grid-cols-2 lg:py-20 2xl:gap-20">
+      <div className="flex h-full flex-col items-center justify-center gap-10">
+        <AnnotationsOverlay
+          className="block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
+          annotations={[
+            { text: t("MobileApp.Annotations.share", "Partage"), className: "top-[4%] left-[66%]" },
+            {
+              text: t("MobileApp.Annotations.langChange", "Changement de langue"),
+              className: "top-[25%] left-[72%] max-w-[5em]",
+            },
+            {
+              text: isMobile
+                ? t("MobileApp.Annotations.easyFrench", "Français facile")
+                : t("MobileApp.Annotations.langSimple", "Langage clair"),
+              className: "top-[53%] left-[79%] ",
+            },
+            {
+              text: isMobile
+                ? t("MobileApp.Annotations.listen", "Écoute")
+                : t("MobileApp.Annotations.vocalize", "Vocalisation des contenus"),
+              className: "bottom-[8%] left-[65%] ",
+            },
+          ]}
+        >
+          <Image
+            src={application}
+            fill
+            className="object-contain"
+            alt={t(
+              "MobileApp.imageAlt",
+              "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
+            )}
+          />
+        </AnnotationsOverlay>
+        {storeLinks}
+      </div>
+      <div className="">
+        <div className="mb-6 flex items-center gap-6">
+          <Image src="/images/logoRI.svg" width={72} height={72} alt={t("MobileApp.logoAlt", "Logo Réfugiés.info")} />
+          <p className="m-0 flex flex-col gap-2 font-medium">
+            <span aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")} role="img" className="inline-flex gap-3">
+              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
+              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
+              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
+              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
+              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
+            </span>
+            {t("MobileApp.rankingText", "Top 3 des applications publiques")}
+          </p>
+        </div>
+        <h2>{t("MobileApp.title", "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !")}</h2>
+        <p
+          className="mb-10"
+          dangerouslySetInnerHTML={{
+            __html: t(
+              "MobileApp.subtitle",
+              "Gratuite, l’application a été conçue <em>avec</em> et <em>pour</em> les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
+            ),
+          }}
+        />
+        {isMobile ? (
+          <span className="flex flex-col gap-4">
+            <Button
+              iconId={"ri-app-store-fill"}
+              iconPosition="right"
+              className={cls("justify-center max-md:w-full", isAndroid && "hidden")}
+              onClick={() => handleOpenStoreLink(iosStoreLink)}
+            >
+              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
+            </Button>
+            <Button
+              iconId={"ri-android-fill"}
+              iconPosition="right"
+              className={cls("justify-center max-md:w-full", isIOS && "hidden")}
+              onClick={() => handleOpenStoreLink(androidStoreLink)}
+            >
+              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
+            </Button>
+          </span>
+        ) : (
+          <MobileAppSmsForm />
+        )}
+      </div>
+    </section>
   );
 };
 

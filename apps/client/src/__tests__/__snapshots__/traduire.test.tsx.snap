@@ -12,27 +12,27 @@ exports[`traduire renders traduire 1`] = `
         class="fr-container"
       >
         <div
-          class="flex flex-col md:flex-row md:items-center gap-10 lg:gap-20"
+          class="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20"
         >
           <div
             class="flex-1 text-center md:text-left"
           >
             <h1
-              class="!text-h1 !text-light-alt-blue md:!text-alt-title mb-6"
+              class="text-h1 text-light-alt-blue md:text-alt-title mb-6"
             >
-              Translate.title
+              Aidez-nous à traduire !
             </h1>
             <p
-              class="!text-chapo !text-light-alt-blue !mb-0"
+              class="text-chapo text-light-alt-blue mb-0"
             >
-              Translate.subtitle
+              12 bénévoles nous ont déjà aidé à traduire 156 mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.
             </p>
             <a
-              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right mt-10 !w-full justify-center md:!w-auto fr-button-reverse"
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
               href="#register"
               id="fr-button-:r0:"
             >
-              Translate.navbarItem5
+              Aider à traduire
             </a>
           </div>
           <div
@@ -40,7 +40,7 @@ exports[`traduire renders traduire 1`] = `
           >
             <img
               alt=""
-              class="max-w-full h-auto mx-auto"
+              class="mx-auto h-auto max-w-full"
               data-nimg="1"
               decoding="async"
               height="448"
@@ -55,10 +55,10 @@ exports[`traduire renders traduire 1`] = `
       </div>
     </div>
     <div
-      class="sticky top-0 bg-white z-20"
+      class="sticky top-0 z-20 bg-white"
     >
       <div
-        class="fr-container flex gap-10 justify-between items-start flex-nowrap py-4 md:py-10"
+        class="fr-container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10"
       >
         <div
           class="nav"
@@ -83,7 +83,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-0"
                 >
-                  Translate.navbarItem1
+                  Qui peut traduire ?
                 </label>
               </div>
               <div
@@ -99,7 +99,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-1"
                 >
-                  Translate.navbarItem2
+                  Comment faire ?
                 </label>
               </div>
               <div
@@ -115,7 +115,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-2"
                 >
-                  Translate.navbarItem3
+                  Et après ?
                 </label>
               </div>
               <div
@@ -131,7 +131,7 @@ exports[`traduire renders traduire 1`] = `
                   class="fr-label"
                   for="fr-segmented-:r1:-3"
                 >
-                  Translate.navbarItem4
+                  Foire aux questions
                 </label>
               </div>
             </div>
@@ -145,7 +145,7 @@ exports[`traduire renders traduire 1`] = `
             href="#register"
             id="fr-button-:r3:"
           >
-            Translate.navbarItem5
+            Aider à traduire
           </a>
         </div>
       </div>
@@ -164,26 +164,28 @@ exports[`traduire renders traduire 1`] = `
           class="fr-container"
         >
           <div
-            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
+            class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
             <h2
               class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              Translate.whoTitle
+              Est-ce que je peux traduire ?
             </h2>
             <p
-              class="!text-chapo md:text-center !mb-0"
+              class="text-chapo mb-0 md:text-center"
             >
-              Translate.whoSubtitle
+              Vous êtes réfugié, travailleur social, citoyen français, bénévole dans une association ? Vous pouvez nous aider à traduire ! Voici les conditions à remplir :
             </p>
           </div>
           <div
-            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+            class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex h-full flex-col"
+              >
                 <div>
                   <img
                     alt=""
@@ -198,25 +200,27 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.whoCardTitle1
+                  Maîtriser sa langue d’origine
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
                   >
-                    Translate.whoCardText1
+                    Aucun justificatif n’est demandé, mais il est préférable de très bien maîtriser l'écrit de votre langue d'origine : ukrainien, persan/dari, arabe, anglais, pachto, russe, tigrinya.
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex h-full flex-col"
+              >
                 <div>
                   <img
                     alt=""
@@ -231,25 +235,27 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.whoCardTitle2
+                  Avoir le niveau B1 en français
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
                   >
-                    Translate.whoCardText2
+                    Il est nécessaire de bien savoir lire et écrire en français pour comprendre le texte d'origine et ne pas déformer le message.
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white"
             >
-              <div>
+              <div
+                class="flex h-full flex-col"
+              >
                 <div>
                   <img
                     alt=""
@@ -264,17 +270,17 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.whoCardTitle3
+                  Avoir accès à un ordinateur
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p
                     class="!mb-0"
                   >
-                    Translate.whoCardText3
+                    L’outil de traduction est disponible uniquement sur un ordinateur connecté à internet, vous ne pouvez pas y accéder avec votre téléphone.
                   </p>
                 </div>
               </div>
@@ -291,13 +297,13 @@ exports[`traduire renders traduire 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            Translate.needTitle
+            On cherche des traducteurs en :
           </h2>
           <div
-            class="flex gap-6 md:justify-center flex-wrap"
+            class="flex flex-wrap gap-6 md:justify-center"
           >
             <a
-              class="p-3 md:p-4 border border-border inline-flex items-center gap-2 bg-white hover:!bg-hover"
+              class="border-border hover:!bg-hover inline-flex items-center gap-2 border bg-white p-3 md:p-4"
               href="/undefined#register"
             >
               <span
@@ -307,11 +313,11 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-badge fr-badge--warning fr-badge--no-icon"
                 id="fr-badge-:r4:"
               >
-                Translate.need Translate.strong
+                Besoin fort
               </p>
             </a>
             <a
-              class="p-3 md:p-4 border border-border inline-flex items-center gap-2 bg-white hover:!bg-hover"
+              class="border-border hover:!bg-hover inline-flex items-center gap-2 border bg-white p-3 md:p-4"
               href="/undefined#register"
             >
               <span
@@ -327,7 +333,7 @@ exports[`traduire renders traduire 1`] = `
                 class="fr-badge fr-badge--new fr-badge--no-icon"
                 id="fr-badge-:r5:"
               >
-                Translate.need Translate.medium
+                Besoin moyen
               </p>
             </a>
           </div>
@@ -350,43 +356,47 @@ exports[`traduire renders traduire 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
           >
-            Translate.stepsTitle
+            Quelles sont les étapes pour traduire une fiche ?
           </h2>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   1
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle1
+                Créez 
+                <strong>
+                  votre compte
+                </strong>
+                 Réfugiés.info
               </h3>
               <p
-                class="!text-large !mb-6"
+                class="text-large mb-6"
               >
-                Translate.stepsText1
+                Indiquez votre adresse mail et un mot de passe, vous êtes prêt à utiliser l'outil de traduction.
               </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
                 id="fr-button-:r6:"
               >
-                Translate.stepsCTA1
+                Créer mon compte
               </a>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -402,33 +412,37 @@ exports[`traduire renders traduire 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   2
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle2
+                Choisissez 
+                <strong>
+                  votre langue
+                </strong>
+                 de traduction
               </h3>
               <p
-                class="!text-large !mb-6"
+                class="text-large mb-6"
               >
-                Translate.stepsText2
+                Une fois votre langue choisie, vous accédez à toutes les fiches à traduire. Cliquez sur une fiche pour commencer à la traduire.
               </p>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -444,50 +458,53 @@ exports[`traduire renders traduire 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   3
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle3
+                <strong>
+                  Traduisez la fiche
+                </strong>
+                 à partir de la proposition automatique
               </h3>
               <p
-                class="!text-large !mb-6"
+                class="text-large mb-6"
               >
-                Translate.stepsText3
+                Quand vous arrivez sur une fiche, vous trouverez une première traduction. Attention, elle est automatique. Il faut la retravailler et la corriger !
               </p>
               <div
-                class="bg-beige-accent border border-border p-4 !mb-6"
+                class="bg-beige-accent border-border mb-6 border p-4"
               >
                 <ul
-                  class="!my-0 space-y-2"
+                  class="my-0 space-y-2"
                 >
                   <li>
-                    Translate.stepsList3Item1
+                    Faites des phrases simples et sans utiliser de dialecte.
                   </li>
                   <li>
-                    Translate.stepsList3Item2
+                    Expliquez les idées spécifiques à la culture et à l'administration française (attestation, renouvellement...) mais gardez les mots importants s'il n'y a pas de traduction dans votre langue.
                   </li>
                   <li>
-                    Translate.stepsList3Item3
+                    Évitez la traduction mot à mot, n’hésitez pas à corriger la traduction automatique.
                   </li>
                 </ul>
               </div>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
@@ -503,43 +520,47 @@ exports[`traduire renders traduire 1`] = `
             </div>
           </div>
           <div
-            class="flex flex-col-reverse lg:flex-row lg:gap-30 align-stretch justify-between ps-4 lg:ps-0 relative"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="ps-8 lg:ps-[80px] pb-9 lg:pb-26 lg:min-h-[420px] max-w-none order-2 border-s-4 relative border-purple-france !pb-0 lg:!pb-[250px]"
+              class="border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="w-8 h-8 lg:w-10 lg:h-10 absolute top-0 -start-[16px] lg:-start-[22px] !text-h5 lg:!text-h4 text-white font-bold rounded-full bg-purple-france flex items-center justify-center"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white flex items-center justify-center"
               >
                 <span
-                  class="h-4 leading-[15px] lg:h-[22px] lg:leading-[20px]"
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
                 >
                   4
                 </span>
               </div>
               <h3
-                class="!text-h4 lg:!text-h3 !mb-6"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Translate.stepsSubtitle4
+                Un 
+                <strong>
+                  expert relit et valide
+                </strong>
+                 votre traduction
               </h3>
               <p
-                class="!text-large !mb-6"
+                class="text-large mb-6"
               >
-                Translate.stepsText4a
+                Un expert va relire votre traduction avant de publier la fiche.
               </p>
               <p
-                class="!text-large !mb-6"
+                class="text-large mb-6"
               >
-                Translate.stepsText4b
+                Vous allez recevoir un mail dès que la fiche que vous avez traduite sera visible sur le site Réfugiés.info et sur l'application mobile.
               </p>
               <div
-                class="!text-large p-4 text-white rounded-full font-bold text-center z-10 bg-purple-france absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
+                class="text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >
-                Translate.stepsButton
+                La traduction est publiée 🎉
               </div>
             </div>
             <div
-              class="relative flex items-start justify-center order-1 shrink-0 w-auto lg:w-[480px] border-s-4 border-purple-france lg:border-none ps-8 lg:ps-0 pb-[60px] lg:pb-0 !pb-[150px] lg:!pb-0"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 pb-[150px] lg:pb-0"
             >
               <img
                 alt=""
@@ -571,7 +592,7 @@ exports[`traduire renders traduire 1`] = `
           class="fr-container"
         >
           <div
-            class="flex gap-10 lg:gap-20 items-center flex-col md:flex-row"
+            class="flex flex-col items-center gap-10 md:flex-row lg:gap-20"
           >
             <div
               class="flex-1"
@@ -579,15 +600,15 @@ exports[`traduire renders traduire 1`] = `
               <h2
                 class="!text-h3 md:!text-h2 md:text-center !mb-6 !text-left"
               >
-                Translate.nextTitle
+                Soyez fier de votre traduction et partagez la !
               </h2>
               <p>
-                Translate.nextText1
+                Votre nom et votre photo sont visibles en bas de votre fiche, avec les autres contributeurs qui ont aidé à traduire.
               </p>
               <p
                 class="!mb-0"
               >
-                Translate.nextText2
+                N’hésitez pas à les partager à vos amis et vos proches, ça peut leur être utile.
               </p>
             </div>
             <div
@@ -595,7 +616,7 @@ exports[`traduire renders traduire 1`] = `
             >
               <img
                 alt=""
-                class="object-contain mx-auto"
+                class="mx-auto object-contain"
                 data-nimg="1"
                 decoding="async"
                 height="287"
@@ -616,30 +637,32 @@ exports[`traduire renders traduire 1`] = `
           class="fr-container"
         >
           <div
-            class="max-w-[720px] mb-10 lg:mb-20 mx-auto"
+            class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
             <h2
               class="!text-h3 md:!text-h2 md:text-center !mb-6"
             >
-              StaticPages.helpTitle
+              Vous n’êtes pas seul !
             </h2>
             <p
-              class="!text-chapo md:text-center !mb-0"
+              class="text-chapo mb-0 md:text-center"
             >
-              Translate.helpSubtitle
+              Nous sommes là pour vous accompagner dans la prise en main de Réfugiés.info et dans la traduction des fiches.
             </p>
           </div>
           <div
-            class="flex flex-col lg:justify-center lg:flex-row lg:items-stretch gap-4 lg:gap-10"
+            class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <a
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active block"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active block"
               href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
               rel="noopener noreferrer"
               target="_blank"
-              title="Translate.helpTileTitle1"
+              title="Vidéos tutoriels"
             >
-              <div>
+              <div
+                class="flex h-full flex-col"
+              >
                 <div>
                   <img
                     alt=""
@@ -654,31 +677,33 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  Translate.helpTileTitle1
+                  Vidéos tutoriels
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p>
-                    Translate.helpTileText1
+                    Dans le centre d’aide, vous trouverez des vidéos et articles pour vous accompagner dans la traduction de votre fiche.
                   </p>
                 </div>
               </div>
               <div
-                class="mt-6 pt-2 w-full text-right"
+                class="mt-6 w-full pt-2 text-right"
               >
                 <i
-                  class="fr-icon-arrow-right-line !text-blue-france"
+                  class="fr-icon-arrow-right-line text-blue-france"
                 />
               </div>
             </a>
             <button
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between !border !border-border text-left hover:!bg-hover active:!bg-active"
-              title="StaticPages.helpTileTitle3"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-border text-left bg-white hover:bg-hover active:bg-active"
+              title="Live chat"
             >
-              <div>
+              <div
+                class="flex h-full flex-col"
+              >
                 <div>
                   <img
                     alt=""
@@ -693,23 +718,23 @@ exports[`traduire renders traduire 1`] = `
                   />
                 </div>
                 <h3
-                  class="!text-h6 md:!text-h5 !my-3 !text-blue-france"
+                  class="text-h6 md:text-h5 text-blue-france my-3"
                 >
-                  StaticPages.helpTileTitle3
+                  Live chat
                 </h3>
                 <div
-                  class="!text-large"
+                  class="[&_p]:text-large"
                 >
                   <p>
-                    StaticPages.helpTileText3
+                    Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
                   </p>
                 </div>
               </div>
               <div
-                class="mt-6 pt-2 w-full text-right"
+                class="mt-6 w-full pt-2 text-right"
               >
                 <i
-                  class="fr-icon-arrow-right-line !text-blue-france"
+                  class="fr-icon-arrow-right-line text-blue-france"
                 />
               </div>
             </button>
@@ -730,10 +755,10 @@ exports[`traduire renders traduire 1`] = `
         <h2
           class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
         >
-          StaticPages.faqTitle
+          Il vous reste des questions ?
         </h2>
         <div
-          class="max-w-[720px] mx-auto"
+          class="mx-auto max-w-[720px]"
         >
           <div
             class="flex gap-20"
@@ -757,7 +782,7 @@ exports[`traduire renders traduire 1`] = `
                     <button
                       aria-controls="radix-:r8:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -765,12 +790,12 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle1
+                        Quel niveau je dois avoir pour devenir traducteur ?
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -798,7 +823,7 @@ exports[`traduire renders traduire 1`] = `
                     <button
                       aria-controls="radix-:ra:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -806,12 +831,12 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle2
+                        Combien de fiches je dois traduire ?
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -839,7 +864,7 @@ exports[`traduire renders traduire 1`] = `
                     <button
                       aria-controls="radix-:rc:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -847,12 +872,12 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle3
+                        Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -880,7 +905,7 @@ exports[`traduire renders traduire 1`] = `
                     <button
                       aria-controls="radix-:re:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -888,12 +913,12 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle4
+                        Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -921,7 +946,7 @@ exports[`traduire renders traduire 1`] = `
                     <button
                       aria-controls="radix-:rg:"
                       aria-expanded="false"
-                      class="py-3 px-4 w-full !border-t !border-border flex items-center gap-4 hover:!bg-light-alt-blue"
+                      class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
@@ -929,12 +954,12 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="!text-chapo !text-left !font-medium !mb-0 grow-1"
+                        class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
                       >
-                        Translate.faqAccordionTitle5
+                        Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>
                       <i
-                        class="fr-icon-add-line before:!w-4 before:!h-4 flex"
+                        class="fr-icon-add-line flex before:!h-4 before:!w-4"
                       />
                     </button>
                   </h3>
@@ -956,7 +981,7 @@ exports[`traduire renders traduire 1`] = `
       </div>
     </div>
     <div
-      class="py-10 md:py-20 relative bg-beige"
+      class="py-10 md:py-20 bg-beige relative"
     >
       <span
         class="absolute -top-[96px] md:-top-[120px]"
@@ -966,7 +991,7 @@ exports[`traduire renders traduire 1`] = `
         class="fr-container"
       >
         <div
-          class="max-w-[480px] mx-auto text-center"
+          class="mx-auto max-w-[480px] text-center"
         >
           <img
             alt=""
@@ -983,18 +1008,18 @@ exports[`traduire renders traduire 1`] = `
           <h2
             class="!text-h3 md:!text-h2 md:text-center !mb-6"
           >
-            StaticPages.registerTitle
+            C’est parti !
           </h2>
           <p
-            class="!text-chapo !mb-6"
+            class="text-chapo mb-6"
           >
-            Translate.registerSubtitle
+            Connectez-vous ou créez votre compte pour commencer à traduire les fiches.
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
             id="fr-button-:rh:"
           >
-            login_or_signup
+            Me connecter ou m'inscrire
           </button>
         </div>
       </div>
