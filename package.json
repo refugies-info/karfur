@@ -13,6 +13,19 @@
     "apps/*",
     "packages/*"
   ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "core-js",
+      "core-js-pure",
+      "esbuild",
+      "protobufjs",
+      "sharp"
+    ],
+    "patchedDependencies": {
+      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
+    }
+  },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
     "clean:modules": "rm -rf ./node_modules ./packages/*/node_modules ./apps/*/node_modules",
@@ -101,10 +114,5 @@
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
   "resolutions": {},
-  "packageManager": "pnpm@10.2.1",
-  "pnpm": {
-    "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
-    }
-  }
+  "packageManager": "pnpm@10.2.1"
 }
