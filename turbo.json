@@ -59,7 +59,7 @@
         "TTS_KEY_1"
       ],
       "inputs": ["$TURBO_DEFAULT$", ".env"],
-      "outputs": [".dist/**"]
+      "outputs": ["dist/**"]
     },
     "check:types": {
       "dependsOn": ["^check:types"]
