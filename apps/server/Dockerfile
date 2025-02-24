@@ -23,10 +23,9 @@ RUN rm -rf .pnpm-store
 # Build app using turbo
 RUN pnpm turbo build --filter=@refugies-info/server
 
-# Test w/o berglas
-ENTRYPOINT ["pnpm", "start:server"]
-
 # Install berglas
 # COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:2.0.7 /bin/berglas /bin/berglas
 
 # ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "start:server"]
+
+ENTRYPOINT ["env"]
