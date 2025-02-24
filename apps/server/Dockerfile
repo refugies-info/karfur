@@ -28,4 +28,4 @@ RUN pnpm turbo build --filter=@refugies-info/server
 
 # ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "start:server"]
 
-ENTRYPOINT ["env"]
+ENTRYPOINT ["/usr/bin/env"]
