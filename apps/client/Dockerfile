@@ -3,7 +3,7 @@ FROM node:22.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
 # Install pnpm
-RUN npm install -g pnpm@10.2.1
+RUN npm install -g pnpm@10.4.1
 
 # Create app directory
 WORKDIR /usr/src/app
