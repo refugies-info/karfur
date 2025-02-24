@@ -16,6 +16,7 @@ ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PNPM_HOME}:${PATH}"
 RUN mkdir -p "$PNPM_HOME" && \
     pnpm add -g turbo && \
+    pnpm approve-builds @parcel/watcher core-js core-js-pure esbuild protobufjs sharp && \
     pnpm install --frozen-lockfile
 
 # Delete the pnpm store after installation is done
