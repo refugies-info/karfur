@@ -3,7 +3,7 @@ FROM node:22.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
 # Install pnpm
-RUN npm install -g pnpm@10.2.1
+RUN npm install -g pnpm@10.4.1
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -15,9 +15,8 @@ COPY ./ ./
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PNPM_HOME}:${PATH}"
 RUN mkdir -p "$PNPM_HOME" && \
-    pnpm add -g turbo && \
-    pnpm approve-builds @parcel/watcher core-js core-js-pure esbuild protobufjs sharp && \
-    pnpm install --frozen-lockfile
+    pnpm install --frozen-lockfile && \
+    pnpm add -g turbo
 
 # Delete the pnpm store after installation is done
 RUN rm -rf .pnpm-store
@@ -35,7 +34,8 @@ RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> ./apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> ./apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> ./apps/client/.env
 
-RUN pnpm build:client
+# Build the client using turbo
+RUN pnpm turbo build --filter=@refugies-info/client
 
 EXPOSE 3000
 

@@ -26,7 +26,7 @@ const queryClient = new QueryClient();
 
 aa("init", {
   appId: "L9HYT1676M",
-  apiKey: process.env.ALGOLIA_API_KEY || "",
+  apiKey: process.env.EXPO_PUBLIC_ALGOLIA_API_KEY || "",
 });
 
 const updateUserInfo = async () => {

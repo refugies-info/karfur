@@ -25,7 +25,7 @@ const SearchBoxContainer = styled.View`
   ${({ theme }) => theme.shadows.xs};
 `;
 
-const searchClient = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY || "");
+const searchClient = algoliasearch("L9HYT1676M", process.env.EXPO_PUBLIC_ALGOLIA_API_KEY || "");
 
 export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
   const insets = useSafeAreaInsets();

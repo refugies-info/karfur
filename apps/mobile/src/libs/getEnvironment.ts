@@ -2,13 +2,13 @@ import * as Updates from "expo-updates";
 
 // use .env for development
 let Config = {
-  envName: process.env.ENV_NAME || "",
+  envName: process.env.EXPO_PUBLIC_ENV_NAME || "",
   // dbUrl: "https://backend-stag-4rok5wopuq-ew.a.run.app", // process.env.API_URL || "",
-  dbUrl: process.env.API_URL || "",
-  siteUrl: process.env.SITE_URL || "",
-  siteSecret: process.env.SITE_SECRET,
+  dbUrl: process.env.EXPO_PUBLIC_API_URL || "",
+  siteUrl: process.env.EXPO_PUBLIC_SITE_URL || "",
+  siteSecret: process.env.EXPO_PUBLIC_SITE_SECRET,
   debugModeFirebase: true,
-  algoliaIndex: process.env.ALGOLIA_INDEX || "",
+  algoliaIndex: process.env.EXPO_PUBLIC_ALGOLIA_INDEX || "",
 };
 
 // Env variables for staging or production here
