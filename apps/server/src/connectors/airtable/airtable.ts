@@ -1,5 +1,10 @@
 import Airtable from "airtable";
 
+for (const [key, value] of Object.entries(process.env)) {
+  // eslint-disable-next-line no-console
+  console.log(`${key}: ${value}`);
+}
+
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
   apiKey: process.env.AIRTABLE_TOKEN,
