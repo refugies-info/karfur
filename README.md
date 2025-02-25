@@ -13,6 +13,7 @@ Refugies.info is a project to offer a better experience to refugees in France as
 - [Community](#community)
 - [License](#license)
 - [Maintenance](#maintenance)
+- [DSFR](#dsfr)
 
 ## Demo
 
@@ -32,20 +33,62 @@ Please read through our [contributing guidelines](https://github.com/entrepreneu
 
 Editor preferences are available in the [editor config](https://github.com/entrepreneur-interet-general/karfur/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
-## Team
+## Current Team
 
-**Agathe Kieny** developper
+### Nour Allazkani
+**Project Manager**  
+🔗 [LinkedIn](https://www.linkedin.com/in/luc-nour-allazkani/)
 
-**Hugo Stephan**, designer
+### Luis Arias
+**CTO**  
+🔗 [LinkedIn](https://www.linkedin.com/in/luisarias/)
 
-- <https://hugostephan.com>
-- <https://x.com/hugostephan>
+### Margot Gillette
+**Designer**  
+🔗 [LinkedIn](https://www.linkedin.com/in/margot-gillette-349a028a/)
 
-**Nour Allazkani**, business developer
+### Alice Mugnier
+**Editorial Manager**  
+🔗 [LinkedIn](https://www.linkedin.com/in/alice-mugnier-8a7717130/)
 
-- <https://www.linkedin.com/in/nour-allazkani-782404140>
+### Andressa Bittencourt
+**Communication and Deployment Manager**  
+🔗 [LinkedIn](https://www.linkedin.com/in/andressa-bittencourt-09030098/)
+
+### Claudia Meleghi
+**Content Writer**  
+🔗 [LinkedIn](https://www.linkedin.com/in/claudia-meleghi/)
+
+### Fatma Bouhejba
+**Partnership Manager**  
+🔗 [LinkedIn](https://www.linkedin.com/in/fatma-bouhejba-046165142/)
+
+### Jérémie Gisserot
+**Developer**  
+🔗 [LinkedIn](https://www.linkedin.com/in/jeremiegisserot/)
+🔗 [Website](https://jeremie-gisserot.net)
+
+### Marianne Georges
+**Product Manager**  
+🔗 [LinkedIn](https://www.linkedin.com/in/mariannegeorges/)
+
+### Matthieu Fesselier
+**Developer**  
+🔗 [LinkedIn](https://www.linkedin.com/in/matthieu-fesselier/)
+
+### Xavier Dumas
+**Support Manager & Content Writer**  
+🔗 [LinkedIn](https://www.linkedin.com/in/xavier-dumas/)
+
+
+
 
 ## Previous team
+
+**Hugo Stephan**, Designer
+🔗 [Website](https://hugostephan.com)
+
+**Agathe Kieny** developper
 
 **Soufiane Lamrissi**, web developer
 
@@ -90,6 +133,27 @@ Refugies.info is an MIT licensed open source project and completely free to use.
 - translation services
 - design services (UX/UI)
 - contacts of associations working with refugees, or contact of refugees directly with their agreement
+
+## DSFR
+This project uses the React DSFR packagage alongside the tailwind library.
+
+### Patch layer for DSFR and tailwind compatibility
+By default the DSFR don't support layered css declarations and puts the whole css at the root of css workspace.
+To tackle this issue we use a pnpm patch methodology to fix and enclose the whole DSFR css inside a DSFR css layer.
+It allows tailwind to do it's magic wouthout any trouble.
+
+Sometimes the react DSFR lib is updated, when it happens you need to update the patch.
+
+When you know how to do it's actually quite easy to do, just follow this guide :
+- on your terminal execute : **pnpm patch @codegouvfr/react-dsfr@[current-dsfr-version-number]** (don't forget to change the version number)
+- got to node_modules/.pnpm_patches/@codegouvfr/react-dsfr@[current-dsfr-version-number]/dsfr/dsfr.min.css
+- add **@layer dsfr {** before the first css selector
+- add a **}** at the end of the file
+- execute pnpm patch-commit ‘./node_modules/.pnpm_patches/@codegouvfr/react-dsfr@[current-dsfr-version-number]'
+- if you got wierd issues (ex: overidden tailwind classes) it means something when wrong, all the dsfr classes must be enclosed inside a dsfr layer, delete your patch and retry
+
+### DSFR tokens and tailwind
+To allow the usage of the design system tokens inside tailwind you can take a look at the packages/ui readme, there is a specific script to sync all the colors definitions to tailwind V4 @utility classes.
 
 ## Extras
 
