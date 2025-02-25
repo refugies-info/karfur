@@ -26,6 +26,4 @@ RUN pnpm turbo build --filter=@refugies-info/server
 # Install berglas
 COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:2.0.7 /bin/berglas /bin/berglas
 
-# ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "start:server"]
-
-ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "print-env"]
+ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "start:server"]
