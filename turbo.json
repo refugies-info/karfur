@@ -94,6 +94,9 @@
     },
     "lint:fix": {
       "dependsOn": ["^lint:fix"]
+    },
+    "print-env": {
+      "dependsOn": ["^print-env"]
     }
   }
 }

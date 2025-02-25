@@ -82,7 +82,7 @@
     "storybook": "pnpm --filter @refugies-info/storybook storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
     "knip": "knip",
-    "print-env": "pnpm --filter @refugies-info/server print-env"
+    "print-env": "turbo --filter @refugies-info/server print-env"
   },
   "engines": {
     "node": "22.13.1"
