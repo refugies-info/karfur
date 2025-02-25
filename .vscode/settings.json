@@ -25,7 +25,7 @@
     "Roles.*",
     "Status.*",
     "LanguageDropdown.*",
-    "LanguageDropdown.en_persan/dari",
+    "LanguageDropdown.en_persan/dari"
   ],
   "i18n-ally.dirStructure": "auto",
   "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
@@ -45,7 +45,6 @@
   "typescript.format.semicolons": "insert",
   "files.insertFinalNewline": true,
   "stylelint.validate": ["css", "scss"],
-  // Tailwind
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript",
     "typescriptreact": "javascript",
