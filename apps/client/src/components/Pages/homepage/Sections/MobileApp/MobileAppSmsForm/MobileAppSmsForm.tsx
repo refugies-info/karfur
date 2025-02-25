@@ -1,39 +1,37 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import Button from "@codegouvfr/react-dsfr/Button";
+import Input from "@codegouvfr/react-dsfr/Input";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import FButton from "~/components/UI/FButton";
-import Input from "~/components/UI/Input";
 import { Event } from "~/lib/tracking";
 import { isValidPhone } from "~/lib/validateFields";
 import { allLanguesSelector, languei18nSelector } from "~/services/Langue/langue.selectors";
 import API from "~/utils/API";
-import LanguageDropdown from "../LanguageDropdown";
-import styles from "./MobileAppSmsForm.module.scss";
+
+import { Select } from "@codegouvfr/react-dsfr/Select";
 
 const MobileAppSmsForm = () => {
   const { t } = useTranslation();
 
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [languageSelected, setLanguageSelected] = useState<GetLanguagesResponse | undefined>(undefined);
+  const [languageSelected, setLanguageSelected] = useState<string | undefined>(undefined);
   const languages = useSelector(allLanguesSelector);
   const locale = useSelector(languei18nSelector);
   // auto select language
   useEffect(() => {
     if (locale) {
       const currentLocale = languages.find((ln) => ln.i18nCode === locale);
-      if (currentLocale) setLanguageSelected(currentLocale);
+      if (currentLocale) setLanguageSelected(currentLocale.i18nCode);
     }
   }, [languages, locale]);
-  const onSelectItem = (language: GetLanguagesResponse) => setLanguageSelected(language);
 
   const sendSMS = (e: any) => {
     setPhoneError("");
     e.preventDefault();
     if (isValidPhone(phone)) {
-      API.smsDownloadApp({ phone, locale: languageSelected?.i18nCode || "fr" })
+      API.smsDownloadApp({ phone, locale: languageSelected || "fr" })
         .then(() => {
           Swal.fire({
             title: "Yay...",
@@ -53,32 +51,48 @@ const MobileAppSmsForm = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <label>{t("Homepage.mobileAppFormLabelDetails")}</label>
-      <div className={styles.sms_form}>
-        <Input
-          type="text"
-          placeholder={t("Homepage.mobileAppFormLabel")}
-          className={styles.input}
-          value={phone}
-          onChange={(e: any) => setPhone(e.target.value)}
-          error={phoneError}
-        />
-        <div className={styles.options}>
-          <LanguageDropdown languageSelected={languageSelected} onSelectItem={onSelectItem} />
-          <FButton
-            type="validate"
-            className={styles.submit}
-            name="checkmark-outline"
-            disabled={!phone}
-            onClick={sendSMS}
-          >
-            {t("Ok", "Ok")}
-          </FButton>
-        </div>
-      </div>
-      <p className={styles.instructions}>{t("Homepage.mobileAppFormInstructions")}</p>
-    </div>
+    <form className="md:w-1/2">
+      <Input
+        nativeInputProps={{
+          type: "text",
+          value: phone,
+          onChange: (e: any) => setPhone(e.target.value),
+        }}
+        label={t("MobileApp.phoneLabel")}
+        state={phoneError !== "" ? "error" : "default"}
+        stateRelatedMessage={phoneError}
+        className="mb-4"
+      />
+
+      <Select
+        label={t("MobileApp.langLabel")}
+        nativeSelectProps={{
+          name: "languageSelected",
+          onChange: (event) => setLanguageSelected(event.target.value),
+          value: languageSelected,
+        }}
+      >
+        {languages.map((lang) => {
+          return (
+            <option key={lang._id} value={lang.i18nCode}>
+              {lang.langueLoc} {lang.i18nCode !== "fr" && <> - {lang.langueFr}</>}
+            </option>
+          );
+        })}
+      </Select>
+
+      <Button
+        nativeButtonProps={{
+          type: "submit",
+        }}
+        iconId="fr-icon-send-plane-fill"
+        iconPosition="right"
+        onClick={sendSMS}
+        className="w-full justify-center"
+      >
+        {t("MobileApp.buttonText", "Envoyer le lien")}
+      </Button>
+    </form>
   );
 };
 

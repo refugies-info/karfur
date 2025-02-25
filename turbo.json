@@ -59,7 +59,7 @@
         "TTS_KEY_1"
       ],
       "inputs": ["$TURBO_DEFAULT$", ".env"],
-      "outputs": [".dist/**"]
+      "outputs": ["dist/**"]
     },
     "check:types": {
       "dependsOn": ["^check:types"]
@@ -79,15 +79,9 @@
       "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
-    "start": {
-      "persistent": true,
-      "cache": false,
-      "dependsOn": ["^start"],
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
-    },
     "test": {
       "cache": false,
-      "dependsOn": ["^test"]
+      "dependsOn": ["@refugies-info/ui#build", "^test"]
     },
     "lint": {
       "dependsOn": ["^lint"]

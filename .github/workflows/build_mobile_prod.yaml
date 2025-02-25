@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: master-mobile
     env:
-      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-      ALGOLIA_INDEX: ${{ vars.ALGOLIA_INDEX }}
-      API_URL: ${{ vars.API_URL }}
-      ENV_NAME: PROD
-      EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      SITE_SECRET: ${{ secrets.SITE_SECRET }}
-      SITE_URL: ${{ vars.SITE_URL }}
+      EXPO_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      EXPO_PUBLIC_ALGOLIA_INDEX: ${{ vars.ALGOLIA_INDEX }}
+      EXPO_PUBLIC_API_URL: ${{ vars.API_URL }}
+      EXPO_PUBLIC_ENV_NAME: PROD
+      EXPO_PUBLIC_EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
+      EXPO_PUBLIC_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      EXPO_PUBLIC_SITE_SECRET: ${{ secrets.SITE_SECRET }}
+      EXPO_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - name: Check for EXPO_TOKEN
         run: |
@@ -45,7 +45,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20.13.1"
+          node-version: "22.13.1"
           cache: "pnpm"
 
       - name: Setup Expo

@@ -13,8 +13,22 @@
     "apps/*",
     "packages/*"
   ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "core-js",
+      "core-js-pure",
+      "esbuild",
+      "protobufjs",
+      "sharp"
+    ],
+    "patchedDependencies": {
+      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
+    }
+  },
   "scripts": {
-    "clean:branches": "npx git-removed-branches --prune --force",
+    "clean:branches": "pnpm dlx git-removed-branches --prune --force",
+    "clean:modules": "rm -rf ./node_modules ./packages/*/node_modules ./apps/*/node_modules",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
@@ -34,16 +48,13 @@
     "dev:server": "turbo dev --filter=@refugies-info/server",
     "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
-    "start": "turbo start",
     "start:client": "pnpm --filter @refugies-info/client start",
     "start:server": "pnpm --filter @refugies-info/server start",
     "start:mobile": "pnpm --filter @refugies-info/mobile start",
     "test": "turbo test",
-    "test:client": "turbo test --filter=@refugies-info/client",
-    "test:client:update-snapshots": "pnpm --filter @refugies-info/client test -- -u",
-    "test:server": "turbo test --filter=@refugies-info/server",
-    "test:mobile": "turbo test --filter=@refugies-info/mobile",
-    "test:mobile:update-snapshots": "pnpm --filter @refugies-info/mobile test -- -u",
+    "test:client": "turbo test --filter=@refugies-info/client -- $*",
+    "test:server": "turbo test --filter=@refugies-info/server -- $*",
+    "test:mobile": "turbo test --filter=@refugies-info/mobile -- $*",
     "lint": "turbo lint",
     "lint:api-types": "turbo lint --filter=@refugies-info/api-types",
     "lint:client": "turbo lint --filter=@refugies-info/client",
@@ -68,43 +79,39 @@
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
     "storybook": "pnpm --filter @refugies-info/storybook storybook",
-    "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish"
-  },
-  "dependencies": {
-    "@refugies-info/ui": "workspace:*"
+    "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
+    "knip": "knip"
   },
   "engines": {
-    "node": "20.13.1"
+    "node": "22.13.1"
   },
   "devDependencies": {
-    "@codegouvfr/react-dsfr": "^1.14.1",
-    "@types/node": "^22.10.2",
-    "check-dependency-version-consistency": "^4.1.0",
-    "dotenv": "^16.4.5",
+    "@codegouvfr/react-dsfr": "^1.19.0",
+    "@types/node": "^22.13.1",
+    "check-dependency-version-consistency": "^4.1.1",
+    "dotenv": "^16.4.7",
     "husky": ">=9.1.6",
-    "lint-staged": ">=15",
+    "knip": "^5.43.6",
+    "lint-staged": "^15.4.3",
     "mongo-migrate-ts": "^1.6.2",
-    "mongodb": "^6.10.0",
-    "prettier": "^3.3.3",
+    "mongodb": "^6.13.0",
+    "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "stylelint": "^16.10.0",
+    "prettier-plugin-tailwindcss": "^0.6.10",
+    "stylelint": "^16.14.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
-    "turbo": "^2.2.3"
+    "turbo": "^2.4.0",
+    "typescript": "^5.6.3"
   },
   "volta": {
-    "node": "20.13.1",
-    "pnpm": "9.15.4"
+    "node": "22.13.1",
+    "pnpm": "10.4.1"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
   "resolutions": {},
-  "packageManager": "pnpm@9.15.4",
-  "pnpm": {
-    "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.15.0": "patches/@codegouvfr__react-dsfr@1.15.0.patch"
-    }
-  }
+  "packageManager": "pnpm@10.4.1"
 }

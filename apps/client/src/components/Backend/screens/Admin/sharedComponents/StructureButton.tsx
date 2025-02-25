@@ -20,7 +20,7 @@ export const StructureButton = (props: {
     <div className={styles.details_button} onClick={props.onClick}>
       {props.sponsor?.picture?.secure_url ? (
         <Image
-          className="object-contain mr-2 h-[1.875rem]"
+          className="mr-2 h-[1.875rem] object-contain"
           src={(props.sponsor.picture || {}).secure_url || ""}
           alt={props.sponsor.nom}
           width={95}

@@ -16,11 +16,10 @@ export { getDispositifsWithTranslationAvancement } from "./getDispositifsWithTra
 export { getHasTextChanges } from "./getHasTextChanges";
 export { default as getNbContentsForCounty } from "./getNbContentsForCounty";
 export { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
-export { getRecentDemarches } from "./getRecentDemarches";
-export { getRecentDispositifsByDepartement } from "./getRecentDispositifsByDepartement";
 export { getStatistics } from "./getStatistics";
 export { getUserContributions } from "./getUserContributions";
 export { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
+export { getNewsletterDemarches, getNewsletterDispositifs } from "./newsletter";
 export { patchSuggestion } from "./patchSuggestion";
 export { publishDispositif } from "./publishDispositif";
 export { structureReceiveDispositif } from "./structureReceiveDispositif";
