@@ -993,6 +993,9 @@ importers:
       '@refugies-info/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/fs-extra':
+        specifier: ^11.0.4
+        version: 11.0.4
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
@@ -1011,6 +1014,15 @@ importers:
       typescript:
         specifier: ^5.6.3
         version: 5.7.3
+
+  packages/ui/scripts:
+    dependencies:
+      '@codegouvfr/react-dsfr':
+        specifier: ^1.19.0
+        version: 1.19.0
+      fs-extra:
+        specifier: ^11.3.0
+        version: 11.3.0
 
 packages:
 
@@ -4548,6 +4560,9 @@ packages:
   '@types/express@5.0.0':
     resolution: {integrity: sha512-DvZriSMehGHL1ZNLzi6MidnsDhUZM/x2pRdDIKdwbUNqqwHxMlRdkxtn6/EPKyqKpHqTl/4nRZsRNLpZxZRpPQ==}
 
+  '@types/fs-extra@11.0.4':
+    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+
   '@types/gensync@1.0.4':
     resolution: {integrity: sha512-C3YYeRQWp2fmq9OryX+FoDy8nXS6scQ7dPptD8LnFDAUNcKWJjXQKDNJD3HVm+kOUsXhTOkpi69vI4EuAr95bA==}
 
@@ -4610,6 +4625,9 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  '@types/jsonfile@6.1.4':
+    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
   '@types/keygrip@1.0.6':
     resolution: {integrity: sha512-lZuNAY9xeJt7Bx4t4dx0rYCDqGPW8RXhQZK1td7d4H6E9zYbLoOtjBvfwdTKpsyxQI/2jv+armjX/RW+ZNpXOQ==}
@@ -13210,6 +13228,11 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
+  '@codegouvfr/react-dsfr@1.19.0':
+    dependencies:
+      tsafe: 1.8.5
+      yargs-parser: 21.1.1
+
   '@codegouvfr/react-dsfr@1.19.0(patch_hash=lbc3wnmu5qry7pbswna42nro6a)':
     dependencies:
       tsafe: 1.8.5
@@ -16580,6 +16603,11 @@ snapshots:
       '@types/qs': 6.9.18
       '@types/serve-static': 1.15.7
 
+  '@types/fs-extra@11.0.4':
+    dependencies:
+      '@types/jsonfile': 6.1.4
+      '@types/node': 22.13.2
+
   '@types/gensync@1.0.4': {}
 
   '@types/geojson@7946.0.16': {}
@@ -16637,6 +16665,10 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
+
+  '@types/jsonfile@6.1.4':
+    dependencies:
+      '@types/node': 22.13.2
 
   '@types/keygrip@1.0.6': {}
 

@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import postcss from "postcss";
 
 const INPUT_CSS = require.resolve("@codegouvfr/react-dsfr/dsfr/dsfr.min.css");
-const OUTPUT_CSS = "../src/css/dsfr-tokens.css"; // Utiliser colors.css pour la sortie
+const OUTPUT_CSS = "./src/css/dsfr-tokens.css"; // Utiliser colors.css pour la sortie
 
 /**
  * Extrait les variables CSS du fichier tokens.css
