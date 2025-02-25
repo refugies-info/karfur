@@ -48,10 +48,9 @@
     "dev:server": "turbo dev --filter=@refugies-info/server",
     "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
-    "start": "turbo start",
-    "start:client": "turbo --filter @refugies-info/client start",
-    "start:server": "turbo --filter @refugies-info/server start",
-    "start:mobile": "turbo --filter @refugies-info/mobile start",
+    "start:client": "pnpm --filter @refugies-info/client start",
+    "start:server": "pnpm --filter @refugies-info/server start",
+    "start:mobile": "pnpm --filter @refugies-info/mobile start",
     "test": "turbo test",
     "test:client": "turbo test --filter=@refugies-info/client -- $*",
     "test:server": "turbo test --filter=@refugies-info/server -- $*",
@@ -81,8 +80,7 @@
     "migrate": "tsx migrations/cli.ts",
     "storybook": "pnpm --filter @refugies-info/storybook storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
-    "knip": "knip",
-    "print-env": "turbo --filter @refugies-info/server print-env"
+    "knip": "knip"
   },
   "engines": {
     "node": "22.13.1"

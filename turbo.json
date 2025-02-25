@@ -79,12 +79,6 @@
       "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
-    "start": {
-      "persistent": true,
-      "cache": false,
-      "dependsOn": ["^start"],
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
-    },
     "test": {
       "cache": false,
       "dependsOn": ["@refugies-info/ui#build", "^test"]
@@ -94,9 +88,6 @@
     },
     "lint:fix": {
       "dependsOn": ["^lint:fix"]
-    },
-    "print-env": {
-      "dependsOn": ["^print-env"]
     }
   }
 }
