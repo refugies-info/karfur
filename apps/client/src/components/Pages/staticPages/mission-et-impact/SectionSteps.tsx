@@ -11,8 +11,8 @@ import { Section, StepContent, Title2 } from "~/components/Pages/staticPages/com
 export const SectionSteps = () => {
   const { t } = useTranslation();
   return (
-    <Section className="bg-beige">
-      <div className="fr-container">
+    <Section className="bg-alt-beige-gris-galet">
+      <div className="container">
         <Title2>{t("MissionImpact.stepsTitle")}</Title2>
         <StepContent
           step={1}

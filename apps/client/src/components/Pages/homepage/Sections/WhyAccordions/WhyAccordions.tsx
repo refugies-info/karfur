@@ -119,7 +119,7 @@ const WhyAccordions = (props: Props) => {
 
   return (
     <div className="container md:py-20">
-      <h2>{t("Homepage.whyTitle")}</h2>
+      <h2 className="mb-20">{t("Homepage.whyTitle")}</h2>
       <Accordion
         items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
         withImages

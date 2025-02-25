@@ -144,7 +144,7 @@ const RecensezVotreAction = (props: Props) => {
         </Section>
 
         {/* NEED */}
-        <Section className="bg-light-alt-blue">
+        <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>{t("Translate.needTitle")}</Title2>
             <div className="flex flex-wrap gap-6 md:justify-center">
@@ -159,7 +159,7 @@ const RecensezVotreAction = (props: Props) => {
       {/* STEPS */}
       <div ref={refSteps} className="relative">
         <Anchor id="steps" />
-        <Section className="bg-beige">
+        <Section className="bg-alt-beige-gris-galet">
           <div className="fr-container">
             <Title2>{t("Translate.stepsTitle")}</Title2>
             <StepContent
@@ -202,7 +202,7 @@ const RecensezVotreAction = (props: Props) => {
 
       {/* NEXT */}
       <div ref={refNext} className="relative">
-        <Section className="bg-light-alt-blue">
+        <Section className="bg-action-low-blue-france">
           <Anchor id="next" />
           <div className="fr-container">
             <div className="flex flex-col items-center gap-10 md:flex-row lg:gap-20">
@@ -270,7 +270,7 @@ const RecensezVotreAction = (props: Props) => {
       </Section>
 
       {/* REGISTER */}
-      <Section ref={refRegister} className="bg-beige relative">
+      <Section ref={refRegister} className="bg-alt-beige-gris-galet relative">
         <Anchor id="register" />
         <div className="fr-container">
           <Register

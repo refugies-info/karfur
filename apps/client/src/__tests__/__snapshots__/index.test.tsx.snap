@@ -9,7 +9,7 @@ exports[`homepage renders homepage 1`] = `
       class="relative flex flex-col-reverse md:min-h-[504px]"
     >
       <div
-        class="md:border-gray relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 p-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border lg:max-w-[40rem] xl:max-w-[48rem]"
+        class="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 p-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border lg:max-w-[40rem] xl:max-w-[48rem]"
       >
         <h1
           class="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
@@ -4575,7 +4575,7 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </section>
     <section
-      class="bg-light-alt-blue w-full py-20"
+      class="bg-alt-blue-france w-full py-20"
       id="newsletter"
     >
       <div
@@ -4645,7 +4645,9 @@ exports[`homepage renders homepage 1`] = `
     <div
       class="container md:py-20"
     >
-      <h2>
+      <h2
+        class="mb-20"
+      >
         Homepage.whyTitle
       </h2>
       <div
@@ -4671,7 +4673,7 @@ exports[`homepage renders homepage 1`] = `
                   aria-controls="radix-:r19:"
                   aria-disabled="true"
                   aria-expanded="true"
-                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3 !bg-light-low-blue-france hover:!bg-light-alt-blue !border-purple-france"
+                  class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="open"
@@ -4679,12 +4681,12 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium !text-blue-france"
+                    class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
                   >
                     Homepage.accordionItems.desktop.title1
                   </span>
                   <i
-                    class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-blue-france"
+                    class="fr-icon-subtract-line flex before:!h-4 before:!w-4 before:!bg-action-low-blue-france"
                   />
                 </button>
               </h3>
@@ -4717,7 +4719,7 @@ exports[`homepage renders homepage 1`] = `
                 <button
                   aria-controls="radix-:r1b:"
                   aria-expanded="false"
-                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="closed"
@@ -4725,7 +4727,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                    class="mb-0 grow-1 text-left text-xl font-medium"
                   >
                     Homepage.accordionItems.desktop.title2
                   </span>
@@ -4758,7 +4760,7 @@ exports[`homepage renders homepage 1`] = `
                 <button
                   aria-controls="radix-:r1d:"
                   aria-expanded="false"
-                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="closed"
@@ -4766,7 +4768,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                    class="mb-0 grow-1 text-left text-xl font-medium"
                   >
                     Homepage.accordionItems.desktop.title3
                   </span>
@@ -4799,7 +4801,7 @@ exports[`homepage renders homepage 1`] = `
                 <button
                   aria-controls="radix-:r1f:"
                   aria-expanded="false"
-                  class="!border-border hover:!bg-light-alt-blue flex w-full items-center gap-4 !border-t px-4 py-3"
+                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="closed"
@@ -4807,7 +4809,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="!text-chapo !mb-0 grow-1 !text-left !font-medium"
+                    class="mb-0 grow-1 text-left text-xl font-medium"
                   >
                     Homepage.accordionItems.desktop.title4
                   </span>
@@ -5022,7 +5024,7 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </section>
     <section
-      class="bg-light-alt-blue w-full py-20"
+      class="bg-alt-blue-france w-full py-20"
       id="free-ressources"
     >
       <div
@@ -5078,7 +5080,7 @@ exports[`homepage renders homepage 1`] = `
         class="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3"
       >
         <div
-          class="border-gray h-full border p-8"
+          class="border-default-grey h-full border p-8"
         >
           <div
             class="flex h-full flex-col gap-4"
@@ -5095,7 +5097,7 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-blue-france mb-0 text-lg"
+              class="text-title-blue-france mb-0 text-lg"
             >
               WorkTogether.cards.ts.title
             </h3>
@@ -5115,7 +5117,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          class="border-gray h-full border p-8"
+          class="border-default-grey h-full border p-8"
         >
           <div
             class="flex h-full flex-col gap-4"
@@ -5136,7 +5138,7 @@ exports[`homepage renders homepage 1`] = `
               />
             </span>
             <h3
-              class="text-blue-france mb-0 text-lg"
+              class="text-title-blue-france mb-0 text-lg"
             >
               WorkTogether.cards.agir.title
             </h3>
@@ -5156,7 +5158,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          class="border-gray h-full border p-8"
+          class="border-default-grey h-full border p-8"
         >
           <div
             class="flex h-full flex-col gap-4"
@@ -5173,7 +5175,7 @@ exports[`homepage renders homepage 1`] = `
               width="240"
             />
             <h3
-              class="text-blue-france mb-0 text-lg"
+              class="text-title-blue-france mb-0 text-lg"
             >
               WorkTogether.cards.operators.title
             </h3>
@@ -5193,7 +5195,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          class="border-gray h-full border p-8"
+          class="border-default-grey h-full border p-8"
         >
           <div
             class="flex h-full flex-col gap-4"
@@ -5210,7 +5212,7 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-blue-france mb-0 text-lg"
+              class="text-title-blue-france mb-0 text-lg"
             >
               WorkTogether.cards.administration.title
             </h3>
@@ -5230,7 +5232,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          class="border-gray h-full border p-8"
+          class="border-default-grey h-full border p-8"
         >
           <div
             class="flex h-full flex-col gap-4"
@@ -5247,7 +5249,7 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-blue-france mb-0 text-lg"
+              class="text-title-blue-france mb-0 text-lg"
             >
               WorkTogether.cards.structures.title
             </h3>
@@ -5266,7 +5268,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          class="border-gray h-full border p-8"
+          class="border-default-grey h-full border p-8"
         >
           <div
             class="flex h-full flex-col gap-4"
@@ -5283,7 +5285,7 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-blue-france mb-0 text-lg"
+              class="text-title-blue-france mb-0 text-lg"
             >
               WorkTogether.cards.polyglots.title
             </h3>

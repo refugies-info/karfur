@@ -161,7 +161,7 @@ const RecensezVotreAction = (props: Props) => {
         </Section>
 
         {/* TESTIMONY */}
-        <Section className="bg-light-alt-blue">
+        <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>{t("Publish.testimonies_title")}</Title2>
             <TestimonySlider
@@ -251,7 +251,7 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refSteps} className={"relative"}>
         <Anchor id="steps" />
         {/* STEPS */}
-        <Section className="bg-beige">
+        <Section className="bg-alt-beige-gris-galet">
           <div className="fr-container">
             <Title2>{t("Publish.stepsTitle")}</Title2>
             <StepContent
@@ -337,7 +337,7 @@ const RecensezVotreAction = (props: Props) => {
         </Section>
 
         {/* FIGURES */}
-        <Section className="bg-light-alt-blue">
+        <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2 className="text-center">{t("Publish.figuresTitle")}</Title2>
             <div className="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20">
@@ -383,7 +383,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* REGISTER */}
-      <Section ref={refRegister} className="bg-beige relative">
+      <Section ref={refRegister} className="bg-alt-beige-gris-galet relative">
         <Anchor id="register" />
         <div className="fr-container">
           <Register

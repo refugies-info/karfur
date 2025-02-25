@@ -13,7 +13,7 @@ const DeclarationAccessibilite = () => {
       <h1>Déclaration d’accessibilité</h1>
       <p className={styles.text_muted}>
         <EVAIcon name="clock-outline" fill="#5E5E5E" className={styles.icon} />
-        Temps de lecture : <span className="text-success">5 à 10 minutes</span>
+        Temps de lecture : <span className="text-default-success">5 à 10 minutes</span>
       </p>
       <p>
         Sur cette page, vous trouverez les informations obligatoires concernant l’accessibilité de la plateforme
@@ -200,7 +200,7 @@ const DeclarationAccessibilite = () => {
 
       <p className={styles.text_muted}>
         <EVAIcon name="refresh-outline" fill="#5E5E5E" className={styles.icon} />
-        Mise à jour : <span className="text-success">6 janvier 2022</span>
+        Mise à jour : <span className="text-default-success">6 janvier 2022</span>
       </p>
     </div>
   );
