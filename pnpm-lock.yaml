@@ -1015,15 +1015,6 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
-  packages/ui/scripts:
-    dependencies:
-      '@codegouvfr/react-dsfr':
-        specifier: ^1.19.0
-        version: 1.19.0
-      fs-extra:
-        specifier: ^11.3.0
-        version: 11.3.0
-
 packages:
 
   '@0no-co/graphql.web@1.1.0':
@@ -13227,11 +13218,6 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
       - react
-
-  '@codegouvfr/react-dsfr@1.19.0':
-    dependencies:
-      tsafe: 1.8.5
-      yargs-parser: 21.1.1
 
   '@codegouvfr/react-dsfr@1.19.0(patch_hash=lbc3wnmu5qry7pbswna42nro6a)':
     dependencies:
