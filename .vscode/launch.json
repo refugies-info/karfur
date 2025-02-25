@@ -35,11 +35,44 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Current Test File",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["--runInBand", "${fileBasename}"],
+      "name": "Debug Current Test (app)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "test:app",
+        "--runInBand",
+        "${fileBasename}"
+      ],
       "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    }
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test (mobile)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "test:mobile",
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test (server)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "test:server",
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}"
+    },
   ]
 }

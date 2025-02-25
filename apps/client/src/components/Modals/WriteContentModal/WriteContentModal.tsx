@@ -1,5 +1,4 @@
 import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,7 +19,6 @@ interface Props {
 }
 
 const WriteContentModal = ({ show, close }: Props) => {
-  const { t } = useTranslation();
   const router = useRouter();
   const user = useSelector(userSelector);
   const isPseudoModalOpen = useIsModalOpen(pseudoModal);
@@ -65,8 +63,8 @@ const WriteContentModal = ({ show, close }: Props) => {
               onSelect={() => setSelected("dispositif")}
               color="orange"
               imageSrc={assetsOnServer.publier.dispositif}
-              type={t("Publish.writeModalTypeDispositif")}
-              description={t("Publish.writeModalDescDispositif")}
+              type="Dispositif"
+              description="Programme, atelier, formation, cours en ligne, permanence d’accueil ou tout autre dispositif directement accessible par les personnes réfugiées."
               duration={"20"}
               selected={selected === "dispositif"}
             />
@@ -74,8 +72,8 @@ const WriteContentModal = ({ show, close }: Props) => {
               onSelect={() => setSelected("demarche")}
               color="red"
               imageSrc={assetsOnServer.publier.demarche}
-              type={t("Publish.writeModalTypeDemarche")}
-              description={t("Publish.writeModalDescDemarche")}
+              type="Démarche"
+              description="Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées."
               duration={"40"}
               selected={selected === "demarche"}
             />

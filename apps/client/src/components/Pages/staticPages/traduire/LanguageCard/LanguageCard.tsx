@@ -1,5 +1,4 @@
 import { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import DSFRBadge from "~/components/UI/Badge";
@@ -20,21 +19,24 @@ const SEVERITIES: Record<NeedKey, BadgeProps["severity"]> = {
   weak: "success",
 };
 
+const NEED: Record<NeedKey, string> = {
+  strong: "fort",
+  medium: "moyen",
+  weak: "faible",
+};
+
 const LanguageCard = (props: Props) => {
-  const { t } = useTranslation();
   const language = useSelector(langueSelector(props.languageId));
 
   return (
     <Link
       href={props.href}
       onClick={smoothScroll}
-      className="p-3 md:p-4 border border-border inline-flex items-center gap-2 bg-white hover:!bg-hover"
+      className="border-border hover:!bg-hover inline-flex items-center gap-2 border bg-white p-3 md:p-4"
     >
       <Flag langueCode={language?.langueCode} />
       <span className="text-h6 md:text-h5 font-bold">{language?.langueFr}</span>
-      <DSFRBadge severity={SEVERITIES[props.need]}>
-        {t("Translate.need")} {t(`Translate.${props.need}`)}
-      </DSFRBadge>
+      <DSFRBadge severity={SEVERITIES[props.need]}>Besoin {NEED[props.need]}</DSFRBadge>
     </Link>
   );
 };

@@ -99,17 +99,17 @@ const DispositifCard = (props: Props) => {
               <p className={cls("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
             </div>
 
-            <div className="relative fr-card__start">
+            <div className="fr-card__start relative">
               <div className={styles.sponsor}>
                 <Image
-                  className="object-contain h-[3rem]"
+                  className="h-[3rem] object-contain"
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
                   alt={props.dispositif?.sponsor?.nom || ""}
                   width={48}
                   height={48}
                 />
               </div>
-              <div className="flex gap-2 mb-2">
+              <div className="mb-2 flex gap-2">
                 <NewThemeBadge theme={theme} />
                 {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
                   <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />

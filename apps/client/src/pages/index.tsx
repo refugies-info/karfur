@@ -5,25 +5,20 @@ import {
   SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
+import { Carrousel } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
-import {
-  AllThemes,
-  Community,
-  FreeResources,
-  HelpUs,
-  Hero,
-  Infos,
-  MainFigures,
-  MobileApp,
-  NewContent,
-  WhyAccordions,
-} from "~/components/Pages/homepage/Sections";
+import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
+import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
+import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
+import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
 import SEO from "~/components/Seo";
+import DispositifCard from "~/components/UI/DispositifCard";
+import { useWindowSize } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
@@ -45,6 +40,7 @@ export interface Props {
 const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -63,38 +59,51 @@ const Homepage = (props: Props) => {
 
       <Hero targetArrow="themes" />
 
-      <AllThemes id="themes" />
+      {!isMobile && <StructuresLogos />}
 
-      <MobileApp />
+      <Carrousel
+        className="mb-20"
+        texts={{
+          title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
+            count: props.contentStatistics.nbDemarches || 0,
+          }),
+          seeMore: t("ui.carrousel.seeMore", "Voir tout"),
+          prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
+          next: t("ui.carrousel.next", "Faire défiler à droite"),
+        }}
+        seeMoreUrl="/recherche?search=&sort=default&type=demarche"
+      >
+        {props.demarches.map((demarche, index) => (
+          <DispositifCard key={index} dispositif={demarche} />
+        ))}
+      </Carrousel>
 
-      <NewContent
-        nbDemarches={props.contentStatistics.nbDemarches || 0}
-        nbDispositifs={props.contentStatistics.nbDispositifs || 0}
-        nbStructures={props.structuresStatistics.nbStructures || 0}
-        demarches={props.demarches}
-        dispositifs={props.dispositifs}
-      />
+      <Carrousel
+        className="mb-20"
+        texts={{
+          title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
+            count: props.contentStatistics.nbDispositifs || 0,
+          }),
+          seeMore: t("ui.carrousel.seeMore", "Voir plus"),
+          prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
+          next: t("ui.carrousel.next", "Faire défiler à droite"),
+        }}
+        seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
+      >
+        {props.dispositifs.map((dispositif, index) => (
+          <DispositifCard key={index} dispositif={dispositif} />
+        ))}
+      </Carrousel>
+
+      <Newsletter />
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
-      <FreeResources />
+      <MobileApp />
 
-      <HelpUs />
+      {!isMobile && <FreeResources />}
 
-      <MainFigures
-        nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
-        nbMercis={props.contentStatistics.nbMercis || 0}
-        nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
-      />
-
-      <Community
-        nbRedactors={props.translationStatistics.nbRedactors || 0}
-        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
-        nbCDA={props.structuresStatistics.nbCDA || 0}
-        nbTranslators={props.translationStatistics.nbTranslators || 0}
-      />
-
-      <Infos />
+      {!isMobile && <WorkTogether />}
     </div>
   );
 };

@@ -33,17 +33,17 @@ export const getThemes = () =>
 
 export const getCitiesFromGoogleAPI = (text: string) =>
   apiCaller.post(
-    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&language=fr&types=(cities)&components=country:fr&key=${process.env.GOOGLE_API_KEY}`,
+    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&language=fr&types=(cities)&components=country:fr&key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`,
   );
 
 export const getCityDetailsFromGoogleAPI = (placeId: string) =>
   apiCaller.post(
-    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=address_component&key=${process.env.GOOGLE_API_KEY}`,
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=address_component&key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`,
   );
 
 export const getPlaceIdFromLocationFromGoogleAPI = (longitude: number, latitude: number) =>
   apiCaller.post(
-    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_API_KEY}`,
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.EXPO_PUBLIC_GOOGLE_API_KEY}`,
   );
 
 export const getContentsForApp = (req: GetContentsForAppRequest): Promise<GetContentsForAppResponse> =>

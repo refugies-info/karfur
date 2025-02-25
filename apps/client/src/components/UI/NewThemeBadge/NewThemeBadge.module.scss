@@ -8,8 +8,13 @@
 .container {
   @include dsfr-text("very-small");
 
-  padding: 2px u(2);
-  border-radius: u(3);
-  color: var(--text-action-high-grey);
+  padding: u(1) u(3);
+  border-radius: u(12);
+  font-weight: 500;
+  color: var(--text-action-title-grey);
   background-color: var(--background-contrast-grey);
+
+  @include media-max("sm-limit") {
+    @include dsfr-text("small");
+  }
 }

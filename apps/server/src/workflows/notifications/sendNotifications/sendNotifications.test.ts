@@ -1,11 +1,11 @@
 // @ts-nocheck
 // import sendNotifications from "./sendNotifications";
 import { checkIfUserIsAdmin } from "~/libs/checkAuthorizations";
-import { sendNotificationsForDemarche } from "~/modules/notifications/notifications.service";
+import { sendDemarcheNotifications } from "~/modules/notifications/notifications.service";
 import { log } from "./log";
 
 /* jest.mock("../../../modules/notifications/notifications.service", () => ({
-  sendNotificationsForDemarche: jest.fn(),
+  sendDemarcheNotifications: jest.fn(),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
@@ -48,7 +48,7 @@ describe.skip("sendNotifications", () => {
       userId: "user",
     };
     await sendNotifications[1](req, res);
-    expect(sendNotificationsForDemarche).toHaveBeenCalledWith("id");
+    expect(sendDemarcheNotifications).toHaveBeenCalledWith("id");
     expect(log).toHaveBeenCalledWith("id", "user");
     expect(res.status).toHaveBeenCalledWith(200);
   });

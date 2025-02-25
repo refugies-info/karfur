@@ -15,23 +15,21 @@ exports[`Profil screen should render correctly when data in store 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {},
-      }
-    }
-    collapsable={false}
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -45,12 +43,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     >
       <View
         RTLBehaviour={false}
-        animatedStyle={
-          {
-            "value": {},
-          }
-        }
-        collapsable={false}
         horizontalAlign="space-between"
         style={
           {
@@ -149,8 +141,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -223,8 +215,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -265,12 +257,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         >
           <View
             RTLBehaviour={false}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-end"
             style={
               {
@@ -370,12 +356,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-start"
             style={
               {
@@ -515,8 +495,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -579,8 +559,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
@@ -651,8 +631,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#666666"
                   focusable={false}
                   height={24}
@@ -715,8 +695,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2z"
@@ -824,8 +804,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -888,8 +868,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
@@ -971,8 +951,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#666666"
                   focusable={false}
                   height={24}
@@ -1035,8 +1015,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2z"
@@ -1144,8 +1124,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -1250,8 +1230,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1304,8 +1284,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#666666"
                   focusable={false}
                   height={24}
@@ -1368,8 +1348,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2z"
@@ -1398,23 +1378,21 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           </View>
           <View
             RTLBehaviour={false}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-start"
             style={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-                "marginBottom": 40,
-                "marginTop": 24,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 24,
+                },
+              ]
             }
             verticalAlign="center"
           >
@@ -1533,7 +1511,11 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/profile/illu-mascotte.png",
+                  }
+                }
                 style={
                   {
                     "height": 96,
@@ -1694,8 +1676,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -1758,8 +1740,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2z"
@@ -1861,8 +1843,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -1925,8 +1907,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z"
@@ -1988,8 +1970,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -2062,8 +2044,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -2155,8 +2137,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#6A6AF4"
                   focusable={false}
                   height={24}
@@ -2229,8 +2211,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19.2 7h-.39A3 3 0 0 0 19 6a3.08 3.08 0 0 0-3.14-3A4.46 4.46 0 0 0 12 5.4 4.46 4.46 0 0 0 8.14 3 3.08 3.08 0 0 0 5 6a3 3 0 0 0 .19 1H4.8A2 2 0 0 0 3 9.2v3.6A2.08 2.08 0 0 0 4.5 15v4.37A1.75 1.75 0 0 0 6.31 21h11.38a1.75 1.75 0 0 0 1.81-1.67V15a2.08 2.08 0 0 0 1.5-2.2V9.2A2 2 0 0 0 19.2 7zM19 9.2v3.6a.56.56 0 0 1 0 .2h-6V9h6a.56.56 0 0 1 0 .2zM15.86 5A1.08 1.08 0 0 1 17 6a1.08 1.08 0 0 1-1.14 1H13.4a2.93 2.93 0 0 1 2.46-2zM7 6a1.08 1.08 0 0 1 1.14-1 2.93 2.93 0 0 1 2.45 2H8.14A1.08 1.08 0 0 1 7 6zM5 9.2A.56.56 0 0 1 5 9h6v4H5a.56.56 0 0 1 0-.2zM6.5 15H11v4H6.5zm6.5 4v-4h4.5v4z"
@@ -2292,8 +2274,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#6A6AF4"
                   focusable={false}
                   height={24}
@@ -2366,8 +2348,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -2490,8 +2472,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -2564,8 +2546,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -2647,8 +2629,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -2721,8 +2703,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -2815,8 +2797,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -2879,8 +2861,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"
@@ -2951,8 +2933,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -3025,8 +3007,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -3119,8 +3101,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -3183,8 +3165,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
@@ -3264,8 +3246,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -3338,8 +3320,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -3432,8 +3414,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -3496,8 +3478,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
@@ -3577,8 +3559,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -3651,8 +3633,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -3745,8 +3727,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -3809,8 +3791,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -3881,8 +3863,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -3945,8 +3927,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M20 11a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1z"
@@ -4048,8 +4030,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -4122,8 +4104,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M22 12A10 10 0 0 0 12 2a10 10 0 0 0 0 20 10 10 0 0 0 10-10zm-2.07-1H17a12.91 12.91 0 0 0-2.33-6.54A8 8 0 0 1 19.93 11zM9.08 13H15a11.44 11.44 0 0 1-3 6.61A11 11 0 0 1 9.08 13zm0-2A11.4 11.4 0 0 1 12 4.4a11.19 11.19 0 0 1 3 6.6zm.36-6.57A13.18 13.18 0 0 0 7.07 11h-3a8 8 0 0 1 5.37-6.57zM4.07 13h3a12.86 12.86 0 0 0 2.35 6.56A8 8 0 0 1 4.07 13zm10.55 6.55A13.14 13.14 0 0 0 17 13h2.95a8 8 0 0 1-5.33 6.55z"
@@ -4185,8 +4167,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -4249,8 +4231,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M20 11a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1z"
@@ -4342,8 +4324,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#CE0500"
                 focusable={false}
                 height={24}
@@ -4407,8 +4389,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         height="24"
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
@@ -4512,23 +4494,21 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {},
-      }
-    }
-    collapsable={false}
     style={
-      {
-        "backgroundColor": "#f5f5fe",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
+      [
+        {
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 8,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
+        },
+        {
+          "backgroundColor": "#f5f5fe",
+        },
+      ]
     }
   >
     <RCTSafeAreaView
@@ -4542,12 +4522,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     >
       <View
         RTLBehaviour={false}
-        animatedStyle={
-          {
-            "value": {},
-          }
-        }
-        collapsable={false}
         horizontalAlign="space-between"
         style={
           {
@@ -4646,8 +4620,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -4720,8 +4694,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -4762,12 +4736,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         >
           <View
             RTLBehaviour={false}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-end"
             style={
               {
@@ -4867,12 +4835,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         >
           <View
             RTLBehaviour={true}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-start"
             style={
               {
@@ -5012,8 +4974,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#929292"
                   focusable={false}
                   height={24}
@@ -5076,8 +5038,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
@@ -5148,8 +5110,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#18753C"
                   focusable={false}
                   height={24}
@@ -5212,8 +5174,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3 11h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2z"
@@ -5312,8 +5274,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#929292"
                   focusable={false}
                   height={24}
@@ -5376,8 +5338,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
@@ -5459,8 +5421,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#18753C"
                   focusable={false}
                   height={24}
@@ -5523,8 +5485,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3 11h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2z"
@@ -5623,8 +5585,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#929292"
                   focusable={false}
                   height={24}
@@ -5729,8 +5691,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -5783,8 +5745,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#18753C"
                   focusable={false}
                   height={24}
@@ -5847,8 +5809,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3 11h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2z"
@@ -5868,23 +5830,21 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           </View>
           <View
             RTLBehaviour={false}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
             horizontalAlign="flex-start"
             style={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-                "marginBottom": 40,
-                "marginTop": 24,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 24,
+                },
+              ]
             }
             verticalAlign="center"
           >
@@ -6003,7 +5963,11 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/profile/illu-mascotte.png",
+                  }
+                }
                 style={
                   {
                     "height": 96,
@@ -6164,8 +6128,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -6228,8 +6192,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2z"
@@ -6331,8 +6295,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -6395,8 +6359,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z"
@@ -6458,8 +6422,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -6532,8 +6496,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -6625,8 +6589,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#6A6AF4"
                   focusable={false}
                   height={24}
@@ -6699,8 +6663,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19.2 7h-.39A3 3 0 0 0 19 6a3.08 3.08 0 0 0-3.14-3A4.46 4.46 0 0 0 12 5.4 4.46 4.46 0 0 0 8.14 3 3.08 3.08 0 0 0 5 6a3 3 0 0 0 .19 1H4.8A2 2 0 0 0 3 9.2v3.6A2.08 2.08 0 0 0 4.5 15v4.37A1.75 1.75 0 0 0 6.31 21h11.38a1.75 1.75 0 0 0 1.81-1.67V15a2.08 2.08 0 0 0 1.5-2.2V9.2A2 2 0 0 0 19.2 7zM19 9.2v3.6a.56.56 0 0 1 0 .2h-6V9h6a.56.56 0 0 1 0 .2zM15.86 5A1.08 1.08 0 0 1 17 6a1.08 1.08 0 0 1-1.14 1H13.4a2.93 2.93 0 0 1 2.46-2zM7 6a1.08 1.08 0 0 1 1.14-1 2.93 2.93 0 0 1 2.45 2H8.14A1.08 1.08 0 0 1 7 6zM5 9.2A.56.56 0 0 1 5 9h6v4H5a.56.56 0 0 1 0-.2zM6.5 15H11v4H6.5zm6.5 4v-4h4.5v4z"
@@ -6762,8 +6726,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#6A6AF4"
                   focusable={false}
                   height={24}
@@ -6836,8 +6800,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -6960,8 +6924,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -7034,8 +6998,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -7117,8 +7081,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -7191,8 +7155,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -7285,8 +7249,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -7349,8 +7313,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"
@@ -7421,8 +7385,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -7495,8 +7459,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -7589,8 +7553,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -7653,8 +7617,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
@@ -7734,8 +7698,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -7808,8 +7772,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -7902,8 +7866,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -7966,8 +7930,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
@@ -8047,8 +8011,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -8121,8 +8085,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
@@ -8215,8 +8179,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -8279,8 +8243,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -8351,8 +8315,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -8415,8 +8379,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M20 11a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1z"
@@ -8518,8 +8482,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -8592,8 +8556,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M22 12A10 10 0 0 0 12 2a10 10 0 0 0 0 20 10 10 0 0 0 10-10zm-2.07-1H17a12.91 12.91 0 0 0-2.33-6.54A8 8 0 0 1 19.93 11zM9.08 13H15a11.44 11.44 0 0 1-3 6.61A11 11 0 0 1 9.08 13zm0-2A11.4 11.4 0 0 1 12 4.4a11.19 11.19 0 0 1 3 6.6zm.36-6.57A13.18 13.18 0 0 0 7.07 11h-3a8 8 0 0 1 5.37-6.57zM4.07 13h3a12.86 12.86 0 0 0 2.35 6.56A8 8 0 0 1 4.07 13zm10.55 6.55A13.14 13.14 0 0 0 17 13h2.95a8 8 0 0 1-5.33 6.55z"
@@ -8655,8 +8619,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="24"
-                    bbWidth="24"
+                    bbHeight={24}
+                    bbWidth={24}
                     fill="#666666"
                     focusable={false}
                     height={24}
@@ -8719,8 +8683,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                             height="24"
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M20 11a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1z"
@@ -8812,8 +8776,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#CE0500"
                 focusable={false}
                 height={24}
@@ -8877,8 +8841,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         height="24"
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"

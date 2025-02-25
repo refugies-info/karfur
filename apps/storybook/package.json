@@ -13,8 +13,8 @@
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-viewport": "^8.4.7",
     "next": "14.2.19",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",

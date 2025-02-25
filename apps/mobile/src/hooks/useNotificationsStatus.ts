@@ -2,11 +2,11 @@ import { useAppState } from "@react-native-community/hooks";
 import crashlytics from "@react-native-firebase/crashlytics";
 import Constants from "expo-constants";
 import { isDevice } from "expo-device";
-import { PermissionStatus } from "expo-modules-core";
 import {
   AndroidImportance,
   getExpoPushTokenAsync,
   getPermissionsAsync,
+  PermissionStatus,
   requestPermissionsAsync,
   setNotificationChannelAsync,
 } from "expo-notifications";

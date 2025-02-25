@@ -1,4 +1,7 @@
+/* stylelint-disable media-feature-range-notation */
+/* stylelint-disable scss/at-rule-no-unknown */
 @import "tailwindcss";
+@import "./container.css";
 @source "../components/";
 
 @theme {
@@ -14,9 +17,14 @@
   --color-light: #f2f2f2;
   --color-dark: #212121;
   --color-primary: #0421b1;
+  --color-gray: oklch(90.01% 0 0deg);
+  --color-theme-famille-clair: oklch(85.24% 0.1581 86.2deg);
 
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
+  --font-caveat: var(--font-caveat);
+
+  /* Font sizes */
 }
 
 body {

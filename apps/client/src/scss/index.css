@@ -17,6 +17,7 @@
   /* Colors */
   --color-light: #f2f2f2;
   --color-dark: #212121;
+  --color-gray: #666;
   --color-primary: #0421b1;
   --color-hover: #f6f6f6;
   --color-active: #ededed;
@@ -28,6 +29,8 @@
   --color-beige: #f9f6f2;
   --color-beige-accent: #f3ede5;
   --color-purple-france: #6a6af4;
+  --color-pink-background: #fee7fc;
+  --color-pink-foreground: #6e445a;
   --color-light-low-blue-france: #e3e3fd;
 
   /* Fonts */
