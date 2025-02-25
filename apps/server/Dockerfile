@@ -28,4 +28,4 @@ COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:2.0.7 /bin/berglas /bin/be
 
 # ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "start:server"]
 
-ENTRYPOINT ["/bin/berglas", "exec", "--", "node", "apps/server/src/scripts/print-env.js"]
+ENTRYPOINT ["/bin/berglas", "exec", "--", "pnpm", "print-env"]
