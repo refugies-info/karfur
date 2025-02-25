@@ -21,10 +21,9 @@ module.exports = {
     ],
   },
   webpack: (config) => {
-    config.resolve.fallback = {
-      events: false,
-      buffer: false,
-      process: require.resolve("process/browser"),
+    config.resolve = {
+      ...config.resolve,
+      fullySpecified: false,
     };
     config.module.rules.push({
       test: /\.woff2$/,
