@@ -24,6 +24,9 @@ RUN mkdir -p "$PNPM_HOME" && \
 # Copy workspace
 COPY . .
 
+# Rename apps/client/env.cloudbuild to .env (see cloudbuild.yaml)
+RUN mv apps/client/env.cloudbuild apps/client/.env 2>/dev/null || true
+
 # Generate a partial monorepo with a pruned lockfile for a target workspace.
 RUN turbo prune @refugies-info/client --docker
 
