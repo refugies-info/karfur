@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.19.0':
-    hash: ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff
+    hash: lbc3wnmu5qry7pbswna42nro6a
     path: patches/@codegouvfr__react-dsfr@1.19.0.patch
 
 importers:
@@ -15,7 +15,7 @@ importers:
     devDependencies:
       '@codegouvfr/react-dsfr':
         specifier: ^1.19.0
-        version: 1.19.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        version: 1.19.0(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
       '@types/node':
         specifier: ^22.13.1
         version: 22.13.2
@@ -72,7 +72,7 @@ importers:
         version: 5.20.2
       '@codegouvfr/react-dsfr':
         specifier: ^1.19.0
-        version: 1.19.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        version: 1.19.0(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
       '@lexical/html':
         specifier: ^0.18.0
         version: 0.18.0
@@ -421,7 +421,7 @@ importers:
         version: 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1)))(expo@52.0.33(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       '@react-native-firebase/crashlytics':
         specifier: ^20.0.0
-        version: 20.5.0(58554d6842c72c3938030b4924f81cc4)
+        version: 20.5.0(hf2yjqcpa4arn4ywm6aaxek2oy)
       '@react-navigation/bottom-tabs':
         specifier: ^6.5.11
         version: 6.6.1(@react-navigation/native@6.1.18(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@5.1.0(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-screens@4.5.0(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -970,7 +970,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: ^1.19.0
-        version: 1.19.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        version: 1.19.0(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
       '@tailwindcss/postcss':
         specifier: 4.0.6
         version: 4.0.6
@@ -989,16 +989,10 @@ importers:
       tailwindcss:
         specifier: 4.0.6
         version: 4.0.6
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.13.2)(typescript@5.7.3)
     devDependencies:
       '@refugies-info/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@types/fs-extra':
-        specifier: ^11.0.4
-        version: 11.0.4
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
@@ -1017,12 +1011,6 @@ importers:
       typescript:
         specifier: ^5.6.3
         version: 5.7.3
-
-  packages/ui/scripts:
-    dependencies:
-      '@codegouvfr/react-dsfr':
-        specifier: ^1.19.0
-        version: 1.19.0
 
 packages:
 
@@ -4560,9 +4548,6 @@ packages:
   '@types/express@5.0.0':
     resolution: {integrity: sha512-DvZriSMehGHL1ZNLzi6MidnsDhUZM/x2pRdDIKdwbUNqqwHxMlRdkxtn6/EPKyqKpHqTl/4nRZsRNLpZxZRpPQ==}
 
-  '@types/fs-extra@11.0.4':
-    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
-
   '@types/gensync@1.0.4':
     resolution: {integrity: sha512-C3YYeRQWp2fmq9OryX+FoDy8nXS6scQ7dPptD8LnFDAUNcKWJjXQKDNJD3HVm+kOUsXhTOkpi69vI4EuAr95bA==}
 
@@ -4625,9 +4610,6 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-
-  '@types/jsonfile@6.1.4':
-    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
   '@types/keygrip@1.0.6':
     resolution: {integrity: sha512-lZuNAY9xeJt7Bx4t4dx0rYCDqGPW8RXhQZK1td7d4H6E9zYbLoOtjBvfwdTKpsyxQI/2jv+armjX/RW+ZNpXOQ==}
@@ -13228,12 +13210,7 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@codegouvfr/react-dsfr@1.19.0':
-    dependencies:
-      tsafe: 1.8.5
-      yargs-parser: 21.1.1
-
-  '@codegouvfr/react-dsfr@1.19.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
+  '@codegouvfr/react-dsfr@1.19.0(patch_hash=lbc3wnmu5qry7pbswna42nro6a)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
@@ -15377,7 +15354,7 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
-  '@react-native-firebase/crashlytics@20.5.0(58554d6842c72c3938030b4924f81cc4)':
+  '@react-native-firebase/crashlytics@20.5.0(hf2yjqcpa4arn4ywm6aaxek2oy)':
     dependencies:
       '@react-native-firebase/app': 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1)))(expo@52.0.33(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       stacktrace-js: 2.0.2
@@ -16603,11 +16580,6 @@ snapshots:
       '@types/qs': 6.9.18
       '@types/serve-static': 1.15.7
 
-  '@types/fs-extra@11.0.4':
-    dependencies:
-      '@types/jsonfile': 6.1.4
-      '@types/node': 22.13.2
-
   '@types/gensync@1.0.4': {}
 
   '@types/geojson@7946.0.16': {}
@@ -16665,10 +16637,6 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
-
-  '@types/jsonfile@6.1.4':
-    dependencies:
-      '@types/node': 22.13.2
 
   '@types/keygrip@1.0.6': {}
 
