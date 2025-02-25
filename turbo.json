@@ -14,7 +14,7 @@
       "outputs": ["storybook-static/**"]
     },
     "@refugies-info/client#build": {
-      "dependsOn": ["//#update-icons"],
+      "dependsOn": ["//#update-icons", "@refugies-info/ui#build"],
       "env": ["NEXT_PUBLIC_*"],
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "outputs": [".next/**", "!.next/cache/**"]
@@ -59,7 +59,7 @@
         "TTS_KEY_1"
       ],
       "inputs": ["$TURBO_DEFAULT$", ".env"],
-      "outputs": [".dist/**"]
+      "outputs": ["dist/**"]
     },
     "check:types": {
       "dependsOn": ["^check:types"]
@@ -77,12 +77,6 @@
     "dev": {
       "persistent": true,
       "cache": false,
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
-    },
-    "start": {
-      "persistent": true,
-      "cache": false,
-      "dependsOn": ["^start"],
       "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
     "test": {

@@ -13,6 +13,19 @@
     "apps/*",
     "packages/*"
   ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "core-js",
+      "core-js-pure",
+      "esbuild",
+      "protobufjs",
+      "sharp"
+    ],
+    "patchedDependencies": {
+      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
+    }
+  },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
     "clean:modules": "rm -rf ./node_modules ./packages/*/node_modules ./apps/*/node_modules",
@@ -35,10 +48,9 @@
     "dev:server": "turbo dev --filter=@refugies-info/server",
     "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
-    "start": "turbo start",
-    "start:client": "turbo --filter @refugies-info/client start",
-    "start:server": "turbo --filter @refugies-info/server start",
-    "start:mobile": "turbo --filter @refugies-info/mobile start",
+    "start:client": "pnpm --filter @refugies-info/client start",
+    "start:server": "pnpm --filter @refugies-info/server start",
+    "start:mobile": "pnpm --filter @refugies-info/mobile start",
     "test": "turbo test",
     "test:client": "turbo test --filter=@refugies-info/client -- $*",
     "test:server": "turbo test --filter=@refugies-info/server -- $*",
@@ -94,17 +106,12 @@
   },
   "volta": {
     "node": "22.13.1",
-    "pnpm": "10.2.1"
+    "pnpm": "10.4.1"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
   "resolutions": {},
-  "packageManager": "pnpm@10.2.1",
-  "pnpm": {
-    "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
-    }
-  }
+  "packageManager": "pnpm@10.4.1"
 }

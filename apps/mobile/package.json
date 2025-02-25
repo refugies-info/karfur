@@ -22,7 +22,6 @@
     "@react-navigation/stack": "^6.3.20",
     "algoliasearch": "^5.20.1",
     "axios": "^1.7.9",
-    "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "^52.0.32",
     "expo-av": "~15.0.2",
     "expo-build-properties": "~0.13.2",
@@ -113,7 +112,7 @@
   },
   "volta": {
     "node": "22.13.1",
-    "pnpm": "10.2.1"
+    "pnpm": "10.4.1"
   },
   "expo": {
     "install": {

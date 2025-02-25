@@ -1,7 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { RoleName, SubscriptionRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getPath } from "routes";
@@ -25,7 +24,6 @@ interface Props {
 }
 
 const Register = (props: Props) => {
-  const { t } = useTranslation();
   const router = useRouter();
   const { isTablet } = useWindowSize();
   const { isAuth } = useAuth();
@@ -68,7 +66,7 @@ const Register = (props: Props) => {
             height={154}
             className="mx-auto mb-10"
           />
-          <Title2 smallMb>{t("Register.register_on_desktop")}</Title2>
+          <Title2 smallMb>Rendez-vous sur votre ordinateur !</Title2>
           <p className="text-chapo mb-6">{props.subtitleMobile}</p>
           {!showReceiveMailForm ? (
             <Button
@@ -78,16 +76,16 @@ const Register = (props: Props) => {
               className="w-full justify-center"
               size="large"
             >
-              {t("StaticPages.registerMobileCTA")}
+              Recevoir un mail
             </Button>
           ) : (
             <div className="text-left">
               <form onSubmit={onSendEmail}>
                 <Input
                   id="email"
-                  label={t("Register.Votre email", "Votre email")}
+                  label="Votre email"
                   state={notEmailError ? "error" : "default"}
-                  stateRelatedMessage={`${t("Register.not_an_email", "Ceci n'est pas un email,")} ${t("Register.check_mail", "vérifiez l'orthographe.")}`}
+                  stateRelatedMessage="Ceci n'est pas un email, vérifiez l'orthographe."
                   nativeInputProps={{
                     name: "email",
                     value: email,
@@ -103,7 +101,7 @@ const Register = (props: Props) => {
                   className="w-full justify-center"
                   size="large"
                 >
-                  {emailSent ? t("StaticPages.linkSent") : t("StaticPages.sendLink")}
+                  {emailSent ? "Lien envoyé !" : "Envoyer le lien"}
                 </Button>
               </form>
             </div>
@@ -112,7 +110,7 @@ const Register = (props: Props) => {
       ) : (
         <>
           <Image src={DesktopRegisterImg} alt="" width={175} height={160} className="mx-auto mb-10" />
-          <Title2 smallMb>{t("StaticPages.registerTitle")}</Title2>
+          <Title2 smallMb>C’est parti !</Title2>
           <p className="text-chapo mb-6">{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
           {isAuth ? (
             <Button onClick={props.onClickLoggedIn} iconId="fr-icon-add-circle-line" iconPosition="right">
@@ -120,7 +118,7 @@ const Register = (props: Props) => {
             </Button>
           ) : (
             <Button onClick={onRegister} iconId="fr-icon-account-pin-circle-line" iconPosition="right">
-              {t("login_or_signup")}
+              Me connecter ou m'inscrire
             </Button>
           )}
         </>

@@ -1,6 +1,3 @@
-/* stylelint-disable selector-class-pattern */
-/* stylelint-disable media-feature-range-notation */
-/* stylelint-disable scss/at-rule-no-unknown */
 @import "tailwindcss";
 @import "./dsfr-tokens.css";
 @import "./container.css";
@@ -15,6 +12,7 @@
 
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
+  --font-caveat: var(--font-caveat);
 }
 
 body {

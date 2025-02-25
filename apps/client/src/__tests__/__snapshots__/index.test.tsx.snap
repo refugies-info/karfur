@@ -4855,11 +4855,12 @@ exports[`homepage renders homepage 1`] = `
       <div
         class="flex h-full flex-col items-center justify-center gap-10"
       >
-        <span
+        <figure
           class="relative block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
         >
           <img
             alt="MobileApp.imageAlt"
+            aria-describedby=":r1g:-annotations"
             class="object-contain"
             data-nimg="fill"
             decoding="async"
@@ -4869,7 +4870,31 @@ exports[`homepage renders homepage 1`] = `
             srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 640w, /_next/image?url=%2Fimg.jpg&w=750&q=75 750w, /_next/image?url=%2Fimg.jpg&w=828&q=75 828w, /_next/image?url=%2Fimg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fimg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fimg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fimg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fimg.jpg&w=3840&q=75 3840w"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
-        </span>
+          <figcaption
+            id=":r1g:-annotations"
+          >
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold top-[4%] left-[66%]"
+            >
+              MobileApp.Annotations.share
+            </span>
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold top-[25%] left-[72%] max-w-[5em]"
+            >
+              MobileApp.Annotations.langChange
+            </span>
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold top-[53%] left-[79%]"
+            >
+              MobileApp.Annotations.langSimple
+            </span>
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold bottom-[8%] left-[65%]"
+            >
+              MobileApp.Annotations.vocalize
+            </span>
+          </figcaption>
+        </figure>
         <p
           class="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4"
         >
@@ -4964,36 +4989,36 @@ exports[`homepage renders homepage 1`] = `
           >
             <label
               class="fr-label"
-              for="input-:r1g:"
+              for="input-:r1h:"
             >
               MobileApp.phoneLabel
             </label>
             <input
               class="fr-input"
-              id="input-:r1g:"
+              id="input-:r1h:"
               type="text"
               value=""
             />
             <div
               aria-live="polite"
               class="fr-messages-group"
-              id="input-:r1g:-messages-group"
+              id="input-:r1h:-messages-group"
             />
           </div>
           <div
             class="fr-select-group"
-            id="fr-select-group-:r1h:"
+            id="fr-select-group-:r1i:"
           >
             <label
               class="fr-label"
-              for="select-:r1i:"
+              for="select-:r1j:"
             >
               MobileApp.langLabel
             </label>
             <select
-              aria-describedby="select-:r1j:-desc"
+              aria-describedby="select-:r1k:-desc"
               class="fr-select"
-              id="select-:r1i:"
+              id="select-:r1j:"
               name="languageSelected"
             >
               <option
@@ -5010,12 +5035,12 @@ exports[`homepage renders homepage 1`] = `
             <div
               aria-live="polite"
               class="fr-messages-group"
-              id="select-:r1i:-messages-group"
+              id="select-:r1j:-messages-group"
             />
           </div>
           <button
             class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
-            id="fr-button-:r1k:"
+            id="fr-button-:r1l:"
             type="submit"
           >
             MobileApp.buttonText
@@ -5040,7 +5065,7 @@ exports[`homepage renders homepage 1`] = `
           <div>
             <button
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
-              id="fr-button-:r1l:"
+              id="fr-button-:r1m:"
             >
               Homepage.resourcesCTA
             </button>
@@ -5109,7 +5134,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href=" https://airtable.com/shrrkFuyeG0BpKKT7"
-              id="fr-button-:r1m:"
+              id="fr-button-:r1n:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5150,7 +5175,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1n:"
+              id="fr-button-:r1o:"
               target="_blank"
             >
               WorkTogether.participateWebinar
@@ -5187,7 +5212,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1o:"
+              id="fr-button-:r1p:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5224,7 +5249,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1p:"
+              id="fr-button-:r1q:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5261,7 +5286,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
-              id="fr-button-:r1q:"
+              id="fr-button-:r1r:"
             >
               WorkTogether.translateContent
             </a>
@@ -5297,7 +5322,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
-              id="fr-button-:r1r:"
+              id="fr-button-:r1s:"
             >
               WorkTogether.participateWebinar
             </a>

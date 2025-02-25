@@ -1,54 +1,56 @@
-import logger from "~/logger";
 import { getDispositifAbstracts } from "~/modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "~/types/interface";
 import { frontUrl } from "~/workflows/dispositif/newsletter/constants";
 import { DemarchesData, DispositifDesc } from "~/workflows/dispositif/newsletter/types";
 
-const getNewestDemarche = async (): Promise<DispositifDesc> => {
-  logger.info("[getNewestDemarche] called");
-
-  const dispositifs = await getDispositifAbstracts(
+const getPublications = async (): Promise<DispositifDesc[]> => {
+  const results = await getDispositifAbstracts(
     {
       typeContenu: "demarche",
       status: "Actif",
-      lastModificationDate: { $exists: false },
+      publishedAt: { $exists: true },
     },
-    1,
+    3,
+    {
+      publishedAt: -1,
+    },
   );
 
-  const newest = {
-    titre: dispositifs[0].titreInformatif,
-    url: `${frontUrl}/fr/${dispositifs[0].typeContenu}/${dispositifs[0]._id}`,
-    abstract: dispositifs[0].abstract,
-  };
-
-  return newest;
-};
-
-const getUpdatedDemarches = async (): Promise<DispositifDesc[]> => {
-  logger.info("[getUpdatedDemarches] called");
-
-  const dispositifs = await getDispositifAbstracts({
-    typeContenu: "demarche",
-    status: "Actif",
-    lastModificationDate: { $exists: true },
-  });
-
-  const updated = dispositifs.map((d) => ({
+  const publications = results.map((d) => ({
     titre: d.titreInformatif,
     url: `${frontUrl}/fr/${d.typeContenu}/${d._id}`,
     abstract: d.abstract,
   }));
 
-  return updated;
+  return publications;
+};
+
+const getUpdates = async (): Promise<DispositifDesc[]> => {
+  const results = await getDispositifAbstracts(
+    {
+      typeContenu: "demarche",
+      status: "Actif",
+      lastModificationDate: { $exists: true },
+    },
+    3,
+    {
+      lastModificationDate: -1,
+    },
+  );
+
+  const updates = results.map((d) => ({
+    titre: d.titreInformatif,
+    url: `${frontUrl}/fr/${d.typeContenu}/${d._id}`,
+    abstract: d.abstract,
+  }));
+
+  return updates;
 };
 
 export const getNewsletterDemarches = async (): ResponseWithData<DemarchesData> => {
-  logger.info("[getDemarchesForNewsletter] called");
+  const publications = await getPublications();
 
-  const newest = await getNewestDemarche();
+  const updates = await getUpdates();
 
-  const updated = await getUpdatedDemarches();
-
-  return { text: "success", data: { newest, updated } };
+  return { text: "success", data: { publications, updates } };
 };

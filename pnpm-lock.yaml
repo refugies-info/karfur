@@ -437,9 +437,6 @@ importers:
       axios:
         specifier: ^1.7.9
         version: 1.7.9
-      babel-plugin-inline-dotenv:
-        specifier: ^1.7.0
-        version: 1.7.0(dotenv-expand@11.0.7)
       expo:
         specifier: ^52.0.32
         version: 52.0.33(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.8)(@babel/preset-env@7.26.8(@babel/core@7.26.8))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -1005,6 +1002,9 @@ importers:
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
+      next:
+        specifier: ^14.0.0
+        version: 14.2.19(@babel/core@7.26.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.84.0)
       prettier:
         specifier: ^3.3.3
         version: 3.5.1
@@ -5274,14 +5274,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.12.0
       webpack: '>=5'
-
-  babel-plugin-inline-dotenv@1.7.0:
-    resolution: {integrity: sha512-FUrXEwY9R9ZO8l0NFHqXFBzHjjMvdIJlELrzJoE6imDsj6Vh7g9svm7iHPHVYPbHmt6BPB2eCAJkwvG6kr5byg==}
-    peerDependencies:
-      dotenv-expand: '>= 5.0.0'
-    peerDependenciesMeta:
-      dotenv-expand:
-        optional: true
 
   babel-plugin-istanbul@6.1.1:
     resolution: {integrity: sha512-Y1IQok9821cC9onCx5otgFfRm7Lm+I+wwxOx738M/WLPZ9Q42m4IG5W0FNX8WLL2gYMZo3JkuXIH2DOpWM+qwA==}
@@ -17443,12 +17435,6 @@ snapshots:
       find-cache-dir: 4.0.0
       schema-utils: 4.3.0
       webpack: 5.97.1(esbuild@0.24.2)
-
-  babel-plugin-inline-dotenv@1.7.0(dotenv-expand@11.0.7):
-    dependencies:
-      dotenv: 16.4.7
-    optionalDependencies:
-      dotenv-expand: 11.0.7
 
   babel-plugin-istanbul@6.1.1:
     dependencies:

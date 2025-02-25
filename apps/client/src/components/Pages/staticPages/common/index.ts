@@ -13,3 +13,4 @@ export { Section } from "./Section";
 export { SectionHead } from "./SectionHead";
 export { default as StepContent } from "./StepContent";
 export { Title2 } from "./Title2";
+export { TranslationNotice } from "./TranslationNotice";

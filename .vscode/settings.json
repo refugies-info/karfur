@@ -26,9 +26,6 @@
     "Status.*",
     "LanguageDropdown.*",
     "LanguageDropdown.en_persan/dari",
-    "Translate.medium",
-    "Translate.strong",
-    "Translate.weak"
   ],
   "i18n-ally.dirStructure": "auto",
   "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],

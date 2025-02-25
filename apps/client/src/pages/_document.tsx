@@ -1,12 +1,12 @@
 import { DocumentProps, Head, Html, Main, NextScript } from "next/document";
 import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
-import { dsfrDocumentApi } from "./_app";
+import { caveat, dsfrDocumentApi } from "./_app";
 
 const { getColorSchemeHtmlAttributes, augmentDocumentForDsfr } = dsfrDocumentApi;
 
 export default function Document(props: DocumentProps) {
   return (
-    <Html {...getColorSchemeHtmlAttributes(props)} className="scroll-smooth">
+    <Html {...getColorSchemeHtmlAttributes(props)} className={`scroll-smooth ${caveat.variable}`}>
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />

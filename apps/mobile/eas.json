@@ -1,6 +1,6 @@
 {
   "build": {
-    "base": { "channel": "base", "ios": { "image": "latest" }, "node": "22.13.1", "pnpm": "10.2.1" },
+    "base": { "channel": "base", "ios": { "image": "latest" }, "node": "22.13.1", "pnpm": "10.4.1" },
     "production": { "extends": "base", "channel": "production" },
     "staging": {
       "extends": "base",
