@@ -13,7 +13,8 @@
         "sharp",
         "tailwindcss",
         "typescript-plugin-css-modules",
-        "bootstrap"
+        "bootstrap",
+        "@tailwindcss/postcss"
       ]
     },
     "apps/mobile": {
@@ -42,7 +43,13 @@
       "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["@tailwindcss/postcss", "react-dom", "prettier", "prettier-plugin-tailwindcss"]
+      "ignoreDependencies": [
+        "@tailwindcss/postcss",
+        "react-dom",
+        "prettier",
+        "prettier-plugin-tailwindcss",
+        "tailwindcss"
+      ]
     }
   }
 }
