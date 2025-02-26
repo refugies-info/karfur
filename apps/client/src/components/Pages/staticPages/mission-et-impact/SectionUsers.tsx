@@ -14,7 +14,12 @@ export const SectionUsers = () => {
         <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
           <div className="flex-1">
             <h3>{t("MissionImpact.users_subtitle_1")}</h3>
-            <p className="text-large">{t("MissionImpact.users_text_1")}</p>
+            <p
+              className="text-large"
+              dangerouslySetInnerHTML={{
+                __html: t("MissionImpact.users_text_1"),
+              }}
+            ></p>
             <p className="text-large">{t("MissionImpact.users_testimony_1")}</p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
@@ -39,7 +44,12 @@ export const SectionUsers = () => {
         <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
           <div className="flex-1">
             <h3>{t("MissionImpact.users_subtitle_2")}</h3>
-            <p className="text-large">{t("MissionImpact.users_text_2")}</p>
+            <p
+              className="text-large"
+              dangerouslySetInnerHTML={{
+                __html: t("MissionImpact.users_text_2"),
+              }}
+            ></p>
             <p className="text-large">{t("MissionImpact.users_testimony_2")}</p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
