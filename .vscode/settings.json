@@ -1,6 +1,7 @@
 {
   "alias-tool.mappings": { "~scss": "${workspace}/apps/client/src/scss" },
   "scss.lint.unknownAtRules": "ignore",
+  "css.customData": [".vscode/tailwind.json"],
   "eslint.workingDirectories": ["./apps/client", "./apps/server"],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "conventionalCommits.scopes": ["api-types", "client", "server", "mobile", "storybook", "ui"],
@@ -24,7 +25,7 @@
     "Roles.*",
     "Status.*",
     "LanguageDropdown.*",
-    "LanguageDropdown.en_persan/dari",
+    "LanguageDropdown.en_persan/dari"
   ],
   "i18n-ally.dirStructure": "auto",
   "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
@@ -43,5 +44,11 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.format.semicolons": "insert",
   "files.insertFinalNewline": true,
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.validate": ["css", "scss"],
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript",
+    "html": "html"
+  },
+  "tailwindCSS.emmetCompletions": true
 }

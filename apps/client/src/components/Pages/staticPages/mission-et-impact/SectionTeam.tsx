@@ -9,7 +9,7 @@ export const SectionTeam = () => {
 
   return (
     <Section>
-      <div className="fr-container">
+      <div className="container">
         <Title2>{t("MissionImpact.team_title")}</Title2>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-10 sm:px-20">
           {teamData.map((team) => (

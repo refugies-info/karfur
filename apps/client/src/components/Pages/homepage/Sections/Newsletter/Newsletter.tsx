@@ -52,7 +52,7 @@ const Newsletter = () => {
   if (isMobile) return null;
 
   return (
-    <section className="bg-light-alt-blue w-full py-20" id="newsletter">
+    <section className="bg-alt-blue-france w-full py-20" id="newsletter">
       <div className="container grid grid-cols-2 items-center gap-10">
         <Image
           src={NewsletterIllu}

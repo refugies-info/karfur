@@ -11,18 +11,21 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "generate-tokens": "ts-node scripts/generate-tailwind-tokens.ts"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "4.0.0-beta.7",
+    "@codegouvfr/react-dsfr": "^1.19.0",
+    "@tailwindcss/postcss": "4.0.6",
     "clsx": "^2.1.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss": "4.0.0-beta.7"
+    "tailwindcss": "4.0.6"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
+    "@types/fs-extra": "^11.0.4",
     "@types/react": "18.3.1",
     "next": "^14.0.0",
     "prettier": "^3.3.3",

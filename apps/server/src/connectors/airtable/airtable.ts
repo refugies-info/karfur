@@ -1,12 +1,4 @@
-/* eslint-disable no-console */
 import Airtable from "airtable";
-
-console.log("ENV VARS");
-console.log("===============");
-for (const [key, value] of Object.entries(process.env)) {
-  console.log(`${key}: ${value}`);
-}
-console.log("===============");
 
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",

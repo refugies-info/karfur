@@ -12,7 +12,7 @@ export const SectionCommunity = () => {
   const { t } = useTranslation();
   return (
     <Section>
-      <div className="fr-container">
+      <div className="container">
         <Title2 className="!text-center">{t("MissionImpact.join_title")}</Title2>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           <Card
