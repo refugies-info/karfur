@@ -698,7 +698,7 @@ importers:
         version: 7.0.4
       '@typegoose/typegoose':
         specifier: ^12.9.0
-        version: 12.11.0(mongoose@8.10.0)
+        version: 12.11.0(mongoose@8.10.2)
       airtable:
         specifier: ^0.12.2
         version: 0.12.2
@@ -748,8 +748,8 @@ importers:
         specifier: ^6.10.0
         version: 6.13.1
       mongoose:
-        specifier: 8.10.0
-        version: 8.10.0
+        specifier: 8.10.2
+        version: 8.10.2
       node-cache:
         specifier: ^5.1.2
         version: 5.1.2
@@ -942,8 +942,8 @@ importers:
   packages/api-types:
     dependencies:
       mongoose:
-        specifier: 8.10.0
-        version: 8.10.0
+        specifier: 8.10.2
+        version: 8.10.2
     devDependencies:
       '@refugies-info/typescript-config':
         specifier: workspace:*
@@ -8953,8 +8953,8 @@ packages:
       socks:
         optional: true
 
-  mongoose@8.10.0:
-    resolution: {integrity: sha512-nLhk3Qrv6q/HpD2k1O7kbBqsq+/kmKpdv5KJ+LLhQlII3e1p/SSLoLP6jMuSiU6+iLK7zFw4T1niAk3mA3QVug==}
+  mongoose@8.10.2:
+    resolution: {integrity: sha512-DvqfK1s/JLwP39ogXULC8ygNDdmDber5ZbxZzELYtkzl9VGJ3K5T2MCLdpTs9I9J6DnkDyIHJwt7IOyMxh/Adw==}
     engines: {node: '>=16.20.1'}
 
   mpath@0.9.0:
@@ -16469,11 +16469,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typegoose/typegoose@12.11.0(mongoose@8.10.0)':
+  '@typegoose/typegoose@12.11.0(mongoose@8.10.2)':
     dependencies:
       lodash: 4.17.21
       loglevel: 1.9.2
-      mongoose: 8.10.0
+      mongoose: 8.10.2
       reflect-metadata: 0.2.2
       semver: 7.7.1
       tslib: 2.8.1
@@ -16662,7 +16662,7 @@ snapshots:
 
   '@types/mongoose@5.11.97':
     dependencies:
-      mongoose: 8.10.0
+      mongoose: 8.10.2
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
       - '@mongodb-js/zstd'
@@ -22038,7 +22038,7 @@ snapshots:
       bson: 6.10.3
       mongodb-connection-string-url: 3.0.2
 
-  mongoose@8.10.0:
+  mongoose@8.10.2:
     dependencies:
       bson: 6.10.3
       kareem: 2.6.3
