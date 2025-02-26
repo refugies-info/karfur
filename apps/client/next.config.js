@@ -1,8 +1,12 @@
 const { i18n } = require("./next-i18next.config");
 const { translatedRedirects, oldPathsRedirects, partnersRedirect, rewrites } = require("./redirects.js");
+const path = require("path");
 
 module.exports = {
   output: "standalone",
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, "../../"),
+  },
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   i18n,
   images: {
