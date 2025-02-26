@@ -21,7 +21,13 @@ export const TeamCard = (props: Props) => {
           )}
         >
           <h3 className={cls("fr-card__title", "text-large sm:text-chapo")}>
-            <a href={props.link} target="_blank" rel="noreferrer" className="fr-default">
+            <a
+              href={props.link}
+              target="_blank"
+              rel="noreferrer"
+              className="fr-default"
+              title={`${props.name} - ${props.position}`}
+            >
               {props.name}
             </a>
           </h3>
