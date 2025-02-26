@@ -24,8 +24,9 @@ RUN mkdir -p "$PNPM_HOME" && \
 # Copy workspace
 COPY . .
 
-# Rename apps/client/env.cloudbuild to .env (see cloudbuild.yaml)
-RUN mv apps/client/env.cloudbuild apps/client/.env 2>/dev/null || true
+# Make sure an env.cloudbuild file exists for local testing.
+# Otherwise this file is created by cloudbuild.yaml
+RUN touch apps/client/env.cloudbuild
 
 # Generate a partial monorepo with a pruned lockfile for a target workspace.
 RUN turbo prune @refugies-info/client --docker
@@ -59,11 +60,10 @@ RUN pnpm install --frozen-lockfile
 # Build the project
 COPY --from=builder /app/out/full/ .
 
+# Copy secrets setup by cloudbuild
+COPY --from=builder /app/apps/client/env.cloudbuild apps/client/.env
+
 # Add environment variables to the client
-# Careful, the cloud build script creates a .env file in the client folder
-# before this step occurs
-# but create a .env file in the current folder if it doesn't exist
-RUN touch apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> apps/client/.env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> apps/client/.env
