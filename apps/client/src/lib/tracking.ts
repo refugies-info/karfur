@@ -75,7 +75,7 @@ const initMatomo = () => {
     g = d.createElement("script"),
     s = d.getElementsByTagName("script")[0];
   g.async = true;
-  g.src = "https://cdn.matomo.cloud/refugies.matomo.cloud/container_ZxAXaEFC.js";
+  g.src = "https://stats.beta.gouv.fr/js/container_DTJPTlF7.js";
   s.parentNode?.insertBefore(g, s);
 };
 
