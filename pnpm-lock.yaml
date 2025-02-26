@@ -420,8 +420,8 @@ importers:
         specifier: ^20.0.0
         version: 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1)))(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       '@react-native-firebase/crashlytics':
-        specifier: ^20.0.0
-        version: 20.5.0(56cf11aae70f7cb9e99449f5c3ef988c)
+        specifier: ^21.11.0
+        version: 21.11.0(56cf11aae70f7cb9e99449f5c3ef988c)
       '@react-navigation/bottom-tabs':
         specifier: ^6.5.11
         version: 6.6.1(@react-navigation/native@6.1.18(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@5.1.0(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-screens@4.5.0(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -3620,10 +3620,10 @@ packages:
       expo:
         optional: true
 
-  '@react-native-firebase/crashlytics@20.5.0':
-    resolution: {integrity: sha512-HXnxv5XrLW4zMWIGBbQZqyHKEqimvr4SULtk9J694WHOvPnXClibwXTAYzHV7WmZ3ypwUwbVJFrGJ1IdOb+Aaw==}
+  '@react-native-firebase/crashlytics@21.11.0':
+    resolution: {integrity: sha512-CpDNoq0jNnpv8IQRjaz63GYdiXMYoJDr+Q1uEKO/i9J+hRHV6u3/OgxHbzxtmqgNxG9me9bs7ube7ewF/aAdMw==}
     peerDependencies:
-      '@react-native-firebase/app': 20.5.0
+      '@react-native-firebase/app': 21.11.0
       expo: '>=47.0.0'
     peerDependenciesMeta:
       expo:
@@ -15349,7 +15349,7 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
-  '@react-native-firebase/crashlytics@20.5.0(56cf11aae70f7cb9e99449f5c3ef988c)':
+  '@react-native-firebase/crashlytics@21.11.0(56cf11aae70f7cb9e99449f5c3ef988c)':
     dependencies:
       '@react-native-firebase/app': 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1)))(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       stacktrace-js: 2.0.2
