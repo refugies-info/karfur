@@ -91,6 +91,12 @@ const MissionImpact = (props: Props) => {
           { id: "contributors", text: t("MissionImpact.navbarItem6") },
           { id: "steps", text: t("MissionImpact.navbarItem7") },
         ]}
+        rightLink={{
+          id: "",
+          href: "https://kit.refugies.info/stats/",
+          iconId: "fr-icon-line-chart-line",
+          text: t("MissionImpact.navbarItem8"),
+        }}
         activeView={activeView}
       />
       <div ref={refMission} className="relative">
