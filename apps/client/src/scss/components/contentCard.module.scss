@@ -63,7 +63,6 @@ $shadowHeight: 1.4rem;
   }
 
   .text {
-    margin-top: auto;
     order: 2;
     height: 9.125em;
     overflow-y: clip;
@@ -109,6 +108,7 @@ $shadowHeight: 1.4rem;
 }
 
 .end {
+  margin-top: auto;
   order: 4;
   position: relative;
   display: grid;
