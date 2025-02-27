@@ -33,7 +33,6 @@
     "@react-google-maps/api": "^2.20.3",
     "@refugies-info/api-types": "workspace:*",
     "@refugies-info/ui": "workspace:*",
-    "@tailwindcss/postcss": "^4.0.6",
     "algoliasearch": "^5.14.2",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^1.7.7",
@@ -81,7 +80,6 @@
     "sortablejs": "^1.15.3",
     "styled-components": "6.1.13",
     "sweetalert2": "^11.14.4",
-    "tailwindcss": "^4.0.6",
     "typesafe-actions": "^5.1.0",
     "uuid": "^11.0.3"
   },
@@ -110,6 +108,7 @@
   "devDependencies": {
     "@redux-devtools/extension": "^3.2.1",
     "@refugies-info/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.0.6",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
@@ -136,11 +135,12 @@
     "jest-styled-components": "^7.0.0",
     "next-router-mock": "^0.9.13",
     "papaparse": "^5.3.2",
-    "postcss": "^8.4.47",
+    "postcss": "^8.5.3",
     "redux-mock-store": "^1.5.5",
     "redux-saga-test-plan": "^4.0.5",
     "sass": "^1.80.4",
     "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.6",
     "typescript": "^5.6.3",
     "typescript-plugin-css-modules": "^5.1.0",
     "wait-on": "^8.0.1"
