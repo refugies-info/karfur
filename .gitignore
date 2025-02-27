@@ -51,3 +51,6 @@ credentials/
 
 # Ui
 /packages/ui/dist
+
+# Cloudbuild
+/apps/client/cloudbuild.env
