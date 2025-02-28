@@ -74,7 +74,7 @@ RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL=${APP_SERVER_URL}" >> apps/client/.en
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL=${APP_SITE_URL}" >> apps/client/.env
 
 # Build app using turbo
-RUN pnpm turbo build --filter=@refugies-info/client
+RUN pnpm build:client
 
 #
 # Setup runner image
