@@ -44,7 +44,7 @@ const ThanksMessage = ({ publish, content }: Props) => {
           </ul>
         </>
       ) : null}
-      <div className="text-center">
+      <div className="flex justify-center">
         <Image src={ThanksModalImage} width={274} height={160} alt="" />
       </div>
     </div>

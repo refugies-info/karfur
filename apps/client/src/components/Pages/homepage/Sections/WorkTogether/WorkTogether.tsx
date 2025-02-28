@@ -147,10 +147,10 @@ const WorkTogether = () => {
       <h2 className="mb-0 text-center">{t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}</h2>
       <div className="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3">
         {cardsContent.map(({ title, description, link, cta, icon, image }) => (
-          <div key={title} className="border-gray h-full border p-8">
+          <div key={title} className="border-default-grey h-full border p-8">
             <div className="flex h-full flex-col gap-4">
               {image}
-              <h3 className="text-blue-france mb-0 text-lg" dangerouslySetInnerHTML={{ __html: title }} />
+              <h3 className="text-title-blue-france mb-0 text-lg" dangerouslySetInnerHTML={{ __html: title }} />
               <p className="mb-0">{description}</p>
 
               <Button

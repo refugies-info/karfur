@@ -1,5 +1,5 @@
+import { useTranslation } from "next-i18next";
 import React, { ReactNode, useCallback, useEffect, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";

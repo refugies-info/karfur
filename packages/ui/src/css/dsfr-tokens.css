@@ -1,0 +1,3408 @@
+
+/* stylelint-disable at-rule-empty-line-before */
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable color-function-notation */
+/* stylelint-disable alpha-value-notation */
+/* stylelint-disable no-irregular-whitespace */
+/* stylelint-disable scss/at-rule-no-unknown */
+
+@import "tailwindcss";
+
+@theme {
+  --hover-tint: var(--hover);
+  --active-tint: var(--active);
+  --underline-max-width: 100%;
+  --underline-hover-width: var(--underline-max-width);
+  --underline-idle-width: 0;
+  --underline-x: calc(var(--underline-max-width) * 0);
+  --underline-thickness: calc(0.0625em + 0.25px);
+  --underline-img: none;
+  --external-link-content: none;
+  --color-text-decoration: underline;
+  --ul-type: none;
+  --ol-type: none;
+  --ul-start: 0;
+  --ol-start: 0;
+  --xl-block: 0;
+  --li-bottom: 0;
+  --xl-base: 1em;
+  --ol-content: none;
+  --color-text-spacing: 0;
+  --title-spacing: 0;
+  --display-spacing: 0 0 2rem;
+  --color-background-default-grey: var(--grey-1000-50);
+  --color-background-default-grey-hover: var(--grey-1000-50-hover);
+  --color-background-default-grey-active: var(--grey-1000-50-active);
+  --color-background-alt-grey: var(--grey-975-75);
+  --color-background-alt-grey-hover: var(--grey-975-75-hover);
+  --color-background-alt-grey-active: var(--grey-975-75-active);
+  --color-background-alt-blue-france: var(--blue-france-975-75);
+  --color-background-alt-blue-france-hover: var(--blue-france-975-75-hover);
+  --color-background-alt-blue-france-active: var(--blue-france-975-75-active);
+  --color-background-alt-red-marianne: var(--red-marianne-975-75);
+  --color-background-alt-red-marianne-hover: var(--red-marianne-975-75-hover);
+  --color-background-alt-red-marianne-active: var(--red-marianne-975-75-active);
+  --color-background-alt-green-tilleul-verveine: var(--green-tilleul-verveine-975-75);
+  --color-background-alt-green-tilleul-verveine-hover: var(--green-tilleul-verveine-975-75-hover);
+  --color-background-alt-green-tilleul-verveine-active: var(--green-tilleul-verveine-975-75-active);
+  --color-background-alt-green-bourgeon: var(--green-bourgeon-975-75);
+  --color-background-alt-green-bourgeon-hover: var(--green-bourgeon-975-75-hover);
+  --color-background-alt-green-bourgeon-active: var(--green-bourgeon-975-75-active);
+  --color-background-alt-green-emeraude: var(--green-emeraude-975-75);
+  --color-background-alt-green-emeraude-hover: var(--green-emeraude-975-75-hover);
+  --color-background-alt-green-emeraude-active: var(--green-emeraude-975-75-active);
+  --color-background-alt-green-menthe: var(--green-menthe-975-75);
+  --color-background-alt-green-menthe-hover: var(--green-menthe-975-75-hover);
+  --color-background-alt-green-menthe-active: var(--green-menthe-975-75-active);
+  --color-background-alt-green-archipel: var(--green-archipel-975-75);
+  --color-background-alt-green-archipel-hover: var(--green-archipel-975-75-hover);
+  --color-background-alt-green-archipel-active: var(--green-archipel-975-75-active);
+  --color-background-alt-blue-ecume: var(--blue-ecume-975-75);
+  --color-background-alt-blue-ecume-hover: var(--blue-ecume-975-75-hover);
+  --color-background-alt-blue-ecume-active: var(--blue-ecume-975-75-active);
+  --color-background-alt-blue-cumulus: var(--blue-cumulus-975-75);
+  --color-background-alt-blue-cumulus-hover: var(--blue-cumulus-975-75-hover);
+  --color-background-alt-blue-cumulus-active: var(--blue-cumulus-975-75-active);
+  --color-background-alt-purple-glycine: var(--purple-glycine-975-75);
+  --color-background-alt-purple-glycine-hover: var(--purple-glycine-975-75-hover);
+  --color-background-alt-purple-glycine-active: var(--purple-glycine-975-75-active);
+  --color-background-alt-pink-macaron: var(--pink-macaron-975-75);
+  --color-background-alt-pink-macaron-hover: var(--pink-macaron-975-75-hover);
+  --color-background-alt-pink-macaron-active: var(--pink-macaron-975-75-active);
+  --color-background-alt-pink-tuile: var(--pink-tuile-975-75);
+  --color-background-alt-pink-tuile-hover: var(--pink-tuile-975-75-hover);
+  --color-background-alt-pink-tuile-active: var(--pink-tuile-975-75-active);
+  --color-background-alt-yellow-tournesol: var(--yellow-tournesol-975-75);
+  --color-background-alt-yellow-tournesol-hover: var(--yellow-tournesol-975-75-hover);
+  --color-background-alt-yellow-tournesol-active: var(--yellow-tournesol-975-75-active);
+  --color-background-alt-yellow-moutarde: var(--yellow-moutarde-975-75);
+  --color-background-alt-yellow-moutarde-hover: var(--yellow-moutarde-975-75-hover);
+  --color-background-alt-yellow-moutarde-active: var(--yellow-moutarde-975-75-active);
+  --color-background-alt-orange-terre-battue: var(--orange-terre-battue-975-75);
+  --color-background-alt-orange-terre-battue-hover: var(--orange-terre-battue-975-75-hover);
+  --color-background-alt-orange-terre-battue-active: var(--orange-terre-battue-975-75-active);
+  --color-background-alt-brown-cafe-creme: var(--brown-cafe-creme-975-75);
+  --color-background-alt-brown-cafe-creme-hover: var(--brown-cafe-creme-975-75-hover);
+  --color-background-alt-brown-cafe-creme-active: var(--brown-cafe-creme-975-75-active);
+  --color-background-alt-brown-caramel: var(--brown-caramel-975-75);
+  --color-background-alt-brown-caramel-hover: var(--brown-caramel-975-75-hover);
+  --color-background-alt-brown-caramel-active: var(--brown-caramel-975-75-active);
+  --color-background-alt-brown-opera: var(--brown-opera-975-75);
+  --color-background-alt-brown-opera-hover: var(--brown-opera-975-75-hover);
+  --color-background-alt-brown-opera-active: var(--brown-opera-975-75-active);
+  --color-background-alt-beige-gris-galet: var(--beige-gris-galet-975-75);
+  --color-background-alt-beige-gris-galet-hover: var(--beige-gris-galet-975-75-hover);
+  --color-background-alt-beige-gris-galet-active: var(--beige-gris-galet-975-75-active);
+  --color-background-contrast-grey: var(--grey-950-100);
+  --color-background-contrast-grey-hover: var(--grey-950-100-hover);
+  --color-background-contrast-grey-active: var(--grey-950-100-active);
+  --color-background-contrast-blue-france: var(--blue-france-950-100);
+  --color-background-contrast-blue-france-hover: var(--blue-france-950-100-hover);
+  --color-background-contrast-blue-france-active: var(--blue-france-950-100-active);
+  --color-background-contrast-red-marianne: var(--red-marianne-950-100);
+  --color-background-contrast-red-marianne-hover: var(--red-marianne-950-100-hover);
+  --color-background-contrast-red-marianne-active: var(--red-marianne-950-100-active);
+  --color-background-contrast-green-tilleul-verveine: var(--green-tilleul-verveine-950-100);
+  --color-background-contrast-green-tilleul-verveine-hover: var(--green-tilleul-verveine-950-100-hover);
+  --color-background-contrast-green-tilleul-verveine-active: var(--green-tilleul-verveine-950-100-active);
+  --color-background-contrast-green-bourgeon: var(--green-bourgeon-950-100);
+  --color-background-contrast-green-bourgeon-hover: var(--green-bourgeon-950-100-hover);
+  --color-background-contrast-green-bourgeon-active: var(--green-bourgeon-950-100-active);
+  --color-background-contrast-green-emeraude: var(--green-emeraude-950-100);
+  --color-background-contrast-green-emeraude-hover: var(--green-emeraude-950-100-hover);
+  --color-background-contrast-green-emeraude-active: var(--green-emeraude-950-100-active);
+  --color-background-contrast-green-menthe: var(--green-menthe-950-100);
+  --color-background-contrast-green-menthe-hover: var(--green-menthe-950-100-hover);
+  --color-background-contrast-green-menthe-active: var(--green-menthe-950-100-active);
+  --color-background-contrast-green-archipel: var(--green-archipel-950-100);
+  --color-background-contrast-green-archipel-hover: var(--green-archipel-950-100-hover);
+  --color-background-contrast-green-archipel-active: var(--green-archipel-950-100-active);
+  --color-background-contrast-blue-ecume: var(--blue-ecume-950-100);
+  --color-background-contrast-blue-ecume-hover: var(--blue-ecume-950-100-hover);
+  --color-background-contrast-blue-ecume-active: var(--blue-ecume-950-100-active);
+  --color-background-contrast-blue-cumulus: var(--blue-cumulus-950-100);
+  --color-background-contrast-blue-cumulus-hover: var(--blue-cumulus-950-100-hover);
+  --color-background-contrast-blue-cumulus-active: var(--blue-cumulus-950-100-active);
+  --color-background-contrast-purple-glycine: var(--purple-glycine-950-100);
+  --color-background-contrast-purple-glycine-hover: var(--purple-glycine-950-100-hover);
+  --color-background-contrast-purple-glycine-active: var(--purple-glycine-950-100-active);
+  --color-background-contrast-pink-macaron: var(--pink-macaron-950-100);
+  --color-background-contrast-pink-macaron-hover: var(--pink-macaron-950-100-hover);
+  --color-background-contrast-pink-macaron-active: var(--pink-macaron-950-100-active);
+  --color-background-contrast-pink-tuile: var(--pink-tuile-950-100);
+  --color-background-contrast-pink-tuile-hover: var(--pink-tuile-950-100-hover);
+  --color-background-contrast-pink-tuile-active: var(--pink-tuile-950-100-active);
+  --color-background-contrast-yellow-tournesol: var(--yellow-tournesol-950-100);
+  --color-background-contrast-yellow-tournesol-hover: var(--yellow-tournesol-950-100-hover);
+  --color-background-contrast-yellow-tournesol-active: var(--yellow-tournesol-950-100-active);
+  --color-background-contrast-yellow-moutarde: var(--yellow-moutarde-950-100);
+  --color-background-contrast-yellow-moutarde-hover: var(--yellow-moutarde-950-100-hover);
+  --color-background-contrast-yellow-moutarde-active: var(--yellow-moutarde-950-100-active);
+  --color-background-contrast-orange-terre-battue: var(--orange-terre-battue-950-100);
+  --color-background-contrast-orange-terre-battue-hover: var(--orange-terre-battue-950-100-hover);
+  --color-background-contrast-orange-terre-battue-active: var(--orange-terre-battue-950-100-active);
+  --color-background-contrast-brown-cafe-creme: var(--brown-cafe-creme-950-100);
+  --color-background-contrast-brown-cafe-creme-hover: var(--brown-cafe-creme-950-100-hover);
+  --color-background-contrast-brown-cafe-creme-active: var(--brown-cafe-creme-950-100-active);
+  --color-background-contrast-brown-caramel: var(--brown-caramel-950-100);
+  --color-background-contrast-brown-caramel-hover: var(--brown-caramel-950-100-hover);
+  --color-background-contrast-brown-caramel-active: var(--brown-caramel-950-100-active);
+  --color-background-contrast-brown-opera: var(--brown-opera-950-100);
+  --color-background-contrast-brown-opera-hover: var(--brown-opera-950-100-hover);
+  --color-background-contrast-brown-opera-active: var(--brown-opera-950-100-active);
+  --color-background-contrast-beige-gris-galet: var(--beige-gris-galet-950-100);
+  --color-background-contrast-beige-gris-galet-hover: var(--beige-gris-galet-950-100-hover);
+  --color-background-contrast-beige-gris-galet-active: var(--beige-gris-galet-950-100-active);
+  --color-background-contrast-info: var(--info-950-100);
+  --color-background-contrast-info-hover: var(--info-950-100-hover);
+  --color-background-contrast-info-active: var(--info-950-100-active);
+  --color-background-contrast-success: var(--success-950-100);
+  --color-background-contrast-success-hover: var(--success-950-100-hover);
+  --color-background-contrast-success-active: var(--success-950-100-active);
+  --color-background-contrast-warning: var(--warning-950-100);
+  --color-background-contrast-warning-hover: var(--warning-950-100-hover);
+  --color-background-contrast-warning-active: var(--warning-950-100-active);
+  --color-background-contrast-error: var(--error-950-100);
+  --color-background-contrast-error-hover: var(--error-950-100-hover);
+  --color-background-contrast-error-active: var(--error-950-100-active);
+  --color-background-flat-grey: var(--grey-200-850);
+  --color-background-flat-blue-france: var(--blue-france-sun-113-625);
+  --color-background-flat-red-marianne: var(--red-marianne-425-625);
+  --color-background-flat-green-tilleul-verveine: var(--green-tilleul-verveine-sun-418-moon-817);
+  --color-background-flat-green-bourgeon: var(--green-bourgeon-sun-425-moon-759);
+  --color-background-flat-green-emeraude: var(--green-emeraude-sun-425-moon-753);
+  --color-background-flat-green-menthe: var(--green-menthe-sun-373-moon-652);
+  --color-background-flat-green-archipel: var(--green-archipel-sun-391-moon-716);
+  --color-background-flat-blue-ecume: var(--blue-ecume-sun-247-moon-675);
+  --color-background-flat-blue-cumulus: var(--blue-cumulus-sun-368-moon-732);
+  --color-background-flat-purple-glycine: var(--purple-glycine-sun-319-moon-630);
+  --color-background-flat-pink-macaron: var(--pink-macaron-sun-406-moon-833);
+  --color-background-flat-pink-tuile: var(--pink-tuile-sun-425-moon-750);
+  --color-background-flat-yellow-tournesol: var(--yellow-tournesol-sun-407-moon-922);
+  --color-background-flat-yellow-moutarde: var(--yellow-moutarde-sun-348-moon-860);
+  --color-background-flat-orange-terre-battue: var(--orange-terre-battue-sun-370-moon-672);
+  --color-background-flat-brown-cafe-creme: var(--brown-cafe-creme-sun-383-moon-885);
+  --color-background-flat-brown-caramel: var(--brown-caramel-sun-425-moon-901);
+  --color-background-flat-brown-opera: var(--brown-opera-sun-395-moon-820);
+  --color-background-flat-beige-gris-galet: var(--beige-gris-galet-sun-407-moon-821);
+  --color-background-flat-info: var(--info-425-625);
+  --color-background-flat-success: var(--success-425-625);
+  --color-background-flat-warning: var(--warning-425-625);
+  --color-background-flat-error: var(--error-425-625);
+  --color-background-action-high-grey: var(--grey-200-850);
+  --color-background-action-high-grey-hover: var(--grey-200-850-hover);
+  --color-background-action-high-grey-active: var(--grey-200-850-active);
+  --color-background-action-high-blue-france: var(--blue-france-sun-113-625);
+  --color-background-action-high-blue-france-hover: var(--blue-france-sun-113-625-hover);
+  --color-background-action-high-blue-france-active: var(--blue-france-sun-113-625-active);
+  --color-background-action-high-red-marianne: var(--red-marianne-425-625);
+  --color-background-action-high-red-marianne-hover: var(--red-marianne-425-625-hover);
+  --color-background-action-high-red-marianne-active: var(--red-marianne-425-625-active);
+  --color-background-action-high-green-tilleul-verveine: var(--green-tilleul-verveine-sun-418-moon-817);
+  --color-background-action-high-green-tilleul-verveine-hover: var(--green-tilleul-verveine-sun-418-moon-817-hover);
+  --color-background-action-high-green-tilleul-verveine-active: var(--green-tilleul-verveine-sun-418-moon-817-active);
+  --color-background-action-high-green-bourgeon: var(--green-bourgeon-sun-425-moon-759);
+  --color-background-action-high-green-bourgeon-hover: var(--green-bourgeon-sun-425-moon-759-hover);
+  --color-background-action-high-green-bourgeon-active: var(--green-bourgeon-sun-425-moon-759-active);
+  --color-background-action-high-green-emeraude: var(--green-emeraude-sun-425-moon-753);
+  --color-background-action-high-green-emeraude-hover: var(--green-emeraude-sun-425-moon-753-hover);
+  --color-background-action-high-green-emeraude-active: var(--green-emeraude-sun-425-moon-753-active);
+  --color-background-action-high-green-menthe: var(--green-menthe-sun-373-moon-652);
+  --color-background-action-high-green-menthe-hover: var(--green-menthe-sun-373-moon-652-hover);
+  --color-background-action-high-green-menthe-active: var(--green-menthe-sun-373-moon-652-active);
+  --color-background-action-high-green-archipel: var(--green-archipel-sun-391-moon-716);
+  --color-background-action-high-green-archipel-hover: var(--green-archipel-sun-391-moon-716-hover);
+  --color-background-action-high-green-archipel-active: var(--green-archipel-sun-391-moon-716-active);
+  --color-background-action-high-blue-ecume: var(--blue-ecume-sun-247-moon-675);
+  --color-background-action-high-blue-ecume-hover: var(--blue-ecume-sun-247-moon-675-hover);
+  --color-background-action-high-blue-ecume-active: var(--blue-ecume-sun-247-moon-675-active);
+  --color-background-action-high-blue-cumulus: var(--blue-cumulus-sun-368-moon-732);
+  --color-background-action-high-blue-cumulus-hover: var(--blue-cumulus-sun-368-moon-732-hover);
+  --color-background-action-high-blue-cumulus-active: var(--blue-cumulus-sun-368-moon-732-active);
+  --color-background-action-high-purple-glycine: var(--purple-glycine-sun-319-moon-630);
+  --color-background-action-high-purple-glycine-hover: var(--purple-glycine-sun-319-moon-630-hover);
+  --color-background-action-high-purple-glycine-active: var(--purple-glycine-sun-319-moon-630-active);
+  --color-background-action-high-pink-macaron: var(--pink-macaron-sun-406-moon-833);
+  --color-background-action-high-pink-macaron-hover: var(--pink-macaron-sun-406-moon-833-hover);
+  --color-background-action-high-pink-macaron-active: var(--pink-macaron-sun-406-moon-833-active);
+  --color-background-action-high-pink-tuile: var(--pink-tuile-sun-425-moon-750);
+  --color-background-action-high-pink-tuile-hover: var(--pink-tuile-sun-425-moon-750-hover);
+  --color-background-action-high-pink-tuile-active: var(--pink-tuile-sun-425-moon-750-active);
+  --color-background-action-high-yellow-tournesol: var(--yellow-tournesol-sun-407-moon-922);
+  --color-background-action-high-yellow-tournesol-hover: var(--yellow-tournesol-sun-407-moon-922-hover);
+  --color-background-action-high-yellow-tournesol-active: var(--yellow-tournesol-sun-407-moon-922-active);
+  --color-background-action-high-yellow-moutarde: var(--yellow-moutarde-sun-348-moon-860);
+  --color-background-action-high-yellow-moutarde-hover: var(--yellow-moutarde-sun-348-moon-860-hover);
+  --color-background-action-high-yellow-moutarde-active: var(--yellow-moutarde-sun-348-moon-860-active);
+  --color-background-action-high-orange-terre-battue: var(--orange-terre-battue-sun-370-moon-672);
+  --color-background-action-high-orange-terre-battue-hover: var(--orange-terre-battue-sun-370-moon-672-hover);
+  --color-background-action-high-orange-terre-battue-active: var(--orange-terre-battue-sun-370-moon-672-active);
+  --color-background-action-high-brown-cafe-creme: var(--brown-cafe-creme-sun-383-moon-885);
+  --color-background-action-high-brown-cafe-creme-hover: var(--brown-cafe-creme-sun-383-moon-885-hover);
+  --color-background-action-high-brown-cafe-creme-active: var(--brown-cafe-creme-sun-383-moon-885-active);
+  --color-background-action-high-brown-caramel: var(--brown-caramel-sun-425-moon-901);
+  --color-background-action-high-brown-caramel-hover: var(--brown-caramel-sun-425-moon-901-hover);
+  --color-background-action-high-brown-caramel-active: var(--brown-caramel-sun-425-moon-901-active);
+  --color-background-action-high-brown-opera: var(--brown-opera-sun-395-moon-820);
+  --color-background-action-high-brown-opera-hover: var(--brown-opera-sun-395-moon-820-hover);
+  --color-background-action-high-brown-opera-active: var(--brown-opera-sun-395-moon-820-active);
+  --color-background-action-high-beige-gris-galet: var(--beige-gris-galet-sun-407-moon-821);
+  --color-background-action-high-beige-gris-galet-hover: var(--beige-gris-galet-sun-407-moon-821-hover);
+  --color-background-action-high-beige-gris-galet-active: var(--beige-gris-galet-sun-407-moon-821-active);
+  --color-background-action-high-info: var(--info-425-625);
+  --color-background-action-high-info-hover: var(--info-425-625-hover);
+  --color-background-action-high-info-active: var(--info-425-625-active);
+  --color-background-action-high-success: var(--success-425-625);
+  --color-background-action-high-success-hover: var(--success-425-625-hover);
+  --color-background-action-high-success-active: var(--success-425-625-active);
+  --color-background-action-high-warning: var(--warning-425-625);
+  --color-background-action-high-warning-hover: var(--warning-425-625-hover);
+  --color-background-action-high-warning-active: var(--warning-425-625-active);
+  --color-background-action-high-error: var(--error-425-625);
+  --color-background-action-high-error-hover: var(--error-425-625-hover);
+  --color-background-action-high-error-active: var(--error-425-625-active);
+  --color-background-action-low-blue-france: var(--blue-france-925-125);
+  --color-background-action-low-blue-france-hover: var(--blue-france-925-125-hover);
+  --color-background-action-low-blue-france-active: var(--blue-france-925-125-active);
+  --color-background-action-low-red-marianne: var(--red-marianne-925-125);
+  --color-background-action-low-red-marianne-hover: var(--red-marianne-925-125-hover);
+  --color-background-action-low-red-marianne-active: var(--red-marianne-925-125-active);
+  --color-background-action-low-green-tilleul-verveine: var(--green-tilleul-verveine-925-125);
+  --color-background-action-low-green-tilleul-verveine-hover: var(--green-tilleul-verveine-925-125-hover);
+  --color-background-action-low-green-tilleul-verveine-active: var(--green-tilleul-verveine-925-125-active);
+  --color-background-action-low-green-bourgeon: var(--green-bourgeon-925-125);
+  --color-background-action-low-green-bourgeon-hover: var(--green-bourgeon-925-125-hover);
+  --color-background-action-low-green-bourgeon-active: var(--green-bourgeon-925-125-active);
+  --color-background-action-low-green-emeraude: var(--green-emeraude-925-125);
+  --color-background-action-low-green-emeraude-hover: var(--green-emeraude-925-125-hover);
+  --color-background-action-low-green-emeraude-active: var(--green-emeraude-925-125-active);
+  --color-background-action-low-green-menthe: var(--green-menthe-925-125);
+  --color-background-action-low-green-menthe-hover: var(--green-menthe-925-125-hover);
+  --color-background-action-low-green-menthe-active: var(--green-menthe-925-125-active);
+  --color-background-action-low-green-archipel: var(--green-archipel-925-125);
+  --color-background-action-low-green-archipel-hover: var(--green-archipel-925-125-hover);
+  --color-background-action-low-green-archipel-active: var(--green-archipel-925-125-active);
+  --color-background-action-low-blue-ecume: var(--blue-ecume-925-125);
+  --color-background-action-low-blue-ecume-hover: var(--blue-ecume-925-125-hover);
+  --color-background-action-low-blue-ecume-active: var(--blue-ecume-925-125-active);
+  --color-background-action-low-blue-cumulus: var(--blue-cumulus-925-125);
+  --color-background-action-low-blue-cumulus-hover: var(--blue-cumulus-925-125-hover);
+  --color-background-action-low-blue-cumulus-active: var(--blue-cumulus-925-125-active);
+  --color-background-action-low-purple-glycine: var(--purple-glycine-925-125);
+  --color-background-action-low-purple-glycine-hover: var(--purple-glycine-925-125-hover);
+  --color-background-action-low-purple-glycine-active: var(--purple-glycine-925-125-active);
+  --color-background-action-low-pink-macaron: var(--pink-macaron-925-125);
+  --color-background-action-low-pink-macaron-hover: var(--pink-macaron-925-125-hover);
+  --color-background-action-low-pink-macaron-active: var(--pink-macaron-925-125-active);
+  --color-background-action-low-pink-tuile: var(--pink-tuile-925-125);
+  --color-background-action-low-pink-tuile-hover: var(--pink-tuile-925-125-hover);
+  --color-background-action-low-pink-tuile-active: var(--pink-tuile-925-125-active);
+  --color-background-action-low-yellow-tournesol: var(--yellow-tournesol-925-125);
+  --color-background-action-low-yellow-tournesol-hover: var(--yellow-tournesol-925-125-hover);
+  --color-background-action-low-yellow-tournesol-active: var(--yellow-tournesol-925-125-active);
+  --color-background-action-low-yellow-moutarde: var(--yellow-moutarde-925-125);
+  --color-background-action-low-yellow-moutarde-hover: var(--yellow-moutarde-925-125-hover);
+  --color-background-action-low-yellow-moutarde-active: var(--yellow-moutarde-925-125-active);
+  --color-background-action-low-orange-terre-battue: var(--orange-terre-battue-925-125);
+  --color-background-action-low-orange-terre-battue-hover: var(--orange-terre-battue-925-125-hover);
+  --color-background-action-low-orange-terre-battue-active: var(--orange-terre-battue-925-125-active);
+  --color-background-action-low-brown-cafe-creme: var(--brown-cafe-creme-925-125);
+  --color-background-action-low-brown-cafe-creme-hover: var(--brown-cafe-creme-925-125-hover);
+  --color-background-action-low-brown-cafe-creme-active: var(--brown-cafe-creme-925-125-active);
+  --color-background-action-low-brown-caramel: var(--brown-caramel-925-125);
+  --color-background-action-low-brown-caramel-hover: var(--brown-caramel-925-125-hover);
+  --color-background-action-low-brown-caramel-active: var(--brown-caramel-925-125-active);
+  --color-background-action-low-brown-opera: var(--brown-opera-925-125);
+  --color-background-action-low-brown-opera-hover: var(--brown-opera-925-125-hover);
+  --color-background-action-low-brown-opera-active: var(--brown-opera-925-125-active);
+  --color-background-action-low-beige-gris-galet: var(--beige-gris-galet-925-125);
+  --color-background-action-low-beige-gris-galet-hover: var(--beige-gris-galet-925-125-hover);
+  --color-background-action-low-beige-gris-galet-active: var(--beige-gris-galet-925-125-active);
+  --color-background-active-blue-france: var(--blue-france-sun-113-625);
+  --color-background-active-blue-france-hover: var(--blue-france-sun-113-625-hover);
+  --color-background-active-blue-france-active: var(--blue-france-sun-113-625-active);
+  --color-background-active-red-marianne: var(--red-marianne-425-625);
+  --color-background-active-red-marianne-hover: var(--red-marianne-425-625-hover);
+  --color-background-active-red-marianne-active: var(--red-marianne-425-625-active);
+  --color-background-open-blue-france: var(--blue-france-925-125);
+  --color-background-open-blue-france-hover: var(--blue-france-925-125-hover);
+  --color-background-open-blue-france-active: var(--blue-france-925-125-active);
+  --color-background-open-red-marianne: var(--red-marianne-925-125);
+  --color-background-open-red-marianne-hover: var(--red-marianne-925-125-hover);
+  --color-background-open-red-marianne-active: var(--red-marianne-925-125-active);
+  --color-background-disabled-grey: var(--grey-925-125);
+  --color-background-raised-grey: var(--grey-1000-75);
+  --color-background-raised-grey-hover: var(--grey-1000-75-hover);
+  --color-background-raised-grey-active: var(--grey-1000-75-active);
+  --color-background-overlap-grey: var(--grey-1000-100);
+  --color-background-overlap-grey-hover: var(--grey-1000-100-hover);
+  --color-background-overlap-grey-active: var(--grey-1000-100-active);
+  --color-background-lifted-grey: var(--grey-1000-75);
+  --color-background-lifted-grey-hover: var(--grey-1000-75-hover);
+  --color-background-lifted-grey-active: var(--grey-1000-75-active);
+  --color-background-alt-raised-grey: var(--grey-975-100);
+  --color-background-alt-raised-grey-hover: var(--grey-975-100-hover);
+  --color-background-alt-raised-grey-active: var(--grey-975-100-active);
+  --color-background-alt-overlap-grey: var(--grey-975-125);
+  --color-background-alt-overlap-grey-hover: var(--grey-975-125-hover);
+  --color-background-alt-overlap-grey-active: var(--grey-975-125-active);
+  --color-background-contrast-raised-grey: var(--grey-950-125);
+  --color-background-contrast-raised-grey-hover: var(--grey-950-125-hover);
+  --color-background-contrast-raised-grey-active: var(--grey-950-125-active);
+  --color-background-contrast-overlap-grey: var(--grey-950-150);
+  --color-background-contrast-overlap-grey-hover: var(--grey-950-150-hover);
+  --color-background-contrast-overlap-grey-active: var(--grey-950-150-active);
+  --color-text-default-grey: var(--grey-200-850);
+  --color-text-default-info: var(--info-425-625);
+  --color-text-default-success: var(--success-425-625);
+  --color-text-default-warning: var(--warning-425-625);
+  --color-text-default-error: var(--error-425-625);
+  --color-text-action-high-grey: var(--grey-50-1000);
+  --color-text-action-high-blue-france: var(--blue-france-sun-113-625);
+  --color-text-action-high-red-marianne: var(--red-marianne-425-625);
+  --color-text-action-high-green-tilleul-verveine: var(--green-tilleul-verveine-sun-418-moon-817);
+  --color-text-action-high-green-bourgeon: var(--green-bourgeon-sun-425-moon-759);
+  --color-text-action-high-green-emeraude: var(--green-emeraude-sun-425-moon-753);
+  --color-text-action-high-green-menthe: var(--green-menthe-sun-373-moon-652);
+  --color-text-action-high-green-archipel: var(--green-archipel-sun-391-moon-716);
+  --color-text-action-high-blue-ecume: var(--blue-ecume-sun-247-moon-675);
+  --color-text-action-high-blue-cumulus: var(--blue-cumulus-sun-368-moon-732);
+  --color-text-action-high-purple-glycine: var(--purple-glycine-sun-319-moon-630);
+  --color-text-action-high-pink-macaron: var(--pink-macaron-sun-406-moon-833);
+  --color-text-action-high-pink-tuile: var(--pink-tuile-sun-425-moon-750);
+  --color-text-action-high-yellow-tournesol: var(--yellow-tournesol-sun-407-moon-922);
+  --color-text-action-high-yellow-moutarde: var(--yellow-moutarde-sun-348-moon-860);
+  --color-text-action-high-orange-terre-battue: var(--orange-terre-battue-sun-370-moon-672);
+  --color-text-action-high-brown-cafe-creme: var(--brown-cafe-creme-sun-383-moon-885);
+  --color-text-action-high-brown-caramel: var(--brown-caramel-sun-425-moon-901);
+  --color-text-action-high-brown-opera: var(--brown-opera-sun-395-moon-820);
+  --color-text-action-high-beige-gris-galet: var(--beige-gris-galet-sun-407-moon-821);
+  --color-text-title-grey: var(--grey-50-1000);
+  --color-text-title-blue-france: var(--blue-france-sun-113-625);
+  --color-text-title-red-marianne: var(--red-marianne-425-625);
+  --color-text-label-grey: var(--grey-50-1000);
+  --color-text-label-blue-france: var(--blue-france-sun-113-625);
+  --color-text-label-red-marianne: var(--red-marianne-425-625);
+  --color-text-label-green-tilleul-verveine: var(--green-tilleul-verveine-sun-418-moon-817);
+  --color-text-label-green-bourgeon: var(--green-bourgeon-sun-425-moon-759);
+  --color-text-label-green-emeraude: var(--green-emeraude-sun-425-moon-753);
+  --color-text-label-green-menthe: var(--green-menthe-sun-373-moon-652);
+  --color-text-label-green-archipel: var(--green-archipel-sun-391-moon-716);
+  --color-text-label-blue-ecume: var(--blue-ecume-sun-247-moon-675);
+  --color-text-label-blue-cumulus: var(--blue-cumulus-sun-368-moon-732);
+  --color-text-label-purple-glycine: var(--purple-glycine-sun-319-moon-630);
+  --color-text-label-pink-macaron: var(--pink-macaron-sun-406-moon-833);
+  --color-text-label-pink-tuile: var(--pink-tuile-sun-425-moon-750);
+  --color-text-label-yellow-tournesol: var(--yellow-tournesol-sun-407-moon-922);
+  --color-text-label-yellow-moutarde: var(--yellow-moutarde-sun-348-moon-860);
+  --color-text-label-orange-terre-battue: var(--orange-terre-battue-sun-370-moon-672);
+  --color-text-label-brown-cafe-creme: var(--brown-cafe-creme-sun-383-moon-885);
+  --color-text-label-brown-caramel: var(--brown-caramel-sun-425-moon-901);
+  --color-text-label-brown-opera: var(--brown-opera-sun-395-moon-820);
+  --color-text-label-beige-gris-galet: var(--beige-gris-galet-sun-407-moon-821);
+  --color-text-active-grey: var(--grey-50-1000);
+  --color-text-active-blue-france: var(--blue-france-sun-113-625);
+  --color-text-active-red-marianne: var(--red-marianne-425-625);
+  --color-text-mention-grey: var(--grey-425-625);
+  --color-text-inverted-grey: var(--grey-1000-50);
+  --color-text-inverted-blue-france: var(--blue-france-975-sun-113);
+  --color-text-inverted-red-marianne: var(--red-marianne-975-75);
+  --color-text-inverted-info: var(--info-975-75);
+  --color-text-inverted-success: var(--success-975-75);
+  --color-text-inverted-warning: var(--warning-975-75);
+  --color-text-inverted-error: var(--error-975-75);
+  --color-text-inverted-green-tilleul-verveine: var(--green-tilleul-verveine-975-75);
+  --color-text-inverted-green-bourgeon: var(--green-bourgeon-975-75);
+  --color-text-inverted-green-emeraude: var(--green-emeraude-975-75);
+  --color-text-inverted-green-menthe: var(--green-menthe-975-75);
+  --color-text-inverted-green-archipel: var(--green-archipel-975-75);
+  --color-text-inverted-blue-ecume: var(--blue-ecume-975-75);
+  --color-text-inverted-blue-cumulus: var(--blue-cumulus-975-75);
+  --color-text-inverted-purple-glycine: var(--purple-glycine-975-75);
+  --color-text-inverted-pink-macaron: var(--pink-macaron-975-75);
+  --color-text-inverted-pink-tuile: var(--pink-tuile-975-75);
+  --color-text-inverted-yellow-tournesol: var(--yellow-tournesol-975-75);
+  --color-text-inverted-yellow-moutarde: var(--yellow-moutarde-975-75);
+  --color-text-inverted-orange-terre-battue: var(--orange-terre-battue-975-75);
+  --color-text-inverted-brown-cafe-creme: var(--brown-cafe-creme-975-75);
+  --color-text-inverted-brown-caramel: var(--brown-caramel-975-75);
+  --color-text-inverted-brown-opera: var(--brown-opera-975-75);
+  --color-text-inverted-beige-gris-galet: var(--beige-gris-galet-975-75);
+  --color-text-disabled-grey: var(--grey-625-425);
+  --color-text-black-white-grey: var(--grey-0-1000);
+  --color-border-default-grey: var(--grey-900-175);
+  --color-border-default-blue-france: var(--blue-france-main-525);
+  --color-border-default-red-marianne: var(--red-marianne-main-472);
+  --color-border-default-green-tilleul-verveine: var(--green-tilleul-verveine-main-707);
+  --color-border-default-green-bourgeon: var(--green-bourgeon-main-640);
+  --color-border-default-green-emeraude: var(--green-emeraude-main-632);
+  --color-border-default-green-menthe: var(--green-menthe-main-548);
+  --color-border-default-green-archipel: var(--green-archipel-main-557);
+  --color-border-default-blue-ecume: var(--blue-ecume-main-400);
+  --color-border-default-blue-cumulus: var(--blue-cumulus-main-526);
+  --color-border-default-purple-glycine: var(--purple-glycine-main-494);
+  --color-border-default-pink-macaron: var(--pink-macaron-main-689);
+  --color-border-default-pink-tuile: var(--pink-tuile-main-556);
+  --color-border-default-yellow-tournesol: var(--yellow-tournesol-main-731);
+  --color-border-default-yellow-moutarde: var(--yellow-moutarde-main-679);
+  --color-border-default-orange-terre-battue: var(--orange-terre-battue-main-645);
+  --color-border-default-brown-cafe-creme: var(--brown-cafe-creme-main-782);
+  --color-border-default-brown-caramel: var(--brown-caramel-main-648);
+  --color-border-default-brown-opera: var(--brown-opera-main-680);
+  --color-border-default-beige-gris-galet: var(--beige-gris-galet-main-702);
+  --color-border-contrast-grey: var(--grey-625-425);
+  --color-border-active-blue-france: var(--blue-france-sun-113-625);
+  --color-border-active-red-marianne: var(--red-marianne-425-625);
+  --color-border-action-high-grey: var(--grey-50-1000);
+  --color-border-action-high-blue-france: var(--blue-france-sun-113-625);
+  --color-border-action-high-red-marianne: var(--red-marianne-425-625);
+  --color-border-action-high-info: var(--info-425-625);
+  --color-border-action-high-success: var(--success-425-625);
+  --color-border-action-high-warning: var(--warning-425-625);
+  --color-border-action-high-error: var(--error-425-625);
+  --color-border-action-low-blue-france: var(--blue-france-850-200);
+  --color-border-action-low-red-marianne: var(--red-marianne-850-200);
+  --color-border-action-low-green-tilleul-verveine: var(--green-tilleul-verveine-850-200);
+  --color-border-action-low-green-bourgeon: var(--green-bourgeon-850-200);
+  --color-border-action-low-green-emeraude: var(--green-emeraude-850-200);
+  --color-border-action-low-green-menthe: var(--green-menthe-850-200);
+  --color-border-action-low-green-archipel: var(--green-archipel-850-200);
+  --color-border-action-low-blue-ecume: var(--blue-ecume-850-200);
+  --color-border-action-low-blue-cumulus: var(--blue-cumulus-850-200);
+  --color-border-action-low-purple-glycine: var(--purple-glycine-850-200);
+  --color-border-action-low-pink-macaron: var(--pink-macaron-850-200);
+  --color-border-action-low-pink-tuile: var(--pink-tuile-850-200);
+  --color-border-action-low-yellow-tournesol: var(--yellow-tournesol-850-200);
+  --color-border-action-low-yellow-moutarde: var(--yellow-moutarde-850-200);
+  --color-border-action-low-orange-terre-battue: var(--orange-terre-battue-850-200);
+  --color-border-action-low-brown-cafe-creme: var(--brown-cafe-creme-850-200);
+  --color-border-action-low-brown-caramel: var(--brown-caramel-850-200);
+  --color-border-action-low-brown-opera: var(--brown-opera-850-200);
+  --color-border-action-low-beige-gris-galet: var(--beige-gris-galet-850-200);
+  --color-border-open-blue-france: var(--blue-france-925-125);
+  --color-border-open-red-marianne: var(--red-marianne-925-125);
+  --color-border-plain-grey: var(--grey-200-850);
+  --color-border-plain-blue-france: var(--blue-france-sun-113-625);
+  --color-border-plain-red-marianne: var(--red-marianne-425-625);
+  --color-border-plain-info: var(--info-425-625);
+  --color-border-plain-success: var(--success-425-625);
+  --color-border-plain-warning: var(--warning-425-625);
+  --color-border-plain-error: var(--error-425-625);
+  --color-border-plain-green-tilleul-verveine: var(--green-tilleul-verveine-sun-418-moon-817);
+  --color-border-plain-green-bourgeon: var(--green-bourgeon-sun-425-moon-759);
+  --color-border-plain-green-emeraude: var(--green-emeraude-sun-425-moon-753);
+  --color-border-plain-green-menthe: var(--green-menthe-sun-373-moon-652);
+  --color-border-plain-green-archipel: var(--green-archipel-sun-391-moon-716);
+  --color-border-plain-blue-ecume: var(--blue-ecume-sun-247-moon-675);
+  --color-border-plain-blue-cumulus: var(--blue-cumulus-sun-368-moon-732);
+  --color-border-plain-purple-glycine: var(--purple-glycine-sun-319-moon-630);
+  --color-border-plain-pink-macaron: var(--pink-macaron-sun-406-moon-833);
+  --color-border-plain-pink-tuile: var(--pink-tuile-sun-425-moon-750);
+  --color-border-plain-yellow-tournesol: var(--yellow-tournesol-sun-407-moon-922);
+  --color-border-plain-yellow-moutarde: var(--yellow-moutarde-sun-348-moon-860);
+  --color-border-plain-orange-terre-battue: var(--orange-terre-battue-sun-370-moon-672);
+  --color-border-plain-brown-cafe-creme: var(--brown-cafe-creme-sun-383-moon-885);
+  --color-border-plain-brown-caramel: var(--brown-caramel-sun-425-moon-901);
+  --color-border-plain-brown-opera: var(--brown-opera-sun-395-moon-820);
+  --color-border-plain-beige-gris-galet: var(--beige-gris-galet-sun-407-moon-821);
+  --color-border-disabled-grey: var(--grey-925-125);
+  --color-artwork-major-blue-france: var(--blue-france-sun-113-625);
+  --color-artwork-major-blue-france-hover: var(--blue-france-sun-113-625-hover);
+  --color-artwork-major-blue-france-active: var(--blue-france-sun-113-625-active);
+  --color-artwork-major-red-marianne: var(--red-marianne-425-625);
+  --color-artwork-major-red-marianne-hover: var(--red-marianne-425-625-hover);
+  --color-artwork-major-red-marianne-active: var(--red-marianne-425-625-active);
+  --color-artwork-major-green-tilleul-verveine: var(--green-tilleul-verveine-sun-418-moon-817);
+  --color-artwork-major-green-tilleul-verveine-hover: var(--green-tilleul-verveine-sun-418-moon-817-hover);
+  --color-artwork-major-green-tilleul-verveine-active: var(--green-tilleul-verveine-sun-418-moon-817-active);
+  --color-artwork-major-green-bourgeon: var(--green-bourgeon-sun-425-moon-759);
+  --color-artwork-major-green-bourgeon-hover: var(--green-bourgeon-sun-425-moon-759-hover);
+  --color-artwork-major-green-bourgeon-active: var(--green-bourgeon-sun-425-moon-759-active);
+  --color-artwork-major-green-emeraude: var(--green-emeraude-sun-425-moon-753);
+  --color-artwork-major-green-emeraude-hover: var(--green-emeraude-sun-425-moon-753-hover);
+  --color-artwork-major-green-emeraude-active: var(--green-emeraude-sun-425-moon-753-active);
+  --color-artwork-major-green-menthe: var(--green-menthe-sun-373-moon-652);
+  --color-artwork-major-green-menthe-hover: var(--green-menthe-sun-373-moon-652-hover);
+  --color-artwork-major-green-menthe-active: var(--green-menthe-sun-373-moon-652-active);
+  --color-artwork-major-green-archipel: var(--green-archipel-sun-391-moon-716);
+  --color-artwork-major-green-archipel-hover: var(--green-archipel-sun-391-moon-716-hover);
+  --color-artwork-major-green-archipel-active: var(--green-archipel-sun-391-moon-716-active);
+  --color-artwork-major-blue-ecume: var(--blue-ecume-sun-247-moon-675);
+  --color-artwork-major-blue-ecume-hover: var(--blue-ecume-sun-247-moon-675-hover);
+  --color-artwork-major-blue-ecume-active: var(--blue-ecume-sun-247-moon-675-active);
+  --color-artwork-major-blue-cumulus: var(--blue-cumulus-sun-368-moon-732);
+  --color-artwork-major-blue-cumulus-hover: var(--blue-cumulus-sun-368-moon-732-hover);
+  --color-artwork-major-blue-cumulus-active: var(--blue-cumulus-sun-368-moon-732-active);
+  --color-artwork-major-purple-glycine: var(--purple-glycine-sun-319-moon-630);
+  --color-artwork-major-purple-glycine-hover: var(--purple-glycine-sun-319-moon-630-hover);
+  --color-artwork-major-purple-glycine-active: var(--purple-glycine-sun-319-moon-630-active);
+  --color-artwork-major-pink-macaron: var(--pink-macaron-sun-406-moon-833);
+  --color-artwork-major-pink-macaron-hover: var(--pink-macaron-sun-406-moon-833-hover);
+  --color-artwork-major-pink-macaron-active: var(--pink-macaron-sun-406-moon-833-active);
+  --color-artwork-major-pink-tuile: var(--pink-tuile-sun-425-moon-750);
+  --color-artwork-major-pink-tuile-hover: var(--pink-tuile-sun-425-moon-750-hover);
+  --color-artwork-major-pink-tuile-active: var(--pink-tuile-sun-425-moon-750-active);
+  --color-artwork-major-yellow-tournesol: var(--yellow-tournesol-sun-407-moon-922);
+  --color-artwork-major-yellow-tournesol-hover: var(--yellow-tournesol-sun-407-moon-922-hover);
+  --color-artwork-major-yellow-tournesol-active: var(--yellow-tournesol-sun-407-moon-922-active);
+  --color-artwork-major-yellow-moutarde: var(--yellow-moutarde-sun-348-moon-860);
+  --color-artwork-major-yellow-moutarde-hover: var(--yellow-moutarde-sun-348-moon-860-hover);
+  --color-artwork-major-yellow-moutarde-active: var(--yellow-moutarde-sun-348-moon-860-active);
+  --color-artwork-major-orange-terre-battue: var(--orange-terre-battue-sun-370-moon-672);
+  --color-artwork-major-orange-terre-battue-hover: var(--orange-terre-battue-sun-370-moon-672-hover);
+  --color-artwork-major-orange-terre-battue-active: var(--orange-terre-battue-sun-370-moon-672-active);
+  --color-artwork-major-brown-cafe-creme: var(--brown-cafe-creme-sun-383-moon-885);
+  --color-artwork-major-brown-cafe-creme-hover: var(--brown-cafe-creme-sun-383-moon-885-hover);
+  --color-artwork-major-brown-cafe-creme-active: var(--brown-cafe-creme-sun-383-moon-885-active);
+  --color-artwork-major-brown-caramel: var(--brown-caramel-sun-425-moon-901);
+  --color-artwork-major-brown-caramel-hover: var(--brown-caramel-sun-425-moon-901-hover);
+  --color-artwork-major-brown-caramel-active: var(--brown-caramel-sun-425-moon-901-active);
+  --color-artwork-major-brown-opera: var(--brown-opera-sun-395-moon-820);
+  --color-artwork-major-brown-opera-hover: var(--brown-opera-sun-395-moon-820-hover);
+  --color-artwork-major-brown-opera-active: var(--brown-opera-sun-395-moon-820-active);
+  --color-artwork-major-beige-gris-galet: var(--beige-gris-galet-sun-407-moon-821);
+  --color-artwork-major-beige-gris-galet-hover: var(--beige-gris-galet-sun-407-moon-821-hover);
+  --color-artwork-major-beige-gris-galet-active: var(--beige-gris-galet-sun-407-moon-821-active);
+  --color-artwork-minor-blue-france: var(--blue-france-main-525);
+  --color-artwork-minor-red-marianne: var(--red-marianne-main-472);
+  --color-artwork-minor-green-tilleul-verveine: var(--green-tilleul-verveine-main-707);
+  --color-artwork-minor-green-bourgeon: var(--green-bourgeon-main-640);
+  --color-artwork-minor-green-emeraude: var(--green-emeraude-main-632);
+  --color-artwork-minor-green-menthe: var(--green-menthe-main-548);
+  --color-artwork-minor-green-archipel: var(--green-archipel-main-557);
+  --color-artwork-minor-blue-ecume: var(--blue-ecume-main-400);
+  --color-artwork-minor-blue-cumulus: var(--blue-cumulus-main-526);
+  --color-artwork-minor-purple-glycine: var(--purple-glycine-main-494);
+  --color-artwork-minor-pink-macaron: var(--pink-macaron-main-689);
+  --color-artwork-minor-pink-tuile: var(--pink-tuile-main-556);
+  --color-artwork-minor-yellow-tournesol: var(--yellow-tournesol-main-731);
+  --color-artwork-minor-yellow-moutarde: var(--yellow-moutarde-main-679);
+  --color-artwork-minor-orange-terre-battue: var(--orange-terre-battue-main-645);
+  --color-artwork-minor-brown-cafe-creme: var(--brown-cafe-creme-main-782);
+  --color-artwork-minor-brown-caramel: var(--brown-caramel-main-648);
+  --color-artwork-minor-brown-opera: var(--brown-opera-main-680);
+  --color-artwork-minor-beige-gris-galet: var(--beige-gris-galet-main-702);
+  --color-artwork-decorative-grey: var(--grey-950-100);
+  --color-artwork-decorative-blue-france: var(--blue-france-950-100);
+  --color-artwork-decorative-red-marianne: var(--red-marianne-950-100);
+  --color-artwork-decorative-green-tilleul-verveine: var(--green-tilleul-verveine-950-100);
+  --color-artwork-decorative-green-bourgeon: var(--green-bourgeon-950-100);
+  --color-artwork-decorative-green-emeraude: var(--green-emeraude-950-100);
+  --color-artwork-decorative-green-menthe: var(--green-menthe-950-100);
+  --color-artwork-decorative-green-archipel: var(--green-archipel-950-100);
+  --color-artwork-decorative-blue-ecume: var(--blue-ecume-950-100);
+  --color-artwork-decorative-blue-cumulus: var(--blue-cumulus-950-100);
+  --color-artwork-decorative-purple-glycine: var(--purple-glycine-950-100);
+  --color-artwork-decorative-pink-macaron: var(--pink-macaron-950-100);
+  --color-artwork-decorative-pink-tuile: var(--pink-tuile-950-100);
+  --color-artwork-decorative-yellow-tournesol: var(--yellow-tournesol-950-100);
+  --color-artwork-decorative-yellow-moutarde: var(--yellow-moutarde-950-100);
+  --color-artwork-decorative-orange-terre-battue: var(--orange-terre-battue-950-100);
+  --color-artwork-decorative-brown-cafe-creme: var(--brown-cafe-creme-950-100);
+  --color-artwork-decorative-brown-caramel: var(--brown-caramel-950-100);
+  --color-artwork-decorative-brown-opera: var(--brown-opera-950-100);
+  --color-artwork-decorative-beige-gris-galet: var(--beige-gris-galet-950-100);
+  --color-artwork-background-grey: var(--grey-975-75);
+  --color-artwork-background-blue-france: var(--blue-france-975-75);
+  --color-artwork-background-red-marianne: var(--red-marianne-975-75);
+  --color-artwork-background-green-tilleul-verveine: var(--green-tilleul-verveine-975-75);
+  --color-artwork-background-green-bourgeon: var(--green-bourgeon-975-75);
+  --color-artwork-background-green-emeraude: var(--green-emeraude-975-75);
+  --color-artwork-background-green-menthe: var(--green-menthe-975-75);
+  --color-artwork-background-green-archipel: var(--green-archipel-975-75);
+  --color-artwork-background-blue-ecume: var(--blue-ecume-975-75);
+  --color-artwork-background-blue-cumulus: var(--blue-cumulus-975-75);
+  --color-artwork-background-purple-glycine: var(--purple-glycine-975-75);
+  --color-artwork-background-pink-macaron: var(--pink-macaron-975-75);
+  --color-artwork-background-pink-tuile: var(--pink-tuile-975-75);
+  --color-artwork-background-yellow-tournesol: var(--yellow-tournesol-975-75);
+  --color-artwork-background-yellow-moutarde: var(--yellow-moutarde-975-75);
+  --color-artwork-background-orange-terre-battue: var(--orange-terre-battue-975-75);
+  --color-artwork-background-brown-cafe-creme: var(--brown-cafe-creme-975-75);
+  --color-artwork-background-brown-caramel: var(--brown-caramel-975-75);
+  --color-artwork-background-brown-opera: var(--brown-opera-975-75);
+  --color-artwork-background-beige-gris-galet: var(--beige-gris-galet-975-75);
+  --color-artwork-motif-grey: var(--grey-925-125);
+  --color-artwork-motif-blue-france: var(--blue-france-925-125);
+  --color-artwork-motif-red-marianne: var(--red-marianne-925-125);
+  --color-artwork-motif-green-tilleul-verveine: var(--green-tilleul-verveine-925-125);
+  --color-artwork-motif-green-bourgeon: var(--green-bourgeon-925-125);
+  --color-artwork-motif-green-emeraude: var(--green-emeraude-925-125);
+  --color-artwork-motif-green-menthe: var(--green-menthe-925-125);
+  --color-artwork-motif-green-archipel: var(--green-archipel-925-125);
+  --color-artwork-motif-blue-ecume: var(--blue-ecume-925-125);
+  --color-artwork-motif-blue-cumulus: var(--blue-cumulus-925-125);
+  --color-artwork-motif-purple-glycine: var(--purple-glycine-925-125);
+  --color-artwork-motif-pink-macaron: var(--pink-macaron-925-125);
+  --color-artwork-motif-pink-tuile: var(--pink-tuile-925-125);
+  --color-artwork-motif-yellow-tournesol: var(--yellow-tournesol-925-125);
+  --color-artwork-motif-yellow-moutarde: var(--yellow-moutarde-925-125);
+  --color-artwork-motif-orange-terre-battue: var(--orange-terre-battue-925-125);
+  --color-artwork-motif-brown-cafe-creme: var(--brown-cafe-creme-925-125);
+  --color-artwork-motif-brown-caramel: var(--brown-caramel-925-125);
+  --color-artwork-motif-brown-opera: var(--brown-opera-925-125);
+  --color-artwork-motif-beige-gris-galet: var(--beige-gris-galet-925-125);
+  --grey-1000-50: #161616;
+  --grey-1000-50-hover: #343434;
+  --grey-1000-50-active: #474747;
+  --grey-975-75: #1e1e1e;
+  --grey-975-75-hover: #3f3f3f;
+  --grey-975-75-active: #525252;
+  --grey-950-100: #242424;
+  --grey-950-100-hover: #474747;
+  --grey-950-100-active: #5b5b5b;
+  --grey-200-850: #cecece;
+  --grey-200-850-hover: #a8a8a8;
+  --grey-200-850-active: #939393;
+  --grey-925-125: #2a2a2a;
+  --grey-1000-75: #1e1e1e;
+  --grey-1000-75-hover: #3f3f3f;
+  --grey-1000-75-active: #525252;
+  --grey-1000-100: #242424;
+  --grey-1000-100-hover: #474747;
+  --grey-1000-100-active: #5b5b5b;
+  --grey-975-100: #242424;
+  --grey-975-100-hover: #474747;
+  --grey-975-100-active: #5b5b5b;
+  --grey-975-125: #2a2a2a;
+  --grey-975-125-hover: #4e4e4e;
+  --grey-975-125-active: #636363;
+  --grey-950-125: #2a2a2a;
+  --grey-950-125-hover: #4e4e4e;
+  --grey-950-125-active: #636363;
+  --grey-950-150: #2f2f2f;
+  --grey-950-150-hover: #545454;
+  --grey-950-150-active: #696969;
+  --grey-50-1000: #fff;
+  --grey-425-625: #929292;
+  --grey-625-425: #666;
+  --grey-0-1000: #fff;
+  --grey-900-175: #353535;
+  --blue-france-975-75: #1b1b35;
+  --blue-france-975-75-hover: #3a3a68;
+  --blue-france-975-75-active: #4d4d83;
+  --blue-france-950-100: #21213f;
+  --blue-france-950-100-hover: #424275;
+  --blue-france-950-100-active: #56568c;
+  --blue-france-sun-113-625: #8585f6;
+  --blue-france-sun-113-625-hover: #b1b1f9;
+  --blue-france-sun-113-625-active: #c6c6fb;
+  --blue-france-925-125: #272747;
+  --blue-france-925-125-hover: #4a4a7d;
+  --blue-france-925-125-active: #5e5e90;
+  --blue-france-975-sun-113: #000091;
+  --blue-france-main-525: #6a6af4;
+  --blue-france-850-200: #313178;
+  --red-marianne-975-75: #2b1919;
+  --red-marianne-975-75-hover: #573737;
+  --red-marianne-975-75-active: #704848;
+  --red-marianne-950-100: #331f1f;
+  --red-marianne-950-100-hover: #613f3f;
+  --red-marianne-950-100-active: #7b5151;
+  --red-marianne-425-625: #f95c5e;
+  --red-marianne-425-625-hover: #fa9293;
+  --red-marianne-425-625-active: #fbabac;
+  --red-marianne-925-125: #3b2424;
+  --red-marianne-925-125-hover: #6b4545;
+  --red-marianne-925-125-active: #865757;
+  --red-marianne-main-472: #e1000f;
+  --red-marianne-850-200: #5e2a2b;
+  --info-950-100: #1d2437;
+  --info-950-100-hover: #3b4767;
+  --info-950-100-active: #4c5b83;
+  --info-425-625: #518fff;
+  --info-425-625-hover: #98b4ff;
+  --info-425-625-active: #b4c7ff;
+  --info-975-75: #171d2e;
+  --success-950-100: #19271d;
+  --success-950-100-hover: #344c3b;
+  --success-950-100-active: #44624d;
+  --success-425-625: #27a658;
+  --success-425-625-hover: #36d975;
+  --success-425-625-active: #3df183;
+  --success-975-75: #142117;
+  --warning-950-100: #361e19;
+  --warning-950-100-hover: #663d35;
+  --warning-950-100-active: #824f44;
+  --warning-425-625: #fc5d00;
+  --warning-425-625-hover: #ff8c73;
+  --warning-425-625-active: #ffa595;
+  --warning-975-75: #2d1814;
+  --error-950-100: #391c1c;
+  --error-950-100-hover: #6c3a3a;
+  --error-950-100-active: #894b4b;
+  --error-425-625: #ff5655;
+  --error-425-625-hover: #ff8c8c;
+  --error-425-625-active: #ffa6a6;
+  --error-975-75: #301717;
+  --green-tilleul-verveine-975-75: #201e14;
+  --green-tilleul-verveine-975-75-hover: #433f2e;
+  --green-tilleul-verveine-975-75-active: #57533d;
+  --green-tilleul-verveine-950-100: #272419;
+  --green-tilleul-verveine-950-100-hover: #4c4734;
+  --green-tilleul-verveine-950-100-active: #615b44;
+  --green-tilleul-verveine-sun-418-moon-817: #d8c634;
+  --green-tilleul-verveine-sun-418-moon-817-hover: #fee943;
+  --green-tilleul-verveine-sun-418-moon-817-active: #fef1ab;
+  --green-tilleul-verveine-925-125: #2d2a1d;
+  --green-tilleul-verveine-925-125-hover: #534f39;
+  --green-tilleul-verveine-925-125-active: #696349;
+  --green-tilleul-verveine-main-707: #b7a73f;
+  --green-tilleul-verveine-850-200: #3f3a20;
+  --green-bourgeon-975-75: #182014;
+  --green-bourgeon-975-75-hover: #35432e;
+  --green-bourgeon-975-75-active: #46573d;
+  --green-bourgeon-950-100: #1e2719;
+  --green-bourgeon-950-100-hover: #3d4c34;
+  --green-bourgeon-950-100-active: #4e6144;
+  --green-bourgeon-sun-425-moon-759: #99c221;
+  --green-bourgeon-sun-425-moon-759-hover: #baec2a;
+  --green-bourgeon-sun-425-moon-759-active: #c9fd2e;
+  --green-bourgeon-925-125: #232d1d;
+  --green-bourgeon-925-125-hover: #435339;
+  --green-bourgeon-925-125-active: #556949;
+  --green-bourgeon-main-640: #68a532;
+  --green-bourgeon-850-200: #2a401a;
+  --green-emeraude-975-75: #142018;
+  --green-emeraude-975-75-hover: #2e4335;
+  --green-emeraude-975-75-active: #3d5846;
+  --green-emeraude-950-100: #19271e;
+  --green-emeraude-950-100-hover: #344c3d;
+  --green-emeraude-950-100-active: #44624f;
+  --green-emeraude-sun-425-moon-753: #34cb6a;
+  --green-emeraude-sun-425-moon-753-hover: #42fb84;
+  --green-emeraude-sun-425-moon-753-active: #80fda3;
+  --green-emeraude-925-125: #1e2e23;
+  --green-emeraude-925-125-hover: #3b5543;
+  --green-emeraude-925-125-active: #4b6b55;
+  --green-emeraude-main-632: #00a95f;
+  --green-emeraude-850-200: #21402c;
+  --green-menthe-975-75: #15201e;
+  --green-menthe-975-75-hover: #30433f;
+  --green-menthe-975-75-active: #3f5753;
+  --green-menthe-950-100: #1a2624;
+  --green-menthe-950-100-hover: #364b47;
+  --green-menthe-950-100-active: #46605b;
+  --green-menthe-sun-373-moon-652: #21ab8e;
+  --green-menthe-sun-373-moon-652-hover: #2eddb8;
+  --green-menthe-sun-373-moon-652-active: #34f4cc;
+  --green-menthe-925-125: #1f2d2a;
+  --green-menthe-925-125-hover: #3c534e;
+  --green-menthe-925-125-active: #4d6963;
+  --green-menthe-main-548: #009081;
+  --green-menthe-850-200: #223f3a;
+  --green-archipel-975-75: #152021;
+  --green-archipel-975-75-hover: #2f4345;
+  --green-archipel-975-75-active: #3f5759;
+  --green-archipel-950-100: #1a2628;
+  --green-archipel-950-100-hover: #364a4e;
+  --green-archipel-950-100-active: #465f63;
+  --green-archipel-sun-391-moon-716: #34bab5;
+  --green-archipel-sun-391-moon-716-hover: #43e9e2;
+  --green-archipel-sun-391-moon-716-active: #4cfdf6;
+  --green-archipel-925-125: #1f2c2e;
+  --green-archipel-925-125-hover: #3c5255;
+  --green-archipel-925-125-active: #4d676b;
+  --green-archipel-main-557: #009099;
+  --green-archipel-850-200: #233e41;
+  --blue-ecume-975-75: #171d2f;
+  --blue-ecume-975-75-hover: #333e5e;
+  --blue-ecume-975-75-active: #445179;
+  --blue-ecume-950-100: #1d2437;
+  --blue-ecume-950-100-hover: #3b4767;
+  --blue-ecume-950-100-active: #4c5b83;
+  --blue-ecume-sun-247-moon-675: #869ece;
+  --blue-ecume-sun-247-moon-675-hover: #b8c5e2;
+  --blue-ecume-sun-247-moon-675-active: #ced6ea;
+  --blue-ecume-925-125: #222940;
+  --blue-ecume-925-125-hover: #424d73;
+  --blue-ecume-925-125-active: #536190;
+  --blue-ecume-main-400: #465f9d;
+  --blue-ecume-850-200: #273962;
+  --blue-cumulus-975-75: #171e2b;
+  --blue-cumulus-975-75-hover: #333f56;
+  --blue-cumulus-975-75-active: #43536f;
+  --blue-cumulus-950-100: #1c2433;
+  --blue-cumulus-950-100-hover: #3a4761;
+  --blue-cumulus-950-100-active: #4a5b7b;
+  --blue-cumulus-sun-368-moon-732: #7ab1e8;
+  --blue-cumulus-sun-368-moon-732-hover: #bad2f2;
+  --blue-cumulus-sun-368-moon-732-active: #d2e2f6;
+  --blue-cumulus-925-125: #212a3a;
+  --blue-cumulus-925-125-hover: #404f69;
+  --blue-cumulus-925-125-active: #516384;
+  --blue-cumulus-main-526: #417dc4;
+  --blue-cumulus-850-200: #263b58;
+  --purple-glycine-975-75: #251a24;
+  --purple-glycine-975-75-hover: #4c394a;
+  --purple-glycine-975-75-active: #634a60;
+  --purple-glycine-950-100: #2c202b;
+  --purple-glycine-950-100-hover: #554053;
+  --purple-glycine-950-100-active: #6c536a;
+  --purple-glycine-sun-319-moon-630: #ce70cc;
+  --purple-glycine-sun-319-moon-630-hover: #dfa4dd;
+  --purple-glycine-sun-319-moon-630-active: #e7bbe6;
+  --purple-glycine-925-125: #332632;
+  --purple-glycine-925-125-hover: #5d485c;
+  --purple-glycine-925-125-active: #755b73;
+  --purple-glycine-main-494: #a558a0;
+  --purple-glycine-850-200: #502e4d;
+  --pink-macaron-975-75: #261b19;
+  --pink-macaron-975-75-hover: #4e3a37;
+  --pink-macaron-975-75-active: #654c48;
+  --pink-macaron-950-100: #2e211f;
+  --pink-macaron-950-100-hover: #58423f;
+  --pink-macaron-950-100-active: #705551;
+  --pink-macaron-sun-406-moon-833: #ffb7ae;
+  --pink-macaron-sun-406-moon-833-hover: #ffe0dc;
+  --pink-macaron-sun-406-moon-833-active: #fff0ee;
+  --pink-macaron-925-125: #352724;
+  --pink-macaron-925-125-hover: #614a45;
+  --pink-macaron-925-125-active: #795d57;
+  --pink-macaron-main-689: #e18b76;
+  --pink-macaron-850-200: #52312a;
+  --pink-tuile-975-75: #281b19;
+  --pink-tuile-975-75-hover: #513a37;
+  --pink-tuile-975-75-active: #694c48;
+  --pink-tuile-950-100: #2f211f;
+  --pink-tuile-950-100-hover: #5a423e;
+  --pink-tuile-950-100-active: #725550;
+  --pink-tuile-sun-425-moon-750: #ff9575;
+  --pink-tuile-sun-425-moon-750-hover: #ffc4b7;
+  --pink-tuile-sun-425-moon-750-active: #ffd8d0;
+  --pink-tuile-925-125: #372624;
+  --pink-tuile-925-125-hover: #644845;
+  --pink-tuile-925-125-active: #7d5b57;
+  --pink-tuile-main-556: #ce614a;
+  --pink-tuile-850-200: #55302a;
+  --yellow-tournesol-975-75: #221d11;
+  --yellow-tournesol-975-75-hover: #473e29;
+  --yellow-tournesol-975-75-active: #5c5136;
+  --yellow-tournesol-950-100: #292416;
+  --yellow-tournesol-950-100-hover: #4f472f;
+  --yellow-tournesol-950-100-active: #655b3d;
+  --yellow-tournesol-sun-407-moon-922: #ffe552;
+  --yellow-tournesol-sun-407-moon-922-hover: #e1c700;
+  --yellow-tournesol-sun-407-moon-922-active: #cab300;
+  --yellow-tournesol-925-125: #302a1a;
+  --yellow-tournesol-925-125-hover: #584e34;
+  --yellow-tournesol-925-125-active: #6f6342;
+  --yellow-tournesol-main-731: #c8aa39;
+  --yellow-tournesol-850-200: #43391a;
+  --yellow-moutarde-975-75: #231d14;
+  --yellow-moutarde-975-75-hover: #483e2e;
+  --yellow-moutarde-975-75-active: #5e513d;
+  --yellow-moutarde-950-100: #2a2319;
+  --yellow-moutarde-950-100-hover: #514534;
+  --yellow-moutarde-950-100-active: #685944;
+  --yellow-moutarde-sun-348-moon-860: #ffca00;
+  --yellow-moutarde-sun-348-moon-860-hover: #cda200;
+  --yellow-moutarde-sun-348-moon-860-active: #b28c00;
+  --yellow-moutarde-925-125: #30291d;
+  --yellow-moutarde-925-125-hover: #584d39;
+  --yellow-moutarde-925-125-active: #6f6149;
+  --yellow-moutarde-main-679: #c3992a;
+  --yellow-moutarde-850-200: #453820;
+  --orange-terre-battue-975-75: #281a16;
+  --orange-terre-battue-975-75-hover: #513932;
+  --orange-terre-battue-975-75-active: #6a4b42;
+  --orange-terre-battue-950-100: #31201c;
+  --orange-terre-battue-950-100-hover: #5d403a;
+  --orange-terre-battue-950-100-active: #77534a;
+  --orange-terre-battue-sun-370-moon-672: #ff732c;
+  --orange-terre-battue-sun-370-moon-672-hover: #ffa48b;
+  --orange-terre-battue-sun-370-moon-672-active: #ffbbab;
+  --orange-terre-battue-925-125: #382621;
+  --orange-terre-battue-925-125-hover: #664840;
+  --orange-terre-battue-925-125-active: #7f5b51;
+  --orange-terre-battue-main-645: #e4794a;
+  --orange-terre-battue-850-200: #543125;
+  --brown-cafe-creme-975-75: #211d16;
+  --brown-cafe-creme-975-75-hover: #453e31;
+  --brown-cafe-creme-975-75-active: #5a5141;
+  --brown-cafe-creme-950-100: #28241c;
+  --brown-cafe-creme-950-100-hover: #4e4739;
+  --brown-cafe-creme-950-100-active: #635b4a;
+  --brown-cafe-creme-sun-383-moon-885: #ecd7a2;
+  --brown-cafe-creme-sun-383-moon-885-hover: #c5b386;
+  --brown-cafe-creme-sun-383-moon-885-active: #af9f77;
+  --brown-cafe-creme-925-125: #2e2a21;
+  --brown-cafe-creme-925-125-hover: #554e3f;
+  --brown-cafe-creme-925-125-active: #6b6351;
+  --brown-cafe-creme-main-782: #d1b781;
+  --brown-cafe-creme-850-200: #423925;
+  --brown-caramel-975-75: #251c16;
+  --brown-caramel-975-75-hover: #4c3c31;
+  --brown-caramel-975-75-active: #624e41;
+  --brown-caramel-950-100: #2c221c;
+  --brown-caramel-950-100-hover: #554439;
+  --brown-caramel-950-100-active: #6c574a;
+  --brown-caramel-sun-425-moon-901: #fbd8ab;
+  --brown-caramel-sun-425-moon-901-hover: #efb547;
+  --brown-caramel-sun-425-moon-901-active: #d6a23e;
+  --brown-caramel-925-125: #332821;
+  --brown-caramel-925-125-hover: #5d4b40;
+  --brown-caramel-925-125-active: #755f51;
+  --brown-caramel-main-648: #c08c65;
+  --brown-caramel-850-200: #4b3525;
+  --brown-opera-975-75: #241c17;
+  --brown-opera-975-75-hover: #4a3c33;
+  --brown-opera-975-75-active: #604f44;
+  --brown-opera-950-100: #2b221c;
+  --brown-opera-950-100-hover: #53443a;
+  --brown-opera-950-100-active: #6a574a;
+  --brown-opera-sun-395-moon-820: #e6be92;
+  --brown-opera-sun-395-moon-820-hover: #f2e2d3;
+  --brown-opera-sun-395-moon-820-active: #f8f0e9;
+  --brown-opera-925-125: #322821;
+  --brown-opera-925-125-hover: #5c4b40;
+  --brown-opera-925-125-active: #735f51;
+  --brown-opera-main-680: #bd987a;
+  --brown-opera-850-200: #493625;
+  --beige-gris-galet-975-75: #211d19;
+  --beige-gris-galet-975-75-hover: #453e37;
+  --beige-gris-galet-975-75-active: #595148;
+  --beige-gris-galet-950-100: #28231f;
+  --beige-gris-galet-950-100-hover: #4e453f;
+  --beige-gris-galet-950-100-active: #635950;
+  --beige-gris-galet-sun-407-moon-821: #d0c3b7;
+  --beige-gris-galet-sun-407-moon-821-hover: #eae5e1;
+  --beige-gris-galet-sun-407-moon-821-active: #f4f2f0;
+  --beige-gris-galet-925-125: #2e2924;
+  --beige-gris-galet-925-125-hover: #554d45;
+  --beige-gris-galet-925-125-active: #6b6157;
+  --beige-gris-galet-main-702: #aea397;
+  --beige-gris-galet-850-200: #433829;
+  --scrollbar-width: 0;
+  --ground: 2000;
+  --shadow-color: rgba(0, 0, 18, 0.32);
+  --raised-shadow: 0 1px 3px var(--shadow-color);
+  --overlap-shadow: 0 2px 6px var(--shadow-color);
+  --lifted-shadow: 0 3px 9px var(--shadow-color);
+  --icon-size: 1rem;
+  --xl-size: var(--xl-base);
+  --idle: transparent;
+  --hover: var(--background-raised-grey-hover);
+  --active: var(--background-raised-grey-active);
+  --collapse: inherit;
+  --collapser: "";
+  --collapse-max-height: none;
+  --thumb-size: 1rem;
+  --progress-left: 0;
+  --progress-right: calc(var(--thumb-size) * 0.5);
+  --step-width: calc(100% / 8);
+  --equisized-width: auto;
+  --comma: " ";
+  --content: " - "attr(data-fr-error) var(--comma);
+  --stepper-size: 0.5rem;
+  --default-outer: calc((100% + var(--stepper-size)) / var(--steps));
+  --default-inner: calc(var(--default-outer) - var(--stepper-size));
+  --active-outer: calc((100% + var(--stepper-size)) / var(--current-step));
+  --active-inner: calc(var(--active-outer) - var(--stepper-size));
+  --current-step: 8;
+  --steps: 8;
+  --arrow-x: 0;
+  --tabs-height: auto;
+  --tabs-list-height: 3rem;
+  --table-offset: calc(0px);
+  --row-height: 0.125rem;
+  --brightness: calc(100% + var(--brighten) * 20%);
+  --data-uri-svg: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23666' d='M10 15.17l9.2-9.2 1.4 1.42L10 18l-6.36-6.36 1.4-1.42z'/></svg>");
+  --toggle-status-width: auto;
+  --modal-max-height: calc(100vh - 2rem);
+  --rows: 8;
+  --transcription-max-height: 9.5rem;
+  --brighten: 1;
+  --a: 0.2;
+}
+  
+@utility text-decoration {
+  @apply text-[var(--color-text-decoration)]
+}
+
+
+@utility text-spacing {
+  @apply text-[var(--color-text-spacing)]
+}
+
+
+@utility bg-default-grey {
+  @apply bg-[var(--color-background-default-grey)]
+}
+
+
+@utility bg-default-grey-hover {
+  @apply bg-[var(--color-background-default-grey-hover)]
+}
+
+
+@utility bg-default-grey-active {
+  @apply bg-[var(--color-background-default-grey-active)]
+}
+
+
+@utility bg-alt-grey {
+  @apply bg-[var(--color-background-alt-grey)]
+}
+
+
+@utility bg-alt-grey-hover {
+  @apply bg-[var(--color-background-alt-grey-hover)]
+}
+
+
+@utility bg-alt-grey-active {
+  @apply bg-[var(--color-background-alt-grey-active)]
+}
+
+
+@utility bg-alt-blue-france {
+  @apply bg-[var(--color-background-alt-blue-france)]
+}
+
+
+@utility bg-alt-blue-france-hover {
+  @apply bg-[var(--color-background-alt-blue-france-hover)]
+}
+
+
+@utility bg-alt-blue-france-active {
+  @apply bg-[var(--color-background-alt-blue-france-active)]
+}
+
+
+@utility bg-alt-red-marianne {
+  @apply bg-[var(--color-background-alt-red-marianne)]
+}
+
+
+@utility bg-alt-red-marianne-hover {
+  @apply bg-[var(--color-background-alt-red-marianne-hover)]
+}
+
+
+@utility bg-alt-red-marianne-active {
+  @apply bg-[var(--color-background-alt-red-marianne-active)]
+}
+
+
+@utility bg-alt-green-tilleul-verveine {
+  @apply bg-[var(--color-background-alt-green-tilleul-verveine)]
+}
+
+
+@utility bg-alt-green-tilleul-verveine-hover {
+  @apply bg-[var(--color-background-alt-green-tilleul-verveine-hover)]
+}
+
+
+@utility bg-alt-green-tilleul-verveine-active {
+  @apply bg-[var(--color-background-alt-green-tilleul-verveine-active)]
+}
+
+
+@utility bg-alt-green-bourgeon {
+  @apply bg-[var(--color-background-alt-green-bourgeon)]
+}
+
+
+@utility bg-alt-green-bourgeon-hover {
+  @apply bg-[var(--color-background-alt-green-bourgeon-hover)]
+}
+
+
+@utility bg-alt-green-bourgeon-active {
+  @apply bg-[var(--color-background-alt-green-bourgeon-active)]
+}
+
+
+@utility bg-alt-green-emeraude {
+  @apply bg-[var(--color-background-alt-green-emeraude)]
+}
+
+
+@utility bg-alt-green-emeraude-hover {
+  @apply bg-[var(--color-background-alt-green-emeraude-hover)]
+}
+
+
+@utility bg-alt-green-emeraude-active {
+  @apply bg-[var(--color-background-alt-green-emeraude-active)]
+}
+
+
+@utility bg-alt-green-menthe {
+  @apply bg-[var(--color-background-alt-green-menthe)]
+}
+
+
+@utility bg-alt-green-menthe-hover {
+  @apply bg-[var(--color-background-alt-green-menthe-hover)]
+}
+
+
+@utility bg-alt-green-menthe-active {
+  @apply bg-[var(--color-background-alt-green-menthe-active)]
+}
+
+
+@utility bg-alt-green-archipel {
+  @apply bg-[var(--color-background-alt-green-archipel)]
+}
+
+
+@utility bg-alt-green-archipel-hover {
+  @apply bg-[var(--color-background-alt-green-archipel-hover)]
+}
+
+
+@utility bg-alt-green-archipel-active {
+  @apply bg-[var(--color-background-alt-green-archipel-active)]
+}
+
+
+@utility bg-alt-blue-ecume {
+  @apply bg-[var(--color-background-alt-blue-ecume)]
+}
+
+
+@utility bg-alt-blue-ecume-hover {
+  @apply bg-[var(--color-background-alt-blue-ecume-hover)]
+}
+
+
+@utility bg-alt-blue-ecume-active {
+  @apply bg-[var(--color-background-alt-blue-ecume-active)]
+}
+
+
+@utility bg-alt-blue-cumulus {
+  @apply bg-[var(--color-background-alt-blue-cumulus)]
+}
+
+
+@utility bg-alt-blue-cumulus-hover {
+  @apply bg-[var(--color-background-alt-blue-cumulus-hover)]
+}
+
+
+@utility bg-alt-blue-cumulus-active {
+  @apply bg-[var(--color-background-alt-blue-cumulus-active)]
+}
+
+
+@utility bg-alt-purple-glycine {
+  @apply bg-[var(--color-background-alt-purple-glycine)]
+}
+
+
+@utility bg-alt-purple-glycine-hover {
+  @apply bg-[var(--color-background-alt-purple-glycine-hover)]
+}
+
+
+@utility bg-alt-purple-glycine-active {
+  @apply bg-[var(--color-background-alt-purple-glycine-active)]
+}
+
+
+@utility bg-alt-pink-macaron {
+  @apply bg-[var(--color-background-alt-pink-macaron)]
+}
+
+
+@utility bg-alt-pink-macaron-hover {
+  @apply bg-[var(--color-background-alt-pink-macaron-hover)]
+}
+
+
+@utility bg-alt-pink-macaron-active {
+  @apply bg-[var(--color-background-alt-pink-macaron-active)]
+}
+
+
+@utility bg-alt-pink-tuile {
+  @apply bg-[var(--color-background-alt-pink-tuile)]
+}
+
+
+@utility bg-alt-pink-tuile-hover {
+  @apply bg-[var(--color-background-alt-pink-tuile-hover)]
+}
+
+
+@utility bg-alt-pink-tuile-active {
+  @apply bg-[var(--color-background-alt-pink-tuile-active)]
+}
+
+
+@utility bg-alt-yellow-tournesol {
+  @apply bg-[var(--color-background-alt-yellow-tournesol)]
+}
+
+
+@utility bg-alt-yellow-tournesol-hover {
+  @apply bg-[var(--color-background-alt-yellow-tournesol-hover)]
+}
+
+
+@utility bg-alt-yellow-tournesol-active {
+  @apply bg-[var(--color-background-alt-yellow-tournesol-active)]
+}
+
+
+@utility bg-alt-yellow-moutarde {
+  @apply bg-[var(--color-background-alt-yellow-moutarde)]
+}
+
+
+@utility bg-alt-yellow-moutarde-hover {
+  @apply bg-[var(--color-background-alt-yellow-moutarde-hover)]
+}
+
+
+@utility bg-alt-yellow-moutarde-active {
+  @apply bg-[var(--color-background-alt-yellow-moutarde-active)]
+}
+
+
+@utility bg-alt-orange-terre-battue {
+  @apply bg-[var(--color-background-alt-orange-terre-battue)]
+}
+
+
+@utility bg-alt-orange-terre-battue-hover {
+  @apply bg-[var(--color-background-alt-orange-terre-battue-hover)]
+}
+
+
+@utility bg-alt-orange-terre-battue-active {
+  @apply bg-[var(--color-background-alt-orange-terre-battue-active)]
+}
+
+
+@utility bg-alt-brown-cafe-creme {
+  @apply bg-[var(--color-background-alt-brown-cafe-creme)]
+}
+
+
+@utility bg-alt-brown-cafe-creme-hover {
+  @apply bg-[var(--color-background-alt-brown-cafe-creme-hover)]
+}
+
+
+@utility bg-alt-brown-cafe-creme-active {
+  @apply bg-[var(--color-background-alt-brown-cafe-creme-active)]
+}
+
+
+@utility bg-alt-brown-caramel {
+  @apply bg-[var(--color-background-alt-brown-caramel)]
+}
+
+
+@utility bg-alt-brown-caramel-hover {
+  @apply bg-[var(--color-background-alt-brown-caramel-hover)]
+}
+
+
+@utility bg-alt-brown-caramel-active {
+  @apply bg-[var(--color-background-alt-brown-caramel-active)]
+}
+
+
+@utility bg-alt-brown-opera {
+  @apply bg-[var(--color-background-alt-brown-opera)]
+}
+
+
+@utility bg-alt-brown-opera-hover {
+  @apply bg-[var(--color-background-alt-brown-opera-hover)]
+}
+
+
+@utility bg-alt-brown-opera-active {
+  @apply bg-[var(--color-background-alt-brown-opera-active)]
+}
+
+
+@utility bg-alt-beige-gris-galet {
+  @apply bg-[var(--color-background-alt-beige-gris-galet)]
+}
+
+
+@utility bg-alt-beige-gris-galet-hover {
+  @apply bg-[var(--color-background-alt-beige-gris-galet-hover)]
+}
+
+
+@utility bg-alt-beige-gris-galet-active {
+  @apply bg-[var(--color-background-alt-beige-gris-galet-active)]
+}
+
+
+@utility bg-contrast-grey {
+  @apply bg-[var(--color-background-contrast-grey)]
+}
+
+
+@utility bg-contrast-grey-hover {
+  @apply bg-[var(--color-background-contrast-grey-hover)]
+}
+
+
+@utility bg-contrast-grey-active {
+  @apply bg-[var(--color-background-contrast-grey-active)]
+}
+
+
+@utility bg-contrast-blue-france {
+  @apply bg-[var(--color-background-contrast-blue-france)]
+}
+
+
+@utility bg-contrast-blue-france-hover {
+  @apply bg-[var(--color-background-contrast-blue-france-hover)]
+}
+
+
+@utility bg-contrast-blue-france-active {
+  @apply bg-[var(--color-background-contrast-blue-france-active)]
+}
+
+
+@utility bg-contrast-red-marianne {
+  @apply bg-[var(--color-background-contrast-red-marianne)]
+}
+
+
+@utility bg-contrast-red-marianne-hover {
+  @apply bg-[var(--color-background-contrast-red-marianne-hover)]
+}
+
+
+@utility bg-contrast-red-marianne-active {
+  @apply bg-[var(--color-background-contrast-red-marianne-active)]
+}
+
+
+@utility bg-contrast-green-tilleul-verveine {
+  @apply bg-[var(--color-background-contrast-green-tilleul-verveine)]
+}
+
+
+@utility bg-contrast-green-tilleul-verveine-hover {
+  @apply bg-[var(--color-background-contrast-green-tilleul-verveine-hover)]
+}
+
+
+@utility bg-contrast-green-tilleul-verveine-active {
+  @apply bg-[var(--color-background-contrast-green-tilleul-verveine-active)]
+}
+
+
+@utility bg-contrast-green-bourgeon {
+  @apply bg-[var(--color-background-contrast-green-bourgeon)]
+}
+
+
+@utility bg-contrast-green-bourgeon-hover {
+  @apply bg-[var(--color-background-contrast-green-bourgeon-hover)]
+}
+
+
+@utility bg-contrast-green-bourgeon-active {
+  @apply bg-[var(--color-background-contrast-green-bourgeon-active)]
+}
+
+
+@utility bg-contrast-green-emeraude {
+  @apply bg-[var(--color-background-contrast-green-emeraude)]
+}
+
+
+@utility bg-contrast-green-emeraude-hover {
+  @apply bg-[var(--color-background-contrast-green-emeraude-hover)]
+}
+
+
+@utility bg-contrast-green-emeraude-active {
+  @apply bg-[var(--color-background-contrast-green-emeraude-active)]
+}
+
+
+@utility bg-contrast-green-menthe {
+  @apply bg-[var(--color-background-contrast-green-menthe)]
+}
+
+
+@utility bg-contrast-green-menthe-hover {
+  @apply bg-[var(--color-background-contrast-green-menthe-hover)]
+}
+
+
+@utility bg-contrast-green-menthe-active {
+  @apply bg-[var(--color-background-contrast-green-menthe-active)]
+}
+
+
+@utility bg-contrast-green-archipel {
+  @apply bg-[var(--color-background-contrast-green-archipel)]
+}
+
+
+@utility bg-contrast-green-archipel-hover {
+  @apply bg-[var(--color-background-contrast-green-archipel-hover)]
+}
+
+
+@utility bg-contrast-green-archipel-active {
+  @apply bg-[var(--color-background-contrast-green-archipel-active)]
+}
+
+
+@utility bg-contrast-blue-ecume {
+  @apply bg-[var(--color-background-contrast-blue-ecume)]
+}
+
+
+@utility bg-contrast-blue-ecume-hover {
+  @apply bg-[var(--color-background-contrast-blue-ecume-hover)]
+}
+
+
+@utility bg-contrast-blue-ecume-active {
+  @apply bg-[var(--color-background-contrast-blue-ecume-active)]
+}
+
+
+@utility bg-contrast-blue-cumulus {
+  @apply bg-[var(--color-background-contrast-blue-cumulus)]
+}
+
+
+@utility bg-contrast-blue-cumulus-hover {
+  @apply bg-[var(--color-background-contrast-blue-cumulus-hover)]
+}
+
+
+@utility bg-contrast-blue-cumulus-active {
+  @apply bg-[var(--color-background-contrast-blue-cumulus-active)]
+}
+
+
+@utility bg-contrast-purple-glycine {
+  @apply bg-[var(--color-background-contrast-purple-glycine)]
+}
+
+
+@utility bg-contrast-purple-glycine-hover {
+  @apply bg-[var(--color-background-contrast-purple-glycine-hover)]
+}
+
+
+@utility bg-contrast-purple-glycine-active {
+  @apply bg-[var(--color-background-contrast-purple-glycine-active)]
+}
+
+
+@utility bg-contrast-pink-macaron {
+  @apply bg-[var(--color-background-contrast-pink-macaron)]
+}
+
+
+@utility bg-contrast-pink-macaron-hover {
+  @apply bg-[var(--color-background-contrast-pink-macaron-hover)]
+}
+
+
+@utility bg-contrast-pink-macaron-active {
+  @apply bg-[var(--color-background-contrast-pink-macaron-active)]
+}
+
+
+@utility bg-contrast-pink-tuile {
+  @apply bg-[var(--color-background-contrast-pink-tuile)]
+}
+
+
+@utility bg-contrast-pink-tuile-hover {
+  @apply bg-[var(--color-background-contrast-pink-tuile-hover)]
+}
+
+
+@utility bg-contrast-pink-tuile-active {
+  @apply bg-[var(--color-background-contrast-pink-tuile-active)]
+}
+
+
+@utility bg-contrast-yellow-tournesol {
+  @apply bg-[var(--color-background-contrast-yellow-tournesol)]
+}
+
+
+@utility bg-contrast-yellow-tournesol-hover {
+  @apply bg-[var(--color-background-contrast-yellow-tournesol-hover)]
+}
+
+
+@utility bg-contrast-yellow-tournesol-active {
+  @apply bg-[var(--color-background-contrast-yellow-tournesol-active)]
+}
+
+
+@utility bg-contrast-yellow-moutarde {
+  @apply bg-[var(--color-background-contrast-yellow-moutarde)]
+}
+
+
+@utility bg-contrast-yellow-moutarde-hover {
+  @apply bg-[var(--color-background-contrast-yellow-moutarde-hover)]
+}
+
+
+@utility bg-contrast-yellow-moutarde-active {
+  @apply bg-[var(--color-background-contrast-yellow-moutarde-active)]
+}
+
+
+@utility bg-contrast-orange-terre-battue {
+  @apply bg-[var(--color-background-contrast-orange-terre-battue)]
+}
+
+
+@utility bg-contrast-orange-terre-battue-hover {
+  @apply bg-[var(--color-background-contrast-orange-terre-battue-hover)]
+}
+
+
+@utility bg-contrast-orange-terre-battue-active {
+  @apply bg-[var(--color-background-contrast-orange-terre-battue-active)]
+}
+
+
+@utility bg-contrast-brown-cafe-creme {
+  @apply bg-[var(--color-background-contrast-brown-cafe-creme)]
+}
+
+
+@utility bg-contrast-brown-cafe-creme-hover {
+  @apply bg-[var(--color-background-contrast-brown-cafe-creme-hover)]
+}
+
+
+@utility bg-contrast-brown-cafe-creme-active {
+  @apply bg-[var(--color-background-contrast-brown-cafe-creme-active)]
+}
+
+
+@utility bg-contrast-brown-caramel {
+  @apply bg-[var(--color-background-contrast-brown-caramel)]
+}
+
+
+@utility bg-contrast-brown-caramel-hover {
+  @apply bg-[var(--color-background-contrast-brown-caramel-hover)]
+}
+
+
+@utility bg-contrast-brown-caramel-active {
+  @apply bg-[var(--color-background-contrast-brown-caramel-active)]
+}
+
+
+@utility bg-contrast-brown-opera {
+  @apply bg-[var(--color-background-contrast-brown-opera)]
+}
+
+
+@utility bg-contrast-brown-opera-hover {
+  @apply bg-[var(--color-background-contrast-brown-opera-hover)]
+}
+
+
+@utility bg-contrast-brown-opera-active {
+  @apply bg-[var(--color-background-contrast-brown-opera-active)]
+}
+
+
+@utility bg-contrast-beige-gris-galet {
+  @apply bg-[var(--color-background-contrast-beige-gris-galet)]
+}
+
+
+@utility bg-contrast-beige-gris-galet-hover {
+  @apply bg-[var(--color-background-contrast-beige-gris-galet-hover)]
+}
+
+
+@utility bg-contrast-beige-gris-galet-active {
+  @apply bg-[var(--color-background-contrast-beige-gris-galet-active)]
+}
+
+
+@utility bg-contrast-info {
+  @apply bg-[var(--color-background-contrast-info)]
+}
+
+
+@utility bg-contrast-info-hover {
+  @apply bg-[var(--color-background-contrast-info-hover)]
+}
+
+
+@utility bg-contrast-info-active {
+  @apply bg-[var(--color-background-contrast-info-active)]
+}
+
+
+@utility bg-contrast-success {
+  @apply bg-[var(--color-background-contrast-success)]
+}
+
+
+@utility bg-contrast-success-hover {
+  @apply bg-[var(--color-background-contrast-success-hover)]
+}
+
+
+@utility bg-contrast-success-active {
+  @apply bg-[var(--color-background-contrast-success-active)]
+}
+
+
+@utility bg-contrast-warning {
+  @apply bg-[var(--color-background-contrast-warning)]
+}
+
+
+@utility bg-contrast-warning-hover {
+  @apply bg-[var(--color-background-contrast-warning-hover)]
+}
+
+
+@utility bg-contrast-warning-active {
+  @apply bg-[var(--color-background-contrast-warning-active)]
+}
+
+
+@utility bg-contrast-error {
+  @apply bg-[var(--color-background-contrast-error)]
+}
+
+
+@utility bg-contrast-error-hover {
+  @apply bg-[var(--color-background-contrast-error-hover)]
+}
+
+
+@utility bg-contrast-error-active {
+  @apply bg-[var(--color-background-contrast-error-active)]
+}
+
+
+@utility bg-flat-grey {
+  @apply bg-[var(--color-background-flat-grey)]
+}
+
+
+@utility bg-flat-blue-france {
+  @apply bg-[var(--color-background-flat-blue-france)]
+}
+
+
+@utility bg-flat-red-marianne {
+  @apply bg-[var(--color-background-flat-red-marianne)]
+}
+
+
+@utility bg-flat-green-tilleul-verveine {
+  @apply bg-[var(--color-background-flat-green-tilleul-verveine)]
+}
+
+
+@utility bg-flat-green-bourgeon {
+  @apply bg-[var(--color-background-flat-green-bourgeon)]
+}
+
+
+@utility bg-flat-green-emeraude {
+  @apply bg-[var(--color-background-flat-green-emeraude)]
+}
+
+
+@utility bg-flat-green-menthe {
+  @apply bg-[var(--color-background-flat-green-menthe)]
+}
+
+
+@utility bg-flat-green-archipel {
+  @apply bg-[var(--color-background-flat-green-archipel)]
+}
+
+
+@utility bg-flat-blue-ecume {
+  @apply bg-[var(--color-background-flat-blue-ecume)]
+}
+
+
+@utility bg-flat-blue-cumulus {
+  @apply bg-[var(--color-background-flat-blue-cumulus)]
+}
+
+
+@utility bg-flat-purple-glycine {
+  @apply bg-[var(--color-background-flat-purple-glycine)]
+}
+
+
+@utility bg-flat-pink-macaron {
+  @apply bg-[var(--color-background-flat-pink-macaron)]
+}
+
+
+@utility bg-flat-pink-tuile {
+  @apply bg-[var(--color-background-flat-pink-tuile)]
+}
+
+
+@utility bg-flat-yellow-tournesol {
+  @apply bg-[var(--color-background-flat-yellow-tournesol)]
+}
+
+
+@utility bg-flat-yellow-moutarde {
+  @apply bg-[var(--color-background-flat-yellow-moutarde)]
+}
+
+
+@utility bg-flat-orange-terre-battue {
+  @apply bg-[var(--color-background-flat-orange-terre-battue)]
+}
+
+
+@utility bg-flat-brown-cafe-creme {
+  @apply bg-[var(--color-background-flat-brown-cafe-creme)]
+}
+
+
+@utility bg-flat-brown-caramel {
+  @apply bg-[var(--color-background-flat-brown-caramel)]
+}
+
+
+@utility bg-flat-brown-opera {
+  @apply bg-[var(--color-background-flat-brown-opera)]
+}
+
+
+@utility bg-flat-beige-gris-galet {
+  @apply bg-[var(--color-background-flat-beige-gris-galet)]
+}
+
+
+@utility bg-flat-info {
+  @apply bg-[var(--color-background-flat-info)]
+}
+
+
+@utility bg-flat-success {
+  @apply bg-[var(--color-background-flat-success)]
+}
+
+
+@utility bg-flat-warning {
+  @apply bg-[var(--color-background-flat-warning)]
+}
+
+
+@utility bg-flat-error {
+  @apply bg-[var(--color-background-flat-error)]
+}
+
+
+@utility bg-action-high-grey {
+  @apply bg-[var(--color-background-action-high-grey)]
+}
+
+
+@utility bg-action-high-grey-hover {
+  @apply bg-[var(--color-background-action-high-grey-hover)]
+}
+
+
+@utility bg-action-high-grey-active {
+  @apply bg-[var(--color-background-action-high-grey-active)]
+}
+
+
+@utility bg-action-high-blue-france {
+  @apply bg-[var(--color-background-action-high-blue-france)]
+}
+
+
+@utility bg-action-high-blue-france-hover {
+  @apply bg-[var(--color-background-action-high-blue-france-hover)]
+}
+
+
+@utility bg-action-high-blue-france-active {
+  @apply bg-[var(--color-background-action-high-blue-france-active)]
+}
+
+
+@utility bg-action-high-red-marianne {
+  @apply bg-[var(--color-background-action-high-red-marianne)]
+}
+
+
+@utility bg-action-high-red-marianne-hover {
+  @apply bg-[var(--color-background-action-high-red-marianne-hover)]
+}
+
+
+@utility bg-action-high-red-marianne-active {
+  @apply bg-[var(--color-background-action-high-red-marianne-active)]
+}
+
+
+@utility bg-action-high-green-tilleul-verveine {
+  @apply bg-[var(--color-background-action-high-green-tilleul-verveine)]
+}
+
+
+@utility bg-action-high-green-tilleul-verveine-hover {
+  @apply bg-[var(--color-background-action-high-green-tilleul-verveine-hover)]
+}
+
+
+@utility bg-action-high-green-tilleul-verveine-active {
+  @apply bg-[var(--color-background-action-high-green-tilleul-verveine-active)]
+}
+
+
+@utility bg-action-high-green-bourgeon {
+  @apply bg-[var(--color-background-action-high-green-bourgeon)]
+}
+
+
+@utility bg-action-high-green-bourgeon-hover {
+  @apply bg-[var(--color-background-action-high-green-bourgeon-hover)]
+}
+
+
+@utility bg-action-high-green-bourgeon-active {
+  @apply bg-[var(--color-background-action-high-green-bourgeon-active)]
+}
+
+
+@utility bg-action-high-green-emeraude {
+  @apply bg-[var(--color-background-action-high-green-emeraude)]
+}
+
+
+@utility bg-action-high-green-emeraude-hover {
+  @apply bg-[var(--color-background-action-high-green-emeraude-hover)]
+}
+
+
+@utility bg-action-high-green-emeraude-active {
+  @apply bg-[var(--color-background-action-high-green-emeraude-active)]
+}
+
+
+@utility bg-action-high-green-menthe {
+  @apply bg-[var(--color-background-action-high-green-menthe)]
+}
+
+
+@utility bg-action-high-green-menthe-hover {
+  @apply bg-[var(--color-background-action-high-green-menthe-hover)]
+}
+
+
+@utility bg-action-high-green-menthe-active {
+  @apply bg-[var(--color-background-action-high-green-menthe-active)]
+}
+
+
+@utility bg-action-high-green-archipel {
+  @apply bg-[var(--color-background-action-high-green-archipel)]
+}
+
+
+@utility bg-action-high-green-archipel-hover {
+  @apply bg-[var(--color-background-action-high-green-archipel-hover)]
+}
+
+
+@utility bg-action-high-green-archipel-active {
+  @apply bg-[var(--color-background-action-high-green-archipel-active)]
+}
+
+
+@utility bg-action-high-blue-ecume {
+  @apply bg-[var(--color-background-action-high-blue-ecume)]
+}
+
+
+@utility bg-action-high-blue-ecume-hover {
+  @apply bg-[var(--color-background-action-high-blue-ecume-hover)]
+}
+
+
+@utility bg-action-high-blue-ecume-active {
+  @apply bg-[var(--color-background-action-high-blue-ecume-active)]
+}
+
+
+@utility bg-action-high-blue-cumulus {
+  @apply bg-[var(--color-background-action-high-blue-cumulus)]
+}
+
+
+@utility bg-action-high-blue-cumulus-hover {
+  @apply bg-[var(--color-background-action-high-blue-cumulus-hover)]
+}
+
+
+@utility bg-action-high-blue-cumulus-active {
+  @apply bg-[var(--color-background-action-high-blue-cumulus-active)]
+}
+
+
+@utility bg-action-high-purple-glycine {
+  @apply bg-[var(--color-background-action-high-purple-glycine)]
+}
+
+
+@utility bg-action-high-purple-glycine-hover {
+  @apply bg-[var(--color-background-action-high-purple-glycine-hover)]
+}
+
+
+@utility bg-action-high-purple-glycine-active {
+  @apply bg-[var(--color-background-action-high-purple-glycine-active)]
+}
+
+
+@utility bg-action-high-pink-macaron {
+  @apply bg-[var(--color-background-action-high-pink-macaron)]
+}
+
+
+@utility bg-action-high-pink-macaron-hover {
+  @apply bg-[var(--color-background-action-high-pink-macaron-hover)]
+}
+
+
+@utility bg-action-high-pink-macaron-active {
+  @apply bg-[var(--color-background-action-high-pink-macaron-active)]
+}
+
+
+@utility bg-action-high-pink-tuile {
+  @apply bg-[var(--color-background-action-high-pink-tuile)]
+}
+
+
+@utility bg-action-high-pink-tuile-hover {
+  @apply bg-[var(--color-background-action-high-pink-tuile-hover)]
+}
+
+
+@utility bg-action-high-pink-tuile-active {
+  @apply bg-[var(--color-background-action-high-pink-tuile-active)]
+}
+
+
+@utility bg-action-high-yellow-tournesol {
+  @apply bg-[var(--color-background-action-high-yellow-tournesol)]
+}
+
+
+@utility bg-action-high-yellow-tournesol-hover {
+  @apply bg-[var(--color-background-action-high-yellow-tournesol-hover)]
+}
+
+
+@utility bg-action-high-yellow-tournesol-active {
+  @apply bg-[var(--color-background-action-high-yellow-tournesol-active)]
+}
+
+
+@utility bg-action-high-yellow-moutarde {
+  @apply bg-[var(--color-background-action-high-yellow-moutarde)]
+}
+
+
+@utility bg-action-high-yellow-moutarde-hover {
+  @apply bg-[var(--color-background-action-high-yellow-moutarde-hover)]
+}
+
+
+@utility bg-action-high-yellow-moutarde-active {
+  @apply bg-[var(--color-background-action-high-yellow-moutarde-active)]
+}
+
+
+@utility bg-action-high-orange-terre-battue {
+  @apply bg-[var(--color-background-action-high-orange-terre-battue)]
+}
+
+
+@utility bg-action-high-orange-terre-battue-hover {
+  @apply bg-[var(--color-background-action-high-orange-terre-battue-hover)]
+}
+
+
+@utility bg-action-high-orange-terre-battue-active {
+  @apply bg-[var(--color-background-action-high-orange-terre-battue-active)]
+}
+
+
+@utility bg-action-high-brown-cafe-creme {
+  @apply bg-[var(--color-background-action-high-brown-cafe-creme)]
+}
+
+
+@utility bg-action-high-brown-cafe-creme-hover {
+  @apply bg-[var(--color-background-action-high-brown-cafe-creme-hover)]
+}
+
+
+@utility bg-action-high-brown-cafe-creme-active {
+  @apply bg-[var(--color-background-action-high-brown-cafe-creme-active)]
+}
+
+
+@utility bg-action-high-brown-caramel {
+  @apply bg-[var(--color-background-action-high-brown-caramel)]
+}
+
+
+@utility bg-action-high-brown-caramel-hover {
+  @apply bg-[var(--color-background-action-high-brown-caramel-hover)]
+}
+
+
+@utility bg-action-high-brown-caramel-active {
+  @apply bg-[var(--color-background-action-high-brown-caramel-active)]
+}
+
+
+@utility bg-action-high-brown-opera {
+  @apply bg-[var(--color-background-action-high-brown-opera)]
+}
+
+
+@utility bg-action-high-brown-opera-hover {
+  @apply bg-[var(--color-background-action-high-brown-opera-hover)]
+}
+
+
+@utility bg-action-high-brown-opera-active {
+  @apply bg-[var(--color-background-action-high-brown-opera-active)]
+}
+
+
+@utility bg-action-high-beige-gris-galet {
+  @apply bg-[var(--color-background-action-high-beige-gris-galet)]
+}
+
+
+@utility bg-action-high-beige-gris-galet-hover {
+  @apply bg-[var(--color-background-action-high-beige-gris-galet-hover)]
+}
+
+
+@utility bg-action-high-beige-gris-galet-active {
+  @apply bg-[var(--color-background-action-high-beige-gris-galet-active)]
+}
+
+
+@utility bg-action-high-info {
+  @apply bg-[var(--color-background-action-high-info)]
+}
+
+
+@utility bg-action-high-info-hover {
+  @apply bg-[var(--color-background-action-high-info-hover)]
+}
+
+
+@utility bg-action-high-info-active {
+  @apply bg-[var(--color-background-action-high-info-active)]
+}
+
+
+@utility bg-action-high-success {
+  @apply bg-[var(--color-background-action-high-success)]
+}
+
+
+@utility bg-action-high-success-hover {
+  @apply bg-[var(--color-background-action-high-success-hover)]
+}
+
+
+@utility bg-action-high-success-active {
+  @apply bg-[var(--color-background-action-high-success-active)]
+}
+
+
+@utility bg-action-high-warning {
+  @apply bg-[var(--color-background-action-high-warning)]
+}
+
+
+@utility bg-action-high-warning-hover {
+  @apply bg-[var(--color-background-action-high-warning-hover)]
+}
+
+
+@utility bg-action-high-warning-active {
+  @apply bg-[var(--color-background-action-high-warning-active)]
+}
+
+
+@utility bg-action-high-error {
+  @apply bg-[var(--color-background-action-high-error)]
+}
+
+
+@utility bg-action-high-error-hover {
+  @apply bg-[var(--color-background-action-high-error-hover)]
+}
+
+
+@utility bg-action-high-error-active {
+  @apply bg-[var(--color-background-action-high-error-active)]
+}
+
+
+@utility bg-action-low-blue-france {
+  @apply bg-[var(--color-background-action-low-blue-france)]
+}
+
+
+@utility bg-action-low-blue-france-hover {
+  @apply bg-[var(--color-background-action-low-blue-france-hover)]
+}
+
+
+@utility bg-action-low-blue-france-active {
+  @apply bg-[var(--color-background-action-low-blue-france-active)]
+}
+
+
+@utility bg-action-low-red-marianne {
+  @apply bg-[var(--color-background-action-low-red-marianne)]
+}
+
+
+@utility bg-action-low-red-marianne-hover {
+  @apply bg-[var(--color-background-action-low-red-marianne-hover)]
+}
+
+
+@utility bg-action-low-red-marianne-active {
+  @apply bg-[var(--color-background-action-low-red-marianne-active)]
+}
+
+
+@utility bg-action-low-green-tilleul-verveine {
+  @apply bg-[var(--color-background-action-low-green-tilleul-verveine)]
+}
+
+
+@utility bg-action-low-green-tilleul-verveine-hover {
+  @apply bg-[var(--color-background-action-low-green-tilleul-verveine-hover)]
+}
+
+
+@utility bg-action-low-green-tilleul-verveine-active {
+  @apply bg-[var(--color-background-action-low-green-tilleul-verveine-active)]
+}
+
+
+@utility bg-action-low-green-bourgeon {
+  @apply bg-[var(--color-background-action-low-green-bourgeon)]
+}
+
+
+@utility bg-action-low-green-bourgeon-hover {
+  @apply bg-[var(--color-background-action-low-green-bourgeon-hover)]
+}
+
+
+@utility bg-action-low-green-bourgeon-active {
+  @apply bg-[var(--color-background-action-low-green-bourgeon-active)]
+}
+
+
+@utility bg-action-low-green-emeraude {
+  @apply bg-[var(--color-background-action-low-green-emeraude)]
+}
+
+
+@utility bg-action-low-green-emeraude-hover {
+  @apply bg-[var(--color-background-action-low-green-emeraude-hover)]
+}
+
+
+@utility bg-action-low-green-emeraude-active {
+  @apply bg-[var(--color-background-action-low-green-emeraude-active)]
+}
+
+
+@utility bg-action-low-green-menthe {
+  @apply bg-[var(--color-background-action-low-green-menthe)]
+}
+
+
+@utility bg-action-low-green-menthe-hover {
+  @apply bg-[var(--color-background-action-low-green-menthe-hover)]
+}
+
+
+@utility bg-action-low-green-menthe-active {
+  @apply bg-[var(--color-background-action-low-green-menthe-active)]
+}
+
+
+@utility bg-action-low-green-archipel {
+  @apply bg-[var(--color-background-action-low-green-archipel)]
+}
+
+
+@utility bg-action-low-green-archipel-hover {
+  @apply bg-[var(--color-background-action-low-green-archipel-hover)]
+}
+
+
+@utility bg-action-low-green-archipel-active {
+  @apply bg-[var(--color-background-action-low-green-archipel-active)]
+}
+
+
+@utility bg-action-low-blue-ecume {
+  @apply bg-[var(--color-background-action-low-blue-ecume)]
+}
+
+
+@utility bg-action-low-blue-ecume-hover {
+  @apply bg-[var(--color-background-action-low-blue-ecume-hover)]
+}
+
+
+@utility bg-action-low-blue-ecume-active {
+  @apply bg-[var(--color-background-action-low-blue-ecume-active)]
+}
+
+
+@utility bg-action-low-blue-cumulus {
+  @apply bg-[var(--color-background-action-low-blue-cumulus)]
+}
+
+
+@utility bg-action-low-blue-cumulus-hover {
+  @apply bg-[var(--color-background-action-low-blue-cumulus-hover)]
+}
+
+
+@utility bg-action-low-blue-cumulus-active {
+  @apply bg-[var(--color-background-action-low-blue-cumulus-active)]
+}
+
+
+@utility bg-action-low-purple-glycine {
+  @apply bg-[var(--color-background-action-low-purple-glycine)]
+}
+
+
+@utility bg-action-low-purple-glycine-hover {
+  @apply bg-[var(--color-background-action-low-purple-glycine-hover)]
+}
+
+
+@utility bg-action-low-purple-glycine-active {
+  @apply bg-[var(--color-background-action-low-purple-glycine-active)]
+}
+
+
+@utility bg-action-low-pink-macaron {
+  @apply bg-[var(--color-background-action-low-pink-macaron)]
+}
+
+
+@utility bg-action-low-pink-macaron-hover {
+  @apply bg-[var(--color-background-action-low-pink-macaron-hover)]
+}
+
+
+@utility bg-action-low-pink-macaron-active {
+  @apply bg-[var(--color-background-action-low-pink-macaron-active)]
+}
+
+
+@utility bg-action-low-pink-tuile {
+  @apply bg-[var(--color-background-action-low-pink-tuile)]
+}
+
+
+@utility bg-action-low-pink-tuile-hover {
+  @apply bg-[var(--color-background-action-low-pink-tuile-hover)]
+}
+
+
+@utility bg-action-low-pink-tuile-active {
+  @apply bg-[var(--color-background-action-low-pink-tuile-active)]
+}
+
+
+@utility bg-action-low-yellow-tournesol {
+  @apply bg-[var(--color-background-action-low-yellow-tournesol)]
+}
+
+
+@utility bg-action-low-yellow-tournesol-hover {
+  @apply bg-[var(--color-background-action-low-yellow-tournesol-hover)]
+}
+
+
+@utility bg-action-low-yellow-tournesol-active {
+  @apply bg-[var(--color-background-action-low-yellow-tournesol-active)]
+}
+
+
+@utility bg-action-low-yellow-moutarde {
+  @apply bg-[var(--color-background-action-low-yellow-moutarde)]
+}
+
+
+@utility bg-action-low-yellow-moutarde-hover {
+  @apply bg-[var(--color-background-action-low-yellow-moutarde-hover)]
+}
+
+
+@utility bg-action-low-yellow-moutarde-active {
+  @apply bg-[var(--color-background-action-low-yellow-moutarde-active)]
+}
+
+
+@utility bg-action-low-orange-terre-battue {
+  @apply bg-[var(--color-background-action-low-orange-terre-battue)]
+}
+
+
+@utility bg-action-low-orange-terre-battue-hover {
+  @apply bg-[var(--color-background-action-low-orange-terre-battue-hover)]
+}
+
+
+@utility bg-action-low-orange-terre-battue-active {
+  @apply bg-[var(--color-background-action-low-orange-terre-battue-active)]
+}
+
+
+@utility bg-action-low-brown-cafe-creme {
+  @apply bg-[var(--color-background-action-low-brown-cafe-creme)]
+}
+
+
+@utility bg-action-low-brown-cafe-creme-hover {
+  @apply bg-[var(--color-background-action-low-brown-cafe-creme-hover)]
+}
+
+
+@utility bg-action-low-brown-cafe-creme-active {
+  @apply bg-[var(--color-background-action-low-brown-cafe-creme-active)]
+}
+
+
+@utility bg-action-low-brown-caramel {
+  @apply bg-[var(--color-background-action-low-brown-caramel)]
+}
+
+
+@utility bg-action-low-brown-caramel-hover {
+  @apply bg-[var(--color-background-action-low-brown-caramel-hover)]
+}
+
+
+@utility bg-action-low-brown-caramel-active {
+  @apply bg-[var(--color-background-action-low-brown-caramel-active)]
+}
+
+
+@utility bg-action-low-brown-opera {
+  @apply bg-[var(--color-background-action-low-brown-opera)]
+}
+
+
+@utility bg-action-low-brown-opera-hover {
+  @apply bg-[var(--color-background-action-low-brown-opera-hover)]
+}
+
+
+@utility bg-action-low-brown-opera-active {
+  @apply bg-[var(--color-background-action-low-brown-opera-active)]
+}
+
+
+@utility bg-action-low-beige-gris-galet {
+  @apply bg-[var(--color-background-action-low-beige-gris-galet)]
+}
+
+
+@utility bg-action-low-beige-gris-galet-hover {
+  @apply bg-[var(--color-background-action-low-beige-gris-galet-hover)]
+}
+
+
+@utility bg-action-low-beige-gris-galet-active {
+  @apply bg-[var(--color-background-action-low-beige-gris-galet-active)]
+}
+
+
+@utility bg-active-blue-france {
+  @apply bg-[var(--color-background-active-blue-france)]
+}
+
+
+@utility bg-active-blue-france-hover {
+  @apply bg-[var(--color-background-active-blue-france-hover)]
+}
+
+
+@utility bg-active-blue-france-active {
+  @apply bg-[var(--color-background-active-blue-france-active)]
+}
+
+
+@utility bg-active-red-marianne {
+  @apply bg-[var(--color-background-active-red-marianne)]
+}
+
+
+@utility bg-active-red-marianne-hover {
+  @apply bg-[var(--color-background-active-red-marianne-hover)]
+}
+
+
+@utility bg-active-red-marianne-active {
+  @apply bg-[var(--color-background-active-red-marianne-active)]
+}
+
+
+@utility bg-open-blue-france {
+  @apply bg-[var(--color-background-open-blue-france)]
+}
+
+
+@utility bg-open-blue-france-hover {
+  @apply bg-[var(--color-background-open-blue-france-hover)]
+}
+
+
+@utility bg-open-blue-france-active {
+  @apply bg-[var(--color-background-open-blue-france-active)]
+}
+
+
+@utility bg-open-red-marianne {
+  @apply bg-[var(--color-background-open-red-marianne)]
+}
+
+
+@utility bg-open-red-marianne-hover {
+  @apply bg-[var(--color-background-open-red-marianne-hover)]
+}
+
+
+@utility bg-open-red-marianne-active {
+  @apply bg-[var(--color-background-open-red-marianne-active)]
+}
+
+
+@utility bg-disabled-grey {
+  @apply bg-[var(--color-background-disabled-grey)]
+}
+
+
+@utility bg-raised-grey {
+  @apply bg-[var(--color-background-raised-grey)]
+}
+
+
+@utility bg-raised-grey-hover {
+  @apply bg-[var(--color-background-raised-grey-hover)]
+}
+
+
+@utility bg-raised-grey-active {
+  @apply bg-[var(--color-background-raised-grey-active)]
+}
+
+
+@utility bg-overlap-grey {
+  @apply bg-[var(--color-background-overlap-grey)]
+}
+
+
+@utility bg-overlap-grey-hover {
+  @apply bg-[var(--color-background-overlap-grey-hover)]
+}
+
+
+@utility bg-overlap-grey-active {
+  @apply bg-[var(--color-background-overlap-grey-active)]
+}
+
+
+@utility bg-lifted-grey {
+  @apply bg-[var(--color-background-lifted-grey)]
+}
+
+
+@utility bg-lifted-grey-hover {
+  @apply bg-[var(--color-background-lifted-grey-hover)]
+}
+
+
+@utility bg-lifted-grey-active {
+  @apply bg-[var(--color-background-lifted-grey-active)]
+}
+
+
+@utility bg-alt-raised-grey {
+  @apply bg-[var(--color-background-alt-raised-grey)]
+}
+
+
+@utility bg-alt-raised-grey-hover {
+  @apply bg-[var(--color-background-alt-raised-grey-hover)]
+}
+
+
+@utility bg-alt-raised-grey-active {
+  @apply bg-[var(--color-background-alt-raised-grey-active)]
+}
+
+
+@utility bg-alt-overlap-grey {
+  @apply bg-[var(--color-background-alt-overlap-grey)]
+}
+
+
+@utility bg-alt-overlap-grey-hover {
+  @apply bg-[var(--color-background-alt-overlap-grey-hover)]
+}
+
+
+@utility bg-alt-overlap-grey-active {
+  @apply bg-[var(--color-background-alt-overlap-grey-active)]
+}
+
+
+@utility bg-contrast-raised-grey {
+  @apply bg-[var(--color-background-contrast-raised-grey)]
+}
+
+
+@utility bg-contrast-raised-grey-hover {
+  @apply bg-[var(--color-background-contrast-raised-grey-hover)]
+}
+
+
+@utility bg-contrast-raised-grey-active {
+  @apply bg-[var(--color-background-contrast-raised-grey-active)]
+}
+
+
+@utility bg-contrast-overlap-grey {
+  @apply bg-[var(--color-background-contrast-overlap-grey)]
+}
+
+
+@utility bg-contrast-overlap-grey-hover {
+  @apply bg-[var(--color-background-contrast-overlap-grey-hover)]
+}
+
+
+@utility bg-contrast-overlap-grey-active {
+  @apply bg-[var(--color-background-contrast-overlap-grey-active)]
+}
+
+
+@utility text-default-grey {
+  @apply text-[var(--color-text-default-grey)]
+}
+
+
+@utility text-default-info {
+  @apply text-[var(--color-text-default-info)]
+}
+
+
+@utility text-default-success {
+  @apply text-[var(--color-text-default-success)]
+}
+
+
+@utility text-default-warning {
+  @apply text-[var(--color-text-default-warning)]
+}
+
+
+@utility text-default-error {
+  @apply text-[var(--color-text-default-error)]
+}
+
+
+@utility text-action-high-grey {
+  @apply text-[var(--color-text-action-high-grey)]
+}
+
+
+@utility text-action-high-blue-france {
+  @apply text-[var(--color-text-action-high-blue-france)]
+}
+
+
+@utility text-action-high-red-marianne {
+  @apply text-[var(--color-text-action-high-red-marianne)]
+}
+
+
+@utility text-action-high-green-tilleul-verveine {
+  @apply text-[var(--color-text-action-high-green-tilleul-verveine)]
+}
+
+
+@utility text-action-high-green-bourgeon {
+  @apply text-[var(--color-text-action-high-green-bourgeon)]
+}
+
+
+@utility text-action-high-green-emeraude {
+  @apply text-[var(--color-text-action-high-green-emeraude)]
+}
+
+
+@utility text-action-high-green-menthe {
+  @apply text-[var(--color-text-action-high-green-menthe)]
+}
+
+
+@utility text-action-high-green-archipel {
+  @apply text-[var(--color-text-action-high-green-archipel)]
+}
+
+
+@utility text-action-high-blue-ecume {
+  @apply text-[var(--color-text-action-high-blue-ecume)]
+}
+
+
+@utility text-action-high-blue-cumulus {
+  @apply text-[var(--color-text-action-high-blue-cumulus)]
+}
+
+
+@utility text-action-high-purple-glycine {
+  @apply text-[var(--color-text-action-high-purple-glycine)]
+}
+
+
+@utility text-action-high-pink-macaron {
+  @apply text-[var(--color-text-action-high-pink-macaron)]
+}
+
+
+@utility text-action-high-pink-tuile {
+  @apply text-[var(--color-text-action-high-pink-tuile)]
+}
+
+
+@utility text-action-high-yellow-tournesol {
+  @apply text-[var(--color-text-action-high-yellow-tournesol)]
+}
+
+
+@utility text-action-high-yellow-moutarde {
+  @apply text-[var(--color-text-action-high-yellow-moutarde)]
+}
+
+
+@utility text-action-high-orange-terre-battue {
+  @apply text-[var(--color-text-action-high-orange-terre-battue)]
+}
+
+
+@utility text-action-high-brown-cafe-creme {
+  @apply text-[var(--color-text-action-high-brown-cafe-creme)]
+}
+
+
+@utility text-action-high-brown-caramel {
+  @apply text-[var(--color-text-action-high-brown-caramel)]
+}
+
+
+@utility text-action-high-brown-opera {
+  @apply text-[var(--color-text-action-high-brown-opera)]
+}
+
+
+@utility text-action-high-beige-gris-galet {
+  @apply text-[var(--color-text-action-high-beige-gris-galet)]
+}
+
+
+@utility text-title-grey {
+  @apply text-[var(--color-text-title-grey)]
+}
+
+
+@utility text-title-blue-france {
+  @apply text-[var(--color-text-title-blue-france)]
+}
+
+
+@utility text-title-red-marianne {
+  @apply text-[var(--color-text-title-red-marianne)]
+}
+
+
+@utility text-label-grey {
+  @apply text-[var(--color-text-label-grey)]
+}
+
+
+@utility text-label-blue-france {
+  @apply text-[var(--color-text-label-blue-france)]
+}
+
+
+@utility text-label-red-marianne {
+  @apply text-[var(--color-text-label-red-marianne)]
+}
+
+
+@utility text-label-green-tilleul-verveine {
+  @apply text-[var(--color-text-label-green-tilleul-verveine)]
+}
+
+
+@utility text-label-green-bourgeon {
+  @apply text-[var(--color-text-label-green-bourgeon)]
+}
+
+
+@utility text-label-green-emeraude {
+  @apply text-[var(--color-text-label-green-emeraude)]
+}
+
+
+@utility text-label-green-menthe {
+  @apply text-[var(--color-text-label-green-menthe)]
+}
+
+
+@utility text-label-green-archipel {
+  @apply text-[var(--color-text-label-green-archipel)]
+}
+
+
+@utility text-label-blue-ecume {
+  @apply text-[var(--color-text-label-blue-ecume)]
+}
+
+
+@utility text-label-blue-cumulus {
+  @apply text-[var(--color-text-label-blue-cumulus)]
+}
+
+
+@utility text-label-purple-glycine {
+  @apply text-[var(--color-text-label-purple-glycine)]
+}
+
+
+@utility text-label-pink-macaron {
+  @apply text-[var(--color-text-label-pink-macaron)]
+}
+
+
+@utility text-label-pink-tuile {
+  @apply text-[var(--color-text-label-pink-tuile)]
+}
+
+
+@utility text-label-yellow-tournesol {
+  @apply text-[var(--color-text-label-yellow-tournesol)]
+}
+
+
+@utility text-label-yellow-moutarde {
+  @apply text-[var(--color-text-label-yellow-moutarde)]
+}
+
+
+@utility text-label-orange-terre-battue {
+  @apply text-[var(--color-text-label-orange-terre-battue)]
+}
+
+
+@utility text-label-brown-cafe-creme {
+  @apply text-[var(--color-text-label-brown-cafe-creme)]
+}
+
+
+@utility text-label-brown-caramel {
+  @apply text-[var(--color-text-label-brown-caramel)]
+}
+
+
+@utility text-label-brown-opera {
+  @apply text-[var(--color-text-label-brown-opera)]
+}
+
+
+@utility text-label-beige-gris-galet {
+  @apply text-[var(--color-text-label-beige-gris-galet)]
+}
+
+
+@utility text-active-grey {
+  @apply text-[var(--color-text-active-grey)]
+}
+
+
+@utility text-active-blue-france {
+  @apply text-[var(--color-text-active-blue-france)]
+}
+
+
+@utility text-active-red-marianne {
+  @apply text-[var(--color-text-active-red-marianne)]
+}
+
+
+@utility text-mention-grey {
+  @apply text-[var(--color-text-mention-grey)]
+}
+
+
+@utility text-inverted-grey {
+  @apply text-[var(--color-text-inverted-grey)]
+}
+
+
+@utility text-inverted-blue-france {
+  @apply text-[var(--color-text-inverted-blue-france)]
+}
+
+
+@utility text-inverted-red-marianne {
+  @apply text-[var(--color-text-inverted-red-marianne)]
+}
+
+
+@utility text-inverted-info {
+  @apply text-[var(--color-text-inverted-info)]
+}
+
+
+@utility text-inverted-success {
+  @apply text-[var(--color-text-inverted-success)]
+}
+
+
+@utility text-inverted-warning {
+  @apply text-[var(--color-text-inverted-warning)]
+}
+
+
+@utility text-inverted-error {
+  @apply text-[var(--color-text-inverted-error)]
+}
+
+
+@utility text-inverted-green-tilleul-verveine {
+  @apply text-[var(--color-text-inverted-green-tilleul-verveine)]
+}
+
+
+@utility text-inverted-green-bourgeon {
+  @apply text-[var(--color-text-inverted-green-bourgeon)]
+}
+
+
+@utility text-inverted-green-emeraude {
+  @apply text-[var(--color-text-inverted-green-emeraude)]
+}
+
+
+@utility text-inverted-green-menthe {
+  @apply text-[var(--color-text-inverted-green-menthe)]
+}
+
+
+@utility text-inverted-green-archipel {
+  @apply text-[var(--color-text-inverted-green-archipel)]
+}
+
+
+@utility text-inverted-blue-ecume {
+  @apply text-[var(--color-text-inverted-blue-ecume)]
+}
+
+
+@utility text-inverted-blue-cumulus {
+  @apply text-[var(--color-text-inverted-blue-cumulus)]
+}
+
+
+@utility text-inverted-purple-glycine {
+  @apply text-[var(--color-text-inverted-purple-glycine)]
+}
+
+
+@utility text-inverted-pink-macaron {
+  @apply text-[var(--color-text-inverted-pink-macaron)]
+}
+
+
+@utility text-inverted-pink-tuile {
+  @apply text-[var(--color-text-inverted-pink-tuile)]
+}
+
+
+@utility text-inverted-yellow-tournesol {
+  @apply text-[var(--color-text-inverted-yellow-tournesol)]
+}
+
+
+@utility text-inverted-yellow-moutarde {
+  @apply text-[var(--color-text-inverted-yellow-moutarde)]
+}
+
+
+@utility text-inverted-orange-terre-battue {
+  @apply text-[var(--color-text-inverted-orange-terre-battue)]
+}
+
+
+@utility text-inverted-brown-cafe-creme {
+  @apply text-[var(--color-text-inverted-brown-cafe-creme)]
+}
+
+
+@utility text-inverted-brown-caramel {
+  @apply text-[var(--color-text-inverted-brown-caramel)]
+}
+
+
+@utility text-inverted-brown-opera {
+  @apply text-[var(--color-text-inverted-brown-opera)]
+}
+
+
+@utility text-inverted-beige-gris-galet {
+  @apply text-[var(--color-text-inverted-beige-gris-galet)]
+}
+
+
+@utility text-disabled-grey {
+  @apply text-[var(--color-text-disabled-grey)]
+}
+
+
+@utility text-black-white-grey {
+  @apply text-[var(--color-text-black-white-grey)]
+}
+
+
+@utility border-default-grey {
+  @apply border-[var(--color-border-default-grey)]
+}
+
+
+@utility border-default-blue-france {
+  @apply border-[var(--color-border-default-blue-france)]
+}
+
+
+@utility border-default-red-marianne {
+  @apply border-[var(--color-border-default-red-marianne)]
+}
+
+
+@utility border-default-green-tilleul-verveine {
+  @apply border-[var(--color-border-default-green-tilleul-verveine)]
+}
+
+
+@utility border-default-green-bourgeon {
+  @apply border-[var(--color-border-default-green-bourgeon)]
+}
+
+
+@utility border-default-green-emeraude {
+  @apply border-[var(--color-border-default-green-emeraude)]
+}
+
+
+@utility border-default-green-menthe {
+  @apply border-[var(--color-border-default-green-menthe)]
+}
+
+
+@utility border-default-green-archipel {
+  @apply border-[var(--color-border-default-green-archipel)]
+}
+
+
+@utility border-default-blue-ecume {
+  @apply border-[var(--color-border-default-blue-ecume)]
+}
+
+
+@utility border-default-blue-cumulus {
+  @apply border-[var(--color-border-default-blue-cumulus)]
+}
+
+
+@utility border-default-purple-glycine {
+  @apply border-[var(--color-border-default-purple-glycine)]
+}
+
+
+@utility border-default-pink-macaron {
+  @apply border-[var(--color-border-default-pink-macaron)]
+}
+
+
+@utility border-default-pink-tuile {
+  @apply border-[var(--color-border-default-pink-tuile)]
+}
+
+
+@utility border-default-yellow-tournesol {
+  @apply border-[var(--color-border-default-yellow-tournesol)]
+}
+
+
+@utility border-default-yellow-moutarde {
+  @apply border-[var(--color-border-default-yellow-moutarde)]
+}
+
+
+@utility border-default-orange-terre-battue {
+  @apply border-[var(--color-border-default-orange-terre-battue)]
+}
+
+
+@utility border-default-brown-cafe-creme {
+  @apply border-[var(--color-border-default-brown-cafe-creme)]
+}
+
+
+@utility border-default-brown-caramel {
+  @apply border-[var(--color-border-default-brown-caramel)]
+}
+
+
+@utility border-default-brown-opera {
+  @apply border-[var(--color-border-default-brown-opera)]
+}
+
+
+@utility border-default-beige-gris-galet {
+  @apply border-[var(--color-border-default-beige-gris-galet)]
+}
+
+
+@utility border-contrast-grey {
+  @apply border-[var(--color-border-contrast-grey)]
+}
+
+
+@utility border-active-blue-france {
+  @apply border-[var(--color-border-active-blue-france)]
+}
+
+
+@utility border-active-red-marianne {
+  @apply border-[var(--color-border-active-red-marianne)]
+}
+
+
+@utility border-action-high-grey {
+  @apply border-[var(--color-border-action-high-grey)]
+}
+
+
+@utility border-action-high-blue-france {
+  @apply border-[var(--color-border-action-high-blue-france)]
+}
+
+
+@utility border-action-high-red-marianne {
+  @apply border-[var(--color-border-action-high-red-marianne)]
+}
+
+
+@utility border-action-high-info {
+  @apply border-[var(--color-border-action-high-info)]
+}
+
+
+@utility border-action-high-success {
+  @apply border-[var(--color-border-action-high-success)]
+}
+
+
+@utility border-action-high-warning {
+  @apply border-[var(--color-border-action-high-warning)]
+}
+
+
+@utility border-action-high-error {
+  @apply border-[var(--color-border-action-high-error)]
+}
+
+
+@utility border-action-low-blue-france {
+  @apply border-[var(--color-border-action-low-blue-france)]
+}
+
+
+@utility border-action-low-red-marianne {
+  @apply border-[var(--color-border-action-low-red-marianne)]
+}
+
+
+@utility border-action-low-green-tilleul-verveine {
+  @apply border-[var(--color-border-action-low-green-tilleul-verveine)]
+}
+
+
+@utility border-action-low-green-bourgeon {
+  @apply border-[var(--color-border-action-low-green-bourgeon)]
+}
+
+
+@utility border-action-low-green-emeraude {
+  @apply border-[var(--color-border-action-low-green-emeraude)]
+}
+
+
+@utility border-action-low-green-menthe {
+  @apply border-[var(--color-border-action-low-green-menthe)]
+}
+
+
+@utility border-action-low-green-archipel {
+  @apply border-[var(--color-border-action-low-green-archipel)]
+}
+
+
+@utility border-action-low-blue-ecume {
+  @apply border-[var(--color-border-action-low-blue-ecume)]
+}
+
+
+@utility border-action-low-blue-cumulus {
+  @apply border-[var(--color-border-action-low-blue-cumulus)]
+}
+
+
+@utility border-action-low-purple-glycine {
+  @apply border-[var(--color-border-action-low-purple-glycine)]
+}
+
+
+@utility border-action-low-pink-macaron {
+  @apply border-[var(--color-border-action-low-pink-macaron)]
+}
+
+
+@utility border-action-low-pink-tuile {
+  @apply border-[var(--color-border-action-low-pink-tuile)]
+}
+
+
+@utility border-action-low-yellow-tournesol {
+  @apply border-[var(--color-border-action-low-yellow-tournesol)]
+}
+
+
+@utility border-action-low-yellow-moutarde {
+  @apply border-[var(--color-border-action-low-yellow-moutarde)]
+}
+
+
+@utility border-action-low-orange-terre-battue {
+  @apply border-[var(--color-border-action-low-orange-terre-battue)]
+}
+
+
+@utility border-action-low-brown-cafe-creme {
+  @apply border-[var(--color-border-action-low-brown-cafe-creme)]
+}
+
+
+@utility border-action-low-brown-caramel {
+  @apply border-[var(--color-border-action-low-brown-caramel)]
+}
+
+
+@utility border-action-low-brown-opera {
+  @apply border-[var(--color-border-action-low-brown-opera)]
+}
+
+
+@utility border-action-low-beige-gris-galet {
+  @apply border-[var(--color-border-action-low-beige-gris-galet)]
+}
+
+
+@utility border-open-blue-france {
+  @apply border-[var(--color-border-open-blue-france)]
+}
+
+
+@utility border-open-red-marianne {
+  @apply border-[var(--color-border-open-red-marianne)]
+}
+
+
+@utility border-plain-grey {
+  @apply border-[var(--color-border-plain-grey)]
+}
+
+
+@utility border-plain-blue-france {
+  @apply border-[var(--color-border-plain-blue-france)]
+}
+
+
+@utility border-plain-red-marianne {
+  @apply border-[var(--color-border-plain-red-marianne)]
+}
+
+
+@utility border-plain-info {
+  @apply border-[var(--color-border-plain-info)]
+}
+
+
+@utility border-plain-success {
+  @apply border-[var(--color-border-plain-success)]
+}
+
+
+@utility border-plain-warning {
+  @apply border-[var(--color-border-plain-warning)]
+}
+
+
+@utility border-plain-error {
+  @apply border-[var(--color-border-plain-error)]
+}
+
+
+@utility border-plain-green-tilleul-verveine {
+  @apply border-[var(--color-border-plain-green-tilleul-verveine)]
+}
+
+
+@utility border-plain-green-bourgeon {
+  @apply border-[var(--color-border-plain-green-bourgeon)]
+}
+
+
+@utility border-plain-green-emeraude {
+  @apply border-[var(--color-border-plain-green-emeraude)]
+}
+
+
+@utility border-plain-green-menthe {
+  @apply border-[var(--color-border-plain-green-menthe)]
+}
+
+
+@utility border-plain-green-archipel {
+  @apply border-[var(--color-border-plain-green-archipel)]
+}
+
+
+@utility border-plain-blue-ecume {
+  @apply border-[var(--color-border-plain-blue-ecume)]
+}
+
+
+@utility border-plain-blue-cumulus {
+  @apply border-[var(--color-border-plain-blue-cumulus)]
+}
+
+
+@utility border-plain-purple-glycine {
+  @apply border-[var(--color-border-plain-purple-glycine)]
+}
+
+
+@utility border-plain-pink-macaron {
+  @apply border-[var(--color-border-plain-pink-macaron)]
+}
+
+
+@utility border-plain-pink-tuile {
+  @apply border-[var(--color-border-plain-pink-tuile)]
+}
+
+
+@utility border-plain-yellow-tournesol {
+  @apply border-[var(--color-border-plain-yellow-tournesol)]
+}
+
+
+@utility border-plain-yellow-moutarde {
+  @apply border-[var(--color-border-plain-yellow-moutarde)]
+}
+
+
+@utility border-plain-orange-terre-battue {
+  @apply border-[var(--color-border-plain-orange-terre-battue)]
+}
+
+
+@utility border-plain-brown-cafe-creme {
+  @apply border-[var(--color-border-plain-brown-cafe-creme)]
+}
+
+
+@utility border-plain-brown-caramel {
+  @apply border-[var(--color-border-plain-brown-caramel)]
+}
+
+
+@utility border-plain-brown-opera {
+  @apply border-[var(--color-border-plain-brown-opera)]
+}
+
+
+@utility border-plain-beige-gris-galet {
+  @apply border-[var(--color-border-plain-beige-gris-galet)]
+}
+
+
+@utility border-disabled-grey {
+  @apply border-[var(--color-border-disabled-grey)]
+}
+
+    

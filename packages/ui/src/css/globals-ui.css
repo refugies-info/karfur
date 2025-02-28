@@ -1,30 +1,18 @@
-/* stylelint-disable media-feature-range-notation */
-/* stylelint-disable scss/at-rule-no-unknown */
 @import "tailwindcss";
+@import "./dsfr-tokens.css";
 @import "./container.css";
 @source "../components/";
 
 @theme {
-  /* custom config goes here */
-
   /* Breakpoints */
   --breakpoint-sm: 36em; /* 576px */
   --breakpoint-md: 48em; /* 768px */
   --breakpoint-lg: 62em; /* 992px */
   --breakpoint-xl: 75em; /* 1200px */
 
-  /* Colors */
-  --color-light: #f2f2f2;
-  --color-dark: #212121;
-  --color-primary: #0421b1;
-  --color-gray: oklch(90.01% 0 0deg);
-  --color-theme-famille-clair: oklch(85.24% 0.1581 86.2deg);
-
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
   --font-caveat: var(--font-caveat);
-
-  /* Font sizes */
 }
 
 body {

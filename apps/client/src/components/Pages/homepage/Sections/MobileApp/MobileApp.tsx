@@ -83,25 +83,30 @@ const MobileApp = () => {
           <Image src="/images/logoRI.svg" width={72} height={72} alt={t("MobileApp.logoAlt", "Logo Réfugiés.info")} />
           <p className="m-0 flex flex-col gap-2 font-medium">
             <span aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")} role="img" className="inline-flex gap-3">
-              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
-              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
-              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
-              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
-              <i className="fr-icon-star-fill text-theme-famille-clair h-4 w-4" />
+              {Array.from({ length: 5 }).map((_, index) => (
+                // TODO @ledjay : fix yellow colors from DSFR
+                <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#fcc63a]" />
+              ))}
             </span>
             {t("MobileApp.rankingText", "Top 3 des applications publiques")}
           </p>
         </div>
-        <h2>{t("MobileApp.title", "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !")}</h2>
-        <p
-          className="mb-10"
-          dangerouslySetInnerHTML={{
-            __html: t(
-              "MobileApp.subtitle",
-              "Gratuite, l’application a été conçue <em>avec</em> et <em>pour</em> les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
-            ),
-          }}
-        />
+        <h2>
+          {t(
+            isMobile ? "MobileApp.title.mobile" : "MobileApp.title.desktop",
+            isMobile
+              ? "Télécharge l’application !"
+              : "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+          )}
+        </h2>
+        <p className="mb-10">
+          {t(
+            isMobile ? "MobileApp.subtitle.mobile" : "MobileApp.subtitle.desktop",
+            isMobile
+              ? "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info vous aide à construire votre vie en France !"
+              : "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
+          )}
+        </p>
         {isMobile ? (
           <span className="flex flex-col gap-4">
             <Button
