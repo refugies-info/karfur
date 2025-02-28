@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useTranslation } from "next-i18next";
 import router from "next/router";
-import { useTranslation } from "react-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
 import { useWindowSize } from "~/hooks";

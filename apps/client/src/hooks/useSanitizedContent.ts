@@ -1,7 +1,7 @@
-import { sanitize } from "isomorphic-dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { useMemo } from "react";
 
 export const useSanitizedContent = (content?: string) => {
-  const sanitized = useMemo(() => content && sanitize(content), [content]);
+  const sanitized = useMemo(() => content && DOMPurify.sanitize(content), [content]);
   return sanitized || "";
 };

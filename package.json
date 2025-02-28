@@ -42,6 +42,7 @@
     "check:types:client": "turbo check:types --filter=@refugies-info/client",
     "check:types:server": "turbo check:types --filter=@refugies-info/server",
     "check:types:mobile": "turbo check:types --filter=@refugies-info/mobile",
+    "check:types:ui": "turbo check:types --filter=@refugies-info/ui",
     "dev": "turbo dev",
     "dev:ui": "turbo dev --filter=@refugies-info/ui",
     "dev:client": "turbo dev --filter=@refugies-info/client",

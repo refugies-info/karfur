@@ -424,12 +424,12 @@ export const AdminContenu = () => {
                     <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
                   </td>
                   <td
-                    className="align-middle cursor-pointer"
+                    className="cursor-pointer align-middle"
                     onClick={() => setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)}
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
-                  <td className={"align-middle "} onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                  <td className={"align-middle"} onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     {nbDays}
                   </td>
                   <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
