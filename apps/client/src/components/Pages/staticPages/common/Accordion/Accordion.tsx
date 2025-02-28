@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as AccordionRadix from "@radix-ui/react-accordion";
-import { sanitize } from "isomorphic-dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { useState } from "react";
 import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
 import Image from "~/components/UI/Image";
@@ -114,7 +114,7 @@ const Accordion = (props: Props) => {
                   <p
                     className={cn(styles.text, "!text-large !mb-0")}
                     dangerouslySetInnerHTML={{
-                      __html: sanitize(item.text),
+                      __html: DOMPurify.sanitize(item.text),
                     }}
                   ></p>
 

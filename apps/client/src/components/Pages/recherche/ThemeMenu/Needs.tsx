@@ -1,5 +1,5 @@
+import { useTranslation } from "next-i18next";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocale } from "~/hooks";
 import { needsSelector } from "~/services/Needs/needs.selectors";
