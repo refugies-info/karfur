@@ -20,9 +20,9 @@ const ModalAccordionsCount = (props: Props) => {
       <div className={styles.content}>
         <p>
           Pour permettre à votre public de mieux comprendre les atouts de votre action, vous devez désormais ajouter 3
-          arguments minimum dans la section "Pourquoi c'est intéressant".
+          arguments minimum dans la section "Pourquoi c'est interessant".
         </p>
-        <div className="text-center mb-8">
+        <div className="mb-8 flex justify-center">
           <Image src={TutorielImage} width={176} height={120} alt="" />
         </div>
 
