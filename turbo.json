@@ -15,7 +15,7 @@
       "outputs": ["storybook-static/**"]
     },
     "@refugies-info/client#build": {
-      "dependsOn": ["//#update-icons", "@refugies-info/ui#build"],
+      "dependsOn": ["//#update-icons"],
       "env": ["NEXT_PUBLIC_*"],
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "outputs": [".next/**", "!.next/cache/**"]
@@ -66,6 +66,12 @@
       "dependsOn": ["^check:types"]
     },
     "@refugies-info/client#dev": {
+      "dependsOn": ["//#update-icons"],
+      "persistent": true,
+      "cache": false,
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "@refugies-info/storybook#dev": {
       "dependsOn": ["//#update-icons"],
       "persistent": true,
       "cache": false,
