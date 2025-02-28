@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as AccordionRadix from "@radix-ui/react-accordion";
-import { sanitize } from "isomorphic-dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { useState } from "react";
 import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
 import Image from "~/components/UI/Image";
@@ -80,7 +80,7 @@ const Accordion = (props: Props) => {
 
   return (
     <div className={cn("flex gap-20", props.className)}>
-      <div className={cn(props.withImages && "w-1/2 grow-1 basis-auto")}>
+      <div className={cn(props.withImages && "border-default-grey w-1/2 grow-1 basis-auto border-b")}>
         <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
           {props.items.map((item, i) => {
             const isItemOpen = isOpen(i);
@@ -104,9 +104,8 @@ const Accordion = (props: Props) => {
                     </span>
                     <i
                       className={cn(
-                        isItemOpen ? "fr-icon-subtract-line" : "fr-icon-add-line",
                         "flex before:!h-4 before:!w-4",
-                        isItemOpen && "before:!bg-action-low-blue-france",
+                        isItemOpen ? "fr-icon-subtract-line before:!bg-title-blue-france" : "fr-icon-add-line",
                       )}
                     />
                   </AccordionRadix.Trigger>
@@ -115,7 +114,7 @@ const Accordion = (props: Props) => {
                   <p
                     className={cn(styles.text, "!text-large !mb-0")}
                     dangerouslySetInnerHTML={{
-                      __html: sanitize(item.text),
+                      __html: DOMPurify.sanitize(item.text),
                     }}
                   ></p>
 

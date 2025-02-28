@@ -1,6 +1,6 @@
 import { Id } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "~/components/UI/Checkbox";

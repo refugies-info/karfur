@@ -1,5 +1,5 @@
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const SkipLinksNavigation = () => {
   const { t } = useTranslation();
