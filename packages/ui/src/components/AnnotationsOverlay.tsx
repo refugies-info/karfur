@@ -1,19 +1,16 @@
-import { cn } from "@/lib/cn";
-import Image, { ImageProps } from "next/image";
-import React, { ReactElement, useId } from "react";
+import React, { useId } from "react";
+import { cn } from "../lib/cn";
 
 type AnnotationType = {
   text: string;
   className?: string;
 };
 
-type ImageElement = ReactElement<HTMLImageElement | ImageProps, "img" | typeof Image>;
-
-type AnnotationsOverlayType = {
-  children: ImageElement;
+interface AnnotationsOverlayType {
   annotations: AnnotationType[];
   className?: string;
-};
+  children: React.ReactElement;
+}
 
 export const AnnotationsOverlay = ({ children, className, annotations }: AnnotationsOverlayType) => {
   const uid = useId();

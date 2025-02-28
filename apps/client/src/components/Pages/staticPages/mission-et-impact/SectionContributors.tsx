@@ -23,9 +23,9 @@ interface Props {
 export const SectionContributors = (props: Props) => {
   const { t } = useTranslation();
   return (
-    <Section className="bg-light-low-blue-france">
-      <div className="fr-container">
-        <Title2 className="!text-center">{t("MissionImpact.community_title")}</Title2>
+    <Section className="bg-alt-blue-france">
+      <div className="container">
+        <Title2 className="text-center">{t("MissionImpact.community_title")}</Title2>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           <Card
             imageComponent={
@@ -96,7 +96,7 @@ export const SectionContributors = (props: Props) => {
             imageWidth={232}
             title={t("MissionImpact.community_ambassadeurs_title")}
             footer={
-              <Badge noIcon className="bg-pink-background text-pink-foreground">
+              <Badge noIcon className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine">
                 {t("MissionImpact.community_tag_deploiement")}
               </Badge>
             }
@@ -109,7 +109,7 @@ export const SectionContributors = (props: Props) => {
             imageWidth={232}
             title={t("MissionImpact.community_influenceurs_title")}
             footer={
-              <Badge noIcon className="bg-pink-background text-pink-foreground">
+              <Badge noIcon className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine">
                 {t("MissionImpact.community_tag_deploiement")}
               </Badge>
             }
@@ -122,7 +122,7 @@ export const SectionContributors = (props: Props) => {
             imageWidth={240}
             title={t("MissionImpact.community_partenaires_title")}
             footer={
-              <Badge noIcon className="bg-pink-background text-pink-foreground">
+              <Badge noIcon className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine">
                 {t("MissionImpact.community_tag_deploiement")}
               </Badge>
             }

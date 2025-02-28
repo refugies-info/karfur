@@ -29,7 +29,7 @@ const StepContent = (props: Props) => {
     () => (
       <div
         className={cls(
-          "text-large bg-purple-france z-10 rounded-full p-4 text-center font-bold text-white",
+          "text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white",
           "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
           props.buttonStepEnd && "!bottom-0",
         )}
@@ -48,7 +48,7 @@ const StepContent = (props: Props) => {
     >
       <div
         className={cls(
-          "border-purple-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26",
+          "border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26",
           props.dottedLine && "border-dashed",
           !!props.buttonStep && "!pb-0 lg:!pb-[250px]",
         )}
@@ -56,7 +56,7 @@ const StepContent = (props: Props) => {
         <div
           className={cls(
             "absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10",
-            "text-h5 lg:text-h4 bg-purple-france rounded-full font-bold text-white",
+            "text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white",
             "flex items-center justify-center",
           )}
         >
@@ -75,7 +75,7 @@ const StepContent = (props: Props) => {
         )}
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
-            <div key={i} className="bg-beige-accent border-border mb-6 border p-4">
+            <div key={i} className="bg-alt-beige-gris-galet border-default-grey mb-6 border p-4">
               <ul className="my-0 space-y-2">
                 {text.map((li, j) => (
                   <li key={j}>{li}</li>
@@ -115,7 +115,7 @@ const StepContent = (props: Props) => {
       <div
         className={cls(
           "relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px]",
-          "border-purple-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0",
+          "border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0",
           props.dottedLine && "border-dashed",
           !!props.buttonStep && "pb-[150px] lg:pb-0",
         )}

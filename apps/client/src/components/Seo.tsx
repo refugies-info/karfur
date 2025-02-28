@@ -12,7 +12,7 @@ interface Props {
 const defaultTitle = "Réfugiés.info";
 const defaultImage = "/images/og-image-refugies.jpg";
 
-const getAlternateLocales = (locales: string[] | undefined, currentLocale: string | undefined) => {
+const getAlternateLocales = (locales: readonly string[] | undefined, currentLocale: string | undefined) => {
   if (!locales || locales.length === 0) return [];
   return locales.filter((locale) => locale !== "default" && locale !== (currentLocale || "fr"));
 };

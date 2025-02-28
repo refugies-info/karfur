@@ -5,7 +5,6 @@
     "apps/client": {
       "entry": ["src/locales/interfaceTranslation/*.js"],
       "ignoreDependencies": [
-        "@refugies-info/ui",
         "flag-icons",
         "postcss",
         "react-anchor-link-smooth-scroll",
@@ -23,7 +22,6 @@
         "@babel/runtime",
         "@react-native/assets-registry",
         "@types/styled-components-react-native",
-        "react-native-webview",
         "use-sync-external-store"
       ]
     },
@@ -42,7 +40,10 @@
       "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["@tailwindcss/postcss", "react-dom", "prettier", "prettier-plugin-tailwindcss"]
+      "ignoreDependencies": [
+        "react-dom",
+        "tailwindcss"
+      ]
     }
   }
 }

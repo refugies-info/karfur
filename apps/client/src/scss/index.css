@@ -1,38 +1,10 @@
 @layer theme, base, refugies-info, dsfr, components, utilities;
-@import "@refugies-info/ui/src/css/globals-ui.css";
+@import "tailwindcss";
+@import "@refugies-info/ui/styles.css";
 
 /* stylelint-disable custom-property-pattern */
-/* stylelint-disable-next-line scss/at-rule-no-unknown */
-@source "./tailwind-safelist.txt";
 
 @theme {
-  /* custom config goes here */
-
-  /* Breakpoints */
-  --breakpoint-sm: 36em; /* 576px */
-  --breakpoint-md: 48em; /* 768px */
-  --breakpoint-lg: 62em; /* 992px */
-  --breakpoint-xl: 75em; /* 1200px */
-
-  /* Colors */
-  --color-light: #f2f2f2;
-  --color-dark: #212121;
-  --color-gray: #666;
-  --color-primary: #0421b1;
-  --color-hover: #f6f6f6;
-  --color-active: #ededed;
-  --color-blue-france: #000091;
-  --color-light-alt-blue: #f5f5fe;
-  --color-border: #ddd;
-  --color-success: #18753c;
-  --color-error: #ce0500;
-  --color-beige: #f9f6f2;
-  --color-beige-accent: #f3ede5;
-  --color-purple-france: #6a6af4;
-  --color-pink-background: #fee7fc;
-  --color-pink-foreground: #6e445a;
-  --color-light-low-blue-france: #e3e3fd;
-
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
 

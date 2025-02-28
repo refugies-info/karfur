@@ -1,7 +1,7 @@
 import { ageFilters, frenchLevelFilter, publicOptions, statusOptions } from "data/searchFilters";
 import _ from "lodash";
+import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getMatchingAgeOptions } from "~/lib/recherche/filterContents";
 import { filterDispositifs } from "~/lib/recherche/queryContents";
