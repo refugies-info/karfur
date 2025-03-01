@@ -68,7 +68,7 @@ const Hero = (props: Props) => {
           </Button>
         </div>
       </div>
-      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute md:inset-0 md:z-0 md:h-[50vh] md:h-auto">
+      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px]">
         <span className="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"></span>
         <Image
           src={HeroBackground}
