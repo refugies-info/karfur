@@ -84,7 +84,7 @@
     "uuid": "^11.0.3"
   },
   "scripts": {
-    "build": "NEXT_SHARP_PATH=../../node_modules/.bin/sharp next build",
+    "build": "next build",
     "check:types": "tsc --noEmit",
     "dev": "wait-on http://localhost:8000/health && next dev",
     "lint": "next lint",
