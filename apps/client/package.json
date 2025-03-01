@@ -125,6 +125,7 @@
     "@types/redux-mock-store": "^1.0.3",
     "@types/sortablejs": "^1.13.0",
     "@types/uuid": "^10.0.0",
+    "cssnano": "^7.0.6",
     "csvtojson": "^2.0.10",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
