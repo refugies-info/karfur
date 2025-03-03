@@ -61,7 +61,7 @@ exports[`traduire renders traduire 1`] = `
         class="container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10"
       >
         <div
-          class="nav shrink-1"
+          class="nav"
         >
           <fieldset
             class="fr-segmented fr-segmented--no-legend"
