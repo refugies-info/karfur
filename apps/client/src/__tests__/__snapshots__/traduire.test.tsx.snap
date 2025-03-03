@@ -801,7 +801,7 @@ exports[`traduire renders traduire 1`] = `
                   </h3>
                   <div
                     aria-labelledby="radix-:r7:"
-                    class="content mt-4 px-4 pb-8"
+                    class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
@@ -842,7 +842,7 @@ exports[`traduire renders traduire 1`] = `
                   </h3>
                   <div
                     aria-labelledby="radix-:r9:"
-                    class="content mt-4 px-4 pb-8"
+                    class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
@@ -883,7 +883,7 @@ exports[`traduire renders traduire 1`] = `
                   </h3>
                   <div
                     aria-labelledby="radix-:rb:"
-                    class="content mt-4 px-4 pb-8"
+                    class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
@@ -924,7 +924,7 @@ exports[`traduire renders traduire 1`] = `
                   </h3>
                   <div
                     aria-labelledby="radix-:rd:"
-                    class="content mt-4 px-4 pb-8"
+                    class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
@@ -965,7 +965,7 @@ exports[`traduire renders traduire 1`] = `
                   </h3>
                   <div
                     aria-labelledby="radix-:rf:"
-                    class="content mt-4 px-4 pb-8"
+                    class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
