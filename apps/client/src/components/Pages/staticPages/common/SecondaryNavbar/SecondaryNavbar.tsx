@@ -2,7 +2,6 @@ import { FrIconClassName } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { useCallback } from "react";
-import { cls } from "~/lib/classname";
 import { smoothScroll } from "~/lib/smoothScroll";
 import styles from "./SecondaryNavbar.module.scss";
 
@@ -30,8 +29,8 @@ const SecondaryNavbar = (props: Props) => {
 
   return (
     <div className="sticky top-0 z-20 bg-white">
-      <div className="fr-container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
-        <div className={cls(styles.nav, "shrink-1")}>
+      <div className="container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
+        <div className={styles.nav}>
           <SegmentedControl
             hideLegend
             //@ts-ignore

@@ -65,7 +65,7 @@ const QuitModal = (props: Props) => {
                 </ul>
               </Col>
               <Col xs="auto">
-                <Image src={QuitImage} width={56} height={88} alt="" className="mt-3 ms-8" />
+                <Image src={QuitImage} width={56} height={88} alt="" className="ms-8 mt-3" />
               </Col>
             </Row>
 
@@ -111,7 +111,7 @@ const QuitModal = (props: Props) => {
       case "incomplete":
         return (
           <>
-            <div className="text-center mb-8 mt-6">
+            <div className="mt-6 mb-8 flex justify-center">
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">
@@ -138,7 +138,7 @@ const QuitModal = (props: Props) => {
               progress={props.progress}
               text={`${props.progress} étapes complétées sur ${props.progress}`}
             />
-            <div className="text-center mb-8 mt-6">
+            <div className="mt-6 mb-8 flex justify-center">
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">

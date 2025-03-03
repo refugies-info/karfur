@@ -69,7 +69,7 @@ const MissionImpact = (props: Props) => {
       <SEO title="Qui sommes nous ?" />
 
       <Section
-        className="bg-light-low-blue-france bg-contain bg-bottom bg-no-repeat px-4 max-lg:!bg-none md:min-h-[520px]"
+        className="bg-action-low-blue-france bg-contain bg-bottom bg-no-repeat px-4 max-lg:!bg-none md:min-h-[520px]"
         style={{
           backgroundImage: `url(${HeroBack.src})`,
         }}

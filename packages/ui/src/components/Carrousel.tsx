@@ -1,9 +1,6 @@
-import { cn } from "@/lib/cn";
-import React from "react";
-
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { cn } from "../lib/cn";
 
 type CarrouselTexts = {
   title?: string | null;
@@ -228,7 +225,10 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
       >
         {React.Children.map(children, (child, index) => (
           <div
-            ref={(el) => (slideRefs.current[index] = el)}
+            ref={(el) => {
+              slideRefs.current[index] = el;
+              return () => {};
+            }}
             id={`slide-${index}`}
             className="min-w-max shrink-0 snap-start"
             role="group"

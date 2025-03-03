@@ -23,12 +23,13 @@
       "sharp"
     ],
     "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.19.0": "patches/@codegouvfr__react-dsfr@1.19.0.patch"
+      "@codegouvfr/react-dsfr@1.20.0": "patches/@codegouvfr__react-dsfr@1.20.0.patch"
     }
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:modules": "rm -rf ./node_modules ./packages/*/node_modules ./apps/*/node_modules",
+    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/.expo **/storybook-static **/build",
+    "clean:modules": "rm -rf ./packages/*/node_modules ./apps/*/node_modules",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
@@ -42,11 +43,13 @@
     "check:types:client": "turbo check:types --filter=@refugies-info/client",
     "check:types:server": "turbo check:types --filter=@refugies-info/server",
     "check:types:mobile": "turbo check:types --filter=@refugies-info/mobile",
+    "check:types:ui": "turbo check:types --filter=@refugies-info/ui",
     "dev": "turbo dev",
     "dev:ui": "turbo dev --filter=@refugies-info/ui",
-    "dev:client": "turbo dev --filter=@refugies-info/client",
+    "dev:client": "turbo dev --filter=@refugies-info/client --filter=@refugies-info/ui",
     "dev:server": "turbo dev --filter=@refugies-info/server",
-    "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
+    "dev:mobile": "turbo dev --filter=@refugies-info/mobile --filter=@refugies-info/server",
+    "dev:storybook": "turbo dev --filter=@refugies-info/storybook --filter=@refugies-info/ui",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
     "start:client": "pnpm --filter @refugies-info/client start",
     "start:server": "pnpm --filter @refugies-info/server start",
@@ -78,7 +81,7 @@
     "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
-    "storybook": "pnpm --filter @refugies-info/storybook storybook",
+    "storybook": "pnpm dev:storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
     "knip": "knip"
   },
@@ -101,7 +104,7 @@
     "stylelint": "^16.14.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
-    "turbo": "^2.4.0",
+    "turbo": "2.4.2",
     "typescript": "^5.6.3"
   },
   "volta": {

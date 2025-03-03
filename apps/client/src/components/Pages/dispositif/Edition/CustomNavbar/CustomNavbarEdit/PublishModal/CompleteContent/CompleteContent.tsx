@@ -158,7 +158,7 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <div className="mt-6 mb-8 flex justify-center text-center">
+          <div className="mt-6 mb-8 flex justify-center">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">
@@ -186,7 +186,7 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <div className="mt-6 mb-8 flex justify-center text-center">
+          <div className="mt-6 mb-8 flex justify-center">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">

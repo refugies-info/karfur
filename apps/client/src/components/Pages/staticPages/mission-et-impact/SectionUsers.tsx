@@ -9,7 +9,7 @@ export const SectionUsers = () => {
   const { t } = useTranslation();
   return (
     <Section>
-      <div className="fr-container">
+      <div className="container">
         <Title2>{t("MissionImpact.users_title")}</Title2>
         <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
           <div className="flex-1">
@@ -38,7 +38,7 @@ export const SectionUsers = () => {
               width={416}
               height={271}
             />
-            <p className="text-small text-gray text-center italic">{t("MissionImpact.users_legend_1")}</p>
+            <p className="text-small text-mention-grey text-center italic">{t("MissionImpact.users_legend_1")}</p>
           </div>
         </div>
         <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
@@ -65,7 +65,7 @@ export const SectionUsers = () => {
               width={376}
               height={191}
             />
-            <p className="text-small text-gray text-center italic">{t("MissionImpact.users_legend_2")}</p>
+            <p className="text-small text-mention-grey text-center italic">{t("MissionImpact.users_legend_2")}</p>
           </div>
         </div>
       </div>

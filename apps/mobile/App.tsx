@@ -1,15 +1,13 @@
-import React from "react";
-import { initReactI18next } from "react-i18next";
-import { Languages } from "@refugies-info/api-types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import i18n from "./src/services/i18n";
-import { logger } from "./src/logger";
-import { enableNotificationsListener } from "./src/libs/notifications";
-import MainApp from "./src/App";
-import useAsync from "react-use/lib/useAsync";
-import { Text } from "react-native";
+import { Languages } from "@refugies-info/api-types";
 import * as Updates from "expo-updates";
+import { initReactI18next } from "react-i18next";
+import { Text } from "react-native";
+import useAsync from "react-use/lib/useAsync";
+import MainApp from "./src/App";
+import { enableNotificationsListener } from "./src/libs/notifications";
+import { logger } from "./src/logger";
+import i18n from "./src/services/i18n";
 
 enableNotificationsListener();
 
@@ -22,10 +20,7 @@ const update = async () =>
         Updates.fetchUpdateAsync().then((_) => {
           // ... notify user of update ...
           logger.info("expo-updates fetched ", _);
-          if (_.isNew)
-            Updates.reloadAsync().then((_) =>
-              logger.info("expo-updates reloaded ", _)
-            );
+          if (_.isNew) Updates.reloadAsync().then((_) => logger.info("expo-updates reloaded ", _));
         });
       }
     })
@@ -42,9 +37,7 @@ export default function App() {
       i18n.use(initReactI18next);
       await i18n.init();
       try {
-        const language =
-          ((await AsyncStorage.getItem("SELECTED_LANGUAGE")) as Languages) ||
-          ("fr" as Languages);
+        const language = ((await AsyncStorage.getItem("SELECTED_LANGUAGE")) as Languages) || ("fr" as Languages);
         if (language) {
           i18n.changeLanguage(language);
         } else {

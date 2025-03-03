@@ -1,5 +1,5 @@
+import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { cls } from "~/lib/classname";
 import styles from "./SearchButton.module.css";
 

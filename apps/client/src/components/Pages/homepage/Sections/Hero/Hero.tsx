@@ -20,13 +20,21 @@ const Hero = (props: Props) => {
 
   return (
     <div className="relative flex flex-col-reverse md:min-h-[504px]">
-      <div className="md:border-gray relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 p-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border lg:max-w-[40rem] xl:max-w-[48rem]">
-        <h1 className="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]">
-          {t("Homepage.title", "Le service public d'information pour les étrangers en France")}
-        </h1>
+      <div className="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:gap-8 md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]">
+        <h1
+          className="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
+          dangerouslySetInnerHTML={{
+            __html: t(
+              isMobile ? "Homepage.title.mobile" : "Homepage.title.desktop",
+              isMobile
+                ? "L'information <br/> pour les personnes réfugiées en France"
+                : "Le service public d'information pour les étrangers",
+            ),
+          }}
+        />
 
         {isMobile ? (
-          <p className="mb-0 text-center text-xl">
+          <p className="mb-0 text-center text-lg">
             {t("Homepage.subtitleMobile", "Des informations claires et traduites pour les étrangers")}
           </p>
         ) : (
@@ -60,29 +68,32 @@ const Hero = (props: Props) => {
           </Button>
         </div>
       </div>
-      <div className="relative h-[50vh] w-full overflow-hidden md:absolute md:inset-0 md:z-0 md:h-auto">
+      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px]">
+        <span className="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"></span>
         <Image
           src={HeroBackground}
           fill={true}
-          className="-z-1 -translate-y-6 object-cover md:object-[0_80%]"
+          className="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:object-[0_80%]"
           alt={t(
             "Homepage.imageDescription",
-            "Illustration colorée et minimaliste montrant une ville accueillante avec des bâtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
+            "Illustration colorée et minimaliste montrant une ville accueillante avec des bấtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
           )}
         />
+        {/* White wave */}
         <Image
           src={WhiteWave}
           width={100}
           height={121}
-          className="object-fit absolute bottom-1/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
+          className="object-fit absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
           alt=""
         />
+        {/* Characters */}
         <Image
           src={Character}
           width={207}
           height={274}
           alt=""
-          className="absolute bottom-0 left-4 z-10 max-w-[33vw] max-md:left-1/2 max-md:-translate-x-1/2 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
+          className="absolute bottom-0 left-4 z-10 max-w-[22vw] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/3 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
         />
       </div>
     </div>

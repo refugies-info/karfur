@@ -1,4 +1,4 @@
-import { cls } from "./classname";
+import { cls, cn } from "./classname";
 
 describe("classname", () => {
   it("should join classes", () => {
@@ -8,6 +8,18 @@ describe("classname", () => {
 
   it("remove booleans", () => {
     const res = cls("test1", false && "test2", true && "test3");
+    expect(res).toEqual("test1 test3");
+  });
+});
+
+describe("cn", () => {
+  it("should join classes", () => {
+    const res = cn("test1", "test2", "test3");
+    expect(res).toEqual("test1 test2 test3");
+  });
+
+  it("remove booleans", () => {
+    const res = cn("test1", false && "test2", true && "test3");
     expect(res).toEqual("test1 test3");
   });
 });

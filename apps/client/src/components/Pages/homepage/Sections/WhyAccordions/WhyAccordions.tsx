@@ -105,7 +105,7 @@ const WhyAccordions = (props: Props) => {
       text: t("Homepage.accordionItems.mobile.text2", {
         count: props.nbDemarches,
         defaultValue:
-          "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres.",
+          "Réfugiés.info permet de trouver des associations, des centres de formation, des structures d'accompagnement dans votre département.",
       }),
       alt: t(
         "Homepage.accordionItems.mobile.alt2",
@@ -119,7 +119,7 @@ const WhyAccordions = (props: Props) => {
 
   return (
     <div className="container md:py-20">
-      <h2>{t("Homepage.whyTitle")}</h2>
+      <h2 className="mb-20">{t("Homepage.whyTitle")}</h2>
       <Accordion
         items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
         withImages

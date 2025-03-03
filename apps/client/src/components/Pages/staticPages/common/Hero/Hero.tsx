@@ -12,12 +12,12 @@ interface Props {
 }
 
 export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) => (
-  <Section ref={ref} className="bg-blue-france">
-    <div className="fr-container">
+  <Section ref={ref} className="bg-action-high-blue-france">
+    <div className="container">
       <div className="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20">
         <div className="flex-1 text-center md:text-left">
-          <h1 className="text-h1 text-light-alt-blue md:text-alt-title mb-6">{props.title}</h1>
-          <p className="text-chapo text-light-alt-blue mb-0">{props.subtitle}</p>
+          <h1 className="text-h1 text-inverted-blue-france md:text-alt-title mb-6">{props.title}</h1>
+          <p className="text-chapo text-inverted-blue-france mb-0">{props.subtitle}</p>
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"

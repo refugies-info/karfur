@@ -7,14 +7,16 @@ import { ImpactCol } from "~/components/Pages/staticPages/mission-et-impact/Impa
 export const SectionImpact = () => {
   const { t } = useTranslation();
   return (
-    <Section className="bg-light-alt-blue">
-      <div className="fr-container">
+    <Section className="bg-alt-blue-france">
+      <div className="container">
         <div className="mb-10 flex flex-col gap-10 md:mb-20 md:flex-row md:gap-20">
           <div className="flex-1">
-            <Title2 smallMb className="!text-left">
+            <Title2 smallMb className="text-left">
               {t("MissionImpact.impact_title")}
             </Title2>
-            <p className="!text-h4 md:!text-h3 text-purple-france !mb-0">{t("MissionImpact.impact_subtitle")}</p>
+            <p className="text-h4 md:text-h3 text-artwork-minor-blue-france !mb-0">
+              {t("MissionImpact.impact_subtitle")}
+            </p>
 
             <Card
               enlargeLink

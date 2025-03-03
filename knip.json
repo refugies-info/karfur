@@ -5,15 +5,15 @@
     "apps/client": {
       "entry": ["src/locales/interfaceTranslation/*.js"],
       "ignoreDependencies": [
-        "@refugies-info/ui",
+        "bootstrap",
+        "cssnano",
         "flag-icons",
         "postcss",
         "react-anchor-link-smooth-scroll",
         "remixicon",
         "sharp",
         "tailwindcss",
-        "typescript-plugin-css-modules",
-        "bootstrap"
+        "typescript-plugin-css-modules"
       ]
     },
     "apps/mobile": {
@@ -23,7 +23,6 @@
         "@babel/runtime",
         "@react-native/assets-registry",
         "@types/styled-components-react-native",
-        "react-native-webview",
         "use-sync-external-store"
       ]
     },
@@ -31,18 +30,21 @@
       "entry": ["src/server.ts"],
       "ignoreDependencies": [
         "@tsoa/runtime",
+        "@types/mongoose",
         "nodemon",
         "path-to-regexp",
-        "tsconfig-paths",
         "ts-node",
-        "@types/mongoose"
+        "tsconfig-paths"
       ]
     },
     "apps/storybook": {
       "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["@tailwindcss/postcss", "react-dom", "prettier", "prettier-plugin-tailwindcss"]
+      "ignoreDependencies": [
+        "react-dom",
+        "tailwindcss"
+      ]
     }
   }
 }

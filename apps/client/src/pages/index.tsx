@@ -55,7 +55,18 @@ const Homepage = (props: Props) => {
 
   return (
     <div className={commonStyles.main}>
-      <SEO title="Accueil" description={t("Homepage.title")} />
+      <SEO
+        title={
+          isMobile
+            ? t("Homepage.title.mobile", "L'information <br/> pour les personnes réfugiées en France")
+            : t("Homepage.title.desktop", "Le service public d’information pour les personnes réfugiées")
+        }
+        description={
+          isMobile
+            ? t("Homepage.subtitleMobile", "Des informations claires et traduites pour construire votre vie en France")
+            : `${t("Homepage.subtitle1", "Des ressources claires et traduites")} ${t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}`
+        }
+      />
 
       <Hero targetArrow="themes" />
 
