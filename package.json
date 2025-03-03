@@ -28,7 +28,7 @@
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/storybook-static **/build **/storybook/.cache",
+    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/.expo **/storybook-static **/build",
     "clean:modules": "rm -rf ./packages/*/node_modules ./apps/*/node_modules",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
