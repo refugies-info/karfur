@@ -539,8 +539,8 @@
     "Ukrainien": "Ukrainien"
   },
   "NewsletterForm": {
-    "title": "Inscrivez-vous à notre lettre d’information mensuelle",
-    "description": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
+    "title": "Inscrivez-vous à notre lettre d’information mensuelle !",
+    "description": "Suivez l'évolution du service Réfugiés.info",
     "imgAlt": "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
     "label": "Adresse email",
     "confirmMessage": {
