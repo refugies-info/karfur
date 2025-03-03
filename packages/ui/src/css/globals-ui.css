@@ -2,6 +2,7 @@
 @import "./dsfr-tokens.css";
 @import "./container.css";
 @source "../components/";
+@source "../../../../apps/client/src";
 
 @theme {
   /* Breakpoints */
