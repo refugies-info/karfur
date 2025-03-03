@@ -20,9 +20,9 @@ const Hero = (props: Props) => {
 
   return (
     <div className="relative flex flex-col-reverse md:min-h-[504px]">
-      <div className="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:gap-8 md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]">
+      <div className="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]">
         <h1
-          className="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
+          className="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
           dangerouslySetInnerHTML={{
             __html: t(
               isMobile ? "Homepage.title.mobile" : "Homepage.title.desktop",
