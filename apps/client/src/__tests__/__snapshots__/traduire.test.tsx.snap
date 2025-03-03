@@ -138,7 +138,7 @@ exports[`traduire renders traduire 1`] = `
           </fieldset>
         </div>
         <div
-          class="hidden md:block"
+          class="hidden shrink-0 md:block"
         >
           <a
             class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
