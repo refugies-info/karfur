@@ -28,7 +28,7 @@
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/storybook-static **/build **/storybook/.cache",
+    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/.expo **/storybook-static **/build",
     "clean:modules": "rm -rf ./packages/*/node_modules ./apps/*/node_modules",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
@@ -48,7 +48,7 @@
     "dev:ui": "turbo dev --filter=@refugies-info/ui",
     "dev:client": "turbo dev --filter=@refugies-info/client --filter=@refugies-info/ui",
     "dev:server": "turbo dev --filter=@refugies-info/server",
-    "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
+    "dev:mobile": "turbo dev --filter=@refugies-info/mobile --filter=@refugies-info/server",
     "dev:storybook": "turbo dev --filter=@refugies-info/storybook --filter=@refugies-info/ui",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
     "start:client": "pnpm --filter @refugies-info/client start",
