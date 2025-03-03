@@ -92,13 +92,8 @@ const Newsletter = () => {
               newsletterFormState === "success" ? "z-10 max-h-0 opacity-0" : "max-h-full opacity-100 transition-all",
             )}
           >
-            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle")}</h2>
-            <p>
-              {t(
-                "NewsletterForm.description",
-                "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
-              )}
-            </p>
+            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle !")}</h2>
+            <p>{t("NewsletterForm.description", "Suivez l'évolution du service Réfugiés.info")}</p>
 
             <Input
               nativeInputProps={{
