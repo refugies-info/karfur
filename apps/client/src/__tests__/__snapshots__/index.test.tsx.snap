@@ -9,10 +9,10 @@ exports[`homepage renders homepage 1`] = `
       class="relative flex flex-col-reverse md:min-h-[504px]"
     >
       <div
-        class="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:gap-8 md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]"
+        class="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]"
       >
         <h1
-          class="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
+          class="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
         >
           Homepage.title.desktop
         </h1>
@@ -4857,7 +4857,8 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
     <section
-      class="container flex flex-col gap-10 py-10 lg:grid lg:grid-cols-2 lg:py-20 2xl:gap-20"
+      class="container flex flex-col gap-10 py-10 md:grid md:grid-cols-2 lg:py-20 2xl:gap-20"
+      id="application"
     >
       <div
         class="flex h-full flex-col items-center justify-center gap-10"
