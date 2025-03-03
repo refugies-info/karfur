@@ -48,7 +48,7 @@
     "dev:ui": "turbo dev --filter=@refugies-info/ui",
     "dev:client": "turbo dev --filter=@refugies-info/client --filter=@refugies-info/ui",
     "dev:server": "turbo dev --filter=@refugies-info/server",
-    "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
+    "dev:mobile": "turbo dev --filter=@refugies-info/mobile --filter=@refugies-info/server",
     "dev:storybook": "turbo dev --filter=@refugies-info/storybook --filter=@refugies-info/ui",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
     "start:client": "pnpm --filter @refugies-info/client start",
