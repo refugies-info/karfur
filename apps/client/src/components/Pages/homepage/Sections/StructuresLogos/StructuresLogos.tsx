@@ -68,7 +68,7 @@ const StructuresLogos = () => {
       <p className="text-center text-lg">
         {t(
           "Homepage.StructuresLogos.Text",
-          "Plus de 300 000 professionnels ont déjà adopé Réfugiés.info pour accompagner leurs bénéficiaires !",
+          "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
         )}
       </p>
     </section>
