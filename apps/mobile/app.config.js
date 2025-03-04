@@ -44,7 +44,8 @@ export default {
   },
   android: {
     versionCode: androidVersionCode,
-    minSdkVersion: 29,
+    // Support for Android 8 - https://endoflife.date/android
+    minSdkVersion: 26,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
