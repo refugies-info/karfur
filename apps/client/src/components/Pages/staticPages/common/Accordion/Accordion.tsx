@@ -110,36 +110,38 @@ const Accordion = (props: Props) => {
                     />
                   </AccordionRadix.Trigger>
                 </AccordionRadix.Header>
-                <AccordionRadix.Content className={cn(styles.content, "mt-4 px-4 pb-8")}>
-                  <p
-                    className={cn(styles.text, "!text-large !mb-0")}
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(item.text),
-                    }}
-                  ></p>
-
-                  {isTablet && props.withImages && (
-                    <>
-                      {item?.image && getMedia("image", item)}
-                      {item?.video && (
-                        <div className="mx-auto mt-0 mb-6 max-w-[250px] !text-center">{getMedia("video", item)}</div>
-                      )}
-                      {item?.youtube && getMedia("youtube", item)}
-                    </>
-                  )}
-                  {item.cta && (
-                    <Button
-                      priority="tertiary"
-                      iconId="fr-icon-arrow-right-line"
-                      iconPosition="right"
-                      linkProps={{
-                        href: item.cta.link,
+                <AccordionRadix.Content className={cn(styles.content, "")}>
+                  <div className="mt-4 px-4 pb-8">
+                    <p
+                      className={cn(styles.text, "!text-large !mb-0")}
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(item.text),
                       }}
-                      className="mt-4"
-                    >
-                      {item.cta.text}
-                    </Button>
-                  )}
+                    ></p>
+
+                    {isTablet && props.withImages && (
+                      <>
+                        {item?.image && getMedia("image", item)}
+                        {item?.video && (
+                          <div className="mx-auto mt-0 mb-6 max-w-[250px] !text-center">{getMedia("video", item)}</div>
+                        )}
+                        {item?.youtube && getMedia("youtube", item)}
+                      </>
+                    )}
+                    {item.cta && (
+                      <Button
+                        priority="tertiary"
+                        iconId="fr-icon-arrow-right-line"
+                        iconPosition="right"
+                        linkProps={{
+                          href: item.cta.link,
+                        }}
+                        className="mt-4"
+                      >
+                        {item.cta.text}
+                      </Button>
+                    )}
+                  </div>
                 </AccordionRadix.Content>
               </AccordionRadix.Item>
             );

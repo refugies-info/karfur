@@ -35,7 +35,7 @@
       },
       "desktop": {
         "title1": "Pour trouver de l’information sur toutes les démarches administratives",
-        "text1": "Une fois la protection internationale obtenue, de nombreuses démarches administratives doivent être enclenchées. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches. Aujourd’hui, il en existe {{count}}, réparties sur l’ensemble des thématiques de la vie quotidienne.",
+        "text1": "Une fois la protection internationale obtenue, de nombreuses démarches administratives doivent être réalisées. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches. Aujourd’hui, il en existe {{count}}, réparties sur l’ensemble des thématiques de la vie quotidienne.",
         "alt1": "Capture d'écran du site Réfugiés.info présentant des fiches pratiques sur différentes démarches administratives en France. Chaque fiche contient un titre, une catégorie (administratif, logement, travail, etc.), une icône associée, une courte description et une date de mise à jour. Les fiches visibles concernent la création d'un compte ANEF, le renouvellement d'une carte de séjour, l'échange d'un permis de conduire, la demande de logement social, l'inscription à Pôle emploi, la gestion d'un budget logement, la déclaration des impôts et la compréhension du droit du travail.",
         "title2": "Découvrez les actions de votre territoire",
         "text2": "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres.",
@@ -62,7 +62,7 @@
       "HIS": "Logo GIP Habitat et Interventions Sociales",
       "ForumRefugie": "Logo Forum Réfugiés",
       "FederationActeurs": "Logo Fédération des Acteurs de la Solidarité",
-      "Text": "Plus de 300 000 professionnels ont déjà adopé Réfugiés.info pour accompagner leurs bénéficiaires !"
+      "Text": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !"
     }
   },
   "Recherche": {
@@ -539,8 +539,8 @@
     "Ukrainien": "Ukrainien"
   },
   "NewsletterForm": {
-    "title": "Inscrivez-vous à notre lettre d’information mensuelle",
-    "description": "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
+    "title": "Inscrivez-vous à notre lettre d’information mensuelle !",
+    "description": "Suivez l'évolution du service Réfugiés.info",
     "imgAlt": "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
     "label": "Adresse email",
     "confirmMessage": {
@@ -626,7 +626,7 @@
   },
   "MissionImpact": {
     "title": "Le service public d’information pour les personnes réfugiées en France",
-    "subtitle": "Réfugiés.info est un projet porté par la Délégation interministérielle à l’accueil et l’intégration des réfugiés (DIAIR). Lancé en 2019, il s’est imposé comme un service public incontournable pour l'intégration des personnes réfugiées et l'outillage de leurs accompagnements.",
+    "subtitle": "Réfugiés.info est un projet porté par la Délégation interministérielle à l’accueil et l’intégration des réfugiés (DIAIR). Lancé en 2019, il s’est imposé comme un service public incontournable pour l'intégration des personnes réfugiées et l'outillage de leurs accompagnants.",
     "mission_title": "La mission de Réfugiés.info",
     "mission_subtitle": "Informer et orienter les personnes réfugiées et leurs accompagnants dans leur parcours d’intégration en France",
     "mission_p1": "« Axe du Comité interministériel pour l’intégration de 2018, ce projet numérique répond à la <strong>double problématique de l’accès à l’information et du non-recours aux droits des personnes réfugiées</strong>, désorientées face à une information éparpillée auprès de nombreuses sources peu fiables, non traduites et non accessibles.",
@@ -652,12 +652,13 @@
     "impact_arguments_text_3": "Réfugiés.info sert d’outil de médiation pour faciliter la compréhension des démarches, libérant ainsi du temps pour se concentrer sur les sujets de fond et à l’accompagnement en lui-même.",
     "impact_arguments_figures_3": "60% des personnes réfugiées interrogées disent avoir pu être autonomes pour réaliser une démarche au moins une fois grâce à Réfugiés.info*",
     "impact_arguments_legend": "* Enquête de satisfaction auprès des utilisateurs, avril 2024",
+    "impact_button": "Voir les statistiques",
     "users_title": "Les usagers de Réfugiés.info",
     "users_subtitle_1": "Les personnes étrangères",
-    "users_text_1": "Les usagers du service sont principalement les personnes réfugiées (motif humanitaire), mais nous observons également la présence des autres motifs, arrivés sur le service grâce à la communication partenariale et au référencement naturel.",
+    "users_text_1": "Les usagers du service sont principalement <strong>les personnes réfugiées</strong> (motif humanitaire), mais nous observons également la <strong>présence des autres motifs</strong>, arrivés sur le service grâce à la communication partenariale et au référencement naturel.",
     "users_testimony_1": "« L’application résume pour nous toutes les bases du pays afin que nous puissions les comprendre. » (Un usager BPI)",
     "users_subtitle_2": "Les professionnels",
-    "users_text_2": "Travailleurs sociaux en association, à la Mission locale, aux opérateurs du programme AGIR ou encore agents de France Travail, de la  préfecture, du CCAS... de nombreux professionnels en lien avec le public concerné utilisent également le service pour se former eux-mêmes ou le partager à leurs bénéficiaires.",
+    "users_text_2": "Travailleurs sociaux en association, à la Mission locale, opérateurs du programme AGIR ou encore agents de France Travail, de la  préfecture, du CCAS... <strong>De nombreux professionnels</strong> en lien avec le public concerné utilisent également le service <strong>pour se former eux-mêmes</strong> ou <strong>le partager à leurs bénéficiaires.</strong>",
     "users_testimony_2": "« Réfugiés.info, c’est ma bible sur les droits des personnes réfugiées ! » (Une responsable partenariat AGIR)",
     "users_legend_1": "Répartition des 3,8M personnes étrangères en 2022",
     "users_legend_2": "Les 1,1M usagers de Réfugiés.info en 2024",
@@ -711,9 +712,9 @@
     "steps_title_1": "Démarrage du défi Karfu’R",
     "steps_date_1": "janvier 2019",
     "steps_text_1": "La Diair accueille deux entrepreneurs d’intérêt général pour démarrer le projet. Ils ont 10 mois pour créer un prototype. L’équipe réalise une immersion auprès des professionnels de l’accompagnement et travaille d’arrache-pied pour concevoir et développer un premier embryon.",
-    "steps_title_2": "Lancement de la version bêtade Réfugiés.info",
+    "steps_title_2": "Lancement de la version bêta de Réfugiés.info",
     "steps_date_2": "novembre 2019",
-    "steps_text_2": "La première version web de Réfugiés.info est rendue public lors de l’Agora, le rendez-vous annuel des acteurs de l’intégration des réfugiés, en présence de Cédric O, ex-secrétaire d’État chargé du Numérique.",
+    "steps_text_2": "La première version web de Réfugiés.info est rendue publique lors de l’Agora, le rendez-vous annuel des acteurs de l’intégration des réfugiés, en présence de Cédric O, ex-secrétaire d’État chargé du Numérique.",
     "steps_title_3": "Immersion pour la conception de l’application mobile",
     "steps_date_3": "mai 2021",
     "steps_text_3": "L’application doit permettre de mieux répondre aux usages numériques et aux besoins des personnes réfugiées elles-mêmes. Une grande recherche utilisateur est lancée, avec la conduite d’entretiens et de tests auprès de plus de 60 personnes réfugiées et professionnels. ",
@@ -755,6 +756,7 @@
     "navbarItem5": "L’équipe",
     "navbarItem6": "Les contributeurs",
     "navbarItem7": "Les moments clés",
+    "navbarItem8": "Voir les statistiques",
     "join_title": "Travaillons ensemble ! Vous êtes... ? "
   },
   "ui": {

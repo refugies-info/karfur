@@ -1,3 +1,4 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
 import DSFRBadge from "~/components/UI/Badge";
 
@@ -21,6 +22,18 @@ export const ImpactCol = (props: Props) => {
         </h4>
         <p className="text-large mb-0">{props.figureText}</p>
       </div>
+      <Button
+        priority="tertiary"
+        iconId="fr-icon-line-chart-line"
+        iconPosition="right"
+        linkProps={{
+          href: "https://kit.refugies.info/stats/",
+          target: "_blank",
+          rel: "noopener noreferrer",
+        }}
+      >
+        {t("MissionImpact.impact_button")}
+      </Button>
     </div>
   );
 };

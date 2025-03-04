@@ -42,7 +42,10 @@ const MobileApp = () => {
   };
 
   return (
-    <section className="container flex flex-col gap-10 py-10 lg:grid lg:grid-cols-2 lg:py-20 2xl:gap-20">
+    <section
+      id="application"
+      className="container flex flex-col gap-10 py-10 md:grid md:grid-cols-2 lg:py-20 2xl:gap-20"
+    >
       <div className="flex h-full flex-col items-center justify-center gap-10">
         <AnnotationsOverlay
           className="block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
