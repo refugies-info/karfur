@@ -7,8 +7,7 @@ module.exports = {
   },
   debug: false,
   fallbackLng: "fr",
-  // eslint-disable-next-line turbo/no-undeclared-env-vars
-  localePath: process.env.NODE_ENV === "production" ? "./public/locales" : "./src/locales",
+  localePath: "./public/locales",
   saveMissing: false,
   interpolation: {
     escapeValue: true, // react already safes from xss

@@ -58,8 +58,8 @@ const getElementsToPush = (title, langue, key, elementFrench, elementLangue, jso
 
 const convertJsonToCsv = (langue) => {
   // import french
-  const jsonFrench = JSON.parse(fs.readFileSync("../fr/common.json").toString());
-  const jsonLangue = JSON.parse(fs.readFileSync("../" + langue + "/common.json").toString());
+  const jsonFrench = JSON.parse(fs.readFileSync("./public/locales/fr/common.json").toString());
+  const jsonLangue = JSON.parse(fs.readFileSync("./public/locales/" + langue + "/common.json").toString());
   const titleArrayFrench = Object.keys(jsonFrench);
 
   const output = [];
@@ -82,7 +82,11 @@ const convertJsonToCsv = (langue) => {
     `Nombre de traductions en fr -> ${langue}: ${output.length} -> ${output.filter((trad) => trad[langue]).length}`,
   );
   const csv = Papa.unparse(output);
-  const path = "./csvBeforeTrad/traductions" + langue + ".csv";
+
+  if (!fs.existsSync("./translations")) {
+    fs.mkdirSync("./translations");
+  }
+  const path = "./translations/" + langue + ".csv";
   fs.writeFileSync(path, csv);
 };
 

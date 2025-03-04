@@ -3,7 +3,7 @@
   "include": ["dependencies"],
   "workspaces": {
     "apps/client": {
-      "entry": ["src/locales/interfaceTranslation/*.js"],
+      "entry": ["src/scripts/*.js"],
       "ignoreDependencies": [
         "bootstrap",
         "cssnano",

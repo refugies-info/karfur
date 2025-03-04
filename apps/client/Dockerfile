@@ -106,7 +106,6 @@ FROM base AS runner
   COPY --from=installer --chown=nextjs:nodejs /app/apps/client/.next/standalone ./
   COPY --from=installer --chown=nextjs:nodejs /app/apps/client/.next/static ./apps/client/.next/static
   COPY --from=installer --chown=nextjs:nodejs /app/apps/client/public ./apps/client/public
-  COPY --from=installer --chown=nextjs:nodejs /app/apps/client/src/locales ./apps/client/public/locales
 
   EXPOSE 3000
 
