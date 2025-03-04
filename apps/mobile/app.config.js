@@ -44,7 +44,7 @@ export default {
   },
   android: {
     versionCode: androidVersionCode,
-    minSdkVersion: 29,
+    minSdkVersion: 31,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
