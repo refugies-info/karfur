@@ -1,15 +1,10 @@
-## How to convert json files to csv ?
+## How to export i18n json files to csv ?
 
-- in your terminal go to `client/src/locales/interfaceTranslation`
-- run node convertJsonToCsv.js
+- run `pnpm --filter @refugies-info/client i18n:export`
 
-It generates 6 csv files in the folder csvBeforeTrad
+It generates 6 csv files in the `translations` folder
 
-## How to convert csv files to json ?
+## How to import i18n csv files ?
 
-- in your terminal go to `client/src/locales/interfaceTranslation`
-- put csv files in the folder csvAfterTrad
-- go to convertCsvToJson.js, in main choose the language(s)
-- run node convertCsvToJson.js
-
-It replaces json file of the language selected
+- put csv files in the `translations` folder
+- run `pnpm --filter @refugies-info/client i18n:import`
