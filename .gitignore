@@ -30,8 +30,6 @@ npm-debug.log*
 # Client
 .eslintcache
 .next
-/apps/client/src/locales/interfaceTranslation/csvBeforeTrad
-/apps/client/src/locales/interfaceTranslation/csvAfterTrad
 /apps/client/public/fonts/CircularStd
 /apps/client/src/scss/fonts/CircularStd
 /apps/client/tsconfig.tsbuildinfo
