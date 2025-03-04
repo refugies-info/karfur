@@ -165,7 +165,7 @@ const Navbar = () => {
           orientation: "horizontal",
         }}
         serviceTitle={t("Header.serviceName", "Réfugiés.info")}
-        serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
+        serviceTagline={t("Header.serviceTagline", "L'information pour les réfugiés en France")}
         quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
         className={styles.navBar}
