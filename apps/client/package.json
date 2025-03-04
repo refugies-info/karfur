@@ -87,6 +87,8 @@
     "build": "next build",
     "check:types": "tsc --noEmit",
     "dev": "wait-on http://localhost:8000/health && next dev",
+    "i18n:csv2json": "node ./scripts/convertCsvToJson.js",
+    "i18n:json2csv": "node ./scripts/convertJsonToCsv.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
