@@ -28,19 +28,22 @@ const Hero = (props: Props) => {
               isMobile ? "Homepage.title.mobile" : "Homepage.title.desktop",
               isMobile
                 ? "L'information <br/> pour les personnes réfugiées en France"
-                : "Le service public d'information pour les étrangers",
+                : "Le service public d’information pour les personnes réfugiées",
             ),
           }}
         />
 
         {isMobile ? (
           <p className="mb-0 text-center text-lg">
-            {t("Homepage.subtitleMobile", "Des informations claires et traduites pour les étrangers")}
+            {t(
+              "Homepage.subtitleMobile",
+              "Des informations claires et traduites pour les personnes réfugiées en France",
+            )}
           </p>
         ) : (
           <p className="mb-0 flex flex-col items-center text-xl">
             <span>{t("Homepage.subtitle1", "Des ressources claires et traduites")}</span>
-            <span>{t("Homepage.subtitle2", "pour accompagner les étrangers en France")}</span>
+            <span>{t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}</span>
           </p>
         )}
 
