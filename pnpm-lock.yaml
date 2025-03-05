@@ -180,13 +180,13 @@ importers:
         version: 14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1)
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.2(i18next@23.16.8)(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-i18next@15.4.1(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 15.4.2(i18next@23.16.8)(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-i18next@15.4.1(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next-redux-wrapper:
         specifier: ^8.0.0
-        version: 8.1.0(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
+        version: 8.1.0(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
       next-sitemap:
         specifier: ^4.2.3
-        version: 4.2.3(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))
+        version: 4.2.3(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))
       query-string:
         specifier: ^9.1.1
         version: 9.1.1
@@ -364,7 +364,7 @@ importers:
         version: 7.2.0(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       next-router-mock:
         specifier: ^0.9.13
-        version: 0.9.13(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react@18.3.1)
+        version: 0.9.13(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react@18.3.1)
       papaparse:
         specifier: ^5.3.2
         version: 5.5.2
@@ -617,7 +617,7 @@ importers:
         version: 14.3.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/react-native':
         specifier: ^12.9.0
-        version: 12.9.0(jest@29.7.0(@types/node@22.13.9))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.9.0(jest@29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3)))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -665,7 +665,7 @@ importers:
         version: 29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3))
       jest-expo:
         specifier: 52.0.3
-        version: 52.0.3(@babel/core@7.26.9)(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.13.9))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.98.0)
+        version: 52.0.3(@babel/core@7.26.9)(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3)))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.98.0)
       papaparse:
         specifier: ^5.5.2
         version: 5.5.2
@@ -836,8 +836,8 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       eslint-config-turbo:
-        specifier: 2.4.4
-        version: 2.4.4(eslint@8.57.1)(turbo@2.4.4)
+        specifier: 2.4.2
+        version: 2.4.2(eslint@8.57.1)(turbo@2.4.4)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3))
@@ -6333,12 +6333,6 @@ packages:
       eslint: '>6.6.0'
       turbo: '>2.0.0'
 
-  eslint-config-turbo@2.4.4:
-    resolution: {integrity: sha512-4w/heWywWkFw09a5MY5lCvb9suJlhBSkzNtGTwM5+zRif4rksubaMYy1pD0++5rqoDVcQax25jCrtii9ptsNDw==}
-    peerDependencies:
-      eslint: '>6.6.0'
-      turbo: '>2.0.0'
-
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
 
@@ -6413,12 +6407,6 @@ packages:
 
   eslint-plugin-turbo@2.4.2:
     resolution: {integrity: sha512-67IZtvOFaWDnUmYMV3luRIE1kqL+ok5MxPEsIPUqH2vQggML7jmZFZx/P9jhXAoFH+pViEz5QEzDa2DBLHqzQg==}
-    peerDependencies:
-      eslint: '>6.6.0'
-      turbo: '>2.0.0'
-
-  eslint-plugin-turbo@2.4.4:
-    resolution: {integrity: sha512-myEnQTjr3FkI0j1Fu0Mqnv1z8n0JW5iFTOUNzHaEevjzl+1uzMSsFwks/x8i3rGmI3EYtC1BY8K2B2pS0Vfx6w==}
     peerDependencies:
       eslint: '>6.6.0'
       turbo: '>2.0.0'
@@ -16235,7 +16223,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/react-native@12.9.0(jest@29.7.0(@types/node@22.13.9))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react-native@12.9.0(jest@29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3)))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       jest-matcher-utils: 29.7.0
       pretty-format: 29.7.0
@@ -18927,12 +18915,6 @@ snapshots:
       eslint-plugin-turbo: 2.4.2(eslint@8.57.1)(turbo@2.4.4)
       turbo: 2.4.4
 
-  eslint-config-turbo@2.4.4(eslint@8.57.1)(turbo@2.4.4):
-    dependencies:
-      eslint: 8.57.1
-      eslint-plugin-turbo: 2.4.4(eslint@8.57.1)(turbo@2.4.4)
-      turbo: 2.4.4
-
   eslint-import-resolver-node@0.3.9:
     dependencies:
       debug: 3.2.7
@@ -19052,12 +19034,6 @@ snapshots:
       - supports-color
 
   eslint-plugin-turbo@2.4.2(eslint@8.57.1)(turbo@2.4.4):
-    dependencies:
-      dotenv: 16.0.3
-      eslint: 8.57.1
-      turbo: 2.4.4
-
-  eslint-plugin-turbo@2.4.4(eslint@8.57.1)(turbo@2.4.4):
     dependencies:
       dotenv: 16.0.3
       eslint: 8.57.1
@@ -20795,7 +20771,7 @@ snapshots:
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
-  jest-expo@52.0.3(@babel/core@7.26.9)(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.13.9))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.98.0):
+  jest-expo@52.0.3(@babel/core@7.26.9)(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3)))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.98.0):
     dependencies:
       '@expo/config': 10.0.10
       '@expo/json-file': 9.0.2
@@ -20808,7 +20784,7 @@ snapshots:
       jest-environment-jsdom: 29.7.0
       jest-snapshot: 29.7.0
       jest-watch-select-projects: 2.0.0
-      jest-watch-typeahead: 2.2.1(jest@29.7.0(@types/node@22.13.9))
+      jest-watch-typeahead: 2.2.1(jest@29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3)))
       json5: 2.2.3
       lodash: 4.17.21
       react-native: 0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1)
@@ -21020,7 +20996,7 @@ snapshots:
       chalk: 3.0.0
       prompts: 2.4.2
 
-  jest-watch-typeahead@2.2.1(jest@29.7.0(@types/node@22.13.9)):
+  jest-watch-typeahead@2.2.1(jest@29.7.0(@types/node@22.13.9)(ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3))):
     dependencies:
       ansi-escapes: 6.2.1
       chalk: 4.1.2
@@ -22124,7 +22100,7 @@ snapshots:
 
   nested-error-stacks@2.0.1: {}
 
-  next-i18next@15.4.2(i18next@23.16.8)(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-i18next@15.4.1(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-i18next@15.4.2(i18next@23.16.8)(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-i18next@15.4.1(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.9
       '@types/hoist-non-react-statics': 3.3.6
@@ -22136,18 +22112,18 @@ snapshots:
       react: 18.3.1
       react-i18next: 15.4.1(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
 
-  next-redux-wrapper@8.1.0(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1):
+  next-redux-wrapper@8.1.0(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1):
     dependencies:
       next: 14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1)
       react: 18.3.1
       react-redux: 9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1)
 
-  next-router-mock@0.9.13(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react@18.3.1):
+  next-router-mock@0.9.13(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(react@18.3.1):
     dependencies:
       next: 14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1)
       react: 18.3.1
 
-  next-sitemap@4.2.3(next@14.2.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1)):
+  next-sitemap@4.2.3(next@14.2.19(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.8
