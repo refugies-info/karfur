@@ -164,7 +164,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 !text-left"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 !text-left"
           >
             Pourquoi recenser mon action sur Réfugiés.info ?
           </h2>
@@ -379,7 +379,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
           >
             La parole aux porteurs de dispositifs
           </h2>
@@ -491,7 +491,7 @@ exports[`publier renders publier 1`] = `
         class="fr-container"
       >
         <h2
-          class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+          class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
         >
           Mon action peut-elle être recensée ?
         </h2>
@@ -691,7 +691,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
           >
             Quelles sont les étapes pour publier une fiche ?
           </h2>
@@ -1028,7 +1028,7 @@ exports[`publier renders publier 1`] = `
             class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
             <h2
-              class="!text-h3 md:!text-h2 md:text-center !mb-6"
+              class="text-h3 md:text-h2 md:text-center mb-6"
             >
               Vous n’êtes pas seul !
             </h2>
@@ -1186,7 +1186,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 text-center"
           >
             Rejoignez un projet collaboratif de grande envergure
           </h2>
@@ -1255,7 +1255,7 @@ exports[`publier renders publier 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 text-center"
           >
             Il vous reste des questions ?
           </h2>
@@ -1520,7 +1520,7 @@ exports[`publier renders publier 1`] = `
             width="175"
           />
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-6"
+            class="text-h3 md:text-h2 md:text-center mb-6"
           >
             C’est parti !
           </h2>
