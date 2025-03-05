@@ -167,7 +167,7 @@ exports[`traduire renders traduire 1`] = `
             class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
             <h2
-              class="!text-h3 md:!text-h2 md:text-center !mb-6"
+              class="text-h3 md:text-h2 md:text-center mb-6"
             >
               Est-ce que je peux traduire ?
             </h2>
@@ -295,7 +295,7 @@ exports[`traduire renders traduire 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
           >
             On cherche des traducteurs en :
           </h2>
@@ -354,7 +354,7 @@ exports[`traduire renders traduire 1`] = `
           class="fr-container"
         >
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
           >
             Quelles sont les étapes pour traduire une fiche ?
           </h2>
@@ -598,7 +598,7 @@ exports[`traduire renders traduire 1`] = `
               class="flex-1"
             >
               <h2
-                class="!text-h3 md:!text-h2 md:text-center !mb-6 !text-left"
+                class="text-h3 md:text-h2 md:text-center mb-6 !text-left"
               >
                 Soyez fier de votre traduction et partagez la !
               </h2>
@@ -640,7 +640,7 @@ exports[`traduire renders traduire 1`] = `
             class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
             <h2
-              class="!text-h3 md:!text-h2 md:text-center !mb-6"
+              class="text-h3 md:text-h2 md:text-center mb-6"
             >
               Vous n’êtes pas seul !
             </h2>
@@ -753,7 +753,7 @@ exports[`traduire renders traduire 1`] = `
         class="fr-container"
       >
         <h2
-          class="!text-h3 md:!text-h2 md:text-center !mb-10 md:!mb-20 text-center"
+          class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 text-center"
         >
           Il vous reste des questions ?
         </h2>
@@ -1006,7 +1006,7 @@ exports[`traduire renders traduire 1`] = `
             width="175"
           />
           <h2
-            class="!text-h3 md:!text-h2 md:text-center !mb-6"
+            class="text-h3 md:text-h2 md:text-center mb-6"
           >
             C’est parti !
           </h2>
