@@ -106,21 +106,18 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
   }, [handleScroll, checkScrollability]);
 
   const scrollToSlide = useCallback(
-    (targetSlide: number) => {
-      if (targetSlide === 0 || targetSlide === childrenArray.length - 1) return;
+    (targetSlide: number, useSmooth = true) => {
+      if (targetSlide < 0 || targetSlide >= childrenArray.length) return;
       if (!scrollContainerRef.current || !slideRefs.current[targetSlide]) return;
+
       const slideElement = slideRefs.current[targetSlide];
       const containerElement = scrollContainerRef.current;
-      const containerRect = containerElement.getBoundingClientRect();
-      const containerCenter = containerRect.width / 2;
-      const slideRect = slideElement.getBoundingClientRect();
-      const slideOffset = slideRect.left - containerRect.left;
-      const slideCenter = slideOffset + slideRect.width / 2;
-      const scrollAdjustment = slideCenter - containerCenter;
 
-      containerElement.scrollBy({
-        left: scrollAdjustment,
-        behavior: "smooth",
+      // Directly scroll to the target slide
+      slideElement.scrollIntoView({
+        behavior: useSmooth ? "smooth" : "auto",
+        block: "nearest",
+        inline: "center",
       });
 
       setCurrentSlide(targetSlide);
@@ -140,7 +137,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
     (e: React.MouseEvent) => {
       e.preventDefault();
       const targetSlide = Math.max(0, currentSlide - 1);
-      scrollToSlide(targetSlide);
+      scrollToSlide(targetSlide, true);
     },
     [currentSlide, scrollToSlide],
   );
@@ -149,7 +146,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
     (e: React.MouseEvent) => {
       e.preventDefault();
       const targetSlide = Math.min(childrenArray.length - 1, currentSlide + 1);
-      scrollToSlide(targetSlide);
+      scrollToSlide(targetSlide, true);
     },
     [currentSlide, childrenArray.length, scrollToSlide],
   );
@@ -160,13 +157,13 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
         case "ArrowLeft":
           e.preventDefault();
           if (currentSlide > 0) {
-            scrollToSlide(currentSlide - 1);
+            scrollToSlide(currentSlide - 1, false);
           }
           break;
         case "ArrowRight":
           e.preventDefault();
           if (currentSlide < childrenArray.length - 1) {
-            scrollToSlide(currentSlide + 1);
+            scrollToSlide(currentSlide + 1, false);
           }
           break;
       }
@@ -219,8 +216,14 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
           "msOverflowStyle": "none",
           "WebkitOverflowScrolling": "touch",
           "willChange": "transform",
+          "scrollSnapType": "x mandatory",
+          "scrollBehavior": "smooth",
+          "touchAction": "pan-x",
+          "overscrollBehaviorX": "contain",
+          "cursor": "grab",
           // @ts-ignore
           "&::-webkit-scrollbar": { display: "none" },
+          "&:active": { cursor: "grabbing" },
         }}
       >
         {React.Children.map(children, (child, index) => (
