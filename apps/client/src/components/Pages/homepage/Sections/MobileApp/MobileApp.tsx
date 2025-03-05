@@ -9,7 +9,7 @@ import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { AvailableLanguageI18nCode } from "~/types/interface";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
@@ -115,18 +115,18 @@ const MobileApp = () => {
             <Button
               iconId={"ri-app-store-fill"}
               iconPosition="right"
-              className={cls("justify-center max-md:w-full", isAndroid && "hidden")}
+              className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
               onClick={() => handleOpenStoreLink(iosStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
+              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
             <Button
               iconId={"ri-android-fill"}
               iconPosition="right"
-              className={cls("justify-center max-md:w-full", isIOS && "hidden")}
+              className={cn("justify-center max-md:w-full", isIOS && "hidden")}
               onClick={() => handleOpenStoreLink(androidStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
+              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
           </span>
         ) : (
