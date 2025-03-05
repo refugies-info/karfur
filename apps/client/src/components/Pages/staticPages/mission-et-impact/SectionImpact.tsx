@@ -11,7 +11,7 @@ export const SectionImpact = () => {
       <div className="container">
         <div className="mb-10 flex flex-col gap-10 md:mb-20 md:flex-row md:gap-20">
           <div className="flex-1">
-            <Title2 smallMb className="text-left">
+            <Title2 smallMb className="text-left md:text-left">
               {t("MissionImpact.impact_title")}
             </Title2>
             <p className="text-h4 md:text-h3 text-artwork-minor-blue-france !mb-0">
