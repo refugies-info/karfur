@@ -5,17 +5,17 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  '@codegouvfr/react-dsfr@1.20.0':
+  '@codegouvfr/react-dsfr@1.20.2':
     hash: ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff
-    path: patches/@codegouvfr__react-dsfr@1.20.0.patch
+    path: patches/@codegouvfr__react-dsfr@1.20.2.patch
 
 importers:
 
   .:
     devDependencies:
       '@codegouvfr/react-dsfr':
-        specifier: ^1.19.0
-        version: 1.20.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@types/node':
         specifier: ^22.13.1
         version: 22.13.5
@@ -71,8 +71,8 @@ importers:
         specifier: ^5.20.4
         version: 5.20.4
       '@codegouvfr/react-dsfr':
-        specifier: ^1.19.0
-        version: 1.20.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@lexical/html':
         specifier: ^0.18.0
         version: 0.18.0
@@ -972,8 +972,8 @@ importers:
   packages/ui:
     dependencies:
       '@codegouvfr/react-dsfr':
-        specifier: ^1.19.0
-        version: 1.20.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1819,8 +1819,8 @@ packages:
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
-  '@codegouvfr/react-dsfr@1.20.0':
-    resolution: {integrity: sha512-7JqcqPnPrzKhoOAT0WshiyaG/hZkfuHTFjoqSmhlQ1wMEJ/HztcZV1mnbVZ/3CYLtStjohFI6QLpJ/FPXujqSw==}
+  '@codegouvfr/react-dsfr@1.20.2':
+    resolution: {integrity: sha512-BE2VUqoLdn1XLWs1Nu+0DAr+YzmV6q6EVBvEusSTSX/mYcfJzsWu8tPrF9isPojPWxW53ToYgVk1ui3E3jjZpQ==}
     hasBin: true
     peerDependencies:
       '@gouvfr/dsfr-chart': ^1.0.0
@@ -13081,7 +13081,7 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@codegouvfr/react-dsfr@1.20.0(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
+  '@codegouvfr/react-dsfr@1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
