@@ -1,25 +1,11 @@
 <svg width="1440" height="171" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#a)">
-        <path filter="url(#drop-shadow)"
-            d="M1440 180V59c-436.58 77.754-582.689 41.582-918.044 13.57C237.653 48.823 0 85.01 0 85.01V180"
+    <g filter="url(#drop-shadow)">
+        <path d="M1440 180V59c-436.58 77.754-582.689 41.582-918.044 13.57C237.653 48.823 0 85.01 0 85.01V180"
             fill="#fff" />
     </g>
     <defs>
-        <filter id="a" x="-50" y="0" width="1540" height="221" filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-            <feOffset dy="-9" />
-            <feGaussianBlur stdDeviation="25" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix values="0 0 0 0 0.775 0 0 0 0 0.775 0 0 0 0 0.775 0 0 0 0.5 0" />
-            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_31702_290970" />
-            <feBlend in="SourceGraphic" in2="effect1_dropShadow_31702_290970" result="shape" />
-        </filter>
-
         <filter id="drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="-4.167" stdDeviation="10.416" flood-color="rgba(0,0,0,0.10)" />
+            <feDropShadow dx="0" dy="-4.167" stdDeviation="10.416" flood-color="rgba(0,0,0,0.20)" />
         </filter>
-
     </defs>
 </svg>
