@@ -14,7 +14,7 @@ export const SectionImpact = () => {
             <Title2 smallMb className="text-left md:text-left">
               {t("MissionImpact.impact_title")}
             </Title2>
-            <p className="text-h4 md:text-h3 text-artwork-minor-blue-france !mb-0">
+            <p className="text-h4 md:text-h3 text-artwork-major-blue-france !mb-0">
               {t("MissionImpact.impact_subtitle")}
             </p>
 
