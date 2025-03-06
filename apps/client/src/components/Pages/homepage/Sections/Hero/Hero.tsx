@@ -25,7 +25,7 @@ const Hero = (props: Props) => {
           className="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
           dangerouslySetInnerHTML={{
             __html: t(
-              isMobile ? "Homepage.title.mobile" : "Homepage.title.desktop",
+              isMobile ? "Homepage.titleMobile" : "Homepage.titleDesktop",
               isMobile
                 ? "L'information <br/> pour les personnes réfugiées en France"
                 : "Le service public d’information pour les personnes réfugiées",

@@ -58,8 +58,8 @@ const Homepage = (props: Props) => {
       <SEO
         title={
           isMobile
-            ? t("Homepage.title.mobile", "L'information <br/> pour les personnes réfugiées en France")
-            : t("Homepage.title.desktop", "Le service public d’information pour les personnes réfugiées")
+            ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France")
+            : t("Homepage.titleDesktop", "Le service public d’information pour les personnes réfugiées")
         }
         description={
           isMobile
@@ -78,9 +78,9 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
           }),
-          seeMore: t("ui.carrousel.seeMore", "Voir tout"),
-          prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
-          next: t("ui.carrousel.next", "Faire défiler à droite"),
+          seeMore: t("ui.carrouselSeemore", "Voir tout"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=demarche"
       >
@@ -95,9 +95,9 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,
           }),
-          seeMore: t("ui.carrousel.seeMore", "Voir plus"),
-          prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
-          next: t("ui.carrousel.next", "Faire défiler à droite"),
+          seeMore: t("ui.carrouselSeemore", "Voir plus"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
       >
