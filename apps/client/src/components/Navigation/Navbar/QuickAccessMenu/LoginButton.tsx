@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import router from "next/router";
 import { memo } from "react";
@@ -11,6 +12,19 @@ const LoginButton = () => {
   const { user } = useSelector(userSelector);
   const { t } = useTranslation();
 
+  const hasAdminRole = user?.roles?.some((role) => role.nom === RoleName.ADMIN);
+  const hasTranslatorRole = user?.roles?.some((role) => role.nom === RoleName.TRAD);
+  const hasWriterRole = user?.roles?.some((role) => role.nom === RoleName.CONTRIB);
+
+  let buttonLink = "/backend/user-profile";
+  if (hasAdminRole) {
+    buttonLink = "/backend/admin";
+  } else if (hasTranslatorRole) {
+    buttonLink = "/backend/user-translation";
+  } else if (hasWriterRole) {
+    buttonLink = "/backend/user-dash-contrib";
+  }
+
   return (
     <>
       {user ? (
@@ -18,11 +32,11 @@ const LoginButton = () => {
           key="login"
           priority="primary"
           linkProps={{
-            href: "/backend/user-profile",
+            href: buttonLink,
             prefetch: false,
             className: styles.forcedPrimaryButton,
           }}
-          iconId="fr-icon-account-pin-circle-line"
+          iconId={hasAdminRole ? "ri-vip-crown-2-fill" : "fr-icon-account-pin-circle-fill"}
         >
           {user.firstName ? user.firstName : t("Header.monEspace", "Mon espace")}
         </Button>
