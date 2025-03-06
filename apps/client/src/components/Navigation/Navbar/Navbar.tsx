@@ -78,7 +78,7 @@ const Navbar = () => {
         isActive: isCurrent(getPath("/mission-et-impact", router.locale)),
       },
       {
-        text: t("Toolbar.partagerProjet", "Ressrouces"),
+        text: t("Toolbar.partagerProjet", "Ressources"),
         menuLinks: [
           {
             linkProps: { href: "https://kit.refugies.info/formation/", target: "_blank" },
