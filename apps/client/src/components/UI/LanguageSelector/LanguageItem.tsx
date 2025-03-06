@@ -73,9 +73,9 @@ const LanguageItem = memo(
             <b>{t("LanguageDropdown.loading", "Chargement de la langue")}</b>
           </span>
         )}
-        <b>
-          {item.langueFr} - {item.langueLoc}
-        </b>{" "}
+        <span>
+          <b>{item.langueFr}</b> - {item.langueLoc}
+        </span>{" "}
         {item.langueCode && notListenableLanguages.includes(item.langueCode) && (
           <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
         )}{" "}
