@@ -66,7 +66,7 @@ const MissionImpact = (props: Props) => {
 
   return (
     <div className="w-full">
-      <SEO title="Qui sommes nous ?" />
+      <SEO title={t("MissionImpact.title")} />
 
       <Section
         className="bg-action-low-blue-france bg-contain bg-bottom bg-no-repeat px-4 max-lg:!bg-none md:min-h-[520px]"
