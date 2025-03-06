@@ -1,3 +1,4 @@
+import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import { fr } from "@codegouvfr/react-dsfr";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { RoleName } from "@refugies-info/api-types";
@@ -5,9 +6,9 @@ import { MouseEvent, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useIsomorphicLayoutEffect } from "react-use";
 import { PathNames } from "routes";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useAuth } from "~/hooks";
 import useRouterLocale from "~/hooks/useRouterLocale";
+import { cn } from "~/lib/classname";
 import isInBrowser from "~/lib/isInBrowser";
 import { userSelector } from "~/services/User/user.selectors";
 import history from "~/utils/backendHistory";
@@ -15,7 +16,7 @@ import styles from "./BackendNavItem.module.scss";
 
 export interface Props {
   access: RoleName.STRUCTURE | RoleName.ADMIN | "all";
-  iconName: string;
+  iconName: FrIconClassName | RiIconClassName;
   iconColor?: string;
   textColor?: string;
   onClick?: () => void;
@@ -71,7 +72,7 @@ const useBackendNavItem = ({
     },
     text: (
       <>
-        <EVAIcon fill={color} name={iconName} />
+        <i className={cn(iconName, "fr-icon--sm")} />
         <span className={styles.item} style={textColor ? { color: textColor } : {}}>
           {title}
         </span>
