@@ -41,7 +41,7 @@ const LanguageItem = memo(
       (i18nCode: string) => {
         if (i18nCode === "fr") return 1;
         const language = langues.find((ln) => ln.i18nCode === i18nCode);
-        return language?.avancementTrad ? Math.min(language.avancementTrad, 1) : 0;
+        return language ? Math.min(language.avancementTrad || 0, 1) : 0;
       },
       [langues],
     );
