@@ -4,7 +4,7 @@ import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { isIOS } from "react-device-detect";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
@@ -25,6 +25,11 @@ const Navbar = () => {
   const backendNavigation = useBackendNavigation();
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
+
+  const toggleNewsletter = useCallback(() => {
+    dispatch(toggleNewsletterModalAction());
+    Event("NEWSLETTER", "open modal", "navbar");
+  }, [dispatch]);
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const locale: Languages = (router.locale || "fr") as Languages;
@@ -108,27 +113,13 @@ const Navbar = () => {
           }
         : null,
 
-      !isMobile
-        ? {
-            linkProps: {
-              href: getPath("/", router.locale, "#newsletter"),
-            },
-            text: t("Toolbar.newsletter", "Newsletter"),
-          }
-        : null,
-
-      isMobile
-        ? {
-            linkProps: {
-              href: "#",
-              onClick: () => {
-                dispatch(toggleNewsletterModalAction());
-                Event("NEWSLETTER", "open modal", "navbar");
-              },
-            },
-            text: t("Toolbar.newsletter", "Newsletter"),
-          }
-        : null,
+      {
+        linkProps: {
+          href: isMobile ? "#" : getPath("/", router.locale, "#newsletter"),
+          onClick: isMobile ? toggleNewsletter : undefined,
+        },
+        text: t("Toolbar.newsletter", "Newsletter"),
+      },
 
       isMobile
         ? {
@@ -157,7 +148,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t, isMobile, dispatch]);
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile, toggleNewsletter]);
 
   const quickAccessMenu = QuickAccessMenu();
 
