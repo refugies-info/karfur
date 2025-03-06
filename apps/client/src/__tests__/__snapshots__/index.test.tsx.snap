@@ -5079,25 +5079,23 @@ exports[`homepage renders homepage 1`] = `
             </button>
           </div>
         </div>
-        <div>
-          <a
-            href="https://kit.refugies.info/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              alt="Homepage.ressourcesImgAlt"
-              data-nimg="1"
-              decoding="async"
-              height="362"
-              loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-              style="color: transparent;"
-              width="576"
-            />
-          </a>
-        </div>
+        <a
+          href="https://kit.refugies.info/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            alt="Homepage.ressourcesImgAlt"
+            data-nimg="1"
+            decoding="async"
+            height="362"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+            style="color: transparent;"
+            width="576"
+          />
+        </a>
       </div>
     </section>
     <section

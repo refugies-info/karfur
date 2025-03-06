@@ -11,8 +11,13 @@ const FreeResources = () => {
     <section className="bg-alt-blue-france w-full py-20" id="free-ressources">
       <div className="container grid grid-cols-2 items-center gap-10">
         <div>
-          <h2>{t("Homepage.resourcesTitle")}</h2>
-          <p>{t("Homepage.resourcesText")}</p>
+          <h2>{t("Homepage.resourcesTitle", "Des ressources gratuites à votre disposition")}</h2>
+          <p>
+            {t(
+              "Homepage.resourcesText",
+              "Nous vous fournissons un ensemble d’outils numériques et physiques pour découvrir le projet et en parler autour de vous : vidéos animées, flyers multilangues, brochures de présentation, visuels, etc.",
+            )}
+          </p>
           <div>
             <Button
               onClick={() => window.open("https://kit.refugies.info/", "_blank")}
@@ -20,23 +25,21 @@ const FreeResources = () => {
               iconPosition="right"
               priority="tertiary"
             >
-              {t("Homepage.resourcesCTA")}
+              {t("Homepage.resourcesCTA", "Voir les outils")}
             </Button>
           </div>
         </div>
-        <div>
-          <Link href="https://kit.refugies.info/" target="_blank" rel="noopener noreferrer">
-            <Image
-              src={FreeResourcesImg}
-              alt={t(
-                "Homepage.ressourcesImgAlt",
-                "Capture d'écran du kit de communication de Réfugiés.info. L'interface affiche un site web avec une vidéo de présentation, un message d'accueil expliquant l'objectif du kit et une section d'accès rapide contenant des boutons vers différentes ressources. À droite, une série de flyers multilingues est disposée en éventail, représentant les supports physiques disponibles pour informer sur le projet.",
-              )}
-              width={576}
-              height={362}
-            />
-          </Link>
-        </div>
+        <Link href="https://kit.refugies.info/" target="_blank" rel="noopener noreferrer">
+          <Image
+            src={FreeResourcesImg}
+            alt={t(
+              "Homepage.ressourcesImgAlt",
+              "Capture d'écran du kit de communication de Réfugiés.info. L'interface affiche un site web avec une vidéo de présentation, un message d'accueil expliquant l'objectif du kit et une section d'accès rapide contenant des boutons vers différentes ressources. À droite, une série de flyers multilingues est disposée en éventail, représentant les supports physiques disponibles pour informer sur le projet.",
+            )}
+            width={576}
+            height={362}
+          />
+        </Link>
       </div>
     </section>
   );
