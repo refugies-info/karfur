@@ -14,6 +14,8 @@ import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/
 import Image from "~/components/UI/Image";
 import { useEditionMode, useWindowSize } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
@@ -106,12 +108,27 @@ const Navbar = () => {
           }
         : null,
 
-      {
-        linkProps: {
-          href: getPath("/", router.locale, "#newsletter"),
-        },
-        text: t("Toolbar.newsletter", "Newsletter"),
-      },
+      !isMobile
+        ? {
+            linkProps: {
+              href: getPath("/", router.locale, "#newsletter"),
+            },
+            text: t("Toolbar.newsletter", "Newsletter"),
+          }
+        : null,
+
+      isMobile
+        ? {
+            linkProps: {
+              href: "#",
+              onClick: () => {
+                dispatch(toggleNewsletterModalAction());
+                Event("NEWSLETTER", "open modal", "navbar");
+              },
+            },
+            text: t("Toolbar.newsletter", "Newsletter"),
+          }
+        : null,
 
       isMobile
         ? {
@@ -140,7 +157,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t, isMobile]);
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile, dispatch]);
 
   const quickAccessMenu = QuickAccessMenu();
 
