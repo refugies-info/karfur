@@ -18,43 +18,43 @@ const StructuresLogos = () => {
   const logos: { image: StaticImageData; alt: string }[] = [
     {
       image: FTDA,
-      alt: t("Homepage.StructuresLogos.FTDA", "Logo France de Terre d'Asile"),
+      alt: t("Homepage.StructuresLogosFtda", "Logo FTDA"),
     },
     {
       image: SOS,
-      alt: t("Homepage.StructuresLogos.SOS", "Logo du Groupe SOS"),
+      alt: t("Homepage.StructuresLogosSos", "Logo du Groupe SOS"),
     },
     {
       image: FranceTravail,
-      alt: t("Homepage.StructuresLogos.FranceTravail", "Logo France Travail"),
+      alt: t("Homepage.StructuresLogosFrancetravail", "Logo France Travail"),
     },
     {
       image: COS,
-      alt: t("Homepage.StructuresLogos.COS", "Logo Fondation COS"),
+      alt: t("Homepage.StructuresLogosCos", "Logo Fondation COS"),
     },
     {
       image: FH,
-      alt: t("Homepage.StructuresLogos.FH", "Logo France Horizon"),
+      alt: t("Homepage.StructuresLogosFh", "Logo France Horizon"),
     },
     {
       image: Coallia,
-      alt: t("Homepage.StructuresLogos.Coalia", "Logo Coallia"),
+      alt: t("Homepage.StructuresLogosCoalia", "Logo Coallia"),
     },
     {
       image: PierreValdo,
-      alt: t("Homepage.StructuresLogos.PierreValdo", "Logo Entraide Pierre Valdo"),
+      alt: t("Homepage.StructuresLogosPierrevaldo", "Logo Entraide Pierre Valdo"),
     },
     {
       image: HIS,
-      alt: t("Homepage.StructuresLogos.HIS", "Logo GIP Habitat et Interventions Sociales"),
+      alt: t("Homepage.StructuresLogosHis", "Logo GIP Habitat et Interventions Sociales"),
     },
     {
       image: ForumRefugie,
-      alt: t("Homepage.StructuresLogos.ForumRefugie", "Logo Forum Réfugiés"),
+      alt: t("Homepage.StructuresLogosForumrefugie", "Logo Forum Réfugiés"),
     },
     {
       image: FederationActeurs,
-      alt: t("Homepage.StructuresLogos.FederationActeurs", "Logo Fédération des Acteurs de la Solidarité"),
+      alt: t("Homepage.StructuresLogosFederationacteurs", "Logo Fédération des Acteurs de la Solidarité"),
     },
   ];
 
@@ -67,7 +67,7 @@ const StructuresLogos = () => {
       </div>
       <p className="text-center text-lg">
         {t(
-          "Homepage.StructuresLogos.Text",
+          "Homepage.StructuresLogosText",
           "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
         )}
       </p>

@@ -64,6 +64,8 @@
     "lint:server": "turbo lint --filter=@refugies-info/server",
     "lint:mobile": "turbo lint --filter=@refugies-info/mobile",
     "lint:style": "stylelint \"**/*.css\" \"**/*.scss\"",
+    "client:i18n:export": "pnpm --filter @refugies-info/client i18n:export",
+    "client:i18n:import": "pnpm --filter @refugies-info/client i18n:import",
     "pr:prod:client": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "pr:prod:mobile": "gh pr create -B master-mobile -H staging-mobile -l release -t '[PROD-MOBILE] Release' -b ''",
