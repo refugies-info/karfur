@@ -14,7 +14,7 @@ exports[`homepage renders homepage 1`] = `
         <h1
           class="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
         >
-          Homepage.title.desktop
+          Homepage.titleDesktop
         </h1>
         <p
           class="mb-0 flex flex-col items-center text-xl"
@@ -95,7 +95,7 @@ exports[`homepage renders homepage 1`] = `
         class="flex flex-wrap justify-center gap-x-10"
       >
         <img
-          alt="Homepage.StructuresLogos.FTDA"
+          alt="Homepage.StructuresLogosFtda"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -106,7 +106,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.SOS"
+          alt="Homepage.StructuresLogosSos"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -117,7 +117,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.FranceTravail"
+          alt="Homepage.StructuresLogosFrancetravail"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -128,7 +128,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.COS"
+          alt="Homepage.StructuresLogosCos"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -139,7 +139,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.FH"
+          alt="Homepage.StructuresLogosFh"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -150,7 +150,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.Coalia"
+          alt="Homepage.StructuresLogosCoalia"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -161,7 +161,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.PierreValdo"
+          alt="Homepage.StructuresLogosPierrevaldo"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -172,7 +172,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.HIS"
+          alt="Homepage.StructuresLogosHis"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -183,7 +183,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.ForumRefugie"
+          alt="Homepage.StructuresLogosForumrefugie"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -194,7 +194,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.FederationActeurs"
+          alt="Homepage.StructuresLogosFederationacteurs"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -208,7 +208,7 @@ exports[`homepage renders homepage 1`] = `
       <p
         class="text-center text-lg"
       >
-        Homepage.StructuresLogos.Text
+        Homepage.StructuresLogosText
       </p>
     </section>
     <section
@@ -229,24 +229,24 @@ exports[`homepage renders homepage 1`] = `
           class="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0"
         >
           <button
-            aria-label="ui.carrousel.prev (1 / 15"
+            aria-label="ui.carrouselPrev (1 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-left-line"
             disabled=""
             id="fr-button-:r2:"
-            title="ui.carrousel.prev"
+            title="ui.carrouselPrev"
           />
           <button
-            aria-label="ui.carrousel.next (2 / 15"
+            aria-label="ui.carrouselNext (2 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line"
             id="fr-button-:r3:"
-            title="ui.carrousel.next"
+            title="ui.carrouselNext"
           />
           <a
             class="fr-btn fr-btn--tertiary whitespace-nowrap"
             href="/recherche?search=&sort=default&type=demarche"
             id="fr-button-:r4:"
           >
-            ui.carrousel.seeMore
+            ui.carrouselSeemore
           </a>
         </nav>
       </div>
@@ -2487,24 +2487,24 @@ exports[`homepage renders homepage 1`] = `
           class="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0"
         >
           <button
-            aria-label="ui.carrousel.prev (1 / 15"
+            aria-label="ui.carrouselPrev (1 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-left-line"
             disabled=""
             id="fr-button-:rk:"
-            title="ui.carrousel.prev"
+            title="ui.carrouselPrev"
           />
           <button
-            aria-label="ui.carrousel.next (2 / 15"
+            aria-label="ui.carrouselNext (2 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line"
             id="fr-button-:rl:"
-            title="ui.carrousel.next"
+            title="ui.carrouselNext"
           />
           <a
             class="fr-btn fr-btn--tertiary whitespace-nowrap"
             href="/recherche?search=&sort=default&type=dispositif"
             id="fr-button-:rm:"
           >
-            ui.carrousel.seeMore
+            ui.carrouselSeemore
           </a>
         </nav>
       </div>
@@ -4686,7 +4686,7 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
                   >
-                    Homepage.accordionItems.desktop.title1
+                    Homepage.accordionItemsdesktopTitle1
                   </span>
                   <i
                     class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
@@ -4708,7 +4708,7 @@ exports[`homepage renders homepage 1`] = `
                   <p
                     class="text !text-large !mb-0"
                   >
-                    Homepage.accordionItems.desktop.text1
+                    Homepage.accordionItemsdesktopText1
                   </p>
                 </div>
               </div>
@@ -4736,7 +4736,7 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     class="mb-0 grow-1 text-left text-xl font-medium"
                   >
-                    Homepage.accordionItems.desktop.title2
+                    Homepage.accordionItemsdesktopTitle2
                   </span>
                   <i
                     class="flex before:!h-4 before:!w-4 fr-icon-add-line"
@@ -4777,7 +4777,7 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     class="mb-0 grow-1 text-left text-xl font-medium"
                   >
-                    Homepage.accordionItems.desktop.title3
+                    Homepage.accordionItemsdesktopTitle3
                   </span>
                   <i
                     class="flex before:!h-4 before:!w-4 fr-icon-add-line"
@@ -4818,7 +4818,7 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     class="mb-0 grow-1 text-left text-xl font-medium"
                   >
-                    Homepage.accordionItems.desktop.title4
+                    Homepage.accordionItemsdesktopTitle4
                   </span>
                   <i
                     class="flex before:!h-4 before:!w-4 fr-icon-add-line"
@@ -4842,7 +4842,7 @@ exports[`homepage renders homepage 1`] = `
           class="flex w-1/2 items-center justify-end"
         >
           <img
-            alt="Homepage.accordionItems.desktop.alt1"
+            alt="Homepage.accordionItemsdesktopAlt1"
             class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
             data-nimg="1"
             decoding="async"
@@ -4884,22 +4884,22 @@ exports[`homepage renders homepage 1`] = `
             <span
               class="font-caveat absolute block text-lg leading-4 font-bold top-[4%] left-[66%]"
             >
-              MobileApp.Annotations.share
+              MobileApp.AnnotationsShare
             </span>
             <span
               class="font-caveat absolute block text-lg leading-4 font-bold top-[25%] left-[72%] max-w-[5em]"
             >
-              MobileApp.Annotations.langChange
+              MobileApp.AnnotationsLangchange
             </span>
             <span
               class="font-caveat absolute block text-lg leading-4 font-bold top-[53%] left-[79%]"
             >
-              MobileApp.Annotations.langSimple
+              MobileApp.AnnotationsLangsimple
             </span>
             <span
               class="font-caveat absolute block text-lg leading-4 font-bold bottom-[8%] left-[65%]"
             >
-              MobileApp.Annotations.vocalize
+              MobileApp.AnnotationsVocalize
             </span>
           </figcaption>
         </figure>
@@ -4987,7 +4987,7 @@ exports[`homepage renders homepage 1`] = `
         <p
           class="mb-10"
         >
-          MobileApp.subtitle.desktop
+          MobileApp.subtitleDesktop
         </p>
         <form
           class="md:w-1/2"
@@ -5105,7 +5105,7 @@ exports[`homepage renders homepage 1`] = `
       <h2
         class="mb-0 text-center"
       >
-        WorkTogether.title
+        WorkTogetherTitle
       </h2>
       <div
         class="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3"
@@ -5117,7 +5117,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.ts.alt"
+              alt="WorkTogether.cardstsAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5130,12 +5130,12 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.ts.title
+              WorkTogether.cardstsTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.ts.description
+              WorkTogether.cardstsDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
@@ -5157,7 +5157,7 @@ exports[`homepage renders homepage 1`] = `
               class="flex h-20 w-20 items-center justify-center bg-black p-1"
             >
               <img
-                alt="WorkTogether.cards.agir.alt"
+                alt="WorkTogether.cardsagirAlt"
                 data-nimg="1"
                 decoding="async"
                 height="40"
@@ -5171,12 +5171,12 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.agir.title
+              WorkTogether.cardsagirTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.agir.description
+              WorkTogether.cardsagirDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
@@ -5195,7 +5195,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.operators.alt"
+              alt="WorkTogether.cardsoperatorsAlt"
               data-nimg="1"
               decoding="async"
               height="80"
@@ -5208,12 +5208,12 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.operators.title
+              WorkTogether.cardsoperatorsTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.operators.description
+              WorkTogether.cardsoperatorsDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
@@ -5232,7 +5232,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.administration.alt"
+              alt="WorkTogether.cardsadministrationAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5245,12 +5245,12 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.administration.title
+              WorkTogether.cardsadministrationTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.administration.description
+              WorkTogether.cardsadministrationDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
@@ -5269,7 +5269,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.structures.alt"
+              alt="WorkTogether.cardsstructuresAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5282,12 +5282,12 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.structures.title
+              WorkTogether.cardsstructuresTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.structures.description
+              WorkTogether.cardsstructuresDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
@@ -5305,7 +5305,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.polyglots.alt"
+              alt="WorkTogether.cardspolyglotsAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5318,12 +5318,12 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.polyglots.title
+              WorkTogether.cardspolyglotsTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.polyglots.description
+              WorkTogether.cardspolyglotsDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
