@@ -5,15 +5,14 @@ export const HelpNotice = () => (
     isClosable
     title={
       <>
-        Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info&nbsp;! Découvrez toutes les nouveautés
-        dans{" "}
+        Réfugiés.info a été nommé Service numérique à impact national !&nbsp;
         <a
-          href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
+          href="https://beta.gouv.fr/startups/refugies.info#impact"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"
         >
-          notre article d'aide
+          Découvrir l'impact du projet
         </a>
         .
       </>
