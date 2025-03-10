@@ -141,8 +141,8 @@ importers:
         specifier: ^3.1.1
         version: 3.3.4
       axios:
-        specifier: ^1.8.1
-        version: 1.8.1
+        specifier: ^1.8.2
+        version: 1.8.2
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -442,8 +442,8 @@ importers:
         specifier: ^5.20.4
         version: 5.20.4
       axios:
-        specifier: ^1.8.1
-        version: 1.8.1
+        specifier: ^1.8.2
+        version: 1.8.2
       expo:
         specifier: ^52.0.32
         version: 52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(react-native-webview@13.13.2(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -713,8 +713,8 @@ importers:
         specifier: ^5.20.4
         version: 5.20.4
       axios:
-        specifier: ^1.8.1
-        version: 1.8.1
+        specifier: ^1.8.2
+        version: 1.8.2
       cloudinary:
         specifier: ^2.5.1
         version: 2.5.1
@@ -4931,8 +4931,8 @@ packages:
     resolution: {integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==}
     engines: {node: '>=4'}
 
-  axios@1.8.1:
-    resolution: {integrity: sha512-NN+fvwH/kV01dYUQ3PTOZns4LWtWhOFCAhQ/pHb88WQ1hNe5V/dvFwc4VJcDL11LT9xSX0QtsR8sWUuyOuOq7g==}
+  axios@1.8.2:
+    resolution: {integrity: sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -15438,7 +15438,7 @@ snapshots:
   '@sendgrid/client@8.1.4':
     dependencies:
       '@sendgrid/helpers': 8.0.0
-      axios: 1.8.1
+      axios: 1.8.2
     transitivePeerDependencies:
       - debug
 
@@ -15477,7 +15477,7 @@ snapshots:
     dependencies:
       '@slack/types': 2.14.0
       '@types/node': 22.13.9
-      axios: 1.8.1
+      axios: 1.8.2
     transitivePeerDependencies:
       - debug
 
@@ -17049,7 +17049,7 @@ snapshots:
 
   axe-core@4.10.2: {}
 
-  axios@1.8.1:
+  axios@1.8.2:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.2
@@ -24705,7 +24705,7 @@ snapshots:
 
   twilio@5.4.5:
     dependencies:
-      axios: 1.8.1
+      axios: 1.8.2
       dayjs: 1.11.13
       https-proxy-agent: 5.0.1
       jsonwebtoken: 9.0.2
@@ -24997,7 +24997,7 @@ snapshots:
 
   wait-on@8.0.2:
     dependencies:
-      axios: 1.8.1
+      axios: 1.8.2
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
