@@ -24,6 +24,10 @@
     ],
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
+    },
+    "overrides": {
+      "undici": "5.28.5",
+      "@expo/cli>undici": "6.21.1"
     }
   },
   "scripts": {
@@ -117,8 +121,6 @@
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
-  "resolutions": {
-    "undici": "^5.28.5"
-  },
+
   "packageManager": "pnpm@10.4.1"
 }
