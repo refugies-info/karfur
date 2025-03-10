@@ -1,10 +1,11 @@
 {
   "build": {
     "base": { "channel": "base", "ios": { "image": "latest" }, "node": "22.13.1", "pnpm": "10.4.1" },
-    "production": { "extends": "base", "channel": "production" },
+    "production": { "extends": "base", "channel": "production", "environment": "production" },
     "staging": {
       "extends": "base",
       "channel": "staging",
+      "environment": "preview",
       "distribution": "internal",
       "env": { "EXPO_APP_NAME": "Réfugiés.info - Staging", "EAS_BUILD_PROFILE": "staging" }
     },
@@ -26,6 +27,7 @@
     "preview": {
       "extends": "base",
       "channel": "preview",
+      "environment": "preview",
       "distribution": "internal",
       "env": { "EXPO_APP_NAME": "Réfugiés.info - Preview", "EAS_BUILD_PROFILE": "preview" }
     }
