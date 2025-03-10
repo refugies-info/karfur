@@ -113,11 +113,18 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
       const slideElement = slideRefs.current[targetSlide];
       const containerElement = scrollContainerRef.current;
 
-      // Directly scroll to the target slide
-      slideElement.scrollIntoView({
+      // Calculate the scroll position manually to account for the padding
+      const containerRect = containerElement.getBoundingClientRect();
+      const slideRect = slideElement.getBoundingClientRect();
+
+      // Calculate the position to center the slide in the container
+      const scrollLeft =
+        slideElement.offsetLeft - containerElement.offsetLeft - (containerRect.width / 2 - slideRect.width / 2);
+
+      // Scroll to the calculated position
+      containerElement.scrollTo({
+        left: scrollLeft,
         behavior: useSmooth ? "smooth" : "auto",
-        block: "nearest",
-        inline: "center",
       });
 
       setCurrentSlide(targetSlide);
@@ -208,7 +215,12 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
 
       <div
         ref={scrollContainerRef}
-        className="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-78rem)/2+1rem))] xl:pl-[max(0.75rem,calc((100vw-78rem)/2+1rem))] [&::-webkit-scrollbar]:hidden"
+        className={cn(
+          "m-auto flex gap-4 pr-4",
+          "touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth",
+          "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
+          "scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]", // Keep only the padding-left, remove scroll-padding-left
+        )}
         aria-live="polite"
         aria-atomic="true"
         style={{
@@ -230,7 +242,6 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
           <div
             ref={(el) => {
               slideRefs.current[index] = el;
-              return () => {};
             }}
             id={`slide-${index}`}
             className="min-w-max shrink-0 snap-start"
