@@ -16,6 +16,7 @@ import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Page
 import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
@@ -67,6 +68,7 @@ const Homepage = (props: Props) => {
             : `${t("Homepage.subtitle1", "Des ressources claires et traduites")} ${t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}`
         }
       />
+      <HelpNotice />
 
       <Hero targetArrow="themes" />
 

@@ -6,6 +6,40 @@ exports[`homepage renders homepage 1`] = `
     class="main"
   >
     <div
+      class="fr-notice fr-notice--info"
+      id="fr-notice-:r0:"
+    >
+      <div
+        class="fr-container"
+      >
+        <div
+          class="fr-notice__body"
+        >
+          <p>
+            <span
+              class="fr-notice__title"
+            >
+              Réfugiés.info a été nommé Service numérique à impact national ! 
+              <a
+                class="underline"
+                href="https://beta.gouv.fr/startups/refugies.info#impact"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Découvrir l'impact du projet
+              </a>
+              .
+            </span>
+          </p>
+          <button
+            class="fr-btn--close fr-btn"
+          >
+            Masquer le message
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       class="relative flex flex-col-reverse md:min-h-[504px]"
     >
       <div
@@ -32,14 +66,14 @@ exports[`homepage renders homepage 1`] = `
           <a
             class="fr-btn fr-icon-search-line fr-btn--icon-right justify-center max-md:w-full"
             href="/recherche"
-            id="fr-button-:r0:"
+            id="fr-button-:r1:"
           >
             Homepage.searchButton
           </a>
           <a
             class="fr-btn fr-btn--secondary fr-icon-smartphone-line fr-btn--icon-right justify-center max-md:w-full"
             href="#application"
-            id="fr-button-:r1:"
+            id="fr-button-:r2:"
           >
             Homepage.donwloadAppButton
           </a>
@@ -232,19 +266,19 @@ exports[`homepage renders homepage 1`] = `
             aria-label="ui.carrouselPrev (1 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-left-line"
             disabled=""
-            id="fr-button-:r2:"
+            id="fr-button-:r3:"
             title="ui.carrouselPrev"
           />
           <button
             aria-label="ui.carrouselNext (2 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line"
-            id="fr-button-:r3:"
+            id="fr-button-:r4:"
             title="ui.carrouselNext"
           />
           <a
             class="fr-btn fr-btn--tertiary whitespace-nowrap"
             href="/recherche?search=&sort=default&type=demarche"
-            id="fr-button-:r4:"
+            id="fr-button-:r5:"
           >
             ui.carrouselSeemore
           </a>
@@ -385,7 +419,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r5:"
+                      id="fr-badge-:r6:"
                     >
                       Démarche
                     </p>
@@ -535,7 +569,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r6:"
+                      id="fr-badge-:r7:"
                     >
                       Démarche
                     </p>
@@ -685,7 +719,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r7:"
+                      id="fr-badge-:r8:"
                     >
                       Démarche
                     </p>
@@ -830,7 +864,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r8:"
+                      id="fr-badge-:r9:"
                     >
                       Démarche
                     </p>
@@ -980,7 +1014,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r9:"
+                      id="fr-badge-:ra:"
                     >
                       Démarche
                     </p>
@@ -1125,7 +1159,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:ra:"
+                      id="fr-badge-:rb:"
                     >
                       Démarche
                     </p>
@@ -1275,7 +1309,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rb:"
+                      id="fr-badge-:rc:"
                     >
                       Démarche
                     </p>
@@ -1420,7 +1454,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rc:"
+                      id="fr-badge-:rd:"
                     >
                       Démarche
                     </p>
@@ -1565,7 +1599,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rd:"
+                      id="fr-badge-:re:"
                     >
                       Démarche
                     </p>
@@ -1715,7 +1749,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:re:"
+                      id="fr-badge-:rf:"
                     >
                       Démarche
                     </p>
@@ -1860,7 +1894,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rf:"
+                      id="fr-badge-:rg:"
                     >
                       Démarche
                     </p>
@@ -2010,7 +2044,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rg:"
+                      id="fr-badge-:rh:"
                     >
                       Démarche
                     </p>
@@ -2155,7 +2189,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rh:"
+                      id="fr-badge-:ri:"
                     >
                       Démarche
                     </p>
@@ -2300,7 +2334,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:ri:"
+                      id="fr-badge-:rj:"
                     >
                       Démarche
                     </p>
@@ -2445,7 +2479,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rj:"
+                      id="fr-badge-:rk:"
                     >
                       Démarche
                     </p>
@@ -2490,19 +2524,19 @@ exports[`homepage renders homepage 1`] = `
             aria-label="ui.carrouselPrev (1 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-left-line"
             disabled=""
-            id="fr-button-:rk:"
+            id="fr-button-:rl:"
             title="ui.carrouselPrev"
           />
           <button
             aria-label="ui.carrouselNext (2 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line"
-            id="fr-button-:rl:"
+            id="fr-button-:rm:"
             title="ui.carrouselNext"
           />
           <a
             class="fr-btn fr-btn--tertiary whitespace-nowrap"
             href="/recherche?search=&sort=default&type=dispositif"
-            id="fr-button-:rm:"
+            id="fr-button-:rn:"
           >
             ui.carrouselSeemore
           </a>
@@ -2632,7 +2666,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rn:"
+                      id="fr-badge-:ro:"
                     >
                       Lieu d'action
                     </p>
@@ -2771,7 +2805,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:ro:"
+                      id="fr-badge-:rp:"
                     >
                       Lieu d'action
                     </p>
@@ -2905,7 +2939,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rp:"
+                      id="fr-badge-:rq:"
                     >
                       Lieu d'action
                     </p>
@@ -3044,7 +3078,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rq:"
+                      id="fr-badge-:rr:"
                     >
                       Lieu d'action
                     </p>
@@ -3183,7 +3217,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rr:"
+                      id="fr-badge-:rs:"
                     >
                       Lieu d'action
                     </p>
@@ -3317,7 +3351,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rs:"
+                      id="fr-badge-:rt:"
                     >
                       Lieu d'action
                     </p>
@@ -3456,7 +3490,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rt:"
+                      id="fr-badge-:ru:"
                     >
                       Lieu d'action
                     </p>
@@ -3590,7 +3624,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:ru:"
+                      id="fr-badge-:rv:"
                     >
                       Lieu d'action
                     </p>
@@ -3729,7 +3763,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rv:"
+                      id="fr-badge-:r10:"
                     >
                       Lieu d'action
                     </p>
@@ -3868,7 +3902,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r10:"
+                      id="fr-badge-:r11:"
                     >
                       Lieu d'action
                     </p>
@@ -4007,7 +4041,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r11:"
+                      id="fr-badge-:r12:"
                     >
                       Lieu d'action
                     </p>
@@ -4141,7 +4175,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r12:"
+                      id="fr-badge-:r13:"
                     >
                       Lieu d'action
                     </p>
@@ -4280,7 +4314,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r13:"
+                      id="fr-badge-:r14:"
                     >
                       Lieu d'action
                     </p>
@@ -4414,7 +4448,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r14:"
+                      id="fr-badge-:r15:"
                     >
                       Lieu d'action
                     </p>
@@ -4553,7 +4587,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r15:"
+                      id="fr-badge-:r16:"
                     >
                       Lieu d'action
                     </p>
@@ -4629,7 +4663,7 @@ exports[`homepage renders homepage 1`] = `
                 />
                 <button
                   class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
-                  id="fr-button-:r17:"
+                  id="fr-button-:r18:"
                   type="submit"
                 >
                   ok
@@ -4673,14 +4707,14 @@ exports[`homepage renders homepage 1`] = `
                 data-state="open"
               >
                 <button
-                  aria-controls="radix-:r19:"
+                  aria-controls="radix-:r1a:"
                   aria-disabled="true"
                   aria-expanded="true"
                   class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="open"
-                  id="radix-:r18:"
+                  id="radix-:r19:"
                   type="button"
                 >
                   <span
@@ -4694,11 +4728,11 @@ exports[`homepage renders homepage 1`] = `
                 </button>
               </h3>
               <div
-                aria-labelledby="radix-:r18:"
+                aria-labelledby="radix-:r19:"
                 class="content"
                 data-orientation="vertical"
                 data-state="open"
-                id="radix-:r19:"
+                id="radix-:r1a:"
                 role="region"
                 style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
               >
@@ -4724,13 +4758,13 @@ exports[`homepage renders homepage 1`] = `
                 data-state="closed"
               >
                 <button
-                  aria-controls="radix-:r1b:"
+                  aria-controls="radix-:r1c:"
                   aria-expanded="false"
                   class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="closed"
-                  id="radix-:r1a:"
+                  id="radix-:r1b:"
                   type="button"
                 >
                   <span
@@ -4744,12 +4778,12 @@ exports[`homepage renders homepage 1`] = `
                 </button>
               </h3>
               <div
-                aria-labelledby="radix-:r1a:"
+                aria-labelledby="radix-:r1b:"
                 class="content"
                 data-orientation="vertical"
                 data-state="closed"
                 hidden=""
-                id="radix-:r1b:"
+                id="radix-:r1c:"
                 role="region"
                 style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
               />
@@ -4765,13 +4799,13 @@ exports[`homepage renders homepage 1`] = `
                 data-state="closed"
               >
                 <button
-                  aria-controls="radix-:r1d:"
+                  aria-controls="radix-:r1e:"
                   aria-expanded="false"
                   class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="closed"
-                  id="radix-:r1c:"
+                  id="radix-:r1d:"
                   type="button"
                 >
                   <span
@@ -4785,12 +4819,12 @@ exports[`homepage renders homepage 1`] = `
                 </button>
               </h3>
               <div
-                aria-labelledby="radix-:r1c:"
+                aria-labelledby="radix-:r1d:"
                 class="content"
                 data-orientation="vertical"
                 data-state="closed"
                 hidden=""
-                id="radix-:r1d:"
+                id="radix-:r1e:"
                 role="region"
                 style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
               />
@@ -4806,13 +4840,13 @@ exports[`homepage renders homepage 1`] = `
                 data-state="closed"
               >
                 <button
-                  aria-controls="radix-:r1f:"
+                  aria-controls="radix-:r1g:"
                   aria-expanded="false"
                   class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                   data-orientation="vertical"
                   data-radix-collection-item=""
                   data-state="closed"
-                  id="radix-:r1e:"
+                  id="radix-:r1f:"
                   type="button"
                 >
                   <span
@@ -4826,12 +4860,12 @@ exports[`homepage renders homepage 1`] = `
                 </button>
               </h3>
               <div
-                aria-labelledby="radix-:r1e:"
+                aria-labelledby="radix-:r1f:"
                 class="content"
                 data-orientation="vertical"
                 data-state="closed"
                 hidden=""
-                id="radix-:r1f:"
+                id="radix-:r1g:"
                 role="region"
                 style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
               />
@@ -4868,7 +4902,7 @@ exports[`homepage renders homepage 1`] = `
         >
           <img
             alt="MobileApp.imageAlt"
-            aria-describedby=":r1g:-annotations"
+            aria-describedby=":r1h:-annotations"
             class="object-contain"
             data-nimg="fill"
             decoding="async"
@@ -4879,7 +4913,7 @@ exports[`homepage renders homepage 1`] = `
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
           <figcaption
-            id=":r1g:-annotations"
+            id=":r1h:-annotations"
           >
             <span
               class="font-caveat absolute block text-lg leading-4 font-bold top-[4%] left-[66%]"
@@ -4997,36 +5031,36 @@ exports[`homepage renders homepage 1`] = `
           >
             <label
               class="fr-label"
-              for="input-:r1h:"
+              for="input-:r1i:"
             >
               MobileApp.phoneLabel
             </label>
             <input
               class="fr-input"
-              id="input-:r1h:"
+              id="input-:r1i:"
               type="text"
               value=""
             />
             <div
               aria-live="polite"
               class="fr-messages-group"
-              id="input-:r1h:-messages-group"
+              id="input-:r1i:-messages-group"
             />
           </div>
           <div
             class="fr-select-group"
-            id="fr-select-group-:r1i:"
+            id="fr-select-group-:r1j:"
           >
             <label
               class="fr-label"
-              for="select-:r1j:"
+              for="select-:r1k:"
             >
               MobileApp.langLabel
             </label>
             <select
-              aria-describedby="select-:r1k:-desc"
+              aria-describedby="select-:r1l:-desc"
               class="fr-select"
-              id="select-:r1j:"
+              id="select-:r1k:"
               name="languageSelected"
             >
               <option
@@ -5043,12 +5077,12 @@ exports[`homepage renders homepage 1`] = `
             <div
               aria-live="polite"
               class="fr-messages-group"
-              id="select-:r1j:-messages-group"
+              id="select-:r1k:-messages-group"
             />
           </div>
           <button
             class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
-            id="fr-button-:r1l:"
+            id="fr-button-:r1m:"
             type="submit"
           >
             MobileApp.buttonText
@@ -5073,7 +5107,7 @@ exports[`homepage renders homepage 1`] = `
           <div>
             <button
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
-              id="fr-button-:r1m:"
+              id="fr-button-:r1n:"
             >
               Homepage.resourcesCTA
             </button>
@@ -5140,7 +5174,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href=" https://airtable.com/shrrkFuyeG0BpKKT7"
-              id="fr-button-:r1n:"
+              id="fr-button-:r1o:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5181,7 +5215,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1o:"
+              id="fr-button-:r1p:"
               target="_blank"
             >
               WorkTogether.participateWebinar
@@ -5218,7 +5252,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1p:"
+              id="fr-button-:r1q:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5255,7 +5289,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1q:"
+              id="fr-button-:r1r:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5292,7 +5326,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
-              id="fr-button-:r1r:"
+              id="fr-button-:r1s:"
             >
               WorkTogether.translateContent
             </a>
@@ -5328,7 +5362,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
-              id="fr-button-:r1s:"
+              id="fr-button-:r1t:"
             >
               WorkTogether.participateWebinar
             </a>

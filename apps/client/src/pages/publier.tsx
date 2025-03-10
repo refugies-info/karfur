@@ -20,6 +20,7 @@ import WhyImage2 from "~/assets/staticPages/publier/why-image-2.png";
 import WhyImage3 from "~/assets/staticPages/publier/why-image-3.png";
 import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
 import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import {
   Accordion,
   Anchor,
@@ -88,6 +89,7 @@ const RecensezVotreAction = (props: Props) => {
   return (
     <div className="w-full">
       <SEO title="Recensez votre action !" />
+      <HelpNotice />
       <TranslationNotice />
 
       {/* HERO */}
