@@ -73,19 +73,17 @@ const LanguageItem = memo(
             <b>{t("LanguageDropdown.loading", "Chargement de la langue")}</b>
           </span>
         )}
-        <span>
+        <span className="langLabel">
           <b>{item.langueFr}</b> - {item.langueLoc}
         </span>{" "}
         {item.langueCode && notListenableLanguages.includes(item.langueCode) && (
           <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
         )}{" "}
-        {stylesDisabled ? (
-          <>{Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}</>
-        ) : (
-          <Badge noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
+        <span dir="ltr">
+          <Badge as="span" noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
             {Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}
           </Badge>
-        )}
+        </span>
       </button>
     );
   }),
