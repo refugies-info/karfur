@@ -19,14 +19,14 @@ exports[`recherche renders search results 1`] = `
             <span
               class="fr-notice__title"
             >
-              Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info ! Découvrez toutes les nouveautés dans 
+              Réfugiés.info a été nommé Service numérique à impact national ! 
               <a
                 class="underline"
-                href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
+                href="https://beta.gouv.fr/startups/refugies.info#impact"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                notre article d'aide
+                Découvrir l'impact du projet
               </a>
               .
             </span>
