@@ -11,16 +11,12 @@ interface LanguageSelectProps {
 }
 
 const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(({ onChangeLang, ...props }, ref) => {
-  const sortedLanguages = [...activatedLanguages];
-  sortedLanguages.sort((a, b) => a.langueFr.localeCompare(b.langueFr));
+  const sortedLanguages = [...activatedLanguages].sort((a, b) => a.langueFr.localeCompare(b.langueFr));
+  const frenchLanguage = sortedLanguages.find((lang) => lang.langueCode === "fr");
 
-  const frenchLanguage = activatedLanguages.find((lang) => lang.langueCode === "fr");
   if (frenchLanguage) {
+    sortedLanguages.splice(sortedLanguages.indexOf(frenchLanguage), 1);
     sortedLanguages.unshift(frenchLanguage);
-    const duplicateIndex = sortedLanguages.findIndex((lang, index) => index > 0 && lang.langueCode === "fr");
-    if (duplicateIndex !== -1) {
-      sortedLanguages.splice(duplicateIndex, 1);
-    }
   }
 
   return (
