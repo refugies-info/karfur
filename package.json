@@ -117,6 +117,8 @@
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
-  "resolutions": {},
+  "resolutions": {
+    "undici": "^5.28.5"
+  },
   "packageManager": "pnpm@10.4.1"
 }
