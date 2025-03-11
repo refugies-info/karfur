@@ -4963,11 +4963,13 @@ exports[`homepage renders homepage 1`] = `
           >
             <img
               alt="Get it on Play Store"
-              data-nimg="fill"
+              data-nimg="1"
               decoding="async"
+              height="40"
               loading="lazy"
               src="https://storage.googleapis.com/refugies-info-assets/store-badges/google-play-fr.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              style="color: transparent;"
+              width="128"
             />
           </a>
         </p>
@@ -5194,12 +5196,12 @@ exports[`homepage renders homepage 1`] = `
                 alt="WorkTogether.cardsagirAlt"
                 data-nimg="1"
                 decoding="async"
-                height="40"
+                height="100"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
                 style="color: transparent;"
-                width="40"
+                width="150"
               />
             </span>
             <h3
