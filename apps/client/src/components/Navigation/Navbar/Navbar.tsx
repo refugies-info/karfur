@@ -85,15 +85,19 @@ const Navbar = () => {
         isActive: isCurrent(getPath("/mission-et-impact", router.locale)),
       },
       {
-        text: t("Toolbar.partagerProjet", "Partager le projet"),
+        text: t("Toolbar.partagerProjet", "Ressources"),
         menuLinks: [
           {
-            linkProps: { href: "https://kit.refugies.info/", target: "_blank" },
-            text: t("Toolbar.Kit de communication", "Kit de communication"),
+            linkProps: { href: "https://kit.refugies.info/formation/", target: "_blank" },
+            text: t("Toolbar.webinaire", "Participer à un webinaire de découverte"),
           },
           {
             linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
-            text: t("Toolbar.posters_leaflets", "Commander des affiches et dépliants"),
+            text: t("Toolbar.posters_leaflets", "Commander des affiches et des dépliants"),
+          },
+          {
+            linkProps: { href: "https://kit.refugies.info/", target: "_blank" },
+            text: t("Toolbar.Kit de communication", "Parler du projet (kit de communication)"),
           },
 
           {
