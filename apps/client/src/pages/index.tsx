@@ -108,13 +108,13 @@ const Homepage = (props: Props) => {
         ))}
       </Carrousel>
 
-      <Newsletter />
+      {!isMobile && <FreeResources />}
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
       <MobileApp />
 
-      {!isMobile && <FreeResources />}
+      <Newsletter />
 
       {!isMobile && <WorkTogether />}
     </div>

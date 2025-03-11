@@ -4613,70 +4613,52 @@ exports[`homepage renders homepage 1`] = `
     </section>
     <section
       class="bg-alt-blue-france w-full py-20"
-      id="newsletter"
+      id="free-ressources"
     >
       <div
         class="container grid grid-cols-2 items-center gap-10"
       >
-        <img
-          alt="NewsletterForm.imgAlt"
-          class="m-auto max-w-full"
-          data-nimg="1"
-          decoding="async"
-          height="320"
-          loading="lazy"
-          src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-          srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-          style="color: transparent;"
-          width="433"
-        />
-        <div
-          class="stacked relative grid h-full grid-cols-1 grid-rows-1 items-center"
-        >
-          <form
-            class="col-start-1 row-start-1 overflow-y-clip transition-all duration-200 ease-in max-h-full opacity-100 transition-all"
+        <div>
+          <h2>
+            Homepage.resourcesTitle
+          </h2>
+          <p>
+            Homepage.resourcesText
+          </p>
+          <div
+            class="flex flex-col gap-4"
           >
-            <h2>
-              NewsletterForm.title
-            </h2>
-            <p>
-              NewsletterForm.description
-            </p>
-            <div
-              class="fr-input-group"
+            <button
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
+              id="fr-button-:r17:"
             >
-              <label
-                class="fr-label"
-                for="newsletter-email"
-              >
-                NewsletterForm.label
-              </label>
-              <div
-                class="fr-input-wrap fr-input-wrap--addon"
-              >
-                <input
-                  class="fr-input"
-                  id="newsletter-email"
-                  name="email"
-                  type="email"
-                  value=""
-                />
-                <button
-                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
-                  id="fr-button-:r18:"
-                  type="submit"
-                >
-                  ok
-                </button>
-              </div>
-              <div
-                aria-live="polite"
-                class="fr-messages-group"
-                id="newsletter-email-messages-group"
-              />
-            </div>
-          </form>
+              Homepage.webinaireCTA
+            </button>
+            <button
+              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
+              id="fr-button-:r18:"
+            >
+              Homepage.resourcesCTA
+            </button>
+          </div>
         </div>
+        <a
+          href="https://kit.refugies.info/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            alt="Homepage.ressourcesImgAlt"
+            data-nimg="1"
+            decoding="async"
+            height="362"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+            style="color: transparent;"
+            width="576"
+          />
+        </a>
       </div>
     </section>
     <div
@@ -5094,44 +5076,70 @@ exports[`homepage renders homepage 1`] = `
     </section>
     <section
       class="bg-alt-blue-france w-full py-20"
-      id="free-ressources"
+      id="newsletter"
     >
       <div
         class="container grid grid-cols-2 items-center gap-10"
       >
-        <div>
-          <h2>
-            Homepage.resourcesTitle
-          </h2>
-          <p>
-            Homepage.resourcesText
-          </p>
-          <div>
-            <button
-              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
-              id="fr-button-:r1n:"
-            >
-              Homepage.resourcesCTA
-            </button>
-          </div>
-        </div>
-        <a
-          href="https://kit.refugies.info/"
-          rel="noopener noreferrer"
-          target="_blank"
+        <img
+          alt="NewsletterForm.imgAlt"
+          class="m-auto max-w-full"
+          data-nimg="1"
+          decoding="async"
+          height="320"
+          loading="lazy"
+          src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+          srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+          style="color: transparent;"
+          width="433"
+        />
+        <div
+          class="stacked relative grid h-full grid-cols-1 grid-rows-1 items-center"
         >
-          <img
-            alt="Homepage.ressourcesImgAlt"
-            data-nimg="1"
-            decoding="async"
-            height="362"
-            loading="lazy"
-            src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-            style="color: transparent;"
-            width="576"
-          />
-        </a>
+          <form
+            class="col-start-1 row-start-1 overflow-y-clip transition-all duration-200 ease-in max-h-full opacity-100 transition-all"
+          >
+            <h2>
+              NewsletterForm.title
+            </h2>
+            <p>
+              NewsletterForm.description
+            </p>
+            <div
+              class="fr-input-group"
+            >
+              <label
+                class="fr-label"
+                for="newsletter-email"
+              >
+                NewsletterForm.label
+              </label>
+              <div
+                class="fr-input-wrap fr-input-wrap--addon"
+              >
+                <input
+                  class="fr-input"
+                  id="newsletter-email"
+                  name="email"
+                  type="email"
+                  value=""
+                />
+                <button
+                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
+                  id="fr-button-:r1o:"
+                  type="submit"
+                >
+                  ok
+                </button>
+              </div>
+              <div
+                aria-live="polite"
+                class="fr-messages-group"
+                id="newsletter-email-messages-group"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     </section>
     <section
@@ -5176,7 +5184,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href=" https://airtable.com/shrrkFuyeG0BpKKT7"
-              id="fr-button-:r1o:"
+              id="fr-button-:r1p:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5217,7 +5225,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1p:"
+              id="fr-button-:r1q:"
               target="_blank"
             >
               WorkTogether.participateWebinar
@@ -5254,7 +5262,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1q:"
+              id="fr-button-:r1r:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5291,7 +5299,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1r:"
+              id="fr-button-:r1s:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5328,7 +5336,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
-              id="fr-button-:r1s:"
+              id="fr-button-:r1t:"
             >
               WorkTogether.translateContent
             </a>
@@ -5364,7 +5372,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
-              id="fr-button-:r1t:"
+              id="fr-button-:r1u:"
             >
               WorkTogether.participateWebinar
             </a>
