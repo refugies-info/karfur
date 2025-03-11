@@ -58,6 +58,8 @@ const WorkTogether = () => {
               "WorkTogether.cardsagirAlt",
               "Logo du programme AGIR sur fond noir, avec le slogan 'pour le logement et l'emploi des personnes réfugiées'. En dessous, un encart blanc contient le logo du Parcours d’Intégration Républicaine et le drapeau de l’Union européenne, indiquant le soutien européen au programme",
             )}
+            width={150}
+            height={100}
           />
         </span>
       ),
