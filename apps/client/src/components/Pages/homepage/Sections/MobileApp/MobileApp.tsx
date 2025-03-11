@@ -30,7 +30,7 @@ const MobileApp = () => {
           <Image src={appStoreBadge} alt="Get it on App Store" fill />
         </a>
         <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
-          <Image src={playStoreBadge} alt="Get it on Play Store" fill />
+          <Image src={playStoreBadge} width={128} height={40} alt="Get it on Play Store" />
         </a>
       </p>
     ),
