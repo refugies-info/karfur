@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { END } from "redux-saga";
 import HeroBack from "~/assets/staticPages/mission-et-impact/hero-back.svg";
 import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.svg";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import { Anchor, SecondaryNavbar, Section } from "~/components/Pages/staticPages/common";
 import {
   SectionCommunity,
@@ -66,7 +67,8 @@ const MissionImpact = (props: Props) => {
 
   return (
     <div className="w-full">
-      <SEO title="Qui sommes nous ?" />
+      <SEO title={t("MissionImpact.title")} />
+      <HelpNotice />
 
       <Section
         className="bg-action-low-blue-france bg-contain bg-bottom bg-no-repeat px-4 max-lg:!bg-none md:min-h-[520px]"

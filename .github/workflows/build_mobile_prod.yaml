@@ -19,15 +19,6 @@ jobs:
     name: Build Mobile Production
     runs-on: ubuntu-latest
     environment: master-mobile
-    env:
-      EXPO_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-      EXPO_PUBLIC_ALGOLIA_INDEX: ${{ vars.ALGOLIA_INDEX }}
-      EXPO_PUBLIC_API_URL: ${{ vars.API_URL }}
-      EXPO_PUBLIC_ENV_NAME: PROD
-      EXPO_PUBLIC_EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
-      EXPO_PUBLIC_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      EXPO_PUBLIC_SITE_SECRET: ${{ secrets.SITE_SECRET }}
-      EXPO_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - name: Check for EXPO_TOKEN
         run: |

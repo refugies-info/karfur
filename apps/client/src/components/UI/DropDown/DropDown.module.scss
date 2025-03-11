@@ -12,6 +12,7 @@
 .content {
   position: absolute;
   z-index: 1000;
+  filter: drop-shadow(var(--raised-shadow));
 
   // Left alignment (default)
   &.start {

@@ -9,7 +9,7 @@ import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { AvailableLanguageI18nCode } from "~/types/interface";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
@@ -30,7 +30,7 @@ const MobileApp = () => {
           <Image src={appStoreBadge} alt="Get it on App Store" fill />
         </a>
         <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
-          <Image src={playStoreBadge} alt="Get it on Play Store" fill />
+          <Image src={playStoreBadge} width={128} height={40} alt="Get it on Play Store" />
         </a>
       </p>
     ),
@@ -50,21 +50,21 @@ const MobileApp = () => {
         <AnnotationsOverlay
           className="block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
           annotations={[
-            { text: t("MobileApp.Annotations.share", "Partage"), className: "top-[4%] left-[66%]" },
+            { text: t("MobileApp.AnnotationsShare", "Partage"), className: "top-[4%] left-[66%]" },
             {
-              text: t("MobileApp.Annotations.langChange", "Changement de langue"),
+              text: t("MobileApp.AnnotationsLangchange", "Changement de langue"),
               className: "top-[25%] left-[72%] max-w-[5em]",
             },
             {
               text: isMobile
-                ? t("MobileApp.Annotations.easyFrench", "Français facile")
-                : t("MobileApp.Annotations.langSimple", "Langage clair"),
+                ? t("MobileApp.AnnotationsEasyfrench", "Français facile")
+                : t("MobileApp.AnnotationsLangsimple", "Langage clair"),
               className: "top-[53%] left-[79%] ",
             },
             {
               text: isMobile
-                ? t("MobileApp.Annotations.listen", "Écoute")
-                : t("MobileApp.Annotations.vocalize", "Vocalisation des contenus"),
+                ? t("MobileApp.AnnotationsListen", "Écoute")
+                : t("MobileApp.AnnotationsVocalize", "Vocalisation des contenus"),
               className: "bottom-[8%] left-[65%] ",
             },
           ]}
@@ -104,7 +104,7 @@ const MobileApp = () => {
         </h2>
         <p className="mb-10">
           {t(
-            isMobile ? "MobileApp.subtitle.mobile" : "MobileApp.subtitle.desktop",
+            isMobile ? "MobileApp.subtitleMobile" : "MobileApp.subtitleDesktop",
             isMobile
               ? "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info vous aide à construire votre vie en France !"
               : "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
@@ -115,18 +115,18 @@ const MobileApp = () => {
             <Button
               iconId={"ri-app-store-fill"}
               iconPosition="right"
-              className={cls("justify-center max-md:w-full", isAndroid && "hidden")}
+              className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
               onClick={() => handleOpenStoreLink(iosStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
+              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
             <Button
               iconId={"ri-android-fill"}
               iconPosition="right"
-              className={cls("justify-center max-md:w-full", isIOS && "hidden")}
+              className={cn("justify-center max-md:w-full", isIOS && "hidden")}
               onClick={() => handleOpenStoreLink(androidStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
+              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
           </span>
         ) : (
