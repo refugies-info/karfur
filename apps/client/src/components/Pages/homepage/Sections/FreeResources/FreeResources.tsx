@@ -18,7 +18,14 @@ const FreeResources = () => {
               "Nous vous fournissons un ensemble d’outils numériques et physiques pour découvrir le projet et en parler autour de vous : vidéos animées, flyers multilangues, brochures de présentation, visuels, etc.",
             )}
           </p>
-          <div>
+          <div className="flex flex-col gap-4">
+            <Button
+              onClick={() => window.open("https://kit.refugies.info/formation/", "_blank")}
+              iconId="fr-icon-arrow-right-line"
+              iconPosition="right"
+            >
+              {t("Homepage.webinaireCTA", "Participer à un webinaire")}
+            </Button>
             <Button
               onClick={() => window.open("https://kit.refugies.info/", "_blank")}
               iconId="fr-icon-arrow-right-line"
