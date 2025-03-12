@@ -2,9 +2,10 @@ import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useEditionMode } from "~/hooks";
+import { useEditionMode, useWindowSize } from "~/hooks";
 import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -17,12 +18,18 @@ const Footer = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isEditionMode = useEditionMode();
+  const { isMobile } = useWindowSize();
 
   const themes = useSelector(themesSelector);
 
   const openCrisp = () => {
     window.$crisp.push(["do", "chat:open"]);
   };
+
+  const toggleNewsletter = useCallback(() => {
+    dispatch(toggleNewsletterModalAction());
+    Event("NEWSLETTER", "open modal", "footer");
+  }, [dispatch]);
 
   if (isEditionMode) return null;
 
@@ -123,13 +130,11 @@ const Footer = () => {
               },
               text: t("Footer.help_translate", "Aider à traduire"),
             },
+
             {
               linkProps: {
-                href: "/",
-                onClick: () => {
-                  dispatch(toggleNewsletterModalAction());
-                  Event("NEWSLETTER", "open modal", "footer");
-                },
+                href: isMobile ? "#" : getPath("/", router.locale, "#newsletter"),
+                onClick: isMobile ? toggleNewsletter : undefined,
               },
               text: t("Footer.subscribe_to_newsletter", "S’inscrire à la newsletter"),
             },
@@ -161,13 +166,6 @@ const Footer = () => {
             },
             {
               linkProps: {
-                href: "https://kit.refugies.info/presse/",
-                target: "_blank",
-              },
-              text: t("Toolbar.Pour la presse", "Pour la presse"),
-            },
-            {
-              linkProps: {
                 href: "https://www.facebook.com/refugies.info",
                 target: "_blank",
               },
@@ -179,13 +177,6 @@ const Footer = () => {
                 target: "_blank",
               },
               text: "LinkedIn",
-            },
-            {
-              linkProps: {
-                href: "https://x.com/refugies_info",
-                target: "_blank",
-              },
-              text: "X (ex-Twitter)",
             },
           ],
         },
