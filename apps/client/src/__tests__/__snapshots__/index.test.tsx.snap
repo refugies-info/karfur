@@ -21,7 +21,7 @@ exports[`homepage renders homepage 1`] = `
             >
               Réfugiés.info a été nommé Service numérique à impact national ! 
               <a
-                class="underline"
+                class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
                 rel="noopener noreferrer"
                 target="_blank"
