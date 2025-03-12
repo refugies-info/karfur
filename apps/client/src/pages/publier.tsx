@@ -20,6 +20,7 @@ import WhyImage2 from "~/assets/staticPages/publier/why-image-2.png";
 import WhyImage3 from "~/assets/staticPages/publier/why-image-3.png";
 import WhyImage4 from "~/assets/staticPages/publier/why-image-4.png";
 import WriteContentModal from "~/components/Modals/WriteContentModal/WriteContentModal";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import {
   Accordion,
   Anchor,
@@ -88,6 +89,7 @@ const RecensezVotreAction = (props: Props) => {
   return (
     <div className="w-full">
       <SEO title="Recensez votre action !" />
+      <HelpNotice />
       <TranslationNotice />
 
       {/* HERO */}
@@ -383,7 +385,7 @@ const RecensezVotreAction = (props: Props) => {
                   },
                   {
                     title: "Je ne suis pas à l'aise avec le numérique, est-ce facile ?",
-                    text: "Nous avons conçu cet outil avec des utilisateurs afin d’assurer l’expérience la plus fluide et intuitive possible. Des tutoriels vidéo sont là pour vous guider tout au long de l’expérience. Et si vous avez une question ou une remarque, n'hésitez pas à nous contacter directement via le live chat en bas à droite de l'écran. Nous nous ferons une joie de vous aider !",
+                    text: "Nous avons conçu cet outil avec des utilisateurs afin d’assurer l’expérience la plus fluide et intuitive possible. Des tutoriels sont là pour vous guider tout au long de l’expérience. Et si vous avez une question ou une remarque, n'hésitez pas à nous contacter directement via le live chat en bas à droite de l'écran (disponible 2 jours par semaine). Nous nous ferons une joie de vous aider !",
                   },
                   {
                     title: "En combien de temps ma fiche sera publiée ?",

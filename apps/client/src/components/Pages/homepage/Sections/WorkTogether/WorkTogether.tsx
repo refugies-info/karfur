@@ -23,9 +23,9 @@ const WorkTogether = () => {
 
   const cardsContent: cardContentItemType[] = [
     {
-      title: t("WorkTogether.cards.ts.title", "Travailleurs sociaux ou chefs de centre ?"),
+      title: t("WorkTogether.cardstsTitle", "Travailleurs sociaux ou chefs de centre ?"),
       description: t(
-        "WorkTogether.cards.ts.description",
+        "WorkTogether.cardstsDescription",
         "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux.",
       ),
       link: " https://airtable.com/shrrkFuyeG0BpKKT7",
@@ -35,16 +35,16 @@ const WorkTogether = () => {
         <Image
           src={Avatar}
           alt={t(
-            "WorkTogether.cards.ts.alt",
+            "WorkTogether.cardstsAlt",
             "Icône représentant un personnage stylisé en bleu, entouré d’un cercle rouge partiellement ouvert, avec de petits points violets autour. Cette image illustre l’accompagnement des travailleurs sociaux et chefs de centre dans la découverte du service Réfugiés.info pour faciliter l’orientation des bénéficiaires.",
           )}
         />
       ),
     },
     {
-      title: t("WorkTogether.cards.agir.title", "Opérateurs du programme AGIR ?"),
+      title: t("WorkTogether.cardsagirTitle", "Opérateurs du programme AGIR ?"),
       description: t(
-        "WorkTogether.cards.agir.description",
+        "WorkTogether.cardsagirDescription",
         "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien.",
       ),
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
@@ -55,17 +55,19 @@ const WorkTogether = () => {
           <Image
             src={AgirLogos}
             alt={t(
-              "WorkTogether.cards.agir.alt",
+              "WorkTogether.cardsagirAlt",
               "Logo du programme AGIR sur fond noir, avec le slogan 'pour le logement et l'emploi des personnes réfugiées'. En dessous, un encart blanc contient le logo du Parcours d’Intégration Républicaine et le drapeau de l’Union européenne, indiquant le soutien européen au programme",
             )}
+            width={150}
+            height={100}
           />
         </span>
       ),
     },
     {
-      title: t("WorkTogether.cards.operators.title", "Opérateurs d’État ?"),
+      title: t("WorkTogether.cardsoperatorsTitle", "Opérateurs d’État ?"),
       description: t(
-        "WorkTogether.cards.operators.description",
+        "WorkTogether.cardsoperatorsDescription",
         "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion.",
       ),
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
@@ -75,7 +77,7 @@ const WorkTogether = () => {
         <Image
           src={Structures}
           alt={t(
-            "WorkTogether.cards.operators.alt",
+            "WorkTogether.cardsoperatorsAlt",
             "Illustration affichant les logos de trois organisations partenaires : France Terre d'Asile, Fondation COS Alexandre Glasberg et Coallia. Un cercle bleu à droite indique '+11', représentant un total de 14 opérateurs ayant signé un partenariat avec Réfugiés.info.",
           )}
           width={240}
@@ -84,9 +86,9 @@ const WorkTogether = () => {
       ),
     },
     {
-      title: t("WorkTogether.cards.administration.title", "Administration ou institution publique ?"),
+      title: t("WorkTogether.cardsadministrationTitle", "Administration ou institution publique ?"),
       description: t(
-        "WorkTogether.cards.administration.description",
+        "WorkTogether.cardsadministrationDescription",
         "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible.",
       ),
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
@@ -96,16 +98,16 @@ const WorkTogether = () => {
         <Image
           src={CityHall}
           alt={t(
-            "WorkTogether.cards.administration.alt",
+            "WorkTogether.cardsadministrationAlt",
             "Icône stylisée représentant un bâtiment administratif en bleu avec des éléments rouges sur la façade et le toit. Cette image illustre l'accompagnement des administrations et institutions publiques dans la cartographie des acteurs locaux et la diffusion d’informations accessibles via Réfugiés.info.",
           )}
         />
       ),
     },
     {
-      title: t("WorkTogether.cards.structures.title", "Structures porteuses de dispositifs ?"),
+      title: t("WorkTogether.cardsstructuresTitle", "Structures porteuses de dispositifs ?"),
       description: t(
-        "WorkTogether.cards.structures.description",
+        "WorkTogether.cardsstructuresDescription",
         "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
       ),
       link: "https://refugies.info/publier",
@@ -115,16 +117,16 @@ const WorkTogether = () => {
         <Image
           src={LocationFrance}
           alt={t(
-            "WorkTogether.cards.structures.alt",
+            "WorkTogether.cardsstructuresAlt",
             "Icône stylisée représentant la carte de la France en bleu, avec plusieurs marqueurs de localisation rouges répartis sur le territoire. Cette image illustre la possibilité pour les structures porteuses de dispositifs de référencer leurs actions sur Réfugiés.info pour les rendre accessibles aux bénéficiaires.",
           )}
         />
       ),
     },
     {
-      title: t("WorkTogether.cards.polyglots.title", "Polyglottes bénévoles ?"),
+      title: t("WorkTogether.cardspolyglotsTitle", "Polyglottes bénévoles ?"),
       description: t(
-        "WorkTogether.cards.polyglots.description",
+        "WorkTogether.cardspolyglotsDescription",
         "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
       ),
       link: "https://refugies.info/traduire",
@@ -134,7 +136,7 @@ const WorkTogether = () => {
         <Image
           src={Community}
           alt={t(
-            "WorkTogether.cards.polyglots.alt",
+            "WorkTogether.cardspolyglotsAlt",
             "Icône stylisée représentant deux bulles de dialogue en bleu avec du texte rouge à l’intérieur, ainsi qu’une petite bulle avec trois points. Cette image illustre la possibilité pour les bénévoles polyglottes de contribuer à la traduction collaborative des contenus sur Réfugiés.info.",
           )}
         />
@@ -144,7 +146,7 @@ const WorkTogether = () => {
 
   return (
     <section className="flex flex-col gap-20 py-20" id="work-together">
-      <h2 className="mb-0 text-center">{t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}</h2>
+      <h2 className="mb-0 text-center">{t("WorkTogetherTitle", "Travaillons ensemble ! Vous êtes... ?")}</h2>
       <div className="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3">
         {cardsContent.map(({ title, description, link, cta, icon, image }) => (
           <div key={title} className="border-default-grey h-full border p-8">

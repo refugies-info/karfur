@@ -6,6 +6,40 @@ exports[`agir renders traduire 1`] = `
     class="w-full"
   >
     <div
+      class="fr-notice fr-notice--info"
+      id="fr-notice-:r0:"
+    >
+      <div
+        class="fr-container"
+      >
+        <div
+          class="fr-notice__body"
+        >
+          <p>
+            <span
+              class="fr-notice__title"
+            >
+              Réfugiés.info a été nommé Service numérique à impact national ! 
+              <a
+                class="underline"
+                href="https://beta.gouv.fr/startups/refugies.info#impact"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Découvrir l'impact du projet
+              </a>
+              .
+            </span>
+          </p>
+          <button
+            class="fr-btn--close fr-btn"
+          >
+            Masquer le message
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       class="hero"
     >
       <div
@@ -30,14 +64,14 @@ exports[`agir renders traduire 1`] = `
             <a
               class="fr-btn fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse mb-4"
               href="#program"
-              id="fr-button-:r0:"
+              id="fr-button-:r1:"
             >
               Découvrir le programme
             </a>
             <a
               class="fr-btn fr-btn--secondary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse"
               href="#map"
-              id="fr-button-:r1:"
+              id="fr-button-:r2:"
             >
               Trouver mon opérateur
             </a>
@@ -68,7 +102,7 @@ exports[`agir renders traduire 1`] = `
       >
         <fieldset
           class="fr-segmented fr-segmented--no-legend"
-          id="fr-segmented-:r2:"
+          id="fr-segmented-:r3:"
         >
           <div
             class="fr-segmented__elements"
@@ -77,14 +111,14 @@ exports[`agir renders traduire 1`] = `
               class="fr-segmented__element"
             >
               <input
-                id="fr-segmented-:r2:-0"
-                name="segmented-name-:r3:"
+                id="fr-segmented-:r3:-0"
+                name="segmented-name-:r4:"
                 readonly=""
                 type="radio"
               />
               <label
                 class="fr-label"
-                for="fr-segmented-:r2:-0"
+                for="fr-segmented-:r3:-0"
               >
                 Le programme
               </label>
@@ -93,14 +127,14 @@ exports[`agir renders traduire 1`] = `
               class="fr-segmented__element"
             >
               <input
-                id="fr-segmented-:r2:-1"
-                name="segmented-name-:r3:"
+                id="fr-segmented-:r3:-1"
+                name="segmented-name-:r4:"
                 readonly=""
                 type="radio"
               />
               <label
                 class="fr-label"
-                for="fr-segmented-:r2:-1"
+                for="fr-segmented-:r3:-1"
               >
                 Les opérateurs
               </label>
@@ -109,14 +143,14 @@ exports[`agir renders traduire 1`] = `
               class="fr-segmented__element"
             >
               <input
-                id="fr-segmented-:r2:-2"
-                name="segmented-name-:r3:"
+                id="fr-segmented-:r3:-2"
+                name="segmented-name-:r4:"
                 readonly=""
                 type="radio"
               />
               <label
                 class="fr-label"
-                for="fr-segmented-:r2:-2"
+                for="fr-segmented-:r3:-2"
               >
                 Aller plus loin
               </label>
@@ -1200,7 +1234,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:ru:"
+                id="fr-card-:rv:"
               >
                 <div
                   class="fr-card__body"
@@ -1251,7 +1285,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rv:"
+                id="fr-card-:r10:"
               >
                 <div
                   class="fr-card__body"
@@ -1302,7 +1336,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:r10:"
+                id="fr-card-:r11:"
               >
                 <div
                   class="fr-card__body"
@@ -1353,7 +1387,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:r11:"
+                id="fr-card-:r12:"
               >
                 <div
                   class="fr-card__body"

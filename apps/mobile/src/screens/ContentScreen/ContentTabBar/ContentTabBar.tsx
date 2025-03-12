@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { GetThemeResponse, Id, ViewsType } from "@refugies-info/api-types";
-import { Trans } from "next-i18next";
 import { useCallback, useMemo, useState } from "react";
+import { Trans } from "react-i18next";
 import { Platform, Share, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";

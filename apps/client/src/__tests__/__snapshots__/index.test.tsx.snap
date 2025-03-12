@@ -6,15 +6,49 @@ exports[`homepage renders homepage 1`] = `
     class="main"
   >
     <div
+      class="fr-notice fr-notice--info"
+      id="fr-notice-:r0:"
+    >
+      <div
+        class="fr-container"
+      >
+        <div
+          class="fr-notice__body"
+        >
+          <p>
+            <span
+              class="fr-notice__title"
+            >
+              Réfugiés.info a été nommé Service numérique à impact national ! 
+              <a
+                class="underline"
+                href="https://beta.gouv.fr/startups/refugies.info#impact"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Découvrir l'impact du projet
+              </a>
+              .
+            </span>
+          </p>
+          <button
+            class="fr-btn--close fr-btn"
+          >
+            Masquer le message
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       class="relative flex flex-col-reverse md:min-h-[504px]"
     >
       <div
-        class="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:gap-8 md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]"
+        class="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]"
       >
         <h1
-          class="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
+          class="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
         >
-          Homepage.title.desktop
+          Homepage.titleDesktop
         </h1>
         <p
           class="mb-0 flex flex-col items-center text-xl"
@@ -32,21 +66,21 @@ exports[`homepage renders homepage 1`] = `
           <a
             class="fr-btn fr-icon-search-line fr-btn--icon-right justify-center max-md:w-full"
             href="/recherche"
-            id="fr-button-:r0:"
+            id="fr-button-:r1:"
           >
             Homepage.searchButton
           </a>
           <a
             class="fr-btn fr-btn--secondary fr-icon-smartphone-line fr-btn--icon-right justify-center max-md:w-full"
             href="#application"
-            id="fr-button-:r1:"
+            id="fr-button-:r2:"
           >
             Homepage.donwloadAppButton
           </a>
         </div>
       </div>
       <div
-        class="relative h-[11.2rem] w-full overflow-hidden md:absolute md:inset-0 md:z-0 md:h-[50vh] md:h-auto"
+        class="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px]"
       >
         <span
           class="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"
@@ -95,7 +129,7 @@ exports[`homepage renders homepage 1`] = `
         class="flex flex-wrap justify-center gap-x-10"
       >
         <img
-          alt="Homepage.StructuresLogos.FTDA"
+          alt="Homepage.StructuresLogosFtda"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -106,7 +140,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.SOS"
+          alt="Homepage.StructuresLogosSos"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -117,7 +151,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.FranceTravail"
+          alt="Homepage.StructuresLogosFrancetravail"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -128,7 +162,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.COS"
+          alt="Homepage.StructuresLogosCos"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -139,7 +173,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.FH"
+          alt="Homepage.StructuresLogosFh"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -150,7 +184,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.Coalia"
+          alt="Homepage.StructuresLogosCoalia"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -161,7 +195,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.PierreValdo"
+          alt="Homepage.StructuresLogosPierrevaldo"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -172,7 +206,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.HIS"
+          alt="Homepage.StructuresLogosHis"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -183,7 +217,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.ForumRefugie"
+          alt="Homepage.StructuresLogosForumrefugie"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -194,7 +228,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogos.FederationActeurs"
+          alt="Homepage.StructuresLogosFederationacteurs"
           data-nimg="1"
           decoding="async"
           height="72"
@@ -208,7 +242,7 @@ exports[`homepage renders homepage 1`] = `
       <p
         class="text-center text-lg"
       >
-        Homepage.StructuresLogos.Text
+        Homepage.StructuresLogosText
       </p>
     </section>
     <section
@@ -229,32 +263,32 @@ exports[`homepage renders homepage 1`] = `
           class="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0"
         >
           <button
-            aria-label="ui.carrousel.prev (1 / 15"
+            aria-label="ui.carrouselPrev (1 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-left-line"
             disabled=""
-            id="fr-button-:r2:"
-            title="ui.carrousel.prev"
+            id="fr-button-:r3:"
+            title="ui.carrouselPrev"
           />
           <button
-            aria-label="ui.carrousel.next (2 / 15"
+            aria-label="ui.carrouselNext (2 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line"
-            id="fr-button-:r3:"
-            title="ui.carrousel.next"
+            id="fr-button-:r4:"
+            title="ui.carrouselNext"
           />
           <a
             class="fr-btn fr-btn--tertiary whitespace-nowrap"
             href="/recherche?search=&sort=default&type=demarche"
-            id="fr-button-:r4:"
+            id="fr-button-:r5:"
           >
-            ui.carrousel.seeMore
+            ui.carrouselSeemore
           </a>
         </nav>
       </div>
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-78rem)/2+1rem))] xl:pl-[max(0.75rem,calc((100vw-78rem)/2+1rem))] [&::-webkit-scrollbar]:hidden"
-        style="will-change: transform;"
+        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
+        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
       >
         <div
           aria-current="true"
@@ -385,7 +419,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r5:"
+                      id="fr-badge-:r6:"
                     >
                       Démarche
                     </p>
@@ -535,7 +569,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r6:"
+                      id="fr-badge-:r7:"
                     >
                       Démarche
                     </p>
@@ -685,7 +719,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r7:"
+                      id="fr-badge-:r8:"
                     >
                       Démarche
                     </p>
@@ -830,7 +864,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r8:"
+                      id="fr-badge-:r9:"
                     >
                       Démarche
                     </p>
@@ -980,7 +1014,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:r9:"
+                      id="fr-badge-:ra:"
                     >
                       Démarche
                     </p>
@@ -1125,7 +1159,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:ra:"
+                      id="fr-badge-:rb:"
                     >
                       Démarche
                     </p>
@@ -1275,7 +1309,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rb:"
+                      id="fr-badge-:rc:"
                     >
                       Démarche
                     </p>
@@ -1420,7 +1454,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rc:"
+                      id="fr-badge-:rd:"
                     >
                       Démarche
                     </p>
@@ -1565,7 +1599,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rd:"
+                      id="fr-badge-:re:"
                     >
                       Démarche
                     </p>
@@ -1715,7 +1749,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:re:"
+                      id="fr-badge-:rf:"
                     >
                       Démarche
                     </p>
@@ -1860,7 +1894,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rf:"
+                      id="fr-badge-:rg:"
                     >
                       Démarche
                     </p>
@@ -2010,7 +2044,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rg:"
+                      id="fr-badge-:rh:"
                     >
                       Démarche
                     </p>
@@ -2155,7 +2189,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rh:"
+                      id="fr-badge-:ri:"
                     >
                       Démarche
                     </p>
@@ -2300,7 +2334,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:ri:"
+                      id="fr-badge-:rj:"
                     >
                       Démarche
                     </p>
@@ -2445,7 +2479,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                      id="fr-badge-:rj:"
+                      id="fr-badge-:rk:"
                     >
                       Démarche
                     </p>
@@ -2487,32 +2521,32 @@ exports[`homepage renders homepage 1`] = `
           class="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0"
         >
           <button
-            aria-label="ui.carrousel.prev (1 / 15"
+            aria-label="ui.carrouselPrev (1 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-left-line"
             disabled=""
-            id="fr-button-:rk:"
-            title="ui.carrousel.prev"
+            id="fr-button-:rl:"
+            title="ui.carrouselPrev"
           />
           <button
-            aria-label="ui.carrousel.next (2 / 15"
+            aria-label="ui.carrouselNext (2 / 15"
             class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line"
-            id="fr-button-:rl:"
-            title="ui.carrousel.next"
+            id="fr-button-:rm:"
+            title="ui.carrouselNext"
           />
           <a
             class="fr-btn fr-btn--tertiary whitespace-nowrap"
             href="/recherche?search=&sort=default&type=dispositif"
-            id="fr-button-:rm:"
+            id="fr-button-:rn:"
           >
-            ui.carrousel.seeMore
+            ui.carrouselSeemore
           </a>
         </nav>
       </div>
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="scrollbar-hide z-1 m-auto flex touch-pan-x snap-x snap-mandatory scroll-ps-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] gap-4 overflow-x-auto scroll-smooth pr-4 pl-[max(0.75rem,calc((100vw-33.75rem)/2+0.5rem))] [-ms-overflow-style:none] [scrollbar-width:none] sm:scroll-ps-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] sm:pl-[max(0.75rem,calc((100vw-45rem)/2+0.5rem))] lg:scroll-ps-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] lg:pl-[max(0.75rem,calc((100vw-60rem)/2+0.5rem))] xl:scroll-ps-[max(0.75rem,calc((100vw-78rem)/2+1rem))] xl:pl-[max(0.75rem,calc((100vw-78rem)/2+1rem))] [&::-webkit-scrollbar]:hidden"
-        style="will-change: transform;"
+        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
+        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
       >
         <div
           aria-current="true"
@@ -2632,7 +2666,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rn:"
+                      id="fr-badge-:ro:"
                     >
                       Lieu d'action
                     </p>
@@ -2771,7 +2805,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:ro:"
+                      id="fr-badge-:rp:"
                     >
                       Lieu d'action
                     </p>
@@ -2905,7 +2939,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rp:"
+                      id="fr-badge-:rq:"
                     >
                       Lieu d'action
                     </p>
@@ -3044,7 +3078,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rq:"
+                      id="fr-badge-:rr:"
                     >
                       Lieu d'action
                     </p>
@@ -3183,7 +3217,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rr:"
+                      id="fr-badge-:rs:"
                     >
                       Lieu d'action
                     </p>
@@ -3317,7 +3351,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rs:"
+                      id="fr-badge-:rt:"
                     >
                       Lieu d'action
                     </p>
@@ -3456,7 +3490,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rt:"
+                      id="fr-badge-:ru:"
                     >
                       Lieu d'action
                     </p>
@@ -3590,7 +3624,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:ru:"
+                      id="fr-badge-:rv:"
                     >
                       Lieu d'action
                     </p>
@@ -3729,7 +3763,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:rv:"
+                      id="fr-badge-:r10:"
                     >
                       Lieu d'action
                     </p>
@@ -3868,7 +3902,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r10:"
+                      id="fr-badge-:r11:"
                     >
                       Lieu d'action
                     </p>
@@ -4007,7 +4041,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r11:"
+                      id="fr-badge-:r12:"
                     >
                       Lieu d'action
                     </p>
@@ -4141,7 +4175,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r12:"
+                      id="fr-badge-:r13:"
                     >
                       Lieu d'action
                     </p>
@@ -4280,7 +4314,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r13:"
+                      id="fr-badge-:r14:"
                     >
                       Lieu d'action
                     </p>
@@ -4414,7 +4448,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r14:"
+                      id="fr-badge-:r15:"
                     >
                       Lieu d'action
                     </p>
@@ -4553,7 +4587,7 @@ exports[`homepage renders homepage 1`] = `
                   <li>
                     <p
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                      id="fr-badge-:r15:"
+                      id="fr-badge-:r16:"
                     >
                       Lieu d'action
                     </p>
@@ -4575,6 +4609,469 @@ exports[`homepage renders homepage 1`] = `
             </button>
           </div>
         </div>
+      </div>
+    </section>
+    <section
+      class="bg-alt-blue-france w-full py-20"
+      id="free-ressources"
+    >
+      <div
+        class="container grid grid-cols-2 items-center gap-10"
+      >
+        <div>
+          <h2>
+            Homepage.resourcesTitle
+          </h2>
+          <p>
+            Homepage.resourcesText
+          </p>
+          <div
+            class="flex flex-col gap-4"
+          >
+            <button
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
+              id="fr-button-:r17:"
+            >
+              Homepage.webinaireCTA
+            </button>
+            <button
+              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
+              id="fr-button-:r18:"
+            >
+              Homepage.resourcesCTA
+            </button>
+          </div>
+        </div>
+        <a
+          href="https://kit.refugies.info/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            alt="Homepage.ressourcesImgAlt"
+            data-nimg="1"
+            decoding="async"
+            height="362"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+            style="color: transparent;"
+            width="576"
+          />
+        </a>
+      </div>
+    </section>
+    <div
+      class="container md:py-20"
+    >
+      <h2
+        class="mb-20"
+      >
+        Homepage.whyTitle
+      </h2>
+      <div
+        class="flex gap-20"
+      >
+        <div
+          class="border-default-grey w-1/2 grow-1 basis-auto border-b"
+        >
+          <div
+            data-orientation="vertical"
+          >
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="open"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="open"
+              >
+                <button
+                  aria-controls="radix-:r1a:"
+                  aria-disabled="true"
+                  aria-expanded="true"
+                  class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="open"
+                  id="radix-:r19:"
+                  type="button"
+                >
+                  <span
+                    class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
+                  >
+                    Homepage.accordionItemsdesktopTitle1
+                  </span>
+                  <i
+                    class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r19:"
+                class="content"
+                data-orientation="vertical"
+                data-state="open"
+                id="radix-:r1a:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
+              >
+                <div
+                  class="mt-4 px-4 pb-8"
+                >
+                  <p
+                    class="text !text-large !mb-0"
+                  >
+                    Homepage.accordionItemsdesktopText1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1c:"
+                  aria-expanded="false"
+                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1b:"
+                  type="button"
+                >
+                  <span
+                    class="mb-0 grow-1 text-left text-xl font-medium"
+                  >
+                    Homepage.accordionItemsdesktopTitle2
+                  </span>
+                  <i
+                    class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1b:"
+                class="content"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1c:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1e:"
+                  aria-expanded="false"
+                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1d:"
+                  type="button"
+                >
+                  <span
+                    class="mb-0 grow-1 text-left text-xl font-medium"
+                  >
+                    Homepage.accordionItemsdesktopTitle3
+                  </span>
+                  <i
+                    class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1d:"
+                class="content"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1e:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class=""
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="!mb-0"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r1g:"
+                  aria-expanded="false"
+                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r1f:"
+                  type="button"
+                >
+                  <span
+                    class="mb-0 grow-1 text-left text-xl font-medium"
+                  >
+                    Homepage.accordionItemsdesktopTitle4
+                  </span>
+                  <i
+                    class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                  />
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r1f:"
+                class="content"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r1g:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex w-1/2 items-center justify-end"
+        >
+          <img
+            alt="Homepage.accordionItemsdesktopAlt1"
+            class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
+            data-nimg="1"
+            decoding="async"
+            height="327"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+            style="color: transparent;"
+            width="400"
+          />
+        </div>
+      </div>
+    </div>
+    <section
+      class="container flex flex-col gap-10 py-10 md:grid md:grid-cols-2 lg:py-20 2xl:gap-20"
+      id="application"
+    >
+      <div
+        class="flex h-full flex-col items-center justify-center gap-10"
+      >
+        <figure
+          class="relative block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
+        >
+          <img
+            alt="MobileApp.imageAlt"
+            aria-describedby=":r1h:-annotations"
+            class="object-contain"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2Fimg.jpg&w=3840&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 640w, /_next/image?url=%2Fimg.jpg&w=750&q=75 750w, /_next/image?url=%2Fimg.jpg&w=828&q=75 828w, /_next/image?url=%2Fimg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fimg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fimg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fimg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fimg.jpg&w=3840&q=75 3840w"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+          <figcaption
+            id=":r1h:-annotations"
+          >
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold top-[4%] left-[66%]"
+            >
+              MobileApp.AnnotationsShare
+            </span>
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold top-[25%] left-[72%] max-w-[5em]"
+            >
+              MobileApp.AnnotationsLangchange
+            </span>
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold top-[53%] left-[79%]"
+            >
+              MobileApp.AnnotationsLangsimple
+            </span>
+            <span
+              class="font-caveat absolute block text-lg leading-4 font-bold bottom-[8%] left-[65%]"
+            >
+              MobileApp.AnnotationsVocalize
+            </span>
+          </figcaption>
+        </figure>
+        <p
+          class="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4"
+        >
+          <a
+            class="relative h-10 w-30"
+            href="https://apps.apple.com/app/id1595597429"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Get it on App Store"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://storage.googleapis.com/refugies-info-assets/store-badges/app-store-fr.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </a>
+          <a
+            class="relative h-10 w-32"
+            href="https://play.google.com/store/apps/details?id=com.refugiesinfo.app"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Get it on Play Store"
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="https://storage.googleapis.com/refugies-info-assets/store-badges/google-play-fr.svg"
+              style="color: transparent;"
+              width="128"
+            />
+          </a>
+        </p>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class="mb-6 flex items-center gap-6"
+        >
+          <img
+            alt="MobileApp.logoAlt"
+            data-nimg="1"
+            decoding="async"
+            height="72"
+            loading="lazy"
+            src="/images/logoRI.svg"
+            style="color: transparent;"
+            width="72"
+          />
+          <p
+            class="m-0 flex flex-col gap-2 font-medium"
+          >
+            <span
+              aria-label="MobileApp.rankingLabel"
+              class="inline-flex gap-3"
+              role="img"
+            >
+              <i
+                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
+              />
+              <i
+                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
+              />
+              <i
+                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
+              />
+              <i
+                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
+              />
+              <i
+                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
+              />
+            </span>
+            MobileApp.rankingText
+          </p>
+        </div>
+        <h2>
+          MobileApp.title.desktop
+        </h2>
+        <p
+          class="mb-10"
+        >
+          MobileApp.subtitleDesktop
+        </p>
+        <form
+          class="md:w-1/2"
+        >
+          <div
+            class="fr-input-group mb-4"
+          >
+            <label
+              class="fr-label"
+              for="input-:r1i:"
+            >
+              MobileApp.phoneLabel
+            </label>
+            <input
+              class="fr-input"
+              id="input-:r1i:"
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="polite"
+              class="fr-messages-group"
+              id="input-:r1i:-messages-group"
+            />
+          </div>
+          <div
+            class="fr-select-group"
+            id="fr-select-group-:r1j:"
+          >
+            <label
+              class="fr-label"
+              for="select-:r1k:"
+            >
+              MobileApp.langLabel
+            </label>
+            <select
+              aria-describedby="select-:r1l:-desc"
+              class="fr-select"
+              id="select-:r1k:"
+              name="languageSelected"
+            >
+              <option
+                value="fr"
+              >
+                Français 
+              </option>
+              <option
+                value="en"
+              >
+                English  - Anglais
+              </option>
+            </select>
+            <div
+              aria-live="polite"
+              class="fr-messages-group"
+              id="select-:r1k:-messages-group"
+            />
+          </div>
+          <button
+            class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
+            id="fr-button-:r1m:"
+            type="submit"
+          >
+            MobileApp.buttonText
+          </button>
+        </form>
       </div>
     </section>
     <section
@@ -4629,7 +5126,7 @@ exports[`homepage renders homepage 1`] = `
                 />
                 <button
                   class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
-                  id="fr-button-:r17:"
+                  id="fr-button-:r1o:"
                   type="submit"
                 >
                   ok
@@ -4645,456 +5142,6 @@ exports[`homepage renders homepage 1`] = `
         </div>
       </div>
     </section>
-    <div
-      class="container md:py-20"
-    >
-      <h2
-        class="mb-20"
-      >
-        Homepage.whyTitle
-      </h2>
-      <div
-        class="flex gap-20"
-      >
-        <div
-          class="border-default-grey w-1/2 grow-1 basis-auto border-b"
-        >
-          <div
-            data-orientation="vertical"
-          >
-            <div
-              class=""
-              data-orientation="vertical"
-              data-state="open"
-            >
-              <h3
-                class="!mb-0"
-                data-orientation="vertical"
-                data-state="open"
-              >
-                <button
-                  aria-controls="radix-:r19:"
-                  aria-disabled="true"
-                  aria-expanded="true"
-                  class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
-                  data-orientation="vertical"
-                  data-radix-collection-item=""
-                  data-state="open"
-                  id="radix-:r18:"
-                  type="button"
-                >
-                  <span
-                    class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
-                  >
-                    Homepage.accordionItems.desktop.title1
-                  </span>
-                  <i
-                    class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
-                  />
-                </button>
-              </h3>
-              <div
-                aria-labelledby="radix-:r18:"
-                class="content mt-4 px-4 pb-8"
-                data-orientation="vertical"
-                data-state="open"
-                id="radix-:r19:"
-                role="region"
-                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
-              >
-                <p
-                  class="text !text-large !mb-0"
-                >
-                  Homepage.accordionItems.desktop.text1
-                </p>
-              </div>
-            </div>
-            <div
-              class=""
-              data-orientation="vertical"
-              data-state="closed"
-            >
-              <h3
-                class="!mb-0"
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <button
-                  aria-controls="radix-:r1b:"
-                  aria-expanded="false"
-                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
-                  data-orientation="vertical"
-                  data-radix-collection-item=""
-                  data-state="closed"
-                  id="radix-:r1a:"
-                  type="button"
-                >
-                  <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
-                  >
-                    Homepage.accordionItems.desktop.title2
-                  </span>
-                  <i
-                    class="flex before:!h-4 before:!w-4 fr-icon-add-line"
-                  />
-                </button>
-              </h3>
-              <div
-                aria-labelledby="radix-:r1a:"
-                class="content mt-4 px-4 pb-8"
-                data-orientation="vertical"
-                data-state="closed"
-                hidden=""
-                id="radix-:r1b:"
-                role="region"
-                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-              />
-            </div>
-            <div
-              class=""
-              data-orientation="vertical"
-              data-state="closed"
-            >
-              <h3
-                class="!mb-0"
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <button
-                  aria-controls="radix-:r1d:"
-                  aria-expanded="false"
-                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
-                  data-orientation="vertical"
-                  data-radix-collection-item=""
-                  data-state="closed"
-                  id="radix-:r1c:"
-                  type="button"
-                >
-                  <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
-                  >
-                    Homepage.accordionItems.desktop.title3
-                  </span>
-                  <i
-                    class="flex before:!h-4 before:!w-4 fr-icon-add-line"
-                  />
-                </button>
-              </h3>
-              <div
-                aria-labelledby="radix-:r1c:"
-                class="content mt-4 px-4 pb-8"
-                data-orientation="vertical"
-                data-state="closed"
-                hidden=""
-                id="radix-:r1d:"
-                role="region"
-                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-              />
-            </div>
-            <div
-              class=""
-              data-orientation="vertical"
-              data-state="closed"
-            >
-              <h3
-                class="!mb-0"
-                data-orientation="vertical"
-                data-state="closed"
-              >
-                <button
-                  aria-controls="radix-:r1f:"
-                  aria-expanded="false"
-                  class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
-                  data-orientation="vertical"
-                  data-radix-collection-item=""
-                  data-state="closed"
-                  id="radix-:r1e:"
-                  type="button"
-                >
-                  <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
-                  >
-                    Homepage.accordionItems.desktop.title4
-                  </span>
-                  <i
-                    class="flex before:!h-4 before:!w-4 fr-icon-add-line"
-                  />
-                </button>
-              </h3>
-              <div
-                aria-labelledby="radix-:r1e:"
-                class="content mt-4 px-4 pb-8"
-                data-orientation="vertical"
-                data-state="closed"
-                hidden=""
-                id="radix-:r1f:"
-                role="region"
-                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex w-1/2 items-center justify-end"
-        >
-          <img
-            alt="Homepage.accordionItems.desktop.alt1"
-            class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
-            data-nimg="1"
-            decoding="async"
-            height="327"
-            loading="lazy"
-            src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
-            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
-            style="color: transparent;"
-            width="400"
-          />
-        </div>
-      </div>
-    </div>
-    <section
-      class="container flex flex-col gap-10 py-10 lg:grid lg:grid-cols-2 lg:py-20 2xl:gap-20"
-    >
-      <div
-        class="flex h-full flex-col items-center justify-center gap-10"
-      >
-        <figure
-          class="relative block aspect-[712/580] w-full max-w-lg md:aspect-[933/760]"
-        >
-          <img
-            alt="MobileApp.imageAlt"
-            aria-describedby=":r1g:-annotations"
-            class="object-contain"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            sizes="100vw"
-            src="/_next/image?url=%2Fimg.jpg&w=3840&q=75"
-            srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 640w, /_next/image?url=%2Fimg.jpg&w=750&q=75 750w, /_next/image?url=%2Fimg.jpg&w=828&q=75 828w, /_next/image?url=%2Fimg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fimg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fimg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fimg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fimg.jpg&w=3840&q=75 3840w"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-          <figcaption
-            id=":r1g:-annotations"
-          >
-            <span
-              class="font-caveat absolute block text-lg leading-4 font-bold top-[4%] left-[66%]"
-            >
-              MobileApp.Annotations.share
-            </span>
-            <span
-              class="font-caveat absolute block text-lg leading-4 font-bold top-[25%] left-[72%] max-w-[5em]"
-            >
-              MobileApp.Annotations.langChange
-            </span>
-            <span
-              class="font-caveat absolute block text-lg leading-4 font-bold top-[53%] left-[79%]"
-            >
-              MobileApp.Annotations.langSimple
-            </span>
-            <span
-              class="font-caveat absolute block text-lg leading-4 font-bold bottom-[8%] left-[65%]"
-            >
-              MobileApp.Annotations.vocalize
-            </span>
-          </figcaption>
-        </figure>
-        <p
-          class="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4"
-        >
-          <a
-            class="relative h-10 w-30"
-            href="https://apps.apple.com/app/id1595597429"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              alt="Get it on App Store"
-              data-nimg="fill"
-              decoding="async"
-              loading="lazy"
-              src="https://storage.googleapis.com/refugies-info-assets/store-badges/app-store-fr.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-            />
-          </a>
-          <a
-            class="relative h-10 w-32"
-            href="https://play.google.com/store/apps/details?id=com.refugiesinfo.app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              alt="Get it on Play Store"
-              data-nimg="fill"
-              decoding="async"
-              loading="lazy"
-              src="https://storage.googleapis.com/refugies-info-assets/store-badges/google-play-fr.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-            />
-          </a>
-        </p>
-      </div>
-      <div
-        class=""
-      >
-        <div
-          class="mb-6 flex items-center gap-6"
-        >
-          <img
-            alt="MobileApp.logoAlt"
-            data-nimg="1"
-            decoding="async"
-            height="72"
-            loading="lazy"
-            src="/images/logoRI.svg"
-            style="color: transparent;"
-            width="72"
-          />
-          <p
-            class="m-0 flex flex-col gap-2 font-medium"
-          >
-            <span
-              aria-label="MobileApp.rankingLabel"
-              class="inline-flex gap-3"
-              role="img"
-            >
-              <i
-                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
-              />
-              <i
-                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
-              />
-              <i
-                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
-              />
-              <i
-                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
-              />
-              <i
-                class="fr-icon-star-fill h-4 w-4 text-[#fcc63a]"
-              />
-            </span>
-            MobileApp.rankingText
-          </p>
-        </div>
-        <h2>
-          MobileApp.title.desktop
-        </h2>
-        <p
-          class="mb-10"
-        >
-          MobileApp.subtitle.desktop
-        </p>
-        <form
-          class="md:w-1/2"
-        >
-          <div
-            class="fr-input-group mb-4"
-          >
-            <label
-              class="fr-label"
-              for="input-:r1h:"
-            >
-              MobileApp.phoneLabel
-            </label>
-            <input
-              class="fr-input"
-              id="input-:r1h:"
-              type="text"
-              value=""
-            />
-            <div
-              aria-live="polite"
-              class="fr-messages-group"
-              id="input-:r1h:-messages-group"
-            />
-          </div>
-          <div
-            class="fr-select-group"
-            id="fr-select-group-:r1i:"
-          >
-            <label
-              class="fr-label"
-              for="select-:r1j:"
-            >
-              MobileApp.langLabel
-            </label>
-            <select
-              aria-describedby="select-:r1k:-desc"
-              class="fr-select"
-              id="select-:r1j:"
-              name="languageSelected"
-            >
-              <option
-                value="fr"
-              >
-                Français 
-              </option>
-              <option
-                value="en"
-              >
-                English  - Anglais
-              </option>
-            </select>
-            <div
-              aria-live="polite"
-              class="fr-messages-group"
-              id="select-:r1j:-messages-group"
-            />
-          </div>
-          <button
-            class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
-            id="fr-button-:r1l:"
-            type="submit"
-          >
-            MobileApp.buttonText
-          </button>
-        </form>
-      </div>
-    </section>
-    <section
-      class="bg-alt-blue-france w-full py-20"
-      id="free-ressources"
-    >
-      <div
-        class="container grid grid-cols-2 items-center gap-10"
-      >
-        <div>
-          <h2>
-            Homepage.resourcesTitle
-          </h2>
-          <p>
-            Homepage.resourcesText
-          </p>
-          <div>
-            <button
-              class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right"
-              id="fr-button-:r1m:"
-            >
-              Homepage.resourcesCTA
-            </button>
-          </div>
-        </div>
-        <div>
-          <a
-            href="https://kit.refugies.info/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              alt="Homepage.ressourcesImgAlt"
-              data-nimg="1"
-              decoding="async"
-              height="362"
-              loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-              style="color: transparent;"
-              width="576"
-            />
-          </a>
-        </div>
-      </div>
-    </section>
     <section
       class="flex flex-col gap-20 py-20"
       id="work-together"
@@ -5102,7 +5149,7 @@ exports[`homepage renders homepage 1`] = `
       <h2
         class="mb-0 text-center"
       >
-        WorkTogether.title
+        WorkTogetherTitle
       </h2>
       <div
         class="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3"
@@ -5114,7 +5161,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.ts.alt"
+              alt="WorkTogether.cardstsAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5127,17 +5174,17 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.ts.title
+              WorkTogether.cardstsTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.ts.description
+              WorkTogether.cardstsDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href=" https://airtable.com/shrrkFuyeG0BpKKT7"
-              id="fr-button-:r1n:"
+              id="fr-button-:r1p:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5154,31 +5201,31 @@ exports[`homepage renders homepage 1`] = `
               class="flex h-20 w-20 items-center justify-center bg-black p-1"
             >
               <img
-                alt="WorkTogether.cards.agir.alt"
+                alt="WorkTogether.cardsagirAlt"
                 data-nimg="1"
                 decoding="async"
-                height="40"
+                height="100"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
                 style="color: transparent;"
-                width="40"
+                width="150"
               />
             </span>
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.agir.title
+              WorkTogether.cardsagirTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.agir.description
+              WorkTogether.cardsagirDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1o:"
+              id="fr-button-:r1q:"
               target="_blank"
             >
               WorkTogether.participateWebinar
@@ -5192,7 +5239,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.operators.alt"
+              alt="WorkTogether.cardsoperatorsAlt"
               data-nimg="1"
               decoding="async"
               height="80"
@@ -5205,17 +5252,17 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.operators.title
+              WorkTogether.cardsoperatorsTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.operators.description
+              WorkTogether.cardsoperatorsDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1p:"
+              id="fr-button-:r1r:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5229,7 +5276,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.administration.alt"
+              alt="WorkTogether.cardsadministrationAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5242,17 +5289,17 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.administration.title
+              WorkTogether.cardsadministrationTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.administration.description
+              WorkTogether.cardsadministrationDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1q:"
+              id="fr-button-:r1s:"
               target="_blank"
             >
               WorkTogether.bookAppointment
@@ -5266,7 +5313,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.structures.alt"
+              alt="WorkTogether.cardsstructuresAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5279,17 +5326,17 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.structures.title
+              WorkTogether.cardsstructuresTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.structures.description
+              WorkTogether.cardsstructuresDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
-              id="fr-button-:r1r:"
+              id="fr-button-:r1t:"
             >
               WorkTogether.translateContent
             </a>
@@ -5302,7 +5349,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cards.polyglots.alt"
+              alt="WorkTogether.cardspolyglotsAlt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5315,17 +5362,17 @@ exports[`homepage renders homepage 1`] = `
             <h3
               class="text-title-blue-france mb-0 text-lg"
             >
-              WorkTogether.cards.polyglots.title
+              WorkTogether.cardspolyglotsTitle
             </h3>
             <p
               class="mb-0"
             >
-              WorkTogether.cards.polyglots.description
+              WorkTogether.cardspolyglotsDescription
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
-              id="fr-button-:r1s:"
+              id="fr-button-:r1u:"
             >
               WorkTogether.participateWebinar
             </a>

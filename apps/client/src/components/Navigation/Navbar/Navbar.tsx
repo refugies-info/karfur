@@ -4,7 +4,7 @@ import { Languages } from "@refugies-info/api-types";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { isIOS } from "react-device-detect";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
@@ -14,6 +14,8 @@ import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/
 import Image from "~/components/UI/Image";
 import { useEditionMode, useWindowSize } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
@@ -23,6 +25,11 @@ const Navbar = () => {
   const backendNavigation = useBackendNavigation();
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
+
+  const toggleNewsletter = useCallback(() => {
+    dispatch(toggleNewsletterModalAction());
+    Event("NEWSLETTER", "open modal", "navbar");
+  }, [dispatch]);
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const locale: Languages = (router.locale || "fr") as Languages;
@@ -78,15 +85,19 @@ const Navbar = () => {
         isActive: isCurrent(getPath("/mission-et-impact", router.locale)),
       },
       {
-        text: t("Toolbar.partagerProjet", "Partager le projet"),
+        text: t("Toolbar.partagerProjet", "Ressources"),
         menuLinks: [
           {
-            linkProps: { href: "https://kit.refugies.info/", target: "_blank" },
-            text: t("Toolbar.Kit de communication", "Kit de communication"),
+            linkProps: { href: "https://kit.refugies.info/formation/", target: "_blank" },
+            text: t("Toolbar.webinaire", "Participer à un webinaire de découverte"),
           },
           {
             linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
-            text: t("Toolbar.posters_leaflets", "Commander des affiches et dépliants"),
+            text: t("Toolbar.posters_leaflets", "Commander des affiches et des dépliants"),
+          },
+          {
+            linkProps: { href: "https://kit.refugies.info/", target: "_blank" },
+            text: t("Toolbar.Kit de communication", "Parler du projet (kit de communication)"),
           },
 
           {
@@ -108,7 +119,8 @@ const Navbar = () => {
 
       {
         linkProps: {
-          href: getPath("/", router.locale, "#newsletter"),
+          href: isMobile ? "#" : getPath("/", router.locale, "#newsletter"),
+          onClick: isMobile ? toggleNewsletter : undefined,
         },
         text: t("Toolbar.newsletter", "Newsletter"),
       },
@@ -140,7 +152,7 @@ const Navbar = () => {
           }
         : null,
     ].filter((n) => n !== null) as MainNavigationProps.Item[];
-  }, [router.locale, router.pathname, backendNavigation, t, isMobile]);
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile, toggleNewsletter]);
 
   const quickAccessMenu = QuickAccessMenu();
 
@@ -165,7 +177,7 @@ const Navbar = () => {
           orientation: "horizontal",
         }}
         serviceTitle={t("Header.serviceName", "Réfugiés.info")}
-        serviceTagline={t("Header.serviceTagline", "L’information pour les étrangers en France")}
+        serviceTagline={t("Header.serviceTagline", "L'information pour les réfugiés en France")}
         quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
         className={styles.navBar}

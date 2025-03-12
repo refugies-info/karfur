@@ -41,7 +41,7 @@ const LanguageItem = memo(
       (i18nCode: string) => {
         if (i18nCode === "fr") return 1;
         const language = langues.find((ln) => ln.i18nCode === i18nCode);
-        return language?.avancementTrad ? Math.min(language.avancementTrad, 1) : 0;
+        return language ? Math.min(language.avancementTrad || 0, 1) : 0;
       },
       [langues],
     );
@@ -73,19 +73,17 @@ const LanguageItem = memo(
             <b>{t("LanguageDropdown.loading", "Chargement de la langue")}</b>
           </span>
         )}
-        <b>
-          {item.langueFr} - {item.langueLoc}
-        </b>{" "}
+        <span className="langLabel">
+          <b>{item.langueFr}</b> - {item.langueLoc}
+        </span>{" "}
         {item.langueCode && notListenableLanguages.includes(item.langueCode) && (
           <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
         )}{" "}
-        {stylesDisabled ? (
-          <>{Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}</>
-        ) : (
-          <Badge noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
+        <span dir="ltr">
+          <Badge as="span" noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
             {Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}
           </Badge>
-        )}
+        </span>
       </button>
     );
   }),

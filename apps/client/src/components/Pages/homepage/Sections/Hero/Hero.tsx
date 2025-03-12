@@ -20,27 +20,30 @@ const Hero = (props: Props) => {
 
   return (
     <div className="relative flex flex-col-reverse md:min-h-[504px]">
-      <div className="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:gap-8 md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]">
+      <div className="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]">
         <h1
-          className="mb-0 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
+          className="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
           dangerouslySetInnerHTML={{
             __html: t(
-              isMobile ? "Homepage.title.mobile" : "Homepage.title.desktop",
+              isMobile ? "Homepage.titleMobile" : "Homepage.titleDesktop",
               isMobile
                 ? "L'information <br/> pour les personnes réfugiées en France"
-                : "Le service public d'information pour les étrangers",
+                : "Le service public d’information pour les personnes réfugiées",
             ),
           }}
         />
 
         {isMobile ? (
           <p className="mb-0 text-center text-lg">
-            {t("Homepage.subtitleMobile", "Des informations claires et traduites pour les étrangers")}
+            {t(
+              "Homepage.subtitleMobile",
+              "Des informations claires et traduites pour les personnes réfugiées en France",
+            )}
           </p>
         ) : (
           <p className="mb-0 flex flex-col items-center text-xl">
             <span>{t("Homepage.subtitle1", "Des ressources claires et traduites")}</span>
-            <span>{t("Homepage.subtitle2", "pour accompagner les étrangers en France")}</span>
+            <span>{t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}</span>
           </p>
         )}
 
@@ -68,7 +71,7 @@ const Hero = (props: Props) => {
           </Button>
         </div>
       </div>
-      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute md:inset-0 md:z-0 md:h-[50vh] md:h-auto">
+      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px]">
         <span className="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"></span>
         <Image
           src={HeroBackground}

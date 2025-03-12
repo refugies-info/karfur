@@ -27,7 +27,7 @@ const Newsletter = () => {
 
     if (!isEmail) {
       setNewsletterFormState("error");
-      setNewsletterError(t("NewsletterForm.errors.emailNotValid", "Ceci n'est pas un email, vérifiez l'orthographe."));
+      setNewsletterError(t("NewsletterForm.errorsEmailnotvalid", "Ceci n'est pas un email, vérifiez l'orthographe."));
       return;
     }
 
@@ -41,11 +41,11 @@ const Newsletter = () => {
         if (e.response?.data?.code === "CONTACT_ALREADY_EXIST")
           setNewsletterError(
             t(
-              "NewsletterForm.errors.alreadyExists",
+              "NewsletterForm.errorsAlreadyexists",
               "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
             ),
           );
-        else setNewsletterError(t("NewsletterForm.errors.systemError", "Une erreur s'est produite"));
+        else setNewsletterError(t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite"));
       });
   };
 
@@ -74,14 +74,14 @@ const Newsletter = () => {
               description={
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: t("NewsletterForm.confirmMessage.text", {
+                    __html: t("NewsletterForm.confirmMessageText", {
                       defaultValue: "Mail correctement enregistré !",
                       email: email,
                     }),
                   }}
                 ></span>
               }
-              title={t("NewsletterForm.confirmMessage.title", "Yay...")}
+              title={t("NewsletterForm.confirmMessageTitle", "Yay...")}
               className={cls("z-20 col-start-1 row-start-1 w-full bg-white transition")}
             />
           )}
@@ -92,13 +92,8 @@ const Newsletter = () => {
               newsletterFormState === "success" ? "z-10 max-h-0 opacity-0" : "max-h-full opacity-100 transition-all",
             )}
           >
-            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle")}</h2>
-            <p>
-              {t(
-                "NewsletterForm.description",
-                "Suivez l'évolution du projet Réfugiés.info et soyez au courant de nos événements et actualités.",
-              )}
-            </p>
+            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle !")}</h2>
+            <p>{t("NewsletterForm.description", "Suivez l'évolution du service Réfugiés.info")}</p>
 
             <Input
               nativeInputProps={{
