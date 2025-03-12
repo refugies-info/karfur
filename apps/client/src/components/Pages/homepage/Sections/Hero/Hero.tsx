@@ -67,7 +67,9 @@ const Hero = (props: Props) => {
             iconPosition="right"
             className="justify-center max-md:w-full"
           >
-            {t("Homepage.donwloadAppButton", "Télécharger l'application")}
+            {isMobile
+              ? t("MobileApp.downloadButtonText", "Je télécharge l'application")
+              : t("Homepage.donwloadAppButton", "Télécharger l'application")}
           </Button>
         </div>
       </div>
