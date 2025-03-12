@@ -334,11 +334,7 @@ const RecensezVotreAction = (props: Props) => {
               subtitle="Nous sommes là pour vous accompagner dans la rédaction et la mise à jour de votre fiche."
             />
             <RowCards>
-              <Card
-                image={CardIconCalendar}
-                title="Séances découverte"
-                link="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
-              >
+              <Card image={CardIconCalendar} title="Séances découverte" link="https://kit.refugies.info/formation">
                 <p className="mb-0">Profitez d’un webinaire de présentation de la plateforme.</p>
               </Card>
 
