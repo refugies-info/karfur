@@ -13,7 +13,7 @@ export const HelpNotice = () => {
             href="https://beta.gouv.fr/startups/refugies.info#impact"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline"
+            className="!border-0 !underline"
           >
             Découvrir l'impact du projet
           </a>
