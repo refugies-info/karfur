@@ -16,6 +16,7 @@ import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Page
 import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
 import { useWindowSize } from "~/hooks";
@@ -58,8 +59,8 @@ const Homepage = (props: Props) => {
       <SEO
         title={
           isMobile
-            ? t("Homepage.title.mobile", "L'information <br/> pour les personnes réfugiées en France")
-            : t("Homepage.title.desktop", "Le service public d’information pour les personnes réfugiées")
+            ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France")
+            : t("Homepage.titleDesktop", "Le service public d’information pour les personnes réfugiées")
         }
         description={
           isMobile
@@ -67,6 +68,7 @@ const Homepage = (props: Props) => {
             : `${t("Homepage.subtitle1", "Des ressources claires et traduites")} ${t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}`
         }
       />
+      <HelpNotice />
 
       <Hero targetArrow="themes" />
 
@@ -78,9 +80,9 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
           }),
-          seeMore: t("ui.carrousel.seeMore", "Voir tout"),
-          prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
-          next: t("ui.carrousel.next", "Faire défiler à droite"),
+          seeMore: t("ui.carrouselSeemore", "Voir tout"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=demarche"
       >
@@ -95,9 +97,9 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,
           }),
-          seeMore: t("ui.carrousel.seeMore", "Voir plus"),
-          prev: t("ui.carrousel.prev", "Faire défiler à gauche"),
-          next: t("ui.carrousel.next", "Faire défiler à droite"),
+          seeMore: t("ui.carrouselSeemore", "Voir plus"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
       >
@@ -106,13 +108,13 @@ const Homepage = (props: Props) => {
         ))}
       </Carrousel>
 
-      <Newsletter />
+      {!isMobile && <FreeResources />}
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
       <MobileApp />
 
-      {!isMobile && <FreeResources />}
+      <Newsletter />
 
       {!isMobile && <WorkTogether />}
     </div>

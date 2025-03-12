@@ -23,12 +23,16 @@
       "sharp"
     ],
     "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.20.0": "patches/@codegouvfr__react-dsfr@1.20.0.patch"
+      "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
+    },
+    "overrides": {
+      "undici": "5.28.5",
+      "@expo/cli>undici": "6.21.1"
     }
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/storybook-static **/build **/storybook/.cache",
+    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/.expo **/storybook-static **/build",
     "clean:modules": "rm -rf ./packages/*/node_modules ./apps/*/node_modules",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
@@ -48,7 +52,7 @@
     "dev:ui": "turbo dev --filter=@refugies-info/ui",
     "dev:client": "turbo dev --filter=@refugies-info/client --filter=@refugies-info/ui",
     "dev:server": "turbo dev --filter=@refugies-info/server",
-    "dev:mobile": "turbo dev --filter=@refugies-info/mobile",
+    "dev:mobile": "turbo dev --filter=@refugies-info/mobile --filter=@refugies-info/server",
     "dev:storybook": "turbo dev --filter=@refugies-info/storybook --filter=@refugies-info/ui",
     "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
     "start:client": "pnpm --filter @refugies-info/client start",
@@ -64,6 +68,8 @@
     "lint:server": "turbo lint --filter=@refugies-info/server",
     "lint:mobile": "turbo lint --filter=@refugies-info/mobile",
     "lint:style": "stylelint \"**/*.css\" \"**/*.scss\"",
+    "client:i18n:export": "pnpm --filter @refugies-info/client i18n:export",
+    "client:i18n:import": "pnpm --filter @refugies-info/client i18n:import",
     "pr:prod:client": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "pr:prod:mobile": "gh pr create -B master-mobile -H staging-mobile -l release -t '[PROD-MOBILE] Release' -b ''",
@@ -89,23 +95,23 @@
     "node": "22.13.1"
   },
   "devDependencies": {
-    "@codegouvfr/react-dsfr": "^1.19.0",
-    "@types/node": "^22.13.1",
+    "@codegouvfr/react-dsfr": "1.20.2",
+    "@types/node": "^22.13.9",
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",
     "husky": ">=9.1.6",
     "knip": "^5.43.6",
     "lint-staged": "^15.4.3",
     "mongo-migrate-ts": "^1.6.2",
-    "mongodb": "^6.13.0",
-    "prettier": "^3.4.2",
+    "mongodb": "^6.14.2",
+    "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.10",
-    "stylelint": "^16.14.1",
+    "stylelint": "^16.15.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
     "turbo": "2.4.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.8.2"
   },
   "volta": {
     "node": "22.13.1",
@@ -115,6 +121,6 @@
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write"
   },
-  "resolutions": {},
+
   "packageManager": "pnpm@10.4.1"
 }

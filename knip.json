@@ -3,16 +3,17 @@
   "include": ["dependencies"],
   "workspaces": {
     "apps/client": {
-      "entry": ["src/locales/interfaceTranslation/*.js"],
+      "entry": ["src/scripts/*.js"],
       "ignoreDependencies": [
+        "bootstrap",
+        "cssnano",
         "flag-icons",
         "postcss",
         "react-anchor-link-smooth-scroll",
         "remixicon",
         "sharp",
         "tailwindcss",
-        "typescript-plugin-css-modules",
-        "bootstrap"
+        "typescript-plugin-css-modules"
       ]
     },
     "apps/mobile": {
@@ -29,11 +30,11 @@
       "entry": ["src/server.ts"],
       "ignoreDependencies": [
         "@tsoa/runtime",
+        "@types/mongoose",
         "nodemon",
         "path-to-regexp",
-        "tsconfig-paths",
         "ts-node",
-        "@types/mongoose"
+        "tsconfig-paths"
       ]
     },
     "apps/storybook": {

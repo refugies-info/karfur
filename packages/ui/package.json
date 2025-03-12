@@ -10,6 +10,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./styles.css": "./dist/index.css",
+    "./globals.css": "./src/css/globals-ui.css",
     "./*": "./src/*.{ts,tsx}"
   },
   "scripts": {
@@ -20,7 +21,7 @@
     "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts"
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "^1.19.0",
+    "@codegouvfr/react-dsfr": "1.20.2",
     "clsx": "^2.1.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -33,7 +34,7 @@
     "@types/react": "18.3.1",
     "tailwindcss": "^4.0.9",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.8.2"
   },
   "peerDependencies": {
     "react": "^18.0.0"

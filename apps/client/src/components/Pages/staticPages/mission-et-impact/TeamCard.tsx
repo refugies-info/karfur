@@ -14,25 +14,20 @@ export const TeamCard = (props: Props) => {
   return (
     <div className={cn("fr-card fr-enlarge-link fr-card--horizontal", "w-full flex-row sm:w-[478px]")}>
       <div className={cn("fr-card__body", "px-0")}>
-        <div
-          className={cn(
-            "fr-card__content",
-            "mx-0 max-h-[196px] px-4 pt-4 pb-[52px] sm:max-h-none sm:px-6 sm:pt-6 sm:pb-[68px]",
-          )}
-        >
+        <div className={cn("fr-card__content", "mx-0 min-h-[196px] px-4 pt-4 pb-4 sm:max-h-none sm:px-6 sm:pt-6")}>
+          <div className={cn("", "mb-4 h-6")}>
+            <Tag small>{props.tag}</Tag>
+          </div>
           <h3 className={cn("fr-card__title", "text-large sm:text-chapo")}>
             <a href={props.link} target="_blank" rel="noreferrer" className="fr-default">
               {props.name}
             </a>
           </h3>
-          <p className={cn("fr-card__desc", "mt-2 line-clamp-2")}>{props.position}</p>
-          <div className={cn("fr-card__start", "mb-4 h-6")}>
-            <Tag small>{props.tag}</Tag>
-          </div>
+          <p className={cn("fr-card__desc", "mt-2")}>{props.position}</p>
+          <i className="fr-icon-arrow-right-line text-title-blue-france relative order-last mt-auto flex justify-end before:h-4 before:w-4" />
         </div>
-        <i className="fr-icon-arrow-right-line text-title-blue-france absolute right-4 bottom-4 before:h-4 before:w-4 sm:right-6 sm:bottom-6" />
       </div>
-      <div className={cn("fr-card__header", "h-[196px] w-[160px] flex-none sm:h-[220px] sm:w-[220px]")}>
+      <div className={cn("fr-card__header", "min-h-[196px] w-[160px] flex-none sm:w-[220px]")}>
         <div className={cn("fr-card__img", "h-full")}>
           <Image
             src={props.image}

@@ -1,7 +1,7 @@
 @import "~/scss/mixins/responsive";
 
 .nav {
-  @include isTablet {
+  @include media-max("xl-limit") {
     /* stylelint-disable-next-line selector-class-pattern */
     :global(.fr-segmented__elements) {
       flex-wrap: wrap;

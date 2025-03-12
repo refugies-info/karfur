@@ -7,7 +7,7 @@
   "conventionalCommits.scopes": ["api-types", "client", "server", "mobile", "storybook", "ui"],
   // i18n-ally
   "i18n-ally.extract.autoDetect": false,
-  "i18n-ally.localesPaths": ["apps/client/src/locales", "apps/mobile/src/translations"],
+  "i18n-ally.localesPaths": ["apps/client/public/locales", "apps/mobile/src/translations"],
   "i18n-ally.ignoreFiles": ["**/unused.json"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.keysInUse": [

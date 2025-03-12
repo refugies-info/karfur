@@ -1,6 +1,8 @@
 @layer theme, base, refugies-info, dsfr, components, utilities;
 @import "tailwindcss";
-@import "@refugies-info/ui/styles.css";
+
+/* Points to css source instead of dist */
+@import "@refugies-info/ui/globals.css";
 
 /* stylelint-disable custom-property-pattern */
 
