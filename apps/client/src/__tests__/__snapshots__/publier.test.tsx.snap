@@ -1077,7 +1077,7 @@ exports[`publier renders publier 1`] = `
           >
             <a
               class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint block"
-              href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
+              href="https://kit.refugies.info/formation"
               rel="noopener noreferrer"
               target="_blank"
               title="Séances découverte"
