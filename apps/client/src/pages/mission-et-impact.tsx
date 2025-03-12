@@ -67,7 +67,7 @@ const MissionImpact = (props: Props) => {
 
   return (
     <div className="w-full">
-      <SEO title={t("MissionImpact.title")} />
+      <SEO title={t("MissionImpact.seoTitle", "Mission et impact - Réfugiés.info")} />
       <HelpNotice />
 
       <Section
