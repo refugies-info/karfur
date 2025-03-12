@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import { isIOS } from "react-device-detect";
 import HeroBackground from "~/assets/homepage/hero/background-image.svg";
 import Character from "~/assets/homepage/hero/character.svg";
-import WhiteWave from "~/assets/homepage/hero/white-wave.svg";
+import WhiteWave from "~/components/Pages/homepage/Sections/Hero/WhiteWave";
 
 import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
@@ -85,13 +85,8 @@ const Hero = (props: Props) => {
           )}
         />
         {/* White wave */}
-        <Image
-          src={WhiteWave}
-          width={100}
-          height={121}
-          className="object-fit absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
-          alt=""
-        />
+        <WhiteWave className="absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100" />
+
         {/* Characters */}
         <Image
           src={Character}
