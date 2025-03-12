@@ -96,18 +96,35 @@ exports[`homepage renders homepage 1`] = `
           srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 640w, /_next/image?url=%2Fimg.jpg&w=750&q=75 750w, /_next/image?url=%2Fimg.jpg&w=828&q=75 828w, /_next/image?url=%2Fimg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fimg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fimg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fimg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fimg.jpg&w=3840&q=75 3840w"
           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
         />
-        <img
-          alt=""
-          class="object-fit absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
-          data-nimg="1"
-          decoding="async"
-          height="121"
-          loading="lazy"
-          src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-          srcset="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-          style="color: transparent;"
-          width="100"
-        />
+        <svg
+          class="absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 171"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1440 180V59c-436.58 77.754-582.689 41.582-918.044 13.57C237.653 48.823 0 85.01 0 85.01V180"
+            fill="#fff"
+            filter="url(#drop-shadow)"
+          />
+          <defs>
+            <filter
+              height="200%"
+              id="drop-shadow"
+              width="200%"
+              x="-50%"
+              y="0%"
+            >
+              <fedropshadow
+                dx="0"
+                dy="-4.167"
+                flood-color="rgba(0,0,0,0.20)"
+                stdDeviation="10.416"
+              />
+            </filter>
+          </defs>
+        </svg>
         <img
           alt=""
           class="absolute bottom-0 left-4 z-10 max-w-[22vw] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/3 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
