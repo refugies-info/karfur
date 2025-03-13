@@ -234,7 +234,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
           "overscrollBehaviorX": "contain",
           "cursor": "grab",
           // @ts-ignore
-          "&::-webkit-scrollbar": { display: "none" },
+          "&::WebkitScrollbar": { display: "none" },
           "&:active": { cursor: "grabbing" },
         }}
       >
