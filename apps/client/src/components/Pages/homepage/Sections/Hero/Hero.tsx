@@ -77,7 +77,9 @@ const Hero = (props: Props) => {
         <span className="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"></span>
         <Image
           src={HeroBackground}
-          fill={true}
+          width={1920}
+          height={1120}
+          priority={true}
           className="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:object-[0_80%]"
           alt={t(
             "Homepage.imageDescription",
@@ -92,6 +94,7 @@ const Hero = (props: Props) => {
           src={Character}
           width={207}
           height={274}
+          priority={true}
           alt=""
           className="absolute bottom-0 left-4 z-10 max-w-[22vw] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/3 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
         />
