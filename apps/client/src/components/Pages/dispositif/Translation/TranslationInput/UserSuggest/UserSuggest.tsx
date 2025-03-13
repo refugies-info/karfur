@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Crown from "~/assets/dispositif/crown.svg";
 import GoogleLogo from "~/assets/dispositif/google.svg";
 import UserAvatar from "~/assets/mario-profile.jpg";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./UserSuggest.module.scss";
 

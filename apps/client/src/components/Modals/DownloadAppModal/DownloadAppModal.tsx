@@ -1,12 +1,12 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { useCallback } from "react";
 import { isIOS } from "react-device-detect";
 import { Modal } from "reactstrap";
 import RatingStars from "~/assets/auth/rating-stars.svg";
 import MobileAppIllu from "~/assets/mobile-app-illustration.png";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./DownloadApp.module.scss";
 

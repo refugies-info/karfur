@@ -1,6 +1,6 @@
 import { LoginResponse, RegisterRequest } from "@refugies-info/api-types";
 import passwordHash from "password-hash";
-import { addToNewsletter } from "~/connectors/sendinblue/addToNewsletter";
+import { addToNewsletter } from "~/connectors/brevo";
 import { isPasswordOk } from "~/libs/validatePassword";
 import logger from "~/logger";
 import { loginExceptionsManager } from "~/modules/users/auth";

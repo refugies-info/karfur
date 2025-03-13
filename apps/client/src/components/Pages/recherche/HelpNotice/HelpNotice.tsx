@@ -1,22 +1,25 @@
 import Notice from "@codegouvfr/react-dsfr/Notice";
+import { useLocale } from "~/hooks";
 
-export const HelpNotice = () => (
-  <Notice
-    isClosable
-    title={
-      <>
-        Bienvenue sur la nouvelle page de recherche d'information Réfugiés.info&nbsp;! Découvrez toutes les nouveautés
-        dans{" "}
-        <a
-          href="https://help.refugies.info/fr/article/decouvrez-la-nouvelle-page-de-recherche-dinformation-16pz0/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-decoration-underline"
-        >
-          notre article d'aide
-        </a>
-        .
-      </>
-    }
-  />
-);
+export const HelpNotice = () => {
+  const locale = useLocale();
+  return locale === "fr" ? (
+    <Notice
+      isClosable
+      title={
+        <>
+          Réfugiés.info a été nommé Service numérique à impact national !&nbsp;
+          <a
+            href="https://beta.gouv.fr/startups/refugies.info#impact"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="!border-0 !underline"
+          >
+            Découvrir l'impact du projet
+          </a>
+          .
+        </>
+      }
+    />
+  ) : null;
+};

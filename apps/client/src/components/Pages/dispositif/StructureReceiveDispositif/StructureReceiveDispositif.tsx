@@ -1,6 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
@@ -13,6 +12,7 @@ import YesIcon from "~/assets/dispositif/yes-icon.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import API from "~/utils/API";
 import { ChoiceButton } from "../Edition";
@@ -86,7 +86,7 @@ const StructureReceiveDispositif = () => {
           onClick={submit}
           evaIcon="checkmark-circle-2"
           iconPosition="right"
-          className="w-100 justify-content-center"
+          className="w-full justify-center"
           disabled={receiveDispositif === null}
         >
           Valider

@@ -1,12 +1,11 @@
-import { useTranslation } from "next-i18next";
+import { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import DSFRBadge from "~/components/UI/Badge";
 import Flag from "~/components/UI/Flag";
-import { cls } from "~/lib/classname";
 import { smoothScroll } from "~/lib/smoothScroll";
 import { NeedKey } from "~/pages/traduire";
 import { langueSelector } from "~/services/Langue/langue.selectors";
-import styles from "./LanguageCard.module.scss";
 
 interface Props {
   languageId: string;
@@ -14,20 +13,30 @@ interface Props {
   href: string;
 }
 
+const SEVERITIES: Record<NeedKey, BadgeProps["severity"]> = {
+  strong: "warning",
+  medium: "new",
+  weak: "success",
+};
+
+const NEED: Record<NeedKey, string> = {
+  strong: "fort",
+  medium: "moyen",
+  weak: "faible",
+};
+
 const LanguageCard = (props: Props) => {
-  const { t } = useTranslation();
   const language = useSelector(langueSelector(props.languageId));
 
   return (
-    <Link href={props.href} className={styles.container} onClick={smoothScroll}>
-      <div className={styles.title}>
-        <Flag langueCode={language?.langueCode} className="d-block me-2" />
-        {language?.langueFr}
-      </div>
-      <p className={styles.subtitle}>
-        {t("Translate.need")}{" "}
-        <span className={cls(styles.need, styles[props.need])}>{t(`Translate.${props.need}`)}</span>
-      </p>
+    <Link
+      href={props.href}
+      onClick={smoothScroll}
+      className="border-default-grey hover:hover-tint inline-flex items-center gap-2 border bg-white p-3 md:p-4"
+    >
+      <Flag langueCode={language?.langueCode} />
+      <span className="text-h6 md:text-h5 font-bold">{language?.langueFr}</span>
+      <DSFRBadge severity={SEVERITIES[props.need]}>Besoin {NEED[props.need]}</DSFRBadge>
     </Link>
   );
 };

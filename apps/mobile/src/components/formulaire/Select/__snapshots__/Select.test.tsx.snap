@@ -75,12 +75,6 @@ exports[`Select snapshot test suite should render with label 1`] = `
   >
     <View
       RTLBehaviour={true}
-      animatedStyle={
-        {
-          "value": {},
-        }
-      }
-      collapsable={false}
       horizontalAlign="flex-start"
       style={
         {
@@ -129,8 +123,8 @@ exports[`Select snapshot test suite should render with label 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#161616"
             focusable={false}
             height={24}
@@ -193,8 +187,8 @@ exports[`Select snapshot test suite should render with label 1`] = `
                     height="24"
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -289,12 +283,6 @@ exports[`Select snapshot test suite should render without bug 1`] = `
   >
     <View
       RTLBehaviour={true}
-      animatedStyle={
-        {
-          "value": {},
-        }
-      }
-      collapsable={false}
       horizontalAlign="flex-start"
       style={
         {
@@ -343,8 +331,8 @@ exports[`Select snapshot test suite should render without bug 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#161616"
             focusable={false}
             height={24}
@@ -407,8 +395,8 @@ exports[`Select snapshot test suite should render without bug 1`] = `
                     height="24"
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"

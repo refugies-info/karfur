@@ -1,8 +1,8 @@
 import { DownloadAppRequest } from "@refugies-info/api-types";
-import { sendSMS } from "~/connectors/twilio/sendSMS";
 import { InvalidRequestError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
+import { sendSMS } from "~/services";
 import { Response } from "~/types/interface";
 
 export const downloadApp = async (body: DownloadAppRequest): Response => {

@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { useState } from "react";
 import WelcomeStep1 from "~/assets/dispositif/welcome-step-1.svg";
 import WelcomeStep2 from "~/assets/dispositif/welcome-step-2.svg";
 import WelcomeStep5 from "~/assets/dispositif/welcome-step-5.png";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { Event } from "~/lib/tracking";
 import { StepsFooter } from "../components";
 import { modalTitles } from "./data";
@@ -47,7 +47,9 @@ const ModalWelcome = (props: Props) => {
               Vous allez rédiger une fiche pour présenter votre action. Prenez une minute pour lire ces quelques
               conseils.
             </p>
-            <Image src={WelcomeStep1} width="524" height="280" alt="" />
+            <div className="flex justify-center">
+              <Image src={WelcomeStep1} width="524" height="280" alt="" />
+            </div>
           </>
         )}
 
@@ -58,7 +60,9 @@ const ModalWelcome = (props: Props) => {
               <span className={styles.success}>une fiche pratique pour les personnes réfugiées non francophones</span>{" "}
               et leurs accompagnants.
             </p>
-            <Image src={WelcomeStep2} width="524" height="240" alt="" />
+            <div className="flex justify-center">
+              <Image src={WelcomeStep2} width="524" height="240" alt="" />
+            </div>
           </>
         )}
 
@@ -101,7 +105,9 @@ const ModalWelcome = (props: Props) => {
               oublier ! Les tutoriels sont là pour vous aider et nous sommes aussi disponibles via le chat (en bas à
               droite).
             </p>
-            <Image src={WelcomeStep5} width="524" height="248" alt="" />
+            <div className="flex justify-center">
+              <Image src={WelcomeStep5} width="524" height="248" alt="" />
+            </div>
           </>
         )}
 

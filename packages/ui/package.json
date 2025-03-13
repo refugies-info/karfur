@@ -1,0 +1,42 @@
+{
+  "name": "@refugies-info/ui",
+  "version": "1.0.0",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./dist/index.css",
+    "./globals.css": "./src/css/globals-ui.css",
+    "./*": "./src/*.{ts,tsx}"
+  },
+  "scripts": {
+    "build": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css",
+    "check:types": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "dev": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css --watch",
+    "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts"
+  },
+  "dependencies": {
+    "@codegouvfr/react-dsfr": "1.20.2",
+    "clsx": "^2.1.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@refugies-info/typescript-config": "workspace:*",
+    "@tailwindcss/cli": "^4.0.9",
+    "@types/fs-extra": "^11.0.4",
+    "@types/react": "18.3.1",
+    "tailwindcss": "^4.0.9",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}

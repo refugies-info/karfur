@@ -1,0 +1,44 @@
+@import "~/scss/colors";
+@import "~/scss/mixins/responsive";
+@import "~/scss/variables";
+@import "~/scss/mixins/rtl";
+
+.dropdownRoot {
+  width: fit-content;
+  display: inline-block;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  z-index: 1000;
+  filter: drop-shadow(var(--raised-shadow));
+
+  // Left alignment (default)
+  &.start {
+    @include rtl {
+      left: 0;
+    }
+
+    @include ltr {
+      right: 0;
+    }
+  }
+
+  // Right alignment
+  &.end {
+    @include ltr {
+      right: 0;
+    }
+
+    @include rtl {
+      left: 0;
+    }
+  }
+
+  // Center alignment
+  &.center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -3,407 +3,428 @@
 exports[`publier renders publier 1`] = `
 <DocumentFragment>
   <div
-    class="main"
+    class="w-full"
   >
     <div
-      class="section bg_blue mb-4"
+      class="fr-notice fr-notice--info"
+      id="fr-notice-:r0:"
     >
       <div
-        class="container container"
+        class="fr-container"
       >
         <div
-          class="hero row"
+          class="fr-notice__body"
+        >
+          <p>
+            <span
+              class="fr-notice__title"
+            >
+              Réfugiés.info a été nommé Service numérique à impact national ! 
+              <a
+                class="!border-0 !underline"
+                href="https://beta.gouv.fr/startups/refugies.info#impact"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Découvrir l'impact du projet
+              </a>
+              .
+            </span>
+          </p>
+          <button
+            class="fr-btn--close fr-btn"
+          >
+            Masquer le message
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="py-10 md:py-20 bg-action-high-blue-france"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20"
         >
           <div
-            class="hero_title col-sm-12 col-lg-6"
+            class="flex-1 text-center md:text-left"
           >
             <h1
-              class="text-white"
+              class="text-h1 text-inverted-blue-france md:text-alt-title mb-6"
             >
-              Publish.title
+              Recensez votre action !
             </h1>
             <p
-              class="subtitle"
+              class="text-chapo text-inverted-blue-france mb-0"
             >
-              Publish.subtitle
+              Participez à la création d’un outil de référence pour les professionnels de l’accompagnement social et partagez des informations utiles aux personnes réfugiées en France.
             </p>
-            <div
-              class="container"
+            <a
+              class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
+              href="#register"
+              id="fr-button-:r1:"
             >
-              <a
-                class="btn"
-                href="/undefined#why"
-                title="Suivant"
-              >
-                <span
-                  class="icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-downward-outline"
-                      fill="bleuCharte"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-downward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            width="24"
-                          />
-                          <path
-                            d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
-              </a>
-            </div>
+              Rédiger une fiche
+            </a>
           </div>
           <div
-            class="col-sm-12 col-lg-6"
+            class="flex-1"
           >
             <img
               alt=""
+              class="mx-auto h-auto max-w-full"
               data-nimg="1"
               decoding="async"
-              height="40"
+              height="540"
               loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style="color: transparent; max-width: 100%; height: auto;"
-              width="40"
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="540"
             />
           </div>
         </div>
       </div>
     </div>
     <div
-      class="container shadow"
+      class="sticky top-0 z-20 bg-white"
     >
       <div
-        class="inner container"
+        class="container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10"
       >
-        <div>
-          <a
-            class="btn green"
-            href="/undefined#why"
+        <div
+          class="nav"
+        >
+          <fieldset
+            class="fr-segmented fr-segmented--no-legend"
+            id="fr-segmented-:r2:"
           >
-            Publish.navbarItem1
-          </a>
+            <div
+              class="fr-segmented__elements"
+            >
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r2:-0"
+                  name="segmented-name-:r3:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r2:-0"
+                >
+                  Pourquoi ?
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r2:-1"
+                  name="segmented-name-:r3:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r2:-1"
+                >
+                  Quels critères ?
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r2:-2"
+                  name="segmented-name-:r3:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r2:-2"
+                >
+                  Comment faire ?
+                </label>
+              </div>
+              <div
+                class="fr-segmented__element"
+              >
+                <input
+                  id="fr-segmented-:r2:-3"
+                  name="segmented-name-:r3:"
+                  readonly=""
+                  type="radio"
+                />
+                <label
+                  class="fr-label"
+                  for="fr-segmented-:r2:-3"
+                >
+                  Foire aux questions
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div
+          class="hidden shrink-0 md:block"
+        >
           <a
-            class="btn purple"
-            href="/undefined#required"
+            class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
+            href="#register"
+            id="fr-button-:r4:"
           >
-            Publish.navbarItem2
-          </a>
-          <a
-            class="btn orange"
-            href="/undefined#steps"
-          >
-            Publish.navbarItem3
-          </a>
-          <a
-            class="btn red"
-            href="/undefined#faq"
-          >
-            Publish.navbarItem4
+            Rédiger une fiche
           </a>
         </div>
-        <a
-          class="btn blue"
-          href="/undefined#register"
-        >
-          <span
-            class="icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-plus-circle-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="plus-circle"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                    />
-                    <path
-                      d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Publish.navbarItem5
-        </a>
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="why"
       />
       <div
-        class="section"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
           <h2
-            class="title2"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 !text-left"
           >
-            Publish.whyTitle
+            Pourquoi recenser mon action sur Réfugiés.info ?
           </h2>
           <div
-            class="row"
+            class="flex gap-20 min-h-[480px]"
           >
             <div
-              class="infos with_images col"
+              class="border-default-grey w-1/2 grow-1 basis-auto border-b"
             >
               <div
-                class="container"
+                data-orientation="vertical"
               >
-                <button
-                  class="btn open btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle1
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse show"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="open"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="open"
                   >
-                    Publish.whyAccordionText1
-                  </p>
+                    <button
+                      aria-controls="radix-:r6:"
+                      aria-disabled="true"
+                      aria-expanded="true"
+                      class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="open"
+                      id="radix-:r5:"
+                      type="button"
+                    >
+                      <span
+                        class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
+                      >
+                        Bénéficiez d'un outil gratuit et traduit
+                      </span>
+                      <i
+                        class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r5:"
+                    class="content"
+                    data-orientation="vertical"
+                    data-state="open"
+                    id="radix-:r6:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
+                  >
+                    <div
+                      class="mt-4 px-4 pb-8"
+                    >
+                      <p
+                        class="text !text-large !mb-0"
+                      >
+                        Une fois rédigée, la fiche de votre action sera relue et simplifiée, traduite gratuitement en 7 langues, vocalisée et facilement partageable. Elle sera visible dans une application adaptée aux usages numériques des personnes réfugiées.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div
-                class="container video2"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle2
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.whyAccordionText2
-                  </p>
+                    <button
+                      aria-controls="radix-:r8:"
+                      aria-expanded="false"
+                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:r7:"
+                      type="button"
+                    >
+                      <span
+                        class="mb-0 grow-1 text-left text-xl font-medium"
+                      >
+                        Donnez de la visibilité à votre action
+                      </span>
+                      <i
+                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r7:"
+                    class="content"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:r8:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle3
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.whyAccordionText3
-                  </p>
+                    <button
+                      aria-controls="radix-:ra:"
+                      aria-expanded="false"
+                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:r9:"
+                      type="button"
+                    >
+                      <span
+                        class="mb-0 grow-1 text-left text-xl font-medium"
+                      >
+                        Recevez des candidatures adaptées
+                      </span>
+                      <i
+                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:r9:"
+                    class="content"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:ra:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.whyAccordionTitle4
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
                 <div
-                  class="collapse"
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
                 >
-                  <p
-                    class="text"
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
                   >
-                    Publish.whyAccordionText4
-                  </p>
+                    <button
+                      aria-controls="radix-:rc:"
+                      aria-expanded="false"
+                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-:rb:"
+                      type="button"
+                    >
+                      <span
+                        class="mb-0 grow-1 text-left text-xl font-medium"
+                      >
+                        Participez à un service public ouvert
+                      </span>
+                      <i
+                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-:rb:"
+                    class="content"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-:rc:"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
                 </div>
               </div>
             </div>
             <div
-              class="media center col"
+              class="flex w-1/2 items-center justify-center"
             >
               <img
                 alt=""
-                class="image"
+                class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
+                data-nimg="1"
+                decoding="async"
+                height="320"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+                style="color: transparent;"
+                width="400"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="py-10 md:py-20 bg-action-low-blue-france"
+      >
+        <div
+          class="fr-container"
+        >
+          <h2
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
+          >
+            La parole aux porteurs de dispositifs
+          </h2>
+          <div
+            class="flex flex-col gap-10 md:flex-row"
+          >
+            <div
+              class="flex-1 space-y-6 md:px-8"
+            >
+              <img
+                alt=""
                 data-nimg="1"
                 decoding="async"
                 height="40"
@@ -413,173 +434,79 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
+              <p
+                class="!text-large !mb-6"
+              >
+                « J’ai eu le plaisir de découvrir Réfugiés.info en 2021 et d’en constater toute l’étendue et l’utilité pour les personnes que nous accompagnons dans le cadre de notre dispositif sur le département de Loire-Atlantique. Le résultat final est impressionnant ! »
+              </p>
+              <div>
+                <div
+                  class="mb-2 font-bold"
+                >
+                  Vincent Le Lann
+                </div>
+                <div>
+                  Compagnons du Tour de France à Nantes
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="section bg_green"
-      >
-        <div
-          class="container container"
-        >
-          <div
-            class="container"
-          >
-            <button
-              class="btn next btn btn-secondary"
-              type="button"
-            >
-              <span
-                class="icon"
-              >
-                <i
-                  style="height: 24px; line-height: 24px;"
-                >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="#055e5a"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      data-name="Layer 2"
-                    >
-                      <g
-                        data-name="arrow-forward"
-                      >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
-                        />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
-            </button>
             <div
-              class="slider"
+              class="flex-1 space-y-6 md:px-8"
             >
-              <div
-                class="testimony col"
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony1
-                </p>
+                « Réfugiés.info est un très bon site ressource, très complet, qui balaye de nombreuses thématiques, facile d’accès et intuitif. Un bon complément à mes connaissances actuelles. Les acteurs sont bien accompagnés dans la construction de fiches. »
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="mb-2 font-bold"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Vincent Le Lann"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Vincent Le Lann
-                    </div>
-                    <div>
-                      Compagnons du Tour de France à Nantes
-                    </div>
-                  </div>
+                  Rémi Crouzel
+                </div>
+                <div>
+                  Mission Locale de Dijon & Conseiller IPeRACTIFS21
                 </div>
               </div>
-              <div
-                class="testimony col"
+            </div>
+            <div
+              class="flex-1 space-y-6 md:px-8"
+            >
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+              <p
+                class="!text-large !mb-6"
               >
-                <p>
-                  Publish.testimony2
-                </p>
+                « UniR partage toutes ses actions sur la plateforme Réfugiés.info. C'est très intuitif à utiliser et ça permet de mettre en avant les informations clés sur chaque programme. À chaque nouvelle session, nous mettons à jour seulement les cases concernées et cela maintient nos informations accessibles à toutes et tous ! »
+              </p>
+              <div>
                 <div
-                  class="container"
+                  class="mb-2 font-bold"
                 >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Rémi Crouzel"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Rémi Crouzel
-                    </div>
-                    <div>
-                      Mission Locale de Dijon & Conseiller IPeRACTIFS21
-                    </div>
-                  </div>
+                  Paola Salazar
                 </div>
-              </div>
-              <div
-                class="testimony col"
-              >
-                <p>
-                  Publish.testimony3
-                </p>
-                <div
-                  class="container"
-                >
-                  <div
-                    class="image"
-                  >
-                    <img
-                      alt="Paola Salazar"
-                      data-nimg="1"
-                      decoding="async"
-                      height="64"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent;"
-                      width="64"
-                    />
-                  </div>
-                  <div
-                    class="infos"
-                  >
-                    <div
-                      class="name"
-                    >
-                      Paola Salazar
-                    </div>
-                    <div>
-                      Directrice adjointe UniR
-                    </div>
-                  </div>
+                <div>
+                  Directrice adjointe UniR
                 </div>
               </div>
             </div>
@@ -588,378 +515,183 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="section bg_grey scrollspy_section"
+      class="py-10 md:py-20 relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="required"
       />
       <div
-        class="container container"
+        class="fr-container"
       >
         <h2
-          class="title2 center"
+          class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
         >
-          Publish.requiredTitle
+          Mon action peut-elle être recensée ?
         </h2>
         <div
-          class="row"
+          class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
         >
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
-              class="container"
+              class="flex h-full flex-col"
             >
               <div>
-                <div
-                  class="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
-                  />
-                </div>
-                <h3
-                  class="title"
-                >
-                  Publish.requiredSubtitle1
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText1
-                  </p>
-                </div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="text-h6 md:text-h5 text-title-blue-france my-3"
+              >
+                Pérenne
+              </h3>
+              <div
+                class="[&_p]:text-large"
+              >
+                <p>
+                  Votre action doit être accessible tout le temps ou de façon récurrente. Elle ne doit pas avoir lieu une seule et unique fois.
+                </p>
               </div>
               <div>
-                <div>
+                <div
+                  class="text-normal !space-y-3"
+                >
                   <p
-                    class="example example_ko"
+                    class="flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample1Ko
+                    <i
+                      class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
+                    />
+                    Une journée porte ouverte
                   </p>
                   <p
-                    class="example example_ok"
+                    class="!mb-0 flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample1Ok
+                    <i
+                      class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
+                    />
+                    Des sessions annuelles de formation
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
-              class="container"
+              class="flex h-full flex-col"
             >
               <div>
-                <div
-                  class="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
-                  />
-                </div>
-                <h3
-                  class="title"
-                >
-                  Publish.requiredSubtitle2
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText2
-                  </p>
-                </div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="text-h6 md:text-h5 text-title-blue-france my-3"
+              >
+                À but non lucratif
+              </h3>
+              <div
+                class="[&_p]:text-large"
+              >
+                <p>
+                  L’action peut être payante à l’inscription, mais ne doit pas vendre des services ou des objets à but lucratif.
+                </p>
               </div>
               <div>
-                <div>
+                <div
+                  class="text-normal !space-y-3"
+                >
                   <p
-                    class="example example_ko"
+                    class="flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample2Ko
+                    <i
+                      class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
+                    />
+                    Un service qui génère des bénéfices
                   </p>
                   <p
-                    class="example example_ok"
+                    class="!mb-0 flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample2Ok
+                    <i
+                      class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
+                    />
+                    Une formation certifiante
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
-              class="container"
+              class="flex h-full flex-col"
             >
               <div>
-                <div
-                  class="header"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height="56"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                    srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                    style="color: transparent; object-fit: contain;"
-                    width="56"
-                  />
-                </div>
-                <h3
-                  class="title"
-                >
-                  Publish.requiredSubtitle3
-                </h3>
-                <div
-                  class="text"
-                >
-                  <p
-                    class="mb-0"
-                  >
-                    Publish.requiredText3
-                  </p>
-                </div>
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="80"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="80"
+                />
+              </div>
+              <h3
+                class="text-h6 md:text-h5 text-title-blue-france my-3"
+              >
+                Adaptée au public
+              </h3>
+              <div
+                class="[&_p]:text-large"
+              >
+                <p>
+                  L’action doit prendre en compte les spécificités du public : la langue, la situation administrative personnelle, la disponibilité...
+                </p>
               </div>
               <div>
-                <div>
+                <div
+                  class="text-normal !space-y-3"
+                >
                   <p
-                    class="example example_ko"
+                    class="flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-close-outline"
-                          fill="colorKo"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="close"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(180 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample3Ko
+                    <i
+                      class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
+                    />
+                    Une formation généraliste
                   </p>
                   <p
-                    class="example example_ok"
+                    class="!mb-0 flex"
                   >
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 20px; line-height: 20px;"
-                      >
-                        <svg
-                          class="eva eva-checkmark-outline"
-                          fill="colorOk"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          width="20px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="checkmark"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                width="24"
-                              />
-                              <path
-                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                    Publish.requiredTextExample3Ok
+                    <i
+                      class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
+                    />
+                    Une formation avec cours de français
                   </p>
                 </div>
               </div>
@@ -967,468 +699,350 @@ exports[`publier renders publier 1`] = `
           </div>
         </div>
         <div
-          class="link"
+          class="mt-10 text-center lg:mt-20"
         >
           <a
-            class="link color_purple"
+            class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-            rel="noopener noreferrer"
-            target="_blank"
+            id="fr-button-:rd:"
           >
-            <span>
-              Publish.requiredCTA
-            </span>
-            <span
-              class="icon icon"
-            >
-              <i
-                style="height: 24px; line-height: 24px;"
-              >
-                <svg
-                  class="eva eva-arrow-forward-outline"
-                  fill="purple"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  width="24px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="arrow-forward"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        transform="rotate(-90 12 12)"
-                        width="24"
-                      />
-                      <path
-                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
+            Lire la charte éditoriale complète
           </a>
         </div>
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="steps"
       />
       <div
-        class="section"
+        class="py-10 md:py-20 bg-alt-beige-gris-galet"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
           <h2
-            class="title2"
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20"
           >
-            Publish.stepsTitle
+            Quelles sont les étapes pour publier une fiche ?
           </h2>
           <div
-            class="warning_mobile"
-          >
-            <span
-              class="icon"
-            >
-              <i
-                style="height: 24px; line-height: 24px;"
-              >
-                <svg
-                  class="eva eva-alert-circle-outline"
-                  fill="black"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  width="24px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    data-name="Layer 2"
-                  >
-                    <g
-                      data-name="alert-circle"
-                    >
-                      <rect
-                        height="24"
-                        opacity="0"
-                        width="24"
-                      />
-                      <path
-                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                      />
-                      <circle
-                        cx="12"
-                        cy="16"
-                        r="1"
-                      />
-                      <path
-                        d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"
-                      />
-                    </g>
-                  </g>
-                </svg>
-              </i>
-            </span>
-            <p>
-              Publish.stepsWarningMobile
-            </p>
-          </div>
-          <div
-            class="row orange"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="content"
+              class="border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="step"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
+                >
                   1
                 </span>
               </div>
               <h3
-                class="title"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle1
+                Créez 
+                <strong>
+                  votre compte
+                </strong>
+                 Réfugiés.info
               </h3>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText1
+                Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.
               </p>
               <a
-                class="link color_orange"
-                href="/undefined#register"
-                rel="noopener noreferrer"
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
+                href="#register"
+                id="fr-button-:re:"
               >
-                <span>
-                  Publish.stepsCTA1
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="orange"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
+                Créer mon compte
               </a>
             </div>
             <div
-              class="media"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/publier-video-step1.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="content"
+              class="border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="step"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
+                >
                   2
                 </span>
               </div>
               <h3
-                class="title"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle2
+                <strong>
+                  Rédigez
+                </strong>
+                 votre fiche
               </h3>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText2a
+                Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.
               </p>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText2b
+                Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.
               </p>
               <a
-                class="link color_orange"
+                class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-                rel="noopener noreferrer"
-                target="_blank"
+                id="fr-button-:rf:"
               >
-                <span>
-                  Publish.stepsCTA2
-                </span>
-                <span
-                  class="icon icon"
-                >
-                  <i
-                    style="height: 24px; line-height: 24px;"
-                  >
-                    <svg
-                      class="eva eva-arrow-forward-outline"
-                      fill="orange"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                      width="24px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        data-name="Layer 2"
-                      >
-                        <g
-                          data-name="arrow-forward"
-                        >
-                          <rect
-                            height="24"
-                            opacity="0"
-                            transform="rotate(-90 12 12)"
-                            width="24"
-                          />
-                          <path
-                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </span>
+                Voir les bonnes pratiques
               </a>
             </div>
             <div
-              class="media"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-              >
-                <source
-                  src="/video/publier-video-step2.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="content"
+              class="border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="step"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
+                >
                   3
                 </span>
               </div>
               <h3
-                class="title"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle3
+                Ajoutez la 
+                <strong>
+                  structure responsable
+                </strong>
               </h3>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText3
+                À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.
               </p>
             </div>
             <div
-              class="media"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
-              <video
-                class="video autoplay-video"
-                height="320"
-                loop=""
-                width="340"
-              >
-                <source
-                  src="/video/publier-video-step3.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height="440"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+                style="color: transparent; object-fit: contain;"
+                width="440"
+              />
             </div>
           </div>
           <div
-            class="row orange has_btn_step"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="content"
+              class="border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 !pb-0 lg:!pb-[250px]"
             >
               <div
-                class="step"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
+                >
                   4
                 </span>
               </div>
               <h3
-                class="title"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle4
+                L’équipe éditoriale de Réfugiés.info 
+                <strong>
+                  relit et publie
+                </strong>
+                 votre fiche
               </h3>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText4a
+                Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.
               </p>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText4b
+                Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.
               </p>
               <div
-                class="btn_step"
+                class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
-                Publish.stepsButton
+                Votre fiche est publiée ! 🎉
               </div>
             </div>
             <div
-              class="media"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 pb-[150px] lg:pb-0"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="550"
+                height="440"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="440"
               />
             </div>
           </div>
           <div
-            class="row orange"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="content"
+              class="border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26"
             >
               <div
-                class="step"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
+                >
                   5
                 </span>
               </div>
               <h3
-                class="title"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle5
+                <strong>
+                  Traduction en 7 langues
+                </strong>
+                 de votre fiche
               </h3>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText5a
+                Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.
               </p>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText5b
+                Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.
               </p>
             </div>
             <div
-              class="media"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="415"
+                height="440"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="440"
               />
             </div>
           </div>
           <div
-            class="row orange dotted"
+            class="align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0"
           >
             <div
-              class="content"
+              class="border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26 border-dashed"
             >
               <div
-                class="step"
+                class="absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10 text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white flex items-center justify-center"
               >
-                <span>
+                <span
+                  class="h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]"
+                >
                   6
                 </span>
               </div>
               <h3
-                class="title"
+                class="text-h4 lg:text-h3 mb-6"
               >
-                Publish.stepsSubtitle6
+                <strong>
+                  Mettez à jour
+                </strong>
+                 votre action régulièrement
               </h3>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText6a
+                Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.
               </p>
               <p
-                class="text"
+                class="text-large mb-6"
               >
-                Publish.stepsText6b
+                Attention, une action obsolète sera supprimée par l’équipe éditoriale.
               </p>
+              <span
+                class="hidden lg:block from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
+              />
             </div>
             <div
-              class="media"
+              class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0 border-dashed"
             >
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height="550"
+                height="336"
                 loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                src="/_next/image?url=%2Fimg.jpg&w=750&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=384&q=75 1x, /_next/image?url=%2Fimg.jpg&w=750&q=75 2x"
                 style="color: transparent; object-fit: contain;"
-                width="550"
+                width="336"
+              />
+              <span
+                class="lg:hidden from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
               />
             </div>
           </div>
@@ -1436,701 +1050,526 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
-      class="scrollspy_section"
+      class="relative"
     >
       <div
-        class="section bg_grey"
+        class="py-10 md:py-20"
       >
         <div
-          class="container container"
+          class="fr-container"
         >
-          <h2
-            class="title2 center mb-0"
-          >
-            StaticPages.helpTitle
-          </h2>
-          <p
-            class="subtitle center"
-          >
-            Publish.helpSubtitle
-          </p>
           <div
-            class="top_space row"
+            class="mx-auto mb-10 max-w-[720px] lg:mb-20"
           >
-            <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+            <h2
+              class="text-h3 md:text-h2 md:text-center mb-6"
             >
-              <div
-                class="container"
-              >
-                <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Publish.helpTileTitle1
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Publish.helpTileText1
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://airtable.com/apprWwZNoI1g4g6W4/shrrkFuyeG0BpKKT7?&prefill_Provenance=page-r%C3%A9dac&hide_Provenance=true"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <span>
-                      Publish.helpTileCTA1
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+              Vous n’êtes pas seul !
+            </h2>
+            <p
+              class="text-chapo mb-0 md:text-center"
             >
-              <div
-                class="container"
-              >
-                <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    Publish.helpTileTitle2
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      Publish.helpTileText2
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <a
-                    class="link color_red"
-                    href="https://help.refugies.info/fr/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <span>
-                      Publish.helpTileCTA2
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-            >
-              <div
-                class="container"
-              >
-                <div>
-                  <div
-                    class="header"
-                  >
-                    <img
-                      alt=""
-                      data-nimg="1"
-                      decoding="async"
-                      height="56"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
-                      width="56"
-                    />
-                  </div>
-                  <h3
-                    class="title"
-                  >
-                    StaticPages.helpTileTitle3
-                  </h3>
-                  <div
-                    class="text"
-                  >
-                    <p>
-                      StaticPages.helpTileText3
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <button
-                    class="link color_red"
-                  >
-                    <span>
-                      StaticPages.helpTileCTA3
-                    </span>
-                    <span
-                      class="icon icon"
-                    >
-                      <i
-                        style="height: 24px; line-height: 24px;"
-                      >
-                        <svg
-                          class="eva eva-arrow-forward-outline"
-                          fill="red"
-                          height="24px"
-                          viewBox="0 0 24 24"
-                          width="24px"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g
-                            data-name="Layer 2"
-                          >
-                            <g
-                              data-name="arrow-forward"
-                            >
-                              <rect
-                                height="24"
-                                opacity="0"
-                                transform="rotate(-90 12 12)"
-                                width="24"
-                              />
-                              <path
-                                d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                              />
-                            </g>
-                          </g>
-                        </svg>
-                      </i>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="section bg_red"
-      >
-        <div
-          class="container text-center container"
-        >
-          <h2
-            class="title2 text-center text-white"
-          >
-            Publish.figuresTitle
-          </h2>
-          <div
-            class="row"
-          >
-            <div
-              class="col-sm-12 col-lg-4"
-            >
-              <div
-                class="figure"
-              >
-                <div>
-                  0
-                </div>
-              </div>
-              <p
-                class="label"
-              >
-                Publish.figuresSubtitle1
-              </p>
-            </div>
-            <div
-              class="col-sm-12 col-lg-4"
-            >
-              <div
-                class="figure"
-              >
-                <div>
-                  0
-                </div>
-              </div>
-              <p
-                class="label"
-              >
-                Publish.figuresSubtitle2
-              </p>
-            </div>
-            <div
-              class="col-sm-12 col-lg-4"
-            >
-              <div
-                class="figure"
-              >
-                <div>
-                  0
-                </div>
-              </div>
-              <p
-                class="label"
-              >
-                Publish.figuresSubtitle3
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="section"
-      >
-        <span
-          class="anchor"
-          id="faq"
-        />
-        <div
-          class="container faq container"
-        >
-          <h2
-            class="title2 text-center"
-          >
-            StaticPages.faqTitle
-          </h2>
-          <div
-            class="row"
-          >
-            <div
-              class="infos col"
-            >
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle1
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
-                  >
-                    Publish.faqAccordionText1
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle2
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
-                  >
-                    Publish.faqAccordionText2
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle3
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
-                  >
-                    Publish.faqAccordionText3
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle4
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
-                  >
-                    Publish.faqAccordionText4
-                  </p>
-                </div>
-              </div>
-              <div
-                class="container"
-              >
-                <button
-                  class="btn btn btn-secondary"
-                  type="button"
-                >
-                  Publish.faqAccordionTitle5
-                  <span
-                    class="icon icon"
-                  >
-                    <i
-                      style="height: 32px; line-height: 32px;"
-                    >
-                      <svg
-                        class="eva eva-arrow-ios-downward-outline"
-                        fill="black"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        width="32px"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          data-name="Layer 2"
-                        >
-                          <g
-                            data-name="arrow-ios-downward"
-                          >
-                            <rect
-                              height="24"
-                              opacity="0"
-                              width="24"
-                            />
-                            <path
-                              d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"
-                            />
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                  </span>
-                </button>
-                <div
-                  class="collapse"
-                >
-                  <p
-                    class="text"
-                  >
-                    Publish.faqAccordionText5
-                  </p>
-                </div>
-              </div>
-            </div>
+              Nous sommes là pour vous accompagner dans la rédaction et la mise à jour de votre fiche.
+            </p>
           </div>
           <div
-            class="link"
+            class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <a
-              class="link color_red"
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint block"
+              href="https://kit.refugies.info/formation"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Séances découverte"
+            >
+              <div
+                class="flex h-full flex-col"
+              >
+                <div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="text-h6 md:text-h5 text-title-blue-france my-3"
+                >
+                  Séances découverte
+                </h3>
+                <div
+                  class="[&_p]:text-large"
+                >
+                  <p
+                    class="mb-0"
+                  >
+                    Profitez d’un webinaire de présentation de la plateforme.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mt-6 w-full pt-2 text-right"
+              >
+                <i
+                  class="fr-icon-arrow-right-line text-title-blue-france"
+                />
+              </div>
+            </a>
+            <a
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint block"
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
+              title="Tutoriels et centre d’aide"
             >
-              <span>
-                Publish.faqCTA
-              </span>
-              <span
-                class="icon icon"
+              <div
+                class="flex h-full flex-col"
+              >
+                <div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="text-h6 md:text-h5 text-title-blue-france my-3"
+                >
+                  Tutoriels et centre d’aide
+                </h3>
+                <div
+                  class="[&_p]:text-large"
+                >
+                  <p
+                    class="mb-0"
+                  >
+                    L’interface propose des tutoriels explicatifs et le centre d’aide contient de nombreux articles pour vous accompagner pendant la rédaction de votre fiche.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mt-6 w-full pt-2 text-right"
               >
                 <i
-                  style="height: 24px; line-height: 24px;"
+                  class="fr-icon-arrow-right-line text-title-blue-france"
+                />
+              </div>
+            </a>
+            <button
+              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint"
+              title="Live chat"
+            >
+              <div
+                class="flex h-full flex-col"
+              >
+                <div>
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="80"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=96&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                    style="color: transparent; object-fit: contain;"
+                    width="80"
+                  />
+                </div>
+                <h3
+                  class="text-h6 md:text-h5 text-title-blue-france my-3"
                 >
-                  <svg
-                    class="eva eva-arrow-forward-outline"
-                    fill="red"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    xmlns="http://www.w3.org/2000/svg"
+                  Live chat
+                </h3>
+                <div
+                  class="[&_p]:text-large"
+                >
+                  <p
+                    class="mb-0"
                   >
-                    <g
-                      data-name="Layer 2"
+                    Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mt-6 w-full pt-2 text-right"
+              >
+                <i
+                  class="fr-icon-arrow-right-line text-title-blue-france"
+                />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="py-10 md:py-20 bg-action-low-blue-france"
+      >
+        <div
+          class="fr-container"
+        >
+          <h2
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 text-center"
+          >
+            Rejoignez un projet collaboratif de grande envergure
+          </h2>
+          <div
+            class="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20"
+          >
+            <div
+              class="flex-1 text-center"
+            >
+              <div
+                class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
+              </div>
+              <p
+                class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
+              >
+                fiches publiées
+              </p>
+            </div>
+            <div
+              class="flex-1 text-center"
+            >
+              <div
+                class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
+              </div>
+              <p
+                class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
+              >
+                structures inscrites
+              </p>
+            </div>
+            <div
+              class="flex-1 text-center"
+            >
+              <div
+                class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              >
+                <div>
+                  0
+                </div>
+              </div>
+              <p
+                class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
+              >
+                vues sur les fiches
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="py-10 md:py-20 relative"
+      >
+        <span
+          class="absolute -top-[96px] md:-top-[120px]"
+          id="faq"
+        />
+        <div
+          class="fr-container"
+        >
+          <h2
+            class="text-h3 md:text-h2 md:text-center mb-10 md:mb-20 text-center"
+          >
+            Il vous reste des questions ?
+          </h2>
+          <div
+            class="mx-auto max-w-[720px]"
+          >
+            <div
+              class="flex gap-20"
+            >
+              <div
+                class=""
+              >
+                <div
+                  data-orientation="vertical"
+                >
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
                     >
-                      <g
-                        data-name="arrow-forward"
+                      <button
+                        aria-controls="radix-:rh:"
+                        aria-expanded="false"
+                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rg:"
+                        type="button"
                       >
-                        <rect
-                          height="24"
-                          opacity="0"
-                          transform="rotate(-90 12 12)"
-                          width="24"
+                        <span
+                          class="mb-0 grow-1 text-left text-xl font-medium"
+                        >
+                          Pourquoi je dois écrire moi-même la fiche ?
+                        </span>
+                        <i
+                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
-                        <path
-                          d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rg:"
+                      class="content"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rh:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:rj:"
+                        aria-expanded="false"
+                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:ri:"
+                        type="button"
+                      >
+                        <span
+                          class="mb-0 grow-1 text-left text-xl font-medium"
+                        >
+                          Je ne suis pas à l'aise avec le numérique, est-ce facile ?
+                        </span>
+                        <i
+                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
-                      </g>
-                    </g>
-                  </svg>
-                </i>
-              </span>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:ri:"
+                      class="content"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rj:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:rl:"
+                        aria-expanded="false"
+                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rk:"
+                        type="button"
+                      >
+                        <span
+                          class="mb-0 grow-1 text-left text-xl font-medium"
+                        >
+                          En combien de temps ma fiche sera publiée ?
+                        </span>
+                        <i
+                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rk:"
+                      class="content"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rl:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:rn:"
+                        aria-expanded="false"
+                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:rm:"
+                        type="button"
+                      >
+                        <span
+                          class="mb-0 grow-1 text-left text-xl font-medium"
+                        >
+                          Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
+                        </span>
+                        <i
+                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:rm:"
+                      class="content"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rn:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:rp:"
+                        aria-expanded="false"
+                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:ro:"
+                        type="button"
+                      >
+                        <span
+                          class="mb-0 grow-1 text-left text-xl font-medium"
+                        >
+                          Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
+                        </span>
+                        <i
+                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:ro:"
+                      class="content"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:rp:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-10 text-center lg:mt-20"
+          >
+            <a
+              class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
+              href="https://help.refugies.info/fr/"
+              id="fr-button-:rq:"
+            >
+              Voir le centre d’aide
             </a>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="section bg_grey"
+      class="py-10 md:py-20 bg-alt-beige-gris-galet relative"
     >
       <span
-        class="anchor"
+        class="absolute -top-[96px] md:-top-[120px]"
         id="register"
       />
       <div
-        class="register container"
+        class="fr-container"
       >
-        <h2
-          class="title2 mb-0"
+        <div
+          class="mx-auto max-w-[480px] text-center"
         >
-          StaticPages.registerTitle
-        </h2>
-        <p
-          class="subtitle mb-14"
-        >
-          Publish.registerSubtitle
-        </p>
-        <button
-          class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right submit_btn"
-          id="fr-button-:r0:"
-        >
-          login_or_signup
-        </button>
+          <img
+            alt=""
+            class="mx-auto mb-10"
+            data-nimg="1"
+            decoding="async"
+            height="160"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+            style="color: transparent;"
+            width="175"
+          />
+          <h2
+            class="text-h3 md:text-h2 md:text-center mb-6"
+          >
+            C’est parti !
+          </h2>
+          <p
+            class="text-chapo mb-6"
+          >
+            Connectez-vous ou créez votre compte pour démarrer la rédaction de votre fiche.
+          </p>
+          <button
+            class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
+            id="fr-button-:rr:"
+          >
+            Me connecter ou m'inscrire
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -62,6 +62,16 @@ jest.mock("@gorhom/bottom-sheet", () => {
   };
 });
 
+jest.mock("react-native-gesture-handler", () => {
+  const View = require("react-native").View;
+  return {
+    GestureHandlerRootView: View,
+    default: {
+      install: () => {},
+    },
+  };
+});
+
 describe("ContentScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();

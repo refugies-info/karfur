@@ -26,7 +26,7 @@ export const ThemesInput = (props: Props) => {
 
   return (
     <div className={parentStyles.form_block}>
-      <label className={cls(parentStyles.label, "d-block mb-4")}>Thème(s)</label>
+      <label className={cls(parentStyles.label, "block mb-4")}>Thème(s)</label>
       {themes.map((theme) => (
         <FilterButton
           key={theme.short.fr}

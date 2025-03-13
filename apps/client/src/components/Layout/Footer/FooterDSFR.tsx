@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
 import { useEditionMode } from "~/hooks";
 import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "~/hooks/useConsentContext";
+import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import { themesSelector } from "~/services/Themes/themes.selectors";
+import styles from "./FooterDSFR.module.scss";
 
 const Footer = () => {
   const router = useRouter();
@@ -29,6 +31,8 @@ const Footer = () => {
       accessibility="non compliant"
       accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale), prefetch: false }}
       brandTop="GOUVERNEMENT"
+      id="footer"
+      className={cn(styles.footer)}
       operatorLogo={{
         alt: "Logo DIAIR",
         imgUrl: "/images/Logo-DIAIR.png",
@@ -40,7 +44,7 @@ const Footer = () => {
       )}
       homeLinkProps={{
         href: "/",
-        title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
+        title: "Accueil - Réfugiés.info",
       }}
       bottomItems={[
         <FooterPersonalDataPolicyItem key={2} />,
@@ -190,10 +194,10 @@ const Footer = () => {
           links: [
             {
               linkProps: {
-                href: getPath("/qui-sommes-nous", router.locale),
+                href: getPath("/mission-et-impact", router.locale),
                 prefetch: false,
               },
-              text: t("Footer.Le projet", "Le projet"),
+              text: t("Footer.mission_impact", "Mission et impact"),
             },
             {
               linkProps: {

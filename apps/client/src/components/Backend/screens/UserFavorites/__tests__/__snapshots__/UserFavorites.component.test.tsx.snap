@@ -464,25 +464,26 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start position-relative"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
+                      class="h-[3rem] object-contain"
                       data-nimg="1"
                       decoding="async"
                       height="48"
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
+                      style="color: transparent;"
                       width="48"
                     />
                   </div>
                   <div
-                    class="d-flex gap-2 mb-2"
+                    class="mb-2 flex gap-2"
                   >
                     <div
                       class="container theme-badge"
@@ -496,7 +497,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="end"
                 >
                   <div
-                    class="info d-flex gap-2"
+                    class="info flex gap-2"
                   />
                   <i
                     class="fr-icon-arrow-right-line"
@@ -587,25 +588,26 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start position-relative"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
+                      class="h-[3rem] object-contain"
                       data-nimg="1"
                       decoding="async"
                       height="48"
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
+                      style="color: transparent;"
                       width="48"
                     />
                   </div>
                   <div
-                    class="d-flex gap-2 mb-2"
+                    class="mb-2 flex gap-2"
                   >
                     <div
                       class="container theme-badge"
@@ -619,7 +621,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="end"
                 >
                   <div
-                    class="info d-flex gap-2"
+                    class="info flex gap-2"
                   />
                   <i
                     class="fr-icon-arrow-right-line"
@@ -710,25 +712,26 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  class="fr-card__start position-relative"
+                  class="fr-card__start relative"
                 >
                   <div
                     class="sponsor"
                   >
                     <img
                       alt=""
+                      class="h-[3rem] object-contain"
                       data-nimg="1"
                       decoding="async"
                       height="48"
                       loading="lazy"
                       src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
                       srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent; object-fit: contain;"
+                      style="color: transparent;"
                       width="48"
                     />
                   </div>
                   <div
-                    class="d-flex gap-2 mb-2"
+                    class="mb-2 flex gap-2"
                   >
                     <div
                       class="container theme-badge"

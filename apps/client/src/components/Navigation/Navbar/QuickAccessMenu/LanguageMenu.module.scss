@@ -1,0 +1,20 @@
+@import "~/scss/mixins/responsive";
+
+.langAccordion {
+  h3 button {
+    padding-inline: 0.5em;
+    display: flex;
+    gap: 0.5em;
+
+    i::before {
+      --icon-size: 1em;
+    }
+  }
+
+  @include media-max("sm-limit") {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}

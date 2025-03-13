@@ -1,7 +1,12 @@
 const { i18n } = require("./next-i18next.config");
 const { translatedRedirects, oldPathsRedirects, partnersRedirect, rewrites } = require("./redirects.js");
+const path = require("path");
 
 module.exports = {
+  output: "standalone",
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, "../../"),
+  },
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   i18n,
   images: {
@@ -21,10 +26,9 @@ module.exports = {
     ],
   },
   webpack: (config) => {
-    config.resolve.fallback = {
-      events: false,
-      buffer: false,
-      process: require.resolve("process/browser"),
+    config.resolve = {
+      ...config.resolve,
+      fullySpecified: false,
     };
     config.module.rules.push({
       test: /\.woff2$/,
@@ -33,7 +37,7 @@ module.exports = {
     return config;
   },
   //This option requires Next 13.1 or newer, if you can't update you can use this plugin instead: https://github.com/martpie/next-transpile-modules
-  transpilePackages: ["@codegouvfr/react-dsfr"],
+  transpilePackages: ["@codegouvfr/react-dsfr", "@refugies-info/ui"],
   compiler: {
     styledComponents: true,
   },

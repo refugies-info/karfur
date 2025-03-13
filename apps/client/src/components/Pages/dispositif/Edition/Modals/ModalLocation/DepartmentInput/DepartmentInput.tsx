@@ -28,7 +28,7 @@ const DepartmentInput = (props: Props) => {
 
   return (
     <div>
-      <div className="position-relative w-100">
+      <div className="relative w-full">
         <Input
           id="search-department-input"
           placeholder="Exemple : “Paris” ou “75”"

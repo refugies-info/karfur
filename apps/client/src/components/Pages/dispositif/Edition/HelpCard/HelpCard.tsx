@@ -1,6 +1,6 @@
-import Image from "next/image";
 import React from "react";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
+import Image from "~/components/UI/Image";
 import styles from "./HelpCard.module.scss";
 
 interface Props {

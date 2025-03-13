@@ -96,7 +96,6 @@ exports[`auth/reinitialiser-mot-de-passe/nouveau renders page 1`] = `
           Code d'authentification
         </label>
         <input
-          aria-describedby="input-:r3:-desc-error"
           class="fr-input"
           id="input-:r3:"
           name="code"

@@ -33,7 +33,7 @@ _It is recommended to [setup the server](../apps/server/) first as you will need
 2. Install the dependencies
 
 ```bash
-> yarn install --frozen-lockfile
+> pnpm install --frozen-lockfile
 ```
 
 3. Copy the `/example-env-file.env` to `.env.local` and replace `demo` with the right values.
@@ -45,7 +45,7 @@ _Before starting or building the app, make sure your server is running._
 To start the development server, run:
 
 ```bash
-> yarn dev
+> pnpm dev
 ```
 
 Your app is now accessible at http://localhost:3000/ .
@@ -53,8 +53,8 @@ Your app is now accessible at http://localhost:3000/ .
 If you want to test it like in production, build the app first and start the Next server:
 
 ```bash
-> yarn build   # build a production ready app
-> yarn start   # start the app with the previously created build
+> pnpm build   # build a production ready app
+> pnpm start   # start the app with the previously created build
 ```
 
 Your app is now accessible at http://localhost:3000/ .
@@ -66,7 +66,7 @@ NB: `reactStrictMode` is enabled by default in `next.config.js`. This helps to p
 To launch the tests, run:
 
 ```bash
-> yarn test
+> pnpm test
 ```
 
 It will execute:
@@ -108,26 +108,26 @@ Here are some more specific guides:
 
 ```bash
 # start the dev server with hot reloading enabled
-> yarn dev
+> pnpm dev
 
 # build the app for production with minification
-> yarn build
+> pnpm build
 
 # start the previously built app
-> yarn start
+> pnpm start
 
 # launch all the tests
-> yarn test
+> pnpm test
 
 # launch only the unit tests. use the -- -u parameter to update snapshots
-> yarn test
+> pnpm test
 
 # launch only the types tests
-> yarn check:types
+> pnpm check:types
 
 # launch only the lint tests
-> yarn lint
+> pnpm lint
 
 # generates test coverage report (jest) (pending bug fix)
-> yarn test-with-coverage
+> pnpm test-with-coverage
 ```

@@ -37,7 +37,7 @@ export const Header = (props: Props) => {
       <div className={styles.grey_block} />
       <div className={styles.back_image} />
       <div className={styles.container}>
-        <div className="d-flex">
+        <div className="flex">
           {" "}
           <h1 className={`${styles.title} ${isRTL && styles.rtl}`}>{t("Annuaire.Annuaire", "Annuaire")}</h1>
           <SearchBarAnnuaire

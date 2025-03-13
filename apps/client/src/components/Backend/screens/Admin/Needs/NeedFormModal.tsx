@@ -150,7 +150,7 @@ export const NeedFormModal = (props: Props) => {
       }
     >
       <Row className="mt-4">
-        <Col className="position-relative">
+        <Col className="relative">
           <div>
             <Label htmlFor="name">
               Intitulé du besoin

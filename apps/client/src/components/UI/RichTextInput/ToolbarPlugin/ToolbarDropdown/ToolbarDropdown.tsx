@@ -31,7 +31,7 @@ const ToolbarDropdown = (props: Props) => {
       <DropdownToggle disabled={props.disabled} title={props.title} className={styles.toggle}>
         {props.toggleElement}
       </DropdownToggle>
-      <DropdownMenu id={props.name} className={styles.menu}>
+      <DropdownMenu id={props.name} className={`${styles.menu} bg-white`}>
         {props.items.map((item, i) => (
           <ToolbarButton
             key={i}
@@ -43,7 +43,7 @@ const ToolbarDropdown = (props: Props) => {
             hasSelectedIcon={true}
             icon={item.icon}
             text={item.text}
-            className={"w-100 mb-1"}
+            className={"mb-1 w-full"}
           ></ToolbarButton>
         ))}
       </DropdownMenu>

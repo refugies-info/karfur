@@ -91,6 +91,10 @@ $dsfr-texts: (
     20px,
     28px,
   ),
+  "h5": (
+    22px,
+    28px,
+  ),
   "h4": (
     24px,
     32px,
@@ -106,6 +110,14 @@ $dsfr-texts: (
   "h1": (
     40px,
     48px,
+  ),
+  "alt-title": (
+    48px,
+    56px,
+  ),
+  "alt-title-big": (
+    56px,
+    64px,
   ),
 );
 
@@ -143,7 +155,9 @@ $dsfr-texts: (
   }
 
   h3 {
-    margin-top: u(8);
-    margin-bottom: u(6);
+    margin-top: u(6);
+    margin-bottom: u(2);
+
+    @include dsfr-text("h6");
   }
 }

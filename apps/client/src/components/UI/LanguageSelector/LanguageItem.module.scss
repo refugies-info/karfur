@@ -1,0 +1,79 @@
+.item {
+  --inline-padding: 1em;
+  --block-padding: 0.8em;
+
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  background-color: white;
+  padding-inline: var(--inline-padding);
+  padding-block: var(--block-padding);
+  position: relative;
+  white-space: nowrap;
+
+  &:focus-visible {
+    z-index: 2;
+    background-color: var(--background-overlap-grey-active);
+  }
+
+  &:hover {
+    background-color: var(--background-overlap-grey-hover);
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - var(--inline-padding) * 2);
+    height: 1px;
+    background: var(--border-default-grey);
+  }
+
+  &.selected {
+    position: relative;
+
+    * {
+      color: var(--text-title-blue-france);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: calc(100% - var(--block-padding) * 2);
+      width: 2px;
+      background: var(--text-title-blue-france);
+    }
+  }
+
+  & .loader {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(255 255 255 / 90%);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  & .loader b {
+    animation: loading 0.5s ease-in-out infinite alternate;
+
+    @keyframes loading {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0.5;
+      }
+    }
+  }
+}
