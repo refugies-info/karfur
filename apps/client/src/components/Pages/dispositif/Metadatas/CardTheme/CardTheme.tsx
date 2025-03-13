@@ -1,9 +1,9 @@
 import { GetDispositifResponse } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import AdminIcon from "~/assets/dispositif/crown.svg";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import TagName from "~/components/UI/TagName";
 import { secondaryThemesSelector, themeSelector } from "~/services/Themes/themes.selectors";
 import BaseCard from "../BaseCard";

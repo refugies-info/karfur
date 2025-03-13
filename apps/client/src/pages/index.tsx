@@ -5,25 +5,21 @@ import {
   SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
+import { Carrousel } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
-import {
-  AllThemes,
-  Community,
-  FreeResources,
-  HelpUs,
-  Hero,
-  Infos,
-  MainFigures,
-  MobileApp,
-  NewContent,
-  WhyAccordions,
-} from "~/components/Pages/homepage/Sections";
+import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
+import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
+import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
+import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
+import DispositifCard from "~/components/UI/DispositifCard";
+import { useWindowSize } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
@@ -45,6 +41,7 @@ export interface Props {
 const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -59,42 +56,67 @@ const Homepage = (props: Props) => {
 
   return (
     <div className={commonStyles.main}>
-      <SEO title="Accueil" description={t("Homepage.title")} />
+      <SEO
+        title={
+          isMobile
+            ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France")
+            : t("Homepage.titleDesktop", "Le service public d’information pour les personnes réfugiées")
+        }
+        description={
+          isMobile
+            ? t("Homepage.subtitleMobile", "Des informations claires et traduites pour construire votre vie en France")
+            : `${t("Homepage.subtitle1", "Des ressources claires et traduites")} ${t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}`
+        }
+      />
+      <HelpNotice />
 
       <Hero targetArrow="themes" />
 
-      <AllThemes id="themes" />
+      {!isMobile && <StructuresLogos />}
 
-      <MobileApp />
+      <Carrousel
+        className="mb-20"
+        texts={{
+          title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
+            count: props.contentStatistics.nbDemarches || 0,
+          }),
+          seeMore: t("ui.carrouselSeemore", "Voir tout"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
+        }}
+        seeMoreUrl="/recherche?search=&sort=default&type=demarche"
+      >
+        {props.demarches.map((demarche, index) => (
+          <DispositifCard key={index} dispositif={demarche} />
+        ))}
+      </Carrousel>
 
-      <NewContent
-        nbDemarches={props.contentStatistics.nbDemarches || 0}
-        nbDispositifs={props.contentStatistics.nbDispositifs || 0}
-        nbStructures={props.structuresStatistics.nbStructures || 0}
-        demarches={props.demarches}
-        dispositifs={props.dispositifs}
-      />
+      <Carrousel
+        className="mb-20"
+        texts={{
+          title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
+            count: props.contentStatistics.nbDispositifs || 0,
+          }),
+          seeMore: t("ui.carrouselSeemore", "Voir plus"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
+        }}
+        seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
+      >
+        {props.dispositifs.map((dispositif, index) => (
+          <DispositifCard key={index} dispositif={dispositif} />
+        ))}
+      </Carrousel>
+
+      {!isMobile && <FreeResources />}
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
-      <FreeResources />
+      <MobileApp />
 
-      <HelpUs />
+      <Newsletter />
 
-      <MainFigures
-        nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
-        nbMercis={props.contentStatistics.nbMercis || 0}
-        nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
-      />
-
-      <Community
-        nbRedactors={props.translationStatistics.nbRedactors || 0}
-        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
-        nbCDA={props.structuresStatistics.nbCDA || 0}
-        nbTranslators={props.translationStatistics.nbTranslators || 0}
-      />
-
-      <Infos />
+      {!isMobile && <WorkTogether />}
     </div>
   );
 };

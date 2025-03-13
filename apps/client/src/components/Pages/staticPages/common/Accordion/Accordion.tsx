@@ -1,24 +1,24 @@
-import { sanitize } from "isomorphic-dompurify";
-import Image from "next/image";
+import Button from "@codegouvfr/react-dsfr/Button";
+import * as AccordionRadix from "@radix-ui/react-accordion";
+import DOMPurify from "isomorphic-dompurify";
 import { useState } from "react";
-import { Button, Col, Collapse, Row } from "reactstrap";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
+import Image from "~/components/UI/Image";
 import { useConsent } from "~/hooks/useConsentContext";
 import useWindowSize from "~/hooks/useWindowSize";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
-import InlineLink from "../InlineLink";
 import styles from "./Accordion.module.scss";
 
 type Item = {
   title: string;
   text: string;
   image?: any;
+  alt?: string;
   video?: string;
   youtube?: string;
   mediaWidth?: number;
   mediaHeight?: number;
-  noShadow?: boolean;
   cta?: {
     text: string;
     link: string;
@@ -32,19 +32,13 @@ interface Props {
   multiOpen?: boolean;
   initOpen?: boolean;
   mediaAlign?: "right" | "center";
+  className?: string;
 }
 
 const Accordion = (props: Props) => {
   const { finalityConsent } = useConsent();
   const [open, setOpen] = useState<number[]>(props.initOpen ? [0] : []);
   const { isTablet } = useWindowSize();
-  const toggle = (id: number) => {
-    if (props.multiOpen) {
-      setOpen(open.includes(id) ? [...open.filter((i) => i !== id)] : [...open, id]);
-    } else {
-      setOpen([id]);
-    }
-  };
 
   const isOpen = (index: number) => {
     return open.includes(index);
@@ -54,17 +48,16 @@ const Accordion = (props: Props) => {
     switch (type) {
       case "image":
         return (
-          <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} className={styles.image} />
-        );
-      case "video":
-        return (
-          <AutoplayVideo
-            src={item.video}
-            height={item.mediaHeight || 420}
+          <Image
+            src={item?.image}
+            alt={item?.alt ? item.alt : ""}
+            height={item.mediaHeight}
             width={item.mediaWidth}
-            noShadow={item.noShadow}
+            className="mx-auto mt-6 h-auto max-w-full lg:mt-0"
           />
         );
+      case "video":
+        return <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />;
       case "youtube":
         return !!finalityConsent?.youtube ? (
           <iframe
@@ -75,7 +68,7 @@ const Accordion = (props: Props) => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className={styles.youtube}
+            className={cn(styles.youtube, "w-full")}
           ></iframe>
         ) : (
           <div className={styles.no_cookie} style={{ width: item.mediaWidth || 560, height: item.mediaHeight || 315 }}>
@@ -86,55 +79,89 @@ const Accordion = (props: Props) => {
   };
 
   return (
-    <Row>
-      <Col className={cls(styles.infos, props.withImages && styles.with_images)}>
-        {props.items.map((item, i) => {
-          const isItemOpen = isOpen(i);
-          return (
-            <div key={i} className={cls(styles.container, item.className)}>
-              <Button className={cls(styles.btn, isItemOpen && styles.open)} onClick={() => toggle(i)}>
-                {item.title}
-                <EVAIcon name="arrow-ios-downward-outline" fill="black" size={32} className={styles.icon} />
-              </Button>
-              <Collapse isOpen={isItemOpen}>
-                <p
-                  className={styles.text}
-                  dangerouslySetInnerHTML={{
-                    __html: sanitize(item.text),
-                  }}
-                ></p>
+    <div className={cn("flex gap-20", props.className)}>
+      <div className={cn(props.withImages && "border-default-grey w-1/2 grow-1 basis-auto border-b")}>
+        <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
+          {props.items.map((item, i) => {
+            const isItemOpen = isOpen(i);
+            return (
+              <AccordionRadix.Item key={i} value={i.toString()} className={cn(item.className)}>
+                <AccordionRadix.Header className="!mb-0">
+                  <AccordionRadix.Trigger
+                    className={cn(
+                      "border-default-grey flex w-full items-center gap-4 border-t px-4 py-3",
+                      isItemOpen &&
+                        "bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "mb-0 grow-1 text-left text-xl font-medium",
+                        isItemOpen && "text-title-blue-france",
+                      )}
+                    >
+                      {item.title}
+                    </span>
+                    <i
+                      className={cn(
+                        "flex before:!h-4 before:!w-4",
+                        isItemOpen ? "fr-icon-subtract-line before:!bg-title-blue-france" : "fr-icon-add-line",
+                      )}
+                    />
+                  </AccordionRadix.Trigger>
+                </AccordionRadix.Header>
+                <AccordionRadix.Content className={cn(styles.content, "")}>
+                  <div className="mt-4 px-4 pb-8">
+                    <p
+                      className={cn(styles.text, "!text-large !mb-0")}
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(item.text),
+                      }}
+                    ></p>
 
-                {isTablet && props.withImages && (
-                  <>
-                    {item?.image && getMedia("image", item)}
-                    {item?.video && <div className={styles.video}>{getMedia("video", item)}</div>}
-                    {item?.youtube && getMedia("youtube", item)}
-                  </>
-                )}
-                {item.cta && (
-                  <div className={styles.cta}>
-                    <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />
+                    {isTablet && props.withImages && (
+                      <>
+                        {item?.image && getMedia("image", item)}
+                        {item?.video && (
+                          <div className="mx-auto mt-0 mb-6 max-w-[250px] !text-center">{getMedia("video", item)}</div>
+                        )}
+                        {item?.youtube && getMedia("youtube", item)}
+                      </>
+                    )}
+                    {item.cta && (
+                      <Button
+                        priority="tertiary"
+                        iconId="fr-icon-arrow-right-line"
+                        iconPosition="right"
+                        linkProps={{
+                          href: item.cta.link,
+                        }}
+                        className="mt-4"
+                      >
+                        {item.cta.text}
+                      </Button>
+                    )}
                   </div>
-                )}
-              </Collapse>
-            </div>
-          );
-        })}
-      </Col>
+                </AccordionRadix.Content>
+              </AccordionRadix.Item>
+            );
+          })}
+        </AccordionRoot>
+      </div>
       {!isTablet && props.withImages && open.length > 0 && (
-        <Col
-          className={cls(
-            styles.media,
-            props.mediaAlign === "center" ? styles.center : styles.right,
+        <div
+          className={cn(
+            "flex w-1/2 items-center",
+            props.mediaAlign === "center" ? "justify-center" : "justify-end",
             props.items[open[0]]?.className,
           )}
         >
           {props.items[open[0]]?.image && getMedia("image", props.items[open[0]])}
           {props.items[open[0]]?.video && getMedia("video", props.items[open[0]])}
           {props.items[open[0]]?.youtube && getMedia("youtube", props.items[open[0]])}
-        </Col>
+        </div>
       )}
-    </Row>
+    </div>
   );
 };
 

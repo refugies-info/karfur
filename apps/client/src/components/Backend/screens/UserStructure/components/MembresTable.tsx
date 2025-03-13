@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { Table } from "reactstrap";
 import styled from "styled-components";
 import marioProfile from "~/assets/mario-profile.jpg";
+import Image from "~/components/UI/Image";
 import { colors } from "~/utils/colors";
 import { DeleteButton } from "../../Admin/sharedComponents/SubComponents";
 // import "./MembresTable.scss";

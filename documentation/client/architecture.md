@@ -69,8 +69,8 @@ TO DO
 
 Contains :
 
-- for the 6 langages the commong.json files (translation of interface words)
-- the folder **interfaceTranslation** with scripts to convert json to csv and vice versa for experts translation (see [doc](../../apps/client/src/locales/interfaceTranslation/README.md))
+- for the 6 langages the common.json files (translation of interface words)
+- the `scripts` folder contains scripts to convert json to csv and vice versa for experts translation (see [doc](../../apps/client/src/sdripts/README.md))
 
 ## `pages`
 

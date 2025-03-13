@@ -1,8 +1,7 @@
 import { Languages } from "@refugies-info/api-types";
 import { useEffect, useMemo } from "react";
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { Modal, TouchableWithoutFeedback, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -24,13 +23,28 @@ interface Props {
   changeLanguageCallback?: () => void;
 }
 
+const ModalContainer = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+`;
+
+const Backdrop = styled.View`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${styles.colors.black};
+  opacity: 0.5;
+`;
+
 const ModalView = styled.View`
   background-color: ${styles.colors.lightGrey};
-  display: flex;
   padding-vertical: ${styles.margin}px;
   padding-horizontal: ${styles.margin * 3}px;
   border-top-right-radius: ${styles.radius * 2}px;
   border-top-left-radius: ${styles.radius * 2}px;
+  z-index: 1;
 `;
 
 const TitleContainer = styled(RTLView)`
@@ -49,15 +63,6 @@ const Separator = styled.View`
   margin-left: ${styles.margin * 2}px;
   margin-right: ${styles.margin * 2}px;
 `;
-
-const Backdrop = styled.View`
-  flex: 1;
-  background-color: ${styles.colors.black};
-`;
-
-const stylesheet = StyleSheet.create({
-  modal: { justifyContent: "flex-end", margin: 0 },
-});
 
 export const LanguageChoiceModal = (props: Props) => {
   const { t, i18n, isRTL } = useTranslationWithRTL();
@@ -93,11 +98,8 @@ export const LanguageChoiceModal = (props: Props) => {
   );
 
   return (
-    <Modal
-      isVisible={props.isModalVisible}
-      style={stylesheet.modal}
-      onBackdropPress={props.toggleModal}
-      customBackdrop={
+    <Modal visible={props.isModalVisible} transparent={true} animationType="fade" onRequestClose={props.toggleModal}>
+      <ModalContainer>
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
           accessibilityRole="button"
@@ -105,42 +107,41 @@ export const LanguageChoiceModal = (props: Props) => {
         >
           <Backdrop />
         </TouchableWithoutFeedback>
-      }
-    >
-      <ModalView style={{ paddingBottom: insets.bottom }}>
-        <TitleContainer>
-          <Icon name="globe-2-outline" width={24} height={24} fill={styles.colors.black} style={iconStyle} />
-          <TextDSFR_L_Bold>{t("global.language", "Langue de l'application")}</TextDSFR_L_Bold>
-        </TitleContainer>
+        <ModalView style={{ paddingBottom: insets.bottom }}>
+          <TitleContainer>
+            <Icon name="globe-2-outline" width={24} height={24} fill={styles.colors.black} style={iconStyle} />
+            <TextDSFR_L_Bold>{t("global.language", "Langue de l'application")}</TextDSFR_L_Bold>
+          </TitleContainer>
 
-        <LanguagesContainer>
-          {activatedLanguages.map((language, index) => {
-            const isSelected = selectedLanguageI18nCode === language.i18nCode;
-            return (
-              <View key={language.langueFr}>
-                <LanguageDetailsButton
-                  flatStyle
-                  isSelected={isSelected}
-                  langueFr={language.langueFr}
-                  langueLoc={language.langueLoc}
-                  langueCode={language.i18nCode}
-                  onPress={() => changeLanguage(language.i18nCode)}
-                />
-                {index !== activatedLanguages.length - 1 && <Separator />}
-              </View>
-            );
-          })}
-        </LanguagesContainer>
-        <CustomButton
-          i18nKey="global.close"
-          defaultText="Fermer"
-          iconName="close-outline"
-          iconFirst={true}
-          textColor={styles.colors.black}
-          onPress={props.toggleModal}
-          isTextNotBold={true}
-        />
-      </ModalView>
+          <LanguagesContainer>
+            {activatedLanguages.map((language, index) => {
+              const isSelected = selectedLanguageI18nCode === language.i18nCode;
+              return (
+                <View key={language.langueFr}>
+                  <LanguageDetailsButton
+                    flatStyle
+                    isSelected={isSelected}
+                    langueFr={language.langueFr}
+                    langueLoc={language.langueLoc}
+                    langueCode={language.i18nCode}
+                    onPress={() => changeLanguage(language.i18nCode)}
+                  />
+                  {index !== activatedLanguages.length - 1 && <Separator />}
+                </View>
+              );
+            })}
+          </LanguagesContainer>
+          <CustomButton
+            i18nKey="global.close"
+            defaultText="Fermer"
+            iconName="close-outline"
+            iconFirst={true}
+            textColor={styles.colors.black}
+            onPress={props.toggleModal}
+            isTextNotBold={true}
+          />
+        </ModalView>
+      </ModalContainer>
     </Modal>
   );
 };

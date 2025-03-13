@@ -1,5 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
-import { sanitize } from "isomorphic-dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn, useNumber } from "react-use";
@@ -198,7 +198,7 @@ const TranslationInput = (props: Props) => {
           </div>
           <div
             className={styles.value}
-            dangerouslySetInnerHTML={{ __html: sanitize(display.text) }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(display.text) }}
             dir={isRTL ? "rtl" : "ltr"}
           />
         </div>
@@ -225,12 +225,12 @@ const TranslationInput = (props: Props) => {
                 >
                   {index === max ? (
                     <div
-                      dangerouslySetInnerHTML={{ __html: sanitize(googleTranslateValue) }}
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(googleTranslateValue) }}
                       dir={isRTL ? "rtl" : "ltr"}
                     />
                   ) : (
                     <div
-                      dangerouslySetInnerHTML={{ __html: sanitize(suggestions[index]?.text) }}
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(suggestions[index]?.text) }}
                       dir={isRTL ? "rtl" : "ltr"}
                     />
                   )}

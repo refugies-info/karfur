@@ -1,4 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
+import { createSelector } from "reselect";
 import { RootState } from "../reducers";
 
 export const hasUserSeenOnboardingSelector = (state: RootState) => state.user.hasUserSeenOnboarding;
@@ -9,10 +10,12 @@ export const selectedI18nCodeSelector = (state: RootState): Languages | null => 
 
 export const currentI18nCodeSelector = (state: RootState): Languages | null => state.user.currentLanguagei18nCode;
 
-export const userLocationSelector = (state: RootState) => ({
-  city: state.user.city,
-  department: state.user.department,
-});
+const selectUser = (state: RootState) => state.user;
+
+export const userLocationSelector = createSelector([selectUser], (user) => ({
+  city: user.city,
+  department: user.department,
+}));
 
 export const userAgeSelector = (state: RootState) => state.user.age;
 export const userFrenchLevelSelector = (state: RootState) => state.user.frenchLevel;

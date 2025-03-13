@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import Swal from "sweetalert2";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import TitleWithNumber from "~/components/Backend/TitleWithNumber";
 import { ReactionLectureModal } from "~/components/Modals";
+import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
 import { updateDispositifReactionActionCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";

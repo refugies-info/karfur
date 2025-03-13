@@ -1,14 +1,15 @@
 import deepLinks from "./androidDeepLinks";
 
-const version = "2.1.1";
-const displayVersionNumber = "2024.11.1";
-const androidVersionCode = 34;
+// Update these version variables before publishing the app
+const version = "2.1.3";
+const displayVersionNumber = "2025.03.1";
+const androidVersionCode = 36;
 
 export default {
   name: "Réfugiés.info",
   owner: "refugies-info",
   slug: "refugies-info-app",
-  version: "1.1.1",
+  version,
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -24,7 +25,7 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.1.1",
+    buildNumber: version,
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -43,7 +44,9 @@ export default {
     fr: "./src/translations/fr/common.json",
   },
   android: {
-    versionCode: 15,
+    versionCode: androidVersionCode,
+    // Support for Android 8 - https://endoflife.date/android
+    minSdkVersion: 26,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
@@ -70,20 +73,6 @@ export default {
         category: ["BROWSABLE", "DEFAULT"],
       },
     ],
-  },
-  web: {
-    config: {
-      firebase: {
-        apiKey: process.env.FIREBASE_API_KEY,
-        authDomain: "refugies-info-beb2d.firebaseapp.com",
-        projectId: "refugies-info-beb2d",
-        storageBucket: "refugies-info-beb2d.appspot.com",
-        messagingSenderId: "1060316291598",
-        appId: "1:1060316291598:web:8ce140ad69d5951dd5925f",
-        measurementId: "G-31KEK3FGJ3",
-      },
-    },
-    favicon: "./src/theme/images/app-icon-ri.png",
   },
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],

@@ -77,7 +77,7 @@ $breakpoint: "lg-limit";
 
 .anchor {
   position: absolute;
-  top: -50px;
+  top: -120px;
 
   @include isTablet {
     top: -100px;
@@ -97,6 +97,18 @@ $breakpoint: "lg-limit";
 }
 
 // Titles
+.title {
+  @include dsfr_text("alt-title");
+
+  @include isMobile {
+    @include dsfr_text("h1");
+  }
+}
+
+.title_sub {
+  @include dsfr_text("chapo");
+}
+
 .title2 {
   @include text("h3");
 
@@ -107,6 +119,10 @@ $breakpoint: "lg-limit";
 
     margin-bottom: u(10);
   }
+}
+
+.white {
+  color: white;
 }
 
 .center {
@@ -162,53 +178,9 @@ $breakpoint: "lg-limit";
   }
 }
 
-// Steps
-.warning {
-  @include text("large");
-
-  padding: u(4);
-  background: $attention;
-  border-radius: $radius;
-
-  @include isTablet {
-    @include text("normal");
-  }
-}
-
-.warning_mobile {
-  @extend .warning;
-
-  display: none;
-  align-items: center;
-  margin-bottom: u(10);
-
-  & > p {
-    margin-bottom: 0;
-    margin-left: u(4);
-  }
-
-  @include isTablet {
-    display: flex;
-  }
-}
-
 // Faq
 .faq {
   max-width: 720px;
-}
-
-// Publier
-.video2 {
-  :global(.autoplay-video) {
-    border-radius: 26px;
-    border-width: 12px;
-
-    @include isTablet {
-      width: 124px;
-      border-width: 6px;
-      border-radius: 18px;
-    }
-  }
 }
 
 // Traduire

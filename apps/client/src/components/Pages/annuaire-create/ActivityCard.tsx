@@ -1,7 +1,7 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
-import Image from "next/image";
 import styled from "styled-components";
 import placeholder from "~/assets/placeholder_annuaire.png";
+import Image from "~/components/UI/Image";
 import { ThemeButton } from "~/components/UI/ThemeButton/ThemeButton";
 import useRTL from "~/hooks/useRTL";
 

@@ -10,6 +10,7 @@ import {
 import { omit, pick, union, uniq } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { DispositifAbstracts } from "~/modules/dispositif/types";
 import {
   Dispositif,
   DispositifDraftModel,
@@ -178,12 +179,13 @@ export const getStructureDispositifs = async (
   )
     .then(async (dispositifs) => {
       const usernames = await Promise.all(
-        dispositifs.map((dispositif) =>
-          dispositif.suggestions.length > 0
-            ? getUsersById(uniq(dispositif.suggestions.map((s: any) => s.userId).filter((id: any) => !!id)), {
-                username: 1,
-              })
-            : [],
+        dispositifs.map(
+          async (dispositif): Promise<string[]> =>
+            dispositif.suggestions.length > 0
+              ? await getUsersById(uniq(dispositif.suggestions.map((s: any) => s.userId).filter((id: any) => !!id)), {
+                  username: 1,
+                })
+              : [],
         ),
       );
       return { dispositifs, usernames: union(...usernames) };
@@ -371,28 +373,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
     structures: 1,
   });
 
-  // If user has NO associated structure, return all dispositifs for the creator
-  if (!user[0]?.structures?.length) {
-    return await DispositifModel.aggregate([
-      {
-        $match: {
-          creatorId: new ObjectId(creatorId),
-          status: { $ne: "Supprimé" },
-        },
-      },
-      {
-        $project: {
-          ...neededFields,
-          mainSponsor: {
-            _id: 1,
-            nom: 1,
-          },
-        },
-      },
-    ]);
-  }
-
-  const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
+  let pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
     // Filter dispositifs with creatorId and status not equal to "Supprimé"
     {
       $match: {
@@ -416,17 +397,25 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
         preserveNullAndEmptyArrays: true,
       },
     },
-    // Filter dispositifs where the creator is a member of the mainSponsor structure
-    // or where the mainSponsor structure does not exist
-    {
-      $match: {
-        $or: [
-          { "mainSponsor.createur": "$_id" },
-          { "mainSponsor.membres.userId": "$_id" },
-          { mainSponsor: { $exists: false } },
-        ],
+  ];
+
+  if (user[0]?.structures?.length > 0) {
+    pipeline.push(
+      // Filter dispositifs where the creator is a member of the mainSponsor structure
+      // or where the mainSponsor structure does not exist
+      {
+        $match: {
+          $or: [
+            { "mainSponsor.createur": "$_id" },
+            { "mainSponsor.membres.userId": "$_id" },
+            { mainSponsor: { $exists: false } },
+          ],
+        },
       },
-    },
+    );
+  }
+
+  pipeline.push(
     // Project the fields to return
     {
       $project: {
@@ -437,7 +426,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
         },
       },
     },
-  ];
+  );
 
   return await DispositifModel.aggregate(pipeline);
 };
@@ -544,4 +533,24 @@ export const deleteNeedFromDispositifs = async (needId: string) => {
 export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial<Dispositif>) => {
   const dispositif = await DispositifModel.findById(id).lean();
   return DispositifDraftModel.create({ ...dispositif, ...newData });
+};
+
+export const getDispositifAbstracts = async (
+  query: FilterQuery<Dispositif>,
+  limit: number = 3,
+  sort: any = { updatedAt: -1 },
+): Promise<DispositifAbstracts[]> => {
+  return DispositifModel.aggregate([
+    { $match: query },
+    { $sort: sort },
+    { $limit: limit },
+    {
+      $project: {
+        _id: 1,
+        typeContenu: 1,
+        titreInformatif: "$translations.fr.content.titreInformatif",
+        abstract: "$translations.fr.content.abstract",
+      },
+    },
+  ]);
 };

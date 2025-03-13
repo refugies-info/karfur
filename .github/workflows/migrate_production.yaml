@@ -14,25 +14,48 @@ jobs:
     concurrency:
       group: master-migrate
       cancel-in-progress: false
+    env:
+      MONGODB_ATLAS_PUBLIC_API_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_API_KEY }}
+      MONGODB_ATLAS_PRIVATE_API_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_API_KEY }}
+      MONGODB_ATLAS_ORG_ID: ${{ secrets.MONGODB_ATLAS_ORG_ID }}
+      MONGODB_ATLAS_PROJECT_ID: ${{ secrets.MONGODB_ATLAS_PROJECT_ID }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.13.1"
-          cache: yarn
-
-      - name: Install expected yarn version
-        run: sudo npm install --force --global yarn@1.22.22
+          node-version: "22.13.1"
+          cache: "pnpm"
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: |
+          pnpm add -g turbo
+          pnpm install --frozen-lockfile
+
+      - name: Setup AtlasCLI
+        uses: mongodb/atlas-github-action@v0.2.0
+
+      - name: Setup IP environment variable
+        run: echo "IP=$(curl -s https://api.ipify.org)" >> $GITHUB_ENV
+
+      - name: Allow temporary access from current IP
+        run: |
+          atlas accessList create $IP/32 --comment "GitHub Actions temporary access" --projectId ${{ secrets.MONGODB_ATLAS_PROJECT_ID }} --deleteAfter $(date -u -d "+1 hour" +"%Y-%m-%dT%H:%M:%SZ")
+
+      - name: Wait 1 minute for Atlas to apply the access list
+        run: sleep 60
 
       - name: Apply pending migrations
-        run: yarn migrate up
+        run: pnpm migrate up
         env:
           MIGRATE_MONGO_URI: ${{ secrets.MIGRATE_MONGO_URI }}
+
+      - name: Remove temporary access
+        run: atlas accessList delete $IP/32 --projectId ${{ secrets.MONGODB_ATLAS_PROJECT_ID }} --force

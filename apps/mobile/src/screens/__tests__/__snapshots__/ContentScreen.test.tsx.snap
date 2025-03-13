@@ -16,25 +16,21 @@ exports[`ContentScreen should render correctly 1`] = `
     }
   >
     <View
-      animatedStyle={
-        {
-          "value": {
-            "backgroundColor": "rgba(255, 255, 255, 0)",
-          },
-        }
-      }
-      collapsable={false}
       style={
-        {
-          "backgroundColor": "rgba(255, 255, 255, 0)",
-          "left": 0,
-          "paddingHorizontal": 24,
-          "paddingVertical": 8,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
-        }
+        [
+          {
+            "left": 0,
+            "paddingHorizontal": 24,
+            "paddingVertical": 8,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "zIndex": 2,
+          },
+          {
+            "style": {},
+          },
+        ]
       }
     >
       <RCTSafeAreaView
@@ -48,12 +44,6 @@ exports[`ContentScreen should render correctly 1`] = `
       >
         <View
           RTLBehaviour={false}
-          animatedStyle={
-            {
-              "value": {},
-            }
-          }
-          collapsable={false}
           horizontalAlign="space-between"
           style={
             {
@@ -153,8 +143,8 @@ exports[`ContentScreen should render correctly 1`] = `
                   >
                     <RNSVGSvgView
                       align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
+                      bbHeight={24}
+                      bbWidth={24}
                       fill="#212121"
                       focusable={false}
                       height={24}
@@ -227,8 +217,8 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                               opacity={0}
                               width="24"
-                              x="0"
-                              y="0"
+                              x={0}
+                              y={0}
                             />
                             <RNSVGPath
                               d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -269,12 +259,6 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={false}
-              animatedStyle={
-                {
-                  "value": {},
-                }
-              }
-              collapsable={false}
               horizontalAlign="flex-end"
               style={
                 {
@@ -504,12 +488,6 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={false}
-                animatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
-                collapsable={false}
                 horizontalAlign="flex-start"
                 style={
                   {
@@ -568,8 +546,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="10"
-                          bbWidth="10"
+                          bbHeight={10}
+                          bbWidth={10}
                           fill="none"
                           focusable={false}
                           height={10}
@@ -1020,22 +998,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -1050,8 +1026,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -1634,22 +1610,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -1664,8 +1638,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -1939,22 +1913,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -1969,8 +1941,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -2628,22 +2600,20 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -2658,8 +2628,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -2854,12 +2824,6 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
                               {
@@ -3044,12 +3008,6 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -3147,8 +3105,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -3211,8 +3169,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -3233,20 +3191,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -3457,12 +3411,6 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -3560,8 +3508,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -3624,8 +3572,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -3646,20 +3594,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -3870,12 +3814,6 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -3973,8 +3911,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -4037,8 +3975,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -4059,20 +3997,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -4338,12 +4272,6 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -4441,8 +4369,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -4505,8 +4433,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -4527,20 +4455,16 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -4839,8 +4763,8 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <RNSVGSvgView
                             align="xMidYMid"
-                            bbHeight="24"
-                            bbWidth="24"
+                            bbHeight={24}
+                            bbWidth={24}
                             fill="#212121"
                             focusable={false}
                             height={24}
@@ -4903,8 +4827,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     height="24"
                                     opacity={0}
                                     width="24"
-                                    x="0"
-                                    y="0"
+                                    x={0}
+                                    y={0}
                                   />
                                   <RNSVGPath
                                     d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z"
@@ -4985,8 +4909,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="40"
-                          bbWidth="40"
+                          bbHeight={40}
+                          bbWidth={40}
                           fill="#3D2884"
                           focusable={false}
                           height={40}
@@ -5049,8 +4973,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGCircle
                                   cx="12"
@@ -5232,8 +5156,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                 opacity={0.7}
                               >
                                 <RNSVGEllipse
-                                  cx="4.19921"
-                                  cy="4.19922"
+                                  cx={4.19921}
+                                  cy={4.19922}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -5256,12 +5180,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="4.19921"
-                                  ry="4.19922"
+                                  rx={4.19921}
+                                  ry={4.19922}
                                 />
                                 <RNSVGEllipse
-                                  cx="64.2041"
-                                  cy="72.1695"
+                                  cx={64.2041}
+                                  cy={72.1695}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -5284,12 +5208,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="2.59363"
-                                  ry="2.59364"
+                                  rx={2.59363}
+                                  ry={2.59364}
                                 />
                                 <RNSVGEllipse
-                                  cx="199.614"
-                                  cy="118.127"
+                                  cx={199.614}
+                                  cy={118.127}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -5312,12 +5236,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="3.17"
-                                  ry="3.16999"
+                                  rx={3.17}
+                                  ry={3.16999}
                                 />
                                 <RNSVGEllipse
-                                  cx="2.47013"
-                                  cy="2.47013"
+                                  cx={2.47013}
+                                  cy={2.47013}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -5340,12 +5264,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="2.47013"
-                                  ry="2.47013"
+                                  rx={2.47013}
+                                  ry={2.47013}
                                 />
                                 <RNSVGEllipse
-                                  cx="4.65207"
-                                  cy="4.65208"
+                                  cx={4.65207}
+                                  cy={4.65208}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -5368,12 +5292,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="4.65207"
-                                  ry="4.65208"
+                                  rx={4.65207}
+                                  ry={4.65208}
                                 />
                                 <RNSVGEllipse
-                                  cx="4.65207"
-                                  cy="4.65208"
+                                  cx={4.65207}
+                                  cy={4.65208}
                                   fill={
                                     {
                                       "payload": 4291019775,
@@ -5396,8 +5320,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="4.65207"
-                                  ry="4.65208"
+                                  rx={4.65207}
+                                  ry={4.65208}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -5433,11 +5357,11 @@ exports[`ContentScreen should render correctly 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="10.6916"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={10.6916}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -5473,11 +5397,11 @@ exports[`ContentScreen should render correctly 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="12.4951"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={12.4951}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -5513,11 +5437,11 @@ exports[`ContentScreen should render correctly 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="15.6102"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={15.6102}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -5553,11 +5477,11 @@ exports[`ContentScreen should render correctly 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="15.6102"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={15.6102}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -5583,11 +5507,11 @@ exports[`ContentScreen should render correctly 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="42.8065"
-                                  x2="32.4189"
-                                  y1="190.254"
-                                  y2="183.247"
+                                  strokeWidth={2.88182}
+                                  x1={42.8065}
+                                  x2={32.4189}
+                                  y1={190.254}
+                                  y2={183.247}
                                 />
                                 <RNSVGPath
                                   d="M236.947 15.8791C237.524 14.6251 239.295 14.5942 239.915 15.8273L241.024 18.033C241.569 19.117 240.794 20.3981 239.581 20.4193L237.441 20.4567C236.228 20.4778 235.409 19.2245 235.916 18.1222L236.947 15.8791Z"
@@ -5700,7 +5624,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M173.835 216.246C173.835 216.246 167.512 224.474 178.647 228.228"
@@ -5723,7 +5647,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M260.17 36.6533C260.17 36.6533 267.053 28.0127 255.272 23.8102"
@@ -5746,7 +5670,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M125.141 122.019C125.141 122.019 132.024 113.378 120.242 109.175"
@@ -5769,7 +5693,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M58.3505 137.099C58.3505 137.099 61.2489 144.472 68.0837 138.662"
@@ -5792,7 +5716,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                               </RNSVGGroup>
                               <RNSVGPath
@@ -6039,7 +5963,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                     "type": 0,
                                   }
                                 }
-                                strokeWidth="0.823376"
+                                strokeWidth={0.823376}
                               />
                               <RNSVGPath
                                 d="M223.106 103.027C229.122 114.01 234.135 121.665 238.48 126.657L244.495 125.326C240.485 100.697 228.788 82.3917 209.738 70.4102H206.396C198.71 96.3702 196.705 114.01 200.047 122.663H226.783C226.448 116.34 225.112 109.683 223.106 103.027Z"
@@ -6271,7 +6195,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                     "type": 0,
                                   }
                                 }
-                                strokeWidth="0.823376"
+                                strokeWidth={0.823376}
                               />
                               <RNSVGPath
                                 d="M126.461 75.8848L124.244 82.665L128.679 87.7395L124.67 91.7053L134.35 108.293L122.496 91.7479L126.461 87.7395L122.496 83.262L126.461 75.8848Z"
@@ -6379,15 +6303,15 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  height="240"
+                                  height={240}
                                   propList={
                                     [
                                       "fill",
                                     ]
                                   }
-                                  width="327"
-                                  x="0"
-                                  y="0"
+                                  width={327}
+                                  x={0}
+                                  y={0}
                                 />
                               </RNSVGClipPath>
                             </RNSVGDefs>
@@ -6466,12 +6390,6 @@ exports[`ContentScreen should render correctly 1`] = `
                       >
                         <View
                           RTLBehaviour={false}
-                          animatedStyle={
-                            {
-                              "value": {},
-                            }
-                          }
-                          collapsable={false}
                           horizontalAlign="center"
                           style={
                             {
@@ -6553,12 +6471,6 @@ exports[`ContentScreen should render correctly 1`] = `
                               >
                                 <View
                                   RTLBehaviour={false}
-                                  animatedStyle={
-                                    {
-                                      "value": {},
-                                    }
-                                  }
-                                  collapsable={false}
                                   horizontalAlign="flex-start"
                                   style={
                                     {
@@ -6591,8 +6503,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     >
                                       <RNSVGSvgView
                                         align="xMidYMid"
-                                        bbHeight="24"
-                                        bbWidth="24"
+                                        bbHeight={24}
+                                        bbWidth={24}
                                         fill="none"
                                         focusable={false}
                                         height={24}
@@ -6655,7 +6567,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                                 "type": 0,
                                               }
                                             }
-                                            strokeWidth="1"
+                                            strokeWidth={1}
                                           />
                                         </RNSVGGroup>
                                       </RNSVGSvgView>
@@ -6867,36 +6779,25 @@ exports[`ContentScreen should render correctly 1`] = `
                       </Text>
                       <View />
                     </Text>
-                    <RNSVGSvgView
-                      bbHeight="60"
-                      bbWidth="60"
-                      focusable={false}
-                      height={60}
+                    <View
                       style={
-                        [
-                          {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          {
-                            "flex": 0,
-                            "height": 60,
-                            "width": 60,
-                          },
-                        ]
+                        {
+                          "height": 60,
+                          "overflow": "hidden",
+                          "width": 60,
+                        }
                       }
-                      width={60}
-                      xml="<svg></svg>"
                     >
-                      <RNSVGGroup
-                        fill={
+                      <View
+                        style={
                           {
-                            "payload": 4278190080,
-                            "type": 0,
+                            "height": 84,
                           }
                         }
-                      />
-                    </RNSVGSvgView>
+                      >
+                        <View />
+                      </View>
+                    </View>
                   </View>
                 </ViewManagerAdapter_ExpoLinearGradient>
               </View>
@@ -6970,12 +6871,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    collapsable={false}
                     horizontalAlign="flex-start"
                     style={
                       {
@@ -7126,8 +7021,8 @@ exports[`ContentScreen should render correctly 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="16"
-                    bbWidth="16"
+                    bbHeight={16}
+                    bbWidth={16}
                     fill="#0421B1"
                     focusable={false}
                     height={16}
@@ -7200,8 +7095,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M5.23 10.64a1 1 0 0 0 1.41.13L11 7.14V19a1 1 0 0 0 2 0V7.14l4.36 3.63a1 1 0 1 0 1.28-1.54l-6-5-.15-.09-.13-.07a1 1 0 0 0-.72 0l-.13.07-.15.09-6 5a1 1 0 0 0-.13 1.41z"
@@ -7365,8 +7260,8 @@ exports[`ContentScreen should render correctly 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#212121"
             focusable={false}
             height={24}
@@ -7440,8 +7335,8 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
@@ -7591,8 +7486,8 @@ exports[`ContentScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="20"
-                  bbWidth="20"
+                  bbHeight={20}
+                  bbWidth={20}
                   focusable={false}
                   height={20}
                   meetOrSlice={0}
@@ -7660,37 +7555,25 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
           <View
-            animatedStyle={
-              {
-                "value": {
-                  "transform": [
-                    {
-                      "scale": 0,
-                    },
-                  ],
-                },
-              }
-            }
-            collapsable={false}
             style={
-              {
-                "bottom": 48,
-                "display": "flex",
-                "flexDirection": "row",
-                "height": 56,
-                "justifyContent": "space-between",
-                "paddingBottom": 8,
-                "paddingLeft": 8,
-                "paddingRight": 8,
-                "paddingTop": 8,
-                "position": "absolute",
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-                "zIndex": 1,
-              }
+              [
+                {
+                  "bottom": 48,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "height": 56,
+                  "justifyContent": "space-between",
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                  "position": "absolute",
+                  "zIndex": 1,
+                },
+                {
+                  "style": {},
+                },
+              ]
             }
           >
             <View
@@ -7704,7 +7587,11 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                  }
+                }
                 style={
                   {
                     "marginLeft": -8,
@@ -7849,8 +7736,8 @@ exports[`ContentScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -7923,8 +7810,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -8017,8 +7904,8 @@ exports[`ContentScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -8091,8 +7978,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -8176,8 +8063,8 @@ exports[`ContentScreen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#FFFFFF"
                   focusable={false}
                   height={24}
@@ -8250,8 +8137,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -8345,8 +8232,8 @@ exports[`ContentScreen should render correctly 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#212121"
             focusable={false}
             height={24}
@@ -8370,6 +8257,13 @@ exports[`ContentScreen should render correctly 1`] = `
                   "flex": 0,
                   "height": 24,
                   "width": 24,
+                },
+              ]
+            }
+            transform={
+              [
+                {
+                  "scaleX": -1,
                 },
               ]
             }
@@ -8426,8 +8320,8 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M20.22 21a1 1 0 0 1-1-.76 8.91 8.91 0 0 0-7.8-6.69v1.12a1.78 1.78 0 0 1-1.09 1.64A2 2 0 0 1 8.18 16l-5.06-4.41a1.76 1.76 0 0 1 0-2.68l5.06-4.42a2 2 0 0 1 2.18-.3 1.78 1.78 0 0 1 1.09 1.64V7A10.89 10.89 0 0 1 21.5 17.75a10.29 10.29 0 0 1-.31 2.49 1 1 0 0 1-1 .76zm-9.77-9.5a11.07 11.07 0 0 1 8.81 4.26A9 9 0 0 0 10.45 9a1 1 0 0 1-1-1V6.08l-4.82 4.17 4.82 4.21v-2a1 1 0 0 1 1-.96z"
@@ -8495,25 +8389,21 @@ exports[`ContentScreen should toggle map modal 1`] = `
     }
   >
     <View
-      animatedStyle={
-        {
-          "value": {
-            "backgroundColor": "rgba(255, 255, 255, 0)",
-          },
-        }
-      }
-      collapsable={false}
       style={
-        {
-          "backgroundColor": "rgba(255, 255, 255, 0)",
-          "left": 0,
-          "paddingHorizontal": 24,
-          "paddingVertical": 8,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
-        }
+        [
+          {
+            "left": 0,
+            "paddingHorizontal": 24,
+            "paddingVertical": 8,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "zIndex": 2,
+          },
+          {
+            "style": {},
+          },
+        ]
       }
     >
       <RCTSafeAreaView
@@ -8527,12 +8417,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
       >
         <View
           RTLBehaviour={false}
-          animatedStyle={
-            {
-              "value": {},
-            }
-          }
-          collapsable={false}
           horizontalAlign="space-between"
           style={
             {
@@ -8632,8 +8516,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   >
                     <RNSVGSvgView
                       align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
+                      bbHeight={24}
+                      bbWidth={24}
                       fill="#212121"
                       focusable={false}
                       height={24}
@@ -8706,8 +8590,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                               opacity={0}
                               width="24"
-                              x="0"
-                              y="0"
+                              x={0}
+                              y={0}
                             />
                             <RNSVGPath
                               d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -8748,12 +8632,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View
               RTLBehaviour={false}
-              animatedStyle={
-                {
-                  "value": {},
-                }
-              }
-              collapsable={false}
               horizontalAlign="flex-end"
               style={
                 {
@@ -8983,12 +8861,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <View
                 RTLBehaviour={false}
-                animatedStyle={
-                  {
-                    "value": {},
-                  }
-                }
-                collapsable={false}
                 horizontalAlign="flex-start"
                 style={
                   {
@@ -9047,8 +8919,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="10"
-                          bbWidth="10"
+                          bbHeight={10}
+                          bbWidth={10}
                           fill="none"
                           focusable={false}
                           height={10}
@@ -9499,22 +9371,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -9529,8 +9399,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -10113,22 +9983,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -10143,8 +10011,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -10418,22 +10286,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -10448,8 +10314,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -11107,22 +10973,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
-                              {
-                                "alignItems": "flex-start",
-                                "flexBasis": "auto",
-                                "flexDirection": "row",
-                                "flexGrow": 1,
-                                "justifyContent": "space-between",
-                                "marginBottom": 24,
-                              }
+                              [
+                                {
+                                  "alignItems": "flex-start",
+                                  "flexBasis": "auto",
+                                  "flexDirection": "row",
+                                  "flexGrow": 1,
+                                  "justifyContent": "space-between",
+                                },
+                                {
+                                  "marginBottom": 24,
+                                },
+                              ]
                             }
                             verticalAlign="flex-start"
                           >
@@ -11137,8 +11001,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="56"
-                                bbWidth="56"
+                                bbHeight={56}
+                                bbWidth={56}
                                 fill="none"
                                 focusable={false}
                                 height={56}
@@ -11333,12 +11197,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
-                            animatedStyle={
-                              {
-                                "value": {},
-                              }
-                            }
-                            collapsable={false}
                             horizontalAlign="space-between"
                             style={
                               {
@@ -11523,12 +11381,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -11626,8 +11478,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -11690,8 +11542,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -11712,20 +11564,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -11936,12 +11784,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -12039,8 +11881,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -12103,8 +11945,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -12125,20 +11967,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -12349,12 +12187,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -12452,8 +12284,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -12516,8 +12348,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -12538,20 +12370,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -12817,12 +12645,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
-                        animatedStyle={
-                          {
-                            "value": {},
-                          }
-                        }
-                        collapsable={false}
                         horizontalAlign="flex-start"
                         style={
                           {
@@ -12920,8 +12742,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             >
                               <RNSVGSvgView
                                 align="xMidYMid"
-                                bbHeight="24"
-                                bbWidth="24"
+                                bbHeight={24}
+                                bbWidth={24}
                                 fill="#3D2884"
                                 focusable={false}
                                 height={24}
@@ -12984,8 +12806,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                         height="24"
                                         opacity={0}
                                         width="24"
-                                        x="0"
-                                        y="0"
+                                        x={0}
+                                        y={0}
                                       />
                                       <RNSVGPath
                                         d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
@@ -13006,20 +12828,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
-                            "height": 0,
-                          },
-                        }
-                      }
-                      collapsable={false}
                       style={
-                        {
-                          "height": 0,
-                          "overflow": "hidden",
-                          "textAlign": "right",
-                        }
+                        [
+                          {
+                            "overflow": "hidden",
+                            "textAlign": "right",
+                          },
+                          {
+                            "style": {},
+                          },
+                        ]
                       }
                     >
                       <View
@@ -13318,8 +13136,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <RNSVGSvgView
                             align="xMidYMid"
-                            bbHeight="24"
-                            bbWidth="24"
+                            bbHeight={24}
+                            bbWidth={24}
                             fill="#212121"
                             focusable={false}
                             height={24}
@@ -13382,8 +13200,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     height="24"
                                     opacity={0}
                                     width="24"
-                                    x="0"
-                                    y="0"
+                                    x={0}
+                                    y={0}
                                   />
                                   <RNSVGPath
                                     d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z"
@@ -13464,8 +13282,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="40"
-                          bbWidth="40"
+                          bbHeight={40}
+                          bbWidth={40}
                           fill="#3D2884"
                           focusable={false}
                           height={40}
@@ -13528,8 +13346,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGCircle
                                   cx="12"
@@ -13667,8 +13485,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <RNSVGSvgView
                             align="xMidYMid"
-                            bbHeight="24"
-                            bbWidth="24"
+                            bbHeight={24}
+                            bbWidth={24}
                             fill="#212121"
                             focusable={false}
                             height={24}
@@ -13741,8 +13559,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     }
                                     opacity={0}
                                     width="24"
-                                    x="0"
-                                    y="0"
+                                    x={0}
+                                    y={0}
                                   />
                                   <RNSVGPath
                                     d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -13837,8 +13655,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <RNSVGSvgView
                             align="xMidYMid"
-                            bbHeight="24"
-                            bbWidth="24"
+                            bbHeight={24}
+                            bbWidth={24}
                             fill="#212121"
                             focusable={false}
                             height={24}
@@ -13911,8 +13729,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     }
                                     opacity={0}
                                     width="24"
-                                    x="0"
-                                    y="0"
+                                    x={0}
+                                    y={0}
                                   />
                                   <RNSVGPath
                                     d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -13949,8 +13767,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight="40"
-                          bbWidth="40"
+                          bbHeight={40}
+                          bbWidth={40}
                           fill="#3D2884"
                           focusable={false}
                           height={40}
@@ -14013,8 +13831,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x="0"
-                                  y="0"
+                                  x={0}
+                                  y={0}
                                 />
                                 <RNSVGCircle
                                   cx="12"
@@ -14218,8 +14036,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 opacity={0.7}
                               >
                                 <RNSVGEllipse
-                                  cx="4.19921"
-                                  cy="4.19922"
+                                  cx={4.19921}
+                                  cy={4.19922}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -14242,12 +14060,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="4.19921"
-                                  ry="4.19922"
+                                  rx={4.19921}
+                                  ry={4.19922}
                                 />
                                 <RNSVGEllipse
-                                  cx="64.2041"
-                                  cy="72.1695"
+                                  cx={64.2041}
+                                  cy={72.1695}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -14270,12 +14088,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="2.59363"
-                                  ry="2.59364"
+                                  rx={2.59363}
+                                  ry={2.59364}
                                 />
                                 <RNSVGEllipse
-                                  cx="199.614"
-                                  cy="118.127"
+                                  cx={199.614}
+                                  cy={118.127}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -14298,12 +14116,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="3.17"
-                                  ry="3.16999"
+                                  rx={3.17}
+                                  ry={3.16999}
                                 />
                                 <RNSVGEllipse
-                                  cx="2.47013"
-                                  cy="2.47013"
+                                  cx={2.47013}
+                                  cy={2.47013}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -14326,12 +14144,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="2.47013"
-                                  ry="2.47013"
+                                  rx={2.47013}
+                                  ry={2.47013}
                                 />
                                 <RNSVGEllipse
-                                  cx="4.65207"
-                                  cy="4.65208"
+                                  cx={4.65207}
+                                  cy={4.65208}
                                   fill={
                                     {
                                       "payload": 4293399567,
@@ -14354,12 +14172,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="4.65207"
-                                  ry="4.65208"
+                                  rx={4.65207}
+                                  ry={4.65208}
                                 />
                                 <RNSVGEllipse
-                                  cx="4.65207"
-                                  cy="4.65208"
+                                  cx={4.65207}
+                                  cy={4.65208}
                                   fill={
                                     {
                                       "payload": 4291019775,
@@ -14382,8 +14200,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fill",
                                     ]
                                   }
-                                  rx="4.65207"
-                                  ry="4.65208"
+                                  rx={4.65207}
+                                  ry={4.65208}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -14419,11 +14237,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="10.6916"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={10.6916}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -14459,11 +14277,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="12.4951"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={12.4951}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -14499,11 +14317,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="15.6102"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={15.6102}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -14539,11 +14357,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="1.44091"
-                                  x2="15.6102"
-                                  y1="-1.44091"
-                                  y2="-1.44091"
+                                  strokeWidth={2.88182}
+                                  x1={1.44091}
+                                  x2={15.6102}
+                                  y1={-1.44091}
+                                  y2={-1.44091}
                                 />
                                 <RNSVGLine
                                   fill={
@@ -14569,11 +14387,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   }
                                   strokeLinecap={1}
                                   strokeLinejoin={1}
-                                  strokeWidth="2.88182"
-                                  x1="42.8065"
-                                  x2="32.4189"
-                                  y1="190.254"
-                                  y2="183.247"
+                                  strokeWidth={2.88182}
+                                  x1={42.8065}
+                                  x2={32.4189}
+                                  y1={190.254}
+                                  y2={183.247}
                                 />
                                 <RNSVGPath
                                   d="M236.947 15.8791C237.524 14.6251 239.295 14.5942 239.915 15.8273L241.024 18.033C241.569 19.117 240.794 20.3981 239.581 20.4193L237.441 20.4567C236.228 20.4778 235.409 19.2245 235.916 18.1222L236.947 15.8791Z"
@@ -14686,7 +14504,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M173.835 216.246C173.835 216.246 167.512 224.474 178.647 228.228"
@@ -14709,7 +14527,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M260.17 36.6533C260.17 36.6533 267.053 28.0127 255.272 23.8102"
@@ -14732,7 +14550,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M125.141 122.019C125.141 122.019 132.024 113.378 120.242 109.175"
@@ -14755,7 +14573,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                                 <RNSVGPath
                                   d="M58.3505 137.099C58.3505 137.099 61.2489 144.472 68.0837 138.662"
@@ -14778,7 +14596,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  strokeWidth="3.2935"
+                                  strokeWidth={3.2935}
                                 />
                               </RNSVGGroup>
                               <RNSVGPath
@@ -15025,7 +14843,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     "type": 0,
                                   }
                                 }
-                                strokeWidth="0.823376"
+                                strokeWidth={0.823376}
                               />
                               <RNSVGPath
                                 d="M223.106 103.027C229.122 114.01 234.135 121.665 238.48 126.657L244.495 125.326C240.485 100.697 228.788 82.3917 209.738 70.4102H206.396C198.71 96.3702 196.705 114.01 200.047 122.663H226.783C226.448 116.34 225.112 109.683 223.106 103.027Z"
@@ -15257,7 +15075,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     "type": 0,
                                   }
                                 }
-                                strokeWidth="0.823376"
+                                strokeWidth={0.823376}
                               />
                               <RNSVGPath
                                 d="M126.461 75.8848L124.244 82.665L128.679 87.7395L124.67 91.7053L134.35 108.293L122.496 91.7479L126.461 87.7395L122.496 83.262L126.461 75.8848Z"
@@ -15365,15 +15183,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "type": 0,
                                     }
                                   }
-                                  height="240"
+                                  height={240}
                                   propList={
                                     [
                                       "fill",
                                     ]
                                   }
-                                  width="327"
-                                  x="0"
-                                  y="0"
+                                  width={327}
+                                  x={0}
+                                  y={0}
                                 />
                               </RNSVGClipPath>
                             </RNSVGDefs>
@@ -15452,12 +15270,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       >
                         <View
                           RTLBehaviour={false}
-                          animatedStyle={
-                            {
-                              "value": {},
-                            }
-                          }
-                          collapsable={false}
                           horizontalAlign="center"
                           style={
                             {
@@ -15539,12 +15351,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               >
                                 <View
                                   RTLBehaviour={false}
-                                  animatedStyle={
-                                    {
-                                      "value": {},
-                                    }
-                                  }
-                                  collapsable={false}
                                   horizontalAlign="flex-start"
                                   style={
                                     {
@@ -15577,8 +15383,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     >
                                       <RNSVGSvgView
                                         align="xMidYMid"
-                                        bbHeight="24"
-                                        bbWidth="24"
+                                        bbHeight={24}
+                                        bbWidth={24}
                                         fill="none"
                                         focusable={false}
                                         height={24}
@@ -15641,7 +15447,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                                 "type": 0,
                                               }
                                             }
-                                            strokeWidth="1"
+                                            strokeWidth={1}
                                           />
                                         </RNSVGGroup>
                                       </RNSVGSvgView>
@@ -15853,36 +15659,25 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </Text>
                       <View />
                     </Text>
-                    <RNSVGSvgView
-                      bbHeight="60"
-                      bbWidth="60"
-                      focusable={false}
-                      height={60}
+                    <View
                       style={
-                        [
-                          {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          {
-                            "flex": 0,
-                            "height": 60,
-                            "width": 60,
-                          },
-                        ]
+                        {
+                          "height": 60,
+                          "overflow": "hidden",
+                          "width": 60,
+                        }
                       }
-                      width={60}
-                      xml="<svg></svg>"
                     >
-                      <RNSVGGroup
-                        fill={
+                      <View
+                        style={
                           {
-                            "payload": 4278190080,
-                            "type": 0,
+                            "height": 84,
                           }
                         }
-                      />
-                    </RNSVGSvgView>
+                      >
+                        <View />
+                      </View>
+                    </View>
                   </View>
                 </ViewManagerAdapter_ExpoLinearGradient>
               </View>
@@ -15956,12 +15751,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
-                    animatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    collapsable={false}
                     horizontalAlign="flex-start"
                     style={
                       {
@@ -16112,8 +15901,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight="16"
-                    bbWidth="16"
+                    bbHeight={16}
+                    bbWidth={16}
                     fill="#0421B1"
                     focusable={false}
                     height={16}
@@ -16186,8 +15975,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x="0"
-                            y="0"
+                            x={0}
+                            y={0}
                           />
                           <RNSVGPath
                             d="M5.23 10.64a1 1 0 0 0 1.41.13L11 7.14V19a1 1 0 0 0 2 0V7.14l4.36 3.63a1 1 0 1 0 1.28-1.54l-6-5-.15-.09-.13-.07a1 1 0 0 0-.72 0l-.13.07-.15.09-6 5a1 1 0 0 0-.13 1.41z"
@@ -16351,8 +16140,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#212121"
             focusable={false}
             height={24}
@@ -16426,8 +16215,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
@@ -16577,8 +16366,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="20"
-                  bbWidth="20"
+                  bbHeight={20}
+                  bbWidth={20}
                   focusable={false}
                   height={20}
                   meetOrSlice={0}
@@ -16646,37 +16435,25 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
           <View
-            animatedStyle={
-              {
-                "value": {
-                  "transform": [
-                    {
-                      "scale": 0,
-                    },
-                  ],
-                },
-              }
-            }
-            collapsable={false}
             style={
-              {
-                "bottom": 48,
-                "display": "flex",
-                "flexDirection": "row",
-                "height": 56,
-                "justifyContent": "space-between",
-                "paddingBottom": 8,
-                "paddingLeft": 8,
-                "paddingRight": 8,
-                "paddingTop": 8,
-                "position": "absolute",
-                "transform": [
-                  {
-                    "scale": 0,
-                  },
-                ],
-                "zIndex": 1,
-              }
+              [
+                {
+                  "bottom": 48,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "height": 56,
+                  "justifyContent": "space-between",
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                  "position": "absolute",
+                  "zIndex": 1,
+                },
+                {
+                  "style": {},
+                },
+              ]
             }
           >
             <View
@@ -16690,7 +16467,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  {
+                    "testUri": "../../../apps/mobile/src/theme/images/voiceover/bg_voiceover.png",
+                  }
+                }
                 style={
                   {
                     "marginLeft": -8,
@@ -16835,8 +16616,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -16909,8 +16690,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -17003,8 +16784,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -17077,8 +16858,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
@@ -17162,8 +16943,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
+                  bbHeight={24}
+                  bbWidth={24}
                   fill="#FFFFFF"
                   focusable={false}
                   height={24}
@@ -17236,8 +17017,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                           opacity={0}
                           width="24"
-                          x="0"
-                          y="0"
+                          x={0}
+                          y={0}
                         />
                         <RNSVGPath
                           d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -17331,8 +17112,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#212121"
             focusable={false}
             height={24}
@@ -17356,6 +17137,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "flex": 0,
                   "height": 24,
                   "width": 24,
+                },
+              ]
+            }
+            transform={
+              [
+                {
+                  "scaleX": -1,
                 },
               ]
             }
@@ -17412,8 +17200,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M20.22 21a1 1 0 0 1-1-.76 8.91 8.91 0 0 0-7.8-6.69v1.12a1.78 1.78 0 0 1-1.09 1.64A2 2 0 0 1 8.18 16l-5.06-4.41a1.76 1.76 0 0 1 0-2.68l5.06-4.42a2 2 0 0 1 2.18-.3 1.78 1.78 0 0 1 1.09 1.64V7A10.89 10.89 0 0 1 21.5 17.75a10.29 10.29 0 0 1-.31 2.49 1 1 0 0 1-1 .76zm-9.77-9.5a11.07 11.07 0 0 1 8.81 4.26A9 9 0 0 0 10.45 9a1 1 0 0 1-1-1V6.08l-4.82 4.17 4.82 4.21v-2a1 1 0 0 1 1-.96z"

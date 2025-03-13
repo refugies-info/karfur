@@ -1,45 +1,49 @@
 import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Col, Container, Row } from "reactstrap";
-import HelpIcon2 from "~/assets/staticPages/publier/help-icon-crisp.svg";
-import StepImage5 from "~/assets/staticPages/publier/step-image-5.png";
-import HelpIcon1 from "~/assets/staticPages/traduire/help-icon-tutoriel.svg";
-import MockupsRIMobile from "~/assets/staticPages/traduire/mockupMobileRI.png";
+import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
+import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
+import StepImage1 from "~/assets/staticPages/publier/step-image-1.png";
+import StepImage4 from "~/assets/staticPages/publier/step-image-5.png";
+import MockupRI from "~/assets/staticPages/traduire/mockup-ri.png";
+import ShareImage from "~/assets/staticPages/traduire/share-image.svg";
+import StepImage2 from "~/assets/staticPages/traduire/step-image-2.svg";
+import StepImage3 from "~/assets/staticPages/traduire/step-image-3.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
+import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import {
   Accordion,
-  AutoplayVideo,
+  Anchor,
   Card,
-  HeroArrow,
-  InlineLink,
-  LanguageIcon,
+  Hero,
   Register,
+  RowCards,
   SecondaryNavbar,
+  Section,
+  SectionHead,
   StepContent,
+  Title2,
+  TranslationNotice,
 } from "~/components/Pages/staticPages/common";
 import LanguageCard from "~/components/Pages/staticPages/traduire/LanguageCard";
 import SEO from "~/components/Seo";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import styles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 export type NeedKey = "strong" | "medium" | "weak";
+const NEED_ORDER: Record<NeedKey, number> = { strong: 0, medium: 1, weak: 2 };
+
 interface Props {
   translationStatistics: TranslationStatisticsResponse;
 }
 
 const RecensezVotreAction = (props: Props) => {
-  const { t } = useTranslation();
   const router = useRouter();
 
   // active links
@@ -69,14 +73,15 @@ const RecensezVotreAction = (props: Props) => {
   }, [inViewWho, inViewNext, inViewSteps, inViewFaq, inViewRegister]);
 
   // stats
-  const needKeys: NeedKey[] = ["strong", "medium", "weak"];
-  const translationNeeds: Record<NeedKey, { languageId: string; count: number }[]> = useMemo(
-    () => ({
-      strong: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count <= 2) || [],
-      medium:
-        props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 2 && item.count <= 5) || [],
-      weak: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 5) || [],
-    }),
+  const translationNeeds: { languageId: string; count: number; need: NeedKey }[] = useMemo(
+    () =>
+      (props.translationStatistics?.nbActiveTranslators || [])
+        .map((stat) => {
+          if (stat.count <= 2) return { ...stat, need: "strong" as NeedKey };
+          if (stat.count > 2 && stat.count <= 5) return { ...stat, need: "medium" as NeedKey };
+          return { ...stat, need: "weak" as NeedKey };
+        })
+        .sort((a, b) => NEED_ORDER[a.need] - NEED_ORDER[b.need]),
     [props],
   );
 
@@ -86,257 +91,242 @@ const RecensezVotreAction = (props: Props) => {
   }, []);
 
   return (
-    <div className={styles.main}>
-      <SEO title={t("Translate.title")} />
+    <div className="w-full">
+      <SEO title="Aidez-nous à traduire !" />
+      <HelpNotice />
+      <TranslationNotice />
 
       {/* HERO */}
-      <div ref={refHero} className={cls(styles.section, styles.bg_blue, "mb-4")}>
-        <Container className={styles.container}>
-          <Row className={styles.hero}>
-            <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1 className="text-white">{t("Translate.title")}</h1>
-              <p className={styles.subtitle}>
-                {t("Translate.subtitle", {
-                  nbBenevoles: props.translationStatistics?.nbTranslators || 0,
-                  nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0),
-                })}
-              </p>
-              <HeroArrow target="who" />
-            </Col>
-            <Col sm="12" lg="6">
-              <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Hero
+        ref={refHero}
+        title="Aidez-nous à traduire !"
+        subtitle={`${props.translationStatistics?.nbTranslators || 0} bénévoles nous ont déjà aidé à traduire ${new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0)} mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.`}
+        buttonTitle="Aider à traduire"
+        image={MockupRI}
+        imageWidth={448}
+      />
 
       <SecondaryNavbar
         leftLinks={[
-          { id: "who", color: "green", text: t("Translate.navbarItem1") },
-          { id: "steps", color: "orange", text: t("Translate.navbarItem2") },
-          { id: "next", color: "purple", text: t("Translate.navbarItem3") },
-          { id: "faq", color: "red", text: t("Translate.navbarItem4") },
+          { id: "who", text: "Qui peut traduire ?" },
+          { id: "steps", text: "Comment faire ?" },
+          { id: "next", text: "Et après ?" },
+          { id: "faq", text: "Foire aux questions" },
         ]}
         rightLink={{
           id: "register",
-          color: "blue",
-          text: t("Translate.navbarItem5"),
+          text: "Aider à traduire",
         }}
         activeView={activeView}
-        isSticky={!inViewHero}
       />
 
       {/* WHO */}
-      <div ref={refWho} className={styles.scrollspy_section}>
-        <div className={cls(styles.section)}>
-          <span id="who" className={styles.anchor}></span>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
-            <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
-            <Row className={styles.top_space}>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-                <Card
-                  header={
-                    <>
-                      <LanguageIcon language="ua" size={40} />
-                      <LanguageIcon language="ir" size={40} />
-                      <LanguageIcon language="sa" size={40} />
-                      <LanguageIcon language="gb" size={40} />
-                      <LanguageIcon language="af" size={40} />
-                      <LanguageIcon language="ru" size={40} />
-                      <LanguageIcon language="er" size={40} />
-                    </>
-                  }
-                  title={t("Translate.whoCardTitle1")}
-                  greyBackground
-                >
-                  <p className="mb-0">{t("Translate.whoCardText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-                <Card
-                  header={<LanguageIcon language="fr" size={56} />}
-                  title={t("Translate.whoCardTitle2")}
-                  greyBackground
-                >
-                  <p className="mb-0">{t("Translate.whoCardText2")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-                <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")} greyBackground>
-                  <p className="mb-0">{t("Translate.whoCardText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+      <div ref={refWho} className="relative">
+        <Section>
+          <Anchor id="who" />
+          <div className="fr-container">
+            <SectionHead
+              title="Est-ce que je peux traduire ?"
+              subtitle="Vous êtes réfugié, travailleur social, citoyen français, bénévole dans une association ? Vous pouvez nous aider à traduire ! Voici les conditions à remplir :"
+            />
+            <RowCards>
+              <Card image={WhoIcon1} title="Maîtriser sa langue d’origine">
+                <p className="!mb-0">
+                  Aucun justificatif n’est demandé, mais il est préférable de très bien maîtriser l'écrit de votre
+                  langue d'origine : ukrainien, persan/dari, arabe, anglais, pachto, russe, tigrinya.
+                </p>
+              </Card>
+
+              <Card image={CardIconCheck} title="Avoir le niveau B1 en français">
+                <p className="!mb-0">
+                  Il est nécessaire de bien savoir lire et écrire en français pour comprendre le texte d'origine et ne
+                  pas déformer le message.
+                </p>
+              </Card>
+
+              <Card image={WhoIcon3} title="Avoir accès à un ordinateur">
+                <p className="!mb-0">
+                  L’outil de traduction est disponible uniquement sur un ordinateur connecté à internet, vous ne pouvez
+                  pas y accéder avec votre téléphone.
+                </p>
+              </Card>
+            </RowCards>
+          </div>
+        </Section>
 
         {/* NEED */}
-        <div className={cls(styles.section, styles.bg_green)}>
-          <Container className={cls(styles.container, styles.needs)}>
-            <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
-            <Row>
-              {needKeys.map((needKey, i) => (
-                <Col key={i} sm="12" lg="4">
-                  {translationNeeds[needKey].map((item, i) => (
-                    <LanguageCard href="#register" key={i} languageId={item.languageId} need={needKey} />
-                  ))}
-                </Col>
+        <Section className="bg-action-low-blue-france">
+          <div className="fr-container">
+            <Title2>On cherche des traducteurs en :</Title2>
+            <div className="flex flex-wrap gap-6 md:justify-center">
+              {translationNeeds.map((item, i) => (
+                <LanguageCard href="#register" key={i} languageId={item.languageId} need={item.need} />
               ))}
-            </Row>
-          </Container>
-        </div>
+            </div>
+          </div>
+        </Section>
       </div>
 
       {/* STEPS */}
-      <div ref={refSteps} className={cls(styles.section)}>
-        <span id="steps" className={styles.anchor}></span>
-        <Container className={styles.container}>
-          <h2 className={styles.title2}>{t("Translate.stepsTitle")}</h2>
-          <div className={styles.warning_mobile}>
-            <EVAIcon name="alert-circle-outline" size={24} fill="black" />
-            <p>{t("Translate.stepsWarningMobile")}</p>
+      <div ref={refSteps} className="relative">
+        <Anchor id="steps" />
+        <Section className="bg-alt-beige-gris-galet">
+          <div className="fr-container">
+            <Title2>Quelles sont les étapes pour traduire une fiche ?</Title2>
+            <StepContent
+              step={1}
+              title="Créez <strong>votre compte</strong> Réfugiés.info"
+              texts={[
+                "Indiquez votre adresse mail et un mot de passe, vous êtes prêt à utiliser l'outil de traduction.",
+              ]}
+              cta={{ text: "Créer mon compte", link: "#register" }}
+              image={StepImage1}
+              width={440}
+            />
+            <StepContent
+              step={2}
+              title="Choisissez <strong>votre langue</strong> de traduction"
+              texts={[
+                "Une fois votre langue choisie, vous accédez à toutes les fiches à traduire. Cliquez sur une fiche pour commencer à la traduire.",
+              ]}
+              image={StepImage2}
+              width={480}
+            />
+            <StepContent
+              step={3}
+              title="<strong>Traduisez la fiche</strong> à partir de la proposition automatique"
+              texts={[
+                "Quand vous arrivez sur une fiche, vous trouverez une première traduction. Attention, elle est automatique. Il faut la retravailler et la corriger !",
+                [
+                  "Faites des phrases simples et sans utiliser de dialecte.",
+                  "Expliquez les idées spécifiques à la culture et à l'administration française (attestation, renouvellement...) mais gardez les mots importants s'il n'y a pas de traduction dans votre langue.",
+                  "Évitez la traduction mot à mot, n’hésitez pas à corriger la traduction automatique.",
+                ],
+              ]}
+              image={StepImage3}
+              width={440}
+            />
+            <StepContent
+              step={4}
+              title="Un <strong>expert relit et valide</strong> votre traduction"
+              texts={[
+                "Un expert va relire votre traduction avant de publier la fiche.",
+                "Vous allez recevoir un mail dès que la fiche que vous avez traduite sera visible sur le site Réfugiés.info et sur l'application mobile.",
+              ]}
+              image={StepImage4}
+              width={440}
+              buttonStep="La traduction est publiée 🎉"
+              buttonStepEnd
+            />
           </div>
-          <StepContent
-            step={1}
-            color="orange"
-            title={t("Translate.stepsSubtitle1")}
-            texts={[t("Translate.stepsText1")]}
-            cta={{ text: t("Translate.stepsCTA1"), link: "#register" }}
-            video="/video/publier-video-step1.mp4"
-          />
-          <StepContent
-            step={2}
-            color="orange"
-            title={t("Translate.stepsSubtitle2")}
-            texts={[t("Translate.stepsText2")]}
-            video="/video/translate-video-step2.mp4"
-          />
-          <StepContent
-            step={3}
-            color="orange"
-            title={t("Translate.stepsSubtitle3")}
-            texts={[t("Translate.stepsText3")]}
-            video="/video/translate-video-step3.mp4"
-            footer={
-              <div className={styles.warning}>
-                <ul className="mb-0">
-                  <li className="mb-2">{t("Translate.stepsList3Item1")}</li>
-                  <li className="mb-2">{t("Translate.stepsList3Item2")}</li>
-                  <li>{t("Translate.stepsList3Item3")}</li>
-                </ul>
-              </div>
-            }
-          />
-          <StepContent
-            step={4}
-            color="orange"
-            title={t("Translate.stepsSubtitle4")}
-            texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
-            image={StepImage5}
-            height={415}
-            buttonStep={t("Translate.stepsButton")}
-            buttonStepEnd
-          />
-        </Container>
+        </Section>
       </div>
 
       {/* NEXT */}
-      <div ref={refNext} className={styles.scrollspy_section}>
-        <div className={cls(styles.section, styles.bg_purple)}>
-          <span id="next" className={styles.anchor}></span>
-          <Container className={cls(styles.container)}>
-            <Row>
-              <Col lg="6" sm="12">
-                <h2 className={cls(styles.title2, styles.bottom_space, "mb-0 text-white")}>
-                  {t("Translate.nextTitle")}
-                </h2>
-                <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
-                <p className={styles.p}>{t("Translate.nextText2")}</p>
-              </Col>
-              <Col lg="6" sm="12" className="text-end">
-                <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
+      <div ref={refNext} className="relative">
+        <Section className="bg-action-low-blue-france">
+          <Anchor id="next" />
+          <div className="fr-container">
+            <div className="flex flex-col items-center gap-10 md:flex-row lg:gap-20">
+              <div className="flex-1">
+                <Title2 className="!text-left" smallMb>
+                  Soyez fier de votre traduction et partagez la !
+                </Title2>
+                <p>
+                  Votre nom et votre photo sont visibles en bas de votre fiche, avec les autres contributeurs qui ont
+                  aidé à traduire.
+                </p>
+                <p className="!mb-0">
+                  N’hésitez pas à les partager à vos amis et vos proches, ça peut leur être utile.
+                </p>
+              </div>
+              <div className="flex-1">
+                <Image src={ShareImage} alt="" width={440} height={287} className="mx-auto object-contain" />
+              </div>
+            </div>
+          </div>
+        </Section>
 
         {/* HELP */}
-        <div className={cls(styles.section, styles.bg_grey)}>
-          <Container className={styles.container}>
-            <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <Row className={cls(styles.top_space, "justify-content-center")}>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-                <Card
-                  image={HelpIcon1}
-                  title={t("Translate.helpTileTitle1")}
-                  footer={
-                    <InlineLink
-                      link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                      text={t("Translate.helpTileCTA1")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("Translate.helpTileText1")}</p>
-                </Card>
-              </Col>
-              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-                <Card
-                  image={HelpIcon2}
-                  title={t("StaticPages.helpTileTitle3")}
-                  footer={
-                    <InlineLink
-                      link="#"
-                      type="button"
-                      onClick={() => window.$crisp.push(["do", "chat:open"])}
-                      text={t("StaticPages.helpTileCTA3")}
-                      color="red"
-                    />
-                  }
-                >
-                  <p>{t("StaticPages.helpTileText3")}</p>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        <Section>
+          <div className="fr-container">
+            <SectionHead
+              title="Vous n’êtes pas seul !"
+              subtitle="Nous sommes là pour vous accompagner dans la prise en main de Réfugiés.info et dans la traduction des fiches."
+            />
+            <RowCards>
+              <Card
+                image={CardIconCheck}
+                title="Vidéos tutoriels"
+                link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+              >
+                <p>
+                  Dans le centre d’aide, vous trouverez des vidéos et articles pour vous accompagner dans la traduction
+                  de votre fiche.
+                </p>
+              </Card>
+
+              <Card image={CardIconCheck} title="Live chat" onClick={() => window.$crisp.push(["do", "chat:open"])}>
+                <p>
+                  Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos
+                  questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
+                </p>
+              </Card>
+            </RowCards>
+          </div>
+        </Section>
       </div>
 
       {/* FAQ */}
-      <div ref={refFaq} className={cls(styles.section)}>
-        <span id="faq" className={styles.anchor}></span>
-        <Container className={cls(styles.container, styles.faq)}>
-          <h2 className={cls(styles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
-          <Accordion
-            items={[
-              { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
-              { title: t("Translate.faqAccordionTitle2"), text: t("Translate.faqAccordionText2") },
-              { title: t("Translate.faqAccordionTitle3"), text: t("Translate.faqAccordionText3") },
-              { title: t("Translate.faqAccordionTitle4"), text: t("Translate.faqAccordionText4") },
-              {
-                title: t("Translate.faqAccordionTitle5"),
-                text: t("Translate.faqAccordionText5"),
-                cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" },
-              },
-            ]}
-            multiOpen
-          />
-        </Container>
-      </div>
+      <Section ref={refFaq} className="relative">
+        <Anchor id="faq" />
+        <div className="fr-container">
+          <Title2 className="text-center">Il vous reste des questions ?</Title2>
+          <div className="mx-auto max-w-[720px]">
+            <Accordion
+              items={[
+                {
+                  title: "Quel niveau je dois avoir pour devenir traducteur ?",
+                  text: "Aucun justificatif n’est demandé pour devenir traducteur mais il est préférable de maîtriser la langue dans laquelle vous traduisez. Si ce n'est pas votre langue maternelle, il est conseillé d'être étudiant en langue ou d'avoir déjà des expériences en traduction.<br/>Il est nécessaire de bien savoir lire et écrire en français pour comprendre le texte d'origine et ne pas déformer le message.",
+                },
+                {
+                  title: "Combien de fiches je dois traduire ?",
+                  text: "Vous traduisez à votre rythme, on ne vous demande pas de faire un nombre de fiches précis. Si vous faites plus de 10 000 mots (entre 20 et 30 fiches), nous pouvons valoriser votre engagement en vous donnant un certificat de traduction solidaire.",
+                },
+                {
+                  title: "Combien de temps est nécessaire pour traduire une fiche ?",
+                  text: "En moyenne, une fiche fait 300 mots. Nous estimons qu'il faut entre 15 et 30 minutes pour améliorer la traduction automatique proposée. Faites attention aux points suivants : <ul><li>Faites des phrases simples et sans utiliser de dialecte.</li> <li>Expliquez les idées spécifiques à la culture et à l'administration française (attestation, renouvellement...) mais gardez les mots importants s'il n'y a pas de traduction dans votre langue.</li><li>Évitez la traduction mot à mot, n’hésitez pas à corriger la traduction automatique.</li></ul>Vous pouvez vous arrêter à tout moment dans la traduction d'une fiche. Votre niveau d'avancement est enregistré, et c'est déjà d'une grande aide !",
+                },
+                {
+                  title: "Quels sont les avantages de traduire des fiches sur Réfugiés.info ?",
+                  text: "Grâce à votre aide précieuse, les personnes qui utilisent le site et l'application peuvent trouver les informations dans leur langue. De votre côté, c'est aussi une expérience enrichissante pour apprendre à utiliser un nouvel outil, progresser en français, contribuer à un projet national.",
+                },
+                {
+                  title: "Est-ce que de nouvelles langues seront bientôt disponibles ?",
+                  text: "Traduire Réfugiés.info dans une nouvelle langue est possible. La décision dépend de l’actualité et du volume de personnes que cette nouvelle langue pourrait intéresser. Si vous parlez une autre langue et souhaitez traduire du contenu pour le rendre accessible à votre communauté, remplissez ce formulaire.",
+                  cta: { text: "Remplir le formulaire", link: "https://airtable.com/shrQxPHedgZ5PuXot" },
+                },
+              ]}
+              multiOpen
+            />
+          </div>
+        </div>
+      </Section>
 
       {/* REGISTER */}
-      <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
-        <span id="register" className={styles.anchor}></span>
-        <Register
-          onClickLoggedIn={navigateToTranslations}
-          subtitleForm={t("Translate.registerSubtitle")}
-          subtitleLoggedIn={t("Translate.registerLoggedIn")}
-          btnLoggedIn={t("Translate.registerBtnLoggedIn")}
-          subtitleMobile={t("Translate.registerMobile")}
-          associatedRole={RoleName.TRAD}
-        />
-      </div>
+      <Section ref={refRegister} className="bg-alt-beige-gris-galet relative">
+        <Anchor id="register" />
+        <div className="fr-container">
+          <Register
+            onClickLoggedIn={navigateToTranslations}
+            subtitleForm="Connectez-vous ou créez votre compte pour commencer à traduire les fiches."
+            subtitleLoggedIn="Vous savez tout, vous pouvez traduire votre première fiche."
+            btnLoggedIn="Traduire une fiche"
+            subtitleMobile="La traduction d’une fiche n’est possible que depuis un ordinateur. Nous pouvons vous envoyer un mail pour vous inscrire !"
+            associatedRole={RoleName.TRAD}
+          />
+        </div>
+      </Section>
     </div>
   );
 };

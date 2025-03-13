@@ -49,7 +49,7 @@ const initialMockTranslationState = {
 };
 
 const initialUserFavoritesState: UserFavoritesState = {
-  favorites: [],
+  favorites: null,
 };
 
 const initialMockSearchReults: SearchResultsState = {

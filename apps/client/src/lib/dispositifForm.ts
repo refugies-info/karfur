@@ -4,8 +4,10 @@ import {
   GetDispositifResponse,
   Id,
   InfoSections,
+  PostDispositifsResponse,
   Sponsor,
   UpdateDispositifRequest,
+  UpdateDispositifResponse,
 } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import { logger } from "logger";
@@ -117,12 +119,12 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
   return defaultValues;
 };
 
-export const submitUpdateForm = (id: Id, data: UpdateDispositifRequest) => {
+export const submitUpdateForm = (id: Id, data: UpdateDispositifRequest): Promise<UpdateDispositifResponse> => {
   logger.info("[update dispositif]", data);
   return API.updateDispositif(id, data);
 };
 
-export const submitCreateForm = (data: CreateDispositifRequest) => {
+export const submitCreateForm = (data: CreateDispositifRequest): Promise<PostDispositifsResponse> => {
   logger.info("[create dispositif]", data);
   return API.createDispositif(data);
 };

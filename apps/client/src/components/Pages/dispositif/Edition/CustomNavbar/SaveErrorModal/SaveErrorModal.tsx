@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { useCallback } from "react";
 import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 
 interface Props {
   show: boolean;
@@ -21,7 +21,7 @@ const SaveErrorModal = (props: Props) => {
         Si cela ne fonctionne toujours pas, vous pouvez quitter l’éditeur et revenir ensuite sur votre fiche.
         Contactez-nous via le chat en bas à droite si besoin.
       </p>
-      <div className="text-center mb-8">
+      <div className="mb-8 flex justify-center">
         <Image src={TutorielImage} width={176} height={120} alt="" />
       </div>
       <div className="text-end">

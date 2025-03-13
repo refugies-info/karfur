@@ -30,12 +30,6 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
 >
   <View
     RTLBehaviour={false}
-    animatedStyle={
-      {
-        "value": {},
-      }
-    }
-    collapsable={false}
     horizontalAlign="flex-start"
     style={
       {
@@ -90,12 +84,6 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
       >
         <View
           RTLBehaviour={false}
-          animatedStyle={
-            {
-              "value": {},
-            }
-          }
-          collapsable={false}
           horizontalAlign="flex-start"
           style={
             {
@@ -131,8 +119,8 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
+                bbHeight={24}
+                bbWidth={24}
                 fill="#0421B1"
                 focusable={false}
                 height={24}
@@ -205,8 +193,8 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                         }
                         opacity={0}
                         width="24"
-                        x="0"
-                        y="0"
+                        x={0}
+                        y={0}
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
@@ -327,8 +315,8 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight="24"
-            bbWidth="24"
+            bbHeight={24}
+            bbWidth={24}
             fill="#0421B1"
             focusable={false}
             height={24}
@@ -401,8 +389,8 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                     }
                     opacity={0}
                     width="24"
-                    x="0"
-                    y="0"
+                    x={0}
+                    y={0}
                   />
                   <RNSVGPath
                     d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"

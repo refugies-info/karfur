@@ -61,7 +61,7 @@ const SearchSuggestions = (props: Props) => {
               key={index}
               name={theme.name[currentLanguageI18nCode || "fr"]}
               backgroundColor={theme.colors.color100}
-              icon={theme.icon}
+              icon={theme.appImage}
               inline={true}
               style={stylesheet.tagButton}
               onPress={() => {

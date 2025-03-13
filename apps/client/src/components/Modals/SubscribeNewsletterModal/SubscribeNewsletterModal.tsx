@@ -1,5 +1,4 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { ChangeEventHandler, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +10,7 @@ import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
 import { FButtonMobile } from "~/components/UI/FButtonMobile/FButtonMobile";
 import FInput from "~/components/UI/FInput/FInput";
+import Image from "~/components/UI/Image";
 import { Event } from "~/lib/tracking";
 import styles from "~/scss/components/modals.module.scss";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";

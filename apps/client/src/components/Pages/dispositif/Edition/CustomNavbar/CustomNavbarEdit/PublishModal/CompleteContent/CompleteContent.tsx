@@ -1,5 +1,4 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -9,6 +8,7 @@ import PublishImage from "~/assets/dispositif/publish-image.svg";
 import YesIcon from "~/assets/dispositif/yes-icon.svg";
 import ChoiceButton from "~/components/Pages/dispositif/Edition/ChoiceButton";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { useContentType } from "~/hooks/dispositif";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "~/services/User/user.selectors";
@@ -87,7 +87,7 @@ const CompleteContent = (props: Props) => {
               onSelect={() => setKeepTranslations(true)}
               image={NoIcon}
             />
-            <div className="text-end mt-8">
+            <div className="mt-8 text-end">
               <Button
                 onClick={(e: any) => {
                   e.preventDefault();
@@ -158,7 +158,7 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <div className="text-center mb-8 mt-6">
+          <div className="mt-6 mb-8 flex justify-center">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">
@@ -186,7 +186,7 @@ const CompleteContent = (props: Props) => {
             progress={totalSteps}
             text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
-          <div className="text-center mb-8 mt-6">
+          <div className="mt-6 mb-8 flex justify-center">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">

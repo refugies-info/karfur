@@ -1,11 +1,12 @@
 import { DocumentProps, Head, Html, Main, NextScript } from "next/document";
-import { dsfrDocumentApi } from "./_app";
+import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
+import { caveat, dsfrDocumentApi } from "./_app";
 
 const { getColorSchemeHtmlAttributes, augmentDocumentForDsfr } = dsfrDocumentApi;
 
 export default function Document(props: DocumentProps) {
   return (
-    <Html {...getColorSchemeHtmlAttributes(props)}>
+    <Html {...getColorSchemeHtmlAttributes(props)} className={`scroll-smooth ${caveat.variable}`}>
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
@@ -14,6 +15,7 @@ export default function Document(props: DocumentProps) {
         <script defer data-domain="refugies.info" src="https://plausible.io/js/script.tagged-events.js"></script>
       </Head>
       <body>
+        <SkipLinksNavigation />
         <Main />
         <NextScript />
       </body>

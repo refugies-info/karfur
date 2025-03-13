@@ -1,5 +1,4 @@
-import { Image, ScrollView, TouchableWithoutFeedback } from "react-native";
-import Modal from "react-native-modal";
+import { Image, Modal, ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import IlluMascotte from "~/theme/images/profile/illu-mascotte.png";
@@ -17,9 +16,25 @@ interface Props {
   defaultTextValidateButton?: string;
 }
 
+const ModalContainer = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+`;
+
+const Backdrop = styled.View`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${({ theme }) => theme.colors.black};
+  opacity: 0.5;
+`;
+
 const ModalView = styled.View`
   background-color: ${({ theme }) => theme.colors.lightGrey};
   padding-top: ${({ theme }) => theme.margin * 3}px;
+  z-index: 1;
 `;
 
 const TitleText = styled(TextDSFR_L)`
@@ -27,11 +42,6 @@ const TitleText = styled(TextDSFR_L)`
   margin-bottom: ${({ theme }) => theme.margin * 5}px;
   align-self: center;
   text-align: center;
-`;
-
-const Backdrop = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.black};
 `;
 
 export const ConfirmationModal = (props: Props) => {
@@ -43,10 +53,8 @@ export const ConfirmationModal = (props: Props) => {
     props.toggleModal();
   };
   return (
-    <Modal
-      isVisible={props.isModalVisible}
-      style={{ justifyContent: "flex-end", margin: 0 }}
-      customBackdrop={
+    <Modal visible={props.isModalVisible} transparent={true} animationType="fade" onRequestClose={props.toggleModal}>
+      <ModalContainer>
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
           accessibilityRole="button"
@@ -54,37 +62,36 @@ export const ConfirmationModal = (props: Props) => {
         >
           <Backdrop />
         </TouchableWithoutFeedback>
-      }
-    >
-      <ModalView>
-        <ScrollView
-          contentContainerStyle={{
-            paddingBottom: theme.margin * 3,
-            paddingHorizontal: theme.margin * 3,
-          }}
-        >
-          <Rows horizontalAlign="center">
-            <Image style={{ height: 96, width: 77 }} source={IlluMascotte} />
-          </Rows>
-          <TitleText>{props.text}</TitleText>
-          <ButtonDSFR
-            accessibilityLabel={t(props.i18nKeyValidateButton || "global.validate")}
-            title={t(props.i18nKeyValidateButton || "global.validate")}
-            onPress={onValidate}
-            iconName={props.iconValidateButton || "arrow-forward-outline"}
-            iconAfter
-            priority="primary"
-          />
-          <Spacer height={theme.margin * 2} />
+        <ModalView>
+          <ScrollView
+            contentContainerStyle={{
+              paddingBottom: theme.margin * 3,
+              paddingHorizontal: theme.margin * 3,
+            }}
+          >
+            <Rows horizontalAlign="center">
+              <Image style={{ height: 96, width: 77 }} source={IlluMascotte} />
+            </Rows>
+            <TitleText>{props.text}</TitleText>
+            <ButtonDSFR
+              accessibilityLabel={t(props.i18nKeyValidateButton || "global.validate")}
+              title={t(props.i18nKeyValidateButton || "global.validate")}
+              onPress={onValidate}
+              iconName={props.iconValidateButton || "arrow-forward-outline"}
+              iconAfter
+              priority="primary"
+            />
+            <Spacer height={theme.margin * 2} />
 
-          <ButtonDSFR
-            accessibilityLabel={t("global.cancel")}
-            title={t("global.cancel")}
-            onPress={props.toggleModal}
-            priority="tertiary no outline"
-          />
-        </ScrollView>
-      </ModalView>
+            <ButtonDSFR
+              accessibilityLabel={t("global.cancel")}
+              title={t("global.cancel")}
+              onPress={props.toggleModal}
+              priority="tertiary no outline"
+            />
+          </ScrollView>
+        </ModalView>
+      </ModalContainer>
     </Modal>
   );
 };

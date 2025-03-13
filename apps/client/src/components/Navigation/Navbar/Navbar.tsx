@@ -1,0 +1,189 @@
+import { Header } from "@codegouvfr/react-dsfr/Header";
+import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import { Languages } from "@refugies-info/api-types";
+import { androidStoreLink, iosStoreLink } from "data/storeLinks";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { memo, useCallback, useMemo } from "react";
+import { isIOS } from "react-device-detect";
+import { useDispatch } from "react-redux";
+import { getPath } from "routes";
+import { assetsOnServer } from "~/assets/assetsOnServer";
+import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
+import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
+import Image from "~/components/UI/Image";
+import { useEditionMode, useWindowSize } from "~/hooks";
+import isInBrowser from "~/lib/isInBrowser";
+import { Event } from "~/lib/tracking";
+import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
+import styles from "./Navbar.module.scss";
+
+const Navbar = () => {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const isEditionMode = useEditionMode();
+  const backendNavigation = useBackendNavigation();
+  const dispatch = useDispatch();
+  const { isMobile } = useWindowSize();
+
+  const toggleNewsletter = useCallback(() => {
+    dispatch(toggleNewsletterModalAction());
+    Event("NEWSLETTER", "open modal", "navbar");
+  }, [dispatch]);
+
+  const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
+    const locale: Languages = (router.locale || "fr") as Languages;
+    const isCurrent = (href: string, paramCheck?: { param: string; value: string }) => {
+      if (!isInBrowser()) return false;
+      const currentPath = window?.location?.pathname || "";
+      const isPathMatching = currentPath === "/" + router.locale + href;
+
+      if (paramCheck) {
+        const urlParams = new URLSearchParams(window?.location?.search || "");
+        return isPathMatching && urlParams.get(paramCheck.param) === paramCheck.value;
+      }
+
+      return isPathMatching;
+    };
+    const isBackend = router.pathname.includes("/backend");
+    const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
+    const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
+
+    if (isBackend) return backendNavigation;
+    return [
+      {
+        linkProps: {
+          href: getPath("/recherche", router.locale, "?search=&sort=default&type=demarche"),
+          className: styles.navLinkWithSearchIcon,
+        },
+        text: t("Toolbar.fichesDemarches", "Fiches démarches"),
+        isActive: isCurrent(getPath("/recherche", router.locale), {
+          param: "type",
+          value: "demarche",
+        }),
+      },
+      {
+        linkProps: {
+          href: getPath("/recherche", router.locale, "?search=&sort=default&type=dispositif"),
+          prefetch: false,
+          className: styles.navLinkWithSearchIcon,
+        },
+        text: t("Toolbar.dispositifsLocaux", "Dispositifs locaux"),
+        isActive: isCurrent(getPath("/recherche", router.locale), {
+          param: "type",
+          value: "dispositif",
+        }),
+      },
+      {
+        linkProps: { href: getPath("/agir", router.locale), prefetch: false },
+        text: t("Toolbar.agir", "AGIR"),
+        isActive: isCurrent(getPath("/agir", router.locale)),
+      },
+      {
+        linkProps: { href: getPath("/mission-et-impact", router.locale), prefetch: false },
+        text: t("Toolbar.missionImpact", "Mission et impact"),
+        isActive: isCurrent(getPath("/mission-et-impact", router.locale)),
+      },
+      {
+        text: t("Toolbar.partagerProjet", "Ressources"),
+        menuLinks: [
+          {
+            linkProps: { href: "https://kit.refugies.info/formation/", target: "_blank" },
+            text: t("Toolbar.webinaire", "Participer à un webinaire de découverte"),
+          },
+          {
+            linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
+            text: t("Toolbar.posters_leaflets", "Commander des affiches et des dépliants"),
+          },
+          {
+            linkProps: { href: "https://kit.refugies.info/", target: "_blank" },
+            text: t("Toolbar.Kit de communication", "Parler du projet (kit de communication)"),
+          },
+
+          {
+            linkProps: { href: "https://kit.refugies.info/agir", target: "_blank" },
+            text: t("Toolbar.forAgirOperators", "Pour les opérateurs AGIR"),
+          },
+        ],
+      },
+
+      !isMobile
+        ? {
+            linkProps: {
+              href: getPath("/", router.locale, "#application"),
+              className: styles.navLinkWithAppIcon,
+            },
+            text: t("Toolbar.shareApplication", "Partager l'application"),
+          }
+        : null,
+
+      {
+        linkProps: {
+          href: isMobile ? "#" : getPath("/", router.locale, "#newsletter"),
+          onClick: isMobile ? toggleNewsletter : undefined,
+        },
+        text: t("Toolbar.newsletter", "Newsletter"),
+      },
+
+      isMobile
+        ? {
+            linkProps: {
+              href: isIOS ? iosStoreLink : androidStoreLink,
+              target: "_blank",
+              className: "px-0",
+            },
+            text: isIOS ? (
+              <Image
+                src={appStoreBadge}
+                alt={t("Toolbar.getItOnAppStore", "Téléchager sur l'App Store")}
+                width={120}
+                height={40}
+                className="mt-3"
+              />
+            ) : (
+              <Image
+                src={playStoreBadge}
+                alt={t("Toolbar.getItOnPlayStore", "Téléchager sur le Play Store")}
+                width={134}
+                height={40}
+                className="mt-3"
+              />
+            ),
+          }
+        : null,
+    ].filter((n) => n !== null) as MainNavigationProps.Item[];
+  }, [router.locale, router.pathname, backendNavigation, t, isMobile, toggleNewsletter]);
+
+  const quickAccessMenu = QuickAccessMenu();
+
+  if (isEditionMode) return null;
+  return (
+    <>
+      <Header
+        brandTop={
+          <>
+            République
+            <br />
+            Française
+          </>
+        }
+        homeLinkProps={{
+          href: "/",
+          title: "Accueil - Réfugiés.info",
+        }}
+        operatorLogo={{
+          alt: "Réfugiés.info",
+          imgUrl: "/images/logoRI.svg",
+          orientation: "horizontal",
+        }}
+        serviceTitle={t("Header.serviceName", "Réfugiés.info")}
+        serviceTagline={t("Header.serviceTagline", "L'information pour les réfugiés en France")}
+        quickAccessItems={quickAccessMenu}
+        navigation={navigationItems}
+        className={styles.navBar}
+      />
+    </>
+  );
+};
+
+export default memo(Navbar);

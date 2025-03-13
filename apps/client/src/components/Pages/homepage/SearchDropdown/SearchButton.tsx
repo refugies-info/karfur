@@ -1,6 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useTranslation } from "next-i18next";
 import React, { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import EVAIcon from "~/components/UI/EVAIcon";
 import { cls } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";

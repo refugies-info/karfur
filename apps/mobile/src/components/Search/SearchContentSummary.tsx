@@ -72,7 +72,8 @@ export const SearchContentSummary = (props: Props) => {
       key={props.item.objectID}
       searchLanguageMatch={props.languageMatch}
       backgroundColor={theme.colors.color100}
-      icon={theme.icon}
+      icon={theme.appImage}
+      iconSize={50}
       searchItem={props.item}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {

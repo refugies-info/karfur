@@ -1,5 +1,14 @@
+/* stylelint-disable selector-class-pattern */
 .footer {
-  border-top: 1px solid #ddd;
+  :global(.fr-footer__brand) {
+    @apply flex-wrap;
+
+    column-gap: 2em;
+  }
+
+  :global(.fr-footer__brand-link) {
+    margin: 0;
+  }
 
   @media print {
     display: none;

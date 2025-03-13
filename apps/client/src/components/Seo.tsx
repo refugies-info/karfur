@@ -12,7 +12,7 @@ interface Props {
 const defaultTitle = "Réfugiés.info";
 const defaultImage = "/images/og-image-refugies.jpg";
 
-const getAlternateLocales = (locales: string[] | undefined, currentLocale: string | undefined) => {
+const getAlternateLocales = (locales: readonly string[] | undefined, currentLocale: string | undefined) => {
   if (!locales || locales.length === 0) return [];
   return locales.filter((locale) => locale !== "default" && locale !== (currentLocale || "fr"));
 };
@@ -34,7 +34,7 @@ const SEO = (props: Props) => {
 
   return (
     <Head>
-      <meta name="viewport" content="width=device-width" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       <title>{prefixTitle + defaultTitle}</title>
       {props.description && <meta name="description" content={props.description} />}
       <link rel="canonical" href={getFullPath(router, router.locale || "fr")} />

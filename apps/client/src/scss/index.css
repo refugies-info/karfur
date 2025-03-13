@@ -1,0 +1,40 @@
+@layer theme, base, refugies-info, dsfr, components, utilities;
+@import "tailwindcss";
+
+/* Points to css source instead of dist */
+@import "@refugies-info/ui/globals.css";
+
+/* stylelint-disable custom-property-pattern */
+
+@theme {
+  /* Fonts */
+  --font-sans: "Marianne", "Arial", "sans-serif";
+
+  /* Fonts sizes */
+  --text-very-small: 12px;
+  --text-very-small--line-height: 20px;
+  --text-small: 14px;
+  --text-small--line-height: 24px;
+  --text-normal: 16px;
+  --text-normal--line-height: 24px;
+  --text-large: 18px;
+  --text-large--line-height: 28px;
+  --text-chapo: 20px;
+  --text-chapo--line-height: 32px;
+  --text-h5: 22px;
+  --text-h5--line-height: 28px;
+  --text-h6: 20px;
+  --text-h6--line-height: 28px;
+  --text-h4: 24px;
+  --text-h4--line-height: 32px;
+  --text-h3: 28px;
+  --text-h3--line-height: 36px;
+  --text-h2: 32px;
+  --text-h2--line-height: 40px;
+  --text-h1: 40px;
+  --text-h1--line-height: 48px;
+  --text-alt-title: 48px;
+  --text-alt-title--line-height: 56px;
+  --text-alt-title-big: 56px;
+  --text-alt-title-big--line-height: 64px;
+}

@@ -187,7 +187,7 @@ export const ContentDetailsModal = (props: Props) => {
           </>
         }
         rightHead={
-          <div className="d-flex flex-nowrap justify-content-end">
+          <div className="flex flex-nowrap justify-end">
             <FButton
               className="me-2"
               type={!dispositif.webOnly ? "default" : "validate"}
@@ -257,7 +257,7 @@ export const ContentDetailsModal = (props: Props) => {
               </Row>
 
               <div className="mb-5">
-                <div className="d-flex justify-content-between">
+                <div className="flex justify-between">
                   <Label>Création</Label>
                   <Date date={dispositif.created_at} />
                 </div>
@@ -272,7 +272,7 @@ export const ContentDetailsModal = (props: Props) => {
 
               <div className="mb-5">
                 <Label>Structure responsable</Label>
-                <div className="d-flex">
+                <div className="flex">
                   <StructureButton
                     sponsor={dispositif.mainSponsor}
                     onClick={() => {

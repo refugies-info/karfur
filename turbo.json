@@ -1,31 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalDependencies": [
+    "NODE_ENV"
+  ],
   "tasks": {
     "//#update-icons": {
       "cache": false,
-      "outputs": [
-        "node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"
-      ]
+      "outputs": ["node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"]
+    },
+    "@refugies-info/ui#build": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "@refugies-info/storybook#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
     },
     "@refugies-info/client#build": {
-      "dependsOn": [
-        "//#update-icons"
-      ],
-      "env": [
-        "NEXT_PUBLIC_*"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**"
-      ]
+      "dependsOn": ["//#update-icons", "@refugies-info/ui#build"],
+      "env": ["NEXT_PUBLIC_*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "@refugies-info/server#build": {
-      "dependsOn": [
-      ],
+      "dependsOn": [],
       "env": [
         "accountSid",
         "AIRTABLE_BASE_CONTENU",
@@ -37,6 +36,7 @@
         "API_KEY",
         "API_SECRET",
         "authToken",
+        "BREVO_API_KEY",
         "CLOUD_NAME",
         "CRON_TOKEN",
         "EXPO_ACCESS_TOKEN",
@@ -58,68 +58,46 @@
         "REACT_APP_SITE_SECRET",
         "SECRET",
         "SENDGRID_API_KEY",
-        "SENDINBLUE_API_KEY",
         "SLACK_WEBHOOK_URL",
+        "SMS_SENDER",
         "TTS_KEY_1"
       ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ],
-      "outputs": [
-        ".dist/**"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "outputs": ["dist/**"]
     },
     "check:types": {
-      "dependsOn": [
-        "^check:types"
-      ]
+      "dependsOn": ["^check:types"]
     },
     "@refugies-info/client#dev": {
-      "dependsOn": [
-        "//#update-icons"
-      ],
+      "dependsOn": ["//#update-icons"],
       "persistent": true,
       "cache": false,
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "@refugies-info/storybook#dev": {
+      "dependsOn": ["//#update-icons"],
+      "persistent": true,
+      "cache": false,
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "@refugies-info/ui#dev": {
+      "cache": false,
+      "persistent": true
     },
     "dev": {
       "persistent": true,
       "cache": false,
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
-    },
-    "start": {
-      "persistent": true,
-      "cache": false,
-      "dependsOn": [
-        "^start"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
     "test": {
       "cache": false,
-      "dependsOn": [
-        "^test"
-      ]
+      "dependsOn": ["@refugies-info/ui#build", "^test"]
     },
     "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
+      "dependsOn": ["^lint"]
     },
     "lint:fix": {
-      "dependsOn": [
-        "^lint:fix"
-      ]
+      "dependsOn": ["^lint:fix"]
     }
   }
 }

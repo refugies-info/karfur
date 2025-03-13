@@ -202,7 +202,7 @@ export const NeedsChoiceModal = (props: Props) => {
         leftHead={
           <h2>
             Attribuer des besoins à la fiche :&nbsp;
-            <span className="fw-normal">{dispositif.titreInformatif}</span>
+            <span className="font-normal">{dispositif.titreInformatif}</span>
           </h2>
         }
         rightHead={
@@ -222,7 +222,7 @@ export const NeedsChoiceModal = (props: Props) => {
             <h3 className={styles.subtitle}>Thèmes</h3>
             <div className={styles.column}>
               {themes.map((theme, i) => (
-                <div key={i} className="d-flex mb-2">
+                <div key={i} className="flex mb-2">
                   <input
                     type="radio"
                     name="theme"

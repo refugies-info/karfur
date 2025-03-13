@@ -1,5 +1,5 @@
+import { useTranslation } from "next-i18next";
 import { KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps, useDropdownContext } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";

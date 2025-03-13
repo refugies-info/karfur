@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Image from "next/image";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "./RemovableItem.module.scss";
 

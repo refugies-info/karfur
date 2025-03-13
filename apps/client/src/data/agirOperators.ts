@@ -13,6 +13,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f34de63124662360640",
     department: "01 - Ain",
     operator: "Alfa3a",
+    email: "pierre-yves.prigent@alfa3a.org",
   },
   {
     dispositifId: "660d1f34de63124662360641",
@@ -36,6 +37,12 @@ export const operators: Operator[] = [
     phone: "04 78 03 74 45",
   },
   {
+    dispositifId: "6790bf9ab519daad65ac95f2",
+    department: "08 - Ardennes",
+    operator: "Association pour l'Accueil des Travailleurs et des Migrants",
+    email: "agir08@aatm.fr",
+  },
+  {
     dispositifId: "660d1f36de63124662360667",
     department: "09 - Ariège",
     operator: "Association Hérisson Bello, Forum",
@@ -53,6 +60,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360669",
     department: "11 - Aude",
     operator: "SOS Solidarités",
+    email: "agir11@groupe-sos.org",
   },
   {
     department: "12 - Aveyron",
@@ -123,10 +131,14 @@ export const operators: Operator[] = [
     phone: "04 70 48 25 00",
   },
   {
+    dispositifId: "660d1f37de6312466236066d",
     department: "24 - Dordogne",
-    operator: "ARSL",
+    operator: "ASD (Association de Soutien de la Dordogne)",
+    email: "contact.pem@asd24.org",
+    phone: "05 53 06 82 10",
   },
   {
+    dispositifId: "660d1f37de63124662360677",
     department: "25 - Doubs",
     operator: "Coallia",
     email: "agir25@coallia.org",
@@ -154,7 +166,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360672",
     department: "29 - Finistère",
     operator: "Coallia",
-    email: "agir29@coallia.org",
+    email: "agir.29@coallia.org",
   },
   {
     department: "30 - Gard",
@@ -245,7 +257,7 @@ export const operators: Operator[] = [
     department: "44 - Loire-Atlantique",
     operator: "SOS Solidarités",
     email: "agirensemble44@groupe-sos.org",
-    phone: "02 40 35 74 76",
+    phone: "02 28 27 79 17",
   },
   {
     dispositifId: "660d1f34de6312466236063f",
@@ -295,6 +307,13 @@ export const operators: Operator[] = [
     email: "siege@foyernotredame.org",
   },
   {
+    dispositifId: "6790bf9ab519daad65ac95f1",
+    department: "52 - Haute-Marne",
+    operator: "Association pour l'Accueil des Travailleurs et des Migrants",
+    email: "agir52@aatm.fr",
+    phone: "03 25 30 73 75",
+  },
+  {
     dispositifId: "660d1f36de63124662360665",
     department: "53 - Mayenne",
     operator: "Corylus Form@tions",
@@ -342,14 +361,22 @@ export const operators: Operator[] = [
     email: "agir.60@coallia.org",
   },
   {
+    dispositifId: "660d1f37de63124662360673",
     department: "61 - Orne",
     operator: "Coallia",
     email: "agir61@coallia.org",
   },
   {
+    dispositifId: "6790bf9ab519daad65ac95f0",
+    department: "62 - Pas-de-Calais",
+    operator: "Coallia",
+    email: "agir.62@coallia.org",
+  },
+  {
     dispositifId: "660d18e9684cbc7e836f00d5",
     department: "63 - Puy-de-Dôme",
     operator: "Cécler",
+    email: "e.boschert@cecler.fr",
     phone: "04 28 70 18 64",
   },
   {
@@ -395,6 +422,7 @@ export const operators: Operator[] = [
     phone: "04 70 48 25 00",
   },
   {
+    dispositifId: "6790bf9cb519daad65ac95fb",
     department: "71 - Saône-et-Loire",
     operator: "Coallia",
     email: "agir.71@coallia.org",
@@ -509,6 +537,12 @@ export const operators: Operator[] = [
     department: "91 - Essonne",
     operator: "Coallia",
     email: "agir91@coallia.org",
+  },
+  {
+    dispositifId: "6790bf9bb519daad65ac95f3",
+    department: "92 - Hauts-de-Seine",
+    operator: "FTDA",
+    email: "agir92@france-terre-asile.org",
   },
   {
     dispositifId: "660d1f37de63124662360674",

@@ -41,7 +41,7 @@ export interface PatchStructureRequest {
   acronyme?: string;
   adresse?: string;
   authorBelongs?: boolean;
-  link?: string;
+  link?: string | null;
   mail_generique?: string;
   siren?: string;
   siret?: string;

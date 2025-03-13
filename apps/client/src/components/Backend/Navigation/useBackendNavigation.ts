@@ -3,7 +3,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { getPath, PathNames } from "routes";
+import { PathNames } from "routes";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
@@ -29,59 +29,53 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
 
   return [
     useBackendNavItem({
-      access: "all",
-      iconName: "search-outline",
-      onClick: () => router.push(getPath("/recherche", router.locale)),
-      title: t("Toolbar.find_information"),
-    }),
-    useBackendNavItem({
       access: RoleName.STRUCTURE,
-      iconName: nbNewNotifications > 0 ? "bell" : "bell-outline",
+      iconName: nbNewNotifications > 0 ? "ri-bell-fill" : "ri-bell-line",
       route: "/backend/user-dash-notifications" as PathNames,
-      title: `${t("Toolbar.Mes notifications")} (${nbNewNotifications})`,
+      title: `${t("Toolbar.Mes notifications", "Notifications")} (${nbNewNotifications})`,
     }),
     useBackendNavItem({
       route: "/backend/user-favorites" as PathNames,
-      iconName: "star-outline",
-      title: t("Toolbar.Mes favoris"),
+      iconName: "fr-icon-star-line",
+      title: t("Toolbar.Mes favoris", "Favoris"),
       access: "all",
     }),
     useBackendNavItem({
       route: "/backend/user-dash-contrib" as PathNames,
-      iconName: "file-add-outline",
-      title: t("Toolbar.Mes fiches"),
+      iconName: "ri-file-2-line",
+      title: t("Toolbar.Mes fiches", "Fiches"),
       access: "all",
     }),
     useBackendNavItem({
       route: "/backend/user-translation" as PathNames,
-      iconName: "globe-outline",
-      title: t("Toolbar.Mes traductions"),
+      iconName: "ri-globe-line",
+      title: t("Toolbar.Mes traductions", "Traductions"),
       access: "all",
     }),
     useBackendNavItem({
       route: "/backend/user-dash-structure" as PathNames,
-      iconName: "briefcase-outline",
-      title: t("Toolbar.Ma structure"),
+      iconName: "ri-briefcase-line",
+      title: t("Toolbar.Ma structure", "Structure"),
       access: RoleName.STRUCTURE,
     }),
     useBackendNavItem({
       route: "/backend/user-profile" as PathNames,
-      iconName: "person-outline",
-      title: t("Toolbar.Mon profil"),
+      iconName: "ri-user-line",
+      title: t("Toolbar.Mon profil", "Profil"),
       access: "all",
     }),
     useBackendNavItem({
       route: "/backend/admin" as PathNames,
-      iconName: "shield-outline",
-      title: t("Toolbar.Administration"),
+      iconName: "ri-shield-line",
+      title: t("Toolbar.Administration", "Admin"),
       access: RoleName.ADMIN,
     }),
     useBackendNavItem({
       onClick: disconnect,
-      iconName: "log-out-outline",
+      iconName: "ri-logout-box-line",
       iconColor: "var(--text-default-error)",
       textColor: "var(--text-default-error)",
-      title: t("Toolbar.logout"),
+      title: t("Toolbar.logout", "Se déconnecter"),
       access: "all",
     }),
   ].filter((n) => n !== null) as MainNavigationProps.Item[];

@@ -15,9 +15,9 @@ interface Props {
 const StepsFooter = (props: Props) => {
   const showPreviousButton = props.step > 1 || (props.step === 1 && props.previousOnFirst);
   return (
-    <div className="d-flex mt-6">
+    <div className="flex mt-6">
       <Steps step={props.step} maxStep={props.maxSteps} />
-      <div className="flex-grow-1 text-end">
+      <div className="grow text-end">
         {showPreviousButton && (
           <Button
             priority="secondary"

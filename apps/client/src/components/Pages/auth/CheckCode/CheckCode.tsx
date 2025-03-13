@@ -1,7 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -9,6 +8,7 @@ import { useCookie } from "react-use";
 import { Col, Row } from "reactstrap";
 import GmailIcon from "~/assets/auth/providers/gmail-icon.svg";
 import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
+import Image from "~/components/UI/Image";
 import { useLogin } from "~/hooks";
 import { cls } from "~/lib/classname";
 import isInBrowser from "~/lib/isInBrowser";
@@ -98,11 +98,7 @@ const CheckCode = (props: Props) => {
             {props.type === "login" && <h1>Entrez le code reçu</h1>}
             <p className={styles.subtitle}>
               Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
-              <Link
-                href={props.notYouCallback ? "#" : "/auth"}
-                onClick={props.notYouCallback}
-                className="text-decoration-underline"
-              >
+              <Link href={props.notYouCallback ? "#" : "/auth"} onClick={props.notYouCallback} className="underline">
                 Ce n'est pas vous&nbsp;?
               </Link>
             </p>

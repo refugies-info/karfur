@@ -1,5 +1,4 @@
 import { Languages } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useState } from "react";
 import TranslationStep1 from "~/assets/dispositif/translation/translate-step-1.svg";
 import TranslationStep2 from "~/assets/dispositif/translation/translate-step-2.svg";
@@ -8,6 +7,7 @@ import TranslationStep0 from "~/assets/dispositif/welcome-step-1.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import BubbleFlag from "~/components/UI/BubbleFlag";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import { Event } from "~/lib/tracking";
 import { StepsFooter } from "../../Edition/Modals/components";
 import { expertImages, modalContent } from "./data";
