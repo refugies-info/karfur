@@ -67,6 +67,12 @@ import {
   updateDispositifTagsOrNeeds,
   updateNbVuesOrFavoritesOnContent,
 } from "~/workflows";
+import {
+  DemarchesData,
+  DispositifsData,
+  getNewsletterDemarches,
+  getNewsletterDispositifs,
+} from "~/workflows/dispositif/newsletter";
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -316,6 +322,24 @@ export class DispositifController extends Controller {
   @Delete("/{id}/suggestion/{suggestionId}")
   public async deleteSuggestion(@Path() id: string, @Path() suggestionId: string): Response {
     return deleteSuggestion(id, suggestionId);
+  }
+
+  @Security({
+    jwt: ["newsletter"],
+    fromSite: [],
+  })
+  @Get("/newsletter/demarches")
+  public async getNewsletterDemarches(): ResponseWithData<DemarchesData> {
+    return getNewsletterDemarches();
+  }
+
+  @Security({
+    jwt: ["newsletter"],
+    fromSite: [],
+  })
+  @Get("/newsletter/dispositifs/{departement}")
+  public async getNewsletterDispositifs(@Path() departement: string): ResponseWithData<DispositifsData> {
+    return getNewsletterDispositifs(departement);
   }
 
   @Security({

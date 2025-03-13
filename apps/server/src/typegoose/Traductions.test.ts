@@ -120,6 +120,55 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
+const trad_added_adminName: TranslationContent = {
+  //@ts-ignore
+  content: {
+    titreInformatif: "abc",
+    titreMarque: "def",
+    abstract: "tyui",
+    what: "WHAT",
+    how: { "my-uuid-v4-key": { title: "title", text: "text" } },
+    next: {
+      "my-uuid-v4-key": { title: "title", text: "text" },
+      "my-uuid-v4-key-2": { title: "title", text: "text" },
+      "my-uuid-v4-key-3": { title: "title", text: "text" },
+    },
+  },
+
+  created_at: new Date(),
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
+};
+
+const trad_adminNameNull: TranslationContent = {
+  content: {
+    titreInformatif: "abc",
+    titreMarque: "def",
+    abstract: "tyui",
+    what: "WHAT",
+    how: { "my-uuid-v4-key": { title: "title", text: "text" } },
+    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    administrationName: null,
+  },
+
+  created_at: new Date(),
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
+};
+
+const trad_adminNameNull_en: TranslationContent = {
+  content: {
+    titreInformatif: "abc",
+    titreMarque: "def",
+    abstract: "tyui",
+    what: "WHAT",
+    why: {},
+    how: { "my-uuid-v4-key": { title: "title", text: "text" } },
+    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+  },
+
+  created_at: new Date(),
+  validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
+};
+
 describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
@@ -153,6 +202,15 @@ describe("Traductions", () => {
         removed: ["content.next.my-uuid-v4-key.title", "content.next.my-uuid-v4-key.text"],
       });
     });
+    it("should not return administrationName ", () => {
+      const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
+      newTradAdded.content = { ...newTradAdded.content, administrationName: null };
+      expect(Traductions.diff(trad_added_adminName, newTradAdded)).toEqual({
+        modified: [],
+        added: [],
+        removed: [],
+      });
+    });
   });
 
   describe("computeFinished", () => {
@@ -171,6 +229,15 @@ describe("Traductions", () => {
         // @ts-ignore because we inject a partial Dispositif & partial Traductions
         Traductions.computeFinished({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
       ).toEqual(false);
+    });
+    it("should return true", () => {
+      expect(
+        Traductions.computeFinished(
+          // @ts-ignore because we inject a partial Dispositif & partial Traductions
+          { translations: { fr: trad_adminNameNull } },
+          { translated: trad_adminNameNull_en },
+        ),
+      ).toEqual(true);
     });
   });
 });

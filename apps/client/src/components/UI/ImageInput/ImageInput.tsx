@@ -1,8 +1,8 @@
 import { Picture } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useState } from "react";
 import { Col, Input, Row, Spinner } from "reactstrap";
 import emptyImage from "~/assets/empty-image.svg";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import API from "~/utils/API";
@@ -67,7 +67,7 @@ const AdminThemeButton = (props: Props) => {
         <Col className={styles.col}>
           <div className={props.labelNoBackground ? "bg-transparent" : ""}>
             <div>
-              <FButton type="fill-dark" name="upload-outline" className="position-relative">
+              <FButton type="fill-dark" name="upload-outline" className="relative">
                 <Input
                   className={styles.file_input}
                   type="file"

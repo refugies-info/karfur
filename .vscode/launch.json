@@ -15,7 +15,7 @@
       "name": "Next.js: debug full stack",
       "type": "node-terminal",
       "request": "launch",
-      "command": "yarn dev",
+      "command": "pnpm dev --filter @refugies-info/server --filter @refugies-info/client --filter @refugies-info/ui",
       "serverReadyAction": {
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
@@ -24,16 +24,55 @@
       }
     },
     {
+      "name": "Debug server",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm dev:server",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
       "type": "node",
       "request": "launch",
-      "name": "Debug Current Test File",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
+      "name": "Debug Current Test (app)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "test:app",
         "--runInBand",
         "${fileBasename}"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-    }
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test (mobile)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "test:mobile",
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test (server)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "test:server",
+        "--runInBand",
+        "${fileBasename}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}"
+    },
   ]
 }

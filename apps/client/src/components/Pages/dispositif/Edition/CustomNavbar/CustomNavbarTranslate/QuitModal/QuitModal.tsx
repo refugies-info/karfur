@@ -1,6 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Languages } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useContext, useMemo } from "react";
 import { Col, Row } from "reactstrap";
 import PublishImage from "~/assets/dispositif/publish-image.svg";
@@ -8,6 +7,7 @@ import QuitImage from "~/assets/dispositif/quit-image.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import { useLanguages, useUser } from "~/hooks";
 import { Step } from "~/hooks/dispositif";
 import PageContext from "~/utils/pageContext";
@@ -65,7 +65,7 @@ const QuitModal = (props: Props) => {
                 </ul>
               </Col>
               <Col xs="auto">
-                <Image src={QuitImage} width={56} height={88} alt="" className="mt-3 ms-8" />
+                <Image src={QuitImage} width={56} height={88} alt="" className="ms-8 mt-3" />
               </Col>
             </Row>
 
@@ -111,7 +111,7 @@ const QuitModal = (props: Props) => {
       case "incomplete":
         return (
           <>
-            <div className="text-center mb-8 mt-6">
+            <div className="mt-6 mb-8 flex justify-center">
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">
@@ -138,7 +138,7 @@ const QuitModal = (props: Props) => {
               progress={props.progress}
               text={`${props.progress} étapes complétées sur ${props.progress}`}
             />
-            <div className="text-center mb-8 mt-6">
+            <div className="mt-6 mb-8 flex justify-center">
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">

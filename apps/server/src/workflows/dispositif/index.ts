@@ -19,6 +19,7 @@ export { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
 export { getStatistics } from "./getStatistics";
 export { getUserContributions } from "./getUserContributions";
 export { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
+export { getNewsletterDemarches, getNewsletterDispositifs } from "./newsletter";
 export { patchSuggestion } from "./patchSuggestion";
 export { publishDispositif } from "./publishDispositif";
 export { structureReceiveDispositif } from "./structureReceiveDispositif";

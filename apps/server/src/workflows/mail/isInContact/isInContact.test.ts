@@ -1,7 +1,7 @@
 import { user } from "../../../__fixtures__";
 import { isInContact } from "./isInContact";
 
-jest.mock("@sendinblue/client", () => ({
+jest.mock("@getbrevo/brevo", () => ({
   ContactsApi: jest.fn().mockReturnValue({
     setApiKey: jest.fn(),
     getContactInfo: jest.fn().mockResolvedValue({ body: { listIds: [57] } }),
@@ -9,6 +9,13 @@ jest.mock("@sendinblue/client", () => ({
   ContactsApiApiKeys: {
     apiKey: "",
   },
+  TransactionalSMSApi: jest.fn().mockReturnValue({
+    setApiKey: jest.fn(),
+  }),
+  TransactionalSMSApiApiKeys: {
+    apiKey: "",
+  },
+  SendTransacSms: jest.fn(),
 }));
 
 describe("isInNewsletterList", () => {

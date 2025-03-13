@@ -13,11 +13,11 @@ export type PathNames =
   | "/publier"
   | "/traduire"
   | "/agir"
-  | "/qui-sommes-nous"
   | "/mentions-legales"
   | "/declaration-accessibilite"
-  | "/politique-de-confidentialite"
   | "/plan-du-site"
+  | "/politique-de-confidentialite"
+  | "/mission-et-impact"
   | "/backend/[...backend]"
   | "/auth"
   | "/auth/connexion"
@@ -52,11 +52,11 @@ const routes: Routes = {
   "/publier": "/publish",
   "/traduire": "/translate",
   "/agir": "/agir",
-  "/qui-sommes-nous": "/who-are-we",
   "/mentions-legales": "/legal-notices",
   "/declaration-accessibilite": "/accessibility-statement",
   "/plan-du-site": "/sitemap",
   "/politique-de-confidentialite": "/privacy-policy",
+  "/mission-et-impact": "/mission-and-impact",
   "/backend/[...backend]": "/backend/[...backend]",
   "/auth": "/auth",
   "/auth/connexion": "/auth/connexion",

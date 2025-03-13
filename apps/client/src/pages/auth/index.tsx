@@ -1,7 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { ReactElement, useCallback, useState } from "react";
 import { useAsyncFn } from "react-use";
@@ -13,6 +12,7 @@ import Layout from "~/components/Pages/auth/Layout";
 import Loader from "~/components/Pages/auth/Loader";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
+import Image from "~/components/UI/Image";
 import { useAuthRedirect, useLogin, useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";

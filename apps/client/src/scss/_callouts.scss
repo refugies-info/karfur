@@ -80,11 +80,8 @@
     &::after {
       @include l-ltr(0);
 
-      content: "\ea20";
-      font-family: remixicon, sans-serif !important;
-      color: white;
+      content: url("../assets/important-callout.svg");
       text-align: center;
-      font-size: 24px;
       padding-top: u(4);
       width: u(10);
       position: absolute;

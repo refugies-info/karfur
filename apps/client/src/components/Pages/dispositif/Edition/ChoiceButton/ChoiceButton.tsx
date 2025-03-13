@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import uniqueId from "lodash/uniqueId";
-import Image from "next/image";
 import React, { useMemo, useState } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import Tooltip from "~/components/UI/Tooltip";
 import { cls } from "~/lib/classname";
 import styles from "./ChoiceButton.module.scss";

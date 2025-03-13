@@ -1,8 +1,8 @@
 import { Languages } from "@refugies-info/api-types";
-import Image from "next/image";
 import PublishImage from "~/assets/dispositif/publish-image.svg";
 import BubbleFlag from "~/components/UI/BubbleFlag";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import styles from "./CompleteContent.module.scss";
 
 interface Props {
@@ -22,7 +22,7 @@ const CompleteContent = (props: Props) => {
         {props.locale && <BubbleFlag ln={props.locale} className="me-2" />}
         Félicitations, vous avez validé et traduit {props.nbWords} mots !
       </div>
-      <div className="text-center mb-8 mt-6">
+      <div className="mt-6 mb-8 flex justify-center">
         <Image src={PublishImage} width={345} height={240} alt="" />
       </div>
       <div className="text-end">

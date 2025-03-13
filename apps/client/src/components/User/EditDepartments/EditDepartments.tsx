@@ -87,7 +87,7 @@ const EditDepartments = (props: Props) => {
         Nom ou numéro du département
         <span className="fr-hint-text">Plusieurs choix possibles</span>
       </label>
-      <div className="position-relative">
+      <div className="relative">
         <div ref={suggestionsRef}>
           <SearchBar
             renderInput={({ className, id, placeholder, type }) => (

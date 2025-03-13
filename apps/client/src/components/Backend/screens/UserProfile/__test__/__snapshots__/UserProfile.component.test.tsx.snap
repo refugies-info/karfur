@@ -9,7 +9,7 @@ exports[`UserProfile should render correctly 1`] = `
       class="wrapper"
     >
       <div
-        class="mb-10 align-items-center row"
+        class="mb-10 items-center row"
       >
         <div
           class="col"
@@ -33,7 +33,7 @@ exports[`UserProfile should render correctly 1`] = `
         class="row"
       >
         <div
-          class="flex-grow-0 col"
+          class="!grow-0 col"
         >
           <h2>
             Photo de profil
@@ -65,7 +65,7 @@ exports[`UserProfile should render correctly 1`] = `
                 Votre photo apparaît sur les fiches auxquelles vous contribuez.
               </p>
               <button
-                class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative"
+                class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right relative"
               >
                 Modifier ma photo
                 <input
@@ -80,7 +80,7 @@ exports[`UserProfile should render correctly 1`] = `
           class="col"
         >
           <div
-            class="d-flex align-items-center justify-content-between"
+            class="flex items-center justify-between"
           >
             <h2>
               Informations personnelles
@@ -111,7 +111,6 @@ exports[`UserProfile should render correctly 1`] = `
                   </span>
                 </label>
                 <input
-                  aria-describedby="input-:r2:-desc-error"
                   class="fr-input"
                   id="input-:r2:"
                   name="pseudo"
@@ -141,7 +140,6 @@ exports[`UserProfile should render correctly 1`] = `
                   </span>
                 </label>
                 <input
-                  aria-describedby="input-:r3:-desc-error"
                   class="fr-input"
                   id="input-:r3:"
                   name="firstName"
@@ -169,7 +167,6 @@ exports[`UserProfile should render correctly 1`] = `
                   />
                 </label>
                 <input
-                  aria-describedby="input-:r4:-desc-error"
                   class="fr-input"
                   id="input-:r4:"
                   name="email"
@@ -194,7 +191,6 @@ exports[`UserProfile should render correctly 1`] = `
                   Téléphone
                 </label>
                 <input
-                  aria-describedby="input-:r5:-desc-error"
                   class="fr-input"
                   id="input-:r5:"
                   name="phone"
@@ -219,7 +215,6 @@ exports[`UserProfile should render correctly 1`] = `
                   Mot de passe actuel
                 </label>
                 <input
-                  aria-describedby="input-:r6:-desc-error"
                   class="fr-input"
                   id="input-:r6:"
                   name="fake-password-input"
@@ -257,7 +252,6 @@ exports[`UserProfile should render correctly 1`] = `
               class="fr-modal"
               data-fr-concealing-backdrop="true"
               id="user-email-code-modal"
-              role="dialog"
             >
               <div
                 class="fr-container fr-container--fluid fr-container-md"
@@ -314,7 +308,6 @@ exports[`UserProfile should render correctly 1`] = `
               class="fr-modal"
               data-fr-concealing-backdrop="true"
               id="user-password-modal"
-              role="dialog"
             >
               <div
                 class="fr-container fr-container--fluid fr-container-md"
@@ -365,7 +358,6 @@ exports[`UserProfile should render correctly 1`] = `
                               Adresse mail
                             </label>
                             <input
-                              aria-describedby="input-:r9:-desc-error"
                               class="fr-input"
                               id="input-:r9:"
                               name="email"
@@ -404,7 +396,7 @@ exports[`UserProfile should render correctly 1`] = `
             class="block mb-4"
           >
             <div
-              class="d-flex justify-content-between mb-3"
+              class="flex justify-between mb-3"
             >
               <label
                 class="label"
@@ -484,7 +476,6 @@ exports[`UserProfile should render correctly 1`] = `
       class="fr-modal"
       data-fr-concealing-backdrop="true"
       id="user-departments-modal"
-      role="dialog"
     >
       <div
         class="fr-container fr-container--fluid fr-container-md"
@@ -537,7 +528,7 @@ exports[`UserProfile should render correctly 1`] = `
                     </span>
                   </label>
                   <div
-                    class="position-relative"
+                    class="relative"
                   >
                     <div />
                   </div>
@@ -576,7 +567,6 @@ exports[`UserProfile should render correctly 1`] = `
       class="fr-modal"
       data-fr-concealing-backdrop="true"
       id="user-language-modal"
-      role="dialog"
     >
       <div
         class="fr-container fr-container--fluid fr-container-md"
@@ -617,7 +607,7 @@ exports[`UserProfile should render correctly 1`] = `
                 </h1>
                 <form>
                   <label
-                    class="choice mb-4 rounded-0"
+                    class="choice mb-4 rounded-none"
                     for="language"
                   >
                     <input
@@ -676,7 +666,6 @@ exports[`UserProfile should render correctly 1`] = `
       class="fr-modal"
       data-fr-concealing-backdrop="true"
       id="delete-account-modal"
-      role="dialog"
     >
       <div
         class="fr-container fr-container--fluid fr-container-md"

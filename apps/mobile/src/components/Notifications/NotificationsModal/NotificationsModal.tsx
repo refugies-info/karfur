@@ -1,5 +1,4 @@
-import { ScrollView } from "react-native";
-import Modal from "react-native-modal";
+import { Modal, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "styled-components/native";
 import { EnableNotifications } from "../EnableNotifications";
@@ -18,7 +17,7 @@ const NotificationsModal = (props: Props) => {
   const theme = useTheme();
 
   return (
-    <Modal isVisible={visible}>
+    <Modal visible={visible}>
       <ScrollView
         contentContainerStyle={{
           marginTop: insets.top + theme.margin * 2,

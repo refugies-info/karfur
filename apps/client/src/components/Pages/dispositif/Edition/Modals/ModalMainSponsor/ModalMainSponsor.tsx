@@ -66,7 +66,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const setData = useCallback(() => {
     if (selectedStructure) {
       setValue("mainSponsor", selectedStructure.toString());
-    } else if (!!mainSponsor.name && !!mainSponsor.link && !!mainSponsor.logo.secure_url) {
+    } else if (!!mainSponsor.name) {
       setValue("mainSponsor", mainSponsor);
     }
 

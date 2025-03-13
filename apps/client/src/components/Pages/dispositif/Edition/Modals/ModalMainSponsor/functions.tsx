@@ -105,7 +105,7 @@ export const isNextButtonDisabled = (
   const isSearchStructureForm = hasStructure ? isStep(step, 2) : isStep(step, 0);
 
   if (isCreateForm) {
-    return !mainSponsor.name || !mainSponsor.link || !mainSponsor.logo.secure_url;
+    return !mainSponsor.name;
   } else if (isAuthorContactForm) {
     return !authorContact.name || !authorContact.email || !authorContact.comments;
   } else if (isStructureContactForm && !unknownContact) {

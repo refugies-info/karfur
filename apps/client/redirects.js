@@ -10,7 +10,7 @@ const urlTranslations = [
   ["/dispositif/:id", "/program/:id"],
   ["/publier", "/publish"],
   ["/traduire", "/translate"],
-  ["/qui-sommes-nous", "/who-are-we"],
+  ["/mission-et-impact", "/mission-and-impact"],
   ["/mentions-legales", "/legal-notices"],
   ["/declaration-accessibilite", "/accessibility-statement"],
   ["/politique-de-confidentialite", "/privacy-policy"],
@@ -18,6 +18,8 @@ const urlTranslations = [
 ];
 
 const oldPathsRedirects = [
+  ["/fr/qui-sommes-nous", "/fr/mission-et-impact"],
+  [`/:lang${ln}?/who-are-we`, "/:lang/mission-and-impact"],
   ["/fr/advanced-search", "/fr/recherche"],
   ["/fr/annuaire-create", "/fr/annuaire-creation"],
   [`/:lang${ln}?/annuaire-create`, "/:lang/directory-create"],

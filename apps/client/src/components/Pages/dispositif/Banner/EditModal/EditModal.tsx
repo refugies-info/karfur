@@ -1,7 +1,7 @@
-import Image from "next/image";
 import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
+import Image from "~/components/UI/Image";
 import styles from "./EditModal.module.scss";
 
 interface Props {
@@ -29,7 +29,7 @@ const EditModal = (props: Props) => {
           Pensez bien à faire toutes vos modifications avant de les envoyer pour traduction. Sinon, les traducteurs
           travaillent deux fois de suite sur votre fiche.
         </p>
-        <div className="text-center mb-8">
+        <div className="mb-8 flex justify-center">
           <Image src={TutorielImage} width={176} height={120} alt="" />
         </div>
         <div className="text-end">

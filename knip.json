@@ -1,0 +1,50 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "include": ["dependencies"],
+  "workspaces": {
+    "apps/client": {
+      "entry": ["src/scripts/*.js"],
+      "ignoreDependencies": [
+        "bootstrap",
+        "cssnano",
+        "flag-icons",
+        "postcss",
+        "react-anchor-link-smooth-scroll",
+        "remixicon",
+        "sharp",
+        "tailwindcss",
+        "typescript-plugin-css-modules"
+      ]
+    },
+    "apps/mobile": {
+      "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
+      "ignoreDependencies": [
+        "@babel/preset-env",
+        "@babel/runtime",
+        "@react-native/assets-registry",
+        "@types/styled-components-react-native",
+        "use-sync-external-store"
+      ]
+    },
+    "apps/server": {
+      "entry": ["src/server.ts"],
+      "ignoreDependencies": [
+        "@tsoa/runtime",
+        "@types/mongoose",
+        "nodemon",
+        "path-to-regexp",
+        "ts-node",
+        "tsconfig-paths"
+      ]
+    },
+    "apps/storybook": {
+      "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]
+    },
+    "packages/ui": {
+      "ignoreDependencies": [
+        "react-dom",
+        "tailwindcss"
+      ]
+    }
+  }
+}

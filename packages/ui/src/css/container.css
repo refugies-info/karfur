@@ -1,0 +1,10 @@
+/* stylelint-disable media-feature-range-notation */
+/* stylelint-disable scss/at-rule-no-unknown */
+
+@layer utilities {
+    .container {
+      max-width: 78rem; 
+
+      @apply px-4 lg:px-6;
+    }
+  }

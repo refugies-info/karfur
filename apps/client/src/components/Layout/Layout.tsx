@@ -177,10 +177,10 @@ const Layout = (props: Props) => {
   const isUserFavoritesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
   const hasUserFavoritesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
   useEffect(() => {
-    if (user && userFavorites.length === 0 && !isUserFavoritesLoading && !hasUserFavoritesError) {
+    if (user && userFavorites === null && !isUserFavoritesLoading && !hasUserFavoritesError) {
       dispatch(fetchUserFavoritesActionCreator(router.locale || "fr"));
     }
-  }, [user, userFavorites.length, isUserFavoritesLoading, hasUserFavoritesError, dispatch, router.locale]);
+  }, [user, userFavorites, isUserFavoritesLoading, hasUserFavoritesError, dispatch, router.locale]);
 
   const computeFullSentence = (nodeList: any) => {
     let sentence = "";
@@ -213,7 +213,7 @@ const Layout = (props: Props) => {
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <DownloadAppBanner />
       <Navbar />
-      <div className={styles.main}>
+      <div id="contenu" className={styles.main}>
         <main className={styles.content}>{props.children}</main>
       </div>
       <Footer />

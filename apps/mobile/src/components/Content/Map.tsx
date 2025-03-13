@@ -95,7 +95,9 @@ export const Map = (props: PropsType) => {
   return (
     <GestureHandlerRootView>
       <MapView
-        ref={(ref) => (map = ref)}
+        ref={(ref) => {
+          map = ref;
+        }}
         style={{
           width: mapWidth,
           height: mapHeight,
@@ -137,7 +139,9 @@ export const Map = (props: PropsType) => {
       </MapView>
       <BottomSheet
         index={0}
-        ref={(ref) => (bottomSheet = ref)}
+        ref={(ref) => {
+          bottomSheet = ref;
+        }}
         enablePanDownToClose={true}
         snapPoints={animatedSnapPoints as Readonly<SharedValue<(string | number)[]>>}
         handleHeight={animatedHandleHeight}

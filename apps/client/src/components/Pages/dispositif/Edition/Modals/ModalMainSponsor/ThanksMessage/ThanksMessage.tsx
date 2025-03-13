@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import ThanksModalImage from "~/assets/dispositif/thanks-modal-image.svg";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import Image from "~/components/UI/Image";
 import styles from "./ThanksMessage.module.scss";
 
 const icon = (
@@ -44,7 +44,7 @@ const ThanksMessage = ({ publish, content }: Props) => {
           </ul>
         </>
       ) : null}
-      <div className="text-center">
+      <div className="flex justify-center">
         <Image src={ThanksModalImage} width={274} height={160} alt="" />
       </div>
     </div>

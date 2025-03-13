@@ -38,6 +38,10 @@ const keysForSubSection = (prefix: string, translated: any) =>
     }),
   );
 
+const removeNullValues = (keys: (keyof TranslationContent)[], translationObject: Partial<TranslationContent>) => {
+  return keys.filter((key: keyof TranslationContent) => get(translationObject, key) !== null);
+};
+
 /**
  * Cette fonction permet de récupérer l'ensemble des sections
  * du langue du dispositif ou d'une traduction.
@@ -119,10 +123,10 @@ export class Traductions extends Base {
   }
 
   public static diff(origin: TranslationContent, compareTo: TranslationContent): TraductionDiff {
-    const originKeys = keys(origin);
-    const compareToKeys = keys(compareTo);
+    const originKeys = keys(origin) as (keyof TranslationContent)[];
+    const compareToKeys = keys(compareTo) as (keyof TranslationContent)[];
     // ces champs devront être traduits impérativement => to review
-    const added = difference(compareToKeys, originKeys);
+    const added = removeNullValues(difference(compareToKeys, originKeys), compareTo);
     // les champs supprimés peuvent être traités automatiquement sans re-traduction
     const removed = difference(originKeys, compareToKeys);
 
@@ -134,8 +138,14 @@ export class Traductions extends Base {
   }
 
   public static computeFinished(dispositif: Dispositif, translation: Traductions): boolean {
-    const dispositifSectionsCounter = keys(dispositif.translations.fr).length;
-    const translationSectionsCounter = keys(translation.translated).length;
+    const dispositifSectionsCounter = removeNullValues(
+      keys(dispositif.translations.fr) as (keyof TranslationContent)[],
+      dispositif.translations.fr,
+    ).length;
+    const translationSectionsCounter = removeNullValues(
+      keys(translation.translated) as (keyof TranslationContent)[],
+      translation.translated,
+    ).length;
     const notFinished = [...new Set([...(translation.toFinish || []), ...(translation.toReview || [])])].length;
     return (translationSectionsCounter - notFinished) / dispositifSectionsCounter >= 1;
   }

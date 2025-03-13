@@ -1,16 +1,16 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import { Picture } from "@refugies-info/api-types";
 import { View } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { getImageUri } from "~/libs/getImageUri";
 
 interface Props {
-  theme: GetThemeResponse;
+  appImage: Picture | undefined;
 }
-export const TagImage = ({ theme }: Props) => {
-  if (!theme.appImage) return null;
+export const TagImage = ({ appImage }: Props) => {
+  if (!appImage) return null;
   return (
     <View>
-      <SvgUri width={"100%"} height={"100%"} uri={getImageUri(theme.appImage.secure_url)} />
+      <SvgUri width={"100%"} height={"100%"} uri={getImageUri(appImage.secure_url)} />
     </View>
   );
 };

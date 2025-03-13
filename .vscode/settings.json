@@ -1,28 +1,14 @@
 {
-  "alias-tool.mappings": {
-    "~scss": "${workspace}/apps/client/src/scss"
-  },
+  "alias-tool.mappings": { "~scss": "${workspace}/apps/client/src/scss" },
   "scss.lint.unknownAtRules": "ignore",
-  "eslint.workingDirectories": [
-    "./apps/client",
-    "./apps/server"
-  ],
+  "css.customData": [".vscode/tailwind.json"],
+  "eslint.workingDirectories": ["./apps/client", "./apps/server"],
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "conventionalCommits.scopes": [
-    "api-types",
-    "client",
-    "server",
-    "mobile"
-  ],
+  "conventionalCommits.scopes": ["api-types", "client", "server", "mobile", "storybook", "ui"],
   // i18n-ally
   "i18n-ally.extract.autoDetect": false,
-  "i18n-ally.localesPaths": [
-    "apps/client/src/locales",
-    "apps/mobile/src/translations"
-  ],
-  "i18n-ally.ignoreFiles": [
-    "**/unused.json"
-  ],
+  "i18n-ally.localesPaths": ["apps/client/public/locales", "apps/mobile/src/translations"],
+  "i18n-ally.ignoreFiles": ["**/unused.json"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.keysInUse": [
     "StructureType.*",
@@ -39,16 +25,10 @@
     "Roles.*",
     "Status.*",
     "LanguageDropdown.*",
-    "LanguageDropdown.en_persan/dari",
-    "Translate.medium",
-    "Translate.strong",
-    "Translate.weak"
+    "LanguageDropdown.en_persan/dari"
   ],
   "i18n-ally.dirStructure": "auto",
-  "i18n-ally.enabledFrameworks": [
-    "i18next",
-    "react-i18next"
-  ],
+  "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
   "i18n-ally.extract.keygenStyle": "snake_case",
   "i18n-ally.displayLanguage": "fr",
   "i18n-ally.extract.ignoredByFiles": {},
@@ -64,8 +44,11 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.format.semicolons": "insert",
   "files.insertFinalNewline": true,
-  "stylelint.validate": [
-    "css",
-    "scss"
-  ]
+  "stylelint.validate": ["css", "scss"],
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript",
+    "html": "html"
+  },
+  "tailwindCSS.emmetCompletions": true
 }

@@ -1,8 +1,8 @@
 import { SimpleUser } from "@refugies-info/api-types";
-import Image from "next/image";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import marioProfile from "~/assets/mario-profile.jpg";
+import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import styles from "../Admin.module.scss";
 import { StyledStatus } from "./SubComponents";
@@ -38,7 +38,7 @@ export const UserButton = (props: {
           </p>
         )}
         {text && (
-          <p className={cls(styles.text, "w-100 text-center")}>
+          <p className={cls(styles.text, "w-full text-center")}>
             <strong>{text}</strong>
           </p>
         )}

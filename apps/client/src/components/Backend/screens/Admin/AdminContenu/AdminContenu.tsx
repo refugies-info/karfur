@@ -424,12 +424,12 @@ export const AdminContenu = () => {
                     <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
                   </td>
                   <td
-                    className="align-middle cursor-pointer"
+                    className="cursor-pointer align-middle"
                     onClick={() => setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)}
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
-                  <td className={"align-middle "} onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                  <td className={"align-middle"} onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     {nbDays}
                   </td>
                   <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
@@ -451,8 +451,8 @@ export const AdminContenu = () => {
                       }
                     />
                   </td>
-                  <td className="align-middle fw-bold">{element.nbMercis} 🙏</td>
-                  <td className="align-middle fw-bold">{element.nbVues || 0} 📈</td>
+                  <td className="align-middle font-bold">{element.nbMercis} 🙏</td>
+                  <td className="align-middle font-bold">{element.nbVues || 0} 📈</td>
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />

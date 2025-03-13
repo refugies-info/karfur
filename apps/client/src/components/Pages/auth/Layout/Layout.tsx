@@ -1,11 +1,11 @@
 import { Notice } from "@codegouvfr/react-dsfr/Notice";
-import Image from "next/image";
 import { useEffect } from "react";
 import PersosIllu from "~/assets/auth/illu-persos.svg";
 import AuthIllu from "~/assets/auth/login-illu.svg";
 import PartnersLogos from "~/assets/auth/partners-logo.png";
 import RatingStars from "~/assets/auth/rating-stars.svg";
 import AuthNavbar from "~/components/Navigation/AuthNavbar";
+import Image from "~/components/UI/Image";
 import { useChangeLanguage, useLocale, useRTL } from "~/hooks";
 import { cls } from "~/lib/classname";
 import styles from "./Layout.module.scss";
@@ -41,7 +41,7 @@ const Layout = (props: Props) => {
                 href="https://help.refugies.info/fr/article/je-narrive-pas-a-me-connecter-a-mon-compte-refugiesinfo-1n02al9/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-decoration-underline"
+                className="underline"
               >
                 article d'aide
               </a>{" "}
@@ -50,7 +50,7 @@ const Layout = (props: Props) => {
                 href="https://go.crisp.chat/chat/embed/?website_id=74e04b98-ef6b-4cb0-9daf-f8a2b643e121"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-decoration-underline"
+                className="underline"
               >
                 via notre livechat
               </a>
@@ -59,7 +59,7 @@ const Layout = (props: Props) => {
           }
         />
       )}
-      <div className={styles.row}>
+      <div className={cls(!props.fullWidth && styles.row)}>
         <main className={cls(styles.main, props.fullWidth && styles.full_width)}>{props.children}</main>
 
         {!props.fullWidth && (
@@ -81,7 +81,6 @@ const Layout = (props: Props) => {
           </div>
         )}
       </div>
-
       {props.fullWidth && (
         <div className={styles.fixed_illu}>
           <Image src={PersosIllu} width={127} height={200} alt="" />

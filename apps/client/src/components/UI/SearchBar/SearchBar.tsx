@@ -11,7 +11,7 @@ import { removeAccents } from "~/lib";
 import { escapeRegexCharacters, getSuggestionValue } from "~/lib/search";
 
 import { GetActiveUsersResponse, GetAllUsersResponse } from "@refugies-info/api-types";
-import Image from "next/image";
+import Image from "~/components/UI/Image";
 import { colors } from "~/utils/colors";
 
 type Suggestion = GetActiveUsersResponse;

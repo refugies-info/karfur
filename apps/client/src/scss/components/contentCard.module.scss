@@ -54,15 +54,30 @@ $shadowHeight: 1.4rem;
     padding-bottom: u(6) !important; // override dsfr
     margin-left: 0;
     margin-right: 0;
+
+    @include media-max("sm-limit") {
+      gap: u(2);
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .text {
-    margin-top: auto;
     order: 2;
     height: 9.125em;
     overflow-y: clip;
     flex-shrink: 0;
     z-index: 1;
+
+    @include media-max("sm-limit") {
+      height: auto;
+    }
+
+    & p {
+      @include media-max("sm-limit") {
+        @include dsfr-text("normal");
+      }
+    }
   }
 
   .placeholder_img {
@@ -93,6 +108,7 @@ $shadowHeight: 1.4rem;
 }
 
 .end {
+  margin-top: auto;
   order: 4;
   position: relative;
   display: grid;
@@ -100,27 +116,29 @@ $shadowHeight: 1.4rem;
   gap: 0.3em;
   height: 1.4em;
 
-  // The gradient to mask the overflowing text above
-  &::before {
-    z-index: 2;
-    pointer-events: none !important; // to keep the whole card clickable
-    content: "";
-    position: absolute;
-    top: - u(4);
-    right: 0;
-    left: -0.75em;
-    transform: translateY(calc(-100%));
-    width: calc(100% + 1.5em);
-    height: $shadowHeight;
-    background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
-  }
+  @include media-min("sm-limit") {
+    // The gradient to mask the overflowing text above
+    &::before {
+      z-index: 2;
+      pointer-events: none !important; // to keep the whole card clickable
+      content: "";
+      position: absolute;
+      top: - u(4);
+      right: 0;
+      left: -0.75em;
+      transform: translateY(calc(-100%));
+      width: calc(100% + 1.5em);
+      height: $shadowHeight;
+      background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
+    }
 
-  // The arrow icon
-  > i::before {
-    --icon-size: 1em !important;
+    // The arrow icon
+    > i::before {
+      --icon-size: 1em !important;
 
-    line-height: 1em !important;
-    color: var(--text-action-high-blue-france);
+      line-height: 1em !important;
+      color: var(--text-action-high-blue-france);
+    }
   }
 }
 
@@ -149,6 +167,10 @@ $shadowHeight: 1.4rem;
 
   & > span {
     @include dsfr-text("very-small");
+
+    @include media-max("sm-limit") {
+      @include dsfr-text("small");
+    }
 
     display: inline;
     color: var(--text-mention-grey);

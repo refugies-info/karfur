@@ -42,6 +42,7 @@ $error: #b01917;
   padding: u(4);
   width: 100%;
   height: 100%;
+  color: $gray80;
 
   .with_icon & {
     @include pl-ltr(44px);

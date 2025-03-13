@@ -11,14 +11,14 @@
 ## Requirements
 
 - node version 12+
-- package manager: yarn
+- package manager: pnpm
 
 ## Installation
 
 - create `.env` file
 - add private keys
-- run `yarn` to install dependencies
-- run `yarn start`
+- run `pnpm` to install dependencies
+- run `pnpm start`
 
 # Environments
 
@@ -52,10 +52,10 @@ The environment variables are defined at 2 different places:
 1. Develop all the features on a specific branch.
 2. Update tests or create new one. See section [Tests](#tests)
 3. When done, merge your changes to `dev` branch.
-4. When you are ready to create a staging build, use the `yarn pr:stg:mobile` command to create a PR that merges the `dev` branch to the `staging-mobile` branch. A Github Action will automatically publish the new app on `staging` environment for tests. If you want to deploy it manually, see [how to deploy on staging](#staging)
-5. When the features are validated, use the `yarn pr:prod:mobile` command to merge the `staging-mobie` branch to the `master-mobile` branch.
+4. When you are ready to create a staging build, use the `pnpm pr:stg:mobile` command to create a PR that merges the `dev` branch to the `staging-mobile` branch. A Github Action will automatically publish the new app on `staging` environment for tests. If you want to deploy it manually, see [how to deploy on staging](#staging)
+5. When the features are validated, use the `pnpm pr:prod:mobile` command to merge the `staging-mobie` branch to the `master-mobile` branch.
    Don't forget to increment the version number. See the [Version numbers](#version-numbers) section.
-6. [Deploy on production](#production). Run the `yarn eas:submit` command to create a production build on eas and push to the app stores.  Use the app store consoles respectively to fullfill publication requirements and submit the builds for review.
+6. [Deploy on production](#production). Run the `pnpm eas:submit` command to create a production build on eas and push to the app stores. Use the app store consoles respectively to fullfill publication requirements and submit the builds for review.
 
 # Deploy
 
@@ -204,8 +204,8 @@ Just define the translations in these files, and use the same keys than the one 
 To test the application, we compare snapshots of the app between the previous and the current version.
 
 ```
-> yarn test             # start to compare snapshots
-> yarn test:unit -u     # update snapshots to keep the current one as a reference.
+> pnpm test             # start to compare snapshots
+> pnpm test:unit -u     # update snapshots to keep the current one as a reference.
 ```
 
 ## Theme

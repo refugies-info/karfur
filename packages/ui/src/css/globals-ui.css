@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "./dsfr-tokens.css";
+@import "./container.css";
+@source "../components/";
+
+@theme {
+  /* Breakpoints */
+  --breakpoint-sm: 36em; /* 576px */
+  --breakpoint-md: 48em; /* 768px */
+  --breakpoint-lg: 62em; /* 992px */
+  --breakpoint-xl: 75em; /* 1200px */
+
+  /* Fonts */
+  --font-sans: "Marianne", "Arial", "sans-serif";
+  --font-caveat: var(--font-caveat);
+}
+
+body {
+  overflow-x: hidden;
+}

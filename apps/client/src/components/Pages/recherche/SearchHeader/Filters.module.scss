@@ -131,7 +131,7 @@
 
   @include media-max("lg-limit") {
     display: inline-flex;
-    margin-left: auto;
+    margin-inline: auto 0;
 
     & button {
       aspect-ratio: 1;
