@@ -1,5 +1,4 @@
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TitleWithNumber from "~/components/Backend/TitleWithNumber";
@@ -7,6 +6,7 @@ import { FrameModal } from "~/components/Modals";
 import DispositifCard from "~/components/UI/DispositifCard";
 import FButton from "~/components/UI/FButton/FButton";
 import Toast from "~/components/UI/Toast";
+import { useLocale } from "~/hooks";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import {
@@ -27,9 +27,8 @@ const UserFavorites = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
-  const router = useRouter();
   const dispatch = useDispatch();
-  const locale = router.locale || "fr";
+  const locale = useLocale();
 
   useEffect(() => {
     document.title = props.title;

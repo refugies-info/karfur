@@ -1,14 +1,15 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import router from "next/router";
 import { memo } from "react";
 import { useSelector } from "react-redux";
+import { useLocale } from "~/hooks";
 import { getPath } from "~/routes";
 import { userSelector } from "~/services/User/user.selectors";
 import styles from "./LoginButton.module.scss";
 
 const LoginButton = () => {
+  const locale = useLocale();
   const { user } = useSelector(userSelector);
   const { t } = useTranslation();
 
@@ -45,7 +46,7 @@ const LoginButton = () => {
           key="login"
           priority="primary"
           linkProps={{
-            href: getPath("/auth", router.locale),
+            href: getPath("/auth", locale),
             prefetch: false,
           }}
           iconId="fr-icon-account-pin-circle-line"

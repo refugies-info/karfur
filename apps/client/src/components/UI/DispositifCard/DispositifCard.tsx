@@ -2,14 +2,13 @@ import Badge from "@codegouvfr/react-dsfr/Badge";
 import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import FavoriteButton from "~/components/UI/FavoriteButton";
 import Image from "~/components/UI/Image";
-import { useSanitizedContent, useUtmz } from "~/hooks";
+import { useLocale, useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
 import { cls } from "~/lib/classname";
@@ -31,7 +30,7 @@ interface Props {
 
 const DispositifCard = (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
+  const locale = useLocale();
   const themes = useSelector(themesSelector);
   const isDispositif = useMemo(
     () => props.dispositif.typeContenu === ContentType.DISPOSITIF,
@@ -85,7 +84,7 @@ const DispositifCard = (props: Props) => {
                     props.demoCard
                       ? "#"
                       : {
-                          pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, router.locale),
+                          pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
                           query: { id: props.dispositif._id.toString(), ...utmParams },
                         }
                   }
@@ -150,13 +149,7 @@ const DispositifCard = (props: Props) => {
                     <div className={styles.info}>
                       <span className="shrink">
                         <i className="fr-icon-time-line me-2" />
-                        <span>
-                          {getRelativeTimeString(
-                            new Date(props.dispositif.lastModificationDate),
-                            router.locale || "fr",
-                            t,
-                          )}
-                        </span>
+                        <span>{getRelativeTimeString(new Date(props.dispositif.lastModificationDate), locale, t)}</span>
                       </span>
                     </div>
                   )}
