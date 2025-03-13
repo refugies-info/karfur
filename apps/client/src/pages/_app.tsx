@@ -5,6 +5,7 @@ import { Caveat } from "next/font/google";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
 import { DirectionProvider } from "@radix-ui/react-direction";
+import { ToastProvider } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { NextPage } from "next";
 import { appWithTranslation } from "next-i18next";
@@ -110,13 +111,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const ToastViewport = useMemo(
     () =>
       dynamic(() => import("@radix-ui/react-toast").then((mod) => mod.ToastViewport), {
-        ssr: false,
-      }),
-    [],
-  );
-  const ToastProvider = useMemo(
-    () =>
-      dynamic(() => import("@radix-ui/react-toast").then((mod) => mod.ToastProvider), {
         ssr: false,
       }),
     [],
