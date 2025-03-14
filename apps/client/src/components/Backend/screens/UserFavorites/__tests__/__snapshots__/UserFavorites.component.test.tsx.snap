@@ -448,7 +448,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-card__title"
                   >
                     <a
-                      href="/program/id1"
+                      href="/dispositif/id1"
                     >
                       <span
                         class="title three_lines"
@@ -572,7 +572,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-card__title"
                   >
                     <a
-                      href="/program/id2"
+                      href="/dispositif/id2"
                     >
                       <span
                         class="title three_lines"
@@ -696,7 +696,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-card__title"
                   >
                     <a
-                      href="/procedure/id3"
+                      href="/demarche/id3"
                     >
                       <span
                         class="title three_lines"

@@ -318,7 +318,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/6392ff59bcd2075a379203a9"
+                        href="/demarche/6392ff59bcd2075a379203a9"
                       >
                         <span
                           class="title three_lines"
@@ -468,7 +468,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/63972dcb98b670cc4bae76e6"
+                        href="/demarche/63972dcb98b670cc4bae76e6"
                       >
                         <span
                           class="title three_lines"
@@ -618,7 +618,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/5e1c8c0e0742580052a33972"
+                        href="/demarche/5e1c8c0e0742580052a33972"
                       >
                         <span
                           class="title three_lines"
@@ -768,7 +768,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/637781c6896812af208f3495"
+                        href="/demarche/637781c6896812af208f3495"
                       >
                         <span
                           class="title three_lines"
@@ -913,7 +913,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/6123a82c6bf6bc00148a5176"
+                        href="/demarche/6123a82c6bf6bc00148a5176"
                       >
                         <span
                           class="title three_lines"
@@ -1063,7 +1063,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/5dd7c4b06f0ac0004c87c88d"
+                        href="/demarche/5dd7c4b06f0ac0004c87c88d"
                       >
                         <span
                           class="title three_lines"
@@ -1208,7 +1208,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/63528e00976acb4f7bcd37ad"
+                        href="/demarche/63528e00976acb4f7bcd37ad"
                       >
                         <span
                           class="title three_lines"
@@ -1358,7 +1358,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/63401d8783f485a025e88388"
+                        href="/demarche/63401d8783f485a025e88388"
                       >
                         <span
                           class="title three_lines"
@@ -1503,7 +1503,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/630337ddf2087e2b25ac7609"
+                        href="/demarche/630337ddf2087e2b25ac7609"
                       >
                         <span
                           class="title three_lines"
@@ -1648,7 +1648,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/62f265d81119eede87fb1ae2"
+                        href="/demarche/62f265d81119eede87fb1ae2"
                       >
                         <span
                           class="title three_lines"
@@ -1798,7 +1798,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/62b9809b796009107a932cbc"
+                        href="/demarche/62b9809b796009107a932cbc"
                       >
                         <span
                           class="title three_lines"
@@ -1943,7 +1943,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/62bab2e7b47f6b02fa9783f2"
+                        href="/demarche/62bab2e7b47f6b02fa9783f2"
                       >
                         <span
                           class="title three_lines"
@@ -2093,7 +2093,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/62b5cc16092a73346b4a9a11"
+                        href="/demarche/62b5cc16092a73346b4a9a11"
                       >
                         <span
                           class="title three_lines"
@@ -2238,7 +2238,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/62a897aceece9a373f34ee49"
+                        href="/demarche/62a897aceece9a373f34ee49"
                       >
                         <span
                           class="title three_lines"
@@ -2383,7 +2383,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/procedure/62a8ae34eece9a373f350351"
+                        href="/demarche/62a8ae34eece9a373f350351"
                       >
                         <span
                           class="title three_lines"
@@ -2576,7 +2576,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/6317279072a7091286cfaf24"
+                        href="/dispositif/6317279072a7091286cfaf24"
                       >
                         <span
                           class="title three_lines"
@@ -2715,7 +2715,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/638dcbbaf0b1a31177cf9602"
+                        href="/dispositif/638dcbbaf0b1a31177cf9602"
                       >
                         <span
                           class="title three_lines"
@@ -2854,7 +2854,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/638613c54730d143903ca9ca"
+                        href="/dispositif/638613c54730d143903ca9ca"
                       >
                         <span
                           class="title three_lines"
@@ -2988,7 +2988,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/63873a586fd089c3dad298f2"
+                        href="/dispositif/63873a586fd089c3dad298f2"
                       >
                         <span
                           class="title three_lines"
@@ -3127,7 +3127,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/635a71c8d43c4d1a3f25227f"
+                        href="/dispositif/635a71c8d43c4d1a3f25227f"
                       >
                         <span
                           class="title three_lines"
@@ -3266,7 +3266,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/6376470705f74970c5342371"
+                        href="/dispositif/6376470705f74970c5342371"
                       >
                         <span
                           class="title three_lines"
@@ -3400,7 +3400,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/634d28bd9d3bda3be5cfd979"
+                        href="/dispositif/634d28bd9d3bda3be5cfd979"
                       >
                         <span
                           class="title three_lines"
@@ -3539,7 +3539,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/6332c0e6a36f411314ba4ca3"
+                        href="/dispositif/6332c0e6a36f411314ba4ca3"
                       >
                         <span
                           class="title three_lines"
@@ -3673,7 +3673,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/636cd4572c725bfbf72d6302"
+                        href="/dispositif/636cd4572c725bfbf72d6302"
                       >
                         <span
                           class="title three_lines"
@@ -3812,7 +3812,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/63231e68d585c0849a9bb2b1"
+                        href="/dispositif/63231e68d585c0849a9bb2b1"
                       >
                         <span
                           class="title three_lines"
@@ -3951,7 +3951,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/634e7269313f6183f3510709"
+                        href="/dispositif/634e7269313f6183f3510709"
                       >
                         <span
                           class="title three_lines"
@@ -4090,7 +4090,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/634fba2814dbd7acb5c4f759"
+                        href="/dispositif/634fba2814dbd7acb5c4f759"
                       >
                         <span
                           class="title three_lines"
@@ -4224,7 +4224,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/6317495572a7091286cfbd68"
+                        href="/dispositif/6317495572a7091286cfbd68"
                       >
                         <span
                           class="title three_lines"
@@ -4363,7 +4363,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/6336f551bf68aaed7fe0f8b4"
+                        href="/dispositif/6336f551bf68aaed7fe0f8b4"
                       >
                         <span
                           class="title three_lines"
@@ -4497,7 +4497,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-card__title"
                     >
                       <a
-                        href="/program/63623b16a2a5bf7006723347"
+                        href="/dispositif/63623b16a2a5bf7006723347"
                       >
                         <span
                           class="title three_lines"
