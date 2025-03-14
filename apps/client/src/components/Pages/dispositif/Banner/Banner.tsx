@@ -6,7 +6,7 @@ import { useCallback, useContext, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
 import Button from "~/components/UI/Button";
-import { useLanguages } from "~/hooks";
+import { useLanguages, useLocale } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { canEdit, isStatus } from "~/lib/dispositif";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -55,9 +55,10 @@ const Banner = (props: Props) => {
 
   // ln not available
   const { currentLocale } = useLanguages();
+  const locale = useLocale();
   const isNotTranslated = useMemo(() => {
-    return !(dispositif?.availableLanguages || ["fr"]).includes(router.locale || "fr");
-  }, [router.locale, dispositif]);
+    return !(dispositif?.availableLanguages || ["fr"]).includes(locale || "fr");
+  }, [locale, dispositif]);
 
   return (
     <div

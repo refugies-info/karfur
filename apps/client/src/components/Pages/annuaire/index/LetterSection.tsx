@@ -1,10 +1,10 @@
 import { GetActiveStructuresResponse, Id, Picture } from "@refugies-info/api-types";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { getPath } from "routes";
 import placeholder from "~/assets/no_results_alt.svg";
 import Image from "~/components/UI/Image";
+import { useLocale } from "~/hooks";
 import styles from "./LetterSection.module.scss";
 interface StructureCardProps {
   nom: string;
@@ -13,7 +13,7 @@ interface StructureCardProps {
   id: Id;
 }
 const StructureCard = (props: StructureCardProps) => {
-  const router = useRouter();
+  const locale = useLocale();
 
   const title = useMemo(() => {
     return props.acronyme
@@ -27,7 +27,7 @@ const StructureCard = (props: StructureCardProps) => {
     <Link
       legacyBehavior
       href={{
-        pathname: getPath("/annuaire/[id]", router.locale),
+        pathname: getPath("/annuaire/[id]", locale),
         query: { id: props.id.toString() },
       }}
       prefetch={false}

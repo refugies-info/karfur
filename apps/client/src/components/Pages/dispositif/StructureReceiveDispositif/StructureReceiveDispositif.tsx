@@ -13,6 +13,7 @@ import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
+import { useLocale } from "~/hooks";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import API from "~/utils/API";
 import { ChoiceButton } from "../Edition";
@@ -41,17 +42,18 @@ const StructureReceiveDispositif = () => {
   };
 
   const router = useRouter();
+  const locale = useLocale();
   const goToEdit = useCallback(() => {
     const id = dispositif?._id;
     if (!id) return;
     router.push({
       pathname:
         dispositif.typeContenu === ContentType.DEMARCHE
-          ? getPath("/demarche/[id]/edit", router.locale)
-          : getPath("/dispositif/[id]/edit", router.locale),
+          ? getPath("/demarche/[id]/edit", locale)
+          : getPath("/dispositif/[id]/edit", locale),
       query: { id: dispositif._id.toString() },
     });
-  }, [router, dispositif]);
+  }, [router, locale, dispositif]);
 
   const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
 
@@ -120,7 +122,7 @@ const StructureReceiveDispositif = () => {
                 Vous êtes désormais responsable de cette fiche. Nous comptons sur vous pour maintenir ce contenu à jour
                 et répondre aux suggestions des contributeurs.
               </p>
-              <div className="text-center mb-8">
+              <div className="mb-8 text-center">
                 <Image src={ReceiveDispositif} width={224} height={160} alt="" />
               </div>
               <div className="text-end">
