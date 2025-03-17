@@ -75,7 +75,7 @@ const StepContent = (props: Props) => {
         )}
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
-            <div key={i} className="bg-alt-beige-gris-galet border-default-grey mb-6 border p-4">
+            <div key={i} className="bg-contrast-beige-gris-galet border-default-grey mb-6 border p-4">
               <ul className="my-0 space-y-2">
                 {text.map((li, j) => (
                   <li key={j}>{li}</li>
