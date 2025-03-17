@@ -124,8 +124,11 @@ export const operators: Operator[] = [
     phone: "05 17 26 15 28",
   },
   {
+    dispositifId: "6790bf9db519daad65ac95fe",
     department: "18 - Cher",
-    operator: "Le Relais",
+    operator: "Association LE RELAIS",
+    email: "agir18@lerelais18.fr",
+    phone: "07 63 95 22 79",
   },
   {
     dispositifId: "660d1f36de63124662360657",
