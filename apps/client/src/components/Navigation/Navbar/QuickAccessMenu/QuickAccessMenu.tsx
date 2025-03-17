@@ -1,9 +1,8 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
-import router from "next/router";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
-import { useWindowSize } from "~/hooks";
+import { useLocale, useWindowSize } from "~/hooks";
 import { getPath } from "~/routes";
 
 // This component retunrs an array of JSX items specifically for the DSFR Header component
@@ -17,12 +16,13 @@ import { getPath } from "~/routes";
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
   const { isMobile } = useWindowSize();
+  const locale = useLocale();
 
   const menuItems = [
     <Button
       key="publish"
       linkProps={{
-        href: getPath("/publier", router.locale),
+        href: getPath("/publier", locale),
         prefetch: false,
       }}
       iconId="fr-icon-file-add-line"
@@ -33,7 +33,7 @@ const QuickAccessMenu = () => {
     <Button
       key="translate"
       linkProps={{
-        href: getPath("/traduire", router.locale),
+        href: getPath("/traduire", locale),
         prefetch: false,
       }}
       iconId="fr-icon-message-2-line"

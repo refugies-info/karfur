@@ -4,6 +4,7 @@ import { getPath } from "routes";
 import styled from "styled-components";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
+import { useLocale } from "~/hooks";
 import { colors } from "~/utils/colors";
 
 const Container = styled.div<{ read: boolean }>`
@@ -85,6 +86,7 @@ const getFormattedDate = (createdAt: Date) => {
 };
 export const Notification = (props: Props) => {
   const router = useRouter();
+  const locale = useLocale();
   const onNotifClick = (event: any) => {
     event.stopPropagation();
     if (props.type === "reaction") {
@@ -93,7 +95,7 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return router.push(getPath("/annuaire-creation", router.locale));
+      return router.push(getPath("/annuaire-creation", locale));
     }
 
     if (props.type === "new content" && props.link) {
