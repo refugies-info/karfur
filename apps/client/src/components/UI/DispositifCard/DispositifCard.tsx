@@ -44,7 +44,7 @@ const DispositifCard = (props: Props) => {
   const isOnline = props.dispositif.metadatas?.location === "online";
 
   const badge = useMemo((): { className: string; text: string | null } => {
-    if (!isDispositif) return { text: "Démarche", className: styles.badge_demarche };
+    if (!isDispositif) return { text: t("Dispositif.demarche", "Démarche"), className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
     if (!location) return { text: "Lieu d'action", className: styles.badge_department };
     if (!Array.isArray(location)) {

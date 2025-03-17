@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./dsfr-tokens.css";
+@import "./dsfr-customisations.css";
 @import "./container.css";
 @source "../components/";
 

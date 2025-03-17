@@ -85,9 +85,17 @@ $shadowHeight: 1.4rem;
     aspect-ratio: 16/9;
     background-color: var(--background-action-high-grey-hover);
   }
+
+  :global(.fr-badges-group) {
+    @include rtl {
+      right: 0;
+      left: auto;
+    }
+  }
 }
 
 /* Badges */
+
 .badge_department {
   background-color: var(--background-contrast-purple-glycine);
   color: var(--text-action-high-purple-glycine);
@@ -138,6 +146,10 @@ $shadowHeight: 1.4rem;
 
       line-height: 1em !important;
       color: var(--text-action-high-blue-france);
+
+      @include rtl {
+        transform: rotate(180deg);
+      }
     }
   }
 }
@@ -146,11 +158,13 @@ $shadowHeight: 1.4rem;
 .favorite {
   position: absolute;
   top: u(2);
-  right: u(3);
   z-index: 5;
 
+  @include ltr {
+    right: u(3);
+  }
+
   @include rtl {
-    right: inherit;
     left: u(3);
   }
 }
@@ -189,8 +203,15 @@ $shadowHeight: 1.4rem;
   border: 1px solid var(--border-default-grey);
   background: white;
   top: (u(-6) + u(-6)) - 1; /* padding top + half of image size - border top */
-  right: u(-2);
   z-index: 1;
+
+  @include ltr {
+    right: u(-2);
+  }
+
+  @include rtl {
+    left: u(-2);
+  }
 }
 
 .title {
