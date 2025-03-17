@@ -287,7 +287,7 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
+        class="noscrollbar m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
         style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
       >
         <div
@@ -2545,7 +2545,7 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
+        class="noscrollbar m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
         style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
       >
         <div
