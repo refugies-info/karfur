@@ -19,16 +19,15 @@ exports[`publier renders publier 1`] = `
             <span
               class="fr-notice__title"
             >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
+              Réfugiés.info a été nommé Service numérique à impact national ! 
               <a
                 class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Découvrir l'impact du projet
+                Découvrir l'impact du projet.
               </a>
-              .
             </span>
           </p>
           <button
