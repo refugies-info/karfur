@@ -230,10 +230,11 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl, dir = "ltr" 
       <div
         ref={scrollContainerRef}
         className={cn(
-          "m-auto flex gap-4 pr-4",
+          "m-auto flex gap-4",
           "touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth",
           "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
-          "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]",
+          "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))]",
+          "ltr:pr-4 rtl:pl-4",
         )}
         aria-live="polite"
         aria-atomic="true"
