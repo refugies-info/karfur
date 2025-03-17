@@ -2,21 +2,18 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import { AnnotationsOverlay } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
+import { useLocale, useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
-import { AvailableLanguageI18nCode } from "~/types/interface";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
 const MobileApp = () => {
   const { t } = useTranslation();
-  const router = useRouter();
-  const locale: AvailableLanguageI18nCode = (router.locale || "fr") as AvailableLanguageI18nCode;
+  const locale = useLocale();
 
   const { isMobile } = useWindowSize();
 
@@ -118,7 +115,7 @@ const MobileApp = () => {
               className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
               onClick={() => handleOpenStoreLink(iosStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
+              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
             </Button>
             <Button
               iconId={"ri-android-fill"}
@@ -126,7 +123,7 @@ const MobileApp = () => {
               className={cn("justify-center max-md:w-full", isIOS && "hidden")}
               onClick={() => handleOpenStoreLink(androidStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
+              {t("MobileApp.downloadButtonText", "Je télécharge l’application")}
             </Button>
           </span>
         ) : (

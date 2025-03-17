@@ -1,8 +1,8 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import ThemeIcon from "~/components/UI/ThemeIcon";
+import { useLocale } from "~/hooks";
 import useRTL from "~/hooks/useRTL";
 import { getThemeName } from "~/lib/getThemeName";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
@@ -16,7 +16,7 @@ interface Props {
 
 const EmbedHeader = (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
+  const locale = useLocale();
   const isRTL = useRTL();
   const languages = useSelector(allLanguesSelector);
 
@@ -35,7 +35,7 @@ const EmbedHeader = (props: Props) => {
             <span className={styles.theme_icon}>
               <ThemeIcon theme={selectedTheme} size={18} />
             </span>
-            <span className="ms-2">{getThemeName(selectedTheme, router.locale, "short")}</span>
+            <span className="ms-2">{getThemeName(selectedTheme, locale, "short")}</span>
           </span>
         </>
       )}

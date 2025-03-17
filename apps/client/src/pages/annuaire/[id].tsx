@@ -3,23 +3,20 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
-
-import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-
-import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { fetchSelectedStructureActionCreator } from "~/services/SelectedStructure/selectedStructure.actions";
-import { selectedStructureSelector } from "~/services/SelectedStructure/selectedStructure.selector";
-import { userSelector } from "~/services/User/user.selectors";
-import { wrapper } from "~/services/configureStore";
-
 import { LeftAnnuaireDetail } from "~/components/Pages/annuaire/id/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "~/components/Pages/annuaire/id/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "~/components/Pages/annuaire/id/RightAnnuaireDetails";
 import SEO from "~/components/Seo";
-
+import { useLocale } from "~/hooks";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import styles from "~/scss/pages/annuaire-id.module.scss";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { fetchSelectedStructureActionCreator } from "~/services/SelectedStructure/selectedStructure.actions";
+import { selectedStructureSelector } from "~/services/SelectedStructure/selectedStructure.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import { userSelector } from "~/services/User/user.selectors";
+import { wrapper } from "~/services/configureStore";
 
 interface Props {
   history: string[];
@@ -36,7 +33,7 @@ const AnnuaireDetail = (props: Props) => {
   const router = useRouter();
   const structureId = router.query.id as string;
 
-  const locale = router.locale || "fr";
+  const locale = useLocale();
   const [currentLoadedLocale, setCurrentLoadedLocale] = useState(locale);
 
   // Reload structure if locale change

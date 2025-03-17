@@ -14,6 +14,7 @@ import { Step5 } from "~/components/Pages/annuaire-create/Step5";
 import { Step6 } from "~/components/Pages/annuaire-create/Step6";
 import SEO from "~/components/Seo";
 import FButton from "~/components/UI/FButton/FButton";
+import { useLocale } from "~/hooks";
 import { defaultStaticPropsWithThemes } from "~/lib/getDefaultStaticProps";
 import styles from "~/scss/pages/annuaire-create.module.scss";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
@@ -29,6 +30,7 @@ import {
 
 const AnnuaireCreate = () => {
   const router = useRouter();
+  const locale = useLocale();
   const [step, setStep] = useState(1);
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [hasModifications, setHasModifications] = useState(false);
@@ -54,7 +56,7 @@ const AnnuaireCreate = () => {
   };
 
   const updateStructure = () => {
-    dispatch(updateSelectedStructureActionCreator({ locale: router.locale || "fr" }));
+    dispatch(updateSelectedStructureActionCreator({ locale }));
   };
 
   const setStructure = (structure: GetStructureResponse) => {
