@@ -777,7 +777,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                     id="fr-badge-:r2:"
                   >
-                    Démarche
+                    Dispositif.demarche
                   </p>
                 </li>
               </ul>

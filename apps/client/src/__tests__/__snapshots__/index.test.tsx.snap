@@ -267,6 +267,7 @@ exports[`homepage renders homepage 1`] = `
       aria-label="Homepage.infoTypeDemarche"
       aria-roledescription="carousel"
       class="relative w-full max-md:pb-14 mb-20"
+      dir="ltr"
       role="region"
     >
       <div
@@ -305,8 +306,8 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
-        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
+        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-ps-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
+        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab; direction: ltr;"
       >
         <div
           aria-current="true"
@@ -439,7 +440,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r6:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -589,7 +590,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r7:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -739,7 +740,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r8:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -884,7 +885,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r9:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1034,7 +1035,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:ra:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1179,7 +1180,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rb:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1329,7 +1330,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rc:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1474,7 +1475,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rd:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1619,7 +1620,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:re:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1769,7 +1770,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rf:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1914,7 +1915,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rg:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2064,7 +2065,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rh:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2209,7 +2210,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:ri:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2354,7 +2355,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rj:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2499,7 +2500,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rk:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2525,6 +2526,7 @@ exports[`homepage renders homepage 1`] = `
       aria-label="Homepage.infoTypeDispositif"
       aria-roledescription="carousel"
       class="relative w-full max-md:pb-14 mb-20"
+      dir="ltr"
       role="region"
     >
       <div
@@ -2563,8 +2565,8 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
-        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
+        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-ps-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
+        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab; direction: ltr;"
       >
         <div
           aria-current="true"
