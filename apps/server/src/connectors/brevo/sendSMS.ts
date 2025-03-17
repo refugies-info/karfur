@@ -22,6 +22,7 @@ export const sendSMS = async (text: string, phone: string): Promise<SendSMSResul
   sms.recipient = e164(phone);
   sms.sender = SMS_SENDER.replace("+", "00");
   sms.organisationPrefix = "Réfugiés.info";
+  sms.unicodeEnabled = true;
 
   try {
     const { response } = await apiInstance.sendTransacSms(sms);
