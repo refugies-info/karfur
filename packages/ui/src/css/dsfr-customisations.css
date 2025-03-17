@@ -1,0 +1,18 @@
+/* stylelint-disable selector-class-pattern */
+@layer dsfr {
+  [dir="rtl"] {
+    .fr-btn--icon-right[class^="fr-icon-"]::after,
+    .fr-btn--icon-right[class*=" fr-icon-"]::after,
+    .fr-btn--icon-right[class^="fr-fi-"]::after,
+    .fr-btn--icon-right[class*=" fr-fi-"]::after {
+      margin-inline: 0.5rem -0.125rem;
+    }
+
+    .fr-btn[class^="fr-icon-"]:not([class*="fr-btn--icon-"])::before,
+    .fr-btn[class*=" fr-icon-"]:not([class*="fr-btn--icon-"])::before,
+    .fr-btn[class^="fr-fi-"]:not([class*="fr-btn--icon-"])::before,
+    .fr-btn[class*=" fr-fi-"]:not([class*="fr-btn--icon-"])::before {
+      margin-inline: 0 0.5rem;
+    }
+  }
+}
