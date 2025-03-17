@@ -19,7 +19,7 @@ import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
-import { useWindowSize } from "~/hooks";
+import { useRTL, useWindowSize } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
@@ -42,6 +42,7 @@ const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { isMobile } = useWindowSize();
+  const isRTL = useRTL();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -76,6 +77,7 @@ const Homepage = (props: Props) => {
 
       <Carrousel
         className="mb-20"
+        dir={isRTL ? "rtl" : "ltr"}
         texts={{
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
@@ -93,6 +95,7 @@ const Homepage = (props: Props) => {
 
       <Carrousel
         className="mb-20"
+        dir={isRTL ? "rtl" : "ltr"}
         texts={{
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,
