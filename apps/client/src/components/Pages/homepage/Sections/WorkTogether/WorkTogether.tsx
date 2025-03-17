@@ -28,7 +28,7 @@ const WorkTogether = () => {
         "WorkTogether.cardstsDescription",
         "Toutes les semaines, des séances de découverte du service sont organisées pour vous aider à autonomiser vos bénéficiaires et faciliter leur orientation vers des acteurs locaux.",
       ),
-      link: "https://airtable.com/shrrkFuyeG0BpKKT7",
+      link: "https://kit.refugies.info/formation/",
       cta: t("WorkTogether.bookAppointment", "Prendre rendez-vous"),
       icon: "fr-icon-arrow-right-line",
       image: (

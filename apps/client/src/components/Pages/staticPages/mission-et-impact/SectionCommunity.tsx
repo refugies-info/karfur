@@ -25,7 +25,7 @@ export const SectionCommunity = () => {
                 iconPosition="right"
                 className="fr-default"
                 linkProps={{
-                  href: "https://airtable.com/shrrkFuyeG0BpKKT7",
+                  href: "https://kit.refugies.info/formation/",
                   rel: "noopener noreferrer",
                   target: "_blank",
                 }}
