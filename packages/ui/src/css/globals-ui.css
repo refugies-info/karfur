@@ -18,3 +18,11 @@
 body {
   overflow-x: hidden;
 }
+
+@layer utilities {
+  .noscrollbar {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
