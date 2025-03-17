@@ -37,8 +37,6 @@ export default {
       UIBackgroundModes: ["remote-notification"],
       NSLocationWhenInUseUsageDescription:
         "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
-      NSLocationUsageDescription:
-        "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
     associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
