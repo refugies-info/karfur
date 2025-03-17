@@ -40,6 +40,7 @@ export const operators: Operator[] = [
     department: "05 - Hautes-Alpes",
     operator: "France terre d'asile - ACPM",
     email: "agir05@france-terre-asile.org",
+    phone: "06 24 42 52 06",
   },
   {
     dispositifId: "660d1f36de6312466236065e",
