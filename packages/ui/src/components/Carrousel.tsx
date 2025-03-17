@@ -216,7 +216,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
       <div
         ref={scrollContainerRef}
         className={cn(
-          "m-auto flex gap-4 pr-4",
+          "noscrollbar m-auto flex gap-4 pr-4",
           "touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth",
           "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
           "scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]", // Keep only the padding-left, remove scroll-padding-left
@@ -234,7 +234,6 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
           "overscrollBehaviorX": "contain",
           "cursor": "grab",
           // @ts-ignore
-          "&::-webkit-scrollbar": { display: "none" },
           "&:active": { cursor: "grabbing" },
         }}
       >
