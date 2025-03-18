@@ -5,8 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  undici: 5.28.5
   '@expo/cli>undici': 6.21.1
+  expo-dev-menu: 6.0.21
+  undici: 5.28.5
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.20.2':
@@ -6589,11 +6590,6 @@ packages:
 
   expo-dev-menu-interface@1.9.3:
     resolution: {integrity: sha512-KY/dWTBE1l47i9V366JN5rC6YIdOc9hz8yAmZzkl5DrPia5l3M2WIjtnpHC9zUkNjiSiG2urYoOAq4H/uLdmyg==}
-    peerDependencies:
-      expo: '*'
-
-  expo-dev-menu@6.0.20:
-    resolution: {integrity: sha512-+ha876lpGAsRB9lqT7WRtcSvxZg2CjXKWkCSAghToyx4Wti1u3M/y3onJ4oOvddtKuFfFX4IRmnZYI3xi/TDCQ==}
     peerDependencies:
       expo: '*'
 
@@ -19310,7 +19306,7 @@ snapshots:
     dependencies:
       ajv: 8.11.0
       expo: 52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
-      expo-dev-menu: 6.0.20(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
+      expo-dev-menu: 6.0.21(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
       expo-manifests: 0.15.7(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
       resolve-from: 5.0.0
     transitivePeerDependencies:
@@ -19319,11 +19315,6 @@ snapshots:
   expo-dev-menu-interface@1.9.3(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)):
     dependencies:
       expo: 52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
-
-  expo-dev-menu@6.0.20(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)):
-    dependencies:
-      expo: 52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
-      expo-dev-menu-interface: 1.9.3(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
 
   expo-dev-menu@6.0.21(expo@52.0.39(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.4(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)):
     dependencies:
