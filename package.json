@@ -92,7 +92,7 @@
     "knip": "knip"
   },
   "engines": {
-    "node": "22.13.1"
+    "node": "22.14.0"
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
@@ -114,7 +114,7 @@
     "typescript": "^5.8.2"
   },
   "volta": {
-    "node": "22.13.1",
+    "node": "22.14.0",
     "pnpm": "10.6.4"
   },
   "lint-staged": {

@@ -31,10 +31,10 @@
   },
   "homepage": "https://github.com/refugies-info/karfur#readme",
   "engines": {
-    "node": "22.13.1"
+    "node": "22.14.0"
   },
   "volta": {
-    "node": "22.13.1",
+    "node": "22.14.0",
     "pnpm": "10.6.4"
   }
 }
