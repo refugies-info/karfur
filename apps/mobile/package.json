@@ -82,7 +82,7 @@
     "@react-native/assets-registry": "^0.73.1",
     "@react-navigation/core": "^6.4.10",
     "@refugies-info/api-types": "workspace:*",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/react": "^16.2.0",
     "@testing-library/react-native": "^12.9.0",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.16",
