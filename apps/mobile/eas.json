@@ -9,6 +9,14 @@
       "distribution": "internal",
       "env": { "EXPO_APP_NAME": "Réfugiés.info - Staging", "EAS_BUILD_PROFILE": "staging" }
     },
+    "staging-simulator": {
+      "extends": "base",
+      "channel": "staging",
+      "environment": "preview",
+      "distribution": "internal",
+      "env": { "EXPO_APP_NAME": "Réfugiés.info - Staging", "EAS_BUILD_PROFILE": "staging" },
+      "ios": { "simulator": true }
+    },
     "development": {
       "extends": "base",
       "developmentClient": true,
