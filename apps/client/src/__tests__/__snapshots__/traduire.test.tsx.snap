@@ -823,7 +823,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Quel niveau je dois avoir pour devenir traducteur ?
                       </span>
@@ -864,7 +864,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Combien de fiches je dois traduire ?
                       </span>
@@ -905,7 +905,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
@@ -946,7 +946,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
@@ -987,7 +987,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>

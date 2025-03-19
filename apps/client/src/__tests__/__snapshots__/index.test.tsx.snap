@@ -4719,7 +4719,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
+                    class="mb-0 grow-1 text-start text-xl font-medium text-title-blue-france"
                   >
                     Homepage.accordionItemsdesktopTitle1
                   </span>
@@ -4769,7 +4769,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
+                    class="mb-0 grow-1 text-start text-xl font-medium"
                   >
                     Homepage.accordionItemsdesktopTitle2
                   </span>
@@ -4810,7 +4810,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
+                    class="mb-0 grow-1 text-start text-xl font-medium"
                   >
                     Homepage.accordionItemsdesktopTitle3
                   </span>
@@ -4851,7 +4851,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
+                    class="mb-0 grow-1 text-start text-xl font-medium"
                   >
                     Homepage.accordionItemsdesktopTitle4
                   </span>
@@ -5148,7 +5148,7 @@ exports[`homepage renders homepage 1`] = `
                   id="fr-button-:r1o:"
                   type="submit"
                 >
-                  ok
+                  NewsletterForm.ok
                 </button>
               </div>
               <div
