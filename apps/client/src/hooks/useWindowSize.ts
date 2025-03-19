@@ -8,26 +8,34 @@ type WindowSize = {
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: typeof window !== "undefined" ? window.innerWidth : undefined,
-    height: typeof window !== "undefined" ? window.innerHeight : undefined,
+    width: undefined,
+    height: undefined,
   });
   const [baseFontSize, setBaseFontSize] = useState<number>(16);
+  const [hasMounted, setHasMounted] = useState(false);
 
-  const isMobile = windowSize.width && windowSize.width <= baseFontSize * 48;
-  const isTablet = windowSize.width && windowSize.width < baseFontSize * 61.5;
+  // Calculate responsive flags only after mounting to avoid hydration mismatch
+  const isMobile = hasMounted && windowSize.width ? windowSize.width <= baseFontSize * 48 : false;
+  const isTablet = hasMounted && windowSize.width ? windowSize.width < baseFontSize * 61.5 : false;
 
   useEffect(() => {
+    // Mark as mounted
+    setHasMounted(true);
+
     let rafId: number;
     let lastFontSize = baseFontSize;
 
     const handleResize = debounce(() => {
+      // Use screen.width for more accurate device width detection
       setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: window.screen.width,
+        height: window.screen.height,
       });
     }, 100);
 
     const handleFontSizeChange = debounce(() => {
+      if (typeof document === "undefined") return;
+
       const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
       if (fontSize !== lastFontSize) {
         lastFontSize = fontSize;
@@ -39,7 +47,7 @@ const useWindowSize = () => {
     const debouncedFontSizeChange = debounce(handleFontSizeChange, 100);
 
     // Set up observers if in browser environment
-    if (typeof window !== "undefined" && typeof ResizeObserver !== "undefined") {
+    if (typeof window !== "undefined" && typeof ResizeObserver !== "undefined" && typeof document !== "undefined") {
       const resizeObserver = new ResizeObserver(debouncedFontSizeChange);
       const mutationObserver = new MutationObserver((mutations) => {
         if (
@@ -52,6 +60,10 @@ const useWindowSize = () => {
           debouncedFontSizeChange();
         }
       });
+
+      // Initial calculations
+      handleResize();
+      handleFontSizeChange();
 
       // Attach observers and event listeners
       resizeObserver.observe(document.documentElement);
@@ -66,8 +78,6 @@ const useWindowSize = () => {
         }
       });
       window.addEventListener("wheel", (e) => e.ctrlKey && handleFontSizeChange());
-
-      handleFontSizeChange();
 
       return () => {
         [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
