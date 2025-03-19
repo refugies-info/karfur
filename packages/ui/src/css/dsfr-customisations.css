@@ -17,6 +17,10 @@
       margin-inline: 0 0.5rem;
     }
 
+    .fr-input-wrap--addon > *:last-child:not(:first-child) {
+      border-radius: 0.25rem 0 0;
+    }
+
     /* FOOTER */
 
     .fr-footer__top-cat {
