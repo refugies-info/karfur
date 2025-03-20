@@ -16,6 +16,9 @@
         "typescript-plugin-css-modules"
       ]
     },
+    "apps/clientv2-next": {
+      "ignoreDependencies": ["tailwindcss", "eslint", "eslint-config-next"]
+    },
     "apps/mobile": {
       "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
       "ignoreDependencies": [
@@ -41,10 +44,7 @@
       "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": [
-        "react-dom",
-        "tailwindcss"
-      ]
+      "ignoreDependencies": ["react-dom", "tailwindcss"]
     }
   }
 }
