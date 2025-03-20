@@ -1,6 +1,7 @@
 import deepLinks from "./androidDeepLinks";
 
-// Update these version variables before publishing the app
+// Update thiq version variable before publishing the app
+// Build versioning is now managed remotely via EAS
 const displayVersionNumber = "2025.03.1";
 
 export default {
