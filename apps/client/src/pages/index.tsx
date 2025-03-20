@@ -61,7 +61,7 @@ const Homepage = (props: Props) => {
         title={
           isMobile
             ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France").replace(
-                /<[^>]*>?/gm,
+                "<br/>",
                 "",
               )
             : t("Homepage.titleDesktop", "Le service public d’information pour les personnes réfugiées")
