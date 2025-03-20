@@ -1,15 +1,13 @@
 import deepLinks from "./androidDeepLinks";
 
-// Update these version variables before publishing the app
-const version = "2.1.3";
+// Update thiq version variable before publishing the app
+// Build versioning is now managed remotely via EAS
 const displayVersionNumber = "2025.03.1";
-const androidVersionCode = 36;
 
 export default {
   name: "Réfugiés.info",
   owner: "refugies-info",
   slug: "refugies-info-app",
-  version,
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -25,7 +23,6 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: version,
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -52,7 +49,6 @@ export default {
     uk: "./src/translations/uk/common.json",
   },
   android: {
-    versionCode: androidVersionCode,
     // Support for Android 8 - https://endoflife.date/android
     minSdkVersion: 26,
     userInterfaceStyle: "light",
@@ -87,7 +83,6 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
-    version,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
     scheme: "refugies",
@@ -143,7 +138,6 @@ export default {
       "@react-native-firebase/crashlytics",
     ],
     android: {
-      versionCode: androidVersionCode,
       userInterfaceStyle: "light",
       adaptiveIcon: {
         foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
@@ -177,7 +171,6 @@ export default {
       ],
     },
     ios: {
-      buildNumber: version,
       supportsTablet: false,
       userInterfaceStyle: "light",
       bundleIdentifier: "refugiesInfo",
