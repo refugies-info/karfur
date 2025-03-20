@@ -8,7 +8,16 @@ const getPublications = async (): Promise<DispositifDesc[]> => {
     {
       typeContenu: "demarche",
       status: "Actif",
-      publishedAt: { $exists: true },
+      publishedAt: {
+        $exists: true,
+        $gte: {
+          $dateSubtract: {
+            startDate: "$$NOW",
+            unit: "day",
+            amount: 30,
+          },
+        },
+      },
     },
     3,
     {
@@ -30,7 +39,16 @@ const getUpdates = async (): Promise<DispositifDesc[]> => {
     {
       typeContenu: "demarche",
       status: "Actif",
-      lastModificationDate: { $exists: true },
+      lastModificationDate: {
+        $exists: true,
+        $gte: {
+          $dateSubtract: {
+            startDate: "$$NOW",
+            unit: "day",
+            amount: 30,
+          },
+        },
+      },
     },
     3,
     {
