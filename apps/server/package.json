@@ -26,12 +26,12 @@
     "@google-cloud/translate": "^8.5.1",
     "@refugies-info/api-types": "workspace:*",
     "@sendgrid/mail": "^8.1.4",
-    "@slack/webhook": "^7.0.4",
+    "@slack/webhook": "^7.0.5",
     "@typegoose/typegoose": "^12.13.0",
     "airtable": "^0.12.2",
-    "algoliasearch": "^5.20.4",
-    "axios": "^1.8.2",
-    "cloudinary": "^2.5.1",
+    "algoliasearch": "^5.21.0",
+    "axios": "^1.8.3",
+    "cloudinary": "^2.6.0",
     "compression": "^1.7.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -51,7 +51,7 @@
     "phone": "^3.1.55",
     "ts-node": "^10.9.2",
     "tsoa": "^6.6.0",
-    "twilio": "^5.3.6",
+    "twilio": "^5.5.0",
     "uniqid": "^5.0.3",
     "winston": "^3.17.0"
   },
@@ -65,11 +65,11 @@
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.16",
     "@types/mongoose": "^5.11.97",
-    "@types/node": "^22.13.9",
+    "@types/node": "^22.13.10",
     "@types/password-hash": "^1.2.20",
     "@types/uniqid": "^5.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.26.0",
-    "@typescript-eslint/parser": "^8.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
     "@vercel/ncc": "^0.38.3",
     "babel-jest": "^29.7.0",
     "concurrently": "^9.1.0",
@@ -83,10 +83,10 @@
     "typescript": "^5.8.2"
   },
   "engines": {
-    "node": "22.13.1"
+    "node": "22.14.0"
   },
   "volta": {
-    "node": "22.13.1",
-    "pnpm": "10.4.1"
+    "node": "22.14.0",
+    "pnpm": "10.6.4"
   }
 }

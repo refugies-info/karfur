@@ -21,15 +21,17 @@ type CarrouselProps = {
   children: React.ReactNode;
   className?: string;
   seeMoreUrl?: string;
+  dir?: "ltr" | "rtl";
 };
 
-export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselProps) => {
+export const Carrousel = ({ texts, children, className, seeMoreUrl, dir = "ltr" }: CarrouselProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+
   const t: Required<CarrouselTexts> = useMemo(
     () => ({
       ...defaultTexts,
@@ -72,38 +74,22 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
   const checkScrollability = useCallback(() => {
     if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
-    const hasReachedEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1; // -1 for rounding errors
-    const hasReachedStart = container.scrollLeft <= 0;
-    setCanScrollNext(!hasReachedEnd);
-    setCanScrollPrev(!hasReachedStart);
-  }, []);
 
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    const isRtl = dir === "rtl";
 
-    const handleResize = () => {
-      handleScroll();
-      checkScrollability();
-    };
+    let hasReachedStart, hasReachedEnd;
 
-    // Only use ResizeObserver if it's available in the browser
-    let observer: ResizeObserver | undefined;
-    if (typeof window !== "undefined" && typeof ResizeObserver !== "undefined") {
-      observer = new ResizeObserver(handleResize);
-      observer.observe(container);
+    if (isRtl) {
+      hasReachedStart = container.scrollLeft > -10; // Close to 0 (right edge)
+      hasReachedEnd = Math.abs(container.scrollLeft) >= container.scrollWidth - container.clientWidth - 10; // Close to max negative (left edge)
+    } else {
+      hasReachedStart = container.scrollLeft < 10; // Close to 0 (left edge)
+      hasReachedEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10; // Close to max (right edge)
     }
 
-    // Fallback to window resize event
-    window.addEventListener("resize", handleResize);
-    container.addEventListener("scroll", handleResize);
-
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener("resize", handleResize);
-      container.removeEventListener("scroll", handleResize);
-    };
-  }, [handleScroll, checkScrollability]);
+    setCanScrollNext(!hasReachedEnd); // Can scroll "next" (left) if not at left edge
+    setCanScrollPrev(!hasReachedStart); // Can scroll "prev" (right) if not at right edge
+  }, [dir]);
 
   const scrollToSlide = useCallback(
     (targetSlide: number, useSmooth = true) => {
@@ -178,6 +164,33 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
     [currentSlide, childrenArray.length, scrollToSlide],
   );
 
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleResize = () => {
+      handleScroll();
+      checkScrollability();
+    };
+
+    // Only use ResizeObserver if it's available in the browser
+    let observer: ResizeObserver | undefined;
+    if (typeof window !== "undefined" && typeof ResizeObserver !== "undefined") {
+      observer = new ResizeObserver(handleResize);
+      observer.observe(container);
+    }
+
+    // Fallback to window resize event
+    window.addEventListener("resize", handleResize);
+    container.addEventListener("scroll", handleResize);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", handleResize);
+      container.removeEventListener("scroll", handleResize);
+    };
+  }, [handleScroll, checkScrollability]);
+
   return (
     <section
       className={cn("relative w-full max-md:pb-14", className)}
@@ -185,6 +198,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
       aria-roledescription="carousel"
       aria-label={t.title || "Carousel de contenu"}
       onKeyDown={handleKeyDown}
+      dir={dir}
     >
       <div className="container mx-auto mb-8 flex w-full gap-4 lg:justify-between">
         {t.title && <h2 className="!mb-0 w-full !text-2xl font-bold max-sm:pr-[30%]">{t.title}</h2>}
@@ -193,7 +207,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
             aria-label={`${t.prev} (${prevSlide + 1} / ${childrenArray.length}`}
             onClick={handlePrevClick}
             priority="tertiary"
-            iconId="fr-icon-arrow-left-line"
+            iconId={dir === "rtl" ? "fr-icon-arrow-right-line" : "fr-icon-arrow-left-line"}
             title={t.prev}
             disabled={!canScrollPrev}
           />
@@ -202,7 +216,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
             onClick={handleNextClick}
             disabled={!canScrollNext}
             priority="tertiary"
-            iconId="fr-icon-arrow-right-line"
+            iconId={dir === "rtl" ? "fr-icon-arrow-left-line" : "fr-icon-arrow-right-line"}
             title={t.next}
           />
           {seeMoreUrl && (
@@ -216,10 +230,11 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
       <div
         ref={scrollContainerRef}
         className={cn(
-          "m-auto flex gap-4 pr-4",
+          "noscrollbar m-auto flex gap-4",
           "touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth",
           "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
-          "scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]", // Keep only the padding-left, remove scroll-padding-left
+          "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))]",
+          "ltr:pr-4 rtl:pl-4",
         )}
         aria-live="polite"
         aria-atomic="true"
@@ -234,8 +249,8 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl }: CarrouselP
           "overscrollBehaviorX": "contain",
           "cursor": "grab",
           // @ts-ignore
-          "&::-webkit-scrollbar": { display: "none" },
           "&:active": { cursor: "grabbing" },
+          "direction": dir, // Set the direction explicitly
         }}
       >
         {React.Children.map(children, (child, index) => (

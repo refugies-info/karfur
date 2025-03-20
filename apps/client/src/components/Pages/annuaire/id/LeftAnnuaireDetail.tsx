@@ -5,6 +5,7 @@ import { getPath, isRoute } from "routes";
 import placeholder from "~/assets/no_results_alt.svg";
 import FButton from "~/components/UI/FButton/FButton";
 import Image from "~/components/UI/Image";
+import useLocale from "~/hooks/useLocale";
 import styles from "./LeftAnnuaireDetail.module.scss";
 import { SocialsLink } from "./SocialsLink";
 import { StructureType } from "./StructureType";
@@ -18,6 +19,7 @@ interface Props {
 export const LeftAnnuaireDetail = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const locale = useLocale();
 
   const getSecureUrl = (picture: Picture | undefined) => {
     if (picture && picture.secure_url) return picture.secure_url;
@@ -29,7 +31,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
     if (props.history[1] && isRoute(props.history[1], "/annuaire")) {
       router.push(props.history[1]);
     } else {
-      router.push(getPath("/annuaire", router.locale));
+      router.push(getPath("/annuaire", locale));
     }
   };
   if (props.structure && !props.isLoading) {

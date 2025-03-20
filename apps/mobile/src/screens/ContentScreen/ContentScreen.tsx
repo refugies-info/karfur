@@ -189,7 +189,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         scrollview={scrollview}
         backgroundColor="white" // important to keep radius
         contentContainerStyle={stylesheet.page}
-        voiceoverOffset={250}
+        voiceoverOffset={150} // Reduced to 150 to place the voiceover text higher on the screen (RI-655)
       >
         <Rows spacing={RowsSpacing.NoSpace}>
           <LanguageUnavailable />

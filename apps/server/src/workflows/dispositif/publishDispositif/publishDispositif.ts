@@ -102,7 +102,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   const editedDispositif: Partial<Dispositif> = {};
 
   // if dispositif already published...
-  if (oldDispositif.status === DispositifStatus.ACTIVE) {
+  if ([DispositifStatus.ACTIVE, DispositifStatus.ARCHIVED].includes(oldDispositif.status)) {
     if (oldDispositif.hasDraftVersion) {
       // with a draft version => publish
       const isAdmin = user.isAdmin();
