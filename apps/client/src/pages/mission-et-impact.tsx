@@ -9,8 +9,8 @@ import HeroBack from "~/assets/staticPages/mission-et-impact/hero-back.svg";
 import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.svg";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import { Anchor, SecondaryNavbar, Section } from "~/components/Pages/staticPages/common";
+import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import {
-  SectionCommunity,
   SectionContributors,
   SectionFigures,
   SectionImpact,
@@ -67,7 +67,7 @@ const MissionImpact = (props: Props) => {
 
   return (
     <div className="w-full">
-      <SEO title={t("MissionImpact.title")} />
+      <SEO title={t("MissionImpact.seoTitle", "Mission et impact - Réfugiés.info")} />
       <HelpNotice />
 
       <Section
@@ -141,7 +141,7 @@ const MissionImpact = (props: Props) => {
         <SectionSteps />
       </div>
 
-      <SectionCommunity />
+      <WorkTogether />
     </div>
   );
 };

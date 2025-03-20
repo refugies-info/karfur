@@ -15,11 +15,11 @@ import { END } from "redux-saga";
 import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
 import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
-import WorkTogether from "~/components/Pages/homepage/Sections/WorkTogether";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
+import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
-import { useWindowSize } from "~/hooks";
+import { useRTL, useWindowSize } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
@@ -42,6 +42,7 @@ const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { isMobile } = useWindowSize();
+  const isRTL = useRTL();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -59,7 +60,10 @@ const Homepage = (props: Props) => {
       <SEO
         title={
           isMobile
-            ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France")
+            ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France").replace(
+                "<br/>",
+                "",
+              )
             : t("Homepage.titleDesktop", "Le service public d’information pour les personnes réfugiées")
         }
         description={
@@ -76,6 +80,7 @@ const Homepage = (props: Props) => {
 
       <Carrousel
         className="mb-20"
+        dir={isRTL ? "rtl" : "ltr"}
         texts={{
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
@@ -93,6 +98,7 @@ const Homepage = (props: Props) => {
 
       <Carrousel
         className="mb-20"
+        dir={isRTL ? "rtl" : "ltr"}
         texts={{
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,

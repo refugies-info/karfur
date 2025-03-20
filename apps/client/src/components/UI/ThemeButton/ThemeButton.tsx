@@ -1,7 +1,6 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import styled from "styled-components";
+import { useLocale } from "~/hooks";
 import { getThemeName } from "~/lib/getThemeName";
 import ThemeIcon from "../ThemeIcon";
 
@@ -32,13 +31,12 @@ interface Props {
 }
 
 export const ThemeButton = (props: Props) => {
-  const { t } = useTranslation();
-  const router = useRouter();
+  const locale = useLocale();
 
   return (
     <ThemeButtonContainer color={props.theme ? props.theme.colors.color100 : ""}>
       <ThemeIcon theme={props.theme} size={14} />
-      <ThemeText mr={props.isRTL ? 8 : 0}>{getThemeName(props.theme, router.locale, "short")}</ThemeText>
+      <ThemeText mr={props.isRTL ? 8 : 0}>{getThemeName(props.theme, locale, "short")}</ThemeText>
     </ThemeButtonContainer>
   );
 };

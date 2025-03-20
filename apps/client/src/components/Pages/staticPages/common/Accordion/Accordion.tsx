@@ -96,7 +96,7 @@ const Accordion = (props: Props) => {
                   >
                     <span
                       className={cn(
-                        "mb-0 grow-1 text-left text-xl font-medium",
+                        "mb-0 grow-1 text-start text-xl font-medium",
                         isItemOpen && "text-title-blue-france",
                       )}
                     >

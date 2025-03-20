@@ -105,7 +105,7 @@ const Newsletter = () => {
               }}
               addon={
                 <Button iconId="fr-icon-send-plane-fill" type="submit" iconPosition="right">
-                  {t("ok", "Ok")}
+                  {t("NewsletterForm.ok", "Ok")}
                 </Button>
               }
               label={t("NewsletterForm.label", "Adresse email")}

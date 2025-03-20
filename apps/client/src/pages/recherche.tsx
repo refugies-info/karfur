@@ -12,7 +12,7 @@ import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SearchHeader from "~/components/Pages/recherche/SearchHeader";
 import SearchResults from "~/components/Pages/recherche/SearchResults";
 import SEO from "~/components/Seo";
-import { useUtmz } from "~/hooks";
+import { useLocale, useUtmz } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
@@ -67,6 +67,7 @@ const Recherche = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
+  const locale = useLocale();
   const { params } = useUtmz();
 
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -90,13 +91,12 @@ const Recherche = () => {
   useEffect(() => {
     // update url
     const updateUrl = () => {
-      const locale = router.locale;
       const oldQueryString = router.asPath.split("?")[1] || "";
       const newQueryString = buildUrlQuery(query, params);
       if (oldQueryString !== newQueryString) {
         router.push(
           {
-            pathname: getPath("/recherche", router.locale),
+            pathname: getPath("/recherche", locale),
             search: newQueryString,
           },
           undefined,
@@ -112,7 +112,7 @@ const Recherche = () => {
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params, allNeeds]);
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params, allNeeds, locale]);
 
   // generate list of demarches to show when no results
   useEffect(() => {

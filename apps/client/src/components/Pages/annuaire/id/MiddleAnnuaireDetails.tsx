@@ -16,6 +16,7 @@ import { activities } from "data/activities";
 import { getPath } from "routes";
 
 import { GetStructureResponse, GetThemeResponse } from "@refugies-info/api-types";
+import { useLocale } from "~/hooks";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./MiddleAnnuaireDetails.module.scss";
 
@@ -113,6 +114,7 @@ const sortStructureActivities = (structure: GetStructureResponse | null, themes:
 export const MiddleAnnuaireDetail = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const locale = useLocale();
   const structure = props.structure;
   const admin = useSelector(userSelector).admin;
   const themes = useSelector(themesSelector);
@@ -133,7 +135,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </div>
           {hasUpdatePermission && (
             <div style={{ height: "5Opx" }}>
-              <Link legacyBehavior href={getPath("/annuaire-creation", router.locale)} passHref prefetch={false}>
+              <Link legacyBehavior href={getPath("/annuaire-creation", locale)} passHref prefetch={false}>
                 <FButton tag="a" type="dark" name="edit-outline">
                   Modifier la fiche
                 </FButton>

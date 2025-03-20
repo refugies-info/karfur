@@ -19,16 +19,15 @@ exports[`traduire renders traduire 1`] = `
             <span
               class="fr-notice__title"
             >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
+              Réfugiés.info a été nommé Service numérique à impact national ! 
               <a
                 class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Découvrir l'impact du projet
+                Découvrir l'impact du projet.
               </a>
-              .
             </span>
           </p>
           <button
@@ -520,7 +519,7 @@ exports[`traduire renders traduire 1`] = `
                 Quand vous arrivez sur une fiche, vous trouverez une première traduction. Attention, elle est automatique. Il faut la retravailler et la corriger !
               </p>
               <div
-                class="bg-alt-beige-gris-galet border-default-grey mb-6 border p-4"
+                class="bg-contrast-beige-gris-galet border-default-grey mb-6 border p-4"
               >
                 <ul
                   class="my-0 space-y-2"
@@ -824,7 +823,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Quel niveau je dois avoir pour devenir traducteur ?
                       </span>
@@ -865,7 +864,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Combien de fiches je dois traduire ?
                       </span>
@@ -906,7 +905,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
@@ -947,7 +946,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
@@ -988,7 +987,7 @@ exports[`traduire renders traduire 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>
