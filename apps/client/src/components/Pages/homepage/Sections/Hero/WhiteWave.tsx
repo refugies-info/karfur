@@ -14,7 +14,7 @@ function WhiteWave({ className }: { className: string }) {
       />
       <defs>
         <filter id="drop-shadow" x="-50%" y="0%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="-4.167" stdDeviation="10.416" flood-color="rgba(0,0,0,0.20)" />
+          <feDropShadow dx="0" dy="-4.167" stdDeviation="10.416" floodColor="rgba(0,0,0,0.20)" />
         </filter>
       </defs>
     </svg>

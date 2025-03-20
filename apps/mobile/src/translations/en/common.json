@@ -1,6 +1,5 @@
 {
   "NSLocationWhenInUseUsageDescription": "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
-  "NSLocationUsageDescription": "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
   "onboarding_screens": {
     "step0": "Hello and welcome to Refugees.info!",
     "step1": "Here you can find information on how to proceed.",

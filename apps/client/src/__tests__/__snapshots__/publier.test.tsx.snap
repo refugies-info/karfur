@@ -19,16 +19,15 @@ exports[`publier renders publier 1`] = `
             <span
               class="fr-notice__title"
             >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
+              Réfugiés.info a été nommé Service numérique à impact national ! 
               <a
                 class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Découvrir l'impact du projet
+                Découvrir l'impact du projet.
               </a>
-              .
             </span>
           </p>
           <button
@@ -233,7 +232,7 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
+                        class="mb-0 grow-1 text-start text-xl font-medium text-title-blue-france"
                       >
                         Bénéficiez d'un outil gratuit et traduit
                       </span>
@@ -283,7 +282,7 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Donnez de la visibilité à votre action
                       </span>
@@ -324,7 +323,7 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Recevez des candidatures adaptées
                       </span>
@@ -365,7 +364,7 @@ exports[`publier renders publier 1`] = `
                       type="button"
                     >
                       <span
-                        class="mb-0 grow-1 text-left text-xl font-medium"
+                        class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Participez à un service public ouvert
                       </span>
@@ -1326,7 +1325,7 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="mb-0 grow-1 text-left text-xl font-medium"
+                          class="mb-0 grow-1 text-start text-xl font-medium"
                         >
                           Pourquoi je dois écrire moi-même la fiche ?
                         </span>
@@ -1367,7 +1366,7 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="mb-0 grow-1 text-left text-xl font-medium"
+                          class="mb-0 grow-1 text-start text-xl font-medium"
                         >
                           Je ne suis pas à l'aise avec le numérique, est-ce facile ?
                         </span>
@@ -1408,7 +1407,7 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="mb-0 grow-1 text-left text-xl font-medium"
+                          class="mb-0 grow-1 text-start text-xl font-medium"
                         >
                           En combien de temps ma fiche sera publiée ?
                         </span>
@@ -1449,7 +1448,7 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="mb-0 grow-1 text-left text-xl font-medium"
+                          class="mb-0 grow-1 text-start text-xl font-medium"
                         >
                           Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
                         </span>
@@ -1490,7 +1489,7 @@ exports[`publier renders publier 1`] = `
                         type="button"
                       >
                         <span
-                          class="mb-0 grow-1 text-left text-xl font-medium"
+                          class="mb-0 grow-1 text-start text-xl font-medium"
                         >
                           Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
                         </span>

@@ -19,16 +19,15 @@ exports[`homepage renders homepage 1`] = `
             <span
               class="fr-notice__title"
             >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
+              Réfugiés.info a été nommé Service numérique à impact national ! 
               <a
                 class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Découvrir l'impact du projet
+                Découvrir l'impact du projet.
               </a>
-              .
             </span>
           </p>
           <button
@@ -267,6 +266,7 @@ exports[`homepage renders homepage 1`] = `
       aria-label="Homepage.infoTypeDemarche"
       aria-roledescription="carousel"
       class="relative w-full max-md:pb-14 mb-20"
+      dir="ltr"
       role="region"
     >
       <div
@@ -305,8 +305,8 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
-        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
+        class="noscrollbar m-auto flex gap-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))] ltr:pr-4 rtl:pl-4"
+        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab; direction: ltr;"
       >
         <div
           aria-current="true"
@@ -439,7 +439,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r6:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -589,7 +589,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r7:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -739,7 +739,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r8:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -884,7 +884,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:r9:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1034,7 +1034,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:ra:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1179,7 +1179,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rb:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1329,7 +1329,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rc:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1474,7 +1474,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rd:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1619,7 +1619,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:re:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1769,7 +1769,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rf:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -1914,7 +1914,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rg:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2064,7 +2064,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rh:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2209,7 +2209,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:ri:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2354,7 +2354,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rj:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2499,7 +2499,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
                       id="fr-badge-:rk:"
                     >
-                      Démarche
+                      Dispositif.demarche
                     </p>
                   </li>
                 </ul>
@@ -2525,6 +2525,7 @@ exports[`homepage renders homepage 1`] = `
       aria-label="Homepage.infoTypeDispositif"
       aria-roledescription="carousel"
       class="relative w-full max-md:pb-14 mb-20"
+      dir="ltr"
       role="region"
     >
       <div
@@ -2563,8 +2564,8 @@ exports[`homepage renders homepage 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="m-auto flex gap-4 pr-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-pl-[max(1rem,calc((100vw-76rem)/2))] pl-[max(1rem,calc((100vw-76rem)/2))]"
-        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab;"
+        class="noscrollbar m-auto flex gap-4 touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))] ltr:pr-4 rtl:pl-4"
+        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab; direction: ltr;"
       >
         <div
           aria-current="true"
@@ -4718,7 +4719,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium text-title-blue-france"
+                    class="mb-0 grow-1 text-start text-xl font-medium text-title-blue-france"
                   >
                     Homepage.accordionItemsdesktopTitle1
                   </span>
@@ -4768,7 +4769,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
+                    class="mb-0 grow-1 text-start text-xl font-medium"
                   >
                     Homepage.accordionItemsdesktopTitle2
                   </span>
@@ -4809,7 +4810,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
+                    class="mb-0 grow-1 text-start text-xl font-medium"
                   >
                     Homepage.accordionItemsdesktopTitle3
                   </span>
@@ -4850,7 +4851,7 @@ exports[`homepage renders homepage 1`] = `
                   type="button"
                 >
                   <span
-                    class="mb-0 grow-1 text-left text-xl font-medium"
+                    class="mb-0 grow-1 text-start text-xl font-medium"
                   >
                     Homepage.accordionItemsdesktopTitle4
                   </span>
@@ -5147,7 +5148,7 @@ exports[`homepage renders homepage 1`] = `
                   id="fr-button-:r1o:"
                   type="submit"
                 >
-                  ok
+                  NewsletterForm.ok
                 </button>
               </div>
               <div
@@ -5167,7 +5168,7 @@ exports[`homepage renders homepage 1`] = `
       <h2
         class="mb-0 text-center"
       >
-        WorkTogetherTitle
+        WorkTogether.title
       </h2>
       <div
         class="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3"
@@ -5179,7 +5180,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cardstsAlt"
+              alt="WorkTogether.ts_alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5190,22 +5191,22 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-title-blue-france mb-0 text-lg"
+              class="text-title-blue-france md:text-h5 mb-0 text-lg"
             >
-              WorkTogether.cardstsTitle
+              WorkTogether.ts_title
             </h3>
             <p
-              class="mb-0"
+              class="mb-0 flex-grow xl:text-lg"
             >
-              WorkTogether.cardstsDescription
+              WorkTogether.ts_subtitle
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
-              href=" https://airtable.com/shrrkFuyeG0BpKKT7"
+              href="https://kit.refugies.info/formation/"
               id="fr-button-:r1p:"
               target="_blank"
             >
-              WorkTogether.bookAppointment
+              WorkTogether.ts_cta
             </a>
           </div>
         </div>
@@ -5219,7 +5220,7 @@ exports[`homepage renders homepage 1`] = `
               class="flex h-20 w-20 items-center justify-center bg-black p-1"
             >
               <img
-                alt="WorkTogether.cardsagirAlt"
+                alt="WorkTogether.agir_alt"
                 data-nimg="1"
                 decoding="async"
                 height="100"
@@ -5231,14 +5232,14 @@ exports[`homepage renders homepage 1`] = `
               />
             </span>
             <h3
-              class="text-title-blue-france mb-0 text-lg"
+              class="text-title-blue-france md:text-h5 mb-0 text-lg"
             >
-              WorkTogether.cardsagirTitle
+              WorkTogether.agir_title
             </h3>
             <p
-              class="mb-0"
+              class="mb-0 flex-grow xl:text-lg"
             >
-              WorkTogether.cardsagirDescription
+              WorkTogether.agir_subtitle
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
@@ -5246,7 +5247,7 @@ exports[`homepage renders homepage 1`] = `
               id="fr-button-:r1q:"
               target="_blank"
             >
-              WorkTogether.participateWebinar
+              WorkTogether.meeting_cta
             </a>
           </div>
         </div>
@@ -5257,7 +5258,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cardsoperatorsAlt"
+              alt="WorkTogether.etat_alt"
               data-nimg="1"
               decoding="async"
               height="80"
@@ -5268,14 +5269,14 @@ exports[`homepage renders homepage 1`] = `
               width="240"
             />
             <h3
-              class="text-title-blue-france mb-0 text-lg"
+              class="text-title-blue-france md:text-h5 mb-0 text-lg"
             >
-              WorkTogether.cardsoperatorsTitle
+              WorkTogether.etat_title
             </h3>
             <p
-              class="mb-0"
+              class="mb-0 flex-grow xl:text-lg"
             >
-              WorkTogether.cardsoperatorsDescription
+              WorkTogether.etat_subtitle
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
@@ -5283,7 +5284,7 @@ exports[`homepage renders homepage 1`] = `
               id="fr-button-:r1r:"
               target="_blank"
             >
-              WorkTogether.bookAppointment
+              WorkTogether.meeting_cta
             </a>
           </div>
         </div>
@@ -5294,7 +5295,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cardsadministrationAlt"
+              alt="WorkTogether.administration_alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5305,14 +5306,14 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-title-blue-france mb-0 text-lg"
+              class="text-title-blue-france md:text-h5 mb-0 text-lg"
             >
-              WorkTogether.cardsadministrationTitle
+              WorkTogether.administration_title
             </h3>
             <p
-              class="mb-0"
+              class="mb-0 flex-grow xl:text-lg"
             >
-              WorkTogether.cardsadministrationDescription
+              WorkTogether.administration_subtitle
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
@@ -5320,7 +5321,7 @@ exports[`homepage renders homepage 1`] = `
               id="fr-button-:r1s:"
               target="_blank"
             >
-              WorkTogether.bookAppointment
+              WorkTogether.meeting_cta
             </a>
           </div>
         </div>
@@ -5331,7 +5332,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cardsstructuresAlt"
+              alt="WorkTogether.structure_alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5342,21 +5343,21 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-title-blue-france mb-0 text-lg"
+              class="text-title-blue-france md:text-h5 mb-0 text-lg"
             >
-              WorkTogether.cardsstructuresTitle
+              WorkTogether.structure_title
             </h3>
             <p
-              class="mb-0"
+              class="mb-0 flex-grow xl:text-lg"
             >
-              WorkTogether.cardsstructuresDescription
+              WorkTogether.structure_subtitle
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
               id="fr-button-:r1t:"
             >
-              WorkTogether.translateContent
+              WorkTogether.structure_cta
             </a>
           </div>
         </div>
@@ -5367,7 +5368,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.cardspolyglotsAlt"
+              alt="WorkTogether.traducteur_alt"
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5378,21 +5379,21 @@ exports[`homepage renders homepage 1`] = `
               width="40"
             />
             <h3
-              class="text-title-blue-france mb-0 text-lg"
+              class="text-title-blue-france md:text-h5 mb-0 text-lg"
             >
-              WorkTogether.cardspolyglotsTitle
+              WorkTogether.traducteur_title
             </h3>
             <p
-              class="mb-0"
+              class="mb-0 flex-grow xl:text-lg"
             >
-              WorkTogether.cardspolyglotsDescription
+              WorkTogether.traducteur_subtitle
             </p>
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
               id="fr-button-:r1u:"
             >
-              WorkTogether.participateWebinar
+              WorkTogether.traducteur_cta
             </a>
           </div>
         </div>
