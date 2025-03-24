@@ -146,8 +146,8 @@ const WorkTogether = () => {
 
   return (
     <section className="flex flex-col gap-20 py-20" id="work-together">
-      <h2 className="mb-0 text-center">{t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}</h2>
-      <div className="container grid max-w-screen grid-cols-2 items-center gap-10 max-xl:w-[50.5rem] xl:w-full xl:grid-cols-3">
+      <h2 className="mx-4 mb-0 text-center">{t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}</h2>
+      <div className="container grid grid-cols-1 items-center gap-10 max-xl:w-[50.5rem] max-md:w-full sm:grid-cols-2 xl:w-full xl:grid-cols-3">
         {cardsContent.map(({ title, description, link, cta, icon, image }) => (
           <div key={title} className="border-default-grey h-full border p-8">
             <div className="flex h-full flex-col gap-4">
