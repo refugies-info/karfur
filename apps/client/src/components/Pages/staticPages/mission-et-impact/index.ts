@@ -3,7 +3,6 @@ export { ImageCustomFigure } from "./ImageCustomFigure";
 export { ImpactCol } from "./ImpactCol";
 export { TeamCard } from "./TeamCard";
 
-export { SectionCommunity } from "./SectionCommunity";
 export { SectionContributors } from "./SectionContributors";
 export { SectionFigures } from "./SectionFigures";
 export { SectionImpact } from "./SectionImpact";

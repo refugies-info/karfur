@@ -1,15 +1,13 @@
 import deepLinks from "./androidDeepLinks";
 
-// Update these version variables before publishing the app
-const version = "2.1.3";
+// Update thiq version variable before publishing the app
+// Build versioning is now managed remotely via EAS
 const displayVersionNumber = "2025.03.1";
-const androidVersionCode = 36;
 
 export default {
   name: "Réfugiés.info",
   owner: "refugies-info",
   slug: "refugies-info-app",
-  version,
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -25,7 +23,6 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: version,
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -35,16 +32,23 @@ export default {
     infoPlist: {
       CFBundleAllowMixedLocalizations: true,
       UIBackgroundModes: ["remote-notification"],
+      NSLocationWhenInUseUsageDescription:
+        "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
     associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
   },
   locales: {
+    ar: "./src/translations/ar/common.json",
     en: "./src/translations/en/common.json",
+    fa: "./src/translations/fa/common.json",
     fr: "./src/translations/fr/common.json",
+    ps: "./src/translations/ps/common.json",
+    ru: "./src/translations/ru/common.json",
+    ti: "./src/translations/ti/common.json",
+    uk: "./src/translations/uk/common.json",
   },
   android: {
-    versionCode: androidVersionCode,
     // Support for Android 8 - https://endoflife.date/android
     minSdkVersion: 26,
     userInterfaceStyle: "light",
@@ -79,7 +83,6 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
-    version,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
     scheme: "refugies",
@@ -135,7 +138,6 @@ export default {
       "@react-native-firebase/crashlytics",
     ],
     android: {
-      versionCode: androidVersionCode,
       userInterfaceStyle: "light",
       adaptiveIcon: {
         foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
@@ -169,7 +171,6 @@ export default {
       ],
     },
     ios: {
-      buildNumber: version,
       supportsTablet: false,
       userInterfaceStyle: "light",
       bundleIdentifier: "refugiesInfo",
@@ -180,6 +181,8 @@ export default {
       infoPlist: {
         CFBundleAllowMixedLocalizations: true,
         UIBackgroundModes: ["remote-notification"],
+        NSLocationWhenInUseUsageDescription:
+          "Réfugiés.info needs access to your location to show nearby services and resources available to you.",
       },
       googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
       associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],

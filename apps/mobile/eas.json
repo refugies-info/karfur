@@ -1,38 +1,67 @@
 {
   "build": {
-    "base": { "channel": "base", "ios": { "image": "latest" }, "node": "22.13.1", "pnpm": "10.4.1" },
-    "production": { "extends": "base", "channel": "production", "environment": "production" },
+    "base": {
+      "channel": "base",
+      "ios": {
+        "image": "latest"
+      },
+      "node": "22.14.0",
+      "pnpm": "10.6.4"
+    },
+    "production": {
+      "extends": "base",
+      "channel": "production",
+      "environment": "production",
+      "autoIncrement": true
+    },
     "staging": {
       "extends": "base",
       "channel": "staging",
       "environment": "preview",
       "distribution": "internal",
-      "env": { "EXPO_APP_NAME": "Réfugiés.info - Staging", "EAS_BUILD_PROFILE": "staging" }
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Staging",
+        "EAS_BUILD_PROFILE": "staging"
+      }
+    },
+    "staging-simulator": {
+      "extends": "staging",
+      "ios": {
+        "simulator": true
+      }
     },
     "development": {
       "extends": "base",
       "developmentClient": true,
       "channel": "staging",
       "distribution": "internal",
-      "env": { "EXPO_APP_NAME": "Réfugiés.info - Dev", "EAS_BUILD_PROFILE": "staging" }
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Dev",
+        "EAS_BUILD_PROFILE": "staging"
+      }
     },
     "development-simulator": {
-      "extends": "base",
-      "developmentClient": true,
-      "channel": "staging",
-      "distribution": "internal",
-      "env": { "EXPO_APP_NAME": "Réfugiés.info - Dev", "EAS_BUILD_PROFILE": "staging" },
-      "ios": { "simulator": true }
+      "extends": "development",
+      "ios": {
+        "simulator": true
+      }
     },
     "preview": {
       "extends": "base",
       "channel": "preview",
       "environment": "preview",
       "distribution": "internal",
-      "env": { "EXPO_APP_NAME": "Réfugiés.info - Preview", "EAS_BUILD_PROFILE": "preview" }
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Preview",
+        "EAS_BUILD_PROFILE": "preview"
+      }
     }
   },
-  "cli": { "version": ">= 0.35.0", "requireCommit": true },
+  "cli": {
+    "version": ">= 0.35.0",
+    "requireCommit": true,
+    "appVersionSource": "remote"
+  },
   "submit": {
     "production": {
       "android": {
@@ -40,7 +69,11 @@
         "track": "internal",
         "releaseStatus": "draft"
       },
-      "ios": { "appleId": "nourallazkani@gmail.com", "ascAppId": "1595597429", "appleTeamId": "98K762J2MM" }
+      "ios": {
+        "appleId": "nourallazkani@gmail.com",
+        "ascAppId": "1595597429",
+        "appleTeamId": "98K762J2MM"
+      }
     }
   }
 }

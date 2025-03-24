@@ -27,7 +27,6 @@
 
 // rtl
 [dir="rtl"] {
-  .fr-footer__top-cat,
   .fr-nav__list > * > .fr-nav__link,
   .fr-nav__link {
     text-align: end;
@@ -43,13 +42,6 @@
     )
     .fr-btn::before {
     margin-inline: -0.125rem 0.5rem !important;
-  }
-
-  @media (min-width: 62em) {
-    .fr-footer__content {
-      margin-inline-start: inherit;
-      margin-inline-end: auto;
-    }
   }
 }
 
