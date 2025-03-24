@@ -55,7 +55,7 @@ const DispositifCard = (props: Props) => {
     if (props.selectedDepartment) return { text: props.selectedDepartment, className: styles.badge_department };
     if (Array.isArray(location) && location.length > 1)
       return {
-        text: `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`,
+        text: `${location.length} ${jsLcfirst(t("Dispositif.departements", "Départements"))}`,
         className: styles.badge_department,
       };
 
