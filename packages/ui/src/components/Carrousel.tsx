@@ -231,7 +231,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl, dir = "ltr" 
         ref={scrollContainerRef}
         className={cn(
           "noscrollbar m-auto flex gap-4",
-          "touch-pan-x snap-x snap-mandatory overflow-x-auto scroll-smooth",
+          "snap-x snap-mandatory overflow-x-auto scroll-smooth",
           "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
           "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))]",
           "ltr:pr-4 rtl:pl-4",
@@ -243,9 +243,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl, dir = "ltr" 
           "msOverflowStyle": "none",
           "WebkitOverflowScrolling": "touch",
           "willChange": "transform",
-          "scrollSnapType": "x mandatory",
           "scrollBehavior": "smooth",
-          "touchAction": "pan-x",
           "overscrollBehaviorX": "contain",
           "cursor": "grab",
           // @ts-ignore
