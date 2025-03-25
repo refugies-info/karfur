@@ -115,7 +115,7 @@ const MobileApp = () => {
               className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
               onClick={() => handleOpenStoreLink(iosStoreLink)}
             >
-              {t("MobileApp.downloadButtonText", "Télécharger l’applicationn")}
+              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
             <Button
               iconId={"ri-android-fill"}
