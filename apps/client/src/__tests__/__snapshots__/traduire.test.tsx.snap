@@ -214,7 +214,7 @@ exports[`traduire renders traduire 1`] = `
             class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
+              class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
             >
               <div
                 class="flex h-full flex-col"
@@ -249,7 +249,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
+              class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
             >
               <div
                 class="flex h-full flex-col"
@@ -284,7 +284,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </div>
             <div
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
+              class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
             >
               <div
                 class="flex h-full flex-col"
@@ -687,7 +687,7 @@ exports[`traduire renders traduire 1`] = `
             class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
           >
             <a
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint block"
+              class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint block"
               href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
               rel="noopener noreferrer"
               target="_blank"
@@ -731,7 +731,7 @@ exports[`traduire renders traduire 1`] = `
               </div>
             </a>
             <button
-              class="lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint"
+              class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint"
               title="Live chat"
             >
               <div
