@@ -306,7 +306,7 @@ exports[`homepage renders homepage 1`] = `
         aria-atomic="true"
         aria-live="polite"
         class="noscrollbar m-auto flex gap-4 snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))] ltr:pr-4 rtl:pl-4"
-        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab; direction: ltr;"
+        style="will-change: transform; scroll-behavior: smooth; cursor: grab; direction: ltr;"
       >
         <div
           aria-current="true"
@@ -2565,7 +2565,7 @@ exports[`homepage renders homepage 1`] = `
         aria-atomic="true"
         aria-live="polite"
         class="noscrollbar m-auto flex gap-4 snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))] ltr:pr-4 rtl:pl-4"
-        style="will-change: transform; scroll-snap-type: x mandatory; scroll-behavior: smooth; cursor: grab; direction: ltr;"
+        style="will-change: transform; scroll-behavior: smooth; cursor: grab; direction: ltr;"
       >
         <div
           aria-current="true"
