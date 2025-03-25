@@ -16,7 +16,7 @@ export const HelpNotice = () => {
     },
     en: {
       link: "https://refugies.typeform.com/impact-EN-jan25",
-      text: "Help us improve Réfugiés.info!",
+      text: "🎤 👋 Help us improve Réfugiés.info!",
     },
     ps: {
       link: "https://refugies.typeform.com/impact-PA-jan25",
@@ -40,7 +40,7 @@ export const HelpNotice = () => {
     },
     ti: {
       link: "https://refugies.typeform.com/impact-fr-jan25",
-      text: "ሓብሩና ንምምሕያሽ ዘለኩም ርእይቶ Réfugiés.info ንምምዕባል!",
+      text: "🎤 👋 ሓብሩና ንምምሕያሽ ዘለኩም ርእይቶ Réfugiés.info ንምምዕባል!",
     },
   };
 
