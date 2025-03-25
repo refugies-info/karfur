@@ -522,10 +522,6 @@ export const operators: Operator[] = [
     phone: "06 85 78 95 84",
   },
   {
-    department: "77 - Seine-et-Marne",
-    operator: "France Terre d'Asile",
-  },
-  {
     dispositifId: "660d1f36de63124662360662",
     department: "78 - Yvelines",
     operator: "Coallia",
