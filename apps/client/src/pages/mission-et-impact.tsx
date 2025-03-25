@@ -76,7 +76,7 @@ const MissionImpact = (props: Props) => {
           backgroundImage: `url(${HeroBack.src})`,
         }}
       >
-        <div className="mx-auto md:max-w-[720px] lg:max-w-[600px] xl:max-w-[720px]">
+        <div className="mx-auto md:max-w-[45rem] lg:max-w-[37.5rem] xl:max-w-[45rem]">
           <h1 className="!text-h1 md:!text-alt-title mb-6">{t("MissionImpact.title")}</h1>
           <p className="!text-chapo !mb-0">{t("MissionImpact.subtitle")}</p>
         </div>
