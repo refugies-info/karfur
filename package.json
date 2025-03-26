@@ -33,8 +33,8 @@
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/.expo **/storybook-static **/build",
-    "clean:modules": "rm -rf ./packages/*/node_modules ./apps/*/node_modules",
+    "clean:caches": "rimraf -g \"**/node_modules/.cache\" \"**/.turbo\" \"**/.next\" \"**/dist\" \"**/.cache\" \"**/.expo\" \"**/storybook-static\" \"**/build\" \"**/__pycache__\"",
+    "clean:modules": "rimraf -g \"**/node_modules\" \"**/.venv\"",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
@@ -108,6 +108,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.10",
+    "rimraf": "^6.0.1",
     "stylelint": "^16.15.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
