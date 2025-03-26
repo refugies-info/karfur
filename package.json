@@ -35,6 +35,7 @@
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
     "clean:caches": "rimraf -g \"**/node_modules/.cache\" \"**/.turbo\" \"**/.next\" \"**/dist\" \"**/.cache\" \"**/.expo\" \"**/storybook-static\" \"**/build\" \"**/__pycache__\"",
     "clean:modules": "rimraf -g \"**/node_modules\" \"**/.venv\"",
+    "clean:store": "rm -rf $(pnpm store path)",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
