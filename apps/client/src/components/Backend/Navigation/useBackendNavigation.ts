@@ -30,7 +30,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
   return [
     useBackendNavItem({
       access: RoleName.STRUCTURE,
-      iconName: nbNewNotifications > 0 ? "ri-bell-fill" : "ri-bell-line",
+      iconName: nbNewNotifications > 0 ? "ri-notification-3-fill" : "ri-notification-3-line",
       route: "/backend/user-dash-notifications" as PathNames,
       title: `${t("Toolbar.Mes notifications", "Notifications")} (${nbNewNotifications})`,
     }),
