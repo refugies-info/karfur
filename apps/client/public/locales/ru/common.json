@@ -37,6 +37,7 @@
     "resourcesTitle": "Бесплатные ресурсы в вашем распоряжении",
     "resourcesText": "Мы предлагаем вам полный спектр материалов, чтобы познакомиться с проектом и поделиться с другими: видео, флаеры на нескольких языках, брошюры, презентации и т.д.",
     "resourcesCTA": "Ваши инструменты",
+    "webinaireCTA": "Принять участие в вебинаре",
     "StructuresLogosText": "Более 300 000 профессионалов уже испольуют Réfugiés.info чтобы сопровождать своих бенефициаров!"
   },
   "Recherche": {
@@ -144,7 +145,10 @@
     "not_an_email": "Неверный email,",
     "check_mail": "проверьте написание."
   },
-  "UnauthorizedAccess": { "access_denied": "Доступ запрещен", "back_home": "Вернуться на главную" },
+  "UnauthorizedAccess": {
+    "access_denied": "Доступ запрещен",
+    "back_home": "Вернуться на главную"
+  },
   "Dispositif": {
     "share": "поделиться страницей",
     "updated": "информация обновлена",
@@ -318,6 +322,7 @@
     "getItOnAppStore": "Скачать в App Store",
     "getItOnPlayStore": "Скачать в Play Store",
     "helpCenter": "Центр помощи",
+    "webinaire": "Принять участие в вебинаре",
     "TraduireUneFiche": "Перевести страницу"
   },
   "Footer": {
@@ -348,7 +353,11 @@
     "help_translate": "Помочь перевести",
     "mission_impact": "Миссия и влияние"
   },
-  "Roles": { "admin": "Админ", "redactor": "Редактор", "translator": "Переводчик" },
+  "Roles": {
+    "admin": "Админ",
+    "redactor": "Редактор",
+    "translator": "Переводчик"
+  },
   "LanguageDropdown": {
     "en_français": "на французском",
     "en_persan/dari": "на персидском/дари",
@@ -527,6 +536,14 @@
     "AnnotationsVocalize": "Озвучка информации",
     "AnnotationsListen": "Послушать"
   },
-  "SkipLinks": { "PiedDePage": "Низ страницы", "Menu": "Меню", "Contenu": "Содержание" },
-  "ui": { "carrouselSeemore": "Посмотреть все", "carrouselPrev": "Листать влево", "carrouselNext": "Листать вправо" }
+  "SkipLinks": {
+    "PiedDePage": "Низ страницы",
+    "Menu": "Меню",
+    "Contenu": "Содержание"
+  },
+  "ui": {
+    "carrouselSeemore": "Посмотреть все",
+    "carrouselPrev": "Листать влево",
+    "carrouselNext": "Листать вправо"
+  }
 }
