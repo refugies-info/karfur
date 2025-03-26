@@ -42,7 +42,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     }),
     useBackendNavItem({
       route: "/backend/user-dash-contrib" as PathNames,
-      iconName: "ri-file-2-line",
+      iconName: "ri-file-text-line",
       title: t("Toolbar.Mes fiches", "Fiches"),
       access: "all",
     }),
@@ -72,7 +72,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     }),
     useBackendNavItem({
       onClick: disconnect,
-      iconName: "ri-logout-box-line",
+      iconName: "ri-logout-box-r-line",
       iconColor: "var(--text-default-error)",
       textColor: "var(--text-default-error)",
       title: t("Toolbar.logout", "Se déconnecter"),
