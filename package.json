@@ -120,7 +120,8 @@
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx}": "prettier --write"
+    "*.{js,jsx,ts,tsx}": "prettier --write",
+    "**/common.json": "prettier --write"
   },
   "packageManager": "pnpm@10.6.4"
 }
