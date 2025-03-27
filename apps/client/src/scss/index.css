@@ -38,3 +38,15 @@
   --text-alt-title-big: 56px;
   --text-alt-title-big--line-height: 64px;
 }
+
+@layer refugies-info {
+  .custom-icon-favorites {
+    background-image: url("/images/icon_favorites.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+  }
+}

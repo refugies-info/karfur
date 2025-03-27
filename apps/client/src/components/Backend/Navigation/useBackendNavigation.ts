@@ -36,7 +36,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     }),
     useBackendNavItem({
       route: "/backend/user-favorites" as PathNames,
-      iconName: "fr-icon-star-line",
+      iconName: "custom-icon-favorites w-4 h-4",
       title: t("Toolbar.Mes favoris", "Favoris"),
       access: "all",
     }),
