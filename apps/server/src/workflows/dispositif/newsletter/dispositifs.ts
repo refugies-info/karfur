@@ -13,6 +13,7 @@ export const getPublications = async (departement: string): ResponseWithData<Dis
       publishedAt: {
         $exists: true,
       },
+      // Need to use $expr to compare dates
       $expr: {
         $gte: [
           "$publishedAt",
