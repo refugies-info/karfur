@@ -9,9 +9,7 @@ export const getPublications = async (departement: string): ResponseWithData<Dis
     {
       typeContenu: "dispositif",
       status: "Actif",
-      metadatas: {
-        location: departement,
-      },
+      "metadatas.location": departement,
       publishedAt: {
         $exists: true,
       },
