@@ -5,18 +5,24 @@ import { DemarchesData, DispositifDesc } from "~/workflows/dispositif/newsletter
 
 const getPublications = async (): Promise<DispositifDesc[]> => {
   const results = await getDispositifAbstracts(
+    // prettier-ignore
     {
       typeContenu: "demarche",
       status: "Actif",
       publishedAt: {
         $exists: true,
-        $gte: {
-          $dateSubtract: {
-            startDate: "$$NOW",
-            unit: "day",
-            amount: 30,
+      },
+      $expr: {
+        $gte: [
+          "$publishedAt",
+          {
+            $dateSubtract: {
+              startDate: "$$NOW",
+              unit: "day",
+              amount: 30,
+            },
           },
-        },
+        ],
       },
     },
     3,
@@ -36,18 +42,24 @@ const getPublications = async (): Promise<DispositifDesc[]> => {
 
 const getUpdates = async (): Promise<DispositifDesc[]> => {
   const results = await getDispositifAbstracts(
+    // prettier-ignore
     {
       typeContenu: "demarche",
       status: "Actif",
       lastModificationDate: {
         $exists: true,
-        $gte: {
-          $dateSubtract: {
-            startDate: "$$NOW",
-            unit: "day",
-            amount: 30,
+      },
+      $expr: {
+        $gte: [
+          "$lastModificationDate",
+          {
+            $dateSubtract: {
+              startDate: "$$NOW",
+              unit: "day",
+              amount: 30,
+            },
           },
-        },
+        ],
       },
     },
     3,

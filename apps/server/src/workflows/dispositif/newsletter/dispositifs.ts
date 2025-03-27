@@ -5,19 +5,27 @@ import { DispositifsData } from "~/workflows/dispositif/newsletter/types";
 
 export const getPublications = async (departement: string): ResponseWithData<DispositifsData> => {
   const results = await getDispositifAbstracts(
+    // prettier-ignore
     {
-      "typeContenu": "dispositif",
-      "status": "Actif",
-      "metadatas.location": `${departement}`,
-      "publishedAt": {
+      typeContenu: "dispositif",
+      status: "Actif",
+      metadatas: {
+        location: departement,
+      },
+      publishedAt: {
         $exists: true,
-        $gte: {
-          $dateSubtract: {
-            startDate: "$$NOW",
-            unit: "day",
-            amount: 30,
+      },
+      $expr: {
+        $gte: [
+          "$publishedAt",
+          {
+            $dateSubtract: {
+              startDate: "$$NOW",
+              unit: "day",
+              amount: 30,
+            },
           },
-        },
+        ],
       },
     },
     3,
