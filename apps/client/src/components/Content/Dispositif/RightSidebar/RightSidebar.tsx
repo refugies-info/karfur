@@ -1,4 +1,5 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import { NorthStar } from "@refugies-info/ui";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -92,6 +93,7 @@ const RightSidebar = () => {
     <div className={styles.container}>
       {!needsApproval ? (
         <>
+          <NorthStar />
           {!ttsEnabled && (
             <Tooltip target="no-tts-tooltip" placement="top">
               Écouter la fiche en tigrinya n'est pas possible pour le moment.

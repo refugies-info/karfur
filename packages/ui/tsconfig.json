@@ -4,8 +4,11 @@
     "outDir": "dist",
     "rootDir": "src",
     "jsx": "react-jsx",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@refugies-info/ui/lib/*": ["src/lib/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/types"],
   "exclude": ["node_modules", "dist", "build"]
 }

@@ -734,6 +734,7 @@
   "ui": {
     "carrouselSeemore": "Voir tout",
     "carrouselPrev": "Faire défiler à gauche",
-    "carrouselNext": "Faire défiler à droite"
+    "carrouselNext": "Faire défiler à droite",
+    "northStar.title": "North Star"
   }
 }

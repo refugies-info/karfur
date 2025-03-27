@@ -2,7 +2,7 @@
 @import "./colors";
 @import "./variables";
 
-@layer theme {
+@layer base {
   // Vendors
   @import "./bootstrap";
   @import "./flag-icons";
