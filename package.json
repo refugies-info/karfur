@@ -33,8 +33,8 @@
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:caches": "rimraf -g \"**/node_modules/.cache\" \"**/.turbo\" \"**/.next\" \"**/dist\" \"**/.cache\" \"**/.expo\" \"**/storybook-static\" \"**/build\" \"**/__pycache__\"",
-    "clean:modules": "rimraf -g \"**/node_modules\" \"**/.venv\"",
+    "clean:cache": "rimraf -g \"**/.turbo\" \"**/.next\" \"**/dist\" \"**/.cache\" \"**/.expo\" \"**/storybook-static\" \"**/build\" \"**/__pycache__\"",
+    "clean:modules": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
     "clean:store": "rm -rf $(pnpm store path)",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
