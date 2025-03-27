@@ -12,6 +12,7 @@ const getPublications = async (): Promise<DispositifDesc[]> => {
       publishedAt: {
         $exists: true,
       },
+      // Need to use $expr to compare dates
       $expr: {
         $gte: [
           "$publishedAt",
@@ -49,6 +50,7 @@ const getUpdates = async (): Promise<DispositifDesc[]> => {
       lastModificationDate: {
         $exists: true,
       },
+      // Need to use $expr to compare dates
       $expr: {
         $gte: [
           "$lastModificationDate",
