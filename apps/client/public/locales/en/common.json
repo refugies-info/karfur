@@ -37,6 +37,7 @@
     "resourcesTitle": "Free resources at your disposal",
     "resourcesText": "We provide you with a set of digital and physical tools to discover the project and talk about it around you: animated videos, multilingual flyers, presentation brochures, visuals, etc.",
     "resourcesCTA": "See the tools",
+    "webinaireCTA": "Register to a webinar",
     "StructuresLogosText": "More than 300,000 professionals have already adopted Réfugiés.info to support their clients!"
   },
   "Recherche": {
@@ -150,13 +151,16 @@
     "check_mail": "check your spelling.",
     "invalid_phone_number": "This is not a valid phone number, check your entry."
   },
-  "UnauthorizedAccess": { "access_denied": "Access denied", "back_home": "Return to home" },
+  "UnauthorizedAccess": {
+    "access_denied": "Access denied",
+    "back_home": "Return to home"
+  },
   "Dispositif": {
     "share": "Share this sheet",
     "updated": "Updated on",
     "summary": "Summary",
     "departements": "Departments",
-    "demarche": "Procedure",
+    "demarche": "Procedures",
     "importantInformations": "Important information",
     "sectionWhatAndWhy": "What is it and why is it interesting?",
     "sectionWhat": "What is it?",
@@ -321,7 +325,10 @@
     "missionImpact": "Mission and impact",
     "partagerProjet": "Share the project",
     "centreAide": "Help centre",
+    "getItOnAppStore": "Download the application (App Store)",
+    "getItOnPlayStore": "Download the application (Play Store)",
     "helpCenter": "Help centre",
+    "webinaire": "Take part in a discovery webinar",
     "TraduireUneFiche": "Translate a sheet"
   },
   "Footer": {
@@ -352,7 +359,11 @@
     "help_translate": "Help to translate",
     "mission_impact": "Mission and impact"
   },
-  "Roles": { "admin": "Admin", "redactor": "Writer", "translator": "Translator" },
+  "Roles": {
+    "admin": "Admin",
+    "redactor": "Writer",
+    "translator": "Translator"
+  },
   "LanguageDropdown": {
     "en_français": "in French",
     "en_persan/dari": "in Persian / Dari",
@@ -531,5 +542,9 @@
     "AnnotationsListen": "Listening"
   },
   "SkipLinks": { "PiedDePage": "Footer", "Menu": "Menu", "Contenu": "Content" },
-  "ui": { "carrouselSeemore": "View all", "carrouselPrev": "Scroll left", "carrouselNext": "Scroll right" }
+  "ui": {
+    "carrouselSeemore": "View all",
+    "carrouselPrev": "Scroll left",
+    "carrouselNext": "Scroll right"
+  }
 }

@@ -37,13 +37,14 @@
     "resourcesTitle": "منابع رایگان در اختیار شماست",
     "resourcesText": "ما مجموعه‌ای از ابزارهای دیجیتالی و فزیکی را در اختیار شما قرار می‌دهیم تا در مورد پروژه بیاموزید و بتوانید از طریق کلیپ ها و بروشورهای ارائه شده دراطرافتان درباره آن صحبت کنید.",
     "resourcesCTA": "ابزارها را ببینید",
+    "webinaireCTA": "در یک وبینار شرکت کنید",
     "StructuresLogosText": "بیش از 300,000 متخصص از برنامه Réfugiés.info برای همراهی افراد نیازمند استفاده می‌کنند!"
   },
   "Recherche": {
     "pageTitle": "جستجو",
     "title": "پیدا کردن معلومات",
     "yourResults": "نتایج جستجوی شما",
-    "subtitle": "جستجو در میان {{count}} برگه درباره مراحل اداری و خدمات محلی   \r\n",
+    "subtitle": "جستجو در میان {{count}} برگه درباره مراحل اداری و خدمات محلی   \n",
     "updated": "به روز شد",
     "demarcheTitle": "برگه های روند اداری",
     "dispositifTitle": "برگه‌های برنامه",
@@ -150,7 +151,10 @@
     "check_mail": "املا خود را بررسی کنید.",
     "invalid_phone_number": "این یک شماره تلفن معتبر نیست ، ورودی خود را بررسی کنید."
   },
-  "UnauthorizedAccess": { "access_denied": "دسترسی رد شد", "back_home": "بازگشت به صفحه اصلی" },
+  "UnauthorizedAccess": {
+    "access_denied": "دسترسی رد شد",
+    "back_home": "بازگشت به صفحه اصلی"
+  },
   "Dispositif": {
     "share": "اشتراک گذاری برگه",
     "updated": "به روز شده",
@@ -324,6 +328,7 @@
     "getItOnAppStore": "دانلود از اپ استور",
     "getItOnPlayStore": "دانلود از پلی استور",
     "helpCenter": "مرکز کمک",
+    "webinaire": "در یک وبینار شرکت کنید",
     "TraduireUneFiche": "ترجمه یک برگه"
   },
   "Footer": {
@@ -534,5 +539,9 @@
     "AnnotationsListen": "گوش دادن"
   },
   "SkipLinks": { "PiedDePage": "پانوشت", "Menu": "فهرست", "Contenu": "محتوا" },
-  "ui": { "carrouselSeemore": "مشاهده همه", "carrouselPrev": "پیمایش به چپ", "carrouselNext": "پیمایش به راست" }
+  "ui": {
+    "carrouselSeemore": "مشاهده همه",
+    "carrouselPrev": "پیمایش به چپ",
+    "carrouselNext": "پیمایش به راست"
+  }
 }

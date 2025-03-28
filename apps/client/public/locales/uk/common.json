@@ -37,6 +37,7 @@
     "resourcesTitle": "Безкоштовні матеріали до ваших послуг",
     "resourcesText": "Ми надаємо вам набір цифрових та фізичних інструментів, щоб відкрити для себе проєкт та розповісти про нього оточуючим: анімаційні відео, багатомовні флаєри, презентаційні брошури, візуальні матеріали...",
     "resourcesCTA": "Переглянути інструменти",
+    "webinaireCTA": "Взяти участь у вебінарі",
     "StructuresLogosText": "Понад 300 000 професіоналів вже використовують Réfugiés.info для супроводу своїх клієнтів!"
   },
   "Recherche": {
@@ -150,7 +151,10 @@
     "check_mail": "перевірте написання.",
     "invalid_phone_number": "Це недійсний номер телефону, перевірте введені дані."
   },
-  "UnauthorizedAccess": { "access_denied": "У доступі відмовлено.", "back_home": "Повернутися на головну сторінку" },
+  "UnauthorizedAccess": {
+    "access_denied": "У доступі відмовлено.",
+    "back_home": "Повернутися на головну сторінку"
+  },
   "Dispositif": {
     "share": "Поділитися записом",
     "updated": "Оновлено",
@@ -324,6 +328,7 @@
     "getItOnAppStore": "Завантажити в App Store",
     "getItOnPlayStore": "Завантажити в Play Store",
     "helpCenter": "Центр допомоги",
+    "webinaire": "Візьміть участь у вебінарі відкриття",
     "TraduireUneFiche": "Перекласти запис"
   },
   "Footer": {
@@ -354,7 +359,11 @@
     "help_translate": "Допомогти з перекладом",
     "mission_impact": "Місія та вплив"
   },
-  "Roles": { "admin": "Адмін", "redactor": "Редактор", "translator": "Перекладач" },
+  "Roles": {
+    "admin": "Адмін",
+    "redactor": "Редактор",
+    "translator": "Перекладач"
+  },
   "LanguageDropdown": {
     "en_français": "французька",
     "en_persan/dari": "перська / дарі",
@@ -533,7 +542,11 @@
     "AnnotationsVocalize": "Озвучений контент",
     "AnnotationsListen": "Слухати"
   },
-  "SkipLinks": { "PiedDePage": "Футер сайту", "Menu": "Меню", "Contenu": "Зміст" },
+  "SkipLinks": {
+    "PiedDePage": "Футер сайту",
+    "Menu": "Меню",
+    "Contenu": "Зміст"
+  },
   "ui": {
     "carrouselSeemore": "Переглянути все",
     "carrouselPrev": "Прогорнути вліво",

@@ -37,6 +37,7 @@
     "resourcesTitle": "مصادر معلومات مجانية متاحة لك",
     "resourcesText": "نمدّك بمجموعة أدوات رقمية و ورقية لتتعرف على المشروع و لتتمكن من الحديث عنه فيما حولك عبر الفيديوهات التقديمية و المنشورات متعددة اللغات و المواد و  الكُتيبات الاعلامية.",
     "resourcesCTA": "مشاهدة الأدوات الاعلامية",
+    "webinaireCTA": "المشاركة في ندوة عبر الإنترنت",
     "StructuresLogosText": "لقد تبنى أكثر من 300 ألف محترف بالفعل موقع Réfugiés.info لدعم المستفيدين منهم!"
   },
   "Recherche": {
@@ -152,6 +153,7 @@
     "share": "أشارك الصفحة",
     "updated": "تم التحديث منذ",
     "summary": "الفهرس",
+    "departements": "الاقليم",
     "demarche": "الإجراءات",
     "importantInformations": "معلومات مهمة",
     "sectionWhatAndWhy": "ما العرض و ما أهميته ؟",
@@ -204,8 +206,7 @@
     "freeApp": "تطبيق مجّاني",
     "downloadAppButton": "تنزيل التطبيق",
     "more_1_year": "تم التحديث منذ أكثر من سنة",
-    "toastShareCopied": "تم نسخ الرابط !",
-    "departements": "المنطقة المستهدفة"
+    "toastShareCopied": "تم نسخ الرابط !"
   },
   "Infocards": {
     "availability": "الالتزام المطلوب للبرنامج",
@@ -321,6 +322,7 @@
     "getItOnAppStore": "تنزيل التطبيق على الأب ستور",
     "getItOnPlayStore": "تنزيل التطبيق على البلاي ستور",
     "helpCenter": "مركز المساعدة",
+    "webinaire": "المشاركة في ندوة عبر الإنترنت",
     "TraduireUneFiche": "ترجم صفحة معلومات"
   },
   "Footer": {
@@ -351,11 +353,7 @@
     "help_translate": "المساعدة في الترجمة",
     "mission_impact": "مهامنا و أنجازاتنا"
   },
-  "Roles": {
-    "admin": "أدمن",
-    "redactor": "مُحرر",
-    "translator": "مُُترجم"
-  },
+  "Roles": { "admin": "أدمن", "redactor": "مُحرر", "translator": "مُُترجم" },
   "LanguageDropdown": {
     "en_français": "باللغة الفرنسية",
     "en_persan/dari": "باللغة الفارسية / الداري",

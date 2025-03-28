@@ -1,6 +1,6 @@
 {
   "Header": {
-    "serviceName": "Réfugiés.info",
+    "serviceName": "Réfugiés.info       ረፉጂ.ኣንፎ ( If it is neded , but i prefer to keep the French part since it is a name)",
     "serviceTagline": "ሓበሬታ ን ስደተኛታት ኣብ ፈረንሳ",
     "logIn": "መእተዊ",
     "monEspace": "ናይ ውልቂ ቦታ"
@@ -19,6 +19,7 @@
     "donwloadAppButton": "ዳውንሎድ ነቲ ኣፕሊኬሽን",
     "traduire": "ንምትርጋም ሓጉዙና",
     "btn_translate": "ትርጉም",
+    "infoTypeDemarche": "{{count}} ምምሕዳራዊ ኣገባባት መብርሂ ሂቡ።",
     "infoTypeDispositif": "ኣብ መላእ ፈረንሳ ዝሰርሕ",
     "whyTitle": "ብ ኸመይን መዓስን ን ረፉጂኣንፎ ትጥቐምሉ ?",
     "accordionItemsmobileTitle1": "ንመብርሂ ንናይ ኩሉ ምምሕዳራዊ ኣገባባት",
@@ -36,6 +37,7 @@
     "resourcesTitle": "ብነጻ ን ኽትጥቐምሎም ዝተዳለዉልኩም",
     "resourcesText": "ዝተፈላዩ ኣገባብ፣ ማለት ብ እንተርኔት ፣ ብ ድምጺ ብቪድዮ ከምኡውን ብ ወረቓቕቲ ዝዝርጋሕ ን ኣሽቱ  ፕሮሸራንት፣ ብ ዝተፍላላዩ ቋንቋታት ኣዳሊናልኩም ኣሎና ፣ ን ኣብነት",
     "resourcesCTA": "እነሀውልኩም ረኣይዎም",
+    "webinaireCTA": "ኣብ ዌቢናር ተሳተፉ",
     "StructuresLogosText": "ድሮ ልዕሊ 300 ሽሕ ሰብ ሞያ ድሮ ንተጠቀምቶም ንምድጋፍ Réfugiés.info ተቐቢሎም ኣለዉ!"
   },
   "Recherche": {
@@ -136,7 +138,10 @@
     "not_an_email": "እዚ ኢመይል ኣይኮነን",
     "check_mail": "ኣብ ፊደል ኣረጋግጽ\\ጺ"
   },
-  "UnauthorizedAccess": { "access_denied": "ኣብ  ምንጻግ በጺሑ", "back_home": "ናብ መቀበሊ ምምጻእ" },
+  "UnauthorizedAccess": {
+    "access_denied": "ኣብ  ምንጻግ በጺሑ",
+    "back_home": "ናብ መቀበሊ ምምጻእ"
+  },
   "Dispositif": {
     "share": "ኣብጽሑ ሼር ግበሩ",
     "updated": "ኣቐድዲሙ ዝነበረ",
@@ -310,6 +315,7 @@
     "getItOnAppStore": "ኣብ  l'App Store ኣፕልስቶር ዳውንሎድ መተግበሪ",
     "getItOnPlayStore": "ኣብ Play Store  ፕለይ ስቶር ዳውንሎድ መተግበሪ",
     "helpCenter": "ማእከል ሓገዝ",
+    "webinaire": "ኣብ ዌቢናር ተሳተፉ",
     "TraduireUneFiche": "ንሓደ ፋይል ተርጉሙ"
   },
   "Footer": {
@@ -340,7 +346,11 @@
     "help_translate": "ን ምትርጓም ሓግዝ",
     "mission_impact": "ተልእኾን ጽልዋን"
   },
-  "Roles": { "admin": "ምምሕዳር", "redactor": "ኢዝዲተር ወይ ኣርታዒ", "translator": "ተርጓሚ/ሚት" },
+  "Roles": {
+    "admin": "ምምሕዳር",
+    "redactor": "ኢዝዲተር ወይ ኣርታዒ",
+    "translator": "ተርጓሚ/ሚት"
+  },
   "LanguageDropdown": {
     "en_français": "ብ ቋንቋ ፈረንሳ",
     "en_persan/dari": "ብ ቋንቋ ፋርሲ/ ዳሪ",
@@ -519,6 +529,14 @@
     "AnnotationsVocalize": "ድምጺ ዘለዎ ትሕዝቶ",
     "AnnotationsListen": "ስምዑ"
   },
-  "SkipLinks": { "PiedDePage": "ጫፍ ናይቲ ገጽ", "Menu": "ዝርዝር ትሕዝቶ", "Contenu": "ትሕዝቶ" },
-  "ui": { "carrouselSeemore": "ኩሉ ርአዩ", "carrouselPrev": "ንጸጋም ስክሮል ግበሩ", "carrouselNext": "ንየማን ስክሮል ግበሩ" }
+  "SkipLinks": {
+    "PiedDePage": "ጫፍ ናይቲ ገጽ",
+    "Menu": "ዝርዝር ትሕዝቶ",
+    "Contenu": "ትሕዝቶ"
+  },
+  "ui": {
+    "carrouselSeemore": "ኩሉ ርአዩ",
+    "carrouselPrev": "ንጸጋም ስክሮል ግበሩ",
+    "carrouselNext": "ንየማን ስክሮል ግበሩ"
+  }
 }
