@@ -273,7 +273,7 @@ exports[`homepage renders homepage 1`] = `
         class="container mx-auto mb-8 flex w-full gap-4 lg:justify-between"
       >
         <h2
-          class="!mb-0 w-full !text-2xl font-bold max-sm:pr-[30%]"
+          class="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]"
         >
           Homepage.infoTypeDemarche
         </h2>
@@ -2532,7 +2532,7 @@ exports[`homepage renders homepage 1`] = `
         class="container mx-auto mb-8 flex w-full gap-4 lg:justify-between"
       >
         <h2
-          class="!mb-0 w-full !text-2xl font-bold max-sm:pr-[30%]"
+          class="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]"
         >
           Homepage.infoTypeDispositif
         </h2>

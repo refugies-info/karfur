@@ -1,4 +1,4 @@
-import "scss/index.css";
+import "css/index.css";
 import "scss/index.scss";
 
 import { Caveat } from "next/font/google";

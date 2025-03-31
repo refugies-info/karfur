@@ -1,5 +1,5 @@
 # WARNING: using root folder as current context to make this dockerfile work
-FROM node:22.13.1-alpine AS base
+FROM node:22.14.0-alpine AS base
 
   #
   # Setup builder image
