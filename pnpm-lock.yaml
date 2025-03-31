@@ -545,8 +545,8 @@ importers:
         specifier: ~3.16.7
         version: 3.16.7(@babel/core@7.26.10)(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       react-native-reanimated-carousel:
-        specifier: ^3.5.1
-        version: 3.5.1(react-native-gesture-handler@2.22.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-reanimated@3.16.7(@babel/core@7.26.10)(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+        specifier: ^4.0.2
+        version: 4.0.2(react-native-gesture-handler@2.22.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-reanimated@3.16.7(@babel/core@7.26.10)(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       react-native-render-html:
         specifier: ^5.1.1
         version: 5.1.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -10168,12 +10168,12 @@ packages:
       react-native-web:
         optional: true
 
-  react-native-reanimated-carousel@3.5.1:
-    resolution: {integrity: sha512-9BBQV6JAYSQm2lV7MFtT4mzapXmW4IZO6s38gfiJL84Jg23ivGB1UykcNQauKgtHyhtW2NuZJzItb1s42lM+hA==}
+  react-native-reanimated-carousel@4.0.2:
+    resolution: {integrity: sha512-vNpCfPlFoOVKHd+oB7B0luoJswp+nyz0NdJD8+LCrf25JiNQXfM22RSJhLaksBHqk3fm8R4fKWPNcfy5w7wL1Q==}
     peerDependencies:
-      react: '>=16.8.0'
-      react-native: '>=0.6.0'
-      react-native-gesture-handler: '>=2.0.0'
+      react: '>=18.0.0'
+      react-native: '>=0.70.3'
+      react-native-gesture-handler: '>=2.9.0'
       react-native-reanimated: '>=3.0.0'
 
   react-native-reanimated@3.16.7:
@@ -15637,7 +15637,7 @@ snapshots:
       '@babel/plugin-transform-sticky-regex': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-typescript': 7.26.8(@babel/core@7.26.10)
       '@babel/plugin-transform-unicode-regex': 7.25.9(@babel/core@7.26.10)
-      '@babel/template': 7.26.9
+      '@babel/template': 7.27.0
       '@react-native/babel-plugin-codegen': 0.77.0(@babel/preset-env@7.26.9(@babel/core@7.26.10))
       babel-plugin-syntax-hermes-parser: 0.25.1
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.26.10)
@@ -19088,7 +19088,7 @@ snapshots:
       '@typescript-eslint/parser': 8.28.0(eslint@8.57.1)(typescript@5.8.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.8.3(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.8.3(eslint-plugin-import@2.31.0)(eslint@8.57.1)
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.4(eslint@8.57.1)
@@ -19120,7 +19120,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.8.3(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-import-resolver-typescript@3.8.3(eslint-plugin-import@2.31.0)(eslint@8.57.1):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.0(supports-color@5.5.0)
@@ -19135,14 +19135,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.3(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.28.0(eslint@8.57.1)(typescript@5.8.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.8.3(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.8.3(eslint-plugin-import@2.31.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -19157,7 +19157,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.3(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
@@ -22022,8 +22022,8 @@ snapshots:
   metro-transform-plugins@0.81.2:
     dependencies:
       '@babel/core': 7.26.10
-      '@babel/generator': 7.26.10
-      '@babel/template': 7.26.9
+      '@babel/generator': 7.27.0
+      '@babel/template': 7.27.0
       '@babel/traverse': 7.26.10
       flow-enums-runtime: 0.0.6
       nullthrows: 1.1.1
@@ -22033,9 +22033,9 @@ snapshots:
   metro-transform-worker@0.81.2:
     dependencies:
       '@babel/core': 7.26.10
-      '@babel/generator': 7.26.10
-      '@babel/parser': 7.26.10
-      '@babel/types': 7.26.10
+      '@babel/generator': 7.27.0
+      '@babel/parser': 7.27.0
+      '@babel/types': 7.27.0
       flow-enums-runtime: 0.0.6
       metro: 0.81.2
       metro-babel-transformer: 0.81.2
@@ -23466,7 +23466,7 @@ snapshots:
       react: 18.3.1
       react-native: 0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1)
 
-  react-native-reanimated-carousel@3.5.1(react-native-gesture-handler@2.22.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-reanimated@3.16.7(@babel/core@7.26.10)(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
+  react-native-reanimated-carousel@4.0.2(react-native-gesture-handler@2.22.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-reanimated@3.16.7(@babel/core@7.26.10)(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-native: 0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1)
