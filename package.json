@@ -91,7 +91,8 @@
     "migrate": "tsx migrations/cli.ts",
     "storybook": "pnpm dev:storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
-    "knip": "knip"
+    "knip": "knip",
+    "update-dependencies": "pnpm update -i --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook"
   },
   "engines": {
     "node": "22.14.0"
