@@ -50,7 +50,7 @@ export class User extends Base {
   @prop({ ref: () => Dispositif })
   public contributions?: Ref<Dispositif>[];
 
-  @prop({ enum: UserStatus })
+  @prop({ enum: UserStatus, type: String })
   public status?: UserStatus;
 
   @prop()

@@ -64,7 +64,7 @@ export class Structure extends Base {
   public siren?: string;
   @prop()
   public siret?: string;
-  @prop({ enum: StructureStatus })
+  @prop({ enum: StructureStatus, type: String })
   public status?: StructureStatus;
   @prop({ type: () => ImageSchema, _id: false })
   public picture?: ImageSchema;
