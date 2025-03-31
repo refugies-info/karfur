@@ -114,17 +114,5 @@
   "volta": {
     "node": "22.14.0",
     "pnpm": "10.7.0"
-  },
-  "expo": {
-    "install": {
-      "exclude": [
-        "react-native@~0.76.6",
-        "react-native-reanimated@~3.16.1",
-        "react-native-gesture-handler@~2.20.0",
-        "react-native-screens@~4.4.0",
-        "react-native-safe-area-context@~4.12.0",
-        "react-native-webview@~13.12.5"
-      ]
-    }
   }
 }
