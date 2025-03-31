@@ -709,7 +709,7 @@ importers:
         version: 7.0.5
       '@typegoose/typegoose':
         specifier: ^12.14.0
-        version: 12.14.0(mongoose@8.12.1)
+        version: 12.14.0(mongoose@8.13.1)
       airtable:
         specifier: ^0.12.2
         version: 0.12.2
@@ -759,8 +759,8 @@ importers:
         specifier: ^6.15.0
         version: 6.15.0
       mongoose:
-        specifier: 8.12.1
-        version: 8.12.1
+        specifier: 8.13.1
+        version: 8.13.1
       node-cache:
         specifier: ^5.1.2
         version: 5.1.2
@@ -844,8 +844,8 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       eslint-config-turbo:
-        specifier: 2.4.2
-        version: 2.4.2(eslint@8.57.1)(turbo@2.4.4)
+        specifier: 2.4.4
+        version: 2.4.4(eslint@8.57.1)(turbo@2.4.4)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.13.14)(ts-node@10.9.2(@types/node@22.13.14)(typescript@5.8.2))
@@ -953,8 +953,8 @@ importers:
   packages/api-types:
     dependencies:
       mongoose:
-        specifier: 8.12.1
-        version: 8.12.1
+        specifier: 8.13.1
+        version: 8.13.1
     devDependencies:
       '@refugies-info/typescript-config':
         specifier: workspace:*
@@ -969,8 +969,8 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       eslint-config-turbo:
-        specifier: 2.4.2
-        version: 2.4.2(eslint@8.57.1)(turbo@2.4.4)
+        specifier: 2.4.4
+        version: 2.4.4(eslint@8.57.1)(turbo@2.4.4)
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
@@ -6466,6 +6466,12 @@ packages:
       eslint: '>6.6.0'
       turbo: '>2.0.0'
 
+  eslint-config-turbo@2.4.4:
+    resolution: {integrity: sha512-4w/heWywWkFw09a5MY5lCvb9suJlhBSkzNtGTwM5+zRif4rksubaMYy1pD0++5rqoDVcQax25jCrtii9ptsNDw==}
+    peerDependencies:
+      eslint: '>6.6.0'
+      turbo: '>2.0.0'
+
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
 
@@ -6539,6 +6545,12 @@ packages:
 
   eslint-plugin-turbo@2.4.2:
     resolution: {integrity: sha512-67IZtvOFaWDnUmYMV3luRIE1kqL+ok5MxPEsIPUqH2vQggML7jmZFZx/P9jhXAoFH+pViEz5QEzDa2DBLHqzQg==}
+    peerDependencies:
+      eslint: '>6.6.0'
+      turbo: '>2.0.0'
+
+  eslint-plugin-turbo@2.4.4:
+    resolution: {integrity: sha512-myEnQTjr3FkI0j1Fu0Mqnv1z8n0JW5iFTOUNzHaEevjzl+1uzMSsFwks/x8i3rGmI3EYtC1BY8K2B2pS0Vfx6w==}
     peerDependencies:
       eslint: '>6.6.0'
       turbo: '>2.0.0'
@@ -8877,33 +8889,6 @@ packages:
   mongodb-connection-string-url@3.0.2:
     resolution: {integrity: sha512-rMO7CGo/9BFwyZABcKAWL8UJwH/Kc2x0g72uhDWzG48URRax5TCIcJ7Rc3RZqffZzO/Gwff/jyKwCU9TN8gehA==}
 
-  mongodb@6.14.2:
-    resolution: {integrity: sha512-kMEHNo0F3P6QKDq17zcDuPeaywK/YaJVCEQRzPF3TOM/Bl9MFg64YE5Tu7ifj37qZJMhwU1tl2Ioivws5gRG5Q==}
-    engines: {node: '>=16.20.1'}
-    peerDependencies:
-      '@aws-sdk/credential-providers': ^3.188.0
-      '@mongodb-js/zstd': ^1.1.0 || ^2.0.0
-      gcp-metadata: ^5.2.0
-      kerberos: ^2.0.1
-      mongodb-client-encryption: '>=6.0.0 <7'
-      snappy: ^7.2.2
-      socks: ^2.7.1
-    peerDependenciesMeta:
-      '@aws-sdk/credential-providers':
-        optional: true
-      '@mongodb-js/zstd':
-        optional: true
-      gcp-metadata:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      snappy:
-        optional: true
-      socks:
-        optional: true
-
   mongodb@6.15.0:
     resolution: {integrity: sha512-ifBhQ0rRzHDzqp9jAQP6OwHSH7dbYIQjD3SbJs9YYk9AikKEettW/9s/tbSFDTpXcRbF+u1aLrhHxDFaYtZpFQ==}
     engines: {node: '>=16.20.1'}
@@ -8931,8 +8916,8 @@ packages:
       socks:
         optional: true
 
-  mongoose@8.12.1:
-    resolution: {integrity: sha512-UW22y8QFVYmrb36hm8cGncfn4ARc/XsYWQwRTaj0gxtQk1rDuhzDO1eBantS+hTTatfAIS96LlRCJrcNHvW5+Q==}
+  mongoose@8.13.1:
+    resolution: {integrity: sha512-sRqlXI+6jhr9/KicCOjet1VVPONFsOxTrh14tfueX5y3GJ2ihswc5ewUUojuwdSS/5koGXLIPmGivDSApVXflA==}
     engines: {node: '>=16.20.1'}
 
   mpath@0.9.0:
@@ -16531,11 +16516,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typegoose/typegoose@12.14.0(mongoose@8.12.1)':
+  '@typegoose/typegoose@12.14.0(mongoose@8.13.1)':
     dependencies:
       lodash: 4.17.21
       loglevel: 1.9.2
-      mongoose: 8.12.1
+      mongoose: 8.13.1
       reflect-metadata: 0.2.2
       semver: 7.7.1
       tslib: 2.8.1
@@ -16729,7 +16714,7 @@ snapshots:
 
   '@types/mongoose@5.11.97':
     dependencies:
-      mongoose: 8.12.1
+      mongoose: 8.13.1
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
       - '@mongodb-js/zstd'
@@ -19106,6 +19091,12 @@ snapshots:
       eslint-plugin-turbo: 2.4.2(eslint@8.57.1)(turbo@2.4.4)
       turbo: 2.4.4
 
+  eslint-config-turbo@2.4.4(eslint@8.57.1)(turbo@2.4.4):
+    dependencies:
+      eslint: 8.57.1
+      eslint-plugin-turbo: 2.4.4(eslint@8.57.1)(turbo@2.4.4)
+      turbo: 2.4.4
+
   eslint-import-resolver-node@0.3.9:
     dependencies:
       debug: 3.2.7
@@ -19225,6 +19216,12 @@ snapshots:
       - typescript
 
   eslint-plugin-turbo@2.4.2(eslint@8.57.1)(turbo@2.4.4):
+    dependencies:
+      dotenv: 16.0.3
+      eslint: 8.57.1
+      turbo: 2.4.4
+
+  eslint-plugin-turbo@2.4.4(eslint@8.57.1)(turbo@2.4.4):
     dependencies:
       dotenv: 16.0.3
       eslint: 8.57.1
@@ -22209,23 +22206,17 @@ snapshots:
       '@types/whatwg-url': 11.0.5
       whatwg-url: 14.1.1
 
-  mongodb@6.14.2:
-    dependencies:
-      '@mongodb-js/saslprep': 1.2.0
-      bson: 6.10.3
-      mongodb-connection-string-url: 3.0.2
-
   mongodb@6.15.0:
     dependencies:
       '@mongodb-js/saslprep': 1.2.0
       bson: 6.10.3
       mongodb-connection-string-url: 3.0.2
 
-  mongoose@8.12.1:
+  mongoose@8.13.1:
     dependencies:
       bson: 6.10.3
       kareem: 2.6.3
-      mongodb: 6.14.2
+      mongodb: 6.15.0
       mpath: 0.9.0
       mquery: 5.0.0
       ms: 2.1.3
