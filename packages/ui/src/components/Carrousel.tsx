@@ -201,7 +201,7 @@ export const Carrousel = ({ texts, children, className, seeMoreUrl, dir = "ltr" 
       dir={dir}
     >
       <div className="container mx-auto mb-8 flex w-full gap-4 lg:justify-between">
-        {t.title && <h2 className="!mb-0 w-full !text-2xl font-bold max-sm:pr-[30%]">{t.title}</h2>}
+        {t.title && <h2 className="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]">{t.title}</h2>}
         <nav className="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0">
           <Button
             aria-label={`${t.prev} (${prevSlide + 1} / ${childrenArray.length}`}
