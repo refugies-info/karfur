@@ -18,7 +18,8 @@
     "check:types": "tsc --noEmit",
     "clean": "rm -rf dist",
     "dev": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css --watch",
-    "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts"
+    "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts",
+    "lint": "eslint . --ext ts,tsx,js --quiet --cache"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
@@ -29,10 +30,14 @@
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "@tailwindcss/cli": "^4.0.14",
+    "@tailwindcss/cli": "^4.0.17",
     "@types/fs-extra": "^11.0.4",
     "@types/react": "18.3.1",
-    "tailwindcss": "^4.0.14",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint-config-turbo": "2.4.4",
+    "eslint": "^8.57.1",
+    "tailwindcss": "^4.0.17",
     "tsx": "^4.19.2",
     "typescript": "^5.8.2"
   },
