@@ -7,6 +7,7 @@
       "ignoreDependencies": [
         "bootstrap",
         "cssnano",
+        "eslint-config-turbo",
         "flag-icons",
         "postcss",
         "react-anchor-link-smooth-scroll",
@@ -23,6 +24,7 @@
         "@babel/runtime",
         "@react-native/assets-registry",
         "@types/styled-components-react-native",
+        "eslint-config-turbo",
         "use-sync-external-store"
       ]
     },
@@ -31,20 +33,21 @@
       "ignoreDependencies": [
         "@tsoa/runtime",
         "@types/mongoose",
+        "eslint-config-turbo",
         "nodemon",
         "path-to-regexp",
         "ts-node",
         "tsconfig-paths"
       ]
     },
+    "packages/api-types": {
+      "ignoreDependencies": ["eslint-config-turbo"]
+    },
     "apps/storybook": {
-      "ignoreDependencies": ["@storybook/blocks", "postcss", "tailwindcss"]
+      "ignoreDependencies": ["@storybook/blocks", "eslint-config-turbo", "postcss", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": [
-        "react-dom",
-        "tailwindcss"
-      ]
+      "ignoreDependencies": ["eslint-config-turbo", "react-dom", "tailwindcss"]
     }
   }
 }

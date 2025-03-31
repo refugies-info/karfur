@@ -1,15 +1,7 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "turbo"
-  ],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint", "turbo"],
   "root": true,
-  "ignorePatterns": [
-    "dist/"
-  ]
+  "ignorePatterns": ["dist/"]
 }

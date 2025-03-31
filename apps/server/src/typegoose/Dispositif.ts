@@ -192,9 +192,9 @@ export class Poi {
   },
 })
 export class Dispositif extends Base {
-  @prop({ required: true, enum: ContentType })
+  @prop({ required: true, enum: ContentType, type: String })
   public typeContenu: ContentType;
-  @prop({ required: true, enum: DispositifStatus })
+  @prop({ required: true, enum: DispositifStatus, type: String })
   public status: DispositifStatus;
   @prop()
   created_at?: Date;

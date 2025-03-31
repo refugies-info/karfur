@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import fs from "fs-extra";
 import postcss from "postcss";
 
@@ -27,7 +28,7 @@ async function extractCssVariables(filePath: string): Promise<Record<string, str
 /**
  * Récupère le préfixe pour une variable CSS
  */
-function getPrefix(key: string, value: string) {
+function getPrefix(key: string) {
   if (key.startsWith("background-")) return `color-${key}`;
   if (key.startsWith("text-")) return `color-${key}`;
   if (key.startsWith("border-")) return `color-${key}`;
@@ -40,12 +41,6 @@ function getPrefix(key: string, value: string) {
  * Generates the CSS file with only the variables
  */
 function generateCssWithVariables(variables: Record<string, string>) {
-  const breakpoints = {
-    sm: "36em",
-    md: "48em",
-    lg: "62em",
-    xl: "75em",
-  };
   const variableCss = `
 /* stylelint-disable at-rule-empty-line-before */
 /* stylelint-disable selector-class-pattern */
@@ -58,12 +53,12 @@ function generateCssWithVariables(variables: Record<string, string>) {
 
 @theme {
 ${Object.entries(variables)
-  .map(([key, value]) => `  --${getPrefix(key, value)}: ${value};`)
+  .map(([key, value]) => `  --${getPrefix(key)}: ${value};`)
   .join("\n")}
 }
   ${Object.entries(variables)
-    .map(([key, value]) => {
-      const prefix = getPrefix(key, value).replace("color-", "").replace("background", "bg");
+    .map(([key]) => {
+      const prefix = getPrefix(key).replace("color-", "").replace("background", "bg");
       const applyStyle = (property: string) => `
 @utility ${prefix} {
   @apply ${property}-[var(--color-${key})]
