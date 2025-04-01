@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./dsfr-tokens.css";
+@import "./dsfr-customisations.css";
 @import "./container.css";
 @source "../components/";
 
@@ -17,4 +18,16 @@
 
 body {
   overflow-x: hidden;
+}
+
+@layer utilities {
+  .noscrollbar {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .container {
+    @apply mx-auto;
+  }
 }

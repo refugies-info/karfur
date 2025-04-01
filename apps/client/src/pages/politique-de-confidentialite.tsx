@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice/HelpNotice";
 import SEO from "~/components/Seo";
+import { useLocale } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import styles from "~/scss/pages/legal-pages.module.scss";
 
 const PolitiqueConfidentialite = () => {
-  const router = useRouter();
+  const locale = useLocale();
 
   return (
     <div className="w-full">
@@ -18,7 +18,7 @@ const PolitiqueConfidentialite = () => {
         <h2>Qui sommes-nous ?</h2>
         <p>
           Ce site est édité par <strong>Refugies.info</strong>. Visitez la page{" "}
-          <Link legacyBehavior href={getPath("/mentions-legales", router.locale)} prefetch={false}>
+          <Link legacyBehavior href={getPath("/mentions-legales", locale)} prefetch={false}>
             <a>Mentions légales</a>
           </Link>{" "}
           pour plus d&apos;informations.

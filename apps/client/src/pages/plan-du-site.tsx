@@ -1,15 +1,15 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
+import { useLocale } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { Event } from "~/lib/tracking";
 import styles from "~/scss/pages/legal-pages.module.scss";
 
 const PlanDuSite = () => {
-  const router = useRouter();
+  const locale = useLocale();
   const { t } = useTranslation();
   return (
     <div className="flex w-full flex-col justify-center">
@@ -19,20 +19,20 @@ const PlanDuSite = () => {
         <h1>Plan du site</h1>
         <ul>
           <li>
-            <Link href={getPath("/", router.locale)}>Accueil</Link>
+            <Link href={getPath("/", locale)}>Accueil</Link>
           </li>
           <li>
-            <Link href={getPath("/recherche", router.locale)} prefetch={false}>
+            <Link href={getPath("/recherche", locale)} prefetch={false}>
               {t("Toolbar.find_information", "Trouver de l'information")}
             </Link>
           </li>
           <li>
-            <Link href={getPath("/publier", router.locale)} prefetch={false}>
+            <Link href={getPath("/publier", locale)} prefetch={false}>
               {t("Toolbar.Publier une fiche", "Publier une fiche")}
             </Link>
           </li>
           <li>
-            <Link href={getPath("/traduire", router.locale)} prefetch={false}>
+            <Link href={getPath("/traduire", locale)} prefetch={false}>
               {t("Toolbar.Traduire", "Traduire")}
             </Link>
           </li>

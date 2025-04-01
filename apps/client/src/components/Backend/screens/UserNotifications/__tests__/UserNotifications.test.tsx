@@ -197,7 +197,7 @@ describe("UserNotifications", () => {
       locale: "fr",
     });
     await user.click(component.getByTestId("test-notif-annuaire"));
-    expect(Router).toMatchObject({ asPath: "/directory-create" });
+    expect(Router).toMatchObject({ asPath: "/annuaire-creation" });
   });
 
   it("should delete notif reaction", () => {

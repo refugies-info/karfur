@@ -7,6 +7,7 @@ import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
+import { useLocale } from "~/hooks";
 import { userSelector } from "~/services/User/user.selectors";
 import Modal from "../Modal";
 import { pseudoModal, PseudoModal } from "../PseudoModal";
@@ -20,6 +21,7 @@ interface Props {
 
 const WriteContentModal = ({ show, close }: Props) => {
   const router = useRouter();
+  const locale = useLocale();
   const user = useSelector(userSelector);
   const isPseudoModalOpen = useIsModalOpen(pseudoModal);
 
@@ -46,7 +48,7 @@ const WriteContentModal = ({ show, close }: Props) => {
 
   const navigate = () => {
     const path = selected === "dispositif" ? "/dispositif" : "/demarche";
-    router.push(getPath(path, router.locale));
+    router.push(getPath(path, locale));
   };
 
   return (

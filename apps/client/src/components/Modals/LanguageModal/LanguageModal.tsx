@@ -6,6 +6,7 @@ import { isMobile } from "react-device-detect";
 import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { getPath } from "routes";
 import { LanguageSelector } from "~/components/UI/LanguageSelector";
+import useLocale from "~/hooks/useLocale";
 import styles from "./LanguageModal.module.scss";
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const locale = useLocale();
 
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
@@ -52,7 +54,7 @@ const LanguageModal = (props: Props) => {
                       props.toggle();
                       setTimeout(() => {
                         router.push({
-                          pathname: getPath("/traduire", router.locale),
+                          pathname: getPath("/traduire", locale),
                         });
                       }, 100);
                     }}

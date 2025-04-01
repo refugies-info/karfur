@@ -14,9 +14,11 @@ import { userSelector } from "~/services/User/user.selectors";
 import history from "~/utils/backendHistory";
 import styles from "./BackendNavItem.module.scss";
 
+type CustomIconClassName = `custom-icon-${string}`;
+
 export interface Props {
   access: RoleName.STRUCTURE | RoleName.ADMIN | "all";
-  iconName: FrIconClassName | RiIconClassName;
+  iconName: FrIconClassName | RiIconClassName | CustomIconClassName;
   iconColor?: string;
   textColor?: string;
   onClick?: () => void;
@@ -72,7 +74,7 @@ const useBackendNavItem = ({
     },
     text: (
       <>
-        <i className={cn(iconName, "fr-icon--sm")} />
+        <i className={cn(iconName, "h-6 w-6")} />
         <span className={styles.item} style={textColor ? { color: textColor } : {}}>
           {title}
         </span>

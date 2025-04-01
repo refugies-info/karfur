@@ -1,8 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "turbo"
-  ],
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["@typescript-eslint", "turbo"],
   "env": {
     "node": true,
     "es6": true,
