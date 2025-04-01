@@ -2,11 +2,9 @@ import Badge from "@codegouvfr/react-dsfr/Badge";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import router from "next/router";
 import { forwardRef, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { useChangeLanguage } from "~/hooks";
-import useStylesDisabled from "~/hooks/useStyleDisabled";
+import { useChangeLanguage, useLocale } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
@@ -21,10 +19,9 @@ interface LanguageItemProps {
 const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(({ item, className, onChangeLang, ...props }, ref) => {
     const { t } = useTranslation();
-    const stylesDisabled = useStylesDisabled();
 
     const { changeLanguage, loading } = useChangeLanguage();
-    const currentLanguage = router.locale || "fr";
+    const currentLanguage = useLocale();
 
     const langues = useSelector(allLanguesSelector);
     const notListenableLanguages = ["er"];

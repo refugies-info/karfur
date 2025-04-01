@@ -1,19 +1,19 @@
-import "scss/index.css";
+import "css/index.css";
 import "scss/index.scss";
 
 import { Caveat } from "next/font/google";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
 import { DirectionProvider } from "@radix-ui/react-direction";
+import { ToastProvider, ToastViewport } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { NextPage } from "next";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import { ReactElement, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
@@ -105,22 +105,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   }, []);
 
   const isRTL = useRTL();
-
-  // These radix-ui components create hydration issues if rendered server side
-  const ToastViewport = useMemo(
-    () =>
-      dynamic(() => import("@radix-ui/react-toast").then((mod) => mod.ToastViewport), {
-        ssr: false,
-      }),
-    [],
-  );
-  const ToastProvider = useMemo(
-    () =>
-      dynamic(() => import("@radix-ui/react-toast").then((mod) => mod.ToastProvider), {
-        ssr: false,
-      }),
-    [],
-  );
 
   return (
     <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>

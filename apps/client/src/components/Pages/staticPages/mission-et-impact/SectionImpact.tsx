@@ -34,7 +34,7 @@ export const SectionImpact = () => {
               title="Livret d'impact"
               desc="Mai 2024"
               endDetail="PDF - 61,88 Ko"
-              className="fr-card--download mt-10 max-w-[384px] md:mt-14"
+              className="fr-card--download mt-10 max-w-[24rem] md:mt-14"
             />
           </div>
           <div className="flex-1">

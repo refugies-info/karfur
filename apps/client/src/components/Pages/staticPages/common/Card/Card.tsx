@@ -19,7 +19,7 @@ interface Props {
 }
 
 const CARD_CLASSNAME =
-  "lg:max-w-[360px] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white";
+  "lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white";
 const CARD_HOVER_CLASSNAME = "hover:bg-background-alt-grey active:bg-active-tint";
 
 const ArrowRight = () => (

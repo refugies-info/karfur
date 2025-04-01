@@ -5,7 +5,7 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["eslint:recommended", "turbo"],
+  "extends": ["eslint:recommended"],
   "parser": "@typescript-eslint/parser",
   "globals": {
     "Atomics": "readonly",
@@ -19,7 +19,7 @@
     },
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "turbo"],
   "rules": {
     "no-else-return": "error",
     "no-console": "error",

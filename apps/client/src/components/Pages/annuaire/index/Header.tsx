@@ -1,8 +1,8 @@
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { getPath } from "routes";
+import { useLocale } from "~/hooks";
 import useRTL from "~/hooks/useRTL";
 import styles from "./Header.module.scss";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
@@ -30,7 +30,7 @@ interface Props {
 export const Header = (props: Props) => {
   const isRTL = useRTL();
   const { t } = useTranslation();
-  const router = useRouter();
+  const locale = useLocale();
 
   return (
     <>
@@ -67,7 +67,7 @@ export const Header = (props: Props) => {
                 legacyBehavior
                 href={getPath(
                   "/annuaire",
-                  router.locale,
+                  locale,
                   props.lettersClickable.includes(letter.toLocaleUpperCase()) ? "#" + letter.toUpperCase() : "",
                 )}
                 key={letter}

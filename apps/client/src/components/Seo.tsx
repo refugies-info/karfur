@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { NextRouter, useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
+import { useLocale } from "~/hooks";
 import { getBaseUrl } from "~/lib/getBaseUrl";
 
 interface Props {
@@ -31,16 +32,17 @@ const getImagePath = (imagePath: string) => {
 const SEO = (props: Props) => {
   const prefixTitle = props.title ? `${props.title} - ` : "";
   const router = useRouter();
+  const locale = useLocale();
 
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       <title>{prefixTitle + defaultTitle}</title>
       {props.description && <meta name="description" content={props.description} />}
-      <link rel="canonical" href={getFullPath(router, router.locale || "fr")} />
+      <link rel="canonical" href={getFullPath(router, locale)} />
 
       {/* OPENGRAPH */}
-      <meta property="og:url" content={getFullPath(router, router.locale || "fr")} />
+      <meta property="og:url" content={getFullPath(router, locale)} />
       <meta property="og:type" content="website" />
       {props.title && <meta property="og:title" content={props.title} />}
       {props.description && <meta property="og:description" content={props.description} />}
@@ -56,7 +58,7 @@ const SEO = (props: Props) => {
       {props.description && <meta property="twitter:description" content={props.description} />}
       <meta property="twitter:image" content={getImagePath(props.image || defaultImage)} />
 
-      {getAlternateLocales(router.locales, router.locale).map((ln: string, i: number) => (
+      {getAlternateLocales(router.locales, locale).map((ln: string, i: number) => (
         <link key={i} hrefLang={ln} href={getFullPath(router, ln)} rel="alternate"></link>
       ))}
     </Head>
