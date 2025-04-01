@@ -3,6 +3,7 @@
 
 /* Points to css source instead of dist */
 @import "@refugies-info/ui/globals.css";
+@import "./custom-icons.css";
 
 /* stylelint-disable custom-property-pattern */
 

@@ -5,7 +5,7 @@ export interface DemoComponentProps extends React.ButtonHTMLAttributes<HTMLButto
   children: React.ReactNode;
 }
 
-export function DemoComponent({ children, className, ...other }: DemoComponentProps): JSX.Element {
+export function DemoComponent({ children, className, ...other }: DemoComponentProps): React.JSX.Element {
   return (
     <button
       className={cn("flex gap-11 bg-slate-500 p-4 font-bold hover:bg-slate-600", className)}

@@ -19,6 +19,7 @@ import { NoResult } from "~/components/Pages/annuaire/index/NoResult";
 import SEO from "~/components/Seo";
 
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import { useLocale } from "~/hooks";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import styles from "~/scss/pages/annuaire.module.scss";
@@ -55,6 +56,7 @@ const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
 
 const Annuaire = () => {
   const router = useRouter();
+  const locale = useLocale();
 
   const [keyword, setKeyword] = useState((router.query.keyword as string) || "");
   const [typeSelected, setTypeSelected] = useState<string[]>(computeTypeFromUrl(router.query) || []);
@@ -102,7 +104,7 @@ const Annuaire = () => {
       if (isInBrowser())
         router.push(
           {
-            pathname: getPath("/annuaire", router.locale),
+            pathname: getPath("/annuaire", locale),
             search: qs.stringify(query),
           },
           undefined,
@@ -180,7 +182,7 @@ const Annuaire = () => {
 
     // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected, structures, ville, router.locale]);
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected, structures, ville, locale]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const lettersClickable = defineLettersClickable(filteredStructures);

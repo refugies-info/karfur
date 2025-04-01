@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.13.1"
+          node-version: "22.14.0"
           cache: "pnpm"
 
       - name: Install Dependencies
@@ -40,7 +40,7 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Setup AtlasCLI
-        uses: mongodb/atlas-github-action@v0.2.0
+        uses: mongodb/atlas-github-action@v0.2.1
 
       - name: Setup IP environment variable
         run: echo "IP=$(curl -s https://api.ipify.org)" >> $GITHUB_ENV

@@ -16,11 +16,31 @@ export const operators: Operator[] = [
     email: "pierre-yves.prigent@alfa3a.org",
   },
   {
+    dispositifId: "6790bf9cb519daad65ac95fc",
+    department: "02 - Aisne",
+    operator: "SOS Solidarités",
+    email: "agir02@fondationdiaconesses.org",
+    phone: "03 23 53 67 13",
+  },
+  {
     dispositifId: "660d1f34de63124662360641",
     department: "03 - Allier",
     operator: "Coallia",
     email: "agir.allier@coallia.org",
-    phone: "04 70 35 00 10",
+    phone: "06 24 42 52 06",
+  },
+  {
+    dispositifId: "660d1f38de63124662360680",
+    department: "04 - Alpes-de-Haute-Provence",
+    operator: "Coallia",
+    email: "agir04@coallia.org",
+    phone: "06 19 56 40 61",
+  },
+  {
+    dispositifId: "6790bf9bb519daad65ac95f4",
+    department: "05 - Hautes-Alpes",
+    operator: "France terre d'asile - ACPM",
+    email: "agir05@france-terre-asile.org",
   },
   {
     dispositifId: "660d1f36de6312466236065e",
@@ -61,6 +81,7 @@ export const operators: Operator[] = [
     department: "11 - Aude",
     operator: "SOS Solidarités",
     email: "agir11@groupe-sos.org",
+    phone: "04 48 59 00 01",
   },
   {
     department: "12 - Aveyron",
@@ -104,6 +125,13 @@ export const operators: Operator[] = [
     phone: "05 17 26 15 28",
   },
   {
+    dispositifId: "6790bf9db519daad65ac95fe",
+    department: "18 - Cher",
+    operator: "Association LE RELAIS",
+    email: "agir18@lerelais18.fr",
+    phone: "07 63 95 22 79",
+  },
+  {
     dispositifId: "660d1f36de63124662360657",
     department: "19 - Corrèze",
     operator: "Viltaïs",
@@ -142,11 +170,14 @@ export const operators: Operator[] = [
     department: "25 - Doubs",
     operator: "Coallia",
     email: "agir25@coallia.org",
+    phone: "06 03 74 57 59",
   },
   {
     dispositifId: "660d1f35de63124662360644",
     department: "26 - Drôme",
     operator: "Entraide Pierre Valdo",
+    email: "agir26@diaconat26-07.org",
+    phone: "04 75 78 29 74",
   },
   {
     dispositifId: "660d1f37de63124662360679",
@@ -167,6 +198,7 @@ export const operators: Operator[] = [
     department: "29 - Finistère",
     operator: "Coallia",
     email: "agir.29@coallia.org",
+    phone: "06 14 71 94 81",
   },
   {
     department: "30 - Gard",
@@ -215,6 +247,13 @@ export const operators: Operator[] = [
     phone: "05 49 92 29 23",
   },
   {
+    dispositifId: "6790bf9bb519daad65ac95f6",
+    department: "37 - Indre-et-Loire",
+    operator: "Entraide et Solidarités",
+    email: "agir@entraide-et-solidarites.fr",
+    phone: "02 47 70 11 31",
+  },
+  {
     dispositifId: "660d1f35de63124662360645",
     department: "38 - Isère",
     operator: "Alfa3a",
@@ -246,11 +285,15 @@ export const operators: Operator[] = [
     dispositifId: "660d1f35de63124662360646",
     department: "42 - Loire",
     operator: "Entraide Pierre Valdo",
+    email: "agir42@epvaldo.org",
+    phone: "06 64 24 88 87",
   },
   {
     dispositifId: "660d1f35de63124662360647",
     department: "43 - Haute-Loire",
     operator: "Entraide Pierre Valdo",
+    email: "agir43@epvaldo.org",
+    phone: "06 58 75 59 80",
   },
   {
     dispositifId: "660d1f36de6312466236065b",
@@ -316,7 +359,7 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f36de63124662360665",
     department: "53 - Mayenne",
-    operator: "Corylus Form@tions",
+    operator: "Enosia",
     email: "mayenne@agir495372.fr",
     phone: "07 64 75 60 03",
   },
@@ -328,10 +371,17 @@ export const operators: Operator[] = [
     phone: "06 73 67 52 87",
   },
   {
+    dispositifId: "6790bf9bb519daad65ac95f5",
+    department: "55 - Meuse",
+    operator: "ARELIA-AMIE",
+    email: "chrs-verdun@amie55.com",
+  },
+  {
     dispositifId: "660d1f37de6312466236066c",
     department: "56 - Morbihan",
     operator: "Coallia",
     email: "agir56@coallia.org",
+    phone: "02 22 07 54 30",
   },
   {
     dispositifId: "660d1f35de6312466236064c",
@@ -365,12 +415,14 @@ export const operators: Operator[] = [
     department: "61 - Orne",
     operator: "Coallia",
     email: "agir61@coallia.org",
+    phone: "06 09 99 41 36",
   },
   {
     dispositifId: "6790bf9ab519daad65ac95f0",
     department: "62 - Pas-de-Calais",
     operator: "Coallia",
     email: "agir.62@coallia.org",
+    phone: "06 29 70 51 54",
   },
   {
     dispositifId: "660d18e9684cbc7e836f00d5",
@@ -401,6 +453,12 @@ export const operators: Operator[] = [
     phone: "04 48 22 15 12",
   },
   {
+    dispositifId: "6790bf9cb519daad65ac95fd",
+    department: "67 - Bas-Rhin",
+    operator: "Foyer Notre Dame",
+    email: "agir67@foyernotredame.org",
+  },
+  {
     dispositifId: "660d1f35de6312466236064e",
     department: "68 - Haut-Rhin",
     operator: "APPUIS",
@@ -426,6 +484,7 @@ export const operators: Operator[] = [
     department: "71 - Saône-et-Loire",
     operator: "Coallia",
     email: "agir.71@coallia.org",
+    phone: "06 11 30 95 54",
   },
   {
     dispositifId: "660d1f36de63124662360663",
@@ -445,6 +504,8 @@ export const operators: Operator[] = [
     dispositifId: "660d1f35de63124662360649",
     department: "74 - Haute-Savoie",
     operator: "Fédération d'Œuvres Laïques",
+    email: "fol@fol74.org",
+    phone: "04 50 52 70 84",
   },
   {
     dispositifId: "660d1f3ade63124662360683",
@@ -452,6 +513,13 @@ export const operators: Operator[] = [
     operator: "FTDA",
     email: "votchoumou@france-terre-asile.org",
     phone: "01 40 40 27 20",
+  },
+  {
+    dispositifId: "6790bf9cb519daad65ac95f8",
+    department: "76 - Seine-Maritime",
+    operator: "SOS Solidarités",
+    email: "agir76@groupe-sos.org",
+    phone: "06 85 78 95 84",
   },
   {
     dispositifId: "660d1f36de63124662360662",
@@ -468,11 +536,18 @@ export const operators: Operator[] = [
     phone: "05 17 83 46 57",
   },
   {
+    dispositifId: "6790bf9cb519daad65ac95fa",
+    department: "80 - Somme",
+    operator: "Coallia",
+    email: "agir.80@coallia.org",
+    phone: "03 22 69 60 48",
+  },
+  {
     dispositifId: "660d1f36de6312466236065f",
     department: "81 - Tarn",
-    operator: "Atrium",
-    email: "accueil@solidac81.fr",
-    phone: "05 63 72 99 39",
+    operator: "Aralia - Solidac",
+    email: "agir81@orange.fr",
+    phone: "05 63 47 21 22",
   },
   {
     dispositifId: "660d1f37de63124662360675",
@@ -516,7 +591,7 @@ export const operators: Operator[] = [
     department: "88 - Vosges",
     operator: "Coallia",
     email: "contact-vosges@coallia.org",
-    phone: "03 55 19 03 14",
+    phone: "06 11 96 56 33",
   },
   {
     dispositifId: "64ecbea9dc235bc9c431587b",
@@ -537,6 +612,7 @@ export const operators: Operator[] = [
     department: "91 - Essonne",
     operator: "Coallia",
     email: "agir91@coallia.org",
+    phone: "01 69 90 68 70",
   },
   {
     dispositifId: "6790bf9bb519daad65ac95f3",

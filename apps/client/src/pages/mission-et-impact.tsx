@@ -9,8 +9,8 @@ import HeroBack from "~/assets/staticPages/mission-et-impact/hero-back.svg";
 import HeroMobile from "~/assets/staticPages/mission-et-impact/hero-illu-mobile.svg";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import { Anchor, SecondaryNavbar, Section } from "~/components/Pages/staticPages/common";
+import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import {
-  SectionCommunity,
   SectionContributors,
   SectionFigures,
   SectionImpact,
@@ -67,7 +67,7 @@ const MissionImpact = (props: Props) => {
 
   return (
     <div className="w-full">
-      <SEO title={t("MissionImpact.title")} />
+      <SEO title={t("MissionImpact.seoTitle", "Mission et impact - Réfugiés.info")} />
       <HelpNotice />
 
       <Section
@@ -76,7 +76,7 @@ const MissionImpact = (props: Props) => {
           backgroundImage: `url(${HeroBack.src})`,
         }}
       >
-        <div className="mx-auto md:max-w-[720px] lg:max-w-[600px] xl:max-w-[720px]">
+        <div className="mx-auto md:max-w-[45rem] lg:max-w-[37.5rem] xl:max-w-[45rem]">
           <h1 className="!text-h1 md:!text-alt-title mb-6">{t("MissionImpact.title")}</h1>
           <p className="!text-chapo !mb-0">{t("MissionImpact.subtitle")}</p>
         </div>
@@ -141,7 +141,7 @@ const MissionImpact = (props: Props) => {
         <SectionSteps />
       </div>
 
-      <SectionCommunity />
+      <WorkTogether />
     </div>
   );
 };

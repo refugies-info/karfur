@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
+import { useLocale } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import styles from "~/scss/pages/legal-pages.module.scss";
 
 const MentionsLegales = () => {
-  const router = useRouter();
+  const locale = useLocale();
 
   return (
     <div className="w-full">
@@ -52,7 +52,7 @@ const MentionsLegales = () => {
         <p>
           Les informations personnelles collectées ne sont en aucun cas confiées à des tiers. Pour plus
           d&apos;information consultez la page relative à{" "}
-          <Link legacyBehavior href={getPath("/politique-de-confidentialite", router.locale)} prefetch={false}>
+          <Link legacyBehavior href={getPath("/politique-de-confidentialite", locale)} prefetch={false}>
             <a>
               <strong>notre politique de confidentialité</strong>
             </a>

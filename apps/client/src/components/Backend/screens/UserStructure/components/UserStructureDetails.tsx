@@ -1,6 +1,5 @@
 import { GetStructureResponse, Id, Picture, StructureMember } from "@refugies-info/api-types";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { getPath } from "routes";
 import styled from "styled-components";
@@ -8,6 +7,7 @@ import placeholder from "~/assets/no_results_alt.svg";
 import TitleWithNumber from "~/components/Backend/TitleWithNumber";
 import FButton from "~/components/UI/FButton/FButton";
 import Image from "~/components/UI/Image";
+import { useLocale } from "~/hooks";
 import AddMemberModal from "./AddMemberModal";
 import { MembresTable } from "./MembresTable";
 import { MainContainer, StructureContainer, StructurePictureContainer } from "./SubComponents";
@@ -43,7 +43,7 @@ const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: Get
 };
 
 export const UserStructureDetails = (props: Props) => {
-  const router = useRouter();
+  const locale = useLocale();
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
   const toggleAddMemberModal = () => setShowAddMemberModal(!showAddMemberModal);
 
@@ -77,7 +77,7 @@ export const UserStructureDetails = (props: Props) => {
           <Link
             legacyBehavior
             href={{
-              pathname: getPath("/annuaire/[id]", router.locale),
+              pathname: getPath("/annuaire/[id]", locale),
               query: { id: props.structureId.toString() },
             }}
             passHref
