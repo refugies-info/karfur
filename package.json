@@ -33,8 +33,9 @@
   },
   "scripts": {
     "clean:branches": "pnpm dlx git-removed-branches --prune --force",
-    "clean:caches": "rm -rf .turbo .next/cache **/dist **/.cache **/.expo **/storybook-static **/build",
-    "clean:modules": "rm -rf ./packages/*/node_modules ./apps/*/node_modules",
+    "clean:cache": "rimraf -g \"**/.turbo\" \"**/.next\" \"**/dist\" \"**/.cache\" \"**/.expo\" \"**/storybook-static\" \"**/build\" \"**/__pycache__\"",
+    "clean:modules": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
+    "clean:store": "rm -rf $(pnpm store path)",
     "build": "turbo build",
     "build:api-types": "turbo build --filter=@refugies-info/api-types",
     "build:client": "turbo build --filter=@refugies-info/client",
@@ -90,37 +91,40 @@
     "migrate": "tsx migrations/cli.ts",
     "storybook": "pnpm dev:storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
-    "knip": "knip"
+    "knip": "knip",
+    "update-dependencies": "pnpm update -i --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook"
   },
   "engines": {
     "node": "22.14.0"
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
-    "@types/node": "^22.13.9",
+    "@types/node": "^22.13.14",
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",
     "husky": ">=9.1.6",
-    "knip": "^5.43.6",
-    "lint-staged": "^15.4.3",
+    "knip": "^5.46.4",
+    "lint-staged": "^15.5.0",
     "mongo-migrate-ts": "^1.6.2",
-    "mongodb": "^6.14.2",
+    "mongodb": "^6.15.0",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.10",
-    "stylelint": "^16.15.0",
+    "rimraf": "^6.0.1",
+    "stylelint": "^16.17.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.19.2",
-    "turbo": "2.4.2",
+    "turbo": "2.4.4",
     "typescript": "^5.8.2"
   },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.6.4"
+    "pnpm": "10.7.0"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx}": "prettier --write"
+    "*.{js,jsx,ts,tsx}": "prettier --write",
+    "**/common.json": "prettier --write"
   },
-  "packageManager": "pnpm@10.6.4"
+  "packageManager": "pnpm@10.7.0"
 }
