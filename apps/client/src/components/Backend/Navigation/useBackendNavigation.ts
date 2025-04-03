@@ -30,19 +30,19 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
   return [
     useBackendNavItem({
       access: RoleName.STRUCTURE,
-      iconName: nbNewNotifications > 0 ? "ri-bell-fill" : "ri-bell-line",
+      iconName: nbNewNotifications > 0 ? "ri-notification-3-fill" : "ri-notification-3-line",
       route: "/backend/user-dash-notifications" as PathNames,
       title: `${t("Toolbar.Mes notifications", "Notifications")} (${nbNewNotifications})`,
     }),
     useBackendNavItem({
       route: "/backend/user-favorites" as PathNames,
-      iconName: "fr-icon-star-line",
+      iconName: "custom-icon-favorites",
       title: t("Toolbar.Mes favoris", "Favoris"),
       access: "all",
     }),
     useBackendNavItem({
       route: "/backend/user-dash-contrib" as PathNames,
-      iconName: "ri-file-2-line",
+      iconName: "ri-file-text-line",
       title: t("Toolbar.Mes fiches", "Fiches"),
       access: "all",
     }),
@@ -72,7 +72,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     }),
     useBackendNavItem({
       onClick: disconnect,
-      iconName: "ri-logout-box-line",
+      iconName: "ri-logout-box-r-line",
       iconColor: "var(--text-default-error)",
       textColor: "var(--text-default-error)",
       title: t("Toolbar.logout", "Se déconnecter"),
