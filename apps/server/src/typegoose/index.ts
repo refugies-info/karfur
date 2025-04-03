@@ -4,6 +4,7 @@ setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 import { AdminOptions } from "./AdminOptions";
 import { AppUser, NotificationsSettings } from "./AppUser";
 import { Dispositif, DispositifId } from "./Dispositif";
+import { DispositifSnapshot } from "./DispositifSnapshot";
 import { Error } from "./Error";
 import { Image } from "./Image";
 import { Indicator } from "./Indicator";
@@ -37,6 +38,9 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
     collection: "dispositifs_draft",
   },
 });
+export const DispositifSnapshotModel = getModelForClass(DispositifSnapshot, {
+  schemaOptions: { collection: "snapshots" },
+});
 export const ErrorModel = getModelForClass(Error);
 export const ImageModel = getModelForClass(Image);
 export const IndicatorModel = getModelForClass(Indicator);
@@ -56,6 +60,7 @@ export {
   AdminOptions,
   AppUser,
   Dispositif,
+  DispositifSnapshot,
   Error,
   Image,
   Indicator,
