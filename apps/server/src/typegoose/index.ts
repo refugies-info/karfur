@@ -4,7 +4,6 @@ setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 import { AdminOptions } from "./AdminOptions";
 import { AppUser, NotificationsSettings } from "./AppUser";
 import { Dispositif, DispositifId } from "./Dispositif";
-import { DispositifSnapshot } from "./DispositifSnapshot";
 import { Error } from "./Error";
 import { Image } from "./Image";
 import { Indicator } from "./Indicator";
@@ -14,6 +13,7 @@ import { MailEvent } from "./MailEvent";
 import { Need, NeedId } from "./Need";
 import { Notification } from "./Notification";
 import { Role } from "./Role";
+import { Snapshot } from "./Snapshot";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { TraductionDiff, TraductionId, Traductions, TraductionsStatus } from "./Traductions";
@@ -38,7 +38,7 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
     collection: "dispositifs_draft",
   },
 });
-export const DispositifSnapshotModel = getModelForClass(DispositifSnapshot, {
+export const SnapshotModel = getModelForClass(Snapshot, {
   schemaOptions: { collection: "snapshots" },
 });
 export const ErrorModel = getModelForClass(Error);
@@ -60,7 +60,6 @@ export {
   AdminOptions,
   AppUser,
   Dispositif,
-  DispositifSnapshot,
   Error,
   Image,
   Indicator,
@@ -71,6 +70,7 @@ export {
   Notification,
   NotificationsSettings,
   Role,
+  Snapshot,
   Structure,
   Theme,
   Traductions,

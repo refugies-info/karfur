@@ -1,15 +1,17 @@
-import { prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 
-export class DispositifSnapshot {
+@modelOptions({ schemaOptions: { collection: "snapshots", timestamps: { createdAt: "created_at" } } })
+export class Snapshot extends Base {
   @prop({ required: true, ref: () => Dispositif })
   public dispositifId!: Ref<Dispositif>;
 
   @prop({ required: true, min: 1 })
   public version!: number;
 
-  @prop({ required: true, default: Date.now })
-  public createdAt!: Date;
+  @prop()
+  created_at: Date;
 
   @prop({ required: true, enum: ["before", "after"] })
   public snapshotType!: "before" | "after";

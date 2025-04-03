@@ -1,5 +1,5 @@
-import { DispositifSnapshot, DispositifSnapshotModel } from "~/typegoose";
+import { Snapshot, SnapshotModel } from "~/typegoose";
 
-export const createSnapshot = async (snapshot: DispositifSnapshot) => {
-  return new DispositifSnapshotModel(snapshot).save();
+export const createSnapshot = async (snapshot: Snapshot) => {
+  return new SnapshotModel(snapshot).save();
 };
