@@ -1,6 +1,8 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
-import { Dispositif } from "./Dispositif";
+import { DemarcheContent, Dispositif, DispositifContent } from "./Dispositif";
+
+export type SnapshotType = "before" | "after";
 
 @modelOptions({ schemaOptions: { collection: "snapshots", timestamps: { createdAt: "created_at" } } })
 export class Snapshot extends Base {
@@ -14,7 +16,7 @@ export class Snapshot extends Base {
   created_at: Date;
 
   @prop({ required: true, enum: ["before", "after"] })
-  public snapshotType!: "before" | "after";
+  public snapshotType!: SnapshotType;
 
   @prop()
   public transitionFrom?: string;
@@ -23,5 +25,5 @@ export class Snapshot extends Base {
   public transitionTo?: string;
 
   @prop({ required: true, type: Object })
-  public dispositifData!: Record<string, any>;
+  public dispositifData!: DispositifContent | DemarcheContent;
 }

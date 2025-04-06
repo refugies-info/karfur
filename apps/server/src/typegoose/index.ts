@@ -13,7 +13,7 @@ import { MailEvent } from "./MailEvent";
 import { Need, NeedId } from "./Need";
 import { Notification } from "./Notification";
 import { Role } from "./Role";
-import { Snapshot } from "./Snapshot";
+import { Snapshot, SnapshotType } from "./Snapshot";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { TraductionDiff, TraductionId, Traductions, TraductionsStatus } from "./Traductions";
@@ -84,6 +84,7 @@ export type {
   LangueId,
   LogId,
   NeedId,
+  SnapshotType,
   StructureId,
   ThemeId,
   TraductionDiff,
