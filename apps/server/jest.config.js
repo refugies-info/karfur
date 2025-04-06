@@ -3,6 +3,7 @@ const { pathsToModuleNameMapper } = require("ts-jest");
 module.exports = {
   preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js", "d.ts"],
+  setupFilesAfterEnv: ["./jest.setup.js"],
   transform: {
     "^.+\\.(js)$": "babel-jest",
     "\\.(ts|tsx)$": "ts-jest",
@@ -16,7 +17,6 @@ module.exports = {
   // https://stackoverflow.com/questions/71743639/getting-rangeerror-maximum-call-stack-size-exceeded-when-unit-testing-with-mo
   // moduleDirectories: ["node_modules", "src"],
   testEnvironment: "node",
-  setupFilesAfterEnv: ["./src/jest/setupJest.js"],
   moduleNameMapper: pathsToModuleNameMapper({
     "~/*": ["<rootDir>/src/*"],
   }),
