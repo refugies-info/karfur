@@ -12,7 +12,7 @@ import {
 } from "@refugies-info/api-types";
 import { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
-import { airtableContentBase } from "~/connectors/airtable/airtable";
+import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
@@ -76,7 +76,7 @@ export const addDispositifToAirtable = (dispositif: Dispositif) => {
       "Thème secondaire 2": secondaryThemes.length > 1 ? secondaryThemes[1].short["fr"] || "" : "",
     },
   };
-  return airtableContentBase("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
+  return getAirtableContentTable("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
     if (error) {
       logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", { error });
       return;
