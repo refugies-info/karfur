@@ -296,7 +296,7 @@ export const saveAndOverwriteDraft = async (
   draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null;
 }> => {
   const dispositifToSave = cloneDeep(newDispositif);
-  const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, translations: 1 });
+  const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, status: 1, translations: 1 });
 
   let draftDispositif = null;
   if (oldDispositif.hasDraftVersion) {
