@@ -4,7 +4,7 @@ import { Base } from "./Base";
 
 @modelOptions({ schemaOptions: { collection: "roles", timestamps: { createdAt: "created_at" } } })
 export class Role extends Base {
-  @prop({ required: true, trim: true, unique: true })
+  @prop({ required: true, unique: true, enum: Object.values(RoleName) })
   public nom!: RoleName;
 
   @prop()
