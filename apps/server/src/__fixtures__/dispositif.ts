@@ -1,19 +1,23 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, ObjectId } from "~/typegoose";
 
-const dispositif: Dispositif = new Dispositif();
-dispositif._id = new ObjectId("5ce7b52d83983700167bca27");
-dispositif.typeContenu = ContentType.DISPOSITIF;
-dispositif.status = DispositifStatus.ACTIVE;
-dispositif.secondaryThemes = [new ObjectId("63286a015d31b2c0cad9960d"), new ObjectId("63450dd43e23cd7181ba0b26")];
-dispositif.needs = [
+export const dispositifFixture: Dispositif = new Dispositif();
+
+dispositifFixture._id = new ObjectId("5ce7b52d83983700167bca27");
+dispositifFixture.typeContenu = ContentType.DISPOSITIF;
+dispositifFixture.status = DispositifStatus.ACTIVE;
+dispositifFixture.secondaryThemes = [
+  new ObjectId("63286a015d31b2c0cad9960d"),
+  new ObjectId("63450dd43e23cd7181ba0b26"),
+];
+dispositifFixture.needs = [
   new ObjectId("613721a409c5190dfa70d057"),
   new ObjectId("63450e79f14a373d5af284c0"),
   new ObjectId("613721a409c5190dfa70d064"),
 ];
-dispositif.sponsors = [];
-dispositif.creatorId = new ObjectId("6569af9815c38bd134125ff3");
-dispositif.participants = [
+dispositifFixture.sponsors = [];
+dispositifFixture.creatorId = new ObjectId("6569af9815c38bd134125ff3");
+dispositifFixture.participants = [
   new ObjectId("6569af9815c38bd134125ff3"),
   new ObjectId("5fbd620b2e78910014405443"),
   new ObjectId("6568946b61b13ef3180600a7"),
@@ -22,16 +26,16 @@ dispositif.participants = [
   new ObjectId("617763ae794ec90014ef6f2e"),
   new ObjectId("604d227fb90cfa0014682490"),
 ];
-dispositif.lastModificationAuthor = new ObjectId("5fbd620b2e78910014405443");
-dispositif.nbFavoritesMobile = 0;
-dispositif.nbVues = 79;
-dispositif.nbVuesMobile = 1;
-dispositif.nbMots = 256;
-dispositif.themesSelectedByAuthor = false;
-dispositif.suggestions = [];
-dispositif.merci = [];
-dispositif.webOnly = false;
-dispositif.translations = {
+dispositifFixture.lastModificationAuthor = new ObjectId("5fbd620b2e78910014405443");
+dispositifFixture.nbFavoritesMobile = 0;
+dispositifFixture.nbVues = 79;
+dispositifFixture.nbVuesMobile = 1;
+dispositifFixture.nbMots = 256;
+dispositifFixture.themesSelectedByAuthor = false;
+dispositifFixture.suggestions = [];
+dispositifFixture.merci = [];
+dispositifFixture.webOnly = false;
+dispositifFixture.translations = {
   fr: {
     content: {
       titreInformatif: "Apprendre le français",
@@ -117,7 +121,7 @@ dispositif.translations = {
     validatorId: new ObjectId("604d227fb90cfa0014682490"),
   },
 };
-dispositif.map = [
+dispositifFixture.map = [
   {
     title: "Le Lokal 36",
     address: "36 Rue Bernard, 13003 Marseille, France",
@@ -129,11 +133,11 @@ dispositif.map = [
     description: "Accueil et inscriptions le lundi entre 14h et 16h, hors vacnces scolaires",
   },
 ];
-dispositif.created_at = new Date("2023-12-01T10:05:56.577Z");
-dispositif.updatedAt = new Date("2023-12-07T14:25:30.108Z");
-dispositif.lastModificationDate = new Date("2023-12-01T14:34:06.706Z");
-dispositif.theme = new ObjectId("63286a015d31b2c0cad9960a");
-dispositif.metadatas = {
+dispositifFixture.created_at = new Date("2023-12-01T10:05:56.577Z");
+dispositifFixture.updatedAt = new Date("2023-12-07T14:25:30.108Z");
+dispositifFixture.lastModificationDate = new Date("2023-12-01T14:34:06.706Z");
+dispositifFixture.theme = new ObjectId("63286a015d31b2c0cad9960a");
+dispositifFixture.metadatas = {
   location: ["13 - Bouches-du-Rhône"],
   frenchLevel: ["alpha", "A1", "A2", "B1"],
   age: null,
@@ -152,10 +156,8 @@ dispositif.metadatas = {
   },
   timeSlots: ["monday", "tuesday", "thursday", "friday"],
 };
-dispositif.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
-dispositif.hasDraftVersion = false;
-dispositif.publishedAt = new Date("2023-12-01T14:34:29.335Z");
-dispositif.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");
-dispositif.notificationsSent = {};
-
-export { dispositif };
+dispositifFixture.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
+dispositifFixture.hasDraftVersion = false;
+dispositifFixture.publishedAt = new Date("2023-12-01T14:34:29.335Z");
+dispositifFixture.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");
+dispositifFixture.notificationsSent = {};

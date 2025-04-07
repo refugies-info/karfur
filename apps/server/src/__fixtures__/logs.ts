@@ -1,6 +1,6 @@
 import { GetLogResponse } from "@refugies-info/api-types";
 
-export const logs: GetLogResponse[] = [
+export const logsFixture: GetLogResponse[] = [
   {
     _id: "1",
     objectId: "obj_1",

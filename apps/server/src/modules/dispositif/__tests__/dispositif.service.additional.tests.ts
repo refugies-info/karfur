@@ -1,7 +1,7 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { Types } from "mongoose";
 import { Dispositif, DispositifModel, SnapshotModel } from "~/typegoose"; // Assuming models are available
-import { dispositif as baseDispositif } from "../../../__fixtures__";
+import { dispositifFixture as baseDispositif } from "../../../__fixtures__";
 import { saveAndOverwriteDraft } from "../dispositif.service";
 
 // Helper function to create a basic dispositif for testing

@@ -8,7 +8,7 @@ import {
   StructureModel,
   UserModel,
 } from "~/typegoose";
-import { dispositif as baseDispositif, structure, user } from "../../../../__fixtures__";
+import { dispositifFixture as baseDispositif, structureFixture, userFixture } from "../../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
 
 // Helper function to create a basic dispositif for testing
@@ -35,17 +35,17 @@ describe("publishDispositif - Narrow Integration Tests", () => {
 
   it("should create a 'before' snapshot when status changes from ACTIVE to UPDATE_TO_VALIDATE", async () => {
     // Create a real user in the database for the workflow
-    await UserModel.create(user);
+    await UserModel.create(userFixture);
 
     // Create structure fixture
-    await StructureModel.create(structure);
+    await StructureModel.create(structureFixture);
 
     // 1. Setup: Create initial ACTIVE dispositif in DB
     const initialStatus = DispositifStatus.ACTIVE;
     const initialDispositif = await createTestDispositif({
       status: initialStatus,
       hasDraftVersion: true, // Simulate an existing draft being published
-      creatorId: user._id,
+      creatorId: userFixture._id,
     });
     const dispositifId = initialDispositif._id;
 
@@ -59,7 +59,7 @@ describe("publishDispositif - Narrow Integration Tests", () => {
 
     // 2. Execute: Call the workflow function
     // publishDispositif doesn't return the updated object, just a status
-    await publishDispositif(dispositifId.toString(), mockBody, user);
+    await publishDispositif(dispositifId.toString(), mockBody, userFixture);
 
     // 3. Verify: Check database state
     // Fetch the draft again after the update

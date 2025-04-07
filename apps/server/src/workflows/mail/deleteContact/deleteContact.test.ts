@@ -1,4 +1,4 @@
-import { user } from "../../../__fixtures__";
+import { userFixture } from "../../../__fixtures__";
 import { deleteContact } from "./deleteContact";
 
 jest.mock("@getbrevo/brevo", () => ({
@@ -24,7 +24,7 @@ describe("isInNewsletterList", () => {
   });
 
   it("should return true", async () => {
-    const res = await deleteContact(user);
+    const res = await deleteContact(userFixture);
     expect(res).toEqual(undefined);
   });
 });

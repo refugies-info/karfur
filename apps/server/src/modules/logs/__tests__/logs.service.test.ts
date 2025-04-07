@@ -1,4 +1,4 @@
-import { logs } from "../../../__fixtures__/logs";
+import { logsFixture } from "../../../__fixtures__/logs";
 import { groupLogs } from "../logs.service";
 
 describe("groupLogs", () => {
@@ -7,7 +7,7 @@ describe("groupLogs", () => {
   });
 
   it("group logs of same day", async () => {
-    const groupedLogs = groupLogs(logs);
+    const groupedLogs = groupLogs(logsFixture);
 
     expect(groupedLogs).toEqual([
       {

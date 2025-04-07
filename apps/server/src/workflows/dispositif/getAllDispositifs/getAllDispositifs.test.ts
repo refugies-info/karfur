@@ -1,7 +1,7 @@
 import { StructureStatus } from "@refugies-info/api-types";
 import * as repository from "~/modules/dispositif/dispositif.repository";
 import { ObjectId } from "~/typegoose";
-import { dispositif } from "../../../__fixtures__";
+import { dispositifFixture } from "../../../__fixtures__";
 import { getAllDispositifs } from "./getAllDispositifs";
 
 describe("getAllDispositifs", () => {
@@ -69,15 +69,15 @@ describe("getAllDispositifs", () => {
       webOnly: false,
     };
 
-    const populatedDispositif: any = dispositif;
-    dispositif.hasDraftVersion = false;
-    dispositif.lastAdminUpdate = new Date("2023-12-01T14:34:29.335Z");
-    dispositif.draftReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
-    dispositif.draftSecondReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
-    dispositif.lastReminderMailSentToUpdateContentDate = new Date("2023-12-01T14:34:29.335Z");
-    dispositif.lastModificationDate = new Date("2023-12-01T14:34:29.335Z");
-    dispositif.adminComments = "comment";
-    dispositif.adminProgressionStatus = "comment";
+    const populatedDispositif: any = dispositifFixture;
+    dispositifFixture.hasDraftVersion = false;
+    dispositifFixture.lastAdminUpdate = new Date("2023-12-01T14:34:29.335Z");
+    dispositifFixture.draftReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositifFixture.draftSecondReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositifFixture.lastReminderMailSentToUpdateContentDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositifFixture.lastModificationDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositifFixture.adminComments = "comment";
+    dispositifFixture.adminProgressionStatus = "comment";
     populatedDispositif.mainSponsor = {
       _id: "id",
       nom: "sponsor",
