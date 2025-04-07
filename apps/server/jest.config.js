@@ -3,7 +3,7 @@ const { pathsToModuleNameMapper } = require("ts-jest");
 module.exports = {
   preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js", "d.ts"],
-  setupFilesAfterEnv: ["./jest.setup.js"],
+  setupFilesAfterEnv: ["./jest.setup.ts"],
   transform: {
     "^.+\\.(js)$": "babel-jest",
     "\\.(ts|tsx)$": "ts-jest",
