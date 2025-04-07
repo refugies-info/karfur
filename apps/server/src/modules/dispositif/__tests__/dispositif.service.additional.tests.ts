@@ -1,21 +1,16 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import { Types } from "mongoose";
 import { Dispositif, DispositifModel, SnapshotModel } from "~/typegoose"; // Assuming models are available
-import { dispositifFixture as baseDispositif } from "../../../__fixtures__";
+import { dispositifFixture } from "../../../__fixtures__";
 import { saveAndOverwriteDraft } from "../dispositif.service";
 
 // Helper function to create a basic dispositif for testing
 const createTestDispositif = async (initialData: Partial<Dispositif>): Promise<Dispositif> => {
   const data = {
-    ...baseDispositif, // Start with fixture defaults
-    _id: new Types.ObjectId(), // Generate a unique ID
+    ...dispositifFixture, // Start with fixture defaults
     status: DispositifStatus.DRAFT, // Default status unless overridden
     hasDraftVersion: false,
     ...initialData, // Apply specific test data
   };
-  // Remove potential conflicting fields from fixture if providing new ones
-  if (initialData.mainSponsor) delete data.mainSponsor;
-  if (initialData.sponsors) delete data.sponsors;
 
   return DispositifModel.create(data);
 };
@@ -25,7 +20,6 @@ describe("saveAndOverwriteDraft - Narrow Integration Tests", () => {
     // Clear relevant collections before each test
     await DispositifModel.deleteMany({});
     await SnapshotModel.deleteMany({});
-    // Add DraftDispositifModel.deleteMany({}) if applicable
   });
 
   it("should create a snapshot when status changes from WAITING_ADMIN to ACTIVE", async () => {

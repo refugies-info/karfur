@@ -3,19 +3,17 @@ import {
   Dispositif,
   DispositifDraftModel,
   DispositifModel,
-  ObjectId,
   SnapshotModel,
   StructureModel,
   UserModel,
 } from "~/typegoose";
-import { dispositifFixture as baseDispositif, structureFixture, userFixture } from "../../../../__fixtures__";
+import { dispositifFixture, structureFixture, userFixture } from "../../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
 
 // Helper function to create a basic dispositif for testing
 const createTestDispositif = async (initialData: Partial<Dispositif>): Promise<Dispositif> => {
   const data = {
-    ...baseDispositif, // Start with fixture defaults
-    _id: new ObjectId(), // Generate a unique ID
+    ...dispositifFixture, // Start with fixture defaults
     status: DispositifStatus.DRAFT, // Default status unless overridden
     hasDraftVersion: false,
     ...initialData, // Apply specific test data
@@ -30,6 +28,7 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     await DispositifModel.deleteMany({});
     await DispositifDraftModel.deleteMany({});
     await SnapshotModel.deleteMany({});
+    await StructureModel.deleteMany({});
     await UserModel.deleteMany({});
   });
 
@@ -41,13 +40,12 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     await StructureModel.create(structureFixture);
 
     // 1. Setup: Create initial ACTIVE dispositif in DB
-    const initialStatus = DispositifStatus.ACTIVE;
-    const initialDispositif = await createTestDispositif({
-      status: initialStatus,
+    const dispositif = await createTestDispositif({
+      status: DispositifStatus.ACTIVE,
       hasDraftVersion: true, // Simulate an existing draft being published
       creatorId: userFixture._id,
     });
-    const dispositifId = initialDispositif._id;
+    const dispositifId = dispositif._id;
 
     // Create a dummy draft version (publishDispositif expects it)
     const draftData = await DispositifModel.findById(dispositifId).lean();
@@ -76,7 +74,7 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     expect(snapshots).toHaveLength(1);
     const snapshot = snapshots[0];
     expect(snapshot.type).toBe("before"); // Verify snapshot type
-    expect(snapshot.from).toBe(initialStatus); // Verify 'from' status
+    expect(snapshot.from).toBe(DispositifStatus.ACTIVE); // Verify 'from' status
     expect(snapshot.to).toBe(DispositifStatus.UPDATE_TO_VALIDATE); // Verify 'to' status
   });
 
