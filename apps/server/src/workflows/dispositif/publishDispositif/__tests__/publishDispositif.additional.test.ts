@@ -62,7 +62,7 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     await publishDispositif(dispositifId.toString(), mockBody, user);
 
     // 3. Verify: Check database state
-    // Fetch the dispositif again after the update
+    // Fetch the draft again after the update
     const draftDispositifAfterUpdate = await DispositifDraftModel.findById(dispositifId).lean();
 
     // Check draft after update
