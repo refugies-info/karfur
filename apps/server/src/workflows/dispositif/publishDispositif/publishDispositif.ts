@@ -113,7 +113,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
         // admin or no changes in translations -> publish
         await publishDispositifService(id, user._id, isAdmin ? body.keepTranslations : false);
       } else {
-        // else, wait for admin validation
+        // else, wait for admin validation, set the draft's status to UPDATE_TO_VALIDATE
         await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
         await takeSnapshot(dispositif, "before", oldDispositif.status, DispositifStatus.UPDATE_TO_VALIDATE);
         await notifyChange(NotifType.TO_VALIDATE, id, user._id);

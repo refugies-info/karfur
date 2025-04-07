@@ -19,11 +19,11 @@ export class Snapshot extends Base {
   @prop({ required: true, enum: ["before", "after"] })
   public type!: SnapshotType;
 
-  @prop({ enum: Object.values(DispositifStatus) })
-  public from?: DispositifStatus;
+  @prop({ required: true, enum: Object.values(DispositifStatus), type: String })
+  public from!: DispositifStatus;
 
-  @prop({ enum: Object.values(DispositifStatus) })
-  public to?: DispositifStatus;
+  @prop({ required: true, enum: Object.values(DispositifStatus), type: String })
+  public to!: DispositifStatus;
 
   @prop({ required: true, type: Object })
   public data!: DispositifContent | DemarcheContent;
