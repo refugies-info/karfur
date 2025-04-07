@@ -7,16 +7,7 @@ export class CreateDispositifSnapshotsCollection1742918280024 implements Migrati
       validator: {
         $jsonSchema: {
           bsonType: "object",
-          required: [
-            "_id",
-            "dispositifId",
-            "version",
-            "createdAt",
-            "snapshotType",
-            "transitionFrom",
-            "transitionTo",
-            "dispositifData",
-          ],
+          required: ["_id", "dispositifId", "version", "createdAt", "type", "from", "to", "data"],
           properties: {
             _id: {
               bsonType: "objectId",
@@ -35,19 +26,19 @@ export class CreateDispositifSnapshotsCollection1742918280024 implements Migrati
               bsonType: "date",
               description: "must be a date and is required",
             },
-            snapshotType: {
+            type: {
               enum: ["before", "after"],
               description: "must be either before or after",
             },
-            transitionFrom: {
+            from: {
               type: "string",
               description: "previous state of the dispositif",
             },
-            transitionTo: {
+            to: {
               type: "string",
               description: "new state of the dispositif",
             },
-            dispositifData: {
+            data: {
               bsonType: "object",
               description: "complete copy of the dispositif document",
             },

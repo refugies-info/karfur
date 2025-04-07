@@ -16,6 +16,7 @@ import {
   publishDispositif as publishDispositifService,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
+import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import { Dispositif, Traductions, User } from "~/typegoose";
 import { TranslationContent } from "~/typegoose/Dispositif";
 import { Response } from "~/types/interface";
@@ -114,6 +115,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
       } else {
         // else, wait for admin validation
         await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
+        await takeSnapshot(dispositif, "before", oldDispositif.status, DispositifStatus.UPDATE_TO_VALIDATE);
         await notifyChange(NotifType.TO_VALIDATE, id, user._id);
       }
     } else {

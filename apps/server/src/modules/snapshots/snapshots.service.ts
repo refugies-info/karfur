@@ -1,8 +1,14 @@
+import { DispositifStatus } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { createSnapshot } from "~/modules/snapshots/snapshots.repository";
 import { Dispositif, ObjectId, Snapshot, SnapshotModel, SnapshotType } from "~/typegoose";
 
-export const takeSnapshot = async (dispositif: Dispositif, type: SnapshotType, from: string, to: string) => {
+export const takeSnapshot = async (
+  dispositif: Dispositif,
+  type: SnapshotType,
+  from: DispositifStatus,
+  to: DispositifStatus,
+) => {
   const content = dispositif.translations?.fr?.content;
 
   if (!content) {
@@ -18,10 +24,10 @@ export const takeSnapshot = async (dispositif: Dispositif, type: SnapshotType, f
   const snapshot = new Snapshot();
   snapshot.dispositifId = new ObjectId(dispositif._id.toString());
   snapshot.version = newVersion;
-  snapshot.snapshotType = type;
-  snapshot.transitionFrom = from;
-  snapshot.transitionTo = to;
-  snapshot.dispositifData = content;
+  snapshot.type = type;
+  snapshot.from = from;
+  snapshot.to = to;
+  snapshot.data = content;
 
   return createSnapshot(snapshot);
 };

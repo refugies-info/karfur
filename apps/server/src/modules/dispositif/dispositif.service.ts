@@ -21,6 +21,7 @@ import {
   sendMailWhenDispositifPublishedAfterUpdate,
 } from "~/modules/mail/sendMailWhenDispositifPublished";
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
+import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
   Dispositif,
   DispositifId,
@@ -341,6 +342,10 @@ export const saveAndOverwriteDraft = async (
 
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
   if (draftDispositif) await deleteDraftDispositif(id);
+
+  if (oldDispositif.status === DispositifStatus.WAITING_ADMIN && updatedDispositif.status === DispositifStatus.ACTIVE) {
+    await takeSnapshot(updatedDispositif, "after", oldDispositif.status, updatedDispositif.status);
+  }
 
   let draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null = null;
   if (draftDispositif) {

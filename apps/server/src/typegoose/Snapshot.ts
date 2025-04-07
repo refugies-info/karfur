@@ -1,3 +1,4 @@
+import { DispositifStatus } from "@refugies-info/api-types";
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { DemarcheContent, Dispositif, DispositifContent } from "./Dispositif";
@@ -16,14 +17,14 @@ export class Snapshot extends Base {
   created_at: Date;
 
   @prop({ required: true, enum: ["before", "after"] })
-  public snapshotType!: SnapshotType;
+  public type!: SnapshotType;
 
-  @prop()
-  public transitionFrom?: string;
+  @prop({ enum: Object.values(DispositifStatus) })
+  public from?: DispositifStatus;
 
-  @prop()
-  public transitionTo?: string;
+  @prop({ enum: Object.values(DispositifStatus) })
+  public to?: DispositifStatus;
 
   @prop({ required: true, type: Object })
-  public dispositifData!: DispositifContent | DemarcheContent;
+  public data!: DispositifContent | DemarcheContent;
 }
