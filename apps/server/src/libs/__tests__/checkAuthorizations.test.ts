@@ -1,7 +1,7 @@
 import { DispositifStatus, RoleName } from "@refugies-info/api-types";
 import { DispositifModel, ObjectId, RoleModel, StructureModel, UserModel } from "~/typegoose";
 import { dispositifFixture as refDispositif } from "../../__fixtures__/dispositif";
-import { structure as refStructure } from "../../__fixtures__/structure";
+import { structureFixture as refStructure } from "../../__fixtures__/structure";
 import { userFixture as refUser } from "../../__fixtures__/user";
 import {
   checkUserIsAuthorizedToDeleteDispositif,
