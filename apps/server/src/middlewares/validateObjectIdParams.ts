@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 
 // List of parameter names that should be validated as MongoDB ObjectIds
-const OBJECT_ID_PARAMS = ["id", "suggestionId"]; // Add other param names if needed
+const OBJECT_ID_PARAMS = ["id", "key"]; // Add other param names if needed
 
 /**
  * Middleware to validate if specific URL parameters are valid MongoDB ObjectIds.
