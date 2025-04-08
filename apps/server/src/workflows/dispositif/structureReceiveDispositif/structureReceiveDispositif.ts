@@ -14,7 +14,11 @@ export const structureReceiveDispositif = async (
 ): Response => {
   logger.info("[structureReceiveDispositif] received", { id, body, user: user._id });
 
-  const oldDispositif = await getDispositifById(id, { status: 1, creatorId: 1, mainSponsor: 1 }, "mainSponsor");
+  const oldDispositif = await getDispositifById(
+    id,
+    { status: 1, creatorId: 1, mainSponsor: 1, typeContenu: 1 },
+    "mainSponsor",
+  );
   if (!oldDispositif) throw new NotFoundError("The content has not been found");
   const editedDispositif: Partial<Dispositif> = {};
 

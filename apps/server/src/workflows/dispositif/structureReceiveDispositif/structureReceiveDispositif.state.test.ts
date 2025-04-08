@@ -1,7 +1,7 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { DispositifModel, SnapshotModel, StructureModel, UserModel } from "~/typegoose";
-import { fixtures } from "../../../../__fixtures__";
-import { structureReceiveDispositif } from "../structureReceiveDispositif";
+import { fixtures } from "../../../__fixtures__";
+import { structureReceiveDispositif } from "./structureReceiveDispositif";
 
 describe("structureReceiveDispositif", () => {
   beforeEach(async () => {
