@@ -3,18 +3,6 @@ import { Dispositif, DispositifModel, SnapshotModel } from "~/typegoose"; // Ass
 import { fixtures } from "../../../__fixtures__";
 import { saveAndOverwriteDraft } from "../dispositif.service";
 
-// Helper function to create a basic dispositif for testing
-const createTestDispositif = async (initialData: Partial<Dispositif>): Promise<Dispositif> => {
-  const data = {
-    ...fixtures.dispositif, // Start with fixture defaults
-    status: DispositifStatus.DRAFT, // Default status unless overridden
-    hasDraftVersion: false,
-    ...initialData, // Apply specific test data
-  };
-
-  return DispositifModel.create(data);
-};
-
 describe("saveAndOverwriteDraft - Narrow Integration Tests", () => {
   beforeEach(async () => {
     // Clear relevant collections before each test
@@ -24,9 +12,9 @@ describe("saveAndOverwriteDraft - Narrow Integration Tests", () => {
 
   it("should create a snapshot when status changes from WAITING_ADMIN to ACTIVE", async () => {
     // 1. Setup: Create initial dispositif in DB
-    const initialStatus = DispositifStatus.WAITING_ADMIN;
-    const initialDispositif = await createTestDispositif({
-      status: initialStatus,
+    const initialDispositif = await DispositifModel.create({
+      ...fixtures.dispositif,
+      status: DispositifStatus.WAITING_ADMIN,
     });
     const dispositifId = initialDispositif._id;
 
@@ -52,15 +40,15 @@ describe("saveAndOverwriteDraft - Narrow Integration Tests", () => {
     expect(snapshots).toHaveLength(1);
     const snapshot = snapshots[0];
     expect(snapshot.type).toBe("after");
-    expect(snapshot.from).toBe(initialStatus);
+    expect(snapshot.from).toBe(DispositifStatus.WAITING_ADMIN);
     expect(snapshot.to).toBe(DispositifStatus.ACTIVE);
   });
 
   it("should NOT create a snapshot when status does not change from WAITING_ADMIN to ACTIVE", async () => {
     // 1. Setup: Create initial dispositif (e.g., ACTIVE)
-    const initialStatus = DispositifStatus.ACTIVE;
-    const initialDispositif = await createTestDispositif({
-      status: initialStatus,
+    const initialDispositif = await DispositifModel.create({
+      ...fixtures.dispositif,
+      status: DispositifStatus.ACTIVE,
     });
     const dispositifId = initialDispositif._id;
 
@@ -83,9 +71,4 @@ describe("saveAndOverwriteDraft - Narrow Integration Tests", () => {
     const snapshots = await SnapshotModel.find({ dispositifId }).lean();
     expect(snapshots).toHaveLength(0); // Key assertion: no snapshot created
   });
-
-  // Add more tests here for draft handling scenarios, e.g.:
-  // - Test that draft properties are copied correctly
-  // - Test that the draft document is deleted
-  // - Test snapshot creation/non-creation in scenarios involving drafts
 });
