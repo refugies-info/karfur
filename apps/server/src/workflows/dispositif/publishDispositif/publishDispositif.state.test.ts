@@ -60,5 +60,33 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     expect(snapshot.to).toBe(DispositifStatus.UPDATE_TO_VALIDATE); // Verify 'to' status
   });
 
-  // Add more tests here for other scenarios if needed
+  it("should not take a snapshot on a demarche", async () => {
+    // 1. Setup initial state
+    const dispositif = await DispositifModel.create({
+      ...fixtures.demarche,
+      status: DispositifStatus.ACTIVE,
+    });
+    const dispositifId = dispositif._id;
+
+    // Create an empty body for the request
+    const mockBody: PublishDispositifRequest = { keepTranslations: false };
+
+    // 2. Execute: Call the workflow function
+    // publishDispositif doesn't return the updated object, just a status
+    await publishDispositif(dispositifId.toString(), mockBody, fixtures.user);
+
+    // 3. Verify: Check database state
+    // Fetch the draft again after the update
+    const draftDispositifAfterUpdate = await DispositifDraftModel.findById(dispositifId).lean();
+
+    // Check draft after update
+    expect(draftDispositifAfterUpdate).not.toBeNull();
+    expect(draftDispositifAfterUpdate?._id).toEqual(dispositifId);
+    expect(draftDispositifAfterUpdate?.status).toBe(DispositifStatus.ACTIVE);
+    expect(draftDispositifAfterUpdate?.hasDraftVersion).toBe(false);
+
+    // Check snapshot creation
+    const snapshots = await SnapshotModel.find({ dispositifId }).lean();
+    expect(snapshots).toHaveLength(0);
+  });
 });

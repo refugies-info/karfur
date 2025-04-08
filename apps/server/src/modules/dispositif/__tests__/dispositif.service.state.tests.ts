@@ -71,4 +71,32 @@ describe("saveAndOverwriteDraft - Narrow Integration Tests", () => {
     const snapshots = await SnapshotModel.find({ dispositifId }).lean();
     expect(snapshots).toHaveLength(0); // Key assertion: no snapshot created
   });
+
+  it("should not take a snapshot on a demarche", async () => {
+    // 1. Setup: Create initial demarche
+    const initialDemarche = await DispositifModel.create({
+      ...fixtures.demarche,
+      status: DispositifStatus.ACTIVE,
+    });
+    const demarcheId = initialDemarche._id;
+
+    // 2. Execute: Call the service function with data to update status
+    const updateData: Partial<Dispositif> = {
+      status: DispositifStatus.ACTIVE,
+    };
+    const { updatedDispositif } = await saveAndOverwriteDraft(demarcheId, updateData);
+
+    // 3. Verify
+    // Check demarche update
+    expect(updatedDispositif.status).toBe(DispositifStatus.ACTIVE);
+    expect(updatedDispositif.hasDraftVersion).toBe(false);
+
+    const dbDemarche = await DispositifModel.findById(demarcheId).lean();
+    expect(dbDemarche?.status).toBe(DispositifStatus.ACTIVE);
+    expect(dbDemarche?.hasDraftVersion).toBe(false);
+
+    // Check NO snapshot was created for this operation
+    const snapshots = await SnapshotModel.find({ demarcheId }).lean();
+    expect(snapshots).toHaveLength(0); // Key assertion: no snapshot created
+  });
 });
