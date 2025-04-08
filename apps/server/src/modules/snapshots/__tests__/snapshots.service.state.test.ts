@@ -1,5 +1,5 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import { dispositifFixture } from "~/__fixtures__";
+import { fixtures } from "~/__fixtures__";
 import { DispositifModel, SnapshotModel } from "~/typegoose";
 import { takeSnapshot } from "../snapshots.service";
 
@@ -11,7 +11,7 @@ describe("takeSnapshot", () => {
 
   it("should create first snapshot with version 1 when no snapshots exist", async () => {
     const dispositif = await DispositifModel.create({
-      ...dispositifFixture,
+      ...fixtures.dispositif,
       status: DispositifStatus.DRAFT,
       hasDraftVersion: false,
       translations: { fr: { content: "test content" } },
@@ -34,7 +34,7 @@ describe("takeSnapshot", () => {
   it("should increment version when snapshots exist", async () => {
     // First create a snapshot with version 1
     const dispositif = await DispositifModel.create({
-      ...dispositifFixture,
+      ...fixtures.dispositif,
       status: DispositifStatus.DRAFT,
       hasDraftVersion: false,
       translations: { fr: { content: "test content" } },

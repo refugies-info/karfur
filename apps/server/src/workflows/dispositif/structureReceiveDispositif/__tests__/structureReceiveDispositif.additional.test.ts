@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { DispositifModel, SnapshotModel, StructureModel, UserModel } from "~/typegoose";
-import { dispositifFixture, structureFixture, userFixture } from "../../../../__fixtures__";
+import { fixtures } from "../../../../__fixtures__";
 import { structureReceiveDispositif } from "../structureReceiveDispositif";
 
 describe("structureReceiveDispositif", () => {
@@ -15,14 +15,14 @@ describe("structureReceiveDispositif", () => {
   it("should take a snapshot when status changes to WAITING_ADMIN", async () => {
     // 1. Setup initial state
     const dispositif = await DispositifModel.create({
-      ...dispositifFixture,
+      ...fixtures.dispositif,
       status: DispositifStatus.WAITING_STRUCTURE,
     });
-    await StructureModel.create(structureFixture);
-    await UserModel.create(userFixture);
+    await StructureModel.create(fixtures.structure);
+    await UserModel.create(fixtures.user);
 
     // 2. Execute function
-    await structureReceiveDispositif(dispositif._id.toString(), { accept: true }, userFixture);
+    await structureReceiveDispositif(dispositif._id.toString(), { accept: true }, fixtures.user);
 
     // 3. Verify resulting state
     const updatedDispositif = await DispositifModel.findById(dispositif._id).lean();

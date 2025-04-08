@@ -7,13 +7,13 @@ import {
   StructureModel,
   UserModel,
 } from "~/typegoose";
-import { dispositifFixture, structureFixture, userFixture } from "../../../../__fixtures__";
+import { fixtures } from "../../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
 
 // Helper function to create a basic dispositif for testing
 const createTestDispositif = async (initialData: Partial<Dispositif>): Promise<Dispositif> => {
   const data = {
-    ...dispositifFixture, // Start with fixture defaults
+    ...fixtures.dispositif, // Start with fixture defaults
     status: DispositifStatus.DRAFT, // Default status unless overridden
     hasDraftVersion: false,
     ...initialData, // Apply specific test data
@@ -34,16 +34,16 @@ describe("publishDispositif - Narrow Integration Tests", () => {
 
   it("should create a 'before' snapshot when status changes from ACTIVE to UPDATE_TO_VALIDATE", async () => {
     // Create a real user in the database for the workflow
-    await UserModel.create(userFixture);
+    await UserModel.create(fixtures.user);
 
     // Create structure fixture
-    await StructureModel.create(structureFixture);
+    await StructureModel.create(fixtures.structure);
 
     // 1. Setup: Create initial ACTIVE dispositif in DB
     const dispositif = await createTestDispositif({
       status: DispositifStatus.ACTIVE,
       hasDraftVersion: true, // Simulate an existing draft being published
-      creatorId: userFixture._id,
+      creatorId: fixtures.user._id,
     });
     const dispositifId = dispositif._id;
 
@@ -57,7 +57,7 @@ describe("publishDispositif - Narrow Integration Tests", () => {
 
     // 2. Execute: Call the workflow function
     // publishDispositif doesn't return the updated object, just a status
-    await publishDispositif(dispositifId.toString(), mockBody, userFixture);
+    await publishDispositif(dispositifId.toString(), mockBody, fixtures.user);
 
     // 3. Verify: Check database state
     // Fetch the draft again after the update

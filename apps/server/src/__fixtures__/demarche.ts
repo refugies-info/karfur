@@ -1,31 +1,31 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, ObjectId } from "~/typegoose";
 
-export const demarcheFixture: Dispositif = new Dispositif();
+export const demarche: Dispositif = new Dispositif();
 
-demarcheFixture._id = new ObjectId("651588ea521b25fd0f92ee1a");
-demarcheFixture.typeContenu = ContentType.DEMARCHE;
-demarcheFixture.status = DispositifStatus.ACTIVE;
-demarcheFixture.secondaryThemes = [new ObjectId("63286a015d31b2c0cad9960b")];
-demarcheFixture.needs = [new ObjectId("63450e14f14a373d5af2814e"), new ObjectId("613721a409c5190dfa70d06a")];
-demarcheFixture.sponsors = [];
-demarcheFixture.creatorId = new ObjectId("6479ed27a7c5fe2318dec396");
-demarcheFixture.participants = [new ObjectId("6479ed27a7c5fe2318dec396"), new ObjectId("5fbd620b2e78910014405443")];
-demarcheFixture.lastModificationAuthor = new ObjectId("5fbd620b2e78910014405443");
-demarcheFixture.nbFavoritesMobile = 0;
-demarcheFixture.nbVues = 173;
-demarcheFixture.nbVuesMobile = 32;
-demarcheFixture.nbMots = 1244;
-demarcheFixture.themesSelectedByAuthor = false;
-demarcheFixture.suggestions = [];
-demarcheFixture.merci = [
+demarche._id = new ObjectId("651588ea521b25fd0f92ee1a");
+demarche.typeContenu = ContentType.DEMARCHE;
+demarche.status = DispositifStatus.ACTIVE;
+demarche.secondaryThemes = [new ObjectId("63286a015d31b2c0cad9960b")];
+demarche.needs = [new ObjectId("63450e14f14a373d5af2814e"), new ObjectId("613721a409c5190dfa70d06a")];
+demarche.sponsors = [];
+demarche.creatorId = new ObjectId("6479ed27a7c5fe2318dec396");
+demarche.participants = [new ObjectId("6479ed27a7c5fe2318dec396"), new ObjectId("5fbd620b2e78910014405443")];
+demarche.lastModificationAuthor = new ObjectId("5fbd620b2e78910014405443");
+demarche.nbFavoritesMobile = 0;
+demarche.nbVues = 173;
+demarche.nbVuesMobile = 32;
+demarche.nbMots = 1244;
+demarche.themesSelectedByAuthor = false;
+demarche.suggestions = [];
+demarche.merci = [
   {
     created_at: new Date("2023-12-01T14:07:29.084Z"),
     userId: new ObjectId("63e25241640ef776c3247e13"),
   },
 ];
-demarcheFixture.webOnly = false;
-demarcheFixture.translations = {
+demarche.webOnly = false;
+demarche.translations = {
   fr: {
     content: {
       titreInformatif: "Avoir un livret de famille",
@@ -129,13 +129,13 @@ demarcheFixture.translations = {
     validatorId: new ObjectId("604d227fb90cfa0014682490"),
   },
 };
-demarcheFixture.map = [];
-demarcheFixture.created_at = new Date("2023-09-28T14:08:42.886Z");
-demarcheFixture.updatedAt = new Date("2023-12-07T14:47:44.773Z");
-demarcheFixture.lastModificationDate = new Date("2023-12-01T13:51:58.427Z");
-demarcheFixture.draftReminderMailSentDate = new Date("2023-10-17T08:00:01.635Z");
-demarcheFixture.theme = new ObjectId("63450dd43e23cd7181ba0b26");
-demarcheFixture.metadatas = {
+demarche.map = [];
+demarche.created_at = new Date("2023-09-28T14:08:42.886Z");
+demarche.updatedAt = new Date("2023-12-07T14:47:44.773Z");
+demarche.lastModificationDate = new Date("2023-12-01T13:51:58.427Z");
+demarche.draftReminderMailSentDate = new Date("2023-10-17T08:00:01.635Z");
+demarche.theme = new ObjectId("63450dd43e23cd7181ba0b26");
+demarche.metadatas = {
   location: "france",
   frenchLevel: null,
   age: null,
@@ -145,8 +145,8 @@ demarcheFixture.metadatas = {
   conditions: null,
   timeSlots: [],
 };
-demarcheFixture.mainSponsor = new ObjectId("63ef5c87226626966d9272d0");
-demarcheFixture.hasDraftVersion = false;
-demarcheFixture.publishedAt = new Date("2023-12-01T13:57:31.392Z");
-demarcheFixture.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");
-demarcheFixture.notificationsSent = {};
+demarche.mainSponsor = new ObjectId("63ef5c87226626966d9272d0");
+demarche.hasDraftVersion = false;
+demarche.publishedAt = new Date("2023-12-01T13:57:31.392Z");
+demarche.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");
+demarche.notificationsSent = {};

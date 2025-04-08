@@ -1,7 +1,7 @@
 import { RoleName } from "@refugies-info/api-types";
 import { DocumentType } from "@typegoose/typegoose";
 import { ObjectId, Role, RoleModel, UserModel } from "~/typegoose";
-import { userFixture } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import { addLog } from "../../logs/logs.service";
 import { sendWelcomeMail } from "../../mail/mail.service";
 import * as roleRep from "../../role/role.repository";
@@ -55,7 +55,7 @@ describe("updateLastConnected", () => {
   it("should call updateUserInDB", async () => {
     //@ts-expect-error
     jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => {});
-    await updateLastConnected(userFixture);
+    await updateLastConnected(fixtures.user);
     expect(usersRep.updateUserInDB).toHaveBeenCalledWith(userId, {
       last_connected: new Date(1466424490000),
       mfaCode: null,
@@ -123,7 +123,7 @@ describe("registerUser", () => {
 
     jest
       .spyOn(usersRep, "createUser")
-      .mockImplementation(async (userData) => new UserModel({ ...userFixture, ...userData }));
+      .mockImplementation(async (userData) => new UserModel({ ...fixtures.user, ...userData }));
   });
 
   it("should create user", async () => {

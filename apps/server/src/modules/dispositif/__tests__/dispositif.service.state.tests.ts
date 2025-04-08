@@ -1,12 +1,12 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, DispositifModel, SnapshotModel } from "~/typegoose"; // Assuming models are available
-import { dispositifFixture } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import { saveAndOverwriteDraft } from "../dispositif.service";
 
 // Helper function to create a basic dispositif for testing
 const createTestDispositif = async (initialData: Partial<Dispositif>): Promise<Dispositif> => {
   const data = {
-    ...dispositifFixture, // Start with fixture defaults
+    ...fixtures.dispositif, // Start with fixture defaults
     status: DispositifStatus.DRAFT, // Default status unless overridden
     hasDraftVersion: false,
     ...initialData, // Apply specific test data

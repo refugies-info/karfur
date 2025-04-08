@@ -4,7 +4,7 @@ import * as repository from "~/modules/dispositif/dispositif.repository";
 import * as service from "~/modules/dispositif/dispositif.service";
 import * as logDispositif from "~/modules/dispositif/log";
 import { DispositifModel, ObjectId, StructureModel } from "~/typegoose";
-import { dispositifFixture, structureFixture, userFixture } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import * as log from "./log";
 import { updateDispositif } from "./updateDispositif";
 
@@ -36,16 +36,16 @@ describe("updateDispositif", () => {
     );
     const logMock = jest.spyOn(log, "log");
 
-    const newDispositif = new DispositifModel(dispositifFixture);
+    const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.DRAFT;
-    newDispositif.mainSponsor = new StructureModel(structureFixture);
+    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(null);
     addNewParticipantMock.mockResolvedValue(new DispositifModel(newDispositif));
     cloneDispositifInDraftsMock.mockResolvedValue(new DispositifModel(newDispositif));
 
-    const updatedDispositif = new DispositifModel(dispositifFixture);
+    const updatedDispositif = new DispositifModel(fixtures.dispositif);
     updatedDispositif.status = DispositifStatus.DRAFT;
     updateDispositifInDBMock.mockResolvedValue(new DispositifModel(updatedDispositif));
     notifyChangeMock.mockResolvedValue();
@@ -56,7 +56,7 @@ describe("updateDispositif", () => {
     const result = await updateDispositif(
       "5ce7b52d83983700167bca27",
       { titreInformatif: "nouveau titre" },
-      userFixture,
+      fixtures.user,
     );
 
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -66,7 +66,7 @@ describe("updateDispositif", () => {
       lastModificationDate: new Date(2023, 0, 1),
       nbMots: 255,
       themesSelectedByAuthor: true,
-      translations: dispositifFixture.translations,
+      translations: fixtures.dispositif.translations,
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
@@ -105,8 +105,8 @@ describe("updateDispositif", () => {
     );
     const logMock = jest.spyOn(log, "log");
 
-    const newDispositif = new DispositifModel(dispositifFixture);
-    newDispositif.mainSponsor = new StructureModel(structureFixture);
+    const newDispositif = new DispositifModel(fixtures.dispositif);
+    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(null);
@@ -115,7 +115,7 @@ describe("updateDispositif", () => {
     newDispositif.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
     cloneDispositifInDraftsMock.mockResolvedValue(new DispositifModel(newDispositif));
 
-    const updatedDispositif = new DispositifModel(dispositifFixture);
+    const updatedDispositif = new DispositifModel(fixtures.dispositif);
     updatedDispositif.hasDraftVersion = true;
     updateDispositifInDBMock.mockResolvedValue(new DispositifModel(updatedDispositif));
     notifyChangeMock.mockResolvedValue();
@@ -126,7 +126,7 @@ describe("updateDispositif", () => {
     const result = await updateDispositif(
       "5ce7b52d83983700167bca27",
       { titreInformatif: "nouveau titre" },
-      userFixture,
+      fixtures.user,
     );
 
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -135,7 +135,7 @@ describe("updateDispositif", () => {
       lastModificationDate: new Date(2023, 0, 1),
       nbMots: 255,
       themesSelectedByAuthor: true,
-      translations: dispositifFixture.translations,
+      translations: fixtures.dispositif.translations,
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
@@ -182,7 +182,7 @@ describe("updateDispositif", () => {
     );
     const logMock = jest.spyOn(log, "log");
 
-    const newDispositif = new DispositifModel(dispositifFixture);
+    const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.WAITING_ADMIN;
     newDispositif.mainSponsor = null;
 
@@ -199,7 +199,7 @@ describe("updateDispositif", () => {
     const result = await updateDispositif(
       "5ce7b52d83983700167bca27",
       { titreInformatif: "nouveau titre" },
-      userFixture,
+      fixtures.user,
     );
 
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -209,7 +209,7 @@ describe("updateDispositif", () => {
       lastModificationDate: new Date(2023, 0, 1),
       nbMots: 255,
       themesSelectedByAuthor: true,
-      translations: dispositifFixture.translations,
+      translations: fixtures.dispositif.translations,
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
@@ -255,9 +255,9 @@ describe("updateDispositif", () => {
     );
     const logMock = jest.spyOn(log, "log");
 
-    const newDispositif = new DispositifModel(dispositifFixture);
+    const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.DRAFT;
-    newDispositif.mainSponsor = new StructureModel(structureFixture);
+    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
     newDispositif.lastModificationDate = new Date(2023, 0, 1);
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
@@ -265,7 +265,7 @@ describe("updateDispositif", () => {
     addNewParticipantMock.mockResolvedValue(new DispositifModel(newDispositif));
     cloneDispositifInDraftsMock.mockResolvedValue(new DispositifModel(newDispositif));
 
-    const updatedDispositif = new DispositifModel(dispositifFixture);
+    const updatedDispositif = new DispositifModel(fixtures.dispositif);
     updatedDispositif.status = DispositifStatus.DRAFT;
     updateDispositifInDBMock.mockResolvedValue(new DispositifModel(updatedDispositif));
     notifyChangeMock.mockResolvedValue();
@@ -283,7 +283,7 @@ describe("updateDispositif", () => {
           isMe: true,
         },
       },
-      userFixture,
+      fixtures.user,
     );
 
     expect(getDispositifByIdMock).toHaveBeenCalled();
@@ -293,7 +293,7 @@ describe("updateDispositif", () => {
       lastModificationDate: new Date(2023, 0, 1),
       nbMots: 255,
       themesSelectedByAuthor: true,
-      translations: dispositifFixture.translations,
+      translations: fixtures.dispositif.translations,
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
@@ -340,20 +340,20 @@ describe("updateDispositif", () => {
     );
     const logMock = jest.spyOn(log, "log");
 
-    const newDispositif = new DispositifModel(dispositifFixture);
+    const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.ACTIVE;
-    newDispositif.mainSponsor = new StructureModel(structureFixture);
+    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
 
-    const draftDispositif = new DispositifModel(dispositifFixture);
+    const draftDispositif = new DispositifModel(fixtures.dispositif);
     draftDispositif.status = DispositifStatus.DRAFT;
-    draftDispositif.mainSponsor = new StructureModel(structureFixture);
+    draftDispositif.mainSponsor = new StructureModel(fixtures.structure);
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(new DispositifModel(draftDispositif));
     addNewParticipantMock.mockResolvedValue(new DispositifModel(newDispositif));
     cloneDispositifInDraftsMock.mockResolvedValue(new DispositifModel(newDispositif));
 
-    const updatedDispositif = new DispositifModel(dispositifFixture);
+    const updatedDispositif = new DispositifModel(fixtures.dispositif);
     updatedDispositif.status = DispositifStatus.DRAFT;
     updateDispositifInDBMock.mockResolvedValue(new DispositifModel(updatedDispositif));
     notifyChangeMock.mockResolvedValue();
@@ -364,7 +364,7 @@ describe("updateDispositif", () => {
     const result = await updateDispositif(
       "5ce7b52d83983700167bca27",
       { titreInformatif: "nouveau titre" },
-      userFixture,
+      fixtures.user,
     );
 
     expect(getDispositifByIdMock).not.toHaveBeenCalled();
@@ -374,7 +374,7 @@ describe("updateDispositif", () => {
       lastModificationDate: new Date(2023, 0, 1),
       nbMots: 255,
       themesSelectedByAuthor: true,
-      translations: dispositifFixture.translations,
+      translations: fixtures.dispositif.translations,
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
@@ -417,16 +417,16 @@ describe("updateDispositif", () => {
     );
     const logMock = jest.spyOn(log, "log");
 
-    const newDispositif = new DispositifModel(dispositifFixture);
+    const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.DRAFT;
-    newDispositif.mainSponsor = new StructureModel(structureFixture);
+    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(null);
     addNewParticipantMock.mockResolvedValue(new DispositifModel(newDispositif));
     cloneDispositifInDraftsMock.mockResolvedValue(new DispositifModel(newDispositif));
 
-    const updatedDispositif = new DispositifModel(dispositifFixture);
+    const updatedDispositif = new DispositifModel(fixtures.dispositif);
     updatedDispositif.status = DispositifStatus.DRAFT;
     updateDispositifInDBMock.mockResolvedValue(new DispositifModel(updatedDispositif));
     notifyChangeMock.mockResolvedValue();
@@ -434,7 +434,7 @@ describe("updateDispositif", () => {
     checkUserIsAuthorizedToModifyDispositifMock.mockReturnValue(true);
     logMock.mockResolvedValue();
 
-    const result = await updateDispositif("5ce7b52d83983700167bca27", { titreInformatif: "" }, userFixture);
+    const result = await updateDispositif("5ce7b52d83983700167bca27", { titreInformatif: "" }, fixtures.user);
 
     expect(getDispositifByIdMock).toHaveBeenCalled();
     expect(cloneDispositifInDraftsMock).not.toHaveBeenCalled();
@@ -443,7 +443,7 @@ describe("updateDispositif", () => {
       lastModificationDate: new Date(2023, 0, 1),
       nbMots: 253,
       themesSelectedByAuthor: true,
-      translations: dispositifFixture.translations,
+      translations: fixtures.dispositif.translations,
     };
     newDispositifContent.translations.fr.content.titreInformatif = "";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
