@@ -1,3 +1,4 @@
+import { DispositifStatus } from "@refugies-info/api-types";
 import { MigrationInterface } from "mongo-migrate-ts";
 import { Db } from "mongodb";
 
@@ -27,15 +28,18 @@ export class CreateDispositifSnapshotsCollection1742918280024 implements Migrati
               description: "must be a date and is required",
             },
             type: {
+              bsonType: "string",
               enum: ["before", "after"],
               description: "must be either before or after",
             },
             from: {
-              type: "string",
+              bsonType: "string",
+              enum: Object.values(DispositifStatus),
               description: "previous state of the dispositif",
             },
             to: {
-              type: "string",
+              bsonType: "string",
+              enum: Object.values(DispositifStatus),
               description: "new state of the dispositif",
             },
             data: {
