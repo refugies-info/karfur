@@ -3,15 +3,9 @@ import logger from "../../logger";
 import { DynamicData, TemplateName } from "./sendgrid.types";
 import { templatesIds } from "./templatesIds";
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 const UNSUBSCRIBE_GROUP_ID = 137241;
-
-let initialized = false;
-
-const initSendGrid = () => {
-  if (initialized) return;
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  initialized = true;
-};
 
 export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, bypassUnsubscribe?: boolean) => {
   if (process.env.NODE_ENV === "dev") {
@@ -43,8 +37,6 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
       sandbox_mode: { enable: process.env.NODE_ENV === "test" },
     };
   }
-
-  initSendGrid();
 
   sgMail
     .send(msg)
