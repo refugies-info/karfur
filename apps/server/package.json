@@ -43,7 +43,6 @@
     "lodash": "^4.17.21",
     "microsoft-cognitiveservices-speech-sdk": "^1.43.0",
     "moment": "^2.29.4",
-    "mongodb": "^6.15.0",
     "mongodb-memory-server": "^10.1.4",
     "mongoose": "8.13.1",
     "node-cache": "^5.1.2",
