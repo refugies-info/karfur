@@ -758,12 +758,6 @@ importers:
       moment:
         specifier: ^2.29.4
         version: 2.30.1
-      mongodb:
-        specifier: ^6.15.0
-        version: 6.15.0(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
-      mongodb-memory-server:
-        specifier: ^10.1.4
-        version: 10.1.4(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
       mongoose:
         specifier: 8.13.1
         version: 8.13.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
@@ -858,6 +852,9 @@ importers:
       mockdate:
         specifier: ^3.0.5
         version: 3.0.5
+      mongodb-memory-server:
+        specifier: ^10.1.4
+        version: 10.1.4(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
