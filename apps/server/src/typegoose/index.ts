@@ -38,9 +38,7 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
     collection: "dispositifs_draft",
   },
 });
-export const SnapshotModel = getModelForClass(Snapshot, {
-  schemaOptions: { collection: "snapshots" },
-});
+export const SnapshotModel = getModelForClass(Snapshot);
 export const ErrorModel = getModelForClass(Error);
 export const ImageModel = getModelForClass(Image);
 export const IndicatorModel = getModelForClass(Indicator);
