@@ -12,7 +12,7 @@ import {
 } from "@refugies-info/api-types";
 import { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
-import { airtableContentBase } from "~/connectors/airtable/airtable";
+import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
@@ -21,6 +21,7 @@ import {
   sendMailWhenDispositifPublishedAfterUpdate,
 } from "~/modules/mail/sendMailWhenDispositifPublished";
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
+import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
   Dispositif,
   DispositifId,
@@ -75,7 +76,7 @@ export const addDispositifToAirtable = (dispositif: Dispositif) => {
       "Thème secondaire 2": secondaryThemes.length > 1 ? secondaryThemes[1].short["fr"] || "" : "",
     },
   };
-  return airtableContentBase("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
+  return getAirtableContentTable("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
     if (error) {
       logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", { error });
       return;
@@ -295,7 +296,7 @@ export const saveAndOverwriteDraft = async (
   draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null;
 }> => {
   const dispositifToSave = cloneDeep(newDispositif);
-  const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, translations: 1 });
+  const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, status: 1, translations: 1 });
 
   let draftDispositif = null;
   if (oldDispositif.hasDraftVersion) {
@@ -341,6 +342,14 @@ export const saveAndOverwriteDraft = async (
 
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
   if (draftDispositif) await deleteDraftDispositif(id);
+
+  if (
+    updatedDispositif.typeContenu === ContentType.DISPOSITIF &&
+    oldDispositif.status === DispositifStatus.WAITING_ADMIN &&
+    updatedDispositif.status === DispositifStatus.ACTIVE
+  ) {
+    await takeSnapshot(updatedDispositif, "after", oldDispositif.status, updatedDispositif.status);
+  }
 
   let draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null = null;
   if (draftDispositif) {

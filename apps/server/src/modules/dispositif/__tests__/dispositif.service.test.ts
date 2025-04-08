@@ -1,6 +1,6 @@
 import * as languesService from "~/modules/langues/langues.service";
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
-import { demarche, dispositif } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
 import * as repository from "../dispositif.repository";
 import { publishDispositif } from "../dispositif.service";
@@ -17,7 +17,7 @@ describe.skip("publish dispositif", () => {
     const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
     const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
-    updateDispositifInDBMock.mockResolvedValueOnce(demarche);
+    updateDispositifInDBMock.mockResolvedValueOnce(fixtures.demarche);
 
     const date = 148707670800;
     Date.now = jest.fn(() => date);
@@ -36,10 +36,10 @@ describe.skip("publish dispositif", () => {
     const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
     const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
-    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+    updateDispositifInDBMock.mockResolvedValueOnce(fixtures.dispositif);
     updateLanguagesAvancementMock.mockRejectedValueOnce(new Error("erreur"));
 
-    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+    updateDispositifInDBMock.mockResolvedValueOnce(fixtures.dispositif);
     const date = 148707670800;
     Date.now = jest.fn(() => date);
     await publishDispositif("id", "userId");
@@ -49,14 +49,14 @@ describe.skip("publish dispositif", () => {
       publishedAt: date,
     });
     expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
-    expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
+    expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(fixtures.dispositif);
   });
 
   it("should return a 200 when new status is actif and a dispositif ", async () => {
     const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
     const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
-    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+    updateDispositifInDBMock.mockResolvedValueOnce(fixtures.dispositif);
 
     const date = 148707670800;
     Date.now = jest.fn(() => date);
@@ -67,7 +67,7 @@ describe.skip("publish dispositif", () => {
       publishedAt: date,
     });
     expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
-    expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
+    expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(fixtures.dispositif);
     expect(sendDispositifNotifications).toHaveBeenCalled();
   });
 
@@ -75,7 +75,7 @@ describe.skip("publish dispositif", () => {
     const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
     const updateLanguagesAvancementMock = jest.spyOn(languesService, "updateLanguagesAvancement");
 
-    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+    updateDispositifInDBMock.mockResolvedValueOnce(fixtures.dispositif);
 
     const date = 148707670800;
     Date.now = jest.fn(() => date);

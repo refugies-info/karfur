@@ -1,7 +1,8 @@
-import { DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
 import { InvalidRequestError, NotFoundError, UnauthorizedError } from "~/errors";
 import logger from "~/logger";
 import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import { Dispositif, User } from "~/typegoose";
 import { Response } from "~/types/interface";
 import { log } from "./log";
@@ -13,7 +14,11 @@ export const structureReceiveDispositif = async (
 ): Response => {
   logger.info("[structureReceiveDispositif] received", { id, body, user: user._id });
 
-  const oldDispositif = await getDispositifById(id, { status: 1, creatorId: 1, mainSponsor: 1 }, "mainSponsor");
+  const oldDispositif = await getDispositifById(
+    id,
+    { status: 1, creatorId: 1, mainSponsor: 1, typeContenu: 1 },
+    "mainSponsor",
+  );
   if (!oldDispositif) throw new NotFoundError("The content has not been found");
   const editedDispositif: Partial<Dispositif> = {};
 
@@ -29,6 +34,9 @@ export const structureReceiveDispositif = async (
   editedDispositif.status = body.accept ? DispositifStatus.WAITING_ADMIN : DispositifStatus.KO_STRUCTURE;
 
   const newDispositif = await updateDispositifInDB(id, editedDispositif);
+  if (oldDispositif.typeContenu === ContentType.DISPOSITIF && newDispositif.status === DispositifStatus.WAITING_ADMIN) {
+    await takeSnapshot(newDispositif, "before", oldDispositif.status, newDispositif.status);
+  }
   await log(newDispositif, oldDispositif, user._id);
 
   return { text: "success" };

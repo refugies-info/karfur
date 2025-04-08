@@ -1,4 +1,4 @@
-import { user } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import { isInContact } from "./isInContact";
 
 jest.mock("@getbrevo/brevo", () => ({
@@ -24,7 +24,7 @@ describe("isInNewsletterList", () => {
   });
 
   it("should return true", async () => {
-    const res = await isInContact(user);
+    const res = await isInContact(fixtures.user);
     expect(res).toBe(true);
   });
 });
