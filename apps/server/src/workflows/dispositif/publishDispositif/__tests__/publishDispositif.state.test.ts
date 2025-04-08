@@ -1,26 +1,7 @@
 import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
-import {
-  Dispositif,
-  DispositifDraftModel,
-  DispositifModel,
-  SnapshotModel,
-  StructureModel,
-  UserModel,
-} from "~/typegoose";
+import { DispositifDraftModel, DispositifModel, SnapshotModel, StructureModel, UserModel } from "~/typegoose";
 import { fixtures } from "../../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
-
-// Helper function to create a basic dispositif for testing
-const createTestDispositif = async (initialData: Partial<Dispositif>): Promise<Dispositif> => {
-  const data = {
-    ...fixtures.dispositif, // Start with fixture defaults
-    status: DispositifStatus.DRAFT, // Default status unless overridden
-    hasDraftVersion: false,
-    ...initialData, // Apply specific test data
-  };
-
-  return DispositifModel.create(data);
-};
 
 describe("publishDispositif - Narrow Integration Tests", () => {
   beforeEach(async () => {
@@ -40,7 +21,8 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     await StructureModel.create(fixtures.structure);
 
     // 1. Setup: Create initial ACTIVE dispositif in DB
-    const dispositif = await createTestDispositif({
+    const dispositif = await DispositifModel.create({
+      ...fixtures.dispositif,
       status: DispositifStatus.ACTIVE,
       hasDraftVersion: true, // Simulate an existing draft being published
       creatorId: fixtures.user._id,
