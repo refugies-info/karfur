@@ -61,12 +61,25 @@ describe("publishDispositif - Narrow Integration Tests", () => {
   });
 
   it("should not take a snapshot on a demarche", async () => {
+    // Create a real user in the database for the workflow
+    await UserModel.create(fixtures.user);
+
+    // Create structure fixture
+    await StructureModel.create(fixtures.structure);
+
     // 1. Setup initial state
     const dispositif = await DispositifModel.create({
       ...fixtures.demarche,
       status: DispositifStatus.ACTIVE,
+      hasDraftVersion: true, // Simulate an existing draft being published
+      creatorId: fixtures.user._id,
     });
     const dispositifId = dispositif._id;
+
+    // Create a dummy draft version (publishDispositif expects it)
+    const draftData = await DispositifModel.findById(dispositifId).lean();
+    draftData.translations.fr.content.abstract = `Mise à jour du ${draftData.translations.fr.content.abstract}`;
+    await DispositifDraftModel.create(draftData);
 
     // Create an empty body for the request
     const mockBody: PublishDispositifRequest = { keepTranslations: false };
@@ -82,8 +95,8 @@ describe("publishDispositif - Narrow Integration Tests", () => {
     // Check draft after update
     expect(draftDispositifAfterUpdate).not.toBeNull();
     expect(draftDispositifAfterUpdate?._id).toEqual(dispositifId);
-    expect(draftDispositifAfterUpdate?.status).toBe(DispositifStatus.ACTIVE);
-    expect(draftDispositifAfterUpdate?.hasDraftVersion).toBe(false);
+    expect(draftDispositifAfterUpdate?.status).toBe(DispositifStatus.UPDATE_TO_VALIDATE);
+    expect(draftDispositifAfterUpdate?.hasDraftVersion).toBe(true);
 
     // Check snapshot creation
     const snapshots = await SnapshotModel.find({ dispositifId }).lean();
