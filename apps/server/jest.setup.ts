@@ -14,9 +14,6 @@ beforeAll(async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   } as any);
-
-  // Setup required env vars with dummy values
-  process.env.SENDGRID_API_KEY = "sg.dummy";
 }, 60000); // 60 seconds timeout
 
 afterAll(async () => {

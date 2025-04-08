@@ -1,4 +1,4 @@
-import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
@@ -115,7 +115,9 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
       } else {
         // else, wait for admin validation, set the draft's status to UPDATE_TO_VALIDATE
         await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
-        await takeSnapshot(dispositif, "before", oldDispositif.status, DispositifStatus.UPDATE_TO_VALIDATE);
+        if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
+          await takeSnapshot(dispositif, "before", oldDispositif.status, DispositifStatus.UPDATE_TO_VALIDATE);
+        }
         await notifyChange(NotifType.TO_VALIDATE, id, user._id);
       }
     } else {

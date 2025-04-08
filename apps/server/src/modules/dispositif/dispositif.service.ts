@@ -343,7 +343,11 @@ export const saveAndOverwriteDraft = async (
   const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
   if (draftDispositif) await deleteDraftDispositif(id);
 
-  if (oldDispositif.status === DispositifStatus.WAITING_ADMIN && updatedDispositif.status === DispositifStatus.ACTIVE) {
+  if (
+    updatedDispositif.typeContenu === ContentType.DISPOSITIF &&
+    oldDispositif.status === DispositifStatus.WAITING_ADMIN &&
+    updatedDispositif.status === DispositifStatus.ACTIVE
+  ) {
     await takeSnapshot(updatedDispositif, "after", oldDispositif.status, updatedDispositif.status);
   }
 

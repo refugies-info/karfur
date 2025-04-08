@@ -1,4 +1,4 @@
-import { DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
 import { InvalidRequestError, NotFoundError, UnauthorizedError } from "~/errors";
 import logger from "~/logger";
 import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
@@ -30,7 +30,7 @@ export const structureReceiveDispositif = async (
   editedDispositif.status = body.accept ? DispositifStatus.WAITING_ADMIN : DispositifStatus.KO_STRUCTURE;
 
   const newDispositif = await updateDispositifInDB(id, editedDispositif);
-  if (newDispositif.status === DispositifStatus.WAITING_ADMIN) {
+  if (oldDispositif.typeContenu === ContentType.DISPOSITIF && newDispositif.status === DispositifStatus.WAITING_ADMIN) {
     await takeSnapshot(newDispositif, "before", oldDispositif.status, newDispositif.status);
   }
   await log(newDispositif, oldDispositif, user._id);
