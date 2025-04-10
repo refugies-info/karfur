@@ -2,11 +2,8 @@ import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Container } from "reactstrap";
-import ContentSlider from "~/components/UI/ContentSlider";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
-import styles from "./Contributors.module.scss";
 
 /**
  * List of contributors of the dispositif
@@ -23,17 +20,15 @@ const Contributors = () => {
   }, [dispositif?.participants]);
 
   return (
-    <div className={styles.section}>
-      <Container>
-        <p className={styles.title}>{t("Dispositif.contributors", { count: participants.length })}</p>
-        <ContentSlider
-          cards={participants.map((user, i) => (
-            <ContributorCard key={i} user={user} />
-          ))}
-          gap={16}
-          btnClassName={styles.slider_btn}
-        />
-      </Container>
+    <div className="bg-alt-blue-france flex w-[44rem] flex-col gap-14 p-14 shadow">
+      <p className="text-title-grey text-[2rem] font-bold">
+        {t("Dispositif.contributors", { count: participants.length })}
+      </p>
+      <div className="flex flex-wrap gap-4">
+        {participants.map((user, i) => (
+          <ContributorCard key={i} user={user} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -92,13 +92,13 @@ const Dispositif = (props: Props) => {
 
           <span className={styles.divider} />
           {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+          {isViewMode && <Contributors />}
         </div>
 
         <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
       </div>
 
       {isTablet && <ActionButtons />}
-      {isViewMode && <Contributors />}
     </div>
   );
 };
