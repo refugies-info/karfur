@@ -20,7 +20,7 @@ const Contributors = () => {
   }, [dispositif?.participants]);
 
   return (
-    <div className="bg-alt-blue-france flex w-[44rem] flex-col gap-14 p-14 shadow-(--shadow-ri)">
+    <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-14 shadow-(--shadow-ri)">
       <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
         {t("Dispositif.contributors", { count: participants.length })}
       </p>
