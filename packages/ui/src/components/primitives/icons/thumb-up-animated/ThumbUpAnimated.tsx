@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DotLottieReact, DotLottieReactProps } from "@lottiefiles/dotlottie-react";
-import { cn } from "@refugies-info/ui/lib/cn";
+import { cn } from "@refugies-info/ui";
 import { forwardRef, useImperativeHandle, useState } from "react";
+
 import ThumbUpAnimation from "./assets/thumb-up.lottie";
 
 interface ThumbUpAnimatedProps extends DotLottieReactProps {

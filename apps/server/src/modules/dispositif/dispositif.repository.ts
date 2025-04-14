@@ -21,7 +21,7 @@ import {
   Theme,
   UserId,
 } from "~/typegoose";
-import { Merci, Suggestion } from "~/typegoose/Dispositif";
+import { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
 import { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
 
@@ -257,6 +257,16 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
     },
   );
 
+export const addAvisDispositifInDB = async (dispositifId: DispositifId, avis: Avis): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate(
+    { _id: dispositifId },
+    { $push: { avis } },
+    {
+      upsert: true,
+      new: true,
+    },
+  );
+
 export const addNewParticipant = async (dispositifId: DispositifId, userId: Id) =>
   DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $addToSet: { participants: userId } });
 
@@ -285,6 +295,31 @@ export const removeMerciDispositifInDB = async (dispositifId: DispositifId, user
   return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { merci: newMerci });
 };
 
+export const removeAvisDispositifInDB = async (dispositifId: DispositifId, userId: UserId): Promise<Dispositif> => {
+  if (userId) {
+    // remove avis of user
+    return DispositifModel.findOneAndUpdate(
+      { _id: dispositifId },
+      { $pull: { avis: { userId } } },
+      {
+        upsert: true,
+        new: true,
+      },
+    );
+  }
+  // if no user id, remove last avis without userId
+  const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { avis: 1 });
+  if (!dispositif) return;
+  const newAvis = [...(dispositif.avis || [])];
+  for (var i = newAvis.length - 1; i >= 0; i--) {
+    if (!newAvis[i].userId) {
+      newAvis.splice(i, 1);
+      break;
+    }
+  }
+  return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { avis: newAvis });
+};
+
 export const addSuggestionDispositifInDB = async (
   dispositifId: DispositifId,
   suggestion: Suggestion,
@@ -310,6 +345,22 @@ export const deleteSuggestionDispositifInDB = async (
       new: true,
     },
   );
+
+export const updateAvisDispositifInDB = async (
+  dispositifId: DispositifId,
+  userId: UserId,
+  updatedAvis: Avis,
+): Promise<Dispositif> => {
+  // Find the dispositif and update the avis with matching userId
+  return DispositifModel.findOneAndUpdate(
+    { "_id": dispositifId, "avis.userId": userId },
+    { $set: { "avis.$": updatedAvis } },
+    {
+      upsert: true,
+      new: true,
+    },
+  );
+};
 
 export const incrementDispositifViews = async (
   id: string,

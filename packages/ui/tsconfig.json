@@ -6,8 +6,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@refugies-info/ui/lib/*": ["src/lib/*"]
-    }
+      "~/*": ["src/*"]
+    },
+    "skipLibCheck": true,
+    "types": ["react/canary"]
   },
   "include": ["src", "src/types"],
   "exclude": ["node_modules", "dist", "build"]

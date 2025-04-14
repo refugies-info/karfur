@@ -96,6 +96,15 @@ export class Merci {
   userId?: Types.ObjectId;
 }
 
+export class Avis {
+  @prop()
+  created_at: Date;
+  @prop()
+  userId?: Types.ObjectId;
+  @prop()
+  avis: boolean;
+}
+
 export class TranslationContent {
   @prop()
   public content!: DispositifContent | DemarcheContent;
@@ -264,6 +273,8 @@ export class Dispositif extends Base {
   public suggestions: Suggestion[];
   @prop()
   public merci: Merci[];
+  @prop()
+  public avis: Avis[];
   @prop()
   public webOnly: boolean;
 

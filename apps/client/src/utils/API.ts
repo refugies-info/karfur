@@ -353,6 +353,14 @@ const API = {
     const headers = getHeaders();
     return instance.delete<any, null>(`/dispositifs/${id}/merci`, { headers }).then(() => null);
   },
+  addDispositifAvis: (id: string, body: { avis: boolean }): Promise<null> => {
+    const headers = getHeaders();
+    return instance.put<any, null>(`/dispositifs/${id}/avis`, body, { headers }).then(() => null);
+  },
+  deleteDispositifAvis: (id: string): Promise<null> => {
+    const headers = getHeaders();
+    return instance.delete<any, null>(`/dispositifs/${id}/avis`, { headers }).then(() => null);
+  },
   addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<null> => {
     const headers = getHeaders();
     return instance.put<any, null>(`/dispositifs/${id}/suggestion`, body, { headers }).then(() => null);

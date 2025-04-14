@@ -1,4 +1,4 @@
-import { cn } from "@refugies-info/ui/lib/cn";
+import { cn } from "@refugies-info/ui";
 import React, { useId } from "react";
 
 type AnnotationType = {

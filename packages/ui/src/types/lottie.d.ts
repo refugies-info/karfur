@@ -1,4 +1,4 @@
 declare module "*.lottie" {
-  const content: string;
-  export default content;
+  const src: string;
+  export default src;
 }

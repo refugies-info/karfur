@@ -1,9 +1,7 @@
-import { Button as ButtonOriginal } from "@codegouvfr/react-dsfr/Button";
-import { cn } from "@refugies-info/ui/lib/cn";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { cn } from "@refugies-info/ui";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
-// Type assertion to fix compatibility issues with React 18.3.1
-const Button = ButtonOriginal as React.ComponentType<any>;
 
 type CarrouselTexts = {
   title?: string | null;

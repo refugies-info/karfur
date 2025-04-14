@@ -735,6 +735,10 @@
     "carrouselSeemore": "Voir tout",
     "carrouselPrev": "Faire défiler à gauche",
     "carrouselNext": "Faire défiler à droite",
-    "northStar.title": "North Star"
+    "northStar_title": "Cette page vous a-t-elle été utile ? ✨",
+    "northStar_no": "Non",
+    "northStar_yes": "Oui",
+    "northStar_thanks": "Merci pour votre retour 😊",
+    "northStar_sorry": "Nous sommes navrés... 😞"
   }
 }

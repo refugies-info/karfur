@@ -67,6 +67,8 @@ import {
   updateDispositifTagsOrNeeds,
   updateNbVuesOrFavoritesOnContent,
 } from "~/workflows";
+import { addAvis } from "~/workflows/dispositif/addAvis";
+import { deleteAvis } from "~/workflows/dispositif/deleteAvis";
 import {
   DemarchesData,
   DispositifsData,
@@ -287,6 +289,7 @@ export class DispositifController extends Controller {
   public async addMerci(@Path() id: string, @Request() request: express.Request): Response {
     return addMerci(id, request.userId);
   }
+
   @Security({
     jwt: ["optional"],
     fromSite: [],
@@ -294,6 +297,26 @@ export class DispositifController extends Controller {
   @Delete("/{id}/merci")
   public async deleteMerci(@Path() id: string, @Request() request: express.Request): Response {
     return deleteMerci(id, request.userId);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Put("/{id}/avis")
+  public async addAvis(
+    @Path() id: string,
+    @Body() body: { avis: boolean },
+    @Request() request: express.Request,
+  ): Response {
+    return addAvis(id, request.userId, body.avis);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Delete("/{id}/avis")
+  public async deleteAvis(@Path() id: string, @Request() request: express.Request): Response {
+    return deleteAvis(id, request.userId);
   }
   @Security({
     jwt: ["optional"],
