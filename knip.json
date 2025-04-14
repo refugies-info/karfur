@@ -34,7 +34,6 @@
         "@tsoa/runtime",
         "@types/mongoose",
         "eslint-config-turbo",
-        "mongodb-memory-server",
         "nodemon",
         "path-to-regexp",
         "ts-node",
