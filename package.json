@@ -99,7 +99,7 @@
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
-    "@refugies-info/api-types": "^1.0.51",
+    "@refugies-info/api-types": "*",
     "@types/node": "^22.13.14",
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",
