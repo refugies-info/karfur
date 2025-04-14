@@ -39,7 +39,7 @@ exports[`homepage renders homepage 1`] = `
       </div>
     </div>
     <div
-      class="relative flex flex-col-reverse md:min-h-[504px]"
+      class="relative flex flex-col-reverse md:min-h-[504px] 2xl:min-h-[700px]"
     >
       <div
         class="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]"
@@ -63,14 +63,14 @@ exports[`homepage renders homepage 1`] = `
           class="flex w-full items-center justify-center gap-4 max-lg:flex-col"
         >
           <a
-            class="fr-btn fr-icon-search-line fr-btn--icon-right justify-center max-md:w-full"
+            class="fr-btn fr-icon-search-line fr-btn--icon-right justify-center max-lg:w-full"
             href="/recherche"
             id="fr-button-:r1:"
           >
             Homepage.searchButton
           </a>
           <a
-            class="fr-btn fr-btn--secondary fr-icon-smartphone-line fr-btn--icon-right justify-center max-md:w-full"
+            class="fr-btn fr-btn--secondary fr-icon-smartphone-line fr-btn--icon-right justify-center max-lg:w-full"
             href="#application"
             id="fr-button-:r2:"
           >
@@ -79,14 +79,14 @@ exports[`homepage renders homepage 1`] = `
         </div>
       </div>
       <div
-        class="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px]"
+        class="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px] 2xl:min-h-[700px]"
       >
         <span
           class="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"
         />
         <img
           alt="Homepage.imageDescription"
-          class="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:object-[0_80%]"
+          class="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:h-full md:w-full md:object-[50%_80%] 2xl:object-[50%_90%]"
           data-nimg="1"
           decoding="async"
           fetchpriority="high"
@@ -97,7 +97,7 @@ exports[`homepage renders homepage 1`] = `
           width="1920"
         />
         <svg
-          class="absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100"
+          class="absolute bottom-0 -left-1/3 w-full max-w-full origin-[50%_68%] scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:origin-bottom md:scale-x-100 md:scale-y-100 2xl:scale-y-60"
           fill="none"
           preserveAspectRatio="none"
           viewBox="0 0 1440 171"
@@ -127,7 +127,7 @@ exports[`homepage renders homepage 1`] = `
         </svg>
         <img
           alt=""
-          class="absolute bottom-0 left-4 z-10 max-w-[22vw] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/3 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
+          class="absolute bottom-0 left-4 z-10 max-w-[8rem] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/2 xl:left-[2%] xl:max-w-[14rem] 2xl:left-[10%]"
           data-nimg="1"
           decoding="async"
           fetchpriority="high"
