@@ -19,7 +19,7 @@ const Hero = (props: Props) => {
   const buttonIconName = isMobile ? mobileButtonIcon : "fr-icon-smartphone-line";
 
   return (
-    <div className="relative flex flex-col-reverse md:min-h-[504px]">
+    <div className="relative flex flex-col-reverse md:min-h-[504px] 2xl:min-h-[700px]">
       <div className="md:border-default-grey relative z-10 m-auto inline-flex w-full flex-col items-center gap-8 bg-white/80 px-10 pt-2 pb-10 backdrop-blur-lg max-sm:px-4 md:max-w-[68vw] md:border md:py-10 lg:max-w-[40rem] xl:max-w-[48rem]">
         <h1
           className="-mb-2 text-center !text-[2.5rem] !leading-[3rem] max-sm:!text-[2rem] max-sm:!leading-[2.5rem]"
@@ -54,7 +54,7 @@ const Hero = (props: Props) => {
             }}
             iconId="fr-icon-search-line"
             iconPosition="right"
-            className="justify-center max-md:w-full"
+            className="justify-center max-lg:w-full"
           >
             {t("Homepage.searchButton", "Chercher une information")}
           </Button>
@@ -65,27 +65,27 @@ const Hero = (props: Props) => {
             priority="secondary"
             iconId={buttonIconName}
             iconPosition="right"
-            className="justify-center max-md:w-full"
+            className="justify-center max-lg:w-full"
           >
             {t("Homepage.donwloadAppButton", "Télécharger l'application")}
           </Button>
         </div>
       </div>
-      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px]">
+      <div className="relative h-[11.2rem] w-full overflow-hidden md:absolute! md:inset-0 md:z-0 md:min-h-[504px] 2xl:min-h-[700px]">
         <span className="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"></span>
         <Image
           src={HeroBackground}
           width={1920}
           height={1120}
           priority={true}
-          className="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:object-[0_80%]"
+          className="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:h-full md:w-full md:object-[50%_80%] 2xl:object-[50%_90%]"
           alt={t(
             "Homepage.imageDescription",
-            "Illustration colorée et minimaliste montrant une ville accueillante avec des bấtiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
+            "Illustration colorée et minimaliste montrant une ville accueillante avec des.batiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
           )}
         />
         {/* White wave */}
-        <WhiteWave className="absolute bottom-2/10 -left-1/3 w-full max-w-full scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:scale-x-100 md:scale-y-100" />
+        <WhiteWave className="absolute bottom-0 -left-1/3 w-full max-w-full origin-[50%_68%] scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:origin-bottom md:scale-x-100 md:scale-y-100 2xl:scale-y-60" />
 
         {/* Characters */}
         <Image
@@ -94,7 +94,7 @@ const Hero = (props: Props) => {
           height={274}
           priority={true}
           alt=""
-          className="absolute bottom-0 left-4 z-10 max-w-[22vw] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/3 sm:max-w-[20vw] md:max-w-[15vw] 2xl:left-1/16 2xl:w-[25vw]"
+          className="absolute bottom-0 left-4 z-10 max-w-[8rem] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/2 xl:left-[2%] xl:max-w-[14rem] 2xl:left-[10%]"
         />
       </div>
     </div>

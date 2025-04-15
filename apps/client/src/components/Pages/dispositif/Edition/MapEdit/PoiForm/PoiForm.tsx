@@ -39,7 +39,8 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
         </div>
         <Input
           id="input-poi-title"
-          label="Titre du lieu"
+          label="Titre du lieu d'accueil"
+          description="Ce lieu doit accueillir du public dans le cadre de votre action - n'indiquez pas l'adresse de vos bureaux ou de votre siège si votre action ne s'y déroule pas."
           value={poiForm?.title || ""}
           onChange={(e) => setPoiForm({ ...poiForm, title: e.target.value || "" })}
           className="mb-4"
@@ -48,7 +49,7 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
         />
         <Input
           id="input-poi-address"
-          label="Adresse du lieu"
+          label="Adresse du lieu d'accueil"
           value={poiForm?.address || ""}
           onChange={(e) => setPoiForm({ ...poiForm, address: e.target.value || "" })}
           className="mb-4"

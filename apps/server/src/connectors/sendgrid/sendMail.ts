@@ -1,9 +1,7 @@
+import sgMail from "@sendgrid/mail";
 import logger from "../../logger";
 import { DynamicData, TemplateName } from "./sendgrid.types";
 import { templatesIds } from "./templatesIds";
-
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const UNSUBSCRIBE_GROUP_ID = 137241;
 
@@ -34,9 +32,11 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
   if (bypassUnsubscribe) {
     msg.mail_settings = {
       bypass_list_management: { enable: true },
+      sandbox_mode: { enable: process.env.NODE_ENV === "test" },
     };
   }
 
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   sgMail
     .send(msg)
     .then(
