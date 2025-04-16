@@ -20,11 +20,11 @@ const Contributors = () => {
   }, [dispositif?.participants]);
 
   return (
-    <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-14 shadow-(--shadow-ri)">
+    <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-4 shadow-(--shadow-ri) xl:p-14">
       <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
         {t("Dispositif.contributors", { count: participants.length })}
       </p>
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 2xl:grid-cols-4">
         {participants.map((user, i) => (
           <ContributorCard key={i} user={user} />
         ))}
