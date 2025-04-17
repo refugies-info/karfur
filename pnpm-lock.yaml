@@ -9,6 +9,7 @@ overrides:
   expo-dev-menu: 6.0.21
   undici: 5.28.5
   image-size: ^1.2.1
+  mongoose: ^8.9.5
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.20.2':
@@ -760,7 +761,7 @@ importers:
         specifier: ^2.29.4
         version: 2.30.1
       mongoose:
-        specifier: 8.13.1
+        specifier: ^8.9.5
         version: 8.13.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
       node-cache:
         specifier: ^5.1.2
@@ -960,7 +961,7 @@ importers:
   packages/api-types:
     dependencies:
       mongoose:
-        specifier: 8.13.1
+        specifier: ^8.9.5
         version: 8.13.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
     devDependencies:
       '@refugies-info/typescript-config':
@@ -4656,7 +4657,7 @@ packages:
     resolution: {integrity: sha512-9Gr9kvqDYabSbabv40VpsIIuxhKaNGv5uWcTYOBvzoPQ21toFOKs4jD3GtdOOcYJLYF+8I4Sj2R0inrFL2qFIw==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
-      mongoose: ~8.13.0
+      mongoose: ^8.9.5
 
   '@types/accepts@1.3.7':
     resolution: {integrity: sha512-Pay9fq2lM2wXPWbteBsRAGiWH2hig4ZE2asK+mm7kUzlxRTfL961rj89I6zV/E3PcIkDqyuBEcMxFT7rccugeQ==}
@@ -8575,10 +8576,6 @@ packages:
     resolution: {integrity: sha512-40aUybvhH9t2h71ncA1/1SbtTNCVZHgsTsTgqPUxGWDmUDrXyDf2wMNQKEbdBjbf4AI+fQhbECNTV6lWxQKUzg==}
     engines: {node: '>= 0.4.0'}
 
-  kareem@2.5.1:
-    resolution: {integrity: sha512-7jFxRVm+jD+rkq3kY0iZDJfsO2/t4BBPeEb2qKn2lR/9KhuksYk5hxzfRYWMPV8P/x2d0kHD306YyWLzjjH+uA==}
-    engines: {node: '>=12.0.0'}
-
   kareem@2.6.3:
     resolution: {integrity: sha512-C3iHfuGUXK2u8/ipq9LfjFfXFxAZMQJJq7vLS45r3D9Y2xQ/m4S8zaR4zMLFWh9AsNPXmcFfUDhTEO8UIC/V6Q==}
     engines: {node: '>=12.0.0'}
@@ -9277,37 +9274,6 @@ packages:
         optional: true
       socks:
         optional: true
-
-  mongodb@6.2.0:
-    resolution: {integrity: sha512-d7OSuGjGWDZ5usZPqfvb36laQ9CPhnWkAGHT61x5P95p/8nMVeH8asloMwW6GcYFeB0Vj4CB/1wOTDG2RA9BFA==}
-    engines: {node: '>=16.20.1'}
-    peerDependencies:
-      '@aws-sdk/credential-providers': ^3.188.0
-      '@mongodb-js/zstd': ^1.1.0
-      gcp-metadata: ^5.2.0
-      kerberos: ^2.0.1
-      mongodb-client-encryption: '>=6.0.0 <7'
-      snappy: ^7.2.2
-      socks: ^2.7.1
-    peerDependenciesMeta:
-      '@aws-sdk/credential-providers':
-        optional: true
-      '@mongodb-js/zstd':
-        optional: true
-      gcp-metadata:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      snappy:
-        optional: true
-      socks:
-        optional: true
-
-  mongoose@8.0.1:
-    resolution: {integrity: sha512-O3TJrtLCt4H1eGf2HoHGcnOcCTWloQkpmIP3hA9olybX3OX2KUjdIIq135HD5paGjZEDJYKn9fw4eH5N477zqQ==}
-    engines: {node: '>=16.20.1'}
 
   mongoose@8.13.1:
     resolution: {integrity: sha512-sRqlXI+6jhr9/KicCOjet1VVPONFsOxTrh14tfueX5y3GJ2ihswc5ewUUojuwdSS/5koGXLIPmGivDSApVXflA==}
@@ -16683,7 +16649,7 @@ snapshots:
       memory-pager: 1.5.0
       mongodb: 4.17.2
       mongodb-connection-string-url: 2.6.0
-      mongoose: 8.0.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
+      mongoose: 8.13.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
       mpath: 0.9.0
       mquery: 4.0.3
       ms: 2.1.3
@@ -22728,8 +22694,6 @@ snapshots:
 
   jwt-simple@0.5.6: {}
 
-  kareem@2.5.1: {}
-
   kareem@2.6.3: {}
 
   kdbush@4.0.2: {}
@@ -23501,34 +23465,6 @@ snapshots:
     optionalDependencies:
       '@aws-sdk/credential-providers': 3.782.0
       socks: 2.8.4
-
-  mongodb@6.2.0(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4):
-    dependencies:
-      '@mongodb-js/saslprep': 1.2.0
-      bson: 6.10.3
-      mongodb-connection-string-url: 2.6.0
-    optionalDependencies:
-      '@aws-sdk/credential-providers': 3.782.0
-      socks: 2.8.4
-
-  mongoose@8.0.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4):
-    dependencies:
-      bson: 6.10.3
-      kareem: 2.5.1
-      mongodb: 6.2.0(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4)
-      mpath: 0.9.0
-      mquery: 5.0.0
-      ms: 2.1.3
-      sift: 16.0.1
-    transitivePeerDependencies:
-      - '@aws-sdk/credential-providers'
-      - '@mongodb-js/zstd'
-      - gcp-metadata
-      - kerberos
-      - mongodb-client-encryption
-      - snappy
-      - socks
-      - supports-color
 
   mongoose@8.13.1(@aws-sdk/credential-providers@3.782.0)(socks@2.8.4):
     dependencies:
