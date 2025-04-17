@@ -41,7 +41,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
   if (!dispositif) return null;
   return (
-    <div className="w-full bg-white/80 py-3">
+    <div className="w-full bg-white/80 py-3" style={{ backgroundColor: theme?.colors.color30 || "" }}>
       <div className="fr-container">
         {isTablet && !showBreadcrumb && (
           <button className="" onClick={() => setShowBreadcrumb(true)}>
@@ -58,7 +58,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
             <Link
               href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
-              className=""
+              className="underline"
             >
               {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
             </Link>
@@ -69,7 +69,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
               <>
                 <Link
                   href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-                  className=""
+                  className="underline"
                   style={{ backgroundColor: theme.colors.color100 }}
                 >
                   <ThemeIcon theme={theme} size={12} />
@@ -81,7 +81,10 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
             {dispositif.needs.length === 1 && need && (
               <>
-                <Link href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)} className="">
+                <Link
+                  href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
+                  className="underline"
+                >
                   {need[locale]?.text || need.fr.text}
                 </Link>
                 {chevron}
