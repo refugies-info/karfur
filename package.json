@@ -29,7 +29,8 @@
       "@expo/cli>undici": "6.21.1",
       "expo-dev-menu": "6.0.21",
       "undici": "5.28.5",
-      "image-size": "^1.2.1"
+      "image-size": "^1.2.1",
+      "mongoose": "^8.9.5"
     }
   },
   "scripts": {
