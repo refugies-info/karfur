@@ -51,7 +51,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
         {(!isTablet || showBreadcrumb) && (
           <div className="">
             <Link href={getPath("/", "fr")} className="" title={t("homepage")}>
-              <EVAIcon name="home-outline" fill={fr.colors.decisions.text.mention.grey.default} size={16} />
+              <i className="ri-home-4-line text-mention-grey" />
             </Link>
 
             {chevron}
