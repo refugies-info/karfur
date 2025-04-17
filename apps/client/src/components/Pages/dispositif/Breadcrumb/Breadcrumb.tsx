@@ -51,7 +51,9 @@ const Breadcrumb = ({ dispositif }: Props) => {
               className="underline decoration-solid decoration-auto underline-offset-auto"
               style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
             >
-              {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
+              {dispositif.typeContenu === ContentType.DISPOSITIF
+                ? t("Dispositif.dispositif")
+                : t("Dispositif.demarche")}
             </Link>
 
             {chevron}
