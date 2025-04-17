@@ -1,5 +1,6 @@
 import { MigrationInterface } from "mongo-migrate-ts";
 import { Db, ObjectId } from "mongodb";
+import logger from "~/lib/logger";
 
 const imageNameMap: Record<string, string> = {
   // Faire mes papiers
@@ -29,6 +30,7 @@ export class UpdateThemeIcons1744895773870 implements MigrationInterface {
     const themeCollection = db.collection("themes");
 
     for (const [id, filename] of Object.entries(imageNameMap)) {
+      logger.info(`Updating theme ${id} with icon /images/themes/icon_${filename}.svg`);
       await themeCollection.updateOne(
         { _id: new ObjectId(id) },
         {
@@ -41,6 +43,7 @@ export class UpdateThemeIcons1744895773870 implements MigrationInterface {
           },
         },
       );
+      logger.info(`Updated theme ${id} with icon /images/themes/icon_${filename}.svg`);
     }
   }
 

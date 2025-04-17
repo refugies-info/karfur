@@ -47,4 +47,5 @@ const SearchThemeButton = (props: Props) => {
     </button>
   );
 };
+
 export default SearchThemeButton;
