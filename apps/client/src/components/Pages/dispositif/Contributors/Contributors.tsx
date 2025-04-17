@@ -2,11 +2,8 @@ import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Container } from "reactstrap";
-import ContentSlider from "~/components/UI/ContentSlider";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
-import styles from "./Contributors.module.scss";
 
 /**
  * List of contributors of the dispositif
@@ -23,17 +20,16 @@ const Contributors = () => {
   }, [dispositif?.participants]);
 
   return (
-    <div className={styles.section}>
-      <Container>
-        <p className={styles.title}>{t("Dispositif.contributors", { count: participants.length })}</p>
-        <ContentSlider
-          cards={participants.map((user, i) => (
-            <ContributorCard key={i} user={user} />
-          ))}
-          gap={16}
-          btnClassName={styles.slider_btn}
-        />
-      </Container>
+    // TODO: Add shadow back before full release: shadow-(--shadow-ri)
+    <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-4 xl:p-14">
+      <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
+        {t("Dispositif.contributors", { count: participants.length })}
+      </p>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 2xl:grid-cols-4">
+        {participants.map((user, i) => (
+          <ContributorCard key={i} user={user} />
+        ))}
+      </div>
     </div>
   );
 };
