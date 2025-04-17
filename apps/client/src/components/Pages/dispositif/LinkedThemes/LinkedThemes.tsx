@@ -35,45 +35,43 @@ const LinkedThemes = () => {
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
   return (
-    <div className="flex flex-col gap-14">
-      <div className="flex flex-row gap-4">
-        {theme && (
-          <SearchThemeButton
-            theme={theme}
-            href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-            small
-            className=""
-            onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
-          />
-        )}
-        {secondaryThemes.map((theme, i) => (
-          <SearchThemeButton
+    <div className="flex flex-wrap gap-2">
+      {theme && (
+        <SearchThemeButton
+          theme={theme}
+          href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+          small
+          className=""
+          onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
+        />
+      )}
+      {secondaryThemes.map((theme, i) => (
+        <SearchThemeButton
+          key={i}
+          theme={theme}
+          href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+          small
+          className=""
+          onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
+        />
+      ))}
+      {needs.map((need, i) => {
+        const theme = themes.find((t) => t._id === need.theme._id);
+        return (
+          <LinkNeed
             key={i}
-            theme={theme}
-            href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-            small
+            href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
             className=""
-            onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
-          />
-        ))}
-        {needs.map((need, i) => {
-          const theme = themes.find((t) => t._id === need.theme._id);
-          return (
-            <LinkNeed
-              key={i}
-              href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-              className=""
-              $color100={theme?.colors.color100 || "black"}
-              $color40={theme?.colors.color40 || "#DDD"}
-              $color30={theme?.colors.color30 || "#EEE"}
-              onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
-            >
-              {need[locale]?.text || need.fr.text}
-              <Image src={need.image?.secure_url || ""} width={32} height={32} alt="" className="ms-3" />
-            </LinkNeed>
-          );
-        })}
-      </div>
+            $color100={theme?.colors.color100 || "black"}
+            $color40={theme?.colors.color40 || "#DDD"}
+            $color30={theme?.colors.color30 || "#EEE"}
+            onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
+          >
+            {need[locale]?.text || need.fr.text}
+            <Image src={need.image?.secure_url || ""} width={32} height={32} alt="" className="ms-3" />
+          </LinkNeed>
+        );
+      })}
     </div>
   );
 };
