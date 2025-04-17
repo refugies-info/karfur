@@ -1,3 +1,4 @@
+import Breadcrumb from "~/components/Pages/dispositif/Breadcrumb";
 import AccordionBadge from "./AccordionBadge";
 import Accordions from "./Accordions";
 import ActionButtons from "./ActionButtons";
@@ -28,6 +29,7 @@ export {
   Accordions,
   ActionButtons,
   Banner,
+  Breadcrumb,
   Contributors,
   Feedback,
   Header,

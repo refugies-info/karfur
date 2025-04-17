@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import {
   ActionButtons,
   Banner,
+  Breadcrumb,
   Contributors,
   Feedback,
   Header,
@@ -65,6 +66,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage?.secure_url}
       />
       {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
+      {isViewMode && <Breadcrumb dispositif={dispositif} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
       <div className={styles.content}>
         <div className={styles.left}>

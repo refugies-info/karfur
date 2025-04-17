@@ -11,7 +11,6 @@ import { useContentLocale, useLocale, useWindowSize } from "~/hooks";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { needSelector } from "~/services/Needs/needs.selectors";
 import { themeSelector } from "~/services/Themes/themes.selectors";
-import styles from "./Breadcrumb.module.scss";
 import { getDepartments } from "./functions";
 
 interface Props {
@@ -42,65 +41,62 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
   if (!dispositif) return null;
   return (
-    <div>
-      {isTablet && !showBreadcrumb && (
-        <button className={styles.link} onClick={() => setShowBreadcrumb(true)}>
-          {t("showBreadcrumb")}
-        </button>
-      )}
-      {(!isTablet || showBreadcrumb) && (
-        <div className={styles.container}>
-          <Link href={getPath("/", "fr")} className={styles.home} title={t("homepage")}>
-            <EVAIcon name="home-outline" fill={fr.colors.decisions.text.mention.grey.default} size={16} />
-          </Link>
+    <div className="w-full bg-white/80 py-3">
+      <div className="fr-container">
+        {isTablet && !showBreadcrumb && (
+          <button className="" onClick={() => setShowBreadcrumb(true)}>
+            {t("showBreadcrumb")}
+          </button>
+        )}
+        {(!isTablet || showBreadcrumb) && (
+          <div className="">
+            <Link href={getPath("/", "fr")} className="" title={t("homepage")}>
+              <EVAIcon name="home-outline" fill={fr.colors.decisions.text.mention.grey.default} size={16} />
+            </Link>
 
-          {chevron}
+            {chevron}
 
-          <Link
-            href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
-            className={styles.link}
-          >
-            {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
-          </Link>
+            <Link
+              href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
+              className=""
+            >
+              {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
+            </Link>
 
-          {chevron}
+            {chevron}
 
-          {theme && (
-            <>
-              <Link
-                href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-                className={styles.theme}
-                style={{ backgroundColor: theme.colors.color100 }}
-              >
-                <ThemeIcon theme={theme} size={12} />
-                <span className="ms-1">{theme.short.fr}</span>
-              </Link>
-              {chevron}
-            </>
-          )}
+            {theme && (
+              <>
+                <Link
+                  href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+                  className=""
+                  style={{ backgroundColor: theme.colors.color100 }}
+                >
+                  <ThemeIcon theme={theme} size={12} />
+                  <span className="ms-1">{theme.short.fr}</span>
+                </Link>
+                {chevron}
+              </>
+            )}
 
-          {dispositif.needs.length === 1 && need && (
-            <>
-              <Link
-                href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-                className={styles.link}
-              >
-                {need[locale]?.text || need.fr.text}
-              </Link>
-              {chevron}
-            </>
-          )}
+            {dispositif.needs.length === 1 && need && (
+              <>
+                <Link href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)} className="">
+                  {need[locale]?.text || need.fr.text}
+                </Link>
+                {chevron}
+              </>
+            )}
 
-          {dispositif.typeContenu === ContentType.DISPOSITIF && (
-            <span className={styles.current}>
-              {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location, t)}`}
-            </span>
-          )}
-          {dispositif.typeContenu === ContentType.DEMARCHE && (
-            <span className={styles.current}>{dispositif.titreInformatif}</span>
-          )}
-        </div>
-      )}
+            {dispositif.typeContenu === ContentType.DISPOSITIF && (
+              <span className="">
+                {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location, t)}`}
+              </span>
+            )}
+            {dispositif.typeContenu === ContentType.DEMARCHE && <span className="">{dispositif.titreInformatif}</span>}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
