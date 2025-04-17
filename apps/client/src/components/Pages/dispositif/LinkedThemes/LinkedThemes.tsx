@@ -1,4 +1,3 @@
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
@@ -6,13 +5,11 @@ import styled from "styled-components";
 import Image from "~/components/UI/Image";
 import SearchThemeButton from "~/components/UI/SearchThemeButton";
 import { useLocale } from "~/hooks";
-import { cls } from "~/lib/classname";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { Event } from "~/lib/tracking";
 import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector, themesSelector } from "~/services/Themes/themes.selectors";
-import styles from "./LinkedThemes.module.scss";
 
 interface LinkNeedProps {
   $color100: string;
@@ -30,7 +27,6 @@ const LinkNeed = styled(Link)<LinkNeedProps>`
 `;
 
 const LinkedThemes = () => {
-  const { t } = useTranslation();
   const locale = useLocale();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
@@ -39,15 +35,14 @@ const LinkedThemes = () => {
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
   return (
-    <div className={styles.container}>
-      <p className={styles.title}>{t("Dispositif.linkedThemes")}</p>
-      <div className={styles.row}>
+    <div className="flex flex-col gap-14">
+      <div className="flex flex-row gap-4">
         {theme && (
           <SearchThemeButton
             theme={theme}
             href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
             small
-            className={styles.btn}
+            className=""
             onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
           />
         )}
@@ -57,7 +52,7 @@ const LinkedThemes = () => {
             theme={theme}
             href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
             small
-            className={styles.btn}
+            className=""
             onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
           />
         ))}
@@ -67,7 +62,7 @@ const LinkedThemes = () => {
             <LinkNeed
               key={i}
               href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-              className={cls(styles.btn, styles.need)}
+              className=""
               $color100={theme?.colors.color100 || "black"}
               $color40={theme?.colors.color40 || "#DDD"}
               $color30={theme?.colors.color30 || "#EEE"}

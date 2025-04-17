@@ -8,7 +8,6 @@ import {
   Contributors,
   Feedback,
   Header,
-  LinkedThemes,
   Map,
   Section,
   Sponsors,
@@ -81,8 +80,6 @@ const Dispositif = (props: Props) => {
           {isViewMode && (
             <>
               <Feedback />
-              <span className={styles.divider} />
-              <LinkedThemes />
 
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
                 {t("topLink")}
