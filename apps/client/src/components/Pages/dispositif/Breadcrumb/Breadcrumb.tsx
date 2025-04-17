@@ -65,7 +65,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
                   className="underline decoration-solid decoration-auto underline-offset-auto"
                   style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
                 >
-                  {theme.short.fr}
+                  {theme.short[locale] || theme.short.fr}
                 </Link>
                 {chevron}
               </>
