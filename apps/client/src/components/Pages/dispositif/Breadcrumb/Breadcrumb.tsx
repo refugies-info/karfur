@@ -1,12 +1,9 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import ThemeIcon from "~/components/UI/ThemeIcon";
 import { useContentLocale, useLocale, useWindowSize } from "~/hooks";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { needSelector } from "~/services/Needs/needs.selectors";
@@ -28,14 +25,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
   const locale = useLocale();
 
   const chevron = useMemo(
-    () => (
-      <EVAIcon
-        name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}
-        size={16}
-        fill={fr.colors.decisions.text.mention.grey.default}
-        className="mx-1"
-      />
-    ),
+    () => <i className={`${isRTL ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line"} text-mention-grey`} />,
     [isRTL],
   );
 
@@ -58,7 +48,8 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
             <Link
               href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
-              className="underline"
+              className="underline decoration-solid decoration-auto underline-offset-auto"
+              style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
             >
               {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
             </Link>
@@ -69,11 +60,10 @@ const Breadcrumb = ({ dispositif }: Props) => {
               <>
                 <Link
                   href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-                  className="underline"
-                  style={{ backgroundColor: theme.colors.color100 }}
+                  className="underline decoration-solid decoration-auto underline-offset-auto"
+                  style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
                 >
-                  <ThemeIcon theme={theme} size={12} />
-                  <span className="ms-1">{theme.short.fr}</span>
+                  {theme.short.fr}
                 </Link>
                 {chevron}
               </>
@@ -83,7 +73,8 @@ const Breadcrumb = ({ dispositif }: Props) => {
               <>
                 <Link
                   href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-                  className="underline"
+                  className="underline decoration-solid decoration-auto underline-offset-auto"
+                  style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
                 >
                   {need[locale]?.text || need.fr.text}
                 </Link>
