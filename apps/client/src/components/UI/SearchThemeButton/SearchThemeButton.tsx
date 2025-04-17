@@ -2,28 +2,23 @@ import { GetThemeResponse } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useMemo } from "react";
 import Image from "~/components/UI/Image";
-import useLocale from "~/hooks/useLocale";
-import { jsUcfirst } from "~/lib";
 
 interface Props {
   theme: GetThemeResponse;
+  value: string;
   onClick?: () => void;
   href?: string;
 }
 
 const SearchThemeButton = (props: Props) => {
-  const locale = useLocale();
-
   const content = useMemo(
     () => (
       <div className="flex items-center justify-center gap-1 px-0.5 py-0.5">
         {props.theme?.icon?.secure_url && <Image src={props.theme.icon.secure_url} width="12" height="12" alt="" />}
-        <span className="text-title-grey text-[0.75rem] leading-[1.25rem] font-normal">
-          {jsUcfirst(props.theme.short[locale] || "")}
-        </span>
+        <span className="text-title-grey text-[0.75rem] leading-[1.25rem] font-normal">{props.value}</span>
       </div>
     ),
-    [locale, props.theme],
+    [props.theme, props.value],
   );
 
   return props.href ? (
