@@ -40,8 +40,6 @@ const LinkedThemes = () => {
         <SearchThemeButton
           theme={theme}
           href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-          small
-          className=""
           onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
         />
       )}
@@ -50,8 +48,6 @@ const LinkedThemes = () => {
           key={i}
           theme={theme}
           href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-          small
-          className=""
           onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
         />
       ))}
