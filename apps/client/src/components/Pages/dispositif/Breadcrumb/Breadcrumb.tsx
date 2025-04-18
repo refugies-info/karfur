@@ -126,7 +126,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
             </div>
           )}
         </div>
-        <div>
+        <div className="flex items-center">
           {canEdit(dispositif, user.user) && pageContext.mode === "view" && (
             <>
               <Status
