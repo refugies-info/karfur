@@ -1,19 +1,14 @@
-import { ContentType, DispositifStatus, GetDispositifResponse } from "@refugies-info/api-types";
+import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useCallback, useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
+import StatusAndEditButtons from "~/components/Pages/dispositif/Breadcrumb/StatusAndEditButtons";
 import { useContentLocale, useLocale, useWindowSize } from "~/hooks";
-import { canEdit, isStatus } from "~/lib/dispositif";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { needSelector } from "~/services/Needs/needs.selectors";
 import { themeSelector } from "~/services/Themes/themes.selectors";
-import { userSelector } from "~/services/User/user.selectors";
-import PageContext from "~/utils/pageContext";
-import Status from "../Status";
-import EditModal from "./EditModal";
 import { getDepartments } from "./functions";
 
 interface Props {
@@ -22,7 +17,6 @@ interface Props {
 
 const Breadcrumb = ({ dispositif }: Props) => {
   const { t } = useTranslation();
-  const user = useSelector(userSelector);
   const [showBreadcrumb, setShowBreadcrumb] = useState(false);
   const { isTablet } = useWindowSize();
 
@@ -30,34 +24,11 @@ const Breadcrumb = ({ dispositif }: Props) => {
   const need = useSelector(needSelector(dispositif?.needs?.[0] || null));
   const { isRTL } = useContentLocale();
   const locale = useLocale();
-  const pageContext = useContext(PageContext);
 
   const chevron = useMemo(
     () => <i className={`${isRTL ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line"} text-mention-grey`} />,
     [isRTL],
   );
-
-  // edit
-  const router = useRouter();
-  const [showEditModal, setShowEditModal] = useState(false);
-  const navigateToEdit = useCallback(() => {
-    if (!dispositif?._id) return;
-    router.push({
-      pathname:
-        dispositif.typeContenu === ContentType.DEMARCHE
-          ? getPath("/demarche/[id]/edit", "fr")
-          : getPath("/dispositif/[id]/edit", "fr"),
-      query: { id: dispositif._id.toString() },
-    });
-  }, [dispositif, router]);
-
-  const onEditClick = useCallback(() => {
-    if (isStatus(dispositif?.status, DispositifStatus.ACTIVE)) {
-      setShowEditModal(true);
-    } else {
-      navigateToEdit();
-    }
-  }, [dispositif, navigateToEdit]);
 
   if (!dispositif) return null;
   return (
@@ -126,21 +97,8 @@ const Breadcrumb = ({ dispositif }: Props) => {
             </div>
           )}
         </div>
-        <div className="flex items-center">
-          {!isTablet && canEdit(dispositif, user.user) && pageContext.mode === "view" && (
-            <>
-              <Status
-                status={dispositif?.status}
-                hasDraftVersion={!!dispositif?.hasDraftVersion}
-                isAdmin={user.admin}
-                className="me-4"
-              />
-              <button className="fr-btn fr-btn--icon-right fr-icon-edit-line" onClick={onEditClick}>
-                Modifier la fiche
-              </button>
-              <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
-            </>
-          )}
+        <div className="flex items-center justify-end">
+          <StatusAndEditButtons dispositif={dispositif} />
         </div>
       </div>
     </div>
