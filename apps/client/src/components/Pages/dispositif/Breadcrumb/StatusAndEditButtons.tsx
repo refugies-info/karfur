@@ -49,7 +49,7 @@ const StatusAndEditButtons = ({ dispositif }: Props) => {
             isAdmin={user.admin}
             className="me-4"
           />
-          <button className="fr-btn fr-btn--icon-right fr-icon-edit-line" onClick={onEditClick}>
+          <button className="fr-btn fr-btn--icon-right fr-icon-edit-line fr-btn--sm" onClick={onEditClick}>
             Modifier la fiche
           </button>
           <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
