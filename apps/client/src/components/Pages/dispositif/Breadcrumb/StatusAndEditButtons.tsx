@@ -11,7 +11,7 @@ import Status from "../Status";
 import EditModal from "./EditModal";
 
 interface Props {
-  dispositif: GetDispositifResponse | null;
+  dispositif: GetDispositifResponse;
 }
 
 const StatusAndEditButtons = ({ dispositif }: Props) => {
@@ -22,7 +22,7 @@ const StatusAndEditButtons = ({ dispositif }: Props) => {
 
   const router = useRouter();
   const navigateToEdit = () => {
-    if (!dispositif?._id) return;
+    if (!dispositif._id) return;
     router.push({
       pathname:
         dispositif.typeContenu === ContentType.DEMARCHE
@@ -32,7 +32,7 @@ const StatusAndEditButtons = ({ dispositif }: Props) => {
     });
   };
   const onEditClick = () => {
-    if (isStatus(dispositif?.status, DispositifStatus.ACTIVE)) {
+    if (isStatus(dispositif.status, DispositifStatus.ACTIVE)) {
       setShowEditModal(true);
     } else {
       navigateToEdit();
@@ -44,8 +44,8 @@ const StatusAndEditButtons = ({ dispositif }: Props) => {
       {!isTablet && canEdit(dispositif, user.user) && pageContext.mode === "view" && (
         <>
           <Status
-            status={dispositif?.status}
-            hasDraftVersion={!!dispositif?.hasDraftVersion}
+            status={dispositif.status}
+            hasDraftVersion={!!dispositif.hasDraftVersion}
             isAdmin={user.admin}
             className="me-4"
           />
