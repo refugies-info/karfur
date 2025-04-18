@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import Button from "~/components/UI/Button";
 import { useContentLocale, useLocale, useWindowSize } from "~/hooks";
 import { canEdit, isStatus } from "~/lib/dispositif";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
@@ -64,7 +63,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
   return (
     <div className="w-full bg-white/80 py-3" style={{ backgroundColor: theme?.colors.color30 || "" }}>
       <div className="fr-container flex justify-between">
-        <div>
+        <div className="flex items-center">
           {isTablet && !showBreadcrumb && (
             <button className="" onClick={() => setShowBreadcrumb(true)}>
               {t("showBreadcrumb")}
@@ -80,7 +79,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
               <Link
                 href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
-                className="underline decoration-solid decoration-auto underline-offset-auto"
+                className="text-mention-grey underline decoration-solid decoration-auto underline-offset-[0.125rem]"
                 style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
               >
                 {dispositif.typeContenu === ContentType.DISPOSITIF
@@ -94,7 +93,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
                 <>
                   <Link
                     href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-                    className="underline decoration-solid decoration-auto underline-offset-auto"
+                    className="text-mention-grey underline decoration-solid decoration-auto underline-offset-[0.125rem]"
                     style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
                   >
                     {theme.short[locale] || theme.short.fr}
@@ -107,7 +106,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
                 <>
                   <Link
                     href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-                    className="underline decoration-solid decoration-auto underline-offset-auto"
+                    className="text-mention-grey underline decoration-solid decoration-auto underline-offset-[0.125rem]"
                     style={{ textDecorationSkipInk: "none", textUnderlinePosition: "auto" }}
                   >
                     {need[locale]?.text || need.fr.text}
@@ -117,12 +116,12 @@ const Breadcrumb = ({ dispositif }: Props) => {
               )}
 
               {dispositif.typeContenu === ContentType.DISPOSITIF && (
-                <span className="">
+                <span className="text-active-grey">
                   {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location, t)}`}
                 </span>
               )}
               {dispositif.typeContenu === ContentType.DEMARCHE && (
-                <span className="">{dispositif.titreInformatif}</span>
+                <span className="text-active-grey">{dispositif.titreInformatif}</span>
               )}
             </div>
           )}
@@ -136,9 +135,9 @@ const Breadcrumb = ({ dispositif }: Props) => {
                 isAdmin={user.admin}
                 className="me-4"
               />
-              <Button evaIcon="edit-outline" className="" onClick={onEditClick}>
+              <button className="fr-btn fr-btn--icon-right fr-icon-edit-line" onClick={onEditClick}>
                 Modifier la fiche
-              </Button>
+              </button>
               <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
             </>
           )}
