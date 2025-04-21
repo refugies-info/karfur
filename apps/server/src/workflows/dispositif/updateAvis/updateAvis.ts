@@ -1,25 +1,31 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import { Types } from "mongoose";
 import { AuthenticationError } from "~/errors";
-import logger from "~/logger";
 import { getDispositifById, updateAvisDispositifInDB } from "~/modules/dispositif/dispositif.repository";
-import { ObjectId } from "~/typegoose";
 import { Avis } from "~/typegoose/Dispositif";
 import { Response } from "~/types/interface";
 
-export const updateAvis = async (id: string, userId: string, avis: boolean): Response => {
-  logger.info("[updateAvis] received", id);
+export const updateAvis = async (
+  id: string,
+  userId: string,
+  anonymousUserId: string,
+  avis: boolean,
+  language: string,
+): Response => {
   const dispositif = await getDispositifById(id, { status: 1 });
   if (!dispositif || dispositif.status !== DispositifStatus.ACTIVE) {
     throw new AuthenticationError("Dispositif must be published to update feedbacks");
   }
 
-  const updatedAvis: Avis = {
-    created_at: new Date(), // Update the timestamp to the current time
-    userId: new ObjectId(userId),
+  // Define avis data
+  const avisData: Avis = {
+    created_at: new Date(),
+    userId: userId ? new Types.ObjectId(userId) : undefined,
+    anonymousUserId,
     avis,
+    language,
   };
 
-  await updateAvisDispositifInDB(id, userId, updatedAvis);
-
+  await updateAvisDispositifInDB(id, avisData);
   return { text: "success" };
 };

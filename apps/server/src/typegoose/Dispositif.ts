@@ -102,7 +102,11 @@ export class Avis {
   @prop()
   userId?: Types.ObjectId;
   @prop()
+  anonymousUserId?: string;
+  @prop()
   avis: boolean;
+  @prop()
+  language: string;
 }
 
 export class TranslationContent {

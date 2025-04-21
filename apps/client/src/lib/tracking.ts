@@ -52,7 +52,7 @@ const storeCampaignInfosInCookie = () => {
  * @param {string} action
  * @param {string} label
  */
-export const Event = (category: string, action: string, label: string) => {
+export const Event = (category: string, action: string, label: string | object) => {
   if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
     logger.info("Event", { category, action, label });
     return;
@@ -60,12 +60,12 @@ export const Event = (category: string, action: string, label: string) => {
   ReactGA.event({
     category,
     action,
-    label,
+    label: label.toString(),
   });
   //@ts-ignore
   // eslint-disable-next-line no-undef
   if (!!window.plausible) plausible(category, { props: { action, label } });
-  window._paq?.push(["trackEvent", category, action, label]);
+  window._paq?.push(["trackEvent", category, action, label.toString()]);
 };
 
 const initMatomo = () => {

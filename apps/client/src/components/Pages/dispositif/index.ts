@@ -1,6 +1,5 @@
 import AccordionBadge from "./AccordionBadge";
 import Accordions from "./Accordions";
-import ActionButtons from "./ActionButtons";
 import Banner from "./Banner";
 import Breadcrumb from "./Breadcrumb";
 import Contributors from "./Contributors";
@@ -27,7 +26,6 @@ import Title from "./Title";
 export {
   AccordionBadge,
   Accordions,
-  ActionButtons,
   Banner,
   Breadcrumb,
   Contributors,

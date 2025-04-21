@@ -7,6 +7,7 @@ import ThumbUpAnimation from "./assets/thumb-up.lottie";
 
 interface ThumbUpAnimatedProps extends DotLottieReactProps {
   className?: string;
+  themeId?: "light" | "Default";
 }
 
 export interface ThumbUpAnimatedRef {
@@ -14,41 +15,73 @@ export interface ThumbUpAnimatedRef {
   pause: () => void;
   stop: () => void;
   setFrame: (frameNumber: number) => void;
+  goToLastFrame: () => void;
+  totalFrames: number;
 }
 
-export const ThumbUpAnimated = forwardRef<ThumbUpAnimatedRef, ThumbUpAnimatedProps>(({ className, ...props }, ref) => {
-  // State to hold the dotLottie instance
-  const [dotLottieInstance, setDotLottieInstance] = useState<any>(null);
+export const ThumbUpAnimated = forwardRef<ThumbUpAnimatedRef, ThumbUpAnimatedProps>(
+  ({ className, themeId = "Default", ...props }, ref) => {
+    // State to hold the dotLottie instance
+    const [dotLottieInstance, setDotLottieInstance] = useState<any>(null);
+    const [isReady, setIsReady] = useState(false);
 
-  // Create an imperative handle to expose methods to the parent component
-  useImperativeHandle(
-    ref,
-    () => ({
-      play: () => dotLottieInstance?.play(),
-      pause: () => dotLottieInstance?.pause(),
-      stop: () => dotLottieInstance?.stop(),
-      setFrame: (frameNumber: number) => dotLottieInstance?.setFrame(frameNumber),
-    }),
-    [dotLottieInstance],
-  );
+    // Create an imperative handle to expose methods to the parent component
+    useImperativeHandle(
+      ref,
+      () => ({
+        play: () => {
+          if (isReady && dotLottieInstance) {
+            dotLottieInstance.play();
+          }
+        },
+        pause: () => isReady && dotLottieInstance?.pause(),
+        stop: () => isReady && dotLottieInstance?.stop(),
+        setFrame: (frameNumber: number) => {
+          if (isReady && dotLottieInstance) {
+            try {
+              dotLottieInstance.stop();
+              dotLottieInstance.setFrame(frameNumber);
+            } catch (error) {
+              console.error("Error setting frame:", error);
+            }
+          }
+        },
+        goToLastFrame: () => {
+          if (isReady && dotLottieInstance) {
+            dotLottieInstance.stop();
+            dotLottieInstance.setFrame(dotLottieInstance.totalFrames - 1);
+          }
+        },
+        totalFrames: 29,
+      }),
+      [dotLottieInstance, isReady],
+    );
 
-  // Callback to get the dotLottie instance
-  const dotLottieRefCallback = (dotLottie: any) => {
-    setDotLottieInstance(dotLottie);
-  };
+    // Callback to get the dotLottie instance
+    const dotLottieRefCallback = (dotLottie: any) => {
+      if (dotLottie) {
+        setDotLottieInstance(dotLottie);
+        // Set a small timeout to ensure the animation is fully loaded
+        setTimeout(() => {
+          setIsReady(true);
+        }, 300);
+      }
+    };
 
-  return (
-    <div className={cn("aspect-[33_/_49] h-auto w-[1.5rem]", className)}>
-      <DotLottieReact
-        src={ThumbUpAnimation}
-        autoplay={false}
-        loop={false}
-        mode="forward"
-        dotLottieRefCallback={dotLottieRefCallback}
-        {...props}
-      />
-    </div>
-  );
-});
+    return (
+      <div className={cn("aspect-[33_/_49] h-auto w-[1.5rem]", className)}>
+        <DotLottieReact
+          src={ThumbUpAnimation}
+          autoplay={false}
+          loop={false}
+          mode="forward"
+          themeId={themeId}
+          dotLottieRefCallback={dotLottieRefCallback}
+          {...props}
+        />
+      </div>
+    );
+  },
+);
 
 ThumbUpAnimated.displayName = "ThumbUpAnimated";

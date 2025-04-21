@@ -1,0 +1,67 @@
+import Button from "@codegouvfr/react-dsfr/Button";
+import { cn, ThumbUpAnimated, ThumbUpAnimatedRef } from "@refugies-info/ui";
+import { useTranslation } from "next-i18next";
+import React, { forwardRef } from "react";
+
+type VoteLayoutStandardProps = {
+  className?: string;
+  vote?: boolean | null;
+  handleClickYes: () => void;
+  handleClickNo: () => void;
+  hasVoted: boolean;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+};
+
+const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
+  ({ className, vote, handleClickYes, handleClickNo, hasVoted, thumbUpRef }, ref) => {
+    const { t } = useTranslation();
+
+    return (
+      <div ref={ref} className={cn("mb-4 flex flex-col gap-2 bg-white p-4 shadow-lg", className)}>
+        <p className="mb-2">{t("ui.northStar_title", "Cette page vous a-t-elle été utile ? ✨")}</p>
+
+        <div className="flex gap-2">
+          <Button
+            onClick={handleClickYes}
+            priority={vote === true ? "primary" : "secondary"}
+            className={cn("flex h-[2.5rem] items-end gap-2 transition-all")}
+          >
+            <div className="relative">
+              <span className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}></span>
+              <ThumbUpAnimated
+                ref={thumbUpRef}
+                className={cn("absolute bottom-0", vote === true ? "opacity-100" : "opacity-0")}
+                themeId="light"
+              />
+            </div>
+
+            {t("ui.northStar_yes", "Oui")}
+          </Button>
+          <Button
+            priority={vote === false ? "primary" : "secondary"}
+            onClick={handleClickNo}
+            className={cn("flex h-[2.5rem] items-end gap-2 transition-all")}
+          >
+            <span className="fr-icon-thumb-down-line" aria-hidden="true"></span> {t("ui.northStar_no", "Non")}
+          </Button>
+        </div>
+        <p
+          className={cn(
+            "m-0 overflow-hidden transition-[max-height] delay-200 duration-500",
+            hasVoted ? "max-h-[1000px]" : "max-h-0",
+            vote === true && "delay-1000",
+          )}
+          aria-hidden={hasVoted ? false : true}
+          aria-live={hasVoted ? "assertive" : "off"}
+        >
+          {vote === true && t("ui.northStar_thanks", "Merci pour votre retour 😊")}
+          {vote === false && t("ui.northStar_sorry", "Nous sommes navrés... 😞")}
+        </p>
+      </div>
+    );
+  },
+);
+
+VoteLayoutStandard.displayName = "VoteLayoutStandard";
+
+export default VoteLayoutStandard;

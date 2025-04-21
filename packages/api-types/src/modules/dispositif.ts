@@ -145,7 +145,7 @@ export interface UpdateDispositifPropertiesRequest {
   webOnly: boolean;
 }
 
-interface DispositifRequest {
+export interface DispositifRequest {
   titreInformatif?: string;
   titreMarque?: string;
   abstract?: string;
@@ -244,6 +244,7 @@ export type GetDispositifResponse = {
   sponsors?: (Sponsor | ContentStructure)[];
   participants: SimpleUser[];
   merci: { created_at: Date; userId?: Id }[];
+  avis: { created_at: Date; userId?: Id; anonymousUserId?: string; avis: boolean; language: string }[];
   creatorId: { _id: Id; username?: string };
   metadatas: Metadatas;
   map: Poi[] | null;
@@ -385,3 +386,11 @@ export type PostDispositifsResponse = DispositifResponse;
  * @url GET /dispositifs
  */
 export type GetDispositifsResponse = SimpleDispositif[];
+
+/**
+ * @url POST /dispositifs/{id}/avis
+ */
+export interface AddAvisResponse {
+  text: string;
+  dispositif: GetDispositifResponse;
+}

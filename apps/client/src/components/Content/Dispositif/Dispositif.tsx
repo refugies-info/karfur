@@ -1,9 +1,9 @@
 import { ContentType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
+
 import { useSelector } from "react-redux";
 import {
-  ActionButtons,
   Banner,
   Contributors,
   Feedback,
@@ -21,6 +21,7 @@ import {
   RightSidebarEdition,
   SponsorsEdit,
 } from "~/components/Pages/dispositif/Edition";
+import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
 import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
@@ -43,7 +44,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 
 const Dispositif = (props: Props) => {
   const { t } = useTranslation();
-  const { isTablet } = useWindowSize();
+  const { isTablet, isMobile } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -96,9 +97,8 @@ const Dispositif = (props: Props) => {
 
         <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
       </div>
-
-      {isTablet && <ActionButtons />}
       {isViewMode && <Contributors />}
+      {isTablet && <NorthStar />}
     </div>
   );
 };

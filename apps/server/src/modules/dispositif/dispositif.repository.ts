@@ -169,6 +169,7 @@ export const getStructureDispositifs = async (
       nbVuesMobile: 1,
       hasDraftVersion: 1,
       merci: 1,
+      avis: 1,
       suggestions: 1,
       administrationLogo: 1,
       typeContenu: 1,
@@ -348,18 +349,42 @@ export const deleteSuggestionDispositifInDB = async (
 
 export const updateAvisDispositifInDB = async (
   dispositifId: DispositifId,
-  userId: UserId,
   updatedAvis: Avis,
-): Promise<Dispositif> => {
-  // Find the dispositif and update the avis with matching userId
-  return DispositifModel.findOneAndUpdate(
-    { "_id": dispositifId, "avis.userId": userId },
-    { $set: { "avis.$": updatedAvis } },
-    {
-      upsert: true,
-      new: true,
-    },
-  );
+): Promise<{ modifiedCount: number }> => {
+  try {
+    // First, get the dispositif with all its reviews
+    const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { avis: 1 });
+
+    if (!dispositif) return { modifiedCount: 0 };
+
+    // Find the index of the review to update
+    let avisIndex = -1;
+    if (updatedAvis.userId) {
+      avisIndex = dispositif.avis.findIndex(
+        (avis) => avis.userId && avis.userId.toString() === updatedAvis.userId.toString(),
+      );
+    }
+    if (avisIndex === -1 && updatedAvis.anonymousUserId) {
+      avisIndex = dispositif.avis.findIndex((avis) => avis.anonymousUserId === updatedAvis.anonymousUserId.toString());
+    }
+    if (avisIndex === -1) return { modifiedCount: 0 };
+
+    // Update the review at the found index
+    const updateQuery = {
+      $set: {
+        [`avis.${avisIndex}`]: updatedAvis,
+      },
+    };
+
+    // Perform the update
+    const result = await DispositifModel.updateOne({ _id: dispositifId }, updateQuery);
+
+    return { modifiedCount: result.modifiedCount };
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Error updating avis:", error);
+    return { modifiedCount: 0 };
+  }
 };
 
 export const incrementDispositifViews = async (

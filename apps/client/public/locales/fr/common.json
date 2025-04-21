@@ -738,6 +738,8 @@
     "northStar_title": "Cette page vous a-t-elle été utile ? ✨",
     "northStar_no": "Non",
     "northStar_yes": "Oui",
+    "northStar_useful": "C'est utile ? ✨",
+    "northStar_notTseful": "Pas utile",
     "northStar_thanks": "Merci pour votre retour 😊",
     "northStar_sorry": "Nous sommes navrés... 😞"
   }

@@ -7,7 +7,13 @@ import { Avis } from "~/typegoose/Dispositif";
 import { Response } from "~/types/interface";
 import { log } from "./log";
 
-export const addAvis = async (id: string, userId: string | null, avis: boolean): Response => {
+export const addAvis = async (
+  id: string,
+  userId: string | null,
+  anonymousUserId: string | null,
+  avis: boolean,
+  language: string | null,
+): Response => {
   logger.info("[addAvis] received", id);
   const dispositif = await getDispositifById(id, { mainSponsor: 1, status: 1 });
   if (!dispositif || dispositif.status !== DispositifStatus.ACTIVE) {
@@ -17,11 +23,18 @@ export const addAvis = async (id: string, userId: string | null, avis: boolean):
   const newAvis: Avis = {
     created_at: new Date(),
     avis,
+    language: language || "fr", // Use provided language or default to French
+    userId: userId ? new ObjectId(userId) : undefined,
+    anonymousUserId: anonymousUserId ? anonymousUserId : undefined,
   };
-  if (userId) newAvis.userId = new ObjectId(userId);
-  await addAvisDispositifInDB(id, newAvis);
 
-  await log(dispositif, id);
+  try {
+    await addAvisDispositifInDB(id, newAvis);
+    await log(dispositif, id);
+  } catch (error) {
+    logger.error("[addAvis] Error adding feedback", error);
+    return { text: "error" };
+  }
 
   return { text: "success" };
 };

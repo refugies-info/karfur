@@ -353,9 +353,19 @@ const API = {
     const headers = getHeaders();
     return instance.delete<any, null>(`/dispositifs/${id}/merci`, { headers }).then(() => null);
   },
-  addDispositifAvis: (id: string, body: { avis: boolean }): Promise<null> => {
+  addDispositifAvis: (
+    id: string,
+    body: { avis: boolean; language: string; anonymousUserId?: string; userId?: Id },
+  ): Promise<null> => {
     const headers = getHeaders();
     return instance.put<any, null>(`/dispositifs/${id}/avis`, body, { headers }).then(() => null);
+  },
+  updateDispositifAvis: (
+    id: string,
+    body: { avis: boolean; language: string; anonymousUserId?: string; userId?: Id },
+  ): Promise<null> => {
+    const headers = getHeaders();
+    return instance.patch<any, null>(`/dispositifs/${id}/avis`, body, { headers }).then(() => null);
   },
   deleteDispositifAvis: (id: string): Promise<null> => {
     const headers = getHeaders();
