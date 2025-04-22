@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 
 import { useSelector } from "react-redux";
-import { Banner, Contributors, Header, LinkedThemes, Map, Section, Sponsors } from "~/components/Pages/dispositif";
+import { Banner, Breadcrumb, Contributors, Header, Map, Section, Sponsors } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
@@ -57,6 +57,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage?.secure_url}
       />
       {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
+      {isViewMode && <Breadcrumb dispositif={dispositif} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
       <div className={styles.content}>
         <div className={styles.left}>
@@ -72,9 +73,6 @@ const Dispositif = (props: Props) => {
           {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
           {isViewMode && (
             <>
-              <span className={styles.divider} />
-              <LinkedThemes />
-
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
                 {t("topLink")}
               </FRLink>
@@ -83,11 +81,11 @@ const Dispositif = (props: Props) => {
 
           <span className={styles.divider} />
           {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+          {isViewMode && <Contributors />}
         </div>
 
         <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
       </div>
-      {isViewMode && <Contributors />}
       {isTablet && <NorthStar />}
     </div>
   );
