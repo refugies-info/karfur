@@ -78,7 +78,7 @@
     "mockdate": "^3.0.5",
     "mongodb-memory-server": "^10.1.4",
     "nodemon": "^3.1.7",
-    "ts-jest": "^29.3.0",
+    "ts-jest": "^29.3.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2"
   },
