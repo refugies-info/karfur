@@ -42,6 +42,7 @@ export const ThumbUpAnimated = forwardRef<ThumbUpAnimatedRef, ThumbUpAnimatedPro
               dotLottieInstance.stop();
               dotLottieInstance.setFrame(frameNumber);
             } catch (error) {
+              // eslint-disable-next-line no-console
               console.error("Error setting frame:", error);
             }
           }
