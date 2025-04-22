@@ -43,6 +43,8 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
 
         return () => clearTimeout(timer);
       }
+
+      return () => {};
     }, [currentVote]);
 
     useEffect(() => {
