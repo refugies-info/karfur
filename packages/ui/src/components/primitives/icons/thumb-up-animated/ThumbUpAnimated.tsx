@@ -47,6 +47,7 @@ export const ThumbUpAnimated = forwardRef<ThumbUpAnimatedRef, ThumbUpAnimatedPro
             }
           }
         },
+
         goToLastFrame: () => {
           if (isReady && dotLottieInstance) {
             dotLottieInstance.stop();

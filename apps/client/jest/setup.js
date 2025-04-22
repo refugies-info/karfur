@@ -117,3 +117,10 @@ class ResizeObserver {
 
 window.ResizeObserver = ResizeObserver;
 global.ResizeObserver = ResizeObserver;
+
+// Mock @lottiefiles/dotlottie-react
+jest.mock("@lottiefiles/dotlottie-react", () => ({
+  DotLottieReact: jest.fn().mockImplementation(() => null),
+  DotLottieWorkerReact: jest.fn().mockImplementation(() => null),
+  setWasmUrl: jest.fn(),
+}));
