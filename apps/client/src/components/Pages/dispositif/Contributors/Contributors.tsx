@@ -2,6 +2,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
+import LinkedThemes from "~/components/Pages/dispositif/LinkedThemes";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
 
@@ -22,6 +23,7 @@ const Contributors = () => {
   return (
     // TODO: Add shadow back before full release: shadow-(--shadow-ri)
     <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-4 xl:p-14">
+      <LinkedThemes />
       <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
         {t("Dispositif.contributors", { count: participants.length })}
       </p>

@@ -1,98 +1,51 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useMemo } from "react";
-import styled from "styled-components";
 import Image from "~/components/UI/Image";
-import useLocale from "~/hooks/useLocale";
-import { jsUcfirst } from "~/lib";
-import { cls } from "~/lib/classname";
-import styles from "./SearchThemeButton.module.scss";
-
-type ThemeButtonProps = {
-  $color100: string;
-  $color80: string;
-  $color30: string;
-};
-const ThemeButton = styled.button<ThemeButtonProps>`
-  background: ${(props) => `linear-gradient(90deg, ${props.$color100} 22%, ${props.$color80} 100%)`};
-
-  &:hover {
-    background: ${(props) => props.$color30};
-    box-shadow:
-      0 0 0 1px ${(props) => props.$color100},
-      0 0 40px 0 #00000040;
-    color: ${(props) => props.$color100} !important;
-  }
-`;
-
-const ThemeLink = styled(Link)<ThemeButtonProps>`
-  background: ${(props) => `linear-gradient(90deg, ${props.$color100} 22%, ${props.$color80} 100%)`} !important;
-
-  &:hover {
-    background: ${(props) => props.$color30} !important;
-    box-shadow:
-      0 0 0 1px ${(props) => props.$color100},
-      0 0 40px 0 #00000040;
-    color: ${(props) => props.$color100} !important;
-  }
-`;
 
 interface Props {
   theme: GetThemeResponse;
+  value: string;
   onClick?: () => void;
   href?: string;
-  small?: boolean;
-  className?: string;
 }
 
 const SearchThemeButton = (props: Props) => {
-  const locale = useLocale();
-
   const content = useMemo(
     () => (
-      <>
-        <span className="me-4">{jsUcfirst(props.theme.short[locale] || "")}</span>
-        <span className={styles.image}>
-          {props.theme?.appImage?.secure_url && (
-            <span className={styles.image_inner}>
-              <Image
-                src={props.theme.appImage.secure_url}
-                width={props.small ? 32 : 65}
-                height={props.small ? 41 : 90}
-                alt=""
-              />
-            </span>
-          )}
-        </span>
-      </>
+      <div className="flex items-center justify-center gap-1 px-0.5 py-0.5">
+        {props.theme?.icon?.secure_url && <Image src={props.theme.icon.secure_url} width="12" height="12" alt="" />}
+        <span className="text-title-grey text-[0.75rem] leading-[1.25rem] font-normal">{props.value}</span>
+      </div>
     ),
-    [locale, props.theme, props.small],
+    [props.theme, props.value],
   );
 
   return props.href ? (
-    <ThemeLink
-      className={cls(styles.btn, props.small && styles.sm, props.className)}
-      $color100={props.theme.colors.color100}
-      $color80={props.theme.colors.color80}
-      $color30={props.theme.colors.color30}
+    <Link
+      className="flex h-6 flex-col items-center rounded-[0.75rem] px-2"
+      style={{
+        backgroundColor: props.theme.colors.color40,
+      }}
       href={props.href}
       onClick={props.onClick}
     >
       {content}
-    </ThemeLink>
+    </Link>
   ) : (
-    <ThemeButton
-      className={cls(styles.btn, props.small && styles.sm, props.className)}
-      $color100={props.theme.colors.color100}
-      $color80={props.theme.colors.color80}
-      $color30={props.theme.colors.color30}
+    <button
+      className="flex h-6 flex-col items-center rounded-[0.75rem] px-2"
+      style={{
+        backgroundColor: props.theme.colors.color40,
+      }}
       onClick={() => {
         if (props.onClick) props.onClick();
         window.scrollTo(0, 0);
       }}
     >
       {content}
-    </ThemeButton>
+    </button>
   );
 };
+
 export default SearchThemeButton;
