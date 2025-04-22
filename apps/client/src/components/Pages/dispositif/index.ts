@@ -3,7 +3,6 @@ import Accordions from "./Accordions";
 import Banner from "./Banner";
 import Breadcrumb from "./Breadcrumb";
 import Contributors from "./Contributors";
-import Feedback from "./Feedback";
 import Header from "./Header";
 import LangueMenu from "./LangueMenu";
 import LangueSelectList from "./LangueSelectList";
@@ -29,7 +28,6 @@ export {
   Banner,
   Breadcrumb,
   Contributors,
-  Feedback,
   Header,
   LangueMenu,
   LangueSelectList,

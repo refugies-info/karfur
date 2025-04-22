@@ -3,16 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 
 import { useSelector } from "react-redux";
-import {
-  Banner,
-  Contributors,
-  Feedback,
-  Header,
-  LinkedThemes,
-  Map,
-  Section,
-  Sponsors,
-} from "~/components/Pages/dispositif";
+import { Banner, Contributors, Header, LinkedThemes, Map, Section, Sponsors } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
@@ -81,7 +72,6 @@ const Dispositif = (props: Props) => {
           {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
           {isViewMode && (
             <>
-              <Feedback />
               <span className={styles.divider} />
               <LinkedThemes />
 

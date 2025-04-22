@@ -6,7 +6,7 @@
     "chromatic": "pnpm dlx chromatic --build-script-name build --exit-zero-on-changes",
     "build": "storybook build",
     "dev": "storybook dev -p 6006",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --debug-webpack",
     "storybook:publish": "dotenv-run-script chromatic"
   },
   "dependencies": {

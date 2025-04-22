@@ -23,5 +23,19 @@ const config: StorybookConfig = {
     name: getAbsolutePath("@storybook/nextjs"),
     options: {},
   },
+  webpackFinal: async (config) => {
+    // Add loader for .lottie files
+    if (config.module) {
+      if (!config.module.rules) {
+        config.module.rules = [];
+      }
+      config.module.rules.push({
+        test: /\.lottie$/,
+        type: "asset/resource",
+      });
+    }
+
+    return config;
+  },
 };
 export default config;
