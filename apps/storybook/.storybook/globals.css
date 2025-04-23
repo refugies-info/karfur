@@ -1,1 +1,6 @@
-@import "@refugies-info/ui/styles.css";
+@layer theme, base, refugies-info, dsfr, components, utilities;
+@import "tailwindcss";
+@import "@refugies-info/ui/globals.css";
+@import "@codegouvfr/react-dsfr/dsfr/dsfr.min.css";
+@import "@codegouvfr/react-dsfr/dsfr/utility/icons/icons.min.css";
+@import "@codegouvfr/react-dsfr/dsfr/utility/utility.min.css";
