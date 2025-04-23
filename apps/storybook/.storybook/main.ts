@@ -18,6 +18,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("@storybook/addon-viewport"),
+    getAbsolutePath("@storybook/addon-themes"),
   ],
   framework: {
     name: getAbsolutePath("@storybook/nextjs"),
@@ -29,8 +30,16 @@ const config: StorybookConfig = {
       if (!config.module.rules) {
         config.module.rules = [];
       }
+
+      // Handle .lottie files
       config.module.rules.push({
         test: /\.lottie$/,
+        type: "asset/resource",
+      });
+
+      // Handle .woff2 font files for DSFR
+      config.module.rules.push({
+        test: /\.woff2$/,
         type: "asset/resource",
       });
     }
