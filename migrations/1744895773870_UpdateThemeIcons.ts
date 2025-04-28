@@ -1,6 +1,6 @@
 import { MigrationInterface } from "mongo-migrate-ts";
 import { Db, ObjectId } from "mongodb";
-import logger from "~/lib/logger";
+import logger from "../apps/server/src/logger";
 
 const imageNameMap: Record<string, string> = {
   // Faire mes papiers
