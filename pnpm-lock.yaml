@@ -13,7 +13,7 @@ overrides:
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.20.2':
-    hash: lbc3wnmu5qry7pbswna42nro6a
+    hash: ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff
     path: patches/@codegouvfr__react-dsfr@1.20.2.patch
 
 importers:
@@ -22,7 +22,7 @@ importers:
     devDependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.20.2
-        version: 1.20.2(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@refugies-info/api-types':
         specifier: '*'
         version: 1.0.51(@aws-sdk/credential-providers@3.782.0)(typescript@5.8.2)
@@ -85,7 +85,7 @@ importers:
         version: 5.23.1
       '@codegouvfr/react-dsfr':
         specifier: 1.20.2
-        version: 1.20.2(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@lexical/html':
         specifier: ^0.27.2
         version: 0.27.2
@@ -437,7 +437,7 @@ importers:
         version: 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1)))(expo@52.0.42(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       '@react-native-firebase/crashlytics':
         specifier: ^20.0.0
-        version: 20.5.0(h2n5a72gdhdh37tep2qpmsbali)
+        version: 20.5.0(f9765fc74eccb2e735ff4d90a407edfb)
       '@react-navigation/bottom-tabs':
         specifier: ^6.5.11
         version: 6.6.1(@react-navigation/native@6.1.18(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@5.4.0(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-screens@4.5.0(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -874,7 +874,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.20.2
-        version: 1.20.2(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@refugies-info/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -995,7 +995,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.20.2
-        version: 1.20.2(patch_hash=lbc3wnmu5qry7pbswna42nro6a)
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@lottiefiles/dotlottie-react':
         specifier: ^0.13.2
         version: 0.13.3(react@18.3.1)
@@ -14058,7 +14058,7 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@codegouvfr/react-dsfr@1.20.2(patch_hash=lbc3wnmu5qry7pbswna42nro6a)':
+  '@codegouvfr/react-dsfr@1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
@@ -16159,7 +16159,7 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
-  '@react-native-firebase/crashlytics@20.5.0(h2n5a72gdhdh37tep2qpmsbali)':
+  '@react-native-firebase/crashlytics@20.5.0(f9765fc74eccb2e735ff4d90a407edfb)':
     dependencies:
       '@react-native-firebase/app': 20.5.0(@react-native-async-storage/async-storage@1.23.1(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1)))(expo@52.0.42(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.26.10)(@babel/preset-env@7.26.9(@babel/core@7.26.10))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       stacktrace-js: 2.0.2
