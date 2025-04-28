@@ -1,7 +1,9 @@
+export { addAvis } from "./addAvis";
 export { addMerci } from "./addMerci";
 export { addNeedsFromAirtable } from "./addNeedsFromAirtable";
 export { addSuggestion } from "./addSuggestion";
 export { createDispositif } from "./createDispositif";
+export { deleteAvis } from "./deleteAvis";
 export { deleteDispositif } from "./deleteDispositif";
 export { deleteMerci } from "./deleteMerci";
 export { deleteSuggestion } from "./deleteSuggestion";
@@ -23,6 +25,7 @@ export { getNewsletterDemarches, getNewsletterDispositifs } from "./newsletter";
 export { patchSuggestion } from "./patchSuggestion";
 export { publishDispositif } from "./publishDispositif";
 export { structureReceiveDispositif } from "./structureReceiveDispositif";
+export { updateAvis } from "./updateAvis";
 export { updateDispositif } from "./updateDispositif";
 export { updateDispositifAdminComments } from "./updateDispositifAdminComments";
 export { updateDispositifProperties } from "./updateDispositifProperties";

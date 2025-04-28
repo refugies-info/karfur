@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+import { withDsfrDecorator } from "./DsfrProvider";
 import "./globals.css";
 
 // mobile: 36em; /* 576px */
@@ -46,6 +47,7 @@ const RIViewports = {
 
 const preview: Preview = {
   parameters: {
+    a11y: { test: "error" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -72,6 +74,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [withDsfrDecorator],
 };
 
 export default preview;

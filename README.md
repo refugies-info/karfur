@@ -68,9 +68,9 @@ Editor preferences are available in the [editor config](https://github.com/entre
 🔗 [LinkedIn](https://www.linkedin.com/in/jeremiegisserot/)
 🔗 [Website](https://jeremie-gisserot.net)
 
-### Marianne Georges
+### Élise Prévot
 **Product Manager**  
-🔗 [LinkedIn](https://www.linkedin.com/in/mariannegeorges/)
+🔗 [LinkedIn](https://www.linkedin.com/in/eliseprevot/)
 
 ### Matthieu Fesselier
 **Developer**  
@@ -84,6 +84,10 @@ Editor preferences are available in the [editor config](https://github.com/entre
 
 
 ## Previous team
+
+**Marianne Georges**
+**Product Manager**  
+🔗 [LinkedIn](https://www.linkedin.com/in/mariannegeorges/)
 
 **Hugo Stephan**, Designer
 🔗 [Website](https://hugostephan.com)

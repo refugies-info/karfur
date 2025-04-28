@@ -5,6 +5,9 @@ Airtable.configure({
   apiKey: process.env.AIRTABLE_TOKEN,
 });
 
-export const airtableContentBase = Airtable.base(process.env.AIRTABLE_BASE_CONTENU);
-export const airtableTranslationBase = Airtable.base(process.env.AIRTABLE_BASE_TRAD);
-export const airtableUserBase = Airtable.base(process.env.AIRTABLE_BASE_USERS);
+export const getAirtableContentTable = (tableName: string) =>
+  Airtable.base(process.env.AIRTABLE_BASE_CONTENU).table(tableName);
+export const getAirtableTranslationTable = (tableName: string) =>
+  Airtable.base(process.env.AIRTABLE_BASE_TRAD).table(tableName);
+export const getAirtableUserTable = (tableName: string) =>
+  Airtable.base(process.env.AIRTABLE_BASE_USERS).table(tableName);
