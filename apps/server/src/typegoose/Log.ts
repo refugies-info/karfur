@@ -45,6 +45,7 @@ export class Log extends Base {
   public dynamicId?: Ref<User | Dispositif | Structure | Langue>;
 
   @prop({
+    enum: ["User", "Dispositif", "Structure", "Langue"],
     type: () => String,
     required: function () {
       return !!this.dynamicId;

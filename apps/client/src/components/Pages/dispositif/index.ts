@@ -1,10 +1,8 @@
+import Breadcrumb from "~/components/Pages/dispositif/Breadcrumb";
 import AccordionBadge from "./AccordionBadge";
 import Accordions from "./Accordions";
-import ActionButtons from "./ActionButtons";
 import Banner from "./Banner";
-import Breadcrumb from "./Breadcrumb";
 import Contributors from "./Contributors";
-import Feedback from "./Feedback";
 import Header from "./Header";
 import LangueMenu from "./LangueMenu";
 import LangueSelectList from "./LangueSelectList";
@@ -27,11 +25,9 @@ import Title from "./Title";
 export {
   AccordionBadge,
   Accordions,
-  ActionButtons,
   Banner,
   Breadcrumb,
   Contributors,
-  Feedback,
   Header,
   LangueMenu,
   LangueSelectList,

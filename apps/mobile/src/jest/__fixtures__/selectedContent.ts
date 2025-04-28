@@ -220,6 +220,14 @@ export const selectedContent: GetDispositifResponse = {
       userId: "6200e70be69151001310d59d",
     },
   ],
+  avis: [
+    {
+      created_at: new Date("2022-10-11T08:00:09.320Z"),
+      userId: "5dbaaa2dccc17d0016b6ba69",
+      avis: true,
+      language: "fr",
+    },
+  ],
   needs: [],
   secondaryThemes: [],
   sponsors: [

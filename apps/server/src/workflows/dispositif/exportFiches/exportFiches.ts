@@ -1,5 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
-import { airtableUserBase } from "~/connectors/airtable/airtable";
+import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
 import { getDispositifsForExport } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
@@ -72,7 +72,7 @@ const getFrequency = (metadatas: Dispositif["metadatas"]) => {
 
 const exportFichesInAirtable = (fiches: Result[]) => {
   logger.info(`[exportFichesInAirtable] export ${fiches.length} fiches in airtable`);
-  airtableUserBase("Fiches").create(
+  getAirtableUserTable("Fiches").create(
     fiches.map((fiche) => ({ fields: fiche })),
     { typecast: true },
     function (err: Error) {

@@ -28,7 +28,9 @@
     "overrides": {
       "@expo/cli>undici": "6.21.1",
       "expo-dev-menu": "6.0.21",
-      "undici": "5.28.5"
+      "undici": "5.28.5",
+      "image-size": "^1.2.1",
+      "mongoose": "^8.9.5"
     }
   },
   "scripts": {
@@ -56,7 +58,7 @@
     "dev:server": "turbo dev --filter=@refugies-info/server",
     "dev:mobile": "turbo dev --filter=@refugies-info/mobile --filter=@refugies-info/server",
     "dev:storybook": "turbo dev --filter=@refugies-info/storybook --filter=@refugies-info/ui",
-    "update-icons": "react-dsfr update-icons --silent --projectDir ./apps/client",
+    "update-icons": "react-dsfr update-icons --silent --projectDir ./",
     "start:client": "pnpm --filter @refugies-info/client start",
     "start:server": "pnpm --filter @refugies-info/server start",
     "start:mobile": "pnpm --filter @refugies-info/mobile start",
@@ -99,6 +101,7 @@
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
+    "@refugies-info/api-types": "*",
     "@types/node": "^22.13.14",
     "check-dependency-version-consistency": "^4.1.1",
     "dotenv": "^16.4.7",
@@ -119,12 +122,12 @@
   },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.7.0"
+    "pnpm": "10.8.1"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write",
     "**/common.json": "prettier --write"
   },
-  "packageManager": "pnpm@10.7.0"
+  "packageManager": "pnpm@10.8.1"
 }
