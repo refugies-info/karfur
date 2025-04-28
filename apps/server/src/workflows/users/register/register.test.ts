@@ -5,7 +5,7 @@ import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
 import { registerUser } from "~/modules/users/users.service";
 import { User } from "~/typegoose";
-import { user } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import { register } from "./register";
 
 jest.spyOn(User.prototype, "getToken").mockImplementation(() => "token");
@@ -20,7 +20,7 @@ jest.mock("../../../connectors/brevo/addToNewsletter", () => ({
   addToNewsletter: jest.fn(),
 }));
 jest.mock("../../../modules/users/users.service", () => ({
-  registerUser: jest.fn(() => user),
+  registerUser: jest.fn(() => fixtures.user),
 }));
 
 describe("register", () => {

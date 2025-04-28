@@ -31,15 +31,15 @@ import {
   UpdateDispositifResponse,
 } from "@refugies-info/api-types";
 import express from "express";
-import { ObjectId } from "mongodb";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
-import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { Response, ResponseWithData } from "~/types/interface";
 import {
+  addAvis,
   addMerci,
   addSuggestion,
   createDispositif,
+  deleteAvis,
   deleteDispositif,
   deleteMerci,
   deleteSuggestion,
@@ -54,12 +54,15 @@ import {
   getHasTextChanges,
   getNbContentsForCounty,
   getNbDispositifsByRegion,
+  getNewsletterDemarches,
+  getNewsletterDispositifs,
   getStatistics,
   getUserContributions,
   modifyDispositifMainSponsor,
   patchSuggestion,
   publishDispositif,
   structureReceiveDispositif,
+  updateAvis,
   updateDispositif,
   updateDispositifAdminComments,
   updateDispositifProperties,
@@ -67,12 +70,7 @@ import {
   updateDispositifTagsOrNeeds,
   updateNbVuesOrFavoritesOnContent,
 } from "~/workflows";
-import {
-  DemarchesData,
-  DispositifsData,
-  getNewsletterDemarches,
-  getNewsletterDispositifs,
-} from "~/workflows/dispositif/newsletter";
+import { DemarchesData, DispositifsData } from "~/workflows/dispositif/newsletter";
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -287,6 +285,7 @@ export class DispositifController extends Controller {
   public async addMerci(@Path() id: string, @Request() request: express.Request): Response {
     return addMerci(id, request.userId);
   }
+
   @Security({
     jwt: ["optional"],
     fromSite: [],
@@ -294,6 +293,38 @@ export class DispositifController extends Controller {
   @Delete("/{id}/merci")
   public async deleteMerci(@Path() id: string, @Request() request: express.Request): Response {
     return deleteMerci(id, request.userId);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Put("/{id}/avis")
+  public async addAvis(
+    @Path() id: string,
+    @Body() body: { avis: boolean; anonymousUserId?: string; language?: string; userId?: string },
+    @Request() request: express.Request,
+  ): Response {
+    return addAvis(id, request.userId || body.userId, body.anonymousUserId || null, body.avis, body.language);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Delete("/{id}/avis")
+  public async deleteAvis(@Path() id: string, @Request() request: express.Request): Response {
+    return deleteAvis(id, request.userId);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Patch("/{id}/avis")
+  public async updateAvis(
+    @Path() id: string,
+    @Body() body: { avis: boolean; anonymousUserId?: string; language?: string; userId?: string },
+    @Request() request: express.Request,
+  ): Response {
+    return updateAvis(id, request.userId || body.userId, body.anonymousUserId || "", body.avis, body.language);
   }
   @Security({
     jwt: ["optional"],
@@ -384,10 +415,6 @@ export class DispositifController extends Controller {
     @Query() locale: Languages,
     @Request() request: express.Request,
   ): ResponseWithData<GetDispositifResponse> {
-    if (id === "getContentById") throw new NotFoundError("Outdated route, please use /dispositifs/{id} instead.");
-    if (!ObjectId.isValid(id)) {
-      throw new NotFoundError("Invalid dispostif ID");
-    }
     return getContentById(id, locale, request.user);
   }
 }

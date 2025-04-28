@@ -1,7 +1,8 @@
 import { StructureStatus } from "@refugies-info/api-types";
 import { ObjectId, Structure } from "~/typegoose";
 
-const structure: Structure = new Structure();
+export const structure: Structure = new Structure();
+
 structure._id = new ObjectId("6569c41c61b13ef31806fadb");
 structure.createur = new ObjectId("6569af9815c38bd134125ff3");
 structure.link = "www.associationmotamot.org";
@@ -27,5 +28,3 @@ structure.membres = [
 ];
 // structure.created_at = new Date("2023-12-01T11:31:40.584Z");
 // structure.updatedAt = new Date("2023-12-01T14:25:27.089Z");
-
-export { structure };

@@ -1,11 +1,11 @@
-import { airtableUserBase } from "~/connectors/airtable/airtable";
+import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
 import { adaptDispositifDepartement, getDepartementsFigures } from "~/modules/dispositif/dispositif.adapter";
 import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
 import { Response } from "~/types/interface";
 
 const exportDataInAirtable = (data: { departement: string; region: string; nbDispositifs: number }) => {
-  airtableUserBase("Departements RI").create(
+  getAirtableUserTable("Departements RI").create(
     [
       {
         fields: {

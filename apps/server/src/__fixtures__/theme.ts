@@ -1,6 +1,6 @@
 import { ObjectId, Theme } from "~/typegoose";
 
-const theme = new Theme();
+export const theme = new Theme();
 
 theme._id = new ObjectId("63286a015d31b2c0cad9960e");
 theme.name = {
@@ -68,5 +68,3 @@ theme.demarcheImage = {
   imgId: "",
 };
 theme.notificationEmoji = "💼";
-
-export { theme };

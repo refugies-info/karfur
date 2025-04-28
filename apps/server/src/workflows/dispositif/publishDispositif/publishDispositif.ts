@@ -1,4 +1,4 @@
-import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
@@ -16,6 +16,7 @@ import {
   publishDispositif as publishDispositifService,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
+import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import { Dispositif, Traductions, User } from "~/typegoose";
 import { TranslationContent } from "~/typegoose/Dispositif";
 import { Response } from "~/types/interface";
@@ -112,8 +113,11 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
         // admin or no changes in translations -> publish
         await publishDispositifService(id, user._id, isAdmin ? body.keepTranslations : false);
       } else {
-        // else, wait for admin validation
+        // else, wait for admin validation, set the draft's status to UPDATE_TO_VALIDATE
         await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
+        if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
+          await takeSnapshot(dispositif, "before", oldDispositif.status, DispositifStatus.UPDATE_TO_VALIDATE);
+        }
         await notifyChange(NotifType.TO_VALIDATE, id, user._id);
       }
     } else {

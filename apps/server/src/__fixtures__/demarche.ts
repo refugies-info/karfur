@@ -1,7 +1,8 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, ObjectId } from "~/typegoose";
 
-const demarche: Dispositif = new Dispositif();
+export const demarche: Dispositif = new Dispositif();
+
 demarche._id = new ObjectId("651588ea521b25fd0f92ee1a");
 demarche.typeContenu = ContentType.DEMARCHE;
 demarche.status = DispositifStatus.ACTIVE;
@@ -144,10 +145,8 @@ demarche.metadatas = {
   conditions: null,
   timeSlots: [],
 };
-demarche.mainSponsor = new ObjectId("63ef5c87226626966d9272d0");
+demarche.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
 demarche.hasDraftVersion = false;
 demarche.publishedAt = new Date("2023-12-01T13:57:31.392Z");
 demarche.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");
 demarche.notificationsSent = {};
-
-export { demarche };
