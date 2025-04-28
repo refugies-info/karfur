@@ -3,10 +3,6 @@ import { useSelector } from "react-redux";
 import { userSelector } from "~/services/User/user.selectors";
 
 const useAnonymousUserId = () => {
-  //  if a user is connected, return their userId
-  //  if not, generate a unique id and store it in localStorage
-  //  return the id
-
   const [anonymousUserId, setAnonymousUserId] = useState<string | undefined>(undefined);
   const userId = useSelector(userSelector)?.userId?.toString();
 
