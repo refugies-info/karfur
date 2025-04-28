@@ -1,5 +1,5 @@
+import { cn } from "@refugies-info/ui";
 import React, { useId } from "react";
-import { cn } from "../lib/cn";
 
 type AnnotationType = {
   text: string;

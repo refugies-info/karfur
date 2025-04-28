@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { cn } from "@refugies-info/ui";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { cn } from "../lib/cn";
 
 type CarrouselTexts = {
   title?: string | null;

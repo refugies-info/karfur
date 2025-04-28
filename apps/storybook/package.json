@@ -6,10 +6,11 @@
     "chromatic": "pnpm dlx chromatic --build-script-name build --exit-zero-on-changes",
     "build": "storybook build",
     "dev": "storybook dev -p 6006",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --debug-webpack",
     "storybook:publish": "dotenv-run-script chromatic"
   },
   "dependencies": {
+    "@codegouvfr/react-dsfr": "1.20.2",
     "@refugies-info/ui": "workspace:*",
     "@storybook/addon-a11y": "^8.6.12",
     "@storybook/addon-viewport": "^8.6.12",
@@ -22,6 +23,7 @@
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
     "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/addon-themes": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
     "@storybook/nextjs": "^8.6.12",
     "@storybook/react": "^8.6.12",
