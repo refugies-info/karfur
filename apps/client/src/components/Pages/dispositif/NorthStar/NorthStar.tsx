@@ -83,14 +83,6 @@ const NorthStar = () => {
 
   useEffect(() => {
     if (!dispositif) return;
-
-    console.log("dispositif", dispositif.avis);
-    console.log("userId", userId);
-    console.log("anonymousUserId", anonymousUserId);
-
-    // Find matching avis based on userId or anonymousUserId
-    // Will be false if there's no userId and no anonymousUserId
-    // Will be true if there's an avis.userId equal to userId OR an avis.anonymousUserId equal to anonymousUserId
     const avis =
       userId || anonymousUserId
         ? dispositif.avis?.find(
