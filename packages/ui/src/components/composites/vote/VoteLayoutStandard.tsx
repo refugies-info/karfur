@@ -18,13 +18,14 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
 
     return (
       <div ref={ref} className={cn("mb-4 flex flex-col gap-2 bg-white p-4 shadow-lg", className)}>
-        <p className="mb-2">{t("ui.northStar_title", "Cette page vous a-t-elle été utile ? ✨")}</p>
+        <p className="mb-2 text-xl font-bold">{t("ui.northStar_title", "Cette page vous a-t-elle été utile ? ✨")}</p>
 
         <div className="flex gap-2">
           <Button
             onClick={handleClickYes}
             priority={vote === true ? "primary" : "secondary"}
-            className={cn("flex h-[2.5rem] items-end gap-2 transition-all")}
+            className={cn("flex h-[1.7rem] items-end gap-2 transition-all")}
+            size="small"
           >
             <div className="relative">
               <span className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}></span>
@@ -40,7 +41,8 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
           <Button
             priority={vote === false ? "primary" : "secondary"}
             onClick={handleClickNo}
-            className={cn("flex h-[2.5rem] items-end gap-2 transition-all")}
+            className={cn("flex h-[1.7rem] items-end gap-2 transition-all")}
+            size="small"
           >
             <span className="fr-icon-thumb-down-line" aria-hidden="true"></span> {t("ui.northStar_no", "Non")}
           </Button>
