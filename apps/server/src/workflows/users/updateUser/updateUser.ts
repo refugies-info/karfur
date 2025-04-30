@@ -87,7 +87,7 @@ const updateAsMyself = async (
     const caregiverRole = roles.find((r) => r.nom === RoleName.CAREGIVER);
     if (request.partner === "") {
       // remove partner -> remove TS role
-      const newRoles = userFromDB.roles.filter((r) => r._id.toString() !== caregiverRole._id.toString());
+      const newRoles = userFromDB.roles.filter((r) => r && r._id && r._id.toString() !== caregiverRole._id.toString());
       newUser.roles = newRoles;
     } else {
       // add partner -> add ts role
