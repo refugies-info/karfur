@@ -56,8 +56,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
           aria-hidden={hasVoted ? false : true}
           aria-live={hasVoted ? "assertive" : "off"}
         >
-          {vote === true && t("ui.northStar_thanks", "Merci pour votre retour 😊")}
-          {vote === false && t("ui.northStar_sorry", "Nous sommes navrés... 😞")}
+          {t("ui.northStar_thanks", "Merci pour votre retour 😊")}
         </p>
       </div>
     );
