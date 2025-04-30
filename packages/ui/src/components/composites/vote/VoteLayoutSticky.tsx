@@ -19,17 +19,17 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
       <div
         ref={ref}
         className={cn(
-          "sticky right-0 bottom-4 left-0 z-[9999] m-auto mt-4 w-fit",
-          "mb-4 flex flex-col gap-2 rounded-[50rem] bg-white py-1 shadow-lg",
+          "sticky right-0 bottom-6 left-0 z-[9999] m-auto mt-4 w-fit border-2 border-white",
+          "mb-4 flex flex-col rounded-[50rem] bg-white shadow-lg",
           className,
         )}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           <Button
             onClick={handleClickYes}
-            priority="tertiary no outline"
+            priority={vote === true ? "primary" : "secondary"}
             className={cn(
-              "flex h-[2.5rem] items-end gap-2 !bg-transparent transition-all",
+              "flex h-[2.5rem] items-end gap-2 rounded-s-[50rem] shadow-none transition-all",
               vote === false && "text-disabled-grey",
             )}
           >
@@ -38,6 +38,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
               <ThumbUpAnimated
                 ref={thumbUpRef}
                 className={cn("absolute bottom-0", vote === true ? "opacity-100" : "opacity-0")}
+                themeId="light"
               />
             </div>
 
@@ -45,9 +46,12 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
           </Button>
           <hr className="h-[1rem] w-px bg-gray-300" />
           <Button
-            priority="tertiary no outline"
+            priority={vote === false ? "primary" : "secondary"}
             onClick={handleClickNo}
-            className={cn("flex h-[2.5rem] items-end gap-2 transition-all", vote === true && "text-disabled-grey")}
+            className={cn(
+              "flex h-[2.5rem] items-end gap-2 rounded-e-[50rem] shadow-none transition-all",
+              vote === true && "text-disabled-grey",
+            )}
           >
             <span className="fr-icon-thumb-down-line" aria-hidden="true"></span>
             {t("ui.northStar_notTseful", "Pas utile")}
