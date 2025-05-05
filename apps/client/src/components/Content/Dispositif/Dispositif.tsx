@@ -16,7 +16,7 @@ import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
 import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
@@ -50,7 +50,13 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={cls(styles.container, isEditMode && styles.edit)} id="top">
+    <div
+      className={cn("huhu", styles.container, isEditMode && styles.edit)}
+      style={{
+        background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
+      }}
+      id="top"
+    >
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
@@ -59,13 +65,12 @@ const Dispositif = (props: Props) => {
       {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
       {isViewMode && <Breadcrumb dispositif={dispositif} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
-      <div className={styles.content}>
-        <div className={styles.left}>
+      <div className={cn("container flex gap-10 max-sm:flex-col md:-translate-y-52")}>
+        <div className="relative translate-y-46 md:w-[20%]">
           {isTablet && <Header typeContenu={typeContenu} />}
           {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition typeContenu={typeContenu} />}
         </div>
-
-        <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
+        <div className="md:w-[60%]" dir={isRTL ? undefined : "ltr"}>
           {!isTablet && <Header typeContenu={typeContenu} />}
           {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
             <Section key={i} sectionKey={section} contentType={typeContenu} />
@@ -79,12 +84,12 @@ const Dispositif = (props: Props) => {
             </>
           )}
 
-          <span className={styles.divider} />
+          <span />
           {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
           {isViewMode && <Contributors />}
         </div>
 
-        <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
+        <div className="translate-y-46 md:w-[20%]">{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
       </div>
       {isTablet && <NorthStar />}
     </div>
