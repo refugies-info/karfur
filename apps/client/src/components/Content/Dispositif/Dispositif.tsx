@@ -55,40 +55,42 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
-      <div
-        className={cn(styles.container, isEditMode && styles.edit, "relative")}
-        style={{
-          background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
-        }}
-        id="top"
-      >
-        {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
-        {isViewMode && <Breadcrumb dispositif={dispositif} />}
-        {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
-        <div className={cn("z-10 container flex gap-10 max-sm:flex-col")}>
-          {isViewMode ? (
-            <LeftSidebar className="z-10 pt-[371px] md:w-[20%]" />
-          ) : (
-            <LeftSidebarEdition className="z-10 mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
-          )}
+      <div className={cn(styles.container, isEditMode && styles.edit)} id="top">
+        <div
+          className={cn(styles.container, isEditMode && styles.edit, "relative")}
+          style={{
+            background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
+          }}
+          id="top"
+        >
+          {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
+          {isViewMode && <Breadcrumb dispositif={dispositif} />}
+          {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
+          <div className={cn("z-10 container flex gap-10 max-sm:flex-col")}>
+            {isViewMode ? (
+              <LeftSidebar className="z-10 pt-[371px] md:w-[20%]" />
+            ) : (
+              <LeftSidebarEdition className="z-10 mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
+            )}
 
-          <article className="z-10 flex flex-col gap-10 pt-[196px] md:w-[60%]" dir={isRTL ? undefined : "ltr"}>
-            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-              <Section key={i} sectionKey={section} contentType={typeContenu} className="z-10" />
-            ))}
-            {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
+            <article className="z-10 flex flex-col gap-10 pt-[196px] md:w-[60%]" dir={isRTL ? undefined : "ltr"}>
+              {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+                <Section key={i} sectionKey={section} contentType={typeContenu} className="z-10" />
+              ))}
+              {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
 
-            {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
-            {isViewMode && <Contributors />}
-          </article>
+              {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+              {isViewMode && <Contributors />}
+            </article>
 
-          {isViewMode ? (
-            <RightSidebar className="z-10 pt-[371px] md:w-[20%]" />
-          ) : (
-            <RightSidebarEdition className="z-10 mt-96 md:w-[20%]" />
-          )}
+            {isViewMode ? (
+              <RightSidebar className="z-10 pt-[371px] md:w-[20%]" />
+            ) : (
+              <RightSidebarEdition className="z-10 mt-96 md:w-[20%]" />
+            )}
+          </div>
+          {isTablet && <NorthStar />}
         </div>
-        {isTablet && <NorthStar />}
       </div>
     </>
   );
