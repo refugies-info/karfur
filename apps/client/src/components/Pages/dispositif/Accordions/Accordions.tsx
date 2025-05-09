@@ -61,7 +61,8 @@ const Accordions = ({ content, sectionKey, color100, color30, contentType }: Pro
               $background={color30}
               $border={color100}
             >
-              <h2 className={styles.title} style={{ color: color100 }}>
+              <h2 className={styles.title}>
+                huhu
                 <AccordionBadge index={i + 1} sectionKey={sectionKey} contentType={contentType} color100={color100} />
                 <Text id={`${sectionKey}.${section[0]}.title`}>{section[1].title}</Text>
               </h2>

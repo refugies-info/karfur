@@ -1,3 +1,4 @@
+/* stylelint-disable custom-property-pattern */
 @import "tailwindcss";
 @import "./dsfr-tokens.css";
 @import "./dsfr-customisations.css";
@@ -16,11 +17,44 @@
   --font-caveat: var(--font-caveat);
 
   /* Shadows */
+
   --shadow-ri: 0 6px 18px rgb(0 0 18 / 16%);
+
+  /* Typescale mobile */
+  --text-title-xxs: 1.125rem; /* 18px */
+  --text-title-xxs--line-height: 1.5rem; /* 24px */
+  --text-title-xs: 1.25rem; /* 20px */
+  --text-title-xs--line-height: 1.75rem; /* 28px */
+  --text-title-sm: 1.375rem; /* 22px */
+  --text-title-sm--line-height: 1.75rem; /* 28px */
+  --text-title-md: 1.5rem; /* 24px */
+  --text-title-md--line-height: 2rem; /* 32px */
+  --text-title-lg: 1.75rem; /* 28px */
+  --text-title-lg--line-height: 2.25rem; /* 36px */
+  --text-title-xl: 2rem; /* 32px */
+  --text-title-xl--line-height: 2.5rem; /* 40px */
 }
 
 body {
   overflow-x: hidden;
+}
+
+@media (width >= 48em) {
+  /* Typescale desktop */
+  :root {
+    --text-title-xxs: 1.25rem; /* 20px */
+    --text-title-xxs--line-height: 1.75rem; /* 28px */
+    --text-title-xs: 1.375rem; /* 22px */
+    --text-title-xs--line-height: 1.75rem; /* 28px */
+    --text-title-sm: 1.5rem; /* 24px */
+    --text-title-sm--line-height: 2rem; /* 32px */
+    --text-title-md: 1.75rem; /* 28px */
+    --text-title-md--line-height: 2.25rem; /* 36px */
+    --text-title-lg: 2rem; /* 32px */
+    --text-title-lg--line-height: 2.5rem; /* 40px */
+    --text-title-xl: 2.5rem; /* 40px */
+    --text-title-xl--line-height: 3rem; /* 48px */
+  }
 }
 
 @layer utilities {
