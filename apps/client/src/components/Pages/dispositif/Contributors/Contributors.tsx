@@ -21,8 +21,7 @@ const Contributors = () => {
   }, [dispositif?.participants]);
 
   return (
-    // TODO: Add shadow back before full release: shadow-(--shadow-ri)
-    <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-4 xl:p-14">
+    <div className="bg-alt-blue-france shadow-ri flex w-full flex-col gap-14 p-4 xl:p-14">
       <LinkedThemes />
       <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
         {t("Dispositif.contributors", { count: participants.length })}

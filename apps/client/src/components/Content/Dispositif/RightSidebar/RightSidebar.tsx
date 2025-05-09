@@ -11,14 +11,14 @@ import Toast from "~/components/UI/Toast";
 import Tooltip from "~/components/UI/Tooltip";
 import { useAuth, useChangeLanguage, useContentLocale, useFavorites, useLocale, useUser } from "~/hooks";
 import { useDispositifTts } from "~/hooks/dispositif";
-import { cls } from "~/lib/classname";
+import { cls, cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
 import styles from "./RightSidebar.module.scss";
 
-const RightSidebar = () => {
+const RightSidebar = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
@@ -94,7 +94,7 @@ const RightSidebar = () => {
   const ttsEnabled = useMemo(() => hasTTSAvailable.includes(locale), [locale]);
 
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, className)}>
       {!needsApproval ? (
         <>
           {isViewMode && <NorthStar />}

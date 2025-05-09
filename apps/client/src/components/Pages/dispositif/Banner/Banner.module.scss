@@ -7,10 +7,12 @@
 
 .banner {
   height: 400px;
+  width: 100%;
   background: url("../../../../assets/dispositif/notheme-banner.svg");
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
-  position: relative;
+  position: absolute;
   z-index: 0;
 
   &.translate {

@@ -1,4 +1,4 @@
-import { Id, Picture, ThemeColors, TranslatedText } from "../generics";
+import { Id, Picture, ThemeColors, ThemeGradientColors, TranslatedText } from "../generics";
 
 /**
  * @urls POST /themes, PATCH /themes/{id}
@@ -8,6 +8,7 @@ export interface ThemeRequest {
   short: TranslatedText;
   mainColor: string;
   colors: ThemeColors;
+  gradientColors: ThemeGradientColors;
   position: number;
   icon?: Picture;
   banner?: Picture;
@@ -29,6 +30,7 @@ export interface GetThemeResponse {
   short: TranslatedText;
   mainColor: string;
   colors: ThemeColors;
+  gradientColors: ThemeGradientColors;
   position: number;
   icon?: Picture;
   banner?: Picture;
@@ -51,6 +53,7 @@ export interface PatchThemeResponse {
   short: TranslatedText;
   mainColor: string;
   colors: ThemeColors;
+  gradientColors: ThemeGradientColors;
   position: number;
   icon: Picture;
   banner: Picture;
@@ -73,6 +76,7 @@ export interface PostThemeResponse {
   short: TranslatedText;
   mainColor: string;
   colors: ThemeColors;
+  gradientColors: ThemeGradientColors;
   position: number;
   icon?: Picture;
   banner?: Picture;

@@ -30,6 +30,10 @@ const defaultTheme: GetThemeResponse = {
     color40: "#D7FAF2",
     color30: "#EEEEEE",
   },
+  gradientColors: {
+    colorTop: "#3A3A3A",
+    colorBottom: "#27A8A5",
+  },
   position: 4,
   icon: {
     secure_url: "/images/icon_default.svg",
