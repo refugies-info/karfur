@@ -112,6 +112,7 @@
     "@redux-devtools/extension": "^3.2.1",
     "@refugies-info/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.0.17",
+    "@tailwindcss/typography": "^0.5.16",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
