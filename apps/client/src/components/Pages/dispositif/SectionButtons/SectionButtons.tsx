@@ -14,6 +14,7 @@ import { getTextToRead } from "./functions";
 import ReactionModal from "./ReactionModal";
 
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
 
 interface Props {
@@ -28,6 +29,7 @@ interface Props {
 const SectionButtons = ({ id, content, className }: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const { isMobile } = useWindowSize();
 
   // tts
   const [showTtsButtons, setShowTtsButtons] = useState(false);
@@ -71,7 +73,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
         id={tooltipId}
         iconId="ri-message-2-line"
         onClick={() => setShowReactionModal(true)}
-        className="!text-disabled-grey m-0 [&::before]:!mr-0"
+        className="!text-disabled-grey m-0 max-sm:hidden [&::before]:!mr-0"
         priority="tertiary no outline"
         size="small"
         title={t("Dispositif.react")}
@@ -83,17 +85,23 @@ const SectionButtons = ({ id, content, className }: Props) => {
 
       {ttsEnabled && (
         <Button
-          iconId={!isPlaying ? "ri-play-fill" : isLoadingTts ? "fr-icon-refresh-line" : "ri-pause-fill"}
           className={cn(
-            "rounded-full",
-            "!min-h-6 !w-6 !px-1.5 !py-0 !text-white",
-            "[&::before]:!mr-0 [&::before]:![--icon-size:0.75rem]",
-            isLoadingTts && "animate-spin",
+            "max-sm:border-default-grey text-normal gap-2 rounded-full max-sm:flex max-sm:gap-2 max-sm:border max-sm:bg-white/60 max-sm:p-1 max-sm:pe-2 md:p-0",
           )}
           onClick={isPlaying ? pause : startReading}
           size="small"
+          priority="tertiary no outline"
           title={t("listen")}
-        />
+        >
+          <i
+            className={cn(
+              "bg-action-high-blue-france rounded-full px-2 py-2 text-white md:px-1.5 md:py-0",
+              "md:[&::before]:![--icon-size:0.75rem]",
+              isLoadingTts ? "fr-icon-refresh-line animate-spin" : isPlaying ? "ri-pause-fill" : "ri-play-fill",
+            )}
+          />
+          {isMobile && t("listen")}
+        </Button>
       )}
 
       {showReactionModal && (

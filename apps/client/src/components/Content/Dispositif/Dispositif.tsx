@@ -66,14 +66,14 @@ const Dispositif = (props: Props) => {
           {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
           {isViewMode && <Breadcrumb dispositif={dispositif} />}
           {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
-          <div className={cn("z-10 container flex gap-10 max-sm:flex-col")}>
+          <div className={cn("z-10 container flex gap-10 max-sm:flex-col max-sm:!px-0")}>
             {isViewMode ? (
-              <LeftSidebar className="z-10 pt-[371px] md:w-[20%]" />
+              <LeftSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
             ) : (
-              <LeftSidebarEdition className="z-10 mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
+              <LeftSidebarEdition className="z-10 md:mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
             )}
 
-            <article className="z-10 flex flex-col gap-10 pt-[196px] md:w-[60%]" dir={isRTL ? undefined : "ltr"}>
+            <article className="z-10 flex flex-col md:w-[60%] md:gap-10 md:pt-[196px]" dir={isRTL ? undefined : "ltr"}>
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <Section key={i} sectionKey={section} contentType={typeContenu} className="z-10" />
               ))}
@@ -84,9 +84,9 @@ const Dispositif = (props: Props) => {
             </article>
 
             {isViewMode ? (
-              <RightSidebar className="z-10 pt-[371px] md:w-[20%]" />
+              <RightSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
             ) : (
-              <RightSidebarEdition className="z-10 mt-96 md:w-[20%]" />
+              <RightSidebarEdition className="z-10 md:w-[20%] md:pt-[371px]" />
             )}
           </div>
           {isTablet && <NorthStar />}

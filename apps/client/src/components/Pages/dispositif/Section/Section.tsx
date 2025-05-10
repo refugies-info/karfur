@@ -55,7 +55,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   return (
     <section
       id={`anchor-${sectionKey}`}
-      className={cn("shadow-ri relative bg-white p-12", className)}
+      className={cn("md:shadow-ri relative bg-white p-4 md:p-12", className)}
       style={{ "--theme-color": colors.color100 } as React.CSSProperties}
     >
       {contentHtml !== undefined ? (
