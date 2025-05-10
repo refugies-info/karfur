@@ -15,18 +15,18 @@ const ContributorCard = ({ user }: Props) => {
   const role = useMemo(() => getRole(user.roles), [user]);
 
   return (
-    <div className="border-dsfr-border-default-grey bg-action-low-blue-france flex h-auto flex-col items-center gap-2 border-none p-3 shadow-sm">
+    <div className="border-dsfr-border-default-grey bg-action-low-blue-france grid h-auto grid-rows-[auto_1fr_auto] items-center justify-center gap-2 border-none p-3 shadow-sm">
       <Image
         src={user.picture?.secure_url || DefaultAvatar}
         width={64}
         height={64}
         alt={user.username || "user picture"}
-        className="h-16 w-16 rounded-full object-cover"
+        className="mx-auto h-16 w-16 rounded-full object-cover"
       />
-      <span className="text-default-grey mb-2 w-full truncate text-center text-sm font-medium">
+      <span className="text-default-grey mb-2 w-full text-center text-sm font-medium">
         {user.username || "Utilisateur"}
       </span>
-      <span className="text-dsfr-text-mention-grey bg-action-low-blue-france-hover text-action-high-blue-france flex w-auto items-center justify-center gap-1 rounded-2xl px-3 py-1 text-center text-sm font-normal">
+      <span className="text-dsfr-text-mention-grey bg-action-low-blue-france-hover text-action-high-blue-france mt-auto flex w-auto items-center justify-center gap-1 rounded-2xl px-3 py-1 text-center text-sm font-normal">
         {role === "admin" && <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />}
         {t(`Roles.${role}`)}
       </span>

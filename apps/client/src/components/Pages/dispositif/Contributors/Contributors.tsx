@@ -26,7 +26,7 @@ const Contributors = () => {
       <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
         {t("Dispositif.contributors", { count: participants.length })}
       </p>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 2xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {participants.map((user, i) => (
           <ContributorCard key={i} user={user} />
         ))}
