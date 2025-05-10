@@ -18,7 +18,7 @@
     }
 
     ol li::marker {
-      @apply text-normal font-bold content-[var(--ol-content)];
+      @apply font-bold content-[var(--ol-content)];
     }
 
     /* Fixes nested numbered lis numbers ovelap */

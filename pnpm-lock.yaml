@@ -143,6 +143,9 @@ importers:
       '@refugies-info/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@4.1.4)
       algoliasearch:
         specifier: ^5.23.0
         version: 5.23.4
@@ -300,9 +303,6 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.0.17
         version: 4.1.4
-      '@tailwindcss/typography':
-        specifier: ^0.5.16
-        version: 0.5.16(tailwindcss@4.1.4)
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -887,6 +887,9 @@ importers:
       '@storybook/addon-viewport':
         specifier: ^8.6.12
         version: 8.6.12(storybook@8.6.12(prettier@3.5.3))
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@4.1.4)
       next:
         specifier: 14.2.26
         version: 14.2.26(@babel/core@7.26.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.87.0)
