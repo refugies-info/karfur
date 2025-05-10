@@ -1,30 +1,31 @@
+"use client";
 import { InfoSection } from "@refugies-info/api-types";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import Button from "~/components/UI/Button";
-import { useLocale } from "~/hooks";
-import { cls } from "~/lib/classname";
-import { changeRate, pauseAudio, readAudio, resumeAudio } from "~/lib/readAudio";
-import { Event } from "~/lib/tracking";
-import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-
 import Toast from "~/components/UI/Toast";
 import Tooltip from "~/components/UI/Tooltip";
-import { getPlayIcon, getTextToRead } from "./functions";
+import { useLocale } from "~/hooks";
+import { pauseAudio, readAudio, resumeAudio } from "~/lib/readAudio";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { getTextToRead } from "./functions";
 import ReactionModal from "./ReactionModal";
-import styles from "./SectionButtons.module.scss";
+
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { cn } from "~/lib/classname";
 
 interface Props {
   id: string;
   content: InfoSection | string;
+  className?: string;
 }
 
 /**
  * Suggestion and TTS buttons
  */
-const SectionButtons = (props: Props) => {
+const SectionButtons = ({ id, content, className }: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
 
@@ -32,13 +33,12 @@ const SectionButtons = (props: Props) => {
   const [showTtsButtons, setShowTtsButtons] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoadingTts, setIsLoadingTts] = useState(false);
-  const [rateSpeed, setRateSpeed] = useState<1 | 2>(1);
 
   const startReading = useCallback(() => {
     if (!showTtsButtons) {
       // start
       readAudio(
-        getTextToRead(props.content),
+        getTextToRead(content),
         locale,
         () => setIsPlaying(false),
         true,
@@ -51,71 +51,29 @@ const SectionButtons = (props: Props) => {
       resumeAudio();
     }
     setIsPlaying(true);
-  }, [locale, props.content, showTtsButtons]);
+  }, [locale, content, showTtsButtons]);
 
   const pause = useCallback(() => {
     pauseAudio();
     setIsPlaying(false);
   }, []);
 
-  const stopReading = useCallback(() => {
-    pauseAudio();
-    setShowTtsButtons(false);
-    setIsPlaying(false);
-  }, []);
-
-  const toggleRateSpeed = useCallback(() => {
-    setRateSpeed((r) => (r === 1 ? 2 : 1));
-  }, []);
-  useEffect(() => {
-    changeRate(rateSpeed);
-  }, [rateSpeed]);
-
   // reactions
   const dispositif = useSelector(selectedDispositifSelector);
   const [showToast, setShowToast] = useState(false);
   const [showReactionModal, setShowReactionModal] = useState(false);
-  const tooltipId = `section_${props.id.replace(".", "_")}`;
+  const tooltipId = `section_${id.replace(".", "_")}`;
   const ttsEnabled = useMemo(() => hasTTSAvailable.includes(locale), [locale]);
 
   return (
-    <div className={cls(styles.container, showTtsButtons && styles.open)}>
-      {ttsEnabled && (
-        <>
-          <Button
-            priority={showTtsButtons ? "primary" : "tertiary"}
-            icon={getPlayIcon(isPlaying, showTtsButtons)}
-            className={styles.btn}
-            isLoading={isLoadingTts}
-            onClick={isPlaying ? pause : startReading}
-            title={t("listen")}
-          />
-          <div className={styles.tts_buttons}>
-            <Button
-              priority="tertiary"
-              className={cls(styles.btn, styles.speed, "mt-1")}
-              onClick={toggleRateSpeed}
-              nativeButtonProps={{ tabIndex: showTtsButtons ? 0 : -1 }}
-            >
-              {rateSpeed === 1 ? "x2" : "x1"}
-            </Button>
-            <Button
-              evaIcon="close-outline"
-              className={cls(styles.btn, styles.close, "mt-1")}
-              onClick={stopReading}
-              nativeButtonProps={{ tabIndex: showTtsButtons ? 0 : -1 }}
-              title={t("close")}
-            />
-          </div>
-        </>
-      )}
-
+    <div className={cn("flex items-center", className)}>
       <Button
-        priority="tertiary"
-        evaIcon="message-circle-outline"
-        className={cls(styles.btn, "mt-2")}
         id={tooltipId}
+        iconId="ri-message-2-line"
         onClick={() => setShowReactionModal(true)}
+        className="!text-disabled-grey m-0 [&::before]:!mr-0"
+        priority="tertiary no outline"
+        size="small"
         title={t("Dispositif.react")}
       />
 
@@ -123,9 +81,24 @@ const SectionButtons = (props: Props) => {
         {t("Dispositif.react")}
       </Tooltip>
 
+      {ttsEnabled && (
+        <Button
+          iconId={!isPlaying ? "ri-play-fill" : isLoadingTts ? "fr-icon-refresh-line" : "ri-pause-fill"}
+          className={cn(
+            "rounded-full",
+            "!min-h-6 !w-6 !px-1.5 !py-0 !text-white",
+            "[&::before]:!mr-0 [&::before]:![--icon-size:0.75rem]",
+            isLoadingTts && "animate-spin",
+          )}
+          onClick={isPlaying ? pause : startReading}
+          size="small"
+          title={t("listen")}
+        />
+      )}
+
       {showReactionModal && (
         <ReactionModal
-          sectionKey={props.id}
+          sectionKey={id}
           toggle={() => setShowReactionModal((o) => !o)}
           dispositifId={dispositif?._id}
           callback={() => setShowToast(true)}

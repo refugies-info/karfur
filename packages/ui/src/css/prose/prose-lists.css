@@ -1,0 +1,80 @@
+/* stylelint-disable no-duplicate-selectors */
+@layer utilities {
+  :not(.no-prose) .prose {
+    --tw-prose-bullets: var(--text-default-grey);
+    --tw-prose-counters: var(--text-default-grey);
+
+    & > *:last-child {
+      @apply mb-0 pb-0;
+    }
+
+    ul,
+    ol {
+      @apply mt-0;
+    }
+
+    li {
+      @apply mt-0 mb-2 px-0 pb-0 last:mb-0;
+    }
+
+    ol li::marker {
+      @apply font-bold content-[var(--ol-content)];
+    }
+
+    /* Fixes nested numbered lis numbers ovelap */
+    ol {
+      @apply ps-8;
+
+      ol {
+        @apply ps-10;
+
+        ol {
+          @apply ps-12;
+
+          ol {
+            @apply ps-16;
+
+            ol {
+              @apply ps-20;
+
+              ol {
+                @apply ps-24;
+
+                ol {
+                  @apply ps-28;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      @apply mt-0 mb-4;
+
+      &:last-of-type {
+        @apply mb-6;
+      }
+
+      & + h2,
+      & + h3 {
+        @apply mt-8 mb-6;
+      }
+
+      & + ul,
+      & + ol {
+        @apply mb-4 -translate-y-2;
+      }
+    }
+
+    h2,
+    h3 {
+      @apply mt-0 mb-6;
+    }
+
+    .callout {
+      @apply m-0 mb-6;
+    }
+  }
+}

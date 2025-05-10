@@ -1,6 +1,18 @@
 import { Id } from "@refugies-info/api-types";
 
-export const activeThemesMock = [
+// Helper function to ensure all themes have the required gradientColors property
+const ensureGradientColors = (themes: any[]) => {
+  return themes.map((theme) => ({
+    ...theme,
+    gradientColors: theme.gradientColors || {
+      colorTop: theme.colors.color100,
+      colorBottom: theme.colors.color80,
+    },
+  }));
+};
+
+// Original theme data
+const originalThemesMock = [
   {
     mainColor: "#BFCCFB",
     colors: {
@@ -9,6 +21,10 @@ export const activeThemesMock = [
       color60: "#A396C4",
       color40: "#D6CDE4",
       color30: "#EFE8F4",
+    },
+    gradientColors: {
+      colorTop: "#3D2884",
+      colorBottom: "#705FA4",
     },
     icon: {
       secure_url: "/images/icon_elearning.svg",
@@ -80,6 +96,10 @@ export const activeThemesMock = [
       color40: "#CABEBB",
       color30: "#EEE7E5",
     },
+    gradientColors: {
+      colorTop: "#443023",
+      colorBottom: "#715F56",
+    },
     icon: {
       secure_url: "/images/icon_office.svg",
       public_id: "",
@@ -149,6 +169,10 @@ export const activeThemesMock = [
       color60: "#88C6E3",
       color40: "#C1E3F2",
       color30: "#DDF2F9",
+    },
+    gradientColors: {
+      colorTop: "#06508C",
+      colorBottom: "#1E9ED1",
     },
     icon: {
       secure_url: "/images/icon_house.svg",
@@ -290,6 +314,10 @@ export const activeThemesMock = [
       color40: "#D7FAF2",
       color30: "#EDFDF9",
     },
+    gradientColors: {
+      colorTop: "#055E5A",
+      colorBottom: "#27A8A5",
+    },
     icon: {
       secure_url: "/images/icon_briefcase.svg",
       public_id: "",
@@ -429,6 +457,10 @@ export const activeThemesMock = [
       color60: "#82E59B",
       color40: "#D4F4D7",
       color30: "#E8F4E8",
+    },
+    gradientColors: {
+      colorTop: "#095411",
+      colorBottom: "#26B759",
     },
     icon: {
       secure_url: "/images/icon_measure.svg",
@@ -570,6 +602,10 @@ export const activeThemesMock = [
       color40: "#EDC4FC",
       color30: "#F9F1FD",
     },
+    gradientColors: {
+      colorTop: "#600566",
+      colorBottom: "#9E2DAD",
+    },
     icon: {
       secure_url: "/images/icon_soccer.svg",
       public_id: "",
@@ -706,3 +742,6 @@ export const activeThemesMock = [
     adminComments: "",
   },
 ];
+
+// Export the themes with guaranteed gradientColors property
+export const activeThemesMock = ensureGradientColors(originalThemesMock);

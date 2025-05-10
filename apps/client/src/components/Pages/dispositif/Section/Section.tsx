@@ -4,6 +4,7 @@ import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Header } from "~/components/Pages/dispositif";
 import { useWindowSize } from "~/hooks";
+import { cn } from "~/lib/classname";
 import { getDispositifSectionTitle } from "~/lib/getDispositifSectionTitle";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -54,13 +55,12 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   return (
     <section
       id={`anchor-${sectionKey}`}
-      className={className}
+      className={cn("shadow-ri relative bg-white p-12", className)}
       style={{ "--theme-color": colors.color100 } as React.CSSProperties}
     >
       {contentHtml !== undefined ? (
-        <div className="shadow-ri relative bg-white p-10">
+        <>
           <Header typeContenu={contentType || ContentType.DISPOSITIF} />
-
           <SectionTitle titleKey={sectionKey} />
           <RichText id={sectionKey} value={contentHtml} />
           {contentHtml && isViewMode && (
@@ -69,18 +69,16 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
               content={{ title: t(getDispositifSectionTitle(sectionKey)), text: contentHtml }}
             />
           )}
-        </div>
+        </>
       ) : (
-        <div className="shadow-ri relative bg-white p-10">
+        <>
           <SectionTitle titleKey={sectionKey} />
           <Accordions
             content={contentAccordions}
             sectionKey={sectionKey as "why" | "how" | "next"}
-            color100={colors.color100}
-            color30={colors.color30}
             contentType={contentType || ContentType.DISPOSITIF}
           />
-        </div>
+        </>
       )}
     </section>
   );

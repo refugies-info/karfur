@@ -6,6 +6,7 @@
     "apps/client": {
       "entry": ["src/scripts/*.js"],
       "ignoreDependencies": [
+        "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
         "eslint-config-turbo",
@@ -44,7 +45,13 @@
       "ignoreDependencies": ["eslint-config-turbo"]
     },
     "apps/storybook": {
-      "ignoreDependencies": ["@storybook/blocks", "eslint-config-turbo", "postcss", "tailwindcss"]
+      "ignoreDependencies": [
+        "@storybook/blocks",
+        "@tailwindcss/typography",
+        "eslint-config-turbo",
+        "postcss",
+        "tailwindcss"
+      ]
     },
     "packages/ui": {
       "ignoreDependencies": ["eslint-config-turbo", "react-dom", "tailwindcss"]
