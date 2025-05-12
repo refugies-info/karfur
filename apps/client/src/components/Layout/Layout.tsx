@@ -120,19 +120,19 @@ const Layout = (props: Props) => {
 
   // Mobile popup
   const [currentPath, prevPath] = useMemo(() => {
-    return props.history.slice(-2);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.history.length, props.history[props.history.length - 1], props.history[props.history.length - 2]]);
+    const lastTwo = props.history.slice(-2);
+    return [lastTwo[0], lastTwo[1]] as [string, string | undefined];
+  }, [props.history]);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+    // Skip all popup logic if mobile popup shouldn't be shown
+    if (!shouldShowMobilePopup) return;
 
+    let timeoutId: number | undefined;
     const handleMobilePopup = () => {
-      if (!shouldShowMobilePopup) return;
-
       // Homepage cases
       if (currentPath === "/" || (prevPath?.match(/^\/[a-z][a-z]/) && currentPath === "/")) {
-        timeoutId = setTimeout(toggleMobileAppModal, 10000);
+        timeoutId = window.setTimeout(toggleMobileAppModal, 10000);
       }
       // Coming from content page
       else if (prevPath && isContentPage(prevPath) && !isContentPage(currentPath)) {
