@@ -1,4 +1,5 @@
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -23,7 +24,14 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const need = useSelector(needSelector(dispositif?.needs?.[0] || null));
   const chevron = useMemo(
-    () => <i className={`${isRTL ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line"} text-mention-grey`} />,
+    () => (
+      <i
+        className={cn(
+          "text-mention-grey [&::before]:![--icon-size:1rem]",
+          isRTL ? "ri-arrow-left-s-line" : "ri-arrow-right-s-line",
+        )}
+      />
+    ),
     [isRTL],
   );
 
@@ -37,7 +45,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
       {(!isTablet || showBreadcrumb) && (
         <div className="">
           <Link href={getPath("/", "fr")} className="" title={t("homepage")}>
-            <i className="ri-home-4-line text-mention-grey" />
+            <i className="ri-home-4-line text-mention-grey text-xs [&::before]:![--icon-size:1.25rem]" />
           </Link>
 
           {chevron}
