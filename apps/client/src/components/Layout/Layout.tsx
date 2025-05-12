@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -77,9 +77,9 @@ const Layout = (props: Props) => {
     }
   }, [dispatch, changeLanguageCallback]);
 
-  const toggleMobileAppModal = () => {
+  const toggleMobileAppModal = useCallback(() => {
     setShowMobileModal(!showMobileModal);
-  };
+  }, [showMobileModal]);
 
   useEffect(() => {
     // wait 5 seconds before showing modal
@@ -116,28 +116,36 @@ const Layout = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const shouldShowMobilePopup = isMobileOnly && !showMobileModal && languageLoaded;
+
   // Mobile popup
-  useEffect(() => {
-    if (!languageLoaded || !isMobileOnly || showMobileModal !== null) return;
-
-    const historyLength = props.history.length;
-    // if user lands on homepage
-    if (
-      (historyLength === 1 && props.history[0] === "/") || // homepage first
-      (historyLength === 2 && props.history[1] === "/" && props.history[0].match(/^\/[a-z][a-z]/gm)) // homepage and select language
-    ) {
-      setTimeout(() => {
-        toggleMobileAppModal();
-      }, 10000);
-    }
-
-    // if previous page was a content page (but not current one)
-    else if (historyLength > 1 && isContentPage(props.history[1]) && !isContentPage(props.history[0])) {
-      toggleMobileAppModal();
-    }
-
+  const [currentPath, prevPath] = useMemo(() => {
+    return props.history.slice(-2);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showLangModal, languageLoaded, props.history]);
+  }, [props.history.length, props.history[props.history.length - 1], props.history[props.history.length - 2]]);
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const handleMobilePopup = () => {
+      if (!shouldShowMobilePopup) return;
+
+      // Homepage cases
+      if (currentPath === "/" || (prevPath?.match(/^\/[a-z][a-z]/) && currentPath === "/")) {
+        timeoutId = setTimeout(toggleMobileAppModal, 10000);
+      }
+      // Coming from content page
+      else if (prevPath && isContentPage(prevPath) && !isContentPage(currentPath)) {
+        toggleMobileAppModal();
+      }
+    };
+
+    handleMobilePopup();
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [shouldShowMobilePopup, currentPath, prevPath, toggleMobileAppModal]);
 
   // USER
   const user = useSelector(userDetailsSelector);
