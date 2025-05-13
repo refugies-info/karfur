@@ -2,7 +2,7 @@ import { ContentType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Metadatas, Summary } from "~/components/Pages/dispositif";
+import { Metadatas, ShareButtons, Summary } from "~/components/Pages/dispositif";
 import FRLink from "~/components/UI/FRLink";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -26,6 +26,8 @@ const LeftSidebar = ({ className }: { className?: string }) => {
           {t("topLink")}
         </FRLink>
       )}
+      <ShareButtons />
+
       <Summary />
       <Metadatas
         metadatas={dispositif?.metadatas}

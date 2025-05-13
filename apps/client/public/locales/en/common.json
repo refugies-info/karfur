@@ -173,7 +173,6 @@
     "readIn": "Read the sheet in",
     "sendBySMS": "Send by SMS",
     "smsFormHelp": "You remain anonymous: the SMS is sent with a Réfugiés.info number.",
-    "smsFormLanguage": "Send the SMS in",
     "smsFormLanguageShort": "SMS in",
     "smsFormSent": "SMS sent!",
     "inDepartments": "in {{count}} departments",

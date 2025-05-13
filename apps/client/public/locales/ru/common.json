@@ -167,7 +167,6 @@
     "readIn": "Читать страницу на",
     "sendBySMS": "Отправить в СМС",
     "smsFormHelp": "Ваш номер будет скрыт: СМС будут отправлены с номера Réfugiés.info",
-    "smsFormLanguage": "Отправить СМС на",
     "smsFormLanguageShort": "СМС на",
     "smsFormSent": "Сообщение отправлено!",
     "inDepartments": "в {{count}} департаментах",

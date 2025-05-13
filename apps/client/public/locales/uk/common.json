@@ -173,7 +173,6 @@
     "readIn": "Читати запис",
     "sendBySMS": "Надіслати в SMS",
     "smsFormHelp": "Ви зберігаєте анонімність: SMS надсилається через номер Réfugiés.info.",
-    "smsFormLanguage": "Надіслати повідомлення",
     "smsFormLanguageShort": "SMS",
     "smsFormSent": "SMS відправлено!",
     "inDepartments": "у {{count}} департаментах",
