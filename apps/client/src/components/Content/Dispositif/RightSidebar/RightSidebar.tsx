@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
-import { LangueMenu, ShareButtons, SMSForm, StructureReceiveDispositif } from "~/components/Pages/dispositif";
+import { ShareButtons, SMSForm, StructureReceiveDispositif } from "~/components/Pages/dispositif";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import Button from "~/components/UI/Button";
 import Toast from "~/components/UI/Toast";
@@ -121,14 +121,7 @@ const RightSidebar = ({ className }: { className?: string }) => {
           >
             {isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
           </Button>
-          <LangueMenu
-            label={`En ${language?.langueLoc?.toLowerCase() || "français"}`}
-            selectedLn={selectedLn}
-            setSelectedLn={setSelectedLn}
-            className={styles.read}
-            disabledOptions={disabledOptions}
-            withFlag
-          />
+
           <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
             {showFavoriteToast === "added"
               ? t("Dispositif.messageAddedToFavorites")

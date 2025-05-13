@@ -114,13 +114,15 @@
     "inLanguage": "en"
   },
   "UserFavorites": {
+    "tooltip_add": "Sauvegarder la fiche",
+    "tooltip_remove": "Retirer des fiches sauvegardées",
     "Comment ajouter": "Comment ajouter des fiches en favoris ?",
     "tutoriel": "Lire le tutoriel",
     "Tout supprimer": "Tout supprimer",
     "content_saved": "fiche sauvegardée.",
     "contents_saved": "fiches sauvegardées.",
     "login_modal_title": "Connectez-vous pour utiliser cette fonctionnalité",
-    "login_modal_text": "Il faut que vous soyez connecté à votre compte pour ajouter des fiches à vos favoris."
+    "login_modal_text": "Vous devez être connecté à votre compte pour sauvegarder des fiches."
   },
   "Filters": {
     "age-18": "Moins de 18 ans",
@@ -418,7 +420,7 @@
   "callout_important": "Important",
   "La Mednum": "La Mednum",
   "Aide": "Aide",
-  "login_or_signup": "Me connecter ou m’inscrire",
+  "login_or_signup": "Se connecter ou créer un compte",
   "StructureType": {
     "Association": "Association",
     "Entreprise": "Entreprise",

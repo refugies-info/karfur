@@ -4,8 +4,6 @@ import Accordions from "./Accordions";
 import Banner from "./Banner";
 import Contributors from "./Contributors";
 import Header from "./Header";
-import LangueMenu from "./LangueMenu";
-import LangueSelectList from "./LangueSelectList";
 import LinkedThemes from "./LinkedThemes";
 import Map from "./Map";
 import Metadatas from "./Metadatas";
@@ -29,8 +27,6 @@ export {
   Breadcrumb,
   Contributors,
   Header,
-  LangueMenu,
-  LangueSelectList,
   LinkedThemes,
   Map,
   Metadatas,

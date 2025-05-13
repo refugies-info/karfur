@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { Header } from "~/components/Pages/dispositif";
 import { useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
-import { getDispositifSectionTitle } from "~/lib/getDispositifSectionTitle";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
@@ -58,17 +57,11 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
       className={cn("md:shadow-ri relative bg-white p-4 md:p-12", className)}
       style={{ "--theme-color": colors.color100 } as React.CSSProperties}
     >
-      {contentHtml !== undefined ? (
+      {sectionKey === "what" ? (
         <>
           <Header typeContenu={contentType || ContentType.DISPOSITIF} />
-          <SectionTitle titleKey={sectionKey} />
+          {contentHtml && isViewMode && <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />}
           <RichText id={sectionKey} value={contentHtml} />
-          {contentHtml && isViewMode && (
-            <SectionButtons
-              id={sectionKey}
-              content={{ title: t(getDispositifSectionTitle(sectionKey)), text: contentHtml }}
-            />
-          )}
         </>
       ) : (
         <>

@@ -1,0 +1,62 @@
+import Button from "@codegouvfr/react-dsfr/Button";
+import { Bookmark } from "@refugies-info/ui";
+import { useTranslation } from "next-i18next";
+import { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import BookmarkedModal from "~/components/Modals/BookmarkedModal";
+import Toast from "~/components/UI/Toast";
+import Tooltip from "~/components/UI/Tooltip";
+import { useAuth, useFavorites } from "~/hooks";
+import { Event } from "~/lib/tracking";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+
+export default function SaveBookmark() {
+  const dispositif = useSelector(selectedDispositifSelector);
+  const { t } = useTranslation();
+
+  const { isAuth } = useAuth();
+
+  // favorites
+  const [showNoAuthModal, setShowNoAuthModal] = useState(false);
+  const noAuthModalToggle = useCallback(() => setShowNoAuthModal((o) => !o), []);
+
+  const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
+  const [showFavoriteToast, setShowFavoriteToast] = useState<"added" | "removed" | null>(null);
+  const toggleFavorite = useCallback(() => {
+    if (!isAuth) {
+      noAuthModalToggle();
+      return;
+    }
+    if (isFavorite) {
+      deleteFromFavorites();
+      setShowFavoriteToast("removed");
+    } else {
+      addToFavorites();
+      setShowFavoriteToast("added");
+      Event("FAVORITES", "add", "Dispo View");
+    }
+  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle]);
+
+  return (
+    <div>
+      <Button
+        priority="tertiary no outline"
+        onClick={toggleFavorite}
+        size="small"
+        id="add-favorite"
+        title={isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
+      >
+        <Bookmark variant={isFavorite ? "fill" : "add"} className=""></Bookmark>
+      </Button>
+      <Tooltip target="add-favorite" placement="top" className="z-10">
+        {isFavorite ? t("UserFavorites.tooltip_remove") : t("UserFavorites.tooltip_add")}
+      </Tooltip>
+      <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
+        {showFavoriteToast === "added"
+          ? t("Dispositif.messageAddedToFavorites")
+          : t("Dispositif.messageRemovedFromFavorites")}
+      </Toast>
+      {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} dispositifId={dispositif?._id} />}
+    </div>
+  );
+}
