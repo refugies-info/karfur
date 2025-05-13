@@ -10,7 +10,7 @@ import { isValidPhone } from "~/lib/validateFields";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { colors } from "~/utils/colors";
 import Input from "../Input";
-import LangueMenu from "../LangueMenu";
+// import LangueMenu from "../LangueMenu";
 import styles from "./SMSForm.module.scss";
 
 interface Props {
@@ -63,13 +63,13 @@ const SMSForm = (props: Props) => {
         error={error}
         className="mb-4"
       />
-      <LangueMenu
+      {/* <LangueMenu
         label={`${t("Dispositif.smsFormLanguageShort")} ${(language?.langueFr || "français").toLowerCase()}`}
         selectedLn={selectedLn}
         setSelectedLn={setSelectedLn}
         className={styles.language}
         disabledOptions={props.disabledOptions}
-      />
+      /> */}
       <Button
         evaIcon="paper-plane-outline"
         iconPosition="right"
