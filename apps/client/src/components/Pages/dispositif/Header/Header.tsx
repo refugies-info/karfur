@@ -29,11 +29,15 @@ const Header = (props: Props) => {
 
   const { isMobile } = useWindowSize();
 
-  const vocalizationContent = isMobile
-    ? dispositif?.titreInformatif || ""
-    : dispositif?.titreInformatif
-      ? dispositif.titreInformatif + dispositif?.what || ""
-      : dispositif?.what || "";
+  let vocalizationContent = "";
+
+  if (isMobile) {
+    vocalizationContent = dispositif?.titreInformatif || "";
+  } else if (dispositif?.titreInformatif) {
+    vocalizationContent = dispositif.titreInformatif + (dispositif?.what || "");
+  } else {
+    vocalizationContent = dispositif?.what || "";
+  }
 
   const locale = useLocale();
   useEffect(() => {
