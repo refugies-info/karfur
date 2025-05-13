@@ -2,6 +2,8 @@ import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse, WidgetReque
 import * as express from "express";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Request, Route, Security } from "tsoa";
 
+import { isValidObjectId } from "mongoose";
+import { NotFoundError } from "~/errors";
 import { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { deleteWidget } from "~/workflows/widget/deleteWidget";
 import { getWidgets } from "~/workflows/widget/getWidgets";
@@ -38,6 +40,9 @@ export class WidgetController extends Controller {
     @Body() body: Partial<WidgetRequest>,
     @Request() request: express.Request,
   ): ResponseWithData<PatchWidgetResponse> {
+    if (!isValidObjectId(id)) {
+      throw new NotFoundError("Invalid widget ID");
+    }
     return patchWidget(id, body, request.userId);
   }
 
@@ -47,6 +52,9 @@ export class WidgetController extends Controller {
   })
   @Delete("{id}")
   public async delete(@Path() id: string): Response {
+    if (!isValidObjectId(id)) {
+      throw new NotFoundError("Invalid widget ID");
+    }
     return deleteWidget(id);
   }
 }

@@ -9,7 +9,9 @@ import {
   PostStructureRequest,
 } from "@refugies-info/api-types";
 import { Request as ExRequest } from "express";
+import { isValidObjectId } from "mongoose";
 import { Body, Controller, Get, Patch, Path, Post, Queries, Query, Request, Route, Security } from "tsoa";
+import { NotFoundError } from "~/errors";
 
 import { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { createStructure } from "~/workflows/structure/createStructure";
@@ -60,6 +62,9 @@ export class StructureController extends Controller {
     @Query() locale: string,
     @Request() request: ExRequest,
   ): ResponseWithData<GetStructureResponse> {
+    if (!isValidObjectId(id)) {
+      throw new NotFoundError("Invalid structure ID");
+    }
     return getStructureById(id, locale, request.user);
   }
 
@@ -73,6 +78,9 @@ export class StructureController extends Controller {
     @Body() body: PatchStructureRequest,
     @Request() request: ExRequest,
   ): Response {
+    if (!isValidObjectId(id)) {
+      throw new NotFoundError("Invalid structure ID");
+    }
     return updateStructure(id, body, request.user);
   }
 
@@ -86,6 +94,9 @@ export class StructureController extends Controller {
     @Body() body: PatchStructureRolesRequest,
     @Request() request: ExRequest,
   ): Response {
+    if (!isValidObjectId(id)) {
+      throw new NotFoundError("Invalid structure ID");
+    }
     return modifyUserMembershipInStructure(id, body, request.user);
   }
 }
