@@ -1,21 +1,19 @@
 "use client";
+import Button from "@codegouvfr/react-dsfr/Button";
+import Tooltip from "@codegouvfr/react-dsfr/Tooltip";
 import { InfoSection } from "@refugies-info/api-types";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Toast from "~/components/UI/Toast";
-import Tooltip from "~/components/UI/Tooltip";
-import { useLocale } from "~/hooks";
+import { useLocale, useWindowSize } from "~/hooks";
+import { cn } from "~/lib/classname";
 import { pauseAudio, readAudio, resumeAudio } from "~/lib/readAudio";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { getTextToRead } from "./functions";
 import ReactionModal from "./ReactionModal";
-
-import { Button } from "@codegouvfr/react-dsfr/Button";
-import { useWindowSize } from "~/hooks";
-import { cn } from "~/lib/classname";
 
 interface Props {
   id: string;
@@ -69,40 +67,40 @@ const SectionButtons = ({ id, content, className }: Props) => {
 
   return (
     <div className={cn("flex items-center", className)}>
-      <Button
-        id={tooltipId}
-        iconId="ri-message-2-line"
-        onClick={() => setShowReactionModal(true)}
-        className="!text-disabled-grey m-0 max-sm:hidden [&::before]:!mr-0"
-        priority="tertiary no outline"
-        size="small"
-        title={t("Dispositif.react")}
-      />
-
-      <Tooltip target={tooltipId} placement="right">
-        {t("Dispositif.react")}
+      <Tooltip kind="hover" title={t("Dispositif.react")}>
+        <Button
+          id={tooltipId}
+          iconId="ri-message-2-line"
+          onClick={() => setShowReactionModal(true)}
+          className="!text-disabled-grey m-0 max-sm:hidden [&::before]:!mr-0"
+          priority="tertiary no outline"
+          size="small"
+          title={t("Dispositif.react")}
+        />
       </Tooltip>
 
-      {ttsEnabled && (
-        <Button
-          className={cn(
-            "max-sm:border-default-grey text-normal gap-2 rounded-full max-sm:flex max-sm:gap-2 max-sm:border max-sm:bg-white/60 max-sm:p-1 max-sm:pe-2 md:p-0",
-          )}
-          onClick={isPlaying ? pause : startReading}
-          size="small"
-          priority="tertiary no outline"
-          title={t("listen")}
-        >
-          <i
+      {ttsEnabled ? (
+        <Tooltip kind="hover" title={t("listen")}>
+          <Button
             className={cn(
-              "bg-action-high-blue-france rounded-full px-2 py-2 text-white md:px-1.5 md:py-0",
-              "md:[&::before]:![--icon-size:0.75rem]",
-              isLoadingTts ? "fr-icon-refresh-line animate-spin" : isPlaying ? "ri-pause-fill" : "ri-play-fill",
+              "max-sm:border-default-grey text-normal gap-2 rounded-full max-sm:flex max-sm:gap-2 max-sm:border max-sm:bg-white/60 max-sm:p-1 max-sm:pe-2 md:p-0",
             )}
-          />
-          {isMobile && t("listen")}
-        </Button>
-      )}
+            onClick={isPlaying ? pause : startReading}
+            size="small"
+            priority="tertiary no outline"
+            title={t("listen")}
+          >
+            <i
+              className={cn(
+                "bg-action-high-blue-france rounded-full px-2 py-2 text-white md:px-1.5 md:py-0",
+                "md:[&::before]:![--icon-size:0.75rem]",
+                isLoadingTts ? "fr-icon-refresh-line animate-spin" : isPlaying ? "ri-pause-fill" : "ri-play-fill",
+              )}
+            />
+            {isMobile ? t("listen") : ""}
+          </Button>
+        </Tooltip>
+      ) : null}
 
       {showReactionModal && (
         <ReactionModal

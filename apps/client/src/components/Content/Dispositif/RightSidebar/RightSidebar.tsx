@@ -1,84 +1,19 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import { hasTTSAvailable } from "data/activatedLanguages";
-import { useTranslation } from "next-i18next";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
-import BookmarkedModal from "~/components/Modals/BookmarkedModal";
-import { ShareButtons, SMSForm, StructureReceiveDispositif } from "~/components/Pages/dispositif";
+import { StructureReceiveDispositif } from "~/components/Pages/dispositif";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
-import Button from "~/components/UI/Button";
-import Toast from "~/components/UI/Toast";
-import Tooltip from "~/components/UI/Tooltip";
-import { useAuth, useChangeLanguage, useContentLocale, useFavorites, useLocale, useUser } from "~/hooks";
-import { useDispositifTts } from "~/hooks/dispositif";
-import { cls, cn } from "~/lib/classname";
-import { Event } from "~/lib/tracking";
-import { allLanguesSelector } from "~/services/Langue/langue.selectors";
+import { useUser } from "~/hooks";
+import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = ({ className }: { className?: string }) => {
-  const { t } = useTranslation();
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
   const dispositif = useSelector(selectedDispositifSelector);
-  const locale = useLocale();
-  const { contentLocale } = useContentLocale();
-  const { isAuth } = useAuth();
-
-  // favorites
-  const [showNoAuthModal, setShowNoAuthModal] = useState(false);
-  const noAuthModalToggle = useCallback(() => setShowNoAuthModal((o) => !o), []);
-
-  const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
-  const [showFavoriteToast, setShowFavoriteToast] = useState<"added" | "removed" | null>(null);
-  const toggleFavorite = useCallback(() => {
-    if (!isAuth) {
-      noAuthModalToggle();
-      return;
-    }
-    if (isFavorite) {
-      deleteFromFavorites();
-      setShowFavoriteToast("removed");
-    } else {
-      addToFavorites();
-      setShowFavoriteToast("added");
-      Event("FAVORITES", "add", "Dispo View");
-    }
-  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle]);
-
-  // tts
-  const { isPlayingTts, isLoadingTts, toggleReading } = useDispositifTts();
-
-  // available languages
-  const languages = useSelector(allLanguesSelector);
-  const [selectedLn, setSelectedLn] = useState<string>(contentLocale);
-
-  const { changeLanguage } = useChangeLanguage();
-  useEffect(() => {
-    // selected language changes -> change site locale
-    if (selectedLn !== locale && dispositif?.availableLanguages.includes(selectedLn)) {
-      changeLanguage(selectedLn, "replace");
-      Event("CHANGE_LANGUAGE", selectedLn, "Dispo View");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedLn]);
-
-  useEffect(() => {
-    // locale changes -> change selected language
-    if (selectedLn !== locale && dispositif?.availableLanguages.includes(locale)) {
-      setSelectedLn(locale);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [locale]);
-
-  const language = useMemo(() => languages.find((ln) => ln.i18nCode === selectedLn), [languages, selectedLn]);
-  const disabledOptions = useMemo(
-    () => languages.map((ln) => ln.i18nCode).filter((ln) => !(dispositif?.availableLanguages || []).includes(ln)),
-    [dispositif, languages],
-  );
 
   // dispositif is waiting for structure approval
   const { user } = useUser();
@@ -91,51 +26,9 @@ const RightSidebar = ({ className }: { className?: string }) => {
     );
   }, [dispositif, user]);
 
-  const ttsEnabled = useMemo(() => hasTTSAvailable.includes(locale), [locale]);
-
   return (
     <div className={cn(styles.container, className)}>
-      {!needsApproval ? (
-        <>
-          {isViewMode && <NorthStar />}
-          {!ttsEnabled && (
-            <Tooltip target="no-tts-tooltip" placement="top">
-              Écouter la fiche en tigrinya n'est pas possible pour le moment.
-            </Tooltip>
-          )}
-          <Button
-            onClick={toggleReading}
-            evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
-            isLoading={isLoadingTts}
-            className={cls(styles.btn, isPlayingTts && styles.playing)}
-            disabled={!ttsEnabled}
-            id="no-tts-tooltip"
-          >
-            {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
-          </Button>
-          <Button
-            priority="secondary"
-            onClick={toggleFavorite}
-            evaIcon={isFavorite ? "star" : "star-outline"}
-            className={styles.btn}
-          >
-            {isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
-          </Button>
-
-          <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
-            {showFavoriteToast === "added"
-              ? t("Dispositif.messageAddedToFavorites")
-              : t("Dispositif.messageRemovedFromFavorites")}
-          </Toast>
-          <SMSForm disabledOptions={disabledOptions} />
-          <ShareButtons />
-          {!isAuth && (
-            <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} dispositifId={dispositif?._id} />
-          )}
-        </>
-      ) : (
-        <StructureReceiveDispositif />
-      )}
+      {!needsApproval ? <>{isViewMode && <NorthStar />}</> : <StructureReceiveDispositif />}
     </div>
   );
 };
