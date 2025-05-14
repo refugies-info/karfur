@@ -24,11 +24,10 @@ interface Props {
   dataPublic: Metadatas["public"] | undefined;
   dataFrenchLevel: Metadatas["frenchLevel"] | undefined;
   dataAge: Metadatas["age"] | undefined;
-  color: string;
   onClick?: () => void;
 }
 
-const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
+const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, onClick }: Props) => {
   const { t } = useTranslation();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
@@ -40,7 +39,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
         {
           label: t("Infocards.publicStatus"),
           content: getPublicStatus(dataPublicStatus, t),
-          icon: <StatusIcon color={color} />,
+          icon: <StatusIcon />,
           defaultValue: getAllPublicStatus(t),
         },
         {
@@ -56,7 +55,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
                 {getFrenchLevel(dataFrenchLevel, t)}
               </FRLink>
             ),
-          icon: <FrenchLevelIcon color={color} />,
+          icon: <FrenchLevelIcon />,
           defaultValue: (
             <FRLink
               href={isEditMode ? "#" : getFrenchLevelLink([])}
@@ -73,7 +72,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
           ) : (
             <FRLink href={isEditMode ? "#" : getAgeLink(dataAge)}>{getAge(dataAge, t)}</FRLink>
           ),
-          icon: <AgeIcon color={color} />,
+          icon: <AgeIcon />,
           defaultValue: (
             <FRLink
               href={isEditMode ? "#" : getAgeLink(undefined)}
@@ -86,10 +85,9 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
         {
           label: t("Infocards.public"),
           content: getPublic(dataPublic, t),
-          icon: <StatusIcon color={color} />,
+          icon: <StatusIcon />,
         },
       ]}
-      color={color}
       onClick={onClick}
     />
   );

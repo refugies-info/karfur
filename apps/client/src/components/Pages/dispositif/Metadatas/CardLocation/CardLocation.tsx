@@ -13,11 +13,10 @@ import { getLocationLink } from "../functions";
 interface Props {
   data: Metadatas["location"] | null | undefined; // null = not useful / undefined = not set yet
   typeContenu: ContentType;
-  color: string;
   onClick?: () => void;
 }
 
-const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
+const CardLocation = ({ data, onClick }: Props) => {
   const { t } = useTranslation();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
@@ -60,11 +59,10 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
           : [
               {
                 content: links,
-                icon: <LocationIcon color={color} />,
+                icon: <LocationIcon />,
               },
             ]
       }
-      color={color}
       onClick={onClick}
     />
   );

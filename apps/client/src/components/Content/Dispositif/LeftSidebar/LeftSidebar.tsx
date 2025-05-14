@@ -29,13 +29,7 @@ const LeftSidebar = ({ className }: { className?: string }) => {
       <ShareButtons />
 
       <Summary />
-      <Metadatas
-        metadatas={dispositif?.metadatas}
-        titreMarque={dispositif?.titreMarque}
-        mainSponsor={dispositif?.mainSponsor}
-        color={color100}
-        typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
-      />
+      <Metadatas metadatas={dispositif?.metadatas} typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF} />
     </aside>
   );
 };

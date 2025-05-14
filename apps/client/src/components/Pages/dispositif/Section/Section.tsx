@@ -2,7 +2,7 @@ import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Header } from "~/components/Pages/dispositif";
+import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -29,7 +29,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
-  const { isTablet } = useWindowSize();
+  const { isMobile } = useWindowSize();
 
   // content
   const contentHtml: string | undefined = useMemo(
@@ -54,7 +54,11 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   return (
     <section
       id={`anchor-${sectionKey}`}
-      className={cn("md:shadow-ri relative bg-white p-4 md:p-12", className)}
+      className={cn(
+        "md:shadow-ri relative bg-white p-4 md:p-12",
+        sectionKey === "what" && "max-sm:bg-transparent",
+        className,
+      )}
       style={{ "--theme-color": colors.color100 } as React.CSSProperties}
     >
       {sectionKey === "what" ? (
@@ -62,6 +66,12 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
           <Header typeContenu={contentType || ContentType.DISPOSITIF} />
           {contentHtml && isViewMode && <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />}
           <RichText id={sectionKey} value={contentHtml} />
+          {isMobile && (
+            <Metadatas
+              metadatas={dispositif?.metadatas}
+              typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
+            />
+          )}
         </>
       ) : (
         <>

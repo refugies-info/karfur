@@ -7,11 +7,10 @@ import { getPrice } from "../functions";
 
 interface Props {
   data: Metadatas["price"] | null | undefined; // null = not useful / undefined = not set yet
-  color: string;
   onClick?: () => void;
 }
 
-const CardPrice = ({ data, color, onClick }: Props) => {
+const CardPrice = ({ data, onClick }: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -23,11 +22,10 @@ const CardPrice = ({ data, color, onClick }: Props) => {
           : [
               {
                 content: getPrice(data, t),
-                icon: data?.values?.[0] === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
+                icon: data?.values?.[0] === 0 ? <FreeIcon /> : <PriceIcon />,
               },
             ]
       }
-      color={color}
       onClick={onClick}
     />
   );

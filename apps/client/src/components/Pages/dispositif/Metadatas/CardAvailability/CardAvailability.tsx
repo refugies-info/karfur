@@ -8,11 +8,10 @@ interface Props {
   dataCommitment: Metadatas["commitment"] | undefined;
   dataTimeSlots: Metadatas["timeSlots"] | undefined;
   dataFrequency: Metadatas["frequency"] | undefined;
-  color: string;
   onClick?: () => void;
 }
 
-const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, color, onClick }: Props) => {
+const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, onClick }: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -22,20 +21,19 @@ const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, color,
         {
           label: t("Infocards.commitment"),
           content: getCommitment(dataCommitment, t),
-          icon: <DurationIcon color={color} />,
+          icon: <DurationIcon />,
         },
         {
           label: t("Infocards.frequency"),
           content: getFrequency(dataFrequency, t),
-          icon: <DurationIcon color={color} />,
+          icon: <DurationIcon />,
         },
         {
           label: t("Infocards.weekDays"),
           content: getTimeSlots(dataTimeSlots, t),
-          icon: <DurationIcon color={color} />,
+          icon: <DurationIcon />,
         },
       ]}
-      color={color}
       onClick={onClick}
     />
   );

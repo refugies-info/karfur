@@ -63,12 +63,16 @@ const Dispositif = (props: Props) => {
       >
         {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
         {isViewMode && <Breadcrumb dispositif={dispositif} />}
-        {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
+        {!isMobile && (isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />)}
         <div className={cn("z-10 container flex gap-10 max-sm:flex-col max-sm:!px-0")}>
-          {isViewMode ? (
-            <LeftSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
-          ) : (
-            <LeftSidebarEdition className="z-10 md:mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
+          {!isMobile && (
+            <>
+              {isViewMode ? (
+                <LeftSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
+              ) : (
+                <LeftSidebarEdition className="z-10 md:mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
+              )}
+            </>
           )}
 
           <article className="z-10 flex flex-col md:w-[60%] md:gap-10 md:pt-[196px]" dir={isRTL ? undefined : "ltr"}>
@@ -80,10 +84,14 @@ const Dispositif = (props: Props) => {
             {isViewMode && <Contributors />}
           </article>
 
-          {isViewMode ? (
-            <RightSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
-          ) : (
-            <RightSidebarEdition className="z-10 md:w-[20%] md:pt-[371px]" />
+          {!isMobile && (
+            <>
+              {isViewMode ? (
+                <RightSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
+              ) : (
+                <RightSidebarEdition className="z-10 md:w-[20%] md:pt-[371px]" />
+              )}
+            </>
           )}
         </div>
         {isTablet && <NorthStar />}

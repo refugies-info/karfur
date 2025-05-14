@@ -6,11 +6,10 @@ import { getConditionImage } from "../functions";
 
 interface Props {
   data: Metadatas["conditions"] | null | undefined; // null = not useful / undefined = not set yet
-  color: string;
   onClick?: () => void;
 }
 
-const CardConditions = ({ data, color, onClick }: Props) => {
+const CardConditions = ({ data, onClick }: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -26,7 +25,6 @@ const CardConditions = ({ data, color, onClick }: Props) => {
               ) : null,
             }))
       }
-      color={color}
       onClick={onClick}
     />
   );
