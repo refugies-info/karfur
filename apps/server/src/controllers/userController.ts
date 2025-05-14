@@ -23,10 +23,8 @@ import {
 } from "@refugies-info/api-types";
 import { Request as ExRequest } from "express";
 import { pick } from "lodash";
-import { isValidObjectId } from "mongoose";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
-import { NotFoundError } from "~/errors";
-
+import { validateId } from "~/libs/validateId";
 import { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { setSelectedLanguages } from "~/workflows";
 import { addUserFavorite } from "~/workflows/users/addUserFavorite";
@@ -197,9 +195,7 @@ export class UserController extends Controller {
     @Request() request: ExRequest,
     @Body() body: UpdateUserRequest,
   ): ResponseWithData<UpdateUserResponse> {
-    if (!isValidObjectId(id)) {
-      throw new NotFoundError("Invalid user ID");
-    }
+    validateId(id, "user");
     const token = await updateUser(id, body, request.user);
     const data = token ? { token } : {};
     return { text: "success", data };
@@ -208,9 +204,7 @@ export class UserController extends Controller {
   @Delete("/{id}")
   @Security({ jwt: ["admin"], fromSite: [] })
   public async deleteUser(@Path() id: string): Response {
-    if (!isValidObjectId(id)) {
-      throw new NotFoundError("Invalid user ID");
-    }
+    validateId(id, "user");
     await deleteUser(id);
     return { text: "success" };
   }

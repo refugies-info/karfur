@@ -7,8 +7,7 @@ import {
 import * as express from "express";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Request, Route, Security } from "tsoa";
 
-import { isValidObjectId } from "mongoose";
-import { NotFoundError } from "~/errors";
+import { validateId } from "~/libs/validateId";
 import { Response, ResponseWithData } from "~/types/interface";
 import { addView, deleteNeed, getNeeds, patchNeed, postNeeds, updatePositions } from "~/workflows/needs";
 
@@ -34,17 +33,13 @@ export class NeedController extends Controller {
   })
   @Delete("{id}")
   public async delete(@Path() id: string): Response {
-    if (!isValidObjectId(id)) {
-      throw new NotFoundError("Invalid need ID");
-    }
+    validateId(id, "need");
     return deleteNeed(id);
   }
 
   @Post("{id}/views")
   public async views(@Path() id: string): Response {
-    if (!isValidObjectId(id)) {
-      throw new NotFoundError("Invalid need ID");
-    }
+    validateId(id, "need");
     return addView(id);
   }
 
@@ -57,9 +52,7 @@ export class NeedController extends Controller {
     @Body() body: Partial<NeedRequest>,
     @Request() request: express.Request,
   ): Response {
-    if (!isValidObjectId(id)) {
-      throw new NotFoundError("Invalid need ID");
-    }
+    validateId(id, "need");
     return patchNeed(id, body, request.user);
   }
 
