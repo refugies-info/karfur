@@ -21,7 +21,7 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@azure/msal-node": "^2.16.1",
+    "@azure/msal-node": "^3.5.3",
     "@getbrevo/brevo": "^2.2.0",
     "@google-cloud/translate": "^8.5.1",
     "@refugies-info/api-types": "workspace:*",
