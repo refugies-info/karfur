@@ -2,6 +2,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ReactElement, useCallback, useMemo } from "react";
+import { useAsyncFn } from "react-use";
 import { END } from "redux-saga";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
@@ -12,6 +13,7 @@ import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import styles from "~/scss/components/auth.module.scss";
 import { wrapper } from "~/services/configureStore";
 import { fetchLanguesActionCreator } from "~/services/Langue/langue.actions";
+import API from "~/utils/API";
 
 const AuthLogin = () => {
   const { userId, getStepCount, next, back } = useRegisterFlow("langue", true);
@@ -20,6 +22,18 @@ const AuthLogin = () => {
   const successCallback = useCallback(() => {
     next(null);
   }, [next]);
+
+  const [, goBack] = useAsyncFn(async () => {
+    if (userId) {
+      // reset selected languages
+      // see https://linear.app/refugiesinfo/issue/RI-110/nl-bug-de-retour-dans-le-flow
+      await API.updateUser(userId.toString(), {
+        user: { selectedLanguages: [] },
+        action: "modify-my-details",
+      });
+    }
+    back();
+  }, [back, userId]);
 
   if (!userId) return null;
 
@@ -31,7 +45,7 @@ const AuthLogin = () => {
           priority="tertiary"
           size="small"
           iconId="fr-icon-arrow-left-line"
-          onClick={back}
+          onClick={goBack}
           className={styles.back_button}
         >
           Retour

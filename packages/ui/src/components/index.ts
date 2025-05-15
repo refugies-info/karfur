@@ -1,3 +1,3 @@
-export * from "./AnnotationsOverlay";
-export * from "./Carrousel";
+export * from "./composites";
 export * from "./DemoComponent";
+export * from "./primitives";

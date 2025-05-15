@@ -13,14 +13,14 @@
   "license": "ISC",
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^8.57.1",
     "eslint-config-turbo": "2.4.4",
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "mongoose": "8.13.1"
+    "mongoose": "^8.14.2"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,6 @@
   },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.7.0"
+    "pnpm": "10.8.1"
   }
 }

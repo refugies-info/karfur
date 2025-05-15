@@ -1,10 +1,11 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
 import { LangueMenu, ShareButtons, SMSForm, StructureReceiveDispositif } from "~/components/Pages/dispositif";
+import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import Button from "~/components/UI/Button";
 import Toast from "~/components/UI/Toast";
 import Tooltip from "~/components/UI/Tooltip";
@@ -14,10 +15,14 @@ import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import PageContext from "~/utils/pageContext";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
   const { t } = useTranslation();
+  const pageContext = useContext(PageContext);
+  const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
+
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   const { contentLocale } = useContentLocale();
@@ -92,6 +97,7 @@ const RightSidebar = () => {
     <div className={styles.container}>
       {!needsApproval ? (
         <>
+          {isViewMode && <NorthStar />}
           {!ttsEnabled && (
             <Tooltip target="no-tts-tooltip" placement="top">
               Écouter la fiche en tigrinya n'est pas possible pour le moment.

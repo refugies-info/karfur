@@ -1,7 +1,8 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, ObjectId } from "~/typegoose";
 
-const dispositif: Dispositif = new Dispositif();
+export const dispositif: Dispositif = new Dispositif();
+
 dispositif._id = new ObjectId("5ce7b52d83983700167bca27");
 dispositif.typeContenu = ContentType.DISPOSITIF;
 dispositif.status = DispositifStatus.ACTIVE;
@@ -157,5 +158,3 @@ dispositif.hasDraftVersion = false;
 dispositif.publishedAt = new Date("2023-12-01T14:34:29.335Z");
 dispositif.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");
 dispositif.notificationsSent = {};
-
-export { dispositif };

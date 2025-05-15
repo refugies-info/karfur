@@ -1,7 +1,7 @@
 import { ContentType } from "@refugies-info/api-types";
 import cloneDeep from "lodash/cloneDeep";
 import { ThemeModel } from "~/typegoose";
-import { demarche, dispositif, theme } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import { targets } from "../__fixtures__/targets";
 import {
   filterTargets,
@@ -56,7 +56,7 @@ describe("notification helpers", () => {
   });
 
   it("should getAge", () => {
-    const disp1 = cloneDeep(dispositif);
+    const disp1 = cloneDeep(fixtures.dispositif);
 
     disp1.metadatas.age = null;
     const res1 = getAge(disp1);
@@ -85,7 +85,7 @@ describe("notification helpers", () => {
   });
 
   it("should parseDispositif", () => {
-    const res = parseDispositif(dispositif);
+    const res = parseDispositif(fixtures.dispositif);
     expect(res).toEqual({
       departments: ["13 - Bouches-du-Rhône"],
       age: {
@@ -124,17 +124,17 @@ describe("notification helpers", () => {
       type: ContentType.DEMARCHE,
       mainThemeId: "theme1",
     };
-    const res1 = filterTargetsForDemarche(targets, req1, demarche);
+    const res1 = filterTargetsForDemarche(targets, req1, fixtures.demarche);
     expect(res1.map((r) => r.uid)).toEqual(["1", "2", "6"]);
   });
 
   it("should getNotificationEmoji", () => {
-    const disp1 = dispositif;
-    disp1.theme = new ThemeModel(theme);
+    const disp1 = fixtures.dispositif;
+    disp1.theme = new ThemeModel(fixtures.theme);
     const res1 = getNotificationEmoji(disp1);
     expect(res1).toEqual("💼");
 
-    const disp2 = dispositif;
+    const disp2 = fixtures.dispositif;
     disp2.theme = null;
     const res2 = getNotificationEmoji(disp2);
     expect(res2).toEqual("🔔");

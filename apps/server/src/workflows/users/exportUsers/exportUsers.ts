@@ -1,5 +1,5 @@
 import { ProgressionIndicator } from "@refugies-info/api-types";
-import { airtableUserBase } from "~/connectors/airtable/airtable";
+import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import { computeGlobalIndicator } from "~/controllers/traduction/lib";
 import logger from "~/logger";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
@@ -25,7 +25,7 @@ interface UserToExport {
 
 const exportUsersInAirtable = (users: UserToExport[]): void => {
   logger.info(`[exportUsersInAirtable] export ${users.length} users in airtable`);
-  return airtableUserBase("Users").create(users, { typecast: true }, function (err: Error) {
+  return getAirtableUserTable("Users").create(users, { typecast: true }, function (err: Error) {
     if (err) {
       logger.error("[exportUsersInAirtable] error while exporting users to airtable", {
         usersId: users.map((user) => user.fields.Pseudonyme),
