@@ -13,6 +13,7 @@ import { MailEvent } from "./MailEvent";
 import { Need, NeedId } from "./Need";
 import { Notification } from "./Notification";
 import { Role } from "./Role";
+import { Snapshot, SnapshotType } from "./Snapshot";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { TraductionDiff, TraductionId, Traductions, TraductionsStatus } from "./Traductions";
@@ -37,6 +38,7 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
     collection: "dispositifs_draft",
   },
 });
+export const SnapshotModel = getModelForClass(Snapshot);
 export const ErrorModel = getModelForClass(Error);
 export const ImageModel = getModelForClass(Image);
 export const IndicatorModel = getModelForClass(Indicator);
@@ -66,6 +68,7 @@ export {
   Notification,
   NotificationsSettings,
   Role,
+  Snapshot,
   Structure,
   Theme,
   Traductions,
@@ -79,6 +82,7 @@ export type {
   LangueId,
   LogId,
   NeedId,
+  SnapshotType,
   StructureId,
   ThemeId,
   TraductionDiff,

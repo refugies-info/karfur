@@ -8,7 +8,7 @@ import {
   Notification,
   NotificationModel,
 } from "~/typegoose";
-import { demarche, dispositif } from "../../../__fixtures__";
+import { fixtures } from "../../../__fixtures__";
 import * as adminOptionsRepository from "../../adminOptions/adminOptions.repository";
 import * as appusersRepository from "../../appusers/appusers.repository";
 import * as dispositifRepository from "../../dispositif/dispositif.repository";
@@ -148,7 +148,7 @@ describe("sendDispositifNotifications", () => {
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
 
     // Mock data
-    const dispositifId = dispositif._id;
+    const dispositifId = fixtures.dispositif._id;
     const lang = "fr";
     const requirements = {
       age: {
@@ -181,13 +181,13 @@ describe("sendDispositifNotifications", () => {
 
     // Mock function implementations
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
-    getDispositifByIdMock.mockResolvedValue(new DispositifModel(dispositif));
+    getDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
     getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
     insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
     getNotificationsToSendMock.mockResolvedValue(messages);
-    updateDispositifInDBMock.mockResolvedValue(dispositif);
+    updateDispositifInDBMock.mockResolvedValue(fixtures.dispositif);
 
     // Call the function
     await notifications.sendDispositifNotifications(dispositifId, lang);
@@ -212,7 +212,7 @@ describe("sendDispositifNotifications", () => {
       requirements,
       lang,
     );
-    expect(getNotificationEmojiMock).toHaveBeenCalledWith(new DispositifModel(dispositif));
+    expect(getNotificationEmojiMock).toHaveBeenCalledWith(new DispositifModel(fixtures.dispositif));
     expect(insertNotificationsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => ({
         uid: t.uid,
@@ -220,7 +220,7 @@ describe("sendDispositifNotifications", () => {
         title: "🔔 Nouvelle offre - Apprendre le français avec Des mots d'ancrage",
         data: {
           type: "dispositif",
-          contentId: dispositif._id.toString(),
+          contentId: fixtures.dispositif._id.toString(),
         },
       })),
     );
@@ -250,7 +250,7 @@ describe("sendDispositifNotifications", () => {
 
     // Mock function implementations
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
-    getDispositifByIdMock.mockResolvedValue(new DispositifModel(demarche));
+    getDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.demarche));
 
     // Call the function
     await notifications.sendDispositifNotifications(dispositifId, lang);
@@ -285,7 +285,9 @@ describe("sendDispositifNotifications", () => {
 
     // Mock function implementations
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
-    getDispositifByIdMock.mockResolvedValue(new DispositifModel({ ...dispositif, notificationsSent: { fr: true } }));
+    getDispositifByIdMock.mockResolvedValue(
+      new DispositifModel({ ...fixtures.dispositif, notificationsSent: { fr: true } }),
+    );
 
     // Call the function
     await notifications.sendDispositifNotifications(dispositifId, lang);
@@ -320,7 +322,7 @@ describe("sendDemarcheNotifications", () => {
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
 
     // Mock data
-    const dispositifId = demarche._id;
+    const dispositifId = fixtures.demarche._id;
     const lang = "fr";
     const requirements = {
       age: {
@@ -352,7 +354,7 @@ describe("sendDemarcheNotifications", () => {
     ];
 
     // Mock function implementations
-    const demarcheModel = new DispositifModel(demarche);
+    const demarcheModel = new DispositifModel(fixtures.demarche);
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(demarcheModel);
     getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
@@ -360,7 +362,7 @@ describe("sendDemarcheNotifications", () => {
     getNotificationEmojiMock.mockReturnValue("🔔");
     insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
     getNotificationsToSendMock.mockResolvedValue(messages);
-    updateDispositifInDBMock.mockResolvedValue(dispositif);
+    updateDispositifInDBMock.mockResolvedValue(fixtures.dispositif);
 
     // Call the function
     await notifications.sendDemarcheNotifications(dispositifId);
@@ -390,10 +392,10 @@ describe("sendDemarcheNotifications", () => {
       targetUsers.map((t) => ({
         uid: t.uid,
         seen: false,
-        title: `🔔 ${t.selectedLanguage === "fa" ? "پیشنهاد جدید" : "Nouvelle offre"} : ${demarche.translations[t.selectedLanguage].content.titreInformatif}`,
+        title: `🔔 ${t.selectedLanguage === "fa" ? "پیشنهاد جدید" : "Nouvelle offre"} : ${fixtures.demarche.translations[t.selectedLanguage].content.titreInformatif}`,
         data: {
           type: "dispositif",
-          contentId: demarche._id.toString(),
+          contentId: fixtures.demarche._id.toString(),
         },
       })),
     );

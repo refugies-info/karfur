@@ -14,7 +14,6 @@ import { useLocale } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
-import Breadcrumb from "../Breadcrumb";
 import { sharingOptions } from "../function";
 import SectionButtons from "../SectionButtons";
 import Title from "../Title";
@@ -35,7 +34,6 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   return (
     <header className={styles.container}>
-      {pageContext.mode === "view" && <Breadcrumb dispositif={dispositif} />}
       <div className="relative">
         <Title />
         {pageContext.mode === "view" && (

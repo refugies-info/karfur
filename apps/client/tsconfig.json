@@ -8,7 +8,11 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "target": "ES2022",
-    "plugins": [{ "name": "next" }]
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "~/*": ["*"],
+      "@refugies-info/ui/*": ["../../packages/ui/src/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

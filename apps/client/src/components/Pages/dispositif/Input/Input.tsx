@@ -9,6 +9,7 @@ interface Props {
   type?: "text" | "email" | "tel" | "textarea";
   placeholder?: string;
   label?: string;
+  description?: string;
   icon?: string;
   className?: string;
   error?: string | null;
@@ -22,7 +23,12 @@ interface Props {
 const Input = (props: Props) => {
   return (
     <div className={cls(styles.container, props.valid && styles.valid, !!props.error && styles.error, props.className)}>
-      {props.label && <label htmlFor={props.id}>{props.label}</label>}
+      {props.label && (
+        <label htmlFor={props.id}>
+          {props.label}
+          {props.description && <span className="fr-hint-text">{props.description}</span>}
+        </label>
+      )}
       <div className={cls(styles.wrapper, props.icon && styles.with_icon)}>
         {props.type === "textarea" ? (
           <textarea

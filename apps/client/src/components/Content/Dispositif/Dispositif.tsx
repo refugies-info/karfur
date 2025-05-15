@@ -1,18 +1,9 @@
 import { ContentType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
+
 import { useSelector } from "react-redux";
-import {
-  ActionButtons,
-  Banner,
-  Contributors,
-  Feedback,
-  Header,
-  LinkedThemes,
-  Map,
-  Section,
-  Sponsors,
-} from "~/components/Pages/dispositif";
+import { Banner, Breadcrumb, Contributors, Header, Map, Section, Sponsors } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
@@ -21,6 +12,7 @@ import {
   RightSidebarEdition,
   SponsorsEdit,
 } from "~/components/Pages/dispositif/Edition";
+import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
 import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
@@ -43,7 +35,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 
 const Dispositif = (props: Props) => {
   const { t } = useTranslation();
-  const { isTablet } = useWindowSize();
+  const { isTablet, isMobile } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -65,6 +57,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage?.secure_url}
       />
       {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
+      {isViewMode && <Breadcrumb dispositif={dispositif} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
       <div className={styles.content}>
         <div className={styles.left}>
@@ -80,10 +73,6 @@ const Dispositif = (props: Props) => {
           {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
           {isViewMode && (
             <>
-              <Feedback />
-              <span className={styles.divider} />
-              <LinkedThemes />
-
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
                 {t("topLink")}
               </FRLink>
@@ -92,13 +81,12 @@ const Dispositif = (props: Props) => {
 
           <span className={styles.divider} />
           {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+          {isViewMode && <Contributors />}
         </div>
 
         <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
       </div>
-
-      {isTablet && <ActionButtons />}
-      {isViewMode && <Contributors />}
+      {isTablet && <NorthStar />}
     </div>
   );
 };
