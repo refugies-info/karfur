@@ -13,7 +13,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
   if (!dispositif) return null;
   return (
-    <div className="w-full bg-white/80 py-3" style={{ backgroundColor: theme?.colors.color30 || "" }}>
+    <div className="w-full bg-white/80 py-3 text-xs" style={{ backgroundColor: theme?.colors.color30 || "" }}>
       <div className="fr-container flex justify-between">
         <div className="flex items-center">
           <BreadcrumbDetails dispositif={dispositif} />
