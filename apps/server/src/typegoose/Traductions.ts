@@ -89,7 +89,7 @@ export class Traductions extends Base {
   @prop({ type: () => [String] })
   public toFinish?: string[];
 
-  @prop()
+  @prop({ enum: Object.values(TraductionsType), type: String })
   public type: TraductionsType;
 
   @prop()

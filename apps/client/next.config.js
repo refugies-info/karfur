@@ -34,6 +34,10 @@ module.exports = {
       test: /\.woff2$/,
       type: "asset/resource",
     });
+    config.module.rules.push({
+      test: /\.lottie$/,
+      type: "asset/resource",
+    });
     return config;
   },
   //This option requires Next 13.1 or newer, if you can't update you can use this plugin instead: https://github.com/martpie/next-transpile-modules

@@ -17,12 +17,14 @@ interface TitleProps {
 const Title = (props: TitleProps) => {
   const { t } = useTranslation();
   return (
-    <p className={styles.title} style={{ color: props.color }}>
-      {props.titleKey === "abstract" && (
-        <EVAIcon name="file-text-outline" size={32} fill={props.color} className="me-2" />
-      )}
-      {t(getDispositifSectionTitle(props.titleKey))}
-    </p>
+    props.titleKey !== "what" && ( // Hide the 'what' section title as per RI-561
+      <p className={styles.title} style={{ color: props.color }}>
+        {props.titleKey === "abstract" && (
+          <EVAIcon name="file-text-outline" size={32} fill={props.color} className="me-2" />
+        )}
+        {t(getDispositifSectionTitle(props.titleKey))}
+      </p>
+    )
   );
 };
 

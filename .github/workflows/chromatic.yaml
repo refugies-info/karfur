@@ -3,12 +3,13 @@ name: Chromatic
 on:
   push:
     branches-ignore:
-      - master-mobile
-      - master-frontend
+      - dependabot/**
       - master-backend
-      - staging-mobile
-      - staging-frontend
+      - master-frontend
+      - master-mobile
       - staging-backend
+      - staging-frontend
+      - staging-mobile
   workflow_dispatch:
 
 jobs:
@@ -44,4 +45,3 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           buildScriptName: build
           workingDir: apps/storybook
-          skip: "dependabot/**" # 👈 Option to skip Chromatic for certain branches
