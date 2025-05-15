@@ -32,6 +32,7 @@ import {
 } from "@refugies-info/api-types";
 import express from "express";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
+import { validateId } from "~/libs/validateId";
 import logger from "~/logger";
 import { Response, ResponseWithData } from "~/types/interface";
 
@@ -193,6 +194,7 @@ export class DispositifController extends Controller {
     @Body() body: PublishDispositifRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return publishDispositif(id, body, request.user);
   }
 
@@ -206,6 +208,7 @@ export class DispositifController extends Controller {
     @Body() body: StructureReceiveDispositifRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return structureReceiveDispositif(id, body, request.user);
   }
 
@@ -214,6 +217,7 @@ export class DispositifController extends Controller {
   })
   @Post("/{id}/views")
   public async addViewOrFavorite(@Path() id: string, @Body() types: AddViewsRequest): Response {
+    validateId(id, "dispositif");
     return updateNbVuesOrFavoritesOnContent(id, types);
   }
 
@@ -227,6 +231,7 @@ export class DispositifController extends Controller {
     @Body() body: AdminCommentsRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return updateDispositifAdminComments(id, body, request.userId);
   }
 
@@ -240,6 +245,7 @@ export class DispositifController extends Controller {
     @Body() body: MainSponsorRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return modifyDispositifMainSponsor(id, body, request.userId);
   }
 
@@ -249,6 +255,7 @@ export class DispositifController extends Controller {
   })
   @Patch("/{id}/properties")
   public async updateProperties(@Path() id: string, @Body() body: UpdateDispositifPropertiesRequest): Response {
+    validateId(id, "dispositif");
     return updateDispositifProperties(id, body);
   }
 
@@ -262,6 +269,7 @@ export class DispositifController extends Controller {
     @Body() body: DispositifStatusRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return updateDispositifStatus(id, body, request.user);
   }
   @Security({
@@ -274,6 +282,7 @@ export class DispositifController extends Controller {
     @Body() body: DispositifThemeNeedsRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return updateDispositifTagsOrNeeds(id, body, request.user);
   }
 
@@ -284,6 +293,7 @@ export class DispositifController extends Controller {
   })
   @Put("/{id}/merci")
   public async addMerci(@Path() id: string, @Request() request: express.Request): Response {
+    validateId(id, "dispositif");
     return addMerci(id, request.userId);
   }
 
@@ -293,6 +303,7 @@ export class DispositifController extends Controller {
   })
   @Delete("/{id}/merci")
   public async deleteMerci(@Path() id: string, @Request() request: express.Request): Response {
+    validateId(id, "dispositif");
     return deleteMerci(id, request.userId);
   }
   @Security({
@@ -305,6 +316,7 @@ export class DispositifController extends Controller {
     @Body() body: { avis: boolean; anonymousUserId?: string; language?: string; userId?: string },
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return addAvis(id, request.userId || body.userId, body.anonymousUserId || null, body.avis, body.language);
   }
   @Security({
@@ -313,6 +325,7 @@ export class DispositifController extends Controller {
   })
   @Delete("/{id}/avis")
   public async deleteAvis(@Path() id: string, @Request() request: express.Request): Response {
+    validateId(id, "dispositif");
     return deleteAvis(id, request.userId);
   }
   @Security({
@@ -325,6 +338,7 @@ export class DispositifController extends Controller {
     @Body() body: { avis: boolean; anonymousUserId?: string; language?: string; userId?: string },
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return updateAvis(id, request.userId || body.userId, body.anonymousUserId || "", body.avis, body.language);
   }
   @Security({
@@ -337,6 +351,7 @@ export class DispositifController extends Controller {
     @Body() body: AddSuggestionDispositifRequest,
     @Request() request: express.Request,
   ): Response {
+    validateId(id, "dispositif");
     return addSuggestion(id, body, request.userId);
   }
   @Security({
@@ -345,6 +360,7 @@ export class DispositifController extends Controller {
   })
   @Patch("/{id}/suggestion")
   public async updateSuggestion(@Path() id: string, @Body() body: ReadSuggestionDispositifRequest): Response {
+    validateId(id, "dispositif");
     return patchSuggestion(id, body);
   }
   @Security({
@@ -353,6 +369,8 @@ export class DispositifController extends Controller {
   })
   @Delete("/{id}/suggestion/{suggestionId}")
   public async deleteSuggestion(@Path() id: string, @Path() suggestionId: string): Response {
+    validateId(id, "dispositif");
+    validateId(suggestionId, "suggestion");
     return deleteSuggestion(id, suggestionId);
   }
 
@@ -393,6 +411,7 @@ export class DispositifController extends Controller {
     @Body() body: UpdateDispositifRequest,
     @Request() request: express.Request,
   ): ResponseWithData<UpdateDispositifResponse> {
+    validateId(id, "dispositif");
     return updateDispositif(id, body, request.user);
   }
 
@@ -402,6 +421,7 @@ export class DispositifController extends Controller {
   })
   @Delete("/{id}")
   public async deleteDispositif(@Path() id: string, @Request() request: express.Request): Response {
+    validateId(id, "dispositif");
     return deleteDispositif(id, request.user);
   }
 
@@ -416,6 +436,7 @@ export class DispositifController extends Controller {
     @Query() locale: Languages,
     @Request() request: express.Request,
   ): ResponseWithData<GetDispositifResponse> {
+    validateId(id, "dispositif");
     return getContentById(id, locale, request.user);
   }
 }
