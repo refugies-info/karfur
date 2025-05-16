@@ -36,35 +36,27 @@ Sitemap.getLayout = (page: ReactElement) => page;
 
 export const getServerSideProps: GetServerSideProps = async ({ res, locales = [] }) => {
   const availableLocales = locales.filter((ln) => ln !== "default");
-  const allUrls: string[] = [];
 
-  // Fetch URLs for each locale
-  for (const loc of availableLocales) {
-    // Get dispositifs
-    const dispositifs = await API.getDispositifs({
-      type: ContentType.DISPOSITIF,
-      locale: loc,
-    });
-
-    // Get démarches
-    const demarches = await API.getDispositifs({
-      type: ContentType.DEMARCHE,
-      locale: loc,
-    });
-
-    // Add all URLs to the list
+  // Fetch URLs for each locale in parallel
+  const urlPromises = availableLocales.map(async (loc) => {
+    const dispositifs = await API.getDispositifs({ type: ContentType.DISPOSITIF, locale: loc });
+    const demarches = await API.getDispositifs({ type: ContentType.DEMARCHE, locale: loc });
+    const localeUrls: string[] = [];
     dispositifs.forEach((d) => {
-      allUrls.push(
+      localeUrls.push(
         `${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/${loc}${getPath("/dispositif/[id]", loc).replace("[id]", d._id.toString())}`,
       );
     });
-
     demarches.forEach((d) => {
-      allUrls.push(
+      localeUrls.push(
         `${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/${loc}${getPath("/demarche/[id]", loc).replace("[id]", d._id.toString())}`,
       );
     });
-  }
+    return localeUrls;
+  });
+
+  const allUrlsArrays = await Promise.all(urlPromises);
+  const allUrls = allUrlsArrays.flat();
 
   // Set cache headers - cache for 1 day, revalidate after 1 hour
   res?.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
