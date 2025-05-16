@@ -6,6 +6,18 @@ exports[`homepage renders homepage 1`] = `
     class="main"
   >
     <div
+      aria-hidden="true"
+      hidden=""
+    >
+      <a
+        href="/sitemap"
+      >
+        <span>
+          sitemap
+        </span>
+      </a>
+    </div>
+    <div
       class="fr-notice fr-notice--info"
       id="fr-notice-:r0:"
     >
