@@ -27,7 +27,7 @@ const NorthStar = () => {
 
   const trackData = useMemo(
     () => ({
-      langue: currentLanguage,
+      language: currentLanguage,
       dispositifId: dispositif?._id,
       type: dispositif?.typeContenu,
       themeId: theme?._id,
