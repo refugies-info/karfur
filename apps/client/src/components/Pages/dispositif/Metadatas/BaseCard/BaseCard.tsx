@@ -4,9 +4,8 @@ import React, { useContext, useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Tooltip from "~/components/UI/Tooltip";
 import { useUniqueId } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import PageContext from "~/utils/pageContext";
-import styles from "./BaseCard.module.scss";
 
 type BaseCardStatus = "done" | "error";
 
@@ -37,9 +36,9 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
   // all card content
   if (infoNotUseful) {
     return (
-      <div className={styles.item}>
-        <div className={cls(styles.details, "ms-0")}>
-          <span className={styles.content}>Non pertinent pour mon action</span>
+      <div className="">
+        <div className="">
+          <span className="">Non pertinent pour mon action</span>
         </div>
       </div>
     );
@@ -57,11 +56,18 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
     if (hasDefault) content = item.defaultValue;
 
     return (
-      <div key={i} className={cls(styles.item, infoMissing && styles.missing)}>
-        {item.icon && <div className={styles.icon}>{item.icon}</div>}
-        <div className={cls(styles.details, !item.icon && styles.no_icon)}>
-          <span className={styles.label}>{item.label}</span>
-          <span className={styles.content}>{content}</span>
+      <div key={i} className="mb-4 flex gap-2">
+        {item.icon && item.icon}
+        <div className="flex flex-col ltr:text-left rtl:text-right">
+          <h4 className="text-corps-sm mb-0">{item.label}</h4>
+          <span
+            className={cn(
+              "text-corps-sm relative h-full [&_a]:inline",
+              "before:content before:bg-border-default-grey before:absolute before:-left-4.75 before:block before:h-full before:w-px",
+            )}
+          >
+            {content}
+          </span>
         </div>
       </div>
     );
@@ -71,7 +77,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
 /**
  * Base component of the left sidebar card. Can be used in VIEW or EDIT mode.
  */
-const BaseCard = ({ id, title, items, color, onClick }: Props) => {
+const BaseCard = ({ id, title, items, onClick }: Props) => {
   const pageContext = useContext(PageContext);
   const tooltipId = useUniqueId("tooltip_card_");
 
@@ -85,41 +91,29 @@ const BaseCard = ({ id, title, items, color, onClick }: Props) => {
     () =>
       !noContent ? (
         <>
-          <p className={styles.title} style={{ color }}>
+          <h3 className="text-title-xxs font-bold">
             {title}
             {status === "done" && (
               <>
-                <EVAIcon
-                  name="checkmark-circle-2"
-                  fill={fr.colors.decisions.background.actionHigh.blueFrance.active}
-                  className={cls(styles.status, styles.done)}
-                />
-                <EVAIcon
-                  name="edit-2"
-                  fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
-                  className={cls(styles.status, styles.edit)}
-                />
+                <EVAIcon name="checkmark-circle-2" fill={fr.colors.decisions.background.actionHigh.blueFrance.active} />
+                <EVAIcon name="edit-2" fill={fr.colors.decisions.text.actionHigh.blueFrance.default} />
               </>
             )}
             {status === "error" && (
-              <EVAIcon
-                name="alert-triangle"
-                fill={fr.colors.decisions.background.actionHigh.error.default}
-                className={cls(styles.status)}
-              />
+              <EVAIcon name="alert-triangle" fill={fr.colors.decisions.background.actionHigh.error.default} />
             )}
-          </p>
+          </h3>
           {getContent(items, pageContext.mode === "edit")}
         </>
       ) : null,
-    [title, items, color, status, noContent, pageContext.mode],
+    [title, items, status, noContent, pageContext.mode],
   );
 
   if (noContent) return null;
   return onClick ? (
     <button
       id={tooltipId}
-      className={cls(styles.card, styles.btn, status === "error" && styles.error)}
+      // className={cn(styles.card, styles.btn, status === "error" && styles.error)}
       onClick={(e: any) => {
         e.preventDefault();
         onClick();
@@ -134,7 +128,13 @@ const BaseCard = ({ id, title, items, color, onClick }: Props) => {
       )}
     </button>
   ) : (
-    <div id={id} className={cls(styles.card, status === "error" && styles.error)}>
+    <div
+      id={id}
+      className={cn(
+        "bg-alt-blue-france border-default-grey mb-4 border p-4 md:mb-0 md:border-0 md:bg-white/50 md:backdrop-blur-[30px]",
+        // status === "error" && styles.error,
+      )}
+    >
       {cardContent}
     </div>
   );

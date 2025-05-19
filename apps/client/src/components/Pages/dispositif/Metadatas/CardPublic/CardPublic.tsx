@@ -1,9 +1,6 @@
 import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
-import AgeIcon from "~/assets/dispositif/metadatas/Age";
-import FrenchLevelIcon from "~/assets/dispositif/metadatas/FrenchLevel";
-import StatusIcon from "~/assets/dispositif/metadatas/Status";
 import FRLink from "~/components/UI/FRLink";
 import { Event } from "~/lib/tracking";
 import PageContext from "~/utils/pageContext";
@@ -39,8 +36,13 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, on
         {
           label: t("Infocards.publicStatus"),
           content: getPublicStatus(dataPublicStatus, t),
-          icon: <StatusIcon />,
+          icon: <i className="ri-id-card-line [&::before]:![--icon-size:1.36rem]" />,
           defaultValue: getAllPublicStatus(t),
+        },
+        {
+          label: t("Infocards.public"),
+          content: getPublic(dataPublic, t),
+          icon: <i className="fr-icon-group-line [&::before]:![--icon-size:1.36rem]" />,
         },
         {
           label: t("Infocards.frenchLevel"),
@@ -55,7 +57,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, on
                 {getFrenchLevel(dataFrenchLevel, t)}
               </FRLink>
             ),
-          icon: <FrenchLevelIcon />,
+          icon: <i className="fr-icon-discuss-line [&::before]:![--icon-size:1.36rem]" />,
           defaultValue: (
             <FRLink
               href={isEditMode ? "#" : getFrenchLevelLink([])}
@@ -72,7 +74,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, on
           ) : (
             <FRLink href={isEditMode ? "#" : getAgeLink(dataAge)}>{getAge(dataAge, t)}</FRLink>
           ),
-          icon: <AgeIcon />,
+          icon: <i className="fr-icon-parent-line [&::before]:![--icon-size:1.36rem]" />,
           defaultValue: (
             <FRLink
               href={isEditMode ? "#" : getAgeLink(undefined)}
@@ -81,11 +83,6 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, on
               Tous les âges
             </FRLink>
           ),
-        },
-        {
-          label: t("Infocards.public"),
-          content: getPublic(dataPublic, t),
-          icon: <StatusIcon />,
         },
       ]}
       onClick={onClick}

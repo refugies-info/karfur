@@ -1,27 +1,29 @@
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
 import { useTranslation } from "next-i18next";
+import CardInfo from "~/components/Pages/dispositif/Metadatas/CardInfo";
+import { cn } from "~/lib/classname";
 import CardAvailability from "./CardAvailability";
 import CardConditions from "./CardConditions";
 import CardLocation from "./CardLocation";
-import CardPrice from "./CardPrice";
 import CardPublic from "./CardPublic";
 
 interface Props {
   metadatas: GetDispositifResponse["metadatas"] | undefined;
   typeContenu: ContentType;
+  className?: string;
 }
 
 /**
  * Shows the metadatas of a dispositif, with Cards, in VIEW mode
  */
-const Metadatas = ({ metadatas, typeContenu }: Props) => {
+const Metadatas = ({ metadatas, typeContenu, className }: Props) => {
   const { t } = useTranslation();
 
   if (!metadatas) return <></>;
   return (
-    <div id="anchor-who">
-      <p>{t("Dispositif.importantInformations")}</p>
+    <div id="anchor-who" className={cn(className)}>
+      <h2 className="text-title-lg font-bold md:hidden">{t("Dispositif.importantInformations")}</h2>
 
       {(!isUndefined(metadatas.publicStatus) ||
         !isUndefined(metadatas.public) ||
@@ -34,7 +36,7 @@ const Metadatas = ({ metadatas, typeContenu }: Props) => {
           dataAge={metadatas.age}
         />
       )}
-      {metadatas.price && <CardPrice data={metadatas.price} />}
+      {metadatas.price && <CardInfo />}
       {(metadatas.commitment || metadatas.frequency || metadatas.timeSlots) && (
         <CardAvailability
           dataCommitment={metadatas.commitment}

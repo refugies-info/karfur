@@ -3,9 +3,10 @@ import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/
 import { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
+import CardInfo from "~/components/Pages/dispositif/Metadatas/CardInfo";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useContentType } from "~/hooks/dispositif";
-import { cls, cn } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import CardAvailability from "../../Metadatas/CardAvailability";
@@ -13,7 +14,6 @@ import CardConditions from "../../Metadatas/CardConditions";
 import CardDemarcheAdministration from "../../Metadatas/CardDemarcheAdministration";
 import CardLocation from "../../Metadatas/CardLocation";
 import CardMainSponsor from "../../Metadatas/CardMainSponsor";
-import CardPrice from "../../Metadatas/CardPrice";
 import CardPublic from "../../Metadatas/CardPublic";
 import CardTheme from "../../Metadatas/CardTheme";
 import AddContentButton from "../AddContentButton";
@@ -28,7 +28,6 @@ import {
   ModalPublic,
   ModalThemes,
 } from "../Modals";
-import styles from "./LeftSidebarEdition.module.scss";
 
 interface Props {
   typeContenu: ContentType;
@@ -39,17 +38,19 @@ interface Props {
  * Left sidebar of the page in EDIT mode.
  * For each section, it shows either an AddContentButton if no content yet, or a card if the value is set.
  */
-const LeftSidebarEdition = (props: Props) => {
+const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
   const values = useWatch<UpdateDispositifRequest>();
   const currentTheme = useSelector(themeSelector(values.theme));
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
+  console.log(values);
+
   const { activeModal, setActiveModal } = useContext(PageContext);
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
 
   return (
-    <div className={cn(styles.container, props.className)}>
+    <div className={cn(className)}>
       <div id="step-theme"></div>
       {values.theme !== undefined ? (
         <CardTheme
@@ -64,7 +65,7 @@ const LeftSidebarEdition = (props: Props) => {
             name="color-palette-outline"
             size={24}
             fill={fr.colors.decisions.text.disabled.grey.default}
-            className={cn(styles.theme_icon, "me-2")}
+            className={cn("me-2")}
           />
           Thèmes
         </AddContentButton>
@@ -87,7 +88,7 @@ const LeftSidebarEdition = (props: Props) => {
         </>
       )}
 
-      <p className={styles.title}>C'est pour qui ?</p>
+      <p>C'est pour qui ?</p>
 
       <div id="step-public"></div>
       {values.metadatas?.publicStatus !== undefined ||
@@ -99,7 +100,6 @@ const LeftSidebarEdition = (props: Props) => {
           dataAge={values.metadatas.age as Metadatas["age"]}
           dataFrenchLevel={values.metadatas.frenchLevel}
           dataPublic={values.metadatas.public}
-          color={color}
           onClick={() => setActiveModal?.("Public")}
         />
       ) : (
@@ -110,11 +110,7 @@ const LeftSidebarEdition = (props: Props) => {
 
       <div id="step-price"></div>
       {values.metadatas?.price !== undefined ? (
-        <CardPrice
-          data={values.metadatas.price as Metadatas["price"]}
-          color={color}
-          onClick={() => setActiveModal?.("Price")}
-        />
+        <CardInfo formData={values} onClick={() => setActiveModal?.("Price")} />
       ) : (
         <AddContentButton onClick={() => setActiveModal?.("Price")} className="mb-6" size="md">
           Prix
@@ -131,7 +127,6 @@ const LeftSidebarEdition = (props: Props) => {
               dataCommitment={values.metadatas.commitment as Metadatas["commitment"]}
               dataFrequency={values.metadatas.frequency as Metadatas["frequency"]}
               dataTimeSlots={values.metadatas.timeSlots}
-              color={color}
               onClick={() => setActiveModal?.("Availability")}
             />
           ) : (
@@ -144,11 +139,7 @@ const LeftSidebarEdition = (props: Props) => {
 
       <div id="step-conditions"></div>
       {values.metadatas?.conditions !== undefined ? (
-        <CardConditions
-          data={values.metadatas.conditions}
-          color={color}
-          onClick={() => setActiveModal?.("Conditions")}
-        />
+        <CardConditions data={values.metadatas.conditions} onClick={() => setActiveModal?.("Conditions")} />
       ) : (
         <AddContentButton onClick={() => setActiveModal?.("Conditions")} className="mb-6" size="md">
           Conditions
@@ -161,8 +152,7 @@ const LeftSidebarEdition = (props: Props) => {
           {values.metadatas?.location !== undefined ? (
             <CardLocation
               data={values.metadatas.location}
-              typeContenu={props.typeContenu || ContentType.DISPOSITIF}
-              color={color}
+              typeContenu={typeContenu || ContentType.DISPOSITIF}
               onClick={() => setActiveModal?.("Location")}
             />
           ) : (
@@ -173,7 +163,7 @@ const LeftSidebarEdition = (props: Props) => {
         </>
       )}
 
-      <p className={styles.title}>À faire en dernier</p>
+      <p>À faire en dernier</p>
 
       <div id="step-mainSponsor"></div>
       {!!values.mainSponsor ? (
@@ -188,7 +178,7 @@ const LeftSidebarEdition = (props: Props) => {
             name="home-outline"
             size={24}
             fill={fr.colors.decisions.text.disabled.grey.default}
-            className={cls(styles.theme_icon, "me-2")}
+            className={cn("me-2")}
           />
           Structure
         </AddContentButton>
@@ -205,7 +195,7 @@ const LeftSidebarEdition = (props: Props) => {
           name="file-text-outline"
           size={24}
           fill={fr.colors.decisions.text.disabled.grey.default}
-          className={cls(styles.theme_icon, "me-2")}
+          className={cn("me-2")}
         />
         En bref
       </AddContentButton>

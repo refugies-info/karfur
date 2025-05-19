@@ -52,38 +52,44 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   );
 
   return (
-    <section
-      id={`anchor-${sectionKey}`}
-      className={cn(
-        "md:shadow-ri relative bg-white p-4 md:p-12",
-        sectionKey === "what" && "max-sm:bg-transparent",
-        className,
-      )}
-      style={{ "--theme-color": colors.color100 } as React.CSSProperties}
-    >
-      {sectionKey === "what" ? (
-        <>
-          <Header typeContenu={contentType || ContentType.DISPOSITIF} />
-          {contentHtml && isViewMode && <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />}
-          <RichText id={sectionKey} value={contentHtml} />
-          {isMobile && (
-            <Metadatas
-              metadatas={dispositif?.metadatas}
-              typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
+    <>
+      <section
+        id={`anchor-${sectionKey}`}
+        className={cn(
+          "md:shadow-ri relative bg-white p-4 md:p-12",
+          sectionKey === "what" && "max-sm:bg-transparent",
+          className,
+        )}
+        style={{ "--theme-color": colors.color100 } as React.CSSProperties}
+      >
+        {sectionKey === "what" ? (
+          <>
+            <Header typeContenu={contentType || ContentType.DISPOSITIF} />
+            {contentHtml && isViewMode && (
+              <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />
+            )}
+            <RichText id={sectionKey} value={contentHtml} />
+          </>
+        ) : (
+          <>
+            <SectionTitle titleKey={sectionKey} />
+            <Accordions
+              content={contentAccordions}
+              sectionKey={sectionKey as "why" | "how" | "next"}
+              contentType={contentType || ContentType.DISPOSITIF}
             />
-          )}
-        </>
-      ) : (
-        <>
-          <SectionTitle titleKey={sectionKey} />
-          <Accordions
-            content={contentAccordions}
-            sectionKey={sectionKey as "why" | "how" | "next"}
-            contentType={contentType || ContentType.DISPOSITIF}
-          />
-        </>
+          </>
+        )}
+      </section>
+      {/* We bring back the metadatas in the what section on mobile */}
+      {isMobile && sectionKey === "what" && (
+        <Metadatas
+          className="bg-white p-4"
+          metadatas={dispositif?.metadatas}
+          typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
+        />
       )}
-    </section>
+    </>
   );
 };
 

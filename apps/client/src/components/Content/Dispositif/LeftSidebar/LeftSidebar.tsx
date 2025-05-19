@@ -29,7 +29,11 @@ const LeftSidebar = ({ className }: { className?: string }) => {
       <ShareButtons />
 
       <Summary />
-      <Metadatas metadatas={dispositif?.metadatas} typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF} />
+      <Metadatas
+        className="flex flex-col gap-4"
+        metadatas={dispositif?.metadatas}
+        typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
+      />
     </aside>
   );
 };
