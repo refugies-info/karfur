@@ -83,8 +83,12 @@ const initMatomo = () => {
  * Inits GA with consent option, or update if already initialized
  */
 export const initGA = (consent: boolean) => {
-  // if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
-  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
+  const trackingId =
+    process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
+      ? process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS_PROD
+      : process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS_STAG || null;
+
+  if (!trackingId) return;
 
   if (!ReactGA.isInitialized) {
     ReactGA.gtag("consent", "default", {
