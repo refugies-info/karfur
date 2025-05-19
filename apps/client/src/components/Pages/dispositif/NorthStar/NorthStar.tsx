@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
 import useWindowSize from "~/hooks/useWindowSize";
-import { Event } from "~/lib/tracking";
+import { customEvent } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import { userSelector } from "~/services/User/user.selectors";
@@ -27,7 +27,7 @@ const NorthStar = () => {
 
   const trackData = useMemo(
     () => ({
-      language: currentLanguage,
+      langue: currentLanguage,
       dispositifId: dispositif?._id,
       type: dispositif?.typeContenu,
       themeId: theme?._id,
@@ -37,12 +37,12 @@ const NorthStar = () => {
 
   const sendTrackEvent = (newAvis: boolean | null) => {
     if (newAvis === null) {
-      Event("avis", currentAvis ? "positif" : "negatif", { count: -1, ...trackData });
+      customEvent("avis", { valeur: currentAvis ? "positif" : "negatif", count: -1, ...trackData });
     } else if (currentAvis !== null && currentAvis !== newAvis) {
-      Event("avis", newAvis ? "positif" : "negatif", { count: 1, ...trackData });
-      Event("avis", newAvis ? "negatif" : "positif", { count: -1, ...trackData });
+      customEvent("avis", { valeur: newAvis ? "positif" : "negatif", count: 1, ...trackData });
+      customEvent("avis", { valeur: !newAvis ? "positif" : "negatif", count: -1, ...trackData });
     } else {
-      Event("avis", newAvis ? "positif" : "negatif", { count: 1, ...trackData });
+      customEvent("avis", { valeur: newAvis ? "positif" : "negatif", count: 1, ...trackData });
     }
   };
 
