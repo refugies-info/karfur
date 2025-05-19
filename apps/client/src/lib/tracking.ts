@@ -61,11 +61,6 @@ export const Event = (category: string, action: string, label?: string | undefin
     action,
     label: label || undefined,
   });
-
-  //@ts-ignore
-  // eslint-disable-next-line no-undef
-  if (!!window.plausible) plausible(category, { props: { action, label } });
-  window._paq?.push(["trackEvent", category, action, label]);
 };
 
 /**
