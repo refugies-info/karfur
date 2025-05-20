@@ -54,7 +54,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
             )}
           >
             <span className="fr-icon-thumb-down-line" aria-hidden="true"></span>
-            {t("ui.northStar_notTseful", "Pas utile")}
+            {t("ui.northStar_notUseful", "Pas utile")}
           </Button>
         </div>
       </div>
