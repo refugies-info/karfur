@@ -9,6 +9,7 @@ import { Carrousel } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
@@ -57,6 +58,11 @@ const Homepage = (props: Props) => {
 
   return (
     <div className={commonStyles.main}>
+      <div hidden aria-hidden="true">
+        <Link href="/sitemap" prefetch={false}>
+          <span>sitemap</span>
+        </Link>
+      </div>
       <SEO
         title={
           isMobile
