@@ -1,5 +1,4 @@
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
-import isUndefined from "lodash/isUndefined";
 import { useTranslation } from "next-i18next";
 import CardInfo from "~/components/Pages/dispositif/Metadatas/CardInfo";
 import { cn } from "~/lib/classname";
@@ -25,18 +24,8 @@ const Metadatas = ({ metadatas, typeContenu, className }: Props) => {
     <div id="anchor-who" className={cn(className)}>
       <h2 className="text-title-lg font-bold md:hidden">{t("Dispositif.importantInformations")}</h2>
 
-      {(!isUndefined(metadatas.publicStatus) ||
-        !isUndefined(metadatas.public) ||
-        !isUndefined(metadatas.frenchLevel) ||
-        !isUndefined(metadatas.age)) && (
-        <CardPublic
-          dataPublicStatus={metadatas.publicStatus}
-          dataPublic={metadatas.public}
-          dataFrenchLevel={metadatas.frenchLevel}
-          dataAge={metadatas.age}
-        />
-      )}
-      {metadatas.price && <CardInfo />}
+      <CardPublic />
+      <CardInfo />
       {(metadatas.commitment || metadatas.frequency || metadatas.timeSlots) && (
         <CardAvailability
           dataCommitment={metadatas.commitment}

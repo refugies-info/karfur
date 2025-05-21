@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import CardInfo from "~/components/Pages/dispositif/Metadatas/CardInfo";
@@ -14,9 +14,10 @@ import CardConditions from "../../Metadatas/CardConditions";
 import CardDemarcheAdministration from "../../Metadatas/CardDemarcheAdministration";
 import CardLocation from "../../Metadatas/CardLocation";
 import CardMainSponsor from "../../Metadatas/CardMainSponsor";
-import CardPublic from "../../Metadatas/CardPublic";
 import CardTheme from "../../Metadatas/CardTheme";
 import AddContentButton from "../AddContentButton";
+
+import CardPublic from "~/components/Pages/dispositif/Metadatas/CardPublic";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -40,17 +41,20 @@ interface Props {
  */
 const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
   const values = useWatch<UpdateDispositifRequest>();
+
+  // Create a safe version of the form data that conforms to the expected types
+  const formData = useMemo(() => {
+    return values as UpdateDispositifRequest;
+  }, [values]);
   const currentTheme = useSelector(themeSelector(values.theme));
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
-  console.log(values);
-
-  const { activeModal, setActiveModal } = useContext(PageContext);
+  const { activeModal, setActiveModal, modalPage, setModalPage } = useContext(PageContext);
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
 
   return (
-    <div className={cn(className)}>
+    <div className={cn("flex flex-col gap-4", className)}>
       <div id="step-theme"></div>
       {values.theme !== undefined ? (
         <CardTheme
@@ -70,7 +74,6 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           Thèmes
         </AddContentButton>
       )}
-
       {contentType === ContentType.DEMARCHE && (
         <>
           {values.administration !== undefined && (!!values.administration?.name || !!values?.administration?.logo) ? (
@@ -87,35 +90,9 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           )}
         </>
       )}
+      <CardPublic id="step-public" formData={formData} />
 
-      <p>C'est pour qui ?</p>
-
-      <div id="step-public"></div>
-      {values.metadatas?.publicStatus !== undefined ||
-      values.metadatas?.age !== undefined ||
-      values.metadatas?.frenchLevel !== undefined ||
-      values.metadatas?.public !== undefined ? (
-        <CardPublic
-          dataPublicStatus={values.metadatas.publicStatus}
-          dataAge={values.metadatas.age as Metadatas["age"]}
-          dataFrenchLevel={values.metadatas.frenchLevel}
-          dataPublic={values.metadatas.public}
-          onClick={() => setActiveModal?.("Public")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Public")} className="mb-6" size="md">
-          Public visé
-        </AddContentButton>
-      )}
-
-      <div id="step-price"></div>
-      {values.metadatas?.price !== undefined ? (
-        <CardInfo formData={values} onClick={() => setActiveModal?.("Price")} />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Price")} className="mb-6" size="md">
-          Prix
-        </AddContentButton>
-      )}
+      <CardInfo id="step-price" formData={formData} />
 
       {contentType === ContentType.DISPOSITIF && (
         <>
@@ -136,7 +113,6 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           )}
         </>
       )}
-
       <div id="step-conditions"></div>
       {values.metadatas?.conditions !== undefined ? (
         <CardConditions data={values.metadatas.conditions} onClick={() => setActiveModal?.("Conditions")} />
@@ -145,7 +121,6 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           Conditions
         </AddContentButton>
       )}
-
       {contentType === ContentType.DISPOSITIF && (
         <>
           <div id="step-location"></div>
@@ -162,9 +137,7 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           )}
         </>
       )}
-
       <p>À faire en dernier</p>
-
       <div id="step-mainSponsor"></div>
       {!!values.mainSponsor ? (
         <CardMainSponsor
@@ -183,7 +156,6 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           Structure
         </AddContentButton>
       )}
-
       <div id="step-abstract"></div>
       <AddContentButton
         onClick={() => setActiveModal?.("Abstract")}
@@ -199,12 +171,11 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
         />
         En bref
       </AddContentButton>
-
       <ModalAvailability show={activeModal === "Availability"} toggle={toggleModal} />
       <ModalConditions show={activeModal === "Conditions"} toggle={toggleModal} />
       <ModalLocation show={activeModal === "Location"} toggle={toggleModal} />
       <ModalPrice show={activeModal === "Price"} toggle={toggleModal} />
-      <ModalPublic show={activeModal === "Public"} toggle={toggleModal} />
+      <ModalPublic show={activeModal === "Public"} toggle={toggleModal} page={modalPage} />
       <ModalThemes show={activeModal === "Themes"} toggle={toggleModal} />
       <ModalAbstract show={activeModal === "Abstract"} toggle={toggleModal} />
       <ModalMainSponsor show={activeModal === "MainSponsor"} toggle={toggleModal} />

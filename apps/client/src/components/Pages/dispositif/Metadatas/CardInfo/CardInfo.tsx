@@ -1,9 +1,8 @@
 import { UpdateDispositifRequest } from "@refugies-info/api-types";
-import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
+import { cn, MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { useCallback, useContext, useMemo } from "react";
+import { HTMLAttributes, useContext, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { ModalLocation, ModalPrice } from "~/components/Pages/dispositif/Edition/Modals";
 import FRLink from "~/components/UI/FRLink";
 import { formatDepartment } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
@@ -11,12 +10,12 @@ import { selectedDispositifSelector } from "~/services/SelectedDispositif/select
 import PageContext from "~/utils/pageContext";
 import { getCommitment, getFrequency, getLocationLink, getPrice, getTimeSlots } from "../functions";
 
-interface Props {
+type CardInfoProps = HTMLAttributes<HTMLDivElement> & {
   onClick?: () => void;
   formData?: UpdateDispositifRequest;
-}
+};
 
-const CardInfo = ({ onClick, formData }: Props) => {
+const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => {
   const { t } = useTranslation();
 
   const { mode } = useContext(PageContext);
@@ -30,17 +29,24 @@ const CardInfo = ({ onClick, formData }: Props) => {
   const commitment = dispositif?.metadatas?.commitment;
   const frequency = dispositif?.metadatas?.frequency;
   const { activeModal, setActiveModal } = useContext(PageContext);
-  const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
-
-  console.log(dispositif);
 
   // Toggle visibility, if edit mode true, else check if there is any data
   const showCard = isEditMode ? true : price || location || timeSlots || commitment || frequency;
 
+  useEffect(() => {
+    console.log("render CardInfo");
+  }, []);
+
   return (
     <>
       {showCard ? (
-        <MetaDataCard title="Informations pratiques">
+        <MetaDataCard
+          mode={isEditMode ? "edit" : "view"}
+          state={price ? "valid" : "invalid"}
+          title="Informations pratiques"
+          className={cn(className)}
+          {...props}
+        >
           {isEditMode || price ? (
             <MetaDataItem
               icon="fr-icon-money-euro-circle-line"
@@ -50,6 +56,37 @@ const CardInfo = ({ onClick, formData }: Props) => {
               {price ? getPrice(price, t) : "Non pertinent pour mon action"}
             </MetaDataItem>
           ) : null}
+
+          {isEditMode || commitment ? (
+            <MetaDataItem
+              icon="ri-hourglass-line"
+              title={t("Infocards.commitment")}
+              onClick={isEditMode ? () => setActiveModal?.("Availability") : undefined}
+            >
+              {commitment ? getCommitment(commitment, t) : "Non pertinent pour mon action"}
+            </MetaDataItem>
+          ) : null}
+
+          {isEditMode || frequency ? (
+            <MetaDataItem
+              icon="ri-calendar-schedule-line"
+              title={t("Infocards.frequency")}
+              onClick={isEditMode ? () => setActiveModal?.("Availability") : undefined}
+            >
+              {frequency ? getFrequency(frequency, t) : "Non pertinent pour mon action"}
+            </MetaDataItem>
+          ) : null}
+
+          {isEditMode || timeSlots ? (
+            <MetaDataItem
+              icon="ri-calendar-event-line"
+              title={t("Infocards.weekDays")}
+              onClick={isEditMode ? () => setActiveModal?.("Availability") : undefined}
+            >
+              {timeSlots ? getTimeSlots(timeSlots, t) : "Non pertinent pour mon action"}
+            </MetaDataItem>
+          ) : null}
+
           {isEditMode || location
             ? (() => {
                 let title = t("Infocards.departements", "Departements :");
@@ -76,30 +113,8 @@ const CardInfo = ({ onClick, formData }: Props) => {
                 );
               })()
             : null}
-          {isEditMode || timeSlots ? (
-            <MetaDataItem title="Timeslots">
-              {timeSlots ? getTimeSlots(timeSlots, t) : "Non pertinent pour mon action"}
-            </MetaDataItem>
-          ) : null}
-          {isEditMode || commitment ? (
-            <MetaDataItem title="commitment">
-              {commitment ? getCommitment(commitment, t) : "Non pertinent pour mon action"}
-            </MetaDataItem>
-          ) : null}
-          {isEditMode || frequency ? (
-            <MetaDataItem title="freq">
-              {frequency ? getFrequency(frequency, t) : "Non pertinent pour mon action"}
-            </MetaDataItem>
-          ) : null}
         </MetaDataCard>
       ) : null}
-
-      {isEditMode && (
-        <>
-          <ModalPrice show={activeModal === "Price"} toggle={toggleModal} />
-          <ModalLocation show={activeModal === "Location"} toggle={toggleModal} />
-        </>
-      )}
     </>
   );
 };
