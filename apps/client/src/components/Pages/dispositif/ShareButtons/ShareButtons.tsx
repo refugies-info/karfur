@@ -86,7 +86,7 @@ const ShareButtons = ({ className }: { className?: string }) => {
       </div>
       <div
         className={cn(
-          "relative flex max-h-0 flex-col items-start justify-start overflow-clip bg-white shadow-[0px_2px_6px_0px_rgba(0,0,18,0.16)] transition-all transition-discrete duration-800 ease-in",
+          "relative flex max-h-0 flex-col items-start justify-start overflow-clip bg-white shadow-[0px_2px_6px_0px_rgba(0,0,18,0.16)] transition-all duration-800 ease-in",
           showSMS ? "max-h-[28rem]" : "max-h-0",
         )}
       >
