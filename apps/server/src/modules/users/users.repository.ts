@@ -1,14 +1,12 @@
 import { Id, UserStatus } from "@refugies-info/api-types";
-import { FilterQuery, Types } from "mongoose";
+import { FilterQuery, ProjectionType, Types } from "mongoose";
 import { LangueId, ObjectId, Role, Structure, StructureId, User, UserModel } from "~/typegoose";
 import { Favorite, UserId } from "~/typegoose/User";
 
-type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
-
 // find one
-export const getUserById = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields);
+export const getUserById = async (id: Id, neededFields: ProjectionType<User>) => UserModel.findById(id, neededFields);
 
-export const getUserByIdWithStructures = async (id: Id, neededFields: NeededFields) =>
+export const getUserByIdWithStructures = async (id: Id, neededFields: ProjectionType<User>) =>
   UserModel.findById(id, neededFields).populate<{ structures: { nom: string }[] }>([
     { path: "structures", select: "nom" },
   ]);
@@ -21,7 +19,7 @@ export const getUserName = async (id: Id) =>
   UserModel.findById(id, { username: 1, email: 1 }).then((res) => res?.username || res?.email);
 
 // find many
-export const getUsersById = async (ids: UserId[], neededFields: NeededFields): Promise<any> =>
+export const getUsersById = async (ids: UserId[], neededFields: ProjectionType<User>): Promise<any> =>
   UserModel.find({ _id: { $in: ids } }, neededFields).lean();
 
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>

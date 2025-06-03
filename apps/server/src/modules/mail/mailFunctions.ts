@@ -1,4 +1,5 @@
 import { UserStatus } from "@refugies-info/api-types";
+import { ProjectionType } from "mongoose";
 import logger from "~/logger";
 import { Dispositif } from "~/typegoose";
 import { User } from "~/typegoose/User";
@@ -15,7 +16,7 @@ export const sendPublishedMailToCreator = async (
   titreMarque: string,
   lien: string,
 ) => {
-  const userNeededFields = {
+  const userNeededFields: ProjectionType<User> = {
     firstName: 1,
     email: 1,
     status: 1,
