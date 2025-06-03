@@ -35,7 +35,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
           <div
             className={cn(
               "text-corps-sm relative mb-0 h-full [&_a]:inline",
-              "before:content before:bg-border-default-grey before:absolute before:-left-4.75 before:block before:h-full lg:before:w-px",
+              "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-4.75 rtl:before:-right-4.75",
               onClick && "[&_a]:pointer-events-none",
             )}
           >

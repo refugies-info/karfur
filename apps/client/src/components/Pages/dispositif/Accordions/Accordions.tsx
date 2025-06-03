@@ -73,6 +73,7 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode }: AccordionItemPr
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
         "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
+        "rtl:[&_h3_button]:text-right",
       )}
       label={
         <>
