@@ -1,12 +1,13 @@
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
 import { handleApiError } from "~/lib/handleApiErrors";
+import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
 import styles from "./ReactionModal.module.scss";
-
 interface Props {
   toggle: () => void;
   callback: () => void;
@@ -29,6 +30,7 @@ const ReactionModal = (props: Props) => {
       .then(() => {
         callback();
         toggle();
+        Event("REACTION", "Reaction send", dispositifId.toString());
       })
       .catch(() => {
         handleApiError({
@@ -42,19 +44,17 @@ const ReactionModal = (props: Props) => {
     <BaseModal show={true} toggle={toggle} title={t("Dispositif.suggestionTitle")} small>
       <p>{t("Dispositif.suggestionSubtitle")}</p>
 
-      <textarea
-        placeholder={t("Dispositif.suggestionPlaceholder")}
-        value={suggestion}
-        onChange={(e: any) => setSuggestion(e.target.value)}
-        className={styles.textarea}
+      <Input
+        label={t("Dispositif.suggestionLabel", "Ma suggestion")}
+        textArea
+        nativeTextAreaProps={{
+          onChange: (e: any) => setSuggestion(e.target.value),
+        }}
       />
 
       <div className={styles.footer}>
-        <Button priority="secondary" onClick={toggle} evaIcon="close-outline" iconPosition="right" className="me-4">
-          {t("Annuler", "Annuler")}
-        </Button>
         <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit}>
-          {t("Envoyer", "Envoyer")}
+          {t("Valider", "Valider")}
         </Button>
       </div>
     </BaseModal>
