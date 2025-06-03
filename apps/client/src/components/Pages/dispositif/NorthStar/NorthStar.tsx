@@ -124,6 +124,7 @@ const NorthStar = () => {
 
   return (
     <Vote
+      className="sticky top-8 z-20"
       currentVote={currentAvis}
       onVoteYes={onVoteYes}
       onVoteNo={onVoteNo}

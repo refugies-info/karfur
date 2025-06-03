@@ -3,20 +3,18 @@ import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 
 import { useSelector } from "react-redux";
-import { Banner, Breadcrumb, Contributors, Header, Map, Section, Sponsors } from "~/components/Pages/dispositif";
+import { Banner, Breadcrumb, Contributors, Map, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
   LeftSidebarEdition,
   MapEdit,
   RightSidebarEdition,
-  SponsorsEdit,
 } from "~/components/Pages/dispositif/Edition";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
@@ -50,43 +48,46 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={cls(styles.container, isEditMode && styles.edit)} id="top">
+    <div className={cn("w-full", styles.container, isEditMode && styles.edit)} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
-      {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
-      {isViewMode && <Breadcrumb dispositif={dispositif} />}
-      {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
-      <div className={styles.content}>
-        <div className={styles.left}>
-          {isTablet && <Header typeContenu={typeContenu} />}
-          {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition typeContenu={typeContenu} />}
-        </div>
-
-        <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
-          {!isTablet && <Header typeContenu={typeContenu} />}
-          {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-            <Section key={i} sectionKey={section} contentType={typeContenu} />
-          ))}
-          {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
-          {isViewMode && (
-            <>
-              <FRLink href="#top" icon="arrow-upward" className={styles.top}>
-                {t("topLink")}
-              </FRLink>
-            </>
+      <div
+        className={cn("pb-8", styles.container, isEditMode && styles.edit, "relative")}
+        style={{
+          background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
+        }}
+        id="top"
+      >
+        {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
+        {isViewMode && <Breadcrumb dispositif={dispositif} />}
+        {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
+        <div className={cn("z-10 container flex gap-10 max-sm:flex-col max-sm:!px-0")}>
+          {isViewMode ? (
+            <LeftSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
+          ) : (
+            <LeftSidebarEdition className="z-10 md:mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
           )}
 
-          <span className={styles.divider} />
-          {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
-          {isViewMode && <Contributors />}
-        </div>
+          <article className="z-10 flex flex-col md:w-[60%] md:gap-10 md:pt-[196px]" dir={isRTL ? undefined : "ltr"}>
+            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+              <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
+            ))}
+            {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
 
-        <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
+            {isViewMode && <Contributors />}
+          </article>
+
+          {isViewMode ? (
+            <RightSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
+          ) : (
+            <RightSidebarEdition className="z-10 md:w-[20%] md:pt-[371px]" />
+          )}
+        </div>
+        {isTablet && <NorthStar />}
       </div>
-      {isTablet && <NorthStar />}
     </div>
   );
 };

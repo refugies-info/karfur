@@ -1,20 +1,17 @@
 import { Id, Languages } from "@refugies-info/api-types";
 import { uniq } from "lodash";
-import { FilterQuery } from "mongoose";
+import { FilterQuery, ProjectionType } from "mongoose";
 import { Dispositif, DispositifId, Traductions, TraductionsModel, UserId } from "~/typegoose";
 import { TraductionsType } from "~/typegoose/Traductions";
 import { DeleteResult } from "~/types/interface";
 
-type TraductionsKeys = keyof Traductions;
-type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
-
-export const getTraductionsByLanguage = (language: string, neededFields: TraductionsFieldsRequest) =>
+export const getTraductionsByLanguage = (language: string, neededFields: ProjectionType<Traductions>) =>
   TraductionsModel.find({ language }, neededFields);
 
 export const getTraductionsByLanguageAndDispositif = (
   language: Languages,
   dispositifId: DispositifId,
-  neededFields: TraductionsFieldsRequest = {},
+  neededFields: ProjectionType<Traductions> = {},
 ) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
 
 export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>

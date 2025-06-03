@@ -5,7 +5,7 @@ import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useContentType } from "~/hooks/dispositif";
-import { cls } from "~/lib/classname";
+import { cls, cn } from "~/lib/classname";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import CardAvailability from "../../Metadatas/CardAvailability";
@@ -32,6 +32,7 @@ import styles from "./LeftSidebarEdition.module.scss";
 
 interface Props {
   typeContenu: ContentType;
+  className?: string;
 }
 
 /**
@@ -48,7 +49,7 @@ const LeftSidebarEdition = (props: Props) => {
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
 
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, props.className)}>
       <div id="step-theme"></div>
       {values.theme !== undefined ? (
         <CardTheme
@@ -63,7 +64,7 @@ const LeftSidebarEdition = (props: Props) => {
             name="color-palette-outline"
             size={24}
             fill={fr.colors.decisions.text.disabled.grey.default}
-            className={cls(styles.theme_icon, "me-2")}
+            className={cn(styles.theme_icon, "me-2")}
           />
           Thèmes
         </AddContentButton>
