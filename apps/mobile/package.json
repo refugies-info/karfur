@@ -40,7 +40,7 @@
     "expo-status-bar": "~2.0.1",
     "expo-system-ui": "~4.0.8",
     "expo-updates": "~0.26.17",
-    "i18next": "^23.16.3",
+    "i18next": "^25.2.1",
     "instantsearch.js": "^4.78.3",
     "lodash": "^4.17.21",
     "lottie-react-native": "7.2.2",
