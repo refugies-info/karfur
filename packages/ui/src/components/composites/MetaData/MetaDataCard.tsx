@@ -8,8 +8,19 @@ type MetaDataCardProps = HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode;
   onClick?: () => void;
   onDelete?: () => void;
+  state?: "valid" | "invalid";
+  mode?: "edit" | "view";
 };
-export const MetaDataCard = ({ title, className, children, onClick, onDelete, ...props }: MetaDataCardProps) => {
+export const MetaDataCard = ({
+  title,
+  className,
+  children,
+  onClick,
+  onDelete,
+  state,
+  mode,
+  ...props
+}: MetaDataCardProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.();
@@ -26,6 +37,7 @@ export const MetaDataCard = ({ title, className, children, onClick, onDelete, ..
         "bg-alt-blue-france border-default-grey @container mb-4 border p-4 lg:mb-0 lg:border-0 lg:bg-white/50 lg:backdrop-blur-[30px]",
 
         onClick && "hover:cursor-pointer",
+        mode || state ? "relative" : "",
         className,
       )}
       {...props}

@@ -76,7 +76,7 @@ export const WithActions: Story = {
   },
 };
 
-export const WithSpimpleText: Story = {
+export const WithSimpleText: Story = {
   args: {
     title: "Editable Card",
     children: <p>My free-form text</p>,
