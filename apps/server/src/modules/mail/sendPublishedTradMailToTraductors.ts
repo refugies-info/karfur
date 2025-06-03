@@ -1,8 +1,9 @@
 import { ContentType, Languages, UserStatus } from "@refugies-info/api-types";
 import { uniq } from "lodash";
+import { ProjectionType } from "mongoose";
 import { getFormattedLocale } from "~/libs/getFormattedLocale";
 import logger from "~/logger";
-import { Dispositif } from "~/typegoose";
+import { Dispositif, User } from "~/typegoose";
 import { findTraductors } from "../traductions/traductions.repository";
 import { getUserById } from "../users/users.repository";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
@@ -19,7 +20,7 @@ export const sendPublishedTradMailToTraductors = async (locale: Languages, dispo
     await Promise.all(
       traductors.map(async (tradId) => {
         try {
-          const userNeededFields = {
+          const userNeededFields: ProjectionType<User> = {
             firstName: 1,
             email: 1,
             status: 1,

@@ -61,25 +61,27 @@ export const getDispositifsForExport = async (): Promise<any[]> => {
 
 export const getDispositifArray = async (
   query: FilterQuery<Dispositif>,
-  extraFields: DispositifFieldsRequest = {},
+  extraFields: ProjectionType<Dispositif> = {},
   populate: string = "",
   limit: number = 0,
   sort: any = {},
 ): Promise<any[]> => {
-  const neededFields: DispositifFieldsRequest = {
-    translations: 1,
-    theme: 1,
-    secondaryThemes: 1,
-    created_at: 1,
-    publishedAt: 1,
-    typeContenu: 1,
-    // avancement: 1,
-    status: 1,
-    nbMots: 1,
-    nbVues: 1,
-    metadatas: 1,
-    ...extraFields,
-  };
+  const neededFields: ProjectionType<Dispositif> = Object.assign(
+    {
+      translations: 1,
+      theme: 1,
+      secondaryThemes: 1,
+      created_at: 1,
+      publishedAt: 1,
+      typeContenu: 1,
+      // avancement: 1,
+      status: 1,
+      nbMots: 1,
+      nbVues: 1,
+      metadatas: 1,
+    },
+    extraFields,
+  );
 
   const dispositifs = await DispositifModel.find(query, neededFields)
     .sort(sort)
@@ -427,13 +429,13 @@ export const getDispositifName = async (id: Id) =>
 
 export const getDispositifById = async (
   id: DispositifId,
-  neededFields: DispositifFieldsRequest = {},
+  neededFields: ProjectionType<Dispositif> = {},
   populate: any = "",
 ) => DispositifModel.findById(id, neededFields).populate(populate);
 
 export const getDraftDispositifById = async (
   id: DispositifId,
-  neededFields: DispositifFieldsRequest = {},
+  neededFields: ProjectionType<Dispositif> = {},
   populate: any = "",
 ) => DispositifDraftModel.findById(id, neededFields).populate(populate);
 
@@ -507,10 +509,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
   return await DispositifModel.aggregate(pipeline);
 };
 
-export const getDispositifByIdWithMainSponsor = async (
-  id: DispositifId,
-  neededFields: DispositifFieldsRequest | "all",
-) => {
+export const getDispositifByIdWithMainSponsor = async (id: DispositifId, neededFields: ProjectionType<Dispositif>) => {
   if (neededFields === "all") {
     return await DispositifModel.findOne({ _id: id }).populate("mainSponsor theme secondaryThemes");
   }
@@ -531,10 +530,10 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
     },
   ).populate("mainSponsor");
 
-export const getActiveContents = async (neededFields: DispositifFieldsRequest) =>
+export const getActiveContents = async (neededFields: ProjectionType<Dispositif>) =>
   DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
 
-export const getActiveContentsFiltered = (neededFields: DispositifFieldsRequest, query: any) =>
+export const getActiveContentsFiltered = (neededFields: ProjectionType<Dispositif>, query: any) =>
   DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
 
 export const getDispositifByIdWithAllFields = (id: DispositifId) => DispositifModel.findOne({ _id: id });

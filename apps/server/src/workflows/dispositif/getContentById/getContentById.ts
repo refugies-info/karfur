@@ -10,6 +10,7 @@ import {
   Sponsor,
 } from "@refugies-info/api-types";
 import pick from "lodash/pick";
+import { ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
 import { isUserAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
@@ -70,7 +71,7 @@ export const getContentById = async (
     user: user?._id,
   });
 
-  const fields = {
+  const fields: ProjectionType<Dispositif> = {
     typeContenu: 1,
     status: 1,
     mainSponsor: 1,

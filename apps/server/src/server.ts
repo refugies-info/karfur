@@ -8,7 +8,6 @@ import formData from "express-form-data";
 import mongoose from "mongoose";
 import { serverErrorHandler } from "~/errors";
 import logger from "~/logger";
-import { validateObjectIdParams } from "~/middlewares/validateObjectIdParams";
 import { RegisterRoutes } from "../dist/routes";
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
@@ -62,9 +61,6 @@ app.use(function (_, res, next) {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
-
-// Add the ObjectId validation middleware before registering routes
-app.use(validateObjectIdParams);
 
 // Setup routes
 RegisterRoutes(app);

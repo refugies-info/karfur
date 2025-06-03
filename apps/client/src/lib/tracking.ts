@@ -52,20 +52,28 @@ const storeCampaignInfosInCookie = () => {
  * @param {string} action
  * @param {string} label
  */
-export const Event = (category: string, action: string, label: string | object) => {
+export const Event = (category: string, action: string, label?: string | undefined) => {
   if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
     logger.info("Event", { category, action, label });
-    return;
   }
   ReactGA.event({
     category,
     action,
-    label: label.toString(),
+    label: label || undefined,
   });
-  //@ts-ignore
-  // eslint-disable-next-line no-undef
-  if (!!window.plausible) plausible(category, { props: { action, label } });
-  window._paq?.push(["trackEvent", category, action, label.toString()]);
+};
+
+/**
+ * Event - Add custom tracking event with structured Data.
+ * @param {string} eventName
+ * @param {object} eventData
+ */
+export const customEvent = (eventName: string, eventData: object) => {
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
+    logger.info("Event", { eventName, eventData });
+  }
+
+  ReactGA.gtag("event", eventName, eventData);
 };
 
 const initMatomo = () => {
@@ -83,8 +91,12 @@ const initMatomo = () => {
  * Inits GA with consent option, or update if already initialized
  */
 export const initGA = (consent: boolean) => {
-  // if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
-  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
+  const trackingId =
+    process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
+      ? process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS_PROD
+      : process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS_STAG || null;
+
+  if (!trackingId) return;
 
   if (!ReactGA.isInitialized) {
     ReactGA.gtag("consent", "default", {

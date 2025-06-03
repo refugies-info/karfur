@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -77,9 +77,9 @@ const Layout = (props: Props) => {
     }
   }, [dispatch, changeLanguageCallback]);
 
-  const toggleMobileAppModal = () => {
+  const toggleMobileAppModal = useCallback(() => {
     setShowMobileModal(!showMobileModal);
-  };
+  }, [showMobileModal]);
 
   useEffect(() => {
     // wait 5 seconds before showing modal
@@ -116,28 +116,36 @@ const Layout = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const shouldShowMobilePopup = isMobileOnly && !showMobileModal && languageLoaded;
+
   // Mobile popup
+  const [currentPath, prevPath] = useMemo(() => {
+    const lastTwo = props.history.slice(-2);
+    return [lastTwo[0], lastTwo[1]] as [string, string | undefined];
+  }, [props.history]);
+
   useEffect(() => {
-    if (!languageLoaded || !isMobileOnly || showMobileModal !== null) return;
+    // Skip all popup logic if mobile popup shouldn't be shown
+    if (!shouldShowMobilePopup) return;
 
-    const historyLength = props.history.length;
-    // if user lands on homepage
-    if (
-      (historyLength === 1 && props.history[0] === "/") || // homepage first
-      (historyLength === 2 && props.history[1] === "/" && props.history[0].match(/^\/[a-z][a-z]/gm)) // homepage and select language
-    ) {
-      setTimeout(() => {
+    let timeoutId: number | undefined;
+    const handleMobilePopup = () => {
+      // Homepage cases
+      if (currentPath === "/" || (prevPath?.match(/^\/[a-z][a-z]/) && currentPath === "/")) {
+        timeoutId = window.setTimeout(toggleMobileAppModal, 10000);
+      }
+      // Coming from content page
+      else if (prevPath && isContentPage(prevPath) && !isContentPage(currentPath)) {
         toggleMobileAppModal();
-      }, 10000);
-    }
+      }
+    };
 
-    // if previous page was a content page (but not current one)
-    else if (historyLength > 1 && isContentPage(props.history[1]) && !isContentPage(props.history[0])) {
-      toggleMobileAppModal();
-    }
+    handleMobilePopup();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showLangModal, languageLoaded, props.history]);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [shouldShowMobilePopup, currentPath, prevPath, toggleMobileAppModal]);
 
   // USER
   const user = useSelector(userDetailsSelector);

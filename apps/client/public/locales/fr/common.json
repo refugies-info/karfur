@@ -750,11 +750,11 @@
     "carrouselSeemore": "Voir tout",
     "carrouselPrev": "Faire défiler à gauche",
     "carrouselNext": "Faire défiler à droite",
-    "northStar_title": "Cette page vous a-t-elle été utile ? ✨",
+    "northStar_title": "Cette page est-elle utile ? ✨",
     "northStar_no": "Non",
     "northStar_yes": "Oui",
+    "northStar_notUseful": "Pas utile",
     "northStar_useful": "C'est utile ? ✨",
-    "northStar_notTseful": "Pas utile",
     "northStar_thanks": "Merci pour votre retour 😊"
   }
 }

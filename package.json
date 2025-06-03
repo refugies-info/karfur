@@ -29,8 +29,7 @@
       "@expo/cli>undici": "6.21.1",
       "expo-dev-menu": "6.0.21",
       "undici": "5.28.5",
-      "image-size": "^1.2.1",
-      "mongoose": "^8.9.5"
+      "image-size": "^1.2.1"
     }
   },
   "scripts": {
@@ -116,8 +115,8 @@
     "rimraf": "^6.0.1",
     "stylelint": "^16.17.0",
     "stylelint-config-standard-scss": "^13.1.0",
-    "tsx": "^4.19.2",
-    "turbo": "2.4.4",
+    "tsx": "^4.19.4",
+    "turbo": "2.5.3",
     "typescript": "^5.8.2"
   },
   "volta": {

@@ -10,7 +10,7 @@ import {
 } from "@refugies-info/api-types";
 import { Request as ExRequest } from "express";
 import { Body, Controller, Get, Patch, Path, Post, Queries, Query, Request, Route, Security } from "tsoa";
-
+import { validateId } from "~/libs/validateId";
 import { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { createStructure } from "~/workflows/structure/createStructure";
 import { getActiveStructures } from "~/workflows/structure/getActiveStructures";
@@ -60,6 +60,7 @@ export class StructureController extends Controller {
     @Query() locale: string,
     @Request() request: ExRequest,
   ): ResponseWithData<GetStructureResponse> {
+    validateId(id, "structure");
     return getStructureById(id, locale, request.user);
   }
 
@@ -73,6 +74,7 @@ export class StructureController extends Controller {
     @Body() body: PatchStructureRequest,
     @Request() request: ExRequest,
   ): Response {
+    validateId(id, "structure");
     return updateStructure(id, body, request.user);
   }
 
@@ -86,6 +88,7 @@ export class StructureController extends Controller {
     @Body() body: PatchStructureRolesRequest,
     @Request() request: ExRequest,
   ): Response {
+    validateId(id, "structure");
     return modifyUserMembershipInStructure(id, body, request.user);
   }
 }
