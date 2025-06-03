@@ -10,6 +10,7 @@ type MetaDataCardProps = HTMLAttributes<HTMLDivElement> & {
   onDelete?: () => void;
   state?: "valid" | "invalid";
   mode?: "edit" | "view";
+  titleAs?: "p" | "span" | "h2" | "h3" | "h4" | "h5" | "h6";
 };
 export const MetaDataCard = ({
   title,
@@ -19,6 +20,7 @@ export const MetaDataCard = ({
   onDelete,
   state,
   mode,
+  titleAs = "h2",
   ...props
 }: MetaDataCardProps) => {
   const handleClick = (e: React.MouseEvent) => {
@@ -43,7 +45,7 @@ export const MetaDataCard = ({
       {...props}
     >
       <div className="flex items-center justify-between">
-        {title && <h2 className="text-title-xxs font-bold">{title}</h2>}
+        {title && React.createElement(titleAs, { className: "text-title-xxs font-bold" }, title)}
         {(onClick || onDelete) && (
           <span className="ml-auto flex self-start">
             {onClick && (
