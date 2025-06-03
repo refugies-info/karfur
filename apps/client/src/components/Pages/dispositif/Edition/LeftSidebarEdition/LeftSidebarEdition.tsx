@@ -54,20 +54,11 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <CardTheme
-        dataTheme={values.theme}
-        dataSecondaryThemes={values.secondaryThemes}
-        color={color}
-        onClick={() => setActiveModal?.("Themes")}
-      />
+      <CardTheme formData={formData} />
       {contentType === ContentType.DEMARCHE && (
         <>
           {values.administration !== undefined && (!!values.administration?.name || !!values?.administration?.logo) ? (
-            <CardDemarcheAdministration
-              dataAdministration={values.administration}
-              color={color}
-              onClick={() => setActiveModal?.("Administration")}
-            />
+            <CardDemarcheAdministration formData={formData} />
           ) : (
             <AddContentButton onClick={() => setActiveModal?.("Administration")} className="mb-6" size="md">
               <i className="fr-icon-image-line me-2" />
@@ -82,12 +73,7 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
       <p className="mb-0 font-bold">À faire en dernier</p>
       <div id="main-sponsor-card" />
       {!!values.mainSponsor ? (
-        <CardMainSponsor
-          dataMainSponsor={values.mainSponsor}
-          color={color}
-          id="step-mainSponsor"
-          onClick={() => setActiveModal?.("MainSponsor")}
-        />
+        <CardMainSponsor formData={formData} id="step-mainSponsor" />
       ) : (
         <AddContentButton onClick={() => setActiveModal?.("MainSponsor")} size="md">
           <EVAIcon
@@ -99,11 +85,9 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           Structure
         </AddContentButton>
       )}
-
       <MetaDataCard title="En bref" onClick={() => setActiveModal?.("Abstract")} id="step-abstract">
         {values.abstract}
       </MetaDataCard>
-
       <ModalAvailability show={activeModal === "Availability"} toggle={toggleModal} />
       <ModalConditions show={activeModal === "Conditions"} toggle={toggleModal} />
       <ModalLocation show={activeModal === "Location"} toggle={toggleModal} />

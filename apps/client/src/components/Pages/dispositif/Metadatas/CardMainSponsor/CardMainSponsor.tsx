@@ -1,8 +1,8 @@
-import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { DispositifStatus, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { useMemo, useState } from "react";
-import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
+import { useContext, useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import Tooltip from "~/components/UI/Tooltip";
@@ -10,36 +10,36 @@ import { isStatus } from "~/lib/dispositif";
 import { allStructuresSelector } from "~/services/AllStructures/allStructures.selector";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "~/services/User/user.selectors";
+import PageContext from "~/utils/pageContext";
 import DeleteContentModal from "./DeleteContentModal";
 
 interface Props {
-  dataMainSponsor: DeepPartialSkipArrayKey<UpdateDispositifRequest["mainSponsor"]>;
-  color: string;
-  onClick?: () => void;
+  formData: UpdateDispositifRequest;
   id?: string;
 }
 
-const CardMainSponsor = ({ dataMainSponsor, color, onClick, id }: Props) => {
+const CardMainSponsor = ({ formData, id }: Props) => {
   const { t } = useTranslation();
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const { setValue } = useFormContext();
+  const { setActiveModal } = useContext(PageContext);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const structures = useSelector(allStructuresSelector);
   const sponsor = useMemo(() => {
-    if (typeof dataMainSponsor === "string") {
-      const sponsor = structures.find((s) => s._id.toString() === dataMainSponsor);
+    if (typeof formData.mainSponsor === "string") {
+      const sponsor = structures.find((s) => s._id.toString() === formData.mainSponsor);
       return {
         name: sponsor?.nom,
         logo: sponsor?.picture?.secure_url,
       };
     }
     return {
-      name: (dataMainSponsor as MainSponsor)?.name,
-      logo: (dataMainSponsor as MainSponsor)?.logo?.secure_url,
+      name: formData.mainSponsor?.name,
+      logo: formData.mainSponsor?.logo?.secure_url,
     };
-  }, [dataMainSponsor, structures]);
+  }, [formData, structures]);
 
   const isAllowedToEdit = useMemo(() => {
     return user.admin || (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion);
@@ -53,7 +53,7 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick, id }: Props) => {
     <>
       <MetaDataCard
         title={t("Dispositif.structure")}
-        onClick={isAllowedToEdit ? onClick : undefined}
+        onClick={isAllowedToEdit ? () => setActiveModal?.("MainSponsor") : undefined}
         onDelete={handleDelete}
         id={id}
       >
