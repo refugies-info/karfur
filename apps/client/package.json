@@ -16,7 +16,7 @@
     "@codegouvfr/react-dsfr": "1.20.2",
     "@lexical/html": "^0.27.2",
     "@lexical/link": "^0.27.2",
-    "@lexical/list": "^0.27.2",
+    "@lexical/list": "^0.32.0",
     "@lexical/react": "^0.27.2",
     "@lexical/rich-text": "^0.27.2",
     "@lexical/selection": "^0.27.2",
