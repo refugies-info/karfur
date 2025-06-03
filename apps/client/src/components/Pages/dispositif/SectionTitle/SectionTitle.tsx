@@ -11,10 +11,10 @@ const Title = (props: TitleProps) => {
   const { t } = useTranslation();
   return (
     props.titleKey !== "what" && ( // Hide the 'what' section title as per RI-561
-      <p className="text-title-lg text-title-grey font-bold">
+      <h2 className="text-title-lg text-title-grey font-bold">
         {props.titleKey === "abstract" && <EVAIcon name="file-text-outline" size={32} fill="#000" className="me-2" />}
         {t(getDispositifSectionTitle(props.titleKey))}
-      </p>
+      </h2>
     )
   );
 };

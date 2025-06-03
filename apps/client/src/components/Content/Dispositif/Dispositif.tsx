@@ -1,5 +1,4 @@
 import { ContentType } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 
 import { useSelector } from "react-redux";
@@ -31,7 +30,6 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 };
 
 const Dispositif = (props: Props) => {
-  const { t } = useTranslation();
   const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
