@@ -43,7 +43,7 @@ export const MetaDataCard = ({
       {...props}
     >
       <div className="flex items-center justify-between">
-        {title && <h3 className="text-title-xxs font-bold">{title}</h3>}
+        {title && <h2 className="text-title-xxs font-bold">{title}</h2>}
         {(onClick || onDelete) && (
           <span className="ml-auto flex self-start">
             {onClick && (
