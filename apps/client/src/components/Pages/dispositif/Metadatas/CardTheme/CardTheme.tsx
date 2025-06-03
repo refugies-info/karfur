@@ -36,17 +36,6 @@ const CardTheme = ({ dataTheme, dataSecondaryThemes, color, onClick }: Props) =>
     );
   }, [theme, secondaryThemes]);
   return (
-    // <BaseCard
-    //   title={
-    //     <>
-    //       <EVAIcon name="color-palette-outline" size={24} fill={theme?.colors.color100 || "#000"} className={"me-2"} />
-    //       Thèmes
-    //     </>
-    //   }
-    //   items={[{ content, icon: null }]}
-    //   color={color}
-    //   onClick={onClick}
-    // />
     <MetaDataCard title={"Thèmes"} onClick={onClick}>
       {content}
     </MetaDataCard>
