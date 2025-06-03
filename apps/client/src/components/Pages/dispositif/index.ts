@@ -16,7 +16,6 @@ import SMSForm from "./SMSForm";
 import Sponsors from "./Sponsors";
 import Status from "./Status";
 import StructureReceiveDispositif from "./StructureReceiveDispositif";
-import Summary from "./Summary";
 import Text from "./Text";
 import Title from "./Title";
 
@@ -39,7 +38,6 @@ export {
   Sponsors,
   Status,
   StructureReceiveDispositif,
-  Summary,
   Text,
   Title,
 };

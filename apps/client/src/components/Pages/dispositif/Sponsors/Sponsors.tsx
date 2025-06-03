@@ -72,7 +72,7 @@ const Sponsors = (props: Props) => {
           <Button
             iconId="fr-icon-add-circle-fill"
             size="small"
-            className="mt-2 ml-2"
+            className="mt-2 mb-2 ml-2"
             priority="secondary"
             onClick={props.onAdd}
           >

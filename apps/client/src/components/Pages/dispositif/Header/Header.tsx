@@ -51,7 +51,7 @@ const Header = (props: Props) => {
     <header className="relative">
       {isViewMode && (
         <SectionButtons
-          className="md:absolute md:-top-10 md:ltr:-right-8 md:rtl:-left-8"
+          className="lg:absolute lg:-top-10 lg:ltr:-right-8 lg:rtl:-left-8"
           id="titreInformatif"
           content={vocalizationContent}
         />

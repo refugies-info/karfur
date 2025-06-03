@@ -2,7 +2,7 @@ import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Header } from "~/components/Pages/dispositif";
+import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -29,7 +29,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
-  const { isTablet } = useWindowSize();
+  const { isMobile, isTablet } = useWindowSize();
 
   // content
   const contentHtml: string | undefined = useMemo(
@@ -52,28 +52,38 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   );
 
   return (
-    <section
-      id={`anchor-${sectionKey}`}
-      className={cn("md:shadow-ri relative bg-white p-4 md:p-12", className)}
-      style={{ "--theme-color": colors.color100 } as React.CSSProperties}
-    >
-      {sectionKey === "what" ? (
-        <>
-          <Header typeContenu={contentType || ContentType.DISPOSITIF} />
-          {contentHtml && isViewMode && <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />}
-          <RichText id={sectionKey} value={contentHtml} />
-        </>
-      ) : (
-        <>
-          <SectionTitle titleKey={sectionKey} />
-          <Accordions
-            content={contentAccordions}
-            sectionKey={sectionKey as "why" | "how" | "next"}
-            contentType={contentType || ContentType.DISPOSITIF}
-          />
-        </>
-      )}
-    </section>
+    <>
+      <section
+        id={`anchor-${sectionKey}`}
+        className={cn(
+          "lg:shadow-ri relative bg-white p-4 lg:p-14",
+          sectionKey === "what" && "max-lg:bg-transparent",
+          className,
+        )}
+        style={{ "--theme-color": colors.color100 } as React.CSSProperties}
+      >
+        {sectionKey === "what" ? (
+          <>
+            <Header typeContenu={contentType || ContentType.DISPOSITIF} />
+            {contentHtml && isViewMode && (
+              <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />
+            )}
+            <RichText id={sectionKey} value={contentHtml} />
+          </>
+        ) : (
+          <>
+            <SectionTitle titleKey={sectionKey} />
+            <Accordions
+              content={contentAccordions}
+              sectionKey={sectionKey as "why" | "how" | "next"}
+              contentType={contentType || ContentType.DISPOSITIF}
+            />
+          </>
+        )}
+      </section>
+      {/* We bring back the metadatas in the what section on mobile */}
+      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8" />}
+    </>
   );
 };
 

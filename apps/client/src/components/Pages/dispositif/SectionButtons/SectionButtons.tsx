@@ -27,7 +27,7 @@ interface Props {
 const SectionButtons = ({ id, content, className }: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { isMobile } = useWindowSize();
+  const { isMobile, isTablet, isDesktop } = useWindowSize();
 
   // tts
   const [showTtsButtons, setShowTtsButtons] = useState(false);
@@ -72,7 +72,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
           id={tooltipId}
           iconId="ri-message-2-line"
           onClick={() => setShowReactionModal(true)}
-          className="!text-disabled-grey m-0 max-sm:hidden [&::before]:!mr-0"
+          className="!text-disabled-grey m-0 max-lg:hidden [&::before]:!mr-0"
           priority="tertiary no outline"
           size="small"
           title={t("Dispositif.react")}
@@ -83,7 +83,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
         <Tooltip kind="hover" title={t("listen")}>
           <Button
             className={cn(
-              "max-sm:border-default-grey text-normal gap-2 rounded-full max-sm:flex max-sm:gap-2 max-sm:border max-sm:bg-white/60 max-sm:p-1 max-sm:pe-2 md:p-0",
+              "max-lg:border-default-grey text-normal gap-2 rounded-full max-lg:flex max-lg:border max-lg:bg-white/60 max-lg:p-1 max-lg:pe-2 xl:p-0",
             )}
             onClick={isPlaying ? pause : startReading}
             size="small"
@@ -92,12 +92,12 @@ const SectionButtons = ({ id, content, className }: Props) => {
           >
             <i
               className={cn(
-                "bg-action-high-blue-france rounded-full px-2 py-2 text-white md:px-1.5 md:py-0",
-                "md:[&::before]:![--icon-size:0.75rem]",
+                "bg-action-high-blue-france rounded-full px-2 py-2 text-white lg:px-1.5 lg:py-0",
+                "lg:[&::before]:![--icon-size:0.75rem]",
                 isLoadingTts ? "fr-icon-refresh-line animate-spin" : isPlaying ? "ri-pause-fill" : "ri-play-fill",
               )}
             />
-            {isMobile ? t("listen") : ""}
+            {isMobile || isTablet ? t("listen") : ""}
           </Button>
         </Tooltip>
       ) : null}

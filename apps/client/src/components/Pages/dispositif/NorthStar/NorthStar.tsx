@@ -20,7 +20,7 @@ const NorthStar = () => {
   const anonymousUserId = useAnonymousUserId();
   const theme = useSelector(themeSelector(dispositif?.theme));
 
-  const { isTablet } = useWindowSize();
+  const { isDesktop, isLargeDesktop } = useWindowSize();
 
   const [didVote, setDidVote] = useState<boolean | null>(null);
   const [currentAvis, setCurrentAvis] = useState<boolean | null>(null);
@@ -130,7 +130,7 @@ const NorthStar = () => {
       onVoteNo={onVoteNo}
       onCancelYes={onCancel}
       onCancelNo={onCancel}
-      isSticky={isTablet}
+      isSticky={!isLargeDesktop}
     />
   );
 };
