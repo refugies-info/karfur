@@ -29,7 +29,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
-  const { isMobile } = useWindowSize();
+  const { isMobile, isTablet } = useWindowSize();
 
   // content
   const contentHtml: string | undefined = useMemo(
@@ -56,8 +56,8 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
       <section
         id={`anchor-${sectionKey}`}
         className={cn(
-          "md:shadow-ri relative bg-white p-4 md:p-12",
-          sectionKey === "what" && "max-sm:bg-transparent",
+          "lg:shadow-ri relative bg-white p-4 lg:p-14",
+          sectionKey === "what" && "max-lg:bg-transparent",
           className,
         )}
         style={{ "--theme-color": colors.color100 } as React.CSSProperties}
@@ -82,13 +82,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
         )}
       </section>
       {/* We bring back the metadatas in the what section on mobile */}
-      {isMobile && sectionKey === "what" && (
-        <Metadatas
-          className="bg-white p-4"
-          metadatas={dispositif?.metadatas}
-          typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
-        />
-      )}
+      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8" />}
     </>
   );
 };

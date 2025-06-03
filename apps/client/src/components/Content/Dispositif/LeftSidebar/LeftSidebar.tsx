@@ -1,8 +1,7 @@
-import { ContentType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Metadatas, ShareButtons, Summary } from "~/components/Pages/dispositif";
+import { Metadatas, ShareButtons } from "~/components/Pages/dispositif";
 import FRLink from "~/components/UI/FRLink";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -25,12 +24,7 @@ const LeftSidebar = ({ className }: { className?: string }) => {
       )}
       <ShareButtons />
 
-      <Summary />
-      <Metadatas
-        className="flex flex-col gap-4"
-        metadatas={dispositif?.metadatas}
-        typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
-      />
+      <Metadatas className="flex flex-col gap-4" />
     </aside>
   );
 };

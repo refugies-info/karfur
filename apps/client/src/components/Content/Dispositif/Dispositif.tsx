@@ -18,7 +18,6 @@ import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
-import styles from "./Dispositif.module.scss";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
 
@@ -33,7 +32,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 
 const Dispositif = (props: Props) => {
   const { t } = useTranslation();
-  const { isTablet, isMobile } = useWindowSize();
+  const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -48,14 +47,14 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={cn("w-full", styles.container, isEditMode && styles.edit)} id="top">
+    <div className={cn("w-full", isEditMode && "edit")} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
       <div
-        className={cn("pb-8", styles.container, isEditMode && styles.edit, "relative")}
+        className={cn("relative pb-8")}
         style={{
           background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
         }}
@@ -63,19 +62,22 @@ const Dispositif = (props: Props) => {
       >
         {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
         {isViewMode && <Breadcrumb dispositif={dispositif} />}
-        {!isMobile && (isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />)}
-        <div className={cn("z-10 container flex gap-10 max-sm:flex-col max-sm:!px-0")}>
-          {!isMobile && (
+        {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
+        <div className={cn("z-10 container flex gap-10 max-lg:flex-col max-sm:!px-0")}>
+          {(isDesktop || isLargeDesktop) && (
             <>
               {isViewMode ? (
-                <LeftSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
+                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
               ) : (
-                <LeftSidebarEdition className="z-10 md:mt-[196px] md:w-[20%]" typeContenu={typeContenu} />
+                <LeftSidebarEdition className="z-10 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
               )}
             </>
           )}
 
-          <article className="z-10 flex flex-col md:w-[60%] md:gap-10 md:pt-[196px]" dir={isRTL ? undefined : "ltr"}>
+          <article
+            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%]"
+            dir={isRTL ? undefined : "ltr"}
+          >
             {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
               <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
             ))}
@@ -84,17 +86,17 @@ const Dispositif = (props: Props) => {
             {isViewMode && <Contributors />}
           </article>
 
-          {!isMobile && (
+          {isLargeDesktop && (
             <>
               {isViewMode ? (
-                <RightSidebar className="z-10 md:w-[20%] md:pt-[371px]" />
+                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
               ) : (
-                <RightSidebarEdition className="z-10 md:w-[20%] md:pt-[371px]" />
+                <RightSidebarEdition className="z-10 lg:w-[20%] lg:pt-[371px]" />
               )}
             </>
           )}
         </div>
-        {isTablet && <NorthStar />}
+        {(isMobile || isTablet || isDesktop) && <NorthStar />}
       </div>
     </div>
   );

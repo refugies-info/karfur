@@ -32,7 +32,7 @@ const Banner = (props: Props) => {
 
   return (
     <div
-      className={cn(styles.banner, pageContext.mode === "translate" && styles.translate)}
+      className={cn("h-[400px] max-lg:h-[240px]", styles.banner, pageContext.mode === "translate" && styles.translate)}
       style={theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
     >
       <div>

@@ -1,33 +1,56 @@
-import { Metadatas } from "@refugies-info/api-types";
+import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import Image from "~/components/UI/Image";
-import BaseCard from "../BaseCard";
-import { getConditionImage } from "../functions";
+import { HTMLAttributes, useContext, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { getConditionImage } from "~/components/Pages/dispositif/Metadatas/functions";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import PageContext from "~/utils/pageContext";
 
-interface Props {
-  data: Metadatas["conditions"] | null | undefined; // null = not useful / undefined = not set yet
+type Props = HTMLAttributes<HTMLDivElement> & {
   onClick?: () => void;
-}
+  formData?: UpdateDispositifRequest;
+};
 
-const CardConditions = ({ data, onClick }: Props) => {
+const CardConditions = ({ formData, ...props }: Props) => {
   const { t } = useTranslation();
+  const { mode } = useContext(PageContext);
+  const isEditMode = useMemo(() => mode === "edit", [mode]);
 
-  return (
-    <BaseCard
-      title={t("Infocards.conditions")}
-      items={
-        data === null
-          ? null
-          : (data || []).map((item) => ({
-              content: t(`Infocards.${item}`),
-              icon: getConditionImage(item) ? (
-                <Image src={getConditionImage(item)} width={32} height={32} alt="" />
-              ) : null,
-            }))
-      }
-      onClick={onClick}
-    />
-  );
+  const dispositifSelector = useSelector(selectedDispositifSelector);
+  const dispositif = formData ? formData : dispositifSelector;
+
+  const conditions = dispositif?.metadatas?.conditions;
+
+  const { setActiveModal } = useContext(PageContext);
+
+  return conditions && conditions.length > 0 ? (
+    <>
+      <MetaDataCard
+        title={t("Infocards.conditions")}
+        onClick={isEditMode ? () => setActiveModal?.("Conditions") : undefined}
+      >
+        {conditions.map((condition) => {
+          return (
+            <MetaDataItem
+              key={condition}
+              logoImage={{
+                url: getConditionImage(condition),
+                alt: condition,
+              }}
+              title={t(`Infocards.${condition}`)}
+            >
+              {t(`Infocards.${condition}_description` as any)}
+            </MetaDataItem>
+          );
+        })}
+      </MetaDataCard>
+    </>
+  ) : isEditMode ? (
+    <MetaDataCard title={t("Infocards.conditions")} onClick={() => setActiveModal?.("Conditions")}>
+      Non pertinent pour mon action
+    </MetaDataCard>
+  ) : null;
 };
 
 export default CardConditions;

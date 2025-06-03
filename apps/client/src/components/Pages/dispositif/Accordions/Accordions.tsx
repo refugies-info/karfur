@@ -72,7 +72,7 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode }: AccordionItemPr
         styles.accordion,
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
-        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-center [&_h3_button]:gap-1 md:[&_h3_button]:grid",
+        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
       )}
       label={
         <>
@@ -85,7 +85,7 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode }: AccordionItemPr
       }
     >
       <div className="flex items-start justify-between gap-2 max-sm:flex-col-reverse [&_p:last-child]:mb-0">
-        <Text className="prose max-w-full" id={`${sectionKey}.${sectionId}.text`} html>
+        <Text className="prose max-w-full max-sm:px-4" id={`${sectionKey}.${sectionId}.text`} html>
           {section.text}
         </Text>
         {mode === "view" && (

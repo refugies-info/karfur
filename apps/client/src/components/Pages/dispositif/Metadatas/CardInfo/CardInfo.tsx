@@ -1,7 +1,7 @@
 import { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { cn, MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { HTMLAttributes, useContext, useEffect, useMemo } from "react";
+import { HTMLAttributes, useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import FRLink from "~/components/UI/FRLink";
 import { formatDepartment } from "~/lib/departments";
@@ -28,14 +28,10 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
   const timeSlots = dispositif?.metadatas?.timeSlots;
   const commitment = dispositif?.metadatas?.commitment;
   const frequency = dispositif?.metadatas?.frequency;
-  const { activeModal, setActiveModal } = useContext(PageContext);
+  const { setActiveModal } = useContext(PageContext);
 
   // Toggle visibility, if edit mode true, else check if there is any data
   const showCard = isEditMode ? true : price || location || timeSlots || commitment || frequency;
-
-  useEffect(() => {
-    console.log("render CardInfo");
-  }, []);
 
   return (
     <>
@@ -120,40 +116,3 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
 };
 
 export default CardInfo;
-
-// interface Props {
-//   dataCommitment: Metadatas["commitment"] | undefined;
-//   dataTimeSlots: Metadatas["timeSlots"] | undefined;
-//   dataFrequency: Metadatas["frequency"] | undefined;
-//   onClick?: () => void;
-// }
-
-// const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, onClick }: Props) => {
-//   const { t } = useTranslation();
-
-//   return (
-//     <BaseCard
-//       title={t("Infocards.availability")}
-//       items={[
-//         {
-//           label: t("Infocards.commitment"),
-//           content: getCommitment(dataCommitment, t),
-//           icon: <DurationIcon />,
-//         },
-//         {
-//           label: t("Infocards.frequency"),
-//           content: getFrequency(dataFrequency, t),
-//           icon: <DurationIcon />,
-//         },
-//         {
-//           label: t("Infocards.weekDays"),
-//           content: getTimeSlots(dataTimeSlots, t),
-//           icon: <DurationIcon />,
-//         },
-//       ]}
-//       onClick={onClick}
-//     />
-//   );
-// };
-
-// export default CardAvailability;

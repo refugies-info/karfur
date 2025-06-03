@@ -1,30 +1,25 @@
 import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
-import Button from "~/components/UI/Button";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import FRLink from "~/components/UI/FRLink";
-import Image from "~/components/UI/Image";
 import Tooltip from "~/components/UI/Tooltip";
-import { cls } from "~/lib/classname";
 import { isStatus } from "~/lib/dispositif";
 import { allStructuresSelector } from "~/services/AllStructures/allStructures.selector";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "~/services/User/user.selectors";
-import BaseCard from "../BaseCard";
-import styles from "./CardMainSponsor.module.scss";
 import DeleteContentModal from "./DeleteContentModal";
 
 interface Props {
   dataMainSponsor: DeepPartialSkipArrayKey<UpdateDispositifRequest["mainSponsor"]>;
   color: string;
   onClick?: () => void;
+  id?: string;
 }
 
-const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
+const CardMainSponsor = ({ dataMainSponsor, color, onClick, id }: Props) => {
   const { t } = useTranslation();
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
@@ -50,60 +45,28 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
     return user.admin || (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion);
   }, [user, dispositif]);
 
+  const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
+
   return (
     <>
-      <BaseCard
-        id="main-sponsor-card"
-        title={
-          <>
-            <EVAIcon name="home-outline" size={24} fill={color || "#000"} className={"me-2"} />
-            {t("Dispositif.structure")}
-          </>
-        }
-        items={[
-          {
-            content: (
-              <span className={styles.name}>
-                <span>
-                  <FRLink
-                    onClick={(e: any) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                    }}
-                    href="#"
-                  >
-                    {sponsor.name}
-                  </FRLink>
-                </span>
-                {isAllowedToEdit && (
-                  <Button
-                    priority="tertiary"
-                    evaIcon="trash-2-outline"
-                    onClick={(e: any) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      setShowDeleteModal(true);
-                    }}
-                    className={cls("ms-2", styles.delete)}
-                  ></Button>
-                )}
-              </span>
-            ),
-            icon: (
-              <Image
-                src={sponsor.logo || defaultStructureImage}
-                width={32}
-                height={32}
-                style={{ objectFit: "contain" }}
-                alt={sponsor.name || ""}
-                className={styles.img}
-              />
-            ),
-          },
-        ]}
-        color={color}
+      <MetaDataCard
+        title={t("Dispositif.structure")}
         onClick={isAllowedToEdit ? onClick : undefined}
-      />
+        onDelete={handleDelete}
+        id={id}
+      >
+        <MetaDataItem
+          logoImage={{
+            url: sponsor.logo || defaultStructureImage,
+            alt: sponsor.name || "",
+          }}
+          title={sponsor.name}
+        >
+          {sponsor.name}
+        </MetaDataItem>
+      </MetaDataCard>
       {!isAllowedToEdit && (
         <>
           <Tooltip target="main-sponsor-card">
