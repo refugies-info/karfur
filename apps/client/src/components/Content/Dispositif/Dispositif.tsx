@@ -2,7 +2,7 @@ import { ContentType } from "@refugies-info/api-types";
 import { useContext, useMemo } from "react";
 
 import { useSelector } from "react-redux";
-import { Banner, Breadcrumb, Contributors, Map, Section } from "~/components/Pages/dispositif";
+import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
@@ -10,6 +10,7 @@ import {
   MapEdit,
   RightSidebarEdition,
 } from "~/components/Pages/dispositif/Edition";
+import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
@@ -79,8 +80,8 @@ const Dispositif = (props: Props) => {
             {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
               <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
             ))}
-            {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
-
+            {/* TODO: adapt the Map component to be used in edit mode */}
+            {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
             {isViewMode && <Contributors />}
           </article>
 
