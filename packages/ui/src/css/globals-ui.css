@@ -1,8 +1,12 @@
+/* stylelint-disable scss/at-rule-no-unknown */
+/* stylelint-disable custom-property-pattern */
 @import "tailwindcss";
 @import "./dsfr-tokens.css";
 @import "./dsfr-customisations.css";
 @import "./container.css";
+@import "./prose.css";
 @source "../components/";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* Breakpoints */
@@ -16,11 +20,56 @@
   --font-caveat: var(--font-caveat);
 
   /* Shadows */
+
   --shadow-ri: 0 6px 18px rgb(0 0 18 / 16%);
+
+  /* Typescale titles desktop */
+  --text-title-xxs: 1.25rem; /* 20px */
+  --text-title-xxs--line-height: 1.75rem; /* 28px */
+  --text-title-xs: 1.375rem; /* 22px */
+  --text-title-xs--line-height: 1.75rem; /* 28px */
+  --text-title-sm: 1.5rem; /* 24px */
+  --text-title-sm--line-height: 2rem; /* 32px */
+  --text-title-md: 1.75rem; /* 28px */
+  --text-title-md--line-height: 2.25rem; /* 36px */
+  --text-title-lg: 2rem; /* 32px */
+  --text-title-lg--line-height: 2.5rem; /* 40px */
+  --text-title-xl: 2.5rem; /* 40px */
+  --text-title-xl--line-height: 3rem; /* 48px */
+
+  /* Typescale corps desktop */
+  --text-corps-xs: 0.75rem; /* 12px */
+  --text-corps-xs--line-height: 1.25rem; /* 20px */
+  --text-corps-sm: 0.875rem; /* 14px */
+  --text-corps-sm--line-height: 1.5rem; /* 24px */
+  --text-corps-md: 1rem; /* 16px */
+  --text-corps-md--line-height: 1.5rem; /* 24px */
+  --text-corps-lg: 1.125rem; /* 18px */
+  --text-corps-lg--line-height: 1.75rem; /* 28px */
+  --text-corps-xl: 1.25rem; /* 20px */
+  --text-corps-xl--line-height: 2rem; /* 32px */
 }
 
 body {
   overflow-x: hidden;
+}
+
+@media (width < 48em) {
+  :root {
+    /* Typescale titles mobile */
+    --text-title-xxs: 1.125rem; /* 18px */
+    --text-title-xxs--line-height: 1.5rem; /* 24px */
+    --text-title-xs: 1.25rem; /* 20px */
+    --text-title-xs--line-height: 1.75rem; /* 28px */
+    --text-title-sm: 1.375rem; /* 22px */
+    --text-title-sm--line-height: 1.75rem; /* 28px */
+    --text-title-md: 1.5rem; /* 24px */
+    --text-title-md--line-height: 2rem; /* 32px */
+    --text-title-lg: 1.75rem; /* 28px */
+    --text-title-lg--line-height: 2.25rem; /* 36px */
+    --text-title-xl: 2rem; /* 32px */
+    --text-title-xl--line-height: 2.5rem; /* 40px */
+  }
 }
 
 @layer utilities {

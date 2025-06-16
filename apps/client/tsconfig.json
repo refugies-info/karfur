@@ -9,6 +9,8 @@
     "noImplicitReturns": true,
     "target": "ES2022",
     "plugins": [{ "name": "next" }],
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "paths": {
       "~/*": ["*"],
       "@refugies-info/ui/*": ["../../packages/ui/src/*"]

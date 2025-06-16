@@ -12,6 +12,7 @@ import {
 } from "@refugies-info/api-types";
 import { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
+import { ProjectionType } from "mongoose";
 import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
@@ -444,7 +445,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
 };
 
 export const deleteDispositifInDb = async (id: string, user: User) => {
-  const neededFields = {
+  const neededFields: ProjectionType<Dispositif> = {
     creatorId: 1,
     mainSponsor: 1,
     status: 1,

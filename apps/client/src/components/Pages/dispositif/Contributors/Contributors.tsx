@@ -21,13 +21,12 @@ const Contributors = () => {
   }, [dispositif?.participants]);
 
   return (
-    // TODO: Add shadow back before full release: shadow-(--shadow-ri)
-    <div className="bg-alt-blue-france flex w-full flex-col gap-14 p-4 xl:p-14">
+    <div className="lg:bg-alt-blue-france lg:shadow-ri flex w-full flex-col gap-14 p-4 lg:p-14">
       <LinkedThemes />
-      <p className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
+      <h2 className="text-title-grey mb-0 text-[2rem] leading-[2.5rem] font-bold">
         {t("Dispositif.contributors", { count: participants.length })}
-      </p>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 2xl:grid-cols-4">
+      </h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {participants.map((user, i) => (
           <ContributorCard key={i} user={user} />
         ))}

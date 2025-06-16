@@ -1,3 +1,4 @@
+import { cn } from "@refugies-info/ui";
 import { useContext } from "react";
 import PageContext from "~/utils/pageContext";
 import { RichTextEdit } from "../Edition";
@@ -16,7 +17,7 @@ const RichText = (props: Props) => {
   const pageContext = useContext(PageContext);
 
   return (
-    <div className={styles.content}>
+    <div className={cn(pageContext.mode !== "edit" && "prose no-dsfr", styles.content)}>
       {pageContext.mode !== "edit" ? (
         <Text id={props.id} html>
           {props.value || ""}

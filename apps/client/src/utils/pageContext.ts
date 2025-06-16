@@ -17,6 +17,8 @@ interface DispositifContext {
   setActiveSection?: (key: string) => void;
   activeModal?: Modals | null;
   setActiveModal?: (key: Modals | null) => void;
+  modalPage?: number;
+  setModalPage?: (key: number) => void;
   showMissingSteps?: boolean;
   setShowMissingSteps?: (key: boolean) => void;
 }

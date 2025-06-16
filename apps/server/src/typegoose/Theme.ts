@@ -1,3 +1,4 @@
+import { ThemeGradientColors } from "@refugies-info/api-types";
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
 import { Base } from "./Base";
@@ -30,6 +31,9 @@ export class Theme extends Base {
 
   @prop({ _id: false })
   public colors: ThemeColors;
+
+  @prop({ _id: false })
+  public gradientColors: ThemeGradientColors;
 
   @prop({
     type: Number,

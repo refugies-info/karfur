@@ -6,18 +6,18 @@ import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
 import { useTranslation } from "next-i18next";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import Badge from "~/components/UI/Badge";
-import Button from "~/components/UI/Button";
-import { useLocale } from "~/hooks";
-import { Event } from "~/lib/tracking";
+import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
+import { SponsorsEdit } from "~/components/Pages/dispositif/Edition";
+import SaveBookmark from "~/components/Pages/dispositif/SaveBookmark";
+import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
+import Sponsors from "~/components/Pages/dispositif/Sponsors";
+import Image from "~/components/UI/Image";
+import { useLocale, useWindowSize } from "~/hooks";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
-import { sharingOptions } from "../function";
-import SectionButtons from "../SectionButtons";
 import Title from "../Title";
-import styles from "./Header.module.scss";
 
 interface Props {
   typeContenu: string;
@@ -26,40 +26,77 @@ interface Props {
 const Header = (props: Props) => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
+
+  const { isMobile } = useWindowSize();
+
+  let vocalizationContent = "";
+
+  if (isMobile) {
+    vocalizationContent = dispositif?.titreInformatif || "";
+  } else if (dispositif?.titreInformatif) {
+    vocalizationContent = dispositif.titreInformatif + (dispositif?.what || "");
+  } else {
+    vocalizationContent = dispositif?.what || "";
+  }
+
   const locale = useLocale();
   useEffect(() => {
     moment.locale(locale);
   }, [locale]);
 
   const pageContext = useContext(PageContext);
+  const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
+
   return (
-    <header className={styles.container}>
-      <div className="relative">
-        <Title />
-        {pageContext.mode === "view" && (
-          <>
-            {dispositif?.date && (
-              <Badge severity="info" small icon="ri-information-fill">{`${t("Dispositif.updated")} ${moment(
-                dispositif.date,
-              ).fromNow()}`}</Badge>
-            )}
+    <header className="relative">
+      {isViewMode && (
+        <SectionButtons
+          className="lg:absolute lg:-top-10 lg:ltr:-right-8 lg:rtl:-left-8"
+          id="titreInformatif"
+          content={vocalizationContent}
+        />
+      )}
 
-            <Button
-              className={styles.share}
-              priority="tertiary"
-              evaIcon="share-outline"
-              onClick={() => {
-                sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "");
-                Event("Share", "mobile", "from dispositif header");
-              }}
-            >
-              {t("Dispositif.share")}
-            </Button>
+      <Title />
 
-            <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />
-          </>
+      {isViewMode && dispositif?.titreMarque && (
+        <span className="text-corps-xl mb-8 block">
+          {t("Dispositif.with")} {dispositif?.titreMarque}{" "}
+        </span>
+      )}
+
+      <div className="flex items-center gap-3 text-sm">
+        {dispositif?.mainSponsor?.picture?.secure_url && (
+          <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
+            <Image
+              src={dispositif?.mainSponsor?.picture?.secure_url}
+              width={150}
+              height={150}
+              alt={dispositif?.mainSponsor?.nom || ""}
+              className=""
+            />
+          </span>
         )}
+
+        <span className="flex flex-col gap-1">
+          {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+          {isViewMode && dispositif?.date && (
+            <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
+          )}
+        </span>
       </div>
+
+      {isViewMode && (
+        <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse">
+          <SaveBookmark />
+          <LanguageMenu
+            mode="dropdown"
+            dropDownClassName="max-sm:max-w-[90vw]"
+            variant="flag"
+            className="[&_button]:shadow-none"
+          />
+        </div>
+      )}
     </header>
   );
 };

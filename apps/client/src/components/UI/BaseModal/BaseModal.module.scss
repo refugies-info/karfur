@@ -14,7 +14,6 @@
     background: white;
     border: none;
     box-shadow: 0 2px 6px 0 #00001229;
-    border-radius: u(2);
     height: 100%;
   }
 }
@@ -69,6 +68,7 @@
     @include dsfr-text("small");
 
     padding: u(1) u(3);
+    padding-inline-end: 0;
     box-shadow: none;
     min-height: 0;
     margin-bottom: u(2);

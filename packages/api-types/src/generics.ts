@@ -45,12 +45,18 @@ export interface ThemeColors {
   color30: string;
 }
 
+export interface ThemeGradientColors {
+  colorTop: string;
+  colorBottom: string;
+}
+
 export interface SimpleTheme {
   _id: Id;
   name: TranslatedText;
   short: TranslatedText;
   mainColor: string;
   colors: ThemeColors;
+  gradientColors: ThemeGradientColors;
   position: number;
   icon: Picture;
   banner: Picture;
