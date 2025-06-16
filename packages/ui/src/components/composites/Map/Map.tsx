@@ -9,7 +9,7 @@ import { MapPanel } from "./MapPanel";
 // Dynamically import LeafletMap component with SSR disabled
 const DynamicLeafletMap = dynamic(() => import("./LeafletMap.tsx").then((mod) => mod.LeafletMap), {
   ssr: false,
-  loading: () => <div>Chargement de la carte...</div>,
+  loading: () => <div className="flex h-full items-center justify-center">Chargement de la carte...</div>,
 });
 
 type MapProps = {
@@ -23,16 +23,21 @@ type MapProps = {
 export const Map = ({ className, title, description, mapData, defaultFocusedPoi }: MapProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPoi, setFocusedPoi] = useState<Poi | null>(null);
+
   useEffect(() => {
-    // Handle fullscreen mode changes
     if (isFullscreen) {
-      // Hide overflow
       document.body.style.overflow = "hidden";
 
-      // Check if style element already exists
+      // Handle escape key to exit fullscreen
+      const handleEscKey = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          setIsFullscreen(false);
+        }
+      };
+      window.addEventListener("keydown", handleEscKey);
+
       let styleEl = document.getElementById("map-fullscreen-styles");
 
-      // Create style element if it doesn't exist
       if (!styleEl) {
         styleEl = document.createElement("style");
         styleEl.setAttribute("id", "map-fullscreen-styles");
@@ -45,23 +50,24 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
         `;
         document.head.appendChild(styleEl);
       }
-    } else {
-      // Restore normal overflow
-      document.body.style.overflow = "";
 
-      // Remove the style element if it exists
-      const existingStyle = document.getElementById("map-fullscreen-styles");
-      if (existingStyle) {
-        existingStyle.remove();
-      }
+      // Clean up escape key handler when component unmounts or fullscreen changes
+      return () => {
+        window.removeEventListener("keydown", handleEscKey);
+      };
     }
 
-    // Trigger resize after transition in both cases
+    document.body.style.overflow = "";
+
+    const existingStyle = document.getElementById("map-fullscreen-styles");
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+
     const resizeTimeout = setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
     }, 300);
 
-    // Cleanup function
     return () => {
       clearTimeout(resizeTimeout);
       document.body.style.overflow = "";

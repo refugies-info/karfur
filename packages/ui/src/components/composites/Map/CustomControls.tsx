@@ -1,4 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { cn } from "@refugies-info/ui";
+import { useTranslation } from "next-i18next";
 import { useMap } from "react-leaflet";
 import { useWindowSize } from "../../../hooks";
 import { useMapContext } from "./MapContext";
@@ -7,9 +9,10 @@ export default function CustomControls() {
   const map = useMap();
   const { isFullscreen, setIsFullscreen } = useMapContext();
   const { isMobile, isTablet } = useWindowSize();
+  const isRTL = useTranslation().i18n.dir() === "rtl";
 
   return (
-    <div className="absolute top-2 right-2 z-[1000] flex flex-col">
+    <div className={cn("absolute top-2 z-[1000] flex flex-col", isRTL ? "left-2" : "right-2")}>
       <Button
         iconId="fr-icon-add-line"
         priority="tertiary"

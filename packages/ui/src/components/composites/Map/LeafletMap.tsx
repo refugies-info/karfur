@@ -1,5 +1,6 @@
 "use client";
 import { Poi } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import L, { LatLngBounds, LatLngTuple } from "leaflet";
 import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
@@ -8,7 +9,6 @@ import "leaflet/dist/leaflet.css";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { useWindowSize } from "~/hooks";
 import CustomControls from "./CustomControls";
 import { useMapContext } from "./MapContext";
 import PopupContent from "./PopupContent";

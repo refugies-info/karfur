@@ -17,7 +17,7 @@ type ResponsiveFlags = {
   isLargeDesktop: boolean;
 };
 
-const useWindowSize = () => {
+export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined, // Initialize as undefined for SSR to avoid hydration errors
     height: undefined, // Initialize as undefined for SSR to avoid hydration errors
@@ -130,5 +130,3 @@ const useWindowSize = () => {
 
   return { windowSize, ...responsiveFlags };
 };
-
-export default useWindowSize;
