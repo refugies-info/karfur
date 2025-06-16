@@ -17,7 +17,7 @@ const RichText = (props: Props) => {
   const pageContext = useContext(PageContext);
 
   return (
-    <div className={cn("prose no-dsfr", styles.content)}>
+    <div className={cn(pageContext.mode !== "edit" && "prose no-dsfr", styles.content)}>
       {pageContext.mode !== "edit" ? (
         <Text id={props.id} html>
           {props.value || ""}
