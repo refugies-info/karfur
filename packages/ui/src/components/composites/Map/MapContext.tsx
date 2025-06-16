@@ -1,7 +1,7 @@
 "use client";
 import { Poi } from "@refugies-info/api-types";
 import { createContext, RefObject, useContext } from "react";
-import { CarrouselHandle } from "~/components/composites/carrousel";
+import { CarrouselHandle } from "../carrousel";
 
 interface MapContextType {
   isFullscreen: boolean;

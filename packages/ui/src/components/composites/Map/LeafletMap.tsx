@@ -8,6 +8,7 @@ import "leaflet/dist/leaflet.css";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import { useWindowSize } from "~/hooks";
 import CustomControls from "./CustomControls";
 import { useMapContext } from "./MapContext";
 import PopupContent from "./PopupContent";
@@ -39,6 +40,8 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   const clusterGroupRef = useRef<L.MarkerClusterGroup | null>(null);
   const markersRef = useRef<{ [key: string]: L.Marker }>({});
   const [activeMarker, setActiveMarker] = useState<string | null>(null);
+
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     Object.entries(markersRef.current).forEach(([title, marker]) => {
@@ -254,7 +257,6 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
         bounds={bounds}
         boundsOptions={{ padding: [50, 50] }}
         zoom={bounds ? undefined : 6}
-        scrollWheelZoom={false}
         preferCanvas={true}
         renderer={L.canvas({ pane: "tilePane" })}
         fadeAnimation={false}
@@ -262,7 +264,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
         markerZoomAnimation={true}
         zoomControl={false}
         style={{ height: "100%", width: "100%" }}
-        dragging={false}
+        dragging={isMobile ? false : true}
       >
         <CustomControls />
         <TileLayer
