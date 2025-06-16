@@ -1,1 +1,3 @@
-export { default } from "./CardPublic";
+import CardPublic from "./CardPublic";
+
+export default CardPublic;

@@ -4,7 +4,6 @@ import { selectedDispositifSelector } from "~/services/SelectedDispositif/select
 import PageContext from "~/utils/pageContext";
 import { TitleEdit } from "../Edition";
 import Text from "../Text";
-import styles from "./Title.module.scss";
 
 interface Props {}
 
@@ -16,7 +15,7 @@ const Title = () => {
   const pageContext = useContext(PageContext);
 
   return (
-    <h1 className={styles.title}>
+    <h1 className="text-title-xl text-title-grey">
       {pageContext.mode !== "edit" ? (
         <Text id="titreInformatif">{dispositif?.titreInformatif || ""}</Text>
       ) : (

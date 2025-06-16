@@ -16,8 +16,6 @@
 .btn {
   @include iconSize(24px);
 
-  border-radius: u(2);
-
   &.small_icon {
     @include iconSize(16px);
   }

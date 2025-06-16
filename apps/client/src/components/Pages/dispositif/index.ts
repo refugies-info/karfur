@@ -4,8 +4,6 @@ import Accordions from "./Accordions";
 import Banner from "./Banner";
 import Contributors from "./Contributors";
 import Header from "./Header";
-import LangueMenu from "./LangueMenu";
-import LangueSelectList from "./LangueSelectList";
 import LinkedThemes from "./LinkedThemes";
 import Map from "./Map";
 import Metadatas from "./Metadatas";
@@ -18,7 +16,6 @@ import SMSForm from "./SMSForm";
 import Sponsors from "./Sponsors";
 import Status from "./Status";
 import StructureReceiveDispositif from "./StructureReceiveDispositif";
-import Summary from "./Summary";
 import Text from "./Text";
 import Title from "./Title";
 
@@ -29,8 +26,6 @@ export {
   Breadcrumb,
   Contributors,
   Header,
-  LangueMenu,
-  LangueSelectList,
   LinkedThemes,
   Map,
   Metadatas,
@@ -43,7 +38,6 @@ export {
   Sponsors,
   Status,
   StructureReceiveDispositif,
-  Summary,
   Text,
   Title,
 };

@@ -1,5 +1,6 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
 import useLocale from "~/hooks/useLocale";
+import { cn } from "~/lib/classname";
 import ThemeIcon from "../ThemeIcon";
 import styles from "./TagName.module.scss";
 
@@ -7,13 +8,17 @@ interface Props {
   theme: GetThemeResponse;
   colored?: boolean;
   size?: number;
+  className?: string;
 }
 
 const TagName = (props: Props) => {
   const locale = useLocale();
 
   return (
-    <span className={styles.container} style={props.colored ? { color: props.theme.colors.color100 } : {}}>
+    <span
+      className={cn(styles.container, props.className)}
+      style={props.colored ? { color: props.theme.colors.color100 } : {}}
+    >
       <span className={styles.icon}>
         <ThemeIcon
           theme={props.theme}

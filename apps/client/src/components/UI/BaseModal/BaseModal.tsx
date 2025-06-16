@@ -1,8 +1,8 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
 import React from "react";
 import { Modal } from "reactstrap";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
-import Button from "~/components/UI/Button";
 import Image from "~/components/UI/Image";
 import { useContentLocale } from "~/hooks";
 import { cls } from "~/lib/classname";
@@ -22,46 +22,45 @@ interface Props {
   onOpened?: () => void;
 }
 
-const BaseModal = (props: Props) => {
+const BaseModal = ({ show, toggle, className, help, title, children, small, onOpened }: Props) => {
   const { t } = useTranslation();
   const { isRTL } = useContentLocale();
 
   return (
     <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={cls(styles.modal, props.small && styles.small, props.className || "")}
+      isOpen={show}
+      toggle={toggle}
+      className={cls(styles.modal, small && styles.small, className || "")}
       contentClassName={styles.modal_content}
-      onOpened={props.onOpened}
+      onOpened={onOpened}
     >
       <div className={styles.container} dir={isRTL ? undefined : "ltr"}>
-        {props.help && (
+        {help && (
           <div className={styles.sidebar}>
             <Image src={TutoImg} width={47} height={32} alt="" />
-            <p className={styles.title}>{props.help.title}</p>
+            <p className={styles.title}>{help.title}</p>
             <div className={styles.text}>
-              {Array.isArray(props.help.content)
-                ? props.help.content.map((p, i) => <p key={i}>{p}</p>)
-                : props.help.content}
+              {Array.isArray(help.content) ? help.content.map((p, i) => <p key={i}>{p}</p>) : help.content}
             </div>
           </div>
         )}
         <div className={styles.content}>
-          {props.toggle && (
+          {toggle && (
             <div className="text-end">
               <Button
-                evaIcon="close-outline"
+                iconId="fr-icon-close-line"
+                className="translate-x-4"
                 iconPosition="right"
-                priority="tertiary"
-                className={styles.close}
-                onClick={props.toggle}
+                size="small"
+                priority="tertiary no outline"
+                onClick={toggle}
               >
                 {t("close")}
               </Button>
             </div>
           )}
-          <p className={cls(styles.title, !props.toggle && "mt-4")}>{props.title}</p>
-          {props.children}
+          <p className={cls(styles.title, !toggle && "mt-4")}>{title}</p>
+          {children}
         </div>
       </div>
     </Modal>
