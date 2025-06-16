@@ -1,5 +1,5 @@
 import { Poi } from "@refugies-info/api-types";
-import { cn } from "@refugies-info/ui";
+import { cn, useRTL } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { memo } from "react";
 import { useMapContext } from "./MapContext";
@@ -12,7 +12,8 @@ type MapPanelItemProps = {
 
 function MapPanelItem({ id, poi, className }: MapPanelItemProps) {
   const { focusLocation, focusedPoi } = useMapContext();
-  const isRTL = useTranslation().i18n.dir() === "rtl";
+  const { i18n } = useTranslation();
+  const isRTL = useRTL(i18n.language);
 
   return (
     <button
