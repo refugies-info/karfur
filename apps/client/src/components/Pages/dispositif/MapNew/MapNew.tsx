@@ -2,7 +2,7 @@
 
 import { GetThemeResponse, Poi } from "@refugies-info/api-types";
 import { Map } from "@refugies-info/ui";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -41,26 +41,25 @@ export default function MapNew({ data }: MapNewProps) {
   const theme = useSelector(themeSelector);
   const secondaryThemes = useSelector(secondaryThemesSelector);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  let title = "";
+  let description = "";
 
-  useEffect(() => {
-    // Only update if we have the necessary data
-    if (theme || secondaryThemes.length > 0) {
-      setTitle(t("Dispositif.mapTitle", "Lieu d'accueil"));
+  if (theme || secondaryThemes.length > 0) {
+    title = t("Dispositif.mapTitle", "Lieu d'accueil");
 
-      const isFormation = theme?.short?.fr === "Formation" || secondaryThemes?.some((t) => t.short?.fr === "Formation");
-      if (isFormation) {
-        setDescription(
-          t("Dispositif.mapDescriptionFormation", "C'est le lieu où vous devrez vous rendre pour la formation."),
-        );
-      } else {
-        setDescription(
-          t("Dispositif.mapDescriptionDispositif", "C'est le lieu où vous devrez vous rendre pour le dispositif."),
-        );
-      }
+    const isFormation = theme?.short?.fr === "Formation" || secondaryThemes?.some((t) => t.short?.fr === "Formation");
+    if (isFormation) {
+      description = t(
+        "Dispositif.mapDescriptionFormation",
+        "C'est le lieu où vous devrez vous rendre pour la formation.",
+      );
+    } else {
+      description = t(
+        "Dispositif.mapDescriptionDispositif",
+        "C'est le lieu où vous devrez vous rendre pour le dispositif.",
+      );
     }
-  }, [t, theme, secondaryThemes]);
+  }
 
   if (!mapItems || !title || !description) return null;
 
