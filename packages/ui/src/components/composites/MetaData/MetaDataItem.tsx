@@ -30,7 +30,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
         <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt={logoImage?.alt || ""} />
       )}
       <div className="flex flex-col ltr:text-left rtl:text-right">
-        {title && <h4 className="text-corps-sm mb-0">{title}</h4>}
+        {title && <h3 className="text-corps-sm mb-0">{title}</h3>}
         {children && (
           <div
             className={cn(
