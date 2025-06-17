@@ -2,7 +2,7 @@
 
 import { GetThemeResponse, Poi } from "@refugies-info/api-types";
 import { Map } from "@refugies-info/ui";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -12,10 +12,16 @@ interface MapNewProps {
   data: Poi[];
 }
 
-export default function MapNew({ data }: MapNewProps) {
+const MapNew = ({ data }: MapNewProps) => {
   const { t } = useTranslation();
+  const [isClient, setIsClient] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
   const mapItems = dispositif?.map;
+
+  // Set isClient to true once component mounts on client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Memoize the theme ID to prevent selector recreation on every render
   const themeId = dispositif?.theme;
@@ -61,14 +67,17 @@ export default function MapNew({ data }: MapNewProps) {
     }
   }
 
+  // Only render the map with description on the client side
   if (!mapItems || !title || !description) return null;
 
   return (
     <Map
       mapData={mapItems}
       title={title}
-      description={description}
+      description={isClient ? description : ""}
       defaultFocusedPoi={mapItems.length === 1 ? mapItems[0] : undefined}
     />
   );
-}
+};
+
+export default MapNew;
