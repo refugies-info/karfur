@@ -18,16 +18,13 @@ const MapNew = ({ data }: MapNewProps) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const mapItems = dispositif?.map;
 
-  // Set isClient to true once component mounts on client
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Memoize the theme ID to prevent selector recreation on every render
   const themeId = dispositif?.theme;
   const secondaryThemeIds = dispositif?.secondaryThemes;
 
-  // Use memoized selectors
   const themeSelector = useMemo(() => {
     return (state: RootState) => {
       if (!themeId) return null;
@@ -67,7 +64,6 @@ const MapNew = ({ data }: MapNewProps) => {
     }
   }
 
-  // Only render the map with description on the client side
   if (!mapItems || !title || !description) return null;
 
   return (
