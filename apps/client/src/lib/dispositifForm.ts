@@ -94,7 +94,10 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
     mainSponsor: dispositif.mainSponsor?._id.toString(),
     theme: dispositif.theme?.toString(),
     secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString()),
-    sponsors: dispositif.sponsors as Sponsor[],
+    sponsors: (dispositif.sponsors as Sponsor[])?.map((sponsor) => {
+      const { logo, ...rest } = sponsor;
+      return logo === null ? rest : sponsor;
+    }),
   };
 
   if (defaultValues.why)

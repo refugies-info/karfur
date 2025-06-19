@@ -98,7 +98,9 @@ export interface MainSponsor {
 
 export interface Sponsor {
   name: string;
-  logo?: Picture;
+  // Unfortunately there are occurrences in the database with a null logo
+  // See https://linear.app/refugiesinfo/issue/RI-794/bug-erreur-lors-de-la-sauvegarde-automatique-dun-fiche
+  logo?: Picture | null;
   link?: string;
 }
 
