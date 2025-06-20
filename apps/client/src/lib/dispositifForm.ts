@@ -95,11 +95,10 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
     theme: dispositif.theme?.toString(),
     secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString()),
     sponsors: (dispositif.sponsors as Sponsor[])?.map((sponsor) => {
-      const { logo, link, ...rest } = sponsor;
-      const result: Partial<Pick<Sponsor, "logo" | "link">> & Omit<Sponsor, "logo" | "link"> = { ...rest };
-      if (logo !== null) result.logo = logo;
-      if (link !== null) result.link = link;
-      return result as Sponsor;
+      const result = { ...sponsor };
+      if (result.logo === null) delete result.logo;
+      if (result.link === null) delete result.link;
+      return result;
     }),
   };
 
