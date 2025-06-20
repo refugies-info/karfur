@@ -95,8 +95,10 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
     theme: dispositif.theme?.toString(),
     secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString()),
     sponsors: (dispositif.sponsors as Sponsor[])?.map((sponsor) => {
-      const { logo, ...rest } = sponsor;
-      return logo === null ? rest : sponsor;
+      const result = { ...sponsor };
+      if (result.logo === null) delete result.logo;
+      if (result.link === null) delete result.link;
+      return result;
     }),
   };
 
