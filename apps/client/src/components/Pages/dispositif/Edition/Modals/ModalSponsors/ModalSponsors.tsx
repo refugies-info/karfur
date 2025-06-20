@@ -46,7 +46,7 @@ const ModalSponsors = (props: Props) => {
       const sponsor = getValues("sponsors")?.[props.currentSponsorIndex];
       setName(sponsor?.name);
       setLink(sponsor?.link);
-      setLogo(sponsor?.logo);
+      setLogo(sponsor?.logo || undefined);
     } else {
       resetForm();
     }
