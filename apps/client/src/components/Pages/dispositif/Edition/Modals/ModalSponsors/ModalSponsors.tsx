@@ -45,7 +45,7 @@ const ModalSponsors = (props: Props) => {
     if (props.currentSponsorIndex >= 0) {
       const sponsor = getValues("sponsors")?.[props.currentSponsorIndex];
       setName(sponsor?.name);
-      setLink(sponsor?.link);
+      setLink(sponsor?.link || undefined);
       setLogo(sponsor?.logo || undefined);
     } else {
       resetForm();
