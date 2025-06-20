@@ -95,7 +95,7 @@ export interface Sponsor {
   // Unfortunately there are occurrences in the database with a null logo
   // See https://linear.app/refugiesinfo/issue/RI-794/bug-erreur-lors-de-la-sauvegarde-automatique-dun-fiche
   logo?: Picture | null;
-  link?: string;
+  link?: string | null;
 }
 
 export interface DemarcheAdministration {
