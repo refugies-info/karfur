@@ -112,7 +112,7 @@ const LanguageMenu = ({
       {(isMobile && mobileMode === "modal") || (!isMobile && desktopMode === "modal") ? (
         <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened} key={key}>
           <Dialog.Trigger asChild>
-            <Button priority="tertiary no outline" className="flex gap-2">
+            <Button priority="tertiary no outline" className={cn("flex gap-2", className)}>
               {variant === "flag" ? (
                 <Flag langueCode={currentLanguage?.langueCode || "fr"} className="me-2" />
               ) : (

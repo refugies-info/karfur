@@ -1,3 +1,4 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import moment from "moment";
 import "moment/locale/ar";
 import "moment/locale/en-gb";
@@ -6,7 +7,7 @@ import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
 import { useTranslation } from "next-i18next";
-import { useContext, useEffect, useMemo } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import { SponsorsEdit } from "~/components/Pages/dispositif/Edition";
@@ -15,6 +16,7 @@ import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
 import Sponsors from "~/components/Pages/dispositif/Sponsors";
 import Image from "~/components/UI/Image";
 import { useLocale, useWindowSize } from "~/hooks";
+import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
 import Title from "../Title";
@@ -27,6 +29,7 @@ const Header = (props: Props) => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const { isMobile } = useWindowSize();
+  const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
 
   let vocalizationContent = "";
 
@@ -46,6 +49,20 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
+  const handleShare = useCallback(() => {
+    if (navigator.share) {
+      setNavigatorShareSupported(true);
+      navigator.share({
+        title: dispositif?.titreInformatif || "",
+        text: dispositif?.titreMarque
+          ? `${dispositif.titreInformatif} - ${dispositif.titreMarque}`
+          : dispositif?.titreInformatif,
+        url: window.location.href,
+      });
+      Event("DISPO_VIEW", "share", dispositif?._id?.toString() || "");
+    }
+  }, [dispositif?._id, dispositif?.titreInformatif, dispositif?.titreMarque]);
+
   return (
     <header className="relative">
       {isViewMode && (
@@ -55,15 +72,12 @@ const Header = (props: Props) => {
           content={vocalizationContent}
         />
       )}
-
       <Title />
-
       {isViewMode && dispositif?.titreMarque && (
         <span className="text-corps-xl mb-8 block">
           {t("Dispositif.with")} {dispositif?.titreMarque}{" "}
         </span>
       )}
-
       <div className="flex items-center gap-3 text-sm">
         {dispositif?.mainSponsor?.picture?.secure_url && (
           <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
@@ -86,14 +100,21 @@ const Header = (props: Props) => {
       </div>
 
       {isViewMode && (
-        <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse">
-          <SaveBookmark />
+        <div className="border-default-grey my-8 flex items-center border-y py-1 rtl:flex-row-reverse">
+          {isMobile && navigatorShareSupported ? (
+            <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
+              {t("Dispositif.shareShort", "Partager")}
+            </Button>
+          ) : (
+            <SaveBookmark />
+          )}
+
           <LanguageMenu
             mobileMode="modal"
             desktopMode="dropdown"
             dropDownClassName="max-sm:max-w-[90vw]"
             variant="flag"
-            className="[&_button]:shadow-none"
+            className="ms-auto [&_button]:shadow-none"
             languageSelectorType="page"
             availableLanguages={dispositif?.availableLanguages}
           />
