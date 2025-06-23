@@ -20,7 +20,7 @@ interface Props {
   className?: string;
   dropDownClassName?: string;
   languageSelectorType?: "global" | "page";
-  availableLanguages: string[] | null | undefined;
+  availableLanguages?: string[] | null | undefined;
   key?: string;
 }
 
