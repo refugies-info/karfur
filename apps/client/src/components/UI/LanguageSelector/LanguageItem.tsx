@@ -62,7 +62,7 @@ const LanguageItem = memo(
           aria-disabled={disabled}
           key={item.langueCode}
           id={item.langueCode}
-          title={className}
+          title={`${item.langueFr} - ${item.langueLoc}`}
           onClick={(e) => {
             e.stopPropagation();
             if (disabled) return;

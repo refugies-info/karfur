@@ -26,8 +26,6 @@ interface Props {
 const Header = (props: Props) => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
-  console.log(dispositif);
-
   const { isMobile } = useWindowSize();
 
   let vocalizationContent = "";
