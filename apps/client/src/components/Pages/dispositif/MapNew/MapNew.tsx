@@ -12,16 +12,19 @@ interface MapNewProps {
   data: Poi[];
 }
 
-export default function MapNew({ data }: MapNewProps) {
+const MapNew = ({ data }: MapNewProps) => {
   const { t } = useTranslation();
+  const [isClient, setIsClient] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
   const mapItems = dispositif?.map;
 
-  // Memoize the theme ID to prevent selector recreation on every render
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const themeId = dispositif?.theme;
   const secondaryThemeIds = dispositif?.secondaryThemes;
 
-  // Use memoized selectors
   const themeSelector = useMemo(() => {
     return (state: RootState) => {
       if (!themeId) return null;
@@ -41,26 +44,25 @@ export default function MapNew({ data }: MapNewProps) {
   const theme = useSelector(themeSelector);
   const secondaryThemes = useSelector(secondaryThemesSelector);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  let title = "";
+  let description = "";
 
-  useEffect(() => {
-    // Only update if we have the necessary data
-    if (theme || secondaryThemes.length > 0) {
-      setTitle(t("Dispositif.mapTitle", "Lieu d'accueil"));
+  if (theme || secondaryThemes.length > 0) {
+    title = t("Dispositif.mapTitle", "Lieu d'accueil");
 
-      const isFormation = theme?.short?.fr === "Formation" || secondaryThemes?.some((t) => t.short?.fr === "Formation");
-      if (isFormation) {
-        setDescription(
-          t("Dispositif.mapDescriptionFormation", "C'est le lieu où vous devrez vous rendre pour la formation."),
-        );
-      } else {
-        setDescription(
-          t("Dispositif.mapDescriptionDispositif", "C'est le lieu où vous devrez vous rendre pour le dispositif."),
-        );
-      }
+    const isFormation = theme?.short?.fr === "Formation" || secondaryThemes?.some((t) => t.short?.fr === "Formation");
+    if (isFormation) {
+      description = t(
+        "Dispositif.mapDescriptionFormation",
+        "C'est le lieu où vous devrez vous rendre pour la formation.",
+      );
+    } else {
+      description = t(
+        "Dispositif.mapDescriptionDispositif",
+        "C'est le lieu où vous devrez vous rendre pour le dispositif.",
+      );
     }
-  }, [t, theme, secondaryThemes]);
+  }
 
   if (!mapItems || !title || !description) return null;
 
@@ -68,8 +70,10 @@ export default function MapNew({ data }: MapNewProps) {
     <Map
       mapData={mapItems}
       title={title}
-      description={description}
+      description={isClient ? description : ""}
       defaultFocusedPoi={mapItems.length === 1 ? mapItems[0] : undefined}
     />
   );
-}
+};
+
+export default MapNew;
