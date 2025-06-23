@@ -4,7 +4,6 @@
 
   display: flex;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
   gap: 1em;
   background-color: white;
@@ -20,6 +19,10 @@
 
   &:hover {
     background-color: var(--background-overlap-grey-hover);
+  }
+
+  &.disabled:hover {
+    background-color: #fff;
   }
 
   &:not(:last-child)::after {
