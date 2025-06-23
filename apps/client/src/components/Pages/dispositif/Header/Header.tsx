@@ -95,7 +95,7 @@ const Header = (props: Props) => {
             variant="flag"
             className="[&_button]:shadow-none"
             languageSelectorType="page"
-            availableLanguages={dispositif?.availableLanguages || null}
+            availableLanguages={dispositif?.availableLanguages}
           />
         </div>
       )}
