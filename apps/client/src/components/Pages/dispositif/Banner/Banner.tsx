@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useLanguages, useLocale } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
@@ -32,7 +32,7 @@ const Banner = (props: Props) => {
 
   return (
     <div
-      className={cls(styles.banner, pageContext.mode === "translate" && styles.translate)}
+      className={cn("h-[400px] max-lg:h-[240px]", styles.banner, pageContext.mode === "translate" && styles.translate)}
       style={theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
     >
       <div>

@@ -7,12 +7,13 @@ import {
   publicType,
 } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import { cls } from "~/lib/classname";
 import { entries } from "~/lib/typedObjectEntries";
+import PageContext from "~/utils/pageContext";
 import ChoiceButton from "../../ChoiceButton";
 import { InlineForm, StepsFooter } from "../components";
 import {
@@ -29,14 +30,24 @@ import { addAllRefugeeTypes, includeAllFrenchLevels, includeAllRefugees, removeA
 interface Props {
   show: boolean;
   toggle: () => void;
+  page?: number;
 }
 
 const MAX_STEP = 4;
 
-const ModalPublic = (props: Props) => {
+const ModalPublic = ({ show, toggle, page }: Props) => {
+  const { modalPage } = useContext(PageContext);
   const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(page || modalPage || 1);
+
+  useEffect(() => {
+    if (page) {
+      setStep(page);
+    } else if (modalPage) {
+      setStep(modalPage);
+    }
+  }, [modalPage, page]);
 
   // public status
   const [publicStatus, setPublicStatus] = useState<publicStatusType[] | undefined>(
@@ -115,7 +126,7 @@ const ModalPublic = (props: Props) => {
       setStep(4);
     } else if (step === 4) {
       validatePublicType();
-      props.toggle();
+      toggle();
     }
   };
 
@@ -137,8 +148,8 @@ const ModalPublic = (props: Props) => {
 
   return (
     <BaseModal
-      show={props.show}
-      toggle={props.toggle}
+      show={show}
+      toggle={toggle}
       help={help[step - 1]}
       title={modalTitles[step - 1]}
       onOpened={navigateToStep}

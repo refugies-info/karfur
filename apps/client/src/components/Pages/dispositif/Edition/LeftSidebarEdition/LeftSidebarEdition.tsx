@@ -1,22 +1,22 @@
-import { fr } from "@codegouvfr/react-dsfr";
-import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
-import { useCallback, useContext } from "react";
+import { ContentType, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { useCallback, useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
+import CardInfo from "~/components/Pages/dispositif/Metadatas/CardInfo";
 import { useContentType } from "~/hooks/dispositif";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
-import CardAvailability from "../../Metadatas/CardAvailability";
 import CardConditions from "../../Metadatas/CardConditions";
 import CardDemarcheAdministration from "../../Metadatas/CardDemarcheAdministration";
-import CardLocation from "../../Metadatas/CardLocation";
-import CardMainSponsor from "../../Metadatas/CardMainSponsor";
-import CardPrice from "../../Metadatas/CardPrice";
-import CardPublic from "../../Metadatas/CardPublic";
 import CardTheme from "../../Metadatas/CardTheme";
 import AddContentButton from "../AddContentButton";
+
+import { fr } from "@codegouvfr/react-dsfr";
+import { MetaDataCard } from "@refugies-info/ui";
+import CardMainSponsor from "~/components/Pages/dispositif/Metadatas/CardMainSponsor";
+import CardPublic from "~/components/Pages/dispositif/Metadatas/CardPublic";
+import EVAIcon from "~/components/UI/EVAIcon";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -28,55 +28,37 @@ import {
   ModalPublic,
   ModalThemes,
 } from "../Modals";
-import styles from "./LeftSidebarEdition.module.scss";
 
 interface Props {
   typeContenu: ContentType;
+  className?: string;
 }
 
 /**
  * Left sidebar of the page in EDIT mode.
  * For each section, it shows either an AddContentButton if no content yet, or a card if the value is set.
  */
-const LeftSidebarEdition = (props: Props) => {
+const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
   const values = useWatch<UpdateDispositifRequest>();
+
+  // Create a safe version of the form data that conforms to the expected types
+  const formData = useMemo(() => {
+    return values as UpdateDispositifRequest;
+  }, [values]);
   const currentTheme = useSelector(themeSelector(values.theme));
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
-  const { activeModal, setActiveModal } = useContext(PageContext);
+  const { activeModal, setActiveModal, modalPage, setModalPage } = useContext(PageContext);
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
 
   return (
-    <div className={styles.container}>
-      <div id="step-theme"></div>
-      {values.theme !== undefined ? (
-        <CardTheme
-          dataTheme={values.theme}
-          dataSecondaryThemes={values.secondaryThemes}
-          color={color}
-          onClick={() => setActiveModal?.("Themes")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Themes")} className="mb-6" size="md">
-          <EVAIcon
-            name="color-palette-outline"
-            size={24}
-            fill={fr.colors.decisions.text.disabled.grey.default}
-            className={cls(styles.theme_icon, "me-2")}
-          />
-          Thèmes
-        </AddContentButton>
-      )}
-
+    <div className={cn("flex flex-col gap-4", className)}>
+      <CardTheme formData={formData} />
       {contentType === ContentType.DEMARCHE && (
         <>
           {values.administration !== undefined && (!!values.administration?.name || !!values?.administration?.logo) ? (
-            <CardDemarcheAdministration
-              dataAdministration={values.administration}
-              color={color}
-              onClick={() => setActiveModal?.("Administration")}
-            />
+            <CardDemarcheAdministration formData={formData} />
           ) : (
             <AddContentButton onClick={() => setActiveModal?.("Administration")} className="mb-6" size="md">
               <i className="fr-icon-image-line me-2" />
@@ -85,135 +67,32 @@ const LeftSidebarEdition = (props: Props) => {
           )}
         </>
       )}
-
-      <p className={styles.title}>C'est pour qui ?</p>
-
-      <div id="step-public"></div>
-      {values.metadatas?.publicStatus !== undefined ||
-      values.metadatas?.age !== undefined ||
-      values.metadatas?.frenchLevel !== undefined ||
-      values.metadatas?.public !== undefined ? (
-        <CardPublic
-          dataPublicStatus={values.metadatas.publicStatus}
-          dataAge={values.metadatas.age as Metadatas["age"]}
-          dataFrenchLevel={values.metadatas.frenchLevel}
-          dataPublic={values.metadatas.public}
-          color={color}
-          onClick={() => setActiveModal?.("Public")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Public")} className="mb-6" size="md">
-          Public visé
-        </AddContentButton>
-      )}
-
-      <div id="step-price"></div>
-      {values.metadatas?.price !== undefined ? (
-        <CardPrice
-          data={values.metadatas.price as Metadatas["price"]}
-          color={color}
-          onClick={() => setActiveModal?.("Price")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Price")} className="mb-6" size="md">
-          Prix
-        </AddContentButton>
-      )}
-
-      {contentType === ContentType.DISPOSITIF && (
-        <>
-          <div id="step-commitment"></div>
-          {values.metadatas?.commitment !== undefined ||
-          values.metadatas?.frequency !== undefined ||
-          values.metadatas?.timeSlots !== undefined ? (
-            <CardAvailability
-              dataCommitment={values.metadatas.commitment as Metadatas["commitment"]}
-              dataFrequency={values.metadatas.frequency as Metadatas["frequency"]}
-              dataTimeSlots={values.metadatas.timeSlots}
-              color={color}
-              onClick={() => setActiveModal?.("Availability")}
-            />
-          ) : (
-            <AddContentButton onClick={() => setActiveModal?.("Availability")} className="mb-6" size="md">
-              Disponibilité demandée
-            </AddContentButton>
-          )}
-        </>
-      )}
-
-      <div id="step-conditions"></div>
-      {values.metadatas?.conditions !== undefined ? (
-        <CardConditions
-          data={values.metadatas.conditions}
-          color={color}
-          onClick={() => setActiveModal?.("Conditions")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Conditions")} className="mb-6" size="md">
-          Conditions
-        </AddContentButton>
-      )}
-
-      {contentType === ContentType.DISPOSITIF && (
-        <>
-          <div id="step-location"></div>
-          {values.metadatas?.location !== undefined ? (
-            <CardLocation
-              data={values.metadatas.location}
-              typeContenu={props.typeContenu || ContentType.DISPOSITIF}
-              color={color}
-              onClick={() => setActiveModal?.("Location")}
-            />
-          ) : (
-            <AddContentButton onClick={() => setActiveModal?.("Location")} className="mb-6" size="md">
-              C'est où ?
-            </AddContentButton>
-          )}
-        </>
-      )}
-
-      <p className={styles.title}>À faire en dernier</p>
-
-      <div id="step-mainSponsor"></div>
+      <CardPublic id="step-public" formData={formData} />
+      <CardInfo id="step-info" formData={formData} />
+      <CardConditions id="step-conditions" formData={formData} />
+      <p className="mb-0 font-bold">À faire en dernier</p>
+      <div id="main-sponsor-card" />
       {!!values.mainSponsor ? (
-        <CardMainSponsor
-          dataMainSponsor={values.mainSponsor}
-          color={color}
-          onClick={() => setActiveModal?.("MainSponsor")}
-        />
+        <CardMainSponsor formData={formData} id="step-mainSponsor" />
       ) : (
-        <AddContentButton onClick={() => setActiveModal?.("MainSponsor")} size="md" className="mb-6">
+        <AddContentButton onClick={() => setActiveModal?.("MainSponsor")} size="md">
           <EVAIcon
             name="home-outline"
             size={24}
             fill={fr.colors.decisions.text.disabled.grey.default}
-            className={cls(styles.theme_icon, "me-2")}
+            className={cn("me-2")}
           />
           Structure
         </AddContentButton>
       )}
-
-      <div id="step-abstract"></div>
-      <AddContentButton
-        onClick={() => setActiveModal?.("Abstract")}
-        size="md"
-        contentSize="sm"
-        content={values.abstract}
-      >
-        <EVAIcon
-          name="file-text-outline"
-          size={24}
-          fill={fr.colors.decisions.text.disabled.grey.default}
-          className={cls(styles.theme_icon, "me-2")}
-        />
-        En bref
-      </AddContentButton>
-
+      <MetaDataCard title="En bref" onClick={() => setActiveModal?.("Abstract")} id="step-abstract">
+        {values.abstract}
+      </MetaDataCard>
       <ModalAvailability show={activeModal === "Availability"} toggle={toggleModal} />
       <ModalConditions show={activeModal === "Conditions"} toggle={toggleModal} />
       <ModalLocation show={activeModal === "Location"} toggle={toggleModal} />
       <ModalPrice show={activeModal === "Price"} toggle={toggleModal} />
-      <ModalPublic show={activeModal === "Public"} toggle={toggleModal} />
+      <ModalPublic show={activeModal === "Public"} toggle={toggleModal} page={modalPage} />
       <ModalThemes show={activeModal === "Themes"} toggle={toggleModal} />
       <ModalAbstract show={activeModal === "Abstract"} toggle={toggleModal} />
       <ModalMainSponsor show={activeModal === "MainSponsor"} toggle={toggleModal} />

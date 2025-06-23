@@ -1,26 +1,23 @@
 import { ContentType } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 
 import { useSelector } from "react-redux";
-import { Banner, Breadcrumb, Contributors, Header, Map, Section, Sponsors } from "~/components/Pages/dispositif";
+import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
   CustomNavbar,
   LeftSidebarEdition,
   MapEdit,
   RightSidebarEdition,
-  SponsorsEdit,
 } from "~/components/Pages/dispositif/Edition";
+import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
-import styles from "./Dispositif.module.scss";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
 
@@ -34,8 +31,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 };
 
 const Dispositif = (props: Props) => {
-  const { t } = useTranslation();
-  const { isTablet, isMobile } = useWindowSize();
+  const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -50,43 +46,57 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={cls(styles.container, isEditMode && styles.edit)} id="top">
+    <div className={cn("w-full", isEditMode && "edit")} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
-      {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
-      {isViewMode && <Breadcrumb dispositif={dispositif} />}
-      {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
-      <div className={styles.content}>
-        <div className={styles.left}>
-          {isTablet && <Header typeContenu={typeContenu} />}
-          {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition typeContenu={typeContenu} />}
-        </div>
-
-        <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
-          {!isTablet && <Header typeContenu={typeContenu} />}
-          {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-            <Section key={i} sectionKey={section} contentType={typeContenu} />
-          ))}
-          {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
-          {isViewMode && (
+      <div
+        className={cn("relative pb-8")}
+        style={{
+          background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
+        }}
+        id="top"
+      >
+        {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
+        {isViewMode && <Breadcrumb dispositif={dispositif} />}
+        {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
+        <div className={cn("z-10 container flex gap-10 max-lg:flex-col max-sm:!px-0")}>
+          {(isDesktop || isLargeDesktop) && (
             <>
-              <FRLink href="#top" icon="arrow-upward" className={styles.top}>
-                {t("topLink")}
-              </FRLink>
+              {isViewMode ? (
+                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
+              ) : (
+                <LeftSidebarEdition className="z-10 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
+              )}
             </>
           )}
 
-          <span className={styles.divider} />
-          {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
-          {isViewMode && <Contributors />}
-        </div>
+          <article
+            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%]"
+            dir={isRTL ? undefined : "ltr"}
+          >
+            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+              <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
+            ))}
+            {/* TODO: adapt the Map component to be used in edit mode */}
+            {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
+            {isViewMode && <Contributors />}
+          </article>
 
-        <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
+          {isLargeDesktop && (
+            <>
+              {isViewMode ? (
+                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
+              ) : (
+                <RightSidebarEdition className="z-10 lg:w-[20%] lg:pt-[371px]" />
+              )}
+            </>
+          )}
+        </div>
+        {(isMobile || isTablet || isDesktop) && <NorthStar />}
       </div>
-      {isTablet && <NorthStar />}
     </div>
   );
 };
