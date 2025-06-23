@@ -26,7 +26,6 @@ interface Props {
 const Header = (props: Props) => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
-
   const { isMobile } = useWindowSize();
 
   let vocalizationContent = "";
@@ -90,10 +89,13 @@ const Header = (props: Props) => {
         <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse">
           <SaveBookmark />
           <LanguageMenu
-            mode="dropdown"
+            mobileMode="modal"
+            desktopMode="dropdown"
             dropDownClassName="max-sm:max-w-[90vw]"
             variant="flag"
             className="[&_button]:shadow-none"
+            languageSelectorType="page"
+            availableLanguages={dispositif?.availableLanguages}
           />
         </div>
       )}
