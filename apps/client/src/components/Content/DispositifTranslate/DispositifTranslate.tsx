@@ -12,7 +12,7 @@ import FRLink from "~/components/UI/FRLink";
 import Flag from "~/components/UI/Flag";
 import { useContentLocale, useLanguages, useUser } from "~/hooks";
 import { useDispositifTranslation } from "~/hooks/dispositif";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
@@ -65,7 +65,7 @@ const Dispositif = (props: Props) => {
   const language = getLanguageByCode(locale);
 
   return (
-    <div className={cls(styles.container)} id="top">
+    <div className={cn(styles.container)} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
@@ -79,33 +79,30 @@ const Dispositif = (props: Props) => {
         translators={traductions.map((t) => t.author).filter((auth) => auth.id.toString() !== user.userId?.toString())}
       />
       <Row className="gx-0">
-        <Col xs="6" className={cls(styles.col, "bg-white")}>
+        <Col xs="6" className={cn(styles.col, "bg-white")}>
           <div>
-            <div className={styles.banner}>
-              <div className={cls(styles.version, styles.translation)}>
+            <div className={cn(styles.banner, "z-0")}>
+              <div className={cn(styles.version, styles.translation)}>
                 Traduction en {language?.langueFr}
                 <Flag langueCode={language?.langueCode} className="ms-2" />
               </div>
               <Banner themeId={dispositif?.theme} />
             </div>
 
-            <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
+            <div className={cn(styles.main, "relative z-1")} dir={isRTL ? undefined : "ltr"}>
               <TranslationInput id="step-titreInformatif" {...getInputProps("content.titreInformatif")} />
-
               {typeContenu === ContentType.DISPOSITIF && (
-                <div className={cls(styles.marque, "mb-8")}>
+                <div className={cn(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
                   <TranslationInput id="step-titreMarque" {...getInputProps("content.titreMarque")} />
                 </div>
               )}
-
               {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
-                <div className={cls(styles.marque, "mb-8")}>
+                <div className={cn(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
                   <TranslationInput id="step-administrationName" {...getInputProps("content.administrationName")} />
                 </div>
               )}
-
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <section key={i} className="mb-8">
                   <SectionTitle titleKey={section} />
@@ -122,10 +119,8 @@ const Dispositif = (props: Props) => {
                   )}
                 </section>
               ))}
-
               <SectionTitleAbstract />
               <TranslationInput id="step-abstract" {...getInputProps("content.abstract")} />
-
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
                 Haut de page
               </FRLink>
@@ -143,7 +138,7 @@ const Dispositif = (props: Props) => {
               <Banner themeId={dispositif?.theme} />
             </div>
 
-            <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
+            <div className={cn(styles.main, "relative z-1")} dir={isRTL ? undefined : "ltr"}>
               <Header typeContenu={typeContenu} />
               {typeContenu === ContentType.DISPOSITIF && (
                 <div className="mb-8">

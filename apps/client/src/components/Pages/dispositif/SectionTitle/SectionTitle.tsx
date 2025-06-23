@@ -34,7 +34,7 @@ const SectionTitleView = (props: Props) => {
  */
 const SectionTitle = (props: Props) => {
   const pageContext = useContext(PageContext);
-  return pageContext.mode === "edit" ? (
+  return pageContext.mode === "edit" || pageContext.mode === "translate" ? (
     <SectionTitleEdit titleKey={props.titleKey} />
   ) : (
     <SectionTitleView titleKey={props.titleKey} />
