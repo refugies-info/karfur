@@ -21,6 +21,7 @@ interface Props {
   dropDownClassName?: string;
   languageSelectorType?: "global" | "page";
   availableLanguages: string[] | null;
+  key?: string;
 }
 
 const LanguageMenu = ({
@@ -31,6 +32,7 @@ const LanguageMenu = ({
   dropDownClassName,
   languageSelectorType = "global",
   availableLanguages = null,
+  key,
 }: Props) => {
   const [langMenuOpened, setLangMenuOpened] = useState(false);
 
@@ -69,6 +71,7 @@ const LanguageMenu = ({
             </>
           }
           className={styles.langAccordion}
+          key={key}
         >
           <LanguageSelector
             onChangeLang={handleToggleMobileMenu}
@@ -82,7 +85,7 @@ const LanguageMenu = ({
         <DropdownRoot
           className={className}
           ref={dropdownRef}
-          key="language"
+          key={key}
           onOpenChange={(open) => setLangMenuOpened(open)}
         >
           <DropdownTrigger asChild>
@@ -107,7 +110,7 @@ const LanguageMenu = ({
       ) : null}
 
       {(isMobile && mobileMode === "modal") || (!isMobile && desktopMode === "modal") ? (
-        <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened}>
+        <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened} key={key}>
           <Dialog.Trigger asChild>
             <Button priority="tertiary no outline" className="flex gap-2">
               {variant === "flag" ? (
