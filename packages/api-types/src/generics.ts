@@ -88,12 +88,16 @@ export interface ContentStructure {
   nom: string;
   picture?: Picture;
   status?: string;
+  link?: string;
+  acronyme?: string;
 }
 
 export interface MainSponsor {
   name: string;
+  nom?: string;
   logo?: Picture;
   link?: string;
+  acronyme?: string;
 }
 
 export interface Sponsor {

@@ -31,6 +31,9 @@ const Header = (props: Props) => {
   const { isMobile } = useWindowSize();
   const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
 
+  // hide sponsor if it's the default sponsor
+  const hideSponsor = dispositif?.mainSponsor?._id === "5f69cb9c0aab6900460c0f3f";
+
   let vocalizationContent = "";
 
   if (isMobile) {
@@ -73,7 +76,7 @@ const Header = (props: Props) => {
         />
       )}
       <Title />
-      {isViewMode && dispositif?.titreMarque && (
+      {!hideSponsor && isViewMode && dispositif?.titreMarque && (
         <span className="text-corps-xl mb-8 block">
           {t("Dispositif.with")} {dispositif?.titreMarque}{" "}
         </span>
@@ -92,7 +95,11 @@ const Header = (props: Props) => {
         )}
 
         <span className="flex flex-col gap-1">
-          {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+          {isViewMode ? (
+            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
+          ) : (
+            <SponsorsEdit />
+          )}
           {isViewMode && dispositif?.date && (
             <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
           )}
