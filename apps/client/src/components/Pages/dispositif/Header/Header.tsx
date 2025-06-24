@@ -7,7 +7,7 @@ import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
 import { useTranslation } from "next-i18next";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import { SponsorsEdit } from "~/components/Pages/dispositif/Edition";
@@ -31,6 +31,13 @@ const Header = (props: Props) => {
   const { isMobile } = useWindowSize();
   const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
 
+  // Check for Web Share API support when component mounts
+  useEffect(() => {
+    if (navigator.share !== undefined && typeof navigator.share === "function") {
+      setNavigatorShareSupported(true);
+    }
+  }, []);
+
   // hide sponsor if it's the default sponsor
   const hideSponsor = dispositif?.mainSponsor?._id === "5f69cb9c0aab6900460c0f3f";
 
@@ -52,9 +59,8 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
-  const handleShare = useCallback(() => {
-    if (navigator.share) {
-      setNavigatorShareSupported(true);
+  const handleShare = () => {
+    if (navigatorShareSupported) {
       navigator.share({
         title: dispositif?.titreInformatif || "",
         text: dispositif?.titreMarque
@@ -64,7 +70,7 @@ const Header = (props: Props) => {
       });
       Event("DISPO_VIEW", "share", dispositif?._id?.toString() || "");
     }
-  }, [dispositif?._id, dispositif?.titreInformatif, dispositif?.titreMarque]);
+  };
 
   return (
     <header className="relative">
