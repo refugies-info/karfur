@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import Accordion from "@codegouvfr/react-dsfr/Accordion";
 import { ContentType, InfoSection, InfoSections } from "@refugies-info/api-types";
 import { useContext, useState } from "react";
@@ -33,7 +32,7 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
   const pageContext = useContext(PageContext);
 
   return pageContext.mode !== "edit" ? (
-    <div className={fr.cx("fr-accordions-group")}>
+    <div>
       {Object.entries(content || []).map(([sectionId, section], index) => (
         <AccordionItem
           key={sectionId}
