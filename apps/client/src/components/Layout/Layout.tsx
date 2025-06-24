@@ -44,7 +44,7 @@ interface Props {
 }
 
 const Layout = (props: Props) => {
-  const [showMobileModal, setShowMobileModal] = useState<boolean | null>(null);
+  const [showMobileModal, setShowMobileModal] = useState<boolean>(false);
   const [languageLoaded, setLanguageLoaded] = useState(false);
   const isRTL = useRTL();
   const dispatch = useDispatch();
@@ -78,8 +78,8 @@ const Layout = (props: Props) => {
   }, [dispatch, changeLanguageCallback]);
 
   const toggleMobileAppModal = useCallback(() => {
-    setShowMobileModal(!showMobileModal);
-  }, [showMobileModal]);
+    setShowMobileModal((prevState) => !prevState);
+  }, []);
 
   useEffect(() => {
     // wait 5 seconds before showing modal
@@ -120,22 +120,25 @@ const Layout = (props: Props) => {
 
   // Mobile popup
   const [currentPath, prevPath] = useMemo(() => {
-    const lastTwo = props.history.slice(-2);
+    const validHistory = props.history.filter((path) => path !== undefined && path !== null);
+    const lastTwo = validHistory.slice(-2);
     return [lastTwo[0], lastTwo[1]] as [string, string | undefined];
   }, [props.history]);
 
   useEffect(() => {
     // Skip all popup logic if mobile popup shouldn't be shown
     if (!shouldShowMobilePopup) return;
+    if (!currentPath) return;
 
     let timeoutId: number | undefined;
     const handleMobilePopup = () => {
-      // Homepage cases
-      if (currentPath === "/" || (prevPath?.match(/^\/[a-z][a-z]/) && currentPath === "/")) {
-        timeoutId = window.setTimeout(toggleMobileAppModal, 10000);
+      if (currentPath === "/" || (prevPath?.match(/^\/[a-z][a-z]\/?$/) && currentPath === "/")) {
+        if (!timeoutId) {
+          timeoutId = window.setTimeout(toggleMobileAppModal, 10000);
+        }
       }
-      // Coming from content page
-      else if (prevPath && isContentPage(prevPath) && !isContentPage(currentPath)) {
+      // Coming from content page to non-content page
+      else if (prevPath && isContentPage(prevPath) && !isContentPage(currentPath) && currentPath !== prevPath) {
         toggleMobileAppModal();
       }
     };
@@ -143,7 +146,10 @@ const Layout = (props: Props) => {
     handleMobilePopup();
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = undefined;
+      }
     };
   }, [shouldShowMobilePopup, currentPath, prevPath, toggleMobileAppModal]);
 
@@ -234,7 +240,7 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
-      <DownloadAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
+      <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
       <NewProfileModal />
       <SubscribeNewsletterModal />
     </div>
