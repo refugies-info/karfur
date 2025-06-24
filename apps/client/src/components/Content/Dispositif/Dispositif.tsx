@@ -56,7 +56,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage?.secure_url}
       />
       <div
-        className={cn("relative pb-8")}
+        className={cn("relative pb-8 print:!bg-none")}
         style={{
           background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
         }}
@@ -69,7 +69,7 @@ const Dispositif = (props: Props) => {
           {(isDesktop || isLargeDesktop) && (
             <>
               {isViewMode ? (
-                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
+                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px] print:pt-0" />
               ) : (
                 <LeftSidebarEdition className="z-10 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
               )}
@@ -77,7 +77,7 @@ const Dispositif = (props: Props) => {
           )}
 
           <article
-            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%]"
+            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%] print:w-full print:pt-0"
             dir={isRTL ? undefined : "ltr"}
           >
             {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
@@ -101,7 +101,7 @@ const Dispositif = (props: Props) => {
           {isLargeDesktop && (
             <>
               {isViewMode ? (
-                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
+                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px] print:hidden" />
               ) : (
                 <RightSidebarEdition className="z-10 lg:w-[20%] lg:pt-[371px]" />
               )}

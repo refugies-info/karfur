@@ -119,7 +119,7 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
     <MapContext.Provider value={contextValue}>
       <div
         className={cn(
-          "shadow-ri bg-white max-md:flex max-md:flex-col lg:grid lg:grid-cols-2",
+          "shadow-ri bg-white max-md:flex max-md:flex-col lg:grid lg:grid-cols-2 print:shadow-none",
           !isFullscreen && "lg:h-100",
           isFullscreen && "fixed inset-0 top-0 left-0 z-[9999] lg:grid-cols-4",
           className,

@@ -56,7 +56,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
       <section
         id={`anchor-${sectionKey}`}
         className={cn(
-          "lg:shadow-ri relative bg-white p-4 lg:p-14",
+          "lg:shadow-ri relative bg-white p-4 lg:p-14 print:shadow-none",
           sectionKey === "what" && "max-lg:bg-transparent",
           className,
         )}
