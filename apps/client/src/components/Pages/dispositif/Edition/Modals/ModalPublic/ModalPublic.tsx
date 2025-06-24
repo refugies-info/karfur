@@ -172,7 +172,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
               helpTooltip="Votre action est ouverte de façon inconditionnelle, à toutes les personnes intéressées."
             />
             <ChoiceButton
-              text="Primo-arrivants"
+              text="Personnes en situation d’exil"
               type="checkbox"
               selected={includeAllRefugees(publicStatus)}
               onSelect={() => {
@@ -183,7 +183,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
                 );
               }}
               className="mb-2"
-              helpTooltip="Votre action est ouverte aux étrangers primo-arrivants, c'est-à-dire vivant en France depuis moins de 5 ans."
+              helpTooltip="Votre action est ouverte aux étrangers en situation d’exil, c'est-à-dire vivant en France depuis moins de 5 ans."
             />
             <div>
               {publicStatusOptions.map((key) => (
