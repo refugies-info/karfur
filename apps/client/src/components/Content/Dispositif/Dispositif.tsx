@@ -1,6 +1,8 @@
 import { ContentType } from "@refugies-info/api-types";
 import { useContext, useMemo } from "react";
 
+import Button from "@codegouvfr/react-dsfr/Button";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
@@ -37,6 +39,7 @@ const Dispositif = (props: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
   useScrolledBottomEvent(pageContext.mode === "view");
+  const { t } = useTranslation();
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -82,6 +85,16 @@ const Dispositif = (props: Props) => {
             ))}
             {/* TODO: adapt the Map component to be used in edit mode */}
             {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
+            {isViewMode && isMobile && (
+              <Button
+                linkProps={{ href: "#top" }}
+                iconId="fr-icon-arrow-up-line"
+                priority="tertiary no outline"
+                className="w-full bg-white py-8 underline"
+              >
+                {t("topLink")}
+              </Button>
+            )}
             {isViewMode && <Contributors />}
           </article>
 
