@@ -118,7 +118,8 @@ const LanguageMenu = ({
               ) : (
                 <i className="fr-icon-translate-2 fr-icon--sm" />
               )}
-              {locale?.toLocaleUpperCase()}
+              {locale?.toLocaleUpperCase()}{" "}
+              <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </Dialog.Trigger>
           {langMenuOpened && (
