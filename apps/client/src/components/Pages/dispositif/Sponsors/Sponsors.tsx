@@ -31,8 +31,8 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
           <Link
             href={link || ""}
             className={cn("fr-link", forceLink && "pointer-events-none")}
-            target={!forceLink ? "_blank" : ""}
-            rel={!forceLink ? "" : "noopener noreferrer"}
+            target={!forceLink ? "_blank" : undefined}
+            rel={!forceLink ? undefined : "noopener noreferrer"}
           >
             {name}
           </Link>
