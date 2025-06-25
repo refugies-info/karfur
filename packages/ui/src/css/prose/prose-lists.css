@@ -5,13 +5,13 @@
     --tw-prose-bullets: var(--text-default-grey);
     --tw-prose-counters: var(--text-default-grey);
 
-    & > *:last-child {
-      @apply mb-0 pb-0;
-    }
-
     ul,
     ol {
       @apply mt-0;
+
+      &:last-of-type {
+        @apply mb-0;
+      }
     }
 
     li {
@@ -80,7 +80,7 @@
       @apply mt-0 mb-4;
 
       &:last-of-type {
-        @apply mb-6;
+        @apply mb-0;
       }
 
       & + h2,
