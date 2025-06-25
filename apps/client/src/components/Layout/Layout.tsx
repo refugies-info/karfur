@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
-
 // actions
 import {
   fetchLanguesActionCreator,
@@ -48,8 +47,9 @@ interface Props {
 const Layout = (props: Props) => {
   const [showMobileModal, setShowMobileModal] = useState<boolean>(false);
   const [languageLoaded, setLanguageLoaded] = useState(false);
-  // Use a ref to track if modal was manually closed
+  // Use refs to track modal state and timeout
   const manuallyClosedRef = useRef<boolean>(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -86,13 +86,23 @@ const Layout = (props: Props) => {
       // If we're closing the modal, mark it as manually closed
       if (prevState) {
         manuallyClosedRef.current = true;
-        // Reset after a delay to allow future automatic openings
-        setTimeout(() => {
-          manuallyClosedRef.current = false;
-        }, 2000);
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
       }
       return !prevState;
     });
+  }, []);
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    const currentTimeout = timeoutRef.current;
+    return () => {
+      if (currentTimeout) {
+        clearTimeout(currentTimeout);
+      }
+    };
   }, []);
 
   useEffect(() => {
