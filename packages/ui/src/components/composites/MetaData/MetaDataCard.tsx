@@ -49,14 +49,21 @@ export const MetaDataCard = ({
         {(onClick || onDelete) && (
           <span className="ml-auto flex self-start">
             {onClick && (
-              <Button
-                iconId="fr-icon-edit-line"
-                priority="tertiary no outline"
-                size="small"
-                aria-label="Modifier"
-                title="Modifier"
-                onClick={handleClick}
-              />
+              <>
+                <Button
+                  iconId="fr-icon-edit-line"
+                  priority="tertiary no outline"
+                  size="small"
+                  aria-label="Modifier"
+                  title="Modifier"
+                  onClick={handleClick}
+                />
+                <button
+                  onClick={handleClick}
+                  className="absolute inset-0 z-1 bg-transparent"
+                  aria-label="Modifier"
+                ></button>
+              </>
             )}
             {onDelete && (
               <Button
