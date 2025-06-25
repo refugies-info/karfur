@@ -95,7 +95,7 @@ const CustomNavbarEdit = (props: Props) => {
     return isStatus(dispositif?.status, [DispositifStatus.KO_STRUCTURE, DispositifStatus.DELETED]);
   }, [dispositif]);
   const isValidateDisabled = useMemo(
-    () => !dispositif?.hasDraftVersion && isStatus(dispositif?.status, DispositifStatus.ACTIVE),
+    () => !dispositif?.hasDraftVersion && !isStatus(dispositif?.status, DispositifStatus.ACTIVE),
     [dispositif],
   );
 
