@@ -249,8 +249,8 @@
   },
   "Infocards": {
     "availability": "Disponibilité demandée",
-    "commitment": "Durée d'engagement",
-    "frequency": "Fréquence de participation",
+    "commitment": "Durée totale",
+    "frequency": "Fréquence",
     "weekDays": "Jours de présence",
     "conditions": "Conditions",
     "location": "C'est où ?",
