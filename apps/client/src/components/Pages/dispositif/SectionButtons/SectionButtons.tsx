@@ -92,7 +92,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
           >
             <i
               className={cn(
-                "bg-action-high-blue-france rounded-full px-2 py-2 text-white lg:px-1.5 lg:py-0",
+                "bg-action-high-blue-france rounded-full px-1 py-1 text-white lg:px-1.5 lg:py-0",
                 "lg:[&::before]:![--icon-size:0.75rem]",
                 isLoadingTts ? "fr-icon-refresh-line animate-spin" : isPlaying ? "ri-pause-fill" : "ri-play-fill",
               )}
