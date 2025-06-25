@@ -85,6 +85,7 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
 
       return () => clearTimeout(refreshTimeout);
     }
+    return undefined; // Explicit return for when condition is not met
   }, [isFullscreen]);
 
   const [focusOnMapFn, setFocusOnMapFn] = useState<((poi: Poi, zoomLevel?: number) => void) | undefined>(undefined);
