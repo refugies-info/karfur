@@ -72,7 +72,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
           </>
         ) : (
           <>
-            <SectionTitle titleKey={sectionKey} />
+            <SectionTitle titleKey={sectionKey} className="mb-8" />
             <Accordions
               content={contentAccordions}
               sectionKey={sectionKey as "why" | "how" | "next"}
