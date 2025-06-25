@@ -37,7 +37,6 @@ export const MetaDataCard = ({
     <div
       className={cn(
         "bg-alt-blue-france border-default-grey @container mb-4 border p-4 lg:mb-0 lg:border-0 lg:bg-white/50 lg:backdrop-blur-[30px]",
-
         onClick && "hover:cursor-pointer",
         mode || state ? "relative" : "",
         className,
@@ -45,7 +44,7 @@ export const MetaDataCard = ({
       {...props}
     >
       <div className="flex items-center justify-between">
-        {title && React.createElement(titleAs, { className: "text-title-xxs font-bold" }, title)}
+        {title && React.createElement(titleAs, { className: "text-title-md md:text-title-xxs font-bold" }, title)}
         {(onClick || onDelete) && (
           <span className="ml-auto flex self-start">
             {onClick && (

@@ -25,7 +25,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
       onClick={handleClick}
       className={cn("relative mb-4 flex items-start gap-2", onClick && "cursor-pointer", className)}
     >
-      {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.36rem]")} /> : icon)}
+      {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} /> : icon)}
       {logoImage && (
         <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt={logoImage?.alt || ""} />
       )}
@@ -34,8 +34,8 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
         {children && (
           <div
             className={cn(
-              "text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 [&_a]:inline",
-              "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-4.75 rtl:before:-right-4.75",
+              "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 [&_a]:inline",
+              "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
               "[&_a]:text-sm",
               onClick && "[&_a]:pointer-events-none",
             )}
