@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -43,9 +43,13 @@ interface Props {
   history: string[];
 }
 
+// TODO : refator to avoid  overcomplex code to show MobileModal + move it's logic to it's own component
+
 const Layout = (props: Props) => {
   const [showMobileModal, setShowMobileModal] = useState<boolean>(false);
   const [languageLoaded, setLanguageLoaded] = useState(false);
+  // Use a ref to track if modal was manually closed
+  const manuallyClosedRef = useRef<boolean>(false);
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -78,7 +82,17 @@ const Layout = (props: Props) => {
   }, [dispatch, changeLanguageCallback]);
 
   const toggleMobileAppModal = useCallback(() => {
-    setShowMobileModal((prevState) => !prevState);
+    setShowMobileModal((prevState) => {
+      // If we're closing the modal, mark it as manually closed
+      if (prevState) {
+        manuallyClosedRef.current = true;
+        // Reset after a delay to allow future automatic openings
+        setTimeout(() => {
+          manuallyClosedRef.current = false;
+        }, 2000);
+      }
+      return !prevState;
+    });
   }, []);
 
   useEffect(() => {
@@ -129,6 +143,7 @@ const Layout = (props: Props) => {
     // Skip all popup logic if mobile popup shouldn't be shown
     if (!shouldShowMobilePopup) return;
     if (!currentPath) return;
+    if (manuallyClosedRef.current) return; // Skip if modal was manually closed
 
     let timeoutId: number | undefined;
     const handleMobilePopup = () => {
