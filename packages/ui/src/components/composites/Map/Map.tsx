@@ -2,7 +2,7 @@
 import { Poi } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContext } from "./MapContext";
 import { MapPanel } from "./MapPanel";
 
@@ -23,6 +23,7 @@ type MapProps = {
 export const Map = ({ className, title, description, mapData, defaultFocusedPoi }: MapProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPoi, setFocusedPoi] = useState<Poi | null>(null);
+  const previousFullscreenState = useRef(isFullscreen);
 
   useEffect(() => {
     if (isFullscreen) {
@@ -64,18 +65,26 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
       existingStyle.remove();
     }
 
-    const resizeTimeout = setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 300);
-
     return () => {
-      clearTimeout(resizeTimeout);
       document.body.style.overflow = "";
       const existingStyle = document.getElementById("map-fullscreen-styles");
       if (existingStyle) {
         existingStyle.remove();
       }
     };
+  }, [isFullscreen]);
+
+  // Effect to handle map refresh when fullscreen state changes
+  useEffect(() => {
+    if (previousFullscreenState.current !== isFullscreen) {
+      const refreshTimeout = setTimeout(() => {
+        window.dispatchEvent(new Event("resize"));
+      }, 100);
+
+      previousFullscreenState.current = isFullscreen;
+
+      return () => clearTimeout(refreshTimeout);
+    }
   }, [isFullscreen]);
 
   const [focusOnMapFn, setFocusOnMapFn] = useState<((poi: Poi, zoomLevel?: number) => void) | undefined>(undefined);
