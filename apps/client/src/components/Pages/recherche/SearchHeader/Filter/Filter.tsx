@@ -79,7 +79,7 @@ const Filter = ({
   const eventName = useSearchEventName();
   const stylesDisabled = useStylesDisabled();
 
-  const { isTablet } = useWindowSize();
+  const { isMobile, isTablet } = useWindowSize();
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -195,7 +195,7 @@ const Filter = ({
         </div>
       ) : (
         <>
-          {isTablet ? (
+          {isMobile || isTablet ? (
             <DialogMenuLayout
               label={label}
               icon={icon}
