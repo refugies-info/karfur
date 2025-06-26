@@ -9,6 +9,8 @@
         "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
+        "eslint",
+        "eslint-config-next",
         "eslint-config-turbo",
         "flag-icons",
         "postcss",
@@ -48,7 +50,10 @@
       "ignoreDependencies": [
         "@storybook/blocks",
         "@tailwindcss/typography",
+        "eslint",
+        "eslint-config-next",
         "eslint-config-turbo",
+        "eslint-plugin-storybook",
         "postcss",
         "tailwindcss"
       ]
