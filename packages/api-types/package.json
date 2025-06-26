@@ -12,11 +12,14 @@
   "author": "Réfugiés.info",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.29.0",
     "@refugies-info/typescript-config": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.35.0",
     "eslint": "^9.29.0",
     "eslint-config-turbo": "2.5.4",
+    "globals": "^16.2.0",
     "typescript": "^5.8.2"
   },
   "dependencies": {

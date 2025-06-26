@@ -9,11 +9,9 @@
         "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
-        "eslint",
         "eslint-config-next",
         "eslint-config-turbo",
         "flag-icons",
-        "postcss",
         "react-anchor-link-smooth-scroll",
         "remixicon",
         "sharp",
@@ -35,7 +33,6 @@
       "entry": ["src/server.ts"],
       "ignoreDependencies": [
         "@tsoa/runtime",
-        "@types/mongoose",
         "eslint-config-turbo",
         "nodemon",
         "path-to-regexp",
@@ -44,22 +41,21 @@
       ]
     },
     "packages/api-types": {
-      "ignoreDependencies": ["eslint-config-turbo"]
+      "ignoreDependencies": ["eslint-config-turbo", "globals"]
     },
     "apps/storybook": {
       "ignoreDependencies": [
         "@storybook/blocks",
         "@tailwindcss/typography",
-        "eslint",
         "eslint-config-next",
         "eslint-config-turbo",
         "eslint-plugin-storybook",
-        "postcss",
+        "globals",
         "tailwindcss"
       ]
     },
     "packages/ui": {
-      "ignoreDependencies": ["eslint-config-turbo", "react-dom", "tailwindcss"]
+      "ignoreDependencies": ["eslint-config-turbo", "tailwindcss"]
     }
   }
 }
