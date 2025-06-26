@@ -504,7 +504,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f35de63124662360649",
     department: "74 - Haute-Savoie",
     operator: "Fédération d'Œuvres Laïques",
-    email: "fol@fol74.org",
+    email: "agir74@fol74.org",
     phone: "04 50 52 70 84",
   },
   {
