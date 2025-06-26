@@ -98,8 +98,8 @@ importers:
         specifier: ^0.27.2
         version: 0.27.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yjs@13.6.26)
       '@lexical/rich-text':
-        specifier: ^0.27.2
-        version: 0.27.2
+        specifier: ^0.32.1
+        version: 0.32.1
       '@lexical/selection':
         specifier: ^0.27.2
         version: 0.27.2
@@ -198,10 +198,10 @@ importers:
         version: 15.4.2(i18next@23.16.8)(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react-i18next@15.5.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3))(react@18.3.1)
       next-redux-wrapper:
         specifier: ^8.0.0
-        version: 8.1.0(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
+        version: 8.1.0(next@14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
       next-sitemap:
         specifier: ^4.2.3
-        version: 4.2.3(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))
+        version: 4.2.3(next@14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))
       query-string:
         specifier: ^9.2.1
         version: 9.2.1
@@ -379,7 +379,7 @@ importers:
         version: 7.2.0(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       next-router-mock:
         specifier: ^0.9.13
-        version: 0.9.13(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react@18.3.1)
+        version: 0.9.13(next@14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react@18.3.1)
       papaparse:
         specifier: ^5.5.3
         version: 5.5.3
@@ -3375,6 +3375,9 @@ packages:
   '@lexical/clipboard@0.27.2':
     resolution: {integrity: sha512-rfnFYf8P0081IvPOJjE7fWJE+d/dz0Xdsw83uizY5X6HaLXFB/Qy1MrzEqWZnYnOpgi1snAuolZ5Rbg83SIlYA==}
 
+  '@lexical/clipboard@0.32.1':
+    resolution: {integrity: sha512-oO7CuMVh3EFEqtE6+7Ccf7jMD5RNUmSdTnFm/X4kYNGqs9lgGt8j5PgSk7oP9OuAjxKNdBTbltSlh54CX3AUIg==}
+
   '@lexical/code@0.27.2':
     resolution: {integrity: sha512-GoTy57CYoXvP1N+E9ptCJ47LQCAu67K/HQsjg0NmmtNbWlInk6Sa2V4pM1KePp6JAQapGpIlCoEyC3/KkrQ55g==}
 
@@ -3396,11 +3399,17 @@ packages:
   '@lexical/html@0.27.2':
     resolution: {integrity: sha512-6kPvrTxAE39jUhnbYMCenHVHXTlew9sBprniQu5iZSszMfcn/SDkqmHWi8//fhiLlcAa/p0vRDxaBYoQQf0r9A==}
 
+  '@lexical/html@0.32.1':
+    resolution: {integrity: sha512-uctCdC9gVzx/Sw9CimT4C2IDfSbfEGYunyIrJBpsfcdqp0rroGNizjIoZNBH3xcgkk9UDboSADo+wimbzEoy8A==}
+
   '@lexical/link@0.27.2':
     resolution: {integrity: sha512-t+tMr1aEwy67D4+GU6XX78Dxllyu3xebYAlB5ANpnv0oV8PSxT8h6aHHVwj0a55a89NnSPTzpBhqtX0QO374+A==}
 
   '@lexical/list@0.27.2':
     resolution: {integrity: sha512-jE7e95ttO26Xtt322dnUwWSG7QgeAfBg3Ghyjd8ByGI5O5wmMgMgb3NCiSSRPBWOpt6PEeD5s5KjQKfMUCCuHQ==}
+
+  '@lexical/list@0.32.1':
+    resolution: {integrity: sha512-3zShCfEdAvodR6mQ5CNN1gcEwfV341LXJzWCIkZzG1cPwaiBHUlT7TynQtKTPn1sATCEMmxoDG0/T+itsRNZgA==}
 
   '@lexical/mark@0.27.2':
     resolution: {integrity: sha512-6rTwfVuuFeiTy6MU8yY3nyBOe2KtcB1lL0zg8ygIRjSYsV2+HAVAUesDFnaCUHJ1qimj9pJB8fW+GU2ur8uGvQ==}
@@ -3426,17 +3435,29 @@ packages:
   '@lexical/rich-text@0.27.2':
     resolution: {integrity: sha512-naWwPNbEJAue/R0pmZwqnTVkv3V2rzgzz+C6/J5tMOvN1Osth8OL3UD6K8NQX8rjdnXe4soVoH8XsNhU0Jv10w==}
 
+  '@lexical/rich-text@0.32.1':
+    resolution: {integrity: sha512-SnmpZ7boTLxeYfNezNLvchDiJOAALA2nD0Uq/SpkIOJ6R01R7m1aPdLv55LGKoBT9UxCRdo0HWXytwiVZI+ehQ==}
+
   '@lexical/selection@0.27.2':
     resolution: {integrity: sha512-9AJOfw1zMQ3PqGpovEuy6NjfWck/9KzxNPzXoGRZlJRvPexgZirentPWRhLHF3DMtnOML1+GCpj+5LOAYN2XbQ==}
 
+  '@lexical/selection@0.32.1':
+    resolution: {integrity: sha512-X1aXJdq/5EOuSuMOqK3t+rEVmpqLf+vc2Kl5YuP8+gGWUbXuxR6iryrQuy1mAViZpF/5qw4HO/Sb+9JjubaZEg==}
+
   '@lexical/table@0.27.2':
     resolution: {integrity: sha512-6G3jj7EyweviX3/AEZOr/XBTIQN5QCkJcg1Zw3I9Ga0F+CCDM5aeJWRv4hultP1nOz1xtYCDnezhaPV1Gef9dA==}
+
+  '@lexical/table@0.32.1':
+    resolution: {integrity: sha512-sGk2jUbQHj5hatpxRyl6IE2oWsjRnYhmaP94THzn95/uK69o8eSizcnd148WzYsX8Zz+L9PTLS1xjvCbfLTP+A==}
 
   '@lexical/text@0.27.2':
     resolution: {integrity: sha512-Rx61l/Cbz2GGwZvtp56PMGB35X+VnZYhRlLJdZhQ+XTYbRmCTAh50mBcS3FzZrziq8vn07yEN/9FVb8HGTyN1A==}
 
   '@lexical/utils@0.27.2':
     resolution: {integrity: sha512-tCEuKL5IXiJ12ZN/Ej37Q7PhcBntekLeQbGiYO4sgIAnR9qI6yYgVH7b1CC+Tf06UapUXjIDG0Uh5/u0W1+kOQ==}
+
+  '@lexical/utils@0.32.1':
+    resolution: {integrity: sha512-ZaqZZksNIHJd+g8GXc11D1ESi8JzsdLVQZ+9odXVaNxtwDIaGIqMSccFyuZ9VSoJDde4JXZkgp/0PShbAZDkyw==}
 
   '@lexical/yjs@0.27.2':
     resolution: {integrity: sha512-+twxPJNwN9VOe20dMKDbBfdZWCiTVM7RrezNZ984o8bJVx6dW80yM96zEyyQp1pmgi60lOYunKWD1B5/74Dq/w==}
@@ -9189,6 +9210,9 @@ packages:
 
   lexical@0.27.2:
     resolution: {integrity: sha512-R255V+4VBqZmSMWeuMrCNHJZd3L+qBkYYFrxkiO3FLg/36HatZLUdZLRYx+fOMWeSddo0DP9EVl0GTZzNb7v0w==}
+
+  lexical@0.32.1:
+    resolution: {integrity: sha512-Rvr9p00zUwzjXIqElIjMDyl/24QHw68yaqmXUWIT3lSdSAr8OpjSJK3iWBLZwVZwwpVhwShZRckomc+3vSb/zw==}
 
   lib0@0.2.109:
     resolution: {integrity: sha512-jP0gbnyW0kwlx1Atc4dcHkBbrVAkdHjuyHxtClUPYla7qCmwIif1qZ6vQeJdR5FrOVdn26HvQT0ko01rgW7/Xw==}
@@ -16530,6 +16554,14 @@ snapshots:
       '@lexical/utils': 0.27.2
       lexical: 0.27.2
 
+  '@lexical/clipboard@0.32.1':
+    dependencies:
+      '@lexical/html': 0.32.1
+      '@lexical/list': 0.32.1
+      '@lexical/selection': 0.32.1
+      '@lexical/utils': 0.32.1
+      lexical: 0.32.1
+
   '@lexical/code@0.27.2':
     dependencies:
       '@lexical/utils': 0.27.2
@@ -16567,6 +16599,12 @@ snapshots:
       '@lexical/utils': 0.27.2
       lexical: 0.27.2
 
+  '@lexical/html@0.32.1':
+    dependencies:
+      '@lexical/selection': 0.32.1
+      '@lexical/utils': 0.32.1
+      lexical: 0.32.1
+
   '@lexical/link@0.27.2':
     dependencies:
       '@lexical/utils': 0.27.2
@@ -16576,6 +16614,12 @@ snapshots:
     dependencies:
       '@lexical/utils': 0.27.2
       lexical: 0.27.2
+
+  '@lexical/list@0.32.1':
+    dependencies:
+      '@lexical/selection': 0.32.1
+      '@lexical/utils': 0.32.1
+      lexical: 0.32.1
 
   '@lexical/mark@0.27.2':
     dependencies:
@@ -16641,15 +16685,32 @@ snapshots:
       '@lexical/utils': 0.27.2
       lexical: 0.27.2
 
+  '@lexical/rich-text@0.32.1':
+    dependencies:
+      '@lexical/clipboard': 0.32.1
+      '@lexical/selection': 0.32.1
+      '@lexical/utils': 0.32.1
+      lexical: 0.32.1
+
   '@lexical/selection@0.27.2':
     dependencies:
       lexical: 0.27.2
+
+  '@lexical/selection@0.32.1':
+    dependencies:
+      lexical: 0.32.1
 
   '@lexical/table@0.27.2':
     dependencies:
       '@lexical/clipboard': 0.27.2
       '@lexical/utils': 0.27.2
       lexical: 0.27.2
+
+  '@lexical/table@0.32.1':
+    dependencies:
+      '@lexical/clipboard': 0.32.1
+      '@lexical/utils': 0.32.1
+      lexical: 0.32.1
 
   '@lexical/text@0.27.2':
     dependencies:
@@ -16661,6 +16722,13 @@ snapshots:
       '@lexical/selection': 0.27.2
       '@lexical/table': 0.27.2
       lexical: 0.27.2
+
+  '@lexical/utils@0.32.1':
+    dependencies:
+      '@lexical/list': 0.32.1
+      '@lexical/selection': 0.32.1
+      '@lexical/table': 0.32.1
+      lexical: 0.32.1
 
   '@lexical/yjs@0.27.2(yjs@13.6.26)':
     dependencies:
@@ -24003,6 +24071,8 @@ snapshots:
 
   lexical@0.27.2: {}
 
+  lexical@0.32.1: {}
+
   lib0@0.2.109:
     dependencies:
       isomorphic.js: 0.2.5
@@ -24847,18 +24917,18 @@ snapshots:
       react: 18.3.1
       react-i18next: 15.5.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.27.4)(@babel/preset-env@7.27.2(@babel/core@7.27.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
 
-  next-redux-wrapper@8.1.0(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1):
+  next-redux-wrapper@8.1.0(next@14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react-redux@9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1))(react@18.3.1):
     dependencies:
       next: 14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2)
       react: 18.3.1
       react-redux: 9.2.0(@types/react@18.3.12)(react@18.3.1)(redux@5.0.1)
 
-  next-router-mock@0.9.13(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react@18.3.1):
+  next-router-mock@0.9.13(next@14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react@18.3.1):
     dependencies:
       next: 14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2)
       react: 18.3.1
 
-  next-sitemap@4.2.3(next@14.2.26(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2)):
+  next-sitemap@4.2.3(next@14.2.26(@babel/core@7.27.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.11
