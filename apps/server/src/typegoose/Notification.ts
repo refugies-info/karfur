@@ -13,5 +13,5 @@ export class Notification extends Base {
   public title!: string;
 
   @prop({ required: true })
-  public data!: Object;
+  public data!: object;
 }

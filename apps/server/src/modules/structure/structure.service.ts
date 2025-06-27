@@ -59,7 +59,7 @@ export const getStructureMembers = async (structureId: StructureId) => {
  * @returns
  */
 export const userRespoStructureId = async (structures: StructureId[], userId: UserId): Promise<StructureId | null> => {
-  for (let structureId of structures) {
+  for (const structureId of structures) {
     const membres = await getStructureMembers(structureId);
     if (!membres) continue;
     const membreInStructure = membres.filter((membre) => {
