@@ -1,7 +1,7 @@
 import * as Updates from "expo-updates";
 
 // use .env for development
-let Config = {
+const Config = {
   envName: process.env.EXPO_PUBLIC_ENV_NAME || "",
   // dbUrl: "https://backend-stag-4rok5wopuq-ew.a.run.app", // process.env.API_URL || "",
   dbUrl: process.env.EXPO_PUBLIC_API_URL || "",

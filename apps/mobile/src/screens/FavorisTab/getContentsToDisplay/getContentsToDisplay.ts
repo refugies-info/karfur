@@ -14,8 +14,8 @@ const getContentsToDisplay = async (
   contents: ContentForApp[],
   currentLanguageI18nCode: Languages | null,
 ) => {
-  let result: ContentForApp[] = [];
-  for (let contentId of contentsId) {
+  const result: ContentForApp[] = [];
+  for (const contentId of contentsId) {
     const contentWithInfosArray = contents.filter((content) => content._id === contentId);
     if (contentWithInfosArray.length > 0) {
       // result already in store
