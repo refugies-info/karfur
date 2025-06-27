@@ -95,6 +95,7 @@
     "@welldone-software/why-did-you-render": "^7.0.1",
     "csvtojson": "^2.0.10",
     "eslint": "^9.29.0",
+    "eslint-plugin-react-native": "^5.0.0",
     "jest": "^29.7.0",
     "jest-expo": "52.0.6",
     "papaparse": "^5.5.3",
