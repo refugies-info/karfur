@@ -1,1 +1,9 @@
 @import "./prose/prose-lists.css";
+
+@layer utilities {
+  :not(.no-prose) .prose {
+    a {
+      @apply !text-action-high-blue-france !underline;
+    }
+  }
+}

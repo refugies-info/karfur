@@ -12,6 +12,7 @@ import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavi
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
 import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
+import { cn } from "~/lib/classname";
 import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
@@ -179,7 +180,7 @@ const Navbar = () => {
         serviceTagline={t("Header.serviceTagline", "L'information pour les réfugiés en France")}
         quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
-        className={styles.navBar}
+        className={cn(styles.navBar, "print:hidden")}
       />
     </>
   );

@@ -16,7 +16,7 @@ export const updateAlgoliaIndex = async (localContents: AlgoliaObject[], algolia
   if (deleted.length) await deleteAlgoliaObjects(deleted);
 
   // UPDATE
-  let objectsToUpdate: AlgoliaObject[] = [];
+  const objectsToUpdate: AlgoliaObject[] = [];
   for (const content of localContents) {
     const algoliaContent = algoliaContents.find((c) => c.objectID.toString() === content.objectID.toString());
     if (!algoliaContent) continue;

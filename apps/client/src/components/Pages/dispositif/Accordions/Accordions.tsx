@@ -1,10 +1,9 @@
 /* eslint-disable no-use-before-define */
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import Accordion from "@codegouvfr/react-dsfr/Accordion";
 import { ContentType, InfoSection, InfoSections } from "@refugies-info/api-types";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { cn } from "~/lib/classname";
 import PageContext from "~/utils/pageContext";
 import { AccordionsEdit } from "../Edition";
@@ -17,6 +16,7 @@ interface AccordionItemProps {
   sectionId: string;
   section: InfoSection;
   mode: string;
+  index: number;
 }
 
 interface Props {
@@ -32,14 +32,15 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
   const pageContext = useContext(PageContext);
 
   return pageContext.mode !== "edit" ? (
-    <div className={fr.cx("fr-accordions-group")}>
-      {Object.entries(content || []).map(([sectionId, section]) => (
+    <div>
+      {Object.entries(content || []).map(([sectionId, section], index) => (
         <AccordionItem
           key={sectionId}
           sectionId={sectionId}
           sectionKey={sectionKey}
           section={section}
           mode={pageContext.mode}
+          index={index}
         />
       ))}
     </div>
@@ -48,20 +49,8 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
   );
 };
 
-const AccordionItem = ({ sectionKey, sectionId, section, mode }: AccordionItemProps) => {
+const AccordionItem = ({ sectionKey, sectionId, section, mode, index }: AccordionItemProps) => {
   const [expanded, setExpanded] = useState(false);
-
-  const sectionTitle = useMemo(() => {
-    const titleMatch = section.title.match(/^(\d+)\s*-?\s*(.*)$/);
-    return titleMatch ? (
-      <span className="flex items-center gap-2">
-        <span className="bg-action-high-blue-france rounded-full px-2 py-0 text-white">{titleMatch[1]}</span>
-        {titleMatch[2]}
-      </span>
-    ) : (
-      section.title
-    );
-  }, [section.title]);
 
   return (
     <Accordion
@@ -70,6 +59,7 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode }: AccordionItemPr
       onExpandedChange={(value) => setExpanded(!value)}
       className={cn(
         styles.accordion,
+        "max-md:[&_h3_button]:text-xl",
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
         "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
@@ -77,7 +67,14 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode }: AccordionItemPr
       )}
       label={
         <>
-          <span>{sectionTitle}</span>{" "}
+          <span className="inline-flex items-center gap-2">
+            {sectionKey === "how" && (
+              <span className="bg-action-high-blue-france inline-flex aspect-square w-fit items-center justify-center rounded-full px-2 py-0 text-white">
+                {index + 1}
+              </span>
+            )}
+            {section.title}
+          </span>
           <span className="flex items-center">
             <i className="ri-add-fill scale-75" />
             <i className="ri-subtract-fill scale-75" />

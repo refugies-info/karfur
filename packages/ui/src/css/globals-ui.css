@@ -83,3 +83,9 @@ body {
     @apply mx-auto;
   }
 }
+
+@media print {
+  body {
+    @apply max-w-full;
+  }
+}
