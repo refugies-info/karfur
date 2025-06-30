@@ -30,11 +30,11 @@ import { User } from "./User";
 
 export class Sponsor {
   @prop()
-  name: String;
+  name: string;
   @prop()
-  logo?: String;
+  logo?: string;
   @prop()
-  link?: String;
+  link?: string;
 }
 
 export class Content {

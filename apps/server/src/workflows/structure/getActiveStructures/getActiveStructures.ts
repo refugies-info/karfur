@@ -17,9 +17,9 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
   );
   logger.info("[getActiveStructures] structures fetched");
 
-  let newStructures: GetActiveStructuresResponse[] = [];
+  const newStructures: GetActiveStructuresResponse[] = [];
   structures.map((item) => {
-    let newStructure: GetActiveStructuresResponse = {
+    const newStructure: GetActiveStructuresResponse = {
       _id: item._id,
       nom: item.nom,
       acronyme: item.acronyme,
@@ -32,7 +32,7 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       item.dispositifsAssocies.map((el) => {
         if (el.metadatas?.location) {
           if (Array.isArray(el.metadatas?.location)) {
-            for (var i = 0; i < el.metadatas?.location.length; i++) {
+            for (let i = 0; i < el.metadatas?.location.length; i++) {
               if (!newStructure.disposAssociesLocalisation.includes(el.metadatas?.location[i])) {
                 newStructure.disposAssociesLocalisation.push(el.metadatas?.location[i]);
               }

@@ -59,7 +59,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
     toReview: 1,
   });
 
-  let results: GetDispositifsWithTranslationAvancementResponse[] = [];
+  const results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
   activeDispositifs.forEach((dispositif: Dispositif) => {
     if (dispositif.webOnly) return; // do not translate webonly content

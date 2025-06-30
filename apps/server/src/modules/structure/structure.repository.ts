@@ -94,9 +94,9 @@ export const updateStructureMember = async (
   membreId: UserId,
   structure: {
     _id: StructureId;
-    $set?: Object;
-    $pull?: Object;
-    $addToSet?: Object;
+    $set?: object;
+    $pull?: object;
+    $addToSet?: object;
   },
 ) =>
   await StructureModel.findOneAndUpdate(

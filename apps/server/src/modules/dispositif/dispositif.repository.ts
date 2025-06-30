@@ -289,7 +289,7 @@ export const removeMerciDispositifInDB = async (dispositifId: DispositifId, user
   const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { merci: 1 });
   if (!dispositif) return;
   const newMerci = [...(dispositif.merci || [])];
-  for (var i = newMerci.length - 1; i >= 0; i--) {
+  for (let i = newMerci.length - 1; i >= 0; i--) {
     if (!newMerci[i].userId) {
       newMerci.splice(i, 1);
       break;
@@ -314,7 +314,7 @@ export const removeAvisDispositifInDB = async (dispositifId: DispositifId, userI
   const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { avis: 1 });
   if (!dispositif) return;
   const newAvis = [...(dispositif.avis || [])];
-  for (var i = newAvis.length - 1; i >= 0; i--) {
+  for (let i = newAvis.length - 1; i >= 0; i--) {
     if (!newAvis[i].userId) {
       newAvis.splice(i, 1);
       break;
@@ -451,7 +451,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
     structures: 1,
   });
 
-  let pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
+  const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
     // Filter dispositifs with creatorId and status not equal to "Supprimé"
     {
       $match: {
