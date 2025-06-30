@@ -1,10 +1,12 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
+import { ContentStructure, ContentType, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useCallback } from "react";
+import { useSelector } from "react-redux";
 import { sanitizeUrl } from "~/lib/sanitizeUrl";
+import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 
 interface Props {
   mainSponsor?: ContentStructure | CreateDispositifRequest["mainSponsor"] | null;
@@ -23,6 +25,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
   const { t } = useTranslation();
   const hasMainSponsor = mainSponsor !== null && mainSponsor !== undefined && typeof mainSponsor !== "string";
   const hasSponsors = sponsors && sponsors.length > 0;
+  const dispositif = useSelector(selectedDispositifSelector);
 
   const getSponsorContent = useCallback(
     (link: string | null | undefined, name: string, forceLink = false) => (
@@ -46,7 +49,9 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
 
   return hasMainSponsor || hasSponsors || editMode ? (
     <span className="w-full">
-      <span className="text-title-grey">{t("Dispositif.proposedBy")} </span>
+      <span className="text-title-grey">
+        {dispositif?.typeContenu === ContentType.DEMARCHE ? t("Dispositif.proposedBy") : t("Dispositif.with")}{" "}
+      </span>
       <span>
         {hasMainSponsor && mainSponsor?.nom && (
           <>
@@ -61,7 +66,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
                   }}
                 >
                   {getSponsorContent(mainSponsor?.link, mainSponsor?.acronyme || mainSponsor?.nom, true)}
-                </span>{" "}
+                </span>
                 <Button
                   iconId="fr-icon-edit-line"
                   title="Modifier"
