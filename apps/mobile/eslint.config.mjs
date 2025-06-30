@@ -1,16 +1,21 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
-import reactNativePlugin from "eslint-plugin-react-native";
+import reactNativePlugin from "@react-native/eslint-plugin";
 
 export default tseslint.config(
+  // Base configurations
   eslint.configs.recommended,
   tseslint.configs.recommended,
+
+  // React Native plugin
   {
     plugins: {
-      "react-native": reactNativePlugin,
+      "@react-native": reactNativePlugin,
     },
     rules: {
-      // Add any specific React Native rules here
+      // Add any project-specific rule overrides here
+      "no-console": "warn",
+      "no-unused-vars": "warn",
     },
-  },
+  }
 );
