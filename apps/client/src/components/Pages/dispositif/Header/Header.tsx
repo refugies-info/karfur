@@ -1,3 +1,4 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import moment from "moment";
 import "moment/locale/ar";
 import "moment/locale/en-gb";
@@ -6,7 +7,7 @@ import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
 import { useTranslation } from "next-i18next";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import { SponsorsEdit } from "~/components/Pages/dispositif/Edition";
@@ -15,6 +16,7 @@ import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
 import Sponsors from "~/components/Pages/dispositif/Sponsors";
 import Image from "~/components/UI/Image";
 import { useLocale, useWindowSize } from "~/hooks";
+import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
 import Title from "../Title";
@@ -27,6 +29,17 @@ const Header = (props: Props) => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const { isMobile } = useWindowSize();
+  const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
+
+  // Check for Web Share API support when component mounts
+  useEffect(() => {
+    if (navigator.share !== undefined && typeof navigator.share === "function") {
+      setNavigatorShareSupported(true);
+    }
+  }, []);
+
+  // hide sponsor if it's the default sponsor
+  const hideSponsor = dispositif?.mainSponsor?._id === "5f69cb9c0aab6900460c0f3f";
 
   let vocalizationContent = "";
 
@@ -46,6 +59,19 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
+  const handleShare = () => {
+    if (navigatorShareSupported) {
+      navigator.share({
+        title: dispositif?.titreInformatif || "",
+        text: dispositif?.titreMarque
+          ? `${dispositif.titreInformatif} - ${dispositif.titreMarque}`
+          : dispositif?.titreInformatif,
+        url: window.location.href,
+      });
+      Event("DISPO_VIEW", "share", dispositif?._id?.toString() || "");
+    }
+  };
+
   return (
     <header className="relative">
       {isViewMode && (
@@ -55,12 +81,10 @@ const Header = (props: Props) => {
           content={vocalizationContent}
         />
       )}
-
       <Title />
-
-      {isViewMode && dispositif?.titreMarque && (
+      {!hideSponsor && isViewMode && dispositif?.titreMarque && (
         <span className="text-corps-xl mb-8 block">
-          {t("Dispositif.with")} {dispositif?.titreMarque}{" "}
+          {t("Dispositif.proposedBy")} {dispositif?.titreMarque}{" "}
         </span>
       )}
 
@@ -78,7 +102,11 @@ const Header = (props: Props) => {
         )}
 
         <span className="flex flex-col gap-1">
-          {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
+          {isViewMode ? (
+            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
+          ) : (
+            <SponsorsEdit />
+          )}
           {isViewMode && dispositif?.date && (
             <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
           )}
@@ -86,14 +114,21 @@ const Header = (props: Props) => {
       </div>
 
       {isViewMode && (
-        <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse">
-          <SaveBookmark />
+        <div className="border-default-grey my-8 flex items-center border-y py-1 rtl:flex-row-reverse print:hidden">
+          {isMobile && navigatorShareSupported ? (
+            <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
+              {t("Dispositif.shareShort", "Partager")}
+            </Button>
+          ) : (
+            <SaveBookmark />
+          )}
+
           <LanguageMenu
             mobileMode="modal"
             desktopMode="dropdown"
             dropDownClassName="max-sm:max-w-[90vw]"
             variant="flag"
-            className="[&_button]:shadow-none"
+            className="ms-auto [&_button]:shadow-none"
             languageSelectorType="page"
             availableLanguages={dispositif?.availableLanguages}
           />

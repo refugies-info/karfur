@@ -15,7 +15,7 @@ const ContributorCard = ({ user }: Props) => {
   const role = useMemo(() => getRole(user.roles), [user]);
 
   return (
-    <div className="border-dsfr-border-default-grey bg-action-low-blue-france grid h-auto grid-rows-[auto_1fr_auto] items-center justify-center gap-2 border-none p-3 shadow-sm">
+    <div className="border-dsfr-border-default-grey bg-action-low-blue-france grid h-auto grid-rows-[auto_1fr_auto] items-center justify-center gap-2 border-none p-3">
       <Image
         src={user.picture?.secure_url || DefaultAvatar}
         width={64}

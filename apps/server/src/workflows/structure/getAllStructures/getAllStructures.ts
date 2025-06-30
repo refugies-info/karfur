@@ -22,6 +22,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
     adminComments: 1,
     adminProgressionStatus: 1,
     adminPercentageProgressionStatus: 1,
+    link: 1,
   };
 
   const structures = await getStructuresWithDispos({}, neededFields);
@@ -46,6 +47,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
           "adminComments",
           "adminProgressionStatus",
           "adminPercentageProgressionStatus",
+          "link",
         ]),
         _id: structure._id,
         nom: structure.nom || "",

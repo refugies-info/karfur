@@ -68,6 +68,7 @@ const MapNew = ({ data }: MapNewProps) => {
 
   return (
     <Map
+      className="max-sm:px-8"
       mapData={mapItems}
       title={title}
       description={isClient ? description : ""}

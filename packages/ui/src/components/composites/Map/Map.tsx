@@ -2,7 +2,7 @@
 import { Poi } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContext } from "./MapContext";
 import { MapPanel } from "./MapPanel";
 
@@ -23,6 +23,7 @@ type MapProps = {
 export const Map = ({ className, title, description, mapData, defaultFocusedPoi }: MapProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPoi, setFocusedPoi] = useState<Poi | null>(null);
+  const previousFullscreenState = useRef(isFullscreen);
 
   useEffect(() => {
     if (isFullscreen) {
@@ -64,18 +65,27 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
       existingStyle.remove();
     }
 
-    const resizeTimeout = setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 300);
-
     return () => {
-      clearTimeout(resizeTimeout);
       document.body.style.overflow = "";
       const existingStyle = document.getElementById("map-fullscreen-styles");
       if (existingStyle) {
         existingStyle.remove();
       }
     };
+  }, [isFullscreen]);
+
+  // Effect to handle map refresh when fullscreen state changes
+  useEffect(() => {
+    if (previousFullscreenState.current !== isFullscreen) {
+      const refreshTimeout = setTimeout(() => {
+        window.dispatchEvent(new Event("resize"));
+      }, 100);
+
+      previousFullscreenState.current = isFullscreen;
+
+      return () => clearTimeout(refreshTimeout);
+    }
+    return undefined; // Explicit return for when condition is not met
   }, [isFullscreen]);
 
   const [focusOnMapFn, setFocusOnMapFn] = useState<((poi: Poi, zoomLevel?: number) => void) | undefined>(undefined);
@@ -119,14 +129,16 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
     <MapContext.Provider value={contextValue}>
       <div
         className={cn(
-          "shadow-ri bg-white max-md:flex max-md:flex-col lg:grid lg:grid-cols-2",
+          "shadow-ri bg-white max-md:flex max-md:flex-col lg:grid lg:grid-cols-2 print:shadow-none",
           !isFullscreen && "lg:h-100",
           isFullscreen && "fixed inset-0 top-0 left-0 z-[9999] lg:grid-cols-4",
           className,
         )}
       >
         <MapPanel />
-        <DynamicLeafletMap className={cn("grid max-lg:min-h-128 max-md:h-[60vh]", isFullscreen && "lg:col-span-3")} />
+        <DynamicLeafletMap
+          className={cn("grid max-lg:min-h-128 max-md:h-[60vh] print:hidden", isFullscreen && "lg:col-span-3")}
+        />
       </div>
     </MapContext.Provider>
   ) : (

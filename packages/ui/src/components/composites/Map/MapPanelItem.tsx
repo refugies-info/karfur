@@ -30,9 +30,14 @@ function MapPanelItem({ id, poi, className }: MapPanelItemProps) {
     >
       <h3 className="text-title-xs mb-2">{poi.title}</h3>
       {poi.city && (
-        <p className="text-default-grey text-corps-sm mb-0">
+        <p className="text-default-grey text-corps-sm mb-0 print:hidden">
           <i className="fr-icon-building-line before:scale-75" />
           {poi.city}
+        </p>
+      )}
+      {poi.address && (
+        <p className="hidden print:block" aria-hidden="true">
+          {poi.address}
         </p>
       )}
     </button>

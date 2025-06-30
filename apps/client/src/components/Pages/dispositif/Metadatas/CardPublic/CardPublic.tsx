@@ -65,7 +65,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
               onClick={
                 isEditMode
                   ? () => {
-                      setModalPage?.(4);
+                      setModalPage?.(2);
                       setActiveModal?.("Public");
                     }
                   : undefined
@@ -82,7 +82,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
               onClick={
                 isEditMode
                   ? () => {
-                      setModalPage?.(2);
+                      setModalPage?.(3);
                       setActiveModal?.("Public");
                     }
                   : undefined
@@ -112,7 +112,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
               onClick={
                 isEditMode
                   ? () => {
-                      setModalPage?.(3);
+                      setModalPage?.(4);
                       setActiveModal?.("Public");
                     }
                   : undefined

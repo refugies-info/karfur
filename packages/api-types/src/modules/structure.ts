@@ -90,6 +90,7 @@ export interface GetAllStructuresResponse {
   adminComments?: string;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
+  link?: string;
 }
 
 /**

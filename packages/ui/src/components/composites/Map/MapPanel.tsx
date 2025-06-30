@@ -16,19 +16,11 @@ export const MapPanel = ({ className }: MapPanelProps) => {
   // Scroll to the selected POI when focusedPoi changes
   useEffect(() => {
     if (focusedPoi) {
-      // Find the index of the focused POI in the mapData array
       const index = mapData.findIndex((poi) => poi.title === focusedPoi.title);
 
       if (index !== -1) {
         if ((isMobile || isTablet) && carrouselRef?.current) {
-          // For mobile, use the exposed scrollToSlide function
-        } else {
-          // For desktop, use scrollIntoView
-          const elementId = `${focusedPoi.title}-${index}`;
-          const element = document.getElementById(elementId);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
+          carrouselRef.current.scrollToSlide(index);
         }
       }
     }
