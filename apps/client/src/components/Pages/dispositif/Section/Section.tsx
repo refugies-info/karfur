@@ -66,13 +66,13 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
           <>
             <Header typeContenu={contentType || ContentType.DISPOSITIF} />
             {contentHtml && isViewMode && (
-              <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />
+              <SectionButtons id={sectionKey} className="mb-6 md:hidden" content={contentHtml} />
             )}
             <RichText id={sectionKey} value={contentHtml} />
           </>
         ) : (
           <>
-            <SectionTitle titleKey={sectionKey} />
+            <SectionTitle titleKey={sectionKey} className="mb-8" />
             <Accordions
               content={contentAccordions}
               sectionKey={sectionKey as "why" | "how" | "next"}
