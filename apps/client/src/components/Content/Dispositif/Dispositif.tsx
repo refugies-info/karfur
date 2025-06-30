@@ -90,7 +90,7 @@ const Dispositif = (props: Props) => {
                 linkProps={{ href: "#top" }}
                 iconId="fr-icon-arrow-up-line"
                 priority="tertiary no outline"
-                className="w-full bg-white py-8 underline"
+                className="w-full bg-white py-8 underline print:!hidden"
               >
                 {t("topLink")}
               </Button>

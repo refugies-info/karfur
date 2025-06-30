@@ -136,7 +136,9 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
         )}
       >
         <MapPanel />
-        <DynamicLeafletMap className={cn("grid max-lg:min-h-128 max-md:h-[60vh]", isFullscreen && "lg:col-span-3")} />
+        <DynamicLeafletMap
+          className={cn("grid max-lg:min-h-128 max-md:h-[60vh] print:hidden", isFullscreen && "lg:col-span-3")}
+        />
       </div>
     </MapContext.Provider>
   ) : (

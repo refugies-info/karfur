@@ -114,7 +114,7 @@ const Header = (props: Props) => {
       </div>
 
       {isViewMode && (
-        <div className="border-default-grey my-8 flex items-center border-y py-1 rtl:flex-row-reverse">
+        <div className="border-default-grey my-8 flex items-center border-y py-1 rtl:flex-row-reverse print:hidden">
           {isMobile && navigatorShareSupported ? (
             <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
               {t("Dispositif.shareShort", "Partager")}

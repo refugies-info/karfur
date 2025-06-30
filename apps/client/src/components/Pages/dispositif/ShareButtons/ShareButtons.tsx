@@ -42,7 +42,7 @@ const ShareButtons = ({ className }: { className?: string }) => {
   }, [showSMS]);
 
   return (
-    <div className="mb-4 flex flex-col gap-2">
+    <div className="mb-4 flex flex-col gap-2 print:hidden">
       <div className={cn("bg-white/50 p-4 backdrop-blur-[30px]", className)}>
         <p className="text-title-xxs text-title-grey mb-4 font-bold">{t("Dispositif.share", "Partager la fiche")}</p>
         <div className="flex items-center">

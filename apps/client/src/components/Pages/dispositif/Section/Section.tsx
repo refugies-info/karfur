@@ -82,7 +82,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
         )}
       </section>
       {/* We bring back the metadatas in the what section on mobile */}
-      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8" />}
+      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8 print:hidden" />}
     </>
   );
 };

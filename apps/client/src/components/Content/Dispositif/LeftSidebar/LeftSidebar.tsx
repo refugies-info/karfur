@@ -12,9 +12,9 @@ const LeftSidebar = ({ className }: { className?: string }) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
   return (
-    <aside className={cn(className)}>
+    <aside className={cn(className, "print:order-2 print:mt-8")}>
       {isViewMode && (
-        <FRLink href="#top" icon="arrow-upward" className="fixed bottom-4 left-4 z-20 print:hidden">
+        <FRLink href="#top" icon="arrow-upward" className="fixed bottom-4 left-4 z-20 print:!hidden">
           {t("topLink")}
         </FRLink>
       )}
