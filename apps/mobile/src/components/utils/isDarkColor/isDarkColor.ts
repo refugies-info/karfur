@@ -12,7 +12,7 @@ export const isDarkColor = (hexColor: string, options?: { override: { [key: stri
 
   const { r, g, b } = hexToRgb(hexColor);
 
-  let colorArray = [r / 255, g / 255, b / 255].map((v) => {
+  const colorArray = [r / 255, g / 255, b / 255].map((v) => {
     if (v <= 0.03928) {
       return v / 12.92;
     }

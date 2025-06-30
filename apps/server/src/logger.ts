@@ -11,9 +11,9 @@ const winstonLogger = winston.createLogger({
 });
 
 const logger = {
-  info: (message: string, params?: Object): void => winstonLogger.info(`${message}`, params || ""),
-  warn: (message: string, params?: Object): void => winstonLogger.warn(`${message}`, params || ""),
-  error: (message: string, params?: Object): void => winstonLogger.error(`${message}`, params || ""),
+  info: (message: string, params?: object | string): void => winstonLogger.info(`${message}`, params || ""),
+  warn: (message: string, params?: object | string): void => winstonLogger.warn(`${message}`, params || ""),
+  error: (message: string, params?: object | string): void => winstonLogger.error(`${message}`, params || ""),
 };
 
 export = logger;

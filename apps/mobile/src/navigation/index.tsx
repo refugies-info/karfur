@@ -82,7 +82,7 @@ export const RootNavigator = () => {
   useEffect(() => {
     const saveInitialUrl = (event: Linking.EventType | string | null) => {
       if (event) {
-        let url = typeof event === "object" ? event.url : event;
+        const url = typeof event === "object" ? event.url : event;
         if (!url.includes("refugies.info")) return;
         dispatch(
           saveSelectedLanguageActionCreator({

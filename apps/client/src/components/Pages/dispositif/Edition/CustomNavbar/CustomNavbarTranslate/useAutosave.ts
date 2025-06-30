@@ -2,7 +2,7 @@ import { Languages } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { logger } from "logger";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
 import API from "~/utils/API";
@@ -27,28 +27,28 @@ const useAutosave = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const [startDate, setStartDate] = useState<Date>(new Date());
+  const startDateRef = useRef<Date>(new Date());
   useEffect(() => {
-    setStartDate(new Date());
+    startDateRef.current = new Date();
   }, []);
 
   useEffect(() => {
     if (pageContext.mode === "translate") {
       if (JSON.stringify(data) !== JSON.stringify(oldData)) {
         // form has changed
-        methods.handleSubmit((data: TranslateForm) => {
+        methods.handleSubmit((formData: TranslateForm) => {
           debouncedSave(async () => {
             setIsSaving(true);
             setHasError(false);
             try {
               await API.saveTraduction({
                 dispositifId: id || "",
-                timeSpent: new Date().getTime() - startDate.getTime(),
+                timeSpent: new Date().getTime() - startDateRef.current.getTime(),
                 translated: {
-                  content: data.translated.content,
+                  content: formData.translated.content,
                 },
-                toFinish: data.toFinish,
-                toReview: data.toReview,
+                toFinish: formData.toFinish,
+                toReview: formData.toReview,
                 language: language || "",
               });
             } catch (e: any) {
@@ -59,10 +59,10 @@ const useAutosave = () => {
           });
         })();
         setOldData(data);
-        setStartDate(new Date());
+        startDateRef.current = new Date();
       }
     }
-  }, [pageContext.mode, id, language, methods, data, oldData, router, startDate]);
+  }, [pageContext.mode, id, language, methods, data, oldData]); // Removed startDate and router from dependencies
 
   return { isSaving, hasError };
 };

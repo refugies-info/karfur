@@ -25,17 +25,22 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
       onClick={handleClick}
       className={cn("relative mb-4 flex items-start gap-2", onClick && "cursor-pointer", className)}
     >
-      {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.36rem]")} /> : icon)}
+      {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} /> : icon)}
       {logoImage && (
         <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt={logoImage?.alt || ""} />
       )}
-      <div className="flex flex-col ltr:text-left rtl:text-right">
-        {title && <h3 className="text-corps-sm mb-0">{title}</h3>}
+      <div className="md:flex md:flex-col ltr:text-left rtl:text-right">
+        {title && (
+          <h3 className="text-corps-md md:text-corps-sm mb-0 max-sm:float-left max-sm:mr-1 max-sm:inline max-sm:w-fit">
+            {title}
+          </h3>
+        )}
         {children && (
           <div
             className={cn(
-              "text-corps-sm relative mb-0 h-full [&_a]:inline",
-              "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-4.75 rtl:before:-right-4.75",
+              "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
+              "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
+              "md:[&_a]:text-sm",
               onClick && "[&_a]:pointer-events-none",
             )}
           >

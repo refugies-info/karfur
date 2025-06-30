@@ -35,8 +35,8 @@ export const IconList = (props: Props) => {
       {props.items.map((item, i) => (
         <View key={i}>
           <Option
-            accessibilityRole={!!item.path ? "link" : "text"}
-            onPress={() => (!!item.path ? navigation.navigate(item.path) : null)}
+            accessibilityRole={item.path ? "link" : "text"}
+            onPress={() => (item.path ? navigation.navigate(item.path) : null)}
           >
             <Icon name={item.icon} size={24} color={theme.colors.black} />
             <TextDSFR_MD_Med

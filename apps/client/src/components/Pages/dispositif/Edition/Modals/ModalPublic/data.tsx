@@ -119,7 +119,7 @@ export const ageOptions: Record<ageType, string> = {
 
 export const modalTitles = [
   "À quel public s'adresse votre action ?",
+  "Votre action est-elle réservée à un public spécifique (optionnel) ?",
   "Votre action est ouverte aux personnes de niveau(x) :",
   "Votre action est ouverte aux personnes âgées de :",
-  "Votre action est-elle réservée à un public spécifique (optionnel) ?",
 ];

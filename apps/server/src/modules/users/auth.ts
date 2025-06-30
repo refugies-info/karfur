@@ -66,7 +66,7 @@ export const isUserValid = async (user: DocumentType<User> | null | undefined, e
  * @param user
  */
 export const logUser = async (user: DocumentType<User> | string): Promise<string> => {
-  let userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
+  const userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
   await isUserValid(userDocument, userDocument.email);
   await updateLastConnected(userDocument);
   await addLog(userDocument._id, "User", "Connexion");

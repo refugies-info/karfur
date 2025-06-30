@@ -68,7 +68,7 @@ export const NotificationsScreen = () => {
   const { t } = useTranslationWithRTL();
   const theme = useTheme();
   const navigation = useNavigation<NotificationsScreenNavigationProp>();
-  let { data: notifications, isLoading } = useNotifications();
+  const { data: notifications, isLoading } = useNotifications();
 
   const [accessGranted] = useNotificationsStatus();
 

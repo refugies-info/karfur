@@ -1,7 +1,7 @@
 import * as Notifications from "expo-notifications";
 import { EventSubscription, NotificationResponse } from "expo-notifications";
 
-let notificationDataStack: NotificationResponse[] = [];
+const notificationDataStack: NotificationResponse[] = [];
 let notificationListener: EventSubscription | null = null;
 
 export const enableNotificationsListener = () => {

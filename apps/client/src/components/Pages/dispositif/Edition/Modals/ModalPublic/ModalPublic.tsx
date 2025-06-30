@@ -172,7 +172,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
               helpTooltip="Votre action est ouverte de façon inconditionnelle, à toutes les personnes intéressées."
             />
             <ChoiceButton
-              text="Primo-arrivants"
+              text="Personnes en situation d’exil"
               type="checkbox"
               selected={includeAllRefugees(publicStatus)}
               onSelect={() => {
@@ -183,7 +183,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
                 );
               }}
               className="mb-2"
-              helpTooltip="Votre action est ouverte aux étrangers primo-arrivants, c'est-à-dire vivant en France depuis moins de 5 ans."
+              helpTooltip="Votre action est ouverte aux étrangers en situation d’exil, c'est-à-dire vivant en France depuis moins de 5 ans."
             />
             <div>
               {publicStatusOptions.map((key) => (
@@ -200,8 +200,32 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
             </div>
           </div>
         )}
-
         {step === 2 && (
+          <div>
+            {publicOptions.map((key) => (
+              <div key={key}>
+                <ChoiceButton
+                  key={key}
+                  text={t(`Infocards.${key}`)}
+                  type="checkbox"
+                  selected={!!(publicType && publicType?.includes(key))}
+                  onSelect={() => selectPublicType(key)}
+                  className="mb-2"
+                />
+              </div>
+            ))}
+            <ChoiceButton
+              text="Ce n'est pas pertinent pour mon action"
+              type="radio"
+              selected={publicType === null}
+              onSelect={() => setPublicType(null)}
+              size="lg"
+              className="mt-6"
+              image={NoIcon}
+            />
+          </div>
+        )}
+        {step === 3 && (
           <div>
             <ChoiceButton
               text="Tous les niveaux"
@@ -239,7 +263,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
           </div>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <div>
             <div className="flex justify-between">
               {entries<Record<ageType, string>>(ageOptions).map(([key, text]) => (
@@ -329,33 +353,6 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
             />
           </div>
         )}
-
-        {step === 4 && (
-          <div>
-            {publicOptions.map((key) => (
-              <div key={key}>
-                <ChoiceButton
-                  key={key}
-                  text={t(`Infocards.${key}`)}
-                  type="checkbox"
-                  selected={!!(publicType && publicType?.includes(key))}
-                  onSelect={() => selectPublicType(key)}
-                  className="mb-2"
-                />
-              </div>
-            ))}
-            <ChoiceButton
-              text="Ce n'est pas pertinent pour mon action"
-              type="radio"
-              selected={publicType === null}
-              onSelect={() => setPublicType(null)}
-              size="lg"
-              className="mt-6"
-              image={NoIcon}
-            />
-          </div>
-        )}
-
         <StepsFooter
           onValidate={validate}
           onPrevious={() => setStep((s) => s - 1)}
