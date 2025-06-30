@@ -1,6 +1,8 @@
 import { ContentType } from "@refugies-info/api-types";
 import { useContext, useMemo } from "react";
 
+import Button from "@codegouvfr/react-dsfr/Button";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
@@ -37,6 +39,7 @@ const Dispositif = (props: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
   useScrolledBottomEvent(pageContext.mode === "view");
+  const { t } = useTranslation();
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -53,7 +56,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage?.secure_url}
       />
       <div
-        className={cn("relative pb-8")}
+        className={cn("relative pb-8 print:!bg-none")}
         style={{
           background: `linear-gradient(to bottom, ${theme?.gradientColors?.colorTop}, ${theme?.gradientColors?.colorBottom})`,
         }}
@@ -66,7 +69,7 @@ const Dispositif = (props: Props) => {
           {(isDesktop || isLargeDesktop) && (
             <>
               {isViewMode ? (
-                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
+                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px] print:pt-0" />
               ) : (
                 <LeftSidebarEdition className="z-10 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
               )}
@@ -74,7 +77,7 @@ const Dispositif = (props: Props) => {
           )}
 
           <article
-            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%]"
+            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%] print:w-full print:pt-0"
             dir={isRTL ? undefined : "ltr"}
           >
             {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
@@ -82,13 +85,23 @@ const Dispositif = (props: Props) => {
             ))}
             {/* TODO: adapt the Map component to be used in edit mode */}
             {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
+            {isViewMode && isMobile && (
+              <Button
+                linkProps={{ href: "#top" }}
+                iconId="fr-icon-arrow-up-line"
+                priority="tertiary no outline"
+                className="w-full bg-white py-8 underline print:!hidden"
+              >
+                {t("topLink")}
+              </Button>
+            )}
             {isViewMode && <Contributors />}
           </article>
 
           {isLargeDesktop && (
             <>
               {isViewMode ? (
-                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px]" />
+                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px] print:hidden" />
               ) : (
                 <RightSidebarEdition className="z-10 lg:w-[20%] lg:pt-[371px]" />
               )}

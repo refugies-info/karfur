@@ -100,7 +100,7 @@ export const getContentById = async (
     participants: SimpleUser[];
     creatorId: { _id: Id; username: string };
   }>([
-    { path: "mainSponsor", select: "_id nom picture membres" },
+    { path: "mainSponsor", select: "_id nom picture membres link acronyme" },
     { path: "sponsors", select: "_id nom picture" },
     { path: "participants", select: "_id username picture roles" },
     { path: "creatorId", select: "_id username" },
@@ -127,7 +127,7 @@ export const getContentById = async (
       participants: SimpleUser[];
       creatorId: { _id: Id; username: string };
     }>([
-      { path: "mainSponsor", select: "_id nom picture" },
+      { path: "mainSponsor", select: "_id nom picture link acronyme" },
       { path: "sponsors", select: "_id nom picture" },
       { path: "participants", select: "_id username picture roles" },
       { path: "creatorId", select: "_id username" },

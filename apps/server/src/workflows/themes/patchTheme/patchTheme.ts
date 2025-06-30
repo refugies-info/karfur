@@ -12,7 +12,7 @@ export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): Resp
   const oldTheme = await getTheme(id);
   if (!oldTheme) throw new NotFoundError("Theme not found");
 
-  let oldThemeObject = oldTheme.toObject();
+  const oldThemeObject = oldTheme.toObject();
   const dbTheme = await updateTheme(id, merge(oldThemeObject, theme));
   const activeLanguages = await getActiveLanguagesFromDB();
 

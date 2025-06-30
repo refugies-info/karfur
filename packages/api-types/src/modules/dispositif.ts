@@ -237,7 +237,7 @@ export type GetDispositifResponse = {
   administration?: DemarcheAdministration;
   typeContenu: ContentType;
   status: DispositifStatus;
-  mainSponsor?: ContentStructure;
+  mainSponsor?: ContentStructure | null;
   theme?: Id;
   secondaryThemes?: Id[];
   needs: Id[];

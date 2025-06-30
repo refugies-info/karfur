@@ -350,7 +350,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
             "scrollBehavior": "smooth",
             "overscrollBehaviorX": "contain",
             "cursor": "grab",
-            // @ts-ignore
+            // @ts-expect-error style prop is not recognized
             "&:active": { cursor: "grabbing" },
             "direction": dir, // Set the direction explicitly
           }}

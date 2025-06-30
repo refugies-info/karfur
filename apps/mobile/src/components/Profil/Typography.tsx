@@ -7,7 +7,7 @@ export const P = styled(TextDSFR_MD)`
 `;
 export const H1 = styled(TextDSFR_XL)<{ blue?: boolean }>`
   margin-bottom: ${styles.margin * 5}px;
-  ${({ blue, theme }) => (!!blue ? `color: ${theme.colors.dsfr_action};` : "")}
+  ${({ blue, theme }) => (blue ? `color: ${theme.colors.dsfr_action};` : "")}
 `;
 export const H2 = styled(TextDSFR_Chapo_Bold)`
   margin-bottom: ${styles.margin * 2}px;

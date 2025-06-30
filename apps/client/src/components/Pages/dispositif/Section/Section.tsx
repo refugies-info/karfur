@@ -56,7 +56,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
       <section
         id={`anchor-${sectionKey}`}
         className={cn(
-          "lg:shadow-ri relative bg-white p-4 lg:p-14",
+          "lg:shadow-ri relative bg-white p-4 lg:p-14 print:shadow-none",
           sectionKey === "what" && "max-lg:bg-transparent",
           className,
         )}
@@ -66,13 +66,13 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
           <>
             <Header typeContenu={contentType || ContentType.DISPOSITIF} />
             {contentHtml && isViewMode && (
-              <SectionButtons id={sectionKey} className="md:hidden" content={contentHtml} />
+              <SectionButtons id={sectionKey} className="mb-6 md:hidden" content={contentHtml} />
             )}
             <RichText id={sectionKey} value={contentHtml} />
           </>
         ) : (
           <>
-            <SectionTitle titleKey={sectionKey} />
+            <SectionTitle titleKey={sectionKey} className="mb-8" />
             <Accordions
               content={contentAccordions}
               sectionKey={sectionKey as "why" | "how" | "next"}
@@ -82,7 +82,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
         )}
       </section>
       {/* We bring back the metadatas in the what section on mobile */}
-      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8" />}
+      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8 print:hidden" />}
     </>
   );
 };

@@ -63,10 +63,10 @@ export class User extends Base {
   public last_connected?: Date;
 
   @prop()
-  public authy_id?: String;
+  public authy_id?: string;
 
   @prop()
-  public reset_password_token?: String;
+  public reset_password_token?: string;
 
   @prop()
   public reset_password_expires?: Date;
