@@ -15,7 +15,7 @@ export const addNeedsFromAirtable = async (req: {}, res: Res) => {
 
     await asyncForEach(data, async (el) => {
       try {
-        let needs: mongoose.Types.ObjectId[] = [];
+        const needs: mongoose.Types.ObjectId[] = [];
         // @ts-ignore
         const ficheFromDB = await getDispositifById(el._id, { tags: 1 });
         if (!ficheFromDB) {

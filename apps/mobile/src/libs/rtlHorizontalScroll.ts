@@ -15,13 +15,13 @@ export const initHorizontalScroll = (
   setTimeout(() => {
     if (isRTL) {
       if (Array.isArray(elements)) {
-        for (let el of elements) scrollToEnd(el);
+        for (const el of elements) scrollToEnd(el);
       } else {
         scrollToEnd(elements);
       }
     } else {
       if (Array.isArray(elements)) {
-        for (let el of elements) scrollToStart(el);
+        for (const el of elements) scrollToStart(el);
       } else {
         scrollToStart(elements);
       }

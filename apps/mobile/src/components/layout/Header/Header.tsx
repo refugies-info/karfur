@@ -69,7 +69,7 @@ export const Header = ({
   const { name: routeName } = useRoute();
   const navigation = useNavigation<any>(); // FIXME
   const onPress = useCallback(
-    !!backScreen
+    backScreen
       ? () => {
           navigation.popToTop();
           navigation.navigate(backScreen);

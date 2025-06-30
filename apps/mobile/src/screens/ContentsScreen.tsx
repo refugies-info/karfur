@@ -43,8 +43,8 @@ const sortContents = (contents: ContentForApp[]) => {
 
 const getTranslatedContents = (contents: ContentForApp[], currentLanguage: Languages | null) => {
   if (!currentLanguage || currentLanguage === "fr") return { translatedContents: contents, nonTranslatedContents: [] };
-  let translatedContents: ContentForApp[] = [];
-  let nonTranslatedContents: ContentForApp[] = [];
+  const translatedContents: ContentForApp[] = [];
+  const nonTranslatedContents: ContentForApp[] = [];
   contents.forEach((content) => {
     if (!content) return;
     if (content.locale === currentLanguage) {
@@ -58,7 +58,7 @@ const getTranslatedContents = (contents: ContentForApp[], currentLanguage: Langu
 
 const getContentsToDisplay = (contentsId: ObjectId[], contents: ContentForApp[]) => {
   if (!contentsId) return [];
-  let result: ContentForApp[] = [];
+  const result: ContentForApp[] = [];
 
   contentsId.forEach((contentId: ObjectId) => {
     const contentWithInfosArray = contents.filter((content) => content._id === contentId);

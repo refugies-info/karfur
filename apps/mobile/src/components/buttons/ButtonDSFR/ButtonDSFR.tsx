@@ -30,7 +30,7 @@ const ButtonText = styled(TextDSFR_L_Med)<{
   size: "default" | "medium" | "small" | undefined;
 }>`
   color: ${({ theme, color, disabled }) => (disabled ? theme.colors.dsfr_borderGrey : color)};
-  ${({ theme, size }) => (!!size ? `font-size: ${theme.fonts.button[size]};` : "")}
+  ${({ theme, size }) => (size ? `font-size: ${theme.fonts.button[size]};` : "")}
 `;
 
 const Container = styled(TouchableOpacity)<{

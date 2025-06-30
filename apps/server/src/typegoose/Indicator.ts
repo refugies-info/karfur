@@ -10,7 +10,7 @@ export class Indicator {
   public language!: Languages;
 
   @prop({ validate: (value: any) => isInteger(value) && value > 0, required: true })
-  public wordsCount!: Number;
+  public wordsCount!: number;
 
   @prop({ ref: () => Dispositif, required: true })
   public dispositifId!: Ref<Dispositif>;
@@ -19,5 +19,5 @@ export class Indicator {
   public userId!: Ref<User>;
 
   @prop({ validate: (v: any) => isInteger(v) && v > 0, required: true })
-  public timeSpent!: Number;
+  public timeSpent!: number;
 }

@@ -92,7 +92,7 @@ export const NotificationsSettingsScreen = () => {
               Choisis le type de fiches pour lequel tu souhaites recevoir des notifications.
             </SectionSubtitle>
             <ToggleButton
-              title={`${t("notifications.settingsLocal")} ${!!location.city ? `: ${location.city}` : ""}`}
+              title={`${t("notifications.settingsLocal")} ${location.city ? `: ${location.city}` : ""}`}
               subtitle={t("notifications.settingsLocalSubtitle")}
               enabled={hasSetLocation && settings?.local}
               onToggle={updateLocalSettings}

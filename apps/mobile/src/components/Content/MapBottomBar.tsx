@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const callNumber = (phone: string) => {
-  let phoneNumber = `tel:${phone}`;
+  const phoneNumber = `tel:${phone}`;
 
   Linking.canOpenURL(phoneNumber).then((supported) => {
     if (!supported) {

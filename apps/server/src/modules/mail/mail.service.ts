@@ -464,7 +464,7 @@ interface AdminImprovementsMail {
   lien: string;
   email: string;
   firstName: string;
-  sectionsToModify: Object;
+  sectionsToModify: object;
   message: string;
 }
 

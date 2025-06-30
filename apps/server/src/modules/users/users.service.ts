@@ -54,7 +54,7 @@ export const updateLastConnected = (user: User) =>
 
 export const getUsersFromStructureMembres = async (structureMembres: Membre[]): Promise<User[]> => {
   logger.info("[getUsersFromStructureMembres] received");
-  let result: User[] = [];
+  const result: User[] = [];
   try {
     const userNeededFields: ProjectionType<User> = {
       firstName: 1,
