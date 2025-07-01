@@ -3,7 +3,7 @@ import { ContentStructure, ContentType, CreateDispositifRequest, Sponsor } from 
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { sanitizeUrl } from "~/lib/sanitizeUrl";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -90,7 +90,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
           <Button
             iconId="fr-icon-add-circle-fill"
             size="small"
-            className="mt-2 mb-2 ml-2"
+            className="mx-2 mt-2 mb-2"
             priority="secondary"
             onClick={(e) => {
               e.preventDefault();
@@ -144,7 +144,11 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
             size="small"
             className="mt-2 mb-2 ml-2"
             priority="secondary"
-            onClick={onAdd}
+            onClick={(e: React.MouseEvent) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onAdd?.();
+            }}
           >
             Ajouter un partenaire
           </Button>
