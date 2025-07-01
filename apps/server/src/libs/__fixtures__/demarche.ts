@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 export const demarche = {
   needs: ["613721a409c5190dfa70d053", "614d8fb095b9b700142ee846"],
   _id: "5dd7cf3b6f0ac0004c87c8b6",

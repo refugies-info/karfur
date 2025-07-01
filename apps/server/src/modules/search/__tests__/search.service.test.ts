@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { updateAlgoliaIndex } from "../search.service";
 
 jest.mock("~/connectors/algolia/updateAlgoliaData", () => ({

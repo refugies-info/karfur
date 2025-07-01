@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 export const activeLanguages = [
   {
     _id: "5ce57c969aadae8734c7aedd",

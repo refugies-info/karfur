@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { dispositifAlgolia } from "../__fixtures__/dispositif";
 import { getDiffAlgoliaObject } from "../getDiffAlgoliaObject";
 

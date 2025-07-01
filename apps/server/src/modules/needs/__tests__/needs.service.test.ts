@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getNeedsFromDB } from "../needs.repository";
 import { computePossibleNeeds } from "../needs.service";
 

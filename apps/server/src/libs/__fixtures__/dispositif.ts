@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 export const dispositif = {
   needs: [],
   _id: "5ce7ab7383983700167bc9da",
