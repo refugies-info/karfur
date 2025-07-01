@@ -135,9 +135,9 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   const emptySteps = useMemo(() => {
     return [
       publicStatus === undefined || publicStatus?.length === 0, // step 1
-      frenchLevel === undefined || frenchLevel?.length === 0, // step 2
-      !noAge && (!ages[0] || !ageType), // step 3
-      publicType === undefined || publicType?.length === 0, // step 4
+      publicType === undefined || publicType?.length === 0, // step 2
+      frenchLevel === undefined || frenchLevel?.length === 0, // step 3
+      !noAge && (!ages[0] || !ageType), // step 4
     ];
   }, [publicStatus, publicType, ageType, frenchLevel, noAge, ages]);
 
