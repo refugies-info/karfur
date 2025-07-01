@@ -147,7 +147,6 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
             onClick={(e: React.MouseEvent) => {
               e.preventDefault();
               e.stopPropagation();
-              console.log("onAdd");
               onAdd?.();
             }}
           >
