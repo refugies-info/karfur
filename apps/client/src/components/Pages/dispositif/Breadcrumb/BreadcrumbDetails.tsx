@@ -45,14 +45,14 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
       {(!isTablet || showBreadcrumb) && (
         <div className="">
           <Link href={getPath("/", "fr")} className="" title={t("homepage")}>
-            <i className="ri-home-4-line text-mention-grey text-xs [&::before]:![--icon-size:1.25rem]" />
+            <i className="ri-home-4-line text-mention-grey !bg-transparent !bg-none text-xs [&::before]:![--icon-size:1.25rem]" />
           </Link>
 
           {chevron}
 
           <Link
             href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
-            className="text-mention-grey underline decoration-current underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
+            className="text-mention-grey !bg-transparent !bg-none underline decoration-current underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
           >
             {dispositif.typeContenu === ContentType.DISPOSITIF ? t("Dispositif.dispositif") : t("Dispositif.demarche")}
           </Link>
@@ -63,7 +63,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
             <>
               <Link
                 href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-                className="text-mention-grey underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
+                className="text-mention-grey !bg-transparent !bg-none underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
               >
                 {theme.short[locale] || theme.short.fr}
               </Link>
@@ -75,7 +75,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
             <>
               <Link
                 href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-                className="text-mention-grey underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
+                className="text-mention-grey !bg-transparent !bg-none underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
               >
                 {need[locale]?.text || need.fr.text}
               </Link>

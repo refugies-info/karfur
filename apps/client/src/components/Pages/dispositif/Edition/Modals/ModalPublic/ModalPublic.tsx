@@ -42,12 +42,14 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   const [step, setStep] = useState<number>(page || modalPage || 1);
 
   useEffect(() => {
-    if (page) {
-      setStep(page);
-    } else if (modalPage) {
-      setStep(modalPage);
+    if (show) {
+      if (page) {
+        setStep(page);
+      } else if (modalPage) {
+        setStep(modalPage);
+      }
     }
-  }, [modalPage, page]);
+  }, [show, page, modalPage]);
 
   // public status
   const [publicStatus, setPublicStatus] = useState<publicStatusType[] | undefined>(
@@ -140,20 +142,17 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   }, [publicStatus, publicType, ageType, frenchLevel, noAge, ages]);
 
   const navigateToStep = useCallback(() => {
-    const firstEmpty = emptySteps.indexOf(true);
-    if (firstEmpty >= 0) {
-      setStep(firstEmpty + 1);
+    // Only navigate to first empty step if no page or modalPage is provided
+    if (!page && !modalPage) {
+      const firstEmpty = emptySteps.indexOf(true);
+      if (firstEmpty >= 0) {
+        setStep(firstEmpty + 1);
+      }
     }
-  }, [emptySteps]);
+  }, [emptySteps, page, modalPage]);
 
   return (
-    <BaseModal
-      show={show}
-      toggle={toggle}
-      help={help[step - 1]}
-      title={modalTitles[step - 1]}
-      onOpened={navigateToStep}
-    >
+    <BaseModal show={show} toggle={toggle} help={help[step - 1]} title={modalTitles[step - 1]}>
       <div>
         {step === 1 && (
           <div>
