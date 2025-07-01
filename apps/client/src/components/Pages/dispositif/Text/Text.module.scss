@@ -21,4 +21,16 @@
     /* stylelint-disable-next-line value-keyword-case */
     --underline-img: linear-gradient(0deg, currentColor, currentColor); // force underline
   }
+
+  /* Use native bullets */
+  ul {
+    list-style-type: disc;
+    padding-inline-start: u(4);
+  }
+
+  /* Hide marker for wrapping LIs that contain only another list */
+li:has(> ul:only-child) {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
 }
