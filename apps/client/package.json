@@ -43,7 +43,7 @@
     "google-oauth-gsi": "^4.0.0",
     "history": "^4.7.1",
     "html2plaintext": "^2.1.4",
-    "i18next": "^23.16.3",
+    "i18next": "^25.3.0",
     "isomorphic-dompurify": "^2.25.0",
     "js-cookie": "^3.0.5",
     "lexical": "^0.27.2",
