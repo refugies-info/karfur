@@ -66,7 +66,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
   const ttsEnabled = useMemo(() => hasTTSAvailable.includes(locale), [locale]);
 
   return (
-    <div className={cn("flex items-center max-sm:px-4 print:hidden", className)}>
+    <div className={cn("flex items-center print:hidden", className)}>
       <Tooltip kind="hover" title={t("Dispositif.react")}>
         <Button
           id={tooltipId}
