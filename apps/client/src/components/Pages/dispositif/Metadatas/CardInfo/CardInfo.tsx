@@ -28,7 +28,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
   const timeSlots = dispositif?.metadatas?.timeSlots;
   const commitment = dispositif?.metadatas?.commitment;
   const frequency = dispositif?.metadatas?.frequency;
-  const { setActiveModal } = useContext(PageContext);
+  const { setActiveModal, setModalPage } = useContext(PageContext);
 
   // Toggle visibility, if edit mode true, else check if there is any data
   const showCard = isEditMode ? true : price || location || timeSlots || commitment || frequency;
@@ -57,7 +57,14 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="ri-hourglass-line"
               title={t("Infocards.commitment")}
-              onClick={isEditMode ? () => setActiveModal?.("Availability") : undefined}
+              onClick={
+                isEditMode
+                  ? () => {
+                      setModalPage?.(1);
+                      setActiveModal?.("Availability");
+                    }
+                  : undefined
+              }
             >
               {commitment ? getCommitment(commitment, t) : "Non pertinent pour mon action"}
             </MetaDataItem>
@@ -67,7 +74,14 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="ri-calendar-schedule-line"
               title={t("Infocards.frequency")}
-              onClick={isEditMode ? () => setActiveModal?.("Availability") : undefined}
+              onClick={
+                isEditMode
+                  ? () => {
+                      setModalPage?.(2);
+                      setActiveModal?.("Availability");
+                    }
+                  : undefined
+              }
             >
               {frequency ? getFrequency(frequency, t) : "Non pertinent pour mon action"}
             </MetaDataItem>
@@ -77,7 +91,14 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="ri-calendar-event-line"
               title={t("Infocards.weekDays")}
-              onClick={isEditMode ? () => setActiveModal?.("Availability") : undefined}
+              onClick={
+                isEditMode
+                  ? () => {
+                      setModalPage?.(3);
+                      setActiveModal?.("Availability");
+                    }
+                  : undefined
+              }
             >
               {timeSlots ? getTimeSlots(timeSlots, t) : "Non pertinent pour mon action"}
             </MetaDataItem>
