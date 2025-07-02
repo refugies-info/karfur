@@ -61,7 +61,7 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
       onExpandedChange={(value) => setExpanded(!value)}
       className={cn(
         styles.accordion,
-        "max-md:[&_h3_button]:text-xl",
+        "max-md:[&_h3_button]:text-lg",
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
         "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
@@ -69,10 +69,12 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
       )}
       label={
         <>
-          <span className="inline-flex items-center gap-2">
+          <span className="inline-flex items-start gap-2 leading-[1.75rem]">
             {sectionKey === "how" && contentType === ContentType.DEMARCHE && (
-              <span className="bg-action-high-blue-france inline-flex aspect-square w-fit items-center justify-center rounded-full px-2 py-0 text-white">
-                {index + 1}
+              <span className="inline-flex aspect-square w-fit items-center justify-center rounded-full pt-1">
+                <span className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-[2.60419rem] p-[0.41669rem] md:rounded-[3.125rem] md:p-0.5">
+                  <span className="text-center text-sm leading-[1.5rem] font-bold text-white">{index + 1}</span>
+                </span>
               </span>
             )}
             {section.title}
