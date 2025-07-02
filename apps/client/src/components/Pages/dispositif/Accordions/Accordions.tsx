@@ -61,15 +61,15 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
       onExpandedChange={(value) => setExpanded(!value)}
       className={cn(
         styles.accordion,
-        "max-md:[&_h3_button]:text-xl",
+        "max-md:[&_h3_button]:text-[1.125rem]",
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
-        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
+        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-start [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
         "rtl:[&_h3_button]:text-right",
       )}
       label={
         <>
-          <span className="inline-flex items-center gap-2">
+          <span className="inline-flex items-start gap-2">
             {sectionKey === "how" && contentType === ContentType.DEMARCHE && (
               <span className="bg-action-high-blue-france inline-flex aspect-square w-fit items-center justify-center rounded-full px-2 py-0 text-white">
                 {index + 1}
@@ -89,7 +89,11 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
           {section.text}
         </Text>
         {mode === "view" && (
-          <SectionButtons className="w-fit flex-col-reverse" id={`${sectionKey}.${sectionId}`} content={section} />
+          <SectionButtons
+            className="w-fit flex-col-reverse max-md:ms-4"
+            id={`${sectionKey}.${sectionId}`}
+            content={section}
+          />
         )}
       </div>
     </Accordion>

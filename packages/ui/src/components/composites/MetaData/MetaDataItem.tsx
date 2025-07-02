@@ -31,7 +31,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
       )}
       <div className="md:flex md:flex-col ltr:text-left rtl:text-right">
         {title && (
-          <h3 className="text-corps-md md:text-corps-sm mb-0 max-sm:float-left max-sm:mr-1 max-sm:inline max-sm:w-fit">
+          <h3 className="text-corps-md md:text-corps-sm mb-0 max-sm:float-left max-sm:mr-1 max-sm:inline max-sm:w-fit max-sm:after:content-['_:']">
             {title}
           </h3>
         )}
