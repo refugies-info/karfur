@@ -80,7 +80,9 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
                 />
               </>
             ) : (
-              getSponsorContent(mainSponsor?.link, mainSponsor?.acronyme || mainSponsor?.nom)
+              <Link href={`/annuaire/${String((mainSponsor as ContentStructure)?._id)}`} className={cn("fr-link")}>
+                {(mainSponsor as ContentStructure)?.nom}
+              </Link>
             )}{" "}
             {hasSponsors && sponsors.length > 0 && ", "}
           </>
