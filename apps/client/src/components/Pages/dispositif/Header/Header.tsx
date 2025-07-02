@@ -85,7 +85,7 @@ const Header = (props: Props) => {
       <Title />
       {!hideSponsor && isViewMode && dispositif?.titreMarque && (
         <span className="text-corps-xl mb-8 block">
-          {t("Dispositif.proposedBy")} {dispositif?.titreMarque}{" "}
+          {t("Dispositif.with")} {dispositif?.titreMarque}{" "}
         </span>
       )}
 
