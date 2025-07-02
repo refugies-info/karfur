@@ -50,7 +50,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
   return hasMainSponsor || hasSponsors || editMode ? (
     <span className="w-full">
       <span className="text-title-grey">
-        {dispositif?.typeContenu === ContentType.DEMARCHE ? t("Dispositif.proposedBy") : t("Dispositif.with")}{" "}
+        {dispositif?.typeContenu === ContentType.DISPOSITIF ? t("Dispositif.proposedBy") : t("Dispositif.with")}{" "}
       </span>
       <span>
         {hasMainSponsor && mainSponsor?.nom && (
