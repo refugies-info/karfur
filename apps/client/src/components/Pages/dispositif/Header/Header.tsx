@@ -114,7 +114,7 @@ const Header = (props: Props) => {
       </div>
 
       {isViewMode && (
-        <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 print:hidden">
+        <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">
           {isMobile && navigatorShareSupported ? (
             <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
               {t("Dispositif.shareShort", "Partager")}
@@ -128,7 +128,7 @@ const Header = (props: Props) => {
             desktopMode="dropdown"
             dropDownClassName="max-sm:max-w-[90vw] rtl:!left-auto"
             variant="flag"
-            className="ms-auto [&_button]:shadow-none"
+            className="ltr:ms-auto [&_button]:shadow-none"
             languageSelectorType="page"
             availableLanguages={dispositif?.availableLanguages}
           />
