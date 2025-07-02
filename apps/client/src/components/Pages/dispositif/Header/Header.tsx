@@ -58,6 +58,7 @@ const Header = (props: Props) => {
 
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
+  const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
 
   const handleShare = () => {
     if (navigatorShareSupported) {
@@ -102,10 +103,10 @@ const Header = (props: Props) => {
         )}
 
         <span className="flex flex-col gap-1">
-          {isViewMode ? (
-            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
-          ) : (
+          {isEditMode ? (
             <SponsorsEdit />
+          ) : (
+            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
           )}
           {isViewMode && dispositif?.date && (
             <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
@@ -114,7 +115,7 @@ const Header = (props: Props) => {
       </div>
 
       {isViewMode && (
-        <div className="border-default-grey my-8 flex items-center border-y py-1 rtl:flex-row-reverse print:hidden">
+        <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">
           {isMobile && navigatorShareSupported ? (
             <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
               {t("Dispositif.shareShort", "Partager")}
@@ -128,7 +129,7 @@ const Header = (props: Props) => {
             desktopMode="dropdown"
             dropDownClassName="max-sm:max-w-[90vw] rtl:!left-auto"
             variant="flag"
-            className="ltr:ms-auto rtl:me-auto [&_button]:shadow-none"
+            className="ltr:ms-auto [&_button]:shadow-none"
             languageSelectorType="page"
             availableLanguages={dispositif?.availableLanguages}
           />

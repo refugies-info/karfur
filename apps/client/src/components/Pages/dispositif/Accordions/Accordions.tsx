@@ -64,7 +64,7 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
         "max-md:[&_h3_button]:text-lg",
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
-        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
+        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-start [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
         "rtl:[&_h3_button]:text-right",
       )}
       label={
@@ -91,7 +91,11 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
           {section.text}
         </Text>
         {mode === "view" && (
-          <SectionButtons className="w-fit flex-col-reverse" id={`${sectionKey}.${sectionId}`} content={section} />
+          <SectionButtons
+            className="w-fit flex-col-reverse max-md:ms-4"
+            id={`${sectionKey}.${sectionId}`}
+            content={section}
+          />
         )}
       </div>
     </Accordion>

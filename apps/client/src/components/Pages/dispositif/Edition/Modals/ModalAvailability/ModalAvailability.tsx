@@ -8,14 +8,16 @@ import {
   timeUnitType,
 } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import { jsUcfirst } from "~/lib";
+import PageContext from "~/utils/pageContext";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import { InlineForm, StepsFooter } from "../components";
+
 import {
   commitmentDetailsOptions,
   frequencyDetailsOptions,
@@ -30,14 +32,24 @@ import { getInputValue, getInputValues, includesAllDays, isCommitmentHoursKo } f
 interface Props {
   show: boolean;
   toggle: () => void;
+  page?: number;
 }
 
 const MAX_STEP = 3;
 
 const ModalAvailability = (props: Props) => {
+  const { modalPage } = useContext(PageContext);
   const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(props.page || modalPage || 1);
+
+  useEffect(() => {
+    if (props.page) {
+      setStep(props.page);
+    } else if (modalPage) {
+      setStep(modalPage);
+    }
+  }, [props.page, modalPage]);
 
   // commitment
   const [commitmentAmountDetails, setCommitmentAmountDetails] = useState<commitmentDetailsType>(
@@ -105,14 +117,14 @@ const ModalAvailability = (props: Props) => {
   };
 
   const validate = () => {
+    validateCommitment();
+    validateFrequency();
+    validateTimeSlots();
     if (step === 1) {
-      validateCommitment();
       setStep(2);
     } else if (step === 2) {
-      validateFrequency();
       setStep(3);
     } else if (step === 3) {
-      validateTimeSlots();
       props.toggle();
     }
   };
