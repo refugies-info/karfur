@@ -12,6 +12,7 @@ import Text from "../Text";
 import styles from "./Accordions.module.scss";
 
 interface AccordionItemProps {
+  contentType: ContentType;
   sectionKey: string;
   sectionId: string;
   section: InfoSection;
@@ -36,6 +37,7 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
       {Object.entries(content || []).map(([sectionId, section], index) => (
         <AccordionItem
           key={sectionId}
+          contentType={contentType}
           sectionId={sectionId}
           sectionKey={sectionKey}
           section={section}
@@ -49,7 +51,7 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
   );
 };
 
-const AccordionItem = ({ sectionKey, sectionId, section, mode, index }: AccordionItemProps) => {
+const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, index }: AccordionItemProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -68,7 +70,7 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode, index }: Accordio
       label={
         <>
           <span className="inline-flex items-center gap-2">
-            {sectionKey === "how" && (
+            {sectionKey === "how" && contentType === ContentType.DEMARCHE && (
               <span className="bg-action-high-blue-france inline-flex aspect-square w-fit items-center justify-center rounded-full px-2 py-0 text-white">
                 {index + 1}
               </span>
