@@ -126,9 +126,9 @@ const Header = (props: Props) => {
           <LanguageMenu
             mobileMode="modal"
             desktopMode="dropdown"
-            dropDownClassName="max-sm:max-w-[90vw]"
+            dropDownClassName="max-sm:max-w-[90vw] rtl:!left-auto"
             variant="flag"
-            className="ms-auto [&_button]:shadow-none"
+            className="ltr:ms-auto rtl:me-auto [&_button]:shadow-none"
             languageSelectorType="page"
             availableLanguages={dispositif?.availableLanguages}
           />

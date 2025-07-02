@@ -16,11 +16,12 @@ interface LanguageItemProps {
   onChangeLang?: () => void;
   type?: "global" | "page";
   disabled?: boolean;
+  forceActive?: boolean;
 }
 
 const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(
-    ({ item, className, onChangeLang, type = "global", disabled = false, ...props }, ref) => {
+    ({ item, className, onChangeLang, type = "global", disabled = false, forceActive = false, ...props }, ref) => {
       const { t } = useTranslation();
 
       const { changeLanguage, loading } = useChangeLanguage();
@@ -52,7 +53,7 @@ const LanguageItem = memo(
           data-nav-item
           className={cls(
             styles.item,
-            currentLanguage === item.i18nCode && styles.selected,
+            (currentLanguage === item.i18nCode && !disabled) || forceActive ? styles.selected : "",
             type === "page" && "[&:before]:hidden",
             disabled &&
               `disabled [&_*]:text-disabled-grey hover:bg-white [&_*]:pointer-events-none [&_*]:cursor-not-allowed ${styles.disabled}`,
@@ -88,7 +89,9 @@ const LanguageItem = memo(
             <span
               className={cn(
                 "relative h-6 w-6 flex-none rounded-full ring",
-                currentLanguage === item.i18nCode && "bg-active-blue-france border-5 border-white",
+                (currentLanguage === item.i18nCode && !disabled) || forceActive
+                  ? "bg-active-blue-france border-5 border-white"
+                  : "",
                 disabled && "ring-disabled-grey",
               )}
             ></span>
