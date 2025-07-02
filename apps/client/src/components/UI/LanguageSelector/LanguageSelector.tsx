@@ -21,8 +21,6 @@ const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
     const forceFrenchLanguage =
       availableLanguages?.length && !availableLanguages?.includes(currentLanguage) ? true : false;
 
-    console.log(forceFrenchLanguage);
-
     if (frenchLanguage) {
       sortedLanguages.splice(sortedLanguages.indexOf(frenchLanguage), 1);
       sortedLanguages.unshift(frenchLanguage);
