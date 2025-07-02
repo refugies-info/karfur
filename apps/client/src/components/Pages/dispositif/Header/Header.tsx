@@ -58,6 +58,7 @@ const Header = (props: Props) => {
 
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
+  const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
 
   const handleShare = () => {
     if (navigatorShareSupported) {
@@ -102,10 +103,10 @@ const Header = (props: Props) => {
         )}
 
         <span className="flex flex-col gap-1">
-          {isViewMode ? (
-            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
-          ) : (
+          {isEditMode ? (
             <SponsorsEdit />
+          ) : (
+            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
           )}
           {isViewMode && dispositif?.date && (
             <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
