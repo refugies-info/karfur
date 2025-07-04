@@ -9,12 +9,12 @@
   @include dsfr-text("normal");
   @include content-text;
 
-  ol > li:has(ol)::marker {
-    content: none;
-  }
-
   ol > li:has(ol) {
     counter-increment: none;
+
+    &::marker {
+      content: none;
+    }
   }
 }
 
