@@ -1,9 +1,9 @@
 import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
-import { useWindowSize } from "~/hooks";
+import { useRtriLinks, useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -25,6 +25,9 @@ const DEFAULT_COLOR_30 = "#ccc";
  * Shows a section of a dispositif. Can display a rich text or InfoSections. Can be used in VIEW or EDIT mode.
  */
 const Section = ({ sectionKey, contentType, className }: Props) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  // Use the hook to ensure all rtri-link class links open in a new tab
+  useRtriLinks(sectionRef);
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
@@ -54,6 +57,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   return (
     <>
       <section
+        ref={sectionRef}
         id={`anchor-${sectionKey}`}
         className={cn(
           "lg:shadow-ri relative bg-white p-4 lg:p-14 print:shadow-none",
