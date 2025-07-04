@@ -6,9 +6,11 @@ import { RefObject, useEffect } from "react";
  */
 export const useRtriLinks = (containerRef?: RefObject<HTMLElement>) => {
   useEffect(() => {
-    const handleClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const link = target.closest("a.rtri-link");
+    const handleLinkEvent = (event: MouseEvent) => {
+      // Ensure target is an Element before using closest
+      if (!(event.target instanceof Element)) return;
+
+      const link = event.target.closest("a.rtri-link");
 
       if (link && !link.getAttribute("target")) {
         link.setAttribute("target", "_blank");
@@ -20,11 +22,13 @@ export const useRtriLinks = (containerRef?: RefObject<HTMLElement>) => {
     // Otherwise, attach it to the document body
     const container = containerRef?.current || document.body;
 
-    // Use event delegation to handle all link clicks
-    container.addEventListener("click", handleClick);
+    // Handle both left-clicks and middle-clicks
+    container.addEventListener("click", handleLinkEvent);
+    container.addEventListener("auxclick", handleLinkEvent); // For middle-clicks
 
     return () => {
-      container.removeEventListener("click", handleClick);
+      container.removeEventListener("click", handleLinkEvent);
+      container.removeEventListener("auxclick", handleLinkEvent);
     };
   }, [containerRef]);
 };
