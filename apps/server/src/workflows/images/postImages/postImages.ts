@@ -5,6 +5,11 @@ import logger from "~/logger";
 import { ImageModel } from "~/typegoose";
 import { ResponseWithData } from "~/types/interface";
 
+/**
+ * Interface for uploaded file.
+ *
+ * We use this interface because express-form-data doesn't provide a proper type for the files.
+ */
 export interface UploadedFile {
   originalFilename: string;
   path: string;
