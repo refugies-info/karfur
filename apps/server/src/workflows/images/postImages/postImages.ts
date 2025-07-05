@@ -5,12 +5,17 @@ import logger from "~/logger";
 import { ImageModel } from "~/typegoose";
 import { ResponseWithData } from "~/types/interface";
 
-export const postImages = async (files: any): ResponseWithData<PostImageResponse> => {
+export interface UploadedFile {
+  originalFilename: string;
+  path: string;
+}
+
+export const postImages = async (files: UploadedFile[]): ResponseWithData<PostImageResponse> => {
   logger.info("[postImages] received a call");
   const file = files[0];
   if (!file) throw new InvalidRequestError("Invalid request");
   const originalFilename = file?.originalFilename || null;
-  // @ts-ignore
+  // @ts-expect-error cloudinary type mismatch
   const imgData = await cloudinary.uploader.upload(file.path, "", { folder: "/pictures" });
 
   if (!imgData) throw new Error("Error while uploading");
