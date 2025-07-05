@@ -24,7 +24,7 @@ export interface TraductionDiff {
   removed: string[];
 }
 
-const keysForSubSection = (prefix: string, translated: any) =>
+const keysForSubSection = (prefix: string, translated: unknown) =>
   flattenDeep(
     Object.keys(get(translated, prefix, {})).map((key) => {
       const arr = [];
@@ -42,13 +42,17 @@ const removeNullValues = (keys: (keyof TranslationContent)[], translationObject:
   return keys.filter((key: keyof TranslationContent) => get(translationObject, key) !== null);
 };
 
+type Content = Partial<TranslationContent> & {
+  metadatas?: unknown;
+};
+
 /**
  * Cette fonction permet de récupérer l'ensemble des sections
  * du langue du dispositif ou d'une traduction.
  * @param translated
  * @returns
  */
-const keys = (translated: any) => {
+const keys = (translated: Content) => {
   return [
     ...Object.keys(translated?.content || {})
       .filter((key) => !["how", "why", "next"].includes(key))
