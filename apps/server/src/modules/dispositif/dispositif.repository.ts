@@ -25,7 +25,7 @@ import { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
 import { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
 
-export const getDispositifsFromDB = async (): Promise<any[]> =>
+export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
     .populate<{
       mainSponsor: { _id: Id; nom: string; status: string; picture: Picture };
@@ -43,7 +43,7 @@ export const getDispositifsFromDB = async (): Promise<any[]> =>
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
 
-export const getDispositifsForExport = async (): Promise<any[]> => {
+export const getDispositifsForExport = async () => {
   return DispositifModel.find({ status: "Actif" })
     .populate<{
       mainSponsor: { _id: Id; nom: string; picture: Picture };
@@ -64,8 +64,8 @@ export const getDispositifArray = async (
   extraFields: ProjectionType<Dispositif> = {},
   populate: string = "",
   limit: number = 0,
-  sort: any = {},
-): Promise<any[]> => {
+  sort = {},
+) => {
   const neededFields: ProjectionType<Dispositif> = Object.assign(
     {
       translations: 1,
@@ -136,7 +136,7 @@ export const getSimpleDispositifs = async (
         availableLanguages: Object.keys(dispositif.translations),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
-        sponsor: null as any,
+        sponsor: null as Partial<typeof dispositif.mainSponsor>,
       };
       if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
         resDisp.sponsor = dispositif.mainSponsor;
@@ -159,7 +159,7 @@ export const getStructureDispositifs = async (
   query: FilterQuery<Dispositif>,
   locale: Languages,
   limit: number = 0,
-  sort: any = {},
+  sort = {},
 ) => {
   return getDispositifArray(
     query,
@@ -182,24 +182,30 @@ export const getStructureDispositifs = async (
   )
     .then(async (dispositifs) => {
       const usernames = await Promise.all(
-        dispositifs.map(
-          async (dispositif): Promise<string[]> =>
-            dispositif.suggestions.length > 0
-              ? await getUsersById(uniq(dispositif.suggestions.map((s: any) => s.userId).filter((id: any) => !!id)), {
+        dispositifs.map(async (dispositif) =>
+          dispositif.suggestions.length > 0
+            ? await getUsersById<{ _id: ObjectId; username: string }>(
+                uniq(
+                  dispositif.suggestions
+                    .map((s: (typeof dispositif.suggestions)[number]) => s.userId)
+                    .filter((id: unknown) => !!id),
+                ),
+                {
                   username: 1,
-                })
-              : [],
+                },
+              )
+            : [],
         ),
       );
       return { dispositifs, usernames: union(...usernames) };
     })
-    .then(({ dispositifs, usernames }: { dispositifs: any[]; usernames: any[] }) =>
-      dispositifs.map((dispositif: any) => {
+    .then(({ dispositifs, usernames }) =>
+      dispositifs.map((dispositif) => {
         const translation = dispositif.translations[locale] || dispositif.translations.fr;
-        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s: any) => {
+        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
           return {
             ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
-            username: usernames.find((u: any) => u._id.toString() === s.userId?.toString())?.username || "",
+            username: usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
           };
         });
         const resDisp = {
@@ -212,7 +218,7 @@ export const getStructureDispositifs = async (
           nbMercis: dispositif.merci.length,
           suggestions,
           themeSortIndex: dispositif.sortThemeIndex,
-          sponsor: null as any,
+          sponsor: null as Partial<typeof dispositif.mainSponsor>,
         };
         if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
           resDisp.sponsor = dispositif.mainSponsor;
@@ -233,7 +239,7 @@ export const getStructureDispositifs = async (
 
 export const updateDispositifInDB = async (
   dispositifId: DispositifId,
-  modifiedDispositif: Partial<Dispositif> | { $pull: { [x: string]: { suggestionId: string } } } | { $push: any },
+  modifiedDispositif: Partial<Dispositif> | { $pull: { [x: string]: { suggestionId: string } } } | { $push: unknown },
   updateDraft: boolean = false,
 ): Promise<Dispositif> => {
   return updateDraft
@@ -430,13 +436,13 @@ export const getDispositifName = async (id: Id) =>
 export const getDispositifById = async (
   id: DispositifId,
   neededFields: ProjectionType<Dispositif> = {},
-  populate: any = "",
+  populate = "",
 ) => DispositifModel.findById(id, neededFields).populate(populate);
 
 export const getDraftDispositifById = async (
   id: DispositifId,
   neededFields: ProjectionType<Dispositif> = {},
-  populate: any = "",
+  populate = "",
 ) => DispositifDraftModel.findById(id, neededFields).populate(populate);
 
 /**
@@ -451,7 +457,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
     structures: 1,
   });
 
-  const pipeline: Array<{ $match: any } | { $lookup: any } | { $unwind: any } | { $match: any } | { $project: any }> = [
+  const pipeline = [
     // Filter dispositifs with creatorId and status not equal to "Supprimé"
     {
       $match: {
@@ -483,6 +489,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
       // or where the mainSponsor structure does not exist
       {
         $match: {
+          //@ts-expect-error $or is not a valid property
           $or: [
             { "mainSponsor.createur": "$_id" },
             { "mainSponsor.membres.userId": "$_id" },
@@ -496,6 +503,7 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
   pipeline.push(
     // Project the fields to return
     {
+      //@ts-expect-error $project is not a valid property
       $project: {
         ...neededFields,
         mainSponsor: {
@@ -613,7 +621,7 @@ export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial
 export const getDispositifAbstracts = async (
   query: FilterQuery<Dispositif>,
   limit: number = 3,
-  sort: any = { updatedAt: -1 },
+  sort: Record<string, 1 | -1> = { updatedAt: -1 },
 ): Promise<DispositifAbstracts[]> => {
   return DispositifModel.aggregate([
     { $match: query },
