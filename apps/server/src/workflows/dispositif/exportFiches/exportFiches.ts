@@ -122,7 +122,7 @@ export const exportFiches = async (): Response => {
   let result: Result[] = [];
   dispositifs.forEach((dispositif) => {
     try {
-      const formattedDispositif = formatDispositif(dispositif, activeLanguages);
+      const formattedDispositif = formatDispositif(dispositif as unknown as Dispositif, activeLanguages);
       result.push(formattedDispositif);
       if (result.length === 10) {
         exportFichesInAirtable(result);

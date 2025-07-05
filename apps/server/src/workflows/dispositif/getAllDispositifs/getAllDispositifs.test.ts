@@ -116,6 +116,7 @@ describe("getAllDispositifs", () => {
       data: [expectedDispositif, expectedDispositif],
     };
     const getDispositifsFromDBMock = jest.spyOn(repository, "getDispositifsFromDB");
+    //@ts-expect-error type mismatch
     getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif]);
 
     // Act

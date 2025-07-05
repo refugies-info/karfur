@@ -14,7 +14,7 @@ import { getAllThemes } from "~/modules/themes/themes.repository";
 import { Dispositif } from "~/typegoose";
 import { AlgoliaObject, ResponseWithData } from "~/types/interface";
 
-const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
+const getDispositifsForAlgolia = async (): Promise<Partial<AlgoliaObject>[]> => {
   const neededFields: ProjectionType<Dispositif> = {
     translations: 1,
     theme: 1,
@@ -37,7 +37,7 @@ const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObj
   return needs.map((content) => formatForAlgolia(content, activeLanguages, "need"));
 };
 
-const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
+const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<Partial<AlgoliaObject>[]> => {
   const themes = await getAllThemes();
   return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme"));
 };
@@ -51,7 +51,7 @@ export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {
   const localContents = [...themes, ...needs, ...dispositifs];
 
   const algoliaContents = await getAllAlgoliaObjects();
-  const result = await updateAlgoliaIndex(localContents, algoliaContents);
+  const result = await updateAlgoliaIndex(localContents as AlgoliaObject[], algoliaContents);
 
   return {
     text: "success",

@@ -3,6 +3,7 @@ import { getDiffAlgoliaObject } from "../getDiffAlgoliaObject";
 
 describe("getDiffAlgoliaObject", () => {
   it("find no diff", () => {
+    // @ts-expect-error type mismatch webOnly missing
     const res = getDiffAlgoliaObject(dispositifAlgolia, dispositifAlgolia);
     expect(res).toEqual(null);
   });
@@ -10,6 +11,7 @@ describe("getDiffAlgoliaObject", () => {
   it("find diff in string", () => {
     const dispositifAlgoliaCopy = { ...dispositifAlgolia };
     dispositifAlgoliaCopy.title_fr = "Parrainer deux réfugiés";
+    // @ts-expect-error type mismatch webOnly missing
     const res = getDiffAlgoliaObject(dispositifAlgolia, dispositifAlgoliaCopy);
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
@@ -20,6 +22,7 @@ describe("getDiffAlgoliaObject", () => {
   it("find diff in array", () => {
     const dispositifAlgoliaCopy = { ...dispositifAlgolia };
     dispositifAlgoliaCopy.needs = ["aaa", "ccc"];
+    // @ts-expect-error type mismatch webOnly missing
     const res = getDiffAlgoliaObject(dispositifAlgolia, dispositifAlgoliaCopy);
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
@@ -31,6 +34,7 @@ describe("getDiffAlgoliaObject", () => {
     const dispositifAlgoliaCopy = { ...dispositifAlgolia };
     dispositifAlgoliaCopy.needs = ["aaa", "ccc"];
     dispositifAlgoliaCopy.title_fr = "Parrainer deux réfugiés";
+    // @ts-expect-error type mismatch webOnly missing
     const res = getDiffAlgoliaObject(dispositifAlgolia, dispositifAlgoliaCopy);
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
