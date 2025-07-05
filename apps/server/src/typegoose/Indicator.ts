@@ -18,6 +18,6 @@ export class Indicator {
   @prop({ ref: () => User, required: true })
   public userId!: Ref<User>;
 
-  @prop({ validate: (v: any) => isInteger(v) && v > 0, required: true })
+  @prop({ validate: (v: unknown) => isInteger(v) && Number(v) > 0, required: true })
   public timeSpent!: number;
 }
