@@ -26,7 +26,7 @@ describe("addStructureForUsers", () => {
     jest.clearAllMocks();
   });
   it("should add the structure to the user", async () => {
-    //@ts-expect-error
+    //@ts-expect-error typing issue with jest.spyOn
     jest.spyOn(usersRep, "addStructureForUsersInDB").mockResolvedValue(() => {});
     await addStructureForUsers(["userId"], "structId");
     expect(usersRep.addStructureForUsersInDB).toHaveBeenCalledWith(["userId"], "structId");
@@ -53,7 +53,7 @@ describe("updateLastConnected", () => {
   });
 
   it("should call updateUserInDB", async () => {
-    //@ts-expect-error
+    //@ts-expect-error typing issue with jest.spyOn
     jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => {});
     await updateLastConnected(fixtures.user);
     expect(usersRep.updateUserInDB).toHaveBeenCalledWith(userId, {
