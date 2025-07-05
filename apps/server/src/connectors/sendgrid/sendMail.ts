@@ -20,9 +20,9 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
     templateName,
   });
 
-  const msg: any = {
+  let msg: sgMail.MailDataRequired = {
     ...dynamicData,
-    template_id: templatesIds[templateName],
+    templateId: templatesIds[templateName],
     asm: {
       groupId: UNSUBSCRIBE_GROUP_ID,
       groupsToDisplay: [UNSUBSCRIBE_GROUP_ID],
@@ -30,9 +30,12 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
   };
 
   if (bypassUnsubscribe) {
-    msg.mail_settings = {
-      bypass_list_management: { enable: true },
-      sandbox_mode: { enable: process.env.NODE_ENV === "test" },
+    msg = {
+      ...msg,
+      mailSettings: {
+        bypassListManagement: { enable: true },
+        sandboxMode: { enable: process.env.NODE_ENV === "test" },
+      },
     };
   }
 
@@ -41,7 +44,7 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
     .send(msg)
     .then(
       () => {},
-      (error: any) => {
+      (error) => {
         logger.error("[sendMail] error, email not sent", error);
 
         if (error.response) {
@@ -49,5 +52,5 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
         }
       },
     )
-    .catch((e: any) => logger.error("[sendMail] error", e));
+    .catch((e) => logger.error("[sendMail] error", e));
 };
