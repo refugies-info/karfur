@@ -17,10 +17,10 @@ export class MustBePopulatedError extends Error {
 // API Errors
 class APIError extends Error {
   code: string | undefined;
-  data: any | undefined;
+  data: unknown | undefined;
   status: number;
 
-  constructor(message: string, code?: string, data?: any) {
+  constructor(message: string, code?: string, data?: unknown) {
     super(message);
     this.code = code;
     this.data = data;
@@ -61,7 +61,6 @@ export const serverErrorHandler: ErrorRequestHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  // eslint-disable-next-line no-console
   if (process.env.NODE_ENV !== "production") console.error(err);
 
   if (err instanceof ValidateError) {
