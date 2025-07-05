@@ -9,7 +9,7 @@ export class Indicator {
   @prop({ type: String, required: true })
   public language!: Languages;
 
-  @prop({ validate: (value: any) => isInteger(value) && value > 0, required: true })
+  @prop({ validate: (value: unknown) => isInteger(value) && Number(value) > 0, required: true })
   public wordsCount!: number;
 
   @prop({ ref: () => Dispositif, required: true })
