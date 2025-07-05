@@ -7,5 +7,5 @@ export class AdminOptions {
   public key!: string;
 
   @prop({ required: true, type: Schema.Types.Mixed })
-  public value!: any;
+  public value!: unknown;
 }
