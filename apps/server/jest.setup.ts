@@ -11,9 +11,10 @@ beforeAll(async () => {
 
   // Connect Typegoose (which uses Mongoose under the hood) to the in-memory MongoDB
   await mongoose.connect(uri, {
+    //@ts-expect-error useNewUrlParser is not used in regular Mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  } as any);
+  });
 }, 60000); // 60 seconds timeout
 
 afterAll(async () => {
