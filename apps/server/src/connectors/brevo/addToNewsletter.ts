@@ -41,7 +41,7 @@ export const addToNewsletter = async (email: string) => {
     function () {
       logger.info("[setMail] API called successfully.");
     },
-    function (error: any) {
+    function (error) {
       logger.error("[setMail] Error while creating contact", error);
       if (error.response.statusCode === 400 && error.response.body?.message === "Contact already exist")
         throw new InvalidRequestError("This email is already in the list.", "CONTACT_ALREADY_EXIST");
