@@ -120,8 +120,7 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
-const trad_added_adminName: TranslationContent = {
-  //@ts-ignore
+const trad_added_adminName = {
   content: {
     titreInformatif: "abc",
     titreMarque: "def",
@@ -205,6 +204,7 @@ describe("Traductions", () => {
     it("should not return administrationName ", () => {
       const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
       newTradAdded.content = { ...newTradAdded.content, administrationName: null };
+      //@ts-expect-error because we don't need administrationName for this test
       expect(Traductions.diff(trad_added_adminName, newTradAdded)).toEqual({
         modified: [],
         added: [],
@@ -215,25 +215,25 @@ describe("Traductions", () => {
 
   describe("computeFinished", () => {
     it("should return true", () => {
-      // @ts-ignore because we inject a partial Dispositif & partial Traductions
+      // @ts-expect-error because we inject a partial Dispositif & partial Traductions
       expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: trad })).toEqual(true);
     });
     it("should return false", () => {
-      // @ts-ignore because we inject a partial Dispositif & partial Traductions
+      // @ts-expect-error because we inject a partial Dispositif & partial Traductions
       expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(
         false,
       );
     });
     it("should return false", () => {
       expect(
-        // @ts-ignore because we inject a partial Dispositif & partial Traductions
+        // @ts-expect-error because we inject a partial Dispositif & partial Traductions
         Traductions.computeFinished({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
       ).toEqual(false);
     });
     it("should return true", () => {
       expect(
         Traductions.computeFinished(
-          // @ts-ignore because we inject a partial Dispositif & partial Traductions
+          // @ts-expect-error because we inject a partial Dispositif & partial Traductions
           { translations: { fr: trad_adminNameNull } },
           { translated: trad_adminNameNull_en },
         ),
