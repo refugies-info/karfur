@@ -33,7 +33,7 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
 
 const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
-  //@ts-ignore
+  //@ts-expect-error type mismatch
   return needs.map((content) => formatForAlgolia(content, activeLanguages, "need"));
 };
 
