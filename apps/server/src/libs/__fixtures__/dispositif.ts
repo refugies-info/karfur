@@ -1,4 +1,5 @@
 export const dispositif = {
+  //@ts-expect-error type mismatch
   needs: [],
   _id: "5ce7ab7383983700167bc9da",
   titreInformatif: {
@@ -26,14 +27,21 @@ export const dispositif = {
     uk: "Зустрічайте та супроводжуйте біженця під час його інтеграції у Франції.",
   },
   theme: { _id: "themeId1" },
+  //@ts-expect-error type mismatch
   secondaryThemes: [],
   mainSponsor: {
     dispositifsAssocies: ["zzz", "eee", "rrr", "www"],
+    //@ts-expect-error type mismatch
     structureTypes: [],
+    //@ts-expect-error type mismatch
     websites: [],
+    //@ts-expect-error type mismatch
     activities: [],
+    //@ts-expect-error type mismatch
     departments: [],
+    //@ts-expect-error type mismatch
     phonesPublic: [],
+    //@ts-expect-error type mismatch
     mailsPublic: [],
     _id: "aaa",
     acronyme: "",
@@ -55,6 +63,7 @@ export const dispositif = {
       public_id: "pictures/XXX",
       secure_url: "https://image.com/logo2.jpg",
     },
+    //@ts-expect-error type mismatch
     membres: [],
     created_at: "2019-09-16T17:31:49.170Z",
     updatedAt: "2021-09-29T14:51:13.489Z",
@@ -81,6 +90,7 @@ export const dispositifAlgolia = {
   titreMarque_fa: "MAINtenant",
   titreMarque_ru: "MAINtenant",
   theme: "themeId1",
+  //@ts-expect-error type mismatch
   secondaryThemes: [],
   needs: ["aaa", "bbb"],
   nbVues: 685,

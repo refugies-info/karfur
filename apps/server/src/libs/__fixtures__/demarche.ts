@@ -8,11 +8,14 @@ export const demarche = {
   typeContenu: "demarche",
   mainSponsor: {
     dispositifsAssocies: ["5dc29cb05ad26c0016d3b2c5", "5dd7cf3b6f0ac0004c87c8b6"],
+    //@ts-expect-error type mismatch
     structureTypes: [],
     websites: ["https://www.france-terre-asile.org/"],
+    //@ts-expect-error type mismatch
     activities: [],
+    //@ts-expect-error type mismatch
     departments: [],
-    phonesPublic: [],
+    //@ts-expect-error type mismatch
     mailsPublic: [],
     _id: "aa",
     phone_contact: "00 00 00 00 00",
@@ -38,7 +41,11 @@ export const demarche = {
     administrateur: "aaa",
     hasResponsibleSeenNotification: true,
     adressPublic: "",
-    openingHours: { details: [], noPublic: false },
+    openingHours: {
+      //@ts-expect-error type mismatch
+      details: [],
+      noPublic: false,
+    },
   },
   nbVues: 383,
 };
