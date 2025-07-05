@@ -1,11 +1,11 @@
 import { get } from "lodash";
 
-import { Dispositif, Langue, Need, Theme } from "~/typegoose";
+import { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "~/typegoose";
 import { AlgoliaObject } from "~/types/interface";
 
 const extractValuesPerLanguage = (translations: Dispositif["translations"], path: string, keyPrefix: string) => {
   if (!translations) return {};
-  const normalizedObject: any = {};
+  const normalizedObject: Record<string, string> = {};
   for (const [ln, translation] of Object.entries(translations)) {
     const value = get(translation, path);
     normalizedObject[`${keyPrefix}_${ln}`] = value;
@@ -14,7 +14,7 @@ const extractValuesPerLanguage = (translations: Dispositif["translations"], path
 };
 
 const getAllNeedTitles = (need: Need, activeLanguages: Langue[]) => {
-  const titles: any = {};
+  const titles: Record<string, string> = {};
   for (const ln of activeLanguages) {
     if (need[ln.i18nCode]) {
       titles["title_" + ln.i18nCode] = need[ln.i18nCode].text;
@@ -48,7 +48,7 @@ export const formatForAlgolia = (
   content: Dispositif | Need | Theme,
   activeLanguages: Langue[] | null = null,
   type: "dispositif" | "need" | "theme",
-): AlgoliaObject => {
+): Partial<AlgoliaObject> => {
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
     const mainSponsor = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
@@ -59,9 +59,9 @@ export const formatForAlgolia = (
       ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
       ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
-      theme: { _id: (dispositif.theme as Theme)?._id || dispositif.theme || "" }, // TODO: revert to keeping only id (change on mobile app too)
-      secondaryThemes: (dispositif.secondaryThemes || []).map((t) => ({ _id: (t as Theme)?._id || t })), // TODO: revert to keeping only id (change on mobile app too)
-      needs: dispositif.needs,
+      theme: { _id: (dispositif.theme as Theme)?._id || dispositif.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
+      secondaryThemes: (dispositif.secondaryThemes || []).map((t) => ({ _id: (t as Theme)?._id || t })) as ThemeId[], // TODO: revert to keeping only id (change on mobile app too)
+      needs: dispositif.needs as NeedId[],
       nbVues: dispositif.nbVues,
       typeContenu: dispositif.typeContenu,
       sponsorUrl: mainSponsor?.picture?.secure_url || "",
@@ -75,7 +75,7 @@ export const formatForAlgolia = (
     return {
       objectID: need._id,
       ...getAllNeedTitles(need, activeLanguages),
-      theme: { _id: (need.theme as Theme)?._id || need.theme || "" }, // TODO: revert to keeping only id (change on mobile app too)
+      theme: { _id: (need.theme as Theme)?._id || need.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
       typeContenu: "besoin",
       priority: 20,
       webOnly: false,
