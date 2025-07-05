@@ -16,9 +16,9 @@ export enum LoginErrorType {
 }
 
 class LoginError extends Error {
-  data: any;
+  data: unknown;
 
-  constructor(message: LoginErrorType, data?: any) {
+  constructor(message: LoginErrorType, data?: unknown) {
     super(message);
     this.data = data || {};
   }
