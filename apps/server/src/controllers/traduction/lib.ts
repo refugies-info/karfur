@@ -1,7 +1,7 @@
 import { ProgressionIndicator } from "@refugies-info/api-types";
+import axios from "axios";
 import { IndicatorModel, ObjectId } from "~/typegoose";
 
-const axios = require("axios");
 const instance = axios.create();
 instance.defaults.timeout = 12000000;
 
