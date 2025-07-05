@@ -533,7 +533,7 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
 export const getActiveContents = async (neededFields: ProjectionType<Dispositif>) =>
   DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
 
-export const getActiveContentsFiltered = (neededFields: ProjectionType<Dispositif>, query: any) =>
+export const getActiveContentsFiltered = (neededFields: ProjectionType<Dispositif>, query: unknown) =>
   DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
 
 export const getDispositifByIdWithAllFields = (id: DispositifId) => DispositifModel.findOne({ _id: id });
