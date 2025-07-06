@@ -44,17 +44,27 @@ const getLocation = (dispositif: Dispositif): AlgoliaObject["location"] => {
   return undefined;
 };
 
+export const isAlgoliaObject = (obj: unknown): obj is AlgoliaObject => {
+  if (!obj || typeof obj !== "object") return false;
+
+  const requiredProps: (keyof AlgoliaObject)[] = ["objectID", "title_fr", "typeContenu", "priority", "webOnly"];
+
+  return requiredProps.every((prop) => prop in obj);
+};
+
 export const formatForAlgolia = (
   content: Dispositif | Need | Theme,
   activeLanguages: Langue[] | null = null,
   type: "dispositif" | "need" | "theme",
-): Partial<AlgoliaObject> => {
+): AlgoliaObject | undefined => {
+  let value;
+
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
     const mainSponsor = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
     const location = getLocation(dispositif);
 
-    return {
+    value = {
       objectID: dispositif._id,
       ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
@@ -72,7 +82,7 @@ export const formatForAlgolia = (
     };
   } else if (type === "need") {
     const need = content as Need;
-    return {
+    value = {
       objectID: need._id,
       ...getAllNeedTitles(need, activeLanguages),
       theme: { _id: (need.theme as Theme)?._id || need.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
@@ -80,16 +90,18 @@ export const formatForAlgolia = (
       priority: 20,
       webOnly: false,
     };
+  } else if (type === "theme") {
+    const theme = content as Theme;
+    value = {
+      objectID: theme._id,
+      title_fr: theme.short.fr, // only for typescript validation
+      ...getAllThemeTitles(theme, activeLanguages, "name"),
+      ...getAllThemeTitles(theme, activeLanguages, "short"),
+      typeContenu: "theme",
+      priority: 10,
+      webOnly: false,
+    };
   }
 
-  const theme = content as Theme;
-  return {
-    objectID: theme._id,
-    title_fr: theme.short.fr, // only for typescript validation
-    ...getAllThemeTitles(theme, activeLanguages, "name"),
-    ...getAllThemeTitles(theme, activeLanguages, "short"),
-    typeContenu: "theme",
-    priority: 10,
-    webOnly: false,
-  };
+  return isAlgoliaObject(value) ? value : undefined;
 };

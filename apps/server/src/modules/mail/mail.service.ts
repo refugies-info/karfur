@@ -489,7 +489,7 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
         },
       };
       const templateName = "reviewFiche";
-      //@ts-expect-error sectionsToModify is not a string
+      //@ts-expect-error dynamicTemplateData type is too restrictive
       sendMail(templateName, dynamicData, true);
       await addMailEvent({
         templateName,

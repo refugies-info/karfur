@@ -14,7 +14,7 @@ import { getAllThemes } from "~/modules/themes/themes.repository";
 import { Dispositif } from "~/typegoose";
 import { AlgoliaObject, ResponseWithData } from "~/types/interface";
 
-const getDispositifsForAlgolia = async (): Promise<Partial<AlgoliaObject>[]> => {
+const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields: ProjectionType<Dispositif> = {
     translations: 1,
     theme: 1,
@@ -28,18 +28,20 @@ const getDispositifsForAlgolia = async (): Promise<Partial<AlgoliaObject>[]> => 
   };
 
   const contentsArray = await getActiveContentsFiltered(neededFields, { status: DispositifStatus.ACTIVE });
-  return contentsArray.map((content) => formatForAlgolia(content, [], "dispositif"));
+  return contentsArray
+    .map((content) => formatForAlgolia(content, [], "dispositif"))
+    .filter((dispositif) => !!dispositif);
 };
 
 const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
   //@ts-expect-error type mismatch
-  return needs.map((content) => formatForAlgolia(content, activeLanguages, "need"));
+  return needs.map((content) => formatForAlgolia(content, activeLanguages, "need")).filter((need) => !!need);
 };
 
-const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<Partial<AlgoliaObject>[]> => {
+const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const themes = await getAllThemes();
-  return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme"));
+  return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme")).filter((theme) => !!theme);
 };
 
 export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {
@@ -51,7 +53,7 @@ export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {
   const localContents = [...themes, ...needs, ...dispositifs];
 
   const algoliaContents = await getAllAlgoliaObjects();
-  const result = await updateAlgoliaIndex(localContents as AlgoliaObject[], algoliaContents);
+  const result = await updateAlgoliaIndex(localContents, algoliaContents);
 
   return {
     text: "success",
