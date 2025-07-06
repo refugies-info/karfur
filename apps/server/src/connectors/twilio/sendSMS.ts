@@ -1,4 +1,5 @@
 import twilio from "twilio";
+import { MessageInstance } from "twilio/lib/rest/api/v2010/account/message";
 import logger from "~/logger";
 import { SendSMSResult } from "~/services";
 
@@ -15,11 +16,11 @@ export const sendSMS = async (text: string, phone: string): Promise<SendSMSResul
       body: text,
       to: phone,
     })
-    .then((message) => {
+    .then((message: MessageInstance) => {
       logger.info("[sendSMS] Message envoyé: ", { sid: message.sid });
       return { status: message.status, sent: true };
     })
-    .catch((e) => {
+    .catch((e: { status: string }) => {
       logger.error("[sendSMS] erreur: ", e);
       return { status: e.status, sent: false };
     });
