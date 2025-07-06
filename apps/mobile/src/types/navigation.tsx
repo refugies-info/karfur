@@ -39,7 +39,7 @@ export type ExplorerParamList = {
     theme: GetThemeResponse;
     backScreen?: string;
   };
-  NotificationsScreen: {};
+  NotificationsScreen: object;
   NearMeCardsScreen: undefined;
 };
 
@@ -85,10 +85,4 @@ export interface GoogleAPISuggestion {
   structured_formatting: { main_text: string };
   place_id: string;
   description: string;
-}
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
 }

@@ -1,7 +1,7 @@
 /**
  * @deprecated
  */
-export type ObjectId = any;
+export type ObjectId = unknown;
 
 export interface ThemeColors {
   color100: string;
@@ -36,5 +36,6 @@ export interface ReadingItem {
 }
 
 export type ReadingObject = {
+  // eslint-disable-next-line no-unused-vars
   getReadingItem: (currentScroll: number) => Promise<ReadingItem | undefined>;
 };
