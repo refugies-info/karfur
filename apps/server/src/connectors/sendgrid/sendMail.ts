@@ -59,5 +59,5 @@ export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, b
         }
       },
     )
-    .catch((e) => logger.error("[sendMail] error", e));
+    .catch((e: unknown) => logger.error("[sendMail] error", String(e)));
 };
