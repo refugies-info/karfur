@@ -3,7 +3,7 @@ import analytics from "@react-native-firebase/analytics";
 import Config from "~/libs/getEnvironment";
 import { FirebaseEvent } from "./eventsUsedInFirebase";
 
-export const logEventInFirebase = async (eventName: FirebaseEvent, data: Record<string, any>) => {
+export const logEventInFirebase = async (eventName: FirebaseEvent, data: Record<string, unknown>) => {
   const { envName, debugModeFirebase } = Config;
   if (envName === "DEVELOPMENT") {
     if (debugModeFirebase) {
