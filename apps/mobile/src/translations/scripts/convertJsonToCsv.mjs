@@ -1,5 +1,5 @@
-const fs = require("fs");
-const Papa = require("papaparse");
+import fs from "fs";
+import Papa from "papaparse";
 
 const convertJsonToCsv = (langue) => {
   // import french

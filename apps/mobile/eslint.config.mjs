@@ -1,6 +1,6 @@
 import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
 import reactNativePlugin from "@react-native/eslint-plugin";
+import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   // Base configurations
@@ -14,17 +14,18 @@ export default tseslint.config(
     },
     languageOptions: {
       globals: {
-        "__DEV__": "readonly",
-        "__dirname": "readonly",
-        "__filename": "readonly",
-        "global": "readonly",
-        "process": "readonly"
-      }
+        __DEV__: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        global: "readonly",
+        process: "readonly",
+        console: "readonly",
+      },
     },
     rules: {
       // Add any project-specific rule overrides here
       "no-console": "warn",
       "no-unused-vars": "warn",
     },
-  }
+  },
 );

@@ -1,5 +1,5 @@
-const csv = require("csvtojson");
-const fs = require("fs");
+import csv from "csvtojson";
+import fs from "fs";
 
 const convertCsvToJsonFr = async () => {
   const jsonArray = await csv().fromFile("./csvAfterTrad/fr.csv");
