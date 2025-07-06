@@ -12,6 +12,15 @@ export default tseslint.config(
     plugins: {
       "@react-native": reactNativePlugin,
     },
+    languageOptions: {
+      globals: {
+        "__DEV__": "readonly",
+        "__dirname": "readonly",
+        "__filename": "readonly",
+        "global": "readonly",
+        "process": "readonly"
+      }
+    },
     rules: {
       // Add any project-specific rule overrides here
       "no-console": "warn",
