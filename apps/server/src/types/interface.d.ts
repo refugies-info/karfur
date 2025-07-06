@@ -24,16 +24,14 @@ type RecursivePartial<T> = {
       : T[P];
 };
 
-export type PartialRecord<K extends keyof any, T> = {
-  [P in K]?: T;
-};
+export type PartialRecord<K, T> = Partial<Record<K, T>>;
 
 export type DeleteResult = { acknowledged: boolean; deletedCount: number };
 
-export interface Request extends ExpressRequest {}
+export type Request = ExpressRequest;
 // Exposed to avoid Request name conflict
-export interface IRequest extends Request {}
-export interface Res extends ExpressResponse {}
+export type IRequest = Request;
+export type Res = ExpressResponse;
 // export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";
@@ -55,8 +53,8 @@ interface Config {
 export interface RequestFromClient<Query> extends Request {
   body?: {
     query: Query;
-    sort: Record<string, any>;
-    populate?: string | any;
+    sort: Record<string, unknown>;
+    populate?: string | unknown;
     locale?: Languages;
     limit?: number;
   };
@@ -66,11 +64,11 @@ export interface RequestFromClient<Query> extends Request {
 export interface RequestFromClientWithBody<Query> extends Request {
   body: Query;
   query?: Query;
-  params?: any;
+  params?: unknown;
 }
 
 export interface RequestFromClientWithFiles extends Request {
-  files: any;
+  files: unknown;
 }
 
 export interface NeedDetail {

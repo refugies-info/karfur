@@ -1,7 +1,6 @@
 import { Moment } from "moment";
 
 export const theme = {
-  //@ts-ignore
   _id: "theme1",
   short: {
     fr: "Court",
