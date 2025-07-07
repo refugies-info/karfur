@@ -79,8 +79,11 @@ const isAccordionTranslated = (
 export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | undefined) => {
   if (!defaultTranslation) return 0;
   const removeTitreMarque = defaultTranslation.content.titreMarque === "" ? 1 : 0;
-  const removeAdministrationName = (defaultTranslation.content as DemarcheContent).administrationName === "" ? 1 : 0;
-  const removeAdministrationName = ('administrationName' in defaultTranslation.content && (defaultTranslation.content as DemarcheContent).administrationName === "") ? 1 : 0;
+  const removeAdministrationName =
+    "administrationName" in defaultTranslation.content &&
+    (defaultTranslation.content as DemarcheContent).administrationName === ""
+      ? 1
+      : 0;
 };
 
 export const getWordsCount = (
