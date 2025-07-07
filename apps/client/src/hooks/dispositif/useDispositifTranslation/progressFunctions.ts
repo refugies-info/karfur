@@ -80,7 +80,7 @@ export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | un
   if (!defaultTranslation) return 0;
   const removeTitreMarque = defaultTranslation.content.titreMarque === "" ? 1 : 0;
   const removeAdministrationName = (defaultTranslation.content as DemarcheContent).administrationName === "" ? 1 : 0;
-  const removeAdministrationName = ('administrationName' in defaultTranslation.content && (defaultTranslation.content as DemarcheContent).administrationName === "") ? 1 : 0;
+  return keys(defaultTranslation).length - removeTitreMarque - removeAdministrationName;
 };
 
 export const getWordsCount = (
