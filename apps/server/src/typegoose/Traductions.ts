@@ -39,7 +39,10 @@ const keysForSubSection = (prefix: string, translated: unknown) =>
   );
 
 const removeNullValues = (keys: (keyof TranslationContent)[], translationObject: Partial<TranslationContent>) => {
-  return keys.filter((key: keyof TranslationContent) => get(translationObject, key) !== null);
+  return keys.filter((key: keyof TranslationContent) => {
+    const value = get(translationObject, key);
+    return value !== null && value !== undefined && value.toString().trim() !== "";
+  });
 };
 
 type Content = Partial<TranslationContent> & {
