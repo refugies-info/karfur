@@ -38,7 +38,7 @@ const keysForSubSection = (prefix: string, translated: unknown) =>
     }),
   );
 
-const removeNullValues = (keys: (keyof TranslationContent)[], translationObject: Partial<TranslationContent>) => {
+const removeEmptyValues = (keys: (keyof TranslationContent)[], translationObject: Partial<TranslationContent>) => {
   return keys.filter((key: keyof TranslationContent) => {
     const value = get(translationObject, key);
     return value !== null && value !== undefined && value.toString().trim() !== "";
@@ -133,7 +133,7 @@ export class Traductions extends Base {
     const originKeys = keys(origin) as (keyof TranslationContent)[];
     const compareToKeys = keys(compareTo) as (keyof TranslationContent)[];
     // ces champs devront être traduits impérativement => to review
-    const added = removeNullValues(difference(compareToKeys, originKeys), compareTo);
+    const added = removeEmptyValues(difference(compareToKeys, originKeys), compareTo);
     // les champs supprimés peuvent être traités automatiquement sans re-traduction
     const removed = difference(originKeys, compareToKeys);
 
@@ -145,11 +145,11 @@ export class Traductions extends Base {
   }
 
   public static computeFinished(dispositif: Dispositif, translation: Traductions): boolean {
-    const dispositifSectionsCounter = removeNullValues(
+    const dispositifSectionsCounter = removeEmptyValues(
       keys(dispositif.translations.fr) as (keyof TranslationContent)[],
       dispositif.translations.fr,
     ).length;
-    const translationSectionsCounter = removeNullValues(
+    const translationSectionsCounter = removeEmptyValues(
       keys(translation.translated) as (keyof TranslationContent)[],
       translation.translated,
     ).length;
