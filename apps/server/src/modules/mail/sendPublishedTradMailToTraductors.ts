@@ -16,7 +16,7 @@ export const sendPublishedTradMailToTraductors = async (locale: Languages, dispo
     const langue = getFormattedLocale(locale);
     const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
     const allTraductors = await findTraductors(dispositif._id, locale);
-    const traductors = uniq(allTraductors.map((t: any) => t.userId.toString()));
+    const traductors = uniq(allTraductors.map((t: (typeof allTraductors)[number]) => t.userId.toString()));
     await Promise.all(
       traductors.map(async (tradId) => {
         try {

@@ -19,8 +19,8 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
       <div
         ref={ref}
         className={cn(
-          "sticky right-0 bottom-6 left-0 z-[9999] m-auto mt-4 w-fit border-2 border-white",
-          "border-action-high-blue-france mb-4 flex flex-col rounded-[50rem] bg-white shadow-lg",
+          "sticky right-0 bottom-6 left-0 z-[9999] m-auto mt-4 w-fit border-1 border-white",
+          "border-default-grey mb-4 flex flex-col rounded-[50rem] bg-white shadow-lg",
           className,
         )}
       >

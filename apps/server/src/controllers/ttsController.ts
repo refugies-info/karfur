@@ -8,7 +8,7 @@ export class TtsController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async post(@Body() body: TtsRequest): Promise<any> {
+  public async post(@Body() body: TtsRequest) {
     return getTts(body);
   }
 }

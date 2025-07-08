@@ -4,9 +4,9 @@ import { SpeechSynthesisOutputFormat } from "microsoft-cognitiveservices-speech-
 import logger from "~/logger";
 import voices from "./voices";
 
-const { PassThrough } = require("stream");
+import { PassThrough } from "stream";
 
-export const getTts = async (body: TtsRequest): Promise<any> => {
+export const getTts = async (body: TtsRequest): Promise<unknown> => {
   logger.info("[getTts] received", body);
   try {
     const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.TTS_KEY_1, "francecentral");

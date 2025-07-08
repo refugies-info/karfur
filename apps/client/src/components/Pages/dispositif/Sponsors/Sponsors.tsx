@@ -50,7 +50,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
   return hasMainSponsor || hasSponsors || editMode ? (
     <span className="w-full">
       <span className="text-title-grey">
-        {dispositif?.typeContenu === ContentType.DEMARCHE ? t("Dispositif.proposedBy") : t("Dispositif.with")}{" "}
+        {dispositif?.typeContenu === ContentType.DISPOSITIF ? t("Dispositif.proposedBy") : t("Dispositif.with")}{" "}
       </span>
       <span>
         {hasMainSponsor && mainSponsor?.nom && (
@@ -80,7 +80,9 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
                 />
               </>
             ) : (
-              getSponsorContent(mainSponsor?.link, mainSponsor?.acronyme || mainSponsor?.nom)
+              <Link href={`/annuaire/${String((mainSponsor as ContentStructure)?._id)}`} className={cn("fr-link")}>
+                {(mainSponsor as ContentStructure)?.nom}
+              </Link>
             )}{" "}
             {hasSponsors && sponsors.length > 0 && ", "}
           </>

@@ -19,8 +19,8 @@ export const getUserName = async (id: Id) =>
   UserModel.findById(id, { username: 1, email: 1 }).then((res) => res?.username || res?.email);
 
 // find many
-export const getUsersById = async (ids: UserId[], neededFields: ProjectionType<User>): Promise<any> =>
-  UserModel.find({ _id: { $in: ids } }, neededFields).lean();
+export const getUsersById = async <T = User>(ids: UserId[], neededFields: ProjectionType<User>) =>
+  UserModel.find({ _id: { $in: ids } }, neededFields).lean() as unknown as Promise<T[]>;
 
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
   UserModel.find(filter, neededFields);

@@ -12,6 +12,7 @@ import Text from "../Text";
 import styles from "./Accordions.module.scss";
 
 interface AccordionItemProps {
+  contentType: ContentType;
   sectionKey: string;
   sectionId: string;
   section: InfoSection;
@@ -36,6 +37,7 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
       {Object.entries(content || []).map(([sectionId, section], index) => (
         <AccordionItem
           key={sectionId}
+          contentType={contentType}
           sectionId={sectionId}
           sectionKey={sectionKey}
           section={section}
@@ -49,7 +51,7 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
   );
 };
 
-const AccordionItem = ({ sectionKey, sectionId, section, mode, index }: AccordionItemProps) => {
+const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, index }: AccordionItemProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -59,18 +61,20 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode, index }: Accordio
       onExpandedChange={(value) => setExpanded(!value)}
       className={cn(
         styles.accordion,
-        "max-md:[&_h3_button]:text-xl",
+        "max-md:[&_h3_button]:text-lg",
         "[&_h3_button]:text-title-grey",
         "[&_h3_button]:after:hidden",
-        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-center [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
+        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-start [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
         "rtl:[&_h3_button]:text-right",
       )}
       label={
         <>
-          <span className="inline-flex items-center gap-2">
-            {sectionKey === "how" && (
-              <span className="bg-action-high-blue-france inline-flex aspect-square w-fit items-center justify-center rounded-full px-2 py-0 text-white">
-                {index + 1}
+          <span className="inline-flex items-start gap-2 leading-[1.75rem]">
+            {sectionKey === "how" && contentType === ContentType.DEMARCHE && (
+              <span className="inline-flex aspect-square w-fit items-center justify-center rounded-full pt-1">
+                <span className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full p-[0.41669rem] md:p-0.5">
+                  <span className="text-center text-sm leading-[1.5rem] font-bold text-white">{index + 1}</span>
+                </span>
               </span>
             )}
             {section.title}
@@ -87,7 +91,11 @@ const AccordionItem = ({ sectionKey, sectionId, section, mode, index }: Accordio
           {section.text}
         </Text>
         {mode === "view" && (
-          <SectionButtons className="w-fit flex-col-reverse" id={`${sectionKey}.${sectionId}`} content={section} />
+          <SectionButtons
+            className="w-fit flex-col-reverse max-md:ms-4"
+            id={`${sectionKey}.${sectionId}`}
+            content={section}
+          />
         )}
       </div>
     </Accordion>

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 export const besoin = {
   fr: {
     text: "Obtenir des aides financières (RSA, CAF)",

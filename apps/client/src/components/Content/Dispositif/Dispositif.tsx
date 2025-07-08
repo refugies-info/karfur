@@ -1,5 +1,5 @@
 import { ContentType } from "@refugies-info/api-types";
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useRef } from "react";
 
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
@@ -15,7 +15,7 @@ import {
 import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "~/hooks";
+import { useContentLocale, useRtriLinks, useScrolledBottomEvent, useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -33,6 +33,9 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 };
 
 const Dispositif = (props: Props) => {
+  const dispositifRef = useRef<HTMLDivElement>(null);
+  // Use the hook to ensure all rtri-link class links open in a new tab
+  useRtriLinks(dispositifRef);
   const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
@@ -49,7 +52,7 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={cn("w-full", isEditMode && "edit")} id="top">
+    <div ref={dispositifRef} className={cn("w-full", isEditMode && "edit")} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
