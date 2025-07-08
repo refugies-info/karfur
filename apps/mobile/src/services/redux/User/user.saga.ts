@@ -68,8 +68,9 @@ export function* saveSelectedLanguage(action: ReturnType<typeof saveSelectedLang
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while saving language", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while saving language", { error: error.message });
+    }
     yield put(setSelectedLanguageActionCreator("fr"));
     yield put(setCurrentLanguageActionCreator("fr"));
   }
@@ -82,8 +83,9 @@ export function* removeSelectedLanguage(): SagaIterator {
     yield put(setCurrentLanguageActionCreator(null));
     yield call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE");
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing langue", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while removing langue", { error: error.message });
+    }
     yield put(setSelectedLanguageActionCreator("fr"));
     yield put(setCurrentLanguageActionCreator("fr"));
   }
@@ -105,8 +107,9 @@ export function* saveUserLocation(action: ReturnType<typeof saveUserLocationActi
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("[saveUserLocation] saga error", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("[saveUserLocation] saga error", { error: error.message });
+    }
     yield put(setUserLocationActionCreator({ city: null, dep: null }));
   }
 }
@@ -122,8 +125,9 @@ export function* removeUserLocation(action: ReturnType<typeof removeUserLocation
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing location", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while removing location", { error: error.message });
+    }
   }
 }
 
@@ -142,8 +146,9 @@ export function* saveUserFrenchLevel(action: ReturnType<typeof saveUserFrenchLev
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("[saveUserFrenchLevel] saga error", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("[saveUserFrenchLevel] saga error", { error: error.message });
+    }
     yield put(setUserFrenchLevelActionCreator(null));
   }
 }
@@ -158,8 +163,9 @@ export function* removeUserFrenchLevel(action: ReturnType<typeof removeUserFrenc
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing french level", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while removing french level", { error: error.message });
+    }
   }
 }
 
@@ -178,8 +184,9 @@ export function* saveUserAge(action: ReturnType<typeof saveUserAgeActionCreator>
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("[saveUserAge] saga error", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("[saveUserAge] saga error", { error: error.message });
+    }
     yield put(setUserAgeActionCreator(null));
   }
 }
@@ -194,8 +201,9 @@ export function* removeUserAge(action: ReturnType<typeof removeUserAgeActionCrea
       yield put(fetchContentsActionCreator());
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing age", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while removing age", { error: error.message });
+    }
   }
 }
 
@@ -205,10 +213,11 @@ export function* saveHasUserSeenOnboarding(): SagaIterator {
     yield call(saveItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING", "TRUE");
     yield put(setHasUserSeenOnboardingActionCreator(true));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while saving user has seen onboarding", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while saving user has seen onboarding", {
+        error: error.message,
+      });
+    }
     yield put(setHasUserSeenOnboardingActionCreator(true));
   }
 }
@@ -219,10 +228,11 @@ export function* removeHasUserSeenOnboarding(): SagaIterator {
     yield call(deleteItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING");
     yield put(setHasUserSeenOnboardingActionCreator(false));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing has user seen onboarding", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while removing has user seen onboarding", {
+        error: error.message,
+      });
+    }
   }
 }
 
@@ -232,10 +242,11 @@ export function* saveUserHasNewFavorites(): SagaIterator {
     yield call(saveItemInAsyncStorage, "HAS_USER_NEW_FAVORITES", "TRUE");
     yield put(setUserHasNewFavoritesActionCreator(true));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while saving user has new favorites", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while saving user has new favorites", {
+        error: error.message,
+      });
+    }
   }
 }
 
@@ -245,10 +256,11 @@ export function* removeUserHasNewFavorites(): SagaIterator {
     yield call(deleteItemInAsyncStorage, "HAS_USER_NEW_FAVORITES");
     yield put(setUserHasNewFavoritesActionCreator(false));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing has user new favorites", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while removing has user new favorites", {
+        error: error.message,
+      });
+    }
   }
 }
 
@@ -258,10 +270,11 @@ export function* saveUserLocalizedWarningHidden(): SagaIterator {
     yield call(saveItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN", "TRUE");
     yield put(setUserLocalizedWarningHiddenActionCreator(true));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while saving localized warning hidden", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while saving localized warning hidden", {
+        error: error.message,
+      });
+    }
   }
 }
 
@@ -271,10 +284,11 @@ export function* removeUserLocalizedWarningHidden(): SagaIterator {
     yield call(deleteItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN");
     yield put(setUserLocalizedWarningHiddenActionCreator(false));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing localized warning hidden", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while removing localized warning hidden", {
+        error: error.message,
+      });
+    }
   }
 }
 
@@ -285,10 +299,11 @@ export function* getUserInfos(): SagaIterator {
       const hasUserAlreadySeenOnboarding = yield call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING");
       yield put(setHasUserSeenOnboardingActionCreator(hasUserAlreadySeenOnboarding === "TRUE"));
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting onboarding status", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting onboarding status", {
+          error: error.message,
+        });
+      }
     }
     const shouldLoadContent = yield select(shouldLoadContentSelector);
     if (shouldLoadContent) {
@@ -302,10 +317,11 @@ export function* getUserInfos(): SagaIterator {
         yield put(setCurrentLanguageActionCreator(selectedLanguage));
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting language", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting language", {
+          error: error.message,
+        });
+      }
     }
     try {
       const city = yield call(getItemInAsyncStorage, "CITY");
@@ -314,10 +330,11 @@ export function* getUserInfos(): SagaIterator {
         yield put(setUserLocationActionCreator({ city, dep }));
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting user location", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting user location", {
+          error: error.message,
+        });
+      }
     }
     try {
       const age = yield call(getItemInAsyncStorage, "AGE");
@@ -325,10 +342,11 @@ export function* getUserInfos(): SagaIterator {
         yield put(setUserAgeActionCreator(age));
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting user age", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting user age", {
+          error: error.message,
+        });
+      }
     }
     try {
       const frenchLevel = yield call(getItemInAsyncStorage, "FRENCH_LEVEL");
@@ -336,10 +354,11 @@ export function* getUserInfos(): SagaIterator {
         yield put(setUserFrenchLevelActionCreator(frenchLevel));
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting user french level", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting user french level", {
+          error: error.message,
+        });
+      }
     }
     if (shouldLoadContent) {
       // when user infos loaded, load content
@@ -351,10 +370,11 @@ export function* getUserInfos(): SagaIterator {
         yield put(setUserFavoritesActionCreator(JSON.parse(favorites || "[]")));
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting user favorites", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting user favorites", {
+          error: error.message,
+        });
+      }
     }
     try {
       const value = yield call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN");
@@ -363,16 +383,18 @@ export function* getUserInfos(): SagaIterator {
         yield put(setUserLocalizedWarningHiddenActionCreator(true));
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error("Error while getting user localized warning", {
-        error: errorMessage,
-      });
+      if (error instanceof Error) {
+        logger.error("Error while getting user localized warning", {
+          error: error.message,
+        });
+      }
     }
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while getting user infos", {
-      error: errorMessage,
-    });
+    if (error instanceof Error) {
+      logger.error("Error while getting user infos", {
+        error: error.message,
+      });
+    }
   }
 }
 
@@ -384,8 +406,9 @@ export function* addUserFavorite(action: ReturnType<typeof addUserFavoriteAction
     yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while adding favorite", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while adding favorite", { error: error.message });
+    }
   }
 }
 
@@ -397,8 +420,9 @@ export function* removeUserFavorite(action: ReturnType<typeof removeUserFavorite
     yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing favorite", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while removing favorite", { error: error.message });
+    }
   }
 }
 
@@ -408,8 +432,9 @@ export function* removeUserAllFavorites(): SagaIterator {
     yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify([]));
     yield put(setUserFavoritesActionCreator([]));
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while removing favorites", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while removing favorites", { error: error.message });
+    }
   }
 }
 
@@ -422,8 +447,9 @@ export function* resetUser(): SagaIterator {
     yield put(removeUserAllFavoritesActionCreator());
     yield put(removeHasUserSeenOnboardingActionCreator());
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    logger.error("Error while resetting user", { error: errorMessage });
+    if (error instanceof Error) {
+      logger.error("Error while resetting user", { error: error.message });
+    }
   }
 }
 

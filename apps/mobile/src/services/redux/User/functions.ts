@@ -13,11 +13,15 @@ type Item =
   | "LOCALIZED_WARNING_HIDDEN";
 
 const itemsToSave = {
-  SELECTED_LANGUAGE: "selectedLanguage",
+  AGE: "age",
   CITY: "city",
   DEP: "department",
-  AGE: "age",
+  FAVORITES: "FAVORITES",
   FRENCH_LEVEL: "frenchLevel",
+  HAS_USER_NEW_FAVORITES: "HAS_USER_NEW_FAVORITES",
+  HAS_USER_SEEN_ONBOARDING: "HAS_USER_SEEN_ONBOARDING",
+  LOCALIZED_WARNING_HIDDEN: "LOCALIZED_WARNING_HIDDEN",
+  SELECTED_LANGUAGE: "selectedLanguage",
 } as const;
 
 type ItemsToSave = keyof typeof itemsToSave;
