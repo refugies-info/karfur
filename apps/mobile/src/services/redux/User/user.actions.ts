@@ -117,6 +117,7 @@ export const removeUserAllFavoritesActionCreator = () => action(REMOVE_USER_ALL_
 
 export const resetUserActionCreator = () => action(RESET_USER);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   setHasUserSeenOnboardingActionCreator,
   setSelectedLanguageActionCreator,
