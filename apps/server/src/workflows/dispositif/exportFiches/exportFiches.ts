@@ -1,4 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
+import { FieldSet } from "airtable";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
 import { getDispositifsForExport } from "~/modules/dispositif/dispositif.repository";
@@ -6,8 +7,7 @@ import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { Dispositif, Langue, Need, Theme } from "~/typegoose";
 import { Response } from "~/types/interface";
 
-interface Result {
-  [translatedTitleKey: string]: any;
+interface Result extends FieldSet {
   "Titre informatif": string;
   "Titre marque": string;
   "Type de contenu": string[];
@@ -122,7 +122,7 @@ export const exportFiches = async (): Response => {
   let result: Result[] = [];
   dispositifs.forEach((dispositif) => {
     try {
-      const formattedDispositif = formatDispositif(dispositif, activeLanguages);
+      const formattedDispositif = formatDispositif(dispositif as unknown as Dispositif, activeLanguages);
       result.push(formattedDispositif);
       if (result.length === 10) {
         exportFichesInAirtable(result);

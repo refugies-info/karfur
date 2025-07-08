@@ -2,9 +2,10 @@ import { GetUserContributionsResponse } from "@refugies-info/api-types";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { getDispositifsWithCreatorId } from "~/modules/dispositif/dispositif.repository";
+import { UserId } from "~/typegoose";
 import { ResponseWithData } from "~/types/interface";
 
-export const getUserContributions = async (userId: any): ResponseWithData<GetUserContributionsResponse[]> => {
+export const getUserContributions = async (userId: UserId): ResponseWithData<GetUserContributionsResponse[]> => {
   logger.info("[getUserContributions] received");
 
   const neededFields = {

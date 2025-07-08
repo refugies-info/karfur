@@ -3,7 +3,7 @@ import * as express from "express";
 import { Controller, Post, Request, Route, Security } from "tsoa";
 
 import { ResponseWithData } from "~/types/interface";
-import { postImages } from "~/workflows/images/postImages";
+import { postImages, UploadedFile } from "~/workflows/images/postImages";
 
 @Route("images")
 export class ImageController extends Controller {
@@ -12,6 +12,6 @@ export class ImageController extends Controller {
   })
   @Post("/")
   public async post(@Request() request: express.Request): ResponseWithData<PostImageResponse> {
-    return postImages(request.files);
+    return postImages(request.files as unknown as UploadedFile[]);
   }
 }

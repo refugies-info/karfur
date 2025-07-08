@@ -9,7 +9,7 @@ import ru from "~/locales/ru/common.json";
 import ti from "~/locales/ti/common.json";
 import uk from "~/locales/uk/common.json";
 
-const languageStrings: Record<string, {}> = {
+const languageStrings: Record<string, typeof fr> = {
   fr,
   en,
   ar,
@@ -20,7 +20,7 @@ const languageStrings: Record<string, {}> = {
   ti,
 };
 
-const replaceParams = (params: any, text: string | undefined): string | undefined => {
+const replaceParams = (params: unknown, text: string | undefined): string | undefined => {
   if (!text) return undefined;
   if (!params) return text;
   let newText = text;
@@ -30,5 +30,5 @@ const replaceParams = (params: any, text: string | undefined): string | undefine
   return newText;
 };
 
-export const getLocaleString = (locale: string, key: string, params?: any) =>
-  replaceParams(params, get(languageStrings, `${locale}.${key}`) as string) || key;
+export const getLocaleString = (locale: string, key: string, params?: unknown) =>
+  replaceParams(params, get(languageStrings, `${locale}.${key}`) as unknown as string) || key;

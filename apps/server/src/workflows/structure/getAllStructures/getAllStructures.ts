@@ -4,6 +4,7 @@ import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
 import { getUsersById } from "~/modules/users/users.repository";
 import { UserId } from "~/typegoose";
+import { Base } from "~/typegoose/Base";
 import { ResponseWithData } from "~/types/interface";
 
 // type StructureStatusType = "Actif" | "En attente" | "Supprimé";
@@ -71,12 +72,12 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       email: 1,
     });
     const responsables: Record<string, SimpleUser> = users.reduce(
-      (acc: { [key: string]: SimpleUser }, user: any) => ({
+      (acc: { [key: string]: SimpleUser }, user: Base) => ({
         ...acc,
         [user._id.toString()]: {
           ...user,
           roles: [],
-        },
+        } as SimpleUser,
       }),
       {},
     );

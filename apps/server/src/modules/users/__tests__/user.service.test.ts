@@ -26,7 +26,7 @@ describe("addStructureForUsers", () => {
     jest.clearAllMocks();
   });
   it("should add the structure to the user", async () => {
-    //@ts-expect-error
+    //@ts-expect-error typing issue with jest.spyOn
     jest.spyOn(usersRep, "addStructureForUsersInDB").mockResolvedValue(() => {});
     await addStructureForUsers(["userId"], "structId");
     expect(usersRep.addStructureForUsersInDB).toHaveBeenCalledWith(["userId"], "structId");
@@ -53,7 +53,7 @@ describe("updateLastConnected", () => {
   });
 
   it("should call updateUserInDB", async () => {
-    //@ts-expect-error
+    //@ts-expect-error typing issue with jest.spyOn
     jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => {});
     await updateLastConnected(fixtures.user);
     expect(usersRep.updateUserInDB).toHaveBeenCalledWith(userId, {
@@ -62,47 +62,6 @@ describe("updateLastConnected", () => {
     });
   });
 });
-/*
-describe.skip("getUsersFromStructureMembres", () => {
-  const membres = [
-    { role: [] },
-    { userId: "userId1" },
-    { userId: "userId2" },
-    { userId: "userId3" },
-    { userId: "userId4" }
-  ];
-  const userNeededFields = {
-    username: 1,
-    email: 1,
-    status: 1
-  };
-  it("should call getUserById", async () => {
-    getUserById.mockResolvedValueOnce({ _id: "userId1", status: "Exclu" });
-    getUserById.mockResolvedValueOnce({ _id: "userId2", status: "Actif" });
-    getUserById.mockResolvedValueOnce({
-      _id: "userId3",
-      status: "Actif",
-      email: "email3",
-      username: "pseudo3"
-    });
-    getUserById.mockResolvedValueOnce({
-      _id: "userId4",
-      status: "Actif",
-      email: "email4",
-      username: "pseudo4"
-    });
-
-    const res = await getUsersFromStructureMembres(membres);
-    expect(getUserById).toHaveBeenCalledWith("userId1", userNeededFields);
-    expect(getUserById).toHaveBeenCalledWith("userId2", userNeededFields);
-    expect(getUserById).toHaveBeenCalledWith("userId3", userNeededFields);
-    expect(getUserById).toHaveBeenCalledWith("userId4", userNeededFields);
-    expect(res).toEqual([
-      { username: "pseudo3", _id: "userId3", email: "email3" },
-      { username: "pseudo4", _id: "userId4", email: "email4" }
-    ]);
-  });
-});*/
 
 const roleId = new ObjectId("6569af9815c38bd134125ff3");
 describe("registerUser", () => {
