@@ -26,7 +26,7 @@ export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages)
     language,
   });
 
-export const findTraductors = (dispositifId: DispositifId, language: Languages): any =>
+export const findTraductors = (dispositifId: DispositifId, language: Languages) =>
   TraductionsModel.find(
     {
       dispositifId,
@@ -60,7 +60,7 @@ export const removeTraductionsSections = async (dispositifId: Id, sections: stri
       .map((section) => section.replace(".title", "").replace(".text", ""))
       .map((section) => `translated.${section}`),
   );
-  const unsetSections = sectionsToRemove.reduce((acc: any, curr) => ((acc[curr] = ""), acc), {});
+  const unsetSections = sectionsToRemove.reduce((acc: Record<string, string>, curr) => ((acc[curr] = ""), acc), {});
 
   const result = await TraductionsModel.updateMany(query, {
     $unset: unsetSections,

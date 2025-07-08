@@ -10,10 +10,7 @@ beforeAll(async () => {
   const uri = mongoServer.getUri();
 
   // Connect Typegoose (which uses Mongoose under the hood) to the in-memory MongoDB
-  await mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  } as any);
+  await mongoose.connect(uri);
 }, 60000); // 60 seconds timeout
 
 afterAll(async () => {

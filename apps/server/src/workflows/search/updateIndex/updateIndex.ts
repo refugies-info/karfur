@@ -28,18 +28,20 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   };
 
   const contentsArray = await getActiveContentsFiltered(neededFields, { status: DispositifStatus.ACTIVE });
-  return contentsArray.map((content) => formatForAlgolia(content, [], "dispositif"));
+  return contentsArray
+    .map((content) => formatForAlgolia(content, [], "dispositif"))
+    .filter((dispositif) => !!dispositif);
 };
 
 const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
-  //@ts-ignore
-  return needs.map((content) => formatForAlgolia(content, activeLanguages, "need"));
+  //@ts-expect-error type mismatch
+  return needs.map((content) => formatForAlgolia(content, activeLanguages, "need")).filter((need) => !!need);
 };
 
 const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const themes = await getAllThemes();
-  return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme"));
+  return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme")).filter((theme) => !!theme);
 };
 
 export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {

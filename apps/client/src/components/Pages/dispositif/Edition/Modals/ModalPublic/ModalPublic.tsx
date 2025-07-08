@@ -117,17 +117,17 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   };
 
   const validate = () => {
+    validatePublicStatus();
+    validateFrenchLevel();
+    validateAge();
+    validatePublicType();
     if (step === 1) {
-      validatePublicStatus();
       setStep(2);
     } else if (step === 2) {
-      validateFrenchLevel();
       setStep(3);
     } else if (step === 3) {
-      validateAge();
       setStep(4);
     } else if (step === 4) {
-      validatePublicType();
       toggle();
     }
   };

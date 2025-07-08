@@ -69,7 +69,7 @@ describe("getAllDispositifs", () => {
       webOnly: false,
     };
 
-    const populatedDispositif: any = fixtures.dispositif;
+    const populatedDispositif = fixtures.dispositif;
     fixtures.dispositif.hasDraftVersion = false;
     fixtures.dispositif.lastAdminUpdate = new Date("2023-12-01T14:34:29.335Z");
     fixtures.dispositif.draftReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
@@ -79,6 +79,7 @@ describe("getAllDispositifs", () => {
     fixtures.dispositif.adminComments = "comment";
     fixtures.dispositif.adminProgressionStatus = "comment";
     populatedDispositif.mainSponsor = {
+      //@ts-expect-error type mismatch
       _id: "id",
       nom: "sponsor",
       status: StructureStatus.ACTIVE,
@@ -89,6 +90,7 @@ describe("getAllDispositifs", () => {
       },
     };
     populatedDispositif.creatorId = {
+      //@ts-expect-error type mismatch
       _id: "id",
       username: "creator",
       email: "creator@test.com",
@@ -99,10 +101,12 @@ describe("getAllDispositifs", () => {
       },
     };
     populatedDispositif.lastModificationAuthor = {
+      //@ts-expect-error type mismatch
       _id: "id",
       username: "author",
     };
     populatedDispositif.publishedAtAuthor = {
+      //@ts-expect-error type mismatch
       _id: "id",
       username: "author",
     };
@@ -112,6 +116,7 @@ describe("getAllDispositifs", () => {
       data: [expectedDispositif, expectedDispositif],
     };
     const getDispositifsFromDBMock = jest.spyOn(repository, "getDispositifsFromDB");
+    //@ts-expect-error type mismatch
     getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif]);
 
     // Act

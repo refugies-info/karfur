@@ -16,14 +16,14 @@ export const updateAlgoliaIndex = async (localContents: AlgoliaObject[], algolia
   if (deleted.length) await deleteAlgoliaObjects(deleted);
 
   // UPDATE
-  const objectsToUpdate: AlgoliaObject[] = [];
+  const objectsToUpdate: Partial<AlgoliaObject>[] = [];
   for (const content of localContents) {
     const algoliaContent = algoliaContents.find((c) => c.objectID.toString() === content.objectID.toString());
     if (!algoliaContent) continue;
     const objectDiff = getDiffAlgoliaObject(content, algoliaContent);
     if (objectDiff) objectsToUpdate.push(objectDiff);
   }
-  if (objectsToUpdate.length) await updateAlgoliaObjects(objectsToUpdate);
+  if (objectsToUpdate.length) await updateAlgoliaObjects(objectsToUpdate as AlgoliaObject[]);
 
   return {
     added: contentsAdded.length,
