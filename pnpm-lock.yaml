@@ -233,8 +233,8 @@ importers:
         specifier: ^2.6.1
         version: 2.7.5(react@18.3.1)
       react-hook-form:
-        specifier: ^7.58.1
-        version: 7.58.1(react@18.3.1)
+        specifier: ^7.60.0
+        version: 7.60.0(react@18.3.1)
       react-i18next:
         specifier: ^15.5.3
         version: 15.5.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.27.4)(@babel/preset-env@7.27.2(@babel/core@7.27.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
@@ -11092,8 +11092,8 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react-hook-form@7.58.1:
-    resolution: {integrity: sha512-Lml/KZYEEFfPhUVgE0RdCVpnC4yhW+PndRhbiTtdvSlQTL8IfVR+iQkBjLIvmmc6+GGoVeM11z37ktKFPAb0FA==}
+  react-hook-form@7.60.0:
+    resolution: {integrity: sha512-SBrYOvMbDB7cV8ZfNpaiLcgjH/a1c7aK0lK+aNigpf4xWLO8q+o4tcvVurv3c4EOyzn/3dCsYt4GKD42VvJ/+A==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -26284,7 +26284,7 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
 
-  react-hook-form@7.58.1(react@18.3.1):
+  react-hook-form@7.60.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
