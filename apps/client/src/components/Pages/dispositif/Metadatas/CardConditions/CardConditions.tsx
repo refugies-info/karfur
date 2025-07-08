@@ -47,9 +47,7 @@ const CardConditions = ({ formData, ...props }: Props) => {
       </MetaDataCard>
     </>
   ) : isEditMode ? (
-    <MetaDataCard title={t("Infocards.conditions")} onClick={() => setActiveModal?.("Conditions")}>
-      Non pertinent pour mon action
-    </MetaDataCard>
+    <MetaDataCard title={t("Infocards.conditions")} onClick={() => setActiveModal?.("Conditions")} />
   ) : null;
 };
 
