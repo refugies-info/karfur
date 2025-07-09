@@ -1,10 +1,11 @@
 import { Languages } from "@refugies-info/api-types";
 import * as config from "~/config/i18n";
 
-const translationLoader: any = {
+const translationLoader = {
   type: "backend",
   init: () => {},
-  read: function (language: Languages, _: any, callback: Function) {
+  // eslint-disable-next-line no-unused-vars
+  read: function (language: Languages, _: unknown, callback: (error: unknown, resource: unknown) => void) {
     let resource,
       error = null;
     try {
@@ -15,4 +16,5 @@ const translationLoader: any = {
     callback(error, resource);
   },
 };
+
 export default translationLoader;
