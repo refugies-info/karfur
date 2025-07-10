@@ -36,8 +36,7 @@ describe("Filter city", () => {
     });
   });
   it.skip("should render correctly when no city", async () => {
-    let component;
-    component = wrapWithProvidersAndRender({
+    const component = wrapWithProvidersAndRender({
       Component: FilterCity,
       compProps: { navigation: { goBack: jest.fn() } },
     });
