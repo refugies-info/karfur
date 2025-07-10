@@ -29,7 +29,7 @@ const appReducer = combineReducers({
   themes: themesReducer,
 });
 
-type AppActions = Parameters<typeof appReducer>[1];
+export type AppActions = Parameters<typeof appReducer>[1];
 
 export interface RootState {
   loadingStatus: LoadingStatusState;
