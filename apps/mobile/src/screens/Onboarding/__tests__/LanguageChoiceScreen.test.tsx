@@ -38,7 +38,7 @@ describe("LanguageChoiceScreen", () => {
     const changeLanguage = jest.fn();
     (useTranslationWithRTL as jest.Mock).mockReturnValue({
       i18n: { changeLanguage },
-      t: jest.fn().mockImplementationOnce((arg1, _) => arg1),
+      t: jest.fn().mockImplementationOnce((arg1) => arg1),
     });
     const navigation = { navigate: jest.fn(), goBack: jest.fn() };
     const component = wrapWithProvidersAndRender({
