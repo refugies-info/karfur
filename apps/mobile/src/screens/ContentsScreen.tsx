@@ -1,5 +1,5 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import { ContentForApp, Languages } from "@refugies-info/api-types";
+import { ContentForApp, Id, Languages } from "@refugies-info/api-types";
 import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -76,7 +76,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
   const { t } = useTranslationWithRTL();
 
   useEffect(() => {
-    addNeedView(needId);
+    addNeedView(String(needId));
   }, []);
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
 
@@ -91,6 +91,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
   const groupedContents = useSelector(groupedContentsSelector);
 
   const content = useMemo(() => {
+    // @ts-expect-error needId is ObjectId
     const contentsId = groupedContents[needId];
     const contentsToDisplay = getContentsToDisplay(contentsId, contents);
 
@@ -108,6 +109,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
     return allContent;
   }, [groupedContents, contents, needId, currentLanguageI18nCode]);
 
+  // @ts-expect-error needId is ObjectId
   const needName = useSelector(needNameSelector(needId, currentLanguageI18nCode));
 
   // Back button
@@ -117,7 +119,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
     const component: React.FC<HeaderContentProps> = (props) => (
       <HeaderContentContentsScreen needName={needName} {...props} />
     );
-    component.displayName;
+    component.displayName = "HeaderContentContentsScreen";
     return component;
   }, [needName]);
 
@@ -139,7 +141,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
             <ContentSummary
               theme={theme}
               content={item}
-              needId={needId}
+              needId={needId as Id}
               style={{
                 marginBottom: styles.margin * 3,
                 marginHorizontal: styles.margin * 3,
