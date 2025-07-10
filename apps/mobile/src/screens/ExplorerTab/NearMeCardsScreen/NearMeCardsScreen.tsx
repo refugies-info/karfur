@@ -2,9 +2,6 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import useAsync from "react-use/lib/useAsync";
 
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps } from "@react-navigation/native";
-import { StackScreenProps } from "@react-navigation/stack";
 import { ContentForApp, GetContentsForAppResponse } from "@refugies-info/api-types";
 import { Page, Rows } from "~/components";
 import { ContentSummary } from "~/components/Contents/ContentSummary";
@@ -17,7 +14,6 @@ import {
   userFrenchLevelSelector,
   userLocationSelector,
 } from "~/services/redux/User/user.selectors";
-import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
 import { getContentsForApp } from "~/utils/API";
 
 export interface PageProps {
@@ -56,12 +52,7 @@ const useNearMeCards = () => {
   return { loading, error, nearMeCards };
 };
 
-type NearMeCardsScreenProps = CompositeScreenProps<
-  StackScreenProps<ExplorerParamList, "NearMeCardsScreen">,
-  BottomTabScreenProps<BottomTabParamList>
->;
-
-const NearMeCardsScreen = ({ navigation }: NearMeCardsScreenProps) => {
+const NearMeCardsScreen = () => {
   const { t } = useTranslationWithRTL();
   const { nbLocalizedContent } = useSelector(nbContentsSelector);
   const { city } = useSelector(userLocationSelector);
