@@ -119,7 +119,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
           <Rows layout="1 auto">
             <View>
               <Rows layout="1" verticalAlign="flex-start">
-                {contentsToDisplay.map((content: ContentForApp, index: number) => (
+                {contentsToDisplay.map((content: ContentForApp) => (
                   <CardItem key={content._id}>
                     <Swipeable
                       renderRightActions={!isRTL ? renderActions : undefined}
