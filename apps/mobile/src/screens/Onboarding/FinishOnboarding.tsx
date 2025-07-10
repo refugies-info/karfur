@@ -1,7 +1,7 @@
-import { StackScreenProps } from "@react-navigation/stack";
+/* eslint-disable @typescript-eslint/no-require-imports */
 import LottieView from "lottie-react-native";
 import { Dimensions, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components/native";
 import { ButtonDSFR, ReadableText, Spacer } from "~/components";
 import PageOnboarding from "~/components/layout/PageOnboarding";
@@ -9,10 +9,8 @@ import { TextDSFR_XL } from "~/components/StyledText";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { fetchContentsActionCreator } from "~/services/redux/Contents/contents.actions";
 import { saveHasUserSeenOnboardingActionCreator } from "~/services/redux/User/user.actions";
-import { userAgeSelector, userFrenchLevelSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import EndOnboardingIllu from "~/theme/images/onboarding/end-onboarding-illu.svg";
-import { OnboardingParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
@@ -37,13 +35,9 @@ const FakeTabBarArrowContainer = styled.View<{ width: number }>`
   margin-top: ${styles.margin * 2}px;
 `;
 
-export const FinishOnboarding = ({}: StackScreenProps<OnboardingParamList, "FinishOnboarding">) => {
+export const FinishOnboarding = () => {
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
-
-  const location = useSelector(userLocationSelector);
-  const age = useSelector(userAgeSelector);
-  const frenchLevel = useSelector(userFrenchLevelSelector);
 
   // TODO: restore when design ready
   const hasUserEnteredInfos = true; /* !!frenchLevel || !!age || !!location.city || !!location.department; */
@@ -58,7 +52,10 @@ export const FinishOnboarding = ({}: StackScreenProps<OnboardingParamList, "Fini
         hasUserEnteredInfos ? FirebaseEvent.PROFILE_COMPLETED : FirebaseEvent.PROFILE_NOT_COMPLETED,
         {},
       );
-    } catch (e) {}
+      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    } catch (error) {
+      // Do nothing
+    }
   };
   return (
     <PageOnboarding darkBackground>
