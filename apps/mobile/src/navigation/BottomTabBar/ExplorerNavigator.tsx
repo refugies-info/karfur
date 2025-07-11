@@ -1,5 +1,6 @@
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CompositeScreenProps, getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
 import React from "react";
 
 import { ContentScreen, NearMeCardsScreen } from "~/screens";
@@ -7,12 +8,12 @@ import { ContentsScreen } from "~/screens/ContentsScreen";
 import { ExplorerScreen } from "~/screens/ExplorerTab/ExplorerScreen";
 import { NeedsScreen } from "~/screens/ExplorerTab/NeedsScreen";
 import { NotificationsScreen } from "~/screens/NotificationsScreen";
-import { ExplorerParamList } from "~/types/navigation";
+import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
 
-interface Props {
-  navigation?: any;
-  route?: any;
-}
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<BottomTabParamList, "Explorer">,
+  StackScreenProps<ExplorerParamList>
+>;
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
