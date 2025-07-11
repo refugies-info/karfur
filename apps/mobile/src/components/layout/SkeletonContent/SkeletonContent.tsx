@@ -130,7 +130,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
 
   const getBones = (
     bonesLayout: ICustomViewStyle[] | undefined,
-    childrenItems: React.ReactNode[],
+    childrenItems: React.ReactNode | undefined,
     prefix: string | number = "",
   ): React.ReactNode[] => {
     if (bonesLayout && bonesLayout.length > 0) {
@@ -140,7 +140,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
         if (bonesLayout[i].children && bonesLayout[i].children!.length > 0) {
           const containerPrefix = bonesLayout[i].key || `bone_container_${i}`;
           const { children: childBones, ...layoutStyle } = bonesLayout[i];
-          return getBoneContainer(layoutStyle, getBones(childBones, [], containerPrefix), containerPrefix);
+          return getBoneContainer(layoutStyle, getBones(childBones, undefined, containerPrefix), containerPrefix);
         }
         return getShiverBone(bonesLayout[i], prefix ? `${prefix}_${i}` : i);
       });
