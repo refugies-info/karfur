@@ -30,11 +30,7 @@ export const getUid = async (): Promise<string> => {
   return newUid;
 };
 
-export const makeApiRequest = async <Request extends any, T extends any>(
-  url: string,
-  payload: Request,
-  method: Method = "GET",
-): Promise<T> => {
+export const makeApiRequest = async <Request, T>(url: string, payload: Request, method: Method = "GET"): Promise<T> => {
   try {
     let headers = {};
 
@@ -64,29 +60,30 @@ export const makeApiRequest = async <Request extends any, T extends any>(
   }
 };
 
-export const useApi = <Type, Error>(
+export const useApi = <Type, Error, Key extends QueryKey = QueryKey>(
   url: string,
   method: Method,
-  key: string | any[],
-  payload?: any,
-  options?: UseQueryOptions<Type, Error, Type, QueryKey>,
+  key: Key,
+  payload?: unknown,
+  options?: UseQueryOptions<Type, Error, Type, Key>,
 ): UseQueryResult<Type, Error> => {
-  return useQuery<Type, Error, Type>(
+  return useQuery<Type, Error, Type, Key>(
     key,
-    () => makeApiRequest<any, any>(url, payload, method).then((response) => response.data),
-    options as Omit<UseQueryOptions<Type, Error, Type, QueryKey>, "queryKey" | "queryFn">,
+    () => makeApiRequest<unknown, { data: Type }>(url, payload, method).then((response) => response.data),
+    options as Omit<UseQueryOptions<Type, Error, Type, Key>, "queryKey" | "queryFn">,
   );
 };
 
-export const useApiMutation = <Type, Error>(
+export const useApiMutation = <Type, Error, Payload = unknown, Key extends MutationKey = MutationKey>(
   url: string,
   method: Method,
-  key: string | any[],
-  options?: UseMutationOptions<Type, Error, Type, MutationKey>,
-): UseMutationResult<Type, Error, Type> => {
-  return useMutation<Type, Error, Type>(
+  key: Key,
+  options?: UseMutationOptions<Type, Error, Payload, Key>,
+): UseMutationResult<Type, Error, Payload> => {
+  return useMutation<Type, Error, Payload, Key>(
     key,
-    (payload: any) => makeApiRequest<any, any>(url, payload, method),
-    options as Omit<UseMutationOptions<Type, Error, Type>, "mutationKey" | "mutationFn">,
+    (payload: Payload) =>
+      makeApiRequest<Payload, { data: Type }>(url, payload, method).then((response) => response.data),
+    options as Omit<UseMutationOptions<Type, Error, Payload, Key>, "mutationKey" | "mutationFn">,
   );
 };
