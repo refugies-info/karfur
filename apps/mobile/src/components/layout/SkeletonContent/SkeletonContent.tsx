@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
 const GRADIENT_START = { x: 0, y: 0 };
 const GRADIENT_END = { x: 1, y: 0 };
 
-// eslint-disable-next-line no-unused-vars
 const useLayout = (): [{ width: number; height: number }, (event: LayoutChangeEvent) => void] => {
   const [size, setSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 

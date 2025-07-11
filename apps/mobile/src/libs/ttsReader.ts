@@ -10,7 +10,6 @@ export interface Reader {
   stop: () => void;
   pause: () => void;
   resume: () => void;
-  // eslint-disable-next-line no-unused-vars
   setRate: (rate: number) => void;
   canResume: boolean;
   canChangeRate: boolean;

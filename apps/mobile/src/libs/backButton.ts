@@ -16,8 +16,7 @@ export const registerBackButton = (backScreen: ValidScreen | undefined, navigati
     const backAction = () => {
       try {
         navigation.popToTop();
-        // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-      } catch (e: unknown) {
+      } catch (_: unknown) {
         // Do nothing
       }
       // We need to use type assertion here because TypeScript can't infer the exact type

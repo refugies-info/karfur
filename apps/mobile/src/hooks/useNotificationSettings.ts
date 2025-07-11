@@ -25,7 +25,6 @@ const logSettingsUpdate = (key: string, value: boolean) => {
 
 export const useNotificationsSettings = (): [
   NotificationsSettings | undefined,
-  // eslint-disable-next-line no-unused-vars
   (key: string, value: boolean) => void,
 ] => {
   const queryClient = useQueryClient();

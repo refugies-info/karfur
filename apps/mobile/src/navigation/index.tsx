@@ -69,8 +69,7 @@ export const RootNavigator = () => {
         if (hasUserNewFavorites) {
           dispatch(setUserHasNewFavoritesActionCreator(true));
         }
-        // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-      } catch (e: unknown) {
+      } catch (_: unknown) {
         // error reading value
       }
     };

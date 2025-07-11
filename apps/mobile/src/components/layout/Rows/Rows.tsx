@@ -18,11 +18,8 @@ const RowsWrapper = styled.View<{
 `;
 
 export enum RowsSpacing {
-  // eslint-disable-next-line no-unused-vars
   Default = "default",
-  // eslint-disable-next-line no-unused-vars
   NoSpace = "nospace",
-  // eslint-disable-next-line no-unused-vars
   Text = "text",
 }
 

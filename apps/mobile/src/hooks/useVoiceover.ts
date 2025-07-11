@@ -8,7 +8,6 @@ import { currentItemSelector } from "~/services/redux/VoiceOver/voiceOver.select
 export const useVoiceover = (
   scrollviewRef: MutableRefObject<ScrollView | FlatList | null>,
   offset: number,
-  // eslint-disable-next-line no-unused-vars
 ): { setScroll: (currentScroll: number, offset: number) => void } => {
   const dispatch = useDispatch();
 

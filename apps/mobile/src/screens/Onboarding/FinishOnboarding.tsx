@@ -52,8 +52,7 @@ export const FinishOnboarding = () => {
         hasUserEnteredInfos ? FirebaseEvent.PROFILE_COMPLETED : FirebaseEvent.PROFILE_NOT_COMPLETED,
         {},
       );
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    } catch (error) {
+    } catch (_: unknown) {
       // Do nothing
     }
   };

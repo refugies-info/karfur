@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import useBoolean from "react-use/lib/useBoolean";
 
-// eslint-disable-next-line no-unused-vars
 const useStateOnce = <T>(defaultValue?: T): [T | undefined, (newValue: T) => void] => {
   const [setted, toggleSetted] = useBoolean(false);
   const [value, setValue] = useState<T | undefined>(defaultValue);
