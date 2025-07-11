@@ -4,7 +4,7 @@ export {
   default as HeaderContentContentsScreen,
   HeaderContentContentsScreenProps,
 } from "./HeaderContentContentsScreen";
-export { default as HeaderContentEmpty, HeaderContentEmptyProps } from "./HeaderContentEmpty";
+export { default as HeaderContentEmpty } from "./HeaderContentEmpty";
 export { HeaderContentProps } from "./HeaderContentProps";
 export { default as HeaderContentSearch } from "./HeaderContentSearch";
 export { default as HeaderContentTitle, HeaderContentTitleProps } from "./HeaderContentTitle";
