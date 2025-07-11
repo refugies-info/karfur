@@ -1,7 +1,6 @@
 import { Hit } from "algoliasearch";
 import { getHighlightedParts, getPropertyByPath, unescape } from "instantsearch.js/es/lib/utils";
-import {} from "react-instantsearch-core";
-import { Text } from "react-native";
+import { Text, TextStyle } from "react-native";
 import { firstLetterUpperCase } from "~/libs";
 import { styles } from "~/theme";
 
@@ -21,20 +20,23 @@ const Highlight = ({ attribute, hit, capitalize, color, colorNotHighlighted }: P
   const parts = properties.flatMap((singleValue) => getHighlightedParts(unescape(singleValue.value || "")));
   return (
     <Text>
-      {parts.map(({ value, isHighlighted }: any, index: number) => {
-        const style: any = isHighlighted
+      {parts.map(({ value, isHighlighted }: { value: string; isHighlighted: boolean }, index: number) => {
+        const baseStyle: TextStyle = isHighlighted
           ? {
               backgroundColor: styles.colors.lightBlue,
               fontFamily: styles.fonts.families.marianneBold,
+              color: color ? color : undefined,
             }
           : {
               backgroundColor: "transparent",
               fontFamily: styles.fonts.families.marianneReg,
+              color: color ? `${colorNotHighlighted || color}B3` : undefined,
             };
 
-        if (color) {
-          style.color = isHighlighted ? color : `${colorNotHighlighted || color}B3`;
-        }
+        // Filter out undefined values to avoid React Native warnings
+        const style = Object.fromEntries(
+          Object.entries(baseStyle).filter(([_, value]) => value !== undefined),
+        ) as Record<string, string>;
 
         return (
           <Text key={index} style={style}>
