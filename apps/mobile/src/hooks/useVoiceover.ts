@@ -8,6 +8,7 @@ import { currentItemSelector } from "~/services/redux/VoiceOver/voiceOver.select
 export const useVoiceover = (
   scrollviewRef: MutableRefObject<ScrollView | FlatList | null>,
   offset: number,
+  // eslint-disable-next-line no-unused-vars
 ): { setScroll: (currentScroll: number, offset: number) => void } => {
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ export const useVoiceover = (
 
   // Save scroll locally in component, and in Redux
   const setScroll = useCallback(
-    (currentScroll: number, _offset: number) => {
+    (currentScroll: number) => {
       if (isFocused) {
         dispatch(setScrollReading(currentScroll));
       }
