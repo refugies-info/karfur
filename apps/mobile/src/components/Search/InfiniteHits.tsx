@@ -1,3 +1,5 @@
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useMemo } from "react";
 import { useInfiniteHits } from "react-instantsearch-core";
 import { FlatList, Keyboard, Platform, View } from "react-native";
@@ -7,6 +9,7 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { contentsSelector } from "~/services/redux/Contents/contents.selectors";
 import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { styles } from "~/theme";
+import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { ErrorScreen } from "../ErrorScreen";
 import { HitWithInsights } from "./Hit";
 import NbResults from "./NbResults";
@@ -16,8 +19,13 @@ const ErrorContainer = styled.View`
   flex-grow: 1;
 `;
 
+type NavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList>,
+  StackNavigationProp<ExplorerParamList>
+>;
+
 interface Props {
-  navigation: any;
+  navigation: NavigationProp;
   selectedLanguage: string | null;
   query: string;
   nbContents: Record<string, number>;
