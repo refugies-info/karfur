@@ -10,8 +10,8 @@ interface Props {
   isFocused: boolean;
   onPress: () => void;
   options: {
-    tabBarAccessibilityLabel: string;
-    tabBarTestID: string;
+    tabBarAccessibilityLabel?: string | undefined;
+    tabBarTestID?: string | undefined;
   };
   route: { name: string };
   label: string | undefined;

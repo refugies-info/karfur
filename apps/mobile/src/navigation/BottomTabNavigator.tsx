@@ -44,7 +44,7 @@ const Space = styled.View`
 function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {
   // Hide tab bar if needed
   const focusedOptions = descriptors[state.routes[state.index].key].options;
-  //@ts-ignore
+  // @ts-expect-error tabBarStyle.display is not defined in BottomTabBarProps
   if (focusedOptions?.tabBarStyle?.display === "none") return null;
 
   const items = state.routes.map((route, index) => {
@@ -78,7 +78,7 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
   const explorerScreen = state.routes.find((route) => route.name === "Explorer")?.state?.index || 0; // will return undefined if explorerScreen just mounted, 0 else
 
   const hasNotificationScreen = (
-    state.routes.find((route) => route.name === "Explorer")?.state?.routes || ([] as any[])
+    state.routes.find((route) => route.name === "Explorer")?.state?.routes || ([] as { name: string }[])
   ).find((route) => route.name === "NotificationsScreen");
 
   const noReadButton =
@@ -126,7 +126,7 @@ export default function BottomTabNavigator() {
       if (!initialUrl.includes("refugies.info")) return;
       const screen = getScreenFromUrl(initialUrl);
       if (screen) {
-        //@ts-ignore
+        // @ts-expect-error screen.rootNavigator is not typed
         navigation.navigate(screen.rootNavigator, screen.screenParams);
       }
       dispatch(setInitialUrlUsed(true));
