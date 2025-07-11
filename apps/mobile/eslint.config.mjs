@@ -7,8 +7,18 @@ export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommended,
 
-  // React Native plugin
+  // Configuration for JavaScript files
   {
+    files: ["**/*.js", "**/*.jsx"],
+    rules: {
+      "no-unused-vars": "warn",
+      "no-console": "warn",
+    },
+  },
+
+  // Configuration for TypeScript files
+  {
+    files: ["**/*.ts", "**/*.tsx"],
     plugins: {
       "@react-native": reactNativePlugin,
     },
@@ -23,9 +33,21 @@ export default tseslint.config(
       },
     },
     rules: {
-      // Add any project-specific rule overrides here
+      // Disable the base no-unused-vars rule for TypeScript files
+      "no-unused-vars": "off",
+
+      // Configure TypeScript-specific unused vars rule
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+
+      // Other rules
       "no-console": "warn",
-      "no-unused-vars": "warn",
     },
   },
 );

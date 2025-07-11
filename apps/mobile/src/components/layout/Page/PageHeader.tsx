@@ -1,6 +1,6 @@
 import { Picture } from "@refugies-info/api-types";
 import React, { ComponentType, memo, useMemo } from "react";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, LayoutChangeEvent, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { getImageUri } from "~/libs/getImageUri";
 import { PropsOf } from "~/utils";
@@ -12,9 +12,9 @@ export interface PageHeaderProps {
   headerBackgroundImage?: Picture;
   HeaderContent?: ComponentType<HeaderContentProps>;
   isDarkBackground: boolean;
-  onHeaderLayout: (e: any) => any;
+  onHeaderLayout: (e: LayoutChangeEvent) => void;
   HeaderContentInternal: React.ComponentType<HeaderContentProps>;
-  style?: any;
+  style?: ViewStyle;
 }
 
 const MainContainer = styled(SafeAreaViewTopInset)<{
