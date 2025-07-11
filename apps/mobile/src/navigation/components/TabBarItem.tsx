@@ -9,7 +9,10 @@ import { TabBarLabel } from "./TabBarLabel";
 interface Props {
   isFocused: boolean;
   onPress: () => void;
-  options: any;
+  options: {
+    tabBarAccessibilityLabel: string;
+    tabBarTestID: string;
+  };
   route: { name: string };
   label: string | undefined;
 }
