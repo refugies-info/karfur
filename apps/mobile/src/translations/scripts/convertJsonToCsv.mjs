@@ -1,6 +1,6 @@
 import fs from "fs";
+import { console } from "node:console";
 import Papa from "papaparse";
-
 const convertJsonToCsv = (langue) => {
   // import french
   const jsonFrench = JSON.parse(fs.readFileSync("../fr/common.json").toString());
@@ -33,9 +33,7 @@ const convertJsonToCsv = (langue) => {
       });
     }
   });
-  // eslint-disable-next-line no-console
   console.log("Nombre de traductions en francais", output.length);
-  // eslint-disable-next-line no-console
   console.log(`Nombre de traductions en ${langue}`, output.filter((trad) => trad[langue]).length);
   const csv = Papa.unparse(output);
   const path = "./csvBeforeTrad/" + langue + ".csv";

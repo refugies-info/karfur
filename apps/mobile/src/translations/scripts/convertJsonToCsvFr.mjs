@@ -1,4 +1,5 @@
 import fs from "fs";
+import { console } from "node:console";
 import Papa from "papaparse";
 
 const convertJsonToCsvFr = () => {
@@ -30,7 +31,6 @@ const convertJsonToCsvFr = () => {
       });
     }
   });
-  // eslint-disable-next-line no-console
   console.log("Nombre de traductions en francais", output.length);
 
   const csv = Papa.unparse(output);
