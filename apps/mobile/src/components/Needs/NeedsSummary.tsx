@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { GetThemeResponse, Picture } from "@refugies-info/api-types";
+import { Hit } from "algoliasearch";
 import isEmpty from "lodash/isEmpty";
 import { memo, useCallback } from "react";
+import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "~/components/BasicComponents";
 import { TextDSFR_MD_Bold, TextDSFR_S } from "~/components/StyledText";
@@ -13,6 +15,14 @@ import { ReadableText } from "../ReadableText";
 import Highlight from "../Search/Highlight";
 import { UriImage } from "../iconography";
 import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
+
+type AlgoliaHit = {
+  _highlightResult?: {
+    [key: string]: {
+      value: string;
+    };
+  };
+};
 
 const NeedContainer = styled(RTLTouchableOpacity)<{
   needTheme: GetThemeResponse;
@@ -37,9 +47,9 @@ interface Props {
   needSubtitle?: string;
   needText?: string;
   needTextFr: string;
-  searchItem?: any;
+  searchItem?: Hit<AlgoliaHit>;
   searchLanguageMatch?: string;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
   theme: GetThemeResponse;
   pressCallback?: () => void;
   beforeNavigate?: () => boolean;
@@ -85,12 +95,7 @@ const NeedsSummaryComponent = ({
         <Rows spacing={RowsSpacing.Text} verticalAlign="center">
           <TextDSFR_MD_Bold color={theme.colors.color100}>
             {searchItem ? (
-              <Highlight
-                hit={searchItem}
-                attribute={`title_${searchLanguageMatch}`}
-                //@ts-ignore
-                color={theme.colors.color100}
-              />
+              <Highlight hit={searchItem} attribute={`title_${searchLanguageMatch}`} color={theme.colors.color100} />
             ) : (
               <ReadableText>{needText || ""}</ReadableText>
             )}
