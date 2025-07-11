@@ -1,4 +1,5 @@
 import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import upperFirst from "lodash/upperFirst";
 import { ComponentType, useCallback, useEffect, useMemo, useState } from "react";
 import { Platform, View } from "react-native";
@@ -12,6 +13,7 @@ import { LanguageChoiceModal } from "~/screens/Modals/LanguageChoiceModal";
 import { selectedContentSelector } from "~/services";
 import { hasUserSeenOnboardingSelector, initialUrlSelector } from "~/services/redux/User/user.selectors";
 import Logo from "~/theme/images/logo.svg";
+import { RootStackParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { IconButton } from "../../iconography";
@@ -40,11 +42,11 @@ const LOGO_WIDTH = 58;
 const LOGO_HEIGHT = 40;
 
 export interface HeaderProps {
-  backScreen?: string;
-  darkBackground: boolean;
+  backScreen?: keyof RootStackParamList;
+  darkBackground?: boolean;
   headerIconName?: string;
   headerTitle?: string;
-  hideBack?: boolean; // TODO Maintain this ?
+  hideBack?: boolean;
   hideLanguageSwitch?: boolean;
   showTitle?: boolean; // TODO Handle this directly in Page component ?
   showLogo?: boolean;
@@ -67,16 +69,15 @@ export const Header = ({
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const { name: routeName } = useRoute();
-  const navigation = useNavigation<any>(); // FIXME
-  const onPress = useCallback(
-    backScreen
-      ? () => {
-          navigation.popToTop();
-          navigation.navigate(backScreen);
-        }
-      : navigation.goBack,
-    [navigation, backScreen],
-  );
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const onPress = useCallback(() => {
+    if (backScreen) {
+      navigation.popToTop();
+      navigation.navigate(backScreen);
+    } else {
+      navigation.goBack();
+    }
+  }, [navigation, backScreen]);
 
   const [isLanguageModalVisible, toggleLanguageModal] = useToggle(false);
 
@@ -133,7 +134,7 @@ export const Header = ({
 
           {HeaderComponent ? (
             showTitle ? (
-              <HeaderComponent darkBackground={darkBackground} />
+              <HeaderComponent darkBackground={darkBackground || false} />
             ) : (
               <View />
             )
@@ -157,7 +158,7 @@ export const Header = ({
                   {headerTitle && (
                     <HeaderTitle
                       ellipsizeMode="tail"
-                      invertedColor={darkBackground}
+                      invertedColor={!!darkBackground}
                       numberOfLines={2}
                       accessibilityRole="header"
                     >
