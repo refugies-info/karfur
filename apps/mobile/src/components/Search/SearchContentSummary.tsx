@@ -1,17 +1,39 @@
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { GetThemeResponse, Id } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
 import { themeSelector } from "~/services";
 import { contentSelector } from "~/services/redux/Contents/contents.selectors";
 import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { styles } from "~/theme";
+import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
 import { NeedsSummary } from "../Needs/NeedsSummary";
 
+type NavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList>,
+  StackNavigationProp<ExplorerParamList>
+>;
+
+interface SearchItem {
+  typeContenu: "theme" | "besoin" | "dispositif" | "demarche";
+  objectID: string;
+  title_fr: string;
+  name_fr?: string;
+  theme: Id | { _id: string };
+  _id: string;
+  appImage?: string;
+  needs?: Id[];
+  title?: string;
+  type?: string;
+}
+
 interface Props {
-  navigation: any;
-  item: any;
+  navigation: NavigationProp;
+  item: SearchItem;
   languageMatch: string;
   hasSponsorMatch: boolean;
   nbContents?: number | null;
@@ -21,7 +43,14 @@ interface Props {
 const paddingTagButton = { marginBottom: styles.margin * 2 };
 
 export const SearchContentSummary = (props: Props) => {
-  const themeId = props.item.typeContenu === "theme" ? props.item.objectID : props.item.theme._id.toString();
+  const themeId =
+    props.item.typeContenu === "theme"
+      ? props.item.objectID
+      : typeof props.item.theme === "string"
+        ? props.item.theme
+        : (props.item.theme as { _id: string })._id;
+  // Title is not used in this component but kept for future use
+  const _title = (props.item.name_fr || props.item.title_fr || props.item.title || "").trim();
   const theme = useSelector(themeSelector(themeId));
   if (!theme) {
     return null;
@@ -30,7 +59,9 @@ export const SearchContentSummary = (props: Props) => {
   if (props.item.typeContenu === "besoin") {
     // empty need
     const groupedContents = useSelector(groupedContentsSelector);
-    if (!groupedContents[props.item.objectID] || groupedContents[props.item.objectID].length === 0) {
+    const needId = props.item.objectID;
+    const needContents = (groupedContents as Record<string, unknown[]>)[needId] || [];
+    if (needContents.length === 0) {
       return null;
     }
     return (
@@ -82,10 +113,12 @@ export const SearchContentSummary = (props: Props) => {
         });
         if (props.pressCallback) props.pressCallback();
 
+        // @ts-expect-error - Need to fix navigation types
         props.navigation.navigate("Explorer", {
-          screen: "NeedsScreen",
+          screen: "ContentsScreen",
           params: {
-            theme,
+            theme: theme as unknown as GetThemeResponse,
+            needId: props.item.objectID,
             backScreen: "Search",
           },
         });
