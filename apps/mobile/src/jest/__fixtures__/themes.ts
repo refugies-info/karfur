@@ -1,6 +1,7 @@
 import { ThemeState } from "~/services/redux/Themes/themes.reducer";
 
 // Helper function to ensure all themes have the required gradientColors property
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ensureGradientColors = (themes: any[]) => {
   return themes.map((theme) => ({
     ...theme,
