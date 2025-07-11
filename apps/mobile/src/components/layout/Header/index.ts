@@ -6,5 +6,5 @@ export {
 } from "./HeaderContentContentsScreen";
 export { default as HeaderContentEmpty, HeaderContentEmptyProps } from "./HeaderContentEmpty";
 export { HeaderContentProps } from "./HeaderContentProps";
-export { default as HeaderContentSearch, HeaderContentSearchProps } from "./HeaderContentSearch";
+export { default as HeaderContentSearch } from "./HeaderContentSearch";
 export { default as HeaderContentTitle, HeaderContentTitleProps } from "./HeaderContentTitle";

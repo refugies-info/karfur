@@ -3,7 +3,6 @@ import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { RTLTouchableOpacity } from "../../BasicComponents";
-import { HeaderContentProps } from "./HeaderContentProps";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   min-height: 48px;
@@ -23,12 +22,13 @@ const FakeInputText = styled.Text`
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
 `;
 
-export interface HeaderContentSearchProps extends HeaderContentProps {}
-
-const HeaderContentSearch = ({}: HeaderContentSearchProps) => {
+const HeaderContentSearch = () => {
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
-  const navigation = useNavigation<any>();
+  type SearchScreenNavigationProp = {
+    navigate: (screen: "SearchResultsScreen") => void;
+  };
+  const navigation = useNavigation<SearchScreenNavigationProp>();
   return (
     <FakeInput onPress={() => navigation.navigate("SearchResultsScreen")} accessibilityRole="button">
       <Icon name="search-outline" height={24} width={24} fill={theme.colors.darkGrey} />
