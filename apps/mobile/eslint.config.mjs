@@ -10,6 +10,11 @@ export default tseslint.config(
   // Configuration for JavaScript files
   {
     files: ["**/*.js", "**/*.jsx"],
+    languageOptions: {
+      globals: {
+        __DEV__: "readonly"
+      }
+    },
     rules: {
       "no-unused-vars": "warn",
       "no-console": "warn",
