@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
 
@@ -6,7 +7,7 @@ export interface ICustomViewStyle extends ViewStyle {
   key?: number | string;
 }
 
-export interface ISkeletonContentProps {
+export type ISkeletonContentProps = PropsWithChildren<{
   isLoading: boolean;
   layout?: ICustomViewStyle[];
   duration?: number;
@@ -14,8 +15,7 @@ export interface ISkeletonContentProps {
   boneColor?: string;
   highlightColor?: string;
   easing?: Animated.EasingFunction;
-  children?: any;
-}
+}>;
 
 export interface IDirection {
   x: number;
