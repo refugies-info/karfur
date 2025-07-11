@@ -1,6 +1,5 @@
-/* eslint-disable react/require-default-props */ // props are optionnal
 import isNull from "lodash/isNull";
-import React, { ReactNode } from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { isLastChild } from "../../utils";
@@ -19,20 +18,22 @@ const RowsWrapper = styled.View<{
 `;
 
 export enum RowsSpacing {
+  // eslint-disable-next-line no-unused-vars
   Default = "default",
+  // eslint-disable-next-line no-unused-vars
   NoSpace = "nospace",
+  // eslint-disable-next-line no-unused-vars
   Text = "text",
 }
 
-export interface RowsProps {
-  children: ReactNode;
+export type RowsProps = PropsWithChildren<{
   horizontalAlign?: string;
   verticalAlign?: string;
   layout?: string;
   spacing?: RowsSpacing;
   separator?: boolean;
   style?: StyleProp<ViewStyle>;
-}
+}>;
 
 const Rows = ({
   children,
@@ -45,12 +46,7 @@ const Rows = ({
 }: RowsProps) => {
   const _children = React.Children.toArray(children).filter((child: ReactNode) => !isNull(child));
   return (
-    <RowsWrapper
-      horizontalAlign={horizontalAlign}
-      verticalAlign={verticalAlign}
-      //@ts-ignore
-      style={style}
-    >
+    <RowsWrapper horizontalAlign={horizontalAlign} verticalAlign={verticalAlign} style={style}>
       {React.Children.map(
         _children,
         (child: ReactNode, index: number) =>
