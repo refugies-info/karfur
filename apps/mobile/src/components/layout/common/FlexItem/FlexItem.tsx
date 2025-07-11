@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { ColumnsSpacing } from "../../Columns";
 
 // We should use type-converting comparison (eqeq aka ==) because parseFloat will compute an invalid Float for case like: "8px" => 8
-// eslint-disable-next-line eqeqeq
 const isFloat = (value: unknown) => parseFloat(String(value)) == value;
 
 interface Props {
