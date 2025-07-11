@@ -1,10 +1,29 @@
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useCallback } from "react";
 import { View } from "react-native";
 import aa from "search-insights";
 import { styles } from "~/theme";
-import { SearchContentSummary } from "../Search/SearchContentSummary";
+import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
+import { SearchContentSummary, SearchItem } from "../Search/SearchContentSummary";
 
-const getLanguageMatch = (hit: any, selectedLanguage: string) => {
+interface HighlightResult {
+  [key: string]: {
+    matchLevel: string;
+  };
+}
+
+// Define Algolia-specific fields
+type AlgoliaMetadata = {
+  _highlightResult: HighlightResult;
+  __index: string;
+  __queryID: string;
+  __position: number;
+};
+
+type AlgoliaHit = SearchItem & AlgoliaMetadata;
+
+const getLanguageMatch = (hit: AlgoliaHit, selectedLanguage: string) => {
   const props = Object.keys(hit._highlightResult);
   for (const prop of props) {
     if (hit._highlightResult[prop].matchLevel === "full") {
@@ -14,13 +33,18 @@ const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   return selectedLanguage;
 };
 
-const hasSponsorMatch = (hit: any) => hit._highlightResult?.sponsorName?.matchLevel === "full";
+const hasSponsorMatch = (hit: AlgoliaHit) => hit._highlightResult?.sponsorName?.matchLevel === "full";
+
+type NavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList>,
+  StackNavigationProp<ExplorerParamList>
+>;
 
 interface Props {
-  hit: any;
-  navigation: any;
+  hit: SearchItem & AlgoliaMetadata;
+  navigation: NavigationProp;
   selectedLanguage: string | null;
-  nbContents: any;
+  nbContents: Record<string, number> | null;
 }
 
 export const HitWithInsights = ({ hit, navigation, selectedLanguage, nbContents }: Props) => {
@@ -45,9 +69,9 @@ export const HitWithInsights = ({ hit, navigation, selectedLanguage, nbContents 
       <SearchContentSummary
         navigation={navigation}
         item={hit}
-        languageMatch={getLanguageMatch(hit, selectedLanguage || "fr")}
-        hasSponsorMatch={hasSponsorMatch(hit)}
-        nbContents={hit.typeContenu === "besoin" ? nbContents[hit.objectID] : null}
+        languageMatch={getLanguageMatch(hit as AlgoliaHit, selectedLanguage || "")}
+        hasSponsorMatch={hasSponsorMatch(hit as AlgoliaHit)}
+        nbContents={hit.typeContenu === "besoin" && nbContents ? (nbContents[hit.objectID] ?? 0) : null}
         pressCallback={sendAlgoliaEvent}
       />
     </View>

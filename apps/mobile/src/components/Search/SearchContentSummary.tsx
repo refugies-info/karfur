@@ -18,7 +18,7 @@ type NavigationProp = CompositeNavigationProp<
   StackNavigationProp<ExplorerParamList>
 >;
 
-interface SearchItem {
+export interface SearchItem {
   typeContenu: "theme" | "besoin" | "dispositif" | "demarche";
   objectID: string;
   title_fr: string;
