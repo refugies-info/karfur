@@ -1,5 +1,4 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
-import { ObjectId } from "./interface";
 
 /**
  * Learn more about using TypeScript with React Navigation:
@@ -26,12 +25,12 @@ export type ExplorerParamList = {
   ExplorerScreen: undefined;
   ContentsScreen: {
     theme: GetThemeResponse;
-    needId: ObjectId;
+    needId: string;
     backScreen?: string;
   };
   ContentScreen: {
-    contentId: ObjectId;
-    needId?: ObjectId;
+    contentId: string;
+    needId?: string;
     theme?: GetThemeResponse;
     backScreen?: string;
   };

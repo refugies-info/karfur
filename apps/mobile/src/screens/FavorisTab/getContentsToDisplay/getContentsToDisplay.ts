@@ -1,5 +1,4 @@
 import { ContentForApp, GetDispositifResponse, Languages } from "@refugies-info/api-types";
-import { ObjectId } from "~/types/interface";
 import { getContentById } from "~/utils/API";
 
 /**
@@ -10,7 +9,7 @@ import { getContentById } from "~/utils/API";
  * // TODO test
  */
 const getContentsToDisplay = async (
-  contentsId: ObjectId[],
+  contentsId: string[],
   contents: ContentForApp[],
   currentLanguageI18nCode: Languages | null,
 ) => {

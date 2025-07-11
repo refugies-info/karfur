@@ -1,8 +1,3 @@
-/**
- * @deprecated
- */
-export type ObjectId = unknown;
-
 export interface ThemeColors {
   color100: string;
   color80: string;

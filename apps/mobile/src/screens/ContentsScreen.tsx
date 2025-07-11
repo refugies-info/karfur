@@ -17,7 +17,6 @@ import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.
 import { needNameSelector } from "~/services/redux/Needs/needs.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ObjectId } from "~/types/interface";
 import { ExplorerParamList } from "~/types/navigation";
 import { addNeedView } from "~/utils/API";
 
@@ -56,11 +55,11 @@ const getTranslatedContents = (contents: ContentForApp[], currentLanguage: Langu
   return { translatedContents, nonTranslatedContents };
 };
 
-const getContentsToDisplay = (contentsId: ObjectId[], contents: ContentForApp[]) => {
+const getContentsToDisplay = (contentsId: string[], contents: ContentForApp[]) => {
   if (!contentsId) return [];
   const result: ContentForApp[] = [];
 
-  contentsId.forEach((contentId: ObjectId) => {
+  contentsId.forEach((contentId: string) => {
     const contentWithInfosArray = contents.filter((content) => content._id === contentId);
     if (contentWithInfosArray.length > 0) {
       result.push(contentWithInfosArray[0]);
@@ -91,7 +90,6 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
   const groupedContents = useSelector(groupedContentsSelector);
 
   const content = useMemo(() => {
-    // @ts-expect-error needId is ObjectId
     const contentsId = groupedContents[needId];
     const contentsToDisplay = getContentsToDisplay(contentsId, contents);
 
@@ -109,7 +107,6 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
     return allContent;
   }, [groupedContents, contents, needId, currentLanguageI18nCode]);
 
-  // @ts-expect-error needId is ObjectId
   const needName = useSelector(needNameSelector(needId, currentLanguageI18nCode));
 
   // Back button

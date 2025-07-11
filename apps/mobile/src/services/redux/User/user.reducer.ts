@@ -1,6 +1,5 @@
 import { GetContentsForAppRequest, GetThemeResponse, Languages, MobileFrenchLevel } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { ObjectId } from "~/types/interface";
 import { UserActions } from "./user.actions";
 
 export interface UserState {
@@ -20,8 +19,8 @@ export interface UserState {
    */
   initialUrl: string | null;
   redirectDispositif: {
-    contentId: ObjectId;
-    needId: ObjectId;
+    contentId: string;
+    needId: string;
     theme: GetThemeResponse;
   } | null;
 }

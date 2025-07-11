@@ -1,6 +1,5 @@
 import { GetContentsForAppRequest, GetThemeResponse, Languages, MobileFrenchLevel } from "@refugies-info/api-types";
 import { action, ActionType } from "typesafe-actions";
-import { ObjectId } from "~/types/interface";
 import {
   ADD_USER_FAVORITE,
   GET_USER_INFOS,
@@ -60,8 +59,8 @@ export const setInitialUrlActionCreator = (value: string | null) => action(SET_I
 
 export const setRedirectDispositifActionCreator = (
   value: {
-    needId: ObjectId;
-    contentId: ObjectId;
+    needId: string;
+    contentId: string;
     theme: GetThemeResponse;
   } | null,
 ) => action(SET_REDIRECT_DISPOSITIF, value);
