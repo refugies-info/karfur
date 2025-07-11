@@ -1,3 +1,5 @@
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { ContentForApp } from "@refugies-info/api-types";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -7,15 +9,21 @@ import { sortByOrder } from "~/libs";
 import { themesSelector } from "~/services/redux/Themes/themes.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
+import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
 import { Spacer } from "../layout";
 import { ReadableText } from "../ReadableText";
 import { SectionTitle } from "../typography";
 
+type NavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList>,
+  StackNavigationProp<ExplorerParamList>
+>;
+
 interface Props {
   contents: ContentForApp[];
-  navigation: any;
+  navigation: NavigationProp;
 }
 
 const stylesheet = StyleSheet.create({
