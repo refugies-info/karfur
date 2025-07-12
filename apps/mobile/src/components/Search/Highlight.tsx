@@ -1,11 +1,12 @@
 import { Hit } from "algoliasearch";
 import { getHighlightedParts, getPropertyByPath, unescape } from "instantsearch.js/es/lib/utils";
 import { Text, TextStyle } from "react-native";
+import { SearchItem } from "~/components/Search/types";
 import { firstLetterUpperCase } from "~/libs";
 import { styles } from "~/theme";
 
 interface Props {
-  hit: Hit;
+  hit: Hit<SearchItem>;
   attribute: string;
   capitalize?: boolean;
   color?: string;

@@ -1,7 +1,8 @@
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { GetThemeResponse, Id } from "@refugies-info/api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
+import { SearchItem } from "~/components/Search/types";
 import { themeSelector } from "~/services";
 import { contentSelector } from "~/services/redux/Contents/contents.selectors";
 import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
@@ -17,19 +18,6 @@ type NavigationProp = CompositeNavigationProp<
   StackNavigationProp<RootStackParamList>,
   StackNavigationProp<ExplorerParamList>
 >;
-
-export interface SearchItem {
-  typeContenu: "theme" | "besoin" | "dispositif" | "demarche";
-  objectID: string;
-  title_fr: string;
-  name_fr?: string;
-  theme: Id | { _id: string };
-  _id: string;
-  appImage?: string;
-  needs?: Id[];
-  title?: string;
-  type?: string;
-}
 
 interface Props {
   navigation: NavigationProp;
