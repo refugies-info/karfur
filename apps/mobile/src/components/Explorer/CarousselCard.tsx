@@ -1,3 +1,4 @@
+import { NavigationProp } from "@react-navigation/native";
 import { GetThemeResponse } from "@refugies-info/api-types";
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
@@ -7,6 +8,7 @@ import styled from "styled-components/native";
 import { firstLetterUpperCase } from "~/libs";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
+import { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { RTLView } from "../BasicComponents";
@@ -16,7 +18,7 @@ import { TagImage } from "./TagImage";
 
 interface Props {
   theme: GetThemeResponse;
-  navigation: any;
+  navigation: NavigationProp<ExplorerParamList>;
   cardWidth: number;
   cardHeight: number;
 }
