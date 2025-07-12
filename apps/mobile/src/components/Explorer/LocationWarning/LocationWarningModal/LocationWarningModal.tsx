@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import React from "react";
 import { Modal, Pressable, StyleSheet, View } from "react-native";
@@ -9,6 +9,7 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import Map from "~/theme/images/localizedWarning/france_map.svg";
 import Pin from "~/theme/images/localizedWarning/pin_traffic_cone.svg";
+import { ExplorerParamList } from "~/types/navigation";
 import { PropsOf } from "~/utils";
 import { RTLView } from "../../../BasicComponents";
 import { FixSafeAreaView } from "../../../FixSafeAreaView";
@@ -18,7 +19,7 @@ import { TextDSFR_MD, TextDSFR_MD_Bold, TextDSFR_XL } from "../../../StyledText"
 
 interface Props {
   isVisible: boolean;
-  closeModal: any;
+  closeModal: () => void;
   nbGlobalContent: number;
   nbLocalizedContent: number;
   city: string;
@@ -55,7 +56,7 @@ const MonitorIcon: React.FC<Partial<PropsOf<typeof Icon>> & { size: number }> = 
 
 export const LocationWarningModal = (props: Props) => {
   const { t } = useTranslationWithRTL();
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<ExplorerParamList>>();
   const goTo = () => {
     props.closeModal();
     navigation.navigate("NearMeCardsScreen");
