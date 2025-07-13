@@ -20,7 +20,7 @@ interface Props {
   darkBg?: boolean;
 }
 
-type ReadableTextRef = {
+export type ReadableTextRef = {
   current: string | null;
 };
 
