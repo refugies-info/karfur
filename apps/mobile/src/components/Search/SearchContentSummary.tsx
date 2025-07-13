@@ -76,7 +76,7 @@ export const SearchContentSummary = (props: Props) => {
         content={content}
         hasSponsorMatch={props.hasSponsorMatch}
         pressCallback={props.pressCallback}
-        searchItem={props.item}
+        searchItem={{ ...props.item, __position: 1 }}
         searchLanguageMatch={props.languageMatch}
         showAbstract
         theme={theme}
