@@ -117,6 +117,7 @@ describe("[Saga] contents", () => {
                 titreInformatif: "titre",
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
+                abstract: "abstract",
               },
               {
                 _id: "id1Fr",
@@ -130,6 +131,7 @@ describe("[Saga] contents", () => {
                 titreInformatif: "titre",
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
+                abstract: "abstract",
               },
             ],
           }),
@@ -270,6 +272,7 @@ describe("[Saga] contents", () => {
                 titreInformatif: "titre",
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
+                abstract: "abstract",
               },
               {
                 _id: "id1_ar",
@@ -283,6 +286,7 @@ describe("[Saga] contents", () => {
                 titreInformatif: "titre",
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
+                abstract: "abstract",
               },
             ],
           }),
@@ -304,6 +308,7 @@ describe("[Saga] contents", () => {
                 titreInformatif: "titre",
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
+                abstract: "abstract",
               },
               {
                 _id: "id1_fr",
@@ -317,6 +322,7 @@ describe("[Saga] contents", () => {
                 titreInformatif: "titre",
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
+                abstract: "abstract",
               },
             ],
           }),
