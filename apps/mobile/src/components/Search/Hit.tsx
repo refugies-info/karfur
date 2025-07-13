@@ -3,9 +3,10 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useCallback } from "react";
 import { View } from "react-native";
 import aa from "search-insights";
+import { SearchItem } from "~/components/Search/types";
 import { styles } from "~/theme";
 import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
-import { SearchContentSummary, SearchItem } from "../Search/SearchContentSummary";
+import { SearchContentSummary } from "../Search/SearchContentSummary";
 
 interface HighlightResult {
   [key: string]: {
