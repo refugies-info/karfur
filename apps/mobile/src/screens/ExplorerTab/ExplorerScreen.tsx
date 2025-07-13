@@ -57,13 +57,13 @@ export const ExplorerScreen = ({ navigation }: StackScreenProps<ExplorerParamLis
       navigation.navigate("ContentsScreen", {
         needId: redirectDispositif.needId,
         theme: redirectDispositif.theme,
-        backScreen: "",
+        backScreen: undefined,
       });
       navigation.navigate("ContentScreen", {
         contentId: redirectDispositif.contentId,
         needId: redirectDispositif.needId,
         theme: redirectDispositif.theme,
-        backScreen: "",
+        backScreen: undefined,
       });
       dispatch(setRedirectDispositifActionCreator(null));
     }
