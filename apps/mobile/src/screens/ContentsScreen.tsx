@@ -137,7 +137,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
           ) : (
             <ContentSummary
               theme={theme}
-              content={item}
+              content={item as ContentForApp}
               needId={needId as Id}
               style={{
                 marginBottom: styles.margin * 3,
@@ -145,7 +145,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
               }}
             />
           ),
-        keyExtractor: (item) => (item._id || item).toString(),
+        keyExtractor: (item) => (typeof item === "string" ? item : item._id.toString()),
       }}
     />
   );
