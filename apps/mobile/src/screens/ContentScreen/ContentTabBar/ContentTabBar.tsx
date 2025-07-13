@@ -43,7 +43,7 @@ const ToastTextBold = styled(TextDSFR_MD_Bold)`
 interface Props {
   contentId: string;
   theme?: GetThemeResponse;
-  needId: Id;
+  needId?: Id;
 }
 
 type ContentScreenNavigationProp = StackNavigationProp<BottomTabParamList>;
@@ -117,7 +117,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
       dispatch(
         setRedirectDispositifActionCreator({
           contentId,
-          needId: needId.toString(),
+          needId: needId?.toString(),
           theme: redirectTheme,
         }),
       );
