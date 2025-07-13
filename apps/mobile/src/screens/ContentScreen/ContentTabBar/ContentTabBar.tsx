@@ -117,7 +117,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
       dispatch(
         setRedirectDispositifActionCreator({
           contentId,
-          needId,
+          needId: needId.toString(),
           theme: redirectTheme,
         }),
       );
