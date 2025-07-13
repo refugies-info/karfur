@@ -7,6 +7,7 @@ import { Image, StyleProp, ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { SearchItem } from "~/components/Search/types";
+import { ValidScreen } from "~/libs/backButton";
 import { defaultColors } from "~/libs/getThemeTag";
 import { styles } from "~/theme";
 import NoLogo from "~/theme/images/contents/structure_no_logo.png";
@@ -79,7 +80,7 @@ interface Props {
   actionIcon?: string;
   actionLabel?: string;
   actionPress?: () => void;
-  backScreen?: string;
+  backScreen?: ValidScreen;
   content: ContentForApp;
   hasSponsorMatch?: boolean;
   isTextNotBold?: boolean;

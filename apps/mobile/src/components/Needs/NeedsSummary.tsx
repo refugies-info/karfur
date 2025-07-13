@@ -7,7 +7,9 @@ import { memo, useCallback } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "~/components/BasicComponents";
+import { SearchItem } from "~/components/Search/types";
 import { TextDSFR_MD_Bold, TextDSFR_S } from "~/components/StyledText";
+import { ValidScreen } from "~/libs/backButton";
 import { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
@@ -15,14 +17,6 @@ import { ReadableText } from "../ReadableText";
 import Highlight from "../Search/Highlight";
 import { UriImage } from "../iconography";
 import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
-
-type AlgoliaHit = {
-  _highlightResult?: {
-    [key: string]: {
-      value: string;
-    };
-  };
-};
 
 const NeedContainer = styled(RTLTouchableOpacity)<{
   needTheme: GetThemeResponse;
@@ -41,13 +35,13 @@ const IndicatorContainer = styled(RTLView)`
 `;
 
 interface Props {
-  backScreen?: string;
+  backScreen?: ValidScreen;
   id: string;
   image?: Picture;
   needSubtitle?: string;
   needText?: string;
   needTextFr: string;
-  searchItem?: Hit<AlgoliaHit>;
+  searchItem?: Hit<SearchItem>;
   searchLanguageMatch?: string;
   style?: StyleProp<ViewStyle>;
   theme: GetThemeResponse;

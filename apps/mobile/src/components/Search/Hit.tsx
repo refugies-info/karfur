@@ -15,7 +15,7 @@ interface HighlightResult {
 }
 
 // Define Algolia-specific fields
-type AlgoliaMetadata = {
+export type AlgoliaMetadata = {
   _highlightResult: HighlightResult;
   __index: string;
   __queryID: string;
