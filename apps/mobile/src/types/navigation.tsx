@@ -10,6 +10,7 @@ export type RootStackParamList = {
   Root: undefined;
   OnboardingNavigator: undefined;
   LanguageChoiceNavigator: undefined;
+  SearchScreen: undefined;
 };
 
 export type BottomTabParamList = {
