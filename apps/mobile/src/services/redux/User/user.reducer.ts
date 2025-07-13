@@ -20,7 +20,7 @@ export interface UserState {
   initialUrl: string | null;
   redirectDispositif: {
     contentId: string;
-    needId: string;
+    needId?: string;
     theme: GetThemeResponse;
   } | null;
 }

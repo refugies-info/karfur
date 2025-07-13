@@ -59,7 +59,7 @@ export const setInitialUrlActionCreator = (value: string | null) => action(SET_I
 
 export const setRedirectDispositifActionCreator = (
   value: {
-    needId: string | undefined;
+    needId?: string;
     contentId: string;
     theme: GetThemeResponse;
   } | null,
