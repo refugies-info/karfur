@@ -16,7 +16,7 @@ import { Spacer } from "../layout";
 import { ReadableText } from "../ReadableText";
 import { SectionTitle } from "../typography";
 
-type NavigationProp = CompositeNavigationProp<
+export type NavigationProp = CompositeNavigationProp<
   StackNavigationProp<RootStackParamList>,
   StackNavigationProp<ExplorerParamList>
 >;
