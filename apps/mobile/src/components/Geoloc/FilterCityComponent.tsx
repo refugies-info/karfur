@@ -88,7 +88,7 @@ export const FilterCityComponent = ({
       if (results && results.data && results.data.predictions) {
         setSuggestions(results.data.predictions);
       }
-    } catch (error: any) {
+    } catch (_: unknown) {
       setError(defaultError);
       resetData();
       setIsGeolocLoading(false);
@@ -122,7 +122,7 @@ export const FilterCityComponent = ({
     try {
       setEnteredText("");
       await setCityAndGetDepartment(suggestion.structured_formatting.main_text, suggestion.place_id);
-    } catch (error: any) {
+    } catch (_: unknown) {
       setError(defaultError);
       resetData();
       setIsGeolocLoading(false);

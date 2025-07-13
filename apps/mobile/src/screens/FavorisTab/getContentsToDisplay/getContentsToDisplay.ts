@@ -1,5 +1,4 @@
-import { ContentForApp, Languages } from "@refugies-info/api-types";
-import { ObjectId } from "~/types/interface";
+import { ContentForApp, GetDispositifResponse, Languages } from "@refugies-info/api-types";
 import { getContentById } from "~/utils/API";
 
 /**
@@ -10,7 +9,7 @@ import { getContentById } from "~/utils/API";
  * // TODO test
  */
 const getContentsToDisplay = async (
-  contentsId: ObjectId[],
+  contentsId: string[],
   contents: ContentForApp[],
   currentLanguageI18nCode: Languages | null,
 ) => {
@@ -23,9 +22,10 @@ const getContentsToDisplay = async (
     } else {
       // fetch result
       await getContentById({
-        contentId: contentId,
+        contentId: String(contentId),
         locale: currentLanguageI18nCode || "fr",
-      }).then((response: any) => {
+      }).then((response: GetDispositifResponse) => {
+        // @ts-expect-error response.data.data is not typed
         const data = response?.data?.data;
         if (data) {
           result.push({

@@ -12,7 +12,7 @@ import { RTLView } from "../BasicComponents";
 import { Icon } from "../iconography";
 import { Card, Columns, Rows, RowsSpacing, Spacer } from "../layout";
 import { Link } from "../Profil/Typography";
-import { ReadableText } from "../ReadableText";
+import { ReadableText, ReadableTextRef } from "../ReadableText";
 import { TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
 import { Callout } from "../typography";
 
@@ -33,7 +33,7 @@ const sanitizeForReading = (htmlContent: string) => {
   });
 };
 
-export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
+export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, ref) => {
   const theme = useTheme();
   const { t, isRTL } = useTranslationWithRTL();
 
@@ -45,7 +45,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const handleOpenUrl = (url: string) => {
     if (!url.includes("refugies.info")) Linking.openURL(url);
     const screen = getScreenFromUrl(url);
-    //@ts-ignore
+    //@ts-expect-error navigation.navigate is not typed
     if (screen) navigation.navigate(screen.rootNavigator, screen.screenParams);
   };
 

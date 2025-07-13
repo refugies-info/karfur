@@ -206,42 +206,48 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           width={102}
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
                 "textAlign": "left",
               },
-              {
-                "color": "#0421B1",
-                "textAlign": "center",
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+                {
+                  "color": "#0421B1",
+                  "textAlign": "center",
+                },
+              ],
             ]
           }
         >
           explorer_screen.nb_content
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
                 "textAlign": "left",
               },
-              {
-                "color": "#0421B1",
-                "textAlign": "center",
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+                {
+                  "color": "#0421B1",
+                  "textAlign": "center",
+                },
+              ],
             ]
           }
         >
@@ -398,43 +404,49 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           width={114}
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
                 "textAlign": "left",
               },
-              {
-                "color": "#0421B1",
-                "textAlign": "center",
-                "textDecorationLine": "underline",
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+                {
+                  "color": "#0421B1",
+                  "textAlign": "center",
+                  "textDecorationLine": "underline",
+                },
+              ],
             ]
           }
         >
           explorer_screen.nb_content
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
                 "textAlign": "left",
               },
-              {
-                "color": "#0421B1",
-                "textAlign": "center",
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+                {
+                  "color": "#0421B1",
+                  "textAlign": "center",
+                },
+              ],
             ]
           }
         >
@@ -450,40 +462,46 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
       }
     >
       <Text
-        isRTL={false}
         selectable={true}
         style={
           [
             {
-              "color": "#212121",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
               "textAlign": "left",
             },
-            {
-              "textAlign": "center",
-            },
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+              },
+              {
+                "textAlign": "center",
+              },
+            ],
           ]
         }
       >
         explorer_screen.development_in_progress
       </Text>
       <Text
-        isRTL={false}
         selectable={true}
         style={
           [
             {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
               "textAlign": "left",
             },
-            {
-              "marginVertical": 16,
-            },
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+              },
+              {
+                "marginVertical": 16,
+              },
+            ],
           ]
         }
       >
@@ -618,17 +636,20 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         >
           <Text
             accessibilityRole="link"
-            isRTL={false}
             onPress={[Function]}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
             }
           >
             www.refugies.info

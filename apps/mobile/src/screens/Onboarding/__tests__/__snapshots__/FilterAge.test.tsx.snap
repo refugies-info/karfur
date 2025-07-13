@@ -251,17 +251,20 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -272,17 +275,20 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 <View />
               </Text>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3A3A3A",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginBottom": 48,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3A3A3A",
+                      "fontFamily": "Marianne-Regular",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "marginBottom": 48,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -379,19 +385,22 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={true}
                             selectable={true}
                             style={
-                              {
-                                "color": "#000091",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#000091",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_10_17
@@ -608,19 +617,22 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_18_25
@@ -828,19 +840,22 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_26_100
@@ -1441,16 +1456,19 @@ exports[`Filter age should render correctly when age selected 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               x1
@@ -2385,17 +2403,20 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -2406,17 +2427,20 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 <View />
               </Text>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3A3A3A",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginBottom": 48,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3A3A3A",
+                      "fontFamily": "Marianne-Regular",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "marginBottom": 48,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -2521,19 +2545,22 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_10_17
@@ -2741,19 +2768,22 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_18_25
@@ -2961,19 +2991,22 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_26_100
@@ -3574,16 +3607,19 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               x1
@@ -4518,17 +4554,20 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -4539,17 +4578,20 @@ exports[`Filter age should select age when click on it 1`] = `
                 <View />
               </Text>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3A3A3A",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginBottom": 48,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3A3A3A",
+                      "fontFamily": "Marianne-Regular",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "marginBottom": 48,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -4654,19 +4696,22 @@ exports[`Filter age should select age when click on it 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_10_17
@@ -4874,19 +4919,22 @@ exports[`Filter age should select age when click on it 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={false}
                             selectable={true}
                             style={
-                              {
-                                "color": "#161616",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#161616",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_18_25
@@ -5086,19 +5134,22 @@ exports[`Filter age should select age when click on it 1`] = `
                           }
                         >
                           <Text
-                            isRTL={false}
                             isSelected={true}
                             selectable={true}
                             style={
-                              {
-                                "color": "#000091",
-                                "fontFamily": "Marianne-Medium",
-                                "fontSize": 16,
-                                "lineHeight": 24,
-                                "paddingVertical": 4,
-                                "textAlign": "left",
-                                "verticalAlign": "middle",
-                              }
+                              [
+                                {
+                                  "textAlign": "left",
+                                },
+                                {
+                                  "color": "#000091",
+                                  "fontFamily": "Marianne-Medium",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                  "paddingVertical": 4,
+                                  "verticalAlign": "middle",
+                                },
+                              ]
                             }
                           >
                             age_26_100
@@ -5708,16 +5759,19 @@ exports[`Filter age should select age when click on it 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               x1

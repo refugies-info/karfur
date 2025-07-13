@@ -1,14 +1,14 @@
-import { Languages } from "@refugies-info/api-types";
-import i18next from "i18next";
+import i18next, { Callback, TFunction } from "i18next";
 import * as config from "~/config/i18n";
 import translationLoader from "./translation-loader";
 
 const i18n = {
+  ...i18next,
   /**
    * @returns {Promise}
    */
   init: () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<TFunction>((resolve, reject) => {
       i18next.use(translationLoader).init(
         {
           fallbackLng: config.fallback,
@@ -21,52 +21,26 @@ const i18n = {
           if (error) {
             return reject(error);
           }
-          resolve(true);
+          resolve(i18next.t);
         },
       );
     });
   },
-  use: (elem: any) => i18next.use(elem),
-  /**
-   * @param {string} key
-   * @param {Object} options
-   * @returns {string}
-   */
-  t: (key: string, options: any) => i18next.t(key, options),
-  /**
-   * @returns {string}
-   */
   get locale() {
     return i18next.language;
   },
-  /**
-   * @returns {'LTR' | 'RTL'}
-   */
-  get dir(): string {
-    return i18next.dir().toUpperCase();
+  dir(lng?: string) {
+    return i18next.dir(lng).toUpperCase();
   },
-  /**
-   * @returns {boolean}
-   */
   isRTL: (): boolean => {
     return i18next.language ? i18next.dir().toUpperCase() === "RTL" : false;
   },
-  /**
-   * Similar to React Native's Platform.select(),
-   * i18n.select() takes a map with two keys, 'rtl'
-   * and 'ltr'. It then returns the value referenced
-   * by either of the keys, given the current
-   * locale's direction.
-   *
-   * @param {Object<string,mixed>} map
-   * @returns {mixed}
-   */
-  select(map: Record<string, any>) {
+  select(map: Record<string, unknown>) {
     const key = this.isRTL() ? "rtl" : "ltr";
     return map[key];
   },
-
-  changeLanguage: (ln: Languages) => i18next.changeLanguage(ln.toString()),
+  changeLanguage: (lng?: string, callback?: Callback) => i18next.changeLanguage(lng, callback),
 };
+
 export const t = i18n.t;
 export default i18n;

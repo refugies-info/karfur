@@ -1,4 +1,3 @@
-import { StackScreenProps } from "@react-navigation/stack";
 import * as React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
@@ -16,7 +15,6 @@ import Mission3 from "~/theme/images/aboutUs/mission-3.png";
 import Problematique1 from "~/theme/images/aboutUs/problematique-1.png";
 import Problematique2 from "~/theme/images/aboutUs/problematique-2.png";
 import Problematique3 from "~/theme/images/aboutUs/problematique-3.png";
-import { ProfileParamList } from "~/types/navigation";
 
 const CARD_WIDTH = 280;
 
@@ -47,7 +45,7 @@ const stylesheet = StyleSheet.create({
   },
 });
 
-export const AboutScreen = ({}: StackScreenProps<ProfileParamList, "AboutScreen">) => {
+export const AboutScreen = () => {
   const { t, isRTL } = useTranslationWithRTL();
 
   const scrollviewMissions = React.useRef<ScrollView>(null);

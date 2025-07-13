@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSearchBox } from "react-instantsearch-core";
-import { TextInput, TouchableOpacity } from "react-native";
+import { TextInput, TextInputProps, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -21,12 +21,19 @@ const InputContainer = styled(RTLView)`
   border: 1px solid ${styles.colors.darkGrey};
   flex: 1;
 `;
-const StyledInput = styled.TextInput<{ isRTL: boolean }>`
+interface StyledInputProps extends TextInputProps {
+  isRTL: boolean;
+}
+
+const StyledInput = styled(TextInput).attrs<StyledInputProps>(({ isRTL }) => ({
+  textAlign: isRTL ? "right" : "left",
+  style: {
+    marginLeft: isRTL ? 0 : styles.margin,
+    marginRight: isRTL ? styles.margin : 0,
+  },
+}))`
   height: 100%;
   width: 100%;
-  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
-  margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
-  text-align: ${({ isRTL }) => (isRTL ? "right" : "left")};
   flex: 1;
 `;
 
@@ -37,7 +44,7 @@ interface Props {
 }
 
 const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, backCallback }) => {
-  const input = React.useRef<TextInput>();
+  const input = React.useRef<TextInput>(null);
   const { t, isRTL } = useTranslationWithRTL();
   const { query, refine } = useSearchBox();
 
@@ -75,7 +82,6 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
       <InputContainer>
         <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
         <StyledInput
-          // @ts-ignore
           ref={input}
           onChangeText={setQuery}
           value={searchInputValue}

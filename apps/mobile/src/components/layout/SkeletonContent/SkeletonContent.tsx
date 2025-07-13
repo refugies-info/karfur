@@ -3,7 +3,6 @@
  * maintained anymore, to use react-native-reanimated 3.3.0
  */
 import { LinearGradient } from "expo-linear-gradient";
-import * as React from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import Animated, {
   Extrapolation,
@@ -14,6 +13,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   DEFAULT_BONE_COLOR,
   DEFAULT_BORDER_RADIUS,
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
 const GRADIENT_START = { x: 0, y: 0 };
 const GRADIENT_END = { x: 1, y: 0 };
 
-const useLayout = () => {
-  const [size, setSize] = React.useState<any>({ width: 0, height: 0 });
+const useLayout = (): [{ width: number; height: number }, (event: LayoutChangeEvent) => void] => {
+  const [size, setSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
-  const onLayout = React.useCallback((event: LayoutChangeEvent) => {
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
     setSize({ width, height });
   }, []);
@@ -68,14 +68,14 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   const animationValue = useSharedValue(0);
   const [componentSize, onLayout] = useLayout();
 
-  React.useEffect(() => {
+  useEffect(() => {
     animationValue.value = withRepeat(withTiming(1, { duration: duration / 2, easing }), -1, true);
   }, []);
 
   const getBoneWidth = (boneLayout: ICustomViewStyle): number =>
-    (typeof boneLayout.width === "string" ? componentSize.width : boneLayout.width) || 0;
+    (typeof boneLayout.width === "string" ? componentSize.width : Number(boneLayout.width)) || 0;
   const getBoneHeight = (boneLayout: ICustomViewStyle): number =>
-    (typeof boneLayout.height === "string" ? componentSize.height : boneLayout.height) || 0;
+    (typeof boneLayout.height === "string" ? componentSize.height : Number(boneLayout.height)) || 0;
 
   const getBoneContainer = (layoutStyle: ICustomViewStyle, childrenBones: React.ReactNode[], key: number | string) => (
     <View key={layoutStyle.key || key} style={layoutStyle}>
@@ -98,7 +98,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       };
     });
 
-    const gradient = React.useMemo(
+    const gradient = useMemo(
       () => (
         <LinearGradient
           colors={[boneColor!, highlightColor!, boneColor!]}
@@ -129,7 +129,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
 
   const getBones = (
     bonesLayout: ICustomViewStyle[] | undefined,
-    childrenItems: any,
+    childrenItems: React.ReactNode | undefined,
     prefix: string | number = "",
   ): React.ReactNode[] => {
     if (bonesLayout && bonesLayout.length > 0) {
@@ -139,16 +139,18 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
         if (bonesLayout[i].children && bonesLayout[i].children!.length > 0) {
           const containerPrefix = bonesLayout[i].key || `bone_container_${i}`;
           const { children: childBones, ...layoutStyle } = bonesLayout[i];
-          return getBoneContainer(layoutStyle, getBones(childBones, [], containerPrefix), containerPrefix);
+          return getBoneContainer(layoutStyle, getBones(childBones, undefined, containerPrefix), containerPrefix);
         }
         return getShiverBone(bonesLayout[i], prefix ? `${prefix}_${i}` : i);
       });
       // no layout, matching children's layout
     }
-    return React.Children.map(childrenItems, (child, i) => {
-      const styling = child.props.style || {};
-      return getShiverBone(styling, i);
-    });
+    return React.Children.toArray(childrenItems)
+      .filter((child) => child !== null && typeof child === "object" && "props" in child)
+      .map((child, i) => {
+        const styling = child && typeof child === "object" && "props" in child ? child.props.style : {};
+        return getShiverBone(styling, i);
+      });
   };
 
   return (

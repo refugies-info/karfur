@@ -1,14 +1,15 @@
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CompositeScreenProps, getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { CardStyleInterpolators, createStackNavigator, StackScreenProps } from "@react-navigation/stack";
 import React from "react";
 import { SearchResultsScreen } from "~/screens/SearchTab/SearchResultsScreen";
 import { SearchScreen } from "~/screens/SearchTab/SearchScreen";
-import { SearchParamList } from "~/types/navigation";
+import { BottomTabParamList, SearchParamList } from "~/types/navigation";
 
-interface Props {
-  navigation?: any;
-  route?: any;
-}
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<BottomTabParamList, "Search">,
+  StackScreenProps<SearchParamList>
+>;
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab

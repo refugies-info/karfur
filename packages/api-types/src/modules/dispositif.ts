@@ -75,6 +75,7 @@ export interface ContentForApp {
   _id: string;
   titreInformatif: string;
   titreMarque: string;
+  abstract: string;
   theme: Id;
   secondaryThemes: Id[];
   needs: Id[];

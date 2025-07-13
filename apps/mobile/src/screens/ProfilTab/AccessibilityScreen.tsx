@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack";
+/* eslint-disable no-irregular-whitespace */
 import * as Linking from "expo-linking";
 import { Image, Platform, View } from "react-native";
 import styled, { useTheme } from "styled-components/native";
@@ -15,7 +15,6 @@ import { styles } from "~/theme";
 import AndroidIllu from "~/theme/images/accessibility/accessibility-android.png";
 import IosIllu from "~/theme/images/accessibility/accessibility-ios.png";
 import NotApplicable from "~/theme/images/accessibility/not-applicable.svg";
-import { ProfileParamList } from "~/types/navigation";
 
 const Dots = () => (
   <View
@@ -59,7 +58,7 @@ const Card = styled.View`
   margin-bottom: 0;
 `;
 
-export const AccessibilityScreen = ({}: StackScreenProps<ProfileParamList, "AccessibilityScreen">) => {
+export const AccessibilityScreen = () => {
   const { isRTL } = useTranslationWithRTL();
   const theme = useTheme();
   const isIOS = Platform.OS === "ios";

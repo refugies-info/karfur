@@ -28,6 +28,7 @@ const present =
       _id: dispositif._id.toString(),
       titreInformatif: translation.content.titreInformatif,
       titreMarque: translation.content.titreMarque,
+      abstract: translation.content.abstract,
       theme: dispositif.theme,
       secondaryThemes: dispositif.secondaryThemes,
       needs: dispositif.needs,

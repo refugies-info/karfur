@@ -80,8 +80,8 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
         }
       }
       throw new Error("ERREUR");
-    } catch (error: any) {
-      if (error.message === "ERREUR_NOT_GRANTED") {
+    } catch (error: unknown) {
+      if (error instanceof Error && error.message === "ERREUR_NOT_GRANTED") {
         setError(
           t(
             "onboarding_screens.error_geoloc_acces",

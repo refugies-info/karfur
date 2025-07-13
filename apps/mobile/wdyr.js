@@ -1,12 +1,14 @@
 /// <reference types="@welldone-software/why-did-you-render" />
 import React from "react";
 
-if (process.env.NODE_ENV === "development") {
-  const whyDidYouRender = require("@welldone-software/why-did-you-render");
-  whyDidYouRender(React, {
-    trackAllPureComponents: true,
-    trackHooks: true,
-    include: [/^ContentScreen/],
-    exclude: [/^ExpoLinearGradient/],
+// This will be true in development mode for both React Native and web
+if (__DEV__) {
+  import("@welldone-software/why-did-you-render").then(({ default: whyDidYouRender }) => {
+    whyDidYouRender(React, {
+      trackAllPureComponents: true,
+      trackHooks: true,
+      include: [/^ContentScreen/],
+      exclude: [/^ExpoLinearGradient/],
+    });
   });
 }

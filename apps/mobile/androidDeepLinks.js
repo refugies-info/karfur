@@ -12,34 +12,41 @@ const deepLinks = [
   {
     scheme: "https",
     host: "refugies.info",
-    path: ""
+    path: "",
   },
   {
     scheme: "https",
     host: "refugies.info",
-    path: "/"
+    path: "/",
   },
-  ...urlTranslations.map(url => ( // https://refugies.info/dispositif/
-    {
+  ...urlTranslations.map(
+    (
+      url, // https://refugies.info/dispositif/
+    ) => ({
       scheme: "https",
       host: "refugies.info",
-      pathPattern: url[0]
-    }
-  )),
-  ...urlTranslations.map(url => ( // https://refugies.info/fr/dispositif/
-    {
+      pathPattern: url[0],
+    }),
+  ),
+  ...urlTranslations.map(
+    (
+      url, // https://refugies.info/fr/dispositif/
+    ) => ({
       scheme: "https",
       host: "refugies.info",
-      pathPattern: "/.*" + url[0]
-    }
-  )),
-  ...urlTranslations.map(url => ( // https://refugies.info/en/program/
-    {
+      pathPattern: "/.*" + url[0],
+    }),
+  ),
+  ...urlTranslations.map(
+    (
+      url, // https://refugies.info/en/program/
+    ) => ({
       scheme: "https",
       host: "refugies.info",
-      pathPattern: "/.*" + url[1]
-    }
-  ))
-]
+      pathPattern: "/.*" + url[1],
+    }),
+  ),
+];
 
+// eslint-disable-next-line no-undef
 module.exports = deepLinks;

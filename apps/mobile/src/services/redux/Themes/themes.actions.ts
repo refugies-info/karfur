@@ -6,6 +6,7 @@ export const setThemesActionCreator = (value: GetThemeResponse[]) => action(SET_
 
 export const fetchThemesActionCreator = () => action(FETCH_THEMES);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   setThemesActionCreator,
   fetchThemesActionCreator,

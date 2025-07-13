@@ -421,17 +421,20 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 24,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -452,20 +455,23 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Regular",
-                      "fontSize": 18,
-                      "lineHeight": 28,
                       "textAlign": "left",
                     },
-                    {
-                      "marginBottom": 24,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Regular",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                      },
+                      {
+                        "marginBottom": 24,
+                      },
+                    ],
                   ]
                 }
               >
@@ -655,17 +661,20 @@ exports[`ContentScreen should render correctly 1`] = `
                 <Text
                   accessibilityRole="header"
                   color="#3D2884"
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#3D2884",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#3D2884",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -698,21 +707,24 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={{}}
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -743,21 +755,24 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -788,21 +803,24 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -833,21 +851,24 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -895,17 +916,20 @@ exports[`ContentScreen should render correctly 1`] = `
               <Text
                 accessibilityRole="header"
                 color="#3D2884"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3D2884",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3D2884",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 24,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -958,17 +982,20 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         color="#3D2884"
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#3D2884",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 12,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#3D2884",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 12,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -1555,16 +1582,19 @@ exports[`ContentScreen should render correctly 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Bold",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Bold",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -1575,17 +1605,20 @@ exports[`ContentScreen should render correctly 1`] = `
                                   <View />
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -1859,16 +1892,19 @@ exports[`ContentScreen should render correctly 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Bold",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Bold",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -1879,17 +1915,20 @@ exports[`ContentScreen should render correctly 1`] = `
                                   <View />
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -2484,16 +2523,19 @@ exports[`ContentScreen should render correctly 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Bold",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Bold",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -2504,17 +2546,20 @@ exports[`ContentScreen should render correctly 1`] = `
                                   <View />
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -2561,17 +2606,20 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         color="#3D2884"
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#3D2884",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 12,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#3D2884",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 12,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -2729,17 +2777,20 @@ exports[`ContentScreen should render correctly 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -2785,17 +2836,20 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         color="#3D2884"
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#3D2884",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 12,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#3D2884",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 12,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -2869,17 +2923,20 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                             >
                               <Text
-                                isRTL={false}
                                 selectable={true}
                                 style={
-                                  {
-                                    "color": "#212121",
-                                    "fontFamily": "Marianne-Regular",
-                                    "fontSize": 16,
-                                    "lineHeight": 24,
-                                    "marginTop": 4,
-                                    "textAlign": "left",
-                                  }
+                                  [
+                                    {
+                                      "textAlign": "left",
+                                    },
+                                    {
+                                      "color": "#212121",
+                                      "fontFamily": "Marianne-Regular",
+                                      "fontSize": 16,
+                                      "lineHeight": 24,
+                                      "marginTop": 4,
+                                    },
+                                  ]
                                 }
                               >
                                 <Text
@@ -2917,17 +2974,20 @@ exports[`ContentScreen should render correctly 1`] = `
                 <Text
                   accessibilityRole="header"
                   color="#3D2884"
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#3D2884",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#3D2884",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -3245,21 +3305,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -3290,21 +3353,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -3648,21 +3714,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -3693,21 +3762,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -4051,21 +4123,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -4108,21 +4183,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -4181,17 +4259,20 @@ exports[`ContentScreen should render correctly 1`] = `
                 <Text
                   accessibilityRole="header"
                   color="#3D2884"
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#3D2884",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#3D2884",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -4509,21 +4590,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -4554,21 +4638,24 @@ exports[`ContentScreen should render correctly 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -4629,18 +4716,21 @@ exports[`ContentScreen should render correctly 1`] = `
               <Text
                 accessibilityRole="header"
                 color="#3D2884"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3D2884",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "marginTop": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3D2884",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                      "marginTop": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -4855,18 +4945,21 @@ exports[`ContentScreen should render correctly 1`] = `
                         </View>
                       </View>
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "marginLeft": 8,
-                            "marginRight": 0,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                              "marginLeft": 8,
+                              "marginRight": 0,
+                            },
+                          ]
                         }
                       >
                         content_screen.see_map_button
@@ -5113,7 +5206,6 @@ exports[`ContentScreen should render correctly 1`] = `
                           vbHeight={240}
                           vbWidth={327}
                           width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <RNSVGGroup
                             fill={null}
@@ -6329,18 +6421,22 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "center",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 16,
+                              "marginTop": 16,
+                              "textAlign": "center",
+                            },
+                          ]
                         }
                       >
                         content_screen.feedbackTitle
@@ -6356,17 +6452,21 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "marginHorizontal": 16,
-                            "textAlign": "center",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                              "marginHorizontal": 16,
+                              "textAlign": "center",
+                            },
+                          ]
                         }
                       >
                         content_screen.feedbackSubtitle
@@ -6643,16 +6743,19 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -6757,19 +6860,22 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#FFFFFF",
-                          "flexShrink": 1,
-                          "fontFamily": "Marianne-Bold",
-                          "fontSize": 18,
-                          "lineHeight": 28,
-                          "marginLeft": 0,
-                          "marginRight": 8,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#FFFFFF",
+                            "flexShrink": 1,
+                            "fontFamily": "Marianne-Bold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
+                            "marginLeft": 0,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -6824,17 +6930,20 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               />
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "marginBottom": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -6916,16 +7025,19 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -7122,16 +7234,19 @@ exports[`ContentScreen should render correctly 1`] = `
                 width={8}
               />
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#0421B1",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 14,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#0421B1",
+                      "fontFamily": "Marianne-Regular",
+                      "fontSize": 14,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 content_screen.scrollToTop
@@ -7355,22 +7470,25 @@ exports[`ContentScreen should render correctly 1`] = `
         <Text
           hasIcon={true}
           iconFirst={true}
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginLeft": 8,
-                "marginRight": 0,
                 "textAlign": "left",
               },
-              {
-                "fontSize": 14,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+                {
+                  "fontSize": 14,
+                },
+              ],
             ]
           }
           textColor="#212121"
@@ -7654,16 +7772,19 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 x1
@@ -8340,22 +8461,25 @@ exports[`ContentScreen should render correctly 1`] = `
         <Text
           hasIcon={true}
           iconFirst={true}
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginLeft": 8,
-                "marginRight": 0,
                 "textAlign": "left",
               },
-              {
-                "fontSize": 14,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+                {
+                  "fontSize": 14,
+                },
+              ],
             ]
           }
           textColor="#212121"
@@ -8794,17 +8918,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 24,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -8825,20 +8952,23 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Regular",
-                      "fontSize": 18,
-                      "lineHeight": 28,
                       "textAlign": "left",
                     },
-                    {
-                      "marginBottom": 24,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Regular",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                      },
+                      {
+                        "marginBottom": 24,
+                      },
+                    ],
                   ]
                 }
               >
@@ -9028,17 +9158,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 <Text
                   accessibilityRole="header"
                   color="#3D2884"
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#3D2884",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#3D2884",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -9071,21 +9204,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={{}}
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -9116,21 +9252,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -9161,21 +9300,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -9206,21 +9348,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             [
                               {
-                                "color": "#212121",
-                                "fontFamily": "Marianne-Regular",
-                                "fontSize": 16,
-                                "lineHeight": 24,
                                 "textAlign": "left",
                               },
-                              {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                              },
+                              [
+                                {
+                                  "color": "#212121",
+                                  "fontFamily": "Marianne-Regular",
+                                  "fontSize": 16,
+                                  "lineHeight": 24,
+                                },
+                                {
+                                  "flexShrink": 1,
+                                  "marginBottom": 8,
+                                },
+                              ],
                             ]
                           }
                         >
@@ -9268,17 +9413,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
               <Text
                 accessibilityRole="header"
                 color="#3D2884"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3D2884",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3D2884",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 24,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -9331,17 +9479,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         color="#3D2884"
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#3D2884",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 12,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#3D2884",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 12,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -9928,16 +10079,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Bold",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Bold",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -9948,17 +10102,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   <View />
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -10232,16 +10389,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Bold",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Bold",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -10252,17 +10412,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   <View />
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -10857,16 +11020,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Bold",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Bold",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -10877,17 +11043,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   <View />
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -10934,17 +11103,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         color="#3D2884"
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#3D2884",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 12,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#3D2884",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 12,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -11102,17 +11274,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 }
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
-                                    {
-                                      "color": "#212121",
-                                      "fontFamily": "Marianne-Regular",
-                                      "fontSize": 16,
-                                      "lineHeight": 24,
-                                      "marginTop": 4,
-                                      "textAlign": "left",
-                                    }
+                                    [
+                                      {
+                                        "textAlign": "left",
+                                      },
+                                      {
+                                        "color": "#212121",
+                                        "fontFamily": "Marianne-Regular",
+                                        "fontSize": 16,
+                                        "lineHeight": 24,
+                                        "marginTop": 4,
+                                      },
+                                    ]
                                   }
                                 >
                                   <Text
@@ -11158,17 +11333,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         color="#3D2884"
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#3D2884",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 12,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#3D2884",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 12,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -11242,17 +11420,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                             >
                               <Text
-                                isRTL={false}
                                 selectable={true}
                                 style={
-                                  {
-                                    "color": "#212121",
-                                    "fontFamily": "Marianne-Regular",
-                                    "fontSize": 16,
-                                    "lineHeight": 24,
-                                    "marginTop": 4,
-                                    "textAlign": "left",
-                                  }
+                                  [
+                                    {
+                                      "textAlign": "left",
+                                    },
+                                    {
+                                      "color": "#212121",
+                                      "fontFamily": "Marianne-Regular",
+                                      "fontSize": 16,
+                                      "lineHeight": 24,
+                                      "marginTop": 4,
+                                    },
+                                  ]
                                 }
                               >
                                 <Text
@@ -11290,17 +11471,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 <Text
                   accessibilityRole="header"
                   color="#3D2884"
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#3D2884",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#3D2884",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -11618,21 +11802,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -11663,21 +11850,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -12021,21 +12211,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -12066,21 +12259,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -12424,21 +12620,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -12481,21 +12680,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -12554,17 +12756,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 <Text
                   accessibilityRole="header"
                   color="#3D2884"
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#3D2884",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#3D2884",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -12882,21 +13087,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 style={{}}
                               >
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -12927,21 +13135,24 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   </Text>
                                 </Text>
                                 <Text
-                                  isRTL={false}
                                   selectable={true}
                                   style={
                                     [
                                       {
-                                        "color": "#212121",
-                                        "fontFamily": "Marianne-Regular",
-                                        "fontSize": 16,
-                                        "lineHeight": 24,
                                         "textAlign": "left",
                                       },
-                                      {
-                                        "flexShrink": 1,
-                                        "marginBottom": 8,
-                                      },
+                                      [
+                                        {
+                                          "color": "#212121",
+                                          "fontFamily": "Marianne-Regular",
+                                          "fontSize": 16,
+                                          "lineHeight": 24,
+                                        },
+                                        {
+                                          "flexShrink": 1,
+                                          "marginBottom": 8,
+                                        },
+                                      ],
                                     ]
                                   }
                                 >
@@ -13002,18 +13213,21 @@ exports[`ContentScreen should toggle map modal 1`] = `
               <Text
                 accessibilityRole="header"
                 color="#3D2884"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#3D2884",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 24,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "marginTop": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#3D2884",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 24,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                      "marginTop": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -13228,18 +13442,21 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         </View>
                       </View>
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "marginLeft": 8,
-                            "marginRight": 0,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                              "marginLeft": 8,
+                              "marginRight": 0,
+                            },
+                          ]
                         }
                       >
                         content_screen.see_map_button
@@ -13993,7 +14210,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           vbHeight={240}
                           vbWidth={327}
                           width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <RNSVGGroup
                             fill={null}
@@ -15209,18 +15425,22 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Bold",
-                            "fontSize": 18,
-                            "lineHeight": 28,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "center",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Bold",
+                              "fontSize": 18,
+                              "lineHeight": 28,
+                              "marginBottom": 16,
+                              "marginTop": 16,
+                              "textAlign": "center",
+                            },
+                          ]
                         }
                       >
                         content_screen.feedbackTitle
@@ -15236,17 +15456,21 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "marginHorizontal": 16,
-                            "textAlign": "center",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                              "marginHorizontal": 16,
+                              "textAlign": "center",
+                            },
+                          ]
                         }
                       >
                         content_screen.feedbackSubtitle
@@ -15523,16 +15747,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -15637,19 +15864,22 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#FFFFFF",
-                          "flexShrink": 1,
-                          "fontFamily": "Marianne-Bold",
-                          "fontSize": 18,
-                          "lineHeight": 28,
-                          "marginLeft": 0,
-                          "marginRight": 8,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#FFFFFF",
+                            "flexShrink": 1,
+                            "fontFamily": "Marianne-Bold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
+                            "marginLeft": 0,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -15704,17 +15934,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               />
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "marginBottom": 16,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -15796,16 +16029,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                            },
+                          ]
                         }
                       >
                         <Text
@@ -16002,16 +16238,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 width={8}
               />
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#0421B1",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 14,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#0421B1",
+                      "fontFamily": "Marianne-Regular",
+                      "fontSize": 14,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 content_screen.scrollToTop
@@ -16235,22 +16474,25 @@ exports[`ContentScreen should toggle map modal 1`] = `
         <Text
           hasIcon={true}
           iconFirst={true}
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginLeft": 8,
-                "marginRight": 0,
                 "textAlign": "left",
               },
-              {
-                "fontSize": 14,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+                {
+                  "fontSize": 14,
+                },
+              ],
             ]
           }
           textColor="#212121"
@@ -16534,16 +16776,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 x1
@@ -17220,22 +17465,25 @@ exports[`ContentScreen should toggle map modal 1`] = `
         <Text
           hasIcon={true}
           iconFirst={true}
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginLeft": 8,
-                "marginRight": 0,
                 "textAlign": "left",
               },
-              {
-                "fontSize": 14,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+                {
+                  "fontSize": 14,
+                },
+              ],
             ]
           }
           textColor="#212121"

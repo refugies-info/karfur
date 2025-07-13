@@ -1,4 +1,5 @@
 import { conditionType, Metadatas } from "@refugies-info/api-types";
+import { TFunction } from "i18next";
 import { Image } from "react-native";
 import ImgCb from "~/theme/images/infocards/conditions/conditions-cb.svg";
 import ImgDriver from "~/theme/images/infocards/conditions/conditions-driver.svg";
@@ -37,7 +38,7 @@ export const getConditionImage = (condition: conditionType) => {
   }
 };
 
-const getAge = (data: Metadatas["age"], t: any) => {
+const getAge = (data: Metadatas["age"], t: TFunction) => {
   if (data === null) t("content_screen.irrelevant");
   if (!data) return t("content_screen.all_ages");
   if (data.type === "moreThan") {
@@ -70,7 +71,7 @@ const getAge = (data: Metadatas["age"], t: any) => {
   }
 };
 
-const getLocation = (data: Metadatas["location"], t: any) => {
+const getLocation = (data: Metadatas["location"], t: TFunction) => {
   if (!data) return "";
   if (data === "online") {
     return t("content_screen.online", "En ligne");
@@ -87,7 +88,7 @@ const getLocation = (data: Metadatas["location"], t: any) => {
     .join("\n");
 };
 
-const getCommitment = (commitment: Metadatas["commitment"] | null | undefined, t: any) => {
+const getCommitment = (commitment: Metadatas["commitment"] | null | undefined, t: TFunction) => {
   if (!commitment) return commitment;
   if (commitment.amountDetails === "between" && commitment.hours.length >= 2) {
     return capitalizeFirstLetter(
@@ -106,7 +107,7 @@ const getCommitment = (commitment: Metadatas["commitment"] | null | undefined, t
   //   `Infocards.${commitment.timeUnit}`
   // )}`;
 };
-const getFrequency = (frequency: Metadatas["frequency"] | null | undefined, t: any) => {
+const getFrequency = (frequency: Metadatas["frequency"] | null | undefined, t: TFunction) => {
   if (!frequency) return frequency;
   return capitalizeFirstLetter(
     `${t(`Infocards.${frequency.amountDetails}`)} ${frequency.hours} ${t(
@@ -114,12 +115,12 @@ const getFrequency = (frequency: Metadatas["frequency"] | null | undefined, t: a
     )} ${t(`Infocards.${frequency.frequencyUnit}`)}`,
   );
 };
-const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined, t: any) => {
+const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined, t: TFunction) => {
   if (!timeSlots) return timeSlots;
   return timeSlots.map((slot) => t(`Infocards.${slot}`)).join(", ");
 };
 
-const getPrice = (price: Metadatas["price"] | null | undefined, t: any) => {
+const getPrice = (price: Metadatas["price"] | null | undefined, t: TFunction) => {
   if (!price) return "";
   if (price.values?.[0] === 0) return capitalizeFirstLetter(t("Infocards.free"));
   if (price.values.length === 0) return capitalizeFirstLetter(t("Infocards.freeAmount"));
@@ -134,7 +135,7 @@ const getPrice = (price: Metadatas["price"] | null | undefined, t: any) => {
   return `${price.values[0]}€ ${price.details ? t(`Infocards.${price.details}`) : ""}`;
 };
 
-export const getDescriptionNew = (metadatas: Metadatas, key: keyof Metadatas, t: any) => {
+export const getDescriptionNew = (metadatas: Metadatas, key: keyof Metadatas, t: TFunction) => {
   switch (key) {
     case "publicStatus":
       if (!metadatas.publicStatus || metadatas.publicStatus.length === 0) {
