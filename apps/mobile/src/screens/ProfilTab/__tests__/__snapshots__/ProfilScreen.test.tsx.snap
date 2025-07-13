@@ -392,21 +392,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 40,
                       "textAlign": "left",
                     },
-                    {
-                      "color": "#000091",
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 40,
+                      },
+                      {
+                        "color": "#000091",
+                      },
+                    ],
                   ]
                 }
               >
@@ -588,21 +591,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               <Text
                 isBold={true}
                 isEmpty={false}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Paris
@@ -908,21 +914,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               <Text
                 isBold={true}
                 isEmpty={false}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 age_10_17
@@ -1241,21 +1250,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               <Text
                 isBold={true}
                 isEmpty={false}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Je parle couramment
@@ -1413,21 +1425,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#000091",
-                      "fontFamily": "Marianne-Regular",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "paddingBottom": 12,
-                      "paddingLeft": 12,
-                      "paddingRight": 24,
-                      "paddingTop": 12,
-                      "textAlign": "left",
-                      "zIndex": 2,
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#000091",
+                        "fontFamily": "Marianne-Regular",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "paddingBottom": 12,
+                        "paddingLeft": 12,
+                        "paddingRight": 24,
+                        "paddingTop": 12,
+                        "zIndex": 2,
+                      },
+                    ]
                   }
                 />
                 <View
@@ -1558,17 +1573,20 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           >
             <Text
               accessibilityRole="header"
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 18,
-                  "lineHeight": 28,
-                  "paddingVertical": 16,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "paddingVertical": 16,
+                  },
+                ]
               }
             >
               Paramètres
@@ -1633,21 +1651,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Français
@@ -1927,21 +1948,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Notifications
@@ -2231,21 +2255,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               <Text
                 isBold={false}
                 isEmpty={false}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={true}
                 selectable={true}
                 style={
-                  {
-                    "color": "#6A6AF4",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#6A6AF4",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Partager l'application
@@ -2390,17 +2417,20 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           >
             <Text
               accessibilityRole="header"
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 18,
-                  "lineHeight": 28,
-                  "paddingVertical": 16,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "paddingVertical": 16,
+                  },
+                ]
               }
             >
               Informations sur l'application
@@ -2586,21 +2616,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Qui sommes-nous ?
@@ -2890,21 +2923,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Politique de confidentialité
@@ -3203,21 +3239,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Mentions légales
@@ -3516,21 +3555,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Déclaration d'accessibilité
@@ -3820,21 +3862,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Publier une fiche
@@ -4124,21 +4169,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Aider à traduire
@@ -4409,20 +4457,23 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             <Text
               hasIcon={true}
               iconFirst={true}
-              isRTL={false}
               selectable={true}
               style={
                 [
                   {
-                    "color": "#CE0500",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "marginRight": 0,
                     "textAlign": "left",
                   },
-                  {},
+                  [
+                    {
+                      "color": "#CE0500",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                    {},
+                  ],
                 ]
               }
               textColor="#CE0500"
@@ -4444,21 +4495,24 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
           />
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 12,
-                  "lineHeight": 20,
                   "textAlign": "left",
                 },
-                {
-                  "color": "#5E5E5E",
-                  "textAlign": "center",
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "color": "#5E5E5E",
+                    "textAlign": "center",
+                  },
+                ],
               ]
             }
           >
@@ -4871,21 +4925,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 24,
-                      "lineHeight": 32,
-                      "marginBottom": 40,
                       "textAlign": "left",
                     },
-                    {
-                      "color": "#000091",
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 24,
+                        "lineHeight": 32,
+                        "marginBottom": 40,
+                      },
+                      {
+                        "color": "#000091",
+                      },
+                    ],
                   ]
                 }
               >
@@ -5067,21 +5124,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               <Text
                 isBold={false}
                 isEmpty={true}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#929292",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#929292",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Ville
@@ -5378,21 +5438,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               <Text
                 isBold={false}
                 isEmpty={true}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#929292",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#929292",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 age
@@ -5702,21 +5765,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               <Text
                 isBold={false}
                 isEmpty={true}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#929292",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#929292",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Français
@@ -5865,21 +5931,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#000091",
-                      "fontFamily": "Marianne-Regular",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "paddingBottom": 12,
-                      "paddingLeft": 12,
-                      "paddingRight": 24,
-                      "paddingTop": 12,
-                      "textAlign": "left",
-                      "zIndex": 2,
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#000091",
+                        "fontFamily": "Marianne-Regular",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "paddingBottom": 12,
+                        "paddingLeft": 12,
+                        "paddingRight": 24,
+                        "paddingTop": 12,
+                        "zIndex": 2,
+                      },
+                    ]
                   }
                 />
                 <View
@@ -6010,17 +6079,20 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           >
             <Text
               accessibilityRole="header"
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 18,
-                  "lineHeight": 28,
-                  "paddingVertical": 16,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "paddingVertical": 16,
+                  },
+                ]
               }
             >
               Paramètres
@@ -6085,21 +6157,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Français
@@ -6379,21 +6454,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Notifications
@@ -6683,21 +6761,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               <Text
                 isBold={false}
                 isEmpty={false}
-                isRTL={false}
                 numberOfLines={1}
                 purpleVariant={true}
                 selectable={true}
                 style={
-                  {
-                    "color": "#6A6AF4",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#6A6AF4",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Partager l'application
@@ -6842,17 +6923,20 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           >
             <Text
               accessibilityRole="header"
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 18,
-                  "lineHeight": 28,
-                  "paddingVertical": 16,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "paddingVertical": 16,
+                  },
+                ]
               }
             >
               Informations sur l'application
@@ -7038,21 +7122,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Qui sommes-nous ?
@@ -7342,21 +7429,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Politique de confidentialité
@@ -7655,21 +7745,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Mentions légales
@@ -7968,21 +8061,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Déclaration d'accessibilité
@@ -8272,21 +8368,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Publier une fiche
@@ -8576,21 +8675,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 <Text
                   isBold={false}
                   isEmpty={false}
-                  isRTL={false}
                   numberOfLines={1}
                   purpleVariant={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#212121",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                    ]
                   }
                 >
                   Aider à traduire
@@ -8861,20 +8963,23 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             <Text
               hasIcon={true}
               iconFirst={true}
-              isRTL={false}
               selectable={true}
               style={
                 [
                   {
-                    "color": "#CE0500",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "marginRight": 0,
                     "textAlign": "left",
                   },
-                  {},
+                  [
+                    {
+                      "color": "#CE0500",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                    {},
+                  ],
                 ]
               }
               textColor="#CE0500"
@@ -8896,21 +9001,24 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
           />
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 12,
-                  "lineHeight": 20,
                   "textAlign": "left",
                 },
-                {
-                  "color": "#5E5E5E",
-                  "textAlign": "center",
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 12,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "color": "#5E5E5E",
+                    "textAlign": "center",
+                  },
+                ],
               ]
             }
           >

@@ -3,16 +3,19 @@
 exports[`Select snapshot test suite should render with label 1`] = `
 <View>
   <Text
-    isRTL={false}
     selectable={true}
     style={
-      {
-        "color": "#212121",
-        "fontFamily": "Marianne-Regular",
-        "fontSize": 16,
-        "lineHeight": 24,
-        "textAlign": "left",
-      }
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "#212121",
+          "fontFamily": "Marianne-Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+        },
+      ]
     }
   >
     Langue
@@ -213,16 +216,19 @@ exports[`Select snapshot test suite should render with label 1`] = `
 exports[`Select snapshot test suite should render without bug 1`] = `
 <View>
   <Text
-    isRTL={false}
     selectable={true}
     style={
-      {
-        "color": "#212121",
-        "fontFamily": "Marianne-Regular",
-        "fontSize": 16,
-        "lineHeight": 24,
-        "textAlign": "left",
-      }
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "#212121",
+          "fontFamily": "Marianne-Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+        },
+      ]
     }
   />
   <View
