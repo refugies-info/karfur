@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle } from "react-native";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -56,14 +56,14 @@ interface Props {
   iconFirst?: boolean;
   iconName?: string;
   iconSize?: number;
-  iconStyle?: any;
+  iconStyle?: StyleProp<ViewStyle>;
   isDisabled?: boolean;
   isSmall?: boolean;
   isTextNotBold?: boolean;
   notFullWidth?: boolean;
   onPress: () => void;
   readableOverridePosY?: number;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
   textColor: string;
   textStyle?: StyleProp<TextStyle>;
   withShadows?: boolean;
