@@ -33,7 +33,7 @@ const sanitizeForReading = (htmlContent: string) => {
   });
 };
 
-export const ContentFromHtml = React.forwardRef((props: Props, ref: React.LegacyRef<ReadableTextRef>) => {
+export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, ref) => {
   const theme = useTheme();
   const { t, isRTL } = useTranslationWithRTL();
 
