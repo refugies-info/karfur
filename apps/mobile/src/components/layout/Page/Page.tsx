@@ -36,7 +36,7 @@ const PageContainer = styled.View<{ backgroundColor: string }>`
   min-height: 100%;
 `;
 
-export interface PageProps extends Partial<HeaderProps> {
+export interface PageProps<T = unknown> extends Partial<HeaderProps> {
   backgroundColor?: string;
   voiceoverOffset?: number;
   children?: ReactNode;
@@ -48,7 +48,7 @@ export interface PageProps extends Partial<HeaderProps> {
   title?: string;
   contentContainerStyle?: ViewStyle;
   scrollview?: React.RefObject<ScrollView | FlatList>; // given by parent if we need to control scroll
-  flatList?: FlatListProps<unknown>;
+  flatList?: FlatListProps<T>;
 }
 
 //  padding-top: ${({ theme }) => theme.insets.top}px;
@@ -69,7 +69,7 @@ const ContentContainer = styled.View<{ backgroundColor: string }>`
   flex-grow: 1;
 `;
 
-const Page = ({
+const Page = <T,>({
   backgroundColor = "transparent",
   children,
   headerBackgroundColor = "white",
@@ -84,7 +84,7 @@ const Page = ({
   flatList,
   voiceoverOffset,
   ...headerProps
-}: PageProps) => {
+}: PageProps<T>) => {
   const theme = useTheme();
   const [initialHeaderSize, setInitialHeaderSize] = useStateOnce<number>();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation(
@@ -151,7 +151,7 @@ const Page = ({
 
   const isDarkBackground = useMemo(() => isDarkColor(headerBackgroundColor), [headerBackgroundColor]);
 
-  const scrollViewProps: ScrollViewProps | FlatListProps<unknown> = useMemo(
+  const scrollViewProps: ScrollViewProps | FlatListProps<T> = useMemo(
     () => ({
       alwaysBounceVertical: false,
       style: {

@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import useToggle from "react-use/lib/useToggle";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { ValidScreen } from "~/libs/backButton";
 import { getLocaleFromUrl } from "~/libs/getScreenFromUrl";
 import { LanguageChoiceModal } from "~/screens/Modals/LanguageChoiceModal";
 import { selectedContentSelector } from "~/services";
@@ -42,7 +43,7 @@ const LOGO_WIDTH = 58;
 const LOGO_HEIGHT = 40;
 
 export interface HeaderProps {
-  backScreen?: keyof RootStackParamList;
+  backScreen?: ValidScreen;
   darkBackground?: boolean;
   headerIconName?: string;
   headerTitle?: string;
@@ -73,7 +74,7 @@ export const Header = ({
   const onPress = useCallback(() => {
     if (backScreen) {
       navigation.popToTop();
-      navigation.navigate(backScreen);
+      navigation.navigate(backScreen as never);
     } else {
       navigation.goBack();
     }

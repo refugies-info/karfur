@@ -1,17 +1,10 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { BackHandler } from "react-native";
 import { BottomTabParamList, RootStackParamList } from "~/types/navigation";
 
-type NavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<BottomTabParamList>,
-  StackNavigationProp<RootStackParamList>
->;
+export type ValidScreen = keyof RootStackParamList | keyof BottomTabParamList;
 
-type ValidScreen = keyof RootStackParamList | keyof BottomTabParamList;
-
-export const registerBackButton = (backScreen: ValidScreen | undefined, navigation: NavigationProp) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const registerBackButton = (backScreen: ValidScreen | undefined, navigation: any) => {
   if (backScreen) {
     const backAction = () => {
       try {
