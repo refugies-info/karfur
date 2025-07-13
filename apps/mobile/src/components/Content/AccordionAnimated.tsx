@@ -108,7 +108,7 @@ export const AccordionAnimated = (props: Props) => {
   const height = useSharedValue(0);
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
   const [hasSentEventInFirebase, setHasSentEventInFirebase] = React.useState(false);
-  const currentItemRef: ReadableTextRef = React.useRef<string>("");
+  const currentItemRef = React.useRef<ReadableTextRef>(null);
 
   const animatedHeight = useAnimatedStyle(() => ({
     height: interpolate(height.value, [0, 1], [0, bodySectionHeight], Extrapolation.CLAMP),
@@ -137,7 +137,7 @@ export const AccordionAnimated = (props: Props) => {
   const currentItem = useSelector(currentItemSelector);
 
   React.useEffect(() => {
-    const accordionIsReading = currentItem && currentItem.id === currentItemRef.current;
+    const accordionIsReading = currentItem && currentItem.id === currentItemRef.current?.current;
     setIsExpanded(!!accordionIsReading);
     height.value = withTiming(accordionIsReading ? 1 : 0, { duration: 500 });
   }, [currentItem]);
@@ -187,7 +187,6 @@ export const AccordionAnimated = (props: Props) => {
           <ExpandedContentContainer>
             {!!props.content && (
               <ContentFromHtml
-                // @ts-expect-error ref type is not compatible with forwardRef
                 ref={currentItemRef}
                 htmlContent={props.content}
                 windowWidth={props.windowWidth}
