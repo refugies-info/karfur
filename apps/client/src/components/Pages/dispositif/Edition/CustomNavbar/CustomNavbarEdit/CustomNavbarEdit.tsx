@@ -44,7 +44,7 @@ const CustomNavbarEdit = (props: Props) => {
     setProgress(calculateProgressEdit(values, props.typeContenu));
   }, [values, props.typeContenu]);
 
-  const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
+  const { showMissingSteps, setShowMissingSteps, setFormSubmitted } = useContext(PageContext);
 
   // Save
   const { isSaving, hasError } = useAutosave();
@@ -109,9 +109,10 @@ const CustomNavbarEdit = (props: Props) => {
     (e: any) => {
       e.preventDefault();
       togglePublishModal();
+      setFormSubmitted?.(true);
       Event("DISPO_CREATE", "click validate", "Navbar");
     },
-    [togglePublishModal],
+    [togglePublishModal, setFormSubmitted],
   );
 
   return (

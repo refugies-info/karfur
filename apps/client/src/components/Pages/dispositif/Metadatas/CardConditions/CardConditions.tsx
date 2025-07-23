@@ -16,6 +16,7 @@ const CardConditions = ({ formData, ...props }: Props) => {
   const { t } = useTranslation();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
+  const { formSubmitted } = useContext(PageContext);
 
   const dispositifSelector = useSelector(selectedDispositifSelector);
   const dispositif = formData ? formData : dispositifSelector;
@@ -47,7 +48,11 @@ const CardConditions = ({ formData, ...props }: Props) => {
       </MetaDataCard>
     </>
   ) : isEditMode ? (
-    <MetaDataCard title={t("Infocards.conditions")} onClick={() => setActiveModal?.("Conditions")} />
+    <MetaDataCard
+      state={formSubmitted && conditions === undefined ? "invalid" : undefined}
+      title={t("Infocards.conditions")}
+      onClick={() => setActiveModal?.("Conditions")}
+    />
   ) : null;
 };
 

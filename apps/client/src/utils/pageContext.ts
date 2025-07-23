@@ -21,7 +21,9 @@ interface DispositifContext {
   setModalPage?: (key: number) => void;
   showMissingSteps?: boolean;
   setShowMissingSteps?: (key: boolean) => void;
+  formSubmitted?: boolean;
+  setFormSubmitted?: (key: boolean) => void;
 }
-const PageContext = createContext<DispositifContext>({ mode: "view" });
+const PageContext = createContext<DispositifContext>({ mode: "view", formSubmitted: false });
 
 export default PageContext;
