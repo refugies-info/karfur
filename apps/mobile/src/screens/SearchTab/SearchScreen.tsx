@@ -1,14 +1,15 @@
-import { StackScreenProps } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
-
 import { Page } from "~/components";
 import HeaderContentSearch from "~/components/layout/Header/HeaderContentSearch";
-import SearchSuggestions from "~/components/Search/SearchSuggestions";
+import SearchSuggestions, { NavigationProp } from "~/components/Search/SearchSuggestions";
 import { mostViewedContentsSelector } from "~/services/redux/Contents/contents.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
-import { SearchParamList } from "~/types/navigation";
 
-export const SearchScreen = ({ navigation }: StackScreenProps<SearchParamList, "SearchScreen">) => {
+interface Props {
+  navigation: NavigationProp;
+}
+
+export const SearchScreen = ({ navigation }: Props) => {
   const currentI18nCode = useSelector(currentI18nCodeSelector);
   const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));
 

@@ -1,9 +1,9 @@
-const csv = require("csvtojson");
-const fs = require("fs");
+import csv from "csvtojson";
+import fs from "fs";
+import { console } from "node:console";
 
 const convertCsvToJsonFr = async () => {
   const jsonArray = await csv().fromFile("./csvAfterTrad/fr.csv");
-  // eslint-disable-next-line no-console
   console.log("Nombre de lignes pour la langue fr :", jsonArray.length);
   const finalJson = {};
 

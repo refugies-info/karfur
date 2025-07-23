@@ -1,3 +1,5 @@
+import { PropsWithChildren } from "react";
+import { ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
@@ -6,13 +8,12 @@ import RadioButton from "../RadioButton";
 
 export interface ChoiceButtonProps {
   accessibilityRole?: "button" | "radio";
-  children: any;
   flatStyle?: boolean;
   hideRadio?: boolean;
   iconOverride?: string;
   isSelected: boolean;
   onPress: () => void;
-  style?: any;
+  style?: ViewStyle | ViewStyle[];
   testID: string;
 }
 
@@ -42,7 +43,7 @@ export const ChoiceButton = ({
   style = {},
   testID,
   iconOverride,
-}: ChoiceButtonProps) => {
+}: PropsWithChildren<ChoiceButtonProps>) => {
   const theme = useTheme();
   return (
     <MainContainer

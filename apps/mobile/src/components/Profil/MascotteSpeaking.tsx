@@ -13,9 +13,7 @@ const Text = styled(TextDSFR_MD)`
   padding-right: ${({ theme }) => theme.margin * 3}px;
 `;
 
-interface Props {}
-
-export const MascotteSpeaking = (props: Props) => {
+export const MascotteSpeaking = () => {
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
 

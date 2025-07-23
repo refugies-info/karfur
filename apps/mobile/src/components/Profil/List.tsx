@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { styles } from "~/theme";
 import { RTLView } from "../BasicComponents";
@@ -15,9 +15,9 @@ const ListItem = styled(TextDSFR_MD)<{ isRTL: boolean }>`
 `;
 
 interface Props {
-  items: (string | any)[];
+  items: (string | React.ReactNode)[];
   isRTL: boolean;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const List = (props: Props) => (

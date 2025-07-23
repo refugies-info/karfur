@@ -1,6 +1,6 @@
 import { Languages } from "@refugies-info/api-types";
 import DOMPurify from "isomorphic-dompurify";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn, useNumber } from "react-use";
 import { useUser } from "~/hooks";
@@ -127,11 +127,19 @@ const TranslationInput = (props: Props) => {
 
   // quand la sections se ferme, si elle était validée mais que le contenu a changé
   // on la passe en toFinish
+  const prevIsOpenRef = useRef(isOpen);
+  const prevValueRef = useRef(value);
+
   useEffect(() => {
-    if (!isOpen && !!value && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
+    // Only run this effect when isOpen changes from true to false (section closes)
+    if (prevIsOpenRef.current && !isOpen && !!value && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
       validate(section, { unfinished: true });
       setOldSuggestion({ ...mySuggestion, text: value, toFinish: true });
     }
+
+    // Update refs for next render
+    prevIsOpenRef.current = isOpen;
+    prevValueRef.current = value;
   }, [isOpen, oldSuggestion, section, validate, value, mySuggestion]);
 
   // Buttons

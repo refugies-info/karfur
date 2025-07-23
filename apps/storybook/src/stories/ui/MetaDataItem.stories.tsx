@@ -59,3 +59,22 @@ export const WithLink: Story = {
     ),
   },
 };
+
+export const InvalidState: Story = {
+  args: {
+    icon: "fr-icon-error-warning-line",
+    title: "Invalid Item",
+    state: "invalid",
+    children: <p>This item has invalid or missing information</p>,
+  },
+};
+
+export const InvalidStateWithEditAction: Story = {
+  args: {
+    icon: "fr-icon-error-warning-line",
+    title: "Invalid Item",
+    state: "invalid",
+    onClick: () => console.log("Edit clicked"),
+    children: <p>This item has invalid or missing information</p>,
+  },
+};

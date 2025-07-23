@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack";
+/* eslint-disable no-irregular-whitespace */
 import * as Linking from "expo-linking";
 import { Image } from "react-native";
 import { useTheme } from "styled-components/native";
@@ -13,9 +13,8 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import YourInformations from "~/theme/images/privacyPolicy/screenshots.png";
 import YourData from "~/theme/images/privacyPolicy/statistics.png";
-import { ProfileParamList } from "~/types/navigation";
 
-export const PrivacyPolicyScreen = ({ navigation }: StackScreenProps<ProfileParamList, "PrivacyPolicyScreen">) => {
+export const PrivacyPolicyScreen = () => {
   const { t, isRTL } = useTranslationWithRTL();
   const theme = useTheme();
 

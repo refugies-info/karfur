@@ -193,13 +193,17 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         <Text
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 18,
-              "lineHeight": 28,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 18,
+                "lineHeight": 28,
+              },
+            ]
           }
         />
       </View>
@@ -351,13 +355,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           Français
@@ -365,13 +374,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Français
@@ -637,13 +651,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           Українська
@@ -651,13 +670,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Ukrainien
@@ -923,13 +947,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           فارسی/ دری
@@ -937,13 +966,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Persan/Dari
@@ -1209,13 +1243,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           العربية
@@ -1223,13 +1262,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Arabe
@@ -1495,13 +1539,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           English
@@ -1509,13 +1558,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Anglais
@@ -1781,13 +1835,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           پښتو
@@ -1795,13 +1854,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Pachto
@@ -2067,13 +2131,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           Русский
@@ -2081,13 +2150,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Russe
@@ -2353,13 +2427,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           isSelected={false}
                           selectable={true}
                           style={
-                            {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Medium",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Medium",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                           ትግርኛ
@@ -2367,13 +2446,18 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         <Text
                           selectable={true}
                           style={
-                            {
-                              "color": "#5E5E5E",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "textAlign": "left",
-                            }
+                            [
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "#5E5E5E",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "textAlign": "left",
+                              },
+                            ]
                           }
                         >
                            - Tigrinya
@@ -2663,15 +2747,19 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginLeft": 8,
-                "marginRight": 0,
                 "textAlign": "left",
               },
-              {},
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+                {},
+              ],
             ]
           }
           textColor="#212121"

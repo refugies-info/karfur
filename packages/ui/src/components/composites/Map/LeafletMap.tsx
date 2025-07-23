@@ -63,7 +63,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
   useEffect(() => {
     if (focusedPoi) {
-      setActiveMarker(focusedPoi.title);
+      handleFocusLocation(focusedPoi);
     }
   }, [focusedPoi]);
 
@@ -71,104 +71,41 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
     window.dispatchEvent(new Event("resize"));
   }, []);
 
-  const positionMarkerTopCenter = useCallback((map: L.Map, markerLatLng: L.LatLng) => {
-    const mapSize = map.getSize();
+  const handleFocusLocation = useCallback((poi: Poi, zoomLevel = 16) => {
+    const map = mapRef.current;
+    const marker = markersRef.current[poi.title];
+    const clusterGroup = clusterGroupRef.current;
 
-    const markerHeight = 24; // Default icon height
-    const offsetFromTop = 85;
+    if (!map || !marker) {
+      return;
+    }
 
-    // Position marker at the top center of the map
-    const targetScreenPoint = L.point(mapSize.x / 2, offsetFromTop + markerHeight);
+    setActiveMarker(poi.title);
 
-    const markerPoint = map.latLngToContainerPoint(markerLatLng);
-    const offsetX = markerPoint.x - targetScreenPoint.x;
-    const offsetY = markerPoint.y - targetScreenPoint.y;
+    const markerLatLng = marker.getLatLng();
 
-    const center = map.getCenter();
-    const centerPoint = map.latLngToContainerPoint(center);
-    const newCenterPoint = L.point(centerPoint.x + offsetX, centerPoint.y + offsetY);
-    const newCenter = map.containerPointToLatLng(newCenterPoint);
-    return newCenter;
-  }, []);
-
-  const calculateDynamicDuration = useCallback((distance: number): number => {
-    return Math.min(0.4 + distance / 2000, 1.5);
-  }, []);
-
-  const animateMapTo = useCallback(
-    (map: L.Map, center: L.LatLng, targetZoom: number) => {
-      const currentCenter = map.getCenter();
-      const distance = currentCenter.distanceTo(center);
-      const duration = calculateDynamicDuration(distance);
-
-      map.flyTo(center, targetZoom, {
-        animate: true,
-        duration: duration,
-        easeLinearity: 0.25,
-        noMoveStart: true,
+    if (clusterGroup) {
+      clusterGroup.zoomToShowLayer(marker, () => {
+        map.once("moveend", () => {
+          marker.openPopup();
+        });
+        map.flyTo(markerLatLng, zoomLevel, {
+          animate: true,
+          duration: 0.7,
+          easeLinearity: 0.25,
+        });
       });
-
-      return duration;
-    },
-    [calculateDynamicDuration],
-  );
-
-  const handleFocusLocation = useCallback(
-    (poi: Poi, zoomLevel = 16) => {
-      // Update active marker state
-      setActiveMarker(poi.title);
-
-      const map = mapRef.current;
-      const marker = markersRef.current[poi.title];
-      const clusterGroup = clusterGroupRef.current;
-
-      if (!map || !marker) {
-        return;
-      }
-
-      // Check if the marker is part of a cluster that needs to be expanded
-      if (clusterGroup && typeof clusterGroup.getVisibleParent === "function") {
-        const visibleParent = clusterGroup.getVisibleParent(marker);
-
-        if (visibleParent && visibleParent !== marker) {
-          clusterGroup.zoomToShowLayer(marker, () => {
-            const markerLatLng = marker.getLatLng();
-            const currentZoom = map.getZoom();
-            const newCenter = positionMarkerTopCenter(map, markerLatLng);
-            map.once("moveend", () => {
-              // Open popup and set active marker after animation completes
-              marker.openPopup();
-              setActiveMarker(poi.title);
-            });
-
-            // Use our reusable animation function
-            animateMapTo(map, newCenter, Math.max(currentZoom, zoomLevel));
-          });
-          return;
-        }
-      }
-
-      const markerLatLng = marker.getLatLng();
-      const currentZoom = map.getZoom();
-
-      // Calculate position without affecting current view
-      map.setZoom(zoomLevel, { animate: false });
-      const newCenter = positionMarkerTopCenter(map, markerLatLng);
-      map.setZoom(currentZoom, { animate: false });
-
+    } else {
       map.once("moveend", () => {
-        if (markersRef.current[poi.title]) {
-          markersRef.current[poi.title].openPopup();
-          setActiveMarker(poi.title);
-        }
+        marker.openPopup();
       });
-
-      // Use our reusable animation function
-      const targetZoom = currentZoom >= 16 ? currentZoom : zoomLevel;
-      animateMapTo(map, newCenter, targetZoom);
-    },
-    [positionMarkerTopCenter, animateMapTo],
-  );
+      map.flyTo(markerLatLng, zoomLevel, {
+        animate: true,
+        duration: 0.7,
+        easeLinearity: 0.25,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (handleMapReady) {
@@ -187,24 +124,24 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   );
 
   const handleMarkerClick = useCallback(
-    (poi: Poi, e: L.LeafletMouseEvent) => {
-      const clusterGroup = clusterGroupRef.current;
+    (e: L.LeafletMouseEvent, poi: Poi) => {
       const map = mapRef.current;
+      const marker = markersRef.current[poi.title];
 
-      if (!map) return;
+      if (!map || !marker) return;
 
       e.originalEvent.stopPropagation();
 
-      if (clusterGroup && typeof clusterGroup.zoomToShowLayer === "function") {
-        clusterGroup.zoomToShowLayer(e.target, () => {
-          setTimeout(() => {
-            handleFocusLocation(poi);
-            if (focusLocation) focusLocation(poi);
-          }, 100);
-        });
-      } else {
+      const focusAndNotify = () => {
         handleFocusLocation(poi);
         if (focusLocation) focusLocation(poi);
+      };
+
+      const visibleParent = clusterGroupRef.current?.getVisibleParent(marker);
+      if (clusterGroupRef.current && visibleParent && visibleParent !== marker) {
+        clusterGroupRef.current.zoomToShowLayer(marker, focusAndNotify);
+      } else {
+        focusAndNotify();
       }
     },
     [handleFocusLocation, focusLocation],
@@ -231,7 +168,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
           }}
           opacity={0.8}
           eventHandlers={{
-            click: (e) => handleMarkerClick(poi, e),
+            click: (e) => handleMarkerClick(e, poi),
           }}
         >
           <Popup

@@ -1,4 +1,4 @@
-import { AVPlaybackStatusSuccess, Audio } from "expo-av";
+import { AVPlaybackStatus, Audio } from "expo-av";
 import * as Speech from "expo-speech";
 import { Platform } from "react-native";
 import ReactNativeBlobUtil from "react-native-blob-util";
@@ -18,13 +18,12 @@ export interface Reader {
 // wait for a sound to finish playing
 const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
   new Promise((resolve) => {
-    sound.setOnPlaybackStatusUpdate(
-      //@ts-ignore
-      (playbackStatus: AVPlaybackStatusSuccess) => {
+    sound.setOnPlaybackStatusUpdate((playbackStatus: AVPlaybackStatus) => {
+      if ("didJustFinish" in playbackStatus) {
         if (playbackStatus.didJustFinish) resolve(null);
         if (!playbackStatus.shouldPlay && playbackStatus.positionMillis === 0) resolve(null); // sound stopped
-      },
-    );
+      }
+    });
   });
 
 /**

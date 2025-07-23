@@ -6,7 +6,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
-import { initialRootStateFactory, rootReducer, RootState } from "~/services/redux/reducers";
+import { AppActions, initialRootStateFactory, rootReducer, RootState } from "~/services/redux/reducers";
 import { initialUserState } from "~/services/redux/User/user.reducer";
 import { ThemeProvider } from "~/theme";
 import { ProfileParamList } from "~/types/navigation";
@@ -102,7 +102,7 @@ describe("Profil screen", () => {
       "ProfilScreen",
       undefined
     >;
-    const store = createStore<RootState, any>(rootReducer, {
+    const store = createStore<RootState, AppActions>(rootReducer, {
       ...initialRootStateFactory(),
       user: {
         ...initialUserState,
@@ -114,10 +114,11 @@ describe("Profil screen", () => {
     const navContext = {
       isFocused: () => true,
       addListener: jest.fn(() => jest.fn()),
-    };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
     const value = render(
       <SafeAreaProvider>
-        <NavigationContext.Provider value={navContext as any}>
+        <NavigationContext.Provider value={navContext}>
           <Provider store={store}>
             <ThemeProvider>
               <ProfilScreen navigation={navigation} />

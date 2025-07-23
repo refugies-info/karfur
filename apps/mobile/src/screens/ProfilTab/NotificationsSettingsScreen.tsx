@@ -9,7 +9,6 @@ import { styles } from "~/theme";
 import { currentI18nCodeSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
 
 import { useNotificationsSettings } from "~/hooks/useNotificationSettings";
-import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
 import { firstLetterUpperCase } from "~/libs";
@@ -52,7 +51,6 @@ export const NotificationsSettingsScreen = () => {
   const navigation = useNavigation<StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">>();
   const theme = useTheme();
   const [settings, updateSettings] = useNotificationsSettings();
-  const [accessGranted] = useNotificationsStatus();
   const location = useSelector(userLocationSelector);
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);

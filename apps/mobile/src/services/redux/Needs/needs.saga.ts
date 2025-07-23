@@ -15,8 +15,10 @@ export function* fetchNeeds(): SagaIterator {
       yield put(setNeedsActionCreator(data));
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
-  } catch (error: any) {
-    logger.error("Error while fetching needs", { error: error.message });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("Error while fetching needs", { error: error.message });
+    }
     yield put(setNeedsActionCreator([]));
     yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
   }

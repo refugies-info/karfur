@@ -16,8 +16,10 @@ export function* fetchThemes(): SagaIterator {
       yield put(setThemesActionCreator(data));
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
-  } catch (error: any) {
-    logger.error("Error while fetching themes", { error: error.message });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("Error while fetching themes", { error: error.message });
+    }
     yield put(setThemesActionCreator([]));
     yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
   }

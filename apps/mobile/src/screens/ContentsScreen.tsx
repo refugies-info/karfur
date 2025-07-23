@@ -1,5 +1,5 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import { ContentForApp, Languages } from "@refugies-info/api-types";
+import { ContentForApp, Id, Languages } from "@refugies-info/api-types";
 import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -17,7 +17,6 @@ import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.
 import { needNameSelector } from "~/services/redux/Needs/needs.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ObjectId } from "~/types/interface";
 import { ExplorerParamList } from "~/types/navigation";
 import { addNeedView } from "~/utils/API";
 
@@ -56,11 +55,11 @@ const getTranslatedContents = (contents: ContentForApp[], currentLanguage: Langu
   return { translatedContents, nonTranslatedContents };
 };
 
-const getContentsToDisplay = (contentsId: ObjectId[], contents: ContentForApp[]) => {
+const getContentsToDisplay = (contentsId: string[], contents: ContentForApp[]) => {
   if (!contentsId) return [];
   const result: ContentForApp[] = [];
 
-  contentsId.forEach((contentId: ObjectId) => {
+  contentsId.forEach((contentId: string) => {
     const contentWithInfosArray = contents.filter((content) => content._id === contentId);
     if (contentWithInfosArray.length > 0) {
       result.push(contentWithInfosArray[0]);
@@ -76,7 +75,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
   const { t } = useTranslationWithRTL();
 
   useEffect(() => {
-    addNeedView(needId);
+    addNeedView(String(needId));
   }, []);
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
 
@@ -117,7 +116,7 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
     const component: React.FC<HeaderContentProps> = (props) => (
       <HeaderContentContentsScreen needName={needName} {...props} />
     );
-    component.displayName;
+    component.displayName = "HeaderContentContentsScreen";
     return component;
   }, [needName]);
 
@@ -138,15 +137,15 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
           ) : (
             <ContentSummary
               theme={theme}
-              content={item}
-              needId={needId}
+              content={item as ContentForApp}
+              needId={needId as Id}
               style={{
                 marginBottom: styles.margin * 3,
                 marginHorizontal: styles.margin * 3,
               }}
             />
           ),
-        keyExtractor: (item) => (item._id || item).toString(),
+        keyExtractor: (item) => (typeof item === "string" ? item : item._id.toString()),
       }}
     />
   );
