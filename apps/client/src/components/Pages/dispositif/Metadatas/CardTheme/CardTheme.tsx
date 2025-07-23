@@ -36,7 +36,7 @@ const CardTheme = ({ formData }: Props) => {
   }, [theme, secondaryThemes]);
   return (
     <MetaDataCard
-      state={formSubmitted && (theme === undefined || secondaryThemes.length === 0) ? "invalid" : undefined}
+      state={formSubmitted && theme === undefined ? "invalid" : undefined}
       title={"Thèmes"}
       onClick={() => setActiveModal?.("Themes")}
     >
