@@ -1,7 +1,7 @@
 import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 import { ContentType, GetTraductionsForReview, Languages, TranslationContent } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
-import { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import { useAsyncFn, useToggle } from "react-use";
 import Button from "~/components/UI/Button";
 import Camembert from "~/components/UI/Camembert";
@@ -18,7 +18,6 @@ import StepBar from "../StepBar";
 import PublishModal from "./PublishModal";
 import QuitModal from "./QuitModal";
 import useAutosave from "./useAutosave";
-
 interface Props {
   typeContenu: ContentType;
   defaultTranslation?: TranslationContent;
@@ -82,13 +81,13 @@ const CustomNavbarTranslate = (props: Props) => {
             progress={progress.doneSteps}
             text={`${progress.doneSteps} / ${progress.totalSteps}`}
           />
-          <Tooltip target="missing-steps-btn" placement="top" kind="hover" title="Voir les étapes restantes">
+          <Tooltip kind="hover" title="Voir les étapes restantes">
             <Button
               priority={showMissingSteps ? "primary" : "secondary"}
               id="missing-steps-btn"
               evaIcon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
               className={cls("ms-4", styles.btn)}
-              onClick={(e: any) => {
+              onClick={(e: React.MouseEvent) => {
                 e.preventDefault();
                 setShowMissingSteps?.(!showMissingSteps);
                 Event("DISPO_TRAD", "click show missing steps", "Navbar");
@@ -102,7 +101,7 @@ const CustomNavbarTranslate = (props: Props) => {
           </div>
         </div>
         <div>
-          <Tooltip target="save-status" kind="hover" title="Toutes les modifications sont sauvegardées automatiquement">
+          <Tooltip kind="hover" title="Toutes les modifications sont sauvegardées automatiquement">
             <span id="save-status" className={styles.save}>
               <EVAIcon
                 name={isSaving ? "sync-outline" : "save"}
