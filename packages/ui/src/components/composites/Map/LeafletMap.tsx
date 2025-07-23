@@ -85,7 +85,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
     const markerLatLng = marker.getLatLng();
 
     if (clusterGroup) {
-      clusterGroup?.zoomToShowLayer(marker, () => {
+      clusterGroup.zoomToShowLayer(marker, () => {
         map.once("moveend", () => {
           marker.openPopup();
         });
@@ -99,7 +99,11 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
       map.once("moveend", () => {
         marker.openPopup();
       });
-      map.panTo(markerLatLng);
+      map.flyTo(markerLatLng, zoomLevel, {
+        animate: true,
+        duration: 0.7,
+        easeLinearity: 0.25,
+      });
     }
   }, []);
 
@@ -120,8 +124,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   );
 
   const handleMarkerClick = useCallback(
-    (poi: Poi, e: L.LeafletMouseEvent) => {
-      const clusterGroup = clusterGroupRef.current;
+    (e: L.LeafletMouseEvent, poi: Poi) => {
       const map = mapRef.current;
       const marker = markersRef.current[poi.title];
 
@@ -129,24 +132,16 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
       e.originalEvent.stopPropagation();
 
-      setActiveMarker(poi.title);
-
-      if (clusterGroup) {
-        const visibleParent = clusterGroup.getVisibleParent(marker);
-
-        if (visibleParent && visibleParent !== marker) {
-          clusterGroup.zoomToShowLayer(marker, () => {
-            handleFocusLocation(poi);
-
-            if (focusLocation) focusLocation(poi);
-          });
-        } else {
-          handleFocusLocation(poi);
-          if (focusLocation) focusLocation(poi);
-        }
-      } else {
+      const focusAndNotify = () => {
         handleFocusLocation(poi);
         if (focusLocation) focusLocation(poi);
+      };
+
+      const visibleParent = clusterGroupRef.current?.getVisibleParent(marker);
+      if (clusterGroupRef.current && visibleParent && visibleParent !== marker) {
+        clusterGroupRef.current.zoomToShowLayer(marker, focusAndNotify);
+      } else {
+        focusAndNotify();
       }
     },
     [handleFocusLocation, focusLocation],
@@ -173,7 +168,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
           }}
           opacity={0.8}
           eventHandlers={{
-            click: (e) => handleMarkerClick(poi, e),
+            click: (e) => handleMarkerClick(e, poi),
           }}
         >
           <Popup
