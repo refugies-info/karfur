@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { TooltipProps, Tooltip as TooltipTS } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { TooltipProps, Tooltip as TooltipTS, UncontrolledTooltip } from "reactstrap";
 import { cls } from "~/lib/classname";
 import styles from "./Tooltip.module.scss";
 
@@ -10,22 +10,60 @@ interface Props {
   className?: string;
   hide?: boolean;
   isOpen?: boolean;
+  transitionTimeout?: number;
 }
 
 const Tooltip = (props: Props) => {
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggle = () => setTooltipOpen((o) => !o);
+  const [hasMounted, setHasMounted] = useState(false);
 
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Don't render tooltip during SSR or before target element is available
+  if (!hasMounted) return null;
+
+  // Use UncontrolledTooltip instead of Tooltip to avoid the transition.timeout warning
+  // UncontrolledTooltip has default transition values set internally
+  if (props.isOpen !== undefined) {
+    // If isOpen is explicitly provided, use controlled Tooltip with fixed transition
+    return (
+      <TooltipTS
+        target={props.target}
+        isOpen={props.isOpen}
+        placement={props.placement}
+        className={cls(styles.container, props.className)}
+        // Fix for transition.timeout warning
+        {...{
+          // @ts-ignore - Adding direct props to fix reactstrap PopperContent warning
+          popperProps: {
+            modifiers: {
+              preventOverflow: { enabled: true },
+            },
+          },
+          // @ts-ignore - Adding direct props to fix reactstrap PopperContent warning
+          fade: true,
+          // @ts-ignore - Adding direct props to fix reactstrap PopperContent warning
+          delay: { show: 0, hide: 0 },
+          // @ts-ignore - Adding direct props to fix reactstrap PopperContent warning
+          transition: { timeout: 150 },
+        }}
+      >
+        {props.children}
+      </TooltipTS>
+    );
+  }
+
+  // Otherwise use UncontrolledTooltip which handles transitions internally
   return (
-    <TooltipTS
+    <UncontrolledTooltip
       target={props.target}
-      isOpen={props.isOpen || (!props.hide && tooltipOpen)}
-      toggle={toggle}
       placement={props.placement}
       className={cls(styles.container, props.className)}
+      trigger="hover focus"
     >
       {props.children}
-    </TooltipTS>
+    </UncontrolledTooltip>
   );
 };
 
