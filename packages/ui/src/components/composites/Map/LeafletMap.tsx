@@ -63,7 +63,6 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
   useEffect(() => {
     if (focusedPoi) {
-      console.log("focusedPoi", focusedPoi);
       handleFocusLocation(focusedPoi);
     }
   }, [focusedPoi]);
