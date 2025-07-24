@@ -52,7 +52,9 @@ const CardConditions = ({ formData, ...props }: Props) => {
       state={formSubmitted && conditions === undefined ? "invalid" : undefined}
       title={t("Infocards.conditions")}
       onClick={() => setActiveModal?.("Conditions")}
-    />
+    >
+      {conditions === null ? "Non pertinent pour mon action" : undefined}
+    </MetaDataCard>
   ) : null;
 };
 

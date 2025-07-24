@@ -73,7 +73,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   : undefined
               }
             >
-              {publicSpecific ? getPublic(publicSpecific, t) : undefined}
+              {publicSpecific
+                ? getPublic(publicSpecific, t)
+                : publicSpecific === null && "Non pertinent pour mon action"}
             </MetaDataItem>
           ) : null}
 
@@ -91,7 +93,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   : undefined
               }
             >
-              {publicFrenchLevel ? (
+              {publicFrenchLevel === null ? (
+                "Non pertinent pour mon action"
+              ) : publicFrenchLevel ? (
                 !publicFrenchLevel || publicFrenchLevel.length === 0 ? (
                   publicFrenchLevel
                 ) : (
@@ -120,7 +124,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   : undefined
               }
             >
-              {publicAge ? (
+              {publicAge === null ? (
+                "Non pertinent pour mon action"
+              ) : publicAge ? (
                 <FRLink href={isEditMode ? "#" : getAgeLink(publicAge)}>{getAge(publicAge, t)}</FRLink>
               ) : undefined}
             </MetaDataItem>
