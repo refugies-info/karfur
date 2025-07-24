@@ -1,3 +1,3 @@
-const { View } = require("react-native");
+import { View } from "react-native";
 
-module.exports = View;
+export default View;

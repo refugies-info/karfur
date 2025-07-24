@@ -1,4 +1,4 @@
-import { Action, combineReducers } from "redux";
+import { combineReducers } from "redux";
 import { ContentsState, contentsReducer, initialContentsState } from "./Contents/contents.reducer";
 import {
   GroupedContentsState,
@@ -16,6 +16,7 @@ import {
 import { ThemeState, initialThemeState, themesReducer } from "./Themes/themes.reducer";
 import { UserState, initialUserState, userReducer } from "./User/user.reducer";
 import { VoiceOverState, initialVoiceOverState, voiceOverReducer } from "./VoiceOver/voiceOver.reducer";
+
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
   languages: languagesReducer,
@@ -27,6 +28,8 @@ const appReducer = combineReducers({
   voiceOver: voiceOverReducer,
   themes: themesReducer,
 });
+
+export type AppActions = Parameters<typeof appReducer>[1];
 
 export interface RootState {
   loadingStatus: LoadingStatusState;
@@ -54,6 +57,4 @@ export const initialRootStateFactory = (): RootState => ({
   themes: initialThemeState,
 });
 
-export const rootReducer = (state: RootState | undefined, action: Action<any>): RootReducer =>
-  // @ts-ignore
-  appReducer(state, action);
+export const rootReducer = (state: RootState | undefined, action: AppActions): RootReducer => appReducer(state, action);

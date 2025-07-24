@@ -28,7 +28,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
   const timeSlots = dispositif?.metadatas?.timeSlots;
   const commitment = dispositif?.metadatas?.commitment;
   const frequency = dispositif?.metadatas?.frequency;
-  const { setActiveModal, setModalPage } = useContext(PageContext);
+  const { setActiveModal, setModalPage, formSubmitted } = useContext(PageContext);
 
   // Toggle visibility, if edit mode true, else check if there is any data
   const showCard = isEditMode ? true : price || location || timeSlots || commitment || frequency;
@@ -47,9 +47,10 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="fr-icon-money-euro-circle-line"
               title="Prix"
+              state={formSubmitted && price === undefined ? "invalid" : undefined}
               onClick={isEditMode ? () => setActiveModal?.("Price") : undefined}
             >
-              {price ? getPrice(price, t) : undefined}
+              {price === null ? "Non pertinent pour mon action" : price ? getPrice(price, t) : undefined}
             </MetaDataItem>
           ) : null}
 
@@ -57,6 +58,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="ri-hourglass-line"
               title={t("Infocards.commitment")}
+              state={formSubmitted && commitment === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -66,7 +68,11 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                   : undefined
               }
             >
-              {commitment ? getCommitment(commitment, t) : undefined}
+              {commitment === null
+                ? "Non pertinent pour mon action"
+                : commitment
+                  ? getCommitment(commitment, t)
+                  : undefined}
             </MetaDataItem>
           ) : null}
 
@@ -74,6 +80,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="ri-calendar-schedule-line"
               title={t("Infocards.frequency")}
+              state={formSubmitted && frequency === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -83,7 +90,11 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                   : undefined
               }
             >
-              {frequency ? getFrequency(frequency, t) : undefined}
+              {frequency === null
+                ? "Non pertinent pour mon action"
+                : frequency
+                  ? getFrequency(frequency, t)
+                  : undefined}
             </MetaDataItem>
           ) : null}
 
@@ -91,6 +102,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
             <MetaDataItem
               icon="ri-calendar-event-line"
               title={t("Infocards.weekDays")}
+              state={formSubmitted && timeSlots === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -100,7 +112,11 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                   : undefined
               }
             >
-              {timeSlots ? getTimeSlots(timeSlots, t) : undefined}
+              {timeSlots === null
+                ? "Non pertinent pour mon action"
+                : timeSlots
+                  ? getTimeSlots(timeSlots, t)
+                  : undefined}
             </MetaDataItem>
           ) : null}
 
@@ -113,6 +129,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                   <MetaDataItem
                     icon={location === "online" ? "ri-at-line" : "fr-icon-france-line"}
                     title={title}
+                    state={formSubmitted && location === undefined ? "invalid" : undefined}
                     onClick={isEditMode ? () => setActiveModal?.("Location") : undefined}
                   >
                     {Array.isArray(location)

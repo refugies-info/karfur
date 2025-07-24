@@ -39,6 +39,7 @@ export const MetaDataCard = ({
         "bg-alt-blue-france border-default-grey @container mb-4 border p-4 lg:mb-0 lg:border-0 lg:bg-white/50 lg:backdrop-blur-[30px]",
         onClick && "hover:cursor-pointer",
         mode || state ? "relative" : "",
+        onClick && state === "invalid" && "[&_*]:!text-action-high-red-marianne",
         className,
       )}
       {...props}
@@ -49,6 +50,9 @@ export const MetaDataCard = ({
           <span className="ml-auto flex self-start">
             {onClick && (
               <>
+                {state === "invalid" && (
+                  <i className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1" />
+                )}
                 <Button
                   iconId="fr-icon-edit-line"
                   priority="tertiary no outline"

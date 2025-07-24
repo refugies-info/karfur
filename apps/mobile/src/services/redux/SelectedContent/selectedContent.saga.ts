@@ -33,8 +33,10 @@ export function* fetchSelectedContent(action: ReturnType<typeof fetchSelectedCon
       );
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
-  } catch (error: any) {
-    logger.error("Error while getting content", { error: error.message });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error("Error while getting content", { error: error.message });
+    }
     yield put(setSelectedContentActionCreator({ content: null, locale }));
     yield put(setSelectedContentActionCreator({ content: null, locale: "fr" }));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));

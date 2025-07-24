@@ -30,7 +30,7 @@ export const useVoiceover = (
 
   // Save scroll locally in component, and in Redux
   const setScroll = useCallback(
-    (currentScroll: number, _offset: number) => {
+    (currentScroll: number) => {
       if (isFocused) {
         dispatch(setScrollReading(currentScroll));
       }

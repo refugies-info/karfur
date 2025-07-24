@@ -4,7 +4,7 @@ export const getScreenFromUrl = (
   url: string,
 ): {
   rootNavigator: "Explorer" | "Profil";
-  screenParams: any;
+  screenParams: object;
 } | null => {
   // Dispositif
   const rxDispositif = /([a-z][a-z]\/)?(dispositif|program)\/[a-z|0-9]*/g;

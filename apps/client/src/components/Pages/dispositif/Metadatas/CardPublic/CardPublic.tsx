@@ -27,7 +27,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
   const publicStatus = dispositif?.metadatas?.publicStatus;
   const publicAge = dispositif?.metadatas?.age;
   const publicFrenchLevel = dispositif?.metadatas?.frenchLevel;
-  const { setActiveModal, setModalPage } = useContext(PageContext);
+  const { setActiveModal, setModalPage, formSubmitted } = useContext(PageContext);
 
   // Toggle visibility, if edit mode true, else check if there is any data
   const showCard = isEditMode ? true : publicSpecific || publicStatus || publicAge || publicFrenchLevel;
@@ -45,6 +45,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
             <MetaDataItem
               icon="ri-id-card-line"
               title={t("Infocards.publicStatus")}
+              state={formSubmitted && publicStatus === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -62,6 +63,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
             <MetaDataItem
               icon="fr-icon-group-line"
               title={t("Infocards.public")}
+              state={formSubmitted && publicSpecific === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -71,7 +73,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   : undefined
               }
             >
-              {publicSpecific ? getPublic(publicSpecific, t) : undefined}
+              {publicSpecific
+                ? getPublic(publicSpecific, t)
+                : publicSpecific === null && "Non pertinent pour mon action"}
             </MetaDataItem>
           ) : null}
 
@@ -79,6 +83,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
             <MetaDataItem
               icon="fr-icon-discuss-line"
               title={t("Infocards.frenchLevel")}
+              state={formSubmitted && publicFrenchLevel === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -88,7 +93,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   : undefined
               }
             >
-              {publicFrenchLevel ? (
+              {publicFrenchLevel === null ? (
+                "Non pertinent pour mon action"
+              ) : publicFrenchLevel ? (
                 !publicFrenchLevel || publicFrenchLevel.length === 0 ? (
                   publicFrenchLevel
                 ) : (
@@ -107,6 +114,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
             <MetaDataItem
               icon="fr-icon-parent-line"
               title={t("Infocards.age")}
+              state={formSubmitted && publicAge === undefined ? "invalid" : undefined}
               onClick={
                 isEditMode
                   ? () => {
@@ -116,7 +124,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   : undefined
               }
             >
-              {publicAge ? (
+              {publicAge === null ? (
+                "Non pertinent pour mon action"
+              ) : publicAge ? (
                 <FRLink href={isEditMode ? "#" : getAgeLink(publicAge)}>{getAge(publicAge, t)}</FRLink>
               ) : undefined}
             </MetaDataItem>

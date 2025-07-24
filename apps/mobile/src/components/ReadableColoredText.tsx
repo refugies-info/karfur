@@ -1,11 +1,10 @@
-import React, { ReactNode, memo, useMemo } from "react";
+import React, { PropsWithChildren, memo, useMemo } from "react";
 import { Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { currentItemSelector } from "~/services/redux/VoiceOver/voiceOver.selectors";
 import { styles } from "~/theme";
 
 interface Props {
-  children?: string | ReactNode;
   text?: string;
   darkBg?: boolean;
   id: string;
@@ -14,7 +13,7 @@ interface Props {
 const activeStyleLightBg = { backgroundColor: styles.colors.lightBlue };
 const activeStyleDarkBg = { backgroundColor: "rgba(255,255,255, 0.35)" };
 
-const ReadableColoredTextComponent = React.forwardRef((props: Props, ref: any) => {
+const ReadableColoredTextComponent = React.forwardRef<View, PropsWithChildren<Props>>((props, ref) => {
   const currentReadingItem = useSelector(currentItemSelector);
   const textBackground = useMemo(() => {
     if (currentReadingItem?.id === props.id) {
@@ -38,4 +37,6 @@ const ReadableColoredTextComponent = React.forwardRef((props: Props, ref: any) =
 
 ReadableColoredTextComponent.displayName = "ReadableColoredText";
 
-export const ReadableColoredText = memo(ReadableColoredTextComponent);
+export const ReadableColoredText = memo(ReadableColoredTextComponent) as React.ForwardRefExoticComponent<
+  PropsWithChildren<Props> & React.RefAttributes<View>
+>;

@@ -6,13 +6,11 @@ import { Rows } from "~/components";
 import PageOnboarding from "~/components/layout/PageOnboarding";
 import { OnboardingProgressBar } from "~/components/Onboarding/OnboardingProgressBar";
 import { FilterAgeComponent } from "~/components/Profil/FilterAgeComponent";
-import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { removeUserAgeActionCreator, saveUserAgeActionCreator } from "~/services/redux/User/user.actions";
 import { userAgeSelector } from "~/services/redux/User/user.selectors";
 import { OnboardingParamList } from "~/types/navigation";
 
 export const FilterAge = ({ navigation }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
-  const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
   const [selectedAge, setSelectedAge] = useState<GetContentsForAppRequest["age"] | undefined>(undefined);

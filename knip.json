@@ -26,6 +26,7 @@
         "@babel/runtime",
         "@react-native/assets-registry",
         "@types/styled-components-react-native",
+        "papaparse",
         "use-sync-external-store"
       ]
     },

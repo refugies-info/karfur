@@ -11,7 +11,9 @@ export const enableNotificationsListener = () => {
 };
 
 export const disableNotificationsListener = () => {
-  notificationListener && notificationListener.remove();
+  if (notificationListener) {
+    notificationListener.remove();
+  }
 };
 
 export const getNotificationFromStack = () => notificationDataStack.shift();

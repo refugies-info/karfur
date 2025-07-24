@@ -1,4 +1,5 @@
 import { Picture } from "@refugies-info/api-types";
+import { AxiosResponse } from "axios";
 import { SvgXml } from "react-native-svg";
 import useAsync from "react-use/lib/useAsync";
 import { getImageUri } from "~/libs/getImageUri";
@@ -13,7 +14,7 @@ interface StreamlineIconProps {
 export const StreamlineIcon = ({ icon, size = 22, stroke = "white" }: StreamlineIconProps) => {
   if (!icon.secure_url?.endsWith(".svg")) return null;
   const { value: imgXml = "<svg></svg>" } = useAsync(
-    () => apiCaller.get(getImageUri(icon.secure_url)).then((result: any) => result.data as string),
+    () => apiCaller.get<string>(getImageUri(icon.secure_url!)).then((response: AxiosResponse<string>) => response.data),
     [icon],
   );
   return (

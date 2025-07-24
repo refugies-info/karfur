@@ -9,12 +9,13 @@ type MetaDataItemProps = {
   title?: string;
   children?: React.ReactNode;
   onClick?: () => void;
+  state?: "valid" | "invalid";
 } & (
   | { icon: FrIconClassName | RiIconClassName; logoImage?: never }
   | { icon?: never; logoImage: { url: string; alt?: string } }
   | { icon?: never; logoImage?: never }
 );
-export const MetaDataItem = ({ icon, logoImage, className, title, children, onClick }: MetaDataItemProps) => {
+export const MetaDataItem = ({ icon, logoImage, className, title, children, onClick, state }: MetaDataItemProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.();
@@ -23,7 +24,12 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
   return (
     <div
       onClick={handleClick}
-      className={cn("relative mb-4 flex items-start gap-2", onClick && "cursor-pointer", className)}
+      className={cn(
+        "relative mb-4 flex items-start gap-2",
+        onClick && "cursor-pointer",
+        state === "invalid" && "[&_*]:!text-action-high-red-marianne",
+        className,
+      )}
     >
       {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} /> : icon)}
       {logoImage && (
@@ -49,14 +55,19 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
         )}
       </div>
       {onClick && (
-        <Button
-          iconId="fr-icon-edit-line"
-          className="ml-auto flex-none self-start p-2"
-          priority="tertiary no outline"
-          size="small"
-          aria-label="Modifier"
-          title="Modifier"
-        />
+        <span className="ml-auto flex items-center">
+          {state === "invalid" && (
+            <i className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1" />
+          )}
+          <Button
+            iconId="fr-icon-edit-line"
+            priority="tertiary no outline"
+            size="small"
+            className="min-h-0 flex-none p-1 before:m-0"
+            aria-label="Modifier"
+            title="Modifier"
+          />
+        </span>
       )}
     </div>
   );

@@ -12,7 +12,10 @@ import IconThumbDown from "./icons/IconThumbDown";
 import IconThumbUp from "./icons/IconThumbUp";
 import IconWarning from "./icons/IconWarning";
 
-export const supportedIcons: Record<string, any> = {
+export const supportedIcons: Record<
+  string,
+  typeof IconI | typeof IconSkeleton | typeof IconThumbDown | typeof IconThumbUp | typeof IconWarning
+> = {
   i: IconI,
   thumb_up: IconThumbUp,
   thumb_down: IconThumbDown,
@@ -40,7 +43,6 @@ const Icon = ({ name, color, size, skeleton = false, loading = false, disabled =
   if (loading) return <IconLoader size={size} />;
 
   return (
-    //@ts-ignore
     <WrapperView disabled={disabled} style={style}>
       {!IconComponent ? (
         <EvaIcon name={name} fill={color} height={size} width={size} />

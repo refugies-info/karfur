@@ -49,7 +49,7 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
-  const { activeModal, setActiveModal, modalPage, setModalPage } = useContext(PageContext);
+  const { activeModal, setActiveModal, modalPage, setModalPage, formSubmitted } = useContext(PageContext);
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
 
   return (
@@ -85,7 +85,12 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
           Structure
         </AddContentButton>
       )}
-      <MetaDataCard title="En bref" onClick={() => setActiveModal?.("Abstract")} id="step-abstract">
+      <MetaDataCard
+        state={formSubmitted && !values.abstract ? "invalid" : undefined}
+        title="En bref"
+        onClick={() => setActiveModal?.("Abstract")}
+        id="step-abstract"
+      >
         {values.abstract}
       </MetaDataCard>
       <ModalAvailability show={activeModal === "Availability"} toggle={toggleModal} />

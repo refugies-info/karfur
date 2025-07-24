@@ -60,7 +60,7 @@ export const getNbContents = (req: GetContentsForAppRequest): Promise<GetNbConte
     "GET",
   ).then((response) => response.data);
 
-type GetContentByIdRequest = any;
+type GetContentByIdRequest = unknown;
 export const getContentById = ({
   locale,
   contentId,
@@ -91,7 +91,7 @@ export const updateAppUser = async (user: AppUserRequest) =>
 
 // FIXME Return type
 export const markNotificationAsSeen = async (request: MarkAsSeenRequest) =>
-  makeApiRequest<MarkAsSeenRequest, any>("/notifications/seen", request, "POST");
+  makeApiRequest<MarkAsSeenRequest, unknown>("/notifications/seen", request, "POST");
 
 export const retrieveTechnicalInfo = () =>
   makeApiRequest(

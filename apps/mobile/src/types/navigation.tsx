@@ -1,5 +1,8 @@
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CompositeScreenProps } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
 import { GetThemeResponse } from "@refugies-info/api-types";
-import { ObjectId } from "./interface";
+import { ValidScreen } from "~/libs/backButton";
 
 /**
  * Learn more about using TypeScript with React Navigation:
@@ -11,6 +14,7 @@ export type RootStackParamList = {
   Root: undefined;
   OnboardingNavigator: undefined;
   LanguageChoiceNavigator: undefined;
+  SearchScreen: undefined;
 };
 
 export type BottomTabParamList = {
@@ -26,20 +30,20 @@ export type ExplorerParamList = {
   ExplorerScreen: undefined;
   ContentsScreen: {
     theme: GetThemeResponse;
-    needId: ObjectId;
-    backScreen?: string;
+    needId: string;
+    backScreen?: ValidScreen;
   };
   ContentScreen: {
-    contentId: ObjectId;
-    needId?: ObjectId;
+    contentId: string;
+    needId?: string;
     theme?: GetThemeResponse;
-    backScreen?: string;
+    backScreen?: ValidScreen;
   };
   NeedsScreen: {
     theme: GetThemeResponse;
-    backScreen?: string;
+    backScreen?: ValidScreen;
   };
-  NotificationsScreen: {};
+  NotificationsScreen: object;
   NearMeCardsScreen: undefined;
 };
 
@@ -87,8 +91,7 @@ export interface GoogleAPISuggestion {
   description: string;
 }
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
-}
+export type ExplorerScreenProps<T extends keyof ExplorerParamList> = CompositeScreenProps<
+  StackScreenProps<ExplorerParamList, T>,
+  BottomTabScreenProps<BottomTabParamList>
+>;

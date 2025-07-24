@@ -479,31 +479,37 @@ exports[`LegalNotice screen should render correctly 1`] = `
         }
       >
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Sur cette page, tu trouveras toutes les informations obligatoires sur l’application Réfugiés.info. Par exemple : Qui est notre hébergeur ? Qui détient les droits d’auteur sur les contenus que nous publions ?
@@ -643,17 +649,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </View>
           <Text
             color="#716043"
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#716043",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 14,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textTransform": "uppercase",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#716043",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                  "textTransform": "uppercase",
+                },
+              ]
             }
           >
             Temps de lecture : 5 à 10 minutes
@@ -675,33 +684,39 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Qui est l’éditeur de Réfugiés.info ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           L’application Réfugiés.info a été créée par la Délégation interministérielle à l'accueil et à l'intégration des réfugiés du Ministère de l’Intérieur.
@@ -837,22 +852,25 @@ exports[`LegalNotice screen should render correctly 1`] = `
             </View>
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
                   "textAlign": "left",
                 },
-                {
-                  "flexShrink": 1,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ],
               ]
             }
           >
@@ -860,17 +878,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </Text>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Elle est développée par la MedNum, société coopérative d’intérêt collectif spécialisée sur la médiation et l’inclusion numérique.
@@ -1006,22 +1027,25 @@ exports[`LegalNotice screen should render correctly 1`] = `
             </View>
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
                   "textAlign": "left",
                 },
-                {
-                  "flexShrink": 1,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ],
               ]
             }
           >
@@ -1029,21 +1053,24 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </Text>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -1065,33 +1092,39 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Qui héberge Réfugiés.info ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           L’application Réfugiés.info est hébergée par la société Google Cloud.
@@ -1227,22 +1260,25 @@ exports[`LegalNotice screen should render correctly 1`] = `
             </View>
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
                   "textAlign": "left",
                 },
-                {
-                  "flexShrink": 1,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ],
               ]
             }
           >
@@ -1250,21 +1286,24 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </Text>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -1286,49 +1325,58 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Quels sont les droits sur les contenus ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Les contenus
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Les informations que l’on trouve sur l’application Réfugiés.info sont publiques et peuvent être reproduites ou réutilisées librement, à condition de :
@@ -1351,36 +1399,42 @@ exports[`LegalNotice screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               respecter l’intégrité de l’information reproduite
@@ -1401,36 +1455,42 @@ exports[`LegalNotice screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               citer la source « Réfugiés.info »
@@ -1569,22 +1629,25 @@ exports[`LegalNotice screen should render correctly 1`] = `
             </View>
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
                   "textAlign": "left",
                 },
-                {
-                  "flexShrink": 1,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ],
               ]
             }
           >
@@ -1681,20 +1744,23 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
                           [
                             {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Bold",
-                              "fontSize": 18,
-                              "lineHeight": 28,
                               "textAlign": "left",
                             },
-                            {
-                              "color": "#6A6AF4",
-                            },
+                            [
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Bold",
+                                "fontSize": 18,
+                                "lineHeight": 28,
+                              },
+                              {
+                                "color": "#6A6AF4",
+                              },
+                            ],
                           ]
                         }
                       >
@@ -1711,17 +1777,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "marginBottom": 24,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                              "marginBottom": 24,
+                            },
+                          ]
                         }
                       >
                         Tu ne peux pas utiliser ces informations dans un but publicitaire ou commercial.
@@ -1736,21 +1805,24 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
                           [
                             {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Regular",
-                              "fontSize": 16,
-                              "lineHeight": 24,
-                              "marginBottom": 24,
                               "textAlign": "left",
                             },
-                            {
-                              "marginBottom": 0,
-                            },
+                            [
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Regular",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "marginBottom": 24,
+                              },
+                              {
+                                "marginBottom": 0,
+                              },
+                            ],
                           ]
                         }
                       >
@@ -1780,33 +1852,39 @@ exports[`LegalNotice screen should render correctly 1`] = `
           }
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Les créations graphiques
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.
@@ -1943,22 +2021,25 @@ exports[`LegalNotice screen should render correctly 1`] = `
             </View>
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
                   "textAlign": "left",
                 },
-                {
-                  "flexShrink": 1,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ],
               ]
             }
           >
@@ -1966,17 +2047,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </Text>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Pour toute question sur la reproduction de contenus, tu peux t’adresser à :
@@ -2173,16 +2257,19 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 <Text
                   color="#FFFFFF"
                   disabled={false}
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2212,69 +2299,81 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Création de liens vers Réfugiés.info
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Tu peux librement créer des liens vers Réfugiés.info sans accord préalable. En revanche, la mention explicite de l’intitulé de l’application dans l’intitulé du lien est vivement souhaitée.
-        </Text>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Il est fortement recommandé que l’ouverture de cette page se fasse dans une fenêtre indépendante du navigateur.
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Tu peux librement créer des liens vers Réfugiés.info sans accord préalable. En revanche, la mention explicite de l’intitulé de l’application dans l’intitulé du lien est vivement souhaitée.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
               {
-                "marginBottom": 0,
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
               },
+            ]
+          }
+        >
+          Il est fortement recommandé que l’ouverture de cette page se fasse dans une fenêtre indépendante du navigateur.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
+                "textAlign": "left",
+              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -2296,37 +2395,43 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Liens vers d’autres sites
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -2348,49 +2453,58 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Accès au site
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Réfugiés.info et son hébergeur font le maximum pour te permettre d’avoir accès en continu à l’application Réfugiés.info.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Il est possible que certaines situations (panne, intention technique de maintenance) empêchent l’accès à l’application. Réfugiés.info a le droit de ne pas garantir l’accessibilité sans que sa responsabilité ne soit engagée.
@@ -2411,33 +2525,39 @@ exports[`LegalNotice screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Il te reste des questions ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Si tu ne trouves pas l’information que tu cherches, n’hésite pas à consulter les autres pages de l’application :
@@ -2456,20 +2576,23 @@ exports[`LegalNotice screen should render correctly 1`] = `
           }
         >
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 18,
-                  "lineHeight": 28,
                   "textAlign": "left",
                 },
-                {
-                  "paddingVertical": 16,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                  },
+                  {
+                    "paddingVertical": 16,
+                  },
+                ],
               ]
             }
           >
@@ -2650,21 +2773,24 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 </View>
               </View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    {
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                      {
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                      },
+                    ],
                   ]
                 }
               >
@@ -2957,21 +3083,24 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 </View>
               </View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    {
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                      {
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                      },
+                    ],
                   ]
                 }
               >
@@ -3098,17 +3227,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Sinon, n’hésite pas à nous contacter directement :
@@ -3305,16 +3437,19 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 <Text
                   color="#FFFFFF"
                   disabled={false}
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -3471,17 +3606,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </View>
           <Text
             color="#0063CB"
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#0063CB",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 14,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textTransform": "uppercase",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#0063CB",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                  "textTransform": "uppercase",
+                },
+              ]
             }
           >
             Mise à jour le 30 novembre 2021

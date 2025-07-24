@@ -1,4 +1,4 @@
-import { Pressable } from "react-native";
+import { GestureResponderEvent, Pressable } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -26,8 +26,8 @@ const InfoMessageLink = styled(TextDSFR_MD_Bold)`
 
 interface LocalizedWarningMessageProps {
   city: string;
-  onClose: any;
-  onPress: any;
+  onClose: () => void;
+  onPress: (event: GestureResponderEvent) => void;
   totalContent: number;
 }
 
@@ -38,7 +38,7 @@ const LocationWarningMessage = ({ city, onClose, onPress, totalContent }: Locali
   return (
     <InfoMessage>
       <Columns layout="1 auto" verticalAlign="center">
-        <Pressable onPress={onPress}>
+        <Pressable onPress={onPress} accessibilityRole="button">
           <Columns layout="auto 1" verticalAlign="center">
             <Icon name="info" height={24} width={24} fill={theme.colors.darkBlue} />
             <InfoMessageText>

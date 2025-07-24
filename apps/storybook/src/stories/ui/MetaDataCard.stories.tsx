@@ -87,3 +87,50 @@ export const WithSimpleText: Story = {
     },
   },
 };
+
+export const InvalidState: Story = {
+  args: {
+    title: "Invalid Card",
+    state: "invalid",
+    children: [
+      <MetaDataItem key="location" icon="fr-icon-map-pin-2-line" title="Location" state="invalid">
+        Missing location
+      </MetaDataItem>,
+      <MetaDataItem key="contact" icon="fr-icon-phone-fill" title="Contact" state="invalid">
+        No contact information
+      </MetaDataItem>,
+      <MetaDataItem key="email" icon="fr-icon-mail-fill" title="Email" state="invalid">
+        Invalid email address
+      </MetaDataItem>,
+    ],
+  },
+  parameters: {
+    backgrounds: {
+      default: "gradient",
+    },
+  },
+};
+
+export const InvalidStateWithEditAction: Story = {
+  args: {
+    title: "Invalid Card",
+    state: "invalid",
+    onClick: () => console.log("Edit clicked"),
+    children: [
+      <MetaDataItem key="location" icon="fr-icon-map-pin-2-line" title="Location" state="invalid">
+        Missing location
+      </MetaDataItem>,
+      <MetaDataItem key="contact" icon="fr-icon-phone-fill" title="Contact" state="invalid">
+        No contact information
+      </MetaDataItem>,
+      <MetaDataItem key="email" icon="fr-icon-mail-fill" title="Email" state="invalid">
+        Invalid email address
+      </MetaDataItem>,
+    ],
+  },
+  parameters: {
+    backgrounds: {
+      default: "gradient",
+    },
+  },
+};

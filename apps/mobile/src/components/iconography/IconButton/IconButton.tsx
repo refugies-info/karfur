@@ -1,3 +1,4 @@
+import { GestureResponderEvent } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import Icon from "../Icon";
 
@@ -20,7 +21,7 @@ export interface IconButtonProps {
   color?: string;
   iconName: string;
   loading?: boolean;
-  onPress: (event: any) => void;
+  onPress: (event: GestureResponderEvent) => void;
   outlined?: boolean;
 }
 

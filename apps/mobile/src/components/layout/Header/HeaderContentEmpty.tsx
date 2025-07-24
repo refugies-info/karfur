@@ -1,8 +1,4 @@
-import { HeaderContentProps } from "./HeaderContentProps";
-
-export interface HeaderContentEmptyProps extends HeaderContentProps {}
-
-const HeaderContentEmpty = ({}: HeaderContentProps) => <></>;
+const HeaderContentEmpty = () => <></>;
 HeaderContentEmpty.displayName = "HeaderContentEmpty";
 
 export default HeaderContentEmpty;

@@ -16,7 +16,7 @@ interface Props {
 const CardTheme = ({ formData }: Props) => {
   const theme = useSelector(themeSelector(formData.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(formData.secondaryThemes));
-  const { setActiveModal } = useContext(PageContext);
+  const { setActiveModal, formSubmitted } = useContext(PageContext);
   const content = useMemo(() => {
     return (
       <div>
@@ -35,7 +35,11 @@ const CardTheme = ({ formData }: Props) => {
     );
   }, [theme, secondaryThemes]);
   return (
-    <MetaDataCard title={"Thèmes"} onClick={() => setActiveModal?.("Themes")}>
+    <MetaDataCard
+      state={formSubmitted && theme === undefined ? "invalid" : undefined}
+      title={"Thèmes"}
+      onClick={() => setActiveModal?.("Themes")}
+    >
       {content}
     </MetaDataCard>
   );
