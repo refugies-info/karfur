@@ -8,10 +8,6 @@
     ul,
     ol {
       @apply mt-0;
-
-      &:last-of-type {
-        @apply mb-0;
-      }
     }
 
     li {
@@ -20,9 +16,13 @@
 
     /* Fixes nested numbered lis numbers ovelap */
     ol {
-      @apply mb-0 grid grid-cols-[min-content_auto] gap-y-2 p-0 ps-[0.625em];
+      @apply grid grid-cols-[min-content_auto] gap-y-2 p-0;
 
       counter-reset: list-item;
+
+      ol {
+        @apply mb-0 ps-[0.625em];
+      }
 
       li {
         @apply pb-2;
@@ -79,18 +79,9 @@
     p {
       @apply mt-0 mb-4;
 
-      &:last-of-type {
-        @apply mb-0;
-      }
-
       & + h2,
       & + h3 {
         @apply mt-8 mb-6;
-      }
-
-      & + ul,
-      & + ol {
-        @apply mb-4 -translate-y-2;
       }
     }
 
@@ -102,5 +93,10 @@
     .callout {
       @apply m-0 mb-6;
     }
+  }
+
+  * + ul,
+  * + ol {
+    @apply !-mt-2;
   }
 }

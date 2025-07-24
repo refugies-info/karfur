@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { ContentStructure, ContentType, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
+import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
@@ -49,9 +49,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
 
   return hasMainSponsor || hasSponsors || editMode ? (
     <span className="w-full">
-      <span className="text-title-grey">
-        {dispositif?.typeContenu === ContentType.DISPOSITIF ? t("Dispositif.proposedBy") : t("Dispositif.with")}{" "}
-      </span>
+      <span className="text-title-grey">{t("Dispositif.with")} </span>
       <span>
         {hasMainSponsor && mainSponsor?.nom && (
           <>

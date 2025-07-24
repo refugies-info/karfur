@@ -10,6 +10,11 @@ export const help = [
     ],
   },
   {
+    title: "Vous avez une proposition ?",
+    content:
+      "Si votre action est réservée à un autre public que ceux proposés ci-contre, n’hésitez pas à nous contacter sur le chat en bas à droite de votre écran.",
+  },
+  {
     title: "Quelques conseils",
     content: [
       "Concentrez-vous sur le public qui peut accéder au dispositif.",
@@ -19,11 +24,6 @@ export const help = [
   {
     title: "Quelques conseils",
     content: "Précisez ici l'âge demandé ou souhaité pour les bénéficiaires de votre action.",
-  },
-  {
-    title: "Vous avez une proposition ?",
-    content:
-      "Si votre action est réservée à un autre public que ceux proposés ci-contre, n’hésitez pas à nous contacter sur le chat en bas à droite de votre écran.",
   },
 ];
 

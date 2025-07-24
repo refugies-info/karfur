@@ -83,11 +83,6 @@ const Header = (props: Props) => {
         />
       )}
       <Title />
-      {!hideSponsor && isViewMode && dispositif?.titreMarque && (
-        <span className="text-corps-xl mb-8 block">
-          {t("Dispositif.proposedBy")} {dispositif?.titreMarque}{" "}
-        </span>
-      )}
 
       <div className="flex items-center gap-3 text-sm">
         {dispositif?.mainSponsor?.picture?.secure_url && (
