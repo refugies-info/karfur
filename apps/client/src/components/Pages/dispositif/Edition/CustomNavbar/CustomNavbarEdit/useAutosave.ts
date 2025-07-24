@@ -61,9 +61,18 @@ const useAutosave = () => {
                   // If logo is a string, convert it to a Picture object
                   if (typeof newSponsor.logo === "string") {
                     const url = newSponsor.logo;
+                    const filename = url.split("/").pop();
+                    // Robustly get public_id from filename by removing the extension from the last dot
+                    const filenameWithoutExt = filename
+                      ? filename.lastIndexOf(".") > -1
+                        ? filename.substring(0, filename.lastIndexOf("."))
+                        : filename
+                      : null;
+                    // Add the 'pictures/' prefix to match the expected format
+                    const public_id = filenameWithoutExt ? `pictures/${filenameWithoutExt}` : null;
                     newSponsor.logo = {
                       secure_url: url,
-                      public_id: url.split("/").pop()?.split(".")[0] || null,
+                      public_id: public_id,
                       imgId: null,
                     };
                   }
