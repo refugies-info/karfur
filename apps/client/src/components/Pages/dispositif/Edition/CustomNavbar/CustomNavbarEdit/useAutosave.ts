@@ -49,9 +49,40 @@ const useAutosave = () => {
             try {
               let response: UpdateDispositifResponse | PostDispositifsResponse | null = null;
 
+              // Create a sanitized copy of the data with properly formatted sponsor logos
+              const sanitizedData = { ...data };
+
+              // Ensure sponsor logos are in the correct format (Picture object or null, never a string)
+              if (sanitizedData.sponsors && Array.isArray(sanitizedData.sponsors)) {
+                sanitizedData.sponsors = sanitizedData.sponsors.map((sponsor: any) => {
+                  if (!sponsor) return sponsor;
+
+                  const newSponsor = { ...sponsor };
+                  // If logo is a string, convert it to a Picture object
+                  if (typeof newSponsor.logo === "string") {
+                    const url = newSponsor.logo;
+                    const filename = url.split("/").pop();
+                    // Robustly get public_id from filename by removing the extension from the last dot
+                    const filenameWithoutExt = filename
+                      ? filename.lastIndexOf(".") > -1
+                        ? filename.substring(0, filename.lastIndexOf("."))
+                        : filename
+                      : null;
+                    // Add the 'pictures/' prefix to match the expected format
+                    const public_id = filenameWithoutExt ? `pictures/${filenameWithoutExt}` : null;
+                    newSponsor.logo = {
+                      secure_url: url,
+                      public_id: public_id,
+                      imgId: null,
+                    };
+                  }
+                  return newSponsor;
+                });
+              }
+
               if (id) {
                 // update
-                response = await submitUpdateForm(id, data);
+                response = await submitUpdateForm(id, sanitizedData);
                 if (response && dispositif) {
                   dispatch(
                     setSelectedDispositifActionCreator({
@@ -63,7 +94,7 @@ const useAutosave = () => {
                 }
               } else {
                 // create
-                response = await submitCreateForm(data);
+                response = await submitCreateForm(sanitizedData);
                 if (response) {
                   // set partial dispositif in store, and continue edition on this page
                   dispatch(
