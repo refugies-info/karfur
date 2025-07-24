@@ -20,13 +20,24 @@ interface Props {
   darkBg?: boolean;
 }
 
-export const ReadableText = React.forwardRef((props: Props, ref: any) => {
+export type ReadableTextRef = {
+  current: string | null;
+};
+
+export const ReadableText = React.forwardRef<ReadableTextRef, Props>((props, ref) => {
   const dispatch = useDispatch();
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
 
-  if (ref) ref.current = id;
-  const refView = useRef<View | null>(null);
+  // Update the ref with the current ID
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      current: id,
+    }),
+    [id],
+  );
+  const refView = useRef<View>(null);
 
   const text: string = useMemo(() => {
     return props.text || (props.children as string) || "";
@@ -67,7 +78,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   useEffect(() => {
     dispatch(addToReadingList({ item: readingObject, id }));
 
-    () => {
+    return () => {
       dispatch(removeFromReadingList(id));
     };
   }, []);

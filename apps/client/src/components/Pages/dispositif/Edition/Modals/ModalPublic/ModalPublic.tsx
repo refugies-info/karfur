@@ -182,7 +182,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
                 );
               }}
               className="mb-2"
-              helpTooltip="Votre action est ouverte aux étrangers en situation d’exil, c'est-à-dire vivant en France depuis moins de 5 ans."
+              helpTooltip="Votre action est ouverte aux étrangers en situation d’exil."
             />
             <div>
               {publicStatusOptions.map((key) => (

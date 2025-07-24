@@ -13,6 +13,7 @@ import aa from "search-insights";
 import { RootNavigator } from "./navigation";
 import { store } from "./services/redux/store";
 
+import { AppUserRequest, Languages } from "@refugies-info/api-types";
 import useAsync from "react-use/lib/useAsync";
 import { ConnexionTest } from "./components/ConnexionTest";
 import OfflinePage from "./components/OfflinePage";
@@ -37,8 +38,8 @@ const updateUserInfo = async () => {
     AsyncStorage.getItem("AGE"),
     AsyncStorage.getItem("FRENCH_LEVEL"),
   ]);
-  const payload: any = {
-    selectedLanguage,
+  const payload: Partial<AppUserRequest> = {
+    selectedLanguage: selectedLanguage as Languages,
     city,
     department,
     age,
@@ -54,7 +55,7 @@ const updateUserInfo = async () => {
   }
   updateAppUser(payload);
   crashlytics().setUserId(token);
-  aa("setUserToken", token.replace(/[\[\]]/g, "_")); // characters [] invalid for algolia
+  aa("setUserToken", token.replace(/[[\]]/g, "_")); // characters [] invalid for algolia
 };
 
 export default function App() {

@@ -27,7 +27,7 @@ describe("LanguageChoiceModal", () => {
     const changeLanguage = jest.fn();
     (useTranslationWithRTL as jest.Mock).mockReturnValueOnce({
       i18n: { changeLanguage },
-      t: jest.fn().mockImplementationOnce((arg1, _) => arg1),
+      t: jest.fn().mockImplementationOnce((arg1) => arg1),
     });
     const toggleModal = jest.fn();
     const component = wrapWithProvidersAndRender({

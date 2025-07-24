@@ -1,3 +1,5 @@
+import { StackNavigationProp } from "@react-navigation/stack";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import React, { useEffect } from "react";
 import { Dimensions, StyleProp, View, ViewStyle } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
@@ -5,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { sortByOrder } from "~/libs";
 import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import { ExplorerParamList } from "~/types/navigation";
 import { CarouselPagination } from "./CarouselPagination";
 import { CarousselCard } from "./CarousselCard";
 
@@ -22,7 +25,11 @@ const carouselStyle: StyleProp<ViewStyle> = {
   justifyContent: "center",
 };
 
-export const TagsCarousel = (props: any) => {
+interface TagsCarouselProps {
+  navigation: StackNavigationProp<ExplorerParamList, "ExplorerScreen">;
+}
+
+export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
   const { isRTL } = useTranslationWithRTL();
   const [activeIndex, setActiveIndex] = React.useState(0);
   const themes = useSelector(themesSelector);
@@ -37,11 +44,11 @@ export const TagsCarousel = (props: any) => {
     else setActiveIndex(0);
   }, [isRTL]);
 
-  const renderItem = ({ item }: { item: any }) => (
+  const renderItem = ({ item }: { item: GetThemeResponse }) => (
     <CarousselCard
       key={item._id.toString()}
       theme={item}
-      navigation={props.navigation}
+      navigation={navigation}
       cardWidth={cardWidth}
       cardHeight={cardHeight}
     />

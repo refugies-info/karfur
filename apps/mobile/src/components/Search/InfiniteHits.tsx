@@ -1,14 +1,18 @@
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useMemo } from "react";
 import { useInfiniteHits } from "react-instantsearch-core";
 import { FlatList, Keyboard, Platform, View } from "react-native";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
+import { SearchItem } from "~/components/Search/types";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { contentsSelector } from "~/services/redux/Contents/contents.selectors";
 import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { styles } from "~/theme";
+import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { ErrorScreen } from "../ErrorScreen";
-import { HitWithInsights } from "./Hit";
+import { AlgoliaMetadata, HitWithInsights } from "./Hit";
 import NbResults from "./NbResults";
 
 const ErrorContainer = styled.View`
@@ -16,8 +20,13 @@ const ErrorContainer = styled.View`
   flex-grow: 1;
 `;
 
+type NavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList>,
+  StackNavigationProp<ExplorerParamList>
+>;
+
 interface Props {
-  navigation: any;
+  navigation: NavigationProp;
   selectedLanguage: string | null;
   query: string;
   nbContents: Record<string, number>;
@@ -33,7 +42,7 @@ const InfiniteHits = ({ navigation, selectedLanguage, query, nbContents }: Props
   const contentIds = useMemo(() => contents.map((c) => c._id.toString()), [contents]);
   const groupedContents = useSelector(groupedContentsSelector);
 
-  const { hits, isLastPage, showMore } = useInfiniteHits();
+  const { hits, isLastPage, showMore } = useInfiniteHits<SearchItem>();
 
   const nbResults = React.useMemo(() => {
     return (hits || []).filter((hit) => {
@@ -74,14 +83,19 @@ const InfiniteHits = ({ navigation, selectedLanguage, query, nbContents }: Props
         contentContainerStyle={{ paddingBottom: styles.margin * 6 }}
         {...keyboardDismissProp}
         ListHeaderComponent={<NbResults nbResults={nbResults} />}
-        renderItem={({ item }) => (
-          <HitWithInsights
-            hit={item}
-            navigation={navigation}
-            selectedLanguage={selectedLanguage}
-            nbContents={nbContents}
-          />
-        )}
+        renderItem={({ item, index }) => {
+          if (!item._highlightResult) {
+            return null;
+          }
+          return (
+            <HitWithInsights
+              hit={{ ...item, __index: index.toString() } as SearchItem & AlgoliaMetadata}
+              navigation={navigation}
+              selectedLanguage={selectedLanguage}
+              nbContents={nbContents}
+            />
+          );
+        }}
       />
     </View>
   );

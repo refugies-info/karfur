@@ -394,17 +394,20 @@ exports[`Accessibility screen should render correctly 1`] = `
                 accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
-                isRTL={false}
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                    },
+                  ]
                 }
               >
                 Accessibilité
@@ -507,33 +510,39 @@ exports[`Accessibility screen should render correctly 1`] = `
         }
       >
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           L'accessibilité, c'est quoi ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application
@@ -542,17 +551,20 @@ exports[`Accessibility screen should render correctly 1`] = `
            Réfugiés.info.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et aux services numériques. Pour cela, il faut respecter des règles émises par le World Wide Web Consortium et pensées par des ergonomes pour chaque type de handicap.
@@ -692,17 +704,20 @@ exports[`Accessibility screen should render correctly 1`] = `
           </View>
           <Text
             color="#716043"
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#716043",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 14,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textTransform": "uppercase",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#716043",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                  "textTransform": "uppercase",
+                },
+              ]
             }
           >
             Temps de lecture : 5 à 10 minutes
@@ -724,69 +739,81 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Déclaration d’accessibilité
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          La Délégation interministérielle à l'accueil et à l'intégration des réfugiés s'engage à rendre son application mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
-        </Text>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours d'élaboration.
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          La Délégation interministérielle à l'accueil et à l'intégration des réfugiés s'engage à rendre son application mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
               {
-                "marginBottom": 0,
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
               },
+            ]
+          }
+        >
+          À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours d'élaboration.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
+                "textAlign": "left",
+              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -810,37 +837,43 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           État de conformité
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -850,16 +883,19 @@ exports[`Accessibility screen should render correctly 1`] = `
            
           en 
           <Text
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
             }
           >
             conformité partielle
@@ -883,53 +919,62 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Résultats des tests
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           L’audit de conformité réalisé par la société
            
           <Text
             accessibilityRole="link"
-            isRTL={false}
             onPress={[Function]}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textDecorationColor": "black",
-                "textDecorationLine": "underline",
-                "textDecorationStyle": "solid",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textDecorationColor": "black",
+                  "textDecorationLine": "underline",
+                  "textDecorationStyle": "solid",
+                },
+              ]
             }
           >
             Ipedis
@@ -955,22 +1000,25 @@ exports[`Accessibility screen should render correctly 1`] = `
           }
         >
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginBottom": 24,
                   "textAlign": "left",
                 },
-                {
-                  "fontStyle": "italic",
-                  "textAlign": "center",
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginBottom": 24,
+                  },
+                  {
+                    "fontStyle": "italic",
+                    "textAlign": "center",
+                  },
+                ],
               ]
             }
           >
@@ -1024,16 +1072,19 @@ exports[`Accessibility screen should render correctly 1`] = `
               }
             />
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               Critères conformes
@@ -2152,16 +2203,19 @@ exports[`Accessibility screen should render correctly 1`] = `
               />
             </View>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               12
@@ -2198,16 +2252,19 @@ exports[`Accessibility screen should render correctly 1`] = `
               }
             />
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               Critères non conformes
@@ -3326,16 +3383,19 @@ exports[`Accessibility screen should render correctly 1`] = `
               />
             </View>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               12
@@ -3366,16 +3426,19 @@ exports[`Accessibility screen should render correctly 1`] = `
               width={24}
             />
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               Critères non applicables
@@ -4494,16 +4557,19 @@ exports[`Accessibility screen should render correctly 1`] = `
               />
             </View>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                ]
               }
             >
               19
@@ -4526,65 +4592,77 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Contenus non accessibles
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Non-conformité
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Plusieurs éléments de non-conformité sont décrits dans ce document, dont certains récurrents sur plusieurs pages :
@@ -4611,36 +4689,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Les images/icônes porteuses d'information n'ont pas d'alternative textuelle
@@ -4661,36 +4745,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Certains textes ne sont pas correctement lus par le lecteur d'écran
@@ -4711,36 +4801,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Le contraste entre la couleur de fond et les textes/images et certains composants d’interface ne sont pas suffisants
@@ -4761,36 +4857,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               L'application n'est consultable qu'en version portrait
@@ -4811,36 +4913,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               L'ordre de tabulation des éléments de la page n'est pas toujours logique et intuitif
@@ -4861,36 +4969,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Au chargement des pages, le focus ne part pas automatiquement sur le premier élément de la nouvelle page
@@ -4911,36 +5025,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Des pièges au clavier sont présents
@@ -4961,36 +5081,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Certains boutons n'ont pas d'intitulé ou ont un intitulé qui n'est pas pertinent
@@ -5011,36 +5137,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Le label des champs est visible, mais n'est pas restitué lorsque le focus du lecteur d’écran arrive dessus
@@ -5061,36 +5193,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Certaines pages ont des titres qui ne sont pas définis comme étant des en-têtes
@@ -5111,36 +5249,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               La navigation sur la carte Google doit se faire avec l’utilisation simultanée de deux doigts ou plus
@@ -5161,36 +5305,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Le champ Ta Ville affiche une liste de suggestion, mais cela n'est pas vocalisé par le lecteur d'écran
@@ -5211,36 +5361,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Les barres d'onglet ne sont pas reconnues comme telles par le lecteur d'écran
@@ -5261,36 +5417,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Certains boutons/listes de suggestion/boutons radio/liens ne sont pas reconnus comme tels
@@ -5311,36 +5473,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Les messages de statut ne sont pas restitués par le lecteur d'écran
@@ -5348,69 +5516,81 @@ exports[`Accessibility screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Dérogations pour charge disproportionnée
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Pas de dérogation identifiée
-        </Text>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
-          }
-        >
-          Contenus non soumis à l’obligation d’accessibilité
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Pas de dérogation identifiée
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
               {
-                "marginBottom": 0,
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
               },
+            ]
+          }
+        >
+          Contenus non soumis à l’obligation d’accessibilité
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
+                "textAlign": "left",
+              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -5432,49 +5612,58 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Établissement de cette déclaration d’accessibilité
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Cette déclaration a été établie le 30 novembre 2021.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Technologies utilisées pour la réalisation de l’application :
@@ -5501,36 +5690,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               React Native
@@ -5538,17 +5733,20 @@ exports[`Accessibility screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Les tests des pages web ont été effectués avec les combinaisons d'agents utilisateurs et de lecteurs d’écran suivants :
@@ -5575,36 +5773,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               iOS Voiceover
@@ -5612,17 +5816,20 @@ exports[`Accessibility screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Les outils suivants ont été utilisés lors de l’évaluation :
@@ -5649,36 +5856,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Contrast Color checker WCAG
@@ -5699,36 +5912,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               iOS Voiceover
@@ -5736,21 +5955,24 @@ exports[`Accessibility screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -5774,36 +5996,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page “Explorer”
@@ -5824,36 +6052,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page “Déclaration d’accessibilité”
@@ -5874,36 +6108,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page “Rechercher”
@@ -5924,36 +6164,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page du Choix de langue
@@ -5974,36 +6220,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Carrousel d'explications de l'application
@@ -6024,36 +6276,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Pages de création des filtres
@@ -6074,36 +6332,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page “Moi”
@@ -6124,36 +6388,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page “Mes fiches”
@@ -6174,36 +6444,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Fiche “Trouver un logement”
@@ -6224,36 +6500,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Fiche “Accueils de jours à Paris”
@@ -6274,36 +6556,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Page “Mentions légales”
@@ -6326,33 +6614,39 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Retour d’information et contact
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de l’application mobile pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.
@@ -6549,16 +6843,19 @@ exports[`Accessibility screen should render correctly 1`] = `
                 <Text
                   color="#FFFFFF"
                   disabled={false}
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -6588,49 +6885,58 @@ exports[`Accessibility screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Voies de recours
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Cette procédure est à utiliser dans le cas suivant :
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Vous avez signalé au responsable du site internet un défaut d’accessibilité qui vous empêche d’accéder à un contenu ou à un des services du portail et vous n’avez pas obtenu de réponse satisfaisante.
@@ -6653,56 +6959,65 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Écrire un message au
                
               <Text
                 accessibilityRole="link"
-                isRTL={false}
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                    "textDecorationColor": "black",
-                    "textDecorationLine": "underline",
-                    "textDecorationStyle": "solid",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textDecorationColor": "black",
+                      "textDecorationLine": "underline",
+                      "textDecorationStyle": "solid",
+                    },
+                  ]
                 }
               >
                 Défenseur des droits
@@ -6724,56 +7039,65 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Contacter le délégué du
                
               <Text
                 accessibilityRole="link"
-                isRTL={false}
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                    "textDecorationColor": "black",
-                    "textDecorationLine": "underline",
-                    "textDecorationStyle": "solid",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#212121",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textDecorationColor": "black",
+                      "textDecorationLine": "underline",
+                      "textDecorationStyle": "solid",
+                    },
+                  ]
                 }
               >
                 Défenseur des droits de ta région
@@ -6795,36 +7119,42 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l’adresse suivante :
@@ -6970,22 +7300,25 @@ exports[`Accessibility screen should render correctly 1`] = `
             </View>
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
               [
                 {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
                   "textAlign": "left",
                 },
-                {
-                  "flexShrink": 1,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ],
               ]
             }
           >
@@ -7137,17 +7470,20 @@ Libre réponse 71120
           </View>
           <Text
             color="#0063CB"
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#0063CB",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 14,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textTransform": "uppercase",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#0063CB",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                  "textTransform": "uppercase",
+                },
+              ]
             }
           >
             Mise à jour le 6 janvier 2022

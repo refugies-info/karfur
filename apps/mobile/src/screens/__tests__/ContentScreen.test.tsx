@@ -9,11 +9,15 @@ import ContentScreen from "../ContentScreen";
 
 const theme = mockedThemesData[0];
 
+interface PropsWithChildren {
+  children: React.ReactNode;
+}
+
 jest.useFakeTimers();
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
-    t: jest.fn().mockImplementation((_, arg2) => _),
+    t: jest.fn().mockImplementation((_) => _),
     isRTL: false,
   }),
 }));
@@ -31,11 +35,11 @@ jest.mock("../../utils/logEvent", () => ({
 }));
 
 jest.mock("react-native-maps", () => {
-  const { View } = require("react-native");
-  const MockMapView = (props: any) => {
+  const { View } = jest.requireActual("react-native");
+  const MockMapView = (props: PropsWithChildren) => {
     return <View>{props.children}</View>;
   };
-  const MockMarker = (props: any) => {
+  const MockMarker = (props: PropsWithChildren) => {
     return <View>{props.children}</View>;
   };
   return {
@@ -46,8 +50,8 @@ jest.mock("react-native-maps", () => {
 });
 
 jest.mock("@gorhom/bottom-sheet", () => {
-  const RN = require("react-native");
-  const { MockBottomSheet } = require("../../jest/__mocks__/MockBottomSheet");
+  const RN = jest.requireActual("react-native");
+  const { MockBottomSheet } = jest.requireActual("../../jest/__mocks__/MockBottomSheet");
 
   return {
     __esModule: true,
@@ -63,7 +67,7 @@ jest.mock("@gorhom/bottom-sheet", () => {
 });
 
 jest.mock("react-native-gesture-handler", () => {
-  const View = require("react-native").View;
+  const View = jest.requireActual("react-native").View;
   return {
     GestureHandlerRootView: View,
     default: {

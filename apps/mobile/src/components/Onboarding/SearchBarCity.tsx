@@ -21,16 +21,25 @@ const InputContainer = styled(RTLView)`
   border: 1px solid ${styles.colors.dsfr_action};
   flex: 1;
 `;
-const StyledInput = styled.TextInput<{ isRTL: boolean }>`
+
+interface StyledInputProps extends React.ComponentProps<typeof TextInput> {
+  isRTL: boolean;
+}
+
+const StyledInput = styled(TextInput).attrs<StyledInputProps>(({ isRTL }) => ({
+  textAlign: isRTL ? "right" : "left",
+  style: {
+    marginLeft: isRTL ? 0 : styles.margin,
+    marginRight: isRTL ? styles.margin : 0,
+  },
+}))`
   height: 100%;
   width: 100%;
   color: ${styles.colors.dsfr_action};
   font-family: ${({ theme }) => theme.fonts.families.marianneBold};
-  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
-  margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
-  text-align: ${({ isRTL }) => (isRTL ? "right" : "left")};
   flex: 1;
 `;
+
 const FakeInput = styled(RTLTouchableOpacity)`
   min-height: 56px;
   width: 100%;
@@ -63,7 +72,7 @@ interface Props {
 }
 
 export const SearchBarCity = (props: Props) => {
-  const input = useRef<TextInput>();
+  const input = useRef<TextInput>(null);
   const [modalOpened, setModalOpened] = useState(false);
   const { t, isRTL } = useTranslationWithRTL();
 
@@ -86,7 +95,6 @@ export const SearchBarCity = (props: Props) => {
         <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
-      {/* @ts-ignore (see https://github.com/react-native-modal/react-native-modal/issues/696) */}
       <TextModal
         visible={modalOpened}
         onDismiss={() => setModalOpened(false)}
@@ -107,7 +115,6 @@ export const SearchBarCity = (props: Props) => {
             </TouchableOpacity>
             <InputContainer>
               <StyledInput
-                // @ts-ignore
                 ref={input}
                 value={props.enteredText}
                 onChangeText={props.onChangeText}

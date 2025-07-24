@@ -7,7 +7,6 @@ import PageOnboarding from "~/components/layout/PageOnboarding";
 import { OnboardingProgressBar } from "~/components/Onboarding/OnboardingProgressBar";
 import { FilterFrenchLevelComponent } from "~/components/Profil/FilterFrenchLevelComponent";
 import { frenchLevelFilters } from "~/data/filtersData";
-import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import {
   removeUserFrenchLevelActionCreator,
   saveUserFrenchLevelActionCreator,
@@ -16,7 +15,6 @@ import { userFrenchLevelSelector } from "~/services/redux/User/user.selectors";
 import { OnboardingParamList } from "~/types/navigation";
 
 export const FilterFrenchLevel = ({ navigation }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
-  const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
   const [selectedFrenchLevel, setSelectedFrenchLevel] = useState<null | MobileFrenchLevel>(null);

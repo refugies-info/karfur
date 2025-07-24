@@ -312,13 +312,11 @@ exports[`Search results screen should render correctly 1`] = `
               "flexGrow": 1,
               "flexShrink": 1,
               "height": "100%",
-              "marginLeft": 8,
-              "marginRight": 0,
-              "textAlign": "left",
               "width": "100%",
             }
           }
           testID="test-city-search"
+          textAlign="left"
           value=""
         />
         <View
@@ -489,17 +487,20 @@ exports[`Search results screen should render correctly 1`] = `
         }
       />
       <Text
-        isRTL={false}
         selectable={true}
         style={
-          {
-            "color": "#212121",
-            "fontFamily": "Marianne-Bold",
-            "fontSize": 18,
-            "lineHeight": 28,
-            "marginBottom": 16,
-            "textAlign": "left",
-          }
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#212121",
+              "fontFamily": "Marianne-Bold",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "marginBottom": 16,
+            },
+          ]
         }
       >
         <Text
@@ -510,17 +511,20 @@ exports[`Search results screen should render correctly 1`] = `
         <View />
       </Text>
       <Text
-        isRTL={false}
         selectable={true}
         style={
-          {
-            "color": "#212121",
-            "fontFamily": "Marianne-Bold",
-            "fontSize": 18,
-            "lineHeight": 28,
-            "marginBottom": 16,
-            "textAlign": "left",
-          }
+          [
+            {
+              "textAlign": "left",
+            },
+            {
+              "color": "#212121",
+              "fontFamily": "Marianne-Bold",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "marginBottom": 16,
+            },
+          ]
         }
       >
         <Text
@@ -637,19 +641,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -767,19 +774,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -897,19 +907,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1027,19 +1040,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1157,19 +1173,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1287,19 +1306,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1417,19 +1439,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1547,19 +1572,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1677,19 +1705,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1807,19 +1838,22 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "Marianne-Bold",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                      },
+                    ]
                   }
                 >
                   <Text
