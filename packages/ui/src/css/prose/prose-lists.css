@@ -16,12 +16,12 @@
 
     /* Fixes nested numbered lis numbers ovelap */
     ol {
-      @apply mb-0 grid grid-cols-[min-content_auto] gap-y-2 p-0;
+      @apply grid grid-cols-[min-content_auto] gap-y-2 p-0;
 
       counter-reset: list-item;
 
       ol {
-        @apply ps-[0.625em];
+        @apply mb-0 ps-[0.625em];
       }
 
       li {
