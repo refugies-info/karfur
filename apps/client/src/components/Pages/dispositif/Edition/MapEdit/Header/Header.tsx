@@ -1,49 +1,97 @@
-import { useEffect, useState } from "react";
-import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Input from "~/components/Pages/dispositif/Input";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import styles from "./Header.module.scss";
 
+interface NominatimResult {
+  place_id: number;
+  licence: string;
+  osm_type: string;
+  osm_id: number;
+  boundingbox: string[];
+  lat: string;
+  lon: string;
+  display_name: string;
+  type: string;
+  importance: number;
+  address?: {
+    city?: string;
+    town?: string;
+    village?: string;
+  };
+}
+
 interface Props {
-  onSelectPlace: (place: google.maps.places.PlaceResult | null) => void;
+  onSelectPlace: (place: NominatimResult | null) => void;
   onDelete: () => void;
+  className?: string;
 }
 
 const Header = (props: Props) => {
   const [search, setSearch] = useState("");
   const [hidePredictions, setHidePredictions] = useState(false);
+  const [placePredictions, setPlacePredictions] = useState<NominatimResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
-    apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
-    //@ts-ignore
-    options: {
-      componentRestrictions: { country: "fr" },
-    },
-  });
+  const searchOpenStreetMap = async (query: string) => {
+    if (!query) {
+      setPlacePredictions([]);
+      return;
+    }
 
-  const onPlaceSelected = (id: string) => {
-    placesService?.getDetails({ placeId: id }, (placeDetails) => {
-      if (placeDetails) {
-        props.onSelectPlace(placeDetails);
-        setHidePredictions(true);
-        setSearch("");
+    setIsLoading(true);
+    try {
+      // Using Nominatim API with France as the country code
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&countrycodes=fr&limit=5`,
+        {
+          headers: {
+            "Accept-Language": "fr", // Get results in French
+            "User-Agent": "refugies.info", // Required by Nominatim usage policy
+          },
+        },
+      );
+
+      if (response.ok) {
+        const data: NominatimResult[] = await response.json();
+        setPlacePredictions(data);
+      } else {
+        // Handle error silently
+        setPlacePredictions([]);
       }
-    });
+    } catch (error) {
+      // Handle error silently
+      setPlacePredictions([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const onPlaceSelected = (place: NominatimResult) => {
+    props.onSelectPlace(place);
+    setHidePredictions(true);
+    setSearch("");
   };
 
   useEffect(() => {
     if (search) {
-      getPlacePredictions({ input: search });
-      if (hidePredictions) setHidePredictions(false);
+      const debounceTimer = setTimeout(() => {
+        searchOpenStreetMap(search);
+        if (hidePredictions) setHidePredictions(false);
+      }, 300); // Debounce to avoid too many requests
+
+      return () => clearTimeout(debounceTimer);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+
+    setPlacePredictions([]);
+    return undefined;
+  }, [search, hidePredictions]);
 
   return (
-    <Row className={cls(styles.container, "gx-0")}>
+    <Row className={cn(styles.container, "gx-0", props.className)}>
       <Col xs="8">
         <Input
           id="search-location-input"
@@ -56,19 +104,23 @@ const Header = (props: Props) => {
         />
         {!!(!hidePredictions && placePredictions?.length) && (
           <div className={styles.suggestions}>
-            {placePredictions.slice(0, 5).map((p, i) => (
-              <button
-                key={i}
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  onPlaceSelected(p.place_id);
-                }}
-                className={styles.btn}
-              >
-                <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
-                {p.description}
-              </button>
-            ))}
+            {isLoading ? (
+              <div className="p-2 text-center">Recherche en cours...</div>
+            ) : (
+              placePredictions.map((p) => (
+                <button
+                  key={p.place_id}
+                  onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    e.preventDefault();
+                    onPlaceSelected(p);
+                  }}
+                  className={styles.btn}
+                >
+                  <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
+                  {p.display_name}
+                </button>
+              ))
+            )}
           </div>
         )}
       </Col>
