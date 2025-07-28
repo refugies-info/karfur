@@ -145,7 +145,7 @@ const MapEdit = () => {
       <Header
         onSelectPlace={onSelectPlace}
         onDelete={() => setShowDeleteModal(true)}
-        className="border-default-grey col-span-3 items-center border-b p-2"
+        className="border-default-grey z-20 col-span-3 items-center border border-b p-2"
       />
 
       {showSidebar && <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={selectedMarker} />}
