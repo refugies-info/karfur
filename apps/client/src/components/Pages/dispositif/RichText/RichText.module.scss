@@ -7,7 +7,6 @@
 
 .content {
   @include dsfr-text("normal");
-  @include content-text;
 
   ol > li:has(ol) {
     counter-increment: none;
