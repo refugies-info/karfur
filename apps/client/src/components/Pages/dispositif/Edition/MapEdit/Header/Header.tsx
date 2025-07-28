@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Input from "~/components/Pages/dispositif/Input";
 import Button from "~/components/UI/Button";
@@ -15,7 +15,6 @@ interface NominatimResult {
   lat: string;
   lon: string;
   display_name: string;
-  class: string;
   type: string;
   importance: number;
   address?: {
@@ -108,10 +107,10 @@ const Header = (props: Props) => {
             {isLoading ? (
               <div className="p-2 text-center">Recherche en cours...</div>
             ) : (
-              placePredictions.map((p, i) => (
+              placePredictions.map((p) => (
                 <button
-                  key={i}
-                  onClick={(e: any) => {
+                  key={p.place_id}
+                  onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                     e.preventDefault();
                     onPlaceSelected(p);
                   }}
