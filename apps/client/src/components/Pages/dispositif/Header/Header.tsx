@@ -84,6 +84,12 @@ const Header = (props: Props) => {
       )}
       <Title />
 
+      {isViewMode && dispositif?.titreMarque && (
+        <p>
+          {t("Dispositif.with")} {dispositif.titreMarque}
+        </p>
+      )}
+
       <div className="flex items-center gap-3 text-sm">
         {dispositif?.mainSponsor?.picture?.secure_url && (
           <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
@@ -108,7 +114,6 @@ const Header = (props: Props) => {
           )}
         </span>
       </div>
-
       {isViewMode && (
         <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">
           {isMobile && navigatorShareSupported ? (
