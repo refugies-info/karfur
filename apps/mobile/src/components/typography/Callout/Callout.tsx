@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks";
@@ -6,10 +7,9 @@ import { TextDSFR_L_Bold } from "../../StyledText";
 
 interface Props {
   key?: string;
-  children: any;
 }
 
-const Callout = (props: Props) => {
+const Callout = (props: PropsWithChildren<Props>) => {
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
 

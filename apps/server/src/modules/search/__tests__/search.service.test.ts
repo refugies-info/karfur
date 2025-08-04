@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { updateAlgoliaIndex } from "../search.service";
 
 jest.mock("~/connectors/algolia/updateAlgoliaData", () => ({
@@ -20,7 +19,13 @@ describe("updateAlgoliaIndex", () => {
     });
   });
   it("should return 1 added", async () => {
-    const res = await updateAlgoliaIndex([{ objectID: "aaa" }], []);
+    const res = await updateAlgoliaIndex(
+      [
+        //@ts-expect-error type mismatch
+        { objectID: "aaa" },
+      ],
+      [],
+    );
     expect(res).toEqual({
       added: 1,
       deleted: 0,
@@ -28,7 +33,13 @@ describe("updateAlgoliaIndex", () => {
     });
   });
   it("should return 1 deleted", async () => {
-    const res = await updateAlgoliaIndex([], [{ objectID: "aaa" }]);
+    const res = await updateAlgoliaIndex(
+      [],
+      [
+        //@ts-expect-error type mismatch
+        { objectID: "aaa" },
+      ],
+    );
     expect(res).toEqual({
       added: 0,
       deleted: 1,
@@ -37,7 +48,10 @@ describe("updateAlgoliaIndex", () => {
   });
   it("should return 1 updated", async () => {
     const res = await updateAlgoliaIndex(
-      [{ objectID: "aaa", title_fr: "Mon titre" }],
+      [
+        //@ts-expect-error type mismatch
+        { objectID: "aaa", title_fr: "Mon titre" },
+      ],
       [{ objectID: "aaa", title_fr: "Mon Titre" }],
     );
     expect(res).toEqual({
@@ -49,9 +63,13 @@ describe("updateAlgoliaIndex", () => {
   it("should return multiple changes", async () => {
     const res = await updateAlgoliaIndex(
       [
+        //@ts-expect-error type mismatch
         { objectID: "aaa", title_fr: "Mon titre A" },
+        //@ts-expect-error type mismatch
         { objectID: "bbb", title_fr: "Mon titre B" },
+        //@ts-expect-error type mismatch
         { objectID: "ccc", title_fr: "Mon titre C" },
+        //@ts-expect-error type mismatch
         { objectID: "ddd", title_fr: "Mon titre D" },
       ],
       [

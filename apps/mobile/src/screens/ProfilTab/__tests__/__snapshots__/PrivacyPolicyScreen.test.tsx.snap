@@ -470,47 +470,56 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         }
       >
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Nous avons créé cette page pour répondre en quelques minutes à toutes les questions que tu te poses sur tes données et comment on s’en sert dans l’application réfugiés.info.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Si tu ne trouves pas de réponse à ta question, n’hésite pas à nous la poser directement.
@@ -650,17 +659,20 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </View>
           <Text
             color="#716043"
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#716043",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 14,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textTransform": "uppercase",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#716043",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                  "textTransform": "uppercase",
+                },
+              ]
             }
           >
             Temps de lecture : 5 à 10 minutes
@@ -682,49 +694,58 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Les informations sur toi
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           C’est quoi et à quoi ça sert ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Quand tu ouvres l’application réfugiés.info pour la première fois ou quand tu vas dans l’onglet “Moi”, nous te demandons de nous partager quelques informations sur toi, par exemple la ville dans laquelle tu habites.
@@ -833,20 +854,23 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
                           [
                             {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Bold",
-                              "fontSize": 18,
-                              "lineHeight": 28,
                               "textAlign": "left",
                             },
-                            {
-                              "color": "#6A6AF4",
-                            },
+                            [
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Bold",
+                                "fontSize": 18,
+                                "lineHeight": 28,
+                              },
+                              {
+                                "color": "#6A6AF4",
+                              },
+                            ],
                           ]
                         }
                       >
@@ -862,16 +886,19 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                            },
+                          ]
                         }
                       >
                         Tu n’es pas obligé de partager ces informations pour avoir accès à l’application.
@@ -892,55 +919,64 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           />
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 40,
-                "marginTop": 8,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 40,
+                  "marginTop": 8,
+                },
+              ],
             ]
           }
         >
           Nous utilisons ces informations comme des filtres, pour te proposer uniquement le contenu qui est le plus adapté à ce que tu recherches.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Comment ça marche ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Quand tu ouvres l’application et à tout moment dans l’onglet “Moi”, tu peux décider de nous partager :
@@ -1112,21 +1148,24 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 </View>
               </View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    {
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                      {
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                      },
+                    ],
                   ]
                 }
               >
@@ -1313,21 +1352,24 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 </View>
               </View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    {
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                      {
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                      },
+                    ],
                   ]
                 }
               >
@@ -1527,21 +1569,24 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 </View>
               </View>
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
                   [
                     {
-                      "color": "#212121",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 16,
-                      "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    {
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                    },
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                      },
+                      {
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                      },
+                    ],
                   ]
                 }
               >
@@ -1551,21 +1596,24 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 8,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 8,
+                },
+              ],
             ]
           }
         >
@@ -1661,20 +1709,23 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
                           [
                             {
-                              "color": "#212121",
-                              "fontFamily": "Marianne-Bold",
-                              "fontSize": 18,
-                              "lineHeight": 28,
                               "textAlign": "left",
                             },
-                            {
-                              "color": "#6A6AF4",
-                            },
+                            [
+                              {
+                                "color": "#212121",
+                                "fontFamily": "Marianne-Bold",
+                                "fontSize": 18,
+                                "lineHeight": 28,
+                              },
+                              {
+                                "color": "#6A6AF4",
+                              },
+                            ],
                           ]
                         }
                       >
@@ -1690,16 +1741,19 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "Marianne-Regular",
-                            "fontSize": 16,
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "textAlign": "left",
+                            },
+                            {
+                              "color": "#212121",
+                              "fontFamily": "Marianne-Regular",
+                              "fontSize": 16,
+                              "lineHeight": 24,
+                            },
+                          ]
                         }
                       >
                         Si tu utilises la géolocalisation de ton téléphone, cette information pourra être conservée par iOS ou Android. Pense à regarder les paramètres de ton téléphone pour en savoir plus.
@@ -1728,122 +1782,143 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           }
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Qui peut avoir accès à ces données ?
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Seul réfugiés.info peut avoir accès aux données que tu nous partages directement (ta ville, ta tranche d’âge et ton niveau de français).
-        </Text>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Ces informations et ta sélection de fiches de l’onglet “Mes fiches” sont stockées directement sur ton téléphone.
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Seul réfugiés.info peut avoir accès aux données que tu nous partages directement (ta ville, ta tranche d’âge et ton niveau de français).
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
               {
-                "marginBottom": 40,
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
               },
+            ]
+          }
+        >
+          Ces informations et ta sélection de fiches de l’onglet “Mes fiches” sont stockées directement sur ton téléphone.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
+                "textAlign": "left",
+              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 40,
+                },
+              ],
             ]
           }
         >
           Nous ne vendons jamais ces informations.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Comment faire si tu n’es pas d’accord avec l’utilisation de tes données ?
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Tu as le droit de changer d’avis sur tes données.
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Tu as le droit de changer d’avis sur tes données.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -1865,53 +1940,62 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Les données sur ta navigation
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           C’est quoi et à quoi ça sert ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 16,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 16,
+                },
+              ],
             ]
           }
         >
@@ -1932,157 +2016,184 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           }
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 40,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 40,
+                },
+              ],
             ]
           }
         >
           Grâce à ces informations, nous faisons des statistiques pour nous aider à améliorer l’application au fil du temps et à mieux comprendre tes besoins.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Comment ça marche ?
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Quand tu navigues dans l’application, nos sociétés partenaires Firebase et Google Analytics récoltent automatiquement des données qui tracent ton activité sur notre application. Ce sont des traceurs.
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Quand tu navigues dans l’application, nos sociétés partenaires Firebase et Google Analytics récoltent automatiquement des données qui tracent ton activité sur notre application. Ce sont des traceurs.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 40,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 40,
+                },
+              ],
             ]
           }
         >
           Nous récupérons ces informations de manière anonyme et compilées. Elles nous permettent de mieux comprendre comment toi et les autres utilisateurs naviguez sur notre application. Elles nous permettent aussi de réaliser des statistiques afin d’améliorer l’application.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Qui peut avoir accès à ces données ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Pour les données de navigation tracées automatiquement, les sociétés partenaires Firebase et Google Analytics ont accès à ces données, et elles nous les retransmettent ensuite de manière anonymes et compilées pour réaliser des statistiques.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           Pour comprendre comment et combien de temps ces sociétés conservent tes données de navigation, tu peux aller consulter leurs propres Politiques de Données Personnelles – c’est celles-ci qui s’appliquent.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+              },
+            ]
           }
         >
           Voici comment ces sociétés partenaires traitent tes données.
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
                 "textAlign": "left",
               },
-              {
-                "marginVertical": 16,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+                {
+                  "marginVertical": 16,
+                },
+              ],
             ]
           }
         >
@@ -2106,36 +2217,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Attribue un numéro à chaque installation de l’application (ce numéro ne permet pas d’identifier l’utilisateur)
@@ -2156,36 +2273,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Trace des événements dans l’application
@@ -2206,36 +2329,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
@@ -2256,36 +2385,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Garde tes données 26 mois
@@ -2362,17 +2497,20 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               <Text
                 color="#000091"
                 disabled={false}
-                isRTL={false}
                 selectable={true}
                 size="medium"
                 style={
-                  {
-                    "color": "#000091",
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#000091",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 28,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -2511,20 +2649,23 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </View>
         </View>
         <Text
-          isRTL={false}
           selectable={true}
           style={
             [
               {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 16,
-                "lineHeight": 24,
                 "textAlign": "left",
               },
-              {
-                "marginVertical": 16,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+                {
+                  "marginVertical": 16,
+                },
+              ],
             ]
           }
         >
@@ -2548,36 +2689,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Trace des événements dans l’application
@@ -2598,36 +2745,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
@@ -2648,36 +2801,42 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 4,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               •
             </Text>
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
               }
             >
               Garde tes données 26 mois
@@ -2754,17 +2913,20 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               <Text
                 color="#000091"
                 disabled={false}
-                isRTL={false}
                 selectable={true}
                 size="medium"
                 style={
-                  {
-                    "color": "#000091",
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 16,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#000091",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 16,
+                      "lineHeight": 28,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -2911,53 +3073,62 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           }
         />
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#2323FF",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 20,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#2323FF",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 20,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              },
+            ]
           }
         >
           Comment faire si tu n’es pas d’accord avec l’utilisation de tes données ?
         </Text>
         <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
-          }
-        >
-          Si tu ne veux plus que nos sociétés partenaires collectent automatiquement tes données de navigation, tu peux les effacer en désinstallant l’application ou les gérer directement via les paramètres Android ou iOS de ton téléphone.
-        </Text>
-        <Text
-          isRTL={false}
           selectable={true}
           style={
             [
+              {
+                "textAlign": "left",
+              },
               {
                 "color": "#212121",
                 "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Si tu ne veux plus que nos sociétés partenaires collectent automatiquement tes données de navigation, tu peux les effacer en désinstallant l’application ou les gérer directement via les paramètres Android ou iOS de ton téléphone.
+        </Text>
+        <Text
+          selectable={true}
+          style={
+            [
+              {
                 "textAlign": "left",
               },
-              {
-                "marginBottom": 0,
-              },
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginBottom": 24,
+                },
+                {
+                  "marginBottom": 0,
+                },
+              ],
             ]
           }
         >
@@ -2979,33 +3150,39 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         />
         <Text
           blue={true}
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#000091",
-              "fontFamily": "Marianne-Bold",
-              "fontSize": 24,
-              "lineHeight": 32,
-              "marginBottom": 40,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#000091",
+                "fontFamily": "Marianne-Bold",
+                "fontSize": 24,
+                "lineHeight": 32,
+                "marginBottom": 40,
+              },
+            ]
           }
         >
           Il te reste des questions ?
         </Text>
         <Text
-          isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "Marianne-Regular",
-              "fontSize": 16,
-              "lineHeight": 24,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+              },
+            ]
           }
         >
           N’hésite pas à nous contacter :
@@ -3202,16 +3379,19 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 <Text
                   color="#FFFFFF"
                   disabled={false}
-                  isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "Marianne-Medium",
-                      "fontSize": 18,
-                      "lineHeight": 28,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "textAlign": "left",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Marianne-Medium",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -3368,17 +3548,20 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </View>
           <Text
             color="#0063CB"
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#0063CB",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 14,
-                "lineHeight": 24,
-                "textAlign": "left",
-                "textTransform": "uppercase",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#0063CB",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 14,
+                  "lineHeight": 24,
+                  "textTransform": "uppercase",
+                },
+              ]
             }
           >
             Mise à jour le 30 novembre 2021

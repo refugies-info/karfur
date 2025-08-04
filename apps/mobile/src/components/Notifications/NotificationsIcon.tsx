@@ -1,14 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-
-import { styles } from "~/theme";
-
 import { useNotifications } from "~/hooks/useNotifications";
 import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
+import { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
+
+type NavigationProp = StackNavigationProp<ExplorerParamList, "NotificationsScreen">;
 
 const ICON_WIDTH = 24;
 const ICON_HEIGHT = 24;
@@ -50,7 +52,7 @@ const stylesheet = StyleSheet.create({
 
 const NotificationsIcon = () => {
   const { t } = useTranslationWithRTL();
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<NavigationProp>();
   const { data: notifications } = useNotifications();
   const [accessGranted] = useNotificationsStatus();
 
@@ -61,8 +63,7 @@ const NotificationsIcon = () => {
       accessibilityLabel={t("notifications.settings")}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_NOTIFICATION_ICON, {});
-        //@ts-ignore
-        navigate("NotificationsScreen");
+        navigate("NotificationsScreen", {});
       }}
     >
       <Icon width={ICON_WIDTH} height={ICON_HEIGHT} name="bell-outline" fill={styles.colors.black} />

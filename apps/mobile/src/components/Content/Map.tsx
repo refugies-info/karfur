@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Dimensions, Platform } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, MarkerPressEvent, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
 import { SharedValue } from "react-native-reanimated";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
@@ -23,7 +23,7 @@ export const Map = (props: PropsType) => {
 
   // Bottom sheet
   const [markerOpen, setMarkerOpen] = useState<MarkerGoogle | null>(null);
-  const onMarkerClick = (marker: MarkerGoogle, e: any) => {
+  const onMarkerClick = (marker: MarkerGoogle, e: MarkerPressEvent) => {
     e.stopPropagation();
     setMarkerOpen(marker);
   };
@@ -123,7 +123,7 @@ export const Map = (props: PropsType) => {
                 latitude: lat,
                 longitude: lng,
               }}
-              onPress={(e: any) => onMarkerClick(marker, e)}
+              onPress={(e: MarkerPressEvent) => onMarkerClick(marker, e)}
               accessibilityRole="button"
               accessibilityLabel={t("content_screen.place_informations_accessibility")}
             >

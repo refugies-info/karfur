@@ -1,80 +1,48 @@
 import { DispositifStatus, UpdateDispositifRequest } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
-import { useMemo, useState } from "react";
-import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
+import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
+import { useContext, useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
-import Button from "~/components/UI/Button";
-import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import Image from "~/components/UI/Image";
-import { cls } from "~/lib/classname";
 import { isStatus } from "~/lib/dispositif";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "~/services/User/user.selectors";
-import BaseCard from "../BaseCard";
-import styles from "./CardDemarcheAdministration.module.scss";
+import PageContext from "~/utils/pageContext";
 import DeleteContentModal from "./DeleteContentModal";
 
 interface Props {
-  dataAdministration: DeepPartialSkipArrayKey<UpdateDispositifRequest["administration"]>;
-  color: string;
-  onClick?: () => void;
+  formData: UpdateDispositifRequest;
 }
 
-const CardDemarcheAdministration = ({ dataAdministration, color, onClick }: Props) => {
-  const { t } = useTranslation();
+const CardDemarcheAdministration = ({ formData }: Props) => {
   const user = useSelector(userSelector);
-  const dispositif = useSelector(selectedDispositifSelector);
   const { setValue } = useFormContext();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const dispositifSelector = useSelector(selectedDispositifSelector);
+  const dispositif = formData ? formData : dispositifSelector;
+  const { setActiveModal } = useContext(PageContext);
+
+  const dataAdministration = dispositif?.administration;
 
   const isAllowedToEdit = useMemo(() => {
-    return user.admin || (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion);
-  }, [user, dispositif]);
+    return (
+      user.admin ||
+      (!isStatus(dispositifSelector?.status, DispositifStatus.ACTIVE) && !dispositifSelector?.hasDraftVersion)
+    );
+  }, [user, dispositifSelector]);
 
   return (
     <>
-      <BaseCard
-        id="demarche-administration-card"
-        title={
-          <>
-            <EVAIcon name="image-outline" size={24} fill={color || "#000"} className={"me-2"} /> Administration
-          </>
-        }
-        items={[
-          {
-            content: (
-              <span className={styles.name}>
-                <span>{dataAdministration?.name}</span>
-                {isAllowedToEdit && (
-                  <Button
-                    priority="tertiary"
-                    evaIcon="trash-2-outline"
-                    onClick={(e: any) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      setShowDeleteModal(true);
-                    }}
-                    className={cls("ms-2", styles.delete)}
-                  ></Button>
-                )}
-              </span>
-            ),
-            icon: (
-              <Image
-                src={dataAdministration?.logo?.secure_url || defaultStructureImage}
-                width={32}
-                height={32}
-                style={{ objectFit: "contain" }}
-                alt={dataAdministration?.name || ""}
-                className={styles.img}
-              />
-            ),
-          },
-        ]}
-        color={color}
-        onClick={isAllowedToEdit ? onClick : undefined}
-      />
+      <MetaDataCard title="Administration" onDelete={() => setShowDeleteModal(true)}>
+        <MetaDataItem
+          logoImage={{
+            url: dataAdministration?.logo?.secure_url || defaultStructureImage,
+            alt: dataAdministration?.name || "",
+          }}
+          title={dataAdministration?.name || ""}
+          onClick={isAllowedToEdit ? () => setActiveModal?.("Administration") : undefined}
+        />
+      </MetaDataCard>
       <DeleteContentModal
         show={showDeleteModal}
         toggle={() => setShowDeleteModal((o) => !o)}

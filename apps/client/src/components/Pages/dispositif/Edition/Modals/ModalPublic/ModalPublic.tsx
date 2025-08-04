@@ -7,12 +7,13 @@ import {
   publicType,
 } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import { cls } from "~/lib/classname";
 import { entries } from "~/lib/typedObjectEntries";
+import PageContext from "~/utils/pageContext";
 import ChoiceButton from "../../ChoiceButton";
 import { InlineForm, StepsFooter } from "../components";
 import {
@@ -29,14 +30,26 @@ import { addAllRefugeeTypes, includeAllFrenchLevels, includeAllRefugees, removeA
 interface Props {
   show: boolean;
   toggle: () => void;
+  page?: number;
 }
 
 const MAX_STEP = 4;
 
-const ModalPublic = (props: Props) => {
+const ModalPublic = ({ show, toggle, page }: Props) => {
+  const { modalPage } = useContext(PageContext);
   const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(page || modalPage || 1);
+
+  useEffect(() => {
+    if (show) {
+      if (page) {
+        setStep(page);
+      } else if (modalPage) {
+        setStep(modalPage);
+      }
+    }
+  }, [show, page, modalPage]);
 
   // public status
   const [publicStatus, setPublicStatus] = useState<publicStatusType[] | undefined>(
@@ -104,45 +117,42 @@ const ModalPublic = (props: Props) => {
   };
 
   const validate = () => {
+    validatePublicStatus();
+    validateFrenchLevel();
+    validateAge();
+    validatePublicType();
     if (step === 1) {
-      validatePublicStatus();
       setStep(2);
     } else if (step === 2) {
-      validateFrenchLevel();
       setStep(3);
     } else if (step === 3) {
-      validateAge();
       setStep(4);
     } else if (step === 4) {
-      validatePublicType();
-      props.toggle();
+      toggle();
     }
   };
 
   const emptySteps = useMemo(() => {
     return [
       publicStatus === undefined || publicStatus?.length === 0, // step 1
-      frenchLevel === undefined || frenchLevel?.length === 0, // step 2
-      !noAge && (!ages[0] || !ageType), // step 3
-      publicType === undefined || publicType?.length === 0, // step 4
+      publicType === undefined || publicType?.length === 0, // step 2
+      frenchLevel === undefined || frenchLevel?.length === 0, // step 3
+      !noAge && (!ages[0] || !ageType), // step 4
     ];
   }, [publicStatus, publicType, ageType, frenchLevel, noAge, ages]);
 
   const navigateToStep = useCallback(() => {
-    const firstEmpty = emptySteps.indexOf(true);
-    if (firstEmpty >= 0) {
-      setStep(firstEmpty + 1);
+    // Only navigate to first empty step if no page or modalPage is provided
+    if (!page && !modalPage) {
+      const firstEmpty = emptySteps.indexOf(true);
+      if (firstEmpty >= 0) {
+        setStep(firstEmpty + 1);
+      }
     }
-  }, [emptySteps]);
+  }, [emptySteps, page, modalPage]);
 
   return (
-    <BaseModal
-      show={props.show}
-      toggle={props.toggle}
-      help={help[step - 1]}
-      title={modalTitles[step - 1]}
-      onOpened={navigateToStep}
-    >
+    <BaseModal show={show} toggle={toggle} help={help[step - 1]} title={modalTitles[step - 1]}>
       <div>
         {step === 1 && (
           <div>
@@ -161,7 +171,7 @@ const ModalPublic = (props: Props) => {
               helpTooltip="Votre action est ouverte de façon inconditionnelle, à toutes les personnes intéressées."
             />
             <ChoiceButton
-              text="Primo-arrivants"
+              text="Personnes en situation d’exil"
               type="checkbox"
               selected={includeAllRefugees(publicStatus)}
               onSelect={() => {
@@ -172,7 +182,7 @@ const ModalPublic = (props: Props) => {
                 );
               }}
               className="mb-2"
-              helpTooltip="Votre action est ouverte aux étrangers primo-arrivants, c'est-à-dire vivant en France depuis moins de 5 ans."
+              helpTooltip="Votre action est ouverte aux étrangers en situation d’exil."
             />
             <div>
               {publicStatusOptions.map((key) => (
@@ -189,8 +199,32 @@ const ModalPublic = (props: Props) => {
             </div>
           </div>
         )}
-
         {step === 2 && (
+          <div>
+            {publicOptions.map((key) => (
+              <div key={key}>
+                <ChoiceButton
+                  key={key}
+                  text={t(`Infocards.${key}`)}
+                  type="checkbox"
+                  selected={!!(publicType && publicType?.includes(key))}
+                  onSelect={() => selectPublicType(key)}
+                  className="mb-2"
+                />
+              </div>
+            ))}
+            <ChoiceButton
+              text="Ce n'est pas pertinent pour mon action"
+              type="radio"
+              selected={publicType === null}
+              onSelect={() => setPublicType(null)}
+              size="lg"
+              className="mt-6"
+              image={NoIcon}
+            />
+          </div>
+        )}
+        {step === 3 && (
           <div>
             <ChoiceButton
               text="Tous les niveaux"
@@ -228,7 +262,7 @@ const ModalPublic = (props: Props) => {
           </div>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <div>
             <div className="flex justify-between">
               {entries<Record<ageType, string>>(ageOptions).map(([key, text]) => (
@@ -318,33 +352,6 @@ const ModalPublic = (props: Props) => {
             />
           </div>
         )}
-
-        {step === 4 && (
-          <div>
-            {publicOptions.map((key) => (
-              <div key={key}>
-                <ChoiceButton
-                  key={key}
-                  text={t(`Infocards.${key}`)}
-                  type="checkbox"
-                  selected={!!(publicType && publicType?.includes(key))}
-                  onSelect={() => selectPublicType(key)}
-                  className="mb-2"
-                />
-              </div>
-            ))}
-            <ChoiceButton
-              text="Ce n'est pas pertinent pour mon action"
-              type="radio"
-              selected={publicType === null}
-              onSelect={() => setPublicType(null)}
-              size="lg"
-              className="mt-6"
-              image={NoIcon}
-            />
-          </div>
-        )}
-
         <StepsFooter
           onValidate={validate}
           onPrevious={() => setStep((s) => s - 1)}

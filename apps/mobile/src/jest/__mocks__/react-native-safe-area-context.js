@@ -16,9 +16,4 @@ const SafeAreaView = ({ children }) => <View style={inset}>{children}</View>;
 
 const useSafeAreaInsets = () => inset;
 
-module.exports = {
-  SafeAreaProvider,
-  SafeAreaConsumer,
-  SafeAreaView,
-  useSafeAreaInsets,
-};
+export { SafeAreaConsumer, SafeAreaProvider, SafeAreaView, useSafeAreaInsets };

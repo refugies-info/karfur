@@ -1,6 +1,6 @@
 import { Languages } from "@refugies-info/api-types";
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Animated, {
   Extrapolation,
@@ -18,7 +18,7 @@ import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { Columns } from "../layout";
-import { ReadableText } from "../ReadableText";
+import { ReadableText, ReadableTextRef } from "../ReadableText";
 import { TextDSFR_MD_Bold } from "../StyledText";
 import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
 import { ContentFromHtml } from "./ContentFromHtml";
@@ -108,7 +108,7 @@ export const AccordionAnimated = (props: Props) => {
   const height = useSharedValue(0);
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
   const [hasSentEventInFirebase, setHasSentEventInFirebase] = React.useState(false);
-  const currentItemRef = React.useRef<string>("");
+  const currentItemRef = React.useRef<ReadableTextRef>(null);
 
   const animatedHeight = useAnimatedStyle(() => ({
     height: interpolate(height.value, [0, 1], [0, bodySectionHeight], Extrapolation.CLAMP),
@@ -137,7 +137,7 @@ export const AccordionAnimated = (props: Props) => {
   const currentItem = useSelector(currentItemSelector);
 
   React.useEffect(() => {
-    const accordionIsReading = currentItem && currentItem.id === currentItemRef.current;
+    const accordionIsReading = currentItem && currentItem.id === currentItemRef.current?.current;
     setIsExpanded(!!accordionIsReading);
     height.value = withTiming(accordionIsReading ? 1 : 0, { duration: 500 });
   }, [currentItem]);
@@ -181,7 +181,7 @@ export const AccordionAnimated = (props: Props) => {
 
       <Animated.View style={[stylesheet.bodyBackground, animatedHeight]}>
         <View
-          onLayout={(event: any) => setBodySectionHeight(event.nativeEvent.layout.height)}
+          onLayout={(event: LayoutChangeEvent) => setBodySectionHeight(event.nativeEvent.layout.height)}
           style={stylesheet.bodyContainer}
         >
           <ExpandedContentContainer>

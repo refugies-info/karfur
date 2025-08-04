@@ -48,14 +48,12 @@ const Columns = ({
       horizontalAlign={horizontalAlign}
       RTLBehaviour={RTLBehaviour}
       verticalAlign={verticalAlign}
-      //@ts-ignore
       style={style}
     >
       {React.Children.map(children, (child, index) =>
         child !== null ? (
           <FlexItem
             flex={getFlexValue(layout, index)}
-            // eslint-disable-next-line react/no-array-index-key
             key={index}
             RTLBehaviour={RTLBehaviour}
             marginHorizontal={!isLastChild(children, index) ? spacing : undefined}

@@ -69,7 +69,7 @@ const filterByAge =
 const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
   const { age, county, frenchLevel, strictLocation } = req;
 
-  const query: any[] = [
+  const query: Record<string, unknown>[] = [
     {
       status: DispositifStatus.ACTIVE,
       webOnly: false,
@@ -85,7 +85,7 @@ const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
     !frenchLevel || frenchLevel === MobileFrenchLevel["Tous les niveaux"]
       ? []
       : [
-          // @ts-ignore
+          //@ts-expect-error type mismatch
           { "metadatas.frenchLevel": { $eq: null } },
           { "metadatas.frenchLevel": { $exists: false } },
         ];

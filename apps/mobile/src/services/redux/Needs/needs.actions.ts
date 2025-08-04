@@ -6,6 +6,7 @@ export const setNeedsActionCreator = (value: GetNeedResponse[]) => action(SET_NE
 
 export const fetchNeedsActionCreator = () => action(FETCH_NEEDS);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   setNeedsActionCreator,
   fetchNeedsActionCreator,

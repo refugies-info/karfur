@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
+/* eslint-disable no-undef */
 
 // Print all environment variables
 console.log("Environment Variables:");

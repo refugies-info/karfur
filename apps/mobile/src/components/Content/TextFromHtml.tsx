@@ -29,7 +29,6 @@ export const TextFromHtml = (props: Props) => {
             margin: 0,
           }}
           renderers={{
-            // eslint-disable-next-line react/display-name
             p: (_, children, _cssStyles, passProps) => (
               <TextDSFR_MD
                 key={passProps.key}

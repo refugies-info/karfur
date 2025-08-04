@@ -1,0 +1,84 @@
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-duplicate-selectors */
+@layer utilities {
+  :not(.no-prose) .prose {
+    --tw-prose-bullets: var(--text-default-grey);
+    --tw-prose-counters: var(--text-default-grey);
+
+    ul,
+    ol {
+      @apply mt-0;
+    }
+
+    li {
+      @apply mt-0 mb-2 px-0 pb-0 last:mb-0;
+    }
+
+    /* Fixes nested numbered lis numbers ovelap */
+    ol {
+      @apply grid grid-cols-[min-content_auto] gap-y-2 p-0;
+
+      counter-reset: list-item;
+
+      ol {
+        @apply mb-0 ps-[0.625em];
+      }
+
+      li {
+        @apply pb-2;
+
+        display: contents;
+
+        ol > li::before {
+          content: counter(list-item, lower-alpha) ".\a0";
+        }
+      }
+
+      li::before {
+        @apply font-bold;
+
+        counter-increment: list-item;
+        content: counter(list-item, decimal) ".\a0";
+        display: table-cell;
+        text-align: right;
+      }
+
+      ol {
+        @apply ps-2;
+
+        > li::before {
+          content: counter(list-item, lower-alpha) ".\a0";
+        }
+
+        ol {
+          > li::before {
+            content: counter(list-item, upper-roman) ".\a0";
+          }
+
+          ol {
+            > li::before {
+              content: counter(list-item, decimal) ".\a0";
+            }
+
+            ol {
+              > li::before {
+                content: counter(list-item, lower-alpha) ".\a0";
+              }
+
+              ol {
+                > li::before {
+                  content: counter(list-item, upper-roman) ".\a0";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  * + ul,
+  * + ol {
+    @apply !-mt-2;
+  }
+}

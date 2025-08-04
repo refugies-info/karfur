@@ -57,7 +57,7 @@ const ModalDemarcheAdministration = (props: Props) => {
           image={logo || undefined}
           imageSize={64}
           onImageUploaded={(img) => setLogo(img)}
-          dimensionsHelp="Formats acceptés : .jpeg, .png, .svg. Le logo doit avoir un fond transparent, demander de l'aide au designer si nécessaire !"
+          dimensionsHelp="Formats acceptés : .jpeg, .png, .svg. Attention, le logo doit avoir un fond transparent. Vous pouvez nous écrire pour nous demander de l’aide pour cela si nécessaire."
         />
         <SimpleFooter onValidate={validate} disabled={!name} />
       </div>

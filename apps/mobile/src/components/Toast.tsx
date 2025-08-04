@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { PixelRatio, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Animated, {
@@ -21,7 +21,6 @@ interface Props {
   defaultText?: string;
   icon: string;
   onClose: () => void;
-  children?: any;
 }
 
 const ToastContainer = styled(Animated.View)`
@@ -55,7 +54,7 @@ const ANIMATION_OPTIONS = {
   easing: Easing.ease,
 };
 
-export const Toast = (props: Props) => {
+export const Toast = (props: PropsWithChildren<Props>) => {
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
 
@@ -63,7 +62,6 @@ export const Toast = (props: Props) => {
   const bottom = useSharedValue(0);
   const animatedBottom = useAnimatedStyle(() => ({
     transform: [
-      //@ts-ignore
       {
         translateY: interpolate(bottom.value, [0, 100], [180, 0], Extrapolation.CLAMP),
       },

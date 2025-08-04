@@ -1,29 +1,41 @@
 import { Languages } from "@refugies-info/api-types";
 
+// Define the shape of the translation data
+type TranslationData = Record<string, string | Record<string, string>>;
+
+// Define the shape of the JSON module
+type JsonModule = {
+  default: TranslationData;
+};
+
+// Define the shape of the translation file loader
+type TranslationFileLoader = () => Promise<JsonModule>;
+
 export const fallback: Languages = "fr";
-export const supportedLocales: Record<Languages, { translationFileLoader: Function }> = {
+
+export const supportedLocales: Record<Languages, { translationFileLoader: TranslationFileLoader }> = {
   fr: {
-    translationFileLoader: () => require("../translations/fr/common.json"),
+    translationFileLoader: () => import("../translations/fr/common.json") as Promise<{ default: TranslationData }>,
   },
   en: {
-    translationFileLoader: () => require("../translations/en/common.json"),
+    translationFileLoader: () => import("../translations/en/common.json") as Promise<{ default: TranslationData }>,
   },
   ar: {
-    translationFileLoader: () => require("../translations/ar/common.json"),
+    translationFileLoader: () => import("../translations/ar/common.json") as Promise<{ default: TranslationData }>,
   },
   ti: {
-    translationFileLoader: () => require("../translations/ti/common.json"),
+    translationFileLoader: () => import("../translations/ti/common.json") as Promise<{ default: TranslationData }>,
   },
   ru: {
-    translationFileLoader: () => require("../translations/ru/common.json"),
+    translationFileLoader: () => import("../translations/ru/common.json") as Promise<{ default: TranslationData }>,
   },
   ps: {
-    translationFileLoader: () => require("../translations/ps/common.json"),
+    translationFileLoader: () => import("../translations/ps/common.json") as Promise<{ default: TranslationData }>,
   },
   fa: {
-    translationFileLoader: () => require("../translations/fa/common.json"),
+    translationFileLoader: () => import("../translations/fa/common.json") as Promise<{ default: TranslationData }>,
   },
   uk: {
-    translationFileLoader: () => require("../translations/uk/common.json"),
+    translationFileLoader: () => import("../translations/uk/common.json") as Promise<{ default: TranslationData }>,
   },
 };

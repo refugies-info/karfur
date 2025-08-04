@@ -101,19 +101,22 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
           }
         >
           <Text
-            isRTL={false}
             isSelected={false}
             selectable={true}
             style={
-              {
-                "color": "#161616",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "paddingVertical": 4,
-                "textAlign": "left",
-                "verticalAlign": "middle",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#161616",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "paddingVertical": 4,
+                  "verticalAlign": "middle",
+                },
+              ]
             }
           >
             filters.Test choice
@@ -323,19 +326,22 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
           }
         >
           <Text
-            isRTL={false}
             isSelected={true}
             selectable={true}
             style={
-              {
-                "color": "#000091",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "paddingVertical": 4,
-                "textAlign": "left",
-                "verticalAlign": "middle",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#000091",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "paddingVertical": 4,
+                  "verticalAlign": "middle",
+                },
+              ]
             }
           >
             filters.Test choice
@@ -361,16 +367,19 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
               }
             >
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#0063cb",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 12,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#0063cb",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 12,
+                      "lineHeight": 20,
+                    },
+                  ]
                 }
               >
                 First detail
@@ -389,16 +398,19 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
               }
             >
               <Text
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#0063cb",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 12,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#0063cb",
+                      "fontFamily": "Marianne-Bold",
+                      "fontSize": 12,
+                      "lineHeight": 20,
+                    },
+                  ]
                 }
               >
                 Second detail
@@ -619,19 +631,22 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
           }
         >
           <Text
-            isRTL={false}
             isSelected={true}
             selectable={true}
             style={
-              {
-                "color": "#000091",
-                "fontFamily": "Marianne-Medium",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "paddingVertical": 4,
-                "textAlign": "left",
-                "verticalAlign": "middle",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#000091",
+                  "fontFamily": "Marianne-Medium",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "paddingVertical": 4,
+                  "verticalAlign": "middle",
+                },
+              ]
             }
           >
             filters.Test choice

@@ -22,6 +22,7 @@ import {
 } from "~/services/redux/VoiceOver/voiceOver.selectors";
 import { styles } from "~/theme";
 import { PauseIcon, PlayIcon } from "~/theme/images/voiceover";
+import bgVoiceover from "~/theme/images/voiceover/bg_voiceover.png";
 import { ReadingItem } from "~/types/interface";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
@@ -106,7 +107,7 @@ const MAX_RATE = 1.2;
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
   if (a.posY < b.posY) return -1;
   else if (a.posY > b.posY) return 1;
-  else if (a.posX < b.posX) -1; // is same horizontal position, check vertical position
+  else if (a.posX < b.posX) return -1; // is same horizontal position, check vertical position
   return 1;
 };
 
@@ -383,10 +384,7 @@ export const ReadButton = (props: Props) => {
       </PlayContainer>
       <Buttons style={[animatedStyle]}>
         <BackgroundContainer>
-          <Image
-            source={require("../../theme/images/voiceover/bg_voiceover.png")}
-            style={{ marginLeft: -8, marginTop: -8 }}
-          />
+          <Image source={bgVoiceover} style={{ marginLeft: -8, marginTop: -8 }} />
         </BackgroundContainer>
         <Button onPress={changeRate}>
           <TextDSFR_MD_Bold>{rate === 1 ? "x1" : "x2"}</TextDSFR_MD_Bold>

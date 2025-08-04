@@ -19,7 +19,7 @@ const saveTranslation = (
     const _traduction = new Traductions();
     _traduction.dispositifId = new ObjectId(dispositifId);
     _traduction.language = language;
-    // @ts-ignore
+    // @ts-expect-error type mismatch
     _traduction.translated = translated;
     _traduction.toFinish = toFinish;
     _traduction.toReview = user.isExpert() ? toReview : [];

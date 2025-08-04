@@ -7,5 +7,5 @@ import { ObjectId } from "~/typegoose";
  * @param arrayOfObjectIds
  * @returns ObjectId[]
  */
-export const uniqIds = (arrayOfObjectIds: Ref<any, ObjectId>[]): ObjectId[] =>
+export const uniqIds = (arrayOfObjectIds: Ref<unknown, ObjectId>[]): ObjectId[] =>
   uniq(arrayOfObjectIds.map((x) => x.toString())).map((x) => new ObjectId(x));

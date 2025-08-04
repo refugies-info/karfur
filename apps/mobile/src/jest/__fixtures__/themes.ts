@@ -1,6 +1,19 @@
 import { ThemeState } from "~/services/redux/Themes/themes.reducer";
 
-export const mockedThemesData: ThemeState = [
+// Helper function to ensure all themes have the required gradientColors property
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ensureGradientColors = (themes: any[]) => {
+  return themes.map((theme) => ({
+    ...theme,
+    gradientColors: theme.gradientColors || {
+      colorTop: theme.colors.color100,
+      colorBottom: theme.colors.color80,
+    },
+  }));
+};
+
+// Original theme data
+const originalThemesData = [
   {
     _id: "63286a015d31b2c0cad9960a",
     name: {
@@ -692,3 +705,6 @@ export const mockedThemesData: ThemeState = [
     active: true,
   },
 ];
+
+// Export the themes with guaranteed gradientColors property
+export const mockedThemesData: ThemeState = ensureGradientColors(originalThemesData);

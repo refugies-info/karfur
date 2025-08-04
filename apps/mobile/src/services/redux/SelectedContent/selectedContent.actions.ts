@@ -10,6 +10,7 @@ export const setSelectedContentActionCreator = (payload: {
 export const fetchSelectedContentActionCreator = (payload: { contentId: string; locale: Languages }) =>
   action(FETCH_SELECTED_CONTENT, payload);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   setSelectedContentActionCreator,
   fetchSelectedContentActionCreator,

@@ -7,40 +7,73 @@ type WindowSize = {
   height: number | undefined;
 };
 
+type ResponsiveFlags = {
+  isMobile: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
+  isLargeDesktop: boolean;
+};
+
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined, // Initialize as undefined for SSR to avoid hydration errors
     height: undefined, // Initialize as undefined for SSR to avoid hydration errors
   });
-  const [baseFontSize, setBaseFontSize] = useState<number>(16);
+  const [responsiveFlags, setResponsiveFlags] = useState<ResponsiveFlags>({
+    isMobile: false,
+    isTablet: false,
+    isDesktop: false,
+    isLargeDesktop: false,
+  });
   const [hasMounted, setHasMounted] = useState(false);
-
-  // Calculate responsive flags only after mounting to avoid hydration mismatch
-  const isMobile = hasMounted && windowSize.width ? windowSize.width <= baseFontSize * 48 : false;
-  const isTablet = hasMounted && windowSize.width ? windowSize.width < baseFontSize * 61.5 : false;
+  const [fontSize, setFontSize] = useState(16);
 
   useEffect(() => {
-    // Mark as mounted
+    const checkResponsiveFlags = () => {
+      if (hasMounted && windowSize.width) {
+        // Use fixed pixel values for breakpoints
+        // Convert rem values to pixels using current font size
+        // 48rem = 768px at 16px font size
+        // 62rem = 992px at 16px font size
+        // 75rem = 1200px at 16px font size
+        setResponsiveFlags({
+          isMobile: windowSize.width <= fontSize * 48,
+          isTablet: windowSize.width >= fontSize * 48 && windowSize.width < fontSize * 62,
+          isDesktop: windowSize.width >= fontSize * 62 && windowSize.width < fontSize * 75,
+          isLargeDesktop: windowSize.width >= fontSize * 75,
+        });
+      }
+    };
+
+    // Mark as mounted and set initial size
     setHasMounted(true);
+    if (isInBrowser()) {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      checkResponsiveFlags();
+    }
 
     let rafId: number;
-    let lastFontSize = baseFontSize;
 
     const handleResize = debounce(() => {
-      // Use screen.width for more accurate device width detection
+      if (!isInBrowser()) return;
+
+      // Use innerWidth for accurate window size detection
       setWindowSize({
-        width: window.screen.width, // Use screen.width for more accurate device width detection
-        height: window.screen.height, // Use screen.height for more accurate device height detection
+        width: window.innerWidth,
+        height: window.innerHeight,
       });
+
+      checkResponsiveFlags();
     }, 100);
 
     const handleFontSizeChange = debounce(() => {
       if (!isInBrowser()) return;
-
-      const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      if (fontSize !== lastFontSize) {
-        lastFontSize = fontSize;
-        setBaseFontSize(fontSize);
+      const newFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      if (newFontSize !== fontSize) {
+        setFontSize(newFontSize);
         rafId = requestAnimationFrame(handleResize);
       }
     }, 100);
@@ -83,14 +116,16 @@ const useWindowSize = () => {
       return () => {
         [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
         ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
+        window.removeEventListener("keydown", handleFontSizeChange);
+        window.removeEventListener("wheel", handleFontSizeChange);
         clearTimeout(rafId);
       };
     }
     // Return empty cleanup function if conditions are not met
     return () => {};
-  }, [baseFontSize]);
+  }, [hasMounted, windowSize.width, fontSize]);
 
-  return { windowSize, isMobile, isTablet };
+  return { windowSize, ...responsiveFlags };
 };
 
 export default useWindowSize;

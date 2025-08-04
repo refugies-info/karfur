@@ -1,8 +1,7 @@
 import { createReducer } from "typesafe-actions";
-import { ObjectId } from "~/types/interface";
 import { GroupedContentsActions } from "./contentsGroupedByNeeds.actions";
 
-export type GroupedContentsState = Record<ObjectId, ObjectId[]>;
+export type GroupedContentsState = Record<string, string[]>;
 
 export const initialGroupedContentsState = {};
 

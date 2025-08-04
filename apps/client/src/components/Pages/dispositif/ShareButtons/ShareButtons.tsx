@@ -1,30 +1,20 @@
-import { ContentType } from "@refugies-info/api-types";
+import Button from "@codegouvfr/react-dsfr/Button";
+import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 import { useTranslation } from "next-i18next";
-import { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
-import Button from "~/components/UI/Button";
+import { useCallback, useEffect, useRef, useState } from "react";
+import SMSForm from "~/components/Pages/dispositif/SMSForm";
 import Toast from "~/components/UI/Toast";
-import Tooltip from "~/components/UI/Tooltip";
+import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
-import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import styles from "./ShareButtons.module.scss";
 
-const ShareButtons = () => {
+const ShareButtons = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
-  const dispositif = useSelector(selectedDispositifSelector);
 
-  const shareEmail = useCallback(() => {
-    if (!dispositif) return;
-    Event("Share", "Mail", "from dispositif sidebar");
-    const mailSubject =
-      dispositif?.typeContenu === ContentType.DISPOSITIF
-        ? `${dispositif.titreInformatif} avec ${dispositif.titreMarque}`
-        : `${dispositif.titreInformatif}`;
-    const mailBody = `Voici le lien vers cette fiche : ${window.location.href}`;
-    window.location.href = `mailto:?subject=${mailSubject}&body=${mailBody}`;
-  }, [dispositif]);
-
+  const [showSMS, setShowSMS] = useState(false);
   const [showToastLink, setShowToastLink] = useState(false);
+
+  const smsFormInputContainerRef = useRef<HTMLDivElement>(null);
+
   const copyLink = useCallback(() => {
     Event("Share", "Copy", "from dispositif sidebar");
     navigator.clipboard.writeText(window.location.href);
@@ -36,89 +26,80 @@ const ShareButtons = () => {
     window.print();
   }, []);
 
-  const shareFacebook = useCallback(() => {
-    Event("Share", "Facebook", "from dispositif sidebar");
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
-      "_blank",
-      "location=yes,height=570,width=520,scrollbars=yes,status=yes",
-    );
-  }, []);
-
-  const shareLinkedin = useCallback(() => {
-    Event("Share", "Linkedin", "from dispositif sidebar");
-    window.open(
-      `https://www.linkedin.com/shareArticle/?mini=true&url=${window.location.href}`,
-      "_blank",
-      "location=yes,height=570,width=520,scrollbars=yes,status=yes",
-    );
-  }, []);
+  useEffect(() => {
+    if (showSMS) {
+      const timeout = setTimeout(() => {
+        if (smsFormInputContainerRef.current) {
+          const inputElement = smsFormInputContainerRef.current.querySelector("input");
+          if (inputElement) {
+            inputElement.focus();
+          }
+        }
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+    return undefined;
+  }, [showSMS]);
 
   return (
-    <div className={styles.container}>
-      <Button
-        priority="tertiary"
-        onClick={shareEmail}
-        evaIcon="email-outline"
-        className={styles.btn}
-        id="EmailTooltip"
-        title={t("Dispositif.tooltipShareEmail")}
-      />
-      <Tooltip target="EmailTooltip" placement="bottom">
-        {t("Dispositif.tooltipShareEmail")}
-      </Tooltip>
+    <div className="mb-4 flex flex-col gap-2 print:hidden">
+      <div className={cn("bg-white/50 p-4 backdrop-blur-[30px]", className)}>
+        <p className="text-title-xxs text-title-grey mb-4 font-bold">{t("Dispositif.share", "Partager la fiche")}</p>
+        <div className="flex items-center">
+          <Tooltip kind="hover" title={t("Dispositif.sendBySMS")}>
+            <Button
+              priority="tertiary no outline"
+              onClick={() => setShowSMS(!showSMS)}
+              iconId={showSMS ? "ri-chat-3-fill" : "ri-chat-3-line"}
+              id="SmsTooltip"
+              title={t("Dispositif.sendBySMS")}
+              className={cn("rtl:before:!ml-[0.25rem]", showSMS && "!text-[#1212ff]")}
+            >
+              {t("Dispositif.sms", "SMS")}
+            </Button>
+          </Tooltip>
 
-      <Button
-        priority="tertiary"
-        onClick={copyLink}
-        evaIcon="copy-outline"
-        className={styles.btn}
-        id="CopyTooltip"
-        title={t("Dispositif.tooltipShareCopy")}
-      />
-      <Tooltip target="CopyTooltip" placement="bottom">
-        {t("Dispositif.tooltipShareCopy")}
-      </Tooltip>
+          <Tooltip kind="hover" title={t("Dispositif.tooltipShareCopy")}>
+            <Button
+              priority="tertiary no outline"
+              onClick={copyLink}
+              iconId="fr-icon-link"
+              id="CopyTooltip"
+              title={t("Dispositif.tooltipShareCopy")}
+            />
+          </Tooltip>
 
-      <Button
-        priority="tertiary"
-        onClick={print}
-        evaIcon="printer-outline"
-        className={styles.btn}
-        id="PrintTooltip"
-        title={t("Dispositif.tooltipSharePrint")}
-      />
-      <Tooltip target="PrintTooltip" placement="bottom">
-        {t("Dispositif.tooltipSharePrint")}
-      </Tooltip>
+          <Tooltip kind="hover" title={t("Dispositif.tooltipSharePrint")}>
+            <Button
+              priority="tertiary no outline"
+              onClick={print}
+              iconId="fr-icon-printer-line"
+              id="PrintTooltip"
+              title={t("Dispositif.tooltipSharePrint")}
+            />
+          </Tooltip>
+        </div>
 
-      <Button
-        priority="tertiary"
-        onClick={shareFacebook}
-        icon="ri-facebook-circle-line"
-        className={styles.btn}
-        id="FacebookTooltip"
-        title={t("Dispositif.tooltipShareFacebook")}
-      />
-      <Tooltip target="FacebookTooltip" placement="bottom">
-        {t("Dispositif.tooltipShareFacebook")}
-      </Tooltip>
-
-      <Button
-        priority="tertiary"
-        onClick={shareLinkedin}
-        icon="ri-linkedin-box-line"
-        className={styles.btn}
-        id="LinkedinTooltip"
-        title={t("Dispositif.tooltipShareLinkedin")}
-      />
-      <Tooltip target="LinkedinTooltip" placement="bottom">
-        {t("Dispositif.tooltipShareLinkedin")}
-      </Tooltip>
-
-      <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>
-        {t("Dispositif.toastShareCopied")}
-      </Toast>
+        <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>
+          {t("Dispositif.toastShareCopied")}
+        </Toast>
+      </div>
+      <div
+        className={cn(
+          "relative flex max-h-0 flex-col items-start justify-start overflow-clip bg-white shadow-[0px_2px_6px_0px_rgba(0,0,18,0.16)] transition-all duration-800 ease-in",
+          showSMS ? "max-h-[28rem]" : "max-h-0",
+        )}
+      >
+        <Button
+          priority="tertiary no outline"
+          onClick={() => setShowSMS(false)}
+          iconId="ri-close-line"
+          className="z-10 ml-auto"
+          size="small"
+          title={t("close")}
+        />
+        <SMSForm onSubmitSuccess={() => setShowSMS(false)} className="p-4 pt-0" ref={smsFormInputContainerRef} />
+      </div>
     </div>
   );
 };

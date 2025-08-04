@@ -1,3 +1,4 @@
+import { ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { styles } from "~/theme";
@@ -15,7 +16,7 @@ interface Props {
   iconName: string;
   onPress?: () => void;
   rounded?: boolean;
-  style?: any;
+  style?: ViewStyle | ViewStyle[];
   label?: string;
 }
 /**

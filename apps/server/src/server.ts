@@ -1,5 +1,8 @@
 "use strict";
-require("dotenv").config();
+
+import { config } from "dotenv";
+config();
+
 import cloudinary from "cloudinary";
 import compression from "compression";
 import cors from "cors";
@@ -14,7 +17,7 @@ const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
 logger.info(NODE_ENV + " environment");
 
-//@ts-ignore
+//@ts-expect-error type error for cloudinary config
 cloudinary.config({
   cloud_name: CLOUD_NAME,
   api_key: API_KEY,

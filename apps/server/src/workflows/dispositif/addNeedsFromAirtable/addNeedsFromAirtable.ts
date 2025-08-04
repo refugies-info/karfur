@@ -7,7 +7,7 @@ import { Res } from "~/types/interface";
 import { data } from "./data";
 
 // REPLACE TAGS BY THEMES BEFORE USE
-export const addNeedsFromAirtable = async (req: {}, res: Res) => {
+export const addNeedsFromAirtable = async (_req: object, res: Res) => {
   try {
     logger.info("[addNeedsFromAirtable]");
     const needsFromDB = await getNeedsFromDB();
@@ -15,8 +15,7 @@ export const addNeedsFromAirtable = async (req: {}, res: Res) => {
 
     await asyncForEach(data, async (el) => {
       try {
-        let needs: mongoose.Types.ObjectId[] = [];
-        // @ts-ignore
+        const needs: mongoose.Types.ObjectId[] = [];
         const ficheFromDB = await getDispositifById(el._id, { tags: 1 });
         if (!ficheFromDB) {
           return;
@@ -25,10 +24,10 @@ export const addNeedsFromAirtable = async (req: {}, res: Res) => {
           const needWithDetailsArray = needsFromDB.filter((needDB) => needDB.fr.text === need);
           const needWithDetails = needWithDetailsArray.length > 0 ? needWithDetailsArray[0] : null;
           let isTagOk = false;
-          //@ts-ignore
+          //@ts-expect-error typing issue with tags
           if (ficheFromDB.tags && ficheFromDB.tags.length > 0) {
-            //@ts-ignore
-            ficheFromDB.tags.forEach((tag: any) => {
+            //@ts-expect-error typing issue with tags
+            ficheFromDB.tags.forEach((tag: { name: string }) => {
               if (tag && tag.name && tag.name === needWithDetails.tagName) {
                 isTagOk = true;
               }
@@ -40,7 +39,6 @@ export const addNeedsFromAirtable = async (req: {}, res: Res) => {
         });
 
         if (needs.length > 0) {
-          // @ts-ignore
           await updateDispositifInDB(el._id, { needs });
           logger.info("[addNeedsFromAirtable] successfully updated dispositif with id", { _id: el._id });
           nbDispoUpdated++;

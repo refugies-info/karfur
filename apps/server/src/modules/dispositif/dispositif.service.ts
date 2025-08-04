@@ -12,10 +12,12 @@ import {
 } from "@refugies-info/api-types";
 import { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
+import { ProjectionType } from "mongoose";
 import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
+import { pictureToImageSchema } from "~/mappers/image-mapper";
 import {
   sendMailWhenDispositifPublished,
   sendMailWhenDispositifPublishedAfterUpdate,
@@ -444,7 +446,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
 };
 
 export const deleteDispositifInDb = async (id: string, user: User) => {
-  const neededFields = {
+  const neededFields: ProjectionType<Dispositif> = {
     creatorId: 1,
     mainSponsor: 1,
     status: 1,
@@ -504,9 +506,15 @@ export const buildNewDispositif = async (
     editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
   if (formContent.map !== undefined) editedDispositif.map = formContent.map;
-  //@ts-ignore
-  if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // TODO picture type
-  if (formContent.administration) editedDispositif.administrationLogo = formContent.administration.logo; // TODO picture type
+  if (formContent.sponsors) {
+    editedDispositif.sponsors = formContent.sponsors.map((s) => ({
+      name: s.name,
+      link: s.link ?? undefined,
+      logo: s.logo?.secure_url ?? undefined, // Sponsor.logo expects string
+    }));
+  }
+  if (formContent.administration)
+    editedDispositif.administrationLogo = pictureToImageSchema(formContent.administration.logo);
 
   return editedDispositif;
 };
@@ -516,7 +524,7 @@ const isAccordionOk = (content: InfoSections | undefined, max: number): boolean 
   return Object.keys(content).length >= max && !Object.values(content).find((c) => !c.title || !c.text);
 };
 
-const isMetadataOk = (content: any): boolean => {
+const isMetadataOk = (content: unknown): boolean => {
   return !!content || content === null; // ok if filled or null
 };
 

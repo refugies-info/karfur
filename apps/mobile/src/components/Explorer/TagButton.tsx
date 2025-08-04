@@ -5,6 +5,7 @@ import * as React from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { TagImage } from "~/components/Explorer/TagImage";
+import { SearchItem } from "~/components/Search/types";
 import { firstLetterUpperCase } from "~/libs";
 import { styles } from "~/theme";
 import { RTLTouchableOpacity } from "../BasicComponents";
@@ -19,7 +20,7 @@ interface Props {
   inline?: boolean;
   name?: string;
   onPress: () => void;
-  searchItem?: any;
+  searchItem?: SearchItem;
   searchLanguageMatch?: string;
   style?: StyleProp<ViewStyle>;
   textColor?: string;
@@ -80,11 +81,8 @@ const TagButtonComponent = ({
             <Highlight
               hit={searchItem}
               attribute={`name_${searchLanguageMatch || "fr"}`}
-              //@ts-ignore
               capitalize={true}
-              //@ts-ignore
-              color={backgroundColor}
-              //@ts-ignore
+              color={isArray(backgroundColor) ? backgroundColor[0] : backgroundColor}
               colorNotHighlighted={styles.colors.white}
             />
           ) : (

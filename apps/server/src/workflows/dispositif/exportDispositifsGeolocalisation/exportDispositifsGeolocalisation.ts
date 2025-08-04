@@ -1,7 +1,9 @@
+import { ProjectionType } from "mongoose";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
 import { adaptDispositifDepartement, getDepartementsFigures } from "~/modules/dispositif/dispositif.adapter";
 import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
+import { Dispositif } from "~/typegoose";
 import { Response } from "~/types/interface";
 
 const exportDataInAirtable = (data: { departement: string; region: string; nbDispositifs: number }) => {
@@ -37,7 +39,7 @@ const exportDataInAirtable = (data: { departement: string; region: string; nbDis
 
 export const exportDispositifsGeolocalisation = async (): Response => {
   logger.info("[exportDispositifsGeolocalisation] received");
-  const neededFields = { metadatas: 1 };
+  const neededFields: ProjectionType<Dispositif> = { metadatas: 1 };
   const activeDispositifs = await getActiveDispositifsFromDBWithoutPopulate(neededFields);
   const adaptedDispositifs = adaptDispositifDepartement(activeDispositifs);
   const depFigures = getDepartementsFigures(adaptedDispositifs);

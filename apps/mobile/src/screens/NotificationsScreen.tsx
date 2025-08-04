@@ -68,13 +68,13 @@ export const NotificationsScreen = () => {
   const { t } = useTranslationWithRTL();
   const theme = useTheme();
   const navigation = useNavigation<NotificationsScreenNavigationProp>();
-  let { data: notifications, isLoading } = useNotifications();
+  const { data: notifications, isLoading } = useNotifications();
 
   const [accessGranted] = useNotificationsStatus();
 
   const goToNotificationsSettingsScreen = () =>
     // FIXME : remove ts-ignore
-    //@ts-ignore
+    //@ts-expect-error navigation.navigate is not typed
     navigation.navigate("Profil", {
       screen: "NotificationsSettingsScreen",
       initial: false,
@@ -89,6 +89,8 @@ export const NotificationsScreen = () => {
             style={stylesheet.settingsButton}
             activeOpacity={0.8}
             onPress={goToNotificationsSettingsScreen}
+            accessibilityRole="button"
+            accessibilityLabel={t("notifications.settings")}
           >
             <Icon name="settings-outline" width={ICON_SIZE} height={ICON_SIZE} fill={theme.colors.black} />
           </TouchableOpacity>

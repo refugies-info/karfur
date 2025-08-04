@@ -1,7 +1,7 @@
 import * as brevo from "~/connectors/brevo";
 import * as twilio from "~/connectors/twilio";
 
-export type SendSMSResult = { status: number; sent: boolean };
+export type SendSMSResult = { status: string | number; sent: boolean };
 
 export const sendSMS = async (text: string, phone: string): Promise<SendSMSResult> => {
   const brevoRes = await brevo.sendSMS(text, phone);

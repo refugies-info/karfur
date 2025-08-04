@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
@@ -7,7 +8,6 @@ import { ReadableText } from "../../ReadableText";
 import { TextDSFR_MD } from "../../StyledText";
 
 export interface SelectProps {
-  children: any;
   label?: string;
   onPress: () => void;
   testID: string;
@@ -25,7 +25,7 @@ const MainContainer = styled(RTLTouchableOpacity)`
   border-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
 `;
 
-export const Select = ({ children, label, onPress, testID }: SelectProps) => {
+export const Select = ({ children, label, onPress, testID }: PropsWithChildren<SelectProps>) => {
   const theme = useTheme();
   return (
     <View>
