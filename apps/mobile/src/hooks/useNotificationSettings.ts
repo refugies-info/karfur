@@ -49,9 +49,20 @@ export const useNotificationsSettings = (): [
   const updateSettings = async (key: string, value: boolean) => {
     try {
       logSettingsUpdate(key, value);
-      const payload: any = {};
+      const payload: Partial<NotificationsSettings> = {};
       set(payload, key, value);
-      queryClient.setQueryData("notificationsSettings", (current: any) => {
+      queryClient.setQueryData("notificationsSettings", (current: NotificationsSettings | undefined) => {
+        if (!current) {
+          // Return default state if no current data exists
+          return {
+            themes: {},
+            global: false,
+            local: false,
+            demarches: false,
+            ...payload,
+          };
+        }
+
         if (payload.themes) {
           return {
             ...current,

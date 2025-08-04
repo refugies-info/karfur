@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { updateAppUser } from "~/utils/API";
 
 type Item =
@@ -13,22 +12,25 @@ type Item =
   | "FAVORITES"
   | "LOCALIZED_WARNING_HIDDEN";
 
-const itemsToSave: {
-  [key in Item]?: string;
-} = {
-  SELECTED_LANGUAGE: "selectedLanguage",
+const itemsToSave = {
+  AGE: "age",
   CITY: "city",
   DEP: "department",
-  AGE: "age",
+  FAVORITES: "FAVORITES",
   FRENCH_LEVEL: "frenchLevel",
-};
+  HAS_USER_NEW_FAVORITES: "HAS_USER_NEW_FAVORITES",
+  HAS_USER_SEEN_ONBOARDING: "HAS_USER_SEEN_ONBOARDING",
+  LOCALIZED_WARNING_HIDDEN: "LOCALIZED_WARNING_HIDDEN",
+  SELECTED_LANGUAGE: "selectedLanguage",
+} as const;
 
-export const saveItemInAsyncStorage = async (item: Item, value: string) => {
+type ItemsToSave = keyof typeof itemsToSave;
+
+export const saveItemInAsyncStorage = async (item: ItemsToSave, value: string) => {
   await AsyncStorage.setItem(item, value);
 
   if (Object.keys(itemsToSave).includes(item)) {
     await updateAppUser({
-      // @ts-expect-error
       [itemsToSave[item]]: value === null ? undefined : value,
     });
   }
@@ -36,12 +38,11 @@ export const saveItemInAsyncStorage = async (item: Item, value: string) => {
 
 export const getItemInAsyncStorage = async (item: Item) => await AsyncStorage.getItem(item);
 
-export const deleteItemInAsyncStorage = async (item: Item) => {
+export const deleteItemInAsyncStorage = async (item: ItemsToSave) => {
   await AsyncStorage.removeItem(item);
 
   if (Object.keys(itemsToSave).includes(item)) {
     await updateAppUser({
-      // @ts-ignore
       [itemsToSave[item]]: undefined,
     });
   }

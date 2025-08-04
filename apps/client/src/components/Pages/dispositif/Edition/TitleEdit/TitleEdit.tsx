@@ -51,7 +51,7 @@ const TitleEdit = (props: Props) => {
 
       {typeContenu === ContentType.DISPOSITIF && (
         <div className={styles.marque} id="step-titreMarque">
-          <span className="me-6">Avec</span>
+          <span className="me-6 text-sm whitespace-nowrap">Proposé par</span>
           {!isActionActive && (
             <AddContentButton
               onClick={() => setIsActionActive(true)}

@@ -1,27 +1,28 @@
-import { ContentType } from "@refugies-info/api-types";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { Metadatas, Summary } from "~/components/Pages/dispositif";
-import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { useTranslation } from "next-i18next";
+import { useContext, useMemo } from "react";
+import { Metadatas, ShareButtons } from "~/components/Pages/dispositif";
+import FRLink from "~/components/UI/FRLink";
+import { cn } from "~/lib/classname";
+import PageContext from "~/utils/pageContext";
 
-const Dispositif = () => {
-  const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
-  const color100 = useMemo(() => theme?.colors.color100 || "#000", [theme]);
+const LeftSidebar = ({ className }: { className?: string }) => {
+  const pageContext = useContext(PageContext);
+  const { t } = useTranslation();
+
+  const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
   return (
-    <>
-      <Summary />
-      <Metadatas
-        metadatas={dispositif?.metadatas}
-        titreMarque={dispositif?.titreMarque}
-        mainSponsor={dispositif?.mainSponsor}
-        color={color100}
-        typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
-      />
-    </>
+    <aside className={cn(className, "print:order-2 print:mt-8")}>
+      {isViewMode && (
+        <FRLink href="#top" icon="arrow-upward" className="fixed bottom-4 left-4 z-20 print:!hidden">
+          {t("topLink")}
+        </FRLink>
+      )}
+      <ShareButtons className="print:hidden" />
+
+      <Metadatas className="flex flex-col gap-4" />
+    </aside>
   );
 };
 
-export default Dispositif;
+export default LeftSidebar;

@@ -4,6 +4,7 @@ import styled, { useTheme } from "styled-components/native";
 import { TextDSFR_MD, TextDSFR_XL } from "~/components/StyledText";
 import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import bellAnimation from "~/theme/lottie/bell-animation.json";
 import { ReadableText } from "../ReadableText";
 import { ButtonDSFR } from "../buttons";
 import { Spacer } from "../layout";
@@ -45,7 +46,7 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
         <LottieContainer>
           <LottieView
             colorFilters={[{ keypath: "bell icon", color: "#c8c8c8" }]}
-            source={require("../../theme/lottie/bell-animation.json")}
+            source={bellAnimation}
             autoPlay
             loop
             resizeMode="cover"

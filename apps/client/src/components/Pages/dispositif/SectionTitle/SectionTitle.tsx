@@ -1,48 +1,35 @@
-import { CreateDispositifRequest } from "@refugies-info/api-types";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { useContext, useMemo } from "react";
-import { useWatch } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useContext } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { getDispositifSectionTitle, titleKeyType } from "~/lib/getDispositifSectionTitle";
-import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
-import styles from "./SectionTitle.module.scss";
 
 interface TitleProps {
   titleKey: titleKeyType;
-  color: string;
+  className?: string;
 }
 const Title = (props: TitleProps) => {
   const { t } = useTranslation();
   return (
     props.titleKey !== "what" && ( // Hide the 'what' section title as per RI-561
-      <p className={styles.title} style={{ color: props.color }}>
-        {props.titleKey === "abstract" && (
-          <EVAIcon name="file-text-outline" size={32} fill={props.color} className="me-2" />
-        )}
+      <h2 className={cn("text-title-lg text-title-grey font-bold", props.className)}>
+        {props.titleKey === "abstract" && <EVAIcon name="file-text-outline" size={32} fill="#000" className="me-2" />}
         {t(getDispositifSectionTitle(props.titleKey))}
-      </p>
+      </h2>
     )
   );
 };
 
 interface Props {
   titleKey: titleKeyType;
+  className?: string;
 }
 const SectionTitleEdit = (props: Props) => {
-  const themeId: CreateDispositifRequest["theme"] = useWatch({ name: "theme" });
-  const theme = useSelector(themeSelector(themeId));
-  const color = useMemo(() => theme?.colors.color100 || "#000", [theme]);
-  return <Title titleKey={props.titleKey} color={color} />;
+  return <Title titleKey={props.titleKey} className={props.className} />;
 };
 const SectionTitleView = (props: Props) => {
-  const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
-  const color = useMemo(() => theme?.colors.color100 || "#000", [theme]);
-
-  return <Title titleKey={props.titleKey} color={color} />;
+  return <Title titleKey={props.titleKey} className={props.className} />;
 };
 
 /**
@@ -50,10 +37,10 @@ const SectionTitleView = (props: Props) => {
  */
 const SectionTitle = (props: Props) => {
   const pageContext = useContext(PageContext);
-  return pageContext.mode === "edit" ? (
-    <SectionTitleEdit titleKey={props.titleKey} />
+  return pageContext.mode === "edit" || pageContext.mode === "translate" ? (
+    <SectionTitleEdit titleKey={props.titleKey} className={props.className} />
   ) : (
-    <SectionTitleView titleKey={props.titleKey} />
+    <SectionTitleView titleKey={props.titleKey} className={props.className} />
   );
 };
 

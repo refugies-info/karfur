@@ -1,0 +1,13 @@
+@import "./prose/prose-lists.css";
+
+@layer utilities {
+  :not(.no-prose) .prose {
+    a {
+      @apply !text-action-high-blue-france;
+
+      &.edited-btn {
+        @apply !underline !underline-offset-4;
+      }
+    }
+  }
+}

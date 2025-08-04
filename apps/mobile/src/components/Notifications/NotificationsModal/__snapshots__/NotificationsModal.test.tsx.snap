@@ -68,17 +68,20 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             />
           </View>
           <Text
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Bold",
-                "fontSize": 24,
-                "lineHeight": 32,
-                "marginTop": 64,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 24,
+                  "lineHeight": 32,
+                  "marginTop": 64,
+                },
+              ]
             }
           >
             <Text
@@ -89,17 +92,21 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             <View />
           </Text>
           <Text
-            isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginTop": 16,
-                "textAlign": "center",
-              }
+              [
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 16,
+                  "textAlign": "center",
+                },
+              ]
             }
           >
             <Text
@@ -180,16 +187,19 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               <Text
                 color="#FFFFFF"
                 disabled={false}
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -395,16 +405,19 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               <Text
                 color="#000091"
                 disabled={false}
-                isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#000091",
-                    "fontFamily": "Marianne-Medium",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#000091",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                    },
+                  ]
                 }
               >
                 <Text

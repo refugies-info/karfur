@@ -1,8 +1,10 @@
 import { CreateDispositifRequest } from "@refugies-info/api-types";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { allStructuresSelector } from "~/services/AllStructures/allStructures.selector";
 import Sponsors from "../../Sponsors";
-import { ModalSponsors } from "../Modals";
+import { ModalMainSponsor, ModalSponsors } from "../Modals";
 import DeleteContentModal from "./DeleteContentModal";
 import styles from "./SponsorsEdit.module.scss";
 
@@ -11,15 +13,38 @@ import styles from "./SponsorsEdit.module.scss";
  */
 const SponsorsEdit = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showMainSponsorModal, setShowMainSponsorModal] = useState(false);
   const [toDeleteItemModal, setToDeleteItemModal] = useState(-1); // -1 closed, else show modal and save index to delete
   const [currentSponsorIndex, setCurrentSponsorIndex] = useState(-1);
   const sponsors: CreateDispositifRequest["sponsors"] = useWatch({ name: "sponsors" });
+  const rawMainSponsor: CreateDispositifRequest["mainSponsor"] = useWatch({ name: "mainSponsor" });
   const { setValue } = useFormContext();
+
+  const structures = useSelector(allStructuresSelector);
+
+  // Transform mainSponsor from string ID to object if needed
+  const mainSponsor = useMemo(() => {
+    if (typeof rawMainSponsor === "string") {
+      const sponsor = structures.find((s) => s._id.toString() === rawMainSponsor);
+      return sponsor
+        ? {
+            _id: sponsor._id,
+            nom: sponsor.nom,
+            picture: sponsor.picture,
+            acronyme: sponsor.acronyme,
+            link: sponsor.link,
+          }
+        : null;
+    }
+    return rawMainSponsor;
+  }, [rawMainSponsor, structures]);
 
   return (
     <div id="step-sponsors" className={styles.container}>
       <Sponsors
         sponsors={sponsors}
+        mainSponsor={mainSponsor}
+        onMainSponsorClick={() => setShowMainSponsorModal(true)}
         editMode
         onClick={(idx) => {
           setCurrentSponsorIndex(idx);
@@ -28,8 +53,7 @@ const SponsorsEdit = () => {
         onDelete={(idx) => {
           setToDeleteItemModal(idx);
         }}
-        onAdd={(e: any) => {
-          e.preventDefault();
+        onAdd={() => {
           setCurrentSponsorIndex(-1);
           setShowModal(true);
         }}
@@ -39,6 +63,7 @@ const SponsorsEdit = () => {
         toggle={() => setShowModal((o) => !o)}
         currentSponsorIndex={currentSponsorIndex}
       />
+      <ModalMainSponsor show={showMainSponsorModal} toggle={() => setShowMainSponsorModal((o) => !o)} />
       <DeleteContentModal
         show={toDeleteItemModal > -1}
         toggle={() => setToDeleteItemModal(-1)}

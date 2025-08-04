@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-env node */
 import deepLinks from "./androidDeepLinks";
 
 // Update thiq version variable before publishing the app
@@ -96,6 +98,7 @@ export default {
     owner: "refugies-info",
     updates: {
       fallbackToCacheTimeout: 0,
+      url: "https://u.expo.dev/985bc919-57f5-4851-9f2f-748af3408606",
     },
     assetBundlePatterns: ["**/*"],
     locales: {
@@ -192,9 +195,6 @@ export default {
         projectId: "985bc919-57f5-4851-9f2f-748af3408606",
       },
       displayVersionNumber,
-    },
-    updates: {
-      url: "https://u.expo.dev/985bc919-57f5-4851-9f2f-748af3408606",
     },
     runtimeVersion: {
       policy: "sdkVersion",

@@ -8,12 +8,9 @@
 .btn {
   &:global(.fr-btn) {
     background-color: white;
-    box-shadow: 0 2px 6px 0 #00001229;
     color: var(--text-disabled-grey);
     width: 100%;
     padding: u(4);
-    border-radius: u(2);
-    border: 1px solid transparent;
     text-align: left;
     display: flex;
     align-items: center;
@@ -79,7 +76,6 @@
           @include iconSize(16px);
 
           padding: u(2);
-          border-radius: u(2);
           margin-top: u(2);
           border: 1px solid var(--border-default-grey);
 

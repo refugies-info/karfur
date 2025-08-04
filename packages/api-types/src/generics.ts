@@ -45,12 +45,18 @@ export interface ThemeColors {
   color30: string;
 }
 
+export interface ThemeGradientColors {
+  colorTop: string;
+  colorBottom: string;
+}
+
 export interface SimpleTheme {
   _id: Id;
   name: TranslatedText;
   short: TranslatedText;
   mainColor: string;
   colors: ThemeColors;
+  gradientColors: ThemeGradientColors;
   position: number;
   icon: Picture;
   banner: Picture;
@@ -82,18 +88,24 @@ export interface ContentStructure {
   nom: string;
   picture?: Picture;
   status?: string;
+  link?: string;
+  acronyme?: string;
 }
 
 export interface MainSponsor {
   name: string;
+  nom?: string;
   logo?: Picture;
   link?: string;
+  acronyme?: string;
 }
 
 export interface Sponsor {
   name: string;
-  logo?: Picture;
-  link?: string;
+  // Unfortunately there are occurrences in the database with a null logo
+  // See https://linear.app/refugiesinfo/issue/RI-794/bug-erreur-lors-de-la-sauvegarde-automatique-dun-fiche
+  logo?: Picture | null;
+  link?: string | null;
 }
 
 export interface DemarcheAdministration {

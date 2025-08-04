@@ -1,1 +1,1 @@
-module.exports = "SvgMock";
+export default "SvgMock";

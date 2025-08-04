@@ -6,8 +6,10 @@ export const setLanguagesActionCreator = (value: GetLanguagesResponse[]) => acti
 
 export const fetchLanguagesActionCreator = () => action(FETCH_LANGUAGES);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   setLanguagesActionCreator,
   fetchLanguagesActionCreator,
 };
+
 export type LanguagesActions = ActionType<typeof actions>;

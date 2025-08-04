@@ -1,12 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { Hit } from "instantsearch.js";
 import { memo, useMemo } from "react";
-import { Image } from "react-native";
+import { Image, StyleProp, ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
+import { SearchItem } from "~/components/Search/types";
+import { ValidScreen } from "~/libs/backButton";
 import { defaultColors } from "~/libs/getThemeTag";
 import { styles } from "~/theme";
 import NoLogo from "~/theme/images/contents/structure_no_logo.png";
+import { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { Columns } from "../layout";
@@ -74,17 +79,17 @@ const ActionButton = styled.TouchableOpacity`
 interface Props {
   actionIcon?: string;
   actionLabel?: string;
-  actionPress?: any;
-  backScreen?: string;
+  actionPress?: () => void;
+  backScreen?: ValidScreen;
   content: ContentForApp;
   hasSponsorMatch?: boolean;
   isTextNotBold?: boolean;
   needId?: Id;
   pressCallback?: () => void;
-  searchItem?: any;
+  searchItem?: Hit<SearchItem>;
   searchLanguageMatch?: string;
   showAbstract?: boolean;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
   theme?: GetThemeResponse;
 }
 
@@ -95,7 +100,7 @@ const logEventOnClick = (id: string) => {
 };
 
 const ContentSummaryComponent = (props: Props) => {
-  const navigation: any = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ExplorerParamList>>();
   const theme = useMemo(
     () => props.theme || (props.content.theme as GetThemeResponse),
     [props.theme, props.content.theme],
@@ -128,14 +133,11 @@ const ContentSummaryComponent = (props: Props) => {
           logEventOnClick(props.content._id);
           if (props.pressCallback) props.pressCallback();
 
-          navigation.navigate("Explorer", {
-            screen: "ContentScreen",
-            params: {
-              contentId: props.content._id,
-              needId: props.needId,
-              theme: theme,
-              backScreen: props.backScreen,
-            },
+          navigation.navigate("ContentScreen", {
+            contentId: props.content._id,
+            needId: props.needId?.toString(),
+            theme: theme,
+            backScreen: props.backScreen,
           });
         }}
       >
@@ -164,27 +166,26 @@ const ContentSummaryComponent = (props: Props) => {
                 <Highlight
                   hit={props.searchItem}
                   attribute={`title_${props.searchLanguageMatch || "fr"}`}
-                  //@ts-ignore
                   color={colors.color100}
                 />
               ) : (
                 <ReadableText>{props.content.titreInformatif || ""}</ReadableText>
               )}
             </TitreInfoText>
-            {(!!props.content?.titreMarque ||
-              !!props?.searchItem?.[`titreMarque_${props.searchLanguageMatch || "fr"}`]) && (
+            {props.searchItem ? (
               <TitreMarqueText color={colors.color100}>
-                {props.searchItem ? (
-                  <Highlight
-                    hit={props.searchItem}
-                    attribute={`titreMarque_${props.searchLanguageMatch || "fr"}`}
-                    //@ts-ignore
-                    color={colors.color100}
-                  />
-                ) : (
-                  <ReadableText>{props.content.titreMarque || ""}</ReadableText>
-                )}
+                <Highlight
+                  hit={props.searchItem}
+                  attribute={`titreMarque_${props.searchLanguageMatch || "fr"}`}
+                  color={colors.color100}
+                />
               </TitreMarqueText>
+            ) : (
+              !!props.content?.titreMarque && (
+                <TitreMarqueText color={colors.color100}>
+                  <ReadableText>{props.content.titreMarque}</ReadableText>
+                </TitreMarqueText>
+              )
             )}
           </TitlesContainer>
           {actionButton}
@@ -192,12 +193,15 @@ const ContentSummaryComponent = (props: Props) => {
 
         {props.showAbstract && (
           <DescInfoText color={colors.color100}>
-            <Highlight
-              hit={props.searchItem}
-              attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
-              //@ts-ignore
-              color={colors.color100}
-            />
+            {props.searchItem ? (
+              <Highlight
+                hit={props.searchItem}
+                attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
+                color={colors.color100}
+              />
+            ) : (
+              <ReadableText>{props.content.abstract}</ReadableText>
+            )}
           </DescInfoText>
         )}
       </ContentContainer>
@@ -214,14 +218,11 @@ const ContentSummaryComponent = (props: Props) => {
         logEventOnClick(props.content._id);
         if (props.pressCallback) props.pressCallback();
 
-        navigation.navigate("Explorer", {
-          screen: "ContentScreen",
-          params: {
-            contentId: props.content._id,
-            needId: props.needId,
-            theme: theme,
-            backScreen: props.backScreen,
-          },
+        navigation.navigate("ContentScreen", {
+          contentId: props.content._id,
+          needId: props.needId?.toString(),
+          theme: theme,
+          backScreen: props.backScreen,
         });
       }}
     >
@@ -242,7 +243,6 @@ const ContentSummaryComponent = (props: Props) => {
               <Highlight
                 hit={props.searchItem}
                 attribute={`title_${props.searchLanguageMatch || "fr"}`}
-                //@ts-ignore
                 color={colors.color100}
               />
             ) : (
@@ -255,12 +255,15 @@ const ContentSummaryComponent = (props: Props) => {
 
       {props.showAbstract && (
         <DescInfoText color={colors.color100}>
-          <Highlight
-            hit={props.searchItem}
-            attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
-            // @ts-ignore
-            color={colors.color100}
-          />
+          {props.searchItem ? (
+            <Highlight
+              hit={props.searchItem as Hit<SearchItem>}
+              attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
+              color={colors.color100}
+            />
+          ) : (
+            <ReadableText>{props.content.abstract}</ReadableText>
+          )}
         </DescInfoText>
       )}
     </ContentContainer>

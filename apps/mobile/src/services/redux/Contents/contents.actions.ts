@@ -9,9 +9,11 @@ export const setNbContentsActionCreator = (value: GetNbContentsForCountyResponse
 
 export const fetchContentsActionCreator = () => action(FETCH_CONTENTS);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   setContentsActionCreator,
   setNbContentsActionCreator,
   fetchContentsActionCreator,
 };
+
 export type ContentsActions = ActionType<typeof actions>;

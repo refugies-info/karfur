@@ -1,6 +1,6 @@
 import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
 import { omit } from "lodash";
-import { FilterQuery } from "mongoose";
+import { FilterQuery, ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { getStructureDispositifs } from "~/modules/dispositif/dispositif.repository";
@@ -11,7 +11,14 @@ import { ResponseWithData } from "~/types/interface";
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
-  const neededFields = { username: 1, email: 1, picture: 1, last_connected: 1, roles: 1, added_at: 1 };
+  const neededFields: ProjectionType<User> = {
+    username: 1,
+    email: 1,
+    picture: 1,
+    last_connected: 1,
+    roles: 1,
+    added_at: 1,
+  };
 
   const members = await Promise.all(
     structureMembres.map((membre) =>

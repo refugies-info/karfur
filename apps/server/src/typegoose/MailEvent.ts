@@ -6,13 +6,13 @@ import { User } from "./User";
 @modelOptions({ schemaOptions: { collection: "mails", timestamps: { createdAt: "created_at" } } })
 export class MailEvent extends Base {
   @prop({ required: true })
-  public templateName!: String;
+  public templateName!: string;
 
   @prop({ required: true })
-  public email!: String;
+  public email!: string;
 
   @prop()
-  public langue?: String;
+  public langue?: string;
 
   @prop({ ref: () => User })
   public userId?: Ref<User>;

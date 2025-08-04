@@ -13,17 +13,19 @@ interface Props {
 const SearchThemeButton = (props: Props) => {
   const content = useMemo(
     () => (
-      <div className="flex items-center justify-center gap-1 px-0.5 py-0.5">
-        {props.theme?.icon?.secure_url && <Image src={props.theme.icon.secure_url} width="12" height="12" alt="" />}
-        <span className="text-title-grey text-[0.75rem] leading-[1.25rem] font-normal">{props.value}</span>
-      </div>
+      <span className="flex items-center justify-center gap-1 p-1 md:px-0.5 md:py-0.5">
+        {props.theme?.icon?.secure_url && (
+          <Image src={props.theme.icon.secure_url} width="12" height="12" className="scale-120" alt="" />
+        )}
+        <span className="text-title-grey line-height-[1rem] font-normal md:text-[0.75rem]">{props.value}</span>
+      </span>
     ),
     [props.theme, props.value],
   );
 
   return props.href ? (
     <Link
-      className="flex h-6 flex-col items-center rounded-[0.75rem] px-2"
+      className="flex flex-col items-center rounded-full px-2"
       style={{
         backgroundColor: props.theme.colors.color40,
       }}
@@ -34,7 +36,7 @@ const SearchThemeButton = (props: Props) => {
     </Link>
   ) : (
     <button
-      className="flex h-6 flex-col items-center rounded-[0.75rem] px-2"
+      className="flex flex-col items-center rounded-full px-2"
       style={{
         backgroundColor: props.theme.colors.color40,
       }}

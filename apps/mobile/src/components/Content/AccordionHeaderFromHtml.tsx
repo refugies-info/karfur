@@ -34,7 +34,6 @@ export const AccordionHeaderFromHtml = (props: Props) => {
           color: props.darkColor,
         }}
         renderers={{
-          // eslint-disable-next-line react/display-name
           p: (_, children, _cssStyles, passProps) => (
             <TextDSFR_MD_Bold
               key={passProps.key}

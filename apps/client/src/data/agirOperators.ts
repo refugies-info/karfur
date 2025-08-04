@@ -72,9 +72,9 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f35de6312466236064f",
     department: "10 - Aube",
-    operator: "Association Foyer Notre Dame",
-    email: "siege@foyernotredame.org",
-    phone: "03 88 22 70 90",
+    operator: "AATM",
+    email: "contact@10.agir.ong",
+    phone: "03 25 45 55 30",
   },
   {
     dispositifId: "660d1f37de63124662360669",
@@ -504,7 +504,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f35de63124662360649",
     department: "74 - Haute-Savoie",
     operator: "Fédération d'Œuvres Laïques",
-    email: "fol@fol74.org",
+    email: "agir74@fol74.org",
     phone: "04 50 52 70 84",
   },
   {

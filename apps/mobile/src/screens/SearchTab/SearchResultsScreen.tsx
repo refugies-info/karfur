@@ -1,4 +1,3 @@
-import { StackScreenProps } from "@react-navigation/stack";
 import { SupportedLanguage } from "algoliasearch";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import * as React from "react";
@@ -9,7 +8,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components/native";
 import InfiniteHits from "~/components/Search/InfiniteHits";
 import SearchBox from "~/components/Search/SearchBox";
-import SearchSuggestions from "~/components/Search/SearchSuggestions";
+import SearchSuggestions, { NavigationProp } from "~/components/Search/SearchSuggestions";
 import Config from "~/libs/getEnvironment";
 import { getSearchableAttributes } from "~/libs/search";
 import { mostViewedContentsSelector } from "~/services/redux/Contents/contents.selectors";
@@ -17,7 +16,6 @@ import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds
 import { needsSelector } from "~/services/redux/Needs/needs.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { SearchParamList } from "~/types/navigation";
 
 const SearchBoxContainer = styled.View`
   padding-bottom: ${({ theme }) => theme.margin * 3}px;
@@ -27,7 +25,11 @@ const SearchBoxContainer = styled.View`
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.EXPO_PUBLIC_ALGOLIA_API_KEY || "");
 
-export const SearchResultsScreen = ({ navigation }: StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
+interface Props {
+  navigation: NavigationProp;
+}
+
+export const SearchResultsScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
 
   const [searchInputValue, setSearchInputValue] = React.useState("");

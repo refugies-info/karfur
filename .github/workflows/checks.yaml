@@ -37,9 +37,15 @@ jobs:
       - name: Build UI Package
         run: turbo build --filter=@refugies-info/ui
 
-      - name: Lint, Check Types and Test
-        run: turbo lint check:types test && pnpm lint:style
+      - name: Lint
+        run: pnpm lint
+
+      - name: Check Types and Test
+        run: turbo check:types test
         env:
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG }}
+
+      - name: Lint styles
+        run: pnpm lint:style

@@ -323,7 +323,6 @@ describe("sendDemarcheNotifications", () => {
 
     // Mock data
     const dispositifId = fixtures.demarche._id;
-    const lang = "fr";
     const requirements = {
       age: {
         max: 99,

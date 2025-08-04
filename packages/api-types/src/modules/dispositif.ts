@@ -75,6 +75,7 @@ export interface ContentForApp {
   _id: string;
   titreInformatif: string;
   titreMarque: string;
+  abstract: string;
   theme: Id;
   secondaryThemes: Id[];
   needs: Id[];
@@ -237,7 +238,7 @@ export type GetDispositifResponse = {
   administration?: DemarcheAdministration;
   typeContenu: ContentType;
   status: DispositifStatus;
-  mainSponsor?: ContentStructure;
+  mainSponsor?: ContentStructure | null;
   theme?: Id;
   secondaryThemes?: Id[];
   needs: Id[];

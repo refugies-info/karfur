@@ -51,20 +51,22 @@ export const ExplorerScreen = ({ navigation }: StackScreenProps<ExplorerParamLis
   const redirectDispositif = useSelector(redirectDispositifSelector);
   const redirect = React.useCallback(() => {
     if (redirectDispositif) {
-      navigation.navigate("NeedsScreen", {
-        theme: redirectDispositif.theme,
-      });
-      navigation.navigate("ContentsScreen", {
-        needId: redirectDispositif.needId,
-        theme: redirectDispositif.theme,
-        backScreen: "",
-      });
-      navigation.navigate("ContentScreen", {
-        contentId: redirectDispositif.contentId,
-        needId: redirectDispositif.needId,
-        theme: redirectDispositif.theme,
-        backScreen: "",
-      });
+      if (redirectDispositif.needId) {
+        navigation.navigate("NeedsScreen", {
+          theme: redirectDispositif.theme,
+        });
+        navigation.navigate("ContentsScreen", {
+          needId: redirectDispositif.needId,
+          theme: redirectDispositif.theme,
+          backScreen: undefined,
+        });
+        navigation.navigate("ContentScreen", {
+          contentId: redirectDispositif.contentId,
+          needId: redirectDispositif.needId,
+          theme: redirectDispositif.theme,
+          backScreen: undefined,
+        });
+      }
       dispatch(setRedirectDispositifActionCreator(null));
     }
   }, [redirectDispositif]);

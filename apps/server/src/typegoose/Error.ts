@@ -4,14 +4,14 @@ import { User } from "./User";
 @modelOptions({ schemaOptions: { collection: "errors", timestamps: true } })
 export class Error {
   @prop()
-  public name: String;
+  public name: string;
 
   @prop({ ref: () => User })
   public userId?: Ref<User>;
 
   @prop()
-  public dataObject: Object;
+  public dataObject: object;
 
   @prop()
-  public error: Object;
+  public error: object;
 }

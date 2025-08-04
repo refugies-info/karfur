@@ -3,6 +3,7 @@ import React, { ComponentType, ReactNode, useCallback, useEffect, useMemo } from
 import {
   FlatList,
   FlatListProps,
+  LayoutChangeEvent,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
@@ -35,7 +36,7 @@ const PageContainer = styled.View<{ backgroundColor: string }>`
   min-height: 100%;
 `;
 
-export interface PageProps extends Partial<HeaderProps> {
+export interface PageProps<T = unknown> extends Partial<HeaderProps> {
   backgroundColor?: string;
   voiceoverOffset?: number;
   children?: ReactNode;
@@ -47,7 +48,7 @@ export interface PageProps extends Partial<HeaderProps> {
   title?: string;
   contentContainerStyle?: ViewStyle;
   scrollview?: React.RefObject<ScrollView | FlatList>; // given by parent if we need to control scroll
-  flatList?: FlatListProps<any>;
+  flatList?: FlatListProps<T>;
 }
 
 //  padding-top: ${({ theme }) => theme.insets.top}px;
@@ -68,7 +69,7 @@ const ContentContainer = styled.View<{ backgroundColor: string }>`
   flex-grow: 1;
 `;
 
-const Page = ({
+const Page = <T,>({
   backgroundColor = "transparent",
   children,
   headerBackgroundColor = "white",
@@ -83,7 +84,7 @@ const Page = ({
   flatList,
   voiceoverOffset,
   ...headerProps
-}: PageProps) => {
+}: PageProps<T>) => {
   const theme = useTheme();
   const [initialHeaderSize, setInitialHeaderSize] = useStateOnce<number>();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation(
@@ -142,7 +143,7 @@ const Page = ({
   }
 
   const onHeaderLayout = useCallback(
-    (e: any) => setInitialHeaderSize(e.nativeEvent.layout.height),
+    (e: LayoutChangeEvent) => setInitialHeaderSize(e.nativeEvent.layout.height),
     [setInitialHeaderSize],
   );
 
@@ -150,7 +151,7 @@ const Page = ({
 
   const isDarkBackground = useMemo(() => isDarkColor(headerBackgroundColor), [headerBackgroundColor]);
 
-  const scrollViewProps: ScrollViewProps | FlatListProps<any> = useMemo(
+  const scrollViewProps: ScrollViewProps | FlatListProps<T> = useMemo(
     () => ({
       alwaysBounceVertical: false,
       style: {
@@ -205,7 +206,6 @@ const Page = ({
         />
       ) : (
         <>
-          {/* @ts-ignore */}
           <ScrollableContent {...scrollViewProps}>
             <PageHeader
               HeaderContentInternal={HeaderContentInternal}
@@ -216,11 +216,7 @@ const Page = ({
               HeaderContent={HeaderContent}
             />
 
-            <ContentContainer
-              /* @ts-ignore */
-              style={contentContainerStyle}
-              backgroundColor={backgroundColor}
-            >
+            <ContentContainer style={contentContainerStyle} backgroundColor={backgroundColor}>
               {children}
             </ContentContainer>
           </ScrollableContent>

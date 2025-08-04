@@ -13,6 +13,7 @@ export { default as useParamsFromHistory } from "./useParamsFromHistory";
 export { default as useRegisterFlow } from "./useRegisterFlow";
 export { default as useRouterLocale } from "./useRouterLocale";
 export { default as useRTL } from "./useRTL";
+export { useRtriLinks } from "./useRtriLinks";
 export { useSanitizedContent } from "./useSanitizedContent";
 export { useScrollDirection } from "./useScrollDirection";
 export { default as useScrolledBottomEvent } from "./useScrolledBottomEvent";

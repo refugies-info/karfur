@@ -1,21 +1,47 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import Button from "@codegouvfr/react-dsfr/Button";
+import * as Dialog from "@radix-ui/react-dialog";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useRef, useState } from "react";
 import { DropdownContent, DropdownRoot, DropdownTrigger } from "~/components/UI/DropDown/DropDown";
+import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import useWindowSize from "~/hooks/useWindowSize";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
 
-const LanguageMenu = () => {
+interface Props {
+  variant?: "flag";
+  mobileMode?: "modal" | "dropdown" | "accordion";
+  desktopMode?: "modal" | "dropdown" | "accordion";
+  className?: string;
+  dropDownClassName?: string;
+  languageSelectorType?: "global" | "page";
+  availableLanguages?: string[] | null | undefined;
+  key?: string;
+}
+
+const LanguageMenu = ({
+  variant,
+  mobileMode = "accordion",
+  desktopMode = "dropdown",
+  className,
+  dropDownClassName,
+  languageSelectorType = "global",
+  availableLanguages = null,
+  key,
+}: Props) => {
   const [langMenuOpened, setLangMenuOpened] = useState(false);
 
   const locale = useLocale();
-  const currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === locale);
+  let currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === locale);
+
+  if (availableLanguages?.length && !availableLanguages?.includes(currentLanguage?.i18nCode || "")) {
+    currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === "fr");
+  }
 
   const { isMobile } = useWindowSize();
   const stylesDisabled = useStylesDisabled();
@@ -40,7 +66,7 @@ const LanguageMenu = () => {
   return (
     <>
       {stylesDisabled && <span>{t("Toolbar.Langue", "Langue :")}</span>}
-      {isMobile ? (
+      {(isMobile && mobileMode === "accordion") || (!isMobile && desktopMode === "accordion") ? (
         <Accordion
           label={
             <>
@@ -49,22 +75,90 @@ const LanguageMenu = () => {
             </>
           }
           className={styles.langAccordion}
+          key={key}
         >
-          <LanguageSelector onChangeLang={handleToggleMobileMenu} />
+          <LanguageSelector
+            onChangeLang={handleToggleMobileMenu}
+            type={languageSelectorType}
+            availableLanguages={availableLanguages}
+          />
         </Accordion>
-      ) : (
-        <DropdownRoot ref={dropdownRef} key="language" onOpenChange={(open) => setLangMenuOpened(open)}>
+      ) : null}
+
+      {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
+        <DropdownRoot
+          className={className}
+          ref={dropdownRef}
+          key={key}
+          onOpenChange={(open) => setLangMenuOpened(open)}
+        >
           <DropdownTrigger asChild>
-            <Button iconId="fr-icon-translate-2" priority="tertiary">
-              {locale?.toLocaleUpperCase()}{" "}
-              <i className={cls(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
+            <Button priority="tertiary" className="flex gap-2">
+              {variant === "flag" ? (
+                <Flag langueCode={currentLanguage?.langueCode || "fr"} className="me-2" />
+              ) : (
+                <i className="fr-icon-translate-2 fr-icon--sm" />
+              )}
+              {currentLanguage?.i18nCode?.toLocaleUpperCase()}{" "}
+              <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </DropdownTrigger>
-          <DropdownContent position="start">
-            <LanguageSelector onChangeLang={handleToggleDesktopDopdown} />
+          <DropdownContent position="start" className={dropDownClassName}>
+            <LanguageSelector
+              onChangeLang={handleToggleDesktopDopdown}
+              type={languageSelectorType}
+              availableLanguages={availableLanguages}
+            />
           </DropdownContent>
         </DropdownRoot>
-      )}
+      ) : null}
+
+      {(isMobile && mobileMode === "modal") || (!isMobile && desktopMode === "modal") ? (
+        <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened} key={key}>
+          <Dialog.Trigger asChild>
+            <Button priority="tertiary no outline" className={cn("flex gap-2", className)}>
+              {variant === "flag" ? (
+                <Flag langueCode={currentLanguage?.langueCode || "fr"} className="me-2" />
+              ) : (
+                <i className="fr-icon-translate-2 fr-icon--sm" />
+              )}
+              {locale?.toLocaleUpperCase()}{" "}
+              <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
+            </Button>
+          </Dialog.Trigger>
+          {langMenuOpened && (
+            <>
+              <style jsx global>{`
+                body {
+                  overflow: hidden;
+                }
+              `}</style>
+              <Dialog.Portal>
+                <Dialog.Content className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white">
+                  <Dialog.Title className="border-default-grey sticky top-0 z-50 mb-6 flex items-center justify-between border-b bg-white p-4 py-5">
+                    {t("Dispositif.readIn", "Lire la fiche en")}
+                    <Dialog.Close asChild>
+                      <Button
+                        iconId="fr-icon-close-line"
+                        className="text-title-xs text-title-grey"
+                        priority="tertiary no outline"
+                        title="Fermer"
+                      />
+                    </Dialog.Close>
+                  </Dialog.Title>
+                  <Dialog.Description className="px-2">
+                    <LanguageSelector
+                      onChangeLang={handleToggleDesktopDopdown}
+                      type={languageSelectorType}
+                      availableLanguages={availableLanguages}
+                    />
+                  </Dialog.Description>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </>
+          )}
+        </Dialog.Root>
+      ) : null}
     </>
   );
 };

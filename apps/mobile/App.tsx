@@ -48,10 +48,12 @@ export default function App() {
         logger.error("Failed to setup the language");
         throw e;
       }
-    } catch (error: any) {
-      logger.error("Error while initializing i18n", {
-        error: error.message,
-      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error("Error while initializing i18n", {
+          error: error.message,
+        });
+      }
       throw error;
     }
   }, []);
