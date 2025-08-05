@@ -123,12 +123,12 @@
   },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.12.3"
+    "pnpm": "10.14.0"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write",
     "**/common.json": "prettier --write"
   },
-  "packageManager": "pnpm@10.12.3"
+  "packageManager": "pnpm@10.14.0"
 }
