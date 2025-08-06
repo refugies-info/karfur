@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import { Col, Row } from "reactstrap";
-import { Banner, Header, Section, SectionTitle } from "~/components/Pages/dispositif";
+import { Banner, Section, SectionTitle } from "~/components/Pages/dispositif";
 import { CustomNavbar } from "~/components/Pages/dispositif/Edition";
 import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "~/components/Pages/dispositif/Translation";
 import SEO from "~/components/Seo";
@@ -139,19 +139,6 @@ const Dispositif = (props: Props) => {
             </div>
 
             <div className={cn(styles.main, "relative z-1")} dir={isRTL ? undefined : "ltr"}>
-              <div className="hidden">
-                <Header typeContenu={typeContenu} />
-                {typeContenu === ContentType.DISPOSITIF && (
-                  <div className="mb-8">
-                    {t("Dispositif.with")} {dispositif?.titreMarque}
-                  </div>
-                )}
-                {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
-                  <div className="mb-8">
-                    {t("Dispositif.with")} {dispositif.administration.name}
-                  </div>
-                )}
-              </div>
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <Section key={i} sectionKey={section} contentType={typeContenu} />
               ))}
