@@ -1,4 +1,8 @@
-import { withXcodeProject } from "@expo/config-plugins";
+// Cannot refactor this import to
+// import { withXcodeProject } from "@expo/config-plugins";
+// because it will break the build
+import expoConfigPlugins from "@expo/config-plugins";
+const { withXcodeProject } = expoConfigPlugins;
 
 /**
  * Exclude building for arm64 on simulator devices in the pbxproj project.

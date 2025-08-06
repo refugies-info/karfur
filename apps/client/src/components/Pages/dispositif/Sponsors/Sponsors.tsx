@@ -49,7 +49,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
 
   return hasMainSponsor || hasSponsors || editMode ? (
     <span className="w-full">
-      <span className="text-title-grey">{t("Dispositif.with")} </span>
+      <span className="text-title-grey">{t("Dispositif.proposedBy")} </span>
       <span>
         {hasMainSponsor && mainSponsor?.nom && (
           <>

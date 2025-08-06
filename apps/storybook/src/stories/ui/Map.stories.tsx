@@ -135,3 +135,12 @@ export const WithDefaultFocus: Story = {
     defaultFocusedPoi: mapData[3], // RHJ Le Colibri
   },
 };
+
+export const WithoutSidebar: Story = {
+  args: {
+    title: "Résidences Habitat Jeunes à Rennes",
+    description: "Carte des résidences habitat jeunes sans barre latérale",
+    mapData: mapData,
+    showSidebar: false,
+  },
+};
