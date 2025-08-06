@@ -20,8 +20,10 @@
       "core-js",
       "core-js-pure",
       "esbuild",
+      "mongodb-memory-server",
       "protobufjs",
-      "sharp"
+      "sharp",
+      "unrs-resolver"
     ],
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
