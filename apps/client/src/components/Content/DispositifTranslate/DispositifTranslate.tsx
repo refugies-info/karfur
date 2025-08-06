@@ -139,17 +139,19 @@ const Dispositif = (props: Props) => {
             </div>
 
             <div className={cn(styles.main, "relative z-1")} dir={isRTL ? undefined : "ltr"}>
-              <Header typeContenu={typeContenu} />
-              {typeContenu === ContentType.DISPOSITIF && (
-                <div className="mb-8">
-                  {t("Dispositif.with")} {dispositif?.titreMarque}
-                </div>
-              )}
-              {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
-                <div className="mb-8">
-                  {t("Dispositif.with")} {dispositif.administration.name}
-                </div>
-              )}
+              <div className="hidden">
+                <Header typeContenu={typeContenu} />
+                {typeContenu === ContentType.DISPOSITIF && (
+                  <div className="mb-8">
+                    {t("Dispositif.with")} {dispositif?.titreMarque}
+                  </div>
+                )}
+                {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
+                  <div className="mb-8">
+                    {t("Dispositif.with")} {dispositif.administration.name}
+                  </div>
+                )}
+              </div>
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <Section key={i} sectionKey={section} contentType={typeContenu} />
               ))}
