@@ -13,13 +13,13 @@
   "license": "ISC",
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "eslint": "^9.29.0",
+    "eslint": "^9.32.0",
     "eslint-config-turbo": "2.5.4",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.35.0"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0"
   },
   "dependencies": {
-    "mongoose": "^8.16.2"
+    "mongoose": "^8.17.0"
   },
   "repository": {
     "type": "git",
