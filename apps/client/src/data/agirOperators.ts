@@ -414,7 +414,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360673",
     department: "61 - Orne",
     operator: "Coallia",
-    email: "agir61@coallia.org",
+    email: "agir-61@coallia.org",
     phone: "06 09 99 41 36",
   },
   {
@@ -505,7 +505,7 @@ export const operators: Operator[] = [
     department: "74 - Haute-Savoie",
     operator: "Fédération d'Œuvres Laïques",
     email: "agir74@fol74.org",
-    phone: "04 50 52 70 84",
+    phone: "06 33 25 39 83",
   },
   {
     dispositifId: "660d1f3ade63124662360683",
