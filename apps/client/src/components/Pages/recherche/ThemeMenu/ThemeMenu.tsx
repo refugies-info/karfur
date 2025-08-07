@@ -1,17 +1,14 @@
 import { Id } from "@refugies-info/api-types";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useDispositifCounts } from "~/components/Pages/recherche/ThemeMenu/useDispositifCounts";
+
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { filterDispositifs } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
-import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
-import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
-import { hasErroredSelector, isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { themesSelector } from "~/services/Themes/themes.selectors";
@@ -22,13 +19,16 @@ import styles from "./ThemeMenu.module.scss";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import Themes from "./Themes";
 
+import { CountItem, SearchCountsResponse } from "~/pages/api/search/counts";
+
 interface Props {
   mobile: boolean;
   isOpen: boolean;
   className?: string;
+  counts: SearchCountsResponse | null;
 }
 
-const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
+const ThemeMenu = ({ mobile, isOpen, className, counts, ...props }: Props) => {
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
 
@@ -40,10 +40,6 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
   const query = useSelector(searchQuerySelector);
-  const dispositifs = useSelector(activeDispositifsSelector);
-  const matches = useMemo(() => {
-    return filterDispositifs(query, dispositifs, false, "theme");
-  }, [query, dispositifs]);
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, mobile);
   const eventName = useSearchEventName();
 
@@ -62,14 +58,7 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
     [setSelectedThemeId, mobile, eventName],
   );
 
-  // fetch dispositifs if not done already
-  const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
-  const hasDispositifsError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
-  useEffect(() => {
-    if (matches.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
-      dispatch(fetchActiveDispositifsActionsCreator());
-    }
-  }, [matches.length, isDispositifsLoading, hasDispositifsError, dispatch]);
+
 
   // reset selected theme when popup opens
   useEffect(() => {
@@ -79,8 +68,21 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  // count dispositifs by need and theme
-  const { nbDispositifsByNeed, nbDispositifsByTheme } = useDispositifCounts(isOpen);
+    const nbDispositifsByNeed = useMemo(() => {
+    const needsCounts: Record<string, number> = {};
+    counts?.needs.forEach((item: CountItem) => {
+      needsCounts[item.id] = item.count;
+    });
+    return needsCounts;
+  }, [counts?.needs]);
+
+    const nbDispositifsByTheme = useMemo(() => {
+    const themesCounts: Record<string, number> = {};
+    counts?.themes.forEach((item: CountItem) => {
+      themesCounts[item.id] = item.count;
+    });
+    return themesCounts;
+  }, [counts?.themes]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

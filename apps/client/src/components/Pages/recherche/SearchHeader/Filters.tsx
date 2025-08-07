@@ -17,12 +17,14 @@ import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
+import { CountItem, SearchCountsResponse } from "~/pages/api/search/counts";
 
 type Props = {
   isSticky?: boolean;
+  counts: SearchCountsResponse | null;
 };
 
-const Filters: React.FC<Props> = ({ isSticky }) => {
+const Filters: React.FC<Props> = ({ isSticky, counts }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -77,7 +79,18 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
   const publicOptions = usePublicOptions();
   const ageOptions = useAgeOptions();
   const frenchLevelOptions = useFrenchLevelOptions();
-  const languageOptions = useLanguagesOptions();
+    const languageOptions = useLanguagesOptions();
+
+    const countsByFilter = useMemo(() => {
+    if (!counts) return {};
+    return {
+      status: Object.fromEntries((counts.statuses || []).map((c: CountItem) => [c.id, c.count])),
+      public: Object.fromEntries((counts.publics || []).map((c: CountItem) => [c.id, c.count])),
+            age: Object.fromEntries((counts.ageRanges || []).map((c: CountItem) => [c.id, c.count])),
+      frenchLevel: Object.fromEntries((counts.frenchLevels || []).map((c: CountItem) => [c.id, c.count])),
+      language: Object.fromEntries((counts.languages || []).map((c: CountItem) => [c.id, c.count])),
+    };
+  }, [counts]);
 
   return (
     <Container className={cls(styles.container, isSticky && styles.sticky)}>
@@ -97,7 +110,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
             externalMenu={{
               value: query.departments,
               reset: resetDepartment,
-              menu: <LocationMenu />,
+              menu: <LocationMenu counts={counts?.departments} />,
             }}
             gaType="department"
           />
@@ -106,20 +119,21 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
             externalMenu={{
               value: themeDisplayedValue,
               reset: resetTheme,
-              menu: <ThemeMenu mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
+              menu: <ThemeMenu mobile={false} isOpen={true} counts={counts} /> /* TODO: fix isOpen here */,
             }}
             gaType="themes"
             autoFocus={false}
           />
           <Filter
             label={t("Recherche.filterStatus", "Statut")}
-            menuItems={[
+                        menuItems={[
               {
                 filterKey: "status",
                 selected: query.status,
                 options: statusOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.status,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -127,13 +141,14 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
           />
           <Filter
             label={t("Recherche.filterPublic", "Public visé")}
-            menuItems={[
+                        menuItems={[
               {
                 filterKey: "public",
                 selected: query.public,
                 options: publicOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.public,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -141,13 +156,14 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
           />
           <Filter
             label={t("Recherche.filterAge", "Tranche d'âge")}
-            menuItems={[
+                        menuItems={[
               {
                 filterKey: "age",
                 selected: query.age,
                 options: ageOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.age,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -155,13 +171,14 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
           />
           <Filter
             label={t("Recherche.filterFrenchLevel", "Niveau de français")}
-            menuItems={[
+                        menuItems={[
               {
                 filterKey: "frenchLevel",
                 selected: query.frenchLevel,
                 options: frenchLevelOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.frenchLevel,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -169,13 +186,14 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
           />
           <Filter
             label={t("Recherche.filterLanguage", "Traduit en")}
-            menuItems={[
+                        menuItems={[
               {
                 filterKey: "language",
                 selected: query.language,
                 options: languageOptions,
                 translateOptions: false,
                 menuItemStyles: cls(styles.menuItem, styles.medium),
+                counts: countsByFilter.language,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}

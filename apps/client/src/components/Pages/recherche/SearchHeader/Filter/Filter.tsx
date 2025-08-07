@@ -43,6 +43,7 @@ type MenuItemProps = {
   menuItemStyles?: string;
   label?: string;
   gaType?: string;
+  counts?: Record<string, number>;
 };
 type MenuItems = PropsBase & {
   externalMenu?: never;
@@ -81,6 +82,17 @@ const Filter = ({
 
   const { isMobile, isTablet } = useWindowSize();
 
+  const processedMenuItems = useMemo(() => {
+    if (!menuItems) return [];
+    return menuItems.map((item) => ({
+      ...item,
+      options: item.options.map((option) => ({
+        ...option,
+        count: item.counts?.[option.key as string] ?? 0,
+      })),
+    }));
+  }, [menuItems]);
+
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
       dispatch(addToQueryActionCreator(query));
@@ -91,7 +103,7 @@ const Filter = ({
   const onSelectItem = (filterKey: keyof SearchQuery, key: string) => {
     if (externalMenu) return;
 
-    const menuItem = menuItems.find((item) => item.filterKey === filterKey);
+    const menuItem = processedMenuItems.find((item) => item.filterKey === filterKey);
     if (!menuItem) return;
 
     const newSelected = menuItem.selected.includes(key)
@@ -109,7 +121,7 @@ const Filter = ({
     }
 
     const resetQuery: Record<string, string[] | undefined> = {};
-    menuItems.forEach((item) => {
+    processedMenuItems.forEach((item) => {
       resetQuery[item.filterKey] = [];
     });
 
@@ -126,22 +138,22 @@ const Filter = ({
 
   const value = useMemo(() => {
     if (externalMenu) return externalMenu.value;
-    const querySelected = menuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
+    const querySelected = processedMenuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
     if (Array.isArray(querySelected)) {
       return querySelected.map((selected) => {
-        const val = menuItems.flatMap((item) => item.options.find((a) => a.key === selected)?.value).filter(Boolean);
+        const val = processedMenuItems.flatMap((item) => item.options.find((a) => a.key === selected)?.value).filter(Boolean);
         return val.length > 0 ? t(val[0] as any) : null;
       });
     }
-    return null;
-  }, [externalMenu, query, menuItems, t]);
+    return [];
+  }, [externalMenu, query, t, processedMenuItems]);
 
   const filterCount = () => {
-    if (!showFilterCount || !menuItems) return null;
+    if (!showFilterCount || !processedMenuItems) return null;
 
     let filterCount = 0;
 
-    menuItems.map((item) => {
+    processedMenuItems.map((item) => {
       filterCount = filterCount + item.selected.length;
     });
 
@@ -286,9 +298,9 @@ const Filter = ({
             >
               {externalMenu
                 ? externalMenu.menu
-                : menuItems.map((item, i) =>
+                : processedMenuItems.map((item, i) =>
                     item.options.map((option, o) => {
-                      const currentmenu = menuItems[i];
+                      const currentmenu = processedMenuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
                       const isDisabled = option.count === 0;
                       return (

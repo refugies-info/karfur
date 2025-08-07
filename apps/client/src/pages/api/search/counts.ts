@@ -4,7 +4,7 @@ import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/se
 import dbConnect from "../../../lib/db";
 
 // Define types locally as discussed
-interface CountItem {
+export interface CountItem {
   id: string;
   count: number;
 }

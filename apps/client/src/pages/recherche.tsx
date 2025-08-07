@@ -35,6 +35,8 @@ import {
 import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import { noResultsSelector, searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
+import { fetchSearchCountsRequest } from "~/services/SearchCounts/searchCounts.reducer";
+import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
@@ -71,7 +73,8 @@ const Recherche = () => {
   const { params } = useUtmz();
 
   const dispositifs = useSelector(activeDispositifsSelector);
-  const noResultsDemarche = useSelector(noResultsSelector);
+  const noResults = useSelector(noResultsSelector);
+  const counts = useSelector(searchCountsDataSelector);
   const languei18nCode = useSelector(languei18nSelector);
   const query = useSelector(searchQuerySelector);
   const allNeeds = useSelector(needsSelector);
@@ -107,6 +110,7 @@ const Recherche = () => {
 
     // query dispositifs
     if (!isNavigating) {
+      dispatch(fetchSearchCountsRequest(query));
       debouncedQuery(query, dispositifs, languei18nCode, allNeeds, (res) => {
         updateUrl();
         dispatch(setSearchResultsActionCreator(res));
@@ -116,17 +120,17 @@ const Recherche = () => {
 
   // generate list of demarches to show when no results
   useEffect(() => {
-    if (noResultsDemarche.length === 0) {
+    if (noResults.length === 0) {
       dispatch(setNoResultsActionCreator(getTopDemarches(dispositifs)));
     }
-  }, [noResultsDemarche, dispositifs, dispatch]);
+  }, [noResults, dispositifs, dispatch]);
 
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
 
       <HelpNotice />
-      <SearchHeader nbResults={dispositifs.length} />
+      <SearchHeader counts={counts} nbResults={dispositifs.length} />
       <SearchResults />
     </div>
   );

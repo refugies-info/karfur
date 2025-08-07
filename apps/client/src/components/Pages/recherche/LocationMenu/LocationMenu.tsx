@@ -3,10 +3,11 @@ import React, { useCallback, useMemo, useState } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchEventName } from "~/hooks";
-import { getDepartmentCodeFromName } from "~/lib/departments";
+import { getDepartmentCodeFromName, getDepartmentNameFromCode } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { CountItem } from "~/pages/api/search/counts";
 import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
 import DepartmentMenuItem from "./DepartmentMenuItem";
 import styles from "./LocationMenu.module.css";
@@ -29,9 +30,10 @@ const commonPlaces = [
 
 interface Props {
   mobile?: boolean;
+  counts: CountItem[] | undefined;
 }
 
-const LocationMenu: React.FC<Props> = () => {
+const LocationMenu: React.FC<Props> = ({ counts }) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const eventName = useSearchEventName();
@@ -101,9 +103,19 @@ const LocationMenu: React.FC<Props> = () => {
     [query.departments, dispatch, eventName],
   );
 
-  const queryDepartmentCodes = useMemo(() => {
+    const queryDepartmentCodes = useMemo(() => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
   }, [query.departments]);
+
+  const departmentCounts = useMemo(() => {
+    const map: Record<string, number> = {};
+    if (counts) {
+      for (const item of counts) {
+        map[item.id] = item.count;
+      }
+    }
+    return map;
+  }, [counts]);
 
   return (
     <div className={styles.container}>
@@ -125,14 +137,19 @@ const LocationMenu: React.FC<Props> = () => {
         {locationSearch === "" &&
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
-            .map(({ deptNo, placeName }) => (
-              <CommonPlaceMenuItem
-                key={deptNo}
-                placeName={placeName}
-                deptNo={deptNo}
-                onSelectCommonPlace={onSelectCommonPlace}
-              />
-            ))}
+            .map(({ deptNo, placeName }) => {
+              const departmentName = getDepartmentNameFromCode(deptNo);
+              const count = departmentCounts[departmentName] || 0;
+              return (
+                <CommonPlaceMenuItem
+                  key={deptNo}
+                  placeName={placeName}
+                  deptNo={deptNo}
+                  onSelectCommonPlace={onSelectCommonPlace}
+                  count={count}
+                />
+              );
+            })}
       </div>
     </div>
   );
