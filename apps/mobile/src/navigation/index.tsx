@@ -4,7 +4,7 @@
  *
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer, NavigationContainerRef } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "~/theme";
+import type { RootStackParamList as NavigationRootStackParamList } from "../types/navigation";
 
 import { RootStackParamList } from "~/types/navigation";
 
@@ -48,7 +49,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const RootNavigator = () => {
   const responseListener = useRef<EventSubscription>();
   const notificationsListener = useRef<EventSubscription>();
-  const navigationRef = useRef<any>();
+  const navigationRef = useRef<NavigationContainerRef<NavigationRootStackParamList>>(null);
   const queryClient = useQueryClient();
   const [navigationReady, setNavigationReady] = useState(false);
 
@@ -68,7 +69,7 @@ export const RootNavigator = () => {
         if (hasUserNewFavorites) {
           dispatch(setUserHasNewFavoritesActionCreator(true));
         }
-      } catch (e) {
+      } catch (_: unknown) {
         // error reading value
       }
     };
@@ -82,7 +83,7 @@ export const RootNavigator = () => {
   useEffect(() => {
     const saveInitialUrl = (event: Linking.EventType | string | null) => {
       if (event) {
-        let url = typeof event === "object" ? event.url : event;
+        const url = typeof event === "object" ? event.url : event;
         if (!url.includes("refugies.info")) return;
         dispatch(
           saveSelectedLanguageActionCreator({
@@ -104,22 +105,37 @@ export const RootNavigator = () => {
   const handleNotification = async (response: NotificationResponse | null | undefined) => {
     if (!response) return;
     switch (response?.notification?.request?.content?.data?.type) {
-      case "dispositif": {
-        logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
-          contentId: response.notification.request.content.data.contentId,
-        });
-
-        navigationRef?.current.navigate("Explorer", {
-          screen: "ContentScreen",
-          params: {
+      case "dispositif":
+        {
+          logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
             contentId: response.notification.request.content.data.contentId,
-          },
-        });
-        await markNotificationAsSeen({
-          notificationId: response.notification.request.content.data.notificationId as string,
-        });
-        queryClient.invalidateQueries("notifications");
-      }
+          });
+
+          // Use type assertion to handle the nested navigation structure
+          // This is necessary because the type definitions don't fully support nested navigation
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const navigation = navigationRef.current as any;
+
+          // First navigate to the Root tab
+          navigation.navigate("Root");
+
+          // Then navigate to the ContentScreen with the contentId
+          // Using a small timeout to ensure the navigation stack is ready
+          setTimeout(() => {
+            navigation.navigate("Explorer", {
+              screen: "ContentScreen",
+              params: {
+                contentId: response.notification.request.content.data.contentId,
+              },
+            });
+          }, 100);
+          await markNotificationAsSeen({
+            notificationId: response.notification.request.content.data.notificationId as string,
+          });
+          queryClient.invalidateQueries("notifications");
+        }
+        break;
+
       default:
         break;
     }

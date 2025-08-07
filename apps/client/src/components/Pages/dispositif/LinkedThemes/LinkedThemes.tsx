@@ -3,15 +3,14 @@ import { getPath } from "routes";
 import SearchThemeButton from "~/components/UI/SearchThemeButton";
 import { useLocale } from "~/hooks";
 import { jsUcfirst } from "~/lib";
+import { cn } from "~/lib/classname";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { Event } from "~/lib/tracking";
 import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector, themesSelector } from "~/services/Themes/themes.selectors";
 
-/* {need[locale]?.text || need.fr.text} */
-
-const LinkedThemes = () => {
+const LinkedThemes = ({ className }: { className?: string }) => {
   const locale = useLocale();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
@@ -20,7 +19,7 @@ const LinkedThemes = () => {
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={cn("flex flex-wrap gap-2", className)}>
       {theme && (
         <SearchThemeButton
           theme={theme}

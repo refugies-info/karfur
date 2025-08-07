@@ -16,6 +16,7 @@ export const setScrollReading = (y: number) => action(VOICEOVER_UPDATE_SCROLL, y
 export const setReadingItem = (item: ReadingItem | null) => action(VOICEOVER_SET_READING_ITEM, item);
 export const setShouldStop = (shouldStop: boolean) => action(VOICEOVER_SHOULD_STOP, shouldStop);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   addToReadingList,
   removeFromReadingList,

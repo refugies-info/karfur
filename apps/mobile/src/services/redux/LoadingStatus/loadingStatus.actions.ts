@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { action, ActionType } from "typesafe-actions";
 
 export enum LoadingStatusKey {
@@ -12,6 +13,7 @@ export const startLoading = (key: LoadingStatusKey) => action("LOADING_START", {
 export const finishLoading = (key: LoadingStatusKey) => action("LOADING_END", { key });
 export const setError = (key: LoadingStatusKey, error: string | undefined) => action("LOADING_ERROR", { key, error });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {
   startLoading,
   finishLoading,

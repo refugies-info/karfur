@@ -25,15 +25,13 @@ const DispositifPage = (props: Props) => {
   return (
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
-        <div className="w-full">
-          <form>
-            <DispositifTranslate
-              traductions={props.traductions}
-              defaultTraduction={props.defaultTraduction}
-              typeContenu={ContentType.DISPOSITIF}
-            />
-          </form>
-        </div>
+        <form className="w-full">
+          <DispositifTranslate
+            traductions={props.traductions}
+            defaultTraduction={props.defaultTraduction}
+            typeContenu={ContentType.DISPOSITIF}
+          />
+        </form>
       </FormProvider>
     </PageContext.Provider>
   );

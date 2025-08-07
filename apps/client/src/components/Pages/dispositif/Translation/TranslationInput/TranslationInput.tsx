@@ -1,12 +1,12 @@
 import { Languages } from "@refugies-info/api-types";
 import DOMPurify from "isomorphic-dompurify";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn, useNumber } from "react-use";
 import { useUser } from "~/hooks";
 import { Suggestion } from "~/hooks/dispositif";
 import { checkIsRTL } from "~/hooks/useRTL";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
 import PageContext from "~/utils/pageContext";
@@ -127,11 +127,19 @@ const TranslationInput = (props: Props) => {
 
   // quand la sections se ferme, si elle était validée mais que le contenu a changé
   // on la passe en toFinish
+  const prevIsOpenRef = useRef(isOpen);
+  const prevValueRef = useRef(value);
+
   useEffect(() => {
-    if (!isOpen && !!value && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
+    // Only run this effect when isOpen changes from true to false (section closes)
+    if (prevIsOpenRef.current && !isOpen && !!value && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
       validate(section, { unfinished: true });
       setOldSuggestion({ ...mySuggestion, text: value, toFinish: true });
     }
+
+    // Update refs for next render
+    prevIsOpenRef.current = isOpen;
+    prevValueRef.current = value;
   }, [isOpen, oldSuggestion, section, validate, value, mySuggestion]);
 
   // Buttons
@@ -185,11 +193,11 @@ const TranslationInput = (props: Props) => {
   );
 
   return (
-    <div id={id} className={cls(size && styles[size])}>
+    <div id={id} className={cn(size && styles[size])}>
       {!isOpen ? (
         // preview
         <div
-          className={cls(styles.view, styles[getStatusStyle(display.status).type])}
+          className={cn(styles.view, styles[getStatusStyle(display.status).type])}
           onClick={() => clickTranslation(display.text)}
         >
           <div className={styles.status}>
@@ -203,7 +211,7 @@ const TranslationInput = (props: Props) => {
           />
         </div>
       ) : (
-        <div className={cls(styles.edit)}>
+        <div className={cn(styles.edit)}>
           <div className={styles.input}>
             <div>
               {index === -1 ? (
@@ -215,12 +223,12 @@ const TranslationInput = (props: Props) => {
                   isRTL={isRTL}
                   loading={loading}
                   maxLength={maxLength}
-                  className={cls(styles.text, styles.value)}
+                  className={cn(styles.text, styles.value)}
                 />
               ) : (
                 // view suggestion
                 <div
-                  className={cls(styles.text, styles.value)}
+                  className={cn(styles.text, styles.value)}
                   onClick={user.expertTrad ? () => clickSuggestionAsExpert(suggestions[index]?.text) : undefined}
                 >
                   {index === max ? (
@@ -238,7 +246,7 @@ const TranslationInput = (props: Props) => {
               )}
             </div>
 
-            <div className={cls(styles.footer, styles[footerStatus.status])}>
+            <div className={cn(styles.footer, styles[footerStatus.status])}>
               <TranslationEditAuthor
                 index={index}
                 max={max}

@@ -429,18 +429,16 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
           titreInformatif: data.titreInformatif,
           titreMarque: data.titreMarque,
           lien: data.lien,
-          isDispositif: data.isDispositif,
+          isDispositif: data.isDispositif.toString(),
           langue: data.langue,
           firstName: data.firstName,
         },
       };
       const templateName = "publishedTradForTraductors";
-      // @ts-ignore
       sendMail(templateName, dynamicData);
       await addMailEvent({
         templateName,
         email: data.email,
-        // @ts-ignore
         userId: data.userId,
         dispositifId: data.dispositifId,
         langue: data.langue,
@@ -464,7 +462,7 @@ interface AdminImprovementsMail {
   lien: string;
   email: string;
   firstName: string;
-  sectionsToModify: Object;
+  sectionsToModify: object;
   message: string;
 }
 
@@ -491,7 +489,7 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
         },
       };
       const templateName = "reviewFiche";
-      // @ts-ignore
+      //@ts-expect-error dynamicTemplateData type is too restrictive
       sendMail(templateName, dynamicData, true);
       await addMailEvent({
         templateName,

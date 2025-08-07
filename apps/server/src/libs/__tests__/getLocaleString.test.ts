@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getLocaleString } from "../getLocaleString";
 
 jest.mock("../../locales/fr/common.json", () => ({

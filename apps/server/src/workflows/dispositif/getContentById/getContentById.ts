@@ -10,6 +10,7 @@ import {
   Sponsor,
 } from "@refugies-info/api-types";
 import pick from "lodash/pick";
+import { ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
 import { isUserAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
@@ -70,7 +71,7 @@ export const getContentById = async (
     user: user?._id,
   });
 
-  const fields = {
+  const fields: ProjectionType<Dispositif> = {
     typeContenu: 1,
     status: 1,
     mainSponsor: 1,
@@ -99,7 +100,7 @@ export const getContentById = async (
     participants: SimpleUser[];
     creatorId: { _id: Id; username: string };
   }>([
-    { path: "mainSponsor", select: "_id nom picture membres" },
+    { path: "mainSponsor", select: "_id nom picture membres link acronyme" },
     { path: "sponsors", select: "_id nom picture" },
     { path: "participants", select: "_id username picture roles" },
     { path: "creatorId", select: "_id username" },
@@ -126,7 +127,7 @@ export const getContentById = async (
       participants: SimpleUser[];
       creatorId: { _id: Id; username: string };
     }>([
-      { path: "mainSponsor", select: "_id nom picture" },
+      { path: "mainSponsor", select: "_id nom picture link acronyme" },
       { path: "sponsors", select: "_id nom picture" },
       { path: "participants", select: "_id username picture roles" },
       { path: "creatorId", select: "_id username" },

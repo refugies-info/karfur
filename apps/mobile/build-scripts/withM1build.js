@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
 const generateCode = require("@expo/config-plugins/build/utils/generateCode");
@@ -14,10 +16,7 @@ const withM1build = (config) => {
   return configPlugins.withDangerousMod(config, [
     "ios",
     async (config) => {
-      const filePath = path.join(
-        config.modRequest.platformProjectRoot,
-        "Podfile"
-      );
+      const filePath = path.join(config.modRequest.platformProjectRoot, "Podfile");
       const contents = fs.readFileSync(filePath, "utf-8");
 
       const addCode = generateCode.mergeContents({
@@ -31,9 +30,7 @@ const withM1build = (config) => {
 
       if (!addCode.didMerge) {
         // eslint-disable-next-line no-console
-        console.error(
-          "ERROR: Cannot add withM1build to the project's ios/Podfile because it's malformed."
-        );
+        console.error("ERROR: Cannot add withM1build to the project's ios/Podfile because it's malformed.");
         return config;
       }
 

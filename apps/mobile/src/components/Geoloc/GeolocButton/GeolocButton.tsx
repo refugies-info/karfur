@@ -51,12 +51,12 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
     try {
       setError("");
       setLoading(true);
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         throw new Error("ERREUR_NOT_GRANTED");
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      const location = await Location.getCurrentPositionAsync({});
       if (location && location.coords && location.coords.latitude && location.coords.longitude) {
         const result = await getPlaceIdFromLocationFromGoogleAPI(location.coords.longitude, location.coords.latitude);
 
@@ -80,8 +80,8 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
         }
       }
       throw new Error("ERREUR");
-    } catch (error: any) {
-      if (error.message === "ERREUR_NOT_GRANTED") {
+    } catch (error: unknown) {
+      if (error instanceof Error && error.message === "ERREUR_NOT_GRANTED") {
         setError(
           t(
             "onboarding_screens.error_geoloc_acces",

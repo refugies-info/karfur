@@ -1,4 +1,3 @@
-import { StackScreenProps } from "@react-navigation/stack";
 import { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -14,7 +13,7 @@ import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.
 import { needsSelector } from "~/services/redux/Needs/needs.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ExplorerParamList } from "~/types/navigation";
+import { ExplorerScreenProps } from "~/types/navigation";
 
 const computeNeedsToDisplay = (
   allNeeds: GetNeedResponse[],
@@ -49,7 +48,7 @@ const computeNeedsToDisplay = (
       return -1;
     });
 };
-export const NeedsScreen = ({ navigation, route }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
+export const NeedsScreen = ({ navigation, route }: ExplorerScreenProps<"NeedsScreen">) => {
   const { theme, backScreen } = route.params;
   const { t } = useTranslationWithRTL();
 

@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { View } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks";
@@ -27,7 +27,15 @@ interface Props {
 export const IconList = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
   const theme = useTheme();
-  const navigation: any = useNavigation();
+  type RootStackParamList = {
+    [key: string]: undefined;
+    // Add your specific routes here if needed
+    // Example:
+    // Home: undefined;
+    // Profile: { userId: string };
+  };
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <Container>
@@ -35,8 +43,8 @@ export const IconList = (props: Props) => {
       {props.items.map((item, i) => (
         <View key={i}>
           <Option
-            accessibilityRole={!!item.path ? "link" : "text"}
-            onPress={() => (!!item.path ? navigation.navigate(item.path) : null)}
+            accessibilityRole={item.path ? "link" : "text"}
+            onPress={() => (item.path ? navigation.navigate(item.path) : null)}
           >
             <Icon name={item.icon} size={24} color={theme.colors.black} />
             <TextDSFR_MD_Med

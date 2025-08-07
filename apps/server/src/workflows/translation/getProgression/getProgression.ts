@@ -26,15 +26,15 @@ export const computeAllIndicators = async (userId: string, onlyTotal: boolean): 
     logger.info("[computeAllIndicators] computing indicators");
     const totalIndicator = await computeGlobalIndicator(userId);
 
-    let response: GetProgressionResponse = {
+    const response: GetProgressionResponse = {
       totalIndicator,
     };
 
     if (!onlyTotal) {
-      var start = new Date();
-      var end3 = new Date();
-      var end6 = new Date();
-      var end12 = new Date();
+      const start = new Date();
+      const end3 = new Date();
+      const end6 = new Date();
+      const end12 = new Date();
       //we define the different time periods 3/6/12 months
       end3.setMonth(end3.getMonth() - 3);
       end6.setMonth(end6.getMonth() - 6);

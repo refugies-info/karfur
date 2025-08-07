@@ -1,7 +1,7 @@
 import { Request } from "express";
 import jwt from "jwt-simple";
 import { AuthenticationError, UnauthorizedError } from "~/errors";
-import { User, UserModel } from "~/typegoose";
+import { ObjectId, User, UserModel } from "~/typegoose";
 
 // type Role = "optional" | "admin" | "expert";
 
@@ -10,7 +10,7 @@ export async function expressAuthentication(
   securityName: string,
   roles?: string[],
 ): Promise<User | null> {
-  const logData: any = { securityName, roles, userId: null };
+  const logData = { securityName, roles, userId: null as ObjectId | null };
 
   if (securityName === "fromSite") {
     const siteSecret = request.headers["site-secret"];

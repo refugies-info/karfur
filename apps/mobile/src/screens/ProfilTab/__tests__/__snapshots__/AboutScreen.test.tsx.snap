@@ -360,16 +360,19 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Regular",
-                  "fontSize": 18,
-                  "lineHeight": 28,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
                
@@ -385,17 +388,20 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 24,
-                  "lineHeight": 32,
-                  "marginBottom": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 24,
+                    "lineHeight": 32,
+                    "marginBottom": 24,
+                  },
+                ]
               }
             />
           </View>
@@ -468,31 +474,37 @@ exports[`About screen should render correctly 1`] = `
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Bold",
-                        "fontSize": 18,
-                        "lineHeight": 28,
-                        "marginBottom": 8,
-                        "marginTop": 16,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Bold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Regular",
-                        "fontSize": 16,
-                        "lineHeight": 24,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                      ]
                     }
                   />
                 </View>
@@ -543,31 +555,37 @@ exports[`About screen should render correctly 1`] = `
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Bold",
-                        "fontSize": 18,
-                        "lineHeight": 28,
-                        "marginBottom": 8,
-                        "marginTop": 16,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Bold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Regular",
-                        "fontSize": 16,
-                        "lineHeight": 24,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                      ]
                     }
                   />
                 </View>
@@ -611,31 +629,37 @@ exports[`About screen should render correctly 1`] = `
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Bold",
-                        "fontSize": 18,
-                        "lineHeight": 28,
-                        "marginBottom": 8,
-                        "marginTop": 16,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Bold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Regular",
-                        "fontSize": 16,
-                        "lineHeight": 24,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                      ]
                     }
                   />
                 </View>
@@ -652,17 +676,20 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 24,
-                  "lineHeight": 32,
-                  "marginBottom": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 24,
+                    "lineHeight": 32,
+                    "marginBottom": 24,
+                  },
+                ]
               }
             />
           </View>
@@ -734,31 +761,37 @@ exports[`About screen should render correctly 1`] = `
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Bold",
-                        "fontSize": 18,
-                        "lineHeight": 28,
-                        "marginBottom": 8,
-                        "marginTop": 16,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Bold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Regular",
-                        "fontSize": 16,
-                        "lineHeight": 24,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                      ]
                     }
                   />
                 </View>
@@ -808,31 +841,37 @@ exports[`About screen should render correctly 1`] = `
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Bold",
-                        "fontSize": 18,
-                        "lineHeight": 28,
-                        "marginBottom": 8,
-                        "marginTop": 16,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Bold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Regular",
-                        "fontSize": 16,
-                        "lineHeight": 24,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                      ]
                     }
                   />
                 </View>
@@ -876,31 +915,37 @@ exports[`About screen should render correctly 1`] = `
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Bold",
-                        "fontSize": 18,
-                        "lineHeight": 28,
-                        "marginBottom": 8,
-                        "marginTop": 16,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Bold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   />
                   <Text
-                    isRTL={false}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "Marianne-Regular",
-                        "fontSize": 16,
-                        "lineHeight": 24,
-                        "textAlign": "left",
-                      }
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "#212121",
+                          "fontFamily": "Marianne-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                        },
+                      ]
                     }
                   />
                 </View>
@@ -917,17 +962,20 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Text
-              isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "Marianne-Bold",
-                  "fontSize": 24,
-                  "lineHeight": 32,
-                  "marginBottom": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "#212121",
+                    "fontFamily": "Marianne-Bold",
+                    "fontSize": 24,
+                    "lineHeight": 32,
+                    "marginBottom": 24,
+                  },
+                ]
               }
             />
           </View>
@@ -1000,31 +1048,37 @@ exports[`About screen should render correctly 1`] = `
                       }
                     />
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#212121",
-                          "fontFamily": "Marianne-Bold",
-                          "fontSize": 18,
-                          "lineHeight": 28,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#212121",
+                            "fontFamily": "Marianne-Bold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
+                            "marginBottom": 8,
+                            "marginTop": 16,
+                          },
+                        ]
                       }
                     />
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#212121",
-                          "fontFamily": "Marianne-Regular",
-                          "fontSize": 16,
-                          "lineHeight": 24,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#212121",
+                            "fontFamily": "Marianne-Regular",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                          },
+                        ]
                       }
                     />
                   </View>
@@ -1077,31 +1131,37 @@ exports[`About screen should render correctly 1`] = `
                       }
                     />
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#212121",
-                          "fontFamily": "Marianne-Bold",
-                          "fontSize": 18,
-                          "lineHeight": 28,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#212121",
+                            "fontFamily": "Marianne-Bold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
+                            "marginBottom": 8,
+                            "marginTop": 16,
+                          },
+                        ]
                       }
                     />
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#212121",
-                          "fontFamily": "Marianne-Regular",
-                          "fontSize": 16,
-                          "lineHeight": 24,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#212121",
+                            "fontFamily": "Marianne-Regular",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                          },
+                        ]
                       }
                     />
                   </View>
@@ -1152,31 +1212,37 @@ exports[`About screen should render correctly 1`] = `
                       }
                     />
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#212121",
-                          "fontFamily": "Marianne-Bold",
-                          "fontSize": 18,
-                          "lineHeight": 28,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#212121",
+                            "fontFamily": "Marianne-Bold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
+                            "marginBottom": 8,
+                            "marginTop": 16,
+                          },
+                        ]
                       }
                     />
                     <Text
-                      isRTL={false}
                       selectable={true}
                       style={
-                        {
-                          "color": "#212121",
-                          "fontFamily": "Marianne-Regular",
-                          "fontSize": 16,
-                          "lineHeight": 24,
-                          "textAlign": "left",
-                        }
+                        [
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "#212121",
+                            "fontFamily": "Marianne-Regular",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                          },
+                        ]
                       }
                     />
                   </View>

@@ -29,7 +29,7 @@ const DownloadAppBanner = () => {
 
   if (!show) return null;
   return (
-    <div className={styles.container}>
+    <div className={styles.container + " print:hidden"}>
       <div className="flex items-center">
         <Image src="/images/logo-navbar-ri.svg" width="40" height="40" alt="" />
         <div className="ms-2">

@@ -30,11 +30,11 @@ import { User } from "./User";
 
 export class Sponsor {
   @prop()
-  name: String;
+  name: string;
   @prop()
-  logo?: String;
+  logo?: string;
   @prop()
-  link?: String;
+  link?: string;
 }
 
 export class Content {
@@ -358,7 +358,7 @@ export class Dispositif extends Base {
    *
    * @see TranslationContent
    */
-  public getTranslated(path: string, ln: Languages | string = "fr", defaultLanguage: string = "fr"): any {
+  public getTranslated(path: string, ln: Languages | string = "fr", defaultLanguage: string = "fr") {
     return this.isTranslatedIn(ln as Languages)
       ? get(this.translations, `${ln}.${path}`)
       : get(this.translations, `${defaultLanguage}.${path}`);

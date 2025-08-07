@@ -15,6 +15,8 @@ const useDispositifForm = () => {
   const [activeSection, setActiveSection] = useState("");
   const [showMissingSteps, setShowMissingSteps] = useState(false);
   const [activeModal, setActiveModal] = useState<Modals | null>(null);
+  const [modalPage, setModalPage] = useState<number | undefined>(undefined);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   // force french language for edition
   const locale = useLocale();
@@ -59,6 +61,10 @@ const useDispositifForm = () => {
     setShowMissingSteps,
     activeModal,
     setActiveModal,
+    modalPage,
+    setModalPage,
+    formSubmitted,
+    setFormSubmitted,
     preventSubmissionOnEnter,
   };
 };

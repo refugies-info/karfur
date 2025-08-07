@@ -31,7 +31,7 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
   const adminRole = roles.find((r) => r.nom === RoleName.ADMIN);
   const currentRoles = userFromDB.roles;
 
-  let newRoles = currentRoles.filter(
+  const newRoles = currentRoles.filter(
     (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString(),
   );
 

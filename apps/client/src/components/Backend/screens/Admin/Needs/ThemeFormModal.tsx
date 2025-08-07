@@ -38,6 +38,11 @@ const EMPTY_COLORS: GetThemeResponse["colors"] = {
   color30: "#000000",
 };
 
+const EMPTY_GRADIENTS_COLORS: GetThemeResponse["gradientColors"] = {
+  colorTop: "#FEF7DA",
+  colorBottom: "#E3E3FD",
+};
+
 type colorKey = "color100" | "color80" | "color60" | "color40" | "color30";
 const COLOR_KEYS: colorKey[] = ["color100", "color80", "color60", "color40", "color30"];
 
@@ -47,6 +52,9 @@ export const ThemeFormModal = (props: Props) => {
   const [emoji, setEmoji] = useState(props.selectedTheme?.notificationEmoji || "");
   const [mainColor, setMainColor] = useState(props.selectedTheme?.mainColor || "#FFFFFF");
   const [colors, setColors] = useState<GetThemeResponse["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
+  const [gradientColors, setGradientColors] = useState<GetThemeResponse["gradientColors"]>(
+    props.selectedTheme?.gradientColors || EMPTY_GRADIENTS_COLORS,
+  );
   const [notes, setNotes] = useState("");
   const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
   const [appBanner, setAppBanner] = useState<Picture | undefined>(props.selectedTheme?.appBanner || undefined);
@@ -79,6 +87,7 @@ export const ThemeFormModal = (props: Props) => {
       setName(props.selectedTheme.name);
       setEmoji(props.selectedTheme.notificationEmoji);
       setColors(props.selectedTheme.colors);
+      setGradientColors(props.selectedTheme.gradientColors);
       setNotes(props.selectedTheme.adminComments || "");
       setBanner(props.selectedTheme.banner);
       setAppBanner(props.selectedTheme.appBanner);
@@ -92,6 +101,7 @@ export const ThemeFormModal = (props: Props) => {
       setName({ fr: "" });
       setEmoji("");
       setColors(EMPTY_COLORS);
+      setGradientColors(EMPTY_GRADIENTS_COLORS);
       setNotes("");
       setBanner(undefined);
       setAppBanner(undefined);
@@ -113,6 +123,7 @@ export const ThemeFormModal = (props: Props) => {
         notificationEmoji: emoji,
         mainColor,
         colors,
+        gradientColors,
         banner,
         appBanner,
         appImage,
@@ -131,6 +142,7 @@ export const ThemeFormModal = (props: Props) => {
         notificationEmoji: emoji,
         mainColor,
         colors,
+        gradientColors,
         banner,
         appBanner,
         appImage,
@@ -269,6 +281,28 @@ export const ThemeFormModal = (props: Props) => {
                   />
                 </div>
               ))}
+            </div>
+            <Label htmlFor="colors">Couleurs du dégradé du thème</Label>
+            <div className={styles.colors}>
+              <div>
+                <Input
+                  type="text"
+                  className={styles.color_input}
+                  value={gradientColors.colorTop}
+                  onChange={(e: any) => setGradientColors({ ...gradientColors, colorTop: e.target.value as string })}
+                  style={{ backgroundColor: gradientColors.colorTop }}
+                />
+              </div>
+
+              <div>
+                <Input
+                  type="text"
+                  className={styles.color_input}
+                  value={gradientColors.colorBottom}
+                  onChange={(e: any) => setGradientColors({ ...gradientColors, colorBottom: e.target.value as string })}
+                  style={{ backgroundColor: gradientColors.colorBottom }}
+                />
+              </div>
             </div>
           </div>
         </Col>

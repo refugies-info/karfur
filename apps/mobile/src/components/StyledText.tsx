@@ -1,12 +1,37 @@
-import { Text } from "react-native";
+import { Text, TextProps } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 
-const StyledText = styled((props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-  return <Text {...props} isRTL={isRTL} selectable />;
+interface StyledTextProps extends TextProps {
+  color?: string;
+  isRTL?: boolean;
+  theme?: {
+    i18n: {
+      isRTL: boolean;
+    };
+    colors: {
+      black: string;
+      [key: string]: string | undefined;
+    };
+  };
+}
+
+const StyledText = styled(({ isRTL, ...props }: StyledTextProps) => {
+  const { isRTL: isRTLFromHook } = useTranslationWithRTL();
+  const rtl = isRTL ?? isRTLFromHook;
+  return (
+    <Text
+      {...props}
+      style={[
+        {
+          textAlign: rtl ? "right" : "left",
+        },
+        props.style,
+      ]}
+      selectable
+    />
+  );
 })`
-  text-align: ${({ theme }) => (theme.i18n.isRTL ? "right" : "left")};
   color: ${({ theme, color }) => color || theme.colors.black};
 `;
 

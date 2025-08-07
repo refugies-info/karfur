@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack";
+/* eslint-disable no-irregular-whitespace */
 import { useTheme } from "styled-components/native";
 import { Badge, Callout, Page, Separator, Spacer } from "~/components";
 import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
@@ -8,9 +8,8 @@ import { Info } from "~/components/Profil/Info";
 import { List } from "~/components/Profil/List";
 import { H1, H2, P } from "~/components/Profil/Typography";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { ProfileParamList } from "~/types/navigation";
 
-export const LegalNoticeScreen = ({ navigation }: StackScreenProps<ProfileParamList, "LegalNoticeScreen">) => {
+export const LegalNoticeScreen = () => {
   const { t, isRTL } = useTranslationWithRTL();
   const theme = useTheme();
 

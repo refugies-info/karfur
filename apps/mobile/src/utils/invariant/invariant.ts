@@ -7,13 +7,13 @@ import Config from "~/libs/getEnvironment";
  * @param format error message ; can be parametrized with %s and extra params
  * @param args extras ; hydrate "%s" from format string
  */
-const invariant = (condition: boolean, format: string, ...args: any[]) => {
+const invariant = (condition: boolean, format: string, ...args: string[]) => {
   if (Config.envName !== "PROD") {
     if (format === undefined) {
       throw new Error("invariant requires an error message argument");
     }
     if (!condition) {
-      let error;
+      let error: Error & { framesToPop?: number };
       if (format === undefined) {
         error = new Error(
           "Minified exception occurred; use the non-minified dev environment " +
@@ -29,7 +29,6 @@ const invariant = (condition: boolean, format: string, ...args: any[]) => {
         error.name = "Invariant Violation";
       }
 
-      // @ts-ignore
       error.framesToPop = 1; // we don't care about invariant's own frame
       throw error;
     }

@@ -43,7 +43,7 @@ const ToastTextBold = styled(TextDSFR_MD_Bold)`
 interface Props {
   contentId: string;
   theme?: GetThemeResponse;
-  needId: Id;
+  needId?: Id;
 }
 
 type ContentScreenNavigationProp = StackNavigationProp<BottomTabParamList>;
@@ -104,8 +104,10 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
               message: `${Config.siteUrl}/${currentLanguage}/${urlType}/${selectedContent._id}`,
             };
       await Share.share(shareData);
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
   }, [selectedContent]);
 
@@ -115,7 +117,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
       dispatch(
         setRedirectDispositifActionCreator({
           contentId,
-          needId,
+          needId: needId?.toString(),
           theme: redirectTheme,
         }),
       );

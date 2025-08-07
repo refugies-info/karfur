@@ -1,4 +1,5 @@
 import { RoleName, UserStatus } from "@refugies-info/api-types";
+import { ProjectionType } from "mongoose";
 import { asyncForEach } from "~/libs/asyncForEach";
 import { generateRandomId } from "~/libs/generateRandomId";
 import logger from "~/logger";
@@ -53,9 +54,9 @@ export const updateLastConnected = (user: User) =>
 
 export const getUsersFromStructureMembres = async (structureMembres: Membre[]): Promise<User[]> => {
   logger.info("[getUsersFromStructureMembres] received");
-  let result: User[] = [];
+  const result: User[] = [];
   try {
-    const userNeededFields = {
+    const userNeededFields: ProjectionType<User> = {
       firstName: 1,
       email: 1,
       status: 1,

@@ -83,7 +83,9 @@ describe("register", () => {
       expect(registerUser).not.toHaveBeenCalledWith();
       expect(addToNewsletter).not.toHaveBeenCalled();
       expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.PASSWORD_TOO_WEAK));
-    } catch (e) {}
+    } catch {
+      // Do nothing
+    }
     expect.assertions(4);
   });
 

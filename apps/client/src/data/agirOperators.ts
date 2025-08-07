@@ -72,9 +72,9 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f35de6312466236064f",
     department: "10 - Aube",
-    operator: "Association Foyer Notre Dame",
-    email: "siege@foyernotredame.org",
-    phone: "03 88 22 70 90",
+    operator: "AATM",
+    email: "contact@10.agir.ong",
+    phone: "03 25 45 55 30",
   },
   {
     dispositifId: "660d1f37de63124662360669",
@@ -414,7 +414,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360673",
     department: "61 - Orne",
     operator: "Coallia",
-    email: "agir61@coallia.org",
+    email: "agir-61@coallia.org",
     phone: "06 09 99 41 36",
   },
   {
@@ -504,8 +504,8 @@ export const operators: Operator[] = [
     dispositifId: "660d1f35de63124662360649",
     department: "74 - Haute-Savoie",
     operator: "Fédération d'Œuvres Laïques",
-    email: "fol@fol74.org",
-    phone: "04 50 52 70 84",
+    email: "agir74@fol74.org",
+    phone: "06 33 25 39 83",
   },
   {
     dispositifId: "660d1f3ade63124662360683",

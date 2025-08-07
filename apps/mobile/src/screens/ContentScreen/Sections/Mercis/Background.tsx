@@ -4,16 +4,11 @@ const originalWidth = 327;
 const originalHeight = 240;
 const aspectRatio = originalWidth / originalHeight;
 
-const SVGComponent = (props: any) => (
+import type { SvgProps } from "react-native-svg";
+
+const SVGComponent = (props: SvgProps) => (
   <View style={{ width: "100%", aspectRatio }}>
-    <Svg
-      width="100%"
-      height="100%"
-      viewBox={`0 0 ${originalWidth} ${originalHeight}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <Svg width="100%" height="100%" viewBox={`0 0 ${originalWidth} ${originalHeight}`} fill="none" {...props}>
       <G clipPath="url(#clip0_2615_100644)">
         <Path
           d="M-229.821 221.868C-339.602 256.015 -407.016 251.837 -427 245.48V270.001H368.38V221.868C215.166 142.858 -92.5944 179.185 -229.821 221.868Z"

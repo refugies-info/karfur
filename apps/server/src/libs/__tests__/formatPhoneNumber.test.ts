@@ -1,4 +1,3 @@
-// @ts-nocheck
 import formatPhoneNumber from "../formatPhoneNumber";
 
 const resPhoneNumber = "0607080910";
