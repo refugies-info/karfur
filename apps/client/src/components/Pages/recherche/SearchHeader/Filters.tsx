@@ -8,23 +8,24 @@ import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
+import { CountItem } from "~/pages/api/search/counts";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
+import { useSearchCounts } from "../SearchCountsContext";
 import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
-import { CountItem, SearchCountsResponse } from "~/pages/api/search/counts";
 
 type Props = {
   isSticky?: boolean;
-  counts: SearchCountsResponse | null;
 };
 
-const Filters: React.FC<Props> = ({ isSticky, counts }) => {
+const Filters: React.FC<Props> = ({ isSticky }) => {
+  const counts = useSearchCounts();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -79,14 +80,14 @@ const Filters: React.FC<Props> = ({ isSticky, counts }) => {
   const publicOptions = usePublicOptions();
   const ageOptions = useAgeOptions();
   const frenchLevelOptions = useFrenchLevelOptions();
-    const languageOptions = useLanguagesOptions();
+  const languageOptions = useLanguagesOptions();
 
-    const countsByFilter = useMemo(() => {
+  const countsByFilter = useMemo(() => {
     if (!counts) return {};
     return {
       status: Object.fromEntries((counts.statuses || []).map((c: CountItem) => [c.id, c.count])),
       public: Object.fromEntries((counts.publics || []).map((c: CountItem) => [c.id, c.count])),
-            age: Object.fromEntries((counts.ageRanges || []).map((c: CountItem) => [c.id, c.count])),
+      age: Object.fromEntries((counts.ageRanges || []).map((c: CountItem) => [c.id, c.count])),
       frenchLevel: Object.fromEntries((counts.frenchLevels || []).map((c: CountItem) => [c.id, c.count])),
       language: Object.fromEntries((counts.languages || []).map((c: CountItem) => [c.id, c.count])),
     };
@@ -126,7 +127,7 @@ const Filters: React.FC<Props> = ({ isSticky, counts }) => {
           />
           <Filter
             label={t("Recherche.filterStatus", "Statut")}
-                        menuItems={[
+            menuItems={[
               {
                 filterKey: "status",
                 selected: query.status,
@@ -141,7 +142,7 @@ const Filters: React.FC<Props> = ({ isSticky, counts }) => {
           />
           <Filter
             label={t("Recherche.filterPublic", "Public visé")}
-                        menuItems={[
+            menuItems={[
               {
                 filterKey: "public",
                 selected: query.public,
@@ -156,7 +157,7 @@ const Filters: React.FC<Props> = ({ isSticky, counts }) => {
           />
           <Filter
             label={t("Recherche.filterAge", "Tranche d'âge")}
-                        menuItems={[
+            menuItems={[
               {
                 filterKey: "age",
                 selected: query.age,
@@ -171,7 +172,7 @@ const Filters: React.FC<Props> = ({ isSticky, counts }) => {
           />
           <Filter
             label={t("Recherche.filterFrenchLevel", "Niveau de français")}
-                        menuItems={[
+            menuItems={[
               {
                 filterKey: "frenchLevel",
                 selected: query.frenchLevel,
@@ -186,7 +187,7 @@ const Filters: React.FC<Props> = ({ isSticky, counts }) => {
           />
           <Filter
             label={t("Recherche.filterLanguage", "Traduit en")}
-                        menuItems={[
+            menuItems={[
               {
                 filterKey: "language",
                 selected: query.language,

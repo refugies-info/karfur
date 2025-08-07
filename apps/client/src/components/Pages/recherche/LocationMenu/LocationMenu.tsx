@@ -7,7 +7,7 @@ import { getDepartmentCodeFromName, getDepartmentNameFromCode } from "~/lib/depa
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { CountItem } from "~/pages/api/search/counts";
+import { useSearchCounts } from "../SearchCountsContext";
 import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
 import DepartmentMenuItem from "./DepartmentMenuItem";
 import styles from "./LocationMenu.module.css";
@@ -30,10 +30,10 @@ const commonPlaces = [
 
 interface Props {
   mobile?: boolean;
-  counts: CountItem[] | undefined;
 }
 
-const LocationMenu: React.FC<Props> = ({ counts }) => {
+const LocationMenu: React.FC<Props> = () => {
+  const searchCounts = useSearchCounts();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const eventName = useSearchEventName();
@@ -103,19 +103,19 @@ const LocationMenu: React.FC<Props> = ({ counts }) => {
     [query.departments, dispatch, eventName],
   );
 
-    const queryDepartmentCodes = useMemo(() => {
+  const queryDepartmentCodes = useMemo(() => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
   }, [query.departments]);
 
   const departmentCounts = useMemo(() => {
     const map: Record<string, number> = {};
-    if (counts) {
-      for (const item of counts) {
+    if (searchCounts?.departments) {
+      for (const item of searchCounts.departments) {
         map[item.id] = item.count;
       }
     }
     return map;
-  }, [counts]);
+  }, [searchCounts]);
 
   return (
     <div className={styles.container}>

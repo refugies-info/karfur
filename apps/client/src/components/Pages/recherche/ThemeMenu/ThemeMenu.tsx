@@ -1,17 +1,15 @@
 import { Id } from "@refugies-info/api-types";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
-import { filterDispositifs } from "~/lib/recherche/queryContents";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
-
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { themesSelector } from "~/services/Themes/themes.selectors";
+import { useSearchCounts } from "../SearchCountsContext";
 import { getInitialTheme } from "./functions";
 import Needs from "./Needs";
 import SearchResults from "./SearchResults";
@@ -19,16 +17,16 @@ import styles from "./ThemeMenu.module.scss";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import Themes from "./Themes";
 
-import { CountItem, SearchCountsResponse } from "~/pages/api/search/counts";
+import { CountItem } from "~/pages/api/search/counts";
 
 interface Props {
   mobile: boolean;
   isOpen: boolean;
   className?: string;
-  counts: SearchCountsResponse | null;
 }
 
-const ThemeMenu = ({ mobile, isOpen, className, counts, ...props }: Props) => {
+const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
+  const counts = useSearchCounts();
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
 
@@ -58,8 +56,6 @@ const ThemeMenu = ({ mobile, isOpen, className, counts, ...props }: Props) => {
     [setSelectedThemeId, mobile, eventName],
   );
 
-
-
   // reset selected theme when popup opens
   useEffect(() => {
     if (isOpen) {
@@ -68,7 +64,7 @@ const ThemeMenu = ({ mobile, isOpen, className, counts, ...props }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-    const nbDispositifsByNeed = useMemo(() => {
+  const nbDispositifsByNeed = useMemo(() => {
     const needsCounts: Record<string, number> = {};
     counts?.needs.forEach((item: CountItem) => {
       needsCounts[item.id] = item.count;
@@ -76,7 +72,7 @@ const ThemeMenu = ({ mobile, isOpen, className, counts, ...props }: Props) => {
     return needsCounts;
   }, [counts?.needs]);
 
-    const nbDispositifsByTheme = useMemo(() => {
+  const nbDispositifsByTheme = useMemo(() => {
     const themesCounts: Record<string, number> = {};
     counts?.themes.forEach((item: CountItem) => {
       themesCounts[item.id] = item.count;
