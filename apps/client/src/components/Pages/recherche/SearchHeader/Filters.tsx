@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
@@ -20,11 +20,12 @@ import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
 
-type Props = {
-  isSticky?: boolean;
-};
+interface Props {
+  isSticky: boolean;
+}
 
-const Filters: React.FC<Props> = ({ isSticky }) => {
+const Filters = (props: Props) => {
+  const { isSticky } = props;
   const counts = useSearchCounts();
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -111,7 +112,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
             externalMenu={{
               value: query.departments,
               reset: resetDepartment,
-              menu: <LocationMenu counts={counts?.departments} />,
+              menu: <LocationMenu />,
             }}
             gaType="department"
           />
@@ -120,7 +121,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
             externalMenu={{
               value: themeDisplayedValue,
               reset: resetTheme,
-              menu: <ThemeMenu mobile={false} isOpen={true} counts={counts} /> /* TODO: fix isOpen here */,
+              menu: <ThemeMenu mobile={false} isOpen={true} /> /* TODO: fix isOpen here */,
             }}
             gaType="themes"
             autoFocus={false}
