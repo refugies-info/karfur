@@ -1,9 +1,17 @@
-
+/* eslint-disable @typescript-eslint/no-var-requires */
+const algoliasearch = require("algoliasearch");
 import { NextApiRequest, NextApiResponse } from "next";
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import dbConnect from "../../../lib/db";
 
-// Define types locally as discussed
+// Initialize Algolia client
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "L9HYT1676M",
+  process.env.ALGOLIA_ADMIN_KEY || "",
+);
+const index = searchClient.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX || "dispositifs");
+
+// Define types locally
 export interface CountItem {
   id: string;
   count: number;
@@ -28,26 +36,29 @@ export interface SearchCountsResponse {
   total: number;
 }
 
-
 const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
   if (!param) return [];
   return Array.isArray(param) ? param : [param];
 };
 
-const buildBaseMatch = (query: any) => {
+const buildBaseMatch = (query: any, algoliaIds?: string[]) => {
   const match: any = { status: "Actif" };
 
-  if (query.query) {
-    match.$text = { $search: query.query };
+  if (algoliaIds) {
+    const mongoose = require("mongoose");
+    match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
   }
+
   if (query.departments?.length > 0) {
     match["metadatas.location"] = { $in: query.departments };
   }
   if (query.themes?.length > 0) {
-    match["thematiques"] = { $in: query.themes.map((t: string) => ({ $toObjectId: t })) };
+    const mongoose = require("mongoose");
+    match["thematiques"] = { $in: query.themes.map((t: string) => new mongoose.Types.ObjectId(t)) };
   }
   if (query.needs?.length > 0) {
-    match["besoins"] = { $in: query.needs.map((n: string) => ({ $toObjectId: n })) };
+    const mongoose = require("mongoose");
+    match["besoins"] = { $in: query.needs.map((n: string) => new mongoose.Types.ObjectId(n)) };
   }
   if (query.age?.length > 0) {
     const ageFilters = query.age.map((ageRange: AgeOptions) => {
@@ -78,7 +89,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
   }
 
   try {
-    await dbConnect();
+    const mongoose = await dbConnect();
+    const Dispositif = mongoose.models.Dispositif || mongoose.model("Dispositif");
 
     const queryParams = {
       query: req.query.query as string,
@@ -92,7 +104,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
       language: getQueryParamAsArray(req.query.language),
     };
 
-    const baseMatch = buildBaseMatch(queryParams);
+    let algoliaIds: string[] | undefined = undefined;
+    if (queryParams.query) {
+      const searchResults = await index.search(queryParams.query, {
+        attributesToRetrieve: ["objectID"],
+        hitsPerPage: 1000,
+      });
+      algoliaIds = searchResults.hits.map((hit: { objectID: string }) => hit.objectID);
+    }
+
+    const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
     const facetPipelines = {
       themes: [{ $unwind: "$thematiques" }, { $group: { _id: "$thematiques", count: { $sum: 1 } } }],
@@ -132,7 +153,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
 
     const facet = Object.entries(facetPipelines).reduce((acc, [key, pipeline]) => {
       const newMatch = { ...baseMatch };
-      // Remove the filter for the category we are counting
       if (key === "themes" || key === "needs") {
         delete newMatch.thematiques;
         delete newMatch.besoins;
@@ -157,8 +177,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
     facet.types = [{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }];
     facet.total = [{ $match: baseMatch }, { $count: "count" }];
 
-            const mongoose = await dbConnect();
-    const Dispositif = mongoose.models.Dispositif || mongoose.model("Dispositif");
     const results = await Dispositif.aggregate([{ $facet: facet }]);
     const data = results[0];
 
