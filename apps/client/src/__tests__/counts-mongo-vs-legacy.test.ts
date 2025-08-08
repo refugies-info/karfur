@@ -132,27 +132,45 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     ...p,
   });
 
-  test("baseline: totals and facets match (no filters)", async () => {
-    const params = toParams({});
-    const api = await computeSearchCounts(conn, params);
+  const expectCountsEqual = (api: any, legacy: any) => {
+    expect(api.total).toBe(legacy.total);
+    expect(Object.fromEntries(api.departments.map((x: any) => [x.id, x.count]))).toEqual(legacy.departments);
+    expect(Object.fromEntries(api.languages.map((x: any) => [x.id, x.count]))).toEqual(legacy.languages);
+    expect(Object.fromEntries(api.publics.map((x: any) => [x.id, x.count]))).toEqual(legacy.publics);
+    expect(Object.fromEntries(api.statuses.map((x: any) => [x.id, x.count]))).toEqual(legacy.statuses);
+    expect(Object.fromEntries(api.frenchLevels.map((x: any) => [x.id, x.count]))).toEqual(legacy.frenchLevels);
+    expect(Object.fromEntries(api.ageRanges.map((x: any) => [x.id, x.count]))).toEqual(legacy.ageRanges);
+    expect(Object.fromEntries(api.themes.map((x: any) => [x.id, x.count]))).toEqual(legacy.themes);
+    expect(Object.fromEntries(api.needs.map((x: any) => [x.id, x.count]))).toEqual(legacy.needs);
+  };
 
+  const getAllDispositifs = async () => {
     const Dispositif = conn.model("Dispositif");
-    const all = (await Dispositif.find({ status: "Actif" }).lean()).map((d: any) => ({
+    return (await Dispositif.find({ status: "Actif" }).lean()).map((d: any) => ({
       ...d,
       _id: d._id.toString(),
       theme: d.thematiques?.[0]?.toString() ?? null,
       needs: (d.besoins || []).map((x: any) => x.toString()),
     }));
+  };
+
+  test("baseline: totals and facets match (no filters)", async () => {
+    const params = toParams({});
+    const api = await computeSearchCounts(conn, params);
+
+    const all = await getAllDispositifs();
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
 
-    expect(api.total).toBe(legacy.total);
-    expect(Object.fromEntries(api.departments.map((x) => [x.id, x.count]))).toEqual(legacy.departments);
-    expect(Object.fromEntries(api.languages.map((x) => [x.id, x.count]))).toEqual(legacy.languages);
-    expect(Object.fromEntries(api.publics.map((x) => [x.id, x.count]))).toEqual(legacy.publics);
-    expect(Object.fromEntries(api.statuses.map((x) => [x.id, x.count]))).toEqual(legacy.statuses);
-    expect(Object.fromEntries(api.frenchLevels.map((x) => [x.id, x.count]))).toEqual(legacy.frenchLevels);
-    expect(Object.fromEntries(api.ageRanges.map((x) => [x.id, x.count]))).toEqual(legacy.ageRanges);
-    expect(Object.fromEntries(api.themes.map((x) => [x.id, x.count]))).toEqual(legacy.themes);
-    expect(Object.fromEntries(api.needs.map((x) => [x.id, x.count]))).toEqual(legacy.needs);
+    expectCountsEqual(api, legacy);
+  });
+
+  test("departments facet matches legacy when department filter applied (skip location)", async () => {
+    const params = toParams({ departments: ["75"] });
+    const api = await computeSearchCounts(conn, params);
+
+    const all = await getAllDispositifs();
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ departments: ["75"] }));
+
+    expectCountsEqual(api, legacy);
   });
 });

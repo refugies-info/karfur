@@ -34,13 +34,22 @@ export const filterByThemeOrNeed = (
 
 export const filterByLocations = (dispositif: SimpleDispositif, departments: string[]) => {
   if (departments.length === 0) return true;
-  const location = dispositif.metadatas?.location;
-  if (!Array.isArray(location)) return true; // not array = france or online -> keep result
+  const location = dispositif.metadatas?.location as any;
   if (!location) return false;
-  for (const dep of location) {
-    if (departments.includes(dep.split(" - ")[1])) return true;
+  const matchDep = (val: string) => {
+    if (!val) return false;
+    const parts = val.split(" - ");
+    const code = parts.length > 1 ? parts[1] : val;
+    return departments.includes(code);
+  };
+  if (Array.isArray(location)) {
+    for (const dep of location) {
+      if (matchDep(dep)) return true;
+    }
+    return false;
   }
-  return false;
+  // string value
+  return matchDep(location);
 };
 
 const FILTER_AGE_VALUES: Record<AgeOptions, [number, number]> = {
