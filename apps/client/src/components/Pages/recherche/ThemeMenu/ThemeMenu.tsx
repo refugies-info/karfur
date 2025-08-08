@@ -1,6 +1,6 @@
 import { Id } from "@refugies-info/api-types";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
@@ -23,9 +23,8 @@ interface Props {
   className?: string;
 }
 
-const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
+const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
   const counts = useSearchCounts();
-  const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
 
   const themesMenuContainerRef = useRef<HTMLDivElement | null>(null);
