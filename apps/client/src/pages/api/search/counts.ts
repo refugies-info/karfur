@@ -37,29 +37,45 @@ export interface SearchCountsResponse {
   total: number;
 }
 
-const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
+export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
   if (!param) return [];
   return Array.isArray(param) ? param : [param];
 };
 
-const buildBaseMatch = (query: any, algoliaIds?: string[]) => {
+export interface QueryParams {
+  query?: string;
+  departments?: string[];
+  themes?: string[];
+  needs?: string[];
+  age?: AgeOptions[];
+  frenchLevel?: FrenchOptions[];
+  public?: PublicOptions[];
+  status?: StatusOptions[];
+  language?: string[];
+}
+
+export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   const match: any = { status: "Actif" };
 
   if (algoliaIds) {
     match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
   }
 
-  if (query.departments?.length > 0) {
+  const departments = query.departments ?? [];
+  if (departments.length > 0) {
     match["metadatas.location"] = { $in: query.departments };
   }
-  if (query.themes?.length > 0) {
-    match["thematiques"] = { $in: query.themes.map((t: string) => new mongoose.Types.ObjectId(t)) };
+  const themes = query.themes ?? [];
+  if (themes.length > 0) {
+    match["thematiques"] = { $in: themes.map((t: string) => new mongoose.Types.ObjectId(t)) };
   }
-  if (query.needs?.length > 0) {
-    match["besoins"] = { $in: query.needs.map((n: string) => new mongoose.Types.ObjectId(n)) };
+  const needs = query.needs ?? [];
+  if (needs.length > 0) {
+    match["besoins"] = { $in: needs.map((n: string) => new mongoose.Types.ObjectId(n)) };
   }
-  if (query.age?.length > 0) {
-    const ageFilters = query.age.map((ageRange: AgeOptions) => {
+  const ages = query.age ?? [];
+  if (ages.length > 0) {
+    const ageFilters = ages.map((ageRange: AgeOptions) => {
       if (String(ageRange) === "65+") {
         return { "metadatas.age.to": { $gte: 65 } };
       }
@@ -68,83 +84,94 @@ const buildBaseMatch = (query: any, algoliaIds?: string[]) => {
     });
     match.$and = (match.$and || []).concat({ $or: ageFilters });
   }
-  if (query.frenchLevel?.length > 0) {
-    match["metadatas.frenchLevel"] = { $in: query.frenchLevel };
+  const frenchLevel = query.frenchLevel ?? [];
+  if (frenchLevel.length > 0) {
+    match["metadatas.frenchLevel"] = { $in: frenchLevel };
   }
-  if (query.public?.length > 0) {
-    match["metadatas.public"] = { $in: query.public };
+  const publics = query.public ?? [];
+  if (publics.length > 0) {
+    match["metadatas.public"] = { $in: publics };
   }
-  if (query.status?.length > 0) {
-    match["status"] = { $in: query.status };
+  const statuses = query.status ?? [];
+  if (statuses.length > 0) {
+    match["status"] = { $in: statuses };
   }
-  if (query.language?.length > 0) {
-    match["availableLanguages"] = { $in: query.language };
+  const languages = query.language ?? [];
+  if (languages.length > 0) {
+    match["availableLanguages"] = { $in: languages };
   }
 
   return match;
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsResponse | { message: string }>) => {
-  if (req.method !== "GET") {
-    return res.status(405).json({ message: "Method Not Allowed" });
+export const buildQueryParams = (query: any): QueryParams => ({
+  query: query.query as string,
+  departments: getQueryParamAsArray(query.departments),
+  themes: getQueryParamAsArray(query.themes),
+  needs: getQueryParamAsArray(query.needs),
+  age: getQueryParamAsArray(query.age) as AgeOptions[],
+  frenchLevel: getQueryParamAsArray(query.frenchLevel) as FrenchOptions[],
+  public: getQueryParamAsArray(query.public) as PublicOptions[],
+  status: getQueryParamAsArray(query.status) as StatusOptions[],
+  language: getQueryParamAsArray(query.language),
+});
+
+export const computeSearchCounts = async (
+  conn: any,
+  queryParams: QueryParams,
+): Promise<SearchCountsResponse> => {
+  const Dispositif = conn.models.Dispositif || conn.model("Dispositif");
+
+  let algoliaIds: string[] | undefined = undefined;
+  if (queryParams.query) {
+    const searchResults = await index.search(queryParams.query, {
+      attributesToRetrieve: ["objectID"],
+      hitsPerPage: 1000,
+    });
+    algoliaIds = searchResults.hits.map((hit: { objectID: string }) => hit.objectID);
   }
 
-  try {
-    const mongoose = await dbConnect();
-    const Dispositif = mongoose.models.Dispositif || mongoose.model("Dispositif");
+  const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
-    const queryParams = {
-      query: req.query.query as string,
-      departments: getQueryParamAsArray(req.query.departments),
-      themes: getQueryParamAsArray(req.query.themes),
-      needs: getQueryParamAsArray(req.query.needs),
-      age: getQueryParamAsArray(req.query.age) as AgeOptions[],
-      frenchLevel: getQueryParamAsArray(req.query.frenchLevel) as FrenchOptions[],
-      public: getQueryParamAsArray(req.query.public) as PublicOptions[],
-      status: getQueryParamAsArray(req.query.status) as StatusOptions[],
-      language: getQueryParamAsArray(req.query.language),
-    };
-
-    let algoliaIds: string[] | undefined = undefined;
-    if (queryParams.query) {
-      const searchResults = await index.search(queryParams.query, {
-        attributesToRetrieve: ["objectID"],
-        hitsPerPage: 1000,
-      });
-      algoliaIds = searchResults.hits.map((hit: { objectID: string }) => hit.objectID);
-    }
-
-    const baseMatch = buildBaseMatch(queryParams, algoliaIds);
-
-    const facetPipelines = {
-      themes: [{ $unwind: "$thematiques" }, { $group: { _id: "$thematiques", count: { $sum: 1 } } }],
-      needs: [{ $unwind: "$besoins" }, { $group: { _id: "$besoins", count: { $sum: 1 } } }],
-      departments: [{ $unwind: "$metadatas.location" }, { $group: { _id: "$metadatas.location", count: { $sum: 1 } } }],
-      frenchLevels: [
-        { $unwind: "$metadatas.frenchLevel" },
-        { $group: { _id: "$metadatas.frenchLevel", count: { $sum: 1 } } },
-      ],
-      publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
-      languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
-      statuses: [{ $group: { _id: "$status", count: { $sum: 1 } } }],
-      ageRanges: [
-        {
-          $project: {
-            ageRanges: {
-              $filter: {
-                input: ["0-15", "16-25", "26-64", "65+"],
-                as: "range",
-                cond: {
-                  $let: {
-                    vars: {
-                      min: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 0] } },
-                      max: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 1] } },
-                    },
-                    in: {
-                      $cond: {
-                        if: { $eq: ["$$range", "65+"] },
-                        then: { $gte: ["$metadatas.age.to", 65] },
-                        else: { $and: [{ $lte: ["$metadatas.age.from", "$$max"] }, { $gte: ["$metadatas.age.to", "$$min"] }] },
+  const facetPipelines = {
+    themes: [{ $unwind: "$thematiques" }, { $group: { _id: "$thematiques", count: { $sum: 1 } } }],
+    needs: [{ $unwind: "$besoins" }, { $group: { _id: "$besoins", count: { $sum: 1 } } }],
+    departments: [
+      { $unwind: "$metadatas.location" },
+      { $group: { _id: "$metadatas.location", count: { $sum: 1 } } },
+    ],
+    frenchLevels: [
+      { $unwind: "$metadatas.frenchLevel" },
+      { $group: { _id: "$metadatas.frenchLevel", count: { $sum: 1 } } },
+    ],
+    publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
+    languages: [
+      { $unwind: "$availableLanguages" },
+      { $group: { _id: "$availableLanguages", count: { $sum: 1 } } },
+    ],
+    statuses: [{ $group: { _id: "$status", count: { $sum: 1 } } }],
+    ageRanges: [
+      {
+        $project: {
+          ageRanges: {
+            $filter: {
+              input: ["0-15", "16-25", "26-64", "65+"],
+              as: "range",
+              cond: {
+                $let: {
+                  vars: {
+                    min: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 0] } },
+                    max: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 1] } },
+                  },
+                  in: {
+                    $cond: {
+                      if: { $eq: ["$$range", "65+"] },
+                      then: { $gte: ["$metadatas.age.to", 65] },
+                      else: {
+                        $and: [
+                          { $lte: ["$metadatas.age.from", "$$max"] },
+                          { $gte: ["$metadatas.age.to", "$$min"] },
+                        ],
                       },
                     },
                   },
@@ -153,57 +180,74 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
             },
           },
         },
-        { $unwind: "$ageRanges" },
-        { $group: { _id: "$ageRanges", count: { $sum: 1 } } },
-      ],
-    };
-
-    const facet = Object.entries(facetPipelines).reduce((acc, [key, pipeline]) => {
-      const newMatch = { ...baseMatch };
-      if (key === "themes" || key === "needs") {
-        delete newMatch.thematiques;
-        delete newMatch.besoins;
-      } else if (key === "departments") {
-        delete newMatch["metadatas.location"];
-      } else if (key === "ageRanges") {
-        delete newMatch.$and;
-      } else if (key === "frenchLevels") {
-        delete newMatch["metadatas.frenchLevel"];
-      } else if (key === "publics") {
-        delete newMatch["metadatas.public"];
-      } else if (key === "statuses") {
-        delete newMatch.status;
-      } else if (key === "languages") {
-        delete newMatch.availableLanguages;
-      }
-
-      acc[key] = [{ $match: newMatch }, ...pipeline, { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } }];
-      return acc;
-    }, {} as any);
-
-    facet.types = [{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }];
-    facet.total = [{ $match: baseMatch }, { $count: "count" }];
-
-    const results = await Dispositif.aggregate([{ $facet: facet }]);
-    const data = results[0];
-
-    const response: SearchCountsResponse = {
-      themes: data.themes || [],
-      needs: data.needs || [],
-      departments: data.departments || [],
-      frenchLevels: data.frenchLevels || [],
-      ageRanges: data.ageRanges || [],
-      publics: data.publics || [],
-      languages: data.languages || [],
-      statuses: data.statuses || [],
-      types: {
-        dispositif: data.types.find((t: any) => t._id === "dispositif")?.count || 0,
-        demarche: data.types.find((t: any) => t._id === "demarche")?.count || 0,
-        online: data.types.find((t: any) => t._id === "online")?.count || 0,
       },
-      total: data.total[0]?.count || 0,
-    };
+      { $unwind: "$ageRanges" },
+      { $group: { _id: "$ageRanges", count: { $sum: 1 } } },
+    ],
+  };
 
+  const facet = Object.entries(facetPipelines).reduce((acc, [key, pipeline]) => {
+    const newMatch: any = { ...baseMatch };
+    if (key === "themes" || key === "needs") {
+      delete newMatch.thematiques;
+      delete newMatch.besoins;
+    } else if (key === "departments") {
+      delete newMatch["metadatas.location"];
+    } else if (key === "ageRanges") {
+      delete newMatch.$and;
+    } else if (key === "frenchLevels") {
+      delete newMatch["metadatas.frenchLevel"];
+    } else if (key === "publics") {
+      delete newMatch["metadatas.public"];
+    } else if (key === "statuses") {
+      delete newMatch.status;
+    } else if (key === "languages") {
+      delete newMatch.availableLanguages;
+    }
+
+    (acc as any)[key] = [
+      { $match: newMatch },
+      ...(pipeline as unknown as any[]),
+      { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } },
+    ];
+    return acc;
+  }, {} as Record<string, any[]>);
+
+  (facet as any).types = [{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }];
+  (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
+
+  const results = await Dispositif.aggregate([{ $facet: facet }]);
+  const data = results[0] || {};
+
+  const response: SearchCountsResponse = {
+    themes: data.themes || [],
+    needs: data.needs || [],
+    departments: data.departments || [],
+    frenchLevels: data.frenchLevels || [],
+    ageRanges: data.ageRanges || [],
+    publics: data.publics || [],
+    languages: data.languages || [],
+    statuses: data.statuses || [],
+    types: {
+      dispositif: data.types?.find((t: any) => t._id === "dispositif")?.count || 0,
+      demarche: data.types?.find((t: any) => t._id === "demarche")?.count || 0,
+      online: data.types?.find((t: any) => t._id === "online")?.count || 0,
+    },
+    total: data.total?.[0]?.count || 0,
+  };
+
+  return response;
+};
+
+const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsResponse | { message: string }>) => {
+  if (req.method !== "GET") {
+    return res.status(405).json({ message: "Method Not Allowed" });
+  }
+
+  try {
+    const conn = await dbConnect();
+    const queryParams = buildQueryParams(req.query);
+    const response = await computeSearchCounts(conn, queryParams);
     res.status(200).json(response);
   } catch (error: any) {
     res.status(500).json({ message: error.message || "Internal Server Error" });
