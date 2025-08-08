@@ -116,7 +116,7 @@ export const DispositifSchema = new mongoose.Schema(
         ],
       },
       frenchLevel: [{ type: String, enum: ["A1", "A2", "B1", "B2", "C1", "C2"] }],
-      public: [{ type: String }],
+      public: [{ type: String, enum: ["family", "women", "youths", "senior", "gender"] }],
       age: {
         from: { type: Number },
         to: { type: Number },
@@ -149,7 +149,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeA],
       besoins: [needA1, needA2],
-      metadatas: { location: "75 - Paris", frenchLevel: ["A1"], public: ["jeunes"], age: { from: 16, to: 25 } },
+      metadatas: { location: "75 - Paris", frenchLevel: ["A1"], public: ["youths"], age: { from: 16, to: 25 } },
       availableLanguages: ["fr", "en"],
       status: "Actif",
       typeContenu: "dispositif",
@@ -161,7 +161,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
       metadatas: {
         location: "92 - Hauts-de-Seine",
         frenchLevel: ["B1"],
-        public: ["familles"],
+        public: ["family"],
         age: { from: 26, to: 64 },
       },
       availableLanguages: ["fr"],
@@ -172,7 +172,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeB],
       besoins: [needB1],
-      metadatas: { location: "75 - Paris", frenchLevel: ["A2"], public: ["seniors"], age: { from: 65, to: 90 } },
+      metadatas: { location: "75 - Paris", frenchLevel: ["A2"], public: ["senior"], age: { from: 65, to: 90 } },
       availableLanguages: ["fr"],
       status: "Actif",
       typeContenu: "dispositif",
@@ -181,7 +181,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeB],
       besoins: [needB1],
-      metadatas: { location: "75 - Paris", frenchLevel: ["A1"], public: ["adultes"], age: { from: 18, to: 25 } },
+      metadatas: { location: "75 - Paris", frenchLevel: ["A1"], public: ["youths"], age: { from: 18, to: 25 } },
       availableLanguages: ["fr"],
       status: "Archivé",
       typeContenu: "dispositif",
