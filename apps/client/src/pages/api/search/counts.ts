@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const algoliasearch = require("algoliasearch");
-const mongoose = require("mongoose");
-import { NextApiRequest, NextApiResponse } from "next";
+import { searchClient } from "@algolia/client-search";
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
+import mongoose from "mongoose";
+import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../lib/db";
 
 // Initialize Algolia client
-const searchClient = algoliasearch(
+const algoliaClient = searchClient(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "L9HYT1676M",
   process.env.ALGOLIA_ADMIN_KEY || "",
 );
-const index = searchClient.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX || "dispositifs");
+const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX || "dispositifs";
 
 // Define types locally
 export interface CountItem {
@@ -116,17 +116,18 @@ export const buildQueryParams = (query: any): QueryParams => ({
   language: getQueryParamAsArray(query.language),
 });
 
-export const computeSearchCounts = async (
-  conn: any,
-  queryParams: QueryParams,
-): Promise<SearchCountsResponse> => {
+export const computeSearchCounts = async (conn: any, queryParams: QueryParams): Promise<SearchCountsResponse> => {
   const Dispositif = conn.models.Dispositif || conn.model("Dispositif");
 
   let algoliaIds: string[] | undefined = undefined;
   if (queryParams.query) {
-    const searchResults = await index.search(queryParams.query, {
-      attributesToRetrieve: ["objectID"],
-      hitsPerPage: 1000,
+    const searchResults = await algoliaClient.searchSingleIndex({
+      indexName,
+      searchParams: {
+        query: queryParams.query,
+        attributesToRetrieve: ["objectID"],
+        hitsPerPage: 1000,
+      },
     });
     algoliaIds = searchResults.hits.map((hit: { objectID: string }) => hit.objectID);
   }
@@ -136,42 +137,45 @@ export const computeSearchCounts = async (
   const facetPipelines = {
     themes: [{ $unwind: "$thematiques" }, { $group: { _id: "$thematiques", count: { $sum: 1 } } }],
     needs: [{ $unwind: "$besoins" }, { $group: { _id: "$besoins", count: { $sum: 1 } } }],
-    departments: [
-      { $unwind: "$metadatas.location" },
-      { $group: { _id: "$metadatas.location", count: { $sum: 1 } } },
-    ],
+    departments: [{ $unwind: "$metadatas.location" }, { $group: { _id: "$metadatas.location", count: { $sum: 1 } } }],
     frenchLevels: [
       { $unwind: "$metadatas.frenchLevel" },
       { $group: { _id: "$metadatas.frenchLevel", count: { $sum: 1 } } },
     ],
     publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
-    languages: [
-      { $unwind: "$availableLanguages" },
-      { $group: { _id: "$availableLanguages", count: { $sum: 1 } } },
-    ],
+    languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
     statuses: [{ $group: { _id: "$status", count: { $sum: 1 } } }],
     ageRanges: [
       {
         $project: {
           ageRanges: {
             $filter: {
-              input: ["0-15", "16-25", "26-64", "65+"],
+              input: ["0-5", "6-10", "11-13", "14-15", "16-17", "18-25", "26-64", "65+"],
               as: "range",
               cond: {
                 $let: {
                   vars: {
-                    min: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 0] } },
-                    max: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 1] } },
+                    min: {
+                      $cond: [
+                        { $eq: ["$$range", "65+"] },
+                        65,
+                        { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 0] } },
+                      ],
+                    },
+                    max: {
+                      $cond: [
+                        { $eq: ["$$range", "65+"] },
+                        null,
+                        { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 1] } },
+                      ],
+                    },
                   },
                   in: {
                     $cond: {
                       if: { $eq: ["$$range", "65+"] },
                       then: { $gte: ["$metadatas.age.to", 65] },
                       else: {
-                        $and: [
-                          { $lte: ["$metadatas.age.from", "$$max"] },
-                          { $gte: ["$metadatas.age.to", "$$min"] },
-                        ],
+                        $and: [{ $lte: ["$metadatas.age.from", "$$max"] }, { $gte: ["$metadatas.age.to", "$$min"] }],
                       },
                     },
                   },
@@ -186,32 +190,33 @@ export const computeSearchCounts = async (
     ],
   };
 
-  const facet = Object.entries(facetPipelines).reduce((acc, [key, pipeline]) => {
-    const newMatch: any = { ...baseMatch };
-    if (key === "themes" || key === "needs") {
-      delete newMatch.thematiques;
-      delete newMatch.besoins;
-    } else if (key === "departments") {
-      delete newMatch["metadatas.location"];
-    } else if (key === "ageRanges") {
-      delete newMatch.$and;
-    } else if (key === "frenchLevels") {
-      delete newMatch["metadatas.frenchLevel"];
-    } else if (key === "publics") {
-      delete newMatch["metadatas.public"];
-    } else if (key === "statuses") {
-      delete newMatch.status;
-    } else if (key === "languages") {
-      delete newMatch.availableLanguages;
-    }
+  const facet = Object.entries(facetPipelines).reduce(
+    (acc, [key, pipeline]) => {
+      const newMatch: any = { ...baseMatch };
+      if (key === "themes" || key === "needs") {
+        delete newMatch.thematiques;
+        delete newMatch.besoins;
+      } else if (key === "departments") {
+        delete newMatch["metadatas.location"];
+      } else if (key === "ageRanges") {
+        delete newMatch.$and;
+      } else if (key === "frenchLevels") {
+        delete newMatch["metadatas.frenchLevel"];
+      } else if (key === "publics") {
+        delete newMatch["metadatas.public"];
+      } else if (key === "languages") {
+        delete newMatch.availableLanguages;
+      }
 
-    (acc as any)[key] = [
-      { $match: newMatch },
-      ...(pipeline as unknown as any[]),
-      { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } },
-    ];
-    return acc;
-  }, {} as Record<string, any[]>);
+      (acc as any)[key] = [
+        { $match: newMatch },
+        ...(pipeline as unknown as any[]),
+        { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } },
+      ];
+      return acc;
+    },
+    {} as Record<string, any[]>,
+  );
 
   (facet as any).types = [{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }];
   (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
