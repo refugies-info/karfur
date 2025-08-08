@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose, { Connection } from "mongoose";
 import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
-import { legacyFacetCounts, LegacyNeedsItem, LegacyQuery } from "~/tests/legacyCounts";
-import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/tests/seedDispositifs";
+import { legacyFacetCounts, LegacyNeedsItem, LegacyQuery } from "~/__fixtures__/legacyCounts";
+import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
