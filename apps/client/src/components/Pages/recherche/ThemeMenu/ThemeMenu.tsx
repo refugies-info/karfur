@@ -17,8 +17,6 @@ import styles from "./ThemeMenu.module.scss";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import Themes from "./Themes";
 
-import { CountItem } from "~/pages/api/search/counts";
-
 interface Props {
   mobile: boolean;
   isOpen: boolean;
