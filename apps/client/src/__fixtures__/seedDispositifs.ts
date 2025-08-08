@@ -24,7 +24,11 @@ export const DispositifSchema = new mongoose.Schema(
       },
     },
     availableLanguages: [{ type: String }],
-    status: { type: String, default: "Actif" },
+    status: {
+      type: String,
+      enum: ["Actif", "Archivé", "Brouillon", "En attente", "En attente admin", "Supprimé"],
+      default: "Actif",
+    },
     typeContenu: { type: String, enum: ["dispositif", "demarche", "online"], default: "dispositif" },
   },
   { collection: "dispositifs" },
@@ -75,7 +79,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
       besoins: [needB1],
       metadatas: { location: "75", frenchLevel: ["A1"], public: ["adultes"], age: { from: 18, to: 25 } },
       availableLanguages: ["fr"],
-      status: "Inactif",
+      status: "Archivé",
       typeContenu: "dispositif",
     },
   ]);
