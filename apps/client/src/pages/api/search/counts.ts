@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const algoliasearch = require("algoliasearch");
+const mongoose = require("mongoose");
 import { NextApiRequest, NextApiResponse } from "next";
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import dbConnect from "../../../lib/db";
@@ -45,7 +46,6 @@ const buildBaseMatch = (query: any, algoliaIds?: string[]) => {
   const match: any = { status: "Actif" };
 
   if (algoliaIds) {
-    const mongoose = require("mongoose");
     match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
   }
 
@@ -53,15 +53,16 @@ const buildBaseMatch = (query: any, algoliaIds?: string[]) => {
     match["metadatas.location"] = { $in: query.departments };
   }
   if (query.themes?.length > 0) {
-    const mongoose = require("mongoose");
     match["thematiques"] = { $in: query.themes.map((t: string) => new mongoose.Types.ObjectId(t)) };
   }
   if (query.needs?.length > 0) {
-    const mongoose = require("mongoose");
     match["besoins"] = { $in: query.needs.map((n: string) => new mongoose.Types.ObjectId(n)) };
   }
   if (query.age?.length > 0) {
     const ageFilters = query.age.map((ageRange: AgeOptions) => {
+      if (String(ageRange) === "65+") {
+        return { "metadatas.age.to": { $gte: 65 } };
+      }
       const [min, max] = ageRange.split("-").map(Number);
       return { "metadatas.age.from": { $lte: max }, "metadatas.age.to": { $gte: min } };
     });
@@ -139,7 +140,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
                       min: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 0] } },
                       max: { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 1] } },
                     },
-                    in: { $and: [{ $lte: ["$metadatas.age.from", "$$max"] }, { $gte: ["$metadatas.age.to", "$$min"] }] },
+                    in: {
+                      $cond: {
+                        if: { $eq: ["$$range", "65+"] },
+                        then: { $gte: ["$metadatas.age.to", 65] },
+                        else: { $and: [{ $lte: ["$metadatas.age.from", "$$max"] }, { $gte: ["$metadatas.age.to", "$$min"] }] },
+                      },
+                    },
                   },
                 },
               },

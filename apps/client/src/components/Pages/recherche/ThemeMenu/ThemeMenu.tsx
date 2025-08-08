@@ -65,19 +65,11 @@ const ThemeMenu = ({ mobile, isOpen, className, ...props }: Props) => {
   }, [isOpen]);
 
   const nbDispositifsByNeed = useMemo(() => {
-    const needsCounts: Record<string, number> = {};
-    counts?.needs.forEach((item: CountItem) => {
-      needsCounts[item.id] = item.count;
-    });
-    return needsCounts;
+    return Object.fromEntries((counts?.needs || []).map(({ id, count }) => [id, count])) as Record<string, number>;
   }, [counts?.needs]);
 
   const nbDispositifsByTheme = useMemo(() => {
-    const themesCounts: Record<string, number> = {};
-    counts?.themes.forEach((item: CountItem) => {
-      themesCounts[item.id] = item.count;
-    });
-    return themesCounts;
+    return Object.fromEntries((counts?.themes || []).map(({ id, count }) => [id, count])) as Record<string, number>;
   }, [counts?.themes]);
 
   useEffect(() => {
