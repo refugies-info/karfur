@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose, { Connection, Schema } from "mongoose";
+import mongoose, { Connection } from "mongoose";
 import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
 import { legacyFacetCounts, LegacyNeedsItem, LegacyQuery } from "~/tests/legacyCounts";
-import { seedDispositifs } from "~/tests/seedDispositifs";
+import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/tests/seedDispositifs";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -11,44 +11,12 @@ jest.mock("@algolia/client-search", () => {
   return { searchClient };
 });
 
-const O = (id: string) => new mongoose.Types.ObjectId(id);
-
-// Minimal Dispositif schema containing only fields needed by filters/aggregations
-const DispositifSchema = new Schema(
-  {
-    thematiques: [{ type: Schema.Types.ObjectId, ref: "Thematique" }],
-    besoins: [{ type: Schema.Types.ObjectId, ref: "Besoin" }],
-    metadatas: {
-      location: { type: String },
-      frenchLevel: [{ type: String }],
-      public: [{ type: String }],
-      age: {
-        from: { type: Number },
-        to: { type: Number },
-      },
-    },
-    availableLanguages: [{ type: String }],
-    status: { type: String, default: "Actif" },
-    typeContenu: { type: String, enum: ["dispositif", "demarche", "online"], default: "dispositif" },
-  },
-  { collection: "dispositifs" },
-);
-
 describe("Mongo counts vs legacy filterDispositifs", () => {
   let mongod: MongoMemoryServer;
   let conn: Connection;
 
-  const themeA = O("64a0000000000000000000a1");
-  const themeB = O("64a0000000000000000000b2");
-  const needA1 = O("64b0000000000000000000a1");
-  const needA2 = O("64b0000000000000000000a2");
-  const needB1 = O("64b0000000000000000000b1");
-
-  const needsList: LegacyNeedsItem[] = [
-    { _id: needA1 as any, theme: { _id: themeA as any } },
-    { _id: needA2 as any, theme: { _id: themeA as any } },
-    { _id: needB1 as any, theme: { _id: themeB as any } },
-  ];
+  const ids = makeSeedIds();
+  const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
 
   beforeAll(async () => {
     mongod = await MongoMemoryServer.create();
@@ -66,7 +34,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     const db = conn.db;
     if (!db) throw new Error("Connection DB not initialized");
     await db.dropDatabase();
-    await seedDispositifs(conn, { themeA, themeB, needA1, needA2, needB1 });
+    await seedDispositifs(conn, ids);
   });
 
   const toLegacyQuery = (p: Partial<LegacyQuery>): LegacyQuery => ({
