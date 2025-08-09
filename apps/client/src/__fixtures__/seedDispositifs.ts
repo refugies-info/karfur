@@ -118,8 +118,8 @@ export const DispositifSchema = new mongoose.Schema(
       frenchLevel: [{ type: String, enum: ["A1", "A2", "B1", "B2", "C1", "C2"] }],
       public: [{ type: String, enum: ["family", "women", "youths", "senior", "gender"] }],
       age: {
-        from: { type: Number },
-        to: { type: Number },
+        type: { type: String, enum: ["between", "moreThan", "lessThan"] },
+        ages: [Number],
       },
     },
     availableLanguages: [{ type: String }],
@@ -149,7 +149,12 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeA],
       besoins: [needA1, needA2],
-      metadatas: { location: "75 - Paris", frenchLevel: ["A1"], public: ["youths"], age: { from: 16, to: 25 } },
+      metadatas: {
+        location: "75 - Paris",
+        frenchLevel: ["A1"],
+        public: ["youths"],
+        age: { type: "between", ages: [16, 25] },
+      },
       availableLanguages: ["fr", "en"],
       status: "Actif",
       typeContenu: "dispositif",
@@ -162,7 +167,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         location: "92 - Hauts-de-Seine",
         frenchLevel: ["B1"],
         public: ["family"],
-        age: { from: 26, to: 64 },
+        age: { type: "between", ages: [26, 64] },
       },
       availableLanguages: ["fr"],
       status: "Actif",
@@ -172,7 +177,12 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeB],
       besoins: [needB1],
-      metadatas: { location: "75 - Paris", frenchLevel: ["A2"], public: ["senior"], age: { from: 65, to: 90 } },
+      metadatas: {
+        location: "75 - Paris",
+        frenchLevel: ["A2"],
+        public: ["senior"],
+        age: { type: "moreThan", ages: [65] },
+      },
       availableLanguages: ["fr"],
       status: "Actif",
       typeContenu: "dispositif",
@@ -181,7 +191,12 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeB],
       besoins: [needB1],
-      metadatas: { location: "75 - Paris", frenchLevel: ["A1"], public: ["youths"], age: { from: 18, to: 25 } },
+      metadatas: {
+        location: "75 - Paris",
+        frenchLevel: ["A1"],
+        public: ["youths"],
+        age: { type: "between", ages: [18, 25] },
+      },
       availableLanguages: ["fr"],
       status: "Archivé",
       typeContenu: "dispositif",

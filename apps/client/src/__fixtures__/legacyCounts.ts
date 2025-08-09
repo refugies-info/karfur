@@ -39,21 +39,45 @@ function buildNeedsThemeMap(allNeeds: LegacyNeedsItem[]) {
   );
 }
 
-// Compute age ranges for a dispositif like server does
+// Compute age ranges for a dispositif like server does (updated bins: -18, 18-25, +25)
 function computeAgeRanges(d: any): string[] {
-  const from = d?.metadatas?.age?.from ?? 0;
-  const to = d?.metadatas?.age?.to ?? 200;
-  const ranges: string[] = [];
-  const push = (a: number, b: number) => ranges.push(`${a}-${b}`);
-  if (to >= 0 && from <= 5) push(0, 5);
-  if (to >= 6 && from <= 10) push(6, 10);
-  if (to >= 11 && from <= 13) push(11, 13);
-  if (to >= 14 && from <= 15) push(14, 15);
-  if (to >= 16 && from <= 17) push(16, 17);
-  if (to >= 18 && from <= 25) push(18, 25);
-  if (to >= 26 && from <= 64) push(26, 64);
-  if (to >= 65) ranges.push("65+");
-  return ranges;
+  const age = d?.metadatas?.age as { type?: string; ages?: number[] } | undefined;
+  if (!age || !age.type || !Array.isArray(age.ages) || age.ages.length === 0) return [];
+
+  // Normalize to a numeric [min, max] interval (max can be Infinity)
+  let min = 0;
+  let max = Infinity as number;
+  if (age.type === "between") {
+    const a = Number(age.ages?.[0]);
+    const b = Number(age.ages?.[1] ?? age.ages?.[0]);
+    if (Number.isFinite(a)) min = a;
+    if (Number.isFinite(b)) max = b;
+  } else if (age.type === "moreThan") {
+    const a = Number(age.ages?.[0]);
+    if (Number.isFinite(a)) min = a;
+    max = Infinity;
+  } else if (age.type === "lessThan") {
+    min = 0;
+    const b = Number(age.ages?.[0]);
+    if (Number.isFinite(b)) max = b;
+  } else {
+    return [];
+  }
+
+  const result: string[] = [];
+  // bin is fully covered by [aMin,aMax]
+  const covers = (aMin: number, aMax: number, bMin: number, bMax: number) => aMin <= bMin && aMax >= bMax;
+
+  // Bins
+  const BIN1: [number, number] = [0, 17]; // -18
+  const BIN2: [number, number] = [18, 25]; // 18-25
+  const BIN3: [number, number] = [25, Infinity]; // +25 (inclusive of 25)
+
+  if (covers(min, max, BIN1[0], BIN1[1])) result.push("-18");
+  if (covers(min, max, BIN2[0], BIN2[1])) result.push("18-25");
+  if (covers(min, max, BIN3[0], BIN3[1])) result.push("+25");
+
+  return result;
 }
 
 export interface LegacyFacetCounts {

@@ -63,7 +63,8 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
 
   const departments = query.departments ?? [];
   if (departments.length > 0) {
-    match["metadatas.location"] = { $in: query.departments };
+    // Mirror legacy behavior: exact match against provided values
+    match["metadatas.location"] = { $in: departments };
   }
   const themes = query.themes ?? [];
   if (themes.length > 0) {
@@ -75,14 +76,31 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const ages = query.age ?? [];
   if (ages.length > 0) {
-    const ageFilters = ages.map((ageRange: AgeOptions) => {
-      if (String(ageRange) === "65+") {
-        return { "metadatas.age.to": { $gte: 65 } };
+    const binToExpr = (min: number, max: number | null) => {
+      const orConds: any[] = [];
+      if (max !== null) {
+        orConds.push({
+          $and: [
+            { $eq: ["$metadatas.age.type", "between"] },
+            { $lte: ["$metadatas.age.ages.0", min] },
+            { $gte: ["$metadatas.age.ages.1", max] },
+          ],
+        });
       }
-      const [min, max] = ageRange.split("-").map(Number);
-      return { "metadatas.age.from": { $lte: max }, "metadatas.age.to": { $gte: min } };
+      orConds.push({ $and: [{ $eq: ["$metadatas.age.type", "moreThan"] }, { $lte: ["$metadatas.age.ages.0", min] }] });
+      if (max !== null) {
+        orConds.push({ $and: [{ $eq: ["$metadatas.age.type", "lessThan"] }, { $gte: ["$metadatas.age.ages.0", max] }] });
+      }
+      return { $or: orConds };
+    };
+
+    const ageExprs = ages.map((ageRange: AgeOptions) => {
+      if (ageRange === "-18") return binToExpr(0, 17);
+      if (ageRange === "18-25") return binToExpr(18, 25);
+      if (ageRange === "+25") return binToExpr(25, null);
+      return {};
     });
-    match.$and = (match.$and || []).concat({ $or: ageFilters });
+    match.$and = (match.$and || []).concat({ $expr: { $or: ageExprs } });
   }
   const frenchLevel = query.frenchLevel ?? [];
   if (frenchLevel.length > 0) {
@@ -147,41 +165,37 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     statuses: [{ $group: { _id: "$status", count: { $sum: 1 } } }],
     ageRanges: [
       {
+        $addFields: {
+          minAge: {
+            $switch: {
+              branches: [
+                { case: { $eq: ["$metadatas.age.type", "between"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } } },
+                { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } } },
+                { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: 0 },
+              ],
+              default: 0,
+            },
+          },
+          maxAge: {
+            $switch: {
+              branches: [
+                { case: { $eq: ["$metadatas.age.type", "between"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] } } },
+                { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: 1000000 },
+                { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } } },
+              ],
+              default: 0,
+            },
+          },
+        },
+      },
+      {
         $project: {
           ageRanges: {
-            $filter: {
-              input: ["0-5", "6-10", "11-13", "14-15", "16-17", "18-25", "26-64", "65+"],
-              as: "range",
-              cond: {
-                $let: {
-                  vars: {
-                    min: {
-                      $cond: [
-                        { $eq: ["$$range", "65+"] },
-                        65,
-                        { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 0] } },
-                      ],
-                    },
-                    max: {
-                      $cond: [
-                        { $eq: ["$$range", "65+"] },
-                        null,
-                        { $toInt: { $arrayElemAt: [{ $split: ["$$range", "-"] }, 1] } },
-                      ],
-                    },
-                  },
-                  in: {
-                    $cond: {
-                      if: { $eq: ["$$range", "65+"] },
-                      then: { $gte: ["$metadatas.age.to", 65] },
-                      else: {
-                        $and: [{ $lte: ["$metadatas.age.from", "$$max"] }, { $gte: ["$metadatas.age.to", "$$min"] }],
-                      },
-                    },
-                  },
-                },
-              },
-            },
+            $setUnion: [
+              { $cond: [{ $and: [{ $lte: ["$minAge", 0] }, { $gte: ["$maxAge", 17] }] }, ["-18"], []] },
+              { $cond: [{ $and: [{ $lte: ["$minAge", 18] }, { $gte: ["$maxAge", 25] }] }, ["18-25"], []] },
+              { $cond: [{ $and: [{ $lte: ["$minAge", 25] }, { $gte: ["$maxAge", 1000000] }] }, ["+25"], []] },
+            ],
           },
         },
       },
