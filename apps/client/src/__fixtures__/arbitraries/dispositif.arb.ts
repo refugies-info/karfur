@@ -14,12 +14,14 @@ function getEnumValues(conn: Connection) {
     const typeEnums = schema.path("typeContenu").enumValues as string[];
     const levelEnums = schema.path("metadatas.frenchLevel").caster.enumValues as string[];
     const publicEnums = schema.path("metadatas.public").caster.enumValues as string[];
+    const languageEnums = schema.path("availableLanguages").caster.enumValues as string[];
     return {
       locations: locationEnums,
       statuses: statusEnums,
       types: typeEnums,
       frenchLevels: levelEnums,
       publics: publicEnums,
+      availableLanguages: languageEnums,
     } as const;
   } catch {
     return {
@@ -28,6 +30,7 @@ function getEnumValues(conn: Connection) {
       types: ["dispositif", "online"],
       frenchLevels: ["A1", "A2", "B1", "B2", "C1", "C2"],
       publics: ["family", "women", "youths", "senior", "gender"],
+      availableLanguages: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
     } as const;
   }
 }
@@ -88,7 +91,9 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
         public: publicArb,
         age: ageArb,
       }),
-      availableLanguages: fc.array(fc.constantFrom("fr", "en"), { minLength: 1, maxLength: 2 }).map(uniq),
+      availableLanguages: fc
+        .array(fc.constantFrom(...enums.availableLanguages), { minLength: 1, maxLength: 3 })
+        .map(uniq),
       status: fc.constantFrom(...enums.statuses),
       // Force 'dispositif' to align with tests and API expectations
       typeContenu: fc.constant("dispositif"),

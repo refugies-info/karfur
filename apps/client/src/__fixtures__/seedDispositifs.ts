@@ -122,7 +122,12 @@ export const DispositifSchema = new mongoose.Schema(
         ages: [Number],
       },
     },
-    availableLanguages: [{ type: String }],
+    availableLanguages: [
+      {
+        type: String,
+        enum: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
+      },
+    ],
     status: {
       type: String,
       enum: ["Actif", "Archivé", "Brouillon", "En attente", "En attente admin", "Supprimé"],
