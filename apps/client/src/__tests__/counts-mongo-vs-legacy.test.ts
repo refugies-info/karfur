@@ -147,22 +147,27 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
   // Test themes
   test("themes facet matches legacy when theme filter applied (skip theme)", async () => {
-    const params = toParams({ themes: ["6319f6b363ab2bbb162d7df5"] });
+    const params = toParams({ themes: [ids.themeB.toString()] });
     const api = await computeSearchCounts(conn, params);
 
     const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ themes: ["6319f6b363ab2bbb162d7df5"] }));
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ themes: [ids.themeB.toString()] }));
 
     expectCountsEqual(api, legacy);
   });
 
   // Test needs
   test("needs facet matches legacy when needs filter applied (skip needs)", async () => {
-    const params = toParams({ needs: ["6319f6b363ab2bbb162d7df6"] });
+    // Include the corresponding theme to mirror legacy behavior where needs are evaluated within the selected theme
+    const params = toParams({ themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] });
     const api = await computeSearchCounts(conn, params);
 
     const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ needs: ["6319f6b363ab2bbb162d7df6"] }));
+    const legacy = legacyFacetCounts(
+      all as any,
+      needsList,
+      toLegacyQuery({ themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] }),
+    );
 
     expectCountsEqual(api, legacy);
   });
