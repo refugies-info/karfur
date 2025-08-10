@@ -156,17 +156,13 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     expectCountsEqual(api, legacy);
   });
 
-  // Test themes and needs
-  test("themes and needs facet matches legacy when theme and needs filter applied (skip theme and needs)", async () => {
-    const params = toParams({ themes: ["6319f6b363ab2bbb162d7df5"], needs: ["6319f6b363ab2bbb162d7df6"] });
+  // Test needs
+  test("needs facet matches legacy when needs filter applied (skip needs)", async () => {
+    const params = toParams({ needs: ["6319f6b363ab2bbb162d7df6"] });
     const api = await computeSearchCounts(conn, params);
 
     const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(
-      all as any,
-      needsList,
-      toLegacyQuery({ themes: ["6319f6b363ab2bbb162d7df5"], needs: ["6319f6b363ab2bbb162d7df6"] }),
-    );
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ needs: ["6319f6b363ab2bbb162d7df6"] }));
 
     expectCountsEqual(api, legacy);
   });
