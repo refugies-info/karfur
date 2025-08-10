@@ -135,6 +135,16 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     expectCountsEqual(api, legacy);
   });
 
+  test("status facet matches legacy when status filter applied (skip status)", async () => {
+    const params = toParams({ status: ["refugie"] });
+    const api = await computeSearchCounts(conn, params);
+
+    const all = await getAllDispositifs();
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ status: ["refugie"] }));
+
+    expectCountsEqual(api, legacy);
+  });
+
   // Randomized dataset using fast-check generated documents
   describe("randomized dataset (fast-check)", () => {
     beforeEach(async () => {
@@ -191,6 +201,16 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
       const all = await getAllDispositifs();
       const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ public: ["family"] }));
+
+      expectCountsEqual(api, legacy);
+    });
+
+    test("status facet matches legacy when status filter applied (skip status)", async () => {
+      const params = toParams({ status: ["refugie"] });
+      const api = await computeSearchCounts(conn, params);
+
+      const all = await getAllDispositifs();
+      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ status: ["refugie"] }));
 
       expectCountsEqual(api, legacy);
     });
