@@ -9,7 +9,8 @@ import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
 jest.mock("@algolia/client-search", () => {
   const mockSearchSingleIndex = jest.fn().mockResolvedValue({ hits: [] });
   const searchClient = jest.fn(() => ({ searchSingleIndex: mockSearchSingleIndex }));
-  return { searchClient };
+  // expose the mock so tests can reconfigure behavior per-connection
+  return { searchClient, __mockSearchSingleIndex: mockSearchSingleIndex };
 });
 
 describe("Mongo counts vs legacy filterDispositifs", () => {
@@ -24,6 +25,37 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
     // register model on this connection
     conn.model("Dispositif", DispositifSchema);
+
+    // Configure Algolia mock to search in Mongo across simplified indexed fields
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const algoliaMock = require("@algolia/client-search") as any;
+    const reindex = async (q: string) => {
+      const Dispositif = conn.model("Dispositif");
+      if (!q) {
+        // No query -> Algolia not used, return empty hits to let Mongo-only filtering run
+        return [] as { objectID: string }[];
+      }
+      const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+      const docs = await Dispositif.find(
+        {
+          status: "Actif",
+          $or: [
+            { title: { $regex: rx } },
+            { name: { $regex: rx } },
+            { titreMarque: { $regex: rx } },
+            { abstract: { $regex: rx } },
+            { sponsorName: { $regex: rx } },
+          ],
+        },
+        { _id: 1 },
+      ).lean();
+      return docs.map((d: any) => ({ objectID: String(d._id) }));
+    };
+    algoliaMock.__mockSearchSingleIndex.mockImplementation(async (args: any) => {
+      const query: string | undefined = args?.searchParams?.query;
+      const hits = await reindex(query || "");
+      return { hits };
+    });
   });
 
   afterAll(async () => {
@@ -51,7 +83,8 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     ...p,
   });
 
-  const toParams = (p: Partial<QueryParams>): QueryParams => ({
+  const toParams = (p: Partial<QueryParams> & { search?: string }): QueryParams => ({
+    query: p.search ?? p.query,
     departments: [],
     themes: [],
     needs: [],
@@ -168,6 +201,17 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       needsList,
       toLegacyQuery({ themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] }),
     );
+
+    expectCountsEqual(api, legacy);
+  });
+
+  // Test search
+  test("search facet matches legacy when search filter applied (skip search)", async () => {
+    const params = toParams({ search: "jeunes" });
+    const api = await computeSearchCounts(conn, params);
+
+    const all = await getAllDispositifs();
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ search: "jeunes" }));
 
     expectCountsEqual(api, legacy);
   });

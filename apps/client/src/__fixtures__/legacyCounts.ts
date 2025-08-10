@@ -98,6 +98,24 @@ export function legacyFacetCounts(
   allNeeds: LegacyNeedsItem[],
   query: LegacyQuery,
 ): LegacyFacetCounts {
+  // Apply search filtering first to simulate Algolia pre-filtering in the new API
+  const q = (query.search || "").trim();
+  const filteredBySearch = q
+    ? (dispositifs as any[]).filter((d) => {
+        const needle = q.toLowerCase();
+        const hay = [
+          (d as any).title,
+          (d as any).name,
+          (d as any).titreMarque,
+          (d as any).abstract,
+          (d as any).sponsorName,
+        ]
+          .filter(Boolean)
+          .map((x) => String(x).toLowerCase());
+        return hay.some((s) => s.includes(needle));
+      })
+    : (dispositifs as any[]);
+
   const needsMap = buildNeedsThemeMap(allNeeds);
 
   // Treat query.status as refugee status stored in metadatas.status, not document status
@@ -125,12 +143,24 @@ export function legacyFacetCounts(
   };
 
   // Total (no skip)
-  const allFiltered = filterDispositifs(queryNoStatus as any, dispositifs as any, false, undefined, allNeeds as any).filter(
+  const allFiltered = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    undefined,
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
 
   // Themes facet (skip theme)
-  const forThemes = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "theme", allNeeds as any).filter(
+  const forThemes = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "theme",
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
   const themes = countBy(
@@ -146,30 +176,60 @@ export function legacyFacetCounts(
     .value();
 
   // Departments facet (skip location)
-  const forDepartments = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "location", allNeeds as any).filter(
+  const forDepartments = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "location",
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
   const departments = countBy(forDepartments, (d: any) => d?.metadatas?.location);
 
   // Languages facet (skip language)
-  const forLanguages = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "language", allNeeds as any).filter(
+  const forLanguages = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "language",
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
   const languages = countBy(forLanguages, (d: any) => (d?.availableLanguages || []).map(String));
 
   // Publics facet (skip public)
-  const forPublics = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "public", allNeeds as any).filter(
+  const forPublics = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "public",
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
   const publics = countBy(forPublics, (d: any) => (d?.metadatas?.public || []).map(String));
 
   // Statuses facet (skip status) — counts refugee statuses stored in metadatas.status
   // For statuses facet, skip the refugee status filter
-  const forStatuses = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "status", allNeeds as any);
+  const forStatuses = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "status",
+    allNeeds as any,
+  );
   const statuses = countBy(forStatuses, (d: any) => (d?.metadatas?.status || []).map(String));
 
   // French levels facet (skip frenchLevel). Group by categories a/b/c; empty -> ["a","b","c"].
-  const forFrench = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "frenchLevel", allNeeds as any).filter(
+  const forFrench = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "frenchLevel",
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
   const mapFrenchCats = (d: any): string[] => {
@@ -186,7 +246,13 @@ export function legacyFacetCounts(
   const frenchLevels = countBy(forFrench, (d: any) => mapFrenchCats(d));
 
   // Age ranges facet (skip age)
-  const forAges = filterDispositifs(queryNoStatus as any, dispositifs as any, false, "age", allNeeds as any).filter(
+  const forAges = filterDispositifs(
+    queryNoStatus as any,
+    filteredBySearch as any,
+    false,
+    "age",
+    allNeeds as any,
+  ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
   const ageRanges = countBy(forAges, (d: any) => computeAgeRanges(d));

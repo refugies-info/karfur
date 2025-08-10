@@ -140,6 +140,13 @@ export const DispositifSchema = new mongoose.Schema(
       default: "Actif",
     },
     typeContenu: { type: String, enum: ["dispositif", "demarche", "online"], default: "dispositif" },
+    // Minimal set of text attributes that Algolia indexes in production (simplified)
+    // These are added to support search simulation in tests/arbitraries
+    title: { type: String },
+    name: { type: String },
+    titreMarque: { type: String },
+    abstract: { type: String },
+    sponsorName: { type: String },
   },
   { collection: "dispositifs" },
 );
@@ -160,6 +167,11 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeA],
       besoins: [needA1, needA2],
+      title: "Cours de français A1 pour jeunes à Paris",
+      name: "Association Langues Paris",
+      titreMarque: "Langues&Co",
+      abstract: "Ateliers hebdomadaires de français niveau débutant pour les 16-25 ans.",
+      sponsorName: "Ville de Paris",
       metadatas: {
         location: "75 - Paris",
         frenchLevel: ["A1"],
@@ -175,6 +187,11 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeA],
       besoins: [needA1],
+      title: "Accompagnement administratif B1 pour familles",
+      name: "Solidarité 92",
+      titreMarque: "Plateforme Familles",
+      abstract: "Aide aux démarches et cours de français intermédiaire B1.",
+      sponsorName: "Département des Hauts-de-Seine",
       metadatas: {
         location: "92 - Hauts-de-Seine",
         frenchLevel: ["B1"],
@@ -190,6 +207,11 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     {
       thematiques: [themeB],
       besoins: [needB1],
+      title: "Atelier numérique A2 pour seniors",
+      name: "Maison des Seniors Paris",
+      titreMarque: "Seniors Connectés",
+      abstract: "Découverte du numérique et cours de français niveau A2.",
+      sponsorName: "Fondation Bien Vieillir",
       metadatas: {
         location: "75 - Paris",
         frenchLevel: ["A2"],

@@ -40,6 +40,35 @@ function getEnumValues(conn: Connection) {
 
 const uniq = <T,>(arr: T[]) => Array.from(new Set(arr));
 
+// Small vocabulary to build deterministic phrases that tests can target
+const vocab = [
+  "alpha",
+  "beta",
+  "gamma",
+  "delta",
+  "epsilon",
+  "zeta",
+  "paris",
+  "families",
+  "youths",
+  "seniors",
+  "french",
+  "course",
+  "support",
+  "digital",
+  "atelier",
+  "language",
+  "admin",
+  "help",
+  "program",
+  "center",
+];
+
+const wordArb = fc.constantFrom(...vocab);
+const wordsArb = (min: number, max: number) => fc.array(wordArb, { minLength: min, maxLength: max });
+const phraseArb = (min: number, max: number) =>
+  wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
+
 // Arbitrary for the "age" field structure in metadatas
 const ageBetweenArb = fc
   .tuple(fc.integer({ min: 0, max: 90 }), fc.integer({ min: 1, max: 100 }))
@@ -56,6 +85,11 @@ const ageArb = fc.oneof(ageBetweenArb, ageThresholdArb);
 export type InsertableDispositif = {
   thematiques: mongoose.Types.ObjectId[];
   besoins: mongoose.Types.ObjectId[];
+  title: string;
+  name: string;
+  titreMarque: string;
+  abstract: string;
+  sponsorName: string;
   metadatas: {
     location: string;
     frenchLevel: string[];
@@ -92,6 +126,18 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
           maxLength: Math.min(2, allowedNeeds.length),
         })
         .map(uniq),
+      // Generate simple phrases for Algolia-like fields
+      title: phraseArb(2, 6),
+      name: phraseArb(2, 4),
+      titreMarque: phraseArb(1, 3),
+      abstract: phraseArb(6, 14),
+      sponsorName: fc.constantFrom(
+        "Ville de Paris",
+        "Département des Hauts-de-Seine",
+        "Fondation Bien Vieillir",
+        "Association Locale",
+        "Ministère de l’Intégration",
+      ),
       metadatas: fc.record({
         location: fc.constantFrom(...enums.locations),
         frenchLevel: frenchLevelArb,
