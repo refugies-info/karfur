@@ -105,6 +105,16 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     expectCountsEqual(api, legacy);
   });
 
+  test("frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", async () => {
+    const params = toParams({ frenchLevel: ["a"] });
+    const api = await computeSearchCounts(conn, params);
+
+    const all = await getAllDispositifs();
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
+
+    expectCountsEqual(api, legacy);
+  });
+
   // Randomized dataset using fast-check generated documents
   describe("randomized dataset (fast-check)", () => {
     beforeEach(async () => {

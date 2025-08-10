@@ -148,9 +148,20 @@ export function legacyFacetCounts(
   const forStatuses = filterDispositifs(query as any, dispositifs as any, false, "status", allNeeds as any);
   const statuses = countBy(forStatuses, (d: any) => d?.status);
 
-  // French levels facet (skip frenchLevel)
+  // French levels facet (skip frenchLevel). Group by categories a/b/c; empty -> ["a","b","c"].
   const forFrench = filterDispositifs(query as any, dispositifs as any, false, "frenchLevel", allNeeds as any);
-  const frenchLevels = countBy(forFrench, (d: any) => (d?.metadatas?.frenchLevel || []).map(String));
+  const mapFrenchCats = (d: any): string[] => {
+    const levels: string[] = (d?.metadatas?.frenchLevel || []).map(String);
+    if (!levels || levels.length === 0) return ["a", "b", "c"];
+    const cats = new Set<string>();
+    for (const lvl of levels) {
+      if (["alpha", "A1", "A2"].includes(lvl)) cats.add("a");
+      else if (["B1", "B2"].includes(lvl)) cats.add("b");
+      else if (["C1", "C2"].includes(lvl)) cats.add("c");
+    }
+    return Array.from(cats);
+  };
+  const frenchLevels = countBy(forFrench, (d: any) => mapFrenchCats(d));
 
   // Age ranges facet (skip age)
   const forAges = filterDispositifs(query as any, dispositifs as any, false, "age", allNeeds as any);

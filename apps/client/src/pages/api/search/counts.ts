@@ -104,7 +104,25 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const frenchLevel = query.frenchLevel ?? [];
   if (frenchLevel.length > 0) {
-    match["metadatas.frenchLevel"] = { $in: frenchLevel };
+    // Map FrenchOptions (a/b/c) to concrete levels stored in Mongo
+    const expand = (opts: FrenchOptions[]): string[] => {
+      const set = new Set<string>();
+      for (const o of opts) {
+        if (o === "c") {
+          // 'c' means advanced; we do not constrain on DB levels for filtering (matches any), so skip adding match
+          return [];
+        } else if (o === "b") {
+          ["A1", "A2", "B1", "B2"].forEach((x) => set.add(x));
+        } else if (o === "a") {
+          ["alpha", "A1", "A2"].forEach((x) => set.add(x));
+        }
+      }
+      return Array.from(set);
+    };
+    const expanded = expand(frenchLevel);
+    if (expanded.length > 0) {
+      match["metadatas.frenchLevel"] = { $in: expanded };
+    }
   }
   const publics = query.public ?? [];
   if (publics.length > 0) {
@@ -157,8 +175,44 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     needs: [{ $unwind: "$besoins" }, { $group: { _id: "$besoins", count: { $sum: 1 } } }],
     departments: [{ $unwind: "$metadatas.location" }, { $group: { _id: "$metadatas.location", count: { $sum: 1 } } }],
     frenchLevels: [
-      { $unwind: "$metadatas.frenchLevel" },
-      { $group: { _id: "$metadatas.frenchLevel", count: { $sum: 1 } } },
+      // Map stored levels to categories a/b/c; if no level, count as all ["a","b","c"]
+      {
+        $addFields: {
+          _frenchCats: {
+            $setUnion: [
+              {
+                $map: {
+                  input: { $ifNull: ["$metadatas.frenchLevel", []] },
+                  as: "lvl",
+                  in: {
+                    $switch: {
+                      branches: [
+                        { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
+                        { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
+                        { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
+                      ],
+                      default: null,
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          cats: {
+            $cond: [
+              { $or: [{ $eq: ["$_frenchCats", []] }, { $eq: [{ $size: "$_frenchCats" }, 0] }] },
+              ["a", "b", "c"],
+              "$_frenchCats",
+            ],
+          },
+        },
+      },
+      { $unwind: "$cats" },
+      { $group: { _id: "$cats", count: { $sum: 1 } } },
     ],
     publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
     languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
