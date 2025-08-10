@@ -3,7 +3,6 @@ import { ActivityIndicator, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { getDepartementFromResult } from "~/libs/geolocalisation";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import { GoogleAPISuggestion } from "~/types/navigation";
