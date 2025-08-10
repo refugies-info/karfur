@@ -1,6 +1,7 @@
-import { GoogleMap, InfoBox, Libraries, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { Poi } from "@refugies-info/api-types";
+import L from "leaflet";
 import { useCallback, useMemo, useState } from "react";
+import { MapContainer, Marker as LeafletMarker, Popup, TileLayer, useMap } from "react-leaflet";
 import { useSelector } from "react-redux";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -10,52 +11,35 @@ import Sidebar from "./Sidebar";
 
 export type Marker = Poi & { id: number };
 
-const libraries: Libraries = ["places"];
+const pinIcon = new L.Icon({
+  iconUrl: "/images/map/pin.svg",
+  iconSize: [60, 42],
+  iconAnchor: [30, 42],
+});
+
+const SetBounds = ({ markers }: { markers: Marker[] }) => {
+  const map = useMap();
+  if (markers.length > 0) {
+    const bounds = new L.LatLngBounds(markers.map((m) => [m.lat, m.lng]));
+    map.fitBounds(bounds);
+  }
+  return null;
+};
 
 const Map = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const [popup, setPopup] = useState<Marker | null>(null);
-  const [maxZoom, setMaxZoom] = useState(12);
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || "",
-    libraries,
-  });
+  const [map, setMap] = useState<L.Map | null>(null);
 
   const markers = useMemo(() => {
     if (!dispositif?.map || dispositif.map?.length === 0) return [];
     return dispositif.map.map((marker, i) => ({ ...marker, id: i }));
   }, [dispositif]);
 
-  const onLoad = useCallback(
-    (map: google.maps.Map) => {
-      const bounds = new google.maps.LatLngBounds();
-      for (const marker of markers) {
-        if (!!marker.lat && !!marker.lng) {
-          bounds.extend(new google.maps.LatLng(marker.lat, marker.lng));
-        }
-      }
-
-      map.fitBounds(bounds);
-      setMap(map);
-
-      setTimeout(() => {
-        setMaxZoom(25);
-      }, 500);
-    },
-    [markers],
-  );
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
-  }, []);
-
   const selectMarker = useCallback(
     (marker: Marker) => {
       setPopup(marker);
-      map?.setCenter({ lat: marker.lat, lng: marker.lng });
+      map?.setView({ lat: marker.lat, lng: marker.lng });
       Event("DISPO_VIEW", "click marker", "Map");
     },
     [map],
@@ -65,52 +49,38 @@ const Map = () => {
     <div className={styles.container}>
       <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={popup?.id || null} />
 
-      {isLoaded && (
-        <GoogleMap
-          mapContainerStyle={{ width: "100%", height: "100%" }}
-          center={markers.length === 0 ? { lat: 48.856614, lng: 2.3522219 } : undefined}
-          zoom={5}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-          onClick={() => setPopup(null)}
-          clickableIcons={false}
-          options={{
-            mapTypeControl: false,
-            fullscreenControl: false,
-            streetViewControl: false,
-            maxZoom: maxZoom,
-            controlSize: 32,
-          }}
-        >
-          {markers.map((marker, key) => (
-            <MarkerF
-              key={key}
-              position={{
-                lat: marker.lat,
-                lng: marker.lng,
-              }}
-              icon={{
-                url: "/images/map/pin.svg",
-                anchor: new google.maps.Point(30, 42),
-              }}
-              onClick={() => selectMarker(marker)}
-            ></MarkerF>
-          ))}
-
-          {popup && (
-            <InfoBox
-              position={new google.maps.LatLng(popup.lat, popup.lng)}
-              options={{
-                closeBoxURL: "",
-                pixelOffset: new google.maps.Size(-120, 10), // half of the PopupContent width
-                boxClass: styles.popup,
-              }}
-            >
-              <PopupContent marker={popup} onClose={() => setPopup(null)} />
-            </InfoBox>
-          )}
-        </GoogleMap>
-      )}
+      <MapContainer
+        whenCreated={setMap}
+        style={{ width: "100%", height: "100%" }}
+        center={markers.length === 0 ? [48.856614, 2.3522219] : undefined}
+        zoom={5}
+        onclick={() => setPopup(null)}
+        attributionControl={false}
+      >
+        <TileLayer
+          attribution='<a href="https://www.ign.fr/reperes/geodésie" target="_blank">IGN</a>'
+          url="https://wxs.ign.fr/essentiels/geoportail/wmts?layer=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&TileMatrix={z}&TileCol={x}&TileRow={y}"
+        />
+        <SetBounds markers={markers} />
+        {markers.map((marker, key) => (
+          <LeafletMarker
+            key={key}
+            position={[marker.lat, marker.lng]}
+            icon={pinIcon}
+            eventHandlers={{
+              click: () => {
+                selectMarker(marker);
+              },
+            }}
+          >
+            {popup && popup.id === marker.id && (
+              <Popup>
+                <PopupContent marker={popup} onClose={() => setPopup(null)} />
+              </Popup>
+            )}
+          </LeafletMarker>
+        ))}
+      </MapContainer>
     </div>
   );
 };

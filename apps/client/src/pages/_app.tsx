@@ -1,5 +1,6 @@
 import "css/index.css";
 import "scss/index.scss";
+import "leaflet/dist/leaflet.css";
 
 import { Caveat } from "next/font/google";
 
