@@ -14,6 +14,7 @@ function getEnumValues(conn: Connection) {
     const typeEnums = schema.path("typeContenu").enumValues as string[];
     const levelEnums = schema.path("metadatas.frenchLevel").caster.enumValues as string[];
     const publicEnums = schema.path("metadatas.public").caster.enumValues as string[];
+    const refugeeStatusEnums = schema.path("metadatas.status").caster.enumValues as string[];
     const languageEnums = schema.path("availableLanguages").caster.enumValues as string[];
     return {
       locations: locationEnums,
@@ -21,6 +22,7 @@ function getEnumValues(conn: Connection) {
       types: typeEnums,
       frenchLevels: levelEnums,
       publics: publicEnums,
+      refugeeStatuses: refugeeStatusEnums,
       availableLanguages: languageEnums,
     } as const;
   } catch {
@@ -30,6 +32,7 @@ function getEnumValues(conn: Connection) {
       types: ["dispositif", "online"],
       frenchLevels: ["A1", "A2", "B1", "B2", "C1", "C2"],
       publics: ["family", "women", "youths", "senior", "gender"],
+      refugeeStatuses: ["apatride", "asile", "refugie", "subsidiaire", "temporaire", "french"],
       availableLanguages: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
     } as const;
   }
@@ -57,6 +60,7 @@ export type InsertableDispositif = {
     location: string;
     frenchLevel: string[];
     public: string[];
+    status: string[];
     age: { type: "between" | "moreThan" | "lessThan"; ages: number[] };
   };
   availableLanguages: string[];
@@ -70,6 +74,9 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     .array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 })
     .map(uniq);
   const publicArb = fc.array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 }).map(uniq);
+  const refugeeStatusArb = fc
+    .array(fc.constantFrom(...enums.refugeeStatuses), { minLength: 1, maxLength: 3 })
+    .map(uniq);
 
   const themeArb = fc.constantFrom(ids.themeA, ids.themeB);
 
@@ -89,6 +96,7 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
         location: fc.constantFrom(...enums.locations),
         frenchLevel: frenchLevelArb,
         public: publicArb,
+        status: refugeeStatusArb,
         age: ageArb,
       }),
       availableLanguages: fc
