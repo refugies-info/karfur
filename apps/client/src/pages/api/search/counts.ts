@@ -130,7 +130,8 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const statuses = query.status ?? [];
   if (statuses.length > 0) {
-    match["status"] = { $in: statuses };
+    // Filter by refugee statuses stored in metadatas.status (document status remains constrained to "Actif")
+    match["metadatas.status"] = { $in: statuses };
   }
   const languages = query.language ?? [];
   if (languages.length > 0) {
@@ -216,7 +217,11 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     ],
     publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
     languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
-    statuses: [{ $group: { _id: "$status", count: { $sum: 1 } } }],
+    // Count refugee statuses in metadatas.status
+    statuses: [
+      { $unwind: "$metadatas.status" },
+      { $group: { _id: "$metadatas.status", count: { $sum: 1 } } },
+    ],
     ageRanges: [
       {
         $addFields: {
@@ -274,6 +279,8 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
         delete newMatch["metadatas.public"];
       } else if (key === "languages") {
         delete newMatch.availableLanguages;
+      } else if (key === "statuses") {
+        delete newMatch["metadatas.status"];
       }
 
       (acc as any)[key] = [

@@ -140,6 +140,10 @@ export function legacyFacetCounts(
   const forLanguages = filterDispositifs(query as any, dispositifs as any, false, "language", allNeeds as any);
   const languages = countBy(forLanguages, (d: any) => (d?.availableLanguages || []).map(String));
 
+  // Publics facet (skip public)
+  const forPublics = filterDispositifs(query as any, dispositifs as any, false, "public", allNeeds as any);
+  const publics = countBy(forPublics, (d: any) => (d?.metadatas?.public || []).map(String));
+
   // Statuses facet (skip status) — counts refugee statuses stored in metadatas.status
   const forStatuses = filterDispositifs(query as any, dispositifs as any, false, "status", allNeeds as any);
   const statuses = countBy(forStatuses, (d: any) => (d?.metadatas?.status || []).map(String));
