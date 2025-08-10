@@ -65,9 +65,9 @@ const TextModal = styled(Modal)`
 
 interface Props {
   enteredText: string;
-  suggestions: GoogleAPISuggestion[];
+  suggestions: any[];
   onChangeText: (data: string) => void;
-  selectSuggestion: (suggestion: GoogleAPISuggestion) => void;
+  selectSuggestion: (suggestion: any) => void;
   geoloc: React.ReactNode;
 }
 
@@ -133,10 +133,10 @@ export const SearchBarCity = (props: Props) => {
           </MainContainer>
           <SuggestionsContainer keyboardShouldPersistTaps={"handled"} keyboardDismissMode="on-drag">
             {props.geoloc}
-            {(props.suggestions || []).map((suggestion) => (
+            {(props.suggestions || []).map((suggestion, index) => (
               <CityChoice
-                key={suggestion.place_id}
-                city={suggestion?.structured_formatting?.main_text}
+                key={index}
+                city={suggestion?.properties?.city}
                 onSelect={() => props.selectSuggestion(suggestion)}
               />
             ))}

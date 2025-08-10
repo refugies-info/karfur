@@ -7,7 +7,7 @@ import { getDepartementFromResult } from "~/libs/geolocalisation";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import { GoogleAPISuggestion } from "~/types/navigation";
-import { getCitiesFromGoogleAPI, getCityDetailsFromGoogleAPI } from "~/utils/API";
+import { getCitiesFromGeoAPI } from "~/utils/API";
 import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
 import { Tag } from "../formulaire";
@@ -84,9 +84,9 @@ export const FilterCityComponent = ({
     setError("");
     setEnteredText(data);
     try {
-      const results = await getCitiesFromGoogleAPI(data);
-      if (results && results.data && results.data.predictions) {
-        setSuggestions(results.data.predictions);
+      const results = await getCitiesFromGeoAPI(data);
+      if (results && results.data && results.data.features) {
+        setSuggestions(results.data.features);
       }
     } catch (_: unknown) {
       setError(defaultError);
@@ -95,22 +95,16 @@ export const FilterCityComponent = ({
     }
   };
 
-  const setCityAndGetDepartment = async (city: string, place_id: string) => {
+  const setCityAndGetDepartment = async (suggestion: any) => {
     setIsGeolocLoading(true);
-    setSelectedCity(city);
-    const results = await getCityDetailsFromGoogleAPI(place_id);
-    if (results && results.data && results.data.result && results.data.result.address_components) {
-      const department = getDepartementFromResult(results.data.result.address_components);
-
-      if (!department) {
-        setIsGeolocLoading(false);
-        throw new Error("NO_CORRESPONDING_DEP");
-      }
-      setSelectedDepartment(department);
+    setSelectedCity(suggestion.properties.city);
+    const department = suggestion.properties.context.split(", ")[1];
+    if (!department) {
       setIsGeolocLoading(false);
-      return;
+      throw new Error("NO_CORRESPONDING_DEP");
     }
-    throw new Error("ERREUR");
+    setSelectedDepartment(department);
+    setIsGeolocLoading(false);
   };
 
   const onSelectItem = (city: string, department: string) => {
@@ -118,10 +112,10 @@ export const FilterCityComponent = ({
     setSelectedDepartment(department);
   };
 
-  const onSelectSuggestion = async (suggestion: GoogleAPISuggestion) => {
+  const onSelectSuggestion = async (suggestion: any) => {
     try {
       setEnteredText("");
-      await setCityAndGetDepartment(suggestion.structured_formatting.main_text, suggestion.place_id);
+      await setCityAndGetDepartment(suggestion);
     } catch (_: unknown) {
       setError(defaultError);
       resetData();
