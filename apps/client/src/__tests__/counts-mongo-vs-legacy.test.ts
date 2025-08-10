@@ -1,9 +1,9 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose, { Connection } from "mongoose";
-import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
+import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
 import { legacyFacetCounts, LegacyNeedsItem, LegacyQuery } from "~/__fixtures__/legacyCounts";
 import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
-import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
+import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -115,6 +115,16 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     expectCountsEqual(api, legacy);
   });
 
+  test("language facet matches legacy when language filter applied (skip language)", async () => {
+    const params = toParams({ language: ["fr"] });
+    const api = await computeSearchCounts(conn, params);
+
+    const all = await getAllDispositifs();
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ language: ["fr"] }));
+
+    expectCountsEqual(api, legacy);
+  });
+
   // Randomized dataset using fast-check generated documents
   describe("randomized dataset (fast-check)", () => {
     beforeEach(async () => {
@@ -151,6 +161,16 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
       const all = await getAllDispositifs();
       const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
+
+      expectCountsEqual(api, legacy);
+    });
+
+    test("language facet matches legacy when language filter applied (skip language)", async () => {
+      const params = toParams({ language: ["fr"] });
+      const api = await computeSearchCounts(conn, params);
+
+      const all = await getAllDispositifs();
+      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ language: ["fr"] }));
 
       expectCountsEqual(api, legacy);
     });
