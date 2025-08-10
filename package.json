@@ -26,7 +26,7 @@
       "unrs-resolver"
     ],
     "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
+      "@codegouvfr/react-dsfr@1.26.0": "patches/@codegouvfr__react-dsfr@1.26.0.patch"
     },
     "overrides": {
       "@expo/cli>undici": "6.21.1",
@@ -103,7 +103,7 @@
     "node": "22.14.0"
   },
   "devDependencies": {
-    "@codegouvfr/react-dsfr": "1.20.2",
+    "@codegouvfr/react-dsfr": "1.26.0",
     "@refugies-info/api-types": "*",
     "@types/node": "^22.17.0",
     "check-dependency-version-consistency": "^4.1.1",
