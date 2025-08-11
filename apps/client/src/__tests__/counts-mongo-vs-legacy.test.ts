@@ -141,19 +141,47 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
   runFacetTests([
     { name: "baseline: totals and facets match (no filters)", params: {}, legacy: {} },
-    { name: "departments facet matches legacy when department filter applied (skip location)", params: { departments: ["75"] }, legacy: { departments: ["75"] } },
-    { name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", params: { frenchLevel: ["a"] }, legacy: { frenchLevel: ["a"] } },
-    { name: "language facet matches legacy when language filter applied (skip language)", params: { language: ["fr"] }, legacy: { language: ["fr"] } },
-    { name: "public facet matches legacy when public filter applied (skip public)", params: { public: ["family"] }, legacy: { public: ["family"] } },
-    { name: "status facet matches legacy when status filter applied (skip status)", params: { status: ["refugie"] }, legacy: { status: ["refugie"] } },
-    { name: "themes facet matches legacy when theme filter applied (skip theme)", params: { themes: [ids.themeB.toString()] }, legacy: { themes: [ids.themeB.toString()] } },
+    {
+      name: "departments facet matches legacy when department filter applied (skip location)",
+      params: { departments: ["75"] },
+      legacy: { departments: ["75"] },
+    },
+    {
+      name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)",
+      params: { frenchLevel: ["a"] },
+      legacy: { frenchLevel: ["a"] },
+    },
+    {
+      name: "language facet matches legacy when language filter applied (skip language)",
+      params: { language: ["fr"] },
+      legacy: { language: ["fr"] },
+    },
+    {
+      name: "public facet matches legacy when public filter applied (skip public)",
+      params: { public: ["family"] },
+      legacy: { public: ["family"] },
+    },
+    {
+      name: "status facet matches legacy when status filter applied (skip status)",
+      params: { status: ["refugie"] },
+      legacy: { status: ["refugie"] },
+    },
+    {
+      name: "themes facet matches legacy when theme filter applied (skip theme)",
+      params: { themes: [ids.themeB.toString()] },
+      legacy: { themes: [ids.themeB.toString()] },
+    },
     {
       name: "needs facet matches legacy when needs filter applied (skip needs)",
       // Include the corresponding theme to mirror legacy behavior where needs are evaluated within the selected theme
       params: { themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] },
       legacy: { themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] },
     },
-    { name: "search facet matches legacy when search filter applied (skip search)", params: { search: "jeunes" }, legacy: { search: "jeunes" } },
+    {
+      name: "search facet matches legacy when search filter applied (skip search)",
+      params: { search: "jeunes" },
+      legacy: { search: "jeunes" },
+    },
   ]);
 
   // *******************************************************
@@ -169,15 +197,156 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     });
 
     runFacetTests([
+      // No parameters
       { name: "baseline: totals and facets match (no filters)", params: {}, legacy: {} },
-      { name: "departments facet matches legacy when department filter applied (skip location)", params: { departments: ["75"] }, legacy: { departments: ["75"] } },
-      { name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", params: { frenchLevel: ["a"] }, legacy: { frenchLevel: ["a"] } },
-      { name: "language facet matches legacy when language filter applied (skip language)", params: { language: ["fr"] }, legacy: { language: ["fr"] } },
-      { name: "public facet matches legacy when public filter applied (skip public)", params: { public: ["family"] }, legacy: { public: ["family"] } },
-      { name: "status facet matches legacy when status filter applied (skip status)", params: { status: ["refugie"] }, legacy: { status: ["refugie"] } },
-      { name: "themes facet matches legacy when theme filter applied (skip theme)", params: { themes: ["6319f6b363ab2bbb162d7df5"] }, legacy: { themes: ["6319f6b363ab2bbb162d7df5"] } },
-      { name: "needs facet matches legacy when needs filter applied (skip needs)", params: { needs: ["6319f6b363ab2bbb162d7df6"] }, legacy: { needs: ["6319f6b363ab2bbb162d7df6"] } },
-      { name: "search facet matches legacy when search filter applied (skip search)", params: { search: "jeunes" }, legacy: { search: "jeunes" } },
+
+      // Single parameter
+      {
+        name: "departments facet matches legacy when department filter applied (skip location)",
+        params: { departments: ["75"] },
+        legacy: { departments: ["75"] },
+      },
+      {
+        name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)",
+        params: { frenchLevel: ["a"] },
+        legacy: { frenchLevel: ["a"] },
+      },
+      {
+        name: "language facet matches legacy when language filter applied (skip language)",
+        params: { language: ["fr"] },
+        legacy: { language: ["fr"] },
+      },
+      {
+        name: "public facet matches legacy when public filter applied (skip public)",
+        params: { public: ["family"] },
+        legacy: { public: ["family"] },
+      },
+      {
+        name: "status facet matches legacy when status filter applied (skip status)",
+        params: { status: ["refugie"] },
+        legacy: { status: ["refugie"] },
+      },
+      {
+        name: "themes facet matches legacy when theme filter applied (skip theme)",
+        params: { themes: ["6319f6b363ab2bbb162d7df5"] },
+        legacy: { themes: ["6319f6b363ab2bbb162d7df5"] },
+      },
+      {
+        name: "needs facet matches legacy when needs filter applied (skip needs)",
+        params: { needs: ["6319f6b363ab2bbb162d7df6"] },
+        legacy: { needs: ["6319f6b363ab2bbb162d7df6"] },
+      },
+
+      // Search with single parameter
+      {
+        name: "search facet matches legacy when search filter applied (skip search)",
+        params: { search: "jeunes" },
+        legacy: { search: "jeunes" },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments",
+        params: { search: "jeunes", departments: ["75"] },
+        legacy: { search: "jeunes", departments: ["75"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + frenchLevel",
+        params: { search: "jeunes", frenchLevel: ["a"] },
+        legacy: { search: "jeunes", frenchLevel: ["a"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + language",
+        params: { search: "jeunes", language: ["fr"] },
+        legacy: { search: "jeunes", language: ["fr"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + public",
+        params: { search: "jeunes", public: ["family"] },
+        legacy: { search: "jeunes", public: ["family"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + status",
+        params: { search: "jeunes", status: ["refugie"] },
+        legacy: { search: "jeunes", status: ["refugie"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + themes",
+        params: { search: "jeunes", themes: ["6319f6b363ab2bbb162d7df5"] },
+        legacy: { search: "jeunes", themes: ["6319f6b363ab2bbb162d7df5"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + needs",
+        params: { search: "jeunes", needs: ["6319f6b363ab2bbb162d7df6"] },
+        legacy: { search: "jeunes", needs: ["6319f6b363ab2bbb162d7df6"] },
+      },
+
+      // Two parameters
+      {
+        name: "departments facet matches legacy when department filter applied (skip location)",
+        params: { departments: ["75"], frenchLevel: ["a"] },
+        legacy: { departments: ["75"], frenchLevel: ["a"] },
+      },
+      {
+        name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)",
+        params: { frenchLevel: ["a"], language: ["fr"] },
+        legacy: { frenchLevel: ["a"], language: ["fr"] },
+      },
+      {
+        name: "language facet matches legacy when language filter applied (skip language)",
+        params: { language: ["fr"], public: ["family"] },
+        legacy: { language: ["fr"], public: ["family"] },
+      },
+      {
+        name: "public facet matches legacy when public filter applied (skip public)",
+        params: { public: ["family"], status: ["refugie"] },
+        legacy: { public: ["family"], status: ["refugie"] },
+      },
+      {
+        name: "status facet matches legacy when status filter applied (skip status)",
+        params: { status: ["refugie"], themes: ["6319f6b363ab2bbb162d7df5"] },
+        legacy: { status: ["refugie"], themes: ["6319f6b363ab2bbb162d7df5"] },
+      },
+      {
+        name: "themes facet matches legacy when theme filter applied (skip theme)",
+        params: { themes: ["6319f6b363ab2bbb162d7df5"], needs: ["6319f6b363ab2bbb162d7df6"] },
+        legacy: { themes: ["6319f6b363ab2bbb162d7df5"], needs: ["6319f6b363ab2bbb162d7df6"] },
+      },
+      {
+        name: "needs facet matches legacy when needs filter applied (skip needs)",
+        params: { needs: ["6319f6b363ab2bbb162d7df6"], search: "jeunes" },
+        legacy: { needs: ["6319f6b363ab2bbb162d7df6"], search: "jeunes" },
+      },
+
+      // Search + other filters
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments + frenchLevel",
+        params: { search: "jeunes", departments: ["75"], frenchLevel: ["a"] },
+        legacy: { search: "jeunes", departments: ["75"], frenchLevel: ["a"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments + language",
+        params: { search: "jeunes", departments: ["75"], language: ["fr"] },
+        legacy: { search: "jeunes", departments: ["75"], language: ["fr"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments + public",
+        params: { search: "jeunes", departments: ["75"], public: ["family"] },
+        legacy: { search: "jeunes", departments: ["75"], public: ["family"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments + status",
+        params: { search: "jeunes", departments: ["75"], status: ["refugie"] },
+        legacy: { search: "jeunes", departments: ["75"], status: ["refugie"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments + themes",
+        params: { search: "jeunes", departments: ["75"], themes: ["6319f6b363ab2bbb162d7df5"] },
+        legacy: { search: "jeunes", departments: ["75"], themes: ["6319f6b363ab2bbb162d7df5"] },
+      },
+      {
+        name: "search facet matches legacy when search filter applied (skip search) + departments + needs",
+        params: { search: "jeunes", departments: ["75"], needs: ["6319f6b363ab2bbb162d7df6"] },
+        legacy: { search: "jeunes", departments: ["75"], needs: ["6319f6b363ab2bbb162d7df6"] },
+      },
     ]);
   });
 });
