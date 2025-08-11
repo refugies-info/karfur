@@ -27,7 +27,6 @@ interface TypeCounts {
 export interface SearchCountsResponse {
   themes: CountItem[];
   needs: CountItem[];
-  departments: CountItem[];
   frenchLevels: CountItem[];
   ageRanges: CountItem[];
   publics: CountItem[];
@@ -159,10 +158,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   // Ensure the Dispositif model is registered (use a permissive schema for aggregation-only usage)
   const Dispositif =
     conn.models.Dispositif ||
-    conn.model(
-      "Dispositif",
-      new mongoose.Schema({}, { strict: false, collection: "dispositifs" }),
-    );
+    conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
 
   let algoliaIds: string[] | undefined = undefined;
   if (queryParams.search) {
@@ -182,7 +178,6 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   const facetPipelines = {
     themes: [{ $unwind: "$thematiques" }, { $group: { _id: "$thematiques", count: { $sum: 1 } } }],
     needs: [{ $unwind: "$besoins" }, { $group: { _id: "$besoins", count: { $sum: 1 } } }],
-    departments: [{ $unwind: "$metadatas.location" }, { $group: { _id: "$metadatas.location", count: { $sum: 1 } } }],
     frenchLevels: [
       // Map stored levels to categories a/b/c; if no level, count as all ["a","b","c"]
       {
@@ -289,8 +284,6 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
         // Otherwise, selecting a need would trivially constrain theme counts (and vice versa), which isn't useful for facet exploration.
         delete newMatch.thematiques;
         delete newMatch.besoins;
-      } else if (key === "departments") {
-        delete newMatch["metadatas.location"];
       } else if (key === "ageRanges") {
         delete newMatch.$and;
       } else if (key === "frenchLevels") {
@@ -322,7 +315,6 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   const response: SearchCountsResponse = {
     themes: data.themes || [],
     needs: data.needs || [],
-    departments: data.departments || [],
     frenchLevels: data.frenchLevels || [],
     ageRanges: data.ageRanges || [],
     publics: data.publics || [],

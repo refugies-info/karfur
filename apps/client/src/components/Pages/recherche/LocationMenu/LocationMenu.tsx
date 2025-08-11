@@ -106,9 +106,7 @@ const LocationMenu: React.FC<Props> = () => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
   }, [query.departments]);
 
-  const departmentCounts = useMemo(() => {
-    return Object.fromEntries((searchCounts?.departments || []).map(({ id, count }) => [id, count]));
-  }, [searchCounts]);
+  // No department counts shown anymore
 
   return (
     <div className={styles.container}>
@@ -131,15 +129,12 @@ const LocationMenu: React.FC<Props> = () => {
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
             .map(({ deptNo, placeName }) => {
-              const departmentName = getDepartmentNameFromCode(deptNo);
-              const count = departmentCounts[departmentName] || 0;
               return (
                 <CommonPlaceMenuItem
                   key={deptNo}
                   placeName={placeName}
                   deptNo={deptNo}
                   onSelectCommonPlace={onSelectCommonPlace}
-                  count={count}
                 />
               );
             })}
