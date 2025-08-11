@@ -59,6 +59,7 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
+  const isTranslateMode = useMemo(() => pageContext.mode === "translate", [pageContext.mode]);
 
   const handleShare = () => {
     if (navigatorShareSupported) {
@@ -84,30 +85,38 @@ const Header = (props: Props) => {
       )}
       <Title />
 
-      <div className="flex items-center gap-3 text-sm">
-        {dispositif?.mainSponsor?.picture?.secure_url && (
-          <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
-            <Image
-              src={dispositif?.mainSponsor?.picture?.secure_url}
-              width={150}
-              height={150}
-              alt={dispositif?.mainSponsor?.nom || ""}
-              className=""
-            />
-          </span>
-        )}
+      {!isEditMode && dispositif?.titreMarque && (
+        <p>
+          {t("Dispositif.with")} {dispositif.titreMarque}
+        </p>
+      )}
 
-        <span className="flex flex-col gap-1">
-          {isEditMode ? (
-            <SponsorsEdit />
-          ) : (
-            <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
+      {!isTranslateMode && (
+        <div className="flex items-center gap-3 text-sm">
+          {dispositif?.mainSponsor?.picture?.secure_url && (
+            <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
+              <Image
+                src={dispositif?.mainSponsor?.picture?.secure_url}
+                width={150}
+                height={150}
+                alt={dispositif?.mainSponsor?.nom || ""}
+                className=""
+              />
+            </span>
           )}
-          {isViewMode && dispositif?.date && (
-            <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
-          )}
-        </span>
-      </div>
+
+          <span className="flex flex-col gap-1">
+            {isEditMode ? (
+              <SponsorsEdit />
+            ) : (
+              <Sponsors sponsors={dispositif?.sponsors} mainSponsor={dispositif?.mainSponsor} />
+            )}
+            {isViewMode && dispositif?.date && (
+              <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
+            )}
+          </span>
+        </div>
+      )}
 
       {isViewMode && (
         <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">

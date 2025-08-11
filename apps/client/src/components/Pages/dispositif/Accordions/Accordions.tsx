@@ -71,9 +71,9 @@ const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, inde
         <>
           <span className="inline-flex items-start gap-2 leading-[1.75rem]">
             {sectionKey === "how" && contentType === ContentType.DEMARCHE && (
-              <span className="inline-flex aspect-square w-fit items-center justify-center rounded-full pt-1">
-                <span className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full p-[0.41669rem] md:p-0.5">
-                  <span className="text-center text-sm leading-[1.5rem] font-bold text-white">{index + 1}</span>
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full pt-1">
+                <span className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full p-[0.41669rem] text-white md:p-0.5">
+                  {index + 1}
                 </span>
               </span>
             )}

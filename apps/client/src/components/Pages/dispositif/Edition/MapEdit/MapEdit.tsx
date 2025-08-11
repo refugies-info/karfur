@@ -1,5 +1,5 @@
-import { GoogleMap, Libraries, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { CreateDispositifRequest, Poi } from "@refugies-info/api-types";
+import { cn, Map } from "@refugies-info/ui";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import MapIcon from "~/assets/dispositif/map-icon.png";
@@ -14,8 +14,6 @@ import Sidebar from "./Sidebar";
 
 export type Marker = Poi & { id: number };
 
-const libraries: Libraries = ["places"];
-
 const MapEdit = () => {
   const { setValue } = useFormContext<CreateDispositifRequest>();
   const markers: CreateDispositifRequest["map"] = useWatch({ name: "map" });
@@ -25,44 +23,15 @@ const MapEdit = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState((markers || []).length > 0);
 
-  const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [poiForm, setPoiForm] = useState<Partial<Poi> | null>(null);
-
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || "",
-    libraries,
-  });
+  const [focusLocation, setFocusLocation] = useState<((poi: Poi, zoomLevel?: number) => void) | null>(null);
 
   useEffect(() => {
     if (hasMap || poiForm) {
       setActiveSection?.("map");
     }
   }, [hasMap, poiForm, setActiveSection]);
-
-  const onLoad = useCallback(
-    (map: google.maps.Map) => {
-      const bounds = new google.maps.LatLngBounds();
-      if (!markers || markers.length === 0) {
-        bounds.extend(new google.maps.LatLng(48.856614, 2.3522219));
-      } else {
-        for (const marker of markers || []) {
-          if (!!marker.lat && !!marker.lng) {
-            bounds.extend(new google.maps.LatLng(marker.lat, marker.lng));
-          }
-        }
-      }
-
-      map.fitBounds(bounds);
-      setMap(map);
-    },
-    [markers],
-  );
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
-  }, []);
 
   /**
    * Click marker on map
@@ -75,24 +44,27 @@ const MapEdit = () => {
       if (marker && marker.lat && marker.lng) {
         setPoiForm(marker);
         setShowSidebar(false);
-        map?.setCenter({ lat: marker.lat, lng: marker.lng });
+        if (focusLocation) {
+          focusLocation(marker);
+        }
       }
     },
-    [map, markers],
+    [focusLocation, markers],
   );
 
   /**
    * Select place from suggestions
    */
-  const onSelectPlace = useCallback((place: google.maps.places.PlaceResult | null) => {
+  const onSelectPlace = useCallback((place: any | null) => {
     if (!place) return;
-    const lat = place.geometry?.location?.lat();
-    const lng = place.geometry?.location?.lng();
+    // Handle Nominatim result format
+    const lat = parseFloat(place.lat);
+    const lng = parseFloat(place.lon);
     if (lat && lng) {
       const newMarker: Poi = {
         title: "",
-        address: place.formatted_address || "",
-        city: place.address_components?.find((c) => c.types.includes("locality"))?.short_name || "",
+        address: place.display_name || "",
+        city: place.address?.city || place.address?.town || place.address?.village || "",
         lat,
         lng,
       };
@@ -150,6 +122,12 @@ const MapEdit = () => {
     setShowSidebar(false);
   }, [setValue]);
 
+  // Handle map ready event to get the focusLocation function
+  const handleMapReady = useCallback((fn: (poi: Poi, zoomLevel?: number) => void) => {
+    setFocusLocation(() => fn);
+    return fn;
+  }, []);
+
   return !hasMap ? (
     <AddContentButton onClick={() => setHasMap(true)} className="mb-8" optional>
       <span className={styles.add}>
@@ -158,10 +136,30 @@ const MapEdit = () => {
       </span>
     </AddContentButton>
   ) : (
-    <div className={styles.container}>
-      <Header onSelectPlace={onSelectPlace} onDelete={() => setShowDeleteModal(true)} />
+    <div
+      className={cn(
+        styles.container,
+        "lg:shadow-ri relative grid grid-cols-3 grid-rows-[auto_1fr] gap-0 bg-white print:shadow-none",
+      )}
+    >
+      <Header
+        onSelectPlace={onSelectPlace}
+        onDelete={() => setShowDeleteModal(true)}
+        className="border-default-grey z-20 col-span-3 items-center border-b p-2"
+      />
 
       {showSidebar && <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={selectedMarker} />}
+
+      <div onClick={() => setSelectedMarker(null)} className="relative z-1 col-span-2 h-full w-full">
+        <Map
+          mapData={markers || []}
+          className="absolute inset-0 !shadow-none lg:h-full"
+          title="Lieux d'accueil"
+          defaultFocusedPoi={selectedMarker !== null && markers ? markers[selectedMarker] : undefined}
+          showSidebar={false}
+        />
+      </div>
+
       {poiForm && (
         <PoiForm
           poiForm={poiForm}
@@ -173,41 +171,6 @@ const MapEdit = () => {
           }}
           onDelete={selectedMarker !== null ? () => deleteMarker(selectedMarker) : undefined}
         />
-      )}
-
-      {isLoaded && (
-        <GoogleMap
-          mapContainerStyle={{ width: "100%", height: "100%" }}
-          zoom={5}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-          onClick={() => setSelectedMarker(null)}
-          clickableIcons={false}
-          options={{
-            mapTypeControl: false,
-            fullscreenControl: false,
-            streetViewControl: false,
-            maxZoom: 12,
-            controlSize: 32,
-          }}
-        >
-          {(markers || []).map((marker, key) =>
-            marker?.lat && marker?.lng ? (
-              <MarkerF
-                key={key}
-                position={{
-                  lat: marker.lat,
-                  lng: marker.lng,
-                }}
-                icon={{
-                  url: "/images/map/pin.svg",
-                  anchor: new google.maps.Point(30, 42),
-                }}
-                onClick={() => selectMarker(key)}
-              ></MarkerF>
-            ) : null,
-          )}
-        </GoogleMap>
       )}
 
       <DeleteModal show={showDeleteModal} toggle={() => setShowDeleteModal((o) => !o)} onValidate={deleteMap} />

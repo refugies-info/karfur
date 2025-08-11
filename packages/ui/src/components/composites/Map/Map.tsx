@@ -18,9 +18,10 @@ type MapProps = {
   description?: string;
   mapData: Poi[];
   defaultFocusedPoi?: Poi;
+  showSidebar?: boolean;
 };
 
-export const Map = ({ className, title, description, mapData, defaultFocusedPoi }: MapProps) => {
+export const Map = ({ className, title, description, mapData, defaultFocusedPoi, showSidebar = true }: MapProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPoi, setFocusedPoi] = useState<Poi | null>(null);
   const previousFullscreenState = useRef(isFullscreen);
@@ -129,13 +130,14 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi 
     <MapContext.Provider value={contextValue}>
       <div
         className={cn(
-          "shadow-ri bg-white max-md:flex max-md:flex-col lg:grid lg:grid-cols-2 print:shadow-none",
+          "shadow-ri bg-white max-md:flex max-md:flex-col lg:grid print:shadow-none",
+          showSidebar && "lg:grid-cols-2",
           !isFullscreen && "lg:h-100",
           isFullscreen && "fixed inset-0 top-0 left-0 z-[9999] lg:grid-cols-4",
           className,
         )}
       >
-        <MapPanel />
+        {showSidebar && <MapPanel />}
         <DynamicLeafletMap
           className={cn("grid max-lg:min-h-128 max-md:h-[60vh] print:hidden", isFullscreen && "lg:col-span-3")}
         />
