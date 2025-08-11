@@ -22,6 +22,9 @@ jest.mock("../../../connectors/brevo/addToNewsletter", () => ({
 jest.mock("../../../modules/users/users.service", () => ({
   registerUser: jest.fn(() => fixtures.user),
 }));
+jest.mock("../../../modules/mail/mail.service", () => ({
+  sendNewsletterSubscriptionEmail: jest.fn(),
+}));
 
 describe("register", () => {
   beforeEach(() => {

@@ -17,9 +17,11 @@ declare type templateIds = {
   accountDeleted: string;
   validatedAndPublished: string;
   ficheArchived: string;
+  newsletterSubscriptionConfirmation: string;
 };
 
 export const templatesIds: templateIds = {
+  newsletterSubscriptionConfirmation: "d-ec6593ca35934720b60b5a5a54a0c32c",
   newUserWelcome: "d-a7bc1cf5d7184fa1aad89970e144dfb2",
   oneDraftReminder: "d-048cabb4f07943d9b41d657d249e0c4a",
   updateReminder: "d-061f2c1d0391492e84c7f5caf8292602",
