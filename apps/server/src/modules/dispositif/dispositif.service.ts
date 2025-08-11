@@ -433,7 +433,10 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   } else {
     // not first publication
     try {
-      if (draftVersionStatus === DispositifStatus.UPDATE_TO_VALIDATE) {
+      if (
+        draftVersionStatus === DispositifStatus.UPDATE_TO_VALIDATE ||
+        draftVersionStatus === DispositifStatus.DRAFT
+      ) {
         await Promise.all([
           notifyChange(NotifType.VALIDATED_AND_PUBLISHED, dispositifId, userId),
           sendMailWhenDispositifPublishedAfterUpdate(updatedDispositif),
