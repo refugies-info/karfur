@@ -215,7 +215,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
           if (searchTerm) {
             cases.push({
-              name: `${name} + ${b}`.replace("(skip", "(skip"),
+              name: `${name} + ${b}`,
               params: { search: searchTerm, ...params },
             });
           }
@@ -236,7 +236,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
             if (searchTerm) {
               cases.push({
-                name: `${name} + ${b} + ${c}`.replace("(skip", "(skip"),
+                name: `${name} + ${b} + ${c}`,
                 params: { search: searchTerm, ...params },
               });
             }
