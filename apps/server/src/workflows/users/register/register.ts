@@ -3,6 +3,7 @@ import passwordHash from "password-hash";
 import { addToNewsletter } from "~/connectors/brevo";
 import { isPasswordOk } from "~/libs/validatePassword";
 import logger from "~/logger";
+import { sendNewsletterSubscriptionEmail } from "~/modules/mail/mail.service";
 import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
 import { registerUser } from "~/modules/users/users.service";
@@ -26,6 +27,7 @@ export const register = async (body: RegisterRequest): Promise<LoginResponse> =>
     if (body.subscribeNewsletter) {
       try {
         await addToNewsletter(body.email);
+        await sendNewsletterSubscriptionEmail(body.email, true);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (_) {
         logger.error("[register] error, not added to newsletter", { email: body.email });
