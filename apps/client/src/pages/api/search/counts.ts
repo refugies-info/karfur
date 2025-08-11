@@ -138,8 +138,8 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const statuses = (query.status ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (statuses.length > 0) {
-    // Filter by refugee statuses stored in metadatas.status (document status remains constrained to "Actif")
-    match["metadatas.status"] = { $in: statuses };
+    // Filter by refugee statuses stored in metadatas.publicStatus (document status remains constrained to "Actif")
+    match["metadatas.publicStatus"] = { $in: statuses };
   }
   const languages = (query.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (languages.length > 0) {
@@ -227,8 +227,28 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     ],
     publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
     languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
-    // Count refugee statuses in metadatas.status
-    statuses: [{ $unwind: "$metadatas.status" }, { $group: { _id: "$metadatas.status", count: { $sum: 1 } } }],
+    // Count refugee statuses in metadatas.publicStatus (normalize to array first)
+    statuses: [
+      {
+        $project: {
+          _normStatuses: {
+            $cond: [
+              { $isArray: "$metadatas.publicStatus" },
+              "$metadatas.publicStatus",
+              {
+                $cond: [
+                  { $and: [{ $ne: ["$metadatas.publicStatus", null] }, { $ne: ["$metadatas.publicStatus", ""] }] },
+                  ["$metadatas.publicStatus"],
+                  [],
+                ],
+              },
+            ],
+          },
+        },
+      },
+      { $unwind: "$_normStatuses" },
+      { $group: { _id: "$_normStatuses", count: { $sum: 1 } } },
+    ],
     ageRanges: [
       {
         $addFields: {
@@ -300,7 +320,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
       } else if (key === "languages") {
         delete newMatch.availableLanguages;
       } else if (key === "statuses") {
-        delete newMatch["metadatas.status"];
+        delete newMatch["metadatas.publicStatus"];
       }
 
       (acc as any)[key] = [
