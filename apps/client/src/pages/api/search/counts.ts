@@ -43,7 +43,7 @@ export const getQueryParamAsArray = (param: string | string[] | undefined): stri
 };
 
 export interface QueryParams {
-  query?: string;
+  search?: string;
   departments?: string[];
   themes?: string[];
   needs?: string[];
@@ -89,7 +89,9 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
       }
       orConds.push({ $and: [{ $eq: ["$metadatas.age.type", "moreThan"] }, { $lte: ["$metadatas.age.ages.0", min] }] });
       if (max !== null) {
-        orConds.push({ $and: [{ $eq: ["$metadatas.age.type", "lessThan"] }, { $gte: ["$metadatas.age.ages.0", max] }] });
+        orConds.push({
+          $and: [{ $eq: ["$metadatas.age.type", "lessThan"] }, { $gte: ["$metadatas.age.ages.0", max] }],
+        });
       }
       return { $or: orConds };
     };
@@ -142,7 +144,7 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
 };
 
 export const buildQueryParams = (query: any): QueryParams => ({
-  query: query.query as string,
+  search: query.query as string,
   departments: getQueryParamAsArray(query.departments),
   themes: getQueryParamAsArray(query.themes),
   needs: getQueryParamAsArray(query.needs),
@@ -157,11 +159,11 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   const Dispositif = conn.models.Dispositif || conn.model("Dispositif");
 
   let algoliaIds: string[] | undefined = undefined;
-  if (queryParams.query) {
+  if (queryParams.search) {
     const searchResults = await algoliaClient.searchSingleIndex({
       indexName,
       searchParams: {
-        query: queryParams.query,
+        query: queryParams.search,
         attributesToRetrieve: ["objectID"],
         hitsPerPage: 1000,
       },
@@ -218,18 +220,21 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
     languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
     // Count refugee statuses in metadatas.status
-    statuses: [
-      { $unwind: "$metadatas.status" },
-      { $group: { _id: "$metadatas.status", count: { $sum: 1 } } },
-    ],
+    statuses: [{ $unwind: "$metadatas.status" }, { $group: { _id: "$metadatas.status", count: { $sum: 1 } } }],
     ageRanges: [
       {
         $addFields: {
           minAge: {
             $switch: {
               branches: [
-                { case: { $eq: ["$metadatas.age.type", "between"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } } },
-                { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } } },
+                {
+                  case: { $eq: ["$metadatas.age.type", "between"] },
+                  then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+                },
+                {
+                  case: { $eq: ["$metadatas.age.type", "moreThan"] },
+                  then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+                },
                 { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: 0 },
               ],
               default: 0,
@@ -238,9 +243,15 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
           maxAge: {
             $switch: {
               branches: [
-                { case: { $eq: ["$metadatas.age.type", "between"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] } } },
+                {
+                  case: { $eq: ["$metadatas.age.type", "between"] },
+                  then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] } },
+                },
                 { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: 1000000 },
-                { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } } },
+                {
+                  case: { $eq: ["$metadatas.age.type", "lessThan"] },
+                  then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+                },
               ],
               default: 0,
             },

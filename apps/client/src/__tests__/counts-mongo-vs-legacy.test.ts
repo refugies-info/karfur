@@ -83,8 +83,8 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     ...p,
   });
 
-  const toParams = (p: Partial<QueryParams> & { search?: string }): QueryParams => ({
-    query: p.search ?? p.query,
+  const toParams = (p: Partial<QueryParams>): QueryParams => ({
+    search: "",
     departments: [],
     themes: [],
     needs: [],
