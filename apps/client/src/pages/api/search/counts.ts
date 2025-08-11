@@ -156,7 +156,13 @@ export const buildQueryParams = (query: any): QueryParams => ({
 });
 
 export const computeSearchCounts = async (conn: any, queryParams: QueryParams): Promise<SearchCountsResponse> => {
-  const Dispositif = conn.models.Dispositif || conn.model("Dispositif");
+  // Ensure the Dispositif model is registered (use a permissive schema for aggregation-only usage)
+  const Dispositif =
+    conn.models.Dispositif ||
+    conn.model(
+      "Dispositif",
+      new mongoose.Schema({}, { strict: false, collection: "dispositifs" }),
+    );
 
   let algoliaIds: string[] | undefined = undefined;
   if (queryParams.search) {
