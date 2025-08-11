@@ -84,7 +84,7 @@
     "@react-navigation/core": "^6.4.10",
     "@refugies-info/api-types": "workspace:*",
     "@testing-library/react": "^15.0.7",
-    "@testing-library/react-native": "^12.9.0",
+    "@testing-library/react-native": "^13.2.2",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.20",
     "@types/node": "^22.17.0",
