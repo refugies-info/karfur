@@ -6,11 +6,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../lib/db";
 
 // Initialize Algolia client
-const algoliaClient = searchClient(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "L9HYT1676M",
-  process.env.ALGOLIA_ADMIN_KEY || "",
-);
-const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX || "dispositifs";
+const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
+const indexName =
+  (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
+    ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
+    : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG) || "";
 
 // Define types locally
 export interface CountItem {
