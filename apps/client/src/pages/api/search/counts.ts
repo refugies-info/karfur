@@ -60,20 +60,27 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
     match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
   }
 
-  const departments = query.departments ?? [];
+  const departments = (query.departments ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (departments.length > 0) {
-    // Mirror legacy behavior: exact match against provided values
-    match["metadatas.location"] = { $in: departments };
+    // Accept both full tokens (e.g., "67 - Bas-Rhin", "france", "online")
+    // and county-only names (e.g., "Bas-Rhin"). For county-only names, match
+    // documents whose metadatas.location ends with " - <County>" (case-insensitive).
+    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const tokensOrRegexes = departments.map((dep) => {
+      if (dep === "france" || dep === "online" || dep.includes(" - ")) return dep;
+      return new RegExp(` \\- ${escapeRegExp(dep)}$`, "i");
+    });
+    match["metadatas.location"] = { $in: tokensOrRegexes };
   }
-  const themes = query.themes ?? [];
+  const themes = (query.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (themes.length > 0) {
     match["thematiques"] = { $in: themes.map((t: string) => new mongoose.Types.ObjectId(t)) };
   }
-  const needs = query.needs ?? [];
+  const needs = (query.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (needs.length > 0) {
     match["besoins"] = { $in: needs.map((n: string) => new mongoose.Types.ObjectId(n)) };
   }
-  const ages = query.age ?? [];
+  const ages = (query.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
   if (ages.length > 0) {
     const binToExpr = (min: number, max: number | null) => {
       const orConds: any[] = [];
@@ -103,7 +110,7 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
     });
     match.$and = (match.$and || []).concat({ $expr: { $or: ageExprs } });
   }
-  const frenchLevel = query.frenchLevel ?? [];
+  const frenchLevel = (query.frenchLevel ?? []).filter((x): x is FrenchOptions => x === "a" || x === "b" || x === "c");
   if (frenchLevel.length > 0) {
     // Map FrenchOptions (a/b/c) to concrete levels stored in Mongo
     const expand = (opts: FrenchOptions[]): string[] => {
@@ -125,16 +132,16 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
       match["metadatas.frenchLevel"] = { $in: expanded };
     }
   }
-  const publics = query.public ?? [];
+  const publics = (query.public ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (publics.length > 0) {
     match["metadatas.public"] = { $in: publics };
   }
-  const statuses = query.status ?? [];
+  const statuses = (query.status ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (statuses.length > 0) {
     // Filter by refugee statuses stored in metadatas.status (document status remains constrained to "Actif")
     match["metadatas.status"] = { $in: statuses };
   }
-  const languages = query.language ?? [];
+  const languages = (query.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (languages.length > 0) {
     match["availableLanguages"] = { $in: languages };
   }
