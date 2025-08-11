@@ -1,8 +1,8 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
 import { isIOS } from "react-device-detect";
-import HeroBackground from "~/assets/homepage/hero/background-image.svg";
-import Character from "~/assets/homepage/hero/character.svg";
+import HeroBackground from "~/assets/homepage/hero/background-image.svg?url";
+import Character from "~/assets/homepage/hero/character.svg?url";
 import WhiteWave from "~/components/Pages/homepage/Sections/Hero/WhiteWave";
 
 import Image from "~/components/UI/Image";

@@ -1,4 +1,4 @@
-@import "~/scss/variables";
+@use "../../variables";
 
 .modal {
   min-width: 100px;
@@ -7,7 +7,7 @@
     background: #e0e0e0;
     border: hidden;
     box-shadow: 0 4px 40px rgb(0 0 0 / 25%);
-    border-radius: $radius;
+    border-radius: variables.$radius;
     mix-blend-mode: normal;
   }
 }

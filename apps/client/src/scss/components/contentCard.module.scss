@@ -1,9 +1,9 @@
-@import "~/scss/colors";
-@import "~/scss/mixins/responsive";
-@import "~/scss/mixins/unit";
-@import "~/scss/mixins/rtl";
-@import "~/scss/mixins/text";
-@import "~/scss/variables";
+@use "../../colors";
+@use "../../mixins/responsive";
+@use "../../mixins/unit";
+@use "../../mixins/rtl";
+@use "../../mixins/text";
+@use "../../variables";
 
 $shadowHeight: 1.4rem;
 
@@ -49,14 +49,14 @@ $shadowHeight: 1.4rem;
     display: grid;
     grid-template-rows: 1fr 9.125em 1em;
     grid-template-columns: 100%;
-    gap: u(4);
-    padding: u(6);
-    padding-bottom: u(6) !important; // override dsfr
+    gap: unit.u(4);
+    padding: unit.u(6);
+    padding-bottom: unit.u(6) !important; // override dsfr
     margin-left: 0;
     margin-right: 0;
 
-    @include media-max("sm-limit") {
-      gap: u(2);
+    @include responsive.media-max("sm-limit") {
+      gap: unit.u(2);
       display: flex;
       flex-direction: column;
     }
@@ -69,13 +69,13 @@ $shadowHeight: 1.4rem;
     flex-shrink: 0;
     z-index: 1;
 
-    @include media-max("sm-limit") {
+    @include responsive.media-max("sm-limit") {
       height: auto;
     }
 
     & p {
-      @include media-max("sm-limit") {
-        @include dsfr-text("normal");
+      @include responsive.media-max("sm-limit") {
+        @include text.dsfr-text("normal");
       }
     }
   }
@@ -87,7 +87,7 @@ $shadowHeight: 1.4rem;
   }
 
   :global(.fr-badges-group) {
-    @include rtl {
+    @include rtl.rtl {
       right: 0;
       left: auto;
     }
@@ -124,14 +124,14 @@ $shadowHeight: 1.4rem;
   gap: 0.3em;
   height: 1.4em;
 
-  @include media-min("sm-limit") {
+  @include responsive.media-min("sm-limit") {
     // The gradient to mask the overflowing text above
     &::before {
       z-index: 2;
       pointer-events: none !important; // to keep the whole card clickable
       content: "";
       position: absolute;
-      top: - u(4);
+      top: - unit.u(4);
       right: 0;
       left: -0.75em;
       transform: translateY(calc(-100%));
@@ -147,7 +147,7 @@ $shadowHeight: 1.4rem;
       line-height: 1em !important;
       color: var(--text-action-high-blue-france);
 
-      @include rtl {
+      @include rtl.rtl {
         transform: rotate(180deg);
       }
     }
@@ -157,15 +157,15 @@ $shadowHeight: 1.4rem;
 /* Favorite button */
 .favorite {
   position: absolute;
-  top: u(2);
+  top: unit.u(2);
   z-index: 5;
 
-  @include ltr {
-    right: u(3);
+  @include rtl.ltr {
+    right: unit.u(3);
   }
 
-  @include rtl {
-    left: u(3);
+  @include rtl.rtl {
+    left: unit.u(3);
   }
 }
 
@@ -180,10 +180,10 @@ $shadowHeight: 1.4rem;
   height: 1.4em;
 
   & > span {
-    @include dsfr-text("very-small");
+    @include text.dsfr-text("very-small");
 
-    @include media-max("sm-limit") {
-      @include dsfr-text("small");
+    @include responsive.media-max("sm-limit") {
+      @include text.dsfr-text("small");
     }
 
     display: inline;
@@ -202,22 +202,22 @@ $shadowHeight: 1.4rem;
   position: absolute;
   border: 1px solid var(--border-default-grey);
   background: white;
-  top: (u(-6) + u(-6)) - 1; /* padding top + half of image size - border top */
+  top: (unit.u(-6) + unit.u(-6)) - 1; /* padding top + half of image size - border top */
   z-index: 1;
 
-  @include ltr {
-    right: u(-2);
+  @include rtl.ltr {
+    right: unit.u(-2);
   }
 
-  @include rtl {
-    left: u(-2);
+  @include rtl.rtl {
+    left: unit.u(-2);
   }
 }
 
 .title {
   color: var(--text-title-grey);
 
-  @include dsfr-text("h6");
+  @include text.dsfr-text("h6");
 }
 
 .three_lines {
