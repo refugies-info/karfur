@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Autocomplete from "react-google-autocomplete";
+import { useEffect, useState } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FilterButton from "~/components/UI/FilterButton";
 import { cls } from "~/lib/classname";
@@ -10,17 +9,31 @@ interface Props {
   setSelectedDepartment: (callback: any) => void;
 }
 
+interface Department {
+  nom: string;
+  code: string;
+}
+
 export const LocationInput = (props: Props) => {
   const [geoSearch, setGeoSearch] = useState(false);
   const [search, setSearch] = useState("");
+  const [suggestions, setSuggestions] = useState<Department[]>([]);
 
-  const onPlaceSelected = (place: any) => {
-    let depName = place.address_components[0]?.short_name;
-    if (depName) {
-      if (depName === "Département de Paris") depName = "Paris";
-      props.setSelectedDepartment(depName);
-      setGeoSearch(false);
+  useEffect(() => {
+    if (search.length > 2) {
+      fetch(`https://geo.api.gouv.fr/departements?nom=${search}`)
+        .then((response) => response.json())
+        .then((data) => setSuggestions(data));
+    } else {
+      setSuggestions([]);
     }
+  }, [search]);
+
+  const onPlaceSelected = (depName: string) => {
+    props.setSelectedDepartment(depName);
+    setGeoSearch(false);
+    setSearch("");
+    setSuggestions([]);
   };
 
   const handleChange = (e: any) => setSearch(e.target.value);
@@ -31,19 +44,27 @@ export const LocationInput = (props: Props) => {
 
       {/* maps autocomplete field */}
       {geoSearch && (
-        <div>
-          <Autocomplete
-            apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
+        <div className="position-relative">
+          <input
+            type="text"
             value={search}
             onChange={handleChange}
-            onPlaceSelected={onPlaceSelected}
-            options={{
-              componentRestrictions: { country: "fr" },
-              types: ["administrative_area_level_2"],
-            }}
             autoFocus
             className={parentStyles.fake_field}
           />
+          {suggestions.length > 0 && (
+            <ul className="list-group position-absolute w-100" style={{ zIndex: 1000 }}>
+              {suggestions.map((dep) => (
+                <li
+                  key={dep.code}
+                  className="list-group-item list-group-item-action"
+                  onClick={() => onPlaceSelected(dep.nom)}
+                >
+                  {dep.nom}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 

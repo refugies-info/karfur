@@ -1,15 +1,13 @@
-export const getPlaceName = (prediction: google.maps.places.AutocompletePrediction): string => {
-  const placeName = prediction.terms[0]?.value;
+export const getPlaceName = (feature: any): string => {
+  const { properties } = feature;
+  const placeName = properties.name;
   if (placeName) {
-    if (prediction.types.includes("locality")) {
+    if (properties.type === "municipality") {
       return `${placeName} (ville)`;
     }
-    if (prediction.types.includes("administrative_area_level_2")) {
+    if (properties.type === "administrativearea") {
       return `${placeName} (département)`;
     }
-    if (prediction.types.includes("postal_code")) {
-      return `${placeName} ${prediction.terms[1]?.value || ""} (ville)`;
-    }
   }
-  return prediction.description;
+  return properties.label;
 };

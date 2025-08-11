@@ -109,7 +109,6 @@ export default {
     jsEngine: "hermes",
     plugins: [
       "./src/utils/withSimulatorExcludedArchitectures.js",
-      "./build-scripts/withGoogleMapsApiKey.js",
       // "./build-scripts/withM1build.js",
       [
         "expo-build-properties",
