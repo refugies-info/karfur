@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
+// Note: Do NOT validate MONGODB_URI at module load time.
+// In tests and some CI contexts (e.g., PRs from forks), this env var may be absent
+// because we use an in-memory MongoDB server. We validate only when connecting.
 const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
-}
 
 declare global {
   var mongoose: any; // This must be a `var` and not a `let / const`
@@ -25,6 +24,10 @@ async function dbConnect() {
     const opts = {
       bufferCommands: false,
     };
+
+    if (!MONGODB_URI) {
+      throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+    }
 
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
       return mongoose;
