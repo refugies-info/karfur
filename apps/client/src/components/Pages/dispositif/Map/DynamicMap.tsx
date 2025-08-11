@@ -1,6 +1,6 @@
 import { Poi } from "@refugies-info/api-types";
 import L from "leaflet";
-import { MapContainer, Marker as LeafletMarker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker as LeafletMarker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import styles from "./Map.module.scss";
 import PopupContent from "./PopupContent";
 
@@ -29,14 +29,22 @@ interface Props {
   setMap: (map: L.Map | null) => void;
 }
 
+const MapEvents = ({ setPopup }: { setPopup: (marker: Marker | null) => void }) => {
+  useMapEvents({
+    click: () => {
+      setPopup(null);
+    },
+  });
+  return null;
+};
+
 const DynamicMap = ({ markers, popup, setPopup, selectMarker, setMap }: Props) => {
   return (
     <MapContainer
-      whenCreated={setMap}
+      whenReady={() => setMap}
       style={{ width: "100%", height: "100%" }}
       center={markers.length === 0 ? [48.856614, 2.3522219] : undefined}
       zoom={5}
-      onclick={() => setPopup(null)}
       attributionControl={false}
     >
       <TileLayer
@@ -44,6 +52,7 @@ const DynamicMap = ({ markers, popup, setPopup, selectMarker, setMap }: Props) =
         url="https://wxs.ign.fr/essentiels/geoportail/wmts?layer=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&TileMatrix={z}&TileCol={x}&TileRow={y}"
       />
       <SetBounds markers={markers} />
+      <MapEvents setPopup={setPopup} />
       {markers.map((marker, key) => (
         <LeafletMarker
           key={key}
