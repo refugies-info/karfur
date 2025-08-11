@@ -118,103 +118,43 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     }));
   };
 
-  test("baseline: totals and facets match (no filters)", async () => {
-    const params = toParams({});
-    const api = await computeSearchCounts(conn, params);
+  // Helper to register a suite of facet comparison tests from a list of cases
+  const runFacetTests = (
+    cases: Array<{
+      name: string;
+      params: Partial<QueryParams>;
+      legacy: Partial<LegacyQuery>;
+    }>,
+  ) => {
+    for (const c of cases) {
+      test(c.name, async () => {
+        const params = toParams(c.params);
+        const api = await computeSearchCounts(conn, params);
 
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
+        const all = await getAllDispositifs();
+        const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery(c.legacy));
 
-    expectCountsEqual(api, legacy);
-  });
+        expectCountsEqual(api, legacy);
+      });
+    }
+  };
 
-  test("departments facet matches legacy when department filter applied (skip location)", async () => {
-    const params = toParams({ departments: ["75"] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ departments: ["75"] }));
-
-    expectCountsEqual(api, legacy);
-  });
-
-  test("frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", async () => {
-    const params = toParams({ frenchLevel: ["a"] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
-
-    expectCountsEqual(api, legacy);
-  });
-
-  test("language facet matches legacy when language filter applied (skip language)", async () => {
-    const params = toParams({ language: ["fr"] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ language: ["fr"] }));
-
-    expectCountsEqual(api, legacy);
-  });
-
-  test("public facet matches legacy when public filter applied (skip public)", async () => {
-    const params = toParams({ public: ["family"] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ public: ["family"] }));
-
-    expectCountsEqual(api, legacy);
-  });
-
-  test("status facet matches legacy when status filter applied (skip status)", async () => {
-    const params = toParams({ status: ["refugie"] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ status: ["refugie"] }));
-
-    expectCountsEqual(api, legacy);
-  });
-
-  // Test themes
-  test("themes facet matches legacy when theme filter applied (skip theme)", async () => {
-    const params = toParams({ themes: [ids.themeB.toString()] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ themes: [ids.themeB.toString()] }));
-
-    expectCountsEqual(api, legacy);
-  });
-
-  // Test needs
-  test("needs facet matches legacy when needs filter applied (skip needs)", async () => {
-    // Include the corresponding theme to mirror legacy behavior where needs are evaluated within the selected theme
-    const params = toParams({ themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(
-      all as any,
-      needsList,
-      toLegacyQuery({ themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] }),
-    );
-
-    expectCountsEqual(api, legacy);
-  });
-
-  // Test search
-  test("search facet matches legacy when search filter applied (skip search)", async () => {
-    const params = toParams({ search: "jeunes" });
-    const api = await computeSearchCounts(conn, params);
-
-    const all = await getAllDispositifs();
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ search: "jeunes" }));
-
-    expectCountsEqual(api, legacy);
-  });
+  runFacetTests([
+    { name: "baseline: totals and facets match (no filters)", params: {}, legacy: {} },
+    { name: "departments facet matches legacy when department filter applied (skip location)", params: { departments: ["75"] }, legacy: { departments: ["75"] } },
+    { name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", params: { frenchLevel: ["a"] }, legacy: { frenchLevel: ["a"] } },
+    { name: "language facet matches legacy when language filter applied (skip language)", params: { language: ["fr"] }, legacy: { language: ["fr"] } },
+    { name: "public facet matches legacy when public filter applied (skip public)", params: { public: ["family"] }, legacy: { public: ["family"] } },
+    { name: "status facet matches legacy when status filter applied (skip status)", params: { status: ["refugie"] }, legacy: { status: ["refugie"] } },
+    { name: "themes facet matches legacy when theme filter applied (skip theme)", params: { themes: [ids.themeB.toString()] }, legacy: { themes: [ids.themeB.toString()] } },
+    {
+      name: "needs facet matches legacy when needs filter applied (skip needs)",
+      // Include the corresponding theme to mirror legacy behavior where needs are evaluated within the selected theme
+      params: { themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] },
+      legacy: { themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] },
+    },
+    { name: "search facet matches legacy when search filter applied (skip search)", params: { search: "jeunes" }, legacy: { search: "jeunes" } },
+  ]);
 
   // *******************************************************
   // Randomized dataset using fast-check generated documents
@@ -228,102 +168,16 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       await seedRandomDispositifs(conn, ids, 500, 12345);
     });
 
-    test("baseline: totals and facets match (no filters)", async () => {
-      const params = toParams({});
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test location
-    test("departments facet matches legacy when department filter applied (skip location)", async () => {
-      const params = toParams({ departments: ["75"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ departments: ["75"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test frenchLevel
-    test("frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", async () => {
-      const params = toParams({ frenchLevel: ["a"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test language
-    test("language facet matches legacy when language filter applied (skip language)", async () => {
-      const params = toParams({ language: ["fr"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ language: ["fr"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test public
-    test("public facet matches legacy when public filter applied (skip public)", async () => {
-      const params = toParams({ public: ["family"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ public: ["family"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test refugee status
-    test("status facet matches legacy when status filter applied (skip status)", async () => {
-      const params = toParams({ status: ["refugie"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ status: ["refugie"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test themes
-    test("themes facet matches legacy when theme filter applied (skip theme)", async () => {
-      const params = toParams({ themes: ["6319f6b363ab2bbb162d7df5"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ themes: ["6319f6b363ab2bbb162d7df5"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test needs
-    test("needs facet matches legacy when needs filter applied (skip needs)", async () => {
-      const params = toParams({ needs: ["6319f6b363ab2bbb162d7df6"] });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ needs: ["6319f6b363ab2bbb162d7df6"] }));
-
-      expectCountsEqual(api, legacy);
-    });
-
-    // Test search
-    test("search facet matches legacy when search filter applied (skip search)", async () => {
-      const params = toParams({ search: "jeunes" });
-      const api = await computeSearchCounts(conn, params);
-
-      const all = await getAllDispositifs();
-      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ search: "jeunes" }));
-
-      expectCountsEqual(api, legacy);
-    });
+    runFacetTests([
+      { name: "baseline: totals and facets match (no filters)", params: {}, legacy: {} },
+      { name: "departments facet matches legacy when department filter applied (skip location)", params: { departments: ["75"] }, legacy: { departments: ["75"] } },
+      { name: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", params: { frenchLevel: ["a"] }, legacy: { frenchLevel: ["a"] } },
+      { name: "language facet matches legacy when language filter applied (skip language)", params: { language: ["fr"] }, legacy: { language: ["fr"] } },
+      { name: "public facet matches legacy when public filter applied (skip public)", params: { public: ["family"] }, legacy: { public: ["family"] } },
+      { name: "status facet matches legacy when status filter applied (skip status)", params: { status: ["refugie"] }, legacy: { status: ["refugie"] } },
+      { name: "themes facet matches legacy when theme filter applied (skip theme)", params: { themes: ["6319f6b363ab2bbb162d7df5"] }, legacy: { themes: ["6319f6b363ab2bbb162d7df5"] } },
+      { name: "needs facet matches legacy when needs filter applied (skip needs)", params: { needs: ["6319f6b363ab2bbb162d7df6"] }, legacy: { needs: ["6319f6b363ab2bbb162d7df6"] } },
+      { name: "search facet matches legacy when search filter applied (skip search)", params: { search: "jeunes" }, legacy: { search: "jeunes" } },
+    ]);
   });
 });
