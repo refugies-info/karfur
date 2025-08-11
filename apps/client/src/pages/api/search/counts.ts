@@ -278,6 +278,9 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     (acc, [key, pipeline]) => {
       const newMatch: any = { ...baseMatch };
       if (key === "themes" || key === "needs") {
+        // Themes and needs are dependent/hierarchical facets (a selected need implies its parent theme).
+        // When computing counts for either facet, drop BOTH filters to avoid self- and cross-filtering bias.
+        // Otherwise, selecting a need would trivially constrain theme counts (and vice versa), which isn't useful for facet exploration.
         delete newMatch.thematiques;
         delete newMatch.besoins;
       } else if (key === "departments") {
