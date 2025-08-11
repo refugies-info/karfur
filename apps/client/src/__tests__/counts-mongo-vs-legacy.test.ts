@@ -143,18 +143,109 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
   const makeCase = (name: string, params: Partial<QueryParams>) =>
     ({ name, params, legacy: params as Partial<LegacyQuery> });
 
-  runFacetTests([
-    makeCase("baseline: totals and facets match (no filters)", {}),
-    makeCase("departments facet matches legacy when department filter applied (skip location)", { departments: ["75"] }),
-    makeCase("frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", { frenchLevel: ["a"] }),
-    makeCase("language facet matches legacy when language filter applied (skip language)", { language: ["fr"] }),
-    makeCase("public facet matches legacy when public filter applied (skip public)", { public: ["family"] }),
-    makeCase("status facet matches legacy when status filter applied (skip status)", { status: ["refugie"] }),
-    makeCase("themes facet matches legacy when theme filter applied (skip theme)", { themes: [ids.themeB.toString()] }),
-    // Include the corresponding theme to mirror legacy behavior where needs are evaluated within the selected theme
-    makeCase("needs facet matches legacy when needs filter applied (skip needs)", { themes: [ids.themeB.toString()], needs: [ids.needB1.toString()] }),
-    makeCase("search facet matches legacy when search filter applied (skip search)", { search: "jeunes" }),
-  ]);
+  // Title helpers
+  const singleTitles: Record<string, string> = {
+    departments: "departments facet matches legacy when department filter applied (skip location)",
+    frenchLevel: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)",
+    language: "language facet matches legacy when language filter applied (skip language)",
+    public: "public facet matches legacy when public filter applied (skip public)",
+    status: "status facet matches legacy when status filter applied (skip status)",
+    themes: "themes facet matches legacy when theme filter applied (skip theme)",
+    needs: "needs facet matches legacy when needs filter applied (skip needs)",
+  } as const;
+
+  type FiltersDef = Record<string, any[]>;
+
+  // Generate test params from filters
+  const generateCases = (options: {
+    filters: FiltersDef;
+    includeZero?: boolean;
+    includeSingles?: boolean;
+    includePairs?: boolean;
+    searchTerm?: string | null;
+    // When true, the single "needs" case will also add the provided theme id in params
+    needsSinglesIncludeThemeId?: string | null;
+  }): Array<{ name: string; params: Partial<QueryParams> }> => {
+    const {
+      filters,
+      includeZero = false,
+      includeSingles = true,
+      includePairs = false,
+      searchTerm = null,
+      needsSinglesIncludeThemeId = null,
+    } = options;
+
+    const entries = Object.entries(filters);
+    const cases: Array<{ name: string; params: Partial<QueryParams> }> = [];
+
+    if (includeZero) {
+      cases.push({ name: "baseline: totals and facets match (no filters)", params: {} });
+      if (searchTerm) {
+        cases.push({ name: "search facet matches legacy when search filter applied (skip search)", params: { search: searchTerm } });
+      }
+    }
+
+    if (includeSingles) {
+      for (const [key, value] of entries) {
+        const params: any = { [key]: value };
+        if (key === "needs" && needsSinglesIncludeThemeId) {
+          params.themes = [needsSinglesIncludeThemeId];
+        }
+        cases.push({ name: singleTitles[key] || key, params });
+
+        if (searchTerm) {
+          cases.push({
+            name: `${singleTitles["search"] ?? "search facet matches legacy when search filter applied (skip search)"} + ${key}`,
+            params: { search: searchTerm, ...params },
+          });
+        }
+      }
+    }
+
+    if (includePairs && entries.length > 1) {
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i + 1; j < entries.length; j++) {
+          const [a, av] = entries[i];
+          const [b, bv] = entries[j];
+          const name = singleTitles[a] || a;
+          const params: any = { [a]: av, [b]: bv };
+          cases.push({ name, params });
+
+          if (searchTerm) {
+            cases.push({
+              name: `${name} + ${b}`.replace("(skip", "(skip"),
+              params: { search: searchTerm, ...params },
+            });
+          }
+        }
+      }
+    }
+
+    return cases;
+  };
+
+  // Seeded dataset cases
+  const seededFilters: FiltersDef = {
+    departments: ["75"],
+    frenchLevel: ["a"],
+    language: ["fr"],
+    public: ["family"],
+    status: ["refugie"],
+    themes: [ids.themeB.toString()],
+    needs: [ids.needB1.toString()],
+  };
+
+  runFacetTests(
+    generateCases({
+      filters: seededFilters,
+      includeZero: true,
+      includeSingles: true,
+      includePairs: false,
+      searchTerm: "jeunes",
+      // special rule: needs singles also include themeB
+      needsSinglesIncludeThemeId: ids.themeB.toString(),
+    }).map((c) => makeCase(c.name, c.params)),
+  );
 
   // *******************************************************
   // Randomized dataset using fast-check generated documents
@@ -168,45 +259,25 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       await seedRandomDispositifs(conn, ids, 500, 12345);
     });
 
-    runFacetTests([
-      // No parameters
-      makeCase("baseline: totals and facets match (no filters)", {}),
+    // Randomized dataset cases
+    const randomFilters: FiltersDef = {
+      departments: ["75"],
+      frenchLevel: ["a"],
+      language: ["fr"],
+      public: ["family"],
+      status: ["refugie"],
+      themes: ["6319f6b363ab2bbb162d7df5"],
+      needs: ["6319f6b363ab2bbb162d7df6"],
+    };
 
-      // Single parameter
-      makeCase("departments facet matches legacy when department filter applied (skip location)", { departments: ["75"] }),
-      makeCase("frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", { frenchLevel: ["a"] }),
-      makeCase("language facet matches legacy when language filter applied (skip language)", { language: ["fr"] }),
-      makeCase("public facet matches legacy when public filter applied (skip public)", { public: ["family"] }),
-      makeCase("status facet matches legacy when status filter applied (skip status)", { status: ["refugie"] }),
-      makeCase("themes facet matches legacy when theme filter applied (skip theme)", { themes: ["6319f6b363ab2bbb162d7df5"] }),
-      makeCase("needs facet matches legacy when needs filter applied (skip needs)", { needs: ["6319f6b363ab2bbb162d7df6"] }),
-
-      // Search with single parameter
-      makeCase("search facet matches legacy when search filter applied (skip search)", { search: "jeunes" }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments", { search: "jeunes", departments: ["75"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + frenchLevel", { search: "jeunes", frenchLevel: ["a"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + language", { search: "jeunes", language: ["fr"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + public", { search: "jeunes", public: ["family"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + status", { search: "jeunes", status: ["refugie"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + themes", { search: "jeunes", themes: ["6319f6b363ab2bbb162d7df5"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + needs", { search: "jeunes", needs: ["6319f6b363ab2bbb162d7df6"] }),
-
-      // Two parameters
-      makeCase("departments facet matches legacy when department filter applied (skip location)", { departments: ["75"], frenchLevel: ["a"] }),
-      makeCase("frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)", { frenchLevel: ["a"], language: ["fr"] }),
-      makeCase("language facet matches legacy when language filter applied (skip language)", { language: ["fr"], public: ["family"] }),
-      makeCase("public facet matches legacy when public filter applied (skip public)", { public: ["family"], status: ["refugie"] }),
-      makeCase("status facet matches legacy when status filter applied (skip status)", { status: ["refugie"], themes: ["6319f6b363ab2bbb162d7df5"] }),
-      makeCase("themes facet matches legacy when theme filter applied (skip theme)", { themes: ["6319f6b363ab2bbb162d7df5"], needs: ["6319f6b363ab2bbb162d7df6"] }),
-      makeCase("needs facet matches legacy when needs filter applied (skip needs)", { needs: ["6319f6b363ab2bbb162d7df6"], search: "jeunes" }),
-
-      // Search + other filters
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments + frenchLevel", { search: "jeunes", departments: ["75"], frenchLevel: ["a"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments + language", { search: "jeunes", departments: ["75"], language: ["fr"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments + public", { search: "jeunes", departments: ["75"], public: ["family"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments + status", { search: "jeunes", departments: ["75"], status: ["refugie"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments + themes", { search: "jeunes", departments: ["75"], themes: ["6319f6b363ab2bbb162d7df5"] }),
-      makeCase("search facet matches legacy when search filter applied (skip search) + departments + needs", { search: "jeunes", departments: ["75"], needs: ["6319f6b363ab2bbb162d7df6"] }),
-    ]);
+    runFacetTests(
+      generateCases({
+        filters: randomFilters,
+        includeZero: true,
+        includeSingles: true,
+        includePairs: true,
+        searchTerm: "jeunes",
+      }).map((c) => makeCase(c.name, c.params)),
+    );
   });
 });
