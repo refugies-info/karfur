@@ -48,7 +48,7 @@ export const updateOrCreateAppUser = async (payload: AppUser, themeIds: string[]
   await AppUserModel.deleteMany({ uid: { $ne: payload.uid }, expoPushToken: payload.expoPushToken });
 
   if (appUser) {
-    await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
+    await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true });
     return AppUserModel.findOne({ uid: payload.uid }); // fix wrong type after updateOne
   }
 
