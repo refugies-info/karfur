@@ -162,6 +162,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     includeZero?: boolean;
     includeSingles?: boolean;
     includePairs?: boolean;
+    includeTriples?: boolean;
     searchTerm?: string | null;
     // When true, the single "needs" case will also add the provided theme id in params
     needsSinglesIncludeThemeId?: string | null;
@@ -171,6 +172,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       includeZero = false,
       includeSingles = true,
       includePairs = false,
+      includeTriples = false,
       searchTerm = null,
       needsSinglesIncludeThemeId = null,
     } = options;
@@ -216,6 +218,28 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
               name: `${name} + ${b}`.replace("(skip", "(skip"),
               params: { search: searchTerm, ...params },
             });
+          }
+        }
+      }
+    }
+
+    if (includeTriples && entries.length > 2) {
+      for (let i = 0; i < entries.length; i++) {
+        for (let j = i + 1; j < entries.length; j++) {
+          for (let k = j + 1; k < entries.length; k++) {
+            const [a, av] = entries[i];
+            const [b, bv] = entries[j];
+            const [c, cv] = entries[k];
+            const name = singleTitles[a] || a;
+            const params: any = { [a]: av, [b]: bv, [c]: cv };
+            cases.push({ name, params });
+
+            if (searchTerm) {
+              cases.push({
+                name: `${name} + ${b} + ${c}`.replace("(skip", "(skip"),
+                params: { search: searchTerm, ...params },
+              });
+            }
           }
         }
       }
@@ -276,6 +300,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
         includeZero: true,
         includeSingles: true,
         includePairs: true,
+        includeTriples: true,
         searchTerm: "jeunes",
       }).map((c) => makeCase(c.name, c.params)),
     );
