@@ -160,9 +160,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
   const generateCases = (options: {
     filters: FiltersDef;
     includeZero?: boolean;
-    includeSingles?: boolean;
-    includePairs?: boolean;
-    includeTriples?: boolean;
+    maxCombinationSize?: number; // number of distinct filters per case (1 = singles, 2 = pairs, 3 = triples ...)
     searchTerm?: string | null;
     // When true, the single "needs" case will also add the provided theme id in params
     needsSinglesIncludeThemeId?: string | null;
@@ -170,15 +168,31 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     const {
       filters,
       includeZero = false,
-      includeSingles = true,
-      includePairs = false,
-      includeTriples = false,
+      maxCombinationSize = 1,
       searchTerm = null,
       needsSinglesIncludeThemeId = null,
     } = options;
 
     const entries = Object.entries(filters);
     const cases: Array<{ name: string; params: Partial<QueryParams> }> = [];
+
+    // helpers
+    const kCombinations = <T,>(arr: T[], k: number): T[][] => {
+      const res: T[][] = [];
+      const backtrack = (start: number, combo: T[]) => {
+        if (combo.length === k) {
+          res.push(combo.slice());
+          return;
+        }
+        for (let i = start; i < arr.length; i++) {
+          combo.push(arr[i]);
+          backtrack(i + 1, combo);
+          combo.pop();
+        }
+      };
+      if (k > 0) backtrack(0, []);
+      return res;
+    };
 
     if (includeZero) {
       cases.push({ name: "baseline: totals and facets match (no filters)", params: {} });
@@ -187,60 +201,30 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       }
     }
 
-    if (includeSingles) {
-      for (const [key, value] of entries) {
-        const params: any = { [key]: value };
-        if (key === "needs" && needsSinglesIncludeThemeId) {
+    const maxK = Math.min(Math.max(1, maxCombinationSize), entries.length);
+    for (let k = 1; k <= maxK; k++) {
+      for (const combo of kCombinations(entries, k)) {
+        // params from the combo
+        const params: any = {};
+        for (const [key, value] of combo) {
+          params[key] = value;
+        }
+        // special seeded-like behavior: when k=1 and key is needs, also include theme
+        if (k === 1 && combo[0][0] === "needs" && needsSinglesIncludeThemeId) {
           params.themes = [needsSinglesIncludeThemeId];
         }
-        cases.push({ name: singleTitles[key] || key, params });
+
+        // Title follows the pattern from the original suites: base on the first key
+        const [firstKey] = combo[0];
+        const otherKeys = combo.slice(1).map(([k]) => k);
+        const baseName = singleTitles[firstKey] || firstKey;
+        const suffix = otherKeys.length ? ` + ${otherKeys.join(" + ")}` : "";
+        const name = `${baseName}${suffix}`;
+
+        cases.push({ name, params });
 
         if (searchTerm) {
-          cases.push({
-            name: `${singleTitles["search"] ?? "search facet matches legacy when search filter applied (skip search)"} + ${key}`,
-            params: { search: searchTerm, ...params },
-          });
-        }
-      }
-    }
-
-    if (includePairs && entries.length > 1) {
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = i + 1; j < entries.length; j++) {
-          const [a, av] = entries[i];
-          const [b, bv] = entries[j];
-          const name = singleTitles[a] || a;
-          const params: any = { [a]: av, [b]: bv };
-          cases.push({ name, params });
-
-          if (searchTerm) {
-            cases.push({
-              name: `${name} + ${b}`,
-              params: { search: searchTerm, ...params },
-            });
-          }
-        }
-      }
-    }
-
-    if (includeTriples && entries.length > 2) {
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = i + 1; j < entries.length; j++) {
-          for (let k = j + 1; k < entries.length; k++) {
-            const [a, av] = entries[i];
-            const [b, bv] = entries[j];
-            const [c, cv] = entries[k];
-            const name = singleTitles[a] || a;
-            const params: any = { [a]: av, [b]: bv, [c]: cv };
-            cases.push({ name, params });
-
-            if (searchTerm) {
-              cases.push({
-                name: `${name} + ${b} + ${c}`,
-                params: { search: searchTerm, ...params },
-              });
-            }
-          }
+          cases.push({ name: `${name}`, params: { search: searchTerm, ...params } });
         }
       }
     }
@@ -263,8 +247,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     generateCases({
       filters: seededFilters,
       includeZero: true,
-      includeSingles: true,
-      includePairs: false,
+      maxCombinationSize: 1,
       searchTerm: "jeunes",
       // special rule: needs singles also include themeB
       needsSinglesIncludeThemeId: ids.themeB.toString(),
@@ -298,9 +281,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       generateCases({
         filters: randomFilters,
         includeZero: true,
-        includeSingles: true,
-        includePairs: true,
-        includeTriples: true,
+        maxCombinationSize: 3,
         searchTerm: "jeunes",
       }).map((c) => makeCase(c.name, c.params)),
     );
