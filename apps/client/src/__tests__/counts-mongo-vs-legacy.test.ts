@@ -216,7 +216,9 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     expectCountsEqual(api, legacy);
   });
 
+  // *******************************************************
   // Randomized dataset using fast-check generated documents
+  // *******************************************************
   describe("randomized dataset (fast-check)", () => {
     beforeEach(async () => {
       const db = conn.db;
@@ -309,6 +311,17 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
       const all = await getAllDispositifs();
       const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ needs: ["6319f6b363ab2bbb162d7df6"] }));
+
+      expectCountsEqual(api, legacy);
+    });
+
+    // Test search
+    test("search facet matches legacy when search filter applied (skip search)", async () => {
+      const params = toParams({ search: "jeunes" });
+      const api = await computeSearchCounts(conn, params);
+
+      const all = await getAllDispositifs();
+      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ search: "jeunes" }));
 
       expectCountsEqual(api, legacy);
     });
