@@ -10,7 +10,7 @@
     "storybook:publish": "dotenv-run-script chromatic"
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "1.26.0",
+    "@codegouvfr/react-dsfr": "1.20.2",
     "@refugies-info/ui": "workspace:*",
     "@storybook/addon-a11y": "^9.1.1",
     "@tailwindcss/typography": "^0.5.16",

@@ -52,6 +52,3 @@ credentials/
 
 # Cloudbuild
 /apps/client/cloudbuild.env
-
-# dev logs
-dev.log

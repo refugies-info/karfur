@@ -12,17 +12,17 @@ overrides:
   stylus: npm:noop3@^1000.0.0
 
 patchedDependencies:
-  '@codegouvfr/react-dsfr@1.26.0':
-    hash: e8fcdeb6ca77d93110e84511652d72b746789b0691be53c1e5c9de50b82107dc
-    path: patches/@codegouvfr__react-dsfr@1.26.0.patch
+  '@codegouvfr/react-dsfr@1.20.2':
+    hash: ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff
+    path: patches/@codegouvfr__react-dsfr@1.20.2.patch
 
 importers:
 
   .:
     devDependencies:
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e8fcdeb6ca77d93110e84511652d72b746789b0691be53c1e5c9de50b82107dc)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@refugies-info/api-types':
         specifier: '*'
         version: 1.0.51(@aws-sdk/credential-providers@3.797.0)(typescript@5.9.2)
@@ -85,7 +85,7 @@ importers:
         version: 5.35.0
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0(patch_hash=e8fcdeb6ca77d93110e84511652d72b746789b0691be53c1e5c9de50b82107dc)
+        version: 1.26.0
       '@lexical/html':
         specifier: ^0.34.0
         version: 0.34.0
@@ -867,8 +867,8 @@ importers:
   apps/storybook:
     dependencies:
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e8fcdeb6ca77d93110e84511652d72b746789b0691be53c1e5c9de50b82107dc)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@refugies-info/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -976,8 +976,8 @@ importers:
   packages/ui:
     dependencies:
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e8fcdeb6ca77d93110e84511652d72b746789b0691be53c1e5c9de50b82107dc)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@lottiefiles/dotlottie-react':
         specifier: ^0.13.5
         version: 0.13.5(react@18.3.1)
@@ -1982,6 +1982,15 @@ packages:
     engines: {node: '>=20.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       storybook: ^0.0.0-0 || ^9.0.0 || ^9.1.0-0 || ^9.2.0-0
+
+  '@codegouvfr/react-dsfr@1.20.2':
+    resolution: {integrity: sha512-BE2VUqoLdn1XLWs1Nu+0DAr+YzmV6q6EVBvEusSTSX/mYcfJzsWu8tPrF9isPojPWxW53ToYgVk1ui3E3jjZpQ==}
+    hasBin: true
+    peerDependencies:
+      '@gouvfr/dsfr-chart': ^1.0.0
+    peerDependenciesMeta:
+      '@gouvfr/dsfr-chart':
+        optional: true
 
   '@codegouvfr/react-dsfr@1.26.0':
     resolution: {integrity: sha512-yfevs/blAVDqw03/w7Gb/rumTlFC2i//ly0SHwrs6ZXmxRayc+UiKoou71uZSAwu1lZ9J9wyCYUbvQug57uStg==}
@@ -14613,7 +14622,12 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
 
-  '@codegouvfr/react-dsfr@1.26.0(patch_hash=e8fcdeb6ca77d93110e84511652d72b746789b0691be53c1e5c9de50b82107dc)':
+  '@codegouvfr/react-dsfr@1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
+    dependencies:
+      tsafe: 1.8.5
+      yargs-parser: 21.1.1
+
+  '@codegouvfr/react-dsfr@1.26.0':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
@@ -21069,7 +21083,7 @@ snapshots:
       '@typescript-eslint/parser': 8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
       eslint: 9.32.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.32.0(jiti@2.5.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1))
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.32.0(jiti@2.5.1))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.32.0(jiti@2.5.1))
       eslint-plugin-react: 7.37.5(eslint@9.32.0(jiti@2.5.1))
@@ -21127,7 +21141,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.32.0(jiti@2.5.1)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.1(supports-color@5.5.0)
@@ -21157,14 +21171,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@9.32.0(jiti@2.5.1)):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
       eslint: 9.32.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.32.0(jiti@2.5.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -21190,7 +21204,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.32.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@9.32.0(jiti@2.5.1))
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1)))(eslint@9.32.0(jiti@2.5.1))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
