@@ -526,8 +526,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       lottie-react-native:
-        specifier: 7.2.2
-        version: 7.2.2(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+        specifier: 7.3.1
+        version: 7.3.1(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -8857,8 +8857,8 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lottie-react-native@7.2.2:
-    resolution: {integrity: sha512-pp3dnFVFZlfZzIL5qKGXju2d6RfnYhPbb8xQL9dYqvPbPy2EbnK2aFlv6jAZLYh0QjUGPEmRAgAAnsOOtT+H9Q==}
+  lottie-react-native@7.3.1:
+    resolution: {integrity: sha512-VW0gtiP1i3Jv6+PaVaNg6QDIqAXwAqmxVp1UOJFqsB6FeBN0zc8M/XR8DE8YiayZzd149nlqGOgmwoV7FbRGDw==}
     peerDependencies:
       '@lottiefiles/dotlottie-react': ^0.6.5
       react: '*'
@@ -22966,7 +22966,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lottie-react-native@7.2.2(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
+  lottie-react-native@7.3.1(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-native: 0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1)
