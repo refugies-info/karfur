@@ -85,12 +85,14 @@ const Filters = (props: Props) => {
 
   const countsByFilter = useMemo(() => {
     if (!counts) return {};
+    const toCountMap = (items: CountItem[] | undefined) =>
+      Object.fromEntries((items || []).map(({ id, count }) => [id, count]));
     return {
-      status: Object.fromEntries((counts.statuses || []).map((c: CountItem) => [c.id, c.count])),
-      public: Object.fromEntries((counts.publics || []).map((c: CountItem) => [c.id, c.count])),
-      age: Object.fromEntries((counts.ageRanges || []).map((c: CountItem) => [c.id, c.count])),
-      frenchLevel: Object.fromEntries((counts.frenchLevels || []).map((c: CountItem) => [c.id, c.count])),
-      language: Object.fromEntries((counts.languages || []).map((c: CountItem) => [c.id, c.count])),
+      status: toCountMap(counts.statuses),
+      public: toCountMap(counts.publics),
+      age: toCountMap(counts.ageRanges),
+      frenchLevel: toCountMap(counts.frenchLevels),
+      language: toCountMap(counts.languages),
     };
   }, [counts]);
 

@@ -108,13 +108,7 @@ const LocationMenu: React.FC<Props> = () => {
   }, [query.departments]);
 
   const departmentCounts = useMemo(() => {
-    const map: Record<string, number> = {};
-    if (searchCounts?.departments) {
-      for (const item of searchCounts.departments) {
-        map[item.id] = item.count;
-      }
-    }
-    return map;
+    return Object.fromEntries((searchCounts?.departments || []).map(({ id, count }) => [id, count]));
   }, [searchCounts]);
 
   return (
