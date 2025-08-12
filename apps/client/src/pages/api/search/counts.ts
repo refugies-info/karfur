@@ -131,25 +131,90 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const frenchLevel = (query.frenchLevel ?? []).filter((x): x is FrenchOptions => x === "a" || x === "b" || x === "c");
   if (frenchLevel.length > 0) {
-    // Map FrenchOptions (a/b/c) to concrete levels stored in Mongo
-    const expand = (opts: FrenchOptions[]): string[] => {
-      const set = new Set<string>();
-      for (const o of opts) {
-        if (o === "c") {
-          // 'c' means advanced; we do not constrain on DB levels for filtering (matches any), so skip adding match
-          return [];
-        } else if (o === "b") {
-          ["A1", "A2", "B1", "B2"].forEach((x) => set.add(x));
-        } else if (o === "a") {
-          ["alpha", "A1", "A2"].forEach((x) => set.add(x));
-        }
-      }
-      return Array.from(set);
-    };
-    const expanded = expand(frenchLevel);
-    if (expanded.length > 0) {
-      match["metadatas.frenchLevel"] = { $in: expanded };
-    }
+    // Mirror facet logic: derive cats (a/b/c); if empty/missing -> ["a","b","c"].
+    const selectedCats = frenchLevel;
+    match.$and = (match.$and || []).concat({
+      $expr: {
+        $gt: [
+          {
+            $size: {
+              $setIntersection: [
+                {
+                  $cond: [
+                    {
+                      $or: [
+                        { $eq: [
+                          {
+                            $size: {
+                              $ifNull: [
+                                {
+                                  $filter: {
+                                    input: {
+                                      $map: {
+                                        input: { $ifNull: ["$metadatas.frenchLevel", []] },
+                                        as: "lvl",
+                                        in: {
+                                          $switch: {
+                                            branches: [
+                                              { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
+                                              { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
+                                              { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
+                                            ],
+                                            default: null,
+                                          },
+                                        },
+                                      },
+                                    },
+                                    as: "x",
+                                    cond: { $ne: ["$$x", null] },
+                                  },
+                                },
+                                [],
+                              ],
+                            },
+                          },
+                          0,
+                        ] },
+                        { $eq: [ { $ifNull: ["$metadatas.frenchLevel", null] }, null ] },
+                      ],
+                    },
+                    ["a", "b", "c"],
+                    {
+                      $setUnion: [
+                        {
+                          $filter: {
+                            input: {
+                              $map: {
+                                input: { $ifNull: ["$metadatas.frenchLevel", []] },
+                                as: "lvl",
+                                in: {
+                                  $switch: {
+                                    branches: [
+                                      { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
+                                      { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
+                                      { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
+                                    ],
+                                    default: null,
+                                  },
+                                },
+                              },
+                            },
+                            as: "x",
+                            cond: { $ne: ["$$x", null] },
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                selectedCats,
+              ],
+            },
+          },
+          0,
+        ],
+      },
+    });
   }
   const publics = (query.public ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (publics.length > 0) {
