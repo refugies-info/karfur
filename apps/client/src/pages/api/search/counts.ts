@@ -74,11 +74,19 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const themes = (query.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (themes.length > 0) {
-    match["thematiques"] = { $in: themes.map((t: string) => new mongoose.Types.ObjectId(t)) };
+    const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
+    match.$or = (match.$or || []).concat([
+      { thematiques: { $in: themeIds } },
+      { secondaryThemes: { $in: themeIds } },
+    ]);
   }
   const needs = (query.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (needs.length > 0) {
-    match["besoins"] = { $in: needs.map((n: string) => new mongoose.Types.ObjectId(n)) };
+    const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
+    match.$or = (match.$or || []).concat([
+      { besoins: { $in: needIds } },
+      { needs: { $in: needIds } },
+    ]);
   }
   const ages = (query.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
   if (ages.length > 0) {
@@ -262,8 +270,34 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
   const facetPipelines = {
-    themes: [{ $unwind: "$thematiques" }, { $group: { _id: "$thematiques", count: { $sum: 1 } } }],
-    needs: [{ $unwind: "$besoins" }, { $group: { _id: "$besoins", count: { $sum: 1 } } }],
+    themes: [
+      {
+        $project: {
+          _allThemes: {
+            $setUnion: [
+              { $ifNull: ["$thematiques", []] },
+              { $ifNull: ["$secondaryThemes", []] },
+            ],
+          },
+        },
+      },
+      { $unwind: "$_allThemes" },
+      { $group: { _id: "$_allThemes", count: { $sum: 1 } } },
+    ],
+    needs: [
+      {
+        $project: {
+          _allNeeds: {
+            $setUnion: [
+              { $ifNull: ["$besoins", []] },
+              { $ifNull: ["$needs", []] },
+            ],
+          },
+        },
+      },
+      { $unwind: "$_allNeeds" },
+      { $group: { _id: "$_allNeeds", count: { $sum: 1 } } },
+    ],
     frenchLevels: [
       // Map stored levels to categories a/b/c; if no level, count as all ["a","b","c"]
       {
@@ -404,7 +438,9 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
         // When computing counts for either facet, drop BOTH filters to avoid self- and cross-filtering bias.
         // Otherwise, selecting a need would trivially constrain theme counts (and vice versa), which isn't useful for facet exploration.
         delete newMatch.thematiques;
+        delete newMatch.secondaryThemes;
         delete newMatch.besoins;
+        delete newMatch.needs;
       } else if (key === "ageRanges") {
         delete newMatch.$and;
       } else if (key === "frenchLevels") {
